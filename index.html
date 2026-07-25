@@ -2042,13 +2042,17 @@ async function openBillingManagement(){
 }
 async function deleteMemberAccount(){
   if(!memberState.user)return;
-  modal('アカウントを削除しますか？','保存した設定と会員データを削除します。有料契約がある場合は先に解約処理を行います。この操作は元に戻せません。',async()=>{
-    const {error}=await memberClient.functions.invoke('delete-account');
-    if(error){toast('アカウントを削除できませんでした。問い合わせからご連絡ください。','err');return;}
+  if(effectivePlanKey()!=='free'){
+    modal('先に有料プランを解約してください','有料契約が残ったままアカウントを削除すると請求だけが継続するおそれがあります。「契約・お支払い管理」から解約し、無料プランへ切り替わった後に削除してください。',()=>{closeModal();openBillingManagement();},'契約を管理する');
+    return;
+  }
+  modal('無料アカウントを削除しますか？','ログイン情報、保存した記事、テーマ設定など、このアカウントに紐づくデータを削除します。この操作は元に戻せません。',async()=>{
+    const {data,error}=await memberClient.rpc('delete_own_free_account');
+    if(error||data!==true){toast('削除処理を完了できませんでした。再ログインしてもう一度お試しください。','err');return;}
     DB._data=null;localStorage.removeItem(DB.KEY);
     await memberClient.auth.signOut();
     await refreshMemberState(null);
-    toast('アカウントを削除しました','ok');
+    toast('無料アカウントと保存データを削除しました','ok');
   },'削除する',true);
 }
 function showCancellationGuide(){
@@ -3627,7 +3631,7 @@ function renderAccount(v){
       </div>
     </section>`}
     <div class="account-security">契約プランはStripeの決済結果から更新されます。ログアウトだけでは有料サブスクは解約されません。</div>
-    <section class="account-danger"><div><b>アカウントの削除</b><span>有料契約がある場合は解約を試みたうえで、保存設定と会員データを削除します。</span></div><button class="btn btn-danger btn-sm" onclick="deleteMemberAccount()">${icon('trash')}削除する</button></section>
+    <section class="account-danger"><div><b>アカウントの削除</b><span>${effectivePlanKey()==='free'?'無料アカウントと保存設定を完全に削除します。':'先に有料プランを解約し、無料プランへ切り替わってから削除できます。'}</span></div><button class="btn btn-danger btn-sm" onclick="deleteMemberAccount()">${icon('trash')}削除する</button></section>
   </section></div>`;
 }
 
