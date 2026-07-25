@@ -235,3 +235,14 @@ async function fetchText(url) {
       console.error("UPDATED login consent layout");
     }
   }
+
+const layoutLines = fs.readFileSync("index.html", "utf8").split(/(?<=\n)/);
+let layoutChanged = false;
+for (let i = 0; i < layoutLines.length - 1; i++) {
+  if (layoutLines[i].includes('class="auth-actions"') && layoutLines[i].includes("signInMember()") && layoutLines[i + 1].includes('id="authConsent"')) {
+    [layoutLines[i], layoutLines[i + 1]] = [layoutLines[i + 1], layoutLines[i]];
+    layoutChanged = true;
+    i++;
+  }
+}
+if (layoutChanged) fs.writeFileSync("index.html", layoutLines.join(""));
