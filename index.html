@@ -3592,8 +3592,8 @@ function renderAccount(v){
       <div class="auth-form">
         <div class="auth-field"><label for="authEmail">メールアドレス</label><input id="authEmail" type="email" autocomplete="email" inputmode="email" placeholder="name@example.com"></div>
         <div class="auth-field"><label for="authPassword">パスワード（8文字以上）</label><div class="password-input-wrap"><input id="authPassword" type="password" autocomplete="current-password" minlength="8" placeholder="8文字以上"><button type="button" class="password-toggle" aria-label="パスワードを表示する" aria-pressed="false" onclick="togglePasswordVisibility('authPassword',this)">${icon('eye')}<span>表示</span></button></div></div>
-        <div class="auth-actions"><button class="btn btn-primary" onclick="signInMember()">${icon('user')}ログイン</button><button class="btn" onclick="signUpMember()">${icon('plus')}無料登録</button></div>
         <label class="auth-consent"><input type="checkbox" id="authConsent"><span><button type="button" onclick="go('terms')">利用規約</button>と<button type="button" onclick="go('privacy')">プライバシーポリシー</button>に同意して無料登録します。</span></label>
+        <div class="auth-actions"><button class="btn btn-primary" onclick="signInMember()">${icon('user')}ログイン</button><button class="btn" onclick="signUpMember()">${icon('plus')}無料登録</button></div>
         <button class="link-button" onclick="sendPasswordReset()">パスワードを忘れた方・再設定する方はこちら</button>
       </div>
       <div id="authMessage" class="auth-message ${memberState.message?'show':''} ${memberState.error?'error':''}">${esc(memberState.message)}</div>
