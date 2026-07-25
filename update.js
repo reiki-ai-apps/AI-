@@ -223,3 +223,15 @@ async function fetchText(url) {
   fs.writeFileSync("data.json", JSON.stringify(final, null, 2));
   console.error("WROTE data.json with", final.length, "items");
 })();
+  // GitHub Pagesへ配置する直前に、同意欄をログイン・無料登録ボタンより上へ整える。
+  const indexPath = "index.html";
+  if (fs.existsSync(indexPath)) {
+    const lines = fs.readFileSync(indexPath, "utf8").split(/(?<=\n)/);
+    const actionIndex = lines.findIndex(line => line.includes('class="auth-actions"') && line.includes("signInMember()"));
+    const consentIndex = lines.findIndex(line => line.includes('id="authConsent"'));
+    if (actionIndex >= 0 && consentIndex >= 0 && actionIndex < consentIndex) {
+      [lines[actionIndex], lines[consentIndex]] = [lines[consentIndex], lines[actionIndex]];
+      fs.writeFileSync(indexPath, lines.join(""));
+      console.error("UPDATED login consent layout");
+    }
+  }
