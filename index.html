@@ -1721,6 +1721,21 @@
     .media-promo{padding:17px 14px}.media-promo-head{display:block}.media-promo h3{font-size:17px}
     .media-promo .official-media-links{grid-template-columns:1fr}.media-promo .official-media-link{justify-content:flex-start;padding:0 14px}
   }
+  .nav-legal{display:flex;flex-wrap:wrap;gap:4px 10px;padding:14px 12px 2px;border-top:1px solid rgba(112,151,196,.13)}
+  .nav-legal button,.link-button,.auth-consent button{padding:0;border:0;background:none;color:#8291a8;font:inherit;font-size:9.5px;text-decoration:underline;cursor:pointer}
+  .nav-legal button:hover,.link-button:hover,.auth-consent button:hover{color:#70e5ed}
+  .auth-consent{display:flex;align-items:flex-start;gap:9px;color:#8f9db2;font-size:10.5px;line-height:1.6}.auth-consent input{margin-top:3px}.link-button{width:max-content;margin-top:-4px;font-size:11px}
+  .account-danger{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:16px;padding:15px;border:1px solid rgba(239,105,130,.2);border-radius:12px;background:rgba(62,15,30,.18)}
+  .account-danger div{display:grid;gap:4px}.account-danger b{color:#ffd7df;font-size:12px}.account-danger span{color:#8e9caf;font-size:10.5px;line-height:1.55}
+  .card-source{font-family:inherit;cursor:pointer}
+  .notice-card{display:grid;gap:5px;margin:0 0 14px;padding:12px 14px;border-left:3px solid #4ad6e3;border-radius:8px;background:rgba(10,36,55,.72);color:#aebed1;font-size:11px;line-height:1.65}.notice-card b{color:#71e7ec;font-size:11px}
+  .legal-page{max-width:900px;margin:0 auto;padding-bottom:30px}.legal-section{padding:28px;border:1px solid rgba(74,204,225,.25);border-radius:18px;background:linear-gradient(145deg,rgba(7,24,47,.97),rgba(9,13,35,.98));box-shadow:0 20px 50px rgba(0,0,0,.25)}
+  .legal-section h2{margin:0 0 6px;color:#f5f8ff;font-size:27px}.legal-section h3{margin:25px 0 8px;color:#e7f1ff;font-size:15px}.legal-section p{margin:0;color:#a3b1c4;font-size:12.5px;line-height:1.9}.legal-updated{margin-bottom:18px!important;color:#728197!important;font-size:10.5px!important}
+  .legal-table{width:100%;border-collapse:collapse;margin-top:18px}.legal-table th,.legal-table td{padding:13px 14px;border:1px solid rgba(112,151,196,.17);vertical-align:top;text-align:left;font-size:12px;line-height:1.75}.legal-table th{width:190px;background:rgba(17,42,64,.55);color:#d6e3f3}.legal-table td{color:#aab7c9}
+  .legal-contact{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:28px;padding-top:18px;border-top:1px solid rgba(112,151,196,.16);color:#dce8f6;font-size:12px}
+  .footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 18px;margin-top:16px}.footer-links button{border:0;background:none;color:#8291a8;font:inherit;font-size:10px;text-decoration:underline;cursor:pointer}.footer-links button:hover{color:#70e5ed}
+  .support-form{display:grid;gap:16px;margin-top:20px}.support-form label{display:grid;gap:7px;color:#b9c7d8;font-size:11.5px;font-weight:800}.support-form select,.support-form textarea{width:100%;padding:12px;border:1px solid rgba(112,151,196,.28);border-radius:11px;background:rgba(4,13,29,.82);color:#f3f7ff;font:inherit;line-height:1.65;outline:none}.support-form textarea:focus,.support-form select:focus{border-color:rgba(72,218,230,.65);box-shadow:0 0 0 3px rgba(61,207,222,.1)}
+  @media(max-width:600px){.legal-section{padding:22px 16px}.legal-section h2{font-size:23px}.legal-table,.legal-table tbody,.legal-table tr,.legal-table th,.legal-table td{display:block}.legal-table th{width:auto;border-bottom:0;padding-bottom:7px}.legal-table td{padding-top:7px}.legal-contact,.account-danger{align-items:flex-start;flex-direction:column}}
 </style>
 </head>
 <body>
@@ -1881,7 +1896,26 @@ const SUPABASE_URL='https://ncosmmesecpqhzfikpmn.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_9nyRtwzYeaArcNKiZtVVVA_2ji4eK6G';
 const AUTH_RETURN_URL='https://reiki-ai-apps.github.io/AI-/';
 const memberClient=window.supabase?.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
-const memberState={ready:false,user:null,subscription:null,registeredCount:null,message:'',error:false};
+const memberState={ready:false,user:null,subscription:null,registeredCount:null,message:'',error:false,recovery:false};
+const PLAN_RULES={
+  free:{topics:0,sourceViews:3,retention:3,csv:false,customSources:false},
+  standard:{topics:10,sourceViews:10,retention:14,csv:false,customSources:false},
+  premium:{topics:Infinity,sourceViews:Infinity,retention:30,csv:true,customSources:true}
+};
+function effectivePlanKey(){
+  const sub=memberState.subscription;
+  if(!sub||!['standard','premium'].includes(sub.plan))return 'free';
+  if(['active','trialing'].includes(sub.status))return sub.plan;
+  if(sub.status==='canceled'&&sub.current_period_end&&new Date(sub.current_period_end)>new Date())return sub.plan;
+  return 'free';
+}
+function currentRules(){return PLAN_RULES[effectivePlanKey()]||PLAN_RULES.free;}
+function requirePlan(minPlan,message){
+  const order={free:0,standard:1,premium:2};
+  if(order[effectivePlanKey()]>=order[minPlan])return true;
+  modal('プランのアップグレードが必要です',message,()=>go('pricing'),'料金プランを見る');
+  return false;
+}
 
 function memberPlanLabel(plan){return ({free:'無料',standard:'スタンダード',premium:'プレミアム'})[plan]||'無料';}
 function memberStatusLabel(status){return ({active:'契約中',trialing:'トライアル中',past_due:'支払い確認中',canceled:'解約済み',unpaid:'未払い',incomplete:'手続き未完了',inactive:'無料利用中'})[status]||'確認中';}
@@ -1916,6 +1950,7 @@ async function refreshMemberState(session){
   if(memberState.user&&memberClient){
     const {data}=await memberClient.from('subscriptions').select('plan,status,current_period_end').maybeSingle();
     memberState.subscription=data||{plan:'free',status:'inactive',current_period_end:null};
+    await loadMemberAppState();
   }
   memberState.ready=true;
   renderNav();
@@ -1926,7 +1961,10 @@ async function initMemberAuth(){
   loadRegisteredUserCount();
   const {data}=await memberClient.auth.getSession();
   await refreshMemberState(data.session);
-  memberClient.auth.onAuthStateChange((_event,session)=>{window.setTimeout(()=>refreshMemberState(session),0);});
+  memberClient.auth.onAuthStateChange((event,session)=>{
+    if(event==='PASSWORD_RECOVERY')memberState.recovery=true;
+    window.setTimeout(async()=>{await refreshMemberState(session);if(memberState.recovery)go('account');},0);
+  });
 }
 function setAuthMessage(message,isError){
   memberState.message=message||'';memberState.error=!!isError;
@@ -1936,7 +1974,9 @@ function setAuthMessage(message,isError){
 async function signUpMember(){
   const email=(document.getElementById('authEmail')?.value||'').trim();
   const password=document.getElementById('authPassword')?.value||'';
+  const consent=document.getElementById('authConsent')?.checked;
   if(!email||password.length<8){setAuthMessage('メールアドレスと8文字以上のパスワードを入力してください。',true);return;}
+  if(!consent){setAuthMessage('利用規約とプライバシーポリシーへの同意が必要です。',true);return;}
   setAuthMessage('登録しています…',false);
   const {data,error}=await memberClient.auth.signUp({email,password,options:{emailRedirectTo:AUTH_RETURN_URL}});
   if(error){setAuthMessage(authErrorMessage(error),true);return;}
@@ -1955,7 +1995,23 @@ async function signInMember(){
 async function signOutMember(){
   if(!memberClient)return;
   await memberClient.auth.signOut();memberState.message='';memberState.error=false;
+  DB._data=null;localStorage.removeItem(DB.KEY);
   await refreshMemberState(null);
+}
+async function sendPasswordReset(){
+  const email=(document.getElementById('authEmail')?.value||memberState.user?.email||'').trim();
+  if(!email){setAuthMessage('パスワード再設定メールを受け取るメールアドレスを入力してください。',true);return;}
+  const {error}=await memberClient.auth.resetPasswordForEmail(email,{redirectTo:AUTH_RETURN_URL});
+  if(error){setAuthMessage(authErrorMessage(error),true);return;}
+  setAuthMessage('パスワード再設定メールを送りました。メール内のリンクを開いてください。',false);
+  if(!document.getElementById('authMessage'))toast('パスワード再設定メールを送りました','ok');
+}
+async function updateRecoveredPassword(){
+  const password=document.getElementById('newPassword')?.value||'';
+  if(password.length<8){toast('新しいパスワードは8文字以上で入力してください。','err');return;}
+  const {error}=await memberClient.auth.updateUser({password});
+  if(error){toast(authErrorMessage(error),'err');return;}
+  memberState.recovery=false;toast('パスワードを変更しました','ok');render();
 }
 function beginCheckout(plan,baseUrl){
   if(!memberState.user){memberState.message='決済前にログインまたは無料登録をしてください。';memberState.error=false;go('account');return;}
@@ -1964,13 +2020,22 @@ function beginCheckout(plan,baseUrl){
   if(memberState.user.email)checkout.searchParams.set('prefilled_email',memberState.user.email);
   window.open(checkout.toString(),'_blank','noopener,noreferrer');
 }
-const STRIPE_PORTAL_LOGIN_URL='';
-function openBillingManagement(){
-  if(STRIPE_PORTAL_LOGIN_URL){
-    window.open(STRIPE_PORTAL_LOGIN_URL,'_blank','noopener,noreferrer');
-    return;
-  }
+async function openBillingManagement(){
+  if(!memberState.user){go('account');return;}
+  const {data,error}=await memberClient.functions.invoke('create-portal-session');
+  if(!error&&data?.url){window.open(data.url,'_blank','noopener,noreferrer');return;}
   showCancellationGuide();
+}
+async function deleteMemberAccount(){
+  if(!memberState.user)return;
+  modal('アカウントを削除しますか？','保存した設定と会員データを削除します。有料契約がある場合は先に解約処理を行います。この操作は元に戻せません。',async()=>{
+    const {error}=await memberClient.functions.invoke('delete-account');
+    if(error){toast('アカウントを削除できませんでした。問い合わせからご連絡ください。','err');return;}
+    DB._data=null;localStorage.removeItem(DB.KEY);
+    await memberClient.auth.signOut();
+    await refreshMemberState(null);
+    toast('アカウントを削除しました','ok');
+  },'削除する',true);
 }
 function showCancellationGuide(){
   const root=document.getElementById('modalRoot');
@@ -1999,9 +2064,29 @@ const DB = {
     else if(runMigrations(this._data)){ this.save(); } // 既存データへ重要アップデートを反映
     return this._data;
   },
-  save(){ localStorage.setItem(this.KEY, JSON.stringify(this._data)); },
+  save(sync=true){ localStorage.setItem(this.KEY, JSON.stringify(this._data)); if(sync)scheduleMemberAppStateSync(); },
   reset(){ this._data = seedData(); this.save(); },
 };
+let appStateSyncTimer=null;
+async function loadMemberAppState(){
+  if(!memberClient||!memberState.user)return;
+  const {data,error}=await memberClient.from('user_states').select('state').maybeSingle();
+  if(!error&&data?.state&&Array.isArray(data.state.tools)&&Array.isArray(data.state.updates)){
+    DB._data=data.state;
+    localStorage.setItem(DB.KEY,JSON.stringify(DB._data));
+  }else if(!error){
+    await saveMemberAppState();
+  }
+}
+async function saveMemberAppState(){
+  if(!memberClient||!memberState.user||!DB._data)return;
+  await memberClient.from('user_states').upsert({user_id:memberState.user.id,state:DB._data},{onConflict:'user_id'});
+}
+function scheduleMemberAppStateSync(){
+  if(!memberState.user||!memberClient)return;
+  clearTimeout(appStateSyncTimer);
+  appStateSyncTimer=setTimeout(saveMemberAppState,700);
+}
 function uid(){ return 'id-'+Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4); }
 function nowISO(){ return new Date().toISOString(); }
 
@@ -2100,6 +2185,12 @@ function rankFromScore(s){ return s>=85?'S':s>=70?'A':s>=50?'B':'C'; }
 /* ---------- Data access (各テーブル) ---------- */
 function getTools(){ return DB.load().tools; }
 function getUpdates(){ return DB.load().updates; }
+function getPlanUpdates(){
+  const all=getUpdates();
+  if(effectivePlanKey()==='free')return all;
+  const selected=new Set(getTools().filter(t=>t.is_using).slice(0,currentRules().topics).map(t=>t.id));
+  return selected.size?all.filter(u=>selected.has(u.tool_id)):all;
+}
 function getLogs(){ return DB.load().fetch_logs; }
 function toolById(id){ return getTools().find(t=>t.id===id); }
 function updateById(id){ return getUpdates().find(u=>u.id===id); }
@@ -2108,7 +2199,7 @@ function toolColor(id){ const idx=getTools().findIndex(t=>t.id===id); return TOO
 function saveTool(t){
   const d=DB.load();
   if(t.id){ const i=d.tools.findIndex(x=>x.id===t.id); t.updated_at=nowISO(); d.tools[i]=t; }
-  else{ t.id=uid(); t.slug=t.slug||slugify(t.name); t.created_at=nowISO(); t.updated_at=nowISO(); t.last_fetched_at=null; d.tools.push(t); }
+  else{ t.id=uid(); t.slug=t.slug||slugify(t.name); t.is_custom=true; t.created_at=nowISO(); t.updated_at=nowISO(); t.last_fetched_at=null; d.tools.push(t); }
   DB.save(); return t;
 }
 function deleteTool(id){
@@ -2147,14 +2238,13 @@ function recomputeAll(){
   DB.save();
 }
 
-/* 公開から3日より古いアップデートを自動削除（常に最新3日分だけ表示）。
+/* 契約プランの保存期間より古いアップデートを自動削除。
    ただし「あとで試す/試した/導入済み・メモ付き」は消さない（自分で残したものは保持）。 */
-const PRUNE_DAYS = 3;
 const KEEP_STATUS = ['try_later','tried','adopted'];
 function isRecent(u){
   const t = new Date(u.published_at).getTime();
   if(isNaN(t)) return true;                       // 日付不明は残す
-  return t >= Date.now() - PRUNE_DAYS*86400000;   // 過去3日以内なら残す
+  return t >= Date.now() - currentRules().retention*86400000;
 }
 function pruneOld(){
   const d=DB.load();
@@ -2455,6 +2545,7 @@ const NAV = [
   {group:'アカウント',items:[
     {id:'account',label:'ログイン・会員情報',icon:'user'},
     {id:'pricing',label:'料金プラン',icon:'star'},
+    {id:'support',label:'お問い合わせ',icon:'inbox'},
   ]},
 ];
 let route = {name:'home', param:null};
@@ -2463,6 +2554,15 @@ function isMobile(){ return window.innerWidth<=760; }
 let navHistory=[];
 function go(name, param){
   param=param||null;
+  if(name==='tool-form'&&effectivePlanKey()==='free'){
+    requirePlan('standard','無料プランは運営が選んだ総合フィードを利用します。情報テーマの選択・編集はスタンダード以上で利用できます。');return;
+  }
+  if(name==='tool-form'&&param==='new'){
+    const rules=currentRules();
+    if(rules.topics===0){requirePlan('standard','無料プランは運営が選んだ総合フィードを利用します。好きな情報テーマの追加はスタンダード以上で利用できます。');return;}
+    const customCount=getTools().filter(t=>t.is_custom).length;
+    if(Number.isFinite(rules.topics)&&customCount>=rules.topics){requirePlan('premium',`スタンダードでは情報テーマを${rules.topics}件まで追加できます。無制限で追加するにはプレミアムをご利用ください。`);return;}
+  }
   if(route.name && !(route.name===name && route.param===param)){
     navHistory.push({name:route.name, param:route.param});
     if(navHistory.length>50) navHistory.shift();
@@ -2482,7 +2582,7 @@ function goBack(){
 function toggleMenu(open){ document.getElementById('sidebar').classList.toggle('open',open); document.getElementById('scrim').classList.toggle('show',open); }
 
 function renderNav(){
-  const unread = getUpdates().filter(u=>u.status==='unread').length;
+  const unread = getPlanUpdates().filter(u=>u.status==='unread').length;
   const tryN = getUpdates().filter(u=>u.status==='try_later').length;
   let html='';
   NAV.forEach(g=>{
@@ -2495,6 +2595,7 @@ function renderNav(){
       html+=`<button class="nav-item ${active?'active':''}" onclick="go('${it.id}')">${icon(it.icon)}<span>${it.label}</span>${badge}</button>`;
     });
   });
+  html+=`<div class="nav-legal"><button onclick="go('terms')">利用規約</button><button onclick="go('privacy')">プライバシー</button><button onclick="go('commerce')">特商法表記</button></div>`;
   document.getElementById('nav').innerHTML=html;
 
   const mobileItems=[
@@ -2521,6 +2622,10 @@ const PAGE_META = {
   fetch:['取得実行','登録した情報テーマの最新ニュースを取得'],
   account:['ログイン・会員情報','アカウントと契約プランを確認'],
   pricing:['料金プラン','利用スタイルに合わせて選べる3つのプラン'],
+  support:['お問い合わせ','困ったこと・記事の誤りを運営へ連絡'],
+  terms:['利用規約','サービス利用時の大切なルール'],
+  privacy:['プライバシーポリシー','個人情報とデータの取り扱い'],
+  commerce:['特定商取引法に基づく表記','料金・解約・事業者情報'],
   'update-detail':['アップデート詳細',''],
 };
 
@@ -2534,7 +2639,8 @@ function render(){
   ({
     home:renderHome, updates:renderUpdates, categories:renderCategories,
     'try-list':renderTryList, tools:renderTools, 'tool-form':renderToolForm,
-    fetch:renderFetch, account:renderAccount, pricing:renderPricing, 'update-detail':renderDetail,
+    fetch:renderFetch, account:renderAccount, pricing:renderPricing, support:renderSupport,
+    terms:renderTerms, privacy:renderPrivacy, commerce:renderCommerce, 'update-detail':renderDetail,
   }[route.name]||renderHome)(v);
 }
 
@@ -2595,12 +2701,39 @@ function updateCard(u){
       </div>
       <div class="card-actions">
         <button class="card-open card-detail" onclick="go('update-detail','${u.id}')">${icon('eye')}要約を見る</button>
-        ${u.source_url?`<a class="card-source" href="${esc(u.source_url)}" target="_blank" rel="noopener" aria-label="情報元の記事を外部サイトで読む">${icon('ext')}情報元の記事を読む</a>`:''}
+        ${u.source_url?`<button class="card-source" onclick="openSourceArticle('${u.id}')" aria-label="情報元の記事を外部サイトで読む">${icon('ext')}情報元の記事を読む</button>`:''}
         ${u.status==='unread'?`<button class="mark-read card-action-labeled" onclick="markRead('${u.id}')" aria-label="既読にする" title="読んだ記事として記録する">${icon('check')}<span>既読にする</span></button>`:''}
         ${u.status!=='try_later'?`<button class="icon-action card-action-labeled" onclick="quickStatus('${u.id}','try_later');render()" aria-label="あとで試すに保存" title="あとで試す一覧に保存する">${icon('flask')}<span>あとで試す</span></button>`:''}
       </div>
     </div>
   </article>`;
+}
+function localSourceViewKey(){return `ai_radar_source_views_${new Date().toLocaleDateString('ja-JP',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit'}).replace('/','-')}`;}
+async function openSourceArticle(id){
+  const u=updateById(id);if(!u?.source_url)return;
+  const limit=currentRules().sourceViews;
+  const articleKey=stableHash(normalizeArticleUrl(u.source_url)||u.source_url);
+  let allowed=true,count=0;
+  if(Number.isFinite(limit)){
+    if(memberState.user&&memberClient){
+      const {data,error}=await memberClient.rpc('record_article_view',{p_article_key:articleKey,p_limit:limit});
+      if(error){toast('閲覧回数を確認できませんでした。少し待ってからお試しください。','err');return;}
+      allowed=!!data?.allowed;count=Number(data?.count||0);
+    }else{
+      let used=[];try{used=JSON.parse(localStorage.getItem(localSourceViewKey())||'[]')}catch(e){}
+      if(!used.includes(articleKey)){
+        if(used.length>=limit)allowed=false;
+        else{used.push(articleKey);localStorage.setItem(localSourceViewKey(),JSON.stringify(used));}
+      }
+      count=used.length;
+    }
+  }
+  if(!allowed){
+    modal('今月の元記事閲覧数に達しました',`現在のプランでは月${limit}件まで情報元の記事を開けます。要約は引き続き読めます。`,()=>go('pricing'),'プランを確認');
+    return;
+  }
+  if(Number.isFinite(limit))toast(`今月の元記事閲覧 ${count}/${limit}件`,'ok');
+  window.open(u.source_url,'_blank','noopener,noreferrer');
 }
 
 /* ============================================================
@@ -2608,7 +2741,7 @@ function updateCard(u){
    ============================================================ */
 function renderHome(v){
   recomputeAll();
-  const ups=getUpdates();
+  const ups=getPlanUpdates();
   const unread=ups.filter(u=>u.status==='unread').length;
   const tryLater=ups.filter(u=>u.status==='try_later').length;
   // 新しい順（公開日の新しいものが上）
@@ -2687,7 +2820,7 @@ function openUpdatesFiltered(patch){
 function renderUpdates(v){
   recomputeAll();
   const tools=getTools();
-  let list=getUpdates().slice().sort(byPub);
+  let list=getPlanUpdates().slice().sort(byPub);
   const f=upFilter;
   if(f.q){const q=f.q.toLowerCase();list=list.filter(u=>(u.title+u.manual_summary+u.raw_excerpt).toLowerCase().includes(q));}
   if(f.tool)list=list.filter(u=>u.tool_id===f.tool);
@@ -2847,7 +2980,9 @@ function renderDetailRead(v,u,tool){
         <div class="rb-body">${esc(buildFriendlyExplanation(u,tool))}</div>
       </div>`:''}
 
-      ${u.source_url?`<a class="btn btn-primary" href="${esc(u.source_url)}" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;width:fit-content;margin-bottom:14px" aria-label="情報元の記事を外部サイトで読む">${icon('ext')}情報元の記事を読む（外部サイト）</a>`:''}
+      <div class="notice-card"><b>AIによる要約です</b><span>内容に誤りや不足がある場合があります。契約・投資・法律・医療など重要な判断は、必ず公式発表や情報元の記事も確認してください。</span></div>
+      ${u.source_url?`<button class="btn btn-primary" onclick="openSourceArticle('${u.id}')" style="display:inline-flex;width:fit-content;margin-bottom:14px" aria-label="情報元の記事を外部サイトで読む">${icon('ext')}情報元の記事を読む（外部サイト）</button>`:''}
+      <button class="btn btn-sm" onclick="go('support','${u.id}')" style="margin:0 0 14px 8px">${icon('inbox')}内容の誤りを報告</button>
 
       ${readBlock(u.id,'何が変わったか',u.simple_explanation,'eye','#2563eb','#e7efff')}
       ${readBlock(u.id,'仕事への影響',u.impact_summary,'bolt','#7c5cf6','#efeaff')}
@@ -3021,12 +3156,13 @@ function renderToolForm(v){
         </div>
       </div>
       <details class="manual-details" ${(t.official_url||t.release_notes_url||t.x_url)?'open':''}>
-        <summary>${icon('edit')} 手入力で情報源を細かく設定</summary>
+        <summary>${icon('edit')} 手入力で情報源を細かく設定 ${currentRules().customSources?'':'（プレミアム）'}</summary>
         <div class="manual-fields">
-          <div class="field"><label>公式サイトURL</label><input type="url" id="tf_official" value="${esc(t.official_url||'')}" placeholder="https://"></div>
-          <div class="field"><label>Release Notes URL</label><input type="url" id="tf_release" value="${esc(t.release_notes_url||'')}" placeholder="https://"></div>
-          <div class="field"><label>RSS URL</label><input type="url" id="tf_rss" value="${esc(t.rss_url||'')}" placeholder="https://（入力した場合はこちらを優先）"></div>
-          <div class="field"><label>X（Twitter）URL</label><input type="url" id="tf_x" value="${esc(t.x_url||'')}" placeholder="https://x.com/"></div>
+          ${currentRules().customSources?'':'<div class="notice-card"><b>プレミアム機能</b><span>スタンダードでは検索キーワードから取得先を自動設定します。公式サイト、RSS、Xを個別指定するにはプレミアムをご利用ください。</span></div>'}
+          <div class="field"><label>公式サイトURL</label><input type="url" id="tf_official" value="${esc(t.official_url||'')}" placeholder="https://" ${currentRules().customSources?'':'disabled'}></div>
+          <div class="field"><label>Release Notes URL</label><input type="url" id="tf_release" value="${esc(t.release_notes_url||'')}" placeholder="https://" ${currentRules().customSources?'':'disabled'}></div>
+          <div class="field"><label>RSS URL</label><input type="url" id="tf_rss" value="${esc(t.rss_url||'')}" placeholder="https://（入力した場合はこちらを優先）" ${currentRules().customSources?'':'disabled'}></div>
+          <div class="field"><label>X（Twitter）URL</label><input type="url" id="tf_x" value="${esc(t.x_url||'')}" placeholder="https://x.com/" ${currentRules().customSources?'':'disabled'}></div>
         </div>
       </details>
     </div>
@@ -3086,10 +3222,22 @@ function submitTool(id){
   t.name=name; t.category=val('tf_category');
   t.search_query=val('tf_query');
   t.priority=document.querySelector('input[name="tf_priority"]:checked')?.value||'B';
-  t.official_url=val('tf_official'); t.release_notes_url=val('tf_release');
-  t.rss_url=val('tf_rss')||googleNewsRss(t.search_query); t.x_url=val('tf_x');
+  if(currentRules().customSources){
+    t.official_url=val('tf_official'); t.release_notes_url=val('tf_release');
+    t.rss_url=val('tf_rss')||googleNewsRss(t.search_query); t.x_url=val('tf_x');
+  }else if(id){
+    const old=toolById(id)||{};
+    t.official_url=old.official_url||'';t.release_notes_url=old.release_notes_url||'';
+    t.rss_url=googleNewsRss(t.search_query)||old.rss_url||'';t.x_url=old.x_url||'';
+  }else{
+    t.official_url='';t.release_notes_url='';t.rss_url=googleNewsRss(t.search_query);t.x_url='';
+  }
   t.related_businesses=[...document.querySelectorAll('#tf_biz input:checked')].map(c=>c.value);
   t.memo=val('tf_memo'); t.is_using=document.getElementById('tf_using').checked; t.is_active=document.getElementById('tf_active').checked;
+  if(t.is_using&&Number.isFinite(currentRules().topics)){
+    const selected=getTools().filter(x=>x.is_using&&x.id!==id).length;
+    if(selected>=currentRules().topics){toast(`スタンダードでは注目テーマを${currentRules().topics}件まで選択できます`,'err');return;}
+  }
   if(id)t.id=id;
   saveTool(t); recomputeAll();
   toast(id?'変更を保存しました':'情報テーマを追加しました','ok'); go('tools');
@@ -3101,7 +3249,7 @@ function submitTool(id){
 let catView=null;
 function renderCategories(v){
   recomputeAll();
-  const ups=getUpdates();
+  const ups=getPlanUpdates();
   if(catView){
     const list=ups.filter(u=>(u.related_categories||[]).includes(catView)).sort((a,b)=>b.score-a.score);
     document.getElementById('topActions').innerHTML='';
@@ -3276,6 +3424,12 @@ async function autoFetchOnOpen(){
 /* ---- 開くたびに data.json（GitHubが毎日自動更新）を読み込む ---- */
 /* data.json は同一オリジンなのでCORSが起きず確実に読める。無ければ静かに無視。 */
 let _syncDone=false;
+function looksCorruptedText(value){
+  const s=String(value||'');
+  if(!s)return false;
+  const suspicious=(s.match(/[�縺繧蜿螟譁莠鬮髫]/g)||[]).length;
+  return suspicious>=4&&suspicious/Math.max(s.length,1)>.08;
+}
 async function syncFromDataJson(){
   if(_syncDone) return; _syncDone=true;
   if(!getSettings().autoFetch) return;
@@ -3288,8 +3442,8 @@ async function syncFromDataJson(){
     if(!Array.isArray(items)||!items.length) return;
     let added=0;
     items.forEach(it=>{
-      if(!it||!it.title) return;
-      // 3日より古いニュースは取り込まない（常に最新3日分だけ）
+      if(!it||!it.title||looksCorruptedText(it.title)||looksCorruptedText(it.summary)||looksCorruptedText(it.detail)) return;
+      // 契約プランの保存期間より古いニュースは取り込まない
       if(it.published_at && !isRecent({published_at:it.published_at})) return;
       const tool=getTools().find(t=>t.name===it.tool)||getTools().find(t=>t.slug===it.tool);
       if(!tool) return;
@@ -3407,6 +3561,13 @@ function renderAccount(v){
     v.innerHTML='<div class="account-page"><section class="account-panel"><div class="account-head"><h2>会員情報を確認しています</h2><p>安全な接続を準備しています。</p></div></section></div>';
     return;
   }
+  if(memberState.recovery&&memberState.user){
+    v.innerHTML=`<div class="account-page"><section class="account-panel">
+      <div class="account-head"><div class="pricing-eyebrow">PASSWORD RECOVERY</div><h2>新しいパスワードを設定</h2><p>8文字以上の新しいパスワードを入力してください。</p></div>
+      <div class="auth-form"><div class="auth-field"><label for="newPassword">新しいパスワード</label><input id="newPassword" type="password" autocomplete="new-password" minlength="8" placeholder="8文字以上"></div>
+      <button class="btn btn-primary" onclick="updateRecoveredPassword()">${icon('check')}パスワードを変更</button></div>
+    </section></div>`;return;
+  }
   if(!memberState.user){
     v.innerHTML=`<div class="account-page"><section class="account-panel">
       <div class="account-head"><div class="pricing-eyebrow">SECURE MEMBER ACCESS</div><h2>ログイン・無料登録</h2><p>決済前にアカウントを作成すると、契約したプランがこのアカウントへ反映されます。</p></div>
@@ -3414,6 +3575,8 @@ function renderAccount(v){
         <div class="auth-field"><label for="authEmail">メールアドレス</label><input id="authEmail" type="email" autocomplete="email" inputmode="email" placeholder="name@example.com"></div>
         <div class="auth-field"><label for="authPassword">パスワード（8文字以上）</label><input id="authPassword" type="password" autocomplete="current-password" minlength="8" placeholder="8文字以上"></div>
         <div class="auth-actions"><button class="btn btn-primary" onclick="signInMember()">${icon('user')}ログイン</button><button class="btn" onclick="signUpMember()">${icon('plus')}無料登録</button></div>
+        <label class="auth-consent"><input type="checkbox" id="authConsent"><span><button type="button" onclick="go('terms')">利用規約</button>と<button type="button" onclick="go('privacy')">プライバシーポリシー</button>に同意して無料登録します。</span></label>
+        <button class="link-button" onclick="sendPasswordReset()">パスワードを忘れた方・再設定する方はこちら</button>
       </div>
       <div id="authMessage" class="auth-message ${memberState.message?'show':''} ${memberState.error?'error':''}">${esc(memberState.message)}</div>
       <div class="account-security">パスワードはSupabaseの認証基盤で安全に管理され、このアプリやGitHubには保存されません。</div>
@@ -3431,7 +3594,7 @@ function renderAccount(v){
       <div class="member-row"><span>現在のプラン</span><strong class="member-plan">${memberPlanLabel(sub.plan)}</strong></div>
       <div class="member-row"><span>契約状態</span><strong>${memberStatusLabel(sub.status)}</strong></div>
       ${sub.current_period_end?`<div class="member-row"><span>${periodLabel}</span><strong>${fmtDate(sub.current_period_end)}まで</strong></div>`:''}
-      <div class="auth-actions"><button class="btn btn-primary" onclick="go('pricing')">${icon('star')}料金プランを見る</button><button class="btn" onclick="signOutMember()">${icon('arrowLeft')}ログアウト</button></div>
+      <div class="auth-actions"><button class="btn btn-primary" onclick="go('pricing')">${icon('star')}料金プランを見る</button>${currentRules().csv?`<button class="btn" onclick="exportUpdatesCsv()">${icon('updates')}CSVを書き出す</button>`:''}<button class="btn" onclick="sendPasswordReset()">${icon('edit')}パスワード再設定</button><button class="btn" onclick="signOutMember()">${icon('arrowLeft')}ログアウト</button></div>
     </div>
     ${isPaid?`<section class="billing-panel" aria-labelledby="billingTitle">
       <div class="billing-panel-head">
@@ -3449,8 +3612,86 @@ function renderAccount(v){
         <span class="billing-badge">請求なし</span>
       </div>
     </section>`}
-    <div class="account-security">契約プランはStripeの決済結果から更新されます。ログアウトやアカウント削除だけでは有料サブスクは解約されません。</div>
+    <div class="account-security">契約プランはStripeの決済結果から更新されます。ログアウトだけでは有料サブスクは解約されません。</div>
+    <section class="account-danger"><div><b>アカウントの削除</b><span>有料契約がある場合は解約を試みたうえで、保存設定と会員データを削除します。</span></div><button class="btn btn-danger btn-sm" onclick="deleteMemberAccount()">${icon('trash')}削除する</button></section>
   </section></div>`;
+}
+
+function exportUpdatesCsv(){
+  if(!requirePlan('premium','CSV書き出しはプレミアムプランで利用できます。'))return;
+  const rows=[['公開日','情報テーマ','タイトル','AI要約','ステータス','情報元URL']];
+  getUpdates().slice().sort(byPub).forEach(u=>rows.push([fmtDate(u.published_at),toolById(u.tool_id)?.name||'',u.title,u.manual_summary||u.ai_summary||u.raw_excerpt||'',STATUS_LABELS[u.status]||u.status,u.source_url||'']));
+  const csv='\ufeff'+rows.map(row=>row.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\r\n');
+  const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  const a=document.createElement('a');a.href=url;a.download=`ai-radar-${new Date().toISOString().slice(0,10)}.csv`;a.click();URL.revokeObjectURL(url);
+}
+
+function renderSupport(v){
+  document.getElementById('topActions').innerHTML='';
+  const article=route.param?updateById(route.param):null;
+  if(!memberState.user){
+    v.innerHTML=`<div class="legal-page"><section class="legal-section"><h2>お問い合わせ</h2><p>問い合わせ内容と返信先を安全に管理するため、先にログインしてください。</p><button class="btn btn-primary" onclick="go('account')">${icon('user')}ログイン・無料登録へ</button></section></div>`;
+    return;
+  }
+  v.innerHTML=`<div class="legal-page"><section class="legal-section">
+    <div class="pricing-eyebrow">CUSTOMER SUPPORT</div><h2>お問い合わせ</h2>
+    <p>操作方法、契約・解約、記事の誤り、個人情報に関するご依頼を受け付けます。通常は登録メールアドレスへ返信します。</p>
+    ${article?`<div class="notice-card"><b>報告する記事</b><span>${esc(article.title)}</span></div>`:''}
+    <div class="support-form">
+      <label>お問い合わせの種類<select id="supportCategory"><option ${article?'selected':''}>記事の誤り・内容について</option><option>操作方法について</option><option>契約・請求・解約について</option><option>アカウント・個人情報について</option><option>その他</option></select></label>
+      <label>内容<textarea id="supportMessage" rows="7" placeholder="困っていること、表示された画面、希望する対応をできるだけ詳しくお書きください。">${article?`記事「${esc(article.title)}」について：`:''}</textarea></label>
+      <div id="supportMessageBox" class="auth-message"></div>
+      <button class="btn btn-primary" onclick="submitSupport()">${icon('inbox')}送信する</button>
+    </div>
+  </section></div>`;
+}
+async function submitSupport(){
+  const message=(document.getElementById('supportMessage')?.value||'').trim();
+  const category=document.getElementById('supportCategory')?.value||'その他';
+  const box=document.getElementById('supportMessageBox');
+  if(message.length<10){box.textContent='内容を10文字以上で入力してください。';box.className='auth-message show error';return;}
+  const {error}=await memberClient.from('support_requests').insert({user_id:memberState.user.id,email:memberState.user.email,category,message});
+  if(error){box.textContent='送信できませんでした。少し待ってからもう一度お試しください。';box.className='auth-message show error';return;}
+  box.textContent='送信しました。登録メールアドレスへの返信をお待ちください。';box.className='auth-message show';
+  document.getElementById('supportMessage').value='';
+}
+function legalShell(title,updated,body){
+  return `<div class="legal-page"><section class="legal-section"><div class="pricing-eyebrow">AI UPDATE RADAR</div><h2>${title}</h2><p class="legal-updated">制定・最終更新：${updated}</p>${body}<div class="legal-contact"><b>ご不明点はこちら</b><button class="btn btn-sm" onclick="go('support')">${icon('inbox')}お問い合わせ</button></div></section></div>`;
+}
+function renderTerms(v){
+  v.innerHTML=legalShell('利用規約','2026年7月25日',`
+    <h3>1. サービスの内容</h3><p>AI進化レーダーは、AIに関するニュースや公開情報を収集し、AIによる要約・分類・保存機能を提供する情報サービスです。</p>
+    <h3>2. 情報の正確性</h3><p>要約は自動生成を含み、誤り、遅延、欠落が生じることがあります。重要な判断は必ず情報元、公式発表、専門家の助言をご確認ください。本サービスは投資、法律、税務、医療その他の専門的助言を行うものではありません。</p>
+    <h3>3. アカウント</h3><p>利用者は正確な情報を登録し、パスワードを適切に管理してください。不正利用が疑われる場合は速やかにお問い合わせください。</p>
+    <h3>4. 有料プラン・解約</h3><p>有料プランは月額の自動更新です。次回更新前に会員情報の「契約・お支払い管理」から解約できます。解約後も当該利用期間の終了までは利用できます。法令上必要な場合、二重請求、当社の重大な不具合を除き、利用開始後の日割り返金は行いません。</p>
+    <h3>5. 禁止事項</h3><p>不正アクセス、第三者へのなりすまし、サービスの妨害、法令違反、権利侵害、過度な自動取得、アカウントの不正共有を禁止します。</p>
+    <h3>6. サービスの変更・停止</h3><p>保守、障害、外部サービスの停止、法令対応等により、内容の変更や一時停止を行うことがあります。重要な変更はアプリ内等でお知らせします。</p>
+    <h3>7. 準拠法</h3><p>本規約は日本法に準拠します。紛争が生じた場合は、法令で認められる範囲で当社所在地を管轄する裁判所を第一審の専属的合意管轄とします。</p>`);
+}
+function renderPrivacy(v){
+  v.innerHTML=legalShell('プライバシーポリシー','2026年7月25日',`
+    <h3>収集する情報</h3><p>メールアドレス、認証用ID、契約プラン・決済状態、アプリ内の情報テーマ・保存・閲覧履歴・設定、お問い合わせ内容、セキュリティや障害調査に必要なログを取り扱います。カード番号は当社では保持せずStripeが処理します。</p>
+    <h3>利用目的</h3><p>本人認証、サービス提供、設定同期、プラン判定、料金請求、問い合わせ対応、不正利用防止、品質改善、法令対応のために利用します。</p>
+    <h3>外部サービス</h3><p>認証・データ保存にSupabase、決済にStripe、公開配信にGitHub Pagesを利用します。各事業者は業務に必要な範囲でデータを処理する場合があります。</p>
+    <h3>第三者提供</h3><p>本人の同意がある場合、業務委託に必要な場合、法令に基づく場合を除き、個人データを第三者へ提供しません。</p>
+    <h3>保存期間と安全管理</h3><p>利用目的に必要な期間、法令上必要な期間、契約・問い合わせ対応に必要な期間保存し、アクセス制御、通信の暗号化、権限分離など合理的な安全管理を行います。</p>
+    <h3>確認・訂正・削除</h3><p>会員画面からアカウント削除を申請できます。個人情報の開示、訂正、利用停止等はお問い合わせからご連絡ください。本人確認後、法令に従って対応します。</p>
+    <h3>改定</h3><p>重要な変更を行う場合はアプリ内等でお知らせします。</p>`);
+}
+function renderCommerce(v){
+  v.innerHTML=legalShell('特定商取引法に基づく表記','2026年7月25日',`
+    <table class="legal-table">
+      <tr><th>販売事業者</th><td>株式会社REIKI</td></tr>
+      <tr><th>サービス名</th><td>AI進化レーダー</td></tr>
+      <tr><th>運営責任者・所在地・電話番号</th><td>請求があった場合、遅滞なく開示します。アプリ内のお問い合わせからご請求ください。</td></tr>
+      <tr><th>販売価格</th><td>スタンダード 月額980円（税込）、プレミアム 月額2,980円（税込）。無料プランは0円です。決済画面にも表示します。</td></tr>
+      <tr><th>販売価格以外の負担</th><td>インターネット接続に必要な通信料金等は利用者の負担です。</td></tr>
+      <tr><th>支払方法・時期</th><td>Stripeによるクレジットカード決済。申込時に決済し、以後1か月ごとに自動更新します。</td></tr>
+      <tr><th>提供時期</th><td>決済完了後、契約プランが反映され次第利用できます。</td></tr>
+      <tr><th>解約</th><td>会員情報の「契約・お支払い管理」から次回更新前にいつでも解約できます。解約後も現在の利用期間の終了まで利用できます。</td></tr>
+      <tr><th>返品・返金</th><td>デジタルサービスの性質上、提供開始後の返品・日割り返金は原則行いません。ただし法令上必要な場合、二重請求、当社の重大な不具合は個別に対応します。</td></tr>
+      <tr><th>動作環境</th><td>最新版のChrome、Edge、Safari等の主要ブラウザ。通信環境や外部サービスの状態により利用できない場合があります。</td></tr>
+    </table>`);
 }
 
 /* ============================================================
@@ -3468,7 +3709,7 @@ function pricingPlanAction(p,currentPlan){
 }
 function renderPricing(v){
   document.getElementById('topActions').innerHTML='';
-  const currentPlan=memberState.subscription?.plan||'free';
+  const currentPlan=effectivePlanKey();
   const plans=[
     {
       key:'free',kicker:'まずは無料で試す',name:'無料',price:'¥0',unit:'ずっと無料',desc:'運営が厳選したAIニュースを、おまかせで気軽に確認したい方へ。',
@@ -3519,7 +3760,8 @@ function renderPricing(v){
         <a class="official-media-link" href="https://www.instagram.com/kizashi_jp/" target="_blank" rel="noopener noreferrer"><span class="official-media-mark">IG</span><span>Instagramで見る</span></a>
       </div>
     </section>
-    <p class="pricing-note">現在はStripeのテスト決済です。実際の請求は発生しません。サブスクは会員情報の「契約・お支払い管理」から解約方法を確認できます。解約後も現在の利用期間が終了するまでは有料機能を利用できます。</p>
+    <p class="pricing-note">現在はStripeのテスト決済です。実際の請求は発生しません。サブスクは会員情報の「契約・お支払い管理」からいつでも解約できます。解約後も現在の利用期間が終了するまでは有料機能を利用できます。</p>
+    <div class="footer-links"><button onclick="go('terms')">利用規約</button><button onclick="go('privacy')">プライバシーポリシー</button><button onclick="go('commerce')">特定商取引法に基づく表記</button><button onclick="go('support')">お問い合わせ</button></div>
   </div>`;
 }
 window.addEventListener('keydown',e=>{ if(e.key==='Escape')closeModal(); });

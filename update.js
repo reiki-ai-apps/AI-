@@ -33,6 +33,22 @@ const TOOLS = [
   { name: "NotebookLM", match: /notebooklm|ノートブックlm/i, feeds: [
     "https://news.google.com/rss/search?q=Google%20NotebookLM%20when:7d&hl=ja&gl=JP&ceid=JP:ja",
     "https://blog.google/innovation-and-ai/products/notebooklm/rss/" ] },
+  { name: "AI政策・政府動向", match: /AI|人工知能|生成AI/i, feeds: [
+    "https://news.google.com/rss/search?q=%E7%94%9F%E6%88%90AI%20%E6%94%BF%E7%AD%96%20%E6%94%BF%E5%BA%9C%20when:7d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "AIと政治・選挙", match: /AI|人工知能|生成AI/i, feeds: [
+    "https://news.google.com/rss/search?q=AI%20%E6%94%BF%E6%B2%BB%20%E9%81%B8%E6%8C%99%20%E5%9B%BD%E4%BC%9A%20when:7d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "AI補助金・助成金", match: /AI|人工知能|生成AI|DX/i, feeds: [
+    "https://news.google.com/rss/search?q=AI%20%E5%B0%8E%E5%85%A5%20%E8%A3%9C%E5%8A%A9%E9%87%91%20%E5%8A%A9%E6%88%90%E9%87%91%20when:14d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "AI規制・著作権", match: /AI|人工知能|生成AI/i, feeds: [
+    "https://news.google.com/rss/search?q=%E7%94%9F%E6%88%90AI%20%E8%A6%8F%E5%88%B6%20%E8%91%97%E4%BD%9C%E6%A8%A9%20%E6%B3%95%E5%BE%8B%20when:7d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "AI企業・関連株", match: /AI|人工知能|生成AI|半導体/i, feeds: [
+    "https://news.google.com/rss/search?q=AI%20%E9%96%A2%E9%80%A3%E4%BC%81%E6%A5%AD%20%E6%B1%BA%E7%AE%97%20%E6%8F%90%E6%90%BA%20when:7d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "NVIDIA・AI半導体", match: /nvidia|GPU|半導体|データセンター/i, feeds: [
+    "https://news.google.com/rss/search?q=NVIDIA%20AI%20GPU%20%E5%8D%8A%E5%B0%8E%E4%BD%93%20when:7d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "AI研究・新技術", match: /AI|人工知能|生成AI|機械学習/i, feeds: [
+    "https://news.google.com/rss/search?q=%E7%94%9F%E6%88%90AI%20%E7%A0%94%E7%A9%B6%20%E8%AB%96%E6%96%87%20%E6%96%B0%E6%8A%80%E8%A1%93%20when:7d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "AIセキュリティ", match: /AI|人工知能|生成AI/i, feeds: [
+    "https://news.google.com/rss/search?q=%E7%94%9F%E6%88%90AI%20%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%20%E6%83%85%E5%A0%B1%E6%BC%8F%E3%81%88%E3%81%84%20when:7d&hl=ja&gl=JP&ceid=JP:ja" ] },
 ];
 const PER_TOOL = 6; // 1ツールあたり最新何件まで残すか
 
@@ -42,6 +58,8 @@ const NOISE = /(セール|キャンペーン|クーポン|プレゼント|無料
 function isOfficial(url) { return !/news\.google\.com/i.test(url); }
 // 採用判定：公式フィードは無条件採用。ニュースは「ツール名を含む」かつ「ノイズでない」もののみ。
 function keep(item, tool) {
+  const age=Date.now()-new Date(item.date||0).getTime();
+  if(item.date&&Number.isFinite(age)&&age>14*86400000)return false;
   if (item.official) return true;
   const text = item.title + " " + (item.desc || "");
   if (!tool.match.test(text)) return false;
@@ -173,12 +191,17 @@ async function fetchText(url) {
     if (kept.length === 0 && before > 0) kept = items.filter(it => it.official || !NOISE.test(it.title));
     items = kept;
     const seen = new Set();
-    items = items.filter(it => { const k = it.title.toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; });
+    items = items.filter(it => {
+      const k=(it.link||it.title).toLowerCase().replace(/[?#].*$/,"");
+      if(seen.has(k))return false;seen.add(k);return true;
+    });
     items.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
     for (const it of items.slice(0, PER_TOOL)) {
       out.push({
         tool: t.name, title: it.title, source_url: it.link || "",
         published_at: it.date || new Date().toISOString(), raw_excerpt: it.desc || "",
+        source_name: it.official ? "公式情報" : "Google ニュース掲載記事",
+        is_official: !!it.official,
       });
     }
     console.error("OK", t.name, "kept", Math.min(items.length, PER_TOOL), "/ fetched", before);
