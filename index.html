@@ -1714,6 +1714,21 @@
   .official-media-link:hover{transform:translateY(-1px);border-color:rgba(91,235,242,.58);background:rgba(14,45,70,.9);color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.24)}
   .official-media-mark{display:grid;width:19px;height:19px;place-items:center;border-radius:6px;background:linear-gradient(135deg,#0c9fbd,#503dcc);color:#fff;font-size:8px;letter-spacing:-.03em}
   .media-promo{margin-top:18px;padding:20px;border:1px solid rgba(73,218,232,.24);border-radius:16px;background:linear-gradient(135deg,rgba(5,25,43,.82),rgba(14,17,49,.76))}
+  /* Public member reviews */
+  .reviews-page{max-width:980px;margin:0 auto;padding-bottom:30px}
+  .review-hero{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:16px;padding:25px;border:1px solid rgba(74,204,225,.26);border-radius:17px;background:linear-gradient(140deg,rgba(7,28,48,.96),rgba(11,14,39,.96))}
+  .review-hero h2{margin:0 0 7px;color:#f4f8ff;font-size:25px}.review-hero p{max-width:650px;margin:0;color:#9cacc0;font-size:12.5px;line-height:1.75}
+  .review-form{margin-bottom:18px;padding:21px;border:1px solid rgba(75,217,226,.30);border-radius:15px;background:rgba(8,22,43,.86)}
+  .review-form h3{margin:0 0 5px;color:#f3f8ff;font-size:17px}.review-form>p{margin:0 0 16px;color:#92a2b8;font-size:11.5px;line-height:1.65}
+  .review-fields{display:grid;gap:14px}.review-field{display:grid;gap:7px}.review-field label,.review-label{color:#b8c4d5;font-size:11px;font-weight:800}
+  .review-field input,.review-field textarea{width:100%;padding:11px 13px;border:1px solid rgba(111,151,195,.28);border-radius:10px;background:rgba(4,13,29,.82);color:#f3f7ff;font:inherit;outline:none}.review-field input:focus,.review-field textarea:focus{border-color:rgba(73,218,229,.65);box-shadow:0 0 0 3px rgba(61,207,222,.10)}
+  .rating-choice{display:flex;flex-wrap:wrap;gap:7px}.rating-choice label{cursor:pointer}.rating-choice input{position:absolute;opacity:0;pointer-events:none}.rating-choice span{display:inline-flex;align-items:center;min-height:38px;padding:8px 13px;border:1px solid rgba(112,151,196,.24);border-radius:9px;background:rgba(5,17,35,.74);color:#8595aa;font-size:13px;font-weight:800}.rating-choice input:checked+span{border-color:rgba(78,222,229,.62);background:rgba(23,124,149,.24);color:#8bf3f1}
+  .review-notice{margin-bottom:17px;padding:14px 16px;border:1px solid rgba(96,181,213,.20);border-radius:12px;background:rgba(7,20,40,.66);color:#a8b7ca;font-size:11.5px;line-height:1.7}
+  .review-section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:20px 2px 11px}.review-section-title h3{margin:0;color:#edf5ff;font-size:17px}.review-section-title span{color:#74849b;font-size:10.5px}
+  .reviews-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.review-card{padding:18px;border:1px solid rgba(109,149,192,.20);border-radius:14px;background:linear-gradient(145deg,rgba(8,23,43,.91),rgba(8,12,29,.94))}
+  .review-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:11px}.review-author{color:#eff6ff;font-size:12px;font-weight:800}.review-date{color:#718198;font-size:9.5px}.review-stars{margin-bottom:9px;color:#59e1e5;font-size:13px;letter-spacing:.08em}.review-body{margin:0;color:#aab8ca;font-size:12px;line-height:1.75;white-space:pre-wrap;overflow-wrap:anywhere}.review-plan{display:inline-flex;margin-top:13px;padding:4px 8px;border:1px solid rgba(80,209,222,.20);border-radius:999px;color:#79cfd8;font-size:9px;font-weight:800}
+  .reviews-preview{margin-top:18px;padding:20px;border:1px solid rgba(97,151,199,.19);border-radius:16px;background:rgba(6,17,35,.58)}.reviews-preview-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.reviews-preview-head h3{margin:0;color:#eef5ff;font-size:16px}
+  @media(max-width:700px){.review-hero{display:block;padding:21px 18px}.review-hero .btn{width:100%;margin-top:15px}.reviews-grid{grid-template-columns:1fr}.review-form{padding:18px}.reviews-preview{padding:16px}}
   .media-promo-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:15px}
   .media-promo h3{margin:3px 0 5px;color:#f6fbff;font-size:19px}.media-promo p{margin:0;color:#9eabc0;font-size:13px;line-height:1.7}
   .media-promo .official-media-links{grid-template-columns:repeat(3,minmax(120px,1fr));max-width:540px}
@@ -1897,10 +1912,10 @@ const SUPABASE_URL='https://ncosmmesecpqhzfikpmn.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_9nyRtwzYeaArcNKiZtVVVA_2ji4eK6G';
 const AUTH_RETURN_URL='https://reiki-ai-apps.github.io/AI-/';
 const memberClient=window.supabase?.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
-const memberState={ready:false,user:null,subscription:null,registeredCount:null,message:'',error:false,recovery:false};
+const memberState={ready:false,user:null,subscription:null,registeredCount:null,reviews:[],reviewStatus:null,message:'',error:false,recovery:false};
 const PLAN_RULES={
-  free:{topics:0,sourceViews:3,retention:3,csv:false,customSources:false},
-  standard:{topics:10,sourceViews:10,retention:14,csv:false,customSources:false},
+  free:{topics:0,sourceViews:1,retention:3,csv:false,customSources:false},
+  standard:{topics:5,sourceViews:3,retention:14,csv:false,customSources:false},
   premium:{topics:Infinity,sourceViews:Infinity,retention:30,csv:true,customSources:true}
 };
 function effectivePlanKey(){
@@ -1948,24 +1963,51 @@ async function loadRegisteredUserCount(){
 async function refreshMemberState(session){
   memberState.user=session?.user||null;
   memberState.subscription=null;
+  memberState.reviewStatus=null;
   if(memberState.user&&memberClient){
     const {data}=await memberClient.from('subscriptions').select('plan,status,current_period_end').maybeSingle();
     memberState.subscription=data||{plan:'free',status:'inactive',current_period_end:null};
-    await loadMemberAppState();
+    await Promise.all([loadMemberAppState(),loadReviewStatus()]);
   }
   memberState.ready=true;
   renderNav();
-  if(route.name==='account'||route.name==='pricing')render();
+  if(route.name==='account'||route.name==='pricing'||route.name==='reviews')render();
+  if(memberState.user)window.setTimeout(maybeShowReviewPrompt,700);
 }
 async function initMemberAuth(){
   if(!memberClient){memberState.ready=true;return;}
   loadRegisteredUserCount();
+  loadPublishedReviews();
   const {data}=await memberClient.auth.getSession();
   await refreshMemberState(data.session);
   memberClient.auth.onAuthStateChange((event,session)=>{
     if(event==='PASSWORD_RECOVERY')memberState.recovery=true;
     window.setTimeout(async()=>{await refreshMemberState(session);if(memberState.recovery)go('account');},0);
   });
+}
+async function loadPublishedReviews(){
+  if(!memberClient)return;
+  const {data,error}=await memberClient.rpc('get_published_reviews',{p_limit:30});
+  if(!error){
+    memberState.reviews=Array.isArray(data)?data:[];
+    if(route.name==='reviews'||route.name==='pricing')render();
+  }
+}
+async function loadReviewStatus(){
+  if(!memberClient||!memberState.user){memberState.reviewStatus=null;return;}
+  const {data,error}=await memberClient.rpc('review_prompt_status');
+  if(!error)memberState.reviewStatus=data||null;
+}
+function reviewPromptDayKey(){
+  return new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+}
+function maybeShowReviewPrompt(){
+  const status=memberState.reviewStatus;
+  if(!memberState.user||!status?.eligible||status.has_review)return;
+  const key=`ai_radar_review_prompt_${memberState.user.id}_${reviewPromptDayKey()}`;
+  if(localStorage.getItem(key))return;
+  localStorage.setItem(key,'1');
+  modal('使ってみた感想を教えてください','登録から1週間が経ちました。よかった点や改善してほしい点を、これから利用する方へ共有していただけるとうれしいです。投稿は一度だけです。',()=>go('reviews'),'レビューを書く');
 }
 function setAuthMessage(message,isError){
   memberState.message=message||'';memberState.error=!!isError;
@@ -2563,6 +2605,7 @@ const NAV = [
   {group:'アカウント',items:[
     {id:'account',label:'ログイン・会員情報',icon:'user'},
     {id:'pricing',label:'料金プラン',icon:'star'},
+    {id:'reviews',label:'利用者レビュー',icon:'eye'},
     {id:'support',label:'お問い合わせ',icon:'inbox'},
   ]},
 ];
@@ -2640,6 +2683,7 @@ const PAGE_META = {
   fetch:['取得実行','登録した情報テーマの最新ニュースを取得'],
   account:['ログイン・会員情報','アカウントと契約プランを確認'],
   pricing:['料金プラン','利用スタイルに合わせて選べる3つのプラン'],
+  reviews:['利用者レビュー','AI進化レーダーを利用した方の感想'],
   support:['お問い合わせ','困ったこと・記事の誤りを運営へ連絡'],
   terms:['利用規約','サービス利用時の大切なルール'],
   privacy:['プライバシーポリシー','個人情報とデータの取り扱い'],
@@ -2657,7 +2701,7 @@ function render(){
   ({
     home:renderHome, updates:renderUpdates, categories:renderCategories,
     'try-list':renderTryList, tools:renderTools, 'tool-form':renderToolForm,
-    fetch:renderFetch, account:renderAccount, pricing:renderPricing, support:renderSupport,
+    fetch:renderFetch, account:renderAccount, pricing:renderPricing, reviews:renderReviews, support:renderSupport,
     terms:renderTerms, privacy:renderPrivacy, commerce:renderCommerce, 'update-detail':renderDetail,
   }[route.name]||renderHome)(v);
 }
@@ -3644,6 +3688,64 @@ function exportUpdatesCsv(){
   const a=document.createElement('a');a.href=url;a.download=`ai-radar-${new Date().toISOString().slice(0,10)}.csv`;a.click();URL.revokeObjectURL(url);
 }
 
+function reviewCardsHtml(reviews,limit){
+  const list=(reviews||[]).slice(0,limit||reviews.length);
+  if(!list.length)return `<div class="review-notice">まだレビューはありません。最初のレビューが投稿されると、ここに表示されます。</div>`;
+  return `<div class="reviews-grid">${list.map(r=>`<article class="review-card">
+    <div class="review-card-head"><span class="review-author">${esc(r.display_name)}</span><time class="review-date">${fmtDate(r.created_at)}</time></div>
+    <div class="review-stars" aria-label="5点満点中${Number(r.rating)}点">${'★'.repeat(Number(r.rating))}${'☆'.repeat(5-Number(r.rating))}</div>
+    <p class="review-body">${esc(r.body)}</p>
+    <span class="review-plan">${memberPlanLabel(r.plan)}</span>
+  </article>`).join('')}</div>`;
+}
+function renderReviews(v){
+  const status=memberState.reviewStatus;
+  const canWrite=!!memberState.user&&status?.eligible&&!status?.has_review;
+  let writer='';
+  if(!memberState.user){
+    writer=`<div class="review-notice">レビューはどなたでも閲覧できます。登録から7日後に、利用者として一度だけ投稿できます。 <button class="link-button" onclick="go('account')">ログイン・無料登録へ</button></div>`;
+  }else if(status?.has_review){
+    writer=`<div class="review-notice"><b>レビューを投稿済みです。</b><br>ご協力ありがとうございます。公平性を守るため、投稿後の修正・削除は運営のみが行います。変更が必要な場合はお問い合わせください。</div>`;
+  }else if(canWrite){
+    writer=`<section class="review-form" aria-labelledby="reviewFormTitle">
+      <h3 id="reviewFormTitle">レビューを書く</h3>
+      <p>これから利用する方の参考になる、率直な感想をお寄せください。メールアドレスや本名は入力しないでください。</p>
+      <div class="review-fields">
+        <div class="review-field"><label for="reviewName">表示名（公開されます）</label><input id="reviewName" maxlength="40" placeholder="例：AI情報収集中"></div>
+        <div><span class="review-label">評価</span><div class="rating-choice" role="radiogroup" aria-label="評価">${[5,4,3,2,1].map(n=>`<label><input type="radio" name="reviewRating" value="${n}" ${n===5?'checked':''}><span>${n} ★</span></label>`).join('')}</div></div>
+        <div class="review-field"><label for="reviewBody">感想（20〜600文字）</label><textarea id="reviewBody" rows="6" maxlength="600" placeholder="役に立ったこと、使いやすかった点、改善してほしい点などを具体的にお書きください。"></textarea></div>
+        <div id="reviewMessage" class="auth-message"></div>
+        <button class="btn btn-primary" onclick="submitMemberReview()">${icon('check')}この内容で公開する</button>
+      </div>
+    </section>`;
+  }else{
+    const date=status?.eligible_at?fmtDate(status.eligible_at):'登録から7日後';
+    writer=`<div class="review-notice">レビューは${date}から投稿できます。それまでは、ほかの利用者の感想をご覧ください。</div>`;
+  }
+  v.innerHTML=`<div class="reviews-page">
+    <section class="review-hero"><div><div class="pricing-eyebrow">MEMBER REVIEWS</div><h2>利用者の声</h2><p>AI進化レーダーを実際に利用した方のレビューです。レビューは登録から7日後に一度だけ投稿でき、メールアドレスなどの個人情報は表示しません。</p></div>${memberState.user?'<button class="btn" onclick="go(\'account\')">会員情報へ</button>':'<button class="btn btn-primary" onclick="go(\'account\')">無料登録</button>'}</section>
+    ${writer}
+    <div class="review-section-title"><h3>公開レビュー</h3><span>${memberState.reviews.length}件</span></div>
+    ${reviewCardsHtml(memberState.reviews)}
+  </div>`;
+}
+async function submitMemberReview(){
+  if(!memberState.user||!memberClient)return;
+  const displayName=(document.getElementById('reviewName')?.value||'').trim();
+  const body=(document.getElementById('reviewBody')?.value||'').trim();
+  const rating=Number(document.querySelector('input[name="reviewRating"]:checked')?.value||0);
+  const box=document.getElementById('reviewMessage');
+  if(displayName.length<1||displayName.length>40||body.length<20||body.length>600||rating<1||rating>5){
+    box.textContent='表示名、1〜5の評価、20〜600文字の感想を確認してください。';box.className='auth-message show error';return;
+  }
+  box.textContent='投稿しています…';box.className='auth-message show';
+  const {error}=await memberClient.rpc('submit_review',{p_display_name:displayName,p_rating:rating,p_body:body});
+  if(error){box.textContent='投稿できませんでした。登録から7日経っているか、すでに投稿済みでないかをご確認ください。';box.className='auth-message show error';return;}
+  await Promise.all([loadReviewStatus(),loadPublishedReviews()]);
+  toast('レビューを公開しました。ありがとうございます。','ok');
+  render();
+}
+
 function renderSupport(v){
   document.getElementById('topActions').innerHTML='';
   const article=route.param?updateById(route.param):null;
@@ -3731,12 +3833,12 @@ function renderPricing(v){
   const plans=[
     {
       key:'free',kicker:'まずは無料で試す',name:'無料',price:'¥0',unit:'ずっと無料',desc:'運営が厳選したAIニュースを、おまかせで気軽に確認したい方へ。',
-      features:['運営が選ぶ総合フィードを表示','追跡する情報テーマは選択不可','情報元の記事は月3件まで','AI要約を利用可能','閲覧履歴を3日間保存'],
+      features:['運営が選ぶ総合フィードを表示','好きな情報テーマの選択はできません','情報元の記事は毎月1件まで','AI要約を利用可能','閲覧履歴を3日間保存'],
       cta:'無料で登録'
     },
     {
       key:'standard',kicker:'毎日の情報収集を効率化',name:'スタンダード',price:'¥980',unit:'税込／月',desc:'必要なAI情報を見逃さず、仕事に活かしたい個人ユーザー向け。',
-      features:['好きな情報テーマを10件まで選択','選んだテーマ中心の専用フィード','情報元の記事は月10件まで','ジャンル別フィルターと保存機能','閲覧履歴を14日間保存','キーワード通知（提供予定）'],
+      features:['好きな情報テーマを5件まで選択','選んだテーマ中心の専用フィード','情報元の記事は毎月3件まで','ジャンル別フィルターと保存機能','閲覧履歴を14日間保存','キーワード通知（提供予定）'],
       cta:'テスト決済へ進む',checkoutUrl:'https://buy.stripe.com/test_dRm6oG5850vt4AedBn6J200',recommended:true
     },
     {
@@ -3764,6 +3866,10 @@ function renderPricing(v){
       </article>`).join('')}
     </div>
     <div class="pricing-common">${icon('bolt')}<span><b>すべてのプランに共通：</b>配信件数はAIニュースの発生状況に応じて変わります。スマホ対応、読みやすいAI要約、情報元へのリンクを利用できます。</span></div>
+    <section class="reviews-preview" aria-labelledby="pricingReviewTitle">
+      <div class="reviews-preview-head"><h3 id="pricingReviewTitle">利用者レビュー</h3><button class="btn btn-sm" onclick="go('reviews')">すべて見る</button></div>
+      ${reviewCardsHtml(memberState.reviews,2)}
+    </section>
     <section class="media-promo" aria-labelledby="media-promo-title">
       <div class="media-promo-head">
         <div>
