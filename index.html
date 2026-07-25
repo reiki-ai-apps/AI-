@@ -1688,6 +1688,7 @@
   .account-panel::after{content:"";position:absolute;right:-80px;top:-100px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(67,213,228,.16),rgba(77,62,218,.08) 46%,transparent 72%);pointer-events:none}
   .account-head{position:relative;z-index:1;margin-bottom:22px}.account-head h2{margin:0 0 8px;color:#f5f8ff;font-size:27px;line-height:1.4}.account-head p{margin:0;color:#9dabc0;font-size:12.5px;line-height:1.75}
   .auth-form{position:relative;z-index:1;display:grid;gap:14px}.auth-field{display:grid;gap:7px}.auth-field label{color:#aebbd0;font-size:11px;font-weight:800}.auth-field input{width:100%;min-height:46px;padding:10px 13px;border:1px solid rgba(112,151,196,.28);border-radius:11px;background:rgba(4,13,29,.80);color:#f3f7ff;font:inherit;outline:none}.auth-field input:focus{border-color:rgba(72,218,230,.65);box-shadow:0 0 0 3px rgba(61,207,222,.10)}
+  .password-input-wrap{position:relative}.password-input-wrap input{padding-right:82px}.password-toggle{position:absolute;right:7px;top:50%;display:inline-flex;align-items:center;justify-content:center;gap:5px;min-width:68px;min-height:32px;padding:6px 9px;border:1px solid rgba(99,184,218,.24);border-radius:8px;background:rgba(12,36,61,.92);color:#a9dce8;font:inherit;font-size:10.5px;font-weight:800;cursor:pointer;transform:translateY(-50%);transition:border-color .18s ease,background .18s ease,color .18s ease}.password-toggle svg{width:15px;height:15px}.password-toggle:hover{border-color:rgba(87,222,231,.52);background:rgba(17,64,88,.96);color:#e1fbff}.password-toggle:focus-visible{outline:2px solid #68e3ec;outline-offset:2px}.password-toggle[aria-pressed="true"]{border-color:rgba(87,222,231,.48);background:rgba(20,91,112,.92);color:#ecfeff}
   .auth-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}.auth-actions .btn{justify-content:center;min-width:150px}.auth-message{display:none;margin-top:14px;padding:11px 13px;border:1px solid rgba(91,205,220,.23);border-radius:10px;background:rgba(10,36,54,.64);color:#b8dfe5;font-size:11.5px;line-height:1.65}.auth-message.show{display:block}.auth-message.error{border-color:rgba(242,115,138,.30);background:rgba(64,18,34,.56);color:#ffc2ce}
   .member-summary{position:relative;z-index:1;display:grid;gap:13px}.member-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 15px;border:1px solid rgba(112,151,196,.18);border-radius:12px;background:rgba(5,16,34,.66)}.member-row span{color:#8594aa;font-size:11px}.member-row strong{color:#eef5ff;font-size:13px;text-align:right}.member-plan{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border:1px solid rgba(72,218,230,.28);border-radius:999px;background:rgba(23,133,158,.16);color:#76edf0!important}.member-plan::before{content:"";width:7px;height:7px;border-radius:50%;background:#52e2c0;box-shadow:0 0 10px rgba(82,226,192,.7)}
   .billing-panel{position:relative;z-index:1;margin-top:18px;padding:18px;border:1px solid rgba(92,205,220,.24);border-radius:14px;background:linear-gradient(145deg,rgba(6,24,43,.82),rgba(9,15,35,.78))}
@@ -1970,6 +1971,19 @@ function setAuthMessage(message,isError){
   memberState.message=message||'';memberState.error=!!isError;
   const box=document.getElementById('authMessage');
   if(box){box.textContent=memberState.message;box.className=`auth-message ${memberState.message?'show':''} ${memberState.error?'error':''}`;}
+}
+function togglePasswordVisibility(inputId,button){
+  const input=document.getElementById(inputId);
+  if(!input||!button)return;
+  const reveal=input.type==='password';
+  input.type=reveal?'text':'password';
+  button.setAttribute('aria-pressed',String(reveal));
+  button.setAttribute('aria-label',reveal?'パスワードを隠す':'パスワードを表示する');
+  const label=button.querySelector('span');
+  if(label)label.textContent=reveal?'隠す':'表示';
+  input.focus({preventScroll:true});
+  const end=input.value.length;
+  if(typeof input.setSelectionRange==='function')input.setSelectionRange(end,end);
 }
 async function signUpMember(){
   const email=(document.getElementById('authEmail')?.value||'').trim();
@@ -3564,7 +3578,7 @@ function renderAccount(v){
   if(memberState.recovery&&memberState.user){
     v.innerHTML=`<div class="account-page"><section class="account-panel">
       <div class="account-head"><div class="pricing-eyebrow">PASSWORD RECOVERY</div><h2>新しいパスワードを設定</h2><p>8文字以上の新しいパスワードを入力してください。</p></div>
-      <div class="auth-form"><div class="auth-field"><label for="newPassword">新しいパスワード</label><input id="newPassword" type="password" autocomplete="new-password" minlength="8" placeholder="8文字以上"></div>
+      <div class="auth-form"><div class="auth-field"><label for="newPassword">新しいパスワード</label><div class="password-input-wrap"><input id="newPassword" type="password" autocomplete="new-password" minlength="8" placeholder="8文字以上"><button type="button" class="password-toggle" aria-label="パスワードを表示する" aria-pressed="false" onclick="togglePasswordVisibility('newPassword',this)">${icon('eye')}<span>表示</span></button></div></div>
       <button class="btn btn-primary" onclick="updateRecoveredPassword()">${icon('check')}パスワードを変更</button></div>
     </section></div>`;return;
   }
@@ -3573,7 +3587,7 @@ function renderAccount(v){
       <div class="account-head"><div class="pricing-eyebrow">SECURE MEMBER ACCESS</div><h2>ログイン・無料登録</h2><p>決済前にアカウントを作成すると、契約したプランがこのアカウントへ反映されます。</p></div>
       <div class="auth-form">
         <div class="auth-field"><label for="authEmail">メールアドレス</label><input id="authEmail" type="email" autocomplete="email" inputmode="email" placeholder="name@example.com"></div>
-        <div class="auth-field"><label for="authPassword">パスワード（8文字以上）</label><input id="authPassword" type="password" autocomplete="current-password" minlength="8" placeholder="8文字以上"></div>
+        <div class="auth-field"><label for="authPassword">パスワード（8文字以上）</label><div class="password-input-wrap"><input id="authPassword" type="password" autocomplete="current-password" minlength="8" placeholder="8文字以上"><button type="button" class="password-toggle" aria-label="パスワードを表示する" aria-pressed="false" onclick="togglePasswordVisibility('authPassword',this)">${icon('eye')}<span>表示</span></button></div></div>
         <div class="auth-actions"><button class="btn btn-primary" onclick="signInMember()">${icon('user')}ログイン</button><button class="btn" onclick="signUpMember()">${icon('plus')}無料登録</button></div>
         <label class="auth-consent"><input type="checkbox" id="authConsent"><span><button type="button" onclick="go('terms')">利用規約</button>と<button type="button" onclick="go('privacy')">プライバシーポリシー</button>に同意して無料登録します。</span></label>
         <button class="link-button" onclick="sendPasswordReset()">パスワードを忘れた方・再設定する方はこちら</button>
