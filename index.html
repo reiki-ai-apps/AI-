@@ -54,6 +54,7 @@
     --side-mute:rgba(235,238,255,.38);
   }
   *{box-sizing:border-box;margin:0;padding:0}
+  [hidden]{display:none!important}
   html,body{height:100%}
   body{
     font-family:"Outfit","Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",system-ui,-apple-system,sans-serif;
@@ -1747,6 +1748,9 @@
   .account-danger div{display:grid;gap:4px}.account-danger b{color:#ffd7df;font-size:12px}.account-danger span{color:#8e9caf;font-size:10.5px;line-height:1.55}
   .card-source{font-family:inherit;cursor:pointer}
   .notice-card{display:grid;gap:5px;margin:0 0 14px;padding:12px 14px;border-left:3px solid #4ad6e3;border-radius:8px;background:rgba(10,36,55,.72);color:#aebed1;font-size:11px;line-height:1.65}.notice-card b{color:#71e7ec;font-size:11px}
+  .coverage-proof{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}.coverage-proof span{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border:1px solid rgba(91,211,225,.24);border-radius:999px;background:rgba(5,25,43,.62);color:#b8c9dd;font-size:10px;font-weight:800}.coverage-proof span::before{content:"";width:5px;height:5px;border-radius:50%;background:#42e0c2;box-shadow:0 0 8px rgba(66,224,194,.72)}
+  .source-trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:0 0 14px}.source-trust-item{padding:11px 12px;border:1px solid rgba(91,151,196,.22);border-radius:10px;background:rgba(6,21,40,.58)}.source-trust-item span{display:block;margin-bottom:3px;color:#788da8;font-size:9px;font-weight:800;letter-spacing:.08em}.source-trust-item strong{display:block;color:#dce9f8;font-size:11px;line-height:1.45}.source-badge{display:inline-flex!important;width:fit-content;padding:3px 7px;border:1px solid rgba(74,214,227,.28);border-radius:999px;background:rgba(34,176,194,.12);color:#6ee7eb!important;font-size:9px!important}
+  @media(max-width:620px){.source-trust{grid-template-columns:1fr 1fr}.source-trust-item:first-child{grid-column:1/-1}.coverage-proof{gap:5px}.coverage-proof span{font-size:9px;padding:5px 7px}}
   .legal-page{max-width:900px;margin:0 auto;padding-bottom:30px}.legal-section{padding:28px;border:1px solid rgba(74,204,225,.25);border-radius:18px;background:linear-gradient(145deg,rgba(7,24,47,.97),rgba(9,13,35,.98));box-shadow:0 20px 50px rgba(0,0,0,.25)}
   .legal-section h2{margin:0 0 6px;color:#f5f8ff;font-size:27px}.legal-section h3{margin:25px 0 8px;color:#e7f1ff;font-size:15px}.legal-section p{margin:0;color:#a3b1c4;font-size:12.5px;line-height:1.9}.legal-updated{margin-bottom:18px!important;color:#728197!important;font-size:10.5px!important}
   .legal-table{width:100%;border-collapse:collapse;margin-top:18px}.legal-table th,.legal-table td{padding:13px 14px;border:1px solid rgba(112,151,196,.17);vertical-align:top;text-align:left;font-size:12px;line-height:1.75}.legal-table th{width:190px;background:rgba(17,42,64,.55);color:#d6e3f3}.legal-table td{color:#aab7c9}
@@ -1915,9 +1919,11 @@ const SUPABASE_PUBLISHABLE_KEY='sb_publishable_9nyRtwzYeaArcNKiZtVVVA_2ji4eK6G';
 const AUTH_RETURN_URL='https://reiki-ai-apps.github.io/AI-/';
 const memberClient=window.supabase?.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
 const memberState={ready:false,user:null,subscription:null,registeredCount:null,reviews:[],reviewStatus:null,message:'',error:false,recovery:false};
+const SOCIAL_PROOF_MIN_USERS=100;
+const SOCIAL_PROOF_MIN_REVIEWS=3;
 const PLAN_RULES={
-  free:{topics:0,sourceViews:1,retention:3,csv:false,customSources:false},
-  standard:{topics:5,sourceViews:3,retention:14,csv:false,customSources:false},
+  free:{topics:0,sourceViews:Infinity,retention:3,csv:false,customSources:false},
+  standard:{topics:5,sourceViews:Infinity,retention:30,csv:false,customSources:false},
   premium:{topics:Infinity,sourceViews:Infinity,retention:30,csv:true,customSources:true}
 };
 function effectivePlanKey(){
@@ -1948,7 +1954,7 @@ function authErrorMessage(error){
 function renderRegisteredCount(){
   document.querySelectorAll('[data-registered-count]').forEach(el=>{
     const count=memberState.registeredCount;
-    el.hidden=!(Number.isFinite(count)&&count>=0);
+    el.hidden=!(Number.isFinite(count)&&count>=SOCIAL_PROOF_MIN_USERS);
     const value=el.querySelector('strong');
     if(value&&Number.isFinite(count))value.textContent=new Intl.NumberFormat('ja-JP').format(count);
   });
@@ -2782,6 +2788,7 @@ function updateCard(u){
     <div class="ucard-footer">
       <div class="ucard-meta">
         <div class="ucard-meta-group"><span class="ucard-meta-label">分野</span>${catChips(u.related_categories,2)}</div>
+        ${u.source_name?`<div class="ucard-meta-group"><span class="ucard-meta-label">情報元</span><span class="chip more">${esc(u.source_name)}</span></div>`:''}
       </div>
       <div class="card-actions">
         <button class="card-open card-detail" onclick="go('update-detail','${u.id}')">${icon('eye')}要約を見る</button>
@@ -2792,33 +2799,10 @@ function updateCard(u){
     </div>
   </article>`;
 }
-function localSourceViewKey(){return `ai_radar_source_views_${new Date().toLocaleDateString('ja-JP',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit'}).replace('/','-')}`;}
 async function openSourceArticle(id){
   const u=updateById(id);if(!u?.source_url)return;
   const sourceUrl=safeExternalUrl(u.source_url);
   if(!sourceUrl){toast('安全な情報元URLを確認できませんでした。','err');return;}
-  const limit=currentRules().sourceViews;
-  const articleKey=stableHash(normalizeArticleUrl(sourceUrl)||sourceUrl);
-  let allowed=true,count=0;
-  if(Number.isFinite(limit)){
-    if(memberState.user&&memberClient){
-      const {data,error}=await memberClient.rpc('record_article_view',{p_article_key:articleKey,p_limit:limit});
-      if(error){toast('閲覧回数を確認できませんでした。少し待ってからお試しください。','err');return;}
-      allowed=!!data?.allowed;count=Number(data?.count||0);
-    }else{
-      let used=[];try{used=JSON.parse(localStorage.getItem(localSourceViewKey())||'[]')}catch(e){}
-      if(!used.includes(articleKey)){
-        if(used.length>=limit)allowed=false;
-        else{used.push(articleKey);localStorage.setItem(localSourceViewKey(),JSON.stringify(used));}
-      }
-      count=used.length;
-    }
-  }
-  if(!allowed){
-    modal('今月の元記事閲覧数に達しました',`現在のプランでは月${limit}件まで情報元の記事を開けます。要約は引き続き読めます。`,()=>go('pricing'),'プランを確認');
-    return;
-  }
-  if(Number.isFinite(limit))toast(`今月の元記事閲覧 ${count}/${limit}件`,'ok');
   window.open(sourceUrl,'_blank','noopener,noreferrer');
 }
 
@@ -2841,8 +2825,11 @@ function renderHome(v){
     <div class="hud-hex-field" aria-hidden="true"><span class="hud-hex h1"></span><span class="hud-hex h2"></span><span class="hud-hex h3"></span><span class="hud-hex h4"></span><span class="hud-hex h5"></span></div>
     <div class="overview-copy">
       <div class="live-line"><span class="live-dot"></span>LIVE INTELLIGENCE FEED</div>
-      <h2>今日のAI変化を、<br>見逃さない。</h2>
-      <p>仕事に影響するアップデートだけを整理。要点から元記事まで、迷わず確認できます。</p>
+      <h2>世界のAI変化を、<br>仕事の判断へ。</h2>
+      <p>英語・中国語・日本語の情報を横断監視。何が変わったか、仕事への影響、次にやることまで、やさしい日本語で確認できます。</p>
+      <div class="coverage-proof" aria-label="情報収集の特徴">
+        <span>日本語・英語・中国語</span><span>3時間ごとに更新</span><span>元記事を全プランで確認</span>
+      </div>
     </div>
     <div class="radar-orb" aria-label="未読${unread}件"><strong>${unread}</strong><small>UNREAD SIGNALS</small></div>
   </section>
@@ -3066,6 +3053,11 @@ function renderDetailRead(v,u,tool){
         <div class="rb-body">${esc(buildFriendlyExplanation(u,tool))}</div>
       </div>`:''}
 
+      <div class="source-trust" aria-label="情報元の確認">
+        <div class="source-trust-item"><span>掲載元</span><strong>${esc(u.source_name||'情報元の記事')}</strong></div>
+        <div class="source-trust-item"><span>情報の種類</span><strong class="source-badge">${u.is_official?'公式発表':'報道・公開記事'}</strong></div>
+        <div class="source-trust-item"><span>公開日時</span><strong>${fmtDate(u.published_at)}</strong></div>
+      </div>
       <div class="notice-card"><b>AIによる要約です</b><span>内容に誤りや不足がある場合があります。契約・投資・法律・医療など重要な判断は、必ず公式発表や情報元の記事も確認してください。</span></div>
       ${u.source_url?`<button class="btn btn-primary" onclick="openSourceArticle('${u.id}')" style="display:inline-flex;width:fit-content;margin-bottom:14px" aria-label="情報元の記事を外部サイトで読む">${icon('ext')}情報元の記事を読む（外部サイト）</button>`:''}
       <button class="btn btn-sm" onclick="go('support','${u.id}')" style="margin:0 0 14px 8px">${icon('inbox')}内容の誤りを報告</button>
@@ -3529,6 +3521,36 @@ function looksCorruptedText(value){
   const suspicious=(s.match(/[�縺繧蜿螟譁莠鬮髫]/g)||[]).length;
   return suspicious>=4&&suspicious/Math.max(s.length,1)>.08;
 }
+function ensureImportedTool(item){
+  const name=String(item?.tool||'AI全般').trim()||'AI全般';
+  const existing=getTools().find(t=>t.name===name||t.slug===name);
+  if(existing)return existing;
+  const categories=Array.isArray(item?.related_categories)?item.related_categories.filter(Boolean):[];
+  const d=DB.load();
+  const tool={
+    id:uid(),
+    slug:slugify(name),
+    name,
+    category:categories[0]||'AIニュース',
+    search_query:'',
+    official_url:'',
+    release_notes_url:'',
+    rss_url:'',
+    x_url:'',
+    priority:['S','A'].includes(String(item?.importance||'').toUpperCase())?'A':'B',
+    is_using:true,
+    related_businesses:[...new Set(categories)],
+    memo:'AI進化レーダーの自動収集テーマ',
+    is_active:true,
+    is_custom:false,
+    last_fetched_at:null,
+    created_at:nowISO(),
+    updated_at:nowISO()
+  };
+  d.tools.push(tool);
+  DB.save();
+  return tool;
+}
 async function syncFromDataJson(){
   if(_syncDone) return; _syncDone=true;
   if(!getSettings().autoFetch) return;
@@ -3544,8 +3566,7 @@ async function syncFromDataJson(){
       if(!it||!it.title||looksCorruptedText(it.title)||looksCorruptedText(it.summary)||looksCorruptedText(it.detail)) return;
       // 契約プランの保存期間より古いニュースは取り込まない
       if(it.published_at && !isRecent({published_at:it.published_at})) return;
-      const tool=getTools().find(t=>t.name===it.tool)||getTools().find(t=>t.slug===it.tool);
-      if(!tool) return;
+      const tool=ensureImportedTool(it);
       if(hasSeenArticle({tool_id:tool.id,title:it.title,source_url:it.source_url||''})) return;
       const ex=(it.raw_excerpt||it.summary||'').toString();
       saveUpdate({
@@ -3553,7 +3574,12 @@ async function syncFromDataJson(){
         published_at:it.published_at||nowISO(), fetched_at:nowISO(),
         raw_content:'', raw_excerpt:'', manual_summary:'', ai_summary:ex, // 要約は「かんたん要約」に表示
         easy_summary:(it.detail||'').toString(),                          // AIのやさしい解説
-        simple_explanation:'', impact_summary:'', action_suggestion:'',
+        simple_explanation:(it.change_summary||'').toString(),
+        impact_summary:(it.impact_summary||'').toString(),
+        action_suggestion:(it.action_suggestion||'').toString(),
+        source_name:(it.source_name||'').toString(),
+        is_official:!!it.is_official,
+        importance:(it.importance||'').toString(),
         related_categories:(Array.isArray(it.related_categories)&&it.related_categories.length)?it.related_categories:(tool.related_businesses?[...tool.related_businesses]:[]),
         score:0, rank:'C', status:'unread', is_saved:false, memo:''
       });
@@ -3740,6 +3766,7 @@ function renderReviews(v){
   const canWrite=!!memberState.user&&status?.eligible&&!status?.has_review;
   const ratingCount=memberState.reviews.length;
   const ratingAverage=ratingCount?(memberState.reviews.reduce((sum,r)=>sum+Number(r.rating||0),0)/ratingCount).toFixed(1):null;
+  const showPublicReviews=ratingCount>=SOCIAL_PROOF_MIN_REVIEWS;
   let writer='';
   if(!memberState.user){
     writer=`<div class="review-notice">レビューはどなたでも閲覧できます。登録から7日後に、利用者として一度だけ投稿できます。 <button class="link-button" onclick="go('account')">ログイン・無料登録へ</button></div>`;
@@ -3762,10 +3789,9 @@ function renderReviews(v){
     writer=`<div class="review-notice">レビューは${date}から投稿できます。それまでは、ほかの利用者の感想をご覧ください。</div>`;
   }
   v.innerHTML=`<div class="reviews-page">
-    <section class="review-hero"><div><div class="pricing-eyebrow">MEMBER REVIEWS</div><h2>利用者の声</h2><p>AI進化レーダーを実際に利用した方のレビューです。レビューは登録から7日後に一度だけ投稿でき、メールアドレスなどの個人情報は表示しません。</p></div><div class="review-hero-side"><div class="review-score"><strong>${ratingAverage?`${ratingAverage} / 5`:'— / 5'}</strong><span>${ratingAverage?'総合評価':'まだ評価はありません'}</span></div>${memberState.user?'<button class="btn" onclick="go(\'account\')">会員情報へ</button>':'<button class="btn btn-primary" onclick="go(\'account\')">無料登録</button>'}</div></section>
+    <section class="review-hero"><div><div class="pricing-eyebrow">MEMBER REVIEWS</div><h2>利用者の声</h2><p>AI進化レーダーを実際に利用した方のレビューです。レビューは登録から7日後に一度だけ投稿でき、メールアドレスなどの個人情報は表示しません。</p></div><div class="review-hero-side">${showPublicReviews?`<div class="review-score"><strong>${ratingAverage} / 5</strong><span>総合評価</span></div>`:''}${memberState.user?'<button class="btn" onclick="go(\'account\')">会員情報へ</button>':'<button class="btn btn-primary" onclick="go(\'account\')">無料登録</button>'}</div></section>
     ${writer}
-    <div class="review-section-title"><h3>公開レビュー</h3><span>${memberState.reviews.length}件</span></div>
-    ${reviewCardsHtml(memberState.reviews)}
+    ${showPublicReviews?`<div class="review-section-title"><h3>公開レビュー</h3><span>${memberState.reviews.length}件</span></div>${reviewCardsHtml(memberState.reviews)}`:'<div class="review-notice">先行ベータ期間中です。利用者の声は、十分な件数が集まってから公開します。</div>'}
   </div>`;
 }
 function setReviewRating(value){
@@ -3875,8 +3901,9 @@ function pricingPlanAction(p,currentPlan){
     if(memberState.user)return `<button class="btn plan-cta" disabled aria-disabled="true">無料プラン</button>`;
     return `<button class="btn plan-cta" onclick="go('account')">${icon('user')}無料で登録</button>`;
   }
+  if(!p.checkoutUrl)return `<button class="btn plan-cta" disabled aria-disabled="true">${icon('updates')}本番提供の準備中</button>`;
   const label=memberState.user?p.cta:'ログインして決済';
-  return `<button class="btn ${p.recommended?'btn-primary':''} plan-cta" onclick="beginCheckout('${p.key}','${p.checkoutUrl}')" aria-label="${p.name}のテスト決済へ進む">${icon(memberState.user?'ext':'user')}${label}</button>`;
+  return `<button class="btn ${p.recommended?'btn-primary':''} plan-cta" onclick="beginCheckout('${p.key}','${p.checkoutUrl}')" aria-label="${p.name}の決済へ進む">${icon(memberState.user?'ext':'user')}${label}</button>`;
 }
 function renderPricing(v){
   document.getElementById('topActions').innerHTML='';
@@ -3884,18 +3911,18 @@ function renderPricing(v){
   const plans=[
     {
       key:'free',kicker:'まずは無料で試す',name:'無料',price:'¥0',unit:'ずっと無料',desc:'運営が厳選したAIニュースを、おまかせで気軽に確認したい方へ。',
-      features:['運営が選ぶ総合フィードを表示','好きな情報テーマの選択はできません','情報元の記事は毎月1件まで','AI要約を利用可能','閲覧履歴を3日間保存'],
+      features:['今日の重要AIニュースを表示','好きな情報テーマの選択はできません','情報元の記事は無制限に確認可能','やさしいAI要約を利用可能','閲覧履歴を3日間保存'],
       cta:'無料で登録'
     },
     {
       key:'standard',kicker:'毎日の情報収集を効率化',name:'スタンダード',price:'¥980',unit:'税込／月',desc:'必要なAI情報を見逃さず、仕事に活かしたい個人ユーザー向け。',
-      features:['好きな情報テーマを5件まで選択','選んだテーマ中心の専用フィード','情報元の記事は毎月3件まで','ジャンル別フィルターと保存機能','閲覧履歴を14日間保存','キーワード通知（提供予定）'],
-      cta:'テスト決済へ進む',checkoutUrl:'https://buy.stripe.com/test_dRm6oG5850vt4AedBn6J200',recommended:true
+      features:['好きな情報テーマを5件まで選択','選んだテーマ中心の専用フィード','情報元の記事は無制限に確認可能','ジャンル別フィルターと保存機能','閲覧履歴を30日間保存','重要ニュース通知（提供予定）'],
+      cta:'決済へ進む',checkoutUrl:'',recommended:true
     },
     {
       key:'premium',kicker:'本格的な情報活用へ',name:'プレミアム',price:'¥2,980',unit:'税込／月',desc:'複数事業やチームで、AIの変化を深く管理・分析したい方向け。',
-      features:['好きな情報テーマを無制限に選択','カスタム情報源とキーワードを追加','情報元の記事を無制限に閲覧','重要度の優先判定を強化','閲覧履歴を30日間保存','CSVデータ書き出しと優先サポート'],
-      cta:'テスト決済へ進む',checkoutUrl:'https://buy.stripe.com/test_dRm6oG441dif7Mq2WJ6J201'
+      features:['好きな情報テーマを無制限に選択','カスタム情報源とキーワードを追加','中国AI・海外AIを優先監視','重要度の優先判定を強化','長期履歴と横断検索','CSVデータ書き出しと優先サポート'],
+      cta:'決済へ進む',checkoutUrl:''
     }
   ];
   v.innerHTML=`<div class="pricing-page">
@@ -3917,10 +3944,10 @@ function renderPricing(v){
       </article>`).join('')}
     </div>
     <div class="pricing-common">${icon('bolt')}<span><b>すべてのプランに共通：</b>配信件数はAIニュースの発生状況に応じて変わります。スマホ対応、読みやすいAI要約、情報元へのリンクを利用できます。</span></div>
-    <section class="reviews-preview" aria-labelledby="pricingReviewTitle">
+    ${memberState.reviews.length>=SOCIAL_PROOF_MIN_REVIEWS?`<section class="reviews-preview" aria-labelledby="pricingReviewTitle">
       <div class="reviews-preview-head"><h3 id="pricingReviewTitle">利用者レビュー</h3><button class="btn btn-sm" onclick="go('reviews')">すべて見る</button></div>
       ${reviewCardsHtml(memberState.reviews,2)}
-    </section>
+    </section>`:''}
     <section class="media-promo" aria-labelledby="media-promo-title">
       <div class="media-promo-head">
         <div>
@@ -3935,7 +3962,7 @@ function renderPricing(v){
         <a class="official-media-link" href="https://www.instagram.com/kizashi_jp/" target="_blank" rel="noopener noreferrer"><span class="official-media-mark">IG</span><span>Instagramで見る</span></a>
       </div>
     </section>
-    <p class="pricing-note">現在はStripeのテスト決済です。実際の請求は発生しません。サブスクは会員情報の「契約・お支払い管理」からいつでも解約できます。解約後も現在の利用期間が終了するまでは有料機能を利用できます。</p>
+    <p class="pricing-note">現在は先行ベータ版です。有料プランの本番決済はStripeの審査完了後に開始します。開始後も、会員情報の「契約・お支払い管理」からいつでも解約できます。</p>
     <div class="footer-links"><button onclick="go('terms')">利用規約</button><button onclick="go('privacy')">プライバシーポリシー</button><button onclick="go('commerce')">特定商取引法に基づく表記</button><button onclick="go('support')">お問い合わせ</button></div>
   </div>`;
 }

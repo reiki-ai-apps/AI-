@@ -124,7 +124,14 @@ function parseJsonArray(text) {
 
 async function aiCurate(items) {
   if (!process.env.ANTHROPIC_API_KEY) { console.error("ANTHROPIC_API_KEY 未設定 → AI厳選スキップ（ルール厳選のまま）"); return null; }
-  const list = items.map((it, i) => ({ i, tool: it.tool, title: it.title, excerpt: (it.raw_excerpt || "").toString().slice(0, 180) }));
+  const list = items.map((it, i) => ({
+    i,
+    tool: it.tool,
+    title: it.title,
+    source: it.source_name || "",
+    official: !!it.is_official,
+    excerpt: (it.raw_excerpt || "").toString().slice(0, 180)
+  }));
   const system =
     "あなたは、AIに詳しくない人にも理解できる日本語で伝えるAIニュース編集者です。" +
     "製品アップデート、新機能、使い方、料金変更だけでなく、AI政策、規制、著作権、補助金・助成金、AI関連企業・株式、研究、セキュリティ、半導体など、利用者の仕事や生活に影響する情報を重視してください。" +
@@ -132,8 +139,8 @@ async function aiCurate(items) {
   const user =
     "次のAI関連ニュース候補(JSON)から、一般の利用者が知っておく価値のあるものだけを重要な順に最大" + AI_MAX + "件選んでください。\n" +
     "出力は次の形式のJSON配列だけ（前置き・説明・コードフェンスは一切不要）:\n" +
-    '[{"i":元番号, "title_ja":"日本語の短いタイトル", "summary_ja":"30〜70字の日本語の一言要約", "detail_ja":"180〜300字、5〜7文のやさしい日本語で説明。①何のニュースか ②以前と何が違うか ③専門用語の意味 ④利用者にどんな影響があるか ⑤まず何を確認・試せばよいか、の順に書く。中学生が初めて読んでも分かる言葉を使い、1文を短くする", "importance":"S|A|B"}]\n' +
-    "英語は必ず自然な日本語に翻訳。detail_jaは題名とexcerptを根拠に書く。元記事に無い具体的な数字・日付・固有名詞・効果は創作しない。分からない点は断定しない。役立たないものは選ばない。\n候補:\n" +
+    '[{"i":元番号, "title_ja":"日本語の短いタイトル", "summary_ja":"30〜70字の日本語の一言要約", "detail_ja":"180〜300字、5〜7文のやさしい日本語で説明", "change_ja":"以前と比べて何が変わったかを1〜2文", "impact_ja":"日本の仕事・経営・生活への影響を1〜2文。影響が不明なら不明と書く", "action_ja":"利用者が次に確認・試すことを具体的に1〜2文", "importance":"S|A|B"}]\n' +
+    "英語と中国語は必ず自然な日本語に翻訳。すべて題名・掲載元・excerptだけを根拠に書く。元記事に無い数字・日付・固有名詞・効果は創作しない。分からない点は断定せず「現時点では確認できません」と書く。掲載元が不明確な記事は重要度を下げ、役立たないものは選ばない。\n候補:\n" +
     JSON.stringify(list);
 
   let text;
@@ -152,7 +159,20 @@ async function aiCurate(items) {
     const titleJa = (e.title_ja || "").toString().trim() || src.title;
     const sumJa = (e.summary_ja || "").toString().trim();
     const detailJa = (e.detail_ja || "").toString().trim();
-    out.push({ tool: src.tool, title: titleJa, source_url: src.source_url, published_at: src.published_at, raw_excerpt: sumJa || src.raw_excerpt, detail: detailJa });
+    out.push({
+      tool: src.tool,
+      title: titleJa,
+      source_url: src.source_url,
+      source_name: src.source_name || "",
+      is_official: !!src.is_official,
+      published_at: src.published_at,
+      raw_excerpt: sumJa || src.raw_excerpt,
+      detail: detailJa,
+      change_summary: (e.change_ja || "").toString().trim(),
+      impact_summary: (e.impact_ja || "").toString().trim(),
+      action_suggestion: (e.action_ja || "").toString().trim(),
+      importance: (e.importance || "").toString().trim()
+    });
   }
   console.error("AI厳選: " + out.length + "件に厳選・翻訳（model=" + AI_MODEL + "）");
   return out.length ? out : null;
@@ -171,8 +191,16 @@ function tag(block, name) {
 }
 function atomLink(block) { const m = block.match(/<link[^>]*href="([^"]+)"/i); return m ? m[1] : ""; }
 function toIso(raw) { if (!raw) return null; const d = new Date(raw); return isNaN(d) ? null : d.toISOString(); }
+function sourceLabelFromUrl(url) {
+  try {
+    const host = new URL(url).hostname.replace(/^www\./, "");
+    return /news\.google\.com/i.test(host) ? "Google ニュース掲載記事" : host;
+  } catch (e) {
+    return "";
+  }
+}
 
-function parseFeed(xml, official) {
+function parseFeed(xml, official, fallbackSource) {
   let blocks = xml.match(/<item\b[\s\S]*?<\/item>/gi);
   if (!blocks) blocks = xml.match(/<entry\b[\s\S]*?<\/entry>/gi);
   if (!blocks) return [];
@@ -183,7 +211,8 @@ function parseFeed(xml, official) {
     const link = tag(b, "link") || atomLink(b);
     const dateRaw = tag(b, "pubDate") || tag(b, "published") || tag(b, "updated");
     const desc = stripTags(tag(b, "description") || tag(b, "summary") || tag(b, "content")).slice(0, 500);
-    out.push({ title, link, date: toIso(dateRaw), desc, official });
+    const sourceName = stripTags(tag(b, "source")) || fallbackSource || "";
+    out.push({ title, link, date: toIso(dateRaw), desc, official, sourceName });
   }
   return out;
 }
@@ -199,7 +228,7 @@ async function fetchText(url) {
   for (const t of TOOLS) {
     let items = [];
     for (const url of t.feeds) {
-      try { items = items.concat(parseFeed(await fetchText(url), isOfficial(url))); }
+      try { items = items.concat(parseFeed(await fetchText(url), isOfficial(url), sourceLabelFromUrl(url))); }
       catch (e) { console.error("  fetch fail", url, String(e.message || e).slice(0, 60)); }
     }
     const before = items.length;
@@ -217,7 +246,7 @@ async function fetchText(url) {
       out.push({
         tool: t.name, title: it.title, source_url: it.link || "",
         published_at: it.date || new Date().toISOString(), raw_excerpt: it.desc || "",
-        source_name: it.official ? "公式情報" : "Google ニュース掲載記事",
+        source_name: it.sourceName || (it.official ? "公式情報" : "Google ニュース掲載記事"),
         is_official: !!it.official,
       });
     }
