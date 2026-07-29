@@ -49,8 +49,25 @@ const TOOLS = [
     "https://news.google.com/rss/search?q=%E7%94%9F%E6%88%90AI%20%E7%A0%94%E7%A9%B6%20%E8%AB%96%E6%96%87%20%E6%96%B0%E6%8A%80%E8%A1%93%20when:7d&hl=ja&gl=JP&ceid=JP:ja" ] },
   { name: "AIセキュリティ", match: /AI|人工知能|生成AI/i, feeds: [
     "https://news.google.com/rss/search?q=%E7%94%9F%E6%88%90AI%20%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%20%E6%83%85%E5%A0%B1%E6%BC%8F%E3%81%88%E3%81%84%20when:7d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "中国AI・基盤モデル", match: /kimi|moonshot|deepseek|qwen|tongyi|通義|千問|glm|zhipu|z\.ai|minimax|doubao|豆包|baichuan|01\.ai|yi[- ]?lightning|hunyuan|混元|ernie|文心|mimo|stepfun|step[- ]?ai|中国.*AI|chinese ai/i, feeds: [
+    "https://news.google.com/rss/search?q=%28Kimi%20OR%20Moonshot%20AI%20OR%20DeepSeek%20OR%20Qwen%20OR%20Zhipu%20OR%20GLM%20OR%20MiniMax%29%20when:2d&hl=ja&gl=JP&ceid=JP:ja",
+    "https://news.google.com/rss/search?q=%28Kimi%20OR%20Moonshot%20AI%20OR%20DeepSeek%20OR%20Qwen%20OR%20Zhipu%20OR%20GLM%20OR%20MiniMax%20OR%20Doubao%20OR%20Hunyuan%29%20when:2d&hl=en-US&gl=US&ceid=US:en",
+    "https://news.google.com/rss/search?q=%28%E4%B8%AD%E5%9B%BDAI%20OR%20%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%20OR%20Kimi%20OR%20DeepSeek%20OR%20%E9%80%9A%E4%B9%89%E5%8D%83%E9%97%AE%20OR%20%E6%99%BA%E8%B0%B1AI%20OR%20MiniMax%20OR%20%E8%B1%86%E5%8C%85%29%20when:2d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans" ] },
+  { name: "世界の新モデル・速報", match: /AI|artificial intelligence|LLM|large language model|foundation model|multimodal|agent|生成AI|人工知能/i, feeds: [
+    "https://news.google.com/rss/search?q=%28AI%20model%20OR%20LLM%20OR%20AI%20agent%29%20%28launch%20OR%20release%20OR%20unveil%20OR%20open-source%29%20when:1d&hl=en-US&gl=US&ceid=US:en",
+    "https://news.google.com/rss/search?q=%28AI%E3%83%A2%E3%83%87%E3%83%AB%20OR%20%E7%94%9F%E6%88%90AI%20OR%20AI%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%29%20%28%E7%99%BA%E8%A1%A8%20OR%20%E5%85%AC%E9%96%8B%20OR%20%E6%8F%90%E4%BE%9B%E9%96%8B%E5%A7%8B%29%20when:2d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "オープンモデル・開発者動向", match: /open.?source|open.?weight|hugging face|github|model|LLM|AI/i, feeds: [
+    "https://news.google.com/rss/search?q=%28open-source%20AI%20OR%20open-weight%20model%20OR%20Hugging%20Face%29%20when:2d&hl=en-US&gl=US&ceid=US:en",
+    "https://huggingface.co/blog/feed.xml" ] },
+  { name: "AIスタートアップ・資金調達", match: /AI|artificial intelligence|生成AI|人工知能|LLM/i, feeds: [
+    "https://news.google.com/rss/search?q=%28AI%20startup%20OR%20AI%20company%29%20%28funding%20OR%20raises%20OR%20acquisition%20OR%20valuation%29%20when:2d&hl=en-US&gl=US&ceid=US:en",
+    "https://news.google.com/rss/search?q=%28AI%E4%BC%81%E6%A5%AD%20OR%20AI%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%29%20%28%E8%B3%87%E9%87%91%E8%AA%BF%E9%81%94%20OR%20%E8%B2%B7%E5%8F%8E%20OR%20%E6%99%82%E4%BE%A1%E7%B7%8F%E9%A1%8D%29%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "AIベンチマーク・研究速報", match: /AI|LLM|model|machine learning|benchmark|agent|人工知能|機械学習/i, feeds: [
+    "https://news.google.com/rss/search?q=%28AI%20benchmark%20OR%20LLM%20leaderboard%20OR%20AI%20research%29%20when:2d&hl=en-US&gl=US&ceid=US:en",
+    "https://rss.arxiv.org/rss/cs.AI",
+    "https://rss.arxiv.org/rss/cs.CL" ] },
 ];
-const PER_TOOL = 6; // 1ツールあたり最新何件まで残すか
+const PER_TOOL = 8; // 重要分野ごとの候補を広めに保持する
 
 // ノイズ（広告・セール・ランキング記事・求人など）を落とす正規表現
 const NOISE = /(セール|キャンペーン|クーポン|プレゼント|無料配布|値引き|%\s*オフ|％\s*オフ|\d+\s*%\s*off|kindle|割引|まとめ買い|求人|採用情報|転職|ランキング|おすすめ\d*\s*選|\d+\s*選|ベスト\d+|top\s*\d+|best\s+\d+\b|\bsale\b|\bdiscount\b|\bcoupon\b|\bgiveaway\b)/i;
@@ -74,7 +91,7 @@ function keep(item, tool) {
  * 鍵が無い/失敗した場合は静かにスキップし、ルール厳選の結果をそのまま使う。
  * ===================================================================== */
 const AI_MODEL = process.env.ANTHROPIC_MODEL || "claude-opus-4-8"; // 安く済ませたいなら "claude-haiku-4-5"
-const AI_MAX = 12; // AIが選ぶ最大件数
+const AI_MAX = 30; // 見逃しを減らすため、最終候補を最大30件まで保持する
 
 async function callClaude(system, user) {
   const res = await fetch("https://api.anthropic.com/v1/messages", {
@@ -208,10 +225,30 @@ async function fetchText(url) {
   }
   out.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
 
+  // 同じ記事が複数の監視テーマに入っても、ユーザーには1回だけ表示する。
+  const globalSeen = new Set();
+  const uniqueOut = out.filter(item => {
+    const key = (item.source_url || item.title || "")
+      .toLowerCase()
+      .replace(/[?#].*$/, "")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (!key || globalSeen.has(key)) return false;
+    globalSeen.add(key);
+    return true;
+  });
+
+  // 一時的な通信障害で全フィード取得に失敗しても、既存ニュースを消さない。
+  if (uniqueOut.length === 0) {
+    console.error("NO ARTICLES FETCHED: keeping the existing data.json");
+    process.exitCode = 1;
+    return;
+  }
+
   // ②AI厳選（任意・失敗時はルール厳選のまま）
-  let final = out;
+  let final = uniqueOut;
   try {
-    const curated = await aiCurate(out);
+    const curated = await aiCurate(uniqueOut);
     if (curated && curated.length) {
       curated.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
       final = curated;
@@ -222,8 +259,9 @@ async function fetchText(url) {
 
   fs.writeFileSync("data.json", JSON.stringify(final, null, 2));
   console.error("WROTE data.json with", final.length, "items");
-})();
-  // GitHub Pagesへ配置する直前に、同意欄をログイン・無料登録ボタンより上へ整える。
+
+  // GitHub Pages へ配置する直前に、同意欄をログイン・無料登録ボタンより上へ整える。
+  // すでに正しい順序なら何も変更しないため、毎日の自動実行でも安全。
   const indexPath = "index.html";
   if (fs.existsSync(indexPath)) {
     const lines = fs.readFileSync(indexPath, "utf8").split(/(?<=\n)/);
@@ -235,14 +273,4 @@ async function fetchText(url) {
       console.error("UPDATED login consent layout");
     }
   }
-
-const layoutLines = fs.readFileSync("index.html", "utf8").split(/(?<=\n)/);
-let layoutChanged = false;
-for (let i = 0; i < layoutLines.length - 1; i++) {
-  if (layoutLines[i].includes('class="auth-actions"') && layoutLines[i].includes("signInMember()") && layoutLines[i + 1].includes('id="authConsent"')) {
-    [layoutLines[i], layoutLines[i + 1]] = [layoutLines[i + 1], layoutLines[i]];
-    layoutChanged = true;
-    i++;
-  }
-}
-if (layoutChanged) fs.writeFileSync("index.html", layoutLines.join(""));
+})();
