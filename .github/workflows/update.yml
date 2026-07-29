@@ -2,7 +2,8 @@ name: Update AI feeds
 
 on:
   schedule:
-    - cron: "0 21 * * *"
+    # 海外発表の見逃しを減らすため、3時間ごとに監視する
+    - cron: "17 */3 * * *"
   workflow_dispatch:
 
 permissions:
