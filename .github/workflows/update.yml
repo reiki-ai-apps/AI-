@@ -40,7 +40,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html data.json _site/
-          cp -R assets _site/
+          if [ -d assets ]; then cp -R assets _site/; fi
 
       - name: configure pages
         uses: actions/configure-pages@v5
