@@ -1,0 +1,65 @@
+name: Security checks
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  schedule:
+    - cron: "15 18 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-review:
+    name: Source and CodeQL review
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: javascript-typescript
+
+      - name: Run application security assertions
+        run: node scripts/security-check.mjs
+
+      - name: Analyze with CodeQL
+        uses: github/codeql-action/analyze@v4
+
+  web-baseline:
+    name: Monthly web vulnerability baseline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create report directory
+        run: mkdir -p reports
+
+      - name: Run OWASP ZAP baseline
+        run: >
+          docker run --rm
+          -v "$PWD/reports:/zap/wrk/:rw"
+          ghcr.io/zaproxy/zaproxy:stable
+          zap-baseline.py
+          -t https://reiki-ai-apps.github.io/AI-/
+          -J zap-report.json
+          -r zap-report.html
+          -I
+
+      - name: Upload ZAP report
+        uses: actions/upload-artifact@v4
+        with:
+          name: zap-security-report
+          path: reports/
+          retention-days: 90

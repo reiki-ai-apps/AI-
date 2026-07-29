@@ -27,7 +27,7 @@ jobs:
       - name: setup node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: build data.json
         run: node update.js
@@ -39,6 +39,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html data.json _site/
+          cp -R assets _site/
 
       - name: configure pages
         uses: actions/configure-pages@v5
