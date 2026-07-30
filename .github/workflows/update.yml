@@ -34,12 +34,50 @@ jobs:
         run: node update.js
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ANTHROPIC_MODEL: claude-opus-4-8
+          ANTHROPIC_MODEL: claude-sonnet-5
+
+      - name: validate published articles
+        run: |
+          node - <<'NODE'
+          const fs = require("fs");
+          const items = JSON.parse(fs.readFileSync("data.json", "utf8"));
+          const required = [
+            "title", "summary", "detail", "change_summary",
+            "impact_summary", "action_suggestion", "importance",
+            "published_at", "source_url"
+          ];
+          const errors = [];
+          if (!Array.isArray(items) || items.length < 8) {
+            errors.push(`記事数が不足しています: ${Array.isArray(items) ? items.length : "not-array"}`);
+          }
+          (Array.isArray(items) ? items : []).forEach((item, index) => {
+            for (const key of required) {
+              if (typeof item[key] !== "string" || !item[key].trim()) {
+                errors.push(`${index + 1}件目: ${key} が空です`);
+              }
+            }
+            if (!Array.isArray(item.related_categories) || item.related_categories.length === 0) {
+              errors.push(`${index + 1}件目: related_categories が空です`);
+            }
+            const explanation = [
+              item.summary, item.detail, item.change_summary,
+              item.impact_summary, item.action_suggestion
+            ].join("");
+            if (!/[ぁ-んァ-ヶ一-龠々]/.test(explanation)) {
+              errors.push(`${index + 1}件目: 日本語の解説がありません`);
+            }
+          });
+          if (errors.length) {
+            console.error(errors.slice(0, 40).join("\n"));
+            process.exit(1);
+          }
+          console.log(`検証OK: ${items.length}件すべてに要約・解説・分類があります`);
+          NODE
 
       - name: prepare site
         run: |
           mkdir -p _site
-          cp index.html data.json _site/
+          cp index.html data.json manifest.webmanifest sw.js _site/
           if [ -d assets ]; then cp -R assets _site/; fi
 
       - name: configure pages
