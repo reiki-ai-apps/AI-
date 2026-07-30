@@ -3521,6 +3521,20 @@ function looksCorruptedText(value){
   const suspicious=(s.match(/[�縺繧蜿螟譁莠鬮髫]/g)||[]).length;
   return suspicious>=4&&suspicious/Math.max(s.length,1)>.08;
 }
+function hasJapaneseDisplayText(value){
+  return /[\u3040-\u30ff]/.test(String(value||''));
+}
+function isJapaneseDisplayItem(item){
+  const fields=[
+    item?.title,
+    item?.raw_excerpt||item?.summary,
+    item?.detail,
+    item?.change_summary,
+    item?.impact_summary,
+    item?.action_suggestion
+  ].filter(value=>String(value||'').trim());
+  return fields.length>0&&fields.every(hasJapaneseDisplayText);
+}
 function ensureImportedTool(item){
   const name=String(item?.tool||'AI全般').trim()||'AI全般';
   const existing=getTools().find(t=>t.name===name||t.slug===name);
@@ -3564,6 +3578,7 @@ async function syncFromDataJson(){
     let added=0;
     items.forEach(it=>{
       if(!it||!it.title||looksCorruptedText(it.title)||looksCorruptedText(it.summary)||looksCorruptedText(it.detail)) return;
+      if(!isJapaneseDisplayItem(it)) return;
       // 契約プランの保存期間より古いニュースは取り込まない
       if(it.published_at && !isRecent({published_at:it.published_at})) return;
       const tool=ensureImportedTool(it);

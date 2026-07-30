@@ -200,6 +200,21 @@ function sourceLabelFromUrl(url) {
   }
 }
 
+function hasJapaneseText(value) {
+  return /[\u3040-\u30ff]/.test(String(value || ""));
+}
+function isJapaneseDisplayItem(item) {
+  const fields = [
+    item && item.title,
+    item && (item.raw_excerpt || item.summary),
+    item && item.detail,
+    item && item.change_summary,
+    item && item.impact_summary,
+    item && item.action_suggestion
+  ].filter(value => String(value || "").trim());
+  return fields.length > 0 && fields.every(hasJapaneseText);
+}
+
 function parseFeed(xml, official, fallbackSource) {
   let blocks = xml.match(/<item\b[\s\S]*?<\/item>/gi);
   if (!blocks) blocks = xml.match(/<entry\b[\s\S]*?<\/entry>/gi);
@@ -275,15 +290,25 @@ async function fetchText(url) {
   }
 
   // ②AI厳選（任意・失敗時はルール厳選のまま）
-  let final = uniqueOut;
+  let final = [];
   try {
     const curated = await aiCurate(uniqueOut);
     if (curated && curated.length) {
-      curated.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
-      final = curated;
+      final = curated.filter(isJapaneseDisplayItem);
+      final.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
     }
   } catch (e) {
     console.error("AI厳選で例外（ルール厳選のまま）:", String(e.message || e).slice(0, 200));
+  }
+
+  if (!final.length) {
+    final = uniqueOut.filter(isJapaneseDisplayItem).slice(0, AI_MAX);
+    console.error("AI translation unavailable: publishing Japanese source articles only");
+  }
+  if (!final.length) {
+    console.error("NO JAPANESE ARTICLES: keeping the existing data.json");
+    process.exitCode = 1;
+    return;
   }
 
   fs.writeFileSync("data.json", JSON.stringify(final, null, 2));
