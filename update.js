@@ -85,13 +85,21 @@ function keep(item, tool) {
 }
 
 /* =====================================================================
- * ②AI厳選（Claude API・任意）
- * GitHub Secret の ANTHROPIC_API_KEY があれば、Claudeが各記事を
- * 「一般の利用者に役立つか」判定→不要を除外→日本語に翻訳＋要約。
- * 鍵が無い/失敗した場合は静かにスキップし、ルール厳選の結果をそのまま使う。
+ * ②AI厳選・要約
+ * 新着だけを小さなバッチで処理し、必須項目が揃った記事だけを公開する。
+ * 既に要約済みの記事は data.json から再利用し、API費用と失敗率を抑える。
  * ===================================================================== */
-const AI_MODEL = process.env.ANTHROPIC_MODEL || "claude-opus-4-8"; // 安く済ませたいなら "claude-haiku-4-5"
-const AI_MAX = 30; // 見逃しを減らすため、最終候補を最大30件まで保持する
+const AI_MODEL = process.env.ANTHROPIC_MODEL || "claude-sonnet-5";
+const AI_MAX = 30;
+const AI_BATCH_SIZE = 6;
+const AI_NEW_LIMIT = 30;
+const ARTICLE_CONTEXT_LIMIT = 2400;
+const ALLOWED_CATEGORIES = [
+  "AIツール・モデル","政策・行政","補助金・助成金","企業・株式",
+  "規制・法務","研究・技術","セキュリティ","半導体・インフラ",
+  "アプリ開発・自動化","画像・動画生成","音楽・クリエイティブ",
+  "営業・マーケティング","EC・業務活用","その他"
+];
 
 async function callClaude(system, user) {
   const res = await fetch("https://api.anthropic.com/v1/messages", {
@@ -111,7 +119,10 @@ async function callClaude(system, user) {
   if (!res.ok) throw new Error("Anthropic HTTP " + res.status + ": " + (await res.text()).slice(0, 300));
   const data = await res.json();
   if (data.stop_reason === "refusal") throw new Error("refusal");
-  return (data.content || []).filter(b => b.type === "text").map(b => b.text).join("");
+  return {
+    text:(data.content || []).filter(b => b.type === "text").map(b => b.text).join(""),
+    stopReason:data.stop_reason || ""
+  };
 }
 
 function parseJsonArray(text) {
@@ -122,44 +133,113 @@ function parseJsonArray(text) {
   catch (e) { return null; }
 }
 
-async function aiCurate(items) {
-  if (!process.env.ANTHROPIC_API_KEY) { console.error("ANTHROPIC_API_KEY 未設定 → AI厳選スキップ（ルール厳選のまま）"); return null; }
-  const list = items.map((it, i) => ({
-    i,
-    tool: it.tool,
-    title: it.title,
-    source: it.source_name || "",
-    official: !!it.is_official,
-    excerpt: (it.raw_excerpt || "").toString().slice(0, 180)
+function fallbackCategoryForTool(tool) {
+  const name=String(tool||"");
+  if(/政策|政治|選挙/.test(name))return ["政策・行政"];
+  if(/補助金|助成金/.test(name))return ["補助金・助成金"];
+  if(/規制|著作権|法律/.test(name))return ["規制・法務"];
+  if(/企業|株|スタートアップ|資金調達/.test(name))return ["企業・株式"];
+  if(/NVIDIA|半導体|GPU|インフラ/.test(name))return ["半導体・インフラ"];
+  if(/セキュリティ/.test(name))return ["セキュリティ"];
+  if(/研究|論文|ベンチマーク|新技術/.test(name))return ["研究・技術"];
+  if(/v0|Cursor|Code|開発|オープンモデル/.test(name))return ["アプリ開発・自動化"];
+  if(/Runway|Canva|画像|動画/.test(name))return ["画像・動画生成"];
+  if(/Suno|音楽|音声/.test(name))return ["音楽・クリエイティブ"];
+  return ["AIツール・モデル"];
+}
+function isCompleteEnrichedItem(item) {
+  return !!item &&
+    ["title","raw_excerpt","detail","change_summary","impact_summary","action_suggestion","importance"]
+      .every(k=>String(item[k]||"").trim()) &&
+    Array.isArray(item.related_categories) && item.related_categories.length>0 &&
+    isJapaneseDisplayItem(item);
+}
+function cleanDisplayTitle(title, sourceName) {
+  let value=stripTags(String(title||"")).replace(/\s+/g," ").trim();
+  const source=String(sourceName||"").trim();
+  if(source){
+    const escaped=source.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+    value=value.replace(new RegExp("\\s*(?:[-–—|｜]\\s*)"+escaped+"\\s*$","i"),"").trim();
+  }
+  return value.replace(/(?:\.\.\.|…|(?:\.\.)+)\s*$/,"").trim();
+}
+async function fetchArticleContext(item) {
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),7000);
+  try{
+    const res=await fetch(item.source_url,{redirect:"follow",signal:controller.signal,headers:{
+      "User-Agent":"Mozilla/5.0 (compatible; AI-Radar/1.0; +https://reiki-ai-apps.github.io/AI-/)",
+      "Accept":"text/html,application/xhtml+xml"
+    }});
+    if(!res.ok)return item.raw_excerpt||"";
+    const type=String(res.headers.get("content-type")||"");
+    if(!/html|xml|text/i.test(type))return item.raw_excerpt||"";
+    const html=(await res.text()).slice(0,1_500_000);
+    const meta=(name)=>{
+      const escName=name.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+      const patterns=[
+        new RegExp(`<meta[^>]+(?:name|property)=["']${escName}["'][^>]+content=["']([^"']+)["']`,"i"),
+        new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]+(?:name|property)=["']${escName}["']`,"i")
+      ];
+      for(const re of patterns){const m=html.match(re);if(m)return stripTags(m[1]);}
+      return "";
+    };
+    const paragraphs=[...html.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
+      .map(m=>stripTags(m[1])).filter(t=>t.length>=45).slice(0,10);
+    const context=[
+      meta("og:description"),meta("description"),meta("twitter:description"),
+      ...paragraphs
+    ].filter(Boolean).join("\n");
+    return context.slice(0,ARTICLE_CONTEXT_LIMIT)||(item.raw_excerpt||"");
+  }catch(_error){
+    return item.raw_excerpt||"";
+  }finally{
+    clearTimeout(timeout);
+  }
+}
+
+async function aiEnrichBatch(items) {
+  const list=items.map((it,i)=>({
+    i,tool:it.tool,title:it.title,source:it.source_name||"",
+    official:!!it.is_official,published_at:it.published_at,
+    excerpt:String(it.raw_excerpt||"").slice(0,500),
+    article_context:String(it.article_context||"").slice(0,ARTICLE_CONTEXT_LIMIT)
   }));
   const system =
     "あなたは、AIに詳しくない人にも理解できる日本語で伝えるAIニュース編集者です。" +
     "製品アップデート、新機能、使い方、料金変更だけでなく、AI政策、規制、著作権、補助金・助成金、AI関連企業・株式、研究、セキュリティ、半導体など、利用者の仕事や生活に影響する情報を重視してください。" +
-    "広告、別テーマの誤ヒット、根拠の薄い記事、同じ内容の重複記事は除外してください。専門用語をそのまま使わず、必要な場合は短い説明を添えてください。";
+    "記事本文の抜粋にない数字・人物・効果は作らず、不明な点は不明と明記してください。広告、別テーマの誤ヒット、根拠の薄い記事は除外してください。";
   const user =
-    "次のAI関連ニュース候補(JSON)から、一般の利用者が知っておく価値のあるものだけを重要な順に最大" + AI_MAX + "件選んでください。\n" +
+    "次のAI関連ニュース候補(JSON)を確認し、一般の利用者が知っておく価値のある記事だけを残してください。\n" +
     "出力は次の形式のJSON配列だけ（前置き・説明・コードフェンスは一切不要）:\n" +
-    '[{"i":元番号, "title_ja":"日本語の短いタイトル", "summary_ja":"30〜70字の日本語の一言要約", "detail_ja":"180〜300字、5〜7文のやさしい日本語で説明", "change_ja":"以前と比べて何が変わったかを1〜2文", "impact_ja":"日本の仕事・経営・生活への影響を1〜2文。影響が不明なら不明と書く", "action_ja":"利用者が次に確認・試すことを具体的に1〜2文", "importance":"S|A|B"}]\n' +
-    "英語と中国語は必ず自然な日本語に翻訳。すべて題名・掲載元・excerptだけを根拠に書く。元記事に無い数字・日付・固有名詞・効果は創作しない。分からない点は断定せず「現時点では確認できません」と書く。掲載元が不明確な記事は重要度を下げ、役立たないものは選ばない。\n候補:\n" +
+    '[{"i":元番号,"title_ja":"媒体名を除いた自然な日本語タイトル","summary_ja":"60〜100字で結論が分かる要約","detail_ja":"220〜360字、専門用語を説明したやさしい解説","change_ja":"何が新しいかを1〜2文","impact_ja":"日本の仕事・経営・生活への影響を1〜2文","action_ja":"利用者が次に確認することを1〜2文","importance":"S|A|B|C","categories":["指定カテゴリから1〜3件"]}]\n' +
+    "指定カテゴリ:"+JSON.stringify(ALLOWED_CATEGORIES)+"\n"+
+    "英語・中国語は自然な日本語に翻訳してください。article_contextを最優先の根拠にし、情報不足でもタイトルを言い換えただけの要約は作らないでください。価値や根拠が足りない記事は出力しないでください。\n候補:\n" +
     JSON.stringify(list);
 
-  let text;
+  let response;
   for (let attempt = 0; attempt < 2; attempt++) {
-    try { text = await callClaude(system, user); break; }
+    try { response = await callClaude(system, user); break; }
     catch (e) { console.error("AI厳選 試行" + (attempt + 1) + " 失敗:", String(e.message || e).slice(0, 200)); }
   }
-  const arr = parseJsonArray(text);
-  if (!arr || !arr.length) return null;
+  if(!response)return [];
+  const arr = parseJsonArray(response.text);
+  if (!arr || !arr.length) {
+    console.error("AI応答をJSON解析できませんでした。stop_reason="+response.stopReason+" chars="+response.text.length);
+    return [];
+  }
 
   const out = [];
   for (const e of arr) {
     const idx = Number(e && e.i);
     if (!Number.isInteger(idx) || idx < 0 || idx >= items.length) continue;
     const src = items[idx];
-    const titleJa = (e.title_ja || "").toString().trim() || src.title;
+    const titleJa = cleanDisplayTitle((e.title_ja || "").toString().trim() || src.title,src.source_name);
     const sumJa = (e.summary_ja || "").toString().trim();
     const detailJa = (e.detail_ja || "").toString().trim();
-    out.push({
+    const categories=[...new Set((Array.isArray(e.categories)?e.categories:[])
+      .map(String).filter(c=>ALLOWED_CATEGORIES.includes(c)))];
+    const item={
       tool: src.tool,
       title: titleJa,
       source_url: src.source_url,
@@ -171,11 +251,29 @@ async function aiCurate(items) {
       change_summary: (e.change_ja || "").toString().trim(),
       impact_summary: (e.impact_ja || "").toString().trim(),
       action_suggestion: (e.action_ja || "").toString().trim(),
-      importance: (e.importance || "").toString().trim()
-    });
+      importance: ["S","A","B","C"].includes(String(e.importance||"").toUpperCase())?String(e.importance).toUpperCase():"B",
+      related_categories:categories.length?categories:fallbackCategoryForTool(src.tool)
+    };
+    if(isCompleteEnrichedItem(item))out.push(item);
   }
-  console.error("AI厳選: " + out.length + "件に厳選・翻訳（model=" + AI_MODEL + "）");
-  return out.length ? out : null;
+  console.error("AI要約: "+out.length+"/"+items.length+"件（model="+AI_MODEL+"）");
+  return out;
+}
+
+async function enrichNewItems(items) {
+  if(!items.length)return [];
+  if(!process.env.ANTHROPIC_API_KEY)throw new Error("ANTHROPIC_API_KEY 未設定");
+  const enriched=[];
+  for(let start=0;start<items.length;start+=AI_BATCH_SIZE){
+    const batch=items.slice(start,start+AI_BATCH_SIZE);
+    const withContext=await Promise.all(batch.map(async item=>({
+      ...item,
+      article_context:await fetchArticleContext(item)
+    })));
+    const result=await aiEnrichBatch(withContext);
+    enriched.push(...result);
+  }
+  return enriched;
 }
 
 function decode(s) {
@@ -204,15 +302,14 @@ function hasJapaneseText(value) {
   return /[\u3040-\u30ff]/.test(String(value || ""));
 }
 function isJapaneseDisplayItem(item) {
-  const fields = [
-    item && item.title,
+  const explanations = [
     item && (item.raw_excerpt || item.summary),
     item && item.detail,
     item && item.change_summary,
     item && item.impact_summary,
     item && item.action_suggestion
   ].filter(value => String(value || "").trim());
-  return fields.length > 0 && fields.every(hasJapaneseText);
+  return explanations.length>0&&explanations.every(hasJapaneseText);
 }
 
 function parseFeed(xml, official, fallbackSource) {
@@ -221,21 +318,88 @@ function parseFeed(xml, official, fallbackSource) {
   if (!blocks) return [];
   const out = [];
   for (const b of blocks) {
-    const title = stripTags(tag(b, "title"));
+    const sourceName = stripTags(tag(b, "source")) || fallbackSource || "";
+    const title = cleanDisplayTitle(stripTags(tag(b, "title")),sourceName);
     if (!title) continue;
     const link = tag(b, "link") || atomLink(b);
     const dateRaw = tag(b, "pubDate") || tag(b, "published") || tag(b, "updated");
     const desc = stripTags(tag(b, "description") || tag(b, "summary") || tag(b, "content")).slice(0, 500);
-    const sourceName = stripTags(tag(b, "source")) || fallbackSource || "";
     out.push({ title, link, date: toIso(dateRaw), desc, official, sourceName });
   }
   return out;
 }
 
 async function fetchText(url) {
-  const res = await fetch(url, { headers: { "User-Agent": "Mozilla/5.0 (AI-Radar bot)" } });
-  if (!res.ok) throw new Error("HTTP " + res.status);
-  return await res.text();
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),12000);
+  try{
+    const res = await fetch(url, { signal:controller.signal,headers: { "User-Agent": "Mozilla/5.0 (AI-Radar bot)" } });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    return await res.text();
+  }finally{
+    clearTimeout(timeout);
+  }
+}
+function normalizedUrl(value) {
+  try{
+    const u=new URL(String(value||""));
+    u.hash="";
+    [...u.searchParams.keys()].forEach(k=>{
+      if(/^utm_/i.test(k)||["oc","hl","gl","ceid","ref","source"].includes(k.toLowerCase()))u.searchParams.delete(k);
+    });
+    return u.toString().replace(/\/$/,"").toLowerCase();
+  }catch(_error){
+    return "";
+  }
+}
+function normalizedStoryTitle(value) {
+  return cleanDisplayTitle(value,"").toLowerCase()
+    .replace(/[「」『』【】()[\]（）!?！？。、・:：'"“”‘’\-–—|｜]/g,"")
+    .replace(/\s+/g,"")
+    .replace(/(発表|公開|提供開始|明らかに|について|とは|ニュース)$/,"");
+}
+function titleGrams(value) {
+  const text=normalizedStoryTitle(value);
+  const grams=new Set();
+  for(let i=0;i<Math.max(1,text.length-2);i++)grams.add(text.slice(i,i+3));
+  return grams;
+}
+function sameStory(a,b) {
+  const au=normalizedUrl(a.source_url),bu=normalizedUrl(b.source_url);
+  if(au&&bu&&au===bu)return true;
+  const at=normalizedStoryTitle(a.title),bt=normalizedStoryTitle(b.title);
+  if(at&&bt&&(at===bt||at.includes(bt)||bt.includes(at))&&Math.min(at.length,bt.length)>=12)return true;
+  const ag=titleGrams(at),bg=titleGrams(bt);
+  if(!ag.size||!bg.size)return false;
+  let overlap=0;for(const gram of ag)if(bg.has(gram))overlap++;
+  return overlap/Math.max(ag.size,bg.size)>=0.58;
+}
+function dedupeStories(items) {
+  const kept=[];
+  for(const item of items){
+    const duplicate=kept.some(existing=>{
+      const timeGap=Math.abs(new Date(existing.published_at||0)-new Date(item.published_at||0));
+      return timeGap<=7*86400000&&sameStory(existing,item);
+    });
+    if(!duplicate)kept.push(item);
+  }
+  return kept;
+}
+function readPreviousCompleteItems() {
+  try{
+    const parsed=JSON.parse(fs.readFileSync("data.json","utf8"));
+    return Array.isArray(parsed)?parsed.filter(isCompleteEnrichedItem):[];
+  }catch(_error){
+    return [];
+  }
+}
+function candidateScore(item) {
+  const ageHours=Math.max(0,(Date.now()-new Date(item.published_at||0).getTime())/3600000);
+  let score=Math.max(0,96-ageHours);
+  if(item.is_official)score+=35;
+  if(/中国AI|世界の新モデル|政策|規制|補助金|セキュリティ|半導体/.test(item.tool||""))score+=16;
+  if(/発表|公開|提供開始|新モデル|規制|法案|提携|買収|資金調達|脆弱性|料金/.test(item.title||""))score+=12;
+  return score;
 }
 
 (async () => {
@@ -269,18 +433,8 @@ async function fetchText(url) {
   }
   out.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
 
-  // 同じ記事が複数の監視テーマに入っても、ユーザーには1回だけ表示する。
-  const globalSeen = new Set();
-  const uniqueOut = out.filter(item => {
-    const key = (item.source_url || item.title || "")
-      .toLowerCase()
-      .replace(/[?#].*$/, "")
-      .replace(/\s+/g, " ")
-      .trim();
-    if (!key || globalSeen.has(key)) return false;
-    globalSeen.add(key);
-    return true;
-  });
+  // URLだけでなくタイトルの類似度も見て、媒体をまたぐ同一話題を1件にまとめる。
+  const uniqueOut = dedupeStories(out);
 
   // 一時的な通信障害で全フィード取得に失敗しても、既存ニュースを消さない。
   if (uniqueOut.length === 0) {
@@ -289,30 +443,51 @@ async function fetchText(url) {
     return;
   }
 
-  // ②AI厳選（任意・失敗時はルール厳選のまま）
-  let final = [];
+  // ②要約済みの記事は再利用し、新着だけを小分けでAI要約する。
+  const previous=readPreviousCompleteItems();
+  const reused=[];
+  const fresh=[];
+  for(const item of uniqueOut){
+    const match=previous.find(old=>sameStory(old,item));
+    if(match)reused.push({...match,published_at:item.published_at||match.published_at});
+    else fresh.push(item);
+  }
+  fresh.sort((a,b)=>candidateScore(b)-candidateScore(a));
+  let newlyEnriched=[];
   try {
-    const curated = await aiCurate(uniqueOut);
-    if (curated && curated.length) {
-      final = curated.filter(isJapaneseDisplayItem);
-      final.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
-    }
+    newlyEnriched=await enrichNewItems(fresh.slice(0,AI_NEW_LIMIT));
   } catch (e) {
-    console.error("AI厳選で例外（ルール厳選のまま）:", String(e.message || e).slice(0, 200));
+    console.error("AI要約に失敗:",String(e.message||e).slice(0,300));
   }
 
-  if (!final.length) {
-    final = uniqueOut.filter(isJapaneseDisplayItem).slice(0, AI_MAX);
-    console.error("AI translation unavailable: publishing Japanese source articles only");
-  }
-  if (!final.length) {
-    console.error("NO JAPANESE ARTICLES: keeping the existing data.json");
+  // 今回フィードに現れなかった記事も保存期間内なら残す。
+  // 一時的なRSS欠落で、良質な要約済み記事が突然消えるのを防ぐ。
+  const retentionStart=Date.now()-31*86400000;
+  const recentPrevious=previous.filter(item=>{
+    const time=new Date(item.published_at||0).getTime();
+    return Number.isFinite(time)&&time>=retentionStart;
+  });
+  const importanceOrder={S:4,A:3,B:2,C:1};
+  const final=dedupeStories([...newlyEnriched,...reused,...recentPrevious])
+    .filter(isCompleteEnrichedItem)
+    .sort((a,b)=>(importanceOrder[b.importance]||0)-(importanceOrder[a.importance]||0)||
+      new Date(b.published_at||0)-new Date(a.published_at||0))
+    .slice(0,AI_MAX)
+    .sort((a,b)=>new Date(b.published_at||0)-new Date(a.published_at||0));
+
+  if(!newlyEnriched.length&&fresh.length){
+    console.error("NO NEW ENRICHED ARTICLES: keeping the existing complete data.json");
     process.exitCode = 1;
+    return;
+  }
+  if(final.length<Math.min(8,previous.length||8)){
+    console.error("TOO FEW COMPLETE ARTICLES ("+final.length+"): keeping the existing data.json");
+    process.exitCode=1;
     return;
   }
 
   fs.writeFileSync("data.json", JSON.stringify(final, null, 2));
-  console.error("WROTE data.json with", final.length, "items");
+  console.error("WROTE data.json with",final.length,"complete items; new",newlyEnriched.length,"reused",reused.length,"retained",recentPrevious.length);
 
   // GitHub Pages へ配置する直前に、同意欄をログイン・無料登録ボタンより上へ整える。
   // すでに正しい順序なら何も変更しないため、毎日の自動実行でも安全。
