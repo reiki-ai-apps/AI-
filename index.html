@@ -2250,12 +2250,39 @@ function articleKeys(item){
   const title=normalizeArticleTitle(item&&item.title);
   return {u:url?stableHash(url):'',t:title?stableHash(title):''};
 }
-function hasSeenArticle(item,data){
+function findSeenArticle(item,data){
   const d=data||DB.load();
   const keys=articleKeys(item);
-  if(!keys.u&&!keys.t)return false;
-  return (d.seen_articles||[]).some(x=>
+  if(!keys.u&&!keys.t)return null;
+  return (d.seen_articles||[]).find(x=>
     (keys.u&&x.u===keys.u)||(keys.t&&x.t===keys.t)
+  )||null;
+}
+function findCurrentArticle(item,data){
+  const d=data||DB.load();
+  const keys=articleKeys(item);
+  if(!keys.u&&!keys.t)return null;
+  return (d.updates||[]).find(x=>{
+    const current=articleKeys(x);
+    return (keys.u&&current.u===keys.u)||(keys.t&&current.t===keys.t);
+  })||null;
+}
+function hasCompleteLocalArticle(item){
+  return [
+    item?.ai_summary||item?.manual_summary||item?.raw_excerpt,
+    item?.easy_summary,
+    item?.simple_explanation,
+    item?.impact_summary,
+    item?.action_suggestion,
+    item?.importance
+  ].every(value=>String(value||'').trim())
+    &&Array.isArray(item?.related_categories)&&item.related_categories.length>0;
+}
+function forgetSeenArticle(item,data){
+  const d=data||DB.load();
+  const keys=articleKeys(item);
+  d.seen_articles=(d.seen_articles||[]).filter(x=>
+    !((keys.u&&x.u===keys.u)||(keys.t&&x.t===keys.t))
   );
 }
 function rememberArticle(item,data){
@@ -2269,9 +2296,10 @@ function rememberArticle(item,data){
   if(found){
     if(keys.u&&!found.u)found.u=keys.u;
     if(keys.t&&!found.t)found.t=keys.t;
+    if(hasCompleteLocalArticle(item))found.complete=true;
     return;
   }
-  d.seen_articles.push({u:keys.u,t:keys.t,at:nowISO()});
+  d.seen_articles.push({u:keys.u,t:keys.t,at:nowISO(),complete:hasCompleteLocalArticle(item)});
   if(d.seen_articles.length>12000)d.seen_articles.splice(0,d.seen_articles.length-12000);
 }
 
@@ -2295,6 +2323,19 @@ function computeScore(update, tool){
   return s;
 }
 function rankFromScore(s){ return s>=85?'S':s>=70?'A':s>=50?'B':'C'; }
+function rankFromImportance(value){
+  const rank=String(value||'').trim().toUpperCase();
+  return ['S','A','B','C'].includes(rank)?rank:'';
+}
+function scoreAndRank(update,tool){
+  const calculated=computeScore(update,tool);
+  const importanceRank=rankFromImportance(update.importance);
+  const floors={S:85,A:70,B:50,C:0};
+  return {
+    score:importanceRank?Math.max(calculated,floors[importanceRank]):calculated,
+    rank:importanceRank||rankFromScore(calculated)
+  };
+}
 
 /* ---------- Data access (各テーブル) ---------- */
 function getTools(){ return DB.load().tools; }
@@ -2329,8 +2370,9 @@ function deleteTool(id){
 function saveUpdate(u){
   const d=DB.load();
   const tool=toolById(u.tool_id);
-  u.score = computeScore(u, tool);
-  u.rank = rankFromScore(u.score);
+  const evaluated=scoreAndRank(u,tool);
+  u.score=evaluated.score;
+  u.rank=evaluated.rank;
   if(u.id){ const i=d.updates.findIndex(x=>x.id===u.id); u.updated_at=nowISO(); d.updates[i]=u; }
   else{ u.id=uid(); u.created_at=nowISO(); u.updated_at=nowISO(); u.fetched_at=u.fetched_at||nowISO(); d.updates.push(u); }
   rememberArticle(u,d);
@@ -2355,8 +2397,7 @@ function recomputeAll(){
   const tools=new Map(d.tools.map(t=>[t.id,t]));
   let changed=false;
   d.updates.forEach(u=>{
-    const score=computeScore(u,tools.get(u.tool_id));
-    const rank=rankFromScore(score);
+    const {score,rank}=scoreAndRank(u,tools.get(u.tool_id));
     if(u.score!==score||u.rank!==rank){u.score=score;u.rank=rank;changed=true;}
   });
   if(changed)DB.save();
@@ -2381,8 +2422,19 @@ function pruneOld(){
   return false;
 }
 
+const DEMO_ARTICLE_TITLES = [
+  'Claude Code に新しいエージェント機能とサブエージェント並列実行が追加',
+  'OpenAI が新モデルと API の価格改定を発表（pricing / new model）',
+  'Suno に新しい音楽生成モデルとステム分離（music / voice）機能が登場',
+  'v0 が画面デザインからフルスタックアプリ生成に対応（code / launch）',
+  'Gemini に画像生成（image）と長文要約の新機能が追加',
+  'Canva に AI 一括デザイン生成（Magic）機能が追加',
+  'Runway が新しい動画生成モデル（video）をベータ公開',
+  'Cursor のエディタUIと補完が小幅アップデート'
+];
+
 /* ============================================================
-   Seed data (仕様書9章 初期ツール + デモアップデート)
+   Seed data（初期ツールのみ。ニュースは検証済みdata.jsonから取得）
    ============================================================ */
 function seedData(){
   const t = (o)=>Object.assign({
@@ -2441,78 +2493,7 @@ function seedData(){
     }));
   });
 
-  const byName = (n)=>tools.find(x=>x.name===n).id;
-  const daysAgo = (n)=>{ const d=new Date(); d.setDate(d.getDate()-n); return d.toISOString(); };
-
-  const rawUp = [
-    {tool:'Claude / Claude Code',title:'Claude Code に新しいエージェント機能とサブエージェント並列実行が追加',
-     pub:daysAgo(1),cats:['アプリ開発','自動化'],
-     excerpt:'Claude Code でサブエージェントを並列起動し、複数ファイルの調査・編集を同時に進められるagent workflowが正式リリース。コード生成の精度とスピードが向上。',
-     summary:'Claude Code が複数の作業を並列で自動実行できるように。アプリ開発の調査・修正が一気に速くなる。',
-     impact:'アプリ開発の作業時間を大幅短縮。複数ファイルの修正を任せられる。',
-     action:'次のアプリ改修で並列エージェントを試す。'},
-    {tool:'ChatGPT / OpenAI',title:'OpenAI が新モデルと API の価格改定を発表（pricing / new model）',
-     pub:daysAgo(2),cats:['アプリ開発','営業資料','自動化'],
-     excerpt:'New model launch with lower API pricing. 推論性能が向上し、長文処理とコード生成が強化。API利用料が値下げ。',
-     summary:'新モデル登場＋API値下げ。文章作成・コード生成のコストが下がる。',
-     impact:'営業資料の自動生成や社内文書作成のコストダウンに直結。',
-     action:'営業資料テンプレを新モデルで再生成して品質比較。'},
-    {tool:'Suno',title:'Suno に新しい音楽生成モデルとステム分離（music / voice）機能が登場',
-     pub:daysAgo(3),cats:['Kiki Toa','音楽制作'],
-     excerpt:'New music generation model with higher fidelity vocals and stem separation. ボーカルと楽器を分離して書き出し可能に。',
-     summary:'Suno の音質が向上し、ボーカルと楽器を分けて書き出せるように。',
-     impact:'Kiki Toa の楽曲制作・YouTube用ミックスがやりやすくなる。',
-     action:'次の楽曲でステム分離を使ってミックス調整を試す。'},
-    {tool:'v0',title:'v0 が画面デザインからフルスタックアプリ生成に対応（code / launch）',
-     pub:daysAgo(4),cats:['アプリ開発'],
-     excerpt:'v0 now generates full-stack apps with database and API routes from a prompt. UI生成だけでなくバックエンドも生成。',
-     summary:'v0 が画面だけでなくDB・APIまで作れるように進化。',
-     impact:'アプリ開発のプロトタイプ作成がさらに高速化。',
-     action:'AI進化レーダーのNext.js版を v0 で試作してみる。'},
-    {tool:'Gemini',title:'Gemini に画像生成（image）と長文要約の新機能が追加',
-     pub:daysAgo(5),cats:['画像生成','その他'],
-     excerpt:'New image generation and long-context summarization features in Gemini app.',
-     summary:'Gemini で画像生成と長文の要約が強化。',
-     impact:'LP用の画像案出しや資料の下調べに使える。',
-     action:'楽天LPのバナー案を Gemini 画像生成で試す。'},
-    {tool:'Canva',title:'Canva に AI 一括デザイン生成（Magic）機能が追加',
-     pub:daysAgo(6),cats:['EC / 楽天 / LP制作','三高産業'],
-     excerpt:'New bulk AI design generation in Canva for marketing assets.',
-     summary:'Canva で複数デザインをAIが一括生成できるように。',
-     impact:'楽天の商品バナーや三高産業の社内資料を量産しやすい。',
-     action:'楽天セール用バナーを一括生成で作ってみる。'},
-    {tool:'Runway',title:'Runway が新しい動画生成モデル（video）をベータ公開',
-     pub:daysAgo(8),cats:['動画生成','Kiki Toa'],
-     excerpt:'Runway releases new video generation model in beta with longer clips.',
-     summary:'Runway の新動画モデルがベータ公開。長めのクリップ生成に対応。',
-     impact:'Kiki Toa の MV / YouTube 用映像制作に使える可能性。',
-     action:'ベータに登録して短いMV素材を生成テスト。'},
-    {tool:'Cursor',title:'Cursor のエディタUIと補完が小幅アップデート',
-     pub:daysAgo(10),cats:['アプリ開発'],
-     excerpt:'Minor UI tweaks and autocomplete improvements.',
-     summary:'Cursor の操作感と補完が少し改善。',
-     impact:'開発体験の小改善。急ぎで試す必要は低い。',
-     action:'時間がある時に最新版を入れて様子見。'},
-  ];
-
-  const updates = rawUp.map(r=>{
-    const tool = tools.find(x=>x.name===r.tool);
-    const u = {
-      id:uid(),tool_id:tool.id,title:r.title,source_url:tool.release_notes_url,
-      published_at:r.pub,fetched_at:nowISO(),raw_content:r.excerpt,raw_excerpt:r.excerpt,
-      manual_summary:r.summary,ai_summary:'',simple_explanation:'',impact_summary:r.impact,
-      action_suggestion:r.action,related_categories:r.cats,score:0,rank:'C',status:'unread',
-      is_saved:false,memo:'',created_at:nowISO(),updated_at:nowISO()
-    };
-    u.score=computeScore(u,tool); u.rank=rankFromScore(u.score);
-    return u;
-  });
-  // demo statuses
-  updates[2].status='try_later'; updates[2].is_saved=true;
-  updates[5].status='read';
-  updates[7].status='ignored';
-
-  const base = {tools, updates, fetch_logs:[], categories:BUSINESS_CATEGORIES.map(n=>({id:uid(),name:n,slug:slugify(n),description:''}))};
+  const base = {tools, updates:[], fetch_logs:[], categories:BUSINESS_CATEGORIES.map(n=>({id:uid(),name:n,slug:slugify(n),description:''}))};
   base.applied_migrations = [];
   runMigrations(base);
   return base;
@@ -2589,6 +2570,17 @@ const MIGRATIONS = [
       return hasCompleteExplanation&&hasCategories;
     });
   } },
+  { id:'2026-07-31-remove-demo-news', apply(d){
+    const demoTitles=new Set(DEMO_ARTICLE_TITLES);
+    d.updates=(d.updates||[]).filter(u=>!demoTitles.has(u.title));
+    const demoKeys=DEMO_ARTICLE_TITLES.map(title=>articleKeys({title}));
+    d.seen_articles=(d.seen_articles||[]).filter(seen=>
+      !demoKeys.some(keys=>(keys.t&&seen.t===keys.t)||(keys.u&&seen.u===keys.u))
+    );
+  } },
+  { id:'2026-07-31-seen-completeness', apply(d){
+    (d.updates||[]).filter(hasCompleteLocalArticle).forEach(u=>rememberArticle(u,d));
+  } },
 ];
 function runMigrations(d){
   d.applied_migrations = d.applied_migrations || [];
@@ -2600,69 +2592,6 @@ function runMigrations(d){
     }
   });
   return changed;
-}
-
-/* ============================================================
-   services/aiSummary.ts 相当（差し替えポイント・初期はダミー）
-   ============================================================ */
-const AISummary = {
-  enabled:false,
-  generateJapaneseSummary(content){ return this.enabled? '' : 'AI要約は未実行です。詳細を確認してください。'; },
-  generateImpactSummary(content,toolName){ return this.enabled? '' : 'AI影響分析は未実行です。'; },
-  generateActionSuggestion(content,categories){ return this.enabled? '' : 'AIによる提案は未実行です。'; },
-};
-
-/* ============================================================
-   services/fetchUpdates.ts 相当
-   ※ブラウザCORS制約のため実RSS取得はベストエフォート。
-     取得できない場合はログに記録し、手動追加を案内（仕様書17章 エラー対応）。
-   ============================================================ */
-async function fetchToolUpdates(tool){
-  // 単一HTML版ではブラウザのCORS制約で多くのRSS/HTMLが直接取得不可。
-  // ここでは「取得を試行 → 失敗時はログ記録」というSupabase版と同じ流れだけ再現する。
-  const target = safeExternalUrl(tool.rss_url || tool.release_notes_url);
-  if(!target){
-    return {tool_id:tool.id,status:'skip',message:`${tool.name}: 安全な取得URLが未設定`,fetched_count:0,error_message:'URL未設定または不正'};
-  }
-  try{
-    return {tool_id:tool.id,status:'skip',
-            message:`${tool.name}: 公開済みデータを再確認します`,fetched_count:0,
-            error_message:'安全のため第三者CORSプロキシを使用していません'};
-  }catch(e){
-    return {tool_id:tool.id,status:'error',
-            message:`${tool.name}: 取得失敗（ブラウザのCORS制約の可能性）`,fetched_count:0,
-            error_message:String(e.message||e)};
-  }
-}
-// services/parseRss.ts / parseHtml.ts 相当
-function parseFeed(text, tool){
-  const out=[];
-  try{
-    const doc = new DOMParser().parseFromString(text,'text/xml');
-    let nodes = [...doc.querySelectorAll('item')];
-    if(!nodes.length) nodes = [...doc.querySelectorAll('entry')];
-    nodes.slice(0,8).forEach(n=>{
-      const get=(s)=>{const el=n.querySelector(s);return el?el.textContent.trim():'';};
-      const title = get('title'); if(!title) return;
-      let link = get('link');
-      if(!link){ const l=n.querySelector('link'); if(l) link=l.getAttribute('href')||''; }
-      const desc = (get('description')||get('summary')||get('content')).replace(/<[^>]+>/g,'').trim();
-      const pub = get('pubDate')||get('published')||get('updated');
-      out.push(makeUpdate(tool,{title,source_url:link||tool.release_notes_url,
-        published_at: (()=>{const d=new Date(pub);return pub&&!isNaN(d.getTime())?d.toISOString():nowISO();})(),
-        excerpt: desc.slice(0,600)}));
-    });
-  }catch(e){/* parse失敗は無視 */}
-  return out;
-}
-function makeUpdate(tool, o){
-  return {
-    tool_id:tool.id,title:o.title,source_url:o.source_url||'',published_at:o.published_at||nowISO(),
-    fetched_at:nowISO(),raw_content:o.excerpt||'',raw_excerpt:o.excerpt||'',
-    manual_summary:'',ai_summary:'',simple_explanation:'',impact_summary:'',action_suggestion:'',
-    related_categories:tool.related_businesses?[...tool.related_businesses]:[],
-    score:0,rank:'C',status:'unread',is_saved:false,memo:''
-  };
 }
 
 /* ============================================================
@@ -2738,8 +2667,9 @@ window.addEventListener('popstate',event=>{
 function toggleMenu(open){ document.getElementById('sidebar').classList.toggle('open',open); document.getElementById('scrim').classList.toggle('show',open); }
 
 function renderNav(){
-  const unread = getPlanUpdates().filter(u=>u.status==='unread').length;
-  const tryN = getUpdates().filter(u=>u.status==='try_later').length;
+  const planUpdates=getPlanUpdates();
+  const unread = planUpdates.filter(u=>u.status==='unread').length;
+  const tryN = planUpdates.filter(u=>u.status==='try_later').length;
   let html='';
   NAV.forEach(g=>{
     html+=`<div class="nav-group-title">${g.group}</div>`;
@@ -2810,7 +2740,7 @@ function relDate(iso){
   if(diff<7)return Math.floor(diff)+'日前'; return fmtDate(iso);
 }
 function esc(s){ return (s==null?'':String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-function rankBadge(r){ return `<span class="rank ${r}">${r}</span>`; }
+function rankBadge(r){ return `<span class="rank ${r}" aria-label="重要度${r}" title="重要度${r}">${r}</span>`; }
 function statusBadge(s){ return `<span class="status ${s}">${STATUS_LABELS[s]||s}</span>`; }
 function catChips(cats,max){ cats=cats||[]; const shown=max?cats.slice(0,max):cats; let h=shown.map(c=>`<span class="chip cat">${esc(c)}</span>`).join(''); if(max&&cats.length>max)h+=`<span class="chip more">ほか${cats.length-max}件</span>`; return h; }
 
@@ -2848,7 +2778,7 @@ function updateCard(u){
   return `<article class="ucard ${u.status==='unread'?'is-new':''} ${artClass}">
     <div class="ucard-top">
       <div class="ucard-tool"><span class="tool-dot" style="background:${color};color:${color}"></span><span>${esc(tool?tool.name:'不明')}</span></div>
-      <div class="ucard-top-meta">${u.status!=='unread'?statusBadge(u.status):''}<span class="ucard-date">${relDate(u.published_at)}</span></div>
+      <div class="ucard-top-meta">${rankBadge(u.rank)}${u.status!=='unread'?statusBadge(u.status):''}<span class="ucard-date">${relDate(u.published_at)}</span></div>
     </div>
     <button class="ucard-title-link" onclick="go('update-detail','${u.id}')" aria-label="${esc(u.title)}の要約をアプリ内で見る"><h3>${esc(u.title)}</h3></button>
     <div class="summary-wrap"><span class="ai-label">AI要約</span><div class="summary">${esc(sum)}</div></div>
@@ -2922,8 +2852,8 @@ function renderHome(v){
   const ups=getPlanUpdates();
   const unread=ups.filter(u=>u.status==='unread').length;
   const tryLater=ups.filter(u=>u.status==='try_later').length;
-  // 新しい順（公開日の新しいものが上）
-  const list=[...ups].sort(byPub);
+  // 日付の新しさを優先し、同じ日の中ではパイプラインの重要度順に表示する。
+  const list=[...ups].sort(byFeedOrder);
 
   document.getElementById('topActions').innerHTML =
     `<button class="btn btn-sm" onclick="go('updates')">${icon('search')}検索・絞り込み</button>`;
@@ -2970,6 +2900,13 @@ function renderHome(v){
   v.innerHTML=html;
 }
 function byPub(a,b){ return new Date(b.published_at)-new Date(a.published_at); }
+function byFeedOrder(a,b){
+  const dayA=String(a.published_at||'').slice(0,10);
+  const dayB=String(b.published_at||'').slice(0,10);
+  if(dayA!==dayB)return byPub(a,b);
+  const weight={S:4,A:3,B:2,C:1};
+  return (weight[b.rank]||0)-(weight[a.rank]||0)||byPub(a,b);
+}
 function dayLabel(iso){
   if(!iso) return 'その他';
   const d=new Date(iso); if(isNaN(d)) return 'その他';
@@ -3001,7 +2938,7 @@ function openUpdatesFiltered(patch){
 function renderUpdates(v){
   recomputeAll();
   const tools=getTools();
-  let list=getPlanUpdates().slice().sort(byPub);
+  let list=getPlanUpdates().slice().sort(byFeedOrder);
   const f=upFilter;
   if(f.q){const q=f.q.toLowerCase();list=list.filter(u=>(u.title+u.manual_summary+u.raw_excerpt).toLowerCase().includes(q));}
   if(f.tool)list=list.filter(u=>u.tool_id===f.tool);
@@ -3478,7 +3415,7 @@ function renderCategories(v){
 let tryTab='try_later';
 function renderTryList(v){
   recomputeAll();
-  const ups=getUpdates();
+  const ups=getPlanUpdates();
   const counts={try_later:0,tried:0,adopted:0};
   ups.forEach(u=>{ if(counts[u.status]!=null)counts[u.status]++; });
   document.getElementById('topActions').innerHTML='';
@@ -3601,27 +3538,6 @@ function setAutoStatus(on){
   el.innerHTML=on?'<span class="spin"></span>最新情報を確認中…':'';
 }
 
-/* ---- 開くたびに最新情報を自動取得（ベストエフォート） ---- */
-let _autoFetchDone=false;
-async function autoFetchOnOpen(){
-  if(_autoFetchDone) return;            // 1回の起動につき1回だけ
-  _autoFetchDone=true;
-  if(!getSettings().autoFetch) return;  // 設定でOFFなら何もしない
-  if(fetchRunning) return;
-  const tools=getTools().filter(t=>t.is_active && (t.rss_url||t.release_notes_url));
-  if(!tools.length) return;
-  fetchRunning=true; setAutoStatus(true);
-  // 全ツールを並列取得（待ち時間を短縮）。失敗は静かに記録のみ。
-  const counts=await Promise.all(tools.map(t=>
-    fetchToolUpdates(t).then(r=>{ addLog(r); return r.fetched_count||0; }).catch(()=>0)
-  ));
-  const total=counts.reduce((a,b)=>a+b,0);
-  fetchRunning=false; setAutoStatus(false);
-  recomputeAll();
-  if(total>0){ toast(`最新情報を${total}件取得しました`,'ok'); render(); }
-  // 0件・失敗時はトーストを出さず静かに終了（毎回の通知を避ける）
-}
-
 /* ---- 開くたびに data.json（サーバーが3時間ごとに更新）を読み込む ---- */
 /* data.json は同一オリジンなのでCORSが起きず確実に読める。無ければ静かに無視。 */
 let _syncDone=false;
@@ -3697,7 +3613,13 @@ async function syncFromDataJson(force=false){
       // 契約プランの保存期間より古いニュースは取り込まない
       if(it.published_at && !isRecent({published_at:it.published_at})) return;
       const tool=ensureImportedTool(it);
-      if(hasSeenArticle({tool_id:tool.id,title:it.title,source_url:it.source_url||''})) return;
+      const candidate={tool_id:tool.id,title:it.title,source_url:it.source_url||''};
+      const data=DB.load();
+      if(findCurrentArticle(candidate,data))return;
+      const seen=findSeenArticle(candidate,data);
+      // 旧版が不完全記事のハッシュだけを残した場合は、一度だけ完全版の再取込を許可する。
+      if(seen?.complete===true)return;
+      if(seen)forgetSeenArticle(candidate,data);
       const ex=(it.raw_excerpt||it.summary||'').toString();
       saveUpdate({
         tool_id:tool.id, title:it.title, source_url:safeExternalUrl(it.source_url),

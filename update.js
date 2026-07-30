@@ -358,6 +358,32 @@ function normalizedStoryTitle(value) {
     .replace(/\s+/g,"")
     .replace(/(発表|公開|提供開始|明らかに|について|とは|ニュース)$/,"");
 }
+function storyText(item) {
+  return `${item?.title||""} ${item?.raw_excerpt||item?.summary||item?.detail||""}`.toLowerCase();
+}
+function eventFamily(item) {
+  const text=storyText(item);
+  if(/資金調達|調達|出資|評価額|企業価値|上場|ipo|funding|valuation|investment/.test(text))return "funding";
+  if(/規制|法案|行政命令|著作権|policy|regulation|law|copyright/.test(text))return "policy";
+  if(/脆弱性|情報漏えい|攻撃|セキュリティ|security|vulnerability|breach/.test(text))return "security";
+  if(/新モデル|モデルを発表|提供開始|発売|リリース|launch|release|new model/.test(text))return "release";
+  if(/提携|協業|買収|合併|partnership|acquisition|merger/.test(text))return "corporate";
+  return "";
+}
+function entityTokens(item) {
+  const text=storyText(item);
+  const aliases=[];
+  if(/\bmoonshot\b|\bkimi\b|月之暗面/.test(text))aliases.push("moonshot-ai");
+  const ignored=new Set([
+    "the","and","for","with","from","into","about","this","that","new","news",
+    "ai","api","agent","agents","model","models","tech","technology","company",
+    "funding","launch","release","security","global","japan","china","chinese"
+  ]);
+  const latin=(text.match(/[a-z][a-z0-9.-]{2,}/g)||[])
+    .map(token=>token.replace(/^[.-]+|[.-]+$/g,""))
+    .filter(token=>token.length>=4&&!ignored.has(token)&&!/^https?$/.test(token));
+  return new Set([...aliases,...latin]);
+}
 function titleGrams(value) {
   const text=normalizedStoryTitle(value);
   const grams=new Set();
@@ -367,6 +393,11 @@ function titleGrams(value) {
 function sameStory(a,b) {
   const au=normalizedUrl(a.source_url),bu=normalizedUrl(b.source_url);
   if(au&&bu&&au===bu)return true;
+  const familyA=eventFamily(a),familyB=eventFamily(b);
+  if(familyA&&familyA===familyB){
+    const entitiesA=entityTokens(a),entitiesB=entityTokens(b);
+    for(const entity of entitiesA)if(entitiesB.has(entity))return true;
+  }
   const at=normalizedStoryTitle(a.title),bt=normalizedStoryTitle(b.title);
   if(at&&bt&&(at===bt||at.includes(bt)||bt.includes(at))&&Math.min(at.length,bt.length)>=12)return true;
   const ag=titleGrams(at),bg=titleGrams(bt);

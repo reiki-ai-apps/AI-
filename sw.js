@@ -1,4 +1,6 @@
-const CACHE_NAME = "ai-radar-v2-20260730";
+// アプリシェルの構成を変えたときは日付を更新する。
+// 画像などの静的アセットも network-first なので、同名差し替えは次回通信時に反映される。
+const CACHE_NAME = "ai-radar-v2-20260731";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -40,12 +42,12 @@ self.addEventListener("fetch", event => {
   }
 
   event.respondWith(
-    caches.match(request).then(hit => hit || fetch(request).then(response => {
+    fetch(request).then(response => {
       if (response.ok) {
         const copy = response.clone();
         caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
       }
       return response;
-    }))
+    }).catch(() => caches.match(request))
   );
 });
