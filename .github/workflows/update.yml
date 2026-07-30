@@ -30,6 +30,9 @@ jobs:
         with:
           node-version: "24"
 
+      - name: test story deduplication
+        run: node scripts/test-dedupe.mjs
+
       - name: build data.json
         run: node update.js
         env:
@@ -46,6 +49,18 @@ jobs:
             "impact_summary", "action_suggestion", "importance",
             "published_at", "source_url"
           ];
+          const demoTitles = new Set([
+            "Claude Code に新しいエージェント機能とサブエージェント並列実行が追加",
+            "OpenAI が新モデルと API の価格改定を発表（pricing / new model）",
+            "Suno に新しい音楽生成モデルとステム分離（music / voice）機能が登場",
+            "v0 が画面デザインからフルスタックアプリ生成に対応（code / launch）",
+            "Gemini に画像生成（image）と長文要約の新機能が追加",
+            "Canva に AI 一括デザイン生成（Magic）機能が追加",
+            "Runway が新しい動画生成モデル（video）をベータ公開",
+            "Cursor のエディタUIと補完が小幅アップデート"
+          ]);
+          const normalize = value => String(value || "").normalize("NFKC")
+            .toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "");
           const errors = [];
           if (!Array.isArray(items) || items.length < 8) {
             errors.push(`記事数が不足しています: ${Array.isArray(items) ? items.length : "not-array"}`);
@@ -58,6 +73,19 @@ jobs:
             }
             if (!Array.isArray(item.related_categories) || item.related_categories.length === 0) {
               errors.push(`${index + 1}件目: related_categories が空です`);
+            }
+            if (!["S", "A", "B", "C"].includes(String(item.importance || "").toUpperCase())) {
+              errors.push(`${index + 1}件目: importance がS〜Cではありません`);
+            }
+            if (demoTitles.has(item.title)) {
+              errors.push(`${index + 1}件目: デモ記事が混入しています`);
+            }
+            const normalizedTitle = normalize(item.title);
+            const normalizedSummary = normalize(item.raw_excerpt);
+            if (normalizedTitle && normalizedSummary &&
+                (normalizedTitle === normalizedSummary ||
+                 (normalizedSummary.includes(normalizedTitle) && normalizedSummary.length < normalizedTitle.length + 35))) {
+              errors.push(`${index + 1}件目: 要約がタイトルの繰り返しです`);
             }
             const explanation = [
               item.raw_excerpt, item.detail, item.change_summary,
