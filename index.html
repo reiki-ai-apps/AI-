@@ -1922,8 +1922,8 @@ const memberState={ready:false,user:null,subscription:null,registeredCount:null,
 const SOCIAL_PROOF_MIN_USERS=100;
 const SOCIAL_PROOF_MIN_REVIEWS=3;
 const PLAN_RULES={
-  free:{topics:0,sourceViews:Infinity,retention:3,csv:false,customSources:false},
-  standard:{topics:5,sourceViews:Infinity,retention:30,csv:false,customSources:false},
+  free:{topics:0,sourceViews:1,retention:3,csv:false,customSources:false},
+  standard:{topics:5,sourceViews:3,retention:30,csv:false,customSources:false},
   premium:{topics:Infinity,sourceViews:Infinity,retention:30,csv:true,customSources:true}
 };
 function effectivePlanKey(){
@@ -2803,7 +2803,48 @@ async function openSourceArticle(id){
   const u=updateById(id);if(!u?.source_url)return;
   const sourceUrl=safeExternalUrl(u.source_url);
   if(!sourceUrl){toast('安全な情報元URLを確認できませんでした。','err');return;}
-  window.open(sourceUrl,'_blank','noopener,noreferrer');
+
+  if(!memberState.user||!memberClient){
+    modal(
+      '無料登録・ログインが必要です',
+      '情報元の記事は、無料プランでは毎月1記事まで確認できます。登録済みの方はログインしてください。',
+      ()=>go('account'),
+      'ログイン・無料登録へ'
+    );
+    return;
+  }
+
+  const sourceWindow=window.open('about:blank','_blank');
+  if(sourceWindow)sourceWindow.opener=null;
+  const articleKey=String(u.source_url||u.id||'').slice(0,160);
+  const {data,error}=await memberClient.rpc('record_article_view',{
+    p_article_key:articleKey,
+    p_limit:Number.isFinite(currentRules().sourceViews)?currentRules().sourceViews:-1
+  });
+  if(error){
+    if(sourceWindow)sourceWindow.close();
+    console.error('record_article_view failed',error);
+    toast('閲覧可能回数を確認できませんでした。少し待ってからもう一度お試しください。','err');
+    return;
+  }
+
+  const result=Array.isArray(data)?data[0]:data;
+  if(!result?.allowed){
+    if(sourceWindow)sourceWindow.close();
+    const plan=effectivePlanKey();
+    const limit=Number(result?.limit ?? currentRules().sourceViews);
+    const message=plan==='free'
+      ?`無料プランで情報元の記事を確認できる回数は毎月${limit}記事です。スタンダードでは毎月3記事まで確認できます。`
+      :`スタンダードで情報元の記事を確認できる回数は毎月${limit}記事です。プレミアムでは無制限に確認できます。`;
+    modal('今月の閲覧上限に達しました',message,()=>go('pricing'),'料金プランを見る');
+    return;
+  }
+
+  if(sourceWindow){
+    sourceWindow.location.replace(sourceUrl);
+  }else{
+    window.open(sourceUrl,'_blank','noopener,noreferrer');
+  }
 }
 
 /* ============================================================
@@ -2828,7 +2869,7 @@ function renderHome(v){
       <h2>世界のAI変化を、<br>仕事の判断へ。</h2>
       <p>英語・中国語・日本語の情報を横断監視。何が変わったか、仕事への影響、次にやることまで、やさしい日本語で確認できます。</p>
       <div class="coverage-proof" aria-label="情報収集の特徴">
-        <span>日本語・英語・中国語</span><span>3時間ごとに更新</span><span>元記事を全プランで確認</span>
+        <span>日本語・英語・中国語</span><span>3時間ごとに更新</span><span>元記事はプラン別の月間枠で確認</span>
       </div>
     </div>
     <div class="radar-orb" aria-label="未読${unread}件"><strong>${unread}</strong><small>UNREAD SIGNALS</small></div>
@@ -3926,12 +3967,12 @@ function renderPricing(v){
   const plans=[
     {
       key:'free',kicker:'まずは無料で試す',name:'無料',price:'¥0',unit:'ずっと無料',desc:'運営が厳選したAIニュースを、おまかせで気軽に確認したい方へ。',
-      features:['今日の重要AIニュースを表示','好きな情報テーマの選択はできません','情報元の記事は無制限に確認可能','やさしいAI要約を利用可能','閲覧履歴を3日間保存'],
+      features:['今日の重要AIニュースを表示','好きな情報テーマの選択はできません','情報元の記事は毎月1記事まで','やさしいAI要約を利用可能','閲覧履歴を3日間保存'],
       cta:'無料で登録'
     },
     {
       key:'standard',kicker:'毎日の情報収集を効率化',name:'スタンダード',price:'¥980',unit:'税込／月',desc:'必要なAI情報を見逃さず、仕事に活かしたい個人ユーザー向け。',
-      features:['好きな情報テーマを5件まで選択','選んだテーマ中心の専用フィード','情報元の記事は無制限に確認可能','ジャンル別フィルターと保存機能','閲覧履歴を30日間保存','重要ニュース通知（提供予定）'],
+      features:['好きな情報テーマを5件まで選択','選んだテーマ中心の専用フィード','情報元の記事は毎月3記事まで','ジャンル別フィルターと保存機能','閲覧履歴を30日間保存','重要ニュース通知（提供予定）'],
       cta:'決済へ進む',checkoutUrl:'',recommended:true
     },
     {
