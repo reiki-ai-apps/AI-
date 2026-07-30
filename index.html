@@ -2570,6 +2570,25 @@ const MIGRATIONS = [
     d.settings=d.settings||{};
     d.settings.themeSelectionConfigured=false;
   } },
+  { id:'2026-07-30-remove-incomplete-live-imports', apply(d){
+    const toolsById=new Map((d.tools||[]).map(t=>[t.id,t]));
+    d.updates=(d.updates||[]).filter(u=>{
+      const tool=toolsById.get(u.tool_id);
+      const isLiveImport=Boolean(u.source_name)
+        || tool?.memo==='AI進化レーダーの自動収集テーマ';
+      if(!isLiveImport)return true;
+      const hasCompleteExplanation=[
+        u.ai_summary||u.manual_summary||u.raw_excerpt,
+        u.easy_summary,
+        u.simple_explanation,
+        u.impact_summary,
+        u.action_suggestion,
+        u.importance
+      ].every(value=>String(value||'').trim());
+      const hasCategories=Array.isArray(u.related_categories)&&u.related_categories.length>0;
+      return hasCompleteExplanation&&hasCategories;
+    });
+  } },
 ];
 function runMigrations(d){
   d.applied_migrations = d.applied_migrations || [];
