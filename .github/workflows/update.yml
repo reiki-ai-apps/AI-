@@ -42,7 +42,7 @@ jobs:
           const fs = require("fs");
           const items = JSON.parse(fs.readFileSync("data.json", "utf8"));
           const required = [
-            "title", "summary", "detail", "change_summary",
+            "title", "raw_excerpt", "detail", "change_summary",
             "impact_summary", "action_suggestion", "importance",
             "published_at", "source_url"
           ];
@@ -60,7 +60,7 @@ jobs:
               errors.push(`${index + 1}件目: related_categories が空です`);
             }
             const explanation = [
-              item.summary, item.detail, item.change_summary,
+              item.raw_excerpt, item.detail, item.change_summary,
               item.impact_summary, item.action_suggestion
             ].join("");
             if (!/[ぁ-んァ-ヶ一-龠々]/.test(explanation)) {
