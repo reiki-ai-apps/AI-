@@ -1,5 +1,59 @@
 [
   {
+    "tool": "中国AI・基盤モデル",
+    "title": "バイトダンス、社内チャットとAIチャットボットを統合し「一言で週報作成」機能を試験導入",
+    "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBnLUpGNjdiRU5ld2pEMkgzSG5GeXJ3VmJVTm9xY0lCVG8tOHlldDZuOVVsVExGdDB4ck9TZ0NWQTVlc3hHNVdQaFo1NWFiNm9uY1pUaXRoOVlXV2M0SXNpbGQ2aldCcDhfUUtIX1hOaHdFX0t0M204VEJSVnBMN0E?oc=5",
+    "source_name": "手机新浪网",
+    "is_official": false,
+    "published_at": "2026-07-30T21:03:57.000Z",
+    "raw_excerpt": "中国バイトダンスが社内ツール「飛書」と対話AI「豆包」を連携させ、指示するだけで業務報告書を自動生成する機能の内部テストを開始した。",
+    "detail": "バイトダンスは、社内で使うビジネスチャット・グループウェア「飛書（Feishu/Lark）」と、自社の対話型AI「豆包（Doubao）」を組み合わせる取り組みを進めています。今回、一言指示するだけでAIが週次業務報告書を自動作成してくれる機能の内部テストが始まったと報じられました。定型的な事務作業をAIに任せることで、社員が本来の業務に集中しやすくなる狙いがあります。",
+    "change_summary": "社内チャットツールと対話AIを統合し、指示だけで週報を自動作成する新機能の試験運用が始まった。",
+    "impact_summary": "日本企業でも同様に、社内システムと生成AIを連携させて定型書類作成を自動化する動きが今後広がる可能性があり、業務効率化の参考事例となる。",
+    "action_suggestion": "自社で使っているチャットツールやグループウェアに、生成AIによる文書自動作成機能が追加されていないか確認してみるとよい。",
+    "importance": "B",
+    "related_categories": [
+      "アプリ開発・自動化",
+      "EC・業務活用"
+    ]
+  },
+  {
+    "tool": "世界の新モデル・速報",
+    "title": "オープンソースAIモデルの禁止は、かえってサイバーセキュリティを悪化させる恐れ",
+    "source_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOSU05ZUVlMmZncGJsZm5sbUMtRXRPTFFQajhFT1lGazdEVkl3c0NuQ1pTWHFBeExUZmo3NWV3LUdUVWNyaGFTSFhjbWdMUm5ONldYelBITUdLRl9oenJ1Wm1lQWxmVExaejVyeXkybEtEb1N6TmNWek5KU3pxU0VHcm44LU9teEFwa0JSNFRIRmVDOVN0TzY0aW9NbVc2a21CYl9YY2syVlVpc3c?oc=5",
+    "source_name": "CNET",
+    "is_official": false,
+    "published_at": "2026-07-30T20:32:00.000Z",
+    "raw_excerpt": "サイバーセキュリティ対策としてオープンソースAIモデルを規制・禁止する案が、逆効果になりかねないとの指摘が出ている。",
+    "detail": "「オープンソースAIモデル」とは、開発の仕組みや設計図（ソースコード）が公開され、誰でも中身を確認・改良できるAIのことです。一部では、悪用を防ぐためにこうしたモデルを禁止すべきだという議論がありますが、専門家からは、透明性が失われることでかえって脆弱性の発見や対策が遅れ、セキュリティが弱まる可能性が指摘されています。オープン性と安全性のバランスをどう取るかが、各国のAI政策で今後の焦点になります。",
+    "change_summary": "オープンソースAI規制の是非について、セキュリティ面での逆効果を懸念する論説が報じられた。",
+    "impact_summary": "AI規制の方向性は、日本企業が利用できるAIツールの選択肢や開発コストに影響するため、海外の議論の動向は国内政策にも波及しうる。",
+    "action_suggestion": "自社が利用・検討しているAIモデルがオープンソースか商用モデルかを把握し、今後の規制動向に注意しておくとよい。",
+    "importance": "B",
+    "related_categories": [
+      "規制・法務",
+      "セキュリティ"
+    ]
+  },
+  {
+    "tool": "Gemini",
+    "title": "Gemini SparkがChromeと連携、ネットの雑務を自動代行",
+    "source_url": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-spark-updates-july-2026/",
+    "source_name": "blog.google",
+    "is_official": true,
+    "published_at": "2026-07-30T20:00:00.000Z",
+    "raw_excerpt": "GoogleのAIエージェント「Gemini Spark」がChromeと統合し、ログイン情報を使って予約や調べ物などを自動でこなせるようになった。",
+    "detail": "Gemini Sparkは、ユーザーに代わってウェブ上の作業をこなすGoogleのAIエージェント機能です。今回Chromeブラウザと直接連携することで、本人の許可のもと、保存済みのログイン情報やパスワードを使い、賃貸物件の内見予約や航空券の検索・予約開始といった面倒なネット手続きを代行できるようになりました。悪意ある指示を紛れ込ませる「プロンプトインジェクション」という攻撃への対策も施され、支払いなど重要な操作は必ず本人に確認を求める仕組みです。まずは米国から提供を始め、順次対象地域を広げる予定です。",
+    "change_summary": "Chromeとの統合による新たな自動操作機能を追加し、Google AI Pro加入者向けに160以上の国・地域で利用開始しました。",
+    "impact_summary": "将来的に日本でも展開されれば、ネット予約や調べ物といった日常作業の自動化が進む可能性がありますが、パスワード情報を扱うため安全対策の内容を理解しておく必要があります。",
+    "action_suggestion": "Google AI Proのサービス範囲や日本での提供時期に関する続報を確認する。",
+    "importance": "A",
+    "related_categories": [
+      "AIツール・モデル",
+      "アプリ開発・自動化"
+    ]
+  },
+  {
     "tool": "世界の新モデル・速報",
     "title": "AIエージェント「Dave」が63日で1万4400件の問い合わせを自動解決",
     "source_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOREFHUER0cExhQWxMRkY0anBNMkRRZFk0ZnFZbWtHdGp2YXhMakFqMm42NWgyUGhkZDVVY1BWWHA1ZnZQR1RxMW9VU3R1Zkh2aWVPSXpSSUNWSE9oYWFEYTA3UVNUWlJEZUxxMXlEZTA0dXpaMWduQ1ZCWW9lSW9BWlJJRkVKT0JXYlJhQV9VeDBnUFY4VFp0d0swbmdGMWNTajJERE82UnVpZ2xEUE80?oc=5",
@@ -18,21 +72,21 @@
     ]
   },
   {
-    "tool": "中国AI・基盤モデル",
-    "title": "中国AI企業「月之暗面(Kimi)」が35億ドル規模の資金調達か、関連株が急騰",
-    "source_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPSk9XY3ZvaUV5LVJGQW1KbFpjZ2VpU0pHYmhBbUxVeXYwazNIU29xcGFrTzltRzBGRnhzajF5Z0E5VkZ3RmpLbnhGZWhrSHBsa3NBZUg0RURrLVJLbDI0NDgwM1VmaGlEZFZjaWpFUGkyVEQ0TkVEYjZpNnJkVU9YZVFTM0NsQzROWmhhUHFMU3oyUjNEUGNmY3JISFQyM2o1TUp3d29QRWdreHp0UFE?oc=5",
-    "source_name": "finance.sina.com.cn",
+    "tool": "ChatGPT / OpenAI",
+    "title": "OpenAI、音声文字起こしAPIの料金を25%値下げ",
+    "source_url": "https://news.google.com/rss/articles/CBMiqANBVV95cUxNWmFNdUM0QUdjdzdLRnNvMmNjTDhKdDdDb1RHbzZXbHdqaGZ0bmVXUEF3aGFRaTNQdmRtQUpmU2NaSEVscGl4Z0tWLXpkVDQ5MlBVWXRuY0RCUTVHTTl6X0JSSU5QZ1dielBfNjF6d242WFgza0g0SnlTNWRxSnpkUVdTeF9xU0FNaGZJOUJXT2puMTZJUXQ4ZHUtamk2dkJ3dzRIdlNmMkpDaUsyNGdOZWZXTmRrT0FMdDlicU9NSmd1MG5sLWhRNWhFZVFHN2d3bGVEQVBBUEtWQi1HYnQ2N25POWo5cTFOdzdheTVtM1lwWGhkNkxBSXZCMWVxbkRFUVpEMm1fQzRZNnFXY3YxMmxYWHc5WnRHNUplSHZFTHFxTHRYRkJPT2R0Z2YtemctUE8wY1V5ckZkc0ZlYjNjcGxjYm9xRkRzNlByd2o2ZDZBWUluMmdUMXZ4eG1ldVFCNmFDSkNKQ0QxcW45cllpNnFnWlAyNGRTQlMxNG1MLVl6aXI1TFNldGtiS2hXX0YySno1WWhDbi02NTBkcW1GUmtlVGFnVU11?oc=5",
+    "source_name": "Yellow.com",
     "is_official": false,
-    "published_at": "2026-07-30T17:04:24.000Z",
-    "raw_excerpt": "中国のAIスタートアップ月之暗面（開発サービス名Kimi）が35億ドルのシリーズF資金調達を完了したと報じられ、関連銘柄が急騰した。",
-    "detail": "月之暗面はチャット型AI「Kimi」を提供する中国の有力AIスタートアップです。「シリーズF」とは企業が複数回行う資金調達のうち6回目にあたる大型ラウンドを指し、規模が大きいほど投資家の期待が高いことを示します。今回は約35億ドル（数千億円規模）という巨額の調達が報じられ、これを受けて取引先とされる中软国际の株価が一時8%超上昇しました。ただし公式発表ではなく報道ベースの情報である点に注意が必要です。",
-    "change_summary": "35億ドルという具体的な調達額が報じられた点が新しい情報です。",
-    "impact_summary": "中国AI企業の資金力強化は世界的なAI開発競争や投資動向に影響し、日本の投資家や競合企業も注視すべき動きです。",
-    "action_suggestion": "月之暗面や中软国际の公式発表、正式な資金調達完了の発表があるか確認しましょう。",
-    "importance": "B",
+    "published_at": "2026-07-30T18:14:59.000Z",
+    "raw_excerpt": "OpenAIが音声をテキストに変換するAPIサービスの料金を25%引き下げたが、精度では依然として競合他社が上回る。",
+    "detail": "「音声文字起こし」とは、会議や電話の音声を自動で文字データに変換する技術です。OpenAIはこのサービスの利用料金を25%値下げしました。企業が議事録作成やコールセンターの記録などに活用する際のコストが下がる一方、文字起こしの正確さでは他社製品がまだ優れているとされています。価格と性能のどちらを重視するか、利用者は比較検討する必要があります。",
+    "change_summary": "OpenAIの音声文字起こしAPI料金が25%引き下げられた。",
+    "impact_summary": "議事録作成や顧客対応の記録など音声データを扱う業務のコスト削減につながる可能性があるが、精度重視の用途では他社サービスとの比較が必要。",
+    "action_suggestion": "自社で音声文字起こしAPIを利用している場合は、料金プランと精度の両面で他社サービスと比較してみることをおすすめします。",
+    "importance": "C",
     "related_categories": [
-      "企業・株式",
-      "AIツール・モデル"
+      "AIツール・モデル",
+      "企業・株式"
     ]
   },
   {
@@ -270,6 +324,24 @@
   },
   {
     "tool": "AI政策・政府動向",
+    "title": "中国AIスタートアップのムーンショットAI、大型資金調達へ",
+    "source_url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9rYkY1NzBVTW1nU2tzTDByUGR2UTlhVHhuWjhWT3Q1VXNlamhkZE5KZkpRS1ZvaXpDMllJN1dfLXFHTHRKX2R4SWxPdF9RTGc?oc=5",
+    "source_name": "매일경제",
+    "is_official": false,
+    "published_at": "2026-07-30T08:53:18.000Z",
+    "raw_excerpt": "生成AIモデル「Kimi K3」で注目を集めた中国のムーンショットAIが、国家AIファンドなどから約5兆ウォン規模の投資を調達したと報じられた。",
+    "detail": "ムーンショットAIは中国の生成AI開発企業で、最新モデル「Kimi K3」を発表し世界的に注目を集めました。今回、中国政府系の国家AIファンドを含む投資家から約5兆ウォン（日本円で数千億円規模）の資金を調達したと報じられています。中国が国家戦略としてAI開発に巨額の資金を投じている実態を示す事例です。",
+    "change_summary": "ムーンショットAIが中国の国家AIファンドを含む投資家から約5兆ウォン規模の資金調達を行ったと報じられた。",
+    "impact_summary": "中国政府によるAI産業への大規模な資金投入は、AI開発競争における国際的な勢力図に影響を与え、日本企業の競争環境にも波及する可能性がある。",
+    "action_suggestion": "中国AI企業の技術動向や、日本のAI関連企業・投資への影響について今後の続報を確認するとよいでしょう。",
+    "importance": "B",
+    "related_categories": [
+      "企業・株式",
+      "政策・行政"
+    ]
+  },
+  {
+    "tool": "AI政策・政府動向",
     "title": "AIの脆弱性を事前点検する「AIホワイトハッカー」技術が登場",
     "source_url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9LM1EyY2VjMmttdnVkUU9VbHktS3QyUEZEdkFTR00xU1luS2hjMXp1NHE3d3ZQbHRIMVl0Wnl4d0FsRDljRFVLYW0zNA?oc=5",
     "source_name": "매일경제",
@@ -361,6 +433,24 @@
   },
   {
     "tool": "v0",
+    "title": "ShopifyとVercel、ECサイト構築基盤「Hydrogen」を刷新しAIエージェント対応へ",
+    "source_url": "https://vercel.com/blog/shopify-and-vercel-are-rebuilding-hydrogen-for-faster-storefronts",
+    "source_name": "vercel.com",
+    "is_official": true,
+    "published_at": "2026-07-30T04:00:00.000Z",
+    "raw_excerpt": "Shopifyが自社ECフレームワーク「Hydrogen」をVercelと共同で全面刷新し、AIエージェントが買い物を代行する仕組みに対応させる。",
+    "detail": "Hydrogenは、Shopifyが提供する、見た目を自由にカスタマイズできるネットショップ構築用の枠組み（フレームワーク）です。今回Vercelと協力してオープンソース化し、Next.jsやNuxtなど好みの開発ツールでも使えるよう作り直されました。新機能「Standard Actions」により、AIエージェントが直接ネットショップとやり取りして買い物を進める「エージェント型コマース」にも対応します。これにより一部の小売業者では、新機能の開発期間が数カ月から1週間程度に短縮された例もあるとのことです。",
+    "change_summary": "Hydrogenをオープンソース化・フレームワーク非依存化し、AIエージェント対応機能「Standard Actions」を新たに追加しました。",
+    "impact_summary": "日本のネットショップ運営者にとっては、開発スピードの向上や、今後増えるとみられるAI経由の買い物への対応準備が必要になる可能性があります。",
+    "action_suggestion": "自社のECサイト基盤がHydrogenを利用しているか、AIエージェント対応の予定があるか担当部署に確認する。",
+    "importance": "B",
+    "related_categories": [
+      "EC・業務活用",
+      "アプリ開発・自動化"
+    ]
+  },
+  {
+    "tool": "v0",
     "title": "Vercelのサンドボックスで複数AIエージェントを安全に同時実行可能に",
     "source_url": "https://vercel.com/changelog/run-multiple-isolated-agents-in-a-single-sandbox",
     "source_name": "vercel.com",
@@ -447,24 +537,6 @@
     "related_categories": [
       "AIツール・モデル",
       "研究・技術"
-    ]
-  },
-  {
-    "tool": "v0",
-    "title": "Vercelの開発ツール「mcp-handler」がAI連携の最新規格に対応",
-    "source_url": "https://vercel.com/changelog/latest-mcp-spec-now-supported-in-mcp-handler",
-    "source_name": "vercel.com",
-    "is_official": true,
-    "published_at": "2026-07-30T00:00:00.000Z",
-    "raw_excerpt": "AIをツールや外部データに繋ぐ標準規格「MCP」の最新仕様に、Vercelのmcp-handlerが対応するバージョン2.0を公開した。",
-    "detail": "MCP（Model Context Protocol）は、AIモデルが外部のデータやツールと安全にやり取りするための共通規格で、AIエージェント開発で広く使われ始めている。mcp-handlerはNext.jsやNuxtなどのWebフレームワーク上でMCPサーバーを簡単に構築できる開発ツール。今回のバージョン2.0では最新のMCP仕様と新しい開発キット（SDK v2）に対応し、セッション情報を保存する仕組みなしで動作できるようになった。",
-    "change_summary": "mcp-handlerが2026年7月28日版のMCP仕様とSDK v2に対応した新バージョンを公開した。",
-    "impact_summary": "AIエージェントを外部システムと連携させる開発が、日本のWeb開発者にとってもより簡単かつ標準化された形で行えるようになる。",
-    "action_suggestion": "MCPサーバーを構築している開発者は、バージョン2.0への移行手順と互換性の変更点を公式ドキュメントで確認する。",
-    "importance": "C",
-    "related_categories": [
-      "アプリ開発・自動化",
-      "AIツール・モデル"
     ]
   }
 ]
