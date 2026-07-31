@@ -6,6 +6,7 @@
  * 実行: node update.js  →  data.json を書き出す
  * ===================================================================== */
 const fs = require("fs");
+const crypto = require("crypto");
 
 // 各ツール。feeds=検証済みフィード（公式RSS＋GoogleニュースRSS）、match=その記事が本当にそのツールの話か判定する正規表現
 const TOOLS = [
@@ -90,16 +91,188 @@ function keep(item, tool) {
  * 既に要約済みの記事は data.json から再利用し、API費用と失敗率を抑える。
  * ===================================================================== */
 const AI_MODEL = process.env.ANTHROPIC_MODEL || "claude-sonnet-5";
-const AI_MAX = 30;
+const AI_MAX = 60;
 const AI_BATCH_SIZE = 6;
-const AI_NEW_LIMIT = 30;
+const AI_NEW_LIMIT = 12;
+const AI_DAILY_UNIQUE_LIMIT = 40;
+const AI_DAILY_EMERGENCY_LIMIT = 8;
 const ARTICLE_CONTEXT_LIMIT = 2400;
+const AI_CACHE_PATH = ".ai-cache.json";
+const AI_USAGE_PATH = ".ai-usage.json";
+const PROMPT_VERSION = "ai-radar-2026-07-31-v2";
+const REJECTED_TTL_MS = 7 * 86400000;
+const RETRY_TTL_MS = 6 * 3600000;
+const ENRICHED_TTL_MS = 31 * 86400000;
 const ALLOWED_CATEGORIES = [
   "AIツール・モデル","政策・行政","補助金・助成金","企業・株式",
   "規制・法務","研究・技術","セキュリティ","半導体・インフラ",
   "アプリ開発・自動化","画像・動画生成","音楽・クリエイティブ",
   "営業・マーケティング","EC・業務活用","その他"
 ];
+
+function readJsonFile(path, fallback) {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(path, "utf8"));
+    return parsed && typeof parsed === "object" ? parsed : fallback;
+  } catch (_error) {
+    return fallback;
+  }
+}
+
+function writeJsonFile(path, value) {
+  const tempPath=path+"."+process.pid+".tmp";
+  fs.writeFileSync(tempPath, JSON.stringify(value, null, 2) + "\n");
+  fs.renameSync(tempPath,path);
+}
+
+function checkpointAiState(cache,ledger) {
+  cache.updated_at=new Date().toISOString();
+  writeJsonFile(AI_CACHE_PATH,cache);
+  writeJsonFile(AI_USAGE_PATH,ledger);
+}
+
+function sha256(value) {
+  return crypto.createHash("sha256").update(String(value || "")).digest("hex");
+}
+
+function utcDay(value = Date.now()) {
+  return new Date(value).toISOString().slice(0, 10);
+}
+
+function articleContentHash(item) {
+  return sha256([
+    normalizedStoryTitle(item && item.title),
+    String(item && item.raw_excerpt || "").replace(/\s+/g, " ").trim(),
+    String(item && item.source_name || "").toLowerCase().trim()
+  ].join("\n"));
+}
+
+function articleCacheKey(item) {
+  const url = normalizedUrl(item && item.source_url);
+  if (url) return "url:" + url;
+  return "story:" + sha256([
+    normalizedStoryTitle(item && item.title),
+    String(item && item.source_name || "").toLowerCase().trim()
+  ].join("\n"));
+}
+
+function loadAiCache(now = Date.now()) {
+  const cache = readJsonFile(AI_CACHE_PATH, { version: 1, items: {} });
+  cache.version = 1;
+  cache.items = cache.items && typeof cache.items === "object" ? cache.items : {};
+  for (const [key, entry] of Object.entries(cache.items)) {
+    const processedAt = new Date(entry && entry.processed_at || 0).getTime();
+    const ttl = entry && entry.status === "rejected" ? REJECTED_TTL_MS
+      : entry && entry.status === "retry" ? RETRY_TTL_MS
+      : ENRICHED_TTL_MS;
+    if (!Number.isFinite(processedAt) || now - processedAt > ttl) delete cache.items[key];
+  }
+  cache.updated_at = new Date(now).toISOString();
+  return cache;
+}
+
+function loadUsageLedger() {
+  const ledger = readJsonFile(AI_USAGE_PATH, { version: 1, days: {} });
+  ledger.version = 1;
+  ledger.days = ledger.days && typeof ledger.days === "object" ? ledger.days : {};
+  const cutoff = Date.now() - 45 * 86400000;
+  for (const day of Object.keys(ledger.days)) {
+    if (new Date(day + "T00:00:00Z").getTime() < cutoff) delete ledger.days[day];
+  }
+  return ledger;
+}
+
+function usageDay(ledger, day = utcDay()) {
+  const defaults={
+    calls: 0,
+    attempts: 0,
+    input_tokens: 0,
+    output_tokens: 0,
+    cache_creation_input_tokens: 0,
+    cache_read_input_tokens: 0,
+    regular_processed: 0,
+    emergency_processed: 0,
+    enriched: 0,
+    rejected: 0,
+    estimated_usd: 0
+  };
+  ledger.days[day]={...defaults,...(ledger.days[day]||{})};
+  return ledger.days[day];
+}
+
+function estimatedUsageCost(usage) {
+  const inputRate = Number(process.env.AI_INPUT_USD_PER_MTOK || 0);
+  const outputRate = Number(process.env.AI_OUTPUT_USD_PER_MTOK || 0);
+  const cacheWriteRate = Number(process.env.AI_CACHE_WRITE_USD_PER_MTOK || inputRate);
+  const cacheReadRate = Number(process.env.AI_CACHE_READ_USD_PER_MTOK || inputRate);
+  return (
+    Number(usage.input_tokens || 0) * inputRate +
+    Number(usage.output_tokens || 0) * outputRate +
+    Number(usage.cache_creation_input_tokens || 0) * cacheWriteRate +
+    Number(usage.cache_read_input_tokens || 0) * cacheReadRate
+  ) / 1000000;
+}
+
+function addUsage(ledger, usage, meta = {}) {
+  const day = usageDay(ledger);
+  day.calls += Number(meta.attempts || 1);
+  day.attempts += Number(meta.attempts || 1);
+  for (const key of ["input_tokens", "output_tokens", "cache_creation_input_tokens", "cache_read_input_tokens"]) {
+    day[key] += Number(usage && usage[key] || 0);
+  }
+  day.estimated_usd += estimatedUsageCost(usage || {});
+  day.regular_processed += meta.lane === "regular" ? Number(meta.processed || 0) : 0;
+  day.emergency_processed += meta.lane === "emergency" ? Number(meta.processed || 0) : 0;
+  day.enriched += Number(meta.enriched || 0);
+  day.rejected += Number(meta.rejected || 0);
+  day.estimated_usd = Number(day.estimated_usd.toFixed(6));
+  return day;
+}
+
+function cacheEntryFor(item, cache) {
+  const entry = cache.items[articleCacheKey(item)];
+  if (!entry) return null;
+  if (entry.prompt_version !== PROMPT_VERSION) return null;
+  if (entry.content_hash !== articleContentHash(item)) return null;
+  return entry;
+}
+
+function rememberCacheResult(cache, source, status, result, lane = "regular", reason = "") {
+  const now = new Date().toISOString();
+  cache.items[articleCacheKey(source)] = {
+    canonical_url: normalizedUrl(source.source_url),
+    content_hash: articleContentHash(source),
+    story_key: sha256(normalizedStoryTitle(source.title)),
+    status,
+    processed_at: now,
+    model: AI_MODEL,
+    prompt_version: PROMPT_VERSION,
+    lane,
+    reason,
+    result: status === "enriched" ? result : undefined
+  };
+}
+
+function appendStepSummary(ledger, extra = {}) {
+  const path = process.env.GITHUB_STEP_SUMMARY;
+  if (!path) return;
+  const day = usageDay(ledger);
+  const lines = [
+    "## AI進化レーダー AI利用状況",
+    "",
+    `- 対象日 (UTC): ${utcDay()}`,
+    `- API成功呼出: ${day.calls}回 / 試行: ${day.attempts}回`,
+    `- 入力トークン: ${day.input_tokens}`,
+    `- 出力トークン: ${day.output_tokens}`,
+    `- 通常処理: ${day.regular_processed}/${AI_DAILY_UNIQUE_LIMIT}件`,
+    `- 緊急処理: ${day.emergency_processed}/${AI_DAILY_EMERGENCY_LIMIT}件`,
+    `- 採用: ${day.enriched}件 / 不採用: ${day.rejected}件`,
+    `- 推定API費用: ${Number(day.estimated_usd || 0).toFixed(6)} USD`,
+    `- キャッシュ再利用: ${Number(extra.cacheHits || 0)}件`,
+    `- 再処理回避: ${Number(extra.rejectedHits || 0)}件`
+  ];
+  fs.appendFileSync(path, lines.join("\n") + "\n");
+}
 
 async function callClaude(system, user) {
   const res = await fetch("https://api.anthropic.com/v1/messages", {
@@ -121,7 +294,13 @@ async function callClaude(system, user) {
   if (data.stop_reason === "refusal") throw new Error("refusal");
   return {
     text:(data.content || []).filter(b => b.type === "text").map(b => b.text).join(""),
-    stopReason:data.stop_reason || ""
+    stopReason:data.stop_reason || "",
+    usage: {
+      input_tokens: Number(data.usage && data.usage.input_tokens || 0),
+      output_tokens: Number(data.usage && data.usage.output_tokens || 0),
+      cache_creation_input_tokens: Number(data.usage && data.usage.cache_creation_input_tokens || 0),
+      cache_read_input_tokens: Number(data.usage && data.usage.cache_read_input_tokens || 0)
+    }
   };
 }
 
@@ -218,18 +397,21 @@ async function aiEnrichBatch(items) {
     JSON.stringify(list);
 
   let response;
+  let attempts=0;
   for (let attempt = 0; attempt < 2; attempt++) {
+    attempts=attempt+1;
     try { response = await callClaude(system, user); break; }
     catch (e) { console.error("AI厳選 試行" + (attempt + 1) + " 失敗:", String(e.message || e).slice(0, 200)); }
   }
-  if(!response)return [];
+  if(!response)return {ok:false,items:[],rejected:[],usage:{},attempts};
   const arr = parseJsonArray(response.text);
-  if (!arr || !arr.length) {
+  if (!arr) {
     console.error("AI応答をJSON解析できませんでした。stop_reason="+response.stopReason+" chars="+response.text.length);
-    return [];
+    return {ok:false,charged:true,items:[],rejected:[],usage:response.usage||{},attempts};
   }
 
   const out = [];
+  const acceptedIndexes=new Set();
   for (const e of arr) {
     const idx = Number(e && e.i);
     if (!Number.isInteger(idx) || idx < 0 || idx >= items.length) continue;
@@ -254,26 +436,62 @@ async function aiEnrichBatch(items) {
       importance: ["S","A","B","C"].includes(String(e.importance||"").toUpperCase())?String(e.importance).toUpperCase():"B",
       related_categories:categories.length?categories:fallbackCategoryForTool(src.tool)
     };
-    if(isCompleteEnrichedItem(item))out.push(item);
+    if(isCompleteEnrichedItem(item)){
+      out.push(item);
+      acceptedIndexes.add(idx);
+    }
   }
+  const rejected=items.filter((_item,index)=>!acceptedIndexes.has(index));
   console.error("AI要約: "+out.length+"/"+items.length+"件（model="+AI_MODEL+"）");
-  return out;
+  return {ok:true,charged:true,items:out,rejected,usage:response.usage||{},attempts};
 }
 
-async function enrichNewItems(items) {
-  if(!items.length)return [];
+async function enrichNewItems(items,cache,ledger,lane="regular") {
+  if(!items.length)return {items:[],processed:0,rejected:0};
   if(!process.env.ANTHROPIC_API_KEY)throw new Error("ANTHROPIC_API_KEY 未設定");
   const enriched=[];
+  let processed=0;
+  let rejectedCount=0;
   for(let start=0;start<items.length;start+=AI_BATCH_SIZE){
+    const dailyBudget=Number(process.env.AI_DAILY_BUDGET_USD||0);
+    if(dailyBudget>0&&usageDay(ledger).estimated_usd>=dailyBudget){
+      console.error("AI DAILY BUDGET REACHED: batch skipped");
+      break;
+    }
     const batch=items.slice(start,start+AI_BATCH_SIZE);
     const withContext=await Promise.all(batch.map(async item=>({
       ...item,
       article_context:await fetchArticleContext(item)
     })));
     const result=await aiEnrichBatch(withContext);
-    enriched.push(...result);
+    addUsage(ledger,result.usage||{}, {
+      lane,
+      attempts:result.attempts,
+      processed:result.charged?batch.length:0,
+      enriched:result.items.length,
+      rejected:result.rejected.length
+    });
+    if(!result.ok){
+      if(result.charged){
+        for(const source of batch)rememberCacheResult(cache,source,"retry",null,lane,"invalid_ai_response");
+      }
+      checkpointAiState(cache,ledger);
+      continue;
+    }
+    processed+=batch.length;
+    enriched.push(...result.items);
+    for(const item of result.items){
+      const source=batch.find(candidate=>normalizedUrl(candidate.source_url)===normalizedUrl(item.source_url))
+        || batch.find(candidate=>normalizedStoryTitle(candidate.title)===normalizedStoryTitle(item.title));
+      if(source)rememberCacheResult(cache,source,"enriched",item,lane);
+    }
+    for(const source of result.rejected){
+      rememberCacheResult(cache,source,"rejected",null,lane,"ai_filtered_or_incomplete");
+      rejectedCount++;
+    }
+    checkpointAiState(cache,ledger);
   }
-  return enriched;
+  return {items:enriched,processed,rejected:rejectedCount};
 }
 
 function decode(s) {
@@ -433,6 +651,99 @@ function candidateScore(item) {
   return score;
 }
 
+function criticalBucket(item) {
+  const text=storyText(item)+" "+String(item&&item.tool||"").toLowerCase();
+  if(/policy|regulation|law|government|政策|規制|政府|法律|法案|著作権/.test(text))return "policy";
+  if(/security|vulnerability|breach|cyber|セキュリティ|脆弱性|情報漏えい|攻撃/.test(text))return "security";
+  if(/moonshot|kimi|deepseek|qwen|zhipu|minimax|world.{0,4}model|new model|中国ai|新モデル|基盤モデル/.test(text))return "frontier";
+  if(/nvidia|gpu|semiconductor|半導体|データセンター|aiインフラ/.test(text))return "semiconductor";
+  return "";
+}
+
+function selectProtectedCandidates(items,limit) {
+  const sorted=[...items].sort((a,b)=>candidateScore(b)-candidateScore(a));
+  const selected=[];
+  const selectedKeys=new Set();
+  const toolCounts=new Map();
+  const add=item=>{
+    const key=articleCacheKey(item);
+    if(selectedKeys.has(key)||selected.length>=limit)return false;
+    selected.push(item);
+    selectedKeys.add(key);
+    toolCounts.set(item.tool,(toolCounts.get(item.tool)||0)+1);
+    return true;
+  };
+  for(const bucket of ["policy","security","frontier","semiconductor"]){
+    const item=sorted.find(candidate=>criticalBucket(candidate)===bucket&&!selectedKeys.has(articleCacheKey(candidate)));
+    if(item)add(item);
+  }
+  for(const item of sorted){
+    if(selected.length>=limit)break;
+    if((toolCounts.get(item.tool)||0)>=2)continue;
+    add(item);
+  }
+  for(const item of sorted){
+    if(selected.length>=limit)break;
+    add(item);
+  }
+  return selected;
+}
+
+function titleSimilarity(a,b) {
+  const ag=titleGrams(a),bg=titleGrams(b);
+  if(!ag.size||!bg.size)return 0;
+  let overlap=0;
+  for(const gram of ag)if(bg.has(gram))overlap++;
+  return overlap/Math.max(ag.size,bg.size);
+}
+
+function numericTokens(item) {
+  return new Set((storyText(item).match(/\d+(?:[.,]\d+)?(?:%|億|兆|万|billion|million)?/gi)||[])
+    .map(value=>value.toLowerCase().replace(/,/g,"")));
+}
+
+function findReusablePrevious(previous,item) {
+  const itemTime=new Date(item.published_at||0).getTime();
+  if(!Number.isFinite(itemTime))return null;
+  return previous.find(old=>{
+    const oldTime=new Date(old.published_at||0).getTime();
+    if(!Number.isFinite(oldTime)||Math.abs(itemTime-oldTime)>72*3600000)return false;
+    const oldUrl=normalizedUrl(old.source_url),newUrl=normalizedUrl(item.source_url);
+    if(oldUrl&&newUrl&&oldUrl===newUrl&&articleContentHash(old)!==articleContentHash(item))return false;
+    if(!sameStory(old,item))return false;
+    const oldNumbers=numericTokens(old),newNumbers=numericTokens(item);
+    const sameNumbers=oldNumbers.size===newNumbers.size&&[...oldNumbers].every(number=>newNumbers.has(number));
+    if(oldNumbers.size&&newNumbers.size&&!sameNumbers)return false;
+    const similarity=titleSimilarity(old.title,item.title);
+    if(similarity>=0.75)return true;
+    const oldFamily=eventFamily(old),newFamily=eventFamily(item);
+    if(!oldFamily||oldFamily!==newFamily)return false;
+    const oldEntities=entityTokens(old),newEntities=entityTokens(item);
+    let sharedEntity=false;
+    for(const entity of oldEntities)if(newEntities.has(entity)){sharedEntity=true;break;}
+    if(!sharedEntity)return false;
+    if(!oldNumbers.size||!newNumbers.size)return false;
+    return sameNumbers;
+  })||null;
+}
+
+function bootstrapCacheResult(cache,source,result) {
+  const key=articleCacheKey(source);
+  if(cache.items[key])return;
+  cache.items[key]={
+    canonical_url:normalizedUrl(source.source_url),
+    content_hash:articleContentHash(source),
+    story_key:sha256(normalizedStoryTitle(source.title)),
+    status:"enriched",
+    processed_at:result.fetched_at||result.published_at||new Date().toISOString(),
+    model:"legacy",
+    prompt_version:PROMPT_VERSION,
+    lane:"bootstrap",
+    reason:"existing_complete_article",
+    result
+  };
+}
+
 (async () => {
   const out = [];
   for (const t of TOOLS) {
@@ -443,8 +754,8 @@ function candidateScore(item) {
     }
     const before = items.length;
     let kept = items.filter(it => keep(it, t));              // ★ノイズ除外（厳選①）
-    // そのツールの記事が全部消えたら、ツール名一致だけ緩めてノイズ除外のみで救済（例: Sunoは見出しに"Suno"が無い事が多い）
-    if (kept.length === 0 && before > 0) kept = items.filter(it => it.official || !NOISE.test(it.title));
+    // 一致候補がない場合も第三者ニュースは復活させず、対象が明確な公式フィードだけを残す。
+    if (kept.length === 0 && before > 0) kept = items.filter(it => it.official && !NOISE.test(it.title));
     items = kept;
     const seen = new Set();
     items = items.filter(it => {
@@ -474,22 +785,72 @@ function candidateScore(item) {
     return;
   }
 
-  // ②要約済みの記事は再利用し、新着だけを小分けでAI要約する。
+  // 公開用の記事とAI処理履歴を分離する。公開上限から外れた記事や不採用記事も、
+  // 保存期間内は再処理せず、同じ候補への重複課金を防ぐ。
   const previous=readPreviousCompleteItems();
+  const cache=loadAiCache();
+  const ledger=loadUsageLedger();
+  for(const item of previous)bootstrapCacheResult(cache,item,item);
+
   const reused=[];
   const fresh=[];
+  let cacheHits=0;
+  let rejectedHits=0;
   for(const item of uniqueOut){
-    const match=previous.find(old=>sameStory(old,item));
-    if(match)reused.push({...match,published_at:item.published_at||match.published_at});
-    else fresh.push(item);
+    const cached=cacheEntryFor(item,cache);
+    if(cached&&cached.status==="enriched"&&isCompleteEnrichedItem(cached.result)){
+      reused.push(cached.result);
+      cacheHits++;
+      continue;
+    }
+    if(cached&&cached.status==="rejected"){
+      rejectedHits++;
+      continue;
+    }
+    if(cached&&cached.status==="retry"){
+      rejectedHits++;
+      continue;
+    }
+    const match=findReusablePrevious(previous,item);
+    if(match){
+      reused.push(match);
+      bootstrapCacheResult(cache,item,match);
+      cacheHits++;
+    }else{
+      fresh.push(item);
+    }
   }
   fresh.sort((a,b)=>candidateScore(b)-candidateScore(a));
-  let newlyEnriched=[];
+
+  const today=usageDay(ledger);
+  const dailyBudget=Number(process.env.AI_DAILY_BUDGET_USD||0);
+  const budgetExhausted=dailyBudget>0&&today.estimated_usd>=dailyBudget;
+  const regularRemaining=budgetExhausted?0:Math.max(0,AI_DAILY_UNIQUE_LIMIT-today.regular_processed);
+  const regularCandidates=selectProtectedCandidates(fresh,Math.min(AI_NEW_LIMIT,regularRemaining));
+  const regularKeys=new Set(regularCandidates.map(articleCacheKey));
+  const emergencyRemaining=Math.max(0,AI_DAILY_EMERGENCY_LIMIT-today.emergency_processed);
+  const emergencySlots=Math.min(Math.max(0,AI_NEW_LIMIT-regularCandidates.length),emergencyRemaining);
+  const emergencyCandidates=(!budgetExhausted&&regularRemaining<AI_NEW_LIMIT)
+    ?selectProtectedCandidates(fresh.filter(item=>criticalBucket(item)&&!regularKeys.has(articleCacheKey(item))),emergencySlots)
+    :[];
+
+  let regularResult={items:[],processed:0,rejected:0};
+  let emergencyResult={items:[],processed:0,rejected:0};
   try {
-    newlyEnriched=await enrichNewItems(fresh.slice(0,AI_NEW_LIMIT));
+    regularResult=await enrichNewItems(regularCandidates,cache,ledger,"regular");
+    emergencyResult=await enrichNewItems(emergencyCandidates,cache,ledger,"emergency");
   } catch (e) {
     console.error("AI要約に失敗:",String(e.message||e).slice(0,300));
   }
+  const newlyEnriched=[...regularResult.items,...emergencyResult.items];
+  const selectedCount=regularCandidates.length+emergencyCandidates.length;
+  if(dailyBudget>0&&usageDay(ledger).estimated_usd>=dailyBudget*0.8){
+    console.error("AI DAILY BUDGET WARNING:",usageDay(ledger).estimated_usd,"/",dailyBudget,"USD");
+  }
+
+  writeJsonFile(AI_CACHE_PATH,cache);
+  writeJsonFile(AI_USAGE_PATH,ledger);
+  appendStepSummary(ledger,{cacheHits,rejectedHits,fresh:fresh.length,selected:selectedCount});
 
   // 今回フィードに現れなかった記事も保存期間内なら残す。
   // 一時的なRSS欠落で、良質な要約済み記事が突然消えるのを防ぐ。
@@ -498,15 +859,18 @@ function candidateScore(item) {
     const time=new Date(item.published_at||0).getTime();
     return Number.isFinite(time)&&time>=retentionStart;
   });
+  const cachedEnriched=Object.values(cache.items)
+    .filter(entry=>entry&&entry.status==="enriched"&&isCompleteEnrichedItem(entry.result))
+    .map(entry=>entry.result);
   const importanceOrder={S:4,A:3,B:2,C:1};
-  const final=dedupeStories([...newlyEnriched,...reused,...recentPrevious])
+  const final=dedupeStories([...newlyEnriched,...reused,...cachedEnriched,...recentPrevious])
     .filter(isCompleteEnrichedItem)
     .sort((a,b)=>(importanceOrder[b.importance]||0)-(importanceOrder[a.importance]||0)||
       new Date(b.published_at||0)-new Date(a.published_at||0))
     .slice(0,AI_MAX)
     .sort((a,b)=>new Date(b.published_at||0)-new Date(a.published_at||0));
 
-  if(!newlyEnriched.length&&fresh.length){
+  if(selectedCount&&regularResult.processed+emergencyResult.processed===0){
     console.error("NO NEW ENRICHED ARTICLES: keeping the existing complete data.json");
     process.exitCode = 1;
     return;
@@ -518,7 +882,7 @@ function candidateScore(item) {
   }
 
   fs.writeFileSync("data.json", JSON.stringify(final, null, 2));
-  console.error("WROTE data.json with",final.length,"complete items; new",newlyEnriched.length,"reused",reused.length,"retained",recentPrevious.length);
+  console.error("WROTE data.json with",final.length,"complete items; new",newlyEnriched.length,"reused",reused.length,"cache",cachedEnriched.length,"retained",recentPrevious.length);
 
   // GitHub Pages へ配置する直前に、同意欄をログイン・無料登録ボタンより上へ整える。
   // すでに正しい順序なら何も変更しないため、毎日の自動実行でも安全。
