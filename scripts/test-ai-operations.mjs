@@ -72,6 +72,50 @@ const modelPriceNew={
 };
 if(context.findReusablePrevious(modelPriceOld,modelPriceNew))throw new Error("shared model number hid a changed price");
 
+const firstRelease={
+  tool:"世界の新モデル・速報",title:"OpenAIがModel Alpha新モデルを10地域で発表",raw_excerpt:"Model Alpha新モデルのAPIを10地域で提供開始しました。",
+  source_published_at:"2026-07-01T09:00:00Z",published_at:"2026-07-01T09:00:00Z",source_url:"https://news.example/alpha-launch",
+  story_entities:["OpenAI","Model Alpha"],change_summary:"Model AlphaのAPIが公開されました。",event_at:"2026-07-01",event_status:"開始済み"
+};
+const laterRelease={
+  tool:"世界の新モデル・速報",title:"OpenAIのModel Alpha新モデルを20地域へ拡大",raw_excerpt:"Model Alpha新モデルのAPI提供地域が10地域から20地域へ増えました。",
+  source_published_at:"2026-07-10T09:00:00Z",published_at:"2026-07-10T09:00:00Z",source_url:"https://news.example/alpha-expansion",
+  story_entities:["OpenAI","Model Alpha"],change_summary:"Model AlphaのAPI提供地域が追加されました。",event_at:"",event_status:"不明"
+};
+const firstTimeline=context.connectStoryTimeline([firstRelease],[])[0];
+const timeline=context.connectStoryTimeline([laterRelease],[firstTimeline]);
+if(timeline[0].relation_type!=="follow_up"||timeline[0].previous_article_id===""||timeline[0].story_sequence!==2){
+  throw new Error("a genuine continuation was not linked to its previous report");
+}
+if(timeline[0].relation_confidence<0.85||!timeline[0].continuation_lead.includes("前回は")){
+  throw new Error("continuation context or confidence is missing");
+}
+
+const unrelatedRelease={
+  ...laterRelease,title:"OpenAIが音声端末Voice Betaを発表、一般販売を開始",raw_excerpt:"新しい音声端末を発売しました。",
+  story_entities:["OpenAI","Voice Beta"],source_url:"https://news.example/voice-beta"
+};
+if(context.connectStoryTimeline([unrelatedRelease],[firstTimeline])[0].relation_type!=="new"){
+  throw new Error("an unrelated announcement from the same company became a false follow-up");
+}
+
+const sameAnnouncement={...firstRelease,source_url:"https://another.example/alpha-launch",source_published_at:"2026-07-01T10:00:00Z",published_at:"2026-07-01T10:00:00Z"};
+if(context.dedupeStories([firstRelease,sameAnnouncement]).length!==1){
+  throw new Error("the same announcement from another outlet was not deduplicated");
+}
+
+const unknownDates=context.normalizeTimelineItem({
+  title:"Googleが新しいAI機能を公開",raw_excerpt:"新しいAI機能の概要です。",source_url:"https://example.com/no-date",
+  source_published_at:"",source_updated_at:"2026-07-31T03:00:00Z",source_date_status:"updated_only",
+  event_at:"推定2026年7月",event_status:"発表済み",story_entities:["Google"]
+});
+if(unknownDates.source_published_at!==""||unknownDates.event_at!==""||unknownDates.event_date_precision!=="unknown"){
+  throw new Error("unknown publication or event dates were fabricated");
+}
+if(context.stableArticleId(firstRelease)!==context.stableArticleId({...firstRelease})){
+  throw new Error("article ids are not stable");
+}
+
 vm.runInContext('callClaude=async()=>({text:"[]",stopReason:"end_turn",usage:{input_tokens:100,output_tokens:2}})',context);
 const emptyResult=await context.aiEnrichBatch([sourceItem]);
 if(!emptyResult.ok||!emptyResult.charged||emptyResult.items.length!==0||emptyResult.rejected.length!==1){
