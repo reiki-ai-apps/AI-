@@ -1750,8 +1750,9 @@
   .card-source{font-family:inherit;cursor:pointer}
   .notice-card{display:grid;gap:5px;margin:0 0 14px;padding:12px 14px;border-left:3px solid #4ad6e3;border-radius:8px;background:rgba(10,36,55,.72);color:#aebed1;font-size:11px;line-height:1.65}.notice-card b{color:#71e7ec;font-size:11px}
   .coverage-proof{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}.coverage-proof span{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border:1px solid rgba(91,211,225,.24);border-radius:999px;background:rgba(5,25,43,.62);color:#b8c9dd;font-size:10px;font-weight:800}.coverage-proof span::before{content:"";width:5px;height:5px;border-radius:50%;background:#42e0c2;box-shadow:0 0 8px rgba(66,224,194,.72)}
-  .source-trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:0 0 14px}.source-trust-item{padding:11px 12px;border:1px solid rgba(91,151,196,.22);border-radius:10px;background:rgba(6,21,40,.58)}.source-trust-item span{display:block;margin-bottom:3px;color:#788da8;font-size:9px;font-weight:800;letter-spacing:.08em}.source-trust-item strong{display:block;color:#dce9f8;font-size:11px;line-height:1.45}.source-badge{display:inline-flex!important;width:fit-content;padding:3px 7px;border:1px solid rgba(74,214,227,.28);border-radius:999px;background:rgba(34,176,194,.12);color:#6ee7eb!important;font-size:9px!important}
-  @media(max-width:620px){.source-trust{grid-template-columns:1fr 1fr}.source-trust-item:first-child{grid-column:1/-1}.coverage-proof{gap:5px}.coverage-proof span{font-size:9px;padding:5px 7px}}
+  .source-trust{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:0 0 14px}.source-trust-item{padding:11px 12px;border:1px solid rgba(91,151,196,.22);border-radius:10px;background:rgba(6,21,40,.58)}.source-trust-item span{display:block;margin-bottom:3px;color:#788da8;font-size:9px;font-weight:800;letter-spacing:.08em}.source-trust-item strong{display:block;color:#dce9f8;font-size:11px;line-height:1.45}.source-badge{display:inline-flex!important;width:fit-content;padding:3px 7px;border:1px solid rgba(74,214,227,.28);border-radius:999px;background:rgba(34,176,194,.12);color:#6ee7eb!important;font-size:9px!important}
+  .timeline-meta{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 12px}.timeline-meta span{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border:1px solid rgba(91,151,196,.24);border-radius:8px;background:rgba(5,17,35,.72);color:#bfd0e4;font-size:11px;line-height:1.4}.timeline-meta b{color:#6ee7eb;font-size:9px;letter-spacing:.05em}.followup-badge{display:inline-flex;align-items:center;padding:3px 8px;border:1px solid rgba(82,214,227,.42);border-radius:999px;background:rgba(24,178,198,.16);color:#7cf4f1;font-size:10px;font-weight:900}.followup-badge.is-correction{border-color:rgba(251,191,36,.4);background:rgba(180,116,20,.16);color:#ffd477}.continuation-card{display:block;width:100%;margin:0 0 12px;padding:11px 13px;border:1px solid rgba(87,180,231,.28);border-radius:10px;background:linear-gradient(135deg,rgba(15,104,151,.18),rgba(69,45,170,.12));color:#d9e8f7;text-align:left;cursor:pointer}.continuation-card strong{display:block;margin-bottom:5px;color:#73e9ef;font-size:10px;letter-spacing:.08em}.continuation-card span{display:block;font-size:12px;line-height:1.65}.story-flow{display:grid;gap:8px}.story-flow-item{position:relative;padding:10px 12px 10px 30px;border-left:2px solid rgba(74,214,227,.35);color:var(--text-soft);font-size:13px;line-height:1.7}.story-flow-item:before{content:'';position:absolute;left:-6px;top:16px;width:10px;height:10px;border-radius:50%;background:#42d8e3;box-shadow:0 0 12px rgba(66,216,227,.55)}.story-flow-item b{display:block;color:var(--text);font-size:12px}.story-flow-item.is-current{border-left-color:#7c5cf6;background:rgba(93,70,220,.08)}
+  @media(max-width:620px){.source-trust{grid-template-columns:1fr 1fr}.source-trust-item:first-child{grid-column:1/-1}.coverage-proof{gap:5px}.coverage-proof span{font-size:9px;padding:5px 7px}.timeline-meta{display:grid;grid-template-columns:1fr}.timeline-meta span{width:100%}.continuation-card span{font-size:11.5px}}
   .legal-page{max-width:900px;margin:0 auto;padding-bottom:30px}.legal-section{padding:28px;border:1px solid rgba(74,204,225,.25);border-radius:18px;background:linear-gradient(145deg,rgba(7,24,47,.97),rgba(9,13,35,.98));box-shadow:0 20px 50px rgba(0,0,0,.25)}
   .legal-section h2{margin:0 0 6px;color:#f5f8ff;font-size:27px}.legal-section h3{margin:25px 0 8px;color:#e7f1ff;font-size:15px}.legal-section p{margin:0;color:#a3b1c4;font-size:12.5px;line-height:1.9}.legal-updated{margin-bottom:18px!important;color:#728197!important;font-size:10.5px!important}
   .legal-table{width:100%;border-collapse:collapse;margin-top:18px}.legal-table th,.legal-table td{padding:13px 14px;border:1px solid rgba(112,151,196,.17);vertical-align:top;text-align:left;font-size:12px;line-height:1.75}.legal-table th{width:190px;background:rgba(17,42,64,.55);color:#d6e3f3}.legal-table td{color:#aab7c9}
@@ -2733,6 +2734,27 @@ function render(){
 
 /* ---------- helpers ---------- */
 function fmtDate(iso){ if(!iso)return '—'; const d=new Date(iso); return `${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()}`; }
+function fmtDateTime(iso){
+  if(!iso)return '確認できませんでした';
+  const d=new Date(iso);if(isNaN(d.getTime()))return '確認できませんでした';
+  const date=`${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()}`;
+  const hasTime=/T\d{2}:\d{2}/.test(String(iso));
+  return hasTime?`${date} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`:date;
+}
+function sourcePublishedAt(u){return u.source_published_at||u.published_at||'';}
+function eventDateLabel(u){
+  if(u.event_at&&u.event_date_precision!=='unknown'){
+    const suffix=u.event_status&&u.event_status!=='不明'?`（${u.event_status}）`:'';
+    return `${fmtDate(u.event_at)}${suffix}`;
+  }
+  return '記事内で確認できませんでした';
+}
+function timelineMeta(u){
+  return `<div class="timeline-meta" aria-label="出来事と記事掲載の日付">
+    <span><b>出来事の日</b>${esc(eventDateLabel(u))}</span>
+    <span><b>情報元の掲載日</b>${esc(fmtDate(sourcePublishedAt(u)))}</span>
+  </div>`;
+}
 function relDate(iso){
   if(!iso)return '';
   const diff=(Date.now()-new Date(iso))/86400000;
@@ -2778,9 +2800,11 @@ function updateCard(u){
   return `<article class="ucard ${u.status==='unread'?'is-new':''} ${artClass}">
     <div class="ucard-top">
       <div class="ucard-tool"><span class="tool-dot" style="background:${color};color:${color}"></span><span>${esc(tool?tool.name:'不明')}</span></div>
-      <div class="ucard-top-meta">${rankBadge(u.rank)}${u.status!=='unread'?statusBadge(u.status):''}<span class="ucard-date">${relDate(u.published_at)}</span></div>
+      <div class="ucard-top-meta">${rankBadge(u.rank)}${u.relation_type==='follow_up'?`<span class="followup-badge">続報 ${Number(u.story_sequence||2)}</span>`:''}${u.relation_type==='correction'?`<span class="followup-badge is-correction">訂正・状況変更</span>`:''}${u.status!=='unread'?statusBadge(u.status):''}</div>
     </div>
     <button class="ucard-title-link" onclick="go('update-detail','${u.id}')" aria-label="${esc(u.title)}の要約をアプリ内で見る"><h3>${esc(u.title)}</h3></button>
+    ${timelineMeta(u)}
+    ${u.continuation_lead?`<button class="continuation-card" onclick="go('update-detail','${u.id}')"><strong>前回からの続き</strong><span>${esc(u.continuation_lead)}</span></button>`:''}
     <div class="summary-wrap"><span class="ai-label">AI要約</span><div class="summary">${esc(sum)}</div></div>
     <div class="ucard-footer">
       <div class="ucard-meta">
@@ -3016,8 +3040,10 @@ function detailSidebar(u,tool){
       <h3>${icon('updates')} 情報</h3>
       <div class="meta-list">
         <div class="row"><span class="k">対象ツール</span><span class="v">${esc(tool?tool.name:'—')}</span></div>
-        <div class="row"><span class="k">公開日</span><span class="v">${fmtDate(u.published_at)}</span></div>
-        <div class="row"><span class="k">取得日</span><span class="v">${fmtDate(u.fetched_at)}</span></div>
+        <div class="row"><span class="k">出来事</span><span class="v">${esc(eventDateLabel(u))}</span></div>
+        <div class="row"><span class="k">情報元掲載</span><span class="v">${esc(fmtDateTime(sourcePublishedAt(u)))}</span></div>
+        ${u.source_updated_at?`<div class="row"><span class="k">情報元更新</span><span class="v">${esc(fmtDateTime(u.source_updated_at))}</span></div>`:''}
+        <div class="row"><span class="k">レーダー取得</span><span class="v">${esc(fmtDateTime(u.fetched_at))}</span></div>
       </div>
       <button class="btn btn-danger btn-sm" style="width:100%;margin-top:14px" onclick="confirmDeleteUpdate('${u.id}')">${icon('trash')}このアップデートを削除</button>
     </div>`;
@@ -3030,6 +3056,29 @@ function readBlock(id,label,text,iconName,color,bg,cls){
   return `<div class="read-block ${cls||''}">
     <div class="rb-head"><span class="rb-ico" style="background:${bg};color:${color}">${icon(iconName)}</span><span class="rb-label">${esc(label)}</span></div>
     <div class="rb-body">${esc(text)}</div>
+  </div>`;
+}
+
+function previousLocalArticle(u){
+  if(!u||!u.previous_article_id)return null;
+  return getUpdates().find(item=>item.article_id===u.previous_article_id)||null;
+}
+function openPreviousSummary(id){
+  const current=updateById(id);const previous=previousLocalArticle(current);
+  if(previous){go('update-detail',previous.id);return;}
+  toast('前回の記事は保存期間外です。日付・タイトル・要点はこの画面で確認できます。','ok');
+}
+function storyFlowBlock(u){
+  if(!u||!u.continuation_lead)return '';
+  const previous=previousLocalArticle(u);
+  const previousDate=fmtDate(u.previous_source_published_at);
+  return `<div class="read-block">
+    <div class="rb-head"><span class="rb-ico" style="background:#e9f7ff;color:#0891b2">${icon('updates')}</span><span class="rb-label">これまでの流れ</span><span class="followup-badge">続報 ${Number(u.story_sequence||2)}</span></div>
+    <div class="story-flow">
+      <div class="story-flow-item"><b>${esc(previousDate)}　前回</b>${esc(u.previous_title||'前回までの動き')}</div>
+      <div class="story-flow-item is-current"><b>${esc(fmtDate(sourcePublishedAt(u)))}　今回</b>${esc(u.continuation_lead)}</div>
+    </div>
+    <button class="btn btn-sm" style="margin-top:10px" onclick="openPreviousSummary('${u.id}')">${previous?'前回の要約を見る':'前回の要点を確認済み'}</button>
   </div>`;
 }
 
@@ -3080,13 +3129,17 @@ function renderDetailRead(v,u,tool){
       <div class="detail-head">
         <div class="detail-toprow">
           <span class="detail-tool"><span class="tool-dot" style="background:${toolColor(u.tool_id)}"></span>${esc(tool?tool.name:'')}</span>
-          <span style="color:var(--text-mute);font-size:13px;margin-left:auto">公開 ${fmtDate(u.published_at)}</span>
+          ${u.relation_type==='follow_up'?`<span class="followup-badge">続報 ${Number(u.story_sequence||2)}</span>`:''}
+          ${u.relation_type==='correction'?`<span class="followup-badge is-correction">訂正・状況変更</span>`:''}
+          <span style="color:var(--text-mute);font-size:13px;margin-left:auto">情報元掲載 ${esc(fmtDate(sourcePublishedAt(u)))}</span>
         </div>
         <div class="detail-title-lg">${esc(u.title)}</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
           ${catChips(u.related_categories)}
         </div>
       </div>
+
+      ${storyFlowBlock(u)}
 
       ${heroSum?`<div class="read-hero">
         <div class="rb-head"><span class="rb-ico">${icon('updates')}</span><span class="rb-label">かんたん要約</span></div>
@@ -3101,7 +3154,9 @@ function renderDetailRead(v,u,tool){
       <div class="source-trust" aria-label="情報元の確認">
         <div class="source-trust-item"><span>掲載元</span><strong>${esc(u.source_name||'情報元の記事')}</strong></div>
         <div class="source-trust-item"><span>情報の種類</span><strong class="source-badge">${u.is_official?'公式発表':'報道・公開記事'}</strong></div>
-        <div class="source-trust-item"><span>公開日時</span><strong>${fmtDate(u.published_at)}</strong></div>
+        <div class="source-trust-item"><span>出来事が起きた日</span><strong>${esc(eventDateLabel(u))}</strong></div>
+        <div class="source-trust-item"><span>情報元の記事掲載日時</span><strong>${esc(fmtDateTime(sourcePublishedAt(u)))}</strong></div>
+        ${u.source_updated_at?`<div class="source-trust-item"><span>情報元の最終更新</span><strong>${esc(fmtDateTime(u.source_updated_at))}</strong></div>`:''}
       </div>
       <div class="notice-card"><b>AIによる要約です</b><span>内容に誤りや不足がある場合があります。契約・投資・法律・医療など重要な判断は、必ず公式発表や情報元の記事も確認してください。</span></div>
       ${u.source_url?`<button class="btn btn-primary" onclick="openSourceArticle('${u.id}')" style="display:inline-flex;width:fit-content;margin-bottom:14px" aria-label="情報元の記事を外部サイトで読む">${icon('ext')}情報元の記事を読む（外部サイト）</button>`:''}
@@ -3596,6 +3651,36 @@ function ensureImportedTool(item){
   DB.save();
   return tool;
 }
+function importedTimelineFields(it){
+  const sourcePublished=String(it?.source_published_at||it?.published_at||'');
+  return {
+    article_id:String(it?.article_id||''),
+    story_id:String(it?.story_id||''),
+    story_sequence:Number(it?.story_sequence||1),
+    relation_type:String(it?.relation_type||'new'),
+    relation_confidence:Number(it?.relation_confidence||0),
+    previous_article_id:String(it?.previous_article_id||''),
+    previous_title:String(it?.previous_title||''),
+    previous_source_published_at:String(it?.previous_source_published_at||''),
+    continuation_lead:String(it?.continuation_lead||''),
+    new_facts:Array.isArray(it?.new_facts)?it.new_facts.map(String).filter(Boolean).slice(0,3):[],
+    event_at:String(it?.event_at||''),
+    event_status:String(it?.event_status||'不明'),
+    event_date_precision:String(it?.event_date_precision||'unknown'),
+    source_published_at:sourcePublished,
+    source_updated_at:String(it?.source_updated_at||''),
+    source_date_status:String(it?.source_date_status||(sourcePublished?'published':'unknown')),
+    story_entities:Array.isArray(it?.story_entities)?it.story_entities.map(String).filter(Boolean):[]
+  };
+}
+function patchTimelineFields(target,it){
+  const fields=importedTimelineFields(it);let changed=false;
+  Object.entries(fields).forEach(([key,value])=>{
+    if(JSON.stringify(target[key])!==JSON.stringify(value)){target[key]=value;changed=true;}
+  });
+  if(it?.fetched_at&&target.fetched_at!==it.fetched_at){target.fetched_at=it.fetched_at;changed=true;}
+  return changed;
+}
 async function syncFromDataJson(force=false){
   if(_syncDone&&!force)return 0; _syncDone=true;
   if(!force&&!getSettings().autoFetch)return 0;
@@ -3606,7 +3691,7 @@ async function syncFromDataJson(force=false){
     const items=await res.json();
     setAutoStatus(false);
     if(!Array.isArray(items)||!items.length)return 0;
-    let added=0;
+    let added=0,patched=0;
     items.forEach(it=>{
       if(!it||!it.title||looksCorruptedText(it.title)||looksCorruptedText(it.summary)||looksCorruptedText(it.detail)) return;
       if(!isCompletePublishedArticle(it))return;
@@ -3615,7 +3700,8 @@ async function syncFromDataJson(force=false){
       const tool=ensureImportedTool(it);
       const candidate={tool_id:tool.id,title:it.title,source_url:it.source_url||''};
       const data=DB.load();
-      if(findCurrentArticle(candidate,data))return;
+      const current=findCurrentArticle(candidate,data);
+      if(current){if(patchTimelineFields(current,it)){current.updated_at=nowISO();patched++;}return;}
       const seen=findSeenArticle(candidate,data);
       // 旧版が不完全記事のハッシュだけを残した場合は、一度だけ完全版の再取込を許可する。
       if(seen?.complete===true)return;
@@ -3623,7 +3709,7 @@ async function syncFromDataJson(force=false){
       const ex=(it.raw_excerpt||it.summary||'').toString();
       saveUpdate({
         tool_id:tool.id, title:it.title, source_url:safeExternalUrl(it.source_url),
-        published_at:it.published_at||nowISO(), fetched_at:nowISO(),
+        published_at:it.published_at||it.source_published_at||'', fetched_at:it.fetched_at||nowISO(),
         raw_content:'', raw_excerpt:'', manual_summary:'', ai_summary:ex, // 要約は「かんたん要約」に表示
         easy_summary:(it.detail||'').toString(),                          // AIのやさしい解説
         simple_explanation:(it.change_summary||'').toString(),
@@ -3633,12 +3719,14 @@ async function syncFromDataJson(force=false){
         is_official:!!it.is_official,
         importance:(it.importance||'').toString(),
         related_categories:(Array.isArray(it.related_categories)&&it.related_categories.length)?it.related_categories:(tool.related_businesses?[...tool.related_businesses]:[]),
+        ...importedTimelineFields(it),
         score:0, rank:'C', status:'unread', is_saved:false, memo:''
       });
       added++;
     });
-    pruneOld(); // 3日より古いものを掃除
-    if(added>0){ recomputeAll(); toast(`最新ニュースを${added}件取り込みました`,'ok'); renderNav(); render(); }
+    if(patched>0)DB.save();
+    pruneOld(); // プラン別の保存期間より古いものを掃除
+    if(added>0||patched>0){ recomputeAll(); toast(added>0?`最新ニュースを${added}件取り込みました`:'記事の日付と続報情報を更新しました','ok'); renderNav(); render(); }
     return added;
   }catch(e){ setAutoStatus(false);return 0; }
 }

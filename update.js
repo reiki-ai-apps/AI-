@@ -99,7 +99,8 @@ const AI_DAILY_EMERGENCY_LIMIT = 8;
 const ARTICLE_CONTEXT_LIMIT = 2400;
 const AI_CACHE_PATH = ".ai-cache.json";
 const AI_USAGE_PATH = ".ai-usage.json";
-const PROMPT_VERSION = "ai-radar-2026-07-31-v2";
+const STORY_INDEX_PATH = ".story-index.json";
+const PROMPT_VERSION = "ai-radar-2026-07-31-v3-timeline";
 const REJECTED_TTL_MS = 7 * 86400000;
 const RETRY_TTL_MS = 6 * 3600000;
 const ENRICHED_TTL_MS = 31 * 86400000;
@@ -333,6 +334,17 @@ function isCompleteEnrichedItem(item) {
     Array.isArray(item.related_categories) && item.related_categories.length>0 &&
     isJapaneseDisplayItem(item);
 }
+function normalizeEventDate(value) {
+  const raw=String(value||"").trim();
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(raw))return "";
+  const time=Date.parse(raw+"T00:00:00Z");
+  return Number.isFinite(time)?raw:"";
+}
+function normalizeEventStatus(value) {
+  const allowed=new Set(["発表済み","開始済み","予定","継続中"]);
+  const status=String(value||"").trim();
+  return allowed.has(status)?status:"不明";
+}
 function cleanDisplayTitle(title, sourceName) {
   let value=stripTags(String(title||"")).replace(/\s+/g," ").trim();
   const source=String(sourceName||"").trim();
@@ -380,7 +392,7 @@ async function fetchArticleContext(item) {
 async function aiEnrichBatch(items) {
   const list=items.map((it,i)=>({
     i,tool:it.tool,title:it.title,source:it.source_name||"",
-    official:!!it.is_official,published_at:it.published_at,
+    official:!!it.is_official,source_published_at:it.published_at,
     excerpt:String(it.raw_excerpt||"").slice(0,500),
     article_context:String(it.article_context||"").slice(0,ARTICLE_CONTEXT_LIMIT)
   }));
@@ -391,9 +403,9 @@ async function aiEnrichBatch(items) {
   const user =
     "次のAI関連ニュース候補(JSON)を確認し、一般の利用者が知っておく価値のある記事だけを残してください。\n" +
     "出力は次の形式のJSON配列だけ（前置き・説明・コードフェンスは一切不要）:\n" +
-    '[{"i":元番号,"title_ja":"媒体名を除いた自然な日本語タイトル","summary_ja":"60〜100字で結論が分かる要約","detail_ja":"220〜360字、専門用語を説明したやさしい解説","change_ja":"何が新しいかを1〜2文","impact_ja":"日本の仕事・経営・生活への影響を1〜2文","action_ja":"利用者が次に確認することを1〜2文","importance":"S|A|B|C","categories":["指定カテゴリから1〜3件"]}]\n' +
+    '[{"i":元番号,"title_ja":"媒体名を除いた自然な日本語タイトル","summary_ja":"60〜100字で結論が分かる要約","detail_ja":"220〜360字、専門用語を説明したやさしい解説","change_ja":"何が新しいかを1〜2文","impact_ja":"日本の仕事・経営・生活への影響を1〜2文","action_ja":"利用者が次に確認することを1〜2文","event_date":"記事本文に出来事の年月日が明記されている場合だけYYYY-MM-DD、不明なら空文字","event_status":"発表済み|開始済み|予定|継続中|不明","story_entities":["企業名・製品名など話題を識別する固有名詞を1〜3件"],"importance":"S|A|B|C","categories":["指定カテゴリから1〜3件"]}]\n' +
     "指定カテゴリ:"+JSON.stringify(ALLOWED_CATEGORIES)+"\n"+
-    "英語・中国語は自然な日本語に翻訳してください。article_contextを最優先の根拠にし、情報不足でもタイトルを言い換えただけの要約は作らないでください。価値や根拠が足りない記事は出力しないでください。\n候補:\n" +
+    "英語・中国語は自然な日本語に翻訳してください。article_contextを最優先の根拠にし、情報不足でもタイトルを言い換えただけの要約は作らないでください。event_dateは推測せず、発表日・施行日・発生日などが本文に明記された時だけ記入してください。価値や根拠が足りない記事は出力しないでください。\n候補:\n" +
     JSON.stringify(list);
 
   let response;
@@ -428,6 +440,14 @@ async function aiEnrichBatch(items) {
       source_name: src.source_name || "",
       is_official: !!src.is_official,
       published_at: src.published_at,
+      source_published_at: src.source_published_at||src.published_at||"",
+      source_updated_at: src.source_updated_at||"",
+      source_date_status: src.source_date_status||"published",
+      fetched_at:src.fetched_at||new Date().toISOString(),
+      event_at: normalizeEventDate(e.event_date),
+      event_status: normalizeEventStatus(e.event_status),
+      event_date_precision: normalizeEventDate(e.event_date)?"day":"unknown",
+      story_entities: Array.isArray(e.story_entities)?e.story_entities.map(String).map(v=>v.trim()).filter(Boolean).slice(0,3):[],
       raw_excerpt: sumJa || src.raw_excerpt,
       detail: detailJa,
       change_summary: (e.change_ja || "").toString().trim(),
@@ -540,9 +560,16 @@ function parseFeed(xml, official, fallbackSource) {
     const title = cleanDisplayTitle(stripTags(tag(b, "title")),sourceName);
     if (!title) continue;
     const link = tag(b, "link") || atomLink(b);
-    const dateRaw = tag(b, "pubDate") || tag(b, "published") || tag(b, "updated");
+    const publishedRaw = tag(b, "pubDate") || tag(b, "published");
+    const updatedRaw = tag(b, "updated");
     const desc = stripTags(tag(b, "description") || tag(b, "summary") || tag(b, "content")).slice(0, 500);
-    out.push({ title, link, date: toIso(dateRaw), desc, official, sourceName });
+    out.push({
+      title,link,
+      date:toIso(publishedRaw),
+      updatedAt:toIso(updatedRaw),
+      dateSource:publishedRaw?"published":updatedRaw?"updated_only":"unknown",
+      desc,official,sourceName
+    });
   }
   return out;
 }
@@ -590,8 +617,19 @@ function eventFamily(item) {
 }
 function entityTokens(item) {
   const text=storyText(item);
-  const aliases=[];
-  if(/\bmoonshot\b|\bkimi\b|月之暗面/.test(text))aliases.push("moonshot-ai");
+  const aliases=(Array.isArray(item&&item.story_entities)?item.story_entities:[])
+    .map(value=>String(value||"").normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}.-]+/gu,""))
+    .filter(value=>value.length>=3);
+  const known=[
+    [/\bopenai\b|\bchatgpt\b/,"openai"],[/\banthropic\b|\bclaude\b/,"anthropic"],
+    [/\bgoogle\b|\bgemini\b/,"google-gemini"],[/\bmoonshot\b|\bkimi\b|月之暗面/,"moonshot-ai"],
+    [/\bdeepseek\b/,"deepseek"],[/\bminimax\b/,"minimax"],[/\bnvidia\b/,"nvidia"],
+    [/\bnotebooklm\b/,"notebooklm"],[/\bcursor\b/,"cursor"],[/\brunway\b/,"runway"],
+    [/\bsuno\b/,"suno"],[/\bcanva\b/,"canva"],[/\bperplexity\b/,"perplexity"],
+    [/\bmicrosoft\b|マイクロソフト/,"microsoft"],[/\bapple\b|アップル/,"apple"],
+    [/\bamazon\b|アマゾン/,"amazon"],[/\bmeta\b|メタ社/,"meta"]
+  ];
+  for(const [pattern,key] of known)if(pattern.test(text))aliases.push(key);
   const ignored=new Set([
     "the","and","for","with","from","into","about","this","that","new","news",
     "ai","api","agent","agents","model","models","tech","technology","company",
@@ -628,7 +666,7 @@ function dedupeStories(items) {
   for(const item of items){
     const duplicate=kept.some(existing=>{
       const timeGap=Math.abs(new Date(existing.published_at||0)-new Date(item.published_at||0));
-      return timeGap<=7*86400000&&sameStory(existing,item);
+      return timeGap<=7*86400000&&isDuplicateReport(existing,item);
     });
     if(!duplicate)kept.push(item);
   }
@@ -702,6 +740,143 @@ function numericTokens(item) {
     .map(value=>value.toLowerCase().replace(/,/g,"")));
 }
 
+function setsShareValue(a,b) {
+  for(const value of a)if(b.has(value))return true;
+  return false;
+}
+
+function numbersConflict(a,b) {
+  const an=numericTokens(a),bn=numericTokens(b);
+  return an.size>0&&bn.size>0&&
+    (an.size!==bn.size||[...an].some(value=>!bn.has(value)));
+}
+
+// 同じ会社を扱うだけの記事は消さない。同じ発表の転載・言い換えだけを重複とする。
+function isDuplicateReport(a,b) {
+  const au=normalizedUrl(a.source_url),bu=normalizedUrl(b.source_url);
+  if(au&&bu&&au===bu)return true;
+  const similarity=titleSimilarity(a.title,b.title);
+  if(numbersConflict(a,b))return false;
+  if(similarity>=0.82)return true;
+  const familyA=eventFamily(a),familyB=eventFamily(b);
+  if(!familyA||familyA!==familyB||similarity<0.6)return false;
+  return setsShareValue(entityTokens(a),entityTokens(b));
+}
+
+function stableArticleId(item) {
+  return "article_"+sha256(normalizedUrl(item.source_url)||
+    `${normalizedStoryTitle(item.title)}|${item.source_published_at||item.published_at||""}`).slice(0,20);
+}
+
+function storyEntitiesFor(item) {
+  const values=[...(Array.isArray(item.story_entities)?item.story_entities:[]),...entityTokens(item)];
+  const normalized=values.map(value=>String(value||"").normalize("NFKC").trim()).filter(value=>value.length>=3);
+  if(!normalized.length&&item.tool)normalized.push(String(item.tool));
+  return [...new Set(normalized)].slice(0,5);
+}
+
+function sameContinuingTopic(previous,current) {
+  if(isDuplicateReport(previous,current))return false;
+  const previousFamily=eventFamily(previous),currentFamily=eventFamily(current);
+  if(!previousFamily||previousFamily!==currentFamily)return false;
+  const previousEntities=new Set(storyEntitiesFor(previous).map(value=>value.toLowerCase()));
+  const currentEntities=new Set(storyEntitiesFor(current).map(value=>value.toLowerCase()));
+  if(!setsShareValue(previousEntities,currentEntities))return false;
+  // 同じ企業の無関係な発表を続報と誤認しないため、見出しにも最低限のつながりを求める。
+  return titleSimilarity(previous.title,current.title)>=0.22;
+}
+
+function normalizeTimelineItem(item) {
+  const sourcePublished=String(item.source_published_at||item.published_at||"").trim();
+  const eventAt=normalizeEventDate(item.event_at||item.event_date);
+  return {
+    ...item,
+    article_id:item.article_id||stableArticleId(item),
+    source_published_at:sourcePublished,
+    source_updated_at:String(item.source_updated_at||"").trim(),
+    source_date_status:item.source_date_status||(sourcePublished?"published":"unknown"),
+    fetched_at:String(item.fetched_at||new Date().toISOString()),
+    event_at:eventAt,
+    event_status:eventAt?normalizeEventStatus(item.event_status):"不明",
+    event_date_precision:eventAt?"day":"unknown",
+    story_entities:storyEntitiesFor(item),
+    story_id:String(item.story_id||""),
+    story_sequence:Math.max(1,Number(item.story_sequence||1)),
+    relation_type:["new","follow_up","correction"].includes(item.relation_type)?item.relation_type:"new",
+    relation_confidence:Number(item.relation_confidence||0),
+    previous_article_id:String(item.previous_article_id||""),
+    previous_title:String(item.previous_title||""),
+    previous_source_published_at:String(item.previous_source_published_at||""),
+    continuation_lead:String(item.continuation_lead||""),
+    new_facts:Array.isArray(item.new_facts)?item.new_facts.slice(0,3):[]
+  };
+}
+
+function connectStoryTimeline(items,historyItems=[]) {
+  const history=[...historyItems,...items].map(normalizeTimelineItem)
+    .sort((a,b)=>new Date(a.source_published_at||0)-new Date(b.source_published_at||0));
+  const result=[];
+  for(const raw of items){
+    // 現在の記事だけ関連付けを再判定し、履歴側に保存した連番は保持する。
+    const source={...normalizeTimelineItem(raw),story_id:"",story_sequence:1,relation_type:"new",
+      relation_confidence:0,previous_article_id:"",previous_title:"",previous_source_published_at:"",
+      continuation_lead:""};
+    const currentTime=new Date(source.source_published_at||0).getTime();
+    let previous=null;
+    for(const candidate of history){
+      if(candidate.article_id===source.article_id)continue;
+      const candidateTime=new Date(candidate.source_published_at||0).getTime();
+      const gap=currentTime-candidateTime;
+      if(!Number.isFinite(gap)||gap<12*3600000||gap>365*86400000)continue;
+      if(!sameContinuingTopic(candidate,source))continue;
+      if(!previous||candidateTime>new Date(previous.source_published_at||0).getTime())previous=candidate;
+    }
+    if(previous){
+      const shared=[...new Set(storyEntitiesFor(previous).map(value=>value.toLowerCase()))]
+        .find(value=>new Set(storyEntitiesFor(source).map(v=>v.toLowerCase())).has(value))||"topic";
+      source.story_id=previous.story_id||("story_"+sha256(`${eventFamily(source)}|${shared}`).slice(0,18));
+      source.story_sequence=Math.max(2,Number(previous.story_sequence||1)+1);
+      source.relation_type=/訂正|撤回|誤り|修正/.test(storyText(source))?"correction":"follow_up";
+      source.relation_confidence=0.9;
+      source.previous_article_id=previous.article_id;
+      source.previous_title=previous.title;
+      source.previous_source_published_at=previous.source_published_at||previous.published_at||"";
+      const currentFact=String(source.change_summary||source.raw_excerpt||"").trim();
+      const relationLead=source.relation_type==="correction"?"この話題の訂正・状況変更です":"この話題の続報です";
+      source.continuation_lead=`${relationLead}。前回は「${previous.title}」まで進んでいましたが、今回は${currentFact}`;
+      source.new_facts=currentFact?[currentFact]:[];
+    }else{
+      source.story_id="story_"+sha256(`${eventFamily(source)||"general"}|${storyEntitiesFor(source)[0]||source.article_id}`).slice(0,18);
+    }
+    result.push(source);
+  }
+  return result;
+}
+
+function loadStoryIndex() {
+  const parsed=readJsonFile(STORY_INDEX_PATH,{version:1,items:[]});
+  const cutoff=Date.now()-365*86400000;
+  parsed.version=1;
+  parsed.items=(Array.isArray(parsed.items)?parsed.items:[]).filter(item=>{
+    const time=new Date(item.source_published_at||0).getTime();
+    return Number.isFinite(time)&&time>=cutoff;
+  });
+  return parsed;
+}
+
+function updateStoryIndex(index,items) {
+  const byId=new Map((index.items||[]).map(item=>[item.article_id,item]));
+  for(const item of items)byId.set(item.article_id,{
+    article_id:item.article_id,story_id:item.story_id,story_sequence:item.story_sequence,
+    relation_type:item.relation_type,relation_confidence:item.relation_confidence,title:item.title,source_published_at:item.source_published_at,
+    event_at:item.event_at,event_status:item.event_status,raw_excerpt:item.raw_excerpt,
+    source_name:item.source_name,source_url:item.source_url,story_entities:item.story_entities,
+    change_summary:item.change_summary
+  });
+  index.items=[...byId.values()].sort((a,b)=>new Date(b.source_published_at||0)-new Date(a.source_published_at||0));
+  return index;
+}
+
 function findReusablePrevious(previous,item) {
   const itemTime=new Date(item.published_at||0).getTime();
   if(!Number.isFinite(itemTime))return null;
@@ -710,7 +885,7 @@ function findReusablePrevious(previous,item) {
     if(!Number.isFinite(oldTime)||Math.abs(itemTime-oldTime)>72*3600000)return false;
     const oldUrl=normalizedUrl(old.source_url),newUrl=normalizedUrl(item.source_url);
     if(oldUrl&&newUrl&&oldUrl===newUrl&&articleContentHash(old)!==articleContentHash(item))return false;
-    if(!sameStory(old,item))return false;
+    if(!isDuplicateReport(old,item))return false;
     const oldNumbers=numericTokens(old),newNumbers=numericTokens(item);
     const sameNumbers=oldNumbers.size===newNumbers.size&&[...oldNumbers].every(number=>newNumbers.has(number));
     if(oldNumbers.size&&newNumbers.size&&!sameNumbers)return false;
@@ -766,7 +941,12 @@ function bootstrapCacheResult(cache,source,result) {
     for (const it of items.slice(0, PER_TOOL)) {
       out.push({
         tool: t.name, title: it.title, source_url: it.link || "",
-        published_at: it.date || new Date().toISOString(), raw_excerpt: it.desc || "",
+        published_at: it.date || "",
+        source_published_at:it.date||"",
+        source_updated_at:it.updatedAt||"",
+        source_date_status:it.dateSource||"unknown",
+        fetched_at:new Date().toISOString(),
+        raw_excerpt: it.desc || "",
         source_name: it.sourceName || (it.official ? "公式情報" : "Google ニュース掲載記事"),
         is_official: !!it.official,
       });
@@ -863,12 +1043,14 @@ function bootstrapCacheResult(cache,source,result) {
     .filter(entry=>entry&&entry.status==="enriched"&&isCompleteEnrichedItem(entry.result))
     .map(entry=>entry.result);
   const importanceOrder={S:4,A:3,B:2,C:1};
-  const final=dedupeStories([...newlyEnriched,...reused,...cachedEnriched,...recentPrevious])
+  const baseFinal=dedupeStories([...newlyEnriched,...reused,...cachedEnriched,...recentPrevious])
     .filter(isCompleteEnrichedItem)
     .sort((a,b)=>(importanceOrder[b.importance]||0)-(importanceOrder[a.importance]||0)||
       new Date(b.published_at||0)-new Date(a.published_at||0))
     .slice(0,AI_MAX)
     .sort((a,b)=>new Date(b.published_at||0)-new Date(a.published_at||0));
+  const storyIndex=loadStoryIndex();
+  const final=connectStoryTimeline(baseFinal,storyIndex.items);
 
   if(selectedCount&&regularResult.processed+emergencyResult.processed===0){
     console.error("NO NEW ENRICHED ARTICLES: keeping the existing complete data.json");
@@ -881,7 +1063,8 @@ function bootstrapCacheResult(cache,source,result) {
     return;
   }
 
-  fs.writeFileSync("data.json", JSON.stringify(final, null, 2));
+  writeJsonFile("data.json",final);
+  writeJsonFile(STORY_INDEX_PATH,updateStoryIndex(storyIndex,final));
   console.error("WROTE data.json with",final.length,"complete items; new",newlyEnriched.length,"reused",reused.length,"cache",cachedEnriched.length,"retained",recentPrevious.length);
 
   // GitHub Pages へ配置する直前に、同意欄をログイン・無料登録ボタンより上へ整える。
