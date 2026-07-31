@@ -68,6 +68,7 @@ jobs:
           files=()
           [ -f .ai-cache.json ] && files+=(.ai-cache.json)
           [ -f .ai-usage.json ] && files+=(.ai-usage.json)
+          [ -f .story-index.json ] && files+=(.story-index.json)
           if [ ${#files[@]} -eq 0 ]; then
             echo "No AI ledger files to persist"
             exit 0
@@ -96,7 +97,8 @@ jobs:
           const required = [
             "title", "raw_excerpt", "detail", "change_summary",
             "impact_summary", "action_suggestion", "importance",
-            "published_at", "source_url"
+            "source_url", "article_id", "story_id", "relation_type",
+            "event_status", "event_date_precision", "fetched_at"
           ];
           const demoTitles = new Set([
             "Claude Code に新しいエージェント機能とサブエージェント並列実行が追加",
@@ -125,6 +127,19 @@ jobs:
             }
             if (!Array.isArray(item.related_categories) || item.related_categories.length === 0) {
               errors.push(`${index + 1}件目: related_categories が空です`);
+            }
+            if (!Array.isArray(item.story_entities) || item.story_entities.length === 0) {
+              errors.push(`${index + 1}件目: story_entities が空です`);
+            }
+            if (!item.source_published_at && !["unknown", "updated_only"].includes(item.source_date_status)) {
+              errors.push(`${index + 1}件目: 情報元掲載日がないのに日付確認済みになっています`);
+            }
+            if (item.event_date_precision === "unknown" && item.event_at) {
+              errors.push(`${index + 1}件目: 出来事の日付精度と値が矛盾しています`);
+            }
+            if (["follow_up", "correction"].includes(item.relation_type) &&
+                (!item.previous_article_id || !item.continuation_lead || Number(item.relation_confidence) < 0.85)) {
+              errors.push(`${index + 1}件目: 続報・訂正の前回情報または確信度が不足しています`);
             }
             if (!["S", "A", "B", "C"].includes(String(item.importance || "").toUpperCase())) {
               errors.push(`${index + 1}件目: importance がS〜Cではありません`);
