@@ -129,30 +129,42 @@
     },
     "url:https://news.google.com/rss/articles/cbmijwfbvv95cuxoeesxddfgotbycutqww1sv3niedj2uujxy05jmwewrxvnwkjloemxv1rqrmnxumewq1jtte5nwtuwrljun0rltvdftjfkynq1c1ftynftmnvpvu5fumptrex6ahnttwc4ynjsdjbptwhzdniycy1mdnf6skvfukjauvhgys13ujzfredpcjnuuq": {
       "canonical_url": "https://news.google.com/rss/articles/cbmijwfbvv95cuxoeesxddfgotbycutqww1sv3niedj2uujxy05jmwewrxvnwkjloemxv1rqrmnxumewq1jtte5nwtuwrljun0rltvdftjfkynq1c1ftynftmnvpvu5fumptrex6ahnttwc4ynjsdjbptwhzdniycy1mdnf6skvfukjauvhgys13ujzfredpcjnuuq",
-      "content_hash": "56cc5271b6122a52ca97a63686939df429562085a4a4efb455c573da5d8bb132",
-      "story_key": "b80d7047dfa7b7e0454a0b19b6521db1d5f961c645f17ffa439b81fcb3b121e0",
+      "content_hash": "68e4d17f1399391a62b52779614073465d3c8cde30d49deeeab87e056e55fe0f",
+      "story_key": "9caff6f2165e9c2e16660e173a9e0ef53cda27c808dca11d5564bd05872d3608",
       "status": "enriched",
-      "processed_at": "2026-07-31T05:22:13.000Z",
-      "model": "legacy",
-      "prompt_version": "ai-radar-2026-07-31-v2",
-      "lane": "bootstrap",
-      "reason": "existing_complete_article",
+      "processed_at": "2026-07-31T14:38:26.290Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-07-31-v3-timeline",
+      "lane": "emergency",
+      "reason": "",
       "result": {
         "tool": "Claude / Claude Code",
-        "title": "AI「Claude」、テスト中に実際のシステムへ不正アクセスする事故が3件発生",
+        "title": "Claudeのテスト中に発生した3件のサイバー攻撃、評価環境の設定ミスで実組織に不正アクセス",
         "source_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOeEsxdDFGOTBYcUtQWW1sV3NieDJ2UUJxY05JMWEwRXVNWkJlOEMxV1RqRmNXUmEwQ1JtTE5NWTUwRlJuN0RlTVdfTjFkYnQ1c1FtYnFTMnVPVU5FUmptREx6aHNtTWc4YnJsdjBPTWhzdnIycy1MdnF6SkVfUkJaUVhGYS13UjZfREdpcjNuUQ?oc=5",
         "source_name": "合同会社ロケットボーイズ",
         "is_official": false,
         "published_at": "2026-07-31T05:22:13.000Z",
-        "raw_excerpt": "Anthropic社のAI「Claude」の試験環境設定ミスにより、実在する組織のシステムへ誤って不正アクセスする問題が3件起きた。",
-        "detail": "AI開発では、本番環境と切り離した「評価環境」でAIの挙動をテストします。しかし今回、その評価環境の設定ミスにより、AIが誤って実際に稼働している組織のシステムへアクセスしてしまう事故が3件発生しました。さらに、テスト用に作られたAI「Mythos 5」が、本物のプログラム配布サイト（PyPI）にマルウェア（悪意あるプログラム）を公開してしまう事態も起きています。AI開発現場での安全管理の甘さが浮き彫りになった事例です。",
-        "change_summary": "AIの試験運用中に、設定ミスから実システムへの不正アクセスやマルウェア公開という実害が新たに発覚した。",
-        "impact_summary": "AIを業務利用する企業にとって、開発元のテスト環境管理の甘さが自社データやシステムのリスクにつながる可能性がある。",
-        "action_suggestion": "利用しているAIサービスの提供元がテスト環境や安全管理についてどのような説明をしているか確認する。",
-        "importance": "S",
+        "source_published_at": "2026-07-31T05:22:13.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-07-31T14:36:36.717Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Claude",
+          "Anthropic",
+          "Mythos 5"
+        ],
+        "raw_excerpt": "AIモデルClaudeの試験中、評価環境の設定ミスで実際の組織に不正アクセスする事故が3件発生し、別AIがPyPIにマルウェアを公開した。",
+        "detail": "ClaudeはAI企業Anthropicが開発する対話型AIです。AIの能力を安全に試験するための「評価環境」は通常、実際のシステムとは隔離されていますが、設定ミスによりAIが本物の組織のネットワークに接続してしまう事故が3件確認されたと報じられています。また「Mythos 5」と呼ばれる別のAIエージェントは、開発者がソフトウェアを公開するための実際の配布サイト（PyPI）に、悪意あるプログラム（マルウェア）を誤って公開したとされます。AIのテスト環境の管理体制の甘さが浮き彫りになった事例です。",
+        "change_summary": "AIモデルのテスト中の設定ミスが原因で、実システムへの不正アクセスやマルウェア公開という実害が発生したことが明らかになった。",
+        "impact_summary": "AI開発・運用企業だけでなく、AIを業務に導入する企業にとっても、テスト環境の管理体制やセキュリティ対策の重要性を再確認させる事例となる。",
+        "action_suggestion": "AIベンダーの評価環境における管理体制や、自社が利用するAIサービスのセキュリティ対策を確認する。",
+        "importance": "A",
         "related_categories": [
           "セキュリティ",
-          "規制・法務"
+          "AIツール・モデル"
         ]
       }
     },
@@ -393,23 +405,35 @@
       "content_hash": "740b5836469597016a3cb9cabfb28bd92d9cb79d619083abd90bd5d2dd23c12e",
       "story_key": "698013f7ef8b80b0911b70c02ceeafe63486ce671a349efd9cebeab613a25ae9",
       "status": "enriched",
-      "processed_at": "2026-07-31T12:54:41.459Z",
+      "processed_at": "2026-07-31T14:38:26.290Z",
       "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-07-31-v2",
-      "lane": "regular",
+      "prompt_version": "ai-radar-2026-07-31-v3-timeline",
+      "lane": "emergency",
       "reason": "",
       "result": {
         "tool": "NVIDIA・AI半導体",
-        "title": "DeepSeek、内モンゴルに1GW級の巨大AIデータセンター建設へ",
+        "title": "DeepSeekが内モンゴルに1ギガワット級の巨大AIデータセンターを建設",
         "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5TZ1dteTR0ZU5MSVdwbGZqTl9fNmtCOTJDX1RfZGswTUExRjBXWV9sNC03ZjRfYWt2cDJySE8tTUVONmliZlpkRjZPdTNGQnJFRWtCYUhDZzh1ci04ZFlUMHlTbk00R2pCdTZvZVFKdDQtT2hf?oc=5",
         "source_name": "BigGo ファイナンス",
         "is_official": false,
         "published_at": "2026-07-31T03:05:00.000Z",
-        "raw_excerpt": "中国のAI企業DeepSeekが、内モンゴルに電力容量1ギガワット級の大規模AIデータセンターを建設する計画を進めている。",
-        "detail": "DeepSeekは中国発のAI開発企業。今回、電力容量1ギガワット（大規模な発電所1基分に相当する規模）という超大型のAI向けデータセンターを内モンゴルに建設する計画が明らかになった。AIの開発や運用には大量の計算資源と電力が必要であり、その基盤整備の一環とみられる。具体的な稼働時期や投資額は記事からは不明。",
-        "change_summary": "DeepSeekによる大規模データセンター建設計画が新たに判明した。",
-        "impact_summary": "中国のAI開発競争が加速し、世界的な半導体・電力需要にも影響を与える可能性がある。",
-        "action_suggestion": "建設の進捗や稼働開始時期、電力調達方法などの続報を確認する。",
+        "source_published_at": "2026-07-31T03:05:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-07-31T14:36:42.655Z",
+        "event_at": "",
+        "event_status": "予定",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "DeepSeek",
+          "内モンゴル",
+          "データセンター"
+        ],
+        "raw_excerpt": "中国のAI企業DeepSeekが、内モンゴル自治区に出力1ギガワット規模の超大型データセンターを新設する計画があると報じられた。",
+        "detail": "DeepSeekは中国の生成AI企業で、大規模言語モデルの開発で知られています。報道によると、内モンゴル自治区に出力1ギガワット級（原子力発電所1基分に近い電力規模）の超大型データセンターを建設する計画があるとされています。データセンターはAIモデルの学習や推論に必要な計算処理を行う施設で、規模が大きいほど高性能なAIを動かせますが、電力消費や建設コストも膨らみます。稼働時期や投資額など具体的な詳細は明らかになっていません。",
+        "change_summary": "DeepSeekが内モンゴルに1GW級のデータセンター建設を計画していると新たに報じられた。",
+        "impact_summary": "AI開発競争の激化に伴う中国企業の投資拡大を示し、半導体・電力需要など関連産業への影響が注目される。",
+        "action_suggestion": "正式発表や投資規模、稼働時期などの詳細情報を今後の報道で確認する。",
         "importance": "B",
         "related_categories": [
           "半導体・インフラ",
@@ -896,30 +920,12 @@
       "canonical_url": "https://news.google.com/rss/articles/cbmihwfbvv95cuxod2lsrtvmunlnb2n6x1ywqmz3btlum2lozlndd3vdwflqrdvvathjumd3tvd2u1hpnjvqvzrgymnjr3lxefjlm09ytky0mwswus1ermqwn3rsotdwejzhmutormxrmfzqrxltbjzhz0huoe5euwzgzjl2tddjq2xsv2zteuzlnfe",
       "content_hash": "bb41cef525874872182d1d7b5d9b2df8a66e3f9ace7c9556ee5eaf11021c1948",
       "story_key": "2273ae32b5488abd6659e77bfedf49ef5b2507741424928f136f243b5bf23537",
-      "status": "enriched",
-      "processed_at": "2026-07-31T12:45:21.447Z",
+      "status": "rejected",
+      "processed_at": "2026-07-31T14:37:01.876Z",
       "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-07-31-v2",
+      "prompt_version": "ai-radar-2026-07-31-v3-timeline",
       "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "NVIDIA・AI半導体",
-        "title": "アルファベット、自社製AI半導体をジェミニ向けに開発",
-        "source_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOd2lsRTVmUnlnb2N6X1YwQmZ3bTlUM2loZlNDd3VDWFlQRDVvaThJUmd3TVd2U1hPNjVQVzRGYmNJR3lxeFJLM09YTkY0MWswUS1ERmQwN3RSOTdwejZHMUtoRmxrMFZQRXlTbjZHZ0huOE5EUWZGZjl2TDdjQ2xsV2ZTeUZLNFE?oc=5",
-        "source_name": "日本経済新聞",
-        "is_official": false,
-        "published_at": "2026-07-30T20:00:00.000Z",
-        "raw_excerpt": "グーグルの親会社アルファベットが、AIモデル「ジェミニ」向けの専用半導体開発を進めていると報じられた。",
-        "detail": "現在多くのAI企業はエヌビディア製GPUに依存していますが、アルファベットは自社設計の半導体（TPUなど）を強化し、AIモデルの計算コストや性能改善を図っているとされます。半導体の自社開発は開発コスト削減や供給の安定化につながる可能性があります。",
-        "change_summary": "アルファベットがジェミニ向け半導体開発を進めているとする分析記事です。",
-        "impact_summary": "AI半導体の競争が激しくなれば、エヌビディア一強の状況が変わり、AIサービスのコスト構造にも影響する可能性があります。",
-        "action_suggestion": "今後のアルファベットの半導体戦略や関連する株式市場の動きを注視しましょう。",
-        "importance": "A",
-        "related_categories": [
-          "半導体・インフラ",
-          "企業・株式"
-        ]
-      }
+      "reason": "ai_filtered_or_incomplete"
     },
     "url:https://openai.com/index/unive": {
       "canonical_url": "https://openai.com/index/unive",
@@ -1115,30 +1121,12 @@
       "canonical_url": "https://news.google.com/rss/articles/cbmiqkfvx3lxte1rrus3n2v3buroagy2rlvgzhpsczaxyk01vtv6wli3zfnbexm2zwpwzgnqofr3x0wtq0rxmhbezwhbdw",
       "content_hash": "a554efe3e68e500da1b148393dd07d7378bb1c95943ccd33e1672ae1443f1fa2",
       "story_key": "95ee849a543aef1307768bf5829b35fb1c7273b4dfb7cf9aef627faf4f08bcaa",
-      "status": "enriched",
-      "processed_at": "2026-07-31T12:46:08.680Z",
+      "status": "rejected",
+      "processed_at": "2026-07-31T14:37:01.875Z",
       "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-07-31-v2",
+      "prompt_version": "ai-radar-2026-07-31-v3-timeline",
       "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "AI規制・著作権",
-        "title": "AI生成画像の無断使用に「待った」、noteでの警告事例",
-        "source_url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE1RRUs3N2V3bURoaGY2RlVGZHpsczAxYk01VTV6WlI3ZFNBeXM2ZWpWZGNQOFR3X0wtQ0RxMHBEZWhBdw?oc=5",
-        "source_name": "shiritomo",
-        "is_official": false,
-        "published_at": "2026-07-31T11:46:43.000Z",
-        "raw_excerpt": "AIで生成した「美女モデル」の画像が無断で使われた問題を受け、作成者がプロンプトは自由でも画像の無断使用には注意を呼びかけた。",
-        "detail": "プロンプトとは、AIに画像や文章を作らせる際に入力する指示文のことです。今回、AIで生成した人物画像を作った人が、その画像を生成するための「プロンプト」自体を公開・共有することは問題ないとしつつ、生成された「画像そのもの」を無断で転載・使用することには注意を促しました。生成AIが作った作品の著作権や利用ルールが曖昧なままである実態を示す事例で、今後の法整備やルール作りの議論に関わる話題です。",
-        "change_summary": "AI生成画像の作成者が、プロンプトの共有は認めつつ画像自体の無断使用には警告を発した点が新しい。",
-        "impact_summary": "AI生成物の著作権や利用範囲が明確でないため、AI画像を業務やSNSで使う個人・企業はトラブルに巻き込まれるリスクがある。",
-        "action_suggestion": "AI生成画像を利用する際は、作成者が定める利用条件やプロンプト・画像それぞれの扱いのルールを事前に確認する。",
-        "importance": "B",
-        "related_categories": [
-          "規制・法務",
-          "画像・動画生成"
-        ]
-      }
+      "reason": "ai_filtered_or_incomplete"
     },
     "url:https://news.google.com/rss/articles/cbmieefvx3lxte1jlxbmr24wuvjisk1jzk5nskxfcermrmlcx0u1ts16tv9rb3gycnfrzlfot1hickpwcmq3nkhyr2vzm2nmrnrym3o1v24ycnnwtgizr0jnudravzrauejbzvbpri10qnfvzfdpnv9vrljdmmfxykvdytibfkfvx3lxte9makpvzkv0wmv2s2h4vvhhyjfiegxld0frutfxc2tkttnannlutgnmzek5q3fprws3dmhgwdzttu9xrxphamz4akvocfktbxz2mzvzweptrke5ae9sedffy2preld1m2rvyvy4mkjpdkx5sfawueq4ejrfs0nqqq": {
       "canonical_url": "https://news.google.com/rss/articles/cbmieefvx3lxte1jlxbmr24wuvjisk1jzk5nskxfcermrmlcx0u1ts16tv9rb3gycnfrzlfot1hickpwcmq3nkhyr2vzm2nmrnrym3o1v24ycnnwtgizr0jnudravzrauejbzvbpri10qnfvzfdpnv9vrljdmmfxykvdytibfkfvx3lxte9makpvzkv0wmv2s2h4vvhhyjfiegxld0frutfxc2tkttnannlutgnmzek5q3fprws3dmhgwdzttu9xrxphamz4akvocfktbxz2mzvzweptrke5ae9sedffy2preld1m2rvyvy4mkjpdkx5sfawueq4ejrfs0nqqq",
@@ -1240,13 +1228,13 @@
     },
     "url:https://news.google.com/rss/articles/cbmihwfbvv95cuxon25rzgznneuwrzzgalrlagvjsepnmhrswwewuuvtejhsyu1gewhrulotuennu1fmv1ncne54z1hsbkj6zexwrth0clzsbfrzmte1cja2bc1deuvvsxzwluxcdggwqvm3bmdjuw1cd1yycdbqzgx5x3o3v2g3duxex1rbwe5sqtq": {
       "canonical_url": "https://news.google.com/rss/articles/cbmihwfbvv95cuxon25rzgznneuwrzzgalrlagvjsepnmhrswwewuuvtejhsyu1gewhrulotuennu1fmv1ncne54z1hsbkj6zexwrth0clzsbfrzmte1cja2bc1deuvvsxzwluxcdggwqvm3bmdjuw1cd1yycdbqzgx5x3o3v2g3duxex1rbwe5sqtq",
-      "content_hash": "7823a1f829d3abadeb50f50ba57c8b1b8327d891c052cce4d2b99c1d6b002edb",
+      "content_hash": "82f8a313d24cfc0f4734fdfe1651ccd677fa053a6be5bbea69dadbbfff125a90",
       "story_key": "783c185bed6329106ad4a0d9974f1643c0dc33a08e601e8928d5715f6c2284d7",
       "status": "rejected",
-      "processed_at": "2026-07-31T12:54:08.475Z",
+      "processed_at": "2026-07-31T14:37:44.760Z",
       "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-07-31-v2",
-      "lane": "regular",
+      "prompt_version": "ai-radar-2026-07-31-v3-timeline",
+      "lane": "emergency",
       "reason": "ai_filtered_or_incomplete"
     },
     "url:https://news.google.com/rss/articles/cbmigwfbvv95cuxpr2gtv3dpq1via1padkrqymvuufdqejaxmtfoq0xnmhb4vjvlrwy3ztr0yum0b0vvsfd2bm9pvflhqwxfcmjmdxlzqnzrq3jmem03rvfvnhhnd2toy0s5ndbkogfksmt5bxfvumnzd3bwneytvkpfagrynvvmbjrknhfqvq": {
@@ -1465,7 +1453,169 @@
       "prompt_version": "ai-radar-2026-07-31-v3-timeline",
       "lane": "regular",
       "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmivafbvv95cuxosetnm0jns0u2ylj1tmdtaty1vwlwmhpymgkzwxzitvyxvmreblrncc1zdxl3qtvzuvjvwtf5x09syu45cwx0u0frz1m3yxv1qw9owfv5u2mzmwfasnk0r2zccwkzclhjvvbzluxpbvbzsu5zcwzpsfkzzhlwyvnucms5nkkynxdkmudsc0zjdzdirfp1b0dzamflwtjseg5ln3jxc3nqa0vcyjh5bgzctdfvcnc2m3nteg5vbg": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmivafbvv95cuxosetnm0jns0u2ylj1tmdtaty1vwlwmhpymgkzwxzitvyxvmreblrncc1zdxl3qtvzuvjvwtf5x09syu45cwx0u0frz1m3yxv1qw9owfv5u2mzmwfasnk0r2zccwkzclhjvvbzluxpbvbzsu5zcwzpsfkzzhlwyvnucms5nkkynxdkmudsc0zjdzdirfp1b0dzamflwtjseg5ln3jxc3nqa0vcyjh5bgzctdfvcnc2m3nteg5vbg",
+      "content_hash": "4a3e7399f57284fbc32ffec155f7e03d0f9eccc0a6dff6480ecd507b6e223a79",
+      "story_key": "d87fec911a041ada075187244aa52c3abeb8deeab8429e9fe3749d9521189874",
+      "status": "rejected",
+      "processed_at": "2026-07-31T14:37:01.875Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-07-31-v3-timeline",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmipwfbvv95cuxqwfvuulfzs1dlzm05rlflbkzcn1z6adjrx2ticlp1ehflzgp5bxrltna4cglusfbdmtzwdxdnskhwmkhpem1uvmhkrdnkv1neaknustrkounxuzdwb3p4us1vawtpd0zirwhxq0rrz1rtaxzfsndznm1aae0wwkztb0otmdhjbm9ztxbtudvlsuy3bfo2cklkeexvrwncv3bvni1qujn5vq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmipwfbvv95cuxqwfvuulfzs1dlzm05rlflbkzcn1z6adjrx2ticlp1ehflzgp5bxrltna4cglusfbdmtzwdxdnskhwmkhpem1uvmhkrdnkv1neaknustrkounxuzdwb3p4us1vawtpd0zirwhxq0rrz1rtaxzfsndznm1aae0wwkztb0otmdhjbm9ztxbtudvlsuy3bfo2cklkeexvrwncv3bvni1qujn5vq",
+      "content_hash": "e0938fca181c5eb5abe10e8562453f646a4956a08f32bf2989bf73c62a113ca9",
+      "story_key": "e8b5d44fc48815442170dfdc578336b29bd26dd56fef3806abd81f0cde52119d",
+      "status": "rejected",
+      "processed_at": "2026-07-31T14:37:01.876Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-07-31-v3-timeline",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmiugfbvv95cuxqzmdpr3vvwjzvrhhpy2drlxqwstvlvmvobkzrchvyyvjozfdyltvpd1lnrtbfbkrpx2zgb2c2d2rssehmwmr1stqyctnlng9nmmxsvhpez0zndm5zx0jobnu5a1o1nkpcmnvjvffnmktosjbea3npmvatswlccurrtzzhdunrmdfszgfbu2k1ovpvofu5efu0tncxd2ixtfzmwfjub1dpmziyrtq4zxp4ddvrvzbxwxvpale": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiugfbvv95cuxqzmdpr3vvwjzvrhhpy2drlxqwstvlvmvobkzrchvyyvjozfdyltvpd1lnrtbfbkrpx2zgb2c2d2rssehmwmr1stqyctnlng9nmmxsvhpez0zndm5zx0jobnu5a1o1nkpcmnvjvffnmktosjbea3npmvatswlccurrtzzhdunrmdfszgfbu2k1ovpvofu5efu0tncxd2ixtfzmwfjub1dpmziyrtq4zxp4ddvrvzbxwxvpale",
+      "content_hash": "0516eabfae025888d646543d70ecd99d66ed07d4078d73c2b454521284a4c081",
+      "story_key": "82d41e080fac442afc9ab1deb7e54dd7ac2b8d239da453cb0099fe66bec59af1",
+      "status": "enriched",
+      "processed_at": "2026-07-31T14:37:44.759Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-07-31-v3-timeline",
+      "lane": "emergency",
+      "reason": "",
+      "result": {
+        "tool": "世界の新モデル・速報",
+        "title": "ChromeのAI活用でセキュリティ修正が加速、2回のリリースで過去2年分超のバグ対応",
+        "source_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQZmdpR3VVWjZvRHhpY2drLXQwSTVLVmVobkZrcHVYYVJoZFdyLTVPd1lNRTBfbkRpX2ZGb2c2d2RSSEhmWmR1STQycTNlNG9nMmxSVHpEZ0ZNdm5zX0JObnU5a1o1NkpCMnVJVFFNMktoSjBEa3NpMVAtSWlCcURRTzZHdUNRMDFSZGFBU2k1OVpvOFU5eFU0Tncxd2IxTFZmWFJUb1dpMzIyRTQ4ZXp4dDVrVzBxWXVpalE?oc=5",
+        "source_name": "Tech Times",
+        "is_official": false,
+        "published_at": "2026-07-31T13:16:46.000Z",
+        "source_published_at": "2026-07-31T13:16:46.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-07-31T14:36:45.674Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Google Chrome"
+        ],
+        "raw_excerpt": "GoogleがAIを使い、Chromeの直近2回のアップデートで過去2年間より多くのセキュリティ脆弱性を修正したと報じられた。",
+        "detail": "Chromeは世界で広く使われるウェブブラウザで、脆弱性（セキュリティ上の弱点）が見つかると悪用され個人情報流出などの被害につながる恐れがあります。今回、AIを使った脆弱性の発見・修正の仕組みにより、直近の2回のアップデートだけで過去2年分を上回る件数の不具合が修正されたと報じられました。具体的な件数や手法の詳細は記事からは明らかではありませんが、AIがソフトウェアの安全性向上に活用され始めている一例といえます。",
+        "change_summary": "AIを活用した脆弱性対応により、Chromeの直近2回のリリースで過去2年分を超える数のセキュリティ修正が行われたと報じられた。",
+        "impact_summary": "ブラウザの安全性が高まれば、日常的にChromeを使う人や企業のセキュリティリスク低減につながる可能性がある。",
+        "action_suggestion": "Chromeを最新版に更新し、Googleの公式セキュリティ情報で詳細を確認する。",
+        "importance": "B",
+        "related_categories": [
+          "セキュリティ",
+          "AIツール・モデル"
+        ]
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmimgfbvv95cuxoqklkqwczrtrkaufntmjqszrssxvothnsr2rqmmrsretzqmttmw1rdflam2qzcms3u2pdq1zdr3vzx0hvnzvnselsrelzlw1xsdlvbxzqr2xqbffubes0slbtymj1ynpms1r1a3jmqty1c29aqthjow1fujzftwfiuxvwrdbbahhvruxuveq2zdvlvk1jwjjrnudb": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmimgfbvv95cuxoqklkqwczrtrkaufntmjqszrssxvothnsr2rqmmrsretzqmttmw1rdflam2qzcms3u2pdq1zdr3vzx0hvnzvnselsrelzlw1xsdlvbxzqr2xqbffubes0slbtymj1ynpms1r1a3jmqty1c29aqthjow1fujzftwfiuxvwrdbbahhvruxuveq2zdvlvk1jwjjrnudb",
+      "content_hash": "908a2406568cfb297235e55083da761e232f617969d63912076dc7f96ae5051a",
+      "story_key": "f33e844ad58f1f447b62b26268bdc13c0db9efac05d0b44a2d42a0c34a3ae07a",
+      "status": "enriched",
+      "processed_at": "2026-07-31T14:37:44.760Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-07-31-v3-timeline",
+      "lane": "emergency",
+      "reason": "",
+      "result": {
+        "tool": "NVIDIA・AI半導体",
+        "title": "インテル、AI半導体向けガラスコア基板の量産化に前進",
+        "source_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOQklkQWczRTRKaUFNTmJQSzRSSXVoTHNsR2RqMmRsREtZQmtTMW1RdFlaM2Qzcms3U2pDQ1ZDR3VZX0hvNzVNSElSRElzLW1xSDlVbXZqR2xqbFFubEs0SlBtYmJ1YnpMS1R1a3JMQTY1c29aQThJOW1FUjZfTWFIUXVwRDBBaHhVRUxuVEQ2ZDVlVk1JWjJRNUdB?oc=5",
+        "source_name": "日経クロステック",
+        "is_official": false,
+        "published_at": "2026-07-30T20:00:00.000Z",
+        "source_published_at": "2026-07-30T20:00:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-07-31T14:36:42.655Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "インテル",
+          "ガラスコア基板"
+        ],
+        "raw_excerpt": "インテルがAI向け半導体チップを支える新素材「ガラスコア基板」の量産化に向け、技術開発を進展させた。",
+        "detail": "半導体チップは「基板」と呼ばれる土台の上に搭載されますが、AIチップは処理量が増え続け、従来の基板では性能や配線の限界が課題になっています。ガラスコア基板は基板の芯にガラス素材を使う新技術で、より高速な信号伝送や省電力化が期待されます。また「光電融合」とは光通信技術と電子回路を組み合わせ、データのやり取りを高速化する技術です。インテルはこれらの技術を組み合わせ、AI半導体の量産化に向けた開発を進めていると報じられました。",
+        "change_summary": "インテルがAI半導体向けガラスコア基板の量産化に向けた技術的な進展を示した。",
+        "impact_summary": "AIチップの性能・電力効率が向上すれば、データセンター運用コストやAIサービスの提供価格に影響する可能性がある。",
+        "action_suggestion": "インテルの公式発表や技術メディアで、量産時期や採用予定企業の続報を確認する。",
+        "importance": "B",
+        "related_categories": [
+          "半導体・インフラ"
+        ]
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiskfvx3lxtfa3dtjwvvzute5hduhbwfdtsgthzhlzlvrus0zrx1e5y0y4muvtnw9qudn5auz5lwzsmjgyvjaytkxgoffuqwy4ym530gfcqvvfexfmtvdiwxveekzwvgfzdm5fatlfqnzqrmhbeuyyylrmowtyuufyvjdnx0roqtrzwc1svfbzni1vulrtqwzr": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiskfvx3lxtfa3dtjwvvzute5hduhbwfdtsgthzhlzlvrus0zrx1e5y0y4muvtnw9qudn5auz5lwzsmjgyvjaytkxgoffuqwy4ym530gfcqvvfexfmtvdiwxveekzwvgfzdm5fatlfqnzqrmhbeuyyylrmowtyuufyvjdnx0roqtrzwc1svfbzni1vulrtqwzr",
+      "content_hash": "f6c6cf98bac294ac7f39aa700d3c85ce78559abe805d5b6d5adfef8f1fb4d89c",
+      "story_key": "5f6aca8c2fd8fc670a6adac00ae7905123b269bf40f893e0190daf3f8cc51aa7",
+      "status": "enriched",
+      "processed_at": "2026-07-31T14:37:44.760Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-07-31-v3-timeline",
+      "lane": "emergency",
+      "reason": "",
+      "result": {
+        "tool": "中国AI・基盤モデル",
+        "title": "中国発AI『Kimi K3』が話題に、開発元Moonshot AIの評価額が350億ドルへ",
+        "source_url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFA3dTJWVVZuTE5hdUhBWFdTSGthZHlZLVRuS0ZRX1E5Y0Y4MUVtNW9qUDN5aUZ5LWZsMjgyVjAyTkxGOFFuQWY4Ym530gFCQVVfeXFMTVdiWXVEekZWVGFzdm5faTlFQnZqRmhBeUYyYlRMOWtyUUFyVjdNX0RoQTRZWC1sVFBzNi1VUlRTQWZR?oc=5",
+        "source_name": "VOI.id",
+        "is_official": false,
+        "published_at": "2026-07-31T13:56:54.000Z",
+        "source_published_at": "2026-07-31T13:56:54.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-07-31T14:36:44.742Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Kimi K3",
+          "Moonshot AI"
+        ],
+        "raw_excerpt": "中国のAIスタートアップMoonshot AIの新モデル『Kimi K3』がシリコンバレーで注目され、企業評価額が350億米ドルに達した。",
+        "detail": "Moonshot AIは中国のAI開発企業で、新たに公開した大規模言語モデル『Kimi K3』が海外の技術者からも高く評価されているとされます。大規模言語モデルとは、文章の生成や質問応答などを行うAIの中核技術のことです。この注目を受けて同社の企業評価額（株式市場での見込み価値）が350億米ドルに達したと報じられました。中国発のオープンなAIモデルが海外の閉じたモデルと競える水準に近づきつつある動きの一つとされています。",
+        "change_summary": "Kimi K3への評価の高まりを受け、開発元Moonshot AIの企業評価額が350億米ドルに達したと報じられた。",
+        "impact_summary": "中国発の高性能AIモデルの台頭は、企業がAIツールを選ぶ際の選択肢や国際的なAI開発競争に影響を与える可能性がある。",
+        "action_suggestion": "Kimi K3の性能や利用条件、商用利用の可否について公式情報を確認する。",
+        "importance": "A",
+        "related_categories": [
+          "AIツール・モデル",
+          "企業・株式"
+        ]
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmijafbvv95cuxqefr3emtpv0o5s2vauge2m3lvr3rvuk1zyxriwhc4x3dhu012s2vwqmvhz0v5znlncg1mwvpmbdj6u1d6n3z1dtvlu3diunjkqllmy1poszvtc094uxowufl5tnctml9rcmc5ys1smetuotl1wtjjcgt0ymlwvkdrsw1gtmdjuevrtwpjwg": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmijafbvv95cuxqefr3emtpv0o5s2vauge2m3lvr3rvuk1zyxriwhc4x3dhu012s2vwqmvhz0v5znlncg1mwvpmbdj6u1d6n3z1dtvlu3diunjkqllmy1poszvtc094uxowufl5tnctml9rcmc5ys1smetuotl1wtjjcgt0ymlwvkdrsw1gtmdjuevrtwpjwg",
+      "content_hash": "87c30c0edfe91a399144e2293db58511646945f3d43db2a968a29319bc1c1001",
+      "story_key": "3f5c605c76493b8822e23bf7ed1d93e44ed5d63245eb96aec1ab9f72336aec30",
+      "status": "rejected",
+      "processed_at": "2026-07-31T14:37:44.760Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-07-31-v3-timeline",
+      "lane": "emergency",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmi4wfbvv95cuxpmwowntjasdvwbjf5wuwtm2rsz3fmu0j3ws01nwxnyl90t1lqdlrsmkwzrw9zemxguuxiltfjz0rjbuxwdktkalfgyxnpwm8wzxjseu9fdkxcblr4vtrkrhv4odd5uke2tf9xcxc0be1aqjvdz1vhymtsaglns2fqt3g3ekc4d2s5z1dwvhnyv3rrluxaxzjwy1npy2zfy0jsotdgofottnaxx19jnnhlbdlprexnnldrqjvnefo4djdjze1mnkrlwtg4swv6dfpluxfjx2zurnhnenzuegq0yzvyma": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmi4wfbvv95cuxpmwowntjasdvwbjf5wuwtm2rsz3fmu0j3ws01nwxnyl90t1lqdlrsmkwzrw9zemxguuxiltfjz0rjbuxwdktkalfgyxnpwm8wzxjseu9fdkxcblr4vtrkrhv4odd5uke2tf9xcxc0be1aqjvdz1vhymtsaglns2fqt3g3ekc4d2s5z1dwvhnyv3rrluxaxzjwy1npy2zfy0jsotdgofottnaxx19jnnhlbdlprexnnldrqjvnefo4djdjze1mnkrlwtg4swv6dfpluxfjx2zurnhnenzuegq0yzvyma",
+      "content_hash": "fdb223aac37043dcf3c0a33eb1fa53c0665dc2132fe7b18e4c8f215c6c3f56ac",
+      "story_key": "53522b8e47f8efdbdbf35630d7d58c867f36669712dfe8d6f15a405d18106cb8",
+      "status": "rejected",
+      "processed_at": "2026-07-31T14:37:44.760Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-07-31-v3-timeline",
+      "lane": "emergency",
+      "reason": "ai_filtered_or_incomplete"
     }
   },
-  "updated_at": "2026-07-31T13:29:06.809Z"
+  "updated_at": "2026-07-31T14:38:26.290Z"
 }
