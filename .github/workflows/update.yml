@@ -8,19 +8,14 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
-  group: "pages"
+  group: "update-ai-feeds"
   cancel-in-progress: false
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: get repo
         uses: actions/checkout@v4
@@ -176,21 +171,3 @@ jobs:
           done
           echo "Validated public data could not be persisted"
           exit 1
-
-      - name: prepare site
-        run: |
-          mkdir -p _site
-          cp index.html data.json manifest.webmanifest sw.js _site/
-          if [ -d assets ]; then cp -R assets _site/; fi
-
-      - name: configure pages
-        uses: actions/configure-pages@v5
-
-      - name: upload site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: "_site"
-
-      - name: deploy to Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
