@@ -33,11 +33,65 @@ jobs:
       - name: test story deduplication
         run: node scripts/test-dedupe.mjs
 
+      - name: test AI cache, protected slots, and reuse rules
+        run: node scripts/test-ai-operations.mjs
+
+      - name: validate optional USD budget settings
+        env:
+          AI_DAILY_BUDGET_USD: ${{ vars.AI_DAILY_BUDGET_USD }}
+          AI_INPUT_USD_PER_MTOK: ${{ vars.AI_INPUT_USD_PER_MTOK }}
+          AI_OUTPUT_USD_PER_MTOK: ${{ vars.AI_OUTPUT_USD_PER_MTOK }}
+          AI_CACHE_WRITE_USD_PER_MTOK: ${{ vars.AI_CACHE_WRITE_USD_PER_MTOK }}
+          AI_CACHE_READ_USD_PER_MTOK: ${{ vars.AI_CACHE_READ_USD_PER_MTOK }}
+        run: |
+          node - <<'NODE'
+          const budget = Number(process.env.AI_DAILY_BUDGET_USD || 0);
+          if (budget < 0 || !Number.isFinite(budget)) throw new Error("AI_DAILY_BUDGET_USD must be a non-negative number");
+          if (budget > 0) {
+            for (const key of ["AI_INPUT_USD_PER_MTOK", "AI_OUTPUT_USD_PER_MTOK", "AI_CACHE_WRITE_USD_PER_MTOK", "AI_CACHE_READ_USD_PER_MTOK"]) {
+              const value = Number(process.env[key]);
+              if (!(value > 0)) throw new Error(`${key} must be a positive number when the USD budget is enabled`);
+            }
+          }
+          console.log(budget > 0 ? `USD budget enabled: $${budget}/day` : "USD budget disabled; hard article caps remain enabled");
+          NODE
+
       - name: build data.json
         run: node update.js
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_MODEL: claude-sonnet-5
+          AI_DAILY_BUDGET_USD: ${{ vars.AI_DAILY_BUDGET_USD }}
+          AI_INPUT_USD_PER_MTOK: ${{ vars.AI_INPUT_USD_PER_MTOK }}
+          AI_OUTPUT_USD_PER_MTOK: ${{ vars.AI_OUTPUT_USD_PER_MTOK }}
+          AI_CACHE_WRITE_USD_PER_MTOK: ${{ vars.AI_CACHE_WRITE_USD_PER_MTOK }}
+          AI_CACHE_READ_USD_PER_MTOK: ${{ vars.AI_CACHE_READ_USD_PER_MTOK }}
+
+      - name: persist charged AI operations ledger
+        if: always()
+        run: |
+          files=()
+          [ -f .ai-cache.json ] && files+=(.ai-cache.json)
+          [ -f .ai-usage.json ] && files+=(.ai-usage.json)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No AI ledger files to persist"
+            exit 0
+          fi
+          git config user.name "ai-radar-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -- "${files[@]}"
+          if git diff --staged --quiet; then
+            echo "AI ledger is already current"
+            exit 0
+          fi
+          git commit -m "record AI processing usage"
+          for attempt in 1 2 3; do
+            if git push; then exit 0; fi
+            echo "Ledger push failed (attempt ${attempt}); rebasing before retry"
+            git pull --rebase --autostash origin main
+          done
+          echo "AI ledger could not be persisted"
+          exit 1
 
       - name: validate published articles
         run: |
@@ -64,6 +118,9 @@ jobs:
           const errors = [];
           if (!Array.isArray(items) || items.length < 8) {
             errors.push(`記事数が不足しています: ${Array.isArray(items) ? items.length : "not-array"}`);
+          }
+          if (Array.isArray(items) && items.length > 60) {
+            errors.push(`公開上限60件を超えています: ${items.length}`);
           }
           (Array.isArray(items) ? items : []).forEach((item, index) => {
             for (const key of required) {
@@ -102,6 +159,24 @@ jobs:
           console.log(`検証OK: ${items.length}件すべてに要約・解説・分類があります`);
           NODE
 
+      - name: persist validated public data
+        run: |
+          git config user.name "ai-radar-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data.json index.html
+          if git diff --staged --quiet; then
+            echo "Published data is already current"
+            exit 0
+          fi
+          git commit -m "update validated AI news"
+          for attempt in 1 2 3; do
+            if git push; then exit 0; fi
+            echo "Public data push failed (attempt ${attempt}); rebasing before retry"
+            git pull --rebase --autostash origin main
+          done
+          echo "Validated public data could not be persisted"
+          exit 1
+
       - name: prepare site
         run: |
           mkdir -p _site
@@ -119,10 +194,3 @@ jobs:
       - name: deploy to Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-      - name: commit backup
-        run: |
-          git config user.name "ai-radar-bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add data.json index.html
-          git diff --staged --quiet || (git commit -m "update data.json" && git push) || echo "commit skipped"
