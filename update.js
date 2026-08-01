@@ -100,7 +100,7 @@ const ARTICLE_CONTEXT_LIMIT = 2400;
 const AI_CACHE_PATH = ".ai-cache.json";
 const AI_USAGE_PATH = ".ai-usage.json";
 const STORY_INDEX_PATH = ".story-index.json";
-const PROMPT_VERSION = "ai-radar-2026-07-31-v3-timeline";
+const PROMPT_VERSION = "ai-radar-2026-08-01-v5-relative-event-dates";
 const REJECTED_TTL_MS = 7 * 86400000;
 const RETRY_TTL_MS = 6 * 3600000;
 const ENRICHED_TTL_MS = 31 * 86400000;
@@ -337,8 +337,9 @@ function isCompleteEnrichedItem(item) {
 function normalizeEventDate(value) {
   const raw=String(value||"").trim();
   if(!/^\d{4}-\d{2}-\d{2}$/.test(raw))return "";
-  const time=Date.parse(raw+"T00:00:00Z");
-  return Number.isFinite(time)?raw:"";
+  const [year,month,day]=raw.split("-").map(Number);
+  const date=new Date(Date.UTC(year,month-1,day));
+  return date.getUTCFullYear()===year&&date.getUTCMonth()===month-1&&date.getUTCDate()===day?raw:"";
 }
 function normalizeEventStatus(value) {
   const allowed=new Set(["発表済み","開始済み","予定","継続中"]);
@@ -354,17 +355,82 @@ function cleanDisplayTitle(title, sourceName) {
   }
   return value.replace(/(?:\.\.\.|…|(?:\.\.)+)\s*$/,"").trim();
 }
+function rawDateStatus(value) {
+  const raw=String(value||"").trim();
+  if(!raw)return "unknown";
+  return /^\d{4}[-/.]\d{1,2}[-/.]\d{1,2}$/.test(raw)||/^\d{4}年\d{1,2}月\d{1,2}日$/.test(raw)
+    ?"date_only":"published";
+}
+function explicitEventDateCandidates(text, referenceDate="") {
+  const value=String(text||"");
+  const matches=[];
+  const referenceTime=new Date(referenceDate||"").getTime();
+  const reference=Number.isFinite(referenceTime)?new Date(referenceTime):null;
+  const patterns=[
+    /\b(20\d{2})[-/.](\d{1,2})[-/.](\d{1,2})\b/g,
+    /(20\d{2})年(\d{1,2})月(\d{1,2})日/g
+  ];
+  const eventWords=/(発表|開始|公開|施行|発生|発売|提供|導入|締結|更新|予定|announc|launch|release|effective|occur|available)/i;
+  const publicationWords=/(掲載日|投稿日|最終更新|published\s*(?:on|at)?|updated\s*(?:on|at)?)/i;
+  const addCandidate=(date,matchIndex,matchLength,kind="explicit")=>{
+    if(!date)return;
+    const context=value.slice(Math.max(0,matchIndex-90),Math.min(value.length,matchIndex+matchLength+90)).replace(/\s+/g," ").trim();
+    const immediate=value.slice(Math.max(0,matchIndex-28),Math.min(value.length,matchIndex+matchLength+2));
+    if(!eventWords.test(context)||publicationWords.test(immediate))return;
+    matches.push({date,context,kind});
+  };
+  for(const pattern of patterns){
+    let match;
+    while((match=pattern.exec(value))){
+      const date=normalizeEventDate(`${match[1]}-${String(match[2]).padStart(2,"0")}-${String(match[3]).padStart(2,"0")}`);
+      addCandidate(date,match.index,match[0].length);
+    }
+  }
+  if(reference){
+    const year=reference.getUTCFullYear();
+    const yearlessPatterns=[
+      {re:/(?<![\d年])(\d{1,2})月(\d{1,2})日/g,month:1,day:2},
+      {re:/\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})(?:st|nd|rd|th)?\b/gi,english:true}
+    ];
+    const monthNames={january:1,february:2,march:3,april:4,may:5,june:6,july:7,august:8,september:9,october:10,november:11,december:12};
+    for(const spec of yearlessPatterns){
+      let match;
+      while((match=spec.re.exec(value))){
+        const month=spec.english?monthNames[String(match[1]).toLowerCase()]:Number(match[spec.month]);
+        const day=Number(match[spec.english?2:spec.day]);
+        const date=normalizeEventDate(`${year}-${String(month).padStart(2,"0")}-${String(day).padStart(2,"0")}`);
+        addCandidate(date,match.index,match[0].length,"year_inferred_from_publication");
+      }
+    }
+    const relativePatterns=[
+      {re:/(?:本日|今日|同日|today)/gi,days:0},
+      {re:/(?:昨日|前日|yesterday)/gi,days:-1}
+    ];
+    for(const spec of relativePatterns){
+      let match;
+      while((match=spec.re.exec(value))){
+        const dateValue=new Date(Date.UTC(reference.getUTCFullYear(),reference.getUTCMonth(),reference.getUTCDate()+spec.days));
+        addCandidate(dateValue.toISOString().slice(0,10),match.index,match[0].length,"relative_to_publication");
+      }
+    }
+  }
+  return [...new Map(matches.map(candidate=>[candidate.date+"|"+candidate.context,candidate])).values()].slice(0,5);
+}
 async function fetchArticleContext(item) {
   const controller=new AbortController();
   const timeout=setTimeout(()=>controller.abort(),7000);
+  const fallback=()=>({
+    text:item.raw_excerpt||"",source_published_at:"",source_updated_at:"",source_date_status:"unknown",
+    event_date_candidates:explicitEventDateCandidates(item.raw_excerpt||"",item.source_published_at||item.published_at||"")
+  });
   try{
     const res=await fetch(item.source_url,{redirect:"follow",signal:controller.signal,headers:{
       "User-Agent":"Mozilla/5.0 (compatible; AI-Radar/1.0; +https://reiki-ai-apps.github.io/AI-/)",
       "Accept":"text/html,application/xhtml+xml"
     }});
-    if(!res.ok)return item.raw_excerpt||"";
+    if(!res.ok)return fallback();
     const type=String(res.headers.get("content-type")||"");
-    if(!/html|xml|text/i.test(type))return item.raw_excerpt||"";
+    if(!/html|xml|text/i.test(type))return fallback();
     const html=(await res.text()).slice(0,1_500_000);
     const meta=(name)=>{
       const escName=name.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
@@ -377,13 +443,26 @@ async function fetchArticleContext(item) {
     };
     const paragraphs=[...html.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
       .map(m=>stripTags(m[1])).filter(t=>t.length>=45).slice(0,10);
+    const jsonDate=(field)=>{
+      const match=html.match(new RegExp(`"${field}"\\s*:\\s*"([^"]+)"`,"i"));
+      return match?match[1]:"";
+    };
+    const publishedRaw=meta("article:published_time")||meta("datePublished")||meta("date")||jsonDate("datePublished");
+    const updatedRaw=meta("article:modified_time")||meta("dateModified")||jsonDate("dateModified");
     const context=[
       meta("og:description"),meta("description"),meta("twitter:description"),
       ...paragraphs
     ].filter(Boolean).join("\n");
-    return context.slice(0,ARTICLE_CONTEXT_LIMIT)||(item.raw_excerpt||"");
+    const text=context.slice(0,ARTICLE_CONTEXT_LIMIT)||(item.raw_excerpt||"");
+    return {
+      text,
+      source_published_at:toIso(publishedRaw)||"",
+      source_updated_at:toIso(updatedRaw)||"",
+      source_date_status:publishedRaw?rawDateStatus(publishedRaw):"unknown",
+      event_date_candidates:explicitEventDateCandidates(text,toIso(publishedRaw)||item.source_published_at||item.published_at||"")
+    };
   }catch(_error){
-    return item.raw_excerpt||"";
+    return fallback();
   }finally{
     clearTimeout(timeout);
   }
@@ -392,9 +471,10 @@ async function fetchArticleContext(item) {
 async function aiEnrichBatch(items) {
   const list=items.map((it,i)=>({
     i,tool:it.tool,title:it.title,source:it.source_name||"",
-    official:!!it.is_official,source_published_at:it.published_at,
+    official:!!it.is_official,source_published_at:it.source_published_at||it.published_at||"",
     excerpt:String(it.raw_excerpt||"").slice(0,500),
-    article_context:String(it.article_context||"").slice(0,ARTICLE_CONTEXT_LIMIT)
+    article_context:String(it.article_context||"").slice(0,ARTICLE_CONTEXT_LIMIT),
+    event_date_candidates:Array.isArray(it.event_date_candidates)?it.event_date_candidates.slice(0,5):[]
   }));
   const system =
     "あなたは、AIに詳しくない人にも理解できる日本語で伝えるAIニュース編集者です。" +
@@ -405,7 +485,7 @@ async function aiEnrichBatch(items) {
     "出力は次の形式のJSON配列だけ（前置き・説明・コードフェンスは一切不要）:\n" +
     '[{"i":元番号,"title_ja":"媒体名を除いた自然な日本語タイトル","summary_ja":"60〜100字で結論が分かる要約","detail_ja":"220〜360字、専門用語を説明したやさしい解説","change_ja":"何が新しいかを1〜2文","impact_ja":"日本の仕事・経営・生活への影響を1〜2文","action_ja":"利用者が次に確認することを1〜2文","event_date":"記事本文に出来事の年月日が明記されている場合だけYYYY-MM-DD、不明なら空文字","event_status":"発表済み|開始済み|予定|継続中|不明","story_entities":["企業名・製品名など話題を識別する固有名詞を1〜3件"],"importance":"S|A|B|C","categories":["指定カテゴリから1〜3件"]}]\n' +
     "指定カテゴリ:"+JSON.stringify(ALLOWED_CATEGORIES)+"\n"+
-    "英語・中国語は自然な日本語に翻訳してください。article_contextを最優先の根拠にし、情報不足でもタイトルを言い換えただけの要約は作らないでください。event_dateは推測せず、発表日・施行日・発生日などが本文に明記された時だけ記入してください。価値や根拠が足りない記事は出力しないでください。\n候補:\n" +
+    "英語・中国語は自然な日本語に翻訳してください。article_contextを最優先の根拠にし、情報不足でもタイトルを言い換えただけの要約は作らないでください。event_date_candidatesは本文中で出来事を表す文の近くに明記された日付候補です。候補の文脈を確認し、発表日・施行日・発生日・提供開始日・予定日として明確なものだけevent_dateへ入れてください。記事の掲載日や更新日は出来事の日にしないでください。候補がない、または意味が曖昧なら空文字にしてください。価値や根拠が足りない記事は出力しないでください。\n候補:\n" +
     JSON.stringify(list);
 
   let response;
@@ -433,20 +513,23 @@ async function aiEnrichBatch(items) {
     const detailJa = (e.detail_ja || "").toString().trim();
     const categories=[...new Set((Array.isArray(e.categories)?e.categories:[])
       .map(String).filter(c=>ALLOWED_CATEGORIES.includes(c)))];
+    const aiEventDate=normalizeEventDate(e.event_date);
+    const deterministicCandidates=Array.isArray(src.event_date_candidates)?src.event_date_candidates:[];
+    const eventDate=aiEventDate||((deterministicCandidates.length===1)?normalizeEventDate(deterministicCandidates[0].date):"");
     const item={
       tool: src.tool,
       title: titleJa,
       source_url: src.source_url,
       source_name: src.source_name || "",
       is_official: !!src.is_official,
-      published_at: src.published_at,
+      published_at: src.published_at||src.source_published_at||src.fetched_at||new Date().toISOString(),
       source_published_at: src.source_published_at||src.published_at||"",
       source_updated_at: src.source_updated_at||"",
       source_date_status: src.source_date_status||"published",
       fetched_at:src.fetched_at||new Date().toISOString(),
-      event_at: normalizeEventDate(e.event_date),
+      event_at:eventDate,
       event_status: normalizeEventStatus(e.event_status),
-      event_date_precision: normalizeEventDate(e.event_date)?"day":"unknown",
+      event_date_precision:eventDate?"day":"unknown",
       story_entities: Array.isArray(e.story_entities)?e.story_entities.map(String).map(v=>v.trim()).filter(Boolean).slice(0,3):[],
       raw_excerpt: sumJa || src.raw_excerpt,
       detail: detailJa,
@@ -454,7 +537,8 @@ async function aiEnrichBatch(items) {
       impact_summary: (e.impact_ja || "").toString().trim(),
       action_suggestion: (e.action_ja || "").toString().trim(),
       importance: ["S","A","B","C"].includes(String(e.importance||"").toUpperCase())?String(e.importance).toUpperCase():"B",
-      related_categories:categories.length?categories:fallbackCategoryForTool(src.tool)
+      related_categories:categories.length?categories:fallbackCategoryForTool(src.tool),
+      enrichment_version:PROMPT_VERSION
     };
     if(isCompleteEnrichedItem(item)){
       out.push(item);
@@ -479,10 +563,18 @@ async function enrichNewItems(items,cache,ledger,lane="regular") {
       break;
     }
     const batch=items.slice(start,start+AI_BATCH_SIZE);
-    const withContext=await Promise.all(batch.map(async item=>({
-      ...item,
-      article_context:await fetchArticleContext(item)
-    })));
+    const withContext=await Promise.all(batch.map(async item=>{
+      const context=await fetchArticleContext(item);
+      return {
+        ...item,
+        article_context:context.text,
+        event_date_candidates:context.event_date_candidates,
+        source_published_at:item.source_published_at||context.source_published_at||item.published_at||"",
+        source_updated_at:item.source_updated_at||context.source_updated_at||"",
+        source_date_status:item.source_date_status&&item.source_date_status!=="unknown"
+          ?item.source_date_status:(context.source_date_status||"unknown")
+      };
+    }));
     const result=await aiEnrichBatch(withContext);
     addUsage(ledger,result.usage||{}, {
       lane,
@@ -567,7 +659,7 @@ function parseFeed(xml, official, fallbackSource) {
       title,link,
       date:toIso(publishedRaw),
       updatedAt:toIso(updatedRaw),
-      dateSource:publishedRaw?"published":updatedRaw?"updated_only":"unknown",
+      dateSource:publishedRaw?rawDateStatus(publishedRaw):updatedRaw?"updated_only":"unknown",
       desc,official,sourceName
     });
   }
@@ -786,9 +878,18 @@ function sameContinuingTopic(previous,current) {
   return titleSimilarity(previous.title,current.title)>=0.22;
 }
 
+function articleTime(item) {
+  for(const value of [item&&item.source_published_at,item&&item.published_at,item&&item.fetched_at]){
+    const time=new Date(value||"").getTime();
+    if(Number.isFinite(time))return time;
+  }
+  return 0;
+}
+
 function normalizeTimelineItem(item) {
   const sourcePublished=String(item.source_published_at||item.published_at||"").trim();
   const eventAt=normalizeEventDate(item.event_at||item.event_date);
+  const sequence=Number(item.story_sequence);
   return {
     ...item,
     article_id:item.article_id||stableArticleId(item),
@@ -801,7 +902,7 @@ function normalizeTimelineItem(item) {
     event_date_precision:eventAt?"day":"unknown",
     story_entities:storyEntitiesFor(item),
     story_id:String(item.story_id||""),
-    story_sequence:Math.max(1,Number(item.story_sequence||1)),
+    story_sequence:Number.isFinite(sequence)&&sequence>=1?Math.floor(sequence):1,
     relation_type:["new","follow_up","correction"].includes(item.relation_type)?item.relation_type:"new",
     relation_confidence:Number(item.relation_confidence||0),
     previous_article_id:String(item.previous_article_id||""),
@@ -814,28 +915,29 @@ function normalizeTimelineItem(item) {
 
 function connectStoryTimeline(items,historyItems=[]) {
   const history=[...historyItems,...items].map(normalizeTimelineItem)
-    .sort((a,b)=>new Date(a.source_published_at||0)-new Date(b.source_published_at||0));
+    .sort((a,b)=>articleTime(a)-articleTime(b));
   const result=[];
   for(const raw of items){
     // 現在の記事だけ関連付けを再判定し、履歴側に保存した連番は保持する。
     const source={...normalizeTimelineItem(raw),story_id:"",story_sequence:1,relation_type:"new",
       relation_confidence:0,previous_article_id:"",previous_title:"",previous_source_published_at:"",
       continuation_lead:""};
-    const currentTime=new Date(source.source_published_at||0).getTime();
+    const currentTime=articleTime(source);
     let previous=null;
     for(const candidate of history){
       if(candidate.article_id===source.article_id)continue;
-      const candidateTime=new Date(candidate.source_published_at||0).getTime();
+      const candidateTime=articleTime(candidate);
       const gap=currentTime-candidateTime;
       if(!Number.isFinite(gap)||gap<12*3600000||gap>365*86400000)continue;
       if(!sameContinuingTopic(candidate,source))continue;
-      if(!previous||candidateTime>new Date(previous.source_published_at||0).getTime())previous=candidate;
+      if(!previous||candidateTime>articleTime(previous))previous=candidate;
     }
     if(previous){
       const shared=[...new Set(storyEntitiesFor(previous).map(value=>value.toLowerCase()))]
         .find(value=>new Set(storyEntitiesFor(source).map(v=>v.toLowerCase())).has(value))||"topic";
       source.story_id=previous.story_id||("story_"+sha256(`${eventFamily(source)}|${shared}`).slice(0,18));
-      source.story_sequence=Math.max(2,Number(previous.story_sequence||1)+1);
+      const previousSequence=Number(previous.story_sequence);
+      source.story_sequence=Math.max(2,(Number.isFinite(previousSequence)?Math.floor(previousSequence):1)+1);
       source.relation_type=/訂正|撤回|誤り|修正/.test(storyText(source))?"correction":"follow_up";
       source.relation_confidence=0.9;
       source.previous_article_id=previous.article_id;
@@ -858,7 +960,7 @@ function loadStoryIndex() {
   const cutoff=Date.now()-365*86400000;
   parsed.version=1;
   parsed.items=(Array.isArray(parsed.items)?parsed.items:[]).filter(item=>{
-    const time=new Date(item.source_published_at||0).getTime();
+    const time=articleTime(item);
     return Number.isFinite(time)&&time>=cutoff;
   });
   return parsed;
@@ -869,11 +971,12 @@ function updateStoryIndex(index,items) {
   for(const item of items)byId.set(item.article_id,{
     article_id:item.article_id,story_id:item.story_id,story_sequence:item.story_sequence,
     relation_type:item.relation_type,relation_confidence:item.relation_confidence,title:item.title,source_published_at:item.source_published_at,
+    published_at:item.published_at||"",fetched_at:item.fetched_at||"",
     event_at:item.event_at,event_status:item.event_status,raw_excerpt:item.raw_excerpt,
     source_name:item.source_name,source_url:item.source_url,story_entities:item.story_entities,
     change_summary:item.change_summary
   });
-  index.items=[...byId.values()].sort((a,b)=>new Date(b.source_published_at||0)-new Date(a.source_published_at||0));
+  index.items=[...byId.values()].sort((a,b)=>articleTime(b)-articleTime(a));
   return index;
 }
 
@@ -912,7 +1015,7 @@ function bootstrapCacheResult(cache,source,result) {
     status:"enriched",
     processed_at:result.fetched_at||result.published_at||new Date().toISOString(),
     model:"legacy",
-    prompt_version:PROMPT_VERSION,
+    prompt_version:result.enrichment_version===PROMPT_VERSION?PROMPT_VERSION:"legacy-before-event-date-v5",
     lane:"bootstrap",
     reason:"existing_complete_article",
     result
@@ -953,7 +1056,7 @@ function bootstrapCacheResult(cache,source,result) {
     }
     console.error("OK", t.name, "kept", Math.min(items.length, PER_TOOL), "/ fetched", before);
   }
-  out.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
+  out.sort((a, b) => articleTime(b)-articleTime(a));
 
   // URLだけでなくタイトルの類似度も見て、媒体をまたぐ同一話題を1件にまとめる。
   const uniqueOut = dedupeStories(out);
@@ -992,7 +1095,7 @@ function bootstrapCacheResult(cache,source,result) {
       continue;
     }
     const match=findReusablePrevious(previous,item);
-    if(match){
+    if(match&&match.enrichment_version===PROMPT_VERSION){
       reused.push(match);
       bootstrapCacheResult(cache,item,match);
       cacheHits++;
@@ -1036,7 +1139,7 @@ function bootstrapCacheResult(cache,source,result) {
   // 一時的なRSS欠落で、良質な要約済み記事が突然消えるのを防ぐ。
   const retentionStart=Date.now()-31*86400000;
   const recentPrevious=previous.filter(item=>{
-    const time=new Date(item.published_at||0).getTime();
+    const time=articleTime(item);
     return Number.isFinite(time)&&time>=retentionStart;
   });
   const cachedEnriched=Object.values(cache.items)
@@ -1046,9 +1149,9 @@ function bootstrapCacheResult(cache,source,result) {
   const baseFinal=dedupeStories([...newlyEnriched,...reused,...cachedEnriched,...recentPrevious])
     .filter(isCompleteEnrichedItem)
     .sort((a,b)=>(importanceOrder[b.importance]||0)-(importanceOrder[a.importance]||0)||
-      new Date(b.published_at||0)-new Date(a.published_at||0))
+      articleTime(b)-articleTime(a))
     .slice(0,AI_MAX)
-    .sort((a,b)=>new Date(b.published_at||0)-new Date(a.published_at||0));
+    .sort((a,b)=>articleTime(b)-articleTime(a));
   const storyIndex=loadStoryIndex();
   const final=connectStoryTimeline(baseFinal,storyIndex.items);
 
