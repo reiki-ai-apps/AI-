@@ -101,7 +101,8 @@ create trigger reviews_set_updated_at
 before update on public.reviews
 for each row execute function public.set_updated_at();
 
-create or replace function public.record_article_view(p_article_key text, p_limit integer)
+drop function if exists public.record_article_view(text, integer);
+create or replace function public.record_article_view(p_article_key text)
 returns jsonb
 language plpgsql
 security definer
@@ -110,12 +111,20 @@ as $$
 declare
   v_user uuid := auth.uid();
   v_month text := to_char(timezone('Asia/Tokyo', now()), 'YYYY-MM');
+  v_article_key text := left(trim(coalesce(p_article_key, '')), 160);
   v_count integer;
   v_limit integer := 1;
 begin
   if v_user is null then
     raise exception 'authentication required';
   end if;
+  if v_article_key = '' then
+    raise exception 'article key is required';
+  end if;
+
+  -- Serialize view counting for this user/month so parallel requests cannot
+  -- pass the limit check at the same time.
+  perform pg_advisory_xact_lock(hashtext(v_user::text || ':' || v_month)::bigint);
 
   select case
     when s.plan = 'premium'
@@ -137,7 +146,7 @@ begin
 
   if exists (
     select 1 from public.article_views
-    where user_id = v_user and month_key = v_month and article_key = p_article_key
+    where user_id = v_user and month_key = v_month and article_key = v_article_key
   ) then
     select count(*) into v_count from public.article_views
     where user_id = v_user and month_key = v_month;
@@ -152,7 +161,7 @@ begin
   end if;
 
   insert into public.article_views (user_id, month_key, article_key)
-  values (v_user, v_month, left(p_article_key, 160))
+  values (v_user, v_month, v_article_key)
   on conflict do nothing;
 
   return jsonb_build_object('allowed', true, 'count', v_count + 1, 'limit', v_limit, 'already_counted', false);
@@ -453,8 +462,8 @@ revoke all on function public.submit_review(text, integer, text) from public;
 grant execute on function public.submit_review(text, integer, text) to authenticated;
 revoke all on function public.registered_user_count() from public;
 grant execute on function public.registered_user_count() to anon, authenticated;
-revoke all on function public.record_article_view(text, integer) from public;
-grant execute on function public.record_article_view(text, integer) to authenticated;
+revoke all on function public.record_article_view(text) from public;
+grant execute on function public.record_article_view(text) to authenticated;
 revoke all on function public.delete_own_free_account() from public;
 grant execute on function public.delete_own_free_account() to authenticated;
 
