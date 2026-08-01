@@ -112,6 +112,39 @@ const unknownDates=context.normalizeTimelineItem({
 if(unknownDates.source_published_at!==""||unknownDates.event_at!==""||unknownDates.event_date_precision!=="unknown"){
   throw new Error("unknown publication or event dates were fabricated");
 }
+if(context.normalizeEventDate("2026-02-31")!==""){
+  throw new Error("an impossible event date was accepted");
+}
+const explicitDates=context.explicitEventDateCandidates(
+  "同社は2026年8月15日に新モデルの提供を開始すると発表しました。掲載日: 2026年8月1日"
+);
+if(explicitDates.length!==1||explicitDates[0].date!=="2026-08-15"){
+  throw new Error("an explicit event date was not separated from the publication date");
+}
+const relativeDate=context.explicitEventDateCandidates(
+  "同社は本日、新モデルの提供を開始したと発表しました。",
+  "2026-08-01T09:30:00Z"
+);
+if(relativeDate.length!==1||relativeDate[0].date!=="2026-08-01"||relativeDate[0].kind!=="relative_to_publication"){
+  throw new Error("a relative event date was not resolved from the verified publication date");
+}
+const yearlessDate=context.explicitEventDateCandidates(
+  "新サービスは8月15日に提供を開始する予定です。",
+  "2026-08-01"
+);
+if(yearlessDate.length!==1||yearlessDate[0].date!=="2026-08-15"){
+  throw new Error("a yearless event date was not resolved from the publication year");
+}
+const publicationOnly=context.explicitEventDateCandidates(
+  "掲載日: 2026年8月1日。新サービスの概要を紹介します。",
+  "2026-08-01"
+);
+if(publicationOnly.length!==0)throw new Error("a publication date was mislabeled as an event date");
+if(context.rawDateStatus("2026-08-01")!=="date_only"||context.rawDateStatus("2026-08-01T09:00:00Z")!=="published"){
+  throw new Error("date-only source precision was not preserved");
+}
+const invalidSequence=context.normalizeTimelineItem({...firstRelease,story_sequence:"not-a-number"});
+if(invalidSequence.story_sequence!==1)throw new Error("invalid story sequence was not guarded");
 if(context.stableArticleId(firstRelease)!==context.stableArticleId({...firstRelease})){
   throw new Error("article ids are not stable");
 }
