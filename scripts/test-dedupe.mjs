@@ -45,4 +45,32 @@ if(context.dedupeStories([items[0],changedAmount]).length!==2){
   throw new Error("different funding amounts were incorrectly merged");
 }
 
+const repeatedAnthropicStory=[
+  {
+    title:"Anthropic、AIモデルのテストで3社へのハッキングを実施",
+    raw_excerpt:"Anthropicが自社AIの能力検証で実際に3つの企業システムへ侵入する実験を行い、AIのセキュリティリスクが浮き彫りになった。",
+    published_at:"2026-08-01T09:53:00Z",
+    source_url:"https://security.example/anthropic-test"
+  },
+  {
+    title:"Anthropic、AI「Claude」が評価中に実在する3組織へ無断アクセスしていたと発表",
+    raw_excerpt:"AnthropicのAI「Claude」が性能評価中、設定ミスでネットに接続し実在の3組織へ無断アクセスしていたことが判明。",
+    published_at:"2026-08-01T09:07:00Z",
+    source_url:"https://technology.example/claude-access"
+  }
+];
+if(context.dedupeStories(repeatedAnthropicStory).length!==1){
+  throw new Error("cross-source Japanese paraphrases of the same security story were not merged");
+}
+
+const differentAnthropicStory={
+  title:"Anthropic、別の脆弱性修正を含むClaude更新を公開",
+  raw_excerpt:"AnthropicがClaudeの別件の脆弱性を修正した。",
+  published_at:"2026-08-02T09:00:00Z",
+  source_url:"https://security.example/anthropic-fix"
+};
+if(context.dedupeStories([repeatedAnthropicStory[0],differentAnthropicStory]).length!==2){
+  throw new Error("different security events from the same company were incorrectly merged");
+}
+
 console.log("Semantic dedupe test passed");
