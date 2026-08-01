@@ -130,11 +130,11 @@ const AI_BATCH_SIZE = 6;
 const AI_NEW_LIMIT = 12;
 const AI_DAILY_UNIQUE_LIMIT = 40;
 const AI_DAILY_EMERGENCY_LIMIT = 8;
-const ARTICLE_CONTEXT_LIMIT = 2400;
+const ARTICLE_CONTEXT_LIMIT = 3600;
 const AI_CACHE_PATH = ".ai-cache.json";
 const AI_USAGE_PATH = ".ai-usage.json";
 const STORY_INDEX_PATH = ".story-index.json";
-const PROMPT_VERSION = "ai-radar-2026-08-01-v5-relative-event-dates";
+const PROMPT_VERSION = "ai-radar-2026-08-02-v6-natural-article-flow";
 const REJECTED_TTL_MS = 7 * 86400000;
 const RETRY_TTL_MS = 6 * 3600000;
 const ENRICHED_TTL_MS = 31 * 86400000;
@@ -476,18 +476,26 @@ async function fetchArticleContext(item) {
       return "";
     };
     const paragraphs=[...html.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
-      .map(m=>stripTags(m[1])).filter(t=>t.length>=45).slice(0,10);
+      .map(m=>stripTags(m[1])).filter(t=>t.length>=45);
     const jsonDate=(field)=>{
       const match=html.match(new RegExp(`"${field}"\\s*:\\s*"([^"]+)"`,"i"));
       return match?match[1]:"";
     };
     const publishedRaw=meta("article:published_time")||meta("datePublished")||meta("date")||jsonDate("datePublished");
     const updatedRaw=meta("article:modified_time")||meta("dateModified")||jsonDate("dateModified");
-    const context=[
+    const openingParagraphs=paragraphs.slice(0,7);
+    const endingParagraphs=paragraphs.slice(-4).filter(value=>!openingParagraphs.includes(value));
+    const opening=[
       meta("og:description"),meta("description"),meta("twitter:description"),
-      ...paragraphs
+      ...openingParagraphs
     ].filter(Boolean).join("\n");
-    const text=context.slice(0,ARTICLE_CONTEXT_LIMIT)||(item.raw_excerpt||"");
+    const ending=endingParagraphs.join("\n");
+    const openingBudget=Math.floor(ARTICLE_CONTEXT_LIMIT*0.68);
+    const endingBudget=ARTICLE_CONTEXT_LIMIT-openingBudget;
+    const text=(
+      "【記事の冒頭・要点】\n"+opening.slice(0,openingBudget)+
+      (ending?"\n【記事後半・結び】\n"+ending.slice(-endingBudget):"")
+    ).trim()||(item.raw_excerpt||"");
     return {
       text,
       source_published_at:toIso(publishedRaw)||"",
@@ -513,13 +521,15 @@ async function aiEnrichBatch(items) {
   const system =
     "あなたは、AIに詳しくない人にも理解できる日本語で伝えるAIニュース編集者です。" +
     "製品アップデート、新機能、使い方、料金変更だけでなく、AI政策、規制、著作権、補助金・助成金、AI関連企業・株式、研究、セキュリティ、半導体など、利用者の仕事や生活に影響する情報を重視してください。" +
-    "記事本文の抜粋にない数字・人物・効果は作らず、不明な点は不明と明記してください。広告、別テーマの誤ヒット、根拠の薄い記事は除外してください。";
+    "記事本文の抜粋にない数字・人物・効果は作らず、不明な点は不明と明記してください。広告、別テーマの誤ヒット、根拠の薄い記事は除外してください。" +
+    "要約文は元記事の論点と叙述順序を尊重し、主語と出来事から直接書き始め、元記事で確認できる事実・今後の予定・発表者の見解などで自然に結んでください。" +
+    "『まず、このニュースをひと言でいうと』『かんたんに言うと』『この記事では』などのメタな前置きや、元記事にない一般論・注意喚起・安心を促す定型文は使わないでください。";
   const user =
     "次のAI関連ニュース候補(JSON)を確認し、一般の利用者が知っておく価値のある記事だけを残してください。\n" +
     "出力は次の形式のJSON配列だけ（前置き・説明・コードフェンスは一切不要）:\n" +
-    '[{"i":元番号,"title_ja":"媒体名を除いた自然な日本語タイトル","summary_ja":"60〜100字で結論が分かる要約","detail_ja":"220〜360字、専門用語を説明したやさしい解説","change_ja":"何が新しいかを1〜2文","impact_ja":"日本の仕事・経営・生活への影響を1〜2文","action_ja":"利用者が次に確認することを1〜2文","event_date":"記事本文に出来事の年月日が明記されている場合だけYYYY-MM-DD、不明なら空文字","event_status":"発表済み|開始済み|予定|継続中|不明","story_entities":["企業名・製品名など話題を識別する固有名詞を1〜3件"],"importance":"S|A|B|C","categories":["指定カテゴリから1〜3件"]}]\n' +
+    '[{"i":元番号,"title_ja":"媒体名を除いた自然な日本語タイトル","summary_ja":"60〜100字で主語と結論が分かる要約","detail_ja":"220〜360字。元記事の始まり方と論旨に沿い、主語・出来事から直接始め、専門用語を説明しながら事実を自然につなぎ、元記事で確認できる結論・現状・今後の予定で終える解説","change_ja":"何が新しいかを1〜2文","impact_ja":"日本の仕事・経営・生活への影響を1〜2文","action_ja":"元記事から具体的に確認できる次の確認事項・期限・利用条件を1〜2文。根拠がなければ行動を作らず、現時点の状況を簡潔に書く","event_date":"記事本文に出来事の年月日が明記されている場合だけYYYY-MM-DD、不明なら空文字","event_status":"発表済み|開始済み|予定|継続中|不明","story_entities":["企業名・製品名など話題を識別する固有名詞を1〜3件"],"importance":"S|A|B|C","categories":["指定カテゴリから1〜3件"]}]\n' +
     "指定カテゴリ:"+JSON.stringify(ALLOWED_CATEGORIES)+"\n"+
-    "英語・中国語は自然な日本語に翻訳してください。article_contextを最優先の根拠にし、情報不足でもタイトルを言い換えただけの要約は作らないでください。event_date_candidatesは本文中で出来事を表す文の近くに明記された日付候補です。候補の文脈を確認し、発表日・施行日・発生日・提供開始日・予定日として明確なものだけevent_dateへ入れてください。記事の掲載日や更新日は出来事の日にしないでください。候補がない、または意味が曖昧なら空文字にしてください。価値や根拠が足りない記事は出力しないでください。\n候補:\n" +
+    "英語・中国語は自然な日本語に翻訳してください。article_contextを最優先の根拠にし、情報不足でもタイトルを言い換えただけの要約は作らないでください。detail_jaは元記事の冒頭の問題提起・発表内容から入り、記事後半に結論・現状・今後の予定があればそれに沿って終えてください。説明のための定型的な導入や、どの記事にも当てはまる助言で文字数を埋めてはいけません。event_date_candidatesは本文中で出来事を表す文の近くに明記された日付候補です。候補の文脈を確認し、発表日・施行日・発生日・提供開始日・予定日として明確なものだけevent_dateへ入れてください。記事の掲載日や更新日は出来事の日にしないでください。候補がない、または意味が曖昧なら空文字にしてください。価値や根拠が足りない記事は出力しないでください。\n候補:\n" +
     JSON.stringify(list);
 
   let response;
