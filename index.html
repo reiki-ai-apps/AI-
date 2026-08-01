@@ -3595,8 +3595,41 @@ function filterTopicSettings(value){
   document.getElementById('topicNoResults')?.classList.toggle('show',visible===0);
 }
 function settingLimitLabel(value,unit){return Number.isFinite(value)?`${value}${unit}`:`無制限`;}
+function ensureHomeThemePresets(){
+  const d=DB.load();
+  const aliases={
+    'OpenAI / ChatGPT':'ChatGPT / OpenAI',
+    'Anthropic / Claude':'Claude / Claude Code',
+    'Google Gemini':'Gemini'
+  };
+  let changed=false;
+  INFORMATION_PRESETS
+    .filter(preset=>FEATURED_AI_TOOL_NAMES.includes(preset.name))
+    .forEach(preset=>{
+      const name=aliases[preset.name]||preset.name;
+      if(d.tools.some(tool=>tool.name===name))return;
+      const createdAt=nowISO();
+      d.tools.push({
+        id:uid(),name,slug:slugify(name),category:preset.kind,priority:preset.priority,
+        search_query:preset.query,official_url:'',release_notes_url:'',rss_url:googleNewsRss(preset.query),x_url:'',
+        related_businesses:[preset.category],memo:'主要AIツールの推奨テーマ',
+        is_using:false,is_active:true,is_custom:false,last_fetched_at:null,created_at:createdAt,updated_at:createdAt
+      });
+      changed=true;
+    });
+  if(changed)DB.save();
+  return d.tools;
+}
 function renderTools(v){
-  const tools=getTools();
+  const featuredAliases={'ChatGPT / OpenAI':'OpenAI / ChatGPT','Claude / Claude Code':'Anthropic / Claude','Gemini':'Google Gemini'};
+  const tools=[...ensureHomeThemePresets()].sort((a,b)=>{
+    const ai=FEATURED_AI_TOOL_NAMES.indexOf(featuredAliases[a.name]||a.name);
+    const bi=FEATURED_AI_TOOL_NAMES.indexOf(featuredAliases[b.name]||b.name);
+    if(ai>=0&&bi>=0)return ai-bi;
+    if(ai>=0)return -1;
+    if(bi>=0)return 1;
+    return 0;
+  });
   const plan=effectivePlanKey();
   const rules=currentRules();
   const isPaid=plan!=='free';
@@ -3655,7 +3688,6 @@ function renderTools(v){
   html+=`<section class="selected-topics-panel" aria-labelledby="selectedTopicsTitle"><div class="selected-topics-head"><div><h3 id="selectedTopicsTitle">現在ホームに表示するテーマ</h3><p>設定後の内容をここでいつでも確認できます。</p></div><span aria-live="polite">${selectedCount} / ${topicLimit} 選択中</span></div>${selectedTools.length?`<div class="selected-topics-list">${selectedTools.map(t=>`<div class="selected-topic-item"><span><strong>${esc(t.name)}</strong><small>ホームに表示中</small></span><button class="btn btn-sm" aria-label="${esc(t.name)}をホームから外す" onclick="toggleTopicAttention('${t.id}')">ホームから外す</button></div>`).join('')}</div>`:`<div class="selected-topics-empty">まだテーマを選んでいません。下の一覧から「ホームに表示する」を押してください。</div>`}</section>`;
 
   const featuredLookup=new Map(INFORMATION_PRESETS.map(preset=>[preset.name,preset]));
-  const featuredAliases={'ChatGPT / OpenAI':'OpenAI / ChatGPT','Claude / Claude Code':'Anthropic / Claude','Gemini':'Google Gemini'};
   const featuredTools=tools.filter(tool=>FEATURED_AI_TOOL_NAMES.includes(featuredAliases[tool.name]||tool.name)).sort((a,b)=>{
     const ai=FEATURED_AI_TOOL_NAMES.indexOf(featuredAliases[a.name]||a.name);
     const bi=FEATURED_AI_TOOL_NAMES.indexOf(featuredAliases[b.name]||b.name);
