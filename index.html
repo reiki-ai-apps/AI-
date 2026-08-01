@@ -2013,6 +2013,13 @@ function requirePlan(minPlan,message){
 
 function memberPlanLabel(plan){return ({free:'無料',standard:'スタンダード',premium:'プレミアム'})[plan]||'無料';}
 function memberStatusLabel(status){return ({active:'契約中',trialing:'トライアル中',past_due:'支払い確認中',canceled:'解約済み',unpaid:'未払い',incomplete:'手続き未完了',inactive:'無料利用中'})[status]||'確認中';}
+async function loadMembership(){
+  if(!memberClient||!memberState.user)return {plan:'free',status:'inactive',current_period_end:null,access_source:'account'};
+  const result=await memberClient.rpc('get_my_membership');
+  if(!result.error&&result.data)return result.data;
+  const fallback=await memberClient.from('subscriptions').select('plan,status,current_period_end').maybeSingle();
+  return {...(fallback.data||{plan:'free',status:'inactive',current_period_end:null}),access_source:'stripe'};
+}
 function authErrorMessage(error){
   const msg=String(error?.message||error||'');
   if(/invalid login credentials/i.test(msg))return 'メールアドレスまたはパスワードが正しくありません。';
@@ -2048,12 +2055,12 @@ async function refreshMemberState(session){
   if(memberState.user&&memberClient){
     // 契約・クラウド設定・レビュー状態は互いに独立しているため並列取得する。
     // 起動時の3回分の通信待ちを1回分に短縮する。
-    const [subscriptionResult]=await Promise.all([
-      memberClient.from('subscriptions').select('plan,status,current_period_end').maybeSingle(),
+    const [membership]=await Promise.all([
+      loadMembership(),
       loadMemberAppState(),
       loadReviewStatus()
     ]);
-    memberState.subscription=subscriptionResult.data||{plan:'free',status:'inactive',current_period_end:null};
+    memberState.subscription=membership;
   }
   memberState.ready=true;
   renderNav();
