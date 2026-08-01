@@ -73,6 +73,18 @@ for (const table of ["profiles", "subscriptions", "stripe_events", "user_states"
 if (!/security definer\s+set search_path = ''/i.test(schema)) {
   findings.push("supabase/schema.sql: hardened SECURITY DEFINER search_path missing");
 }
+if (!/function public\.record_article_view\(p_article_key text\)/i.test(schema)) {
+  findings.push("supabase/schema.sql: server-derived article view RPC missing");
+}
+if (/create or replace function public\.record_article_view\(p_article_key text,\s*p_limit/i.test(schema)) {
+  findings.push("supabase/schema.sql: client-controlled article limit still accepted");
+}
+if (/grant\s+(?:all|insert|update|delete)[^;]*on table public\.subscriptions to authenticated/i.test(schema)) {
+  findings.push("supabase/schema.sql: authenticated users can mutate subscriptions");
+}
+if (/record_article_view'[\s\S]{0,180}p_limit/.test(html)) {
+  findings.push("index.html: client still sends a subscription limit to the RPC");
+}
 
 if (findings.length) {
   console.error("Security checks failed:");
