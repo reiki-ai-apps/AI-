@@ -2035,17 +2035,22 @@ function authErrorMessage(error){
   return '処理を完了できませんでした。少し待ってからもう一度お試しください。';
 }
 function renderRegisteredCount(){
+  const isOperator=!!memberState.user&&memberState.subscription?.access_source==='operator_grant';
   document.querySelectorAll('[data-registered-count]').forEach(el=>{
     const count=memberState.registeredCount;
-    el.hidden=!(Number.isFinite(count)&&count>=SOCIAL_PROOF_MIN_USERS);
+    el.hidden=!(isOperator&&Number.isFinite(count));
     const value=el.querySelector('strong');
     if(value&&Number.isFinite(count))value.textContent=new Intl.NumberFormat('ja-JP').format(count);
   });
 }
 async function loadRegisteredUserCount(){
-  if(!memberClient)return;
+  if(!memberClient||!memberState.user||memberState.subscription?.access_source!=='operator_grant'){
+    memberState.registeredCount=null;
+    renderRegisteredCount();
+    return;
+  }
   const {data,error}=await memberClient.rpc('registered_user_count');
-  if(error)return;
+  if(error){memberState.registeredCount=null;renderRegisteredCount();return;}
   const count=Number(data);
   if(!Number.isFinite(count)||count<0)return;
   memberState.registeredCount=count;
@@ -2057,6 +2062,7 @@ async function refreshMemberState(session){
   if(previousUserId!==nextUserId)loadedMemberStateFor='';
   memberState.user=session?.user||null;
   memberState.subscription=null;
+  memberState.registeredCount=null;
   memberState.reviewStatus=null;
   if(memberState.user&&memberClient){
     // 契約・クラウド設定・レビュー状態は互いに独立しているため並列取得する。
@@ -2067,6 +2073,7 @@ async function refreshMemberState(session){
       loadReviewStatus()
     ]);
     memberState.subscription=membership;
+    if(membership?.access_source==='operator_grant')window.setTimeout(loadRegisteredUserCount,0);
   }
   memberState.ready=true;
   renderNav();
@@ -2083,8 +2090,9 @@ function queueMemberRefresh(session){
 }
 async function initMemberAuth(){
   if(!memberClient){memberState.ready=true;return;}
-  // 登録者数・公開レビューは初期画面に必須ではないため、描画を妨げない時間に取得する。
-  const loadNonCritical=()=>Promise.allSettled([loadRegisteredUserCount(),loadPublishedReviews()]);
+  // 公開レビューは初期画面に必須ではないため、描画を妨げない時間に取得する。
+  // 登録者数は運営者の会員判定が確定した後にだけ取得する。
+  const loadNonCritical=()=>Promise.allSettled([loadPublishedReviews()]);
   if('requestIdleCallback' in window)requestIdleCallback(loadNonCritical,{timeout:1800});
   else window.setTimeout(loadNonCritical,650);
   const {data}=await memberClient.auth.getSession();
