@@ -137,9 +137,16 @@ jobs:
             if (item.event_date_precision === "unknown" && item.event_at) {
               errors.push(`${index + 1}件目: 出来事の日付精度と値が矛盾しています`);
             }
+            if (item.event_at && !/^20\d{2}-\d{2}-\d{2}$/.test(item.event_at)) {
+              errors.push(`${index + 1}件目: 出来事の日がYYYY-MM-DDではありません`);
+            }
             if (["follow_up", "correction"].includes(item.relation_type) &&
                 (!item.previous_article_id || !item.continuation_lead || Number(item.relation_confidence) < 0.85)) {
               errors.push(`${index + 1}件目: 続報・訂正の前回情報または確信度が不足しています`);
+            }
+            if (["follow_up", "correction"].includes(item.relation_type) &&
+                (!Number.isFinite(Number(item.story_sequence)) || Number(item.story_sequence) < 2)) {
+              errors.push(`${index + 1}件目: 続報番号が不正です`);
             }
             if (!["S", "A", "B", "C"].includes(String(item.importance || "").toUpperCase())) {
               errors.push(`${index + 1}件目: importance がS〜Cではありません`);
