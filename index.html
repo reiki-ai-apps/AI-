@@ -2244,7 +2244,7 @@ async function openBillingManagement(){
   toast('Stripeの契約管理画面を準備しています。','ok');
   const {data,error}=await memberClient.functions.invoke('create-portal-session');
   const portalUrl=safeExternalUrl(data?.url,['billing.stripe.com']);
-  if(!error&&portalUrl){window.open(portalUrl,'_blank','noopener,noreferrer');return;}
+  if(!error&&portalUrl){window.location.assign(portalUrl);return;}
   const reason=String(data?.error||error?.message||'').trim();
   modal(
     '契約管理画面を開けませんでした',
