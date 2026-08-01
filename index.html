@@ -822,6 +822,7 @@
 
   .quick-stats{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 17px}
   .quick-stats .signal-count{font-size:12px;color:var(--text-mute);margin-right:3px}
+  .mobile-home-search{display:none}
   .mini-chip{min-height:34px;padding:5px 12px;border-radius:9px;font-size:11.5px;background:rgba(99,131,193,.08);border-color:rgba(127,158,214,.18);color:#b9c8e4}
   .mini-chip:hover{background:rgba(99,131,193,.14)}
   .day-head{margin:27px 0 12px;font-size:12px;letter-spacing:.08em;color:#aebbd2}
@@ -1333,6 +1334,7 @@
     .ucard{padding:19px 17px 17px!important;background-position:center,center,center,calc(100% + 58px) center!important;background-size:auto,auto,auto,150px 150px!important}
     .ucard:hover{transform:none!important}.summary-wrap{padding:8px 10px}.ai-label{display:none!important}
     .quick-stats{padding:8px 9px}.day-head span{padding:6px 10px}
+    .mobile-home-search{display:flex;width:100%;min-height:48px!important;align-items:center;justify-content:flex-start;gap:10px;margin:-3px 0 15px;padding:10px 13px!important;text-align:left}.mobile-home-search svg{width:18px;height:18px;flex:0 0 18px}.mobile-home-search span{display:grid;gap:2px}.mobile-home-search strong{font-size:12px}.mobile-home-search small{color:#96a6ba;font-size:9.5px;font-weight:500}
     .nav-item svg{width:28px!important;height:28px!important}
   }
   @media(prefers-reduced-motion:reduce){.ucard::after,.tool-dot::after{animation:none}}
@@ -3016,7 +3018,7 @@ function renderHome(v){
     <span class="signal-count">全${list.length}件・最終更新 ${latest}</span>
     ${unread?`<button class="mini-chip" onclick="openUpdatesFiltered({unreadOnly:true})">未読 ${unread}</button>`:''}
     ${tryLater?`<button class="mini-chip" onclick="go('try-list')">あとで試す ${tryLater}</button>`:''}
-  </div>`;
+  </div><button class="btn mobile-home-search" onclick="go('updates')">${icon('search')}<span><strong>ニュースを検索・絞り込み</strong><small>キーワード・ジャンル・未読から探す</small></span></button>`;
 
   if(!list.length){
     html+=emptyState('まだアップデートがありません','サーバーが3時間ごとに最新ニュースを確認します。');
