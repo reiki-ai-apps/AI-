@@ -168,6 +168,10 @@ jobs:
             if (!/[ぁ-んァ-ヶ一-龠々]/.test(explanation)) {
               errors.push(`${index + 1}件目: 日本語の解説がありません`);
             }
+            const unnatural = `${item.detail || ""}\n${item.action_suggestion || ""}`;
+            if (/^(?:まず[、,]\s*)?このニュースを(?:ひと|一)言で(?:いう|言う)と|^かんたんに言うと|すぐに全部のやり方を変える必要はありません|小さな作業から試すと安心です/.test(unnatural.trim())) {
+              errors.push(`${index + 1}件目: 定型的で不自然な書き出し・結びがあります`);
+            }
           });
           if (errors.length) {
             console.error(errors.slice(0, 40).join("\n"));
