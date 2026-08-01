@@ -19,6 +19,40 @@ const TOOLS = [
   { name: "Gemini", match: /gemini/i, feeds: [
     "https://news.google.com/rss/search?q=Google%20Gemini%20AI%20when:7d&hl=ja&gl=JP&ceid=JP:ja",
     "https://blog.google/products-and-platforms/products/gemini/rss/" ] },
+  { name: "Kling AI", match: /kling(?:\s*ai)?|可灵|クリング/i, feeds: [
+    "https://news.google.com/rss/search?q=%28Kling%20AI%20OR%20%E5%8F%AF%E7%81%B5AI%29%20video%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "Google Veo", match: /\bveo(?:\s*[0-9])?\b|google\s+veo/i, feeds: [
+    "https://news.google.com/rss/search?q=Google%20Veo%20AI%20video%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "Midjourney", match: /midjourney/i, feeds: [
+    "https://news.google.com/rss/search?q=Midjourney%20AI%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "Adobe Firefly", match: /adobe\s+firefly|firefly.*adobe/i, feeds: [
+    "https://news.google.com/rss/search?q=Adobe%20Firefly%20AI%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "Perplexity", match: /perplexity/i, feeds: [
+    "https://news.google.com/rss/search?q=Perplexity%20AI%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "Grok / xAI", match: /\bgrok(?:\s*[0-9])?\b|\bxai\b|x\.ai/i, feeds: [
+    "https://news.google.com/rss/search?q=%28Grok%20OR%20xAI%29%20AI%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "DeepSeek", match: /deepseek/i, feeds: [
+    "https://news.google.com/rss/search?q=DeepSeek%20AI%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "Manus AI", match: /\bmanus(?:\s*ai)?\b|マヌスAI/i, feeds: [
+    "https://news.google.com/rss/search?q=Manus%20AI%20agent%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "Genspark", match: /genspark/i, feeds: [
+    "https://news.google.com/rss/search?q=Genspark%20AI%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "GitHub Copilot", match: /github\s+copilot/i, feeds: [
+    "https://news.google.com/rss/search?q=GitHub%20Copilot%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "Windsurf", match: /windsurf.*(?:AI|code|coding)|(?:AI|code|coding).*windsurf/i, feeds: [
+    "https://news.google.com/rss/search?q=Windsurf%20AI%20coding%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "Lovable", match: /lovable.*(?:AI|app)|(?:AI|app).*lovable/i, feeds: [
+    "https://news.google.com/rss/search?q=Lovable%20AI%20app%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "Replit Agent", match: /replit(?:\s+agent)?/i, feeds: [
+    "https://news.google.com/rss/search?q=Replit%20Agent%20AI%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "ElevenLabs", match: /elevenlabs/i, feeds: [
+    "https://news.google.com/rss/search?q=ElevenLabs%20AI%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "HeyGen", match: /heygen/i, feeds: [
+    "https://news.google.com/rss/search?q=HeyGen%20AI%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "Notion AI", match: /notion\s+ai/i, feeds: [
+    "https://news.google.com/rss/search?q=Notion%20AI%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "Gamma", match: /gamma.*(?:AI|presentation)|(?:AI|presentation).*gamma/i, feeds: [
+    "https://news.google.com/rss/search?q=Gamma%20AI%20presentation%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
   { name: "v0", match: /\bv0\b|vercel/i, feeds: [
     "https://news.google.com/rss/search?q=Vercel%20v0%20when:7d&hl=en-US&gl=US&ceid=US:en",
     "https://vercel.com/changelog/rss.xml" ] },
