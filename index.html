@@ -2468,7 +2468,8 @@ function localArticleTitleSimilarity(a,b){
   return overlap/Math.max(ag.size,bg.size);
 }
 function localArticleNumbers(item){
-  return new Set((localArticleStoryText(item).match(/\d+(?:[.,]\d+)?(?:%|億|兆|万|billion|million)?/gi)||[])
+  // 解説文には媒体ごとの補足数値が混ざるため、同一事件判定ではタイトルの主要数値だけを比較する。
+  return new Set((String(item?.title||'').match(/\d+(?:[.,]\d+)?(?:%|億|兆|万|billion|million)?/gi)||[])
     .map(value=>value.toLowerCase().replace(/,/g,'')));
 }
 function localArticleNumbersConflict(a,b){
@@ -2926,6 +2927,7 @@ const MIGRATIONS = [
   } },
   { id:'2026-08-02-remove-near-duplicate-stories', apply(d){ removeNearDuplicateStories(d); } },
   { id:'2026-08-02-remove-near-duplicate-stories-v2', apply(d){ removeNearDuplicateStories(d); } },
+  { id:'2026-08-02-remove-near-duplicate-stories-v3', apply(d){ removeNearDuplicateStories(d); } },
 ];
 function removeNearDuplicateStories(d){
     const sorted=[...(d.updates||[])].sort((a,b)=>
