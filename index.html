@@ -2421,7 +2421,97 @@ function normalizeArticleTitle(value){
     const head=parts.slice(0,-1).join(' ').replace(/[^\p{L}\p{N}]+/gu,'');
     if(head.length>=12&&tail.length<=28)s=parts.slice(0,-1).join(' ');
   }
-  return s.replace(/[^\p{L}\p{N}]+/gu,'');
+  return s
+    .replace(/ハッキング|無断アクセス|不正アクセス|侵入/g,'不正侵入')
+    .replace(/安全性検証|性能評価|テスト|評価|検証/g,'検証')
+    .replace(/実在する(?:企業|組織)|企業システム|企業|組織|社/g,'組織')
+    .replace(/[^\p{L}\p{N}]+/gu,'');
+}
+function localArticleStoryText(item){
+  return `${item?.title||''} ${item?.ai_summary||item?.raw_excerpt||''} ${item?.easy_summary||''}`.toLowerCase();
+}
+function localArticleFamily(item){
+  const text=localArticleStoryText(item);
+  if(/資金調達|調達|出資|評価額|企業価値|上場|ipo|funding|valuation|investment/.test(text))return 'funding';
+  if(/規制|法案|行政命令|著作権|policy|regulation|law|copyright/.test(text))return 'policy';
+  if(/脆弱性|情報漏えい|攻撃|セキュリティ|ハッキング|侵入|無断アクセス|不正アクセス|security|vulnerability|breach|hack|unauthorized access/.test(text))return 'security';
+  if(/新モデル|モデルを発表|提供開始|発売|リリース|launch|release|new model/.test(text))return 'release';
+  if(/提携|協業|買収|合併|partnership|acquisition|merger/.test(text))return 'corporate';
+  return '';
+}
+function localArticleEntities(item){
+  const text=localArticleStoryText(item);
+  const values=(Array.isArray(item?.story_entities)?item.story_entities:[])
+    .map(value=>String(value||'').normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}.-]+/gu,''))
+    .filter(value=>value.length>=3);
+  const known=[
+    [/\bopenai\b|\bchatgpt\b/,'openai'],[/\banthropic\b|\bclaude\b/,'anthropic'],
+    [/\bgoogle\b|\bgemini\b/,'google-gemini'],[/\bmoonshot\b|\bkimi\b|月之暗面/,'moonshot-ai'],
+    [/\bdeepseek\b/,'deepseek'],[/\bminimax\b/,'minimax'],[/\bnvidia\b/,'nvidia'],
+    [/\bmicrosoft\b|マイクロソフト/,'microsoft'],[/\bapple\b|アップル/,'apple'],
+    [/\bamazon\b|アマゾン/,'amazon'],[/\bmeta\b|メタ社/,'meta']
+  ];
+  known.forEach(([pattern,key])=>{if(pattern.test(text))values.push(key);});
+  return new Set(values);
+}
+function localArticleTitleGrams(value){
+  const text=normalizeArticleTitle(value);
+  const grams=new Set();
+  for(let i=0;i<Math.max(1,text.length-2);i++)grams.add(text.slice(i,i+3));
+  return grams;
+}
+function localArticleTitleSimilarity(a,b){
+  const ag=localArticleTitleGrams(a),bg=localArticleTitleGrams(b);
+  if(!ag.size||!bg.size)return 0;
+  let overlap=0;
+  for(const gram of ag)if(bg.has(gram))overlap++;
+  return overlap/Math.max(ag.size,bg.size);
+}
+function localArticleNumbers(item){
+  return new Set((localArticleStoryText(item).match(/\d+(?:[.,]\d+)?(?:%|億|兆|万|billion|million)?/gi)||[])
+    .map(value=>value.toLowerCase().replace(/,/g,'')));
+}
+function localArticleNumbersConflict(a,b){
+  const an=localArticleNumbers(a),bn=localArticleNumbers(b);
+  return an.size>0&&bn.size>0&&(an.size!==bn.size||[...an].some(value=>!bn.has(value)));
+}
+function localArticleEventSignals(item){
+  const text=localArticleStoryText(item);
+  const rules=[
+    [/ハッキング|不正アクセス|無断アクセス|不正侵入|侵入|hack|unauthorized access/,'unauthorized-access'],
+    [/安全性検証|性能評価|テスト|評価|検証|実験|test|evaluation|experiment/,'evaluation'],
+    [/脆弱性|ぜい弱性|vulnerability/,'vulnerability'],
+    [/修正|対策|更新|fix|patch|mitigation/,'remediation'],
+    [/資金調達|調達|出資|funding|investment/,'funding'],
+    [/新モデル|提供開始|発売|リリース|launch|release|new model/,'release'],
+    [/提携|協業|partnership|collaboration/,'partnership'],
+    [/規制|法案|行政命令|regulation|law|executive order/,'regulation'],
+    [/要請|要求|求めた|request|urge|ask/,'request'],
+    [/価格|料金|値上げ|値下げ|pricing|price/,'pricing']
+  ];
+  return new Set(rules.filter(([pattern])=>pattern.test(text)).map(([,key])=>key));
+}
+function isNearDuplicateLocalArticle(a,b){
+  const au=normalizeArticleUrl(a?.source_url),bu=normalizeArticleUrl(b?.source_url);
+  if(au&&bu&&au===bu)return true;
+  if(['follow_up','correction'].includes(a?.relation_type)||['follow_up','correction'].includes(b?.relation_type))return false;
+  const at=new Date(a?.published_at||a?.source_published_at||0).getTime();
+  const bt=new Date(b?.published_at||b?.source_published_at||0).getTime();
+  if(Number.isFinite(at)&&Number.isFinite(bt)&&Math.abs(at-bt)>7*86400000)return false;
+  if(localArticleNumbersConflict(a,b))return false;
+  const similarity=localArticleTitleSimilarity(a?.title,b?.title);
+  if(similarity>=0.82)return true;
+  const familyA=localArticleFamily(a),familyB=localArticleFamily(b);
+  if(!familyA||familyA!==familyB)return false;
+  const entitiesA=localArticleEntities(a),entitiesB=localArticleEntities(b);
+  let entityMatch=false;
+  for(const entity of entitiesA)if(entitiesB.has(entity)){entityMatch=true;break;}
+  if(!entityMatch)return false;
+  if(similarity>=0.52)return true;
+  const signalsA=localArticleEventSignals(a),signalsB=localArticleEventSignals(b);
+  let sharedSignals=0;
+  for(const signal of signalsA)if(signalsB.has(signal))sharedSignals++;
+  return sharedSignals>=2;
 }
 function articleKeys(item){
   const url=normalizeArticleUrl(item&&item.source_url);
@@ -2440,10 +2530,11 @@ function findCurrentArticle(item,data){
   const d=data||DB.load();
   const keys=articleKeys(item);
   if(!keys.u&&!keys.t)return null;
-  return (d.updates||[]).find(x=>{
+  const exact=(d.updates||[]).find(x=>{
     const current=articleKeys(x);
     return (keys.u&&current.u===keys.u)||(keys.t&&current.t===keys.t);
-  })||null;
+  });
+  return exact||(d.updates||[]).find(x=>isNearDuplicateLocalArticle(x,item))||null;
 }
 function hasCompleteLocalArticle(item){
   return [
@@ -2832,6 +2923,21 @@ const MIGRATIONS = [
         is_active:true
       }));
     });
+  } },
+  { id:'2026-08-02-remove-near-duplicate-stories', apply(d){
+    const sorted=[...(d.updates||[])].sort((a,b)=>
+      new Date(b.published_at||b.source_published_at||0)-new Date(a.published_at||a.source_published_at||0));
+    const kept=[];
+    sorted.forEach(item=>{
+      const existing=kept.find(candidate=>isNearDuplicateLocalArticle(candidate,item));
+      if(!existing){kept.push(item);return;}
+      existing.is_saved=Boolean(existing.is_saved||item.is_saved);
+      if(item.status==='read')existing.status='read';
+      if(!existing.memo&&item.memo)existing.memo=item.memo;
+      existing.related_categories=[...new Set([...(existing.related_categories||[]),...(item.related_categories||[])])];
+      rememberArticle(item,d);
+    });
+    d.updates=kept;
   } },
 ];
 function runMigrations(d){
@@ -3369,9 +3475,9 @@ function buildFriendlyExplanation(u){
 function renderDetailRead(v,u,tool){
   document.getElementById('topActions').innerHTML =
     `<button class="btn btn-primary" onclick="enterDetailEdit('${u.id}')">${icon('edit')}編集</button>`;
-  const heroSum = (u.manual_summary||u.ai_summary||u.raw_excerpt||'').trim();
   const rawText = (u.raw_excerpt||u.raw_content||'').trim();
-  const showRaw = rawText && rawText!==heroSum; // 原文が要約と同じなら重複表示しない
+  const friendlyExplanation=buildFriendlyExplanation(u);
+  const showRaw = rawText && rawText!==friendlyExplanation; // 解説と同じ内容なら重複表示しない
   v.innerHTML = `<button class="back-link" onclick="go('updates')">${icon('arrowLeft')}一覧に戻る</button>
   <div class="detail-grid">
     <div>
@@ -3390,14 +3496,9 @@ function renderDetailRead(v,u,tool){
 
       ${storyFlowBlock(u)}
 
-      ${heroSum?`<div class="read-hero">
-        <div class="rb-head"><span class="rb-ico">${icon('updates')}</span><span class="rb-label">かんたん要約</span></div>
-        <div class="rb-body">${esc(heroSum)}</div>
-      </div>`:''}
-
-      ${u.easy_summary&&u.easy_summary.trim()?`<div class="read-block is-easy">
+      ${friendlyExplanation?`<div class="read-block is-easy">
         <div class="rb-head"><span class="rb-ico" style="background:#e9f9f0;color:#16a34a">${icon('eye')}</span><span class="rb-label">やさしい解説（AIが要約）</span></div>
-        <div class="rb-body">${esc(buildFriendlyExplanation(u,tool))}</div>
+        <div class="rb-body">${esc(friendlyExplanation)}</div>
       </div>`:''}
 
       <div class="source-trust" aria-label="情報元の確認">
@@ -4127,7 +4228,7 @@ async function syncFromDataJson(force=false,renderChanges=true,allowPrune=true){
       // 契約プランの保存期間より古いニュースは取り込まない
       if(it.published_at && !isRecent({published_at:it.published_at})) return;
       const tool=ensureImportedTool(it);
-      const candidate={tool_id:tool.id,title:it.title,source_url:it.source_url||''};
+      const candidate={...it,tool_id:tool.id,title:it.title,source_url:it.source_url||''};
       const data=DB.load();
       const current=findCurrentArticle(candidate,data);
       if(current){if(patchTimelineFields(current,it)){current.updated_at=nowISO();patched++;}return;}
@@ -4139,7 +4240,7 @@ async function syncFromDataJson(force=false,renderChanges=true,allowPrune=true){
       saveUpdate({
         tool_id:tool.id, title:it.title, source_url:safeExternalUrl(it.source_url),
         published_at:it.published_at||it.source_published_at||it.fetched_at||nowISO(), fetched_at:it.fetched_at||nowISO(),
-        raw_content:'', raw_excerpt:'', manual_summary:'', ai_summary:ex, // 要約は「かんたん要約」に表示
+        raw_content:'', raw_excerpt:'', manual_summary:'', ai_summary:ex, // 一覧カードの短いAI要約に使用
         easy_summary:(it.detail||'').toString(),                          // AIのやさしい解説
         simple_explanation:(it.change_summary||'').toString(),
         impact_summary:(it.impact_summary||'').toString(),
