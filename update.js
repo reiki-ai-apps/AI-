@@ -760,7 +760,7 @@ function entityTokens(item) {
     .map(value=>String(value||"").normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}.-]+/gu,""))
     .filter(value=>value.length>=3);
   const known=[
-    [/\bopenai\b|\bchatgpt\b/,"openai"],[/\banthropic\b|\bclaude\b/,"anthropic"],
+    [/\bopenai\b|\bchatgpt\b/,"openai"],[/\banthropic\b|\bclaude\b|アンソロピック/,"anthropic"],
     [/\bgoogle\b|\bgemini\b/,"google-gemini"],[/\bmoonshot\b|\bkimi\b|月之暗面/,"moonshot-ai"],
     [/\bdeepseek\b/,"deepseek"],[/\bminimax\b/,"minimax"],[/\bnvidia\b/,"nvidia"],
     [/\bnotebooklm\b/,"notebooklm"],[/\bcursor\b/,"cursor"],[/\brunway\b/,"runway"],
@@ -888,7 +888,7 @@ function eventSignalTokens(item) {
   const text=storyText(item);
   const rules=[
     [/ハッキング|不正アクセス|無断アクセス|不正侵入|侵入|hack|unauthorized access/,"unauthorized-access"],
-    [/安全性検証|性能評価|テスト|評価|検証|実験|test|evaluation|experiment/,"evaluation"],
+    [/安全性検証|性能評価|テスト|試験|評価|検証|実験|test|evaluation|experiment/,"evaluation"],
     [/脆弱性|ぜい弱性|vulnerability/,"vulnerability"],
     [/修正|対策|更新|fix|patch|mitigation/,"remediation"],
     [/資金調達|調達|出資|funding|investment/,"funding"],
