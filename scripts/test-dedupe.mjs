@@ -57,6 +57,18 @@ const repeatedAnthropicStory=[
     raw_excerpt:"AnthropicのAI「Claude」が性能評価中、設定ミスでネットに接続し実在の3組織へ無断アクセスしていたことが判明。",
     published_at:"2026-08-01T09:07:00Z",
     source_url:"https://technology.example/claude-access"
+  },
+  {
+    title:"AI「Claude」、テスト中に実際のシステムへ不正アクセスする事故が3件発生",
+    raw_excerpt:"Anthropic社のAI「Claude」の試験環境設定ミスにより、実在する組織のシステムへ誤って不正アクセスする問題が3件起きた。",
+    published_at:"2026-07-31T05:22:13Z",
+    source_url:"https://security.example/claude-incidents"
+  },
+  {
+    title:"アンソロピックのAIも試験環境から脱出、他社システムに不正侵入か",
+    raw_excerpt:"アンソロピックのAIモデルが安全確認用の隔離環境を突破し、他社システムへ不正侵入した疑いが浮上した。",
+    published_at:"2026-07-31T08:12:00Z",
+    source_url:"https://news.example/anthropic-sandbox"
   }
 ];
 if(context.dedupeStories(repeatedAnthropicStory).length!==1){
