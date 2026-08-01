@@ -1728,6 +1728,9 @@
   .selected-topic-item{display:flex;align-items:center;gap:9px;min-width:0;padding:10px 11px;border:1px solid rgba(94,163,197,.18);border-radius:11px;background:rgba(5,17,34,.68)}.selected-topic-item>span{min-width:0;flex:1}.selected-topic-item strong{display:block;overflow:hidden;color:#eaf4ff;font-size:11.5px;text-overflow:ellipsis;white-space:nowrap}.selected-topic-item small{display:block;margin-top:2px;color:#63dfe6;font-size:8.5px}.selected-topic-item .btn{flex:0 0 auto;min-height:30px!important;padding:5px 8px!important;font-size:9px!important}
   .selected-topics-empty{padding:13px;border:1px dashed rgba(99,155,190,.24);border-radius:10px;color:#8e9db1;font-size:10.5px;line-height:1.65;text-align:center}
   .topic-mobile-cards{display:none}
+  .featured-tools-panel{margin:18px 0;padding:18px;border:1px solid rgba(45,212,191,.22);border-radius:18px;background:linear-gradient(135deg,rgba(7,25,48,.92),rgba(16,26,58,.86));box-shadow:0 18px 50px rgba(0,0,0,.18)}
+  .featured-tools-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:13px}.featured-tools-head h3{margin:0;color:#f2f7ff;font-size:17px}.featured-tools-head p{margin:5px 0 0;color:#9cabc0;font-size:12px;line-height:1.65}.featured-tools-head strong{color:#72e7f2;font-size:12px;white-space:nowrap}
+  .featured-tools-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}.featured-tool-button{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:58px;padding:10px 12px;border:1px solid rgba(122,151,190,.2);border-radius:13px;background:rgba(3,14,31,.72);color:#dbe7f8;text-align:left;cursor:pointer;transition:border-color .18s,background .18s,transform .18s}.featured-tool-button:hover{border-color:rgba(56,211,229,.62);background:rgba(8,39,65,.9);transform:translateY(-1px)}.featured-tool-button.is-selected{border-color:#35d8e6;background:linear-gradient(135deg,rgba(8,112,146,.7),rgba(68,47,166,.72));box-shadow:inset 0 0 0 1px rgba(127,245,255,.12)}.featured-tool-copy{min-width:0}.featured-tool-copy b{display:block;color:#f4f8ff;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.featured-tool-copy small{display:block;margin-top:3px;color:#91a4be;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.featured-tool-state{flex:0 0 auto;color:#66e7f1;font-size:10px;font-weight:800}.featured-tool-button.is-selected .featured-tool-state{color:#fff}
   .topic-mobile-card{padding:15px;border:1px solid rgba(92,151,192,.22);border-radius:14px;background:linear-gradient(145deg,rgba(6,20,39,.90),rgba(10,14,34,.92))}
   .topic-mobile-card.is-selected{border-color:rgba(76,221,230,.54);box-shadow:0 0 0 2px rgba(76,221,230,.08)}
   .topic-mobile-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:11px}.topic-mobile-title{display:flex;align-items:center;gap:9px;min-width:0;color:#f0f7ff;font-size:13px;font-weight:800}.topic-mobile-title span:last-child{overflow:hidden;text-overflow:ellipsis}.topic-mobile-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}.topic-mobile-detail{margin:0 0 12px;color:#93a3b8;font-size:10.5px;line-height:1.65}
@@ -1767,7 +1770,7 @@
   }
   @media(max-width:760px){
     .settings-hub.is-paid .settings-steps,.settings-hub.is-paid .settings-grid{display:none}.settings-hub.is-paid .settings-hero{padding:17px 15px}.settings-hub.is-paid .settings-hero h2{font-size:20px}.settings-hub.is-paid .settings-hero p{font-size:12px}.settings-hub.is-paid .settings-actions{margin-top:12px}
-    .topic-desktop-table{display:none}.topic-mobile-cards{display:grid;gap:10px}.topic-settings-toolbar{grid-template-columns:1fr}.topic-settings-filters{overflow-x:auto;padding:1px 0 3px}.topic-filter-button{flex:0 0 auto}.mobile-settings-details{display:block}.free-topic-demo-grid{grid-template-columns:1fr}
+    .topic-desktop-table{display:none}.topic-mobile-cards{display:grid;gap:10px}.topic-settings-toolbar{grid-template-columns:1fr}.topic-settings-filters{overflow-x:auto;padding:1px 0 3px}.topic-filter-button{flex:0 0 auto}.mobile-settings-details{display:block}.free-topic-demo-grid{grid-template-columns:1fr}.featured-tools-panel{padding:15px 12px}.featured-tools-head{display:block}.featured-tools-head strong{display:block;margin-top:8px}.featured-tools-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.featured-tool-button{min-height:62px;padding:9px 10px}
     .topic-mobile-detail{font-size:12px}.topic-mobile-meta .chip{font-size:10px}.selected-topics-head p,.settings-table-title span{font-size:12px}.selected-topic-item strong{font-size:12px}.selected-topic-item small{font-size:10px}
   }
   /* KIZASHI official media links */
@@ -1988,6 +1991,12 @@ const INFORMATION_PRESETS = [
   {name:'AIと医療',kind:'業界',desc:'診断支援、創薬、医療制度への活用',query:'AI 医療 診断 創薬',category:'研究・技術',priority:'B'},
   {name:'AIと教育',kind:'業界',desc:'学校・学習・人材育成でのAI活用',query:'AI 教育 学校 学習 人材育成',category:'その他',priority:'B'},
   {name:'海外AI動向',kind:'海外',desc:'米国・EU・中国など世界の主要動向',query:'AI 海外 米国 EU 中国 最新動向',category:'研究・技術',priority:'B'}
+];
+const FEATURED_AI_TOOL_NAMES = [
+  'Kling AI','Google Veo','OpenAI / ChatGPT','Anthropic / Claude','Google Gemini',
+  'Runway','Midjourney','Adobe Firefly','Perplexity','Grok / xAI','DeepSeek',
+  'Manus AI','Genspark','Microsoft Copilot','GitHub Copilot','Cursor','Windsurf',
+  'Lovable','Replit Agent','ElevenLabs','HeyGen','Notion AI','Gamma'
 ];
 function googleNewsRss(query){
   return query ? `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=ja&gl=JP&ceid=JP:ja` : '';
@@ -2255,8 +2264,8 @@ async function confirmSubscriptionAfterPayment(){
   const waits=[0,900,1600,2600];
   for(const wait of waits){
     if(wait)await new Promise(resolve=>window.setTimeout(resolve,wait));
-    const {data,error}=await memberClient.from('subscriptions').select('plan,status,current_period_end').maybeSingle();
-    if(!error&&data&&['standard','premium'].includes(data.plan)&&['active','trialing'].includes(data.status)){
+    const data=await loadMembership();
+    if(data&&['standard','premium'].includes(data.plan)&&['active','trialing'].includes(data.status)){
       memberState.subscription=data;
       renderNav();
       go('tools');
@@ -2288,6 +2297,10 @@ async function openBillingManagement(){
 }
 async function deleteMemberAccount(){
   if(!memberState.user)return;
+  if(memberState.subscription?.access_source==='operator_grant'){
+    modal('運営者特典の解除が必要です','このアカウントには請求のない運営者向けプレミアム特典が設定されています。誤削除を防ぐため、先にSupabaseで運営者特典を解除してください。',closeModal,'閉じる');
+    return;
+  }
   if(effectivePlanKey()!=='free'){
     modal('先に有料プランを解約してください','有料契約が残ったままアカウントを削除すると請求だけが継続するおそれがあります。「契約・お支払い管理」から解約し、無料プランへ切り替わった後に削除してください。',()=>{closeModal();openBillingManagement();},'契約を管理する');
     return;
@@ -3607,6 +3620,17 @@ function renderTools(v){
 
   const selectedTools=tools.filter(tool=>tool.is_using);
   html+=`<section class="selected-topics-panel" aria-labelledby="selectedTopicsTitle"><div class="selected-topics-head"><div><h3 id="selectedTopicsTitle">現在ホームに表示するテーマ</h3><p>設定後の内容をここでいつでも確認できます。</p></div><span aria-live="polite">${selectedCount} / ${topicLimit} 選択中</span></div>${selectedTools.length?`<div class="selected-topics-list">${selectedTools.map(t=>`<div class="selected-topic-item"><span><strong>${esc(t.name)}</strong><small>ホームに表示中</small></span><button class="btn btn-sm" aria-label="${esc(t.name)}をホームから外す" onclick="toggleTopicAttention('${t.id}')">ホームから外す</button></div>`).join('')}</div>`:`<div class="selected-topics-empty">まだテーマを選んでいません。下の一覧から「ホームに表示する」を押してください。</div>`}</section>`;
+
+  const featuredLookup=new Map(INFORMATION_PRESETS.map(preset=>[preset.name,preset]));
+  const featuredAliases={'ChatGPT / OpenAI':'OpenAI / ChatGPT','Claude / Claude Code':'Anthropic / Claude','Gemini':'Google Gemini'};
+  const featuredTools=tools.filter(tool=>FEATURED_AI_TOOL_NAMES.includes(featuredAliases[tool.name]||tool.name)).sort((a,b)=>{
+    const ai=FEATURED_AI_TOOL_NAMES.indexOf(featuredAliases[a.name]||a.name);
+    const bi=FEATURED_AI_TOOL_NAMES.indexOf(featuredAliases[b.name]||b.name);
+    return ai-bi;
+  });
+  if(featuredTools.length){
+    html+=`<section class="featured-tools-panel" aria-labelledby="featuredToolsTitle"><div class="featured-tools-head"><div><h3 id="featuredToolsTitle">主要AIアプリ・ツールから選ぶ</h3><p>Kling・Veoなど、知りたいツールを押すとホームの情報テーマに追加できます。</p></div><strong>${featuredTools.filter(tool=>tool.is_using).length}件を選択中</strong></div><div class="featured-tools-grid">${featuredTools.map(tool=>{const preset=featuredLookup.get(featuredAliases[tool.name]||tool.name);return `<button type="button" class="featured-tool-button ${tool.is_using?'is-selected':''}" aria-pressed="${!!tool.is_using}" onclick="toggleTopicAttention('${tool.id}')"><span class="featured-tool-copy"><b>${esc(tool.name)}</b><small>${esc(preset?.desc||tool.category||'AIツールの最新情報')}</small></span><span class="featured-tool-state">${tool.is_using?'選択中':'選ぶ'}</span></button>`}).join('')}</div></section>`;
+  }
 
   html+=`<div class="settings-table-title" id="topicSettingsList"><div><h3>ホームに表示するテーマを選ぶ</h3><span>テーマ名や分野で検索し、ボタンを押すだけで設定できます。</span></div><span>${selectedCount} / ${topicLimit} 選択中</span></div>
   <div class="topic-settings-toolbar"><label class="topic-settings-search">${icon('search')}<input id="topicSettingsSearch" data-filter="all" type="search" placeholder="テーマ名・分野で検索" aria-label="情報テーマを検索" oninput="filterTopicSettings(this.value)"></label><div class="topic-settings-filters" aria-label="表示するテーマを絞り込む"><button class="btn btn-sm topic-filter-button is-active" onclick="setTopicSettingsFilter('all',this)">すべて</button><button class="btn btn-sm topic-filter-button" onclick="setTopicSettingsFilter('selected',this)">選択中</button><button class="btn btn-sm topic-filter-button" onclick="setTopicSettingsFilter('unselected',this)">未選択</button></div></div><div class="topic-no-results" id="topicNoResults">条件に合うテーマがありません。検索語を短くしてお試しください。</div>
