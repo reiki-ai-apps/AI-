@@ -4070,12 +4070,12 @@ function renderPricing(v){
     {
       key:'standard',kicker:'毎日の情報収集を効率化',name:'スタンダード',price:'¥980',unit:'税込／月',desc:'必要なAI情報を見逃さず、仕事に活かしたい個人ユーザー向け。',
       features:['好きな情報テーマを5件まで選択','選んだテーマ中心の専用フィード','情報元の記事は毎月3記事まで','ジャンル別フィルターと保存機能','閲覧履歴を30日間保存','重要ニュース通知（提供予定）'],
-      cta:'決済へ進む',checkoutUrl:'',recommended:true
+      cta:'スタンダードに登録',checkoutUrl:'https://buy.stripe.com/14AbJ16PCdQl40b81s4ZG02',recommended:true
     },
     {
       key:'premium',kicker:'本格的な情報活用へ',name:'プレミアム',price:'¥2,980',unit:'税込／月',desc:'複数事業やチームで、AIの変化を深く管理・分析したい方向け。',
       features:['好きな情報テーマを無制限に選択','選んだテーマ中心の専用フィード','情報元の記事を回数制限なく確認','テーマ・キーワードで絞り込み','閲覧履歴を30日間保存','CSVデータ書き出し'],
-      cta:'決済へ進む',checkoutUrl:''
+      cta:'プレミアムに登録',checkoutUrl:'https://buy.stripe.com/28E9AT3DqeUp1S33Lc4ZG03'
     }
   ];
   v.innerHTML=`<div class="pricing-page">
@@ -4115,7 +4115,7 @@ function renderPricing(v){
         <a class="official-media-link" href="https://www.instagram.com/kizashi_jp/" target="_blank" rel="noopener noreferrer"><span class="official-media-mark">IG</span><span>Instagramで見る</span></a>
       </div>
     </section>
-    <p class="pricing-note">現在は先行ベータ版です。有料プランの本番決済はStripeの審査完了後に開始します。開始後も、会員情報の「契約・お支払い管理」からいつでも解約できます。</p>
+    <p class="pricing-note">有料プランは月額の自動更新です。決済前にログインすると、ご契約がこのアカウントへ自動で反映されます。会員情報の「契約・お支払い管理」から、次回更新前にいつでも解約できます。</p>
     <div class="footer-links"><button onclick="go('terms')">利用規約</button><button onclick="go('privacy')">プライバシーポリシー</button><button onclick="go('commerce')">特定商取引法に基づく表記</button><button onclick="go('support')">お問い合わせ</button></div>
   </div>`;
 }
