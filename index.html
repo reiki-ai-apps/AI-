@@ -2013,12 +2013,18 @@ function requirePlan(minPlan,message){
 
 function memberPlanLabel(plan){return ({free:'無料',standard:'スタンダード',premium:'プレミアム'})[plan]||'無料';}
 function memberStatusLabel(status){return ({active:'契約中',trialing:'トライアル中',past_due:'支払い確認中',canceled:'解約済み',unpaid:'未払い',incomplete:'手続き未完了',inactive:'無料利用中'})[status]||'確認中';}
+function hasStripeContract(sub=memberState.subscription){
+  return !!sub&&(sub.has_stripe_subscription===true||sub.access_source==='stripe');
+}
 async function loadMembership(){
-  if(!memberClient||!memberState.user)return {plan:'free',status:'inactive',current_period_end:null,access_source:'account'};
+  if(!memberClient||!memberState.user)return {plan:'free',status:'inactive',current_period_end:null,access_source:'account',has_stripe_subscription:false};
   const result=await memberClient.rpc('get_my_membership');
   if(!result.error&&result.data)return result.data;
-  const fallback=await memberClient.from('subscriptions').select('plan,status,current_period_end').maybeSingle();
-  return {...(fallback.data||{plan:'free',status:'inactive',current_period_end:null}),access_source:'stripe'};
+  // Keep existing members usable while a database migration is being deployed.
+  const fallback=await memberClient.from('subscriptions').select('plan,status,current_period_end,stripe_customer_id,stripe_subscription_id').maybeSingle();
+  const sub=fallback.data||{plan:'free',status:'inactive',current_period_end:null};
+  const hasStripe=!!(sub.stripe_customer_id&&sub.stripe_subscription_id);
+  return {...sub,access_source:hasStripe?'stripe':'account',has_stripe_subscription:hasStripe,stripe_plan:hasStripe?sub.plan:null,stripe_status:hasStripe?sub.status:null,stripe_current_period_end:hasStripe?sub.current_period_end:null};
 }
 function authErrorMessage(error){
   const msg=String(error?.message||error||'');
@@ -2237,7 +2243,7 @@ async function confirmSubscriptionAfterPayment(){
 }
 async function openBillingManagement(){
   if(!memberState.user){go('account');toast('契約を管理するにはログインしてください。','err');return;}
-  if(memberState.subscription?.access_source==='operator_grant'){
+  if(memberState.subscription?.access_source==='operator_grant'&&!hasStripeContract()){
     modal('このアカウントに請求はありません','運営者向けプレミアム特典はStripe契約ではないため、解約や請求はありません。',closeModal,'閉じる');
     return;
   }
@@ -4172,16 +4178,22 @@ function renderAccount(v){
     return;
   }
   const sub=memberState.subscription||{plan:'free',status:'inactive'};
-  const isPaid=sub.plan==='standard'||sub.plan==='premium';
-  const isCanceled=sub.status==='canceled';
+  const isPaid=effectivePlanKey()!=='free';
+  const isOperatorGrant=sub.access_source==='operator_grant';
+  const hasStripeSubscription=hasStripeContract(sub);
+  const stripePlan=sub.stripe_plan||(sub.access_source==='stripe'?sub.plan:'free');
+  const stripeStatus=sub.stripe_status||(sub.access_source==='stripe'?sub.status:'inactive');
+  const stripeCurrentPeriodEnd=sub.stripe_current_period_end||(sub.access_source==='stripe'?sub.current_period_end:null);
+  const isCanceled=stripeStatus==='canceled';
   const periodLabel=isCanceled?'利用終了日':'次回更新日';
   v.innerHTML=`<div class="account-page"><section class="account-panel">
     <div class="account-head"><div class="pricing-eyebrow">MEMBER STATUS</div><h2>会員情報</h2><p>ログイン中のアカウントと現在の契約状態です。</p></div>
     <div class="member-summary">
       <div class="member-row"><span>メールアドレス</span><strong>${esc(memberState.user.email||'—')}</strong></div>
       <div class="member-row"><span>現在のプラン</span><strong class="member-plan">${memberPlanLabel(sub.plan)}</strong></div>
-      <div class="member-row"><span>契約状態</span><strong>${memberStatusLabel(sub.status)}</strong></div>
-      ${sub.current_period_end?`<div class="member-row"><span>${periodLabel}</span><strong>${fmtDate(sub.current_period_end)}まで</strong></div>`:''}
+      <div class="member-row"><span>${isOperatorGrant?'利用資格':'契約状態'}</span><strong>${isOperatorGrant?'運営者特典（請求なし）':memberStatusLabel(sub.status)}</strong></div>
+      ${hasStripeSubscription?`<div class="member-row"><span>Stripe契約</span><strong>${memberPlanLabel(stripePlan)}・${memberStatusLabel(stripeStatus)}</strong></div>`:''}
+      ${stripeCurrentPeriodEnd?`<div class="member-row"><span>${periodLabel}</span><strong>${fmtDate(stripeCurrentPeriodEnd)}まで</strong></div>`:''}
       <div class="auth-actions"><button class="btn btn-primary" onclick="go('pricing')">${icon('star')}料金プランを見る</button>${currentRules().csv?`<button class="btn" onclick="exportUpdatesCsv()">${icon('updates')}CSVを書き出す</button>`:''}<button class="btn" onclick="sendPasswordReset()">${icon('edit')}パスワード再設定</button><button class="btn" onclick="signOutMember()">${icon('arrowLeft')}ログアウト</button></div>
     </div>
     <section class="member-feature-guide" aria-labelledby="memberFeaturesTitle">
@@ -4194,9 +4206,16 @@ function renderAccount(v){
       </div>
       <div class="billing-actions"><button class="btn btn-primary" onclick="go('tools')">${icon('tools')}${isPaid?'フィード設定を始める':'設定画面を見てみる'}</button>${isPaid?`<button class="btn" onclick="go('home')">${icon('home')}ホームで確認</button>`:`<button class="btn" onclick="go('pricing')">${icon('star')}プランを比較</button>`}</div>
     </section>
-    ${isPaid?`<section class="billing-panel" aria-labelledby="billingTitle">
+    ${isOperatorGrant?`<section class="billing-panel" aria-labelledby="operatorBenefitTitle">
       <div class="billing-panel-head">
-        <div><h3 id="billingTitle">契約・お支払い管理</h3><p>お支払い方法の確認やサブスクの解約はこちらから行えます。</p></div>
+        <div><h3 id="operatorBenefitTitle">運営者向けプレミアム特典</h3><p>この特典自体には請求がありません。別に契約したStripeサブスクとは独立しています。</p></div>
+        <span class="billing-badge">請求なし・期限なし</span>
+      </div>
+      <p class="billing-help">${hasStripeSubscription?'下の「契約・お支払い管理」から、別に契約中のStripeサブスクを確認・解約できます。':'料金の請求や自動更新はありません。特典はSupabaseの運営者設定でのみ変更できます。'}</p>
+    </section>`:''}
+    ${hasStripeSubscription?`<section class="billing-panel" aria-labelledby="billingTitle">
+      <div class="billing-panel-head">
+        <div><h3 id="billingTitle">契約・お支払い管理</h3><p>Stripeで契約中の${memberPlanLabel(stripePlan)}プランのお支払い確認・解約はこちらです。</p></div>
         <span class="billing-badge">${isCanceled?'解約手続き済み':'いつでも解約できます'}</span>
       </div>
       <div class="billing-actions">
@@ -4204,14 +4223,14 @@ function renderAccount(v){
         <button class="btn" onclick="showCancellationGuide()">${icon('x')}解約手続きを始める</button>`}
       </div>
       <p class="billing-help">${isCanceled?'解約手続きは完了しています。上記の利用終了日までは有料機能を利用できます。':'解約後も現在の利用期間が終了するまでは有料機能を利用できます。アカウント削除とサブスク解約は別の手続きです。'}</p>
-    </section>`:`<section class="billing-panel" aria-labelledby="billingTitle">
+    </section>`:!isOperatorGrant?`<section class="billing-panel" aria-labelledby="billingTitle">
       <div class="billing-panel-head">
         <div><h3 id="billingTitle">契約・お支払い管理</h3><p>現在は無料プランのため、解約手続きや請求はありません。</p></div>
         <span class="billing-badge">請求なし</span>
       </div>
-    </section>`}
-    <div class="account-security">契約プランはStripeの決済結果から更新されます。ログアウトだけでは有料サブスクは解約されません。</div>
-    <section class="account-danger"><div><b>アカウントの削除</b><span>${effectivePlanKey()==='free'?'無料アカウントと保存設定を完全に削除します。':'先に有料プランを解約し、無料プランへ切り替わってから削除できます。'}</span></div><button class="btn btn-danger btn-sm" onclick="deleteMemberAccount()">${icon('trash')}削除する</button></section>
+    </section>`:''}
+    <div class="account-security">${isOperatorGrant?(hasStripeSubscription?'運営者特典とStripe契約は別々に管理されます。Stripe契約を解約しても、運営者プレミアム特典は維持されます。':'運営者特典はStripeの請求とは連動せず、サーバー側で安全に管理されます。'):'契約プランはStripeの決済結果から更新されます。ログアウトだけでは有料サブスクは解約されません。'}</div>
+    <section class="account-danger"><div><b>アカウントの削除</b><span>${isOperatorGrant?'誤削除を防ぐため、先に運営者特典の解除が必要です。':effectivePlanKey()==='free'?'無料アカウントと保存設定を完全に削除します。':'先に有料プランを解約し、無料プランへ切り替わってから削除できます。'}</span></div><button class="btn btn-danger btn-sm" onclick="deleteMemberAccount()">${icon('trash')}削除する</button></section>
   </section></div>`;
 }
 
