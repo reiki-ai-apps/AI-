@@ -2775,18 +2775,8 @@ function storySequence(u){
   const value=Number(u?.story_sequence);
   return Number.isFinite(value)&&value>=2?Math.floor(value):2;
 }
-function eventDateLabel(u){
-  if(u.event_at&&u.event_date_precision!=='unknown'){
-    const suffix=u.event_status&&u.event_status!=='不明'?`（${u.event_status}）`:'';
-    return `${fmtDate(u.event_at)}${suffix}`;
-  }
-  return '記事内で確認できませんでした';
-}
 function timelineMeta(u){
-  const eventKnown=!!u.event_at&&u.event_date_precision!=='unknown';
-  const eventRow=eventKnown?`<span><b>出来事の日</b>${esc(eventDateLabel(u))}</span>`:'';
-  return `<div class="timeline-meta" aria-label="出来事と記事掲載の日付">
-    ${eventRow}
+  return `<div class="timeline-meta" aria-label="情報元の記事掲載日">
     <span><b>情報元の掲載日</b>${esc(sourcePublishedLabel(u))}</span>
   </div>`;
 }
@@ -3072,7 +3062,6 @@ function detailSidebar(u,tool){
       <h3>${icon('updates')} 情報</h3>
       <div class="meta-list">
         <div class="row"><span class="k">対象ツール</span><span class="v">${esc(tool?tool.name:'—')}</span></div>
-        <div class="row"><span class="k">出来事</span><span class="v">${esc(eventDateLabel(u))}</span></div>
         <div class="row"><span class="k">情報元掲載</span><span class="v">${esc(sourcePublishedLabel(u))}</span></div>
         ${u.source_updated_at?`<div class="row"><span class="k">情報元更新</span><span class="v">${esc(fmtDateTime(u.source_updated_at))}</span></div>`:''}
         <div class="row"><span class="k">レーダー取得</span><span class="v">${esc(fmtDateTime(u.fetched_at))}</span></div>
@@ -3188,7 +3177,6 @@ function renderDetailRead(v,u,tool){
       <div class="source-trust" aria-label="情報元の確認">
         <div class="source-trust-item"><span>掲載元</span><strong>${esc(u.source_name||'情報元の記事')}</strong></div>
         <div class="source-trust-item"><span>情報の種類</span><strong class="source-badge">${u.is_official?'公式発表':'報道・公開記事'}</strong></div>
-        <div class="source-trust-item"><span>出来事が起きた日</span><strong>${esc(eventDateLabel(u))}</strong></div>
         <div class="source-trust-item"><span>情報元の記事掲載日時</span><strong>${esc(sourcePublishedLabel(u))}</strong></div>
         ${u.source_updated_at?`<div class="source-trust-item"><span>情報元の最終更新</span><strong>${esc(fmtDateTime(u.source_updated_at))}</strong></div>`:''}
       </div>
