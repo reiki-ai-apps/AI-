@@ -1732,6 +1732,12 @@
   .topic-mobile-card.is-selected{border-color:rgba(76,221,230,.54);box-shadow:0 0 0 2px rgba(76,221,230,.08)}
   .topic-mobile-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:11px}.topic-mobile-title{display:flex;align-items:center;gap:9px;min-width:0;color:#f0f7ff;font-size:13px;font-weight:800}.topic-mobile-title span:last-child{overflow:hidden;text-overflow:ellipsis}.topic-mobile-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}.topic-mobile-detail{margin:0 0 12px;color:#93a3b8;font-size:10.5px;line-height:1.65}
   .topic-mobile-actions{display:grid;grid-template-columns:1fr auto auto;gap:7px}.topic-mobile-actions .quick-topic-toggle{width:100%;min-height:40px!important}.topic-mobile-actions .btn-icon{width:40px;height:40px}
+  .topic-settings-toolbar{display:grid;grid-template-columns:minmax(240px,1fr) auto;gap:10px;margin:0 0 12px}.topic-settings-search{display:flex;align-items:center;gap:9px;min-height:44px;padding:0 12px;border:1px solid rgba(80,178,210,.30);border-radius:11px;background:rgba(5,18,37,.78)}.topic-settings-search svg{width:16px;height:16px;flex:0 0 16px;color:#62dfe7}.topic-settings-search input{width:100%;min-height:42px;border:0;background:transparent;color:#eef6ff;font:inherit;font-size:12px;outline:0}.topic-settings-filters{display:flex;gap:6px}.topic-filter-button{min-height:44px!important;white-space:nowrap}.topic-filter-button.is-active{border-color:rgba(89,228,235,.60)!important;background:rgba(26,119,145,.40)!important;color:#efffff!important}
+  .topic-no-results{display:none;margin:12px 0;padding:16px;border:1px dashed rgba(104,154,194,.24);border-radius:11px;color:#91a2b7;font-size:11px;line-height:1.6;text-align:center}.topic-no-results.show{display:block}
+  .free-topic-demo{margin-top:15px}.free-topic-demo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.free-topic-demo-button{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:48px;padding:10px 12px;border:1px solid rgba(101,148,190,.22);border-radius:11px;background:rgba(5,17,34,.70);color:#b7c5d7;font:inherit;font-size:11px;font-weight:800;cursor:pointer;text-align:left}.free-topic-demo-button.is-selected{border-color:rgba(75,222,231,.56);background:linear-gradient(135deg,rgba(14,96,116,.62),rgba(41,34,113,.68));color:#f3fdff}.free-topic-demo-button span:last-child{color:#6ce7ec;font-size:9px;white-space:nowrap}.free-topic-demo-result{margin-top:10px;padding:11px 12px;border-left:2px solid #4ddae5;background:rgba(30,126,146,.10);color:#afc1d2;font-size:10.5px;line-height:1.65}
+  .mobile-settings-details{display:none;margin-top:14px;border:1px solid rgba(97,146,188,.20);border-radius:12px;background:rgba(5,16,32,.62)}.mobile-settings-details summary{padding:13px 14px;color:#c8d5e5;font-size:11px;font-weight:800;cursor:pointer}.mobile-settings-details div{padding:0 14px 14px;color:#91a2b7;font-size:10.5px;line-height:1.7}
+  .toast-action{margin-left:auto;border:1px solid rgba(114,226,232,.45);border-radius:7px;background:rgba(29,111,132,.34);color:#eaffff;font:inherit;font-size:10px;font-weight:900;padding:6px 9px;cursor:pointer;white-space:nowrap}
+  .topic-settings-search:focus-within,.quick-topic-toggle:focus-visible,.free-topic-demo-button:focus-visible,.topic-filter-button:focus-visible{outline:2px solid #68e3ec;outline-offset:2px}
   .member-feature-guide{margin-top:16px;padding:18px;border:1px solid rgba(76,214,226,.22);border-radius:14px;background:linear-gradient(135deg,rgba(9,35,49,.74),rgba(11,17,43,.78))}
   .member-feature-guide h3{margin:0 0 6px;color:#eef7ff;font-size:15px}.member-feature-guide p{margin:0 0 13px;color:#97a7bb;font-size:11px;line-height:1.7}
   .member-feature-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:14px}
@@ -1757,7 +1763,12 @@
     .pricing-common{align-items:flex-start;padding:13px 14px}
     .account-panel{padding:23px 18px}.account-head h2{font-size:23px}.auth-actions{display:grid;grid-template-columns:1fr}.auth-actions .btn{width:100%;min-width:0}.member-row{align-items:flex-start;flex-direction:column;gap:7px}.member-row strong{text-align:left}.billing-panel-head{display:block}.billing-badge{display:inline-flex;margin-top:10px}.billing-actions{display:grid}.billing-actions .btn{width:100%}
     .settings-hero{padding:20px 16px}.settings-hero-main{display:block}.settings-hero h2{font-size:21px}.current-plan-pill{margin-top:14px}.settings-steps{grid-template-columns:1fr}.settings-step{min-height:48px}.settings-benefit{display:block}.settings-benefit .btn{width:100%;margin-top:13px}.settings-actions .btn{width:100%}.settings-table-title{align-items:flex-start;flex-direction:column}
-    .selected-topics-panel{padding:15px}.selected-topics-head{display:block}.selected-topics-head span{display:inline-flex;margin-top:8px}.selected-topics-list{grid-template-columns:1fr}.topic-desktop-table{display:none}.topic-mobile-cards{display:grid;gap:10px}.topic-mobile-actions{grid-template-columns:1fr auto auto}
+    .selected-topics-panel{padding:15px}.selected-topics-head{display:block}.selected-topics-head span{display:inline-flex;margin-top:8px}.selected-topics-list{grid-template-columns:1fr}.topic-mobile-actions{grid-template-columns:1fr auto auto}
+  }
+  @media(max-width:760px){
+    .settings-hub.is-paid .settings-steps,.settings-hub.is-paid .settings-grid{display:none}.settings-hub.is-paid .settings-hero{padding:17px 15px}.settings-hub.is-paid .settings-hero h2{font-size:20px}.settings-hub.is-paid .settings-hero p{font-size:12px}.settings-hub.is-paid .settings-actions{margin-top:12px}
+    .topic-desktop-table{display:none}.topic-mobile-cards{display:grid;gap:10px}.topic-settings-toolbar{grid-template-columns:1fr}.topic-settings-filters{overflow-x:auto;padding:1px 0 3px}.topic-filter-button{flex:0 0 auto}.mobile-settings-details{display:block}.free-topic-demo-grid{grid-template-columns:1fr}
+    .topic-mobile-detail{font-size:12px}.topic-mobile-meta .chip{font-size:10px}.selected-topics-head p,.settings-table-title span{font-size:12px}.selected-topic-item strong{font-size:12px}.selected-topic-item small{font-size:10px}
   }
   /* KIZASHI official media links */
   .official-media{margin:18px 14px 16px;padding:14px;border:1px solid rgba(77,211,230,.2);background:rgba(5,15,34,.62);border-radius:14px}
@@ -1976,6 +1987,8 @@ let memberRefreshQueue=Promise.resolve();
 let loadedMemberStateFor='';
 let memberStateDirty=false;
 let lastAuthUserId='';
+let toolFormDirty=false;
+const freeTopicPreview=new Set();
 const SOCIAL_PROOF_MIN_USERS=100;
 const SOCIAL_PROOF_MIN_REVIEWS=3;
 const PLAN_RULES={
@@ -2743,6 +2756,10 @@ function routeFromHash(){
 }
 function go(name, param){
   param=param||null;
+  if(route.name==='tool-form'&&toolFormDirty&&!(name==='tool-form'&&route.param===param)){
+    modal('入力内容が保存されていません','入力内容を破棄して、この画面から移動しますか？',()=>{toolFormDirty=false;go(name,param);},'破棄して移動',true);
+    return;
+  }
   if(name==='tool-form'&&effectivePlanKey()==='free'){
     requirePlan('standard','無料プランは運営が選んだ総合フィードを利用します。情報テーマの選択・編集はスタンダード以上で利用できます。');return;
   }
@@ -2766,6 +2783,10 @@ function _navigate(name, param){
   window.scrollTo(0,0); render();
 }
 function goBack(){
+  if(route.name==='tool-form'&&toolFormDirty){
+    modal('入力内容が保存されていません','このまま戻ると、入力した内容は失われます。',()=>{toolFormDirty=false;history.back();},'破棄して戻る',true);
+    return;
+  }
   if(route.name!=='home'){history.back();}
   else if(navHistory.length){ const prev=navHistory.pop(); _navigate(prev.name, prev.param); }
   else if(route.name!=='home'){ _navigate('home', null); }
@@ -3390,14 +3411,59 @@ function toggleTopicAttention(id){
   const limit=currentRules().topics;
   const selected=getTools().filter(item=>item.is_using&&item.id!==id).length;
   if(next&&Number.isFinite(limit)&&selected>=limit){
-    requirePlan('premium',`スタンダードでは情報テーマを${limit}件まで選べます。無制限に選ぶにはプレミアムをご利用ください。`);
+    openTopicReplacementPicker(tool);
     return;
   }
   tool.is_using=next;
   getSettings().themeSelectionConfigured=true;
   saveTool(tool);
-    toast(next?'ホームに表示するテーマへ追加しました':'ホームの表示テーマから外しました','ok');
+  if(next){
+    toast(`「${tool.name}」をホームに表示します`,'ok');
+  }else{
+    toastAction(`「${tool.name}」をホームから外しました`,'元に戻す',()=>{
+      const current=toolById(id);if(!current)return;
+      current.is_using=true;saveTool(current);render();toast('ホーム表示へ戻しました','ok');
+    },'ok');
+  }
   render();
+}
+function openTopicReplacementPicker(nextTool,onComplete){
+  const selected=getTools().filter(tool=>tool.is_using&&tool.id!==nextTool.id);
+  if(!selected.length)return;
+  const body=`<p class="preset-intro">現在${selected.length}件を選択しています。ホームから外すテーマを1つ選んで入れ替えてください。</p><div class="priority-grid">${selected.map((tool,index)=>`<label class="priority-choice"><input type="radio" name="replace_topic" value="${esc(tool.id)}" ${index===0?'checked':''}><span class="priority-code">↔</span><span class="priority-copy"><strong>${esc(tool.name)}</strong><small>このテーマをホームから外す</small></span></label>`).join('')}</div>`;
+  modalForm('表示テーマを入れ替える',body,()=>{
+    const removeId=document.querySelector('input[name="replace_topic"]:checked')?.value;
+    const oldTool=toolById(removeId);if(!oldTool)return false;
+    oldTool.is_using=false;saveTool(oldTool);
+    nextTool.is_using=true;saveTool(nextTool);
+    getSettings().themeSelectionConfigured=true;
+    render();toast(`「${oldTool.name}」から「${nextTool.name}」へ入れ替えました`,'ok');
+    onComplete?.();
+    return true;
+  },'入れ替えてホームに表示');
+}
+function toggleFreeTopicPreview(key){
+  if(freeTopicPreview.has(key))freeTopicPreview.delete(key);
+  else if(freeTopicPreview.size<3)freeTopicPreview.add(key);
+  else{toast('体験版では3テーマまで選べます','err');return;}
+  render();
+}
+function setTopicSettingsFilter(filter,button){
+  document.querySelectorAll('.topic-filter-button').forEach(item=>item.classList.toggle('is-active',item===button));
+  document.getElementById('topicSettingsSearch').dataset.filter=filter;
+  filterTopicSettings(document.getElementById('topicSettingsSearch').value);
+}
+function filterTopicSettings(value){
+  const input=document.getElementById('topicSettingsSearch');if(!input)return;
+  const q=String(value||'').trim().toLowerCase();
+  const filter=input.dataset.filter||'all';let visible=0;
+  document.querySelectorAll('[data-topic-search]').forEach(item=>{
+    const selected=item.dataset.topicSelected==='true';
+    const stateOk=filter==='all'||(filter==='selected'&&selected)||(filter==='unselected'&&!selected);
+    const show=stateOk&&(!q||item.dataset.topicSearch.includes(q));
+    item.hidden=!show;if(show)visible++;
+  });
+  document.getElementById('topicNoResults')?.classList.toggle('show',visible===0);
 }
 function settingLimitLabel(value,unit){return Number.isFinite(value)?`${value}${unit}`:`無制限`;}
 function renderTools(v){
@@ -3412,7 +3478,7 @@ function renderTools(v){
     ?`<button class="btn btn-primary" onclick="go('tool-form','new')">${icon('plus')}新しいテーマを追加</button>`
     :`<button class="btn btn-primary" onclick="go('pricing')">${icon('star')}有料プランを見る</button>`;
 
-  let html=`<div class="settings-hub">
+  let html=`<div class="settings-hub ${isPaid?'is-paid':'is-free'}">
     <section class="settings-hero" aria-labelledby="feedSettingsTitle">
       <div class="settings-hero-main"><div>
         <div class="pricing-eyebrow">PERSONAL FEED SETTINGS</div>
@@ -3444,9 +3510,10 @@ function renderTools(v){
     </div>`;
 
   if(!isPaid){
-    html+=`<section class="settings-benefit"><div><h3>選べるテーマのイメージ</h3><p>登録後は、このようなテーマをタップして専用フィードを作れます。</p>
-      <div class="locked-topic-preview"><span class="locked-topic">${icon('star')}中国AI・基盤モデル</span><span class="locked-topic">${icon('star')}補助金・助成金</span><span class="locked-topic">${icon('star')}AI関連企業・株式</span><span class="locked-topic">${icon('star')}画像・動画生成</span><span class="locked-topic">${icon('star')}AI政策・規制</span></div></div>
-      <button class="btn btn-primary" onclick="go('pricing')">料金と違いを見る</button></section></div>`;
+    const previewTopics=['中国AI・基盤モデル','補助金・助成金','AI関連企業・株式','画像・動画生成','AI政策・規制'];
+    html+=`<section class="settings-benefit"><div style="width:100%"><h3>3つ選んで、専用フィードを体験</h3><p>気になるテーマを押すと、有料登録後の設定イメージをその場で確認できます。</p>
+      <div class="free-topic-demo"><div class="free-topic-demo-grid">${previewTopics.map((name,index)=>`<button type="button" class="free-topic-demo-button ${freeTopicPreview.has(String(index))?'is-selected':''}" aria-pressed="${freeTopicPreview.has(String(index))}" onclick="toggleFreeTopicPreview('${index}')"><span>${icon('star')}${esc(name)}</span><span>${freeTopicPreview.has(String(index))?'選択中・解除':'選ぶ'}</span></button>`).join('')}</div><div class="free-topic-demo-result" aria-live="polite">${freeTopicPreview.size?`選択中：${[...freeTopicPreview].map(key=>previewTopics[Number(key)]).filter(Boolean).map(esc).join('、')}<br>有料登録後は、この内容をホームに反映できます。`:'まだ選択していません。最大3つまで試せます。'}</div></div></div>
+      <button class="btn btn-primary" onclick="go('pricing')">この設定が使えるプランを見る</button></section></div>`;
     v.innerHTML=html;
     return;
   }
@@ -3456,9 +3523,11 @@ function renderTools(v){
   if(!tools.length){v.innerHTML=html+emptyState('情報テーマがありません','「新しいテーマを追加」から、知りたい分野を登録してください。');return;}
 
   const selectedTools=tools.filter(tool=>tool.is_using);
-  html+=`<section class="selected-topics-panel" aria-labelledby="selectedTopicsTitle"><div class="selected-topics-head"><div><h3 id="selectedTopicsTitle">現在ホームに表示するテーマ</h3><p>設定後の内容をここでいつでも確認できます。</p></div><span>${selectedCount} / ${topicLimit} 選択中</span></div>${selectedTools.length?`<div class="selected-topics-list">${selectedTools.map(t=>`<div class="selected-topic-item"><span><strong>${esc(t.name)}</strong><small>ホームに表示中</small></span><button class="btn btn-sm" onclick="toggleTopicAttention('${t.id}')">外す</button></div>`).join('')}</div>`:`<div class="selected-topics-empty">まだテーマを選んでいません。下の一覧から「ホームに表示する」を押してください。</div>`}</section>`;
+  html+=`<section class="selected-topics-panel" aria-labelledby="selectedTopicsTitle"><div class="selected-topics-head"><div><h3 id="selectedTopicsTitle">現在ホームに表示するテーマ</h3><p>設定後の内容をここでいつでも確認できます。</p></div><span aria-live="polite">${selectedCount} / ${topicLimit} 選択中</span></div>${selectedTools.length?`<div class="selected-topics-list">${selectedTools.map(t=>`<div class="selected-topic-item"><span><strong>${esc(t.name)}</strong><small>ホームに表示中</small></span><button class="btn btn-sm" aria-label="${esc(t.name)}をホームから外す" onclick="toggleTopicAttention('${t.id}')">ホームから外す</button></div>`).join('')}</div>`:`<div class="selected-topics-empty">まだテーマを選んでいません。下の一覧から「ホームに表示する」を押してください。</div>`}</section>`;
 
-  html+=`<div class="settings-table-title" id="topicSettingsList"><div><h3>ホームに表示するテーマを選ぶ</h3><span>スマホでは各テーマの下にあるボタンから選択できます。</span></div><span>${selectedCount} / ${topicLimit} 選択中</span></div><div class="table-wrap topic-desktop-table"><table>
+  html+=`<div class="settings-table-title" id="topicSettingsList"><div><h3>ホームに表示するテーマを選ぶ</h3><span>テーマ名や分野で検索し、ボタンを押すだけで設定できます。</span></div><span>${selectedCount} / ${topicLimit} 選択中</span></div>
+  <div class="topic-settings-toolbar"><label class="topic-settings-search">${icon('search')}<input id="topicSettingsSearch" data-filter="all" type="search" placeholder="テーマ名・分野で検索" aria-label="情報テーマを検索" oninput="filterTopicSettings(this.value)"></label><div class="topic-settings-filters" aria-label="表示するテーマを絞り込む"><button class="btn btn-sm topic-filter-button is-active" onclick="setTopicSettingsFilter('all',this)">すべて</button><button class="btn btn-sm topic-filter-button" onclick="setTopicSettingsFilter('selected',this)">選択中</button><button class="btn btn-sm topic-filter-button" onclick="setTopicSettingsFilter('unselected',this)">未選択</button></div></div><div class="topic-no-results" id="topicNoResults">条件に合うテーマがありません。検索語を短くしてお試しください。</div>
+  <div class="table-wrap topic-desktop-table"><table>
     <thead><tr><th>情報テーマ</th><th style="width:120px">種類</th><th style="width:62px">優先度</th><th style="width:132px">ホーム表示</th><th style="width:180px">収集ジャンル</th><th style="width:96px">最終取得</th><th style="width:80px">状態</th><th style="width:96px"></th></tr></thead><tbody>`;
   tools.forEach((t,i)=>{
     html+=`<tr>
@@ -3467,7 +3536,7 @@ function renderTools(v){
       </td>
       <td><span class="chip">${esc(t.category||'—')}</span></td>
       <td><span class="pri ${t.priority}">${t.priority}</span></td>
-      <td><button class="btn btn-sm quick-topic-toggle ${t.is_using?'btn-primary':''}" onclick="toggleTopicAttention('${t.id}')">${t.is_using?`${icon('check')}表示中`:`${icon('plus')}ホームに表示`}</button></td>
+      <td><button class="btn btn-sm quick-topic-toggle ${t.is_using?'btn-primary':''}" aria-pressed="${!!t.is_using}" onclick="toggleTopicAttention('${t.id}')">${t.is_using?`${icon('check')}選択中・解除`:`${icon('plus')}ホームに表示`}</button></td>
       <td style="font-size:12px;color:var(--text-soft)">${(t.related_businesses||[]).slice(0,2).map(esc).join('、')||'—'}${(t.related_businesses||[]).length>2?' …':''}</td>
       <td style="font-size:12.5px;color:var(--text-mute)">${t.last_fetched_at?relDate(t.last_fetched_at):'未取得'}</td>
       <td>${t.is_active?`<span class="status adopted" style="padding:3px 9px">有効</span>`:`<span class="status ignored" style="padding:3px 9px">無効</span>`}</td>
@@ -3477,12 +3546,25 @@ function renderTools(v){
       </div></td>
     </tr>`;
   });
-  html+=`</tbody></table></div><div class="topic-mobile-cards" aria-label="情報テーマ一覧">${tools.map((t,i)=>`<article class="topic-mobile-card ${t.is_using?'is-selected':''}"><div class="topic-mobile-head"><div class="topic-mobile-title"><span class="tool-dot" style="background:${TOOL_COLORS[i%TOOL_COLORS.length]}"></span><span>${esc(t.name)}</span></div>${t.is_using?`<span class="status adopted">表示中</span>`:''}</div><div class="topic-mobile-meta"><span class="chip">${esc(t.category||'種類なし')}</span><span class="pri ${t.priority}">優先度 ${t.priority}</span></div><p class="topic-mobile-detail">${(t.related_businesses||[]).length?`収集ジャンル：${(t.related_businesses||[]).map(esc).join('、')}`:'幅広いAIニュースから関連情報を収集します。'}</p><div class="topic-mobile-actions"><button class="btn quick-topic-toggle ${t.is_using?'btn-primary':''}" onclick="toggleTopicAttention('${t.id}')">${t.is_using?`${icon('check')}ホームに表示中`:`${icon('plus')}ホームに表示する`}</button><button class="btn btn-icon" title="編集" aria-label="${esc(t.name)}を編集" onclick="go('tool-form','${t.id}')">${icon('edit')}</button><button class="btn btn-icon btn-danger" title="削除" aria-label="${esc(t.name)}を削除" onclick="confirmDeleteTool('${t.id}')">${icon('trash')}</button></div></article>`).join('')}</div>`;
+  html+=`</tbody></table></div><div class="topic-mobile-cards" aria-label="情報テーマ一覧">${tools.map((t,i)=>`<article class="topic-mobile-card ${t.is_using?'is-selected':''}" data-topic-search="${esc(`${t.name} ${t.category||''} ${(t.related_businesses||[]).join(' ')}`.toLowerCase())}" data-topic-selected="${!!t.is_using}"><div class="topic-mobile-head"><div class="topic-mobile-title"><span class="tool-dot" style="background:${TOOL_COLORS[i%TOOL_COLORS.length]}"></span><span>${esc(t.name)}</span></div>${t.is_using?`<span class="status adopted">選択中</span>`:''}</div><div class="topic-mobile-meta"><span class="chip">${esc(t.category||'種類なし')}</span></div><p class="topic-mobile-detail">${(t.related_businesses||[]).length?`届くニュースの例：${(t.related_businesses||[]).map(esc).join('、')}`:'幅広いAIニュースから関連情報を収集します。'}</p><div class="topic-mobile-actions"><button class="btn quick-topic-toggle ${t.is_using?'btn-primary':''}" aria-pressed="${!!t.is_using}" onclick="toggleTopicAttention('${t.id}')">${t.is_using?`${icon('check')}選択中・解除する`:`${icon('plus')}ホームに表示する`}</button><button class="btn btn-icon" title="編集" aria-label="${esc(t.name)}を編集" onclick="go('tool-form','${t.id}')">${icon('edit')}</button><button class="btn btn-icon btn-danger" title="削除" aria-label="${esc(t.name)}を削除" onclick="confirmDeleteTool('${t.id}')">${icon('trash')}</button></div></article>`).join('')}</div><details class="mobile-settings-details"><summary>詳細設定について</summary><div>優先度や情報源などの詳しい項目は、各テーマの編集ボタンから変更できます。通常はテーマを選ぶだけで利用できます。</div></details>`;
   v.innerHTML=html;
 }
 function confirmDeleteTool(id){
-  const t=toolById(id); const n=getUpdates().filter(u=>u.tool_id===id).length;
-  modal('情報テーマを削除',`「${t.name}」を削除します。${n?`関連する${n}件のアップデートも削除されます。`:''}`,()=>{ deleteTool(id); toast('削除しました','ok'); render(); },'削除する',true);
+  const t=toolById(id); if(!t)return;
+  const clone=value=>JSON.parse(JSON.stringify(value));
+  const toolSnapshot=clone(t);
+  const updateSnapshots=clone(getUpdates().filter(u=>u.tool_id===id));
+  const n=updateSnapshots.length;
+  modal('情報テーマを削除',`「${t.name}」を削除します。${n?`関連する${n}件のアップデートも削除されます。`:''}`,()=>{
+    deleteTool(id);render();
+    toastAction('情報テーマを削除しました','元に戻す',()=>{
+      const d=DB.load();
+      if(!d.tools.some(item=>item.id===toolSnapshot.id))d.tools.push(toolSnapshot);
+      const existing=new Set(d.updates.map(item=>item.id));
+      d.updates.push(...updateSnapshots.filter(item=>!existing.has(item.id)));
+      DB.save();render();toast('削除を取り消しました','ok');
+    },'ok');
+  },'削除する',true);
 }
 
 /* ============================================================
@@ -3490,14 +3572,15 @@ function confirmDeleteTool(id){
    ============================================================ */
 function renderToolForm(v){
   const isNew = route.param==='new';
-  const t = isNew ? {name:'',category:'',search_query:'',official_url:'',release_notes_url:'',rss_url:'',x_url:'',priority:'B',is_using:false,related_businesses:[],memo:'',is_active:true}
+  toolFormDirty=false;
+  const t = isNew ? {name:'',category:'',search_query:'',official_url:'',release_notes_url:'',rss_url:'',x_url:'',priority:'B',is_using:true,related_businesses:[],memo:'',is_active:true}
                   : Object.assign({},toolById(route.param));
   if(!t){ v.innerHTML=emptyState('情報テーマが見つかりません',''); return; }
   t.related_businesses=t.related_businesses||[];
   document.getElementById('pageTitle').textContent = isNew?'情報テーマを追加':'情報テーマを編集';
 
   v.innerHTML = `<button class="back-link" onclick="go('tools')">${icon('arrowLeft')}情報テーマ一覧に戻る</button>
-  <div style="max-width:900px">
+  <div style="max-width:900px" oninput="markToolFormDirty()" onchange="markToolFormDirty()">
     <div class="form-card">
       <h3>${icon('search')} 探して追加</h3>
       <p class="preset-intro">知りたい分野を選ぶだけで、検索キーワードとニュース取得先を自動設定します。政治・補助金・関連株・研究など、AIに関わる情報を幅広く探せます。</p>
@@ -3547,13 +3630,13 @@ function renderToolForm(v){
       </div>
       <div class="field"><label>メモ（任意）</label><textarea id="tf_memo" rows="2" placeholder="このテーマで特に知りたいことなど">${esc(t.memo||'')}</textarea></div>
       <div class="field-row" style="margin-top:15px">
-        <label class="switch"><input type="checkbox" id="tf_using" ${t.is_using?'checked':''}>ホームに表示するテーマにする</label>
+        <label class="switch"><input type="checkbox" id="tf_using" ${t.is_using?'checked':''}>このテーマをホームに表示する</label>
         <label class="switch"><input type="checkbox" id="tf_active" ${t.is_active?'checked':''}>ニュース取得を有効にする</label>
       </div>
     </div>
 
     <div class="form-actions">
-      <button class="btn btn-primary" onclick="submitTool('${isNew?'':t.id}')">${icon('check')}${isNew?'情報テーマを追加':'変更を保存'}</button>
+      <button class="btn btn-primary" onclick="submitTool('${isNew?'':t.id}')">${icon('check')}${isNew?'追加してホームに表示':'変更を保存'}</button>
       <button class="btn btn-ghost" onclick="go('tools')">キャンセル</button>
     </div>
   </div>`;
@@ -3573,6 +3656,7 @@ function updateCategorySelection(){
   const state=document.getElementById('tf_category_state');
   if(state)state.textContent=`選択中 ${count}件`;
 }
+function markToolFormDirty(){ toolFormDirty=true; }
 function applyInformationPreset(index,button){
   const p=INFORMATION_PRESETS[index]; if(!p)return;
   document.getElementById('tf_name').value=p.name;
@@ -3581,18 +3665,22 @@ function applyInformationPreset(index,button){
   document.getElementById('tf_rss').value=googleNewsRss(p.query);
   const priority=document.querySelector(`input[name="tf_priority"][value="${p.priority}"]`);
   if(priority)priority.checked=true;
+  const using=document.getElementById('tf_using');
+  if(using)using.checked=true;
   document.querySelectorAll('#tf_biz input').forEach(input=>{ input.checked=input.value===p.category; });
   updateCategorySelection();
   document.querySelectorAll('#presetGrid .preset-card').forEach(card=>card.classList.remove('is-selected'));
   button?.classList.add('is-selected');
+  markToolFormDirty();
   document.getElementById('tf_name')?.scrollIntoView({behavior:'smooth',block:'center'});
   toast(`「${p.name}」を設定しました`,'ok');
 }
 function submitTool(id){
   const name=val('tf_name'); if(!name){ toast('情報テーマ名を入力してください','err'); return; }
+  const query=val('tf_query'); if(!query){ toast('検索キーワードを入力してください','err'); document.getElementById('tf_query')?.focus(); return; }
   const t = id ? Object.assign({},toolById(id)) : {};
   t.name=name; t.category=val('tf_category');
-  t.search_query=val('tf_query');
+  t.search_query=query;
   t.priority=document.querySelector('input[name="tf_priority"]:checked')?.value||'B';
   if(currentRules().customSources){
     const enteredUrls=[
@@ -3618,12 +3706,17 @@ function submitTool(id){
   t.memo=val('tf_memo'); t.is_using=document.getElementById('tf_using').checked; t.is_active=document.getElementById('tf_active').checked;
   if(t.is_using&&Number.isFinite(currentRules().topics)){
     const selected=getTools().filter(x=>x.is_using&&x.id!==id).length;
-    if(selected>=currentRules().topics){toast(`スタンダードではホームに表示するテーマを${currentRules().topics}件まで選択できます`,'err');return;}
+    if(selected>=currentRules().topics){
+      if(id)t.id=id;
+      openTopicReplacementPicker(t,()=>{toolFormDirty=false;recomputeAll();go('tools');});
+      return;
+    }
   }
   if(id)t.id=id;
   getSettings().themeSelectionConfigured=true;
   saveTool(t); recomputeAll();
-  toast(id?'変更を保存しました':'情報テーマを追加しました','ok'); go('tools');
+  toolFormDirty=false;
+  toast(id?'変更を保存しました':`「${name}」を追加してホームに表示します`,'ok'); go('tools');
 }
 
 /* ============================================================
@@ -3721,7 +3814,7 @@ function renderFetch(v){
   html+=`<div class="section-head"><h2>サーバーが確認する標準テーマ</h2></div>`;
   html+=`<div class="table-wrap"><table><thead><tr><th>情報テーマ</th><th style="width:150px">収集方式</th><th style="width:120px">更新</th></tr></thead><tbody>`;
   tools.forEach((t,i)=>{
-    html+=`<tr>
+    html+=`<tr data-topic-search="${esc(`${t.name} ${t.category||''} ${(t.related_businesses||[]).join(' ')}`.toLowerCase())}" data-topic-selected="${!!t.is_using}">
       <td><span style="display:inline-flex;align-items:center;gap:9px"><span class="tool-dot" style="background:${TOOL_COLORS[getTools().indexOf(t)%TOOL_COLORS.length]}"></span><span style="font-weight:700">${esc(t.name)}</span></span></td>
       <td style="font-size:12px;color:var(--text-mute)">サーバー管理</td>
       <td style="font-size:12.5px;color:var(--text-mute)">3時間ごと</td>
@@ -3930,6 +4023,15 @@ function toast(msg,type){
   el.innerHTML=(type==='ok'?icon('check'):type==='err'?icon('x'):icon('bolt'))+`<span>${esc(msg)}</span>`;
   wrap.appendChild(el);
   setTimeout(()=>{ el.style.transition='.3s'; el.style.opacity='0'; el.style.transform='translateY(8px)'; setTimeout(()=>el.remove(),300); },2600);
+}
+function toastAction(msg,label,onAction,type){
+  const wrap=document.getElementById('toasts');
+  const el=document.createElement('div');
+  el.className='toast '+(type||'');
+  el.innerHTML=(type==='ok'?icon('check'):type==='err'?icon('x'):icon('bolt'))+`<span>${esc(msg)}</span><button type="button" class="toast-action">${esc(label)}</button>`;
+  el.querySelector('.toast-action').onclick=()=>{onAction?.();el.remove();};
+  wrap.appendChild(el);
+  setTimeout(()=>{if(!el.isConnected)return;el.style.transition='.3s';el.style.opacity='0';el.style.transform='translateY(8px)';setTimeout(()=>el.remove(),300);},6500);
 }
 function modal(title,desc,onYes,yesLabel,danger){
   const root=document.getElementById('modalRoot');
