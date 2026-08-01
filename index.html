@@ -1687,6 +1687,43 @@
   .pricing-common{display:flex;align-items:center;gap:12px;margin-top:18px;padding:15px 17px;border:1px solid rgba(112,148,190,.17);border-radius:13px;background:rgba(8,19,37,.58);color:#95a5ba;font-size:11.5px;line-height:1.6}
   .pricing-common svg{width:18px;height:18px;flex:0 0 18px;color:#54dce5}
   .pricing-note{margin:13px 2px 0;color:#718097;font-size:10.5px;line-height:1.65;text-align:center}
+  /* 会員プランから迷わず使える「フィード設定」ハブ */
+  .settings-hub{display:grid;gap:17px;margin-bottom:18px}
+  .settings-hero{position:relative;overflow:hidden;padding:24px;border:1px solid rgba(74,214,228,.27);border-radius:17px;background:linear-gradient(145deg,rgba(7,28,48,.96),rgba(10,15,39,.97));box-shadow:0 22px 48px rgba(0,0,0,.24)}
+  .settings-hero::after{content:"";position:absolute;right:-70px;top:-95px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(55,218,229,.16),rgba(82,68,218,.09) 45%,transparent 72%);pointer-events:none}
+  .settings-hero-main{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
+  .settings-hero h2{margin:5px 0 8px;color:#f5f9ff;font-size:25px;line-height:1.4;letter-spacing:-.02em}
+  .settings-hero p{max-width:690px;margin:0;color:#9eacc1;font-size:12.5px;line-height:1.8}
+  .current-plan-pill{display:inline-flex;align-items:center;gap:7px;flex:0 0 auto;padding:8px 11px;border:1px solid rgba(77,221,230,.28);border-radius:999px;background:rgba(18,135,157,.16);color:#7aebef;font-size:10.5px;font-weight:800;white-space:nowrap}
+  .current-plan-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:#54e1bd;box-shadow:0 0 10px rgba(84,225,189,.65)}
+  .settings-steps{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:20px}
+  .settings-step{display:flex;align-items:center;gap:10px;min-height:54px;padding:10px 12px;border:1px solid rgba(113,153,198,.16);border-radius:11px;background:rgba(4,15,31,.58)}
+  .settings-step b{display:grid;place-items:center;width:25px;height:25px;flex:0 0 25px;border-radius:8px;background:linear-gradient(135deg,rgba(25,178,202,.28),rgba(85,64,213,.28));color:#8cf1f3;font-size:11px}
+  .settings-step span{color:#bec8d7;font-size:11px;line-height:1.45}
+  .settings-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+  .setting-card{position:relative;overflow:hidden;min-height:154px;padding:17px;border:1px solid rgba(111,150,194,.18);border-radius:14px;background:rgba(6,17,35,.76)}
+  .setting-card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}
+  .setting-card-head h3{display:flex;align-items:center;gap:8px;margin:0;color:#edf5ff;font-size:13px}
+  .setting-card-head svg{width:17px;height:17px;color:#59dce5}
+  .setting-state{padding:4px 8px;border:1px solid rgba(80,213,224,.22);border-radius:999px;color:#73dae1;font-size:8.5px;font-weight:800;white-space:nowrap}
+  .setting-state.locked{border-color:rgba(132,145,171,.18);color:#8d9bb0}
+  .setting-card p{margin:0 0 12px;color:#92a1b6;font-size:11px;line-height:1.65}
+  .setting-value{display:block;margin-bottom:4px;color:#f2f7ff;font-size:21px;font-weight:900;letter-spacing:-.02em}
+  .setting-note{color:#7f8da2;font-size:9.5px;line-height:1.55}
+  .settings-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .settings-actions .btn{min-height:38px}
+  .locked-topic-preview{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
+  .locked-topic{display:inline-flex;align-items:center;gap:5px;padding:7px 9px;border:1px solid rgba(104,133,176,.18);border-radius:9px;background:rgba(7,17,34,.66);color:#8897ac;font-size:9.5px}
+  .locked-topic svg{width:12px;height:12px;color:#6d7b91}
+  .settings-benefit{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:17px 18px;border:1px solid rgba(93,201,218,.19);border-radius:14px;background:linear-gradient(100deg,rgba(14,42,57,.72),rgba(16,20,50,.72))}
+  .settings-benefit h3{margin:0 0 5px;color:#edf7ff;font-size:14px}.settings-benefit p{margin:0;color:#96a6ba;font-size:11px;line-height:1.65}
+  .topic-count{display:flex;align-items:center;gap:8px;color:#8e9db2;font-size:10px}.topic-count strong{color:#72e8eb;font-size:16px}
+  .settings-table-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:20px 1px 10px}.settings-table-title h3{margin:0;color:#eef5ff;font-size:15px}.settings-table-title span{color:#8291a6;font-size:10px}
+  .quick-topic-toggle{min-width:82px;justify-content:center}
+  .member-feature-guide{margin-top:16px;padding:18px;border:1px solid rgba(76,214,226,.22);border-radius:14px;background:linear-gradient(135deg,rgba(9,35,49,.74),rgba(11,17,43,.78))}
+  .member-feature-guide h3{margin:0 0 6px;color:#eef7ff;font-size:15px}.member-feature-guide p{margin:0 0 13px;color:#97a7bb;font-size:11px;line-height:1.7}
+  .member-feature-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:14px}
+  .member-feature-item{display:flex;align-items:center;gap:7px;padding:10px;border:1px solid rgba(110,149,191,.15);border-radius:10px;background:rgba(5,16,32,.55);color:#b8c4d4;font-size:10px;line-height:1.5}.member-feature-item svg{width:15px;height:15px;flex:0 0 15px;color:#5fe2e7}
   .account-page{max-width:760px;margin:0 auto;padding-bottom:28px}
   .account-panel{position:relative;overflow:hidden;padding:28px;border:1px solid rgba(74,204,225,.30);border-radius:18px;background:linear-gradient(145deg,rgba(7,24,47,.98),rgba(9,13,35,.98));box-shadow:0 24px 58px rgba(0,0,0,.32),inset 0 1px rgba(174,245,255,.07)}
   .account-panel::after{content:"";position:absolute;right:-80px;top:-100px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(67,213,228,.16),rgba(77,62,218,.08) 46%,transparent 72%);pointer-events:none}
@@ -1701,12 +1738,13 @@
   .billing-actions{display:flex;flex-wrap:wrap;gap:9px}.billing-actions .btn{min-height:39px!important;padding:8px 13px!important;font-size:11px!important}.billing-help{margin:12px 0 0;color:#7f8da3;font-size:10.5px;line-height:1.7}
   .cancel-guide{display:grid;gap:12px;margin:16px 0 4px}.cancel-step{display:grid;grid-template-columns:25px 1fr;gap:10px;align-items:start}.cancel-step b{display:grid;place-items:center;width:25px;height:25px;border:1px solid rgba(77,218,228,.28);border-radius:50%;background:rgba(28,138,158,.14);color:#72e9ed;font-size:10px}.cancel-step span{color:#a8b5c8;font-size:12px;line-height:1.65}.cancel-note{padding:11px 12px;border-left:2px solid #4ddae5;background:rgba(30,126,146,.10);color:#b9c8d8;font-size:11px;line-height:1.65}
   .account-security{position:relative;z-index:1;margin-top:18px;padding-top:17px;border-top:1px solid rgba(110,149,191,.16);color:#77869c;font-size:10.5px;line-height:1.7}
-  @media(max-width:900px){.pricing-grid{grid-template-columns:1fr}.plan-desc{min-height:0}.plan-card{padding:22px 20px}.pricing-page{max-width:680px}}
+  @media(max-width:900px){.pricing-grid{grid-template-columns:1fr}.plan-desc{min-height:0}.plan-card{padding:22px 20px}.pricing-page{max-width:680px}.settings-grid{grid-template-columns:1fr}.member-feature-list{grid-template-columns:1fr}}
   @media(max-width:520px){
     .pricing-hero{padding:23px 19px 21px;border-radius:15px}.pricing-hero h2{font-size:23px}.pricing-hero p{font-size:12.5px}
     .pricing-grid{gap:11px}.plan-card{padding:21px 18px 19px}.plan-price strong{font-size:31px}
     .pricing-common{align-items:flex-start;padding:13px 14px}
     .account-panel{padding:23px 18px}.account-head h2{font-size:23px}.auth-actions{display:grid;grid-template-columns:1fr}.auth-actions .btn{width:100%;min-width:0}.member-row{align-items:flex-start;flex-direction:column;gap:7px}.member-row strong{text-align:left}.billing-panel-head{display:block}.billing-badge{display:inline-flex;margin-top:10px}.billing-actions{display:grid}.billing-actions .btn{width:100%}
+    .settings-hero{padding:20px 16px}.settings-hero-main{display:block}.settings-hero h2{font-size:21px}.current-plan-pill{margin-top:14px}.settings-steps{grid-template-columns:1fr}.settings-step{min-height:48px}.settings-benefit{display:block}.settings-benefit .btn{width:100%;margin-top:13px}.settings-actions .btn{width:100%}.settings-table-title{align-items:flex-start;flex-direction:column}
   }
   /* KIZASHI official media links */
   .official-media{margin:18px 14px 16px;padding:14px;border:1px solid rgba(77,211,230,.2);background:rgba(5,15,34,.62);border-radius:14px}
@@ -1924,6 +1962,7 @@ const memberState={ready:false,user:null,subscription:null,registeredCount:null,
 let memberRefreshQueue=Promise.resolve();
 let loadedMemberStateFor='';
 let memberStateDirty=false;
+let lastAuthUserId='';
 const SOCIAL_PROOF_MIN_USERS=100;
 const SOCIAL_PROOF_MIN_REVIEWS=3;
 const PLAN_RULES={
@@ -1981,9 +2020,14 @@ async function refreshMemberState(session){
   memberState.subscription=null;
   memberState.reviewStatus=null;
   if(memberState.user&&memberClient){
-    const {data}=await memberClient.from('subscriptions').select('plan,status,current_period_end').maybeSingle();
-    memberState.subscription=data||{plan:'free',status:'inactive',current_period_end:null};
-    await Promise.all([loadMemberAppState(),loadReviewStatus()]);
+    // 契約・クラウド設定・レビュー状態は互いに独立しているため並列取得する。
+    // 起動時の3回分の通信待ちを1回分に短縮する。
+    const [subscriptionResult]=await Promise.all([
+      memberClient.from('subscriptions').select('plan,status,current_period_end').maybeSingle(),
+      loadMemberAppState(),
+      loadReviewStatus()
+    ]);
+    memberState.subscription=subscriptionResult.data||{plan:'free',status:'inactive',current_period_end:null};
   }
   memberState.ready=true;
   renderNav();
@@ -2000,12 +2044,19 @@ function queueMemberRefresh(session){
 }
 async function initMemberAuth(){
   if(!memberClient){memberState.ready=true;return;}
-  loadRegisteredUserCount();
-  loadPublishedReviews();
+  // 登録者数・公開レビューは初期画面に必須ではないため、描画を妨げない時間に取得する。
+  const loadNonCritical=()=>Promise.allSettled([loadRegisteredUserCount(),loadPublishedReviews()]);
+  if('requestIdleCallback' in window)requestIdleCallback(loadNonCritical,{timeout:1800});
+  else window.setTimeout(loadNonCritical,650);
   const {data}=await memberClient.auth.getSession();
+  lastAuthUserId=data.session?.user?.id||'';
   await queueMemberRefresh(data.session);
   memberClient.auth.onAuthStateChange((event,session)=>{
     if(event==='PASSWORD_RECOVERY')memberState.recovery=true;
+    const nextUserId=session?.user?.id||'';
+    // getSession直後のINITIAL_SESSIONと自動トークン更新による同一状態の再読込を防ぐ。
+    if((event==='INITIAL_SESSION'||event==='TOKEN_REFRESHED')&&nextUserId===lastAuthUserId)return;
+    lastAuthUserId=nextUserId;
     window.setTimeout(async()=>{await queueMemberRefresh(session);if(memberState.recovery)go('account');},0);
   });
 }
@@ -2118,6 +2169,38 @@ function beginCheckout(plan,baseUrl){
   checkout.searchParams.set('client_reference_id',memberState.user.id);
   if(memberState.user.email)checkout.searchParams.set('prefilled_email',memberState.user.email);
   window.open(checkout.toString(),'_blank','noopener,noreferrer');
+}
+function isPaymentReturn(){return new URL(location.href).searchParams.get('payment')==='success';}
+function clearPaymentReturnFlag(){
+  const url=new URL(location.href);
+  url.searchParams.delete('payment');
+  history.replaceState({aiRadar:true,name:route.name,param:route.param},'',url.pathname+url.search+url.hash);
+}
+async function confirmSubscriptionAfterPayment(){
+  if(!isPaymentReturn())return false;
+  clearPaymentReturnFlag();
+  if(!memberState.user){
+    memberState.message='決済内容を反映するため、決済時に使用したアカウントでログインしてください。';
+    memberState.error=false;
+    go('account');
+    return false;
+  }
+  toast('お支払いを確認しています。画面はそのままでお待ちください','ok');
+  const waits=[0,900,1600,2600];
+  for(const wait of waits){
+    if(wait)await new Promise(resolve=>window.setTimeout(resolve,wait));
+    const {data,error}=await memberClient.from('subscriptions').select('plan,status,current_period_end').maybeSingle();
+    if(!error&&data&&['standard','premium'].includes(data.plan)&&['active','trialing'].includes(data.status)){
+      memberState.subscription=data;
+      renderNav();
+      go('tools');
+      toast(`${memberPlanLabel(data.plan)}が有効になりました。最初に情報テーマを設定しましょう`,'ok');
+      return true;
+    }
+  }
+  go('account');
+  toast('決済は完了しています。プラン反映に少し時間がかかっています','ok');
+  return false;
 }
 async function openBillingManagement(){
   if(!memberState.user){go('account');return;}
@@ -2619,7 +2702,7 @@ const NAV = [
     {id:'try-list',label:'あとで試す',icon:'flask'},
   ]},
   {group:'管理',items:[
-    {id:'tools',label:'情報テーマ',icon:'tools'},
+    {id:'tools',label:'フィード設定',icon:'tools'},
     {id:'fetch',label:'取得実行',icon:'fetch'},
   ]},
   {group:'アカウント',items:[
@@ -2702,7 +2785,7 @@ function renderNav(){
     {id:'home',label:'ホーム',icon:'home'},
     {id:'updates',label:'更新',icon:'updates',badge:unread},
     {id:'try-list',label:'保存',icon:'flask',badge:tryN},
-    {id:'pricing',label:'プラン',icon:'star'},
+    {id:'tools',label:'設定',icon:'tools'},
     {id:'account',label:memberState.user?'会員':'ログイン',icon:'user'},
   ];
   const bottom=document.getElementById('bottomNav');
@@ -2717,7 +2800,7 @@ const PAGE_META = {
   updates:['アップデート','すべての更新情報を検索・絞り込み'],
   categories:['ジャンル別','関心のあるAI分野ごとに情報を確認'],
   'try-list':['あとで試す','試す・試した・導入済みを管理'],
-  tools:['情報テーマ','知りたいAI情報と収集元を管理'],
+  tools:['フィード設定','興味のあるAI情報を選び、自分専用のレーダーを設定'],
   'tool-form':['情報テーマを編集',''],
   fetch:['取得実行','登録した情報テーマの最新ニュースを取得'],
   account:['ログイン・会員情報','アカウントと契約プランを確認'],
@@ -3283,13 +3366,83 @@ function openUpdateForm(){
 /* ============================================================
    TOOLS (/tools)  仕様書6-2
    ============================================================ */
+function toggleTopicAttention(id){
+  const tool=toolById(id);
+  if(!tool)return;
+  if(effectivePlanKey()==='free'){
+    requirePlan('standard','スタンダードでは好きな情報テーマを5件まで選び、自分専用のフィードを作れます。');
+    return;
+  }
+  const next=!tool.is_using;
+  const limit=currentRules().topics;
+  const selected=getTools().filter(item=>item.is_using&&item.id!==id).length;
+  if(next&&Number.isFinite(limit)&&selected>=limit){
+    requirePlan('premium',`スタンダードでは情報テーマを${limit}件まで選べます。無制限に選ぶにはプレミアムをご利用ください。`);
+    return;
+  }
+  tool.is_using=next;
+  getSettings().themeSelectionConfigured=true;
+  saveTool(tool);
+  toast(next?'専用フィードに追加しました':'専用フィードから外しました','ok');
+  render();
+}
+function settingLimitLabel(value,unit){return Number.isFinite(value)?`${value}${unit}`:`無制限`;}
 function renderTools(v){
-  document.getElementById('topActions').innerHTML =
-    `<button class="btn btn-primary" onclick="go('tool-form','new')">${icon('plus')}情報テーマを追加</button>`;
   const tools=getTools();
-  if(!tools.length){ v.innerHTML=emptyState('情報テーマがありません','右上の「情報テーマを追加」から、知りたい分野を登録してください。'); return; }
+  const plan=effectivePlanKey();
+  const rules=currentRules();
+  const isPaid=plan!=='free';
+  const selectedCount=tools.filter(tool=>tool.is_using).length;
+  const topicLimit=settingLimitLabel(rules.topics,'件');
+  const sourceLimit=settingLimitLabel(rules.sourceViews,'記事／月');
+  document.getElementById('topActions').innerHTML=isPaid
+    ?`<button class="btn btn-primary" onclick="go('tool-form','new')">${icon('plus')}新しいテーマを追加</button>`
+    :`<button class="btn btn-primary" onclick="go('pricing')">${icon('star')}有料プランを見る</button>`;
 
-  let html=`<div class="table-wrap"><table>
+  let html=`<div class="settings-hub">
+    <section class="settings-hero" aria-labelledby="feedSettingsTitle">
+      <div class="settings-hero-main"><div>
+        <div class="pricing-eyebrow">PERSONAL FEED SETTINGS</div>
+        <h2 id="feedSettingsTitle">${isPaid?'自分専用のAIレーダーを設定':'有料プランで、必要なAI情報だけを見やすく'}</h2>
+        <p>${isPaid?'最初に興味のある情報テーマを選んでください。選んだテーマを中心にホームのニュースが整理されます。':'無料プランは運営のおまかせフィードです。スタンダード以上では、興味のあるテーマを選び、自分専用のニュース画面を作れます。'}</p>
+      </div><span class="current-plan-pill">現在：${memberPlanLabel(plan)}</span></div>
+      <div class="settings-steps" aria-label="設定の流れ">
+        <div class="settings-step"><b>1</b><span>興味のある<br>情報テーマを選ぶ</span></div>
+        <div class="settings-step"><b>2</b><span>ホームで専用フィードを<br>確認する</span></div>
+        <div class="settings-step"><b>3</b><span>不要になったテーマは<br>いつでも外す</span></div>
+      </div>
+      <div class="settings-actions">
+        ${isPaid?`<button class="btn btn-primary" onclick="document.getElementById('topicSettingsList')?.scrollIntoView({behavior:'smooth',block:'start'})">${icon('category')}テーマを選ぶ</button><button class="btn" onclick="go('home')">${icon('home')}専用フィードを見る</button>`:`<button class="btn btn-primary" onclick="go('pricing')">${icon('star')}5テーマを選べるプランを見る</button>${memberState.user?'':`<button class="btn" onclick="go('account')">${icon('user')}まず無料登録</button>`}`}
+      </div>
+    </section>
+    <div class="settings-grid">
+      <article class="setting-card"><div class="setting-card-head"><h3>${icon('category')}情報テーマ</h3><span class="setting-state ${isPaid?'':'locked'}">${isPaid?'設定できます':'有料で解放'}</span></div>
+        <p>ホームに優先表示したいAI分野や企業・政策を選びます。</p>
+        <strong class="setting-value">${isPaid?`${selectedCount} / ${topicLimit}`:'選択なし'}</strong><span class="setting-note">${isPaid?'あとから何度でも変更できます。':'スタンダードは5件、プレミアムは無制限です。'}</span>
+      </article>
+      <article class="setting-card"><div class="setting-card-head"><h3>${icon('ext')}情報元の記事</h3><span class="setting-state">現在の上限</span></div>
+        <p>AI要約の根拠になった元の記事を開ける回数です。</p>
+        <strong class="setting-value">${sourceLimit}</strong><span class="setting-note">無料1記事、スタンダード3記事、プレミアム無制限。</span>
+      </article>
+      <article class="setting-card"><div class="setting-card-head"><h3>${icon('updates')}保存と書き出し</h3><span class="setting-state ${rules.csv?'':'locked'}">${rules.csv?'CSV対応':'プラン特典'}</span></div>
+        <p>過去の記事を残せる期間と、データ書き出しの設定です。</p>
+        <strong class="setting-value">${rules.retention}日保存</strong><span class="setting-note">CSV書き出しはプレミアムで利用できます。</span>
+      </article>
+    </div>`;
+
+  if(!isPaid){
+    html+=`<section class="settings-benefit"><div><h3>選べるテーマのイメージ</h3><p>登録後は、このようなテーマをタップして専用フィードを作れます。</p>
+      <div class="locked-topic-preview"><span class="locked-topic">${icon('star')}中国AI・基盤モデル</span><span class="locked-topic">${icon('star')}補助金・助成金</span><span class="locked-topic">${icon('star')}AI関連企業・株式</span><span class="locked-topic">${icon('star')}画像・動画生成</span><span class="locked-topic">${icon('star')}AI政策・規制</span></div></div>
+      <button class="btn btn-primary" onclick="go('pricing')">料金と違いを見る</button></section></div>`;
+    v.innerHTML=html;
+    return;
+  }
+
+  html+=`<section class="settings-benefit"><div><h3>${selectedCount?'選択内容はホームへ反映されています':'まず1つ、興味のあるテーマを選びましょう'}</h3><p>${selectedCount?'選択を変更すると、次回の表示から専用フィードへ反映されます。':'下の一覧から「注目する」を押すだけで設定できます。'}</p></div><div class="topic-count"><strong>${selectedCount}</strong><span>テーマ選択中</span></div></section></div>`;
+
+  if(!tools.length){v.innerHTML=html+emptyState('情報テーマがありません','「新しいテーマを追加」から、知りたい分野を登録してください。');return;}
+
+  html+=`<div class="settings-table-title" id="topicSettingsList"><div><h3>情報テーマを選ぶ</h3><span>「注目する」を押したテーマが専用フィードに使われます。</span></div><span>${selectedCount} / ${topicLimit} 選択中</span></div><div class="table-wrap"><table>
     <thead><tr><th>情報テーマ</th><th style="width:120px">種類</th><th style="width:62px">優先度</th><th style="width:90px">注目</th><th style="width:180px">収集ジャンル</th><th style="width:96px">最終取得</th><th style="width:80px">状態</th><th style="width:96px"></th></tr></thead><tbody>`;
   tools.forEach((t,i)=>{
     html+=`<tr>
@@ -3298,7 +3451,7 @@ function renderTools(v){
       </td>
       <td><span class="chip">${esc(t.category||'—')}</span></td>
       <td><span class="pri ${t.priority}">${t.priority}</span></td>
-      <td>${t.is_using?`<span class="tool-on">${icon('check')}注目中</span>`:`<span class="tool-off">—</span>`}</td>
+      <td><button class="btn btn-sm quick-topic-toggle ${t.is_using?'btn-primary':''}" onclick="toggleTopicAttention('${t.id}')">${t.is_using?`${icon('check')}選択中`:`${icon('plus')}注目する`}</button></td>
       <td style="font-size:12px;color:var(--text-soft)">${(t.related_businesses||[]).slice(0,2).map(esc).join('、')||'—'}${(t.related_businesses||[]).length>2?' …':''}</td>
       <td style="font-size:12.5px;color:var(--text-mute)">${t.last_fetched_at?relDate(t.last_fetched_at):'未取得'}</td>
       <td>${t.is_active?`<span class="status adopted" style="padding:3px 9px">有効</span>`:`<span class="status ignored" style="padding:3px 9px">無効</span>`}</td>
@@ -3693,12 +3846,15 @@ function patchTimelineFields(target,it){
   if(it?.fetched_at&&target.fetched_at!==it.fetched_at){target.fetched_at=it.fetched_at;changed=true;}
   return changed;
 }
-async function syncFromDataJson(force=false){
+async function syncFromDataJson(force=false,renderChanges=true,allowPrune=true){
   if(_syncDone&&!force)return 0; _syncDone=true;
   if(!force&&!getSettings().autoFetch)return 0;
   try{
     setAutoStatus(true);
-    const res=await fetch('./data.json?_='+Date.now(),{cache:'no-store'});
+    const controller=new AbortController();
+    const timeout=window.setTimeout(()=>controller.abort(),8000);
+    const res=await fetch('./data.json?_='+Date.now(),{cache:'no-store',signal:controller.signal});
+    window.clearTimeout(timeout);
     if(!res.ok){ setAutoStatus(false); return 0; }
     const items=await res.json();
     setAutoStatus(false);
@@ -3737,8 +3893,13 @@ async function syncFromDataJson(force=false){
       added++;
     });
     if(patched>0)DB.save();
-    pruneOld(); // プラン別の保存期間より古いものを掃除
-    if(added>0||patched>0){ recomputeAll(); toast(added>0?`最新ニュースを${added}件取り込みました`:'記事の日付と続報情報を更新しました','ok'); renderNav(); render(); }
+    // 会員プランが確定する前に無料プランの保存期間で削除しない。
+    if(memberState.ready&&allowPrune)pruneOld();
+    if(added>0||patched>0){
+      recomputeAll();
+      toast(added>0?`最新ニュースを${added}件取り込みました`:'記事の日付と続報情報を更新しました','ok');
+      if(renderChanges){renderNav();render();}
+    }
     return added;
   }catch(e){ setAutoStatus(false);return 0; }
 }
@@ -3804,25 +3965,44 @@ function setupPWA(){
 /* ============================================================
    Boot
    ============================================================ */
-async function bootApp(){
+function dismissBootScreen(){
+  const boot=document.getElementById('aiBoot');
+  if(!boot)return;
+  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // 最初の画面が描画された直後に退場。固定で2秒以上待たせない。
+  requestAnimationFrame(()=>window.setTimeout(()=>{
+    boot.classList.add('is-ready');
+    window.setTimeout(()=>boot.remove(),reduceMotion?80:360);
+  },reduceMotion?0:220));
+}
+async function finishBootInBackground(){
+  const returnedFromPayment=isPaymentReturn();
+  let authReady=false;
+  let paymentConfirmed=false;
+  try{
+    await initMemberAuth();
+    authReady=true;
+    if(returnedFromPayment)paymentConfirmed=await confirmSubscriptionAfterPayment();
+    // 決済直後にWebhook反映待ちなら無料プラン扱いで履歴を削除しない。
+    if(!returnedFromPayment||paymentConfirmed)pruneOld();
+  }catch(error){
+    console.warn('background member initialization failed',error);
+    memberState.ready=true;
+  }
+  await syncFromDataJson(false,false,!returnedFromPayment||paymentConfirmed);
+  render();
+}
+function bootApp(){
   route=routeFromHash();
   history.replaceState({aiRadar:true,name:route.name,param:route.param},'',routeHref(route.name,route.param));
   DB.load();
   render();
+  dismissBootScreen();
   setupPWA();
-  // 有料プランとクラウド保存状態が確定してから、保存期間の整理と新着取込を行う。
-  await initMemberAuth();
-  pruneOld();
-  await syncFromDataJson();
-  render();
+  // 初期画面は即表示し、会員確認→安全な履歴整理→新着取込は裏で順番に進める。
+  void finishBootInBackground();
 }
 bootApp();
-const aiBoot=document.getElementById('aiBoot');
-if(aiBoot){
-  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  window.setTimeout(()=>aiBoot.classList.add('is-ready'),reduceMotion?80:1450);
-  window.setTimeout(()=>aiBoot.remove(),reduceMotion?650:2150);
-}
 
 /* ============================================================
    ACCOUNT (/account)
@@ -3868,6 +4048,16 @@ function renderAccount(v){
       ${sub.current_period_end?`<div class="member-row"><span>${periodLabel}</span><strong>${fmtDate(sub.current_period_end)}まで</strong></div>`:''}
       <div class="auth-actions"><button class="btn btn-primary" onclick="go('pricing')">${icon('star')}料金プランを見る</button>${currentRules().csv?`<button class="btn" onclick="exportUpdatesCsv()">${icon('updates')}CSVを書き出す</button>`:''}<button class="btn" onclick="sendPasswordReset()">${icon('edit')}パスワード再設定</button><button class="btn" onclick="signOutMember()">${icon('arrowLeft')}ログアウト</button></div>
     </div>
+    <section class="member-feature-guide" aria-labelledby="memberFeaturesTitle">
+      <h3 id="memberFeaturesTitle">${isPaid?`${memberPlanLabel(sub.plan)}で使える設定`:'有料プランで解放される設定'}</h3>
+      <p>${isPaid?'最初に「フィード設定」で興味のあるテーマを選んでください。ここが有料機能のスタート地点です。':'無料のまま設定画面を見て、スタンダード・プレミアムで何が変わるか確認できます。'}</p>
+      <div class="member-feature-list">
+        <span class="member-feature-item">${icon('category')}${isPaid?`情報テーマを${Number.isFinite(currentRules().topics)?`${currentRules().topics}件まで`:'無制限に'}選択`:'好きな情報テーマを5件から選択'}</span>
+        <span class="member-feature-item">${icon('ext')}${isPaid?`情報元の記事を${Number.isFinite(currentRules().sourceViews)?`月${currentRules().sourceViews}記事まで`:'無制限に'}確認`:'情報元の記事を月3記事から確認'}</span>
+        <span class="member-feature-item">${icon('updates')}${isPaid?`${currentRules().retention}日間の閲覧履歴${currentRules().csv?'・CSV書き出し':''}`:'閲覧履歴を30日保存・上位はCSV対応'}</span>
+      </div>
+      <div class="billing-actions"><button class="btn btn-primary" onclick="go('tools')">${icon('tools')}${isPaid?'フィード設定を始める':'設定画面を見てみる'}</button>${isPaid?`<button class="btn" onclick="go('home')">${icon('home')}ホームで確認</button>`:`<button class="btn" onclick="go('pricing')">${icon('star')}プランを比較</button>`}</div>
+    </section>
     ${isPaid?`<section class="billing-panel" aria-labelledby="billingTitle">
       <div class="billing-panel-head">
         <div><h3 id="billingTitle">契約・お支払い管理</h3><p>お支払い方法の確認やサブスクの解約はこちらから行えます。</p></div>
@@ -4097,6 +4287,10 @@ function renderPricing(v){
       </article>`).join('')}
     </div>
     <div class="pricing-common">${icon('bolt')}<span><b>すべてのプランに共通：</b>配信件数はAIニュースの発生状況に応じて変わります。スマホ対応、読みやすいAI要約、情報元へのリンクを利用できます。</span></div>
+    <section class="settings-benefit" style="margin-top:14px" aria-labelledby="settingsPreviewTitle"><div>
+      <h3 id="settingsPreviewTitle">登録後の設定場所も、先に確認できます</h3>
+      <p>「フィード設定」では、情報テーマの選択数・元記事の閲覧上限・保存期間をまとめて確認できます。無料プランでも設定画面のプレビューを見られます。</p>
+    </div><button class="btn ${currentPlan==='free'?'':'btn-primary'}" onclick="go('tools')">${icon('tools')}${currentPlan==='free'?'設定画面を見てみる':'契約中プランを設定する'}</button></section>
     ${memberState.reviews.length>=SOCIAL_PROOF_MIN_REVIEWS?`<section class="reviews-preview" aria-labelledby="pricingReviewTitle">
       <div class="reviews-preview-head"><h3 id="pricingReviewTitle">利用者レビュー</h3><button class="btn btn-sm" onclick="go('reviews')">すべて見る</button></div>
       ${reviewCardsHtml(memberState.reviews,2)}
