@@ -735,6 +735,9 @@ function normalizedUrl(value) {
 }
 function normalizedStoryTitle(value) {
   return cleanDisplayTitle(value,"").toLowerCase()
+    .replace(/ハッキング|無断アクセス|不正アクセス|侵入/g,"不正侵入")
+    .replace(/安全性検証|性能評価|テスト|評価|検証/g,"検証")
+    .replace(/実在する(?:企業|組織)|企業システム|企業|組織|社/g,"組織")
     .replace(/[「」『』【】()[\]（）!?！？。、・:：'"“”‘’\-–—|｜]/g,"")
     .replace(/\s+/g,"")
     .replace(/(発表|公開|提供開始|明らかに|について|とは|ニュース)$/,"");
@@ -746,7 +749,7 @@ function eventFamily(item) {
   const text=storyText(item);
   if(/資金調達|調達|出資|評価額|企業価値|上場|ipo|funding|valuation|investment/.test(text))return "funding";
   if(/規制|法案|行政命令|著作権|policy|regulation|law|copyright/.test(text))return "policy";
-  if(/脆弱性|情報漏えい|攻撃|セキュリティ|security|vulnerability|breach/.test(text))return "security";
+  if(/脆弱性|情報漏えい|攻撃|セキュリティ|ハッキング|侵入|無断アクセス|不正アクセス|security|vulnerability|breach|hack|unauthorized access/.test(text))return "security";
   if(/新モデル|モデルを発表|提供開始|発売|リリース|launch|release|new model/.test(text))return "release";
   if(/提携|協業|買収|合併|partnership|acquisition|merger/.test(text))return "corporate";
   return "";
@@ -881,6 +884,29 @@ function setsShareValue(a,b) {
   return false;
 }
 
+function eventSignalTokens(item) {
+  const text=storyText(item);
+  const rules=[
+    [/ハッキング|不正アクセス|無断アクセス|不正侵入|侵入|hack|unauthorized access/,"unauthorized-access"],
+    [/安全性検証|性能評価|テスト|評価|検証|実験|test|evaluation|experiment/,"evaluation"],
+    [/脆弱性|ぜい弱性|vulnerability/,"vulnerability"],
+    [/修正|対策|更新|fix|patch|mitigation/,"remediation"],
+    [/資金調達|調達|出資|funding|investment/,"funding"],
+    [/新モデル|提供開始|発売|リリース|launch|release|new model/,"release"],
+    [/提携|協業|partnership|collaboration/,"partnership"],
+    [/規制|法案|行政命令|regulation|law|executive order/,"regulation"],
+    [/要請|要求|求めた|request|urge|ask/,"request"],
+    [/価格|料金|値上げ|値下げ|pricing|price/,"pricing"]
+  ];
+  return new Set(rules.filter(([pattern])=>pattern.test(text)).map(([,key])=>key));
+}
+
+function sharedValueCount(a,b) {
+  let count=0;
+  for(const value of a)if(b.has(value))count++;
+  return count;
+}
+
 function numbersConflict(a,b) {
   const an=numericTokens(a),bn=numericTokens(b);
   return an.size>0&&bn.size>0&&
@@ -895,8 +921,10 @@ function isDuplicateReport(a,b) {
   if(numbersConflict(a,b))return false;
   if(similarity>=0.82)return true;
   const familyA=eventFamily(a),familyB=eventFamily(b);
-  if(!familyA||familyA!==familyB||similarity<0.6)return false;
-  return setsShareValue(entityTokens(a),entityTokens(b));
+  if(!familyA||familyA!==familyB)return false;
+  if(!setsShareValue(entityTokens(a),entityTokens(b)))return false;
+  if(similarity>=0.52)return true;
+  return sharedValueCount(eventSignalTokens(a),eventSignalTokens(b))>=2;
 }
 
 function stableArticleId(item) {
