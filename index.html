@@ -2355,8 +2355,10 @@ async function loadMemberAppState(){
   const {data,error}=await memberClient.from('user_states').select('state').maybeSingle();
   if(!error&&data?.state&&Array.isArray(data.state.tools)&&Array.isArray(data.state.updates)){
     DB._data=data.state;
-    runMigrations(DB._data);
+    const migrated=runMigrations(DB._data);
     localStorage.setItem(DB.KEY,JSON.stringify(DB._data));
+    // 会員データに追加した標準テーマもSupabaseへ戻し、次回起動後も残す。
+    if(migrated)await saveMemberAppState();
   }else if(!error){
     await saveMemberAppState();
   }
@@ -2771,6 +2773,37 @@ const MIGRATIONS = [
     (d.updates||[]).filter(hasCompleteLocalArticle).forEach(u=>rememberArticle(u,d));
   } },
   { id:'2026-08-01-major-ai-tool-presets', apply(d){
+    d.tools=d.tools||[];
+    const aliases={
+      'OpenAI / ChatGPT':'ChatGPT / OpenAI',
+      'Anthropic / Claude':'Claude / Claude Code',
+      'Google Gemini':'Gemini'
+    };
+    INFORMATION_PRESETS.forEach(preset=>{
+      const name=aliases[preset.name]||preset.name;
+      const existing=d.tools.find(tool=>tool.name===name);
+      if(existing){
+        existing.is_active=true;
+        if(!existing.search_query)existing.search_query=preset.query;
+        if(!existing.rss_url)existing.rss_url=googleNewsRss(preset.query);
+        existing.related_businesses=[...new Set([...(existing.related_businesses||[]),preset.category])];
+        return;
+      }
+      d.tools.push(t({
+        name:preset.name,
+        category:preset.kind,
+        priority:preset.priority,
+        search_query:preset.query,
+        rss_url:googleNewsRss(preset.query),
+        related_businesses:[preset.category],
+        memo:'主要AIツールの推奨テーマ',
+        is_using:false,
+        is_active:true
+      }));
+    });
+  } },
+  { id:'2026-08-01-major-ai-tool-presets-v2', apply(d){
+    // 初回版の移行IDだけが保存され、テーマ本体が未反映の会員データを修復する。
     d.tools=d.tools||[];
     const aliases={
       'OpenAI / ChatGPT':'ChatGPT / OpenAI',
