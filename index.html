@@ -3356,33 +3356,13 @@ function ensureJapaneseSentence(text){
   if(!s)return '';
   return /[。！？!?]$/.test(s)?s:s+'。';
 }
-function buildFriendlyExplanation(u,tool){
-  const base=String(u.easy_summary||'').trim();
-  if(!base)return '';
-  if(base.length>=180)return base;
-  const hero=String(u.manual_summary||u.ai_summary||u.raw_excerpt||'').trim();
-  const all=`${u.title||''} ${hero} ${base}`.toLowerCase();
-  const parts=[];
-  if(hero&&!base.includes(hero))parts.push(`まず、このニュースをひと言でいうと、${ensureJapaneseSentence(hero)}`);
-  parts.push(ensureJapaneseSentence(base));
-
-  if(/エージェント|自動実行|自動操作/.test(all)){
-    parts.push('ここでいう「AIエージェント」とは、質問に答えるだけでなく、目的に合わせて複数の操作を順番に進めるAIのことです。これまで人がアプリを行き来していた作業を、まとめて任せやすくなる点が大きな変化です。');
-  }else if(/api|開発|コード|プログラ/.test(all)){
-    parts.push('かんたんに言うと、開発者向けの仕組みや作業手順が改善され、アプリやサービスを作る時間・手間を減らせる可能性があります。専門家でなくても、今後使うサービスの機能や料金に影響することがあります。');
-  }else if(/料金|価格|値下げ|値上げ|プラン/.test(all)){
-    parts.push('かんたんに言うと、同じ機能でも使える範囲や支払う金額が変わる可能性があるニュースです。現在の契約内容と新しい条件を比べると、自分に必要なプランか判断しやすくなります。');
-  }else if(/規制|法律|著作権|政府|政策|選挙/.test(all)){
-    parts.push('かんたんに言うと、AIを「何に、どこまで使ってよいか」というルールに関わるニュースです。仕事やサービスでAIを使う人は、今まで通りの使い方で問題ないか確認するきっかけになります。');
-  }else if(/補助金|助成金|支援金/.test(all)){
-    parts.push('かんたんに言うと、AIの導入費用や学習費用を支援してもらえる可能性があるニュースです。対象者、申請期間、対象経費は制度ごとに違うため、公式情報で条件を確認することが大切です。');
-  }else if(/株|株価|決算|投資|企業/.test(all)){
-    parts.push('かんたんに言うと、AI関連企業の成長性や事業への影響を考える材料になるニュースです。ただし、ひとつの記事だけで投資判断をせず、決算や公式発表も合わせて確認する必要があります。');
-  }else{
-    parts.push('かんたんに言うと、これまでよりAIでできることが増えたり、同じ作業を少ない手間で進められたりする可能性があるニュースです。自分の仕事や生活のどこで使えそうかに置き換えると理解しやすくなります。');
-  }
-  parts.push('すぐに全部のやり方を変える必要はありません。まずは公式情報で利用条件を確認し、失敗しても困らない小さな作業から試すと安心です。');
-  return parts.join('\n\n');
+function buildFriendlyExplanation(u){
+  // 記事由来の解説だけを表示し、画面側で定型の導入・助言を継ぎ足さない。
+  return String(u.easy_summary||'').trim()
+    .replace(/^(?:まず[、,]\s*)?このニュースを(?:ひと|一)言で(?:いう|言う)と[、,:：]?\s*/,'')
+    .replace(/^かんたんに言うと[、,:：]?\s*/,'')
+    .replace(/(?:\s*\n+)?すぐに全部のやり方を変える必要はありません。\s*まずは公式情報で利用条件を確認し、失敗しても困らない小さな作業から試すと安心です。?\s*$/,'')
+    .trim();
 }
 
 /* ---- 読みモード（既定） ---- */
