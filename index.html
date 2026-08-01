@@ -2236,11 +2236,22 @@ async function confirmSubscriptionAfterPayment(){
   return false;
 }
 async function openBillingManagement(){
-  if(!memberState.user){go('account');return;}
+  if(!memberState.user){go('account');toast('契約を管理するにはログインしてください。','err');return;}
+  if(memberState.subscription?.access_source==='operator_grant'){
+    modal('このアカウントに請求はありません','運営者向けプレミアム特典はStripe契約ではないため、解約や請求はありません。',closeModal,'閉じる');
+    return;
+  }
+  toast('Stripeの契約管理画面を準備しています。','ok');
   const {data,error}=await memberClient.functions.invoke('create-portal-session');
   const portalUrl=safeExternalUrl(data?.url,['billing.stripe.com']);
   if(!error&&portalUrl){window.open(portalUrl,'_blank','noopener,noreferrer');return;}
-  showCancellationGuide();
+  const reason=String(data?.error||error?.message||'').trim();
+  modal(
+    '契約管理画面を開けませんでした',
+    `${reason?`${esc(reason)}<br><br>`:''}ログインし直しても開けない場合は、お問い合わせから登録メールアドレスをお知らせください。契約状況を確認します。`,
+    ()=>{closeModal();go('support');},
+    'お問い合わせへ'
+  );
 }
 async function deleteMemberAccount(){
   if(!memberState.user)return;
@@ -2262,14 +2273,14 @@ function showCancellationGuide(){
   root.innerHTML=`<div class="modal-bg" onclick="if(event.target===this)closeModal()">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="cancelGuideTitle">
       <h3 id="cancelGuideTitle">サブスクの解約方法</h3>
-      <p>Stripeから届いた契約完了メールを使って、安全に解約できます。</p>
+      <p>メールは必要ありません。下のボタンからStripeの契約管理画面を開き、安全に解約できます。</p>
       <div class="cancel-guide">
-        <div class="cancel-step"><b>1</b><span>Stripeから届いた契約完了メールを開きます。</span></div>
-        <div class="cancel-step"><b>2</b><span>メール内の「サブスクリプションを管理」または「Manage subscription」を押します。</span></div>
-        <div class="cancel-step"><b>3</b><span>表示された契約内容を確認し、「プランをキャンセル」から解約を完了します。</span></div>
+        <div class="cancel-step"><b>1</b><span>「Stripeの契約管理画面を開く」を押します。</span></div>
+        <div class="cancel-step"><b>2</b><span>表示された契約を選び、「プランをキャンセル」を押します。</span></div>
+        <div class="cancel-step"><b>3</b><span>解約日と内容を確認して、キャンセルを確定します。</span></div>
         <div class="cancel-note">解約しても、表示されている利用期間の終了日までは有料機能を利用できます。ログアウトやアプリのアカウント削除だけでは、サブスクは解約されません。</div>
       </div>
-      <div class="modal-actions"><button class="btn btn-primary" onclick="closeModal()">確認しました</button></div>
+      <div class="modal-actions"><button class="btn" onclick="closeModal()">閉じる</button><button class="btn btn-primary" onclick="closeModal();openBillingManagement()">Stripeの契約管理画面を開く</button></div>
     </div></div>`;
 }
 
@@ -4189,8 +4200,8 @@ function renderAccount(v){
         <span class="billing-badge">${isCanceled?'解約手続き済み':'いつでも解約できます'}</span>
       </div>
       <div class="billing-actions">
-        ${isCanceled?'':`<button class="btn btn-primary" onclick="openBillingManagement()">${icon('ext')}お支払い方法・契約を管理</button>
-        <button class="btn" onclick="showCancellationGuide()">${icon('x')}サブスクを解約する</button>`}
+        ${isCanceled?'':`<button class="btn btn-primary" onclick="openBillingManagement()">${icon('ext')}Stripeで契約を管理</button>
+        <button class="btn" onclick="showCancellationGuide()">${icon('x')}解約手続きを始める</button>`}
       </div>
       <p class="billing-help">${isCanceled?'解約手続きは完了しています。上記の利用終了日までは有料機能を利用できます。':'解約後も現在の利用期間が終了するまでは有料機能を利用できます。アカウント削除とサブスク解約は別の手続きです。'}</p>
     </section>`:`<section class="billing-panel" aria-labelledby="billingTitle">
