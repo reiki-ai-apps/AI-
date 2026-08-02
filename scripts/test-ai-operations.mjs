@@ -208,6 +208,103 @@ const newerWeak={...unrelatedFeature,story_subject:"",story_entities:["OpenAI"],
 const best=context.findBestStoryMatch([structuredBase,newerWeak],republished);
 if(!best||best.candidate.source_url!==structuredBase.source_url)throw new Error("latest weak match won over the best historical match");
 
+// G10 adversarial regression matrix. These cases intentionally exercise the
+// representation differences that real Japanese and translated news feeds use.
+// Keep expected outcomes explicit so future classifier changes cannot silently
+// reintroduce duplicates or suppress a genuine continuation.
+const g10Failures=[];
+const expectG10Decision=(label,expected,previous,current)=>{
+  const actual=decision(previous,current);
+  if(actual!==expected)g10Failures.push(`${label}: expected ${expected}, received ${actual}`);
+};
+
+const g10DuplicateBatch=[
+  {...republished,source_url:"https://wire-c.example/openai-gpt5",published_at:"2026-06-03T00:00:00Z",source_published_at:"2026-06-03T00:00:00Z"},
+  {...republished,source_url:"https://wire-d.example/openai-gpt5",published_at:"2026-06-04T00:00:00Z",source_published_at:"2026-06-04T00:00:00Z"}
+];
+const duplicateBatchResult=context.connectStoryTimeline(g10DuplicateBatch,[oldTimeline]);
+if(duplicateBatchResult.length!==0){
+  g10Failures.push(`duplicate-only batch: expected 0 published articles, received ${duplicateBatchResult.length}`);
+}
+
+const g10Planned={
+  ...structuredBase,event_stage:"planned",event_at:"2026-08-10",event_scope:"global",
+  fact_slots:[{type:"date",scope:"launch",value:"2026-08-10"}]
+};
+const g10Delayed={
+  ...g10Planned,event_stage:"delayed",event_at:"2026-08-20",source_url:"https://wire-b.example/gpt5-delay",
+  fact_slots:[{type:"date",scope:"launch",value:"2026-08-20"}]
+};
+expectG10Decision("same-year scheduled date changed", "follow_up", g10Planned, g10Delayed);
+
+const g10ScopeEnglish={
+  ...structuredBase,fact_slots:[{type:"region",scope:"API availability",value:"Japan"}]
+};
+const g10ScopeJapanese={
+  ...g10ScopeEnglish,source_url:"https://wire-b.example/gpt5-japan",
+  fact_slots:[{type:"region",scope:"API提供範囲",value:"Japan"}]
+};
+expectG10Decision("fact scope wording changed", "duplicate", g10ScopeEnglish, g10ScopeJapanese);
+
+const g10SeriesB={
+  ...fundingUsd,story_subject:"Series B funding",event_scope:"Series B",
+  title:"Example AI raises funding in Series B",
+  fact_slots:[{type:"amount",scope:"Series B",value:"5億ドル"}]
+};
+const g10SeriesC={
+  ...g10SeriesB,story_subject:"Series C funding",event_scope:"Series C",
+  title:"Example AI raises funding in Series C",source_url:"https://wire-c.example/series-c",
+  fact_slots:[{type:"amount",scope:"Series C",value:"5億ドル"}]
+};
+expectG10Decision("different Series B and Series C rounds", "new", g10SeriesB, g10SeriesC);
+
+const g10StageRegression={...structuredBase,event_stage:"announced",source_url:"https://wire-b.example/gpt5-announced"};
+expectG10Decision("stage wording regressed from launched to announced", "duplicate", structuredBase, g10StageRegression);
+
+const g10Preview={
+  ...structuredBase,primary_entity:"Google",story_entities:["Google","Gemini 3 Flash Preview"],
+  story_subject:"Gemini 3 Flash Preview",title:"Google releases Gemini 3 Flash Preview",event_stage:"beta"
+};
+const g10GeneralAvailability={
+  ...g10Preview,story_entities:["Google","Gemini 3 Flash"],story_subject:"Gemini 3 Flash",
+  title:"Google launches Gemini 3 Flash",event_stage:"launched",source_url:"https://wire-b.example/gemini-flash-ga"
+};
+expectG10Decision("Preview became general availability", "follow_up", g10Preview, g10GeneralAvailability);
+
+const g10DollarSymbol={
+  ...fundingUsd,source_url:"https://wire-d.example/funding-dollar-symbol",
+  fact_slots:[{type:"amount",scope:"Series C",value:"$1 billion"}]
+};
+expectG10Decision("10億ドル and $1 billion", "duplicate", fundingUsd, g10DollarSymbol);
+
+const g10ThousandOku={
+  ...fundingUsd,title:"Example AI raises 1千億円",fact_slots:[{type:"amount",scope:"Series C",value:"1千億円"}]
+};
+const g10OneThousandOku={
+  ...g10ThousandOku,title:"Example AI raises 1000億円",source_url:"https://wire-e.example/funding-thousand-oku",
+  fact_slots:[{type:"amount",scope:"Series C",value:"1000億円"}]
+};
+expectG10Decision("1千億円 and 1000億円", "duplicate", g10ThousandOku, g10OneThousandOku);
+
+const g10RegionEnglish={...structuredBase,fact_slots:[{type:"region",scope:"API",value:"Japan"}]};
+const g10RegionJapanese={
+  ...g10RegionEnglish,source_url:"https://wire-b.example/gpt5-nihon",
+  fact_slots:[{type:"region",scope:"API",value:"日本"}]
+};
+expectG10Decision("Japan and 日本", "duplicate", g10RegionEnglish, g10RegionJapanese);
+
+const g10NewFactsOnly={
+  ...structuredBase,source_url:"https://wire-b.example/gpt5-admin",
+  new_facts:["企業向け管理機能が新たに追加された。"]
+};
+expectG10Decision("material progress present only in new_facts", "follow_up", structuredBase, g10NewFactsOnly);
+
+const g10CorrectionSummaryOnly={
+  ...structuredBase,source_url:"https://wire-b.example/gpt5-correction",
+  change_summary:"対象地域の説明を日本から米国へ訂正した。"
+};
+expectG10Decision("correction present only in change_summary", "correction", structuredBase, g10CorrectionSummaryOnly);
+
 const unknownDates=context.normalizeTimelineItem({
   title:"Googleが新しいAI機能を公開",raw_excerpt:"新しいAI機能の概要です。",source_url:"https://example.com/no-date",
   source_published_at:"",source_updated_at:"2026-07-31T03:00:00Z",source_date_status:"updated_only",
@@ -251,6 +348,32 @@ const invalidSequence=context.normalizeTimelineItem({...firstRelease,story_seque
 if(invalidSequence.story_sequence!==1)throw new Error("invalid story sequence was not guarded");
 if(context.stableArticleId(firstRelease)!==context.stableArticleId({...firstRelease})){
   throw new Error("article ids are not stable");
+}
+
+// The structured fields are required by the production dedupe classifier. An
+// otherwise complete AI response that omits them must be rejected or retried,
+// never published as a legacy-shaped article.
+context.callClaude=async()=>({
+  text:JSON.stringify([{
+    i:0,title_ja:"OpenAIがGPT-5を公開",summary_ja:"OpenAIはGPT-5をAPIで公開した。",
+    detail_ja:"OpenAIはGPT-5をAPI経由で利用できるようにした。開発者は既存サービスへ組み込める。提供条件は公式情報で案内されている。",
+    change_ja:"GPT-5がAPIで利用可能になった。",impact_ja:"開発者が新モデルを利用できる。",
+    action_ja:"公式の利用条件を確認する。",event_date:"",event_status:"開始済み",
+    story_entities:["OpenAI","GPT-5"],importance:"A",categories:["AIツール・モデル"]
+  }]),
+  stopReason:"end_turn",usage:{input_tokens:100,output_tokens:100}
+});
+const missingStructuredResult=await context.aiEnrichBatch([{
+  tool:"OpenAI",title:"OpenAI launches GPT-5",raw_excerpt:"GPT-5 launched through the API.",
+  source_url:"https://example.com/gpt5",source_name:"Example",
+  published_at:"2026-06-01T00:00:00Z",source_published_at:"2026-06-01T00:00:00Z"
+}]);
+if(missingStructuredResult.items.length!==0||missingStructuredResult.rejected.length!==1){
+  g10Failures.push("missing required structured fields: expected rejection or retry, received a published item");
+}
+
+if(g10Failures.length){
+  throw new Error("G10 story regression failures:\n- "+g10Failures.join("\n- "));
 }
 
 vm.runInContext('callClaude=async()=>({text:"[]",stopReason:"end_turn",usage:{input_tokens:100,output_tokens:2}})',context);
