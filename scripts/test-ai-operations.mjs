@@ -190,6 +190,74 @@ if(decision(structuredBase,commentaryOnly)!=="duplicate")throw new Error("commen
 const corrected={...structuredBase,event_stage:"corrected",title:"Correction: GPT-5 API availability was misstated"};
 if(decision(structuredBase,corrected)!=="correction")throw new Error("a correction was not linked as a correction");
 
+// A publisher commonly edits an article at the same URL after a correction.
+// The production timeline path must compare the two versions even though their
+// URL-derived stable article IDs are identical.
+const sameUrlCorrection={
+  ...corrected,
+  source_url:structuredBase.source_url,
+  published_at:"2026-06-02T00:00:00Z",
+  source_published_at:"2026-06-02T00:00:00Z",
+  change_summary:"Correction: the previously stated API availability was inaccurate."
+};
+const originalSameUrlTimeline=context.connectStoryTimeline([structuredBase],[])[0];
+const retainedSameArticle=context.connectStoryTimeline([structuredBase],[originalSameUrlTimeline]);
+if(retainedSameArticle.length!==1||retainedSameArticle[0].article_id!==originalSameUrlTimeline.article_id){
+  throw new Error("an unchanged indexed article was removed as its own duplicate");
+}
+const sameUrlCorrectionTimeline=context.connectStoryTimeline([sameUrlCorrection],[originalSameUrlTimeline]);
+if(sameUrlCorrectionTimeline.length!==1||sameUrlCorrectionTimeline[0].relation_type!=="correction"||
+  sameUrlCorrectionTimeline[0].previous_article_id!==originalSameUrlTimeline.article_id||
+  sameUrlCorrectionTimeline[0].article_id===originalSameUrlTimeline.article_id){
+  throw new Error("a same-URL correction was not linked through the production timeline path");
+}
+const retainedCorrection=context.connectStoryTimeline(
+  [sameUrlCorrectionTimeline[0]],
+  [originalSameUrlTimeline,sameUrlCorrectionTimeline[0]]
+);
+if(retainedCorrection.length!==1||retainedCorrection[0].article_id!==sameUrlCorrectionTimeline[0].article_id||
+  retainedCorrection[0].previous_article_id===retainedCorrection[0].article_id){
+  throw new Error("a revision-aware correction was not retained safely on the next run");
+}
+const secondSameUrlCorrection={
+  ...sameUrlCorrection,
+  title:"Second correction: GPT-5 API availability date updated again",
+  raw_excerpt:"The publisher issued a second correction with the final availability date.",
+  change_summary:"Second correction: the final API availability date is now confirmed.",
+  published_at:"2026-06-03T00:00:00Z",
+  source_published_at:"2026-06-03T00:00:00Z",
+  fact_slots:[{type:"date",scope:"API availability",value:"2026-06-15"}]
+};
+const secondCorrectionTimeline=context.connectStoryTimeline(
+  [secondSameUrlCorrection],
+  [originalSameUrlTimeline,sameUrlCorrectionTimeline[0]]
+);
+if(secondCorrectionTimeline.length!==1||secondCorrectionTimeline[0].relation_type!=="correction"||
+  secondCorrectionTimeline[0].previous_article_id!==sameUrlCorrectionTimeline[0].article_id||
+  new Set([originalSameUrlTimeline.article_id,sameUrlCorrectionTimeline[0].article_id,secondCorrectionTimeline[0].article_id]).size!==3){
+  throw new Error("multiple corrections at the same URL did not preserve the complete revision chain");
+}
+const reusedUrlDifferentStory={
+  ...structuredBase,
+  title:"OpenAI publishes a separate robotics research report",
+  raw_excerpt:"A new robotics benchmark and dataset were released.",
+  primary_entity:"OpenAI Robotics",
+  story_subject:"robotics benchmark release",
+  event_type:"research",
+  event_stage:"released",
+  event_scope:"robotics",
+  story_entities:["OpenAI Robotics","robotics benchmark"],
+  fact_slots:[{type:"status",scope:"robotics benchmark",value:"released"}],
+  new_facts:["A separate robotics benchmark and dataset were released."],
+  published_at:"2026-07-01T00:00:00Z",
+  source_published_at:"2026-07-01T00:00:00Z"
+};
+const reusedUrlTimeline=context.connectStoryTimeline([reusedUrlDifferentStory],[originalSameUrlTimeline]);
+if(reusedUrlTimeline.length!==1||reusedUrlTimeline[0].relation_type!=="new"||
+  reusedUrlTimeline[0].article_id===originalSameUrlTimeline.article_id){
+  throw new Error("a reused URL for a different story collided with the original article version");
+}
+
 const oldTimeline=context.connectStoryTimeline([structuredBase],[])[0];
 const day40={...republished,published_at:"2026-07-11T00:00:00Z",source_published_at:"2026-07-11T00:00:00Z"};
 if(context.connectStoryTimeline([day40],[oldTimeline]).length!==0)throw new Error("the same event reappeared after the 31-day display window");
