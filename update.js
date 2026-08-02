@@ -364,7 +364,15 @@ function fallbackCategoryForTool(tool) {
   return ["AIツール・モデル"];
 }
 function isCompleteEnrichedItem(item) {
-  return !!item &&
+  const hasStructuredFlag=Boolean(item&&Object.prototype.hasOwnProperty.call(item,"structured_complete"));
+  const legacyStructuredComplete=Boolean(item&&String(item.primary_entity||"").trim()&&
+    String(item.story_subject||"").trim()&&String(item.event_type||"").trim()&&
+    String(item.event_stage||"").trim()&&Object.prototype.hasOwnProperty.call(item,"event_scope")&&
+    Array.isArray(item.fact_slots)&&Array.isArray(item.new_facts));
+  const structuredComplete=item&&item.enrichment_version===PROMPT_VERSION
+    ?(hasStructuredFlag?item.structured_complete===true:legacyStructuredComplete)
+    :true;
+  return !!item && structuredComplete &&
     ["title","raw_excerpt","detail","change_summary","impact_summary","action_suggestion","importance"]
       .every(k=>String(item[k]||"").trim()) &&
     Array.isArray(item.related_categories) && item.related_categories.length>0 &&
@@ -573,6 +581,12 @@ async function aiEnrichBatch(items) {
     const aiEventDate=normalizeEventDate(e.event_date);
     const deterministicCandidates=Array.isArray(src.event_date_candidates)?src.event_date_candidates:[];
     const eventDate=aiEventDate||((deterministicCandidates.length===1)?normalizeEventDate(deterministicCandidates[0].date):"");
+    const structuredComplete=Boolean(
+      String(e.primary_entity||"").trim()&&String(e.story_subject||"").trim()&&
+      String(e.event_type||"").trim()&&String(e.event_stage||"").trim()&&
+      Object.prototype.hasOwnProperty.call(e,"event_scope")&&
+      Array.isArray(e.fact_slots)&&Array.isArray(e.new_facts_ja)
+    );
     const item={
       tool: src.tool,
       title: titleJa,
@@ -595,6 +609,7 @@ async function aiEnrichBatch(items) {
       event_scope:normalizeStoryField(e.event_scope,120),
       fact_slots:normalizeFactSlots(e.fact_slots),
       new_facts:Array.isArray(e.new_facts_ja)?e.new_facts_ja.map(value=>normalizeStoryField(value,240)).filter(Boolean).slice(0,5):[],
+      structured_complete:structuredComplete,
       raw_excerpt: sumJa || src.raw_excerpt,
       detail: detailJa,
       change_summary: (e.change_ja || "").toString().trim(),
@@ -908,6 +923,8 @@ function normalizeEventStage(value) {
 
 function normalizeComparableText(value) {
   return normalizeStoryField(value,240).toLowerCase()
+    .replace(/オープンai/g,"openai")
+    .replace(/日本/g,"japan")
     .replace(/chat\s*gpt/g,"chatgpt")
     .replace(/gpt[-\s]?(\d+(?:\.\d+)?)/g,"gpt$1")
     .replace(/gemini[-\s]?(\d+(?:\.\d+)?)/g,"gemini$1")
@@ -915,18 +932,52 @@ function normalizeComparableText(value) {
     .replace(/[^\p{L}\p{N}.]+/gu,"");
 }
 
-function canonicalNumericValue(value) {
+function canonicalNumericValue(value,type="other") {
   const text=normalizeStoryField(value,160).toLowerCase().replace(/,/g,"");
-  const match=text.match(/(-?\d+(?:\.\d+)?)\s*(兆|億|万|trillion|billion|million|thousand)?/i);
+  if(type==="date"){
+    const iso=text.match(/\b(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})\b/);
+    const ja=text.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+    const parts=iso||ja;
+    if(parts){
+      const normalized=`${parts[1]}-${String(parts[2]).padStart(2,"0")}-${String(parts[3]).padStart(2,"0")}`;
+      return normalizeEventDate(normalized)||normalizeComparableText(text);
+    }
+    return normalizeComparableText(text);
+  }
+  if(type==="version"){
+    return normalizeComparableText(text)
+      .replace(/^version/,"v")
+      .replace(/^ver/,"v");
+  }
+  const match=text.match(/(-?\d+(?:\.\d+)?)\s*(千億|兆|億|万|千|trillion|billion|million|thousand|bn|mn|k)?/i);
   if(!match)return normalizeComparableText(text);
   let number=Number(match[1]);
   if(!Number.isFinite(number))return normalizeComparableText(text);
   const unit=String(match[2]||"").toLowerCase();
-  const multipliers={"兆":1e12,"億":1e8,"万":1e4,trillion:1e12,billion:1e9,million:1e6,thousand:1e3};
+  const multipliers={"千億":1e11,"兆":1e12,"億":1e8,"万":1e4,"千":1e3,trillion:1e12,billion:1e9,million:1e6,thousand:1e3,bn:1e9,mn:1e6,k:1e3};
   number*=multipliers[unit]||1;
-  const currency=/usd|dollars?|ドル/.test(text)?"USD":/jpy|yen|円/.test(text)?"JPY":"";
+  const currency=/usd|us\$|\$|dollars?|ドル/.test(text)?"USD":/jpy|yen|円|￥|¥/.test(text)?"JPY":"";
   const suffix=/%/.test(text)?"%":currency;
   return `${Number(number.toPrecision(12))}${suffix}`;
+}
+
+function fundingRoundSignature(...values) {
+  const text=values.map(value=>normalizeStoryField(value,160).toLowerCase()).join(" ");
+  const match=text.match(/(?:series|シリーズ)\s*[-:]?\s*([a-z]|\d+)/i);
+  return match?`series-${match[1].toLowerCase()}`:"";
+}
+
+function canonicalFactScope(type,scope,item={}) {
+  const round=fundingRoundSignature(scope,item.event_scope,item.story_subject);
+  if(type==="amount"&&round)return round;
+  let value=normalizeComparableText(scope)
+    .replace(/\b(?:the|this|that|for|of)\b/g,"")
+    .replace(/(?:fundinground|financinground|資金調達ラウンド)/g,"funding");
+  if(/api/.test(value)&&/avail|提供|利用/.test(value))return "api-availability";
+  if(/desktop|デスクトップ/.test(value))return "desktop";
+  if(/mobile|スマホ|モバイル/.test(value))return "mobile";
+  if(/web|ウェブ/.test(value))return "web";
+  return value;
 }
 
 function normalizeFactSlots(value) {
@@ -943,7 +994,7 @@ function normalizeFactSlots(value) {
       type:allowed.has(type)?type:"other",
       scope,
       value:rawValue,
-      normalized_value:canonicalNumericValue(rawValue)
+      normalized_value:canonicalNumericValue(rawValue,allowed.has(type)?type:"other")
     });
   }
   return slots.slice(0,12);
@@ -961,7 +1012,8 @@ function structuredStoryProfile(item) {
 
 function modelSignature(value) {
   const text=String(value||"").toLowerCase();
-  const variants=(text.match(/(?:flash|pro|ultra|mini|max|nano|turbo|preview|thinking)/g)||[]).sort();
+  // Preview/beta/general-availability are lifecycle stages, not model IDs.
+  const variants=(text.match(/(?:flash|pro|ultra|mini|max|nano|turbo|thinking)/g)||[]).sort();
   const versions=(text.match(/\d+(?:\.\d+)?/g)||[]).map(value=>String(Number(value))).sort();
   return [...variants,...versions].join("|");
 }
@@ -971,7 +1023,12 @@ function subjectRelation(a,b) {
   if(a===b)return "same";
   const signatureA=modelSignature(a),signatureB=modelSignature(b);
   if(signatureA&&signatureB&&signatureA!==signatureB)return "conflict";
-  if(signatureA&&signatureA===signatureB&&(a.includes(b)||b.includes(a)))return "same";
+  if(signatureA&&signatureA===signatureB){
+    const productPattern=/(?:gpt|gemini|claude|llama|kimi|deepseek|veo|kling)\d+(?:\.\d+)?/u;
+    const productA=a.match(productPattern);
+    const productB=b.match(productPattern);
+    if(a.includes(b)||b.includes(a)||(productA&&productB&&productA[0]===productB[0]))return "same";
+  }
   if(a.includes(b)||b.includes(a))return Math.min(a.length,b.length)>=5?"same":"unknown";
   const gramsA=titleGrams(a),gramsB=titleGrams(b);
   if(!gramsA.size||!gramsB.size)return "different";
@@ -995,6 +1052,13 @@ function storyMatchScore(previous,current) {
   else if(subject==="different"){score-=0.18;reasons.push("different_subject");}
   if(a.type!=="other"&&a.type===b.type){score+=0.16;reasons.push("same_event_type");}
   else if(a.type!=="other"&&b.type!=="other"&&a.type!==b.type)score-=0.12;
+  if(a.type==="funding"&&b.type==="funding"){
+    const roundA=fundingRoundSignature(previous&&previous.event_scope,previous&&previous.story_subject,
+      ...((previous&&previous.fact_slots)||[]).map(slot=>slot&&slot.scope));
+    const roundB=fundingRoundSignature(current&&current.event_scope,current&&current.story_subject,
+      ...((current&&current.fact_slots)||[]).map(slot=>slot&&slot.scope));
+    if(roundA&&roundB&&roundA!==roundB)return {score:0,reasons:["conflicting_funding_round"],subject:"conflict"};
+  }
   const similarity=titleSimilarity(previous&&previous.title,current&&current.title);
   score+=Math.min(0.18,similarity*0.18);
   if(similarity>=0.65)reasons.push("similar_title");
@@ -1002,8 +1066,8 @@ function storyMatchScore(previous,current) {
   return {score:Math.max(0,Math.min(1,score)),reasons,subject};
 }
 
-function factSlotKey(slot) {
-  return `${slot.type}|${normalizeComparableText(slot.scope)}`;
+function factSlotKey(slot,item={}) {
+  return `${slot.type}|${canonicalFactScope(slot.type,slot.scope,item)}`;
 }
 
 function approximatelyEquivalentAmount(a,b) {
@@ -1026,11 +1090,16 @@ function approximatelyEquivalentAmount(a,b) {
 function compareMaterialFacts(previous,current) {
   const before=normalizeFactSlots(previous&&previous.fact_slots);
   const after=normalizeFactSlots(current&&current.fact_slots);
-  const beforeByKey=new Map(before.map(slot=>[factSlotKey(slot),slot]));
+  const beforeByKey=new Map(before.map(slot=>[factSlotKey(slot,previous),slot]));
   const changes=[];
   for(const slot of after){
     if(slot.type==="other")continue;
-    const old=beforeByKey.get(factSlotKey(slot));
+    let old=beforeByKey.get(factSlotKey(slot,current));
+    if(!old){
+      old=before.find(candidate=>candidate.type===slot.type&&
+        (candidate.normalized_value===slot.normalized_value||
+          ((slot.type==="amount"||slot.type==="price")&&approximatelyEquivalentAmount(candidate.normalized_value,slot.normalized_value))));
+    }
     if(!old){changes.push({kind:"added",slot});continue;}
     if(old.normalized_value===slot.normalized_value)continue;
     if((slot.type==="amount"||slot.type==="price")&&approximatelyEquivalentAmount(old.normalized_value,slot.normalized_value))continue;
@@ -1039,20 +1108,87 @@ function compareMaterialFacts(previous,current) {
   return changes;
 }
 
+function meaningfulNewFacts(previous,current) {
+  const before=new Set((Array.isArray(previous&&previous.new_facts)?previous.new_facts:[])
+    .map(normalizeComparableText).filter(Boolean));
+  return (Array.isArray(current&&current.new_facts)?current.new_facts:[])
+    .map(value=>String(value||"").trim())
+    .filter(value=>value&&!before.has(normalizeComparableText(value)))
+    .filter(value=>/開始|公開|提供|拡大|追加|変更|値上げ|値下げ|承認|施行|修正|復旧|原因|停止|延期|中止|否定|撤回|launch|release|expand|add|change|approve|enact|fix|restore|pause|delay|cancel|deny|withdraw/i.test(value));
+}
+
+function isForwardStageTransition(type,before,after) {
+  if(!before||!after||before==="other"||after==="other"||before===after)return false;
+  if(after==="corrected")return true;
+  const terminal=new Set(["cancelled","denied"]);
+  if(terminal.has(after))return true;
+  const paths={
+    release:{
+      rumor:["announced","planned","beta","launched"],announced:["planned","beta","launched"],
+      planned:["beta","launched","delayed"],beta:["launched","expanded","paused"],
+      launched:["expanded","paused"],expanded:["paused"],paused:["restored"],delayed:["beta","launched"]
+    },
+    security:{
+      rumor:["announced","investigating","denied"],announced:["investigating","cause_identified","fixed"],
+      investigating:["cause_identified","fixed","restored","denied"],cause_identified:["fixed","restored"],
+      fixed:["restored"]
+    },
+    policy:{
+      rumor:["announced","proposed","denied"],announced:["proposed","approved","enacted"],
+      proposed:["approved","enacted","denied"],approved:["enacted","denied"]
+    },
+    funding:{
+      rumor:["announced","planned","denied"],planned:["announced","completed","delayed"],
+      announced:["completed","delayed","denied"],delayed:["completed","denied"]
+    },
+    partnership:{rumor:["announced","planned","denied"],planned:["announced","completed"],announced:["completed","denied"]},
+    acquisition:{rumor:["announced","planned","denied"],planned:["announced","completed"],announced:["completed","denied"]},
+    pricing:{planned:["announced","launched","delayed"],announced:["launched","delayed"],delayed:["launched"]},
+    research:{planned:["announced","completed"],announced:["completed"]},
+    other:{planned:["announced","completed","delayed"],announced:["completed"],investigating:["cause_identified","fixed","restored"]}
+  };
+  return Boolean(paths[type]&&paths[type][before]&&paths[type][before].includes(after));
+}
+
+function deliveryChannel(value) {
+  const text=normalizeComparableText(value);
+  if(/desktop|デスクトップ/.test(text))return "desktop";
+  if(/mobile|スマホ|モバイル/.test(text))return "mobile";
+  if(/web|ウェブ/.test(text))return "web";
+  if(/api/.test(text))return "api";
+  return "";
+}
+
 function classifyStoryRelation(previous,current,matchResult=storyMatchScore(previous,current)) {
   if(!previous)return {decision:"new",confidence:1,reasons:["no_previous_story"],changes:[]};
   if(matchResult.score<0.5)return {decision:"new",confidence:1-matchResult.score,reasons:matchResult.reasons,changes:[]};
   if(matchResult.score<0.72)return {decision:"uncertain",confidence:matchResult.score,reasons:matchResult.reasons,changes:[]};
   const changes=compareMaterialFacts(previous,current);
   const before=structuredStoryProfile(previous),after=structuredStoryProfile(current);
-  const terminalProgress=new Set(["expanded","paused","delayed","cancelled","cause_identified","fixed","restored","approved","enacted","completed","denied","corrected"]);
-  const stageChanged=after.stage!=="other"&&after.stage!==before.stage&&
-    (terminalProgress.has(after.stage)||before.stage!=="other");
-  const scopeChanged=before.scope&&after.scope&&before.scope!==after.scope&&after.stage==="expanded";
-  if(stageChanged||scopeChanged||changes.length){
-    const correction=after.stage==="corrected"||/correction|訂正|撤回|誤報/.test(storyText(current));
-    return {decision:correction?"correction":"follow_up",confidence:Math.max(0.82,matchResult.score),reasons:[...matchResult.reasons,...(stageChanged?["stage_changed"]:[]),...(scopeChanged?["scope_expanded"]:[]),...(changes.length?["material_fact_changed"]:[])],changes};
+  const stageChanged=isForwardStageTransition(after.type,before.stage,after.stage);
+  const invalidStageChange=before.stage!=="other"&&after.stage!=="other"&&before.stage!==after.stage&&!stageChanged;
+  const beforeChannel=deliveryChannel(previous&&previous.event_scope);
+  const afterChannel=deliveryChannel(current&&current.event_scope);
+  const conflictingChannel=after.type==="release"&&beforeChannel&&afterChannel&&beforeChannel!==afterChannel&&after.stage!=="expanded";
+  const sameUrl=normalizedUrl(previous&&previous.source_url)&&
+    normalizedUrl(previous&&previous.source_url)===normalizedUrl(current&&current.source_url);
+  const sameUrlChangedContent=sameUrl&&articleContentHash(previous)!==articleContentHash(current);
+  const editorialText=`${storyText(current)} ${current&&current.change_summary||""} ${
+    Array.isArray(current&&current.new_facts)?current.new_facts.join(" "):""}`;
+  const correction=after.stage==="corrected"||/correction|訂正|撤回|誤報/.test(editorialText);
+  if(correction)return {decision:"correction",confidence:Math.max(0.82,matchResult.score),reasons:[...matchResult.reasons,"correction"],changes};
+  if(invalidStageChange||conflictingChannel){
+    if(invalidStageChange&&!changes.length){
+      return {decision:"duplicate",confidence:matchResult.score,reasons:[...matchResult.reasons,"non_forward_stage_wording"],changes:[]};
+    }
+    return {decision:"uncertain",confidence:matchResult.score,reasons:[...matchResult.reasons,invalidStageChange?"non_forward_stage_change":"conflicting_delivery_channel"],changes};
   }
+  const scopeChanged=before.scope&&after.scope&&before.scope!==after.scope&&after.stage==="expanded";
+  const textFacts=meaningfulNewFacts(previous,current);
+  if(stageChanged||scopeChanged||changes.length||textFacts.length){
+    return {decision:"follow_up",confidence:Math.max(0.82,matchResult.score),reasons:[...matchResult.reasons,...(stageChanged?["stage_changed"]:[]),...(scopeChanged?["scope_expanded"]:[]),...(changes.length?["material_fact_changed"]:[])],changes};
+  }
+  if(sameUrlChangedContent)return {decision:"uncertain",confidence:matchResult.score,reasons:[...matchResult.reasons,"same_url_content_changed"],changes:[]};
   return {decision:"duplicate",confidence:matchResult.score,reasons:[...matchResult.reasons,"no_material_change"],changes:[]};
 }
 
@@ -1348,7 +1484,8 @@ function updateStoryIndex(index,items) {
     source_name:item.source_name,source_url:item.source_url,story_entities:item.story_entities,
     primary_entity:item.primary_entity,story_subject:item.story_subject,
     event_type:item.event_type,event_stage:item.event_stage,event_scope:item.event_scope,
-    fact_slots:item.fact_slots,dedupe_decision:item.dedupe_decision,dedupe_reasons:item.dedupe_reasons,
+    fact_slots:item.fact_slots,structured_complete:item.structured_complete===true,
+    dedupe_decision:item.dedupe_decision,dedupe_reasons:item.dedupe_reasons,
     change_summary:item.change_summary,detail:item.detail,new_facts:item.new_facts,
     event_date_precision:item.event_date_precision
   });
@@ -1512,7 +1649,9 @@ function bootstrapCacheResult(cache,source,result) {
     .filter(entry=>entry&&entry.status==="enriched"&&isCompleteEnrichedItem(entry.result))
     .map(entry=>entry.result);
   const importanceOrder={S:4,A:3,B:2,C:1};
-  const baseFinal=dedupeStories([...newlyEnriched,...reused,...cachedEnriched,...recentPrevious])
+  // 既存の正本を先に残す。新しい転載を先に残してから履歴照合すると、
+  // 「既存原記事を消す → 転載も履歴重複で消す」という二重除外が起きる。
+  const baseFinal=dedupeStories([...recentPrevious,...cachedEnriched,...reused,...newlyEnriched])
     .filter(isCompleteEnrichedItem)
     .sort((a,b)=>(importanceOrder[b.importance]||0)-(importanceOrder[a.importance]||0)||
       articleTime(b)-articleTime(a))
