@@ -2502,6 +2502,10 @@ function isNearDuplicateLocalArticle(a,b){
   if(localArticleNumbersConflict(a,b))return false;
   const similarity=localArticleTitleSimilarity(a?.title,b?.title);
   if(similarity>=0.82)return true;
+  // 旧形式の記事には企業・出来事の構造データがないものがある。
+  // 長い日本語見出しが十分近く、日付と数値にも矛盾がない場合だけ同一報道として扱う。
+  const titleA=normalizeArticleTitle(a?.title),titleB=normalizeArticleTitle(b?.title);
+  if(titleA.length>=18&&titleB.length>=18&&similarity>=0.68)return true;
   const familyA=localArticleFamily(a),familyB=localArticleFamily(b);
   if(!familyA||familyA!==familyB)return false;
   const entitiesA=localArticleEntities(a),entitiesB=localArticleEntities(b);
@@ -2928,6 +2932,7 @@ const MIGRATIONS = [
   { id:'2026-08-02-remove-near-duplicate-stories', apply(d){ removeNearDuplicateStories(d); } },
   { id:'2026-08-02-remove-near-duplicate-stories-v2', apply(d){ removeNearDuplicateStories(d); } },
   { id:'2026-08-02-remove-near-duplicate-stories-v3', apply(d){ removeNearDuplicateStories(d); } },
+  { id:'2026-08-02-remove-near-duplicate-stories-v4', apply(d){ removeNearDuplicateStories(d); } },
 ];
 function removeNearDuplicateStories(d){
     const sorted=[...(d.updates||[])].sort((a,b)=>
