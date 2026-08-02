@@ -1335,7 +1335,13 @@ function findBestStoryMatch(history,current,maxGap=STORY_TIMELINE_WINDOW_MS) {
   const currentTime=articleTime(current);
   let best=null;
   for(const candidate of history){
-    if(!candidate||(candidate.article_id&&current.article_id&&candidate.article_id===current.article_id))continue;
+    if(!candidate)continue;
+    const sameArticleId=Boolean(candidate.article_id&&current.article_id&&candidate.article_id===current.article_id);
+    // A retained article is present in both data.json and the story index on the
+    // next run.  Do not compare that article with itself.  When the publisher
+    // changes the content at the same URL, however, keep it as a revision
+    // candidate so corrections and genuine progress can still be detected.
+    if(sameArticleId&&articleContentHash(candidate)===articleContentHash(current))continue;
     const candidateTime=articleTime(candidate);
     const gap=currentTime-candidateTime;
     if(!Number.isFinite(gap)||gap<0||gap>maxGap)continue;
@@ -1429,7 +1435,23 @@ function connectStoryTimeline(items,historyItems=[]) {
     const source={...normalizeTimelineItem(raw),story_id:"",story_sequence:1,relation_type:"new",
       relation_confidence:0,previous_article_id:"",previous_title:"",previous_source_published_at:"",
       continuation_lead:"",dedupe_decision:"new",dedupe_reasons:[]};
-    const best=findBestStoryMatch([...history,...result],source,STORY_TIMELINE_WINDOW_MS);
+    const versionHistory=[...history,...result];
+    const sourceUrl=normalizedUrl(source.source_url);
+    const sourceHash=articleContentHash(source);
+    if(sourceUrl){
+      const exactVersion=versionHistory.find(candidate=>normalizedUrl(candidate&&candidate.source_url)===sourceUrl&&
+        articleContentHash(candidate)===sourceHash);
+      if(exactVersion&&exactVersion.article_id){
+        // Preserve the identity of a version already present in the story index.
+        source.article_id=exactVersion.article_id;
+      }else if(versionHistory.some(candidate=>normalizedUrl(candidate&&candidate.source_url)===sourceUrl)){
+        // Publishers may correct the same URL multiple times, or reuse a rolling
+        // URL for a different announcement. Give every distinct body a stable
+        // revision ID while keeping the canonical URL unchanged.
+        source.article_id=`${stableArticleId(source)}_rev_${sourceHash.slice(0,12)}`;
+      }
+    }
+    const best=findBestStoryMatch(versionHistory,source,STORY_TIMELINE_WINDOW_MS);
     const previous=best&&best.candidate;
     const relation=previous?classifyStoryRelation(previous,source,best.match):
       {decision:"new",confidence:1,reasons:["no_previous_story"],changes:[]};
