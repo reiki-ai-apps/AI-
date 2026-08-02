@@ -226,6 +226,20 @@ const duplicateBatchResult=context.connectStoryTimeline(g10DuplicateBatch,[oldTi
 if(duplicateBatchResult.length!==0){
   g10Failures.push(`duplicate-only batch: expected 0 published articles, received ${duplicateBatchResult.length}`);
 }
+const sameStableIdLegacy={...structuredBase,primary_entity:"",story_subject:"",event_type:"",event_stage:"",fact_slots:[],new_facts:[],enrichment_version:"legacy"};
+const sameStableIdCurrent={...structuredBase,detail:"current structured version",enrichment_version:"ai-radar-2026-08-02-v7-structured-story-diff"};
+const migrationVersions=context.connectStoryTimeline([sameStableIdLegacy,sameStableIdCurrent],[]);
+const migrationById=new Map();
+for(const item of migrationVersions){
+  const key=item.article_id||context.stableArticleId(item);
+  const existing=migrationById.get(key);
+  const isCurrent=item.enrichment_version==="ai-radar-2026-08-02-v7-structured-story-diff";
+  const existingIsCurrent=existing&&existing.enrichment_version==="ai-radar-2026-08-02-v7-structured-story-diff";
+  if(!existing||(isCurrent&&!existingIsCurrent))migrationById.set(key,item);
+}
+if(migrationById.size!==1||[...migrationById.values()][0]?.detail!=="current structured version"){
+  g10Failures.push(`legacy/current stable ID merge: expected one current structured article, received ${migrationById.size}`);
+}
 
 const g10Planned={
   ...structuredBase,event_stage:"planned",event_at:"2026-08-10",event_scope:"global",
