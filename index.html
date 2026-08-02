@@ -3285,7 +3285,8 @@ function renderHome(v){
     `<button class="btn btn-sm" onclick="go('updates')">${icon('search')}検索・絞り込み</button>`;
 
   const latest=list.length?fmtDate(articleTimelineAt(list[0])):'—';
-  const cover=selectDailyCover(list);
+  // 表紙は個別テーマの絞り込みに左右されず、本日収集した全ニュースから1位を選ぶ。
+  const cover=selectDailyCover(getUpdates());
   const coverSummary=cover?(cover.manual_summary||cover.ai_summary||cover.raw_excerpt||'要約を確認できます。'):'';
   const coverTool=cover?toolById(cover.tool_id):null;
   const coverCopy=cover?`
