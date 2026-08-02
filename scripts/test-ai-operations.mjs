@@ -60,7 +60,7 @@ if(context.findReusablePrevious(previous,sameUrlSameTitleChangedBody)){
   throw new Error("same URL and title with changed body reused a stale summary");
 }
 
-const nearStory={...laterStory,published_at:"2026-07-21T12:00:00Z",title:previous[0].title};
+const nearStory={...previous[0],published_at:"2026-07-21T12:00:00Z"};
 if(context.findReusablePrevious(previous,nearStory)!==previous[0])throw new Error("recent matching event should be reusable");
 const nearbyDifferentEvent={...laterStory,published_at:"2026-07-21T12:00:00Z"};
 if(context.findReusablePrevious(previous,nearbyDifferentEvent))throw new Error("nearby event with a different amount was incorrectly reused");
@@ -75,12 +75,16 @@ if(context.findReusablePrevious(modelPriceOld,modelPriceNew))throw new Error("sh
 const firstRelease={
   tool:"世界の新モデル・速報",title:"OpenAIがModel Alpha新モデルを10地域で発表",raw_excerpt:"Model Alpha新モデルのAPIを10地域で提供開始しました。",
   source_published_at:"2026-07-01T09:00:00Z",published_at:"2026-07-01T09:00:00Z",source_url:"https://news.example/alpha-launch",
-  story_entities:["OpenAI","Model Alpha"],change_summary:"Model AlphaのAPIが公開されました。",event_at:"2026-07-01",event_status:"開始済み"
+  story_entities:["OpenAI","Model Alpha"],primary_entity:"OpenAI",story_subject:"Model Alpha",event_type:"release",event_stage:"launched",event_scope:"API 10 regions",
+  fact_slots:[{type:"region",scope:"API availability",value:"10 regions"}],
+  change_summary:"Model AlphaのAPIが公開されました。",event_at:"2026-07-01",event_status:"開始済み"
 };
 const laterRelease={
   tool:"世界の新モデル・速報",title:"OpenAIのModel Alpha新モデルを20地域へ拡大",raw_excerpt:"Model Alpha新モデルのAPI提供地域が10地域から20地域へ増えました。",
   source_published_at:"2026-07-10T09:00:00Z",published_at:"2026-07-10T09:00:00Z",source_url:"https://news.example/alpha-expansion",
-  story_entities:["OpenAI","Model Alpha"],change_summary:"Model AlphaのAPI提供地域が追加されました。",event_at:"",event_status:"不明"
+  story_entities:["OpenAI","Model Alpha"],primary_entity:"OpenAI",story_subject:"Model Alpha",event_type:"release",event_stage:"expanded",event_scope:"API 20 regions",
+  fact_slots:[{type:"region",scope:"API availability",value:"20 regions"}],
+  change_summary:"Model AlphaのAPI提供地域が追加されました。",event_at:"",event_status:"不明"
 };
 const firstTimeline=context.connectStoryTimeline([firstRelease],[])[0];
 const staleRepost={
@@ -91,8 +95,8 @@ const staleRepost={
   source_url:"https://another.example/alpha-repost",
   change_summary:"Model AlphaのAPIが10地域で公開されました。"
 };
-if(context.filterStaleRawCandidates([staleRepost],[firstTimeline]).length!==0){
-  throw new Error("a recent repost with no new facts passed the pre-enrichment filter");
+if(context.filterStaleRawCandidates([staleRepost],[firstTimeline]).length!==1){
+  throw new Error("a paraphrased article was unsafely deleted before AI structure was available");
 }
 if(context.connectStoryTimeline([staleRepost],[firstTimeline]).length!==0){
   throw new Error("a recent repost with no progress was published again");
@@ -107,7 +111,8 @@ if(timeline[0].relation_confidence<0.85||!timeline[0].continuation_lead.includes
 
 const unrelatedRelease={
   ...laterRelease,title:"OpenAIが音声端末Voice Betaを発表、一般販売を開始",raw_excerpt:"新しい音声端末を発売しました。",
-  story_entities:["OpenAI","Voice Beta"],source_url:"https://news.example/voice-beta"
+  story_entities:["OpenAI","Voice Beta"],primary_entity:"OpenAI",story_subject:"Voice Beta",event_type:"release",event_stage:"launched",event_scope:"desktop",
+  source_url:"https://news.example/voice-beta"
 };
 if(context.connectStoryTimeline([unrelatedRelease],[firstTimeline])[0].relation_type!=="new"){
   throw new Error("an unrelated announcement from the same company became a false follow-up");
@@ -118,6 +123,7 @@ const securityFirst={
   raw_excerpt:"Claudeが3社のシステムへアクセスした問題をAnthropicが調査しています。",
   source_published_at:"2026-07-20T09:00:00Z",published_at:"2026-07-20T09:00:00Z",
   source_url:"https://security.example/claude-investigation",story_entities:["Anthropic","Claude"],
+  primary_entity:"Anthropic",story_subject:"Claude unauthorized access incident",event_type:"security",event_stage:"investigating",event_scope:"3 company systems",
   change_summary:"Anthropicが問題の調査を開始しました。",event_status:"確認済み"
 };
 const securityPatch={
@@ -126,6 +132,8 @@ const securityPatch={
   raw_excerpt:"Anthropicは3社へのアクセス問題を修正し、再発防止パッチを公開しました。",
   source_published_at:"2026-07-22T09:00:00Z",published_at:"2026-07-22T09:00:00Z",
   source_url:"https://security.example/claude-patch",
+  primary_entity:"Anthropic",story_subject:"Claude unauthorized access incident",event_type:"security",event_stage:"fixed",event_scope:"3 company systems",
+  fact_slots:[{type:"status",scope:"incident",value:"fixed"}],
   change_summary:"Anthropicが修正パッチを公開しました。",event_status:"修正済み",
   new_facts:["外部アクセスを防ぐ修正パッチが新たに公開されました。"]
 };
@@ -139,6 +147,66 @@ const sameAnnouncement={...firstRelease,source_url:"https://another.example/alph
 if(context.dedupeStories([firstRelease,sameAnnouncement]).length!==1){
   throw new Error("the same announcement from another outlet was not deduplicated");
 }
+
+const structuredBase={
+  title:"OpenAI launches GPT-5 API",raw_excerpt:"OpenAI released GPT-5 through its API.",
+  source_url:"https://wire-a.example/gpt5",source_published_at:"2026-06-01T00:00:00Z",published_at:"2026-06-01T00:00:00Z",
+  story_entities:["OpenAI","GPT-5"],primary_entity:"OpenAI",story_subject:"GPT-5",event_type:"release",event_stage:"launched",event_scope:"API",
+  fact_slots:[{type:"availability",scope:"API",value:"available"}],new_facts:["GPT-5 became available through the API."]
+};
+const decision=(previous,current)=>context.classifyStoryRelation(
+  context.normalizeTimelineItem(previous),context.normalizeTimelineItem(current)
+).decision;
+const republished={...structuredBase,title:"GPT-5 API released by OpenAI",raw_excerpt:"The GPT-5 API is now available.",source_url:"https://wire-b.example/openai-gpt5",published_at:"2026-06-02T00:00:00Z",source_published_at:"2026-06-02T00:00:00Z"};
+if(decision(structuredBase,republished)!=="duplicate")throw new Error("cross-media paraphrase was not classified as duplicate");
+
+const fundingUsd={...structuredBase,title:"Example AI raises 10億ドル",primary_entity:"Example AI",story_subject:"Series C funding",event_type:"funding",event_stage:"announced",event_scope:"Series C",fact_slots:[{type:"amount",scope:"Series C",value:"10億 USD"}]};
+const fundingBillion={...fundingUsd,title:"Example AI secures 1 billion dollars",source_url:"https://wire-b.example/funding",fact_slots:[{type:"amount",scope:"Series C",value:"1 billion dollars"}]};
+if(decision(fundingUsd,fundingBillion)!=="duplicate")throw new Error("equivalent Japanese and English amounts became false progress");
+
+const gptDecimal={...republished,story_subject:"GPT-5.0",story_entities:["OpenAI","GPT-5.0"]};
+if(decision(structuredBase,gptDecimal)!=="duplicate")throw new Error("GPT-5 and GPT-5.0 were treated as different events");
+
+const regionalExpansion={...structuredBase,title:"OpenAI expands GPT-5 API to Japan",event_stage:"expanded",event_scope:"API Japan",fact_slots:[{type:"region",scope:"API availability",value:"Japan"}]};
+if(decision(structuredBase,regionalExpansion)!=="follow_up")throw new Error("a real regional expansion was not a follow-up");
+
+const geminiFlash={...structuredBase,primary_entity:"Google",story_subject:"Gemini 3 Flash",story_entities:["Google","Gemini 3 Flash"],title:"Google launches Gemini 3 Flash"};
+const geminiPro={...geminiFlash,story_subject:"Gemini 3 Pro",story_entities:["Google","Gemini 3 Pro"],title:"Google launches Gemini 3 Pro",source_url:"https://wire-b.example/gemini-pro"};
+if(decision(geminiFlash,geminiPro)!=="new")throw new Error("different model variants were merged");
+
+const incidentStart={...structuredBase,primary_entity:"Anthropic",story_subject:"Claude access incident",event_type:"security",event_stage:"investigating",event_scope:"3 systems",fact_slots:[{type:"status",scope:"incident",value:"investigating"}]};
+const causeKnown={...incidentStart,event_stage:"cause_identified",fact_slots:[{type:"status",scope:"incident",value:"misconfigured test"}]};
+if(decision(incidentStart,causeKnown)!=="follow_up")throw new Error("security cause identification was suppressed");
+
+const fundingComplete={...fundingUsd,event_stage:"completed"};
+if(decision(fundingUsd,fundingComplete)!=="follow_up")throw new Error("funding completion was suppressed");
+
+const fundingJpy={...fundingUsd,source_url:"https://wire-c.example/funding",fact_slots:[{type:"amount",scope:"Series C",value:"1500億円"}]};
+if(decision(fundingUsd,fundingJpy)!=="duplicate")throw new Error("a rounded currency conversion became false progress");
+
+const commentaryOnly={...structuredBase,title:"Experts discuss what the GPT-5 API launch means",raw_excerpt:"Analysts commented on the already announced launch.",source_url:"https://opinion.example/gpt5"};
+if(decision(structuredBase,commentaryOnly)!=="duplicate")throw new Error("commentary without a new fact was republished as news");
+
+const corrected={...structuredBase,event_stage:"corrected",title:"Correction: GPT-5 API availability was misstated"};
+if(decision(structuredBase,corrected)!=="correction")throw new Error("a correction was not linked as a correction");
+
+const oldTimeline=context.connectStoryTimeline([structuredBase],[])[0];
+const day40={...republished,published_at:"2026-07-11T00:00:00Z",source_published_at:"2026-07-11T00:00:00Z"};
+if(context.connectStoryTimeline([day40],[oldTimeline]).length!==0)throw new Error("the same event reappeared after the 31-day display window");
+
+const unrelatedFeature={...structuredBase,story_subject:"ChatGPT voice mode",story_entities:["OpenAI","ChatGPT voice mode"],title:"OpenAI launches a ChatGPT voice feature",event_scope:"mobile"};
+if(decision(structuredBase,unrelatedFeature)!=="new")throw new Error("an unrelated feature from the same company was merged");
+
+const paused={...structuredBase,event_stage:"paused",fact_slots:[{type:"status",scope:"API",value:"paused"}]};
+if(decision(structuredBase,paused)!=="follow_up")throw new Error("a pause was not treated as progress");
+
+const planned={...structuredBase,event_stage:"planned",event_at:"2026-06-20",fact_slots:[{type:"date",scope:"launch",value:"2026-06-20"}]};
+const delayed={...planned,event_stage:"delayed",event_at:"2026-07-15",fact_slots:[{type:"date",scope:"launch",value:"2026-07-15"}]};
+if(decision(planned,delayed)!=="follow_up")throw new Error("a delayed release date was not a follow-up");
+
+const newerWeak={...unrelatedFeature,story_subject:"",story_entities:["OpenAI"],published_at:"2026-06-10T00:00:00Z",source_published_at:"2026-06-10T00:00:00Z"};
+const best=context.findBestStoryMatch([structuredBase,newerWeak],republished);
+if(!best||best.candidate.source_url!==structuredBase.source_url)throw new Error("latest weak match won over the best historical match");
 
 const unknownDates=context.normalizeTimelineItem({
   title:"Googleが新しいAI機能を公開",raw_excerpt:"新しいAI機能の概要です。",source_url:"https://example.com/no-date",
