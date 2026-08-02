@@ -1657,7 +1657,19 @@ function bootstrapCacheResult(cache,source,result) {
       articleTime(b)-articleTime(a))
     .slice(0,AI_MAX)
     .sort((a,b)=>articleTime(b)-articleTime(a));
-  const final=connectStoryTimeline(baseFinal,storyIndex.items);
+  const connectedFinal=connectStoryTimeline(baseFinal,storyIndex.items);
+  // During the v7 migration, a legacy summary and its newly structured version
+  // can share the same stable article ID while having different content hashes.
+  // Never publish both; prefer the current structured representation.
+  const finalByArticleId=new Map();
+  for(const item of connectedFinal){
+    const key=item.article_id||stableArticleId(item);
+    const existing=finalByArticleId.get(key);
+    const itemIsCurrent=item.enrichment_version===PROMPT_VERSION;
+    const existingIsCurrent=existing&&existing.enrichment_version===PROMPT_VERSION;
+    if(!existing||(itemIsCurrent&&!existingIsCurrent))finalByArticleId.set(key,item);
+  }
+  const final=[...finalByArticleId.values()].sort((a,b)=>articleTime(b)-articleTime(a));
 
   if(selectedCount&&regularResult.processed+emergencyResult.processed===0){
     console.error("NO NEW ENRICHED ARTICLES: keeping the existing complete data.json");
