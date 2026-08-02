@@ -841,8 +841,16 @@ function dedupeStories(items) {
     const duplicate=kept.some(existing=>{
       const timeGap=Math.abs(new Date(existing.published_at||0)-new Date(item.published_at||0));
       if(timeGap>STORY_TIMELINE_WINDOW_MS)return false;
-      const structured=Boolean(existing.primary_entity&&existing.story_subject&&item.primary_entity&&item.story_subject);
-      if(structured)return classifyStoryRelation(existing,item).decision==="duplicate";
+      const existingStructured=Boolean(existing.primary_entity&&existing.story_subject);
+      const itemStructured=Boolean(item.primary_entity&&item.story_subject);
+      if(existingStructured&&itemStructured)return classifyStoryRelation(existing,item).decision==="duplicate";
+      // Old articles do not have the structured story fields introduced in v7.
+      // Compare two legacy reports conservatively so cross-media paraphrases of
+      // the same announcement disappear, without letting an incomplete legacy
+      // record suppress a structured follow-up.
+      if(!existingStructured&&!itemStructured){
+        return isCertainRawDuplicate(existing,item)||isDuplicateReport(existing,item);
+      }
       return isCertainRawDuplicate(existing,item);
     });
     if(!duplicate)kept.push(item);
@@ -1246,6 +1254,11 @@ function isDuplicateReport(a,b) {
   const similarity=titleSimilarity(a.title,b.title);
   if(numbersConflict(a,b))return false;
   if(similarity>=0.82)return true;
+  // Long Japanese headlines from different media commonly replace only the
+  // audience or location phrase. A high trigram overlap is strong evidence of
+  // the same announcement even when legacy data has no event/entity fields.
+  const titleA=normalizedStoryTitle(a.title),titleB=normalizedStoryTitle(b.title);
+  if(Math.min(titleA.length,titleB.length)>=18&&similarity>=0.68)return true;
   const familyA=eventFamily(a),familyB=eventFamily(b);
   if(!familyA||familyA!==familyB)return false;
   if(!setsShareValue(entityTokens(a),entityTokens(b)))return false;
