@@ -94,4 +94,38 @@ if(context.dedupeStories([repeatedAnthropicStory[0],differentAnthropicStory]).le
   throw new Error("different security events from the same company were incorrectly merged");
 }
 
+const disasterAiLegacyReports=[
+  {
+    title:"生成AI、政府が被災地支援へ緊急無償提供",
+    raw_excerpt:"松本デジタル大臣が、災害対応のため政府機関向けに生成AIを緊急かつ無償で提供すると発表した。",
+    published_at:"2026-07-31T06:25:00Z",
+    source_url:"https://news-a.example/disaster-ai",
+    story_entities:["松本デジタル大臣","デジタル庁","生成AI"]
+  },
+  {
+    title:"松本デジタル大臣、被災地の自治体などに生成AIを緊急無償提供と表明",
+    raw_excerpt:"松本剛明デジタル大臣が、災害対応を担う政府・自治体向けに生成AIサービスを無償で緊急提供する方針を明らかにした。",
+    published_at:"2026-07-31T06:24:36Z",
+    source_url:"https://news-b.example/disaster-ai",
+    story_entities:["AI政策・政府動向"]
+  }
+];
+// Use the exact longer headline from the live duplicate as the canonical first
+// report so this regression covers the user's production screenshot.
+disasterAiLegacyReports[0].title="松本デジタル大臣、被災地支援へ政府向け生成AIを緊急無償提供と表明";
+if(context.dedupeStories(disasterAiLegacyReports).length!==1){
+  throw new Error("legacy cross-media paraphrases of the disaster AI announcement were not merged");
+}
+
+const separateMinisterAnnouncement={
+  ...disasterAiLegacyReports[1],
+  title:"松本デジタル大臣、自治体職員向けサイバー訓練の全国実施を表明",
+  raw_excerpt:"デジタル庁が自治体職員向けのサイバー防御訓練を全国で実施すると発表した。",
+  source_url:"https://news-c.example/cyber-training",
+  published_at:"2026-08-01T06:00:00Z"
+};
+if(context.dedupeStories([disasterAiLegacyReports[0],separateMinisterAnnouncement]).length!==2){
+  throw new Error("a different legacy announcement by the same minister was incorrectly merged");
+}
+
 console.log("Semantic dedupe test passed");
