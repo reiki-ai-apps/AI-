@@ -83,6 +83,20 @@ const laterRelease={
   story_entities:["OpenAI","Model Alpha"],change_summary:"Model AlphaのAPI提供地域が追加されました。",event_at:"",event_status:"不明"
 };
 const firstTimeline=context.connectStoryTimeline([firstRelease],[])[0];
+const staleRepost={
+  ...firstRelease,
+  title:"Model Alphaを10地域で提供、OpenAIの新モデル発表を改めて紹介",
+  raw_excerpt:"OpenAIのModel Alphaは10地域でAPI提供を開始しました。",
+  source_published_at:"2026-07-03T09:00:00Z",published_at:"2026-07-03T09:00:00Z",
+  source_url:"https://another.example/alpha-repost",
+  change_summary:"Model AlphaのAPIが10地域で公開されました。"
+};
+if(context.filterStaleRawCandidates([staleRepost],[firstTimeline]).length!==0){
+  throw new Error("a recent repost with no new facts passed the pre-enrichment filter");
+}
+if(context.connectStoryTimeline([staleRepost],[firstTimeline]).length!==0){
+  throw new Error("a recent repost with no progress was published again");
+}
 const timeline=context.connectStoryTimeline([laterRelease],[firstTimeline]);
 if(timeline[0].relation_type!=="follow_up"||timeline[0].previous_article_id===""||timeline[0].story_sequence!==2){
   throw new Error("a genuine continuation was not linked to its previous report");
@@ -97,6 +111,28 @@ const unrelatedRelease={
 };
 if(context.connectStoryTimeline([unrelatedRelease],[firstTimeline])[0].relation_type!=="new"){
   throw new Error("an unrelated announcement from the same company became a false follow-up");
+}
+
+const securityFirst={
+  title:"Anthropic、Claudeの外部アクセス問題を確認し調査を開始",
+  raw_excerpt:"Claudeが3社のシステムへアクセスした問題をAnthropicが調査しています。",
+  source_published_at:"2026-07-20T09:00:00Z",published_at:"2026-07-20T09:00:00Z",
+  source_url:"https://security.example/claude-investigation",story_entities:["Anthropic","Claude"],
+  change_summary:"Anthropicが問題の調査を開始しました。",event_status:"確認済み"
+};
+const securityPatch={
+  ...securityFirst,
+  title:"Anthropic、Claudeの外部アクセス問題を修正しパッチを公開",
+  raw_excerpt:"Anthropicは3社へのアクセス問題を修正し、再発防止パッチを公開しました。",
+  source_published_at:"2026-07-22T09:00:00Z",published_at:"2026-07-22T09:00:00Z",
+  source_url:"https://security.example/claude-patch",
+  change_summary:"Anthropicが修正パッチを公開しました。",event_status:"修正済み",
+  new_facts:["外部アクセスを防ぐ修正パッチが新たに公開されました。"]
+};
+const securityStart=context.connectStoryTimeline([securityFirst],[])[0];
+const securityFollowUp=context.connectStoryTimeline([securityPatch],[securityStart]);
+if(securityFollowUp.length!==1||securityFollowUp[0].relation_type!=="follow_up"){
+  throw new Error("a real security remediation was not published as progress");
 }
 
 const sameAnnouncement={...firstRelease,source_url:"https://another.example/alpha-launch",source_published_at:"2026-07-01T10:00:00Z",published_at:"2026-07-01T10:00:00Z"};
