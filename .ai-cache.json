@@ -1734,14 +1734,14 @@
       "content_hash": "6ba5235dd3375c3df132ed6b8c68e7610ad5c3c362d89b91b86d42690868aa83",
       "story_key": "a546a46d78e6df359cce4e9e8e11f0880d609bd09b7a0ba162357978d1f37eea",
       "status": "enriched",
-      "processed_at": "2026-08-02T01:34:36.136Z",
+      "processed_at": "2026-08-02T02:31:54.125Z",
       "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-02-v6-natural-article-flow",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
       "lane": "regular",
       "reason": "",
       "result": {
         "tool": "Gemini",
-        "title": "Google社員が「Gemini 3.6 Flash」と画像生成機能で朝の予定表アプリを開発、コード公開へ",
+        "title": "Google社員が開発、Geminiで作る朝の予定表アプリ「Glanceboard」",
         "source_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/glanceboard-gemini-flash-nano-banana/",
         "source_name": "blog.google",
         "is_official": true,
@@ -1749,26 +1749,43 @@
         "source_published_at": "2026-07-31T19:00:00.000Z",
         "source_updated_at": "2026-07-31T19:24:42.072Z",
         "source_date_status": "published",
-        "fetched_at": "2026-08-02T01:33:58.746Z",
+        "fetched_at": "2026-08-02T02:30:35.734Z",
         "event_at": "",
         "event_status": "発表済み",
         "event_date_precision": "unknown",
         "story_entities": [
           "Google",
-          "Gemini 3.6 Flash",
+          "Gemini",
           "Nano Banana"
         ],
-        "raw_excerpt": "Googleのクリエイティブ技術者が最新AIモデルで家族の予定と天気を電子ペーパーに表示するアプリを作り、コードを公開する。",
-        "detail": "Google社員のRaph氏が、家族のGoogleカレンダーと地域の天気予報を毎朝チェックし、天気に合った服装の子どもたちのイラストを電子ペーパー画面に表示するアプリ「Glanceboard」を開発した。画像生成には新しい「Gemini 3.6 Flash」と画像生成機能「Nano Banana」を使用し、クラウドやまぶしい画面を使わずに手元の軽量サーバーで動作する仕組み。Google Antigravityというツールを使えば同様のものを自作できるとして、GitHubでコードとハードウェア情報を公開する予定であることが明らかにされた。",
-        "change_summary": "Googleの新しいAIモデル「Gemini 3.6 Flash」と画像生成機能「Nano Banana」を使った実用アプリの事例が紹介され、コードがオープンソースで公開される。",
-        "impact_summary": "AIモデルを組み合わせて家庭向けの実用ツールを自作する具体例として、開発者やDIY好きの参考になる可能性がある。",
-        "action_suggestion": "GitHubリポジトリで構築方法とハードウェア詳細を確認できるとされている。",
+        "primary_entity": "Google",
+        "story_subject": "Gemini 3.6 FlashとNano Bananaを使った家庭用スケジュールアプリGlanceboard",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "open source",
+        "fact_slots": [
+          {
+            "type": "availability",
+            "scope": "Glanceboardのコード",
+            "value": "GitHubでオープンソース公開",
+            "normalized_value": "githubでオープンソース公開"
+          }
+        ],
+        "new_facts": [
+          "GoogleのRaph氏がGemini 3.6 FlashとNano Bananaを使った家庭用アプリGlanceboardを開発した",
+          "アプリは電子ペーパーディスプレイとローカルサーバーで動作し、コードがGitHubで公開されている"
+        ],
+        "raw_excerpt": "Google社員がGemini 3.6 FlashとNano Bananaを使い、天気に応じた服装イラストを表示する家庭用アプリを開発しコードを公開した。",
+        "detail": "GoogleのクリエイティブテクノロジストであるRaph氏は、朝の忙しい時間を快適にするアプリ「Glanceboard」を開発した。このアプリは家族のGoogleカレンダーと現地の天気予報を確認し、Gemini 3.6 FlashとNano Bananaを使って子供たちがその日の天気に適した服を着ているイラストを生成する。画像はスマホ画面ではなく電子ペーパーディスプレイに表示され、クラウドアカウント不要の軽量なローカルサーバーで動作する。Googleはこのコードをオープンソースとして公開し、GitHubのリポジトリでGoogle Antigravityを使って同様のアプリを作る方法を紹介している。",
+        "change_summary": "Gemini 3.6 FlashとNano Bananaを組み合わせた画像生成付き家庭用スケジュールアプリが開発され、コードがオープンソースとして公開された。",
+        "impact_summary": "一般ユーザーがGeminiのAIモデルを使って身近な生活課題を解決する自作アプリを作れることを示す事例で、家庭でのAI活用の参考になる。",
+        "action_suggestion": "GitHubで公開されたコードとハードウェア情報を確認すれば同様のアプリを自作できる。",
         "importance": "C",
         "related_categories": [
-          "AIツール・モデル",
+          "アプリ開発・自動化",
           "画像・動画生成"
         ],
-        "enrichment_version": "ai-radar-2026-08-02-v6-natural-article-flow"
+        "enrichment_version": "ai-radar-2026-08-02-v7-structured-story-diff"
       }
     },
     "url:https://news.google.com/rss/articles/cbmijgfbvv95cuxoc2r3exdoq252zmtvwjlrt2pnetbhtnnpevd4nxfprglou2rlq1vhbllynvvovwhnskzjsuzjm1fxylz3v09idm1huxhxdkvkv2xjuedkwxq2vkswbhhqx1diyuldmtb6eupkq09jyk5rbnfha1bhrndtakmxmjnmv1ixsjnur0xzc1jkme1n": {
@@ -2204,9 +2221,9 @@
       "content_hash": "2e398a7f0894d66702d45e5007d06057efafb8de60741ccbb06a0b1ff1f9664e",
       "story_key": "3749c88a0d5abd80a6f76055984f4bc9e97af42b307ac715ddc05944eea41de1",
       "status": "enriched",
-      "processed_at": "2026-08-01T08:35:13.043Z",
+      "processed_at": "2026-08-02T02:31:54.124Z",
       "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-01-v5-relative-event-dates",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
       "lane": "regular",
       "reason": "",
       "result": {
@@ -2219,23 +2236,40 @@
         "source_published_at": "2026-08-01T00:00:00.000Z",
         "source_updated_at": "",
         "source_date_status": "published",
-        "fetched_at": "2026-08-01T08:34:27.279Z",
+        "fetched_at": "2026-08-02T02:30:34.307Z",
         "event_at": "",
         "event_status": "発表済み",
         "event_date_precision": "unknown",
         "story_entities": [
           "OpenAI"
         ],
-        "raw_excerpt": "OpenAIが幾何学・暗号理論・計算複雑性など数学と理論計算機科学の長年の未解決問題で新たな進展を発表した。",
-        "detail": "OpenAIは、数学や理論計算機科学の分野で長年未解決だった問題について、AIを活用した新しい研究成果を公式に発表しました。対象には図形の性質を扱う「幾何学」、情報を暗号化して守る「暗号理論」、計算にかかる時間や手間を分析する「計算複雑性理論」などが含まれます。詳細な内容は限定的ですが、AIが数学研究の分野でも人間の研究者を支援し、新たな発見に貢献し始めていることを示す事例として注目されます。",
-        "change_summary": "OpenAIが数学・理論計算機科学分野で10件の新たな研究成果を公式ブログで公開した。",
-        "impact_summary": "AIが基礎科学分野の研究にも活用され始めており、日本の研究機関や大学でもAIを使った研究手法の導入が今後進む可能性がある。",
-        "action_suggestion": "OpenAIの公式ブログで公開された研究内容の詳細を確認し、自身の研究分野との関連を検討する。",
+        "primary_entity": "OpenAI",
+        "story_subject": "数学・理論計算機科学の未解決問題に関する研究成果",
+        "event_type": "research",
+        "event_stage": "announced",
+        "event_scope": "global",
+        "fact_slots": [
+          {
+            "type": "count",
+            "scope": "発表された研究成果の件数",
+            "value": "10件",
+            "normalized_value": "10"
+          }
+        ],
+        "new_facts": [
+          "OpenAIが幾何学・暗号理論・計算複雑性を含む数学・理論計算機科学の未解決問題に関する成果10件を発表した"
+        ],
+        "raw_excerpt": "OpenAIが幾何学・暗号理論・計算複雑性など数学と理論計算機科学の長年の未解決問題について新しい研究成果を公開した。",
+        "detail": "OpenAIは、幾何学、暗号理論、計算複雑性理論など数学・理論計算機科学分野で長年未解決だった問題に関する新しい研究成果10件を発表した。AIを活用した数学的発見や証明の支援といった取り組みが含まれているとみられるが、個々の問題名や具体的な貢献内容の詳細は抜粋からは不明。AIが基礎科学分野の研究にも活用され始めていることを示す事例として公開されており、査読や外部検証の状況は本文には示されていない。",
+        "change_summary": "OpenAIが数学・理論計算機科学の未解決問題に関する新しい研究成果10件をまとめて公開した。",
+        "impact_summary": "AIが数学や理論計算機科学の研究を加速させる可能性を示す事例で、研究機関や教育現場でのAI活用の参考になる。",
+        "action_suggestion": "OpenAI公式サイトで公開された10件の研究成果の詳細内容は今後確認が必要。",
         "importance": "B",
         "related_categories": [
-          "研究・技術"
+          "研究・技術",
+          "AIツール・モデル"
         ],
-        "enrichment_version": "ai-radar-2026-08-01-v5-relative-event-dates"
+        "enrichment_version": "ai-radar-2026-08-02-v7-structured-story-diff"
       }
     },
     "url:https://news.google.com/rss/articles/cbmit0fvx3lxte56rnhvskfstw81wdlrv1jjyngysm5otjq1z0vpcu9hc29ubhj5duh3x1c3qkn4a2xjbxblc1yyadjxuddpn0vvcexutddmynm": {
@@ -2564,9 +2598,9 @@
       "content_hash": "65644ab6f4359e66612f3ca0154135ac4562cd3d9b053bcb92707aad1989df58",
       "story_key": "5b4a35f9de7e46c9c0106c4fd715517b3e60548b67812ae88ebcf99c51f30eee",
       "status": "rejected",
-      "processed_at": "2026-08-02T01:34:17.779Z",
+      "processed_at": "2026-08-02T02:30:57.657Z",
       "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-02-v6-natural-article-flow",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
       "lane": "regular",
       "reason": "ai_filtered_or_incomplete"
     },
@@ -2597,9 +2631,9 @@
       "content_hash": "79a52f16309d00cd3529710213dee2d1f2049964f208c62849350910be6d4061",
       "story_key": "0f96615cfcbe93dddb48f87667f37b730e0f8e02f96d6f6d3a4c3625a56d2bd0",
       "status": "rejected",
-      "processed_at": "2026-08-02T01:34:17.779Z",
+      "processed_at": "2026-08-02T02:30:57.657Z",
       "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-02-v6-natural-article-flow",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
       "lane": "regular",
       "reason": "ai_filtered_or_incomplete"
     },
@@ -2630,9 +2664,9 @@
       "content_hash": "9d136a1646508d946d7d952726fccc875cde1a1959ba2dfaf027b8defe5eb63f",
       "story_key": "940c32bcd7ea78d3b5ddaa7df176ca2586849e12c706d05f0b3647215f591578",
       "status": "rejected",
-      "processed_at": "2026-08-02T01:34:36.136Z",
+      "processed_at": "2026-08-02T02:31:54.125Z",
       "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-02-v6-natural-article-flow",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
       "lane": "regular",
       "reason": "ai_filtered_or_incomplete"
     },
@@ -2640,24 +2674,179 @@
       "canonical_url": "https://news.google.com/rss/articles/cbmickfvx3lxte9msk1kmfo1szrkd2joy3vqbm4teunpnnnhqm9jexa2ymdyc01frv96vwfwvtzjzfrlexews0jrdxdbvzbxsm9uwmzrujvfrzq1cg1jedrgcwtysfvlmkhcn3fsn0dltvvwewnpz2hksmh3zw",
       "content_hash": "a119c6051a0296fa54e367e518e796cb5d4ca873df709388fc17b2c154ad9666",
       "story_key": "4ed48929ea617a2f605c510229278fd7086235046c8bdea9df9d6f3a85afe3c4",
-      "status": "rejected",
-      "processed_at": "2026-08-02T01:34:36.136Z",
+      "status": "enriched",
+      "processed_at": "2026-08-02T02:31:54.124Z",
       "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-02-v6-natural-article-flow",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
       "lane": "regular",
-      "reason": "ai_filtered_or_incomplete"
+      "reason": "",
+      "result": {
+        "tool": "AI企業・関連株",
+        "title": "ENECHANGE、発電機点検のダーウィンを子会社化しAI・DX事業に参入",
+        "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9mSk1kMFo1SzRKd2JOY3VQbm4teUNPNnNhQm9jeXA2YmdYc01FRV96VWFWVTZJZFRLeXEwS0JRdXdBVzBxSm9UWmZrUjVfRzQ1cG1jeDRGcWtySFVlMkhCN3FSN0dLTVVWeWNPZ2hKSmh3Zw?oc=5",
+        "source_name": "みんなの広報宣伝部",
+        "is_official": false,
+        "published_at": "2026-08-01T22:07:57.000Z",
+        "source_published_at": "2026-08-01T22:07:57.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-02T02:30:45.056Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "ENECHANGE",
+          "ダーウィン"
+        ],
+        "primary_entity": "ENECHANGE",
+        "story_subject": "非常用発電機点検会社ダーウィンの完全子会社化",
+        "event_type": "acquisition",
+        "event_stage": "announced",
+        "event_scope": "Japan",
+        "fact_slots": [
+          {
+            "type": "amount",
+            "scope": "買収取得総額",
+            "value": "6億1200万円",
+            "normalized_value": "600000000JPY"
+          }
+        ],
+        "new_facts": [
+          "ENECHANGEが非常用発電機点検のダーウィンを取得総額6億1200万円で完全子会社化した",
+          "この買収によりENECHANGEはAI・DX事業に参入する"
+        ],
+        "raw_excerpt": "ENECHANGEが非常用発電機点検会社ダーウィンを取得総額6億1200万円で完全子会社化し、AI・DX事業へ新規参入する。",
+        "detail": "ENECHANGEは非常用発電機の点検を手がけるダーウィンを完全子会社化すると発表した。取得総額は6億1200万円で、この買収を通じてAI・DX事業への参入を図るとしている。既存の発電機点検業務にAIやデジタル技術を組み合わせて新たな事業領域を開拓する狙いとみられるが、具体的な統合内容や今後のスケジュールは本文からは明らかではない。",
+        "change_summary": "ENECHANGEが非常用発電機点検会社ダーウィンを買収し、新たにAI・DX事業へ参入することが発表された。",
+        "impact_summary": "電力・インフラ点検業界でAI活用が進む動きの一例で、関連企業の事業展開や設備管理業務のDX化に影響する可能性がある。",
+        "action_suggestion": "買収完了時期や具体的な事業計画については今後の発表を確認する必要がある。",
+        "importance": "C",
+        "related_categories": [
+          "企業・株式",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-02-v7-structured-story-diff"
+      }
     },
     "url:https://news.google.com/rss/articles/cbmingfbvv95cuxqtvruevi1qvj3c01rtdhlvezvrhlzbexpmhhnvezeohlyzmxwvvi5ylpnrhlyqu1peg4tm3i0euqxm3dxzde4vdron1hgc0drtkotsgc5eth0zgtjq2hbeji0vwzervm2dvnzoercn0hjr002dzbiu0pmvgu4n1f6dxy5clnhvjm5mi01tfjsewflvhz1mtrsvzyzv1fuuq": {
       "canonical_url": "https://news.google.com/rss/articles/cbmingfbvv95cuxqtvruevi1qvj3c01rtdhlvezvrhlzbexpmhhnvezeohlyzmxwvvi5ylpnrhlyqu1peg4tm3i0euqxm3dxzde4vdron1hgc0drtkotsgc5eth0zgtjq2hbeji0vwzervm2dvnzoercn0hjr002dzbiu0pmvgu4n1f6dxy5clnhvjm5mi01tfjsewflvhz1mtrsvzyzv1fuuq",
       "content_hash": "16ba92a6094e76079ccb4491eeb72d199f073a005e9ddaa86dd196c7aeefcd58",
       "story_key": "2b33c78ad73c51637f50320e453e19d501df52824f53642e4fdfad40d0325361",
       "status": "rejected",
-      "processed_at": "2026-08-02T01:34:36.136Z",
+      "processed_at": "2026-08-02T02:30:57.657Z",
       "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-02-v6-natural-article-flow",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmiiafbvv95cuxom2fwmktnmk52dknysgn6ujbxqwdzskdydxrdc0l0uwpkredzdgf5ekhwrhbzdm40wxnibwhha194wwfxc0myodloslnveg95bzlxu29ivws5rfptv2xbv0xvlwtqvi1hnl83ejjgskfpoxnqzfvttlbpvjzjywttr3bhq0dyeezi": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiiafbvv95cuxom2fwmktnmk52dknysgn6ujbxqwdzskdydxrdc0l0uwpkredzdgf5ekhwrhbzdm40wxnibwhha194wwfxc0myodloslnveg95bzlxu29ivws5rfptv2xbv0xvlwtqvi1hnl83ejjgskfpoxnqzfvttlbpvjzjywttr3bhq0dyeezi",
+      "content_hash": "3af119c8a7a072cb6a418c72faa5248262e4f2294ecc5202c987bd36298547f1",
+      "story_key": "b93e18e7008ad8f5a56946d5f89223b1e0cd3ec43ea27a1040b46d2962ea6110",
+      "status": "rejected",
+      "processed_at": "2026-08-02T02:30:57.657Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmiiafbvv95cuxnq0fcqvjwltnlmtlswlf6ngdomlpzunhscgnid2noeuxnwf9vem9mvhj0b2fmytjkauq2uwf1nvfky3vjngnzylmtakrjdgqymm9sce55wlbxmmrud3b1zxrzxzfad1nmuxjxb1bku3vtzlvwyjz6r2psudbzaehlmxlsyurpnuvn": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiiafbvv95cuxnq0fcqvjwltnlmtlswlf6ngdomlpzunhscgnid2noeuxnwf9vem9mvhj0b2fmytjkauq2uwf1nvfky3vjngnzylmtakrjdgqymm9sce55wlbxmmrud3b1zxrzxzfad1nmuxjxb1bku3vtzlvwyjz6r2psudbzaehlmxlsyurpnuvn",
+      "content_hash": "55f5853cab22c8e40d5075fe99492514aa3fc9a09ffef906988f6f92eb76eb6e",
+      "story_key": "603a7d16493940fd3ec337a638b6af460f5e8572dca2ec5945c181ee1a1b789b",
+      "status": "rejected",
+      "processed_at": "2026-08-02T02:30:57.657Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmiykfvx3lxte40sjczruffumotnnd1cvl0ylzpm2dpmtzhm2rpx3vmmm00nmr3ukk0smzxovfbsve2aetuvw5eylzhztu4agfztlbwberyuxz5mwd3cgxlmupyt0t0x1fbbmrb": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiykfvx3lxte40sjczruffumotnnd1cvl0ylzpm2dpmtzhm2rpx3vmmm00nmr3ukk0smzxovfbsve2aetuvw5eylzhztu4agfztlbwberyuxz5mwd3cgxlmupyt0t0x1fbbmrb",
+      "content_hash": "b56b3390dfffd7f44aa0d9c1e581557b4816cae31fee705ee7ac4a7399b7bcb9",
+      "story_key": "8f1af79d0d6cd3373d4c9fed50ca26bb4b079e4049827e6bfdb73b8441a79227",
+      "status": "rejected",
+      "processed_at": "2026-08-02T02:30:57.657Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmifkfvx3lxte9itvzoc1azmwwwu2h6dfnqu2hbre4yrxjemtb0rgrnwejttnhkvve3eelxenrjywxvwgswtmzvtwxtsmgxq1rtm3r4tg9pnzjrn2pir0o5tlrsyvjvewttd3hmb1byu1vcqvpkbdfxnxhndjjwavjhd2xhykhjzw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmifkfvx3lxte9itvzoc1azmwwwu2h6dfnqu2hbre4yrxjemtb0rgrnwejttnhkvve3eelxenrjywxvwgswtmzvtwxtsmgxq1rtm3r4tg9pnzjrn2pir0o5tlrsyvjvewttd3hmb1byu1vcqvpkbdfxnxhndjjwavjhd2xhykhjzw",
+      "content_hash": "eb85cdacd49b504e00fb2e77034ee8ff7df3eadffd0712cc4fdc2afd91398bbd",
+      "story_key": "3dce4189f69bb270f4e94902bcfe20aa0f01baad9ba37696b5d35231413a7565",
+      "status": "enriched",
+      "processed_at": "2026-08-02T02:31:54.125Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Gemini",
+        "title": "Google、パーソナルAI「Gemini Spark」を日本でも提供開始",
+        "source_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9iTVZOc1AzMWwwU2h6dFNQU2hBRE4yRXJEMTB0RGRnWEJtTnhKVVE3eElXenRjYWxvWGswTmZvTWxTSmgxQ1RTM3R4TG9PNzJrN2pIR0o5TlRsYVJveWtTd3hmb1BYU1VCQVpkbDFxNXhNdjJWaVJHd2xHYkhjZw?oc=5",
+        "source_name": "ITmedia",
+        "is_official": false,
+        "published_at": "2026-08-02T01:35:38.000Z",
+        "source_published_at": "2026-08-02T01:35:38.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-02T02:30:35.734Z",
+        "event_at": "",
+        "event_status": "開始済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Google",
+          "Gemini Spark",
+          "Chrome"
+        ],
+        "primary_entity": "Google",
+        "story_subject": "パーソナルAI「Gemini Spark」の日本展開",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "Japan",
+        "fact_slots": [
+          {
+            "type": "region",
+            "scope": "Gemini Sparkの提供地域",
+            "value": "日本",
+            "normalized_value": "日本"
+          },
+          {
+            "type": "region",
+            "scope": "Chrome統合の提供地域",
+            "value": "米国先行",
+            "normalized_value": "米国先行"
+          }
+        ],
+        "new_facts": [
+          "GoogleがGemini Sparkを日本でも利用可能にした",
+          "Gemini SparkのChromeブラウザへの統合は米国から提供が始まる"
+        ],
+        "raw_excerpt": "Googleが個人向けAI「Gemini Spark」を日本でも利用可能にした。Chromeへの統合はまず米国から始まる。",
+        "detail": "Googleはパーソナルアシスタント機能を持つ「Gemini Spark」を日本でも利用できるようにしたと明らかにした。Chromeブラウザへの統合機能については米国からの提供開始となる。日本向けの具体的な提供形態や利用条件、Chrome統合の日本展開時期は記事からは明らかではない。",
+        "change_summary": "Gemini Sparkの日本向け提供が新たに始まり、Chrome統合は米国が先行することが明らかになった。",
+        "impact_summary": "日本のGoogleユーザーが新しいパーソナルAI機能を利用できるようになり、検索やブラウザでのAI活用の選択肢が広がる。",
+        "action_suggestion": "日本での利用開始方法やChrome統合の日本展開時期については今後の発表を確認する必要がある。",
+        "importance": "A",
+        "related_categories": [
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-02-v7-structured-story-diff"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmitkfvx3lxtfbiy3fnamnmowxhvuwxbuvpx1bscxoztfpfbddqtxqxui1rtnrpc05buvqwzk1mv0lnvhbfovdywe9yy2vpxzljr25irtjfdw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmitkfvx3lxtfbiy3fnamnmowxhvuwxbuvpx1bscxoztfpfbddqtxqxui1rtnrpc05buvqwzk1mv0lnvhbfovdywe9yy2vpxzljr25irtjfdw",
+      "content_hash": "7c5da523affd88940b639af0c0bb331ddbf82c6252838f33ccf272d232e8331f",
+      "story_key": "3d77ff3df3beaaba9629ed59bb81b978e515a2c7929a0f596ddac62d4e55264c",
+      "status": "rejected",
+      "processed_at": "2026-08-02T02:31:54.125Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
       "lane": "regular",
       "reason": "ai_filtered_or_incomplete"
     }
   },
-  "updated_at": "2026-08-02T01:34:36.136Z"
+  "updated_at": "2026-08-02T02:31:54.125Z"
 }
