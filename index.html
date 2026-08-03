@@ -2968,7 +2968,7 @@ function runMigrations(d){
 const NAV = [
   {group:'メイン',items:[
     {id:'home',label:'ホーム',icon:'home'},
-    {id:'updates',label:'アップデート',icon:'updates'},
+    {id:'updates',label:'すべての記事',icon:'updates'},
     {id:'categories',label:'ジャンル別',icon:'category'},
     {id:'try-list',label:'あとで試す',icon:'flask'},
   ]},
@@ -3062,7 +3062,7 @@ function renderNav(){
 
   const mobileItems=[
     {id:'home',label:'ホーム',icon:'home'},
-    {id:'updates',label:'更新',icon:'updates',badge:unread},
+    {id:'updates',label:'記事',icon:'updates',badge:unread},
     {id:'try-list',label:'保存',icon:'flask',badge:tryN},
     {id:'tools',label:'設定',icon:'tools'},
     {id:'account',label:memberState.user?'会員':'ログイン',icon:'user'},
@@ -3075,8 +3075,8 @@ function renderNav(){
 }
 
 const PAGE_META = {
-  home:['ホーム','あなた専用に厳選した最新AIニュース'],
-  updates:['アップデート','すべての更新情報を検索・絞り込み'],
+  home:['ホーム','未読のAIニュースを優先して表示'],
+  updates:['すべての記事','既読・未読をまとめて検索・絞り込み'],
   categories:['ジャンル別','関心のあるAI分野ごとに情報を確認'],
   'try-list':['あとで試す','試す・試した・導入済みを管理'],
   tools:['フィード設定','興味のあるAI情報を選び、自分専用のレーダーを設定'],
@@ -3290,18 +3290,19 @@ function selectDailyCover(items){
 }
 function renderHome(v){
   recomputeAll();
-  const ups=getPlanUpdates();
-  const unread=ups.filter(u=>u.status==='unread').length;
-  const tryLater=ups.filter(u=>u.status==='try_later').length;
-  // 日付の新しさを優先し、同じ日の中ではパイプラインの重要度順に表示する。
-  const list=[...ups].sort(byFeedOrder);
+  const allPlanUpdates=getPlanUpdates();
+  const unreadAll=getUpdates().filter(u=>u.status==='unread');
+  const unread=allPlanUpdates.filter(u=>u.status==='unread').length;
+  const tryLater=allPlanUpdates.filter(u=>u.status==='try_later').length;
+  // ホームは未読専用。既読を含む全記事は「すべての記事」画面で確認する。
+  const list=allPlanUpdates.filter(u=>u.status==='unread').sort(byFeedOrder);
 
   document.getElementById('topActions').innerHTML =
-    `<button class="btn btn-sm" onclick="go('updates')">${icon('search')}検索・絞り込み</button>`;
+    `<button class="btn btn-sm" onclick="openAllUpdates()">${icon('updates')}すべての記事を見る</button>`;
 
-  const latest=list.length?fmtDate(articleTimelineAt(list[0])):'—';
-  // 表紙は個別テーマの絞り込みに左右されず、本日収集した全ニュースから1位を選ぶ。
-  const cover=selectDailyCover(getUpdates());
+  const latest=allPlanUpdates.length?fmtDate(articleTimelineAt([...allPlanUpdates].sort(byFeedOrder)[0])):'—';
+  // 表紙も未読記事から選ぶ。読んだ記事はホームから外れ、「すべての記事」には残る。
+  const cover=selectDailyCover(unreadAll);
   const coverSummary=cover?(cover.manual_summary||cover.ai_summary||cover.raw_excerpt||'要約を確認できます。'):'';
   const coverTool=cover?toolById(cover.tool_id):null;
   const coverCopy=cover?`
@@ -3323,13 +3324,13 @@ function renderHome(v){
   </section>
   <div class="home-feed">
   <div class="quick-stats">
-    <span class="signal-count">全${list.length}件・最終更新 ${latest}</span>
-    ${unread?`<button class="mini-chip" onclick="openUpdatesFiltered({unreadOnly:true})">未読 ${unread}</button>`:''}
+    <span class="signal-count">未読${unread}件・最終更新 ${latest}</span>
+    <button class="mini-chip" onclick="openAllUpdates()">すべての記事 ${allPlanUpdates.length}</button>
     ${tryLater?`<button class="mini-chip" onclick="go('try-list')">あとで試す ${tryLater}</button>`:''}
-  </div><button class="btn mobile-home-search" onclick="go('updates')">${icon('search')}<span><strong>ニュースを検索・絞り込み</strong><small>キーワード・ジャンル・未読から探す</small></span></button>`;
+  </div><button class="btn mobile-home-search" onclick="openAllUpdates()">${icon('updates')}<span><strong>すべての記事を見る</strong><small>既読・未読をまとめて検索できます</small></span></button>`;
 
   if(!list.length){
-    html+=emptyState('まだアップデートがありません','サーバーが3時間ごとに最新ニュースを確認します。');
+    html+=emptyState('未読ニュースはありません','読んだ記事は「すべての記事」からいつでも確認できます。');
     v.innerHTML=html; return;
   }
 
@@ -3380,6 +3381,10 @@ function emptyState(title,desc){
    UPDATES (/updates)  仕様書6-4
    ============================================================ */
 let upFilter={q:'',tool:'',cat:'',rank:'',status:'',unreadOnly:false};
+function openAllUpdates(){
+  upFilter={q:'',tool:'',cat:'',rank:'',status:'',unreadOnly:false};
+  go('updates');
+}
 // ホームの統計タイルから、絞り込み済みのアップデート一覧を開く
 function openUpdatesFiltered(patch){
   upFilter={q:'',tool:'',cat:'',rank:'',status:'',unreadOnly:false};
