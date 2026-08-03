@@ -3260,6 +3260,20 @@ function localDayKey(value){
   if(!Number.isFinite(date.getTime()))return '';
   return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
 }
+function dailyCoverRelevance(item){
+  const categories=(item?.related_categories||[]).join(' ');
+  const tool=toolById(item?.tool_id);
+  const text=[item?.title,item?.manual_summary,item?.ai_summary,item?.raw_excerpt,item?.change_summary,item?.impact_summary,item?.action_suggestion,categories,tool?.name].filter(Boolean).join(' ');
+  const economicTerms=['経済','景気','GDP','市場','投資','資金調達','株式','株価','売上','収益','利益','金融','銀行','保険','雇用','求人','失業','賃金','価格','料金','コスト','生産性','半導体','データセンター','サプライチェーン','補助金','助成金'];
+  const workTerms=['仕事','業務','職場','労働','働き方','企業向け','法人向け','導入','活用','自動化','効率化','開発','API','エージェント','営業','マーケティング','経理','人事','法務','医療','教育','製造','物流','EC'];
+  const countTerms=terms=>terms.reduce((count,term)=>count+(text.includes(term)?1:0),0);
+  const categoryBonus=(categories.includes('企業・株式')?24:0)
+    +(categories.includes('業務活用・自動化')?20:0)
+    +(categories.includes('政策・行政')?10:0)
+    +(categories.includes('規制・法務')?8:0)
+    +(categories.includes('AIツール・モデル')?8:0);
+  return categoryBonus+Math.min(countTerms(economicTerms),6)*8+Math.min(countTerms(workTerms),6)*6;
+}
 function selectDailyCover(items){
   const now=new Date();
   const today=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
@@ -3267,7 +3281,8 @@ function selectDailyCover(items){
   return [...(items||[])]
     .filter(item=>localDayKey(articleTimelineAt(item))===today)
     .sort((a,b)=>
-      (rankWeight[b.rank]||0)-(rankWeight[a.rank]||0)
+      dailyCoverRelevance(b)-dailyCoverRelevance(a)
+      ||(rankWeight[b.rank]||0)-(rankWeight[a.rank]||0)
       ||(Number(b.score)||0)-(Number(a.score)||0)
       ||Number(Boolean(b.is_official))-Number(Boolean(a.is_official))
       ||validArticleDate(articleTimelineAt(b))-validArticleDate(articleTimelineAt(a))
@@ -3294,7 +3309,7 @@ function renderHome(v){
       <div class="daily-cover-meta">${rankBadge(cover.rank)}<span class="daily-cover-source"><b>情報元</b>${esc(cover.source_name||coverTool?.name||'確認中')}・${esc(sourcePublishedLabel(cover))}</span></div>
       <h2>${esc(cover.title)}</h2>
       <p>${esc(coverSummary)}</p>
-      <div class="daily-cover-actions"><button class="btn btn-primary" onclick="go('update-detail','${cover.id}')">${icon('eye')}本日のトップニュースを見る</button><span class="daily-cover-note">重要度・影響度・新しさから自動選定</span></div>`:`
+      <div class="daily-cover-actions"><button class="btn btn-primary" onclick="go('update-detail','${cover.id}')">${icon('eye')}本日のトップニュースを見る</button><span class="daily-cover-note">経済・仕事への影響を最優先して自動選定</span></div>`:`
       <div class="live-line"><span class="live-dot"></span>LIVE INTELLIGENCE FEED</div>
       <h2>世界のAI変化を、<br>仕事の判断へ。</h2>
       <p>英語・中国語・日本語の情報を横断監視。何が変わったか、仕事への影響、次にやることまで、やさしい日本語で確認できます。</p>
