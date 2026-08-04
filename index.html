@@ -815,6 +815,11 @@
   .live-line{display:flex;align-items:center;gap:8px;font-size:10.5px;font-weight:800;letter-spacing:.17em;color:#76e8f5;margin-bottom:15px}
   .online-now{margin-left:14px;padding-left:14px;border-left:1px solid rgba(118,232,245,.28);font-size:9.5px;letter-spacing:.08em;color:#8fd9ce;font-weight:700;white-space:nowrap}
   .online-now b{color:#5df7d8;font-size:11.5px;margin:0 2px}
+  /* 狭い画面ではLIVE行を折り返し、カウンターが見切れないようにする */
+  @media(max-width:760px){
+    .live-line{flex-wrap:wrap;width:auto!important;max-width:100%}
+    .online-now{margin-left:0;padding-left:0;border-left:0;flex-basis:100%;margin-top:3px}
+  }
   .live-dot{position:relative;width:7px;height:7px;border-radius:50%;background:#36e7ae;box-shadow:0 0 0 5px rgba(54,231,174,.08),0 0 16px rgba(54,231,174,.75)}
   /* box-shadowを動かすと毎フレームpaintが走るため、transform/opacityだけで脈動させる */
   .live-dot::after{content:"";position:absolute;inset:-4px;border:1px solid rgba(54,231,174,.6);border-radius:50%;animation:livePulse 2.4s ease-out infinite}
@@ -4616,14 +4621,26 @@ function makeIcon(size){
   return c.toDataURL('image/png');
 }
 function setupPWA(){
-  if('serviceWorker' in navigator){
-    window.addEventListener('load',()=>{
-      navigator.serviceWorker.register('./sw.js').then(reg=>{
-        // 開きっぱなしのPWAでも新しいアプリ本体の配信を検知できるようにする。
-        window.setInterval(()=>{ reg.update().catch(()=>{}); },60*60000);
-      }).catch(()=>{});
-    },{once:true});
-  }
+  if(!('serviceWorker' in navigator))return;
+  // 初回登録時のcontrollerchange(未制御→制御)では更新案内を出さない。
+  const hadController=Boolean(navigator.serviceWorker.controller);
+  let updatePromptShown=false;
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{
+    if(!hadController||updatePromptShown)return;
+    updatePromptShown=true;
+    // 新しいService Workerが制御を引き継いだ = 新バージョンが配信された。
+    // 開きっぱなしのスマホ・PWAでも、その場で新しいアプリに切り替えられるようにする。
+    toastAction('アプリが新しくなりました','今すぐ更新',()=>window.location.reload(),'ok');
+  });
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('./sw.js').then(reg=>{
+      // 開きっぱなしのPWAでも新しいアプリ本体の配信を検知できるようにする。
+      window.setInterval(()=>{ reg.update().catch(()=>{}); },60*60000);
+      document.addEventListener('visibilitychange',()=>{
+        if(document.visibilityState==='visible')reg.update().catch(()=>{});
+      });
+    }).catch(()=>{});
+  },{once:true});
 }
 
 /* ============================================================
