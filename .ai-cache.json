@@ -3810,7 +3810,214 @@
       "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
       "lane": "regular",
       "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://arxiv.org/abs/2608.00008": {
+      "canonical_url": "https://arxiv.org/abs/2608.00008",
+      "content_hash": "380e05c1819844de3fd7581fba971c715a7725e3688bd0a54b8591e94e9acf2b",
+      "story_key": "96b99761bf14f89f822eb8d083bdb1574b21ce99d6eec08ba223b6d9f6eb9c7f",
+      "status": "enriched",
+      "processed_at": "2026-08-04T09:10:05.136Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "AIベンチマーク・研究速報",
+        "title": "家庭用GPUでのローカルAI実行、モデル次第で電力効率に最大4.4倍の差",
+        "source_url": "https://arxiv.org/abs/2608.00008",
+        "source_name": "rss.arxiv.org",
+        "is_official": true,
+        "published_at": "2026-08-04T04:00:00.000Z",
+        "source_published_at": "2026-08-04T04:00:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-04T09:09:15.767Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "RTX 4060Ti",
+          "Ollama",
+          "gemma3"
+        ],
+        "primary_entity": "研究チーム(arXiv論文)",
+        "story_subject": "消費者向けGPUでのローカルLLMエネルギー効率ベンチマーク",
+        "event_type": "research",
+        "event_stage": "completed",
+        "event_scope": "consumer GPU",
+        "fact_slots": [
+          {
+            "type": "other",
+            "scope": "gemma3:1bの電力効率",
+            "value": "0.56 J/token",
+            "normalized_value": "0.56"
+          },
+          {
+            "type": "other",
+            "scope": "llama3.2:1bの電力効率",
+            "value": "0.65 J/token",
+            "normalized_value": "0.65"
+          },
+          {
+            "type": "other",
+            "scope": "最効率モデルの処理速度",
+            "value": "170+ tok/s",
+            "normalized_value": "170"
+          },
+          {
+            "type": "other",
+            "scope": "7B Mistralの相対電力消費",
+            "value": "最効率モデルの4.4倍",
+            "normalized_value": "4.4"
+          },
+          {
+            "type": "other",
+            "scope": "検証GPU",
+            "value": "RTX 4060Ti 16GB",
+            "normalized_value": "4060"
+          }
+        ],
+        "new_facts": [
+          "家庭用GPU(RTX 4060Ti)上で9種類のオープンソースLLM(1B〜7B)の電力消費を実測した",
+          "gemma3:1bとllama3.2:1bが最も電力効率が高く、それぞれ0.56 J/token、0.65 J/tokenで170tok/s以上を記録した",
+          "7BのMistralモデルは最も効率的なモデルの最大4.4倍の電力を消費した",
+          "パラメータ数だけでなくモデル構造や量子化方式が電力効率を左右する"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "研究チームが家庭用GPUで9種のオープンソースLLMを実測し、電力効率がモデル構造や量子化方式で大きく変わると判明した。",
+        "detail": "プライバシー保護のため自分のPC上でAIモデルを動かす「ローカル実行」が広がっているが、その電力消費は精度評価に比べて調査が進んでいなかった。研究チームは家庭用GPU「RTX 4060Ti」上でOllamaという推論ソフトを使い、1B〜7BパラメータのオープンソースLLM9種類の消費電力を2Hz間隔で測定した。結果、gemma3:1bとllama3.2:1bが最も効率的で、1トークンあたり0.56Jと0.65J、処理速度は170トークン/秒以上を記録した。一方、7BパラメータのMistralモデルは最も効率的なモデルの最大4.4倍の電力を消費した。パラメータ数の多さだけでなく、モデルの内部構造や量子化（データ圧縮）方式が電力効率を左右することが示された。",
+        "change_summary": "パラメータ数だけでは電力効率を説明できず、モデル構造や量子化方式が効率を左右することが実測データで示された。",
+        "impact_summary": "個人や企業が自前のPCでAIを動かす際、電気代やハードウェア選定を判断する具体的な参考データになる。",
+        "action_suggestion": "記事では9種類のモデルごとの電力・速度データが公開されており、ローカルAI導入時の機種選定に活用できる。",
+        "importance": "C",
+        "related_categories": [
+          "研究・技術",
+          "半導体・インフラ"
+        ],
+        "enrichment_version": "ai-radar-2026-08-02-v7-structured-story-diff"
+      }
+    },
+    "url:https://arxiv.org/abs/2608.00017": {
+      "canonical_url": "https://arxiv.org/abs/2608.00017",
+      "content_hash": "8de727db9be9cec909eb97619548293421fee19fc46e8820cb207bea9e303160",
+      "story_key": "2007185e6aee6a538349a76be0fd7a29038a6d98d5d5a520880feacc0e723b1a",
+      "status": "rejected",
+      "processed_at": "2026-08-04T09:10:05.136Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmif0fvx3lxte1ds0djdfayt0p5wxdtownfynvpv0jcri1gwefjewhrrtluexdaze9imnq3dzz0sfvktm85ntv6elpnvhzmetdir09rnlpac2xxmfjyntvelupsymhrrnzjafhmmlgtq0o2odjqlutodtzjwmhnt3qytkzcdtjsqwm": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmif0fvx3lxte1ds0djdfayt0p5wxdtownfynvpv0jcri1gwefjewhrrtluexdaze9imnq3dzz0sfvktm85ntv6elpnvhzmetdir09rnlpac2xxmfjyntvelupsymhrrnzjafhmmlgtq0o2odjqlutodtzjwmhnt3qytkzcdtjsqwm",
+      "content_hash": "cd97debda802ffa507a33431408901843da14b68c026277e7387830c10d0dbee",
+      "story_key": "99f81e093f2f04f1101459ada1faed89ecbf9ed0137199e339ab432249a8d30c",
+      "status": "rejected",
+      "processed_at": "2026-08-04T09:10:05.137Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmiy0fvx3lxte9nagk1mvhydkhorw4zdzrtakvoadrychvqdwrta1hxn2zrq1hlvefnntz4nm5nbwvkdjlpognzn0vynv9zqnlux1dpb29qrdr4mta1ahrqvdlfsfbqqnjrsc1zqq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiy0fvx3lxte9nagk1mvhydkhorw4zdzrtakvoadrychvqdwrta1hxn2zrq1hlvefnntz4nm5nbwvkdjlpognzn0vynv9zqnlux1dpb29qrdr4mta1ahrqvdlfsfbqqnjrsc1zqq",
+      "content_hash": "d2e94a017818f89eb12cc0dce7e56dcdeb5434968ce2ec28469ea03b8b0921d7",
+      "story_key": "53c3b31ae4280b86f7c417ce19018303d37b1880522b36b8d2f8a1a5f6452193",
+      "status": "rejected",
+      "processed_at": "2026-08-04T09:10:05.137Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmiiafbvv95cuxolxzlrw9lz2jwel9ovw5bb2hmzxflbkfucmdhx3fkckqyznprczk0czrsr3njqkhgegzdae1memp4rvhgzvoyvkvpadjpbfb3z2i4nfflt1vjlxjpouvonvmzmnhswnnozlvvchczvf9jnznvwc0zuvvnotjxzhrueg5togz5bwdi": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiiafbvv95cuxolxzlrw9lz2jwel9ovw5bb2hmzxflbkfucmdhx3fkckqyznprczk0czrsr3njqkhgegzdae1memp4rvhgzvoyvkvpadjpbfb3z2i4nfflt1vjlxjpouvonvmzmnhswnnozlvvchczvf9jnznvwc0zuvvnotjxzhrueg5togz5bwdi",
+      "content_hash": "aca4716cb337bd857f5aaec7bd03c264a1faa5d33e13cd129b4775c6804df1bb",
+      "story_key": "5a12d50eacbb09937c2ce9f2d01833eeb8e9171523ec23cd4dbb46d5fbe895de",
+      "status": "rejected",
+      "processed_at": "2026-08-04T09:10:05.137Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmiiafbvv95cuxqqjffmgnywfvxyuxvv2dychvvqwj0bxfmx01rbw16eujwyke1nhdqr3zjm1llmfk5a3zfqnpwrtnydkrtcnlqyw8wtxaylvlyzkpksg9vufcyzjnfev9wowe3a3lvzw1iotl2lxzibzhzbk9fzxjswtvrtzv5bmlgdunvcenfbfjn": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiiafbvv95cuxqqjffmgnywfvxyuxvv2dychvvqwj0bxfmx01rbw16eujwyke1nhdqr3zjm1llmfk5a3zfqnpwrtnydkrtcnlqyw8wtxaylvlyzkpksg9vufcyzjnfev9wowe3a3lvzw1iotl2lxzibzhzbk9fzxjswtvrtzv5bmlgdunvcenfbfjn",
+      "content_hash": "33261c84cd029a8d96558c06044e6f1780ae96e8e81cf7ba2ef5c6a0a19bdf87",
+      "story_key": "f2c295a4edc41823c6947d77ba66562e442ba5853e668b658d5e66cbcd1799bc",
+      "status": "rejected",
+      "processed_at": "2026-08-04T09:10:05.137Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmilwfbvv95cuxncfzzsm42vu5czg1mtknlulnsrf83ag5xrdgybnnimepuqkuxtwlnoed3vwjlavffdlfqsu5rx3purwtzwji2bg9prmz2qmtvof9mzljnltzfqk9nqwftd1ntx3lprgvksvjnbzk2rgvwz3bgoehnoxppzkhaq0zgy1hwvnnnsuy0dglrzzbcymjrww9gmupb": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmilwfbvv95cuxncfzzsm42vu5czg1mtknlulnsrf83ag5xrdgybnnimepuqkuxtwlnoed3vwjlavffdlfqsu5rx3purwtzwji2bg9prmz2qmtvof9mzljnltzfqk9nqwftd1ntx3lprgvksvjnbzk2rgvwz3bgoehnoxppzkhaq0zgy1hwvnnnsuy0dglrzzbcymjrww9gmupb",
+      "content_hash": "29c50d35ac0ef5a32c33d799e0f13c8a0363a1dd2e4ee9ef03425f96757b24e9",
+      "story_key": "7cedbfa1664b856fdaa12f3942363bc4ade9f37ab96a29bf156ab1f4b4edc72f",
+      "status": "rejected",
+      "processed_at": "2026-08-04T09:10:19.769Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmizefvx3lxtfb0refim2ixwvbrovhcec1ysul6c1raqmd0agvvzwzocwzsblvuyki5vy00qnvcafp2zxd4lul1sc1isepcani1sw1jzhzzvzbvrvlfa3a3chfmrwdjlu84udninwg": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmizefvx3lxtfb0refim2ixwvbrovhcec1ysul6c1raqmd0agvvzwzocwzsblvuyki5vy00qnvcafp2zxd4lul1sc1isepcani1sw1jzhzzvzbvrvlfa3a3chfmrwdjlu84udninwg",
+      "content_hash": "527e325c6c8cfe9c9d19ea0076c175fc4d0757567b8fa6dc2eb8bbe0c79bdbd8",
+      "story_key": "bdaa9079642ff723c6e58638025a8b5356c6713ab7e7ccd517fcbeedd51eb7b9",
+      "status": "rejected",
+      "processed_at": "2026-08-04T09:10:19.769Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmiv0fvx3lxte5vdg1mb2rmrexnctitv1u1mzb1v21urw5idfvnww1yzzl1rgrrv285vldnd3zkturrtjhwrvzbawfxx0txcjzybty5dmk5rgjuzewtvxixna": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiv0fvx3lxte5vdg1mb2rmrexnctitv1u1mzb1v21urw5idfvnww1yzzl1rgrrv285vldnd3zkturrtjhwrvzbawfxx0txcjzybty5dmk5rgjuzewtvxixna",
+      "content_hash": "10913409cf7b884af77b582aff2c8dc72e7cd6f2380db56207a83353b20a0635",
+      "story_key": "59f81fee3d7da942577c959c0b29ad3ea5fc80ea0e3da4e6de5bca9aad5121d2",
+      "status": "rejected",
+      "processed_at": "2026-08-04T09:10:19.769Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmie0fvx3lxte1fx2dldgfilxh4rgpvrgvhag5mtzdnbkzsx3vbwdboc3kwck1mzkfvqu1iu1rts214ti1wthp5ytn1z3pqrw9dvlazou9zbnzud2prqtnsc2npohowvxjzt19ewfftyvppeuflvdvpx2hlbhblnkjzylnena": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmie0fvx3lxte1fx2dldgfilxh4rgpvrgvhag5mtzdnbkzsx3vbwdboc3kwck1mzkfvqu1iu1rts214ti1wthp5ytn1z3pqrw9dvlazou9zbnzud2prqtnsc2npohowvxjzt19ewfftyvppeuflvdvpx2hlbhblnkjzylnena",
+      "content_hash": "98c62b15ba726b962c9e9ccb49100fe4097a3c3914c9168706fbff53f650fa03",
+      "story_key": "e615f0e06f37c7429777be0c42796d716befefe557cab6f87de2acdc9f0d8d89",
+      "status": "rejected",
+      "processed_at": "2026-08-04T09:10:19.769Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmiaefvx3lxte1gm2izrvjnmxpjmxhwbjfqexpxevfkywhfnndubwjrq3rhufq3cwdntu9vsho5ceo0vudtd3zsohrlznhzxzg4t2w2sy1wzvozu1pjc2nzenv1sjltz1fczlfpoffutvn1": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxte1gm2izrvjnmxpjmxhwbjfqexpxevfkywhfnndubwjrq3rhufq3cwdntu9vsho5ceo0vudtd3zsohrlznhzxzg4t2w2sy1wzvozu1pjc2nzenv1sjltz1fczlfpoffutvn1",
+      "content_hash": "65d86cf5fb98eca7aab76706384c1c1d703aa00c2abb97c747899d8b2260c49e",
+      "story_key": "48fc3c20891fc5803786681017d60102c148d85b6535b1d1e76507e07789242c",
+      "status": "rejected",
+      "processed_at": "2026-08-04T09:10:19.769Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
+    },
+    "url:https://news.google.com/rss/articles/cbmidkfvx3lxte1ha05vmmhiauppn2w3n3buvxr0strkathrugp4nlm0ttnxq2tizgtxs19svvc4ogu3qxvjuzrby2gyc3cxyjbkwdfja2nxd09wadz6aw5tqwvwdm9fwmhrrwdcmxzbdm5fbk5ny3iteehktjlxzhc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidkfvx3lxte1ha05vmmhiauppn2w3n3buvxr0strkathrugp4nlm0ttnxq2tizgtxs19svvc4ogu3qxvjuzrby2gyc3cxyjbkwdfja2nxd09wadz6aw5tqwvwdm9fwmhrrwdcmxzbdm5fbk5ny3iteehktjlxzhc",
+      "content_hash": "5fabef1c3714ab778b77ed11161f6c26ddffdbf9f6ac3d5503bf5e3082427744",
+      "story_key": "075d0f564942568b4319f3960763d0d403010244efff823605424435b482adb5",
+      "status": "rejected",
+      "processed_at": "2026-08-04T09:10:19.770Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "lane": "regular",
+      "reason": "ai_filtered_or_incomplete"
     }
   },
-  "updated_at": "2026-08-04T03:39:06.315Z"
+  "updated_at": "2026-08-04T09:10:19.770Z"
 }
