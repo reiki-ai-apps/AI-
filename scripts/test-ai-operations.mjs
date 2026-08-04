@@ -450,8 +450,12 @@ const missingStructuredResult=await context.aiEnrichBatch([{
   source_url:"https://example.com/gpt5",source_name:"Example",
   published_at:"2026-06-01T00:00:00Z",source_published_at:"2026-06-01T00:00:00Z"
 }]);
-if(missingStructuredResult.items.length!==0||missingStructuredResult.rejected.length!==1){
+const missingHandledCount=missingStructuredResult.rejected.length+(missingStructuredResult.incomplete||[]).length;
+if(missingStructuredResult.items.length!==0||missingHandledCount!==1){
   g10Failures.push("missing required structured fields: expected rejection or retry, received a published item");
+}
+if((missingStructuredResult.incomplete||[]).length!==1){
+  g10Failures.push("missing structured fields should be retried later, not permanently rejected");
 }
 
 if(g10Failures.length){
@@ -460,8 +464,25 @@ if(g10Failures.length){
 
 vm.runInContext('callClaude=async()=>({text:"[]",stopReason:"end_turn",usage:{input_tokens:100,output_tokens:2}})',context);
 const emptyResult=await context.aiEnrichBatch([sourceItem]);
-if(!emptyResult.ok||!emptyResult.charged||emptyResult.items.length!==0||emptyResult.rejected.length!==1){
-  throw new Error("valid empty AI selection was not recorded as a full rejection");
+if(!emptyResult.ok||!emptyResult.charged||emptyResult.items.length!==0||
+   (emptyResult.rejected.length+(emptyResult.incomplete||[]).length)!==1){
+  throw new Error("valid empty AI selection was not recorded for retry or rejection");
+}
+if((emptyResult.incomplete||[]).length!==1){
+  throw new Error("an article missing from the AI response should be retried, not permanently rejected");
+}
+
+// 明示的なskipだけが「不採用」として恒久記録される。理由も保存される。
+context.callClaude=async()=>({
+  text:JSON.stringify([{i:0,skip:true,reason_ja:"広告記事のため"}]),
+  stopReason:"end_turn",usage:{input_tokens:80,output_tokens:20}
+});
+const skippedResult=await context.aiEnrichBatch([sourceItem]);
+if(skippedResult.items.length!==0||skippedResult.rejected.length!==1||(skippedResult.incomplete||[]).length!==0){
+  throw new Error("explicit AI skip was not recorded as a rejection");
+}
+if(!/広告/.test((skippedResult.rejectedReasons||[])[0]||"")){
+  throw new Error("AI skip reason was not preserved");
 }
 
 const ledger={version:1,days:{}};

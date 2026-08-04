@@ -136,8 +136,10 @@ const AI_USAGE_PATH = ".ai-usage.json";
 const STORY_INDEX_PATH = ".story-index.json";
 const STORY_REPOST_WINDOW_MS = 31 * 86400000;
 const STORY_TIMELINE_WINDOW_MS = 365 * 86400000;
-const PROMPT_VERSION = "ai-radar-2026-08-02-v7-structured-story-diff";
-const REJECTED_TTL_MS = 7 * 86400000;
+// 完全一致の再掲載を公開から外す期間。表示保持(31日)より長く、365日の全面抑制はしない。
+const DUPLICATE_SUPPRESS_WINDOW_MS = 45 * 86400000;
+const PROMPT_VERSION = "ai-radar-2026-08-04-v8-balanced-keep";
+const REJECTED_TTL_MS = 2 * 86400000;
 const RETRY_TTL_MS = 6 * 3600000;
 const ENRICHED_TTL_MS = 31 * 86400000;
 const ALLOWED_CATEGORIES = [
@@ -321,7 +323,7 @@ async function callClaude(system, user) {
     },
     body: JSON.stringify({
       model: AI_MODEL,
-      max_tokens: 8000,
+      max_tokens: 16000,
       system,
       messages: [{ role: "user", content: user }],
     }),
@@ -468,6 +470,10 @@ async function fetchArticleContext(item) {
     event_date_candidates:explicitEventDateCandidates(item.raw_excerpt||"",item.source_published_at||item.published_at||"")
   });
   try{
+    // Google Newsのリダイレクトページは本文の無いJSシェルを返し、汎用説明文が
+    // article_contextに混入して「根拠なし」誤判定を招くため、取得せず抜粋を使う。
+    try{ if(new URL(item.source_url).hostname.endsWith("news.google.com"))return fallback(); }
+    catch(_invalidUrl){ return fallback(); }
     const res=await fetch(item.source_url,{redirect:"follow",signal:controller.signal,headers:{
       "User-Agent":"Mozilla/5.0 (compatible; AI-Radar/1.0; +https://reiki-ai-apps.github.io/AI-/)",
       "Accept":"text/html,application/xhtml+xml"
@@ -485,6 +491,9 @@ async function fetchArticleContext(item) {
       for(const re of patterns){const m=html.match(re);if(m)return stripTags(m[1]);}
       return "";
     };
+    // リダイレクト先がGoogle Newsのままなら本文は取得できていない。
+    const finalHost=(()=>{try{return new URL(res.url||item.source_url).hostname;}catch(_e){return "";}})();
+    if(finalHost.endsWith("news.google.com")||meta("og:site_name")==="Google News")return fallback();
     const paragraphs=[...html.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
       .map(m=>stripTags(m[1])).filter(t=>t.length>=45);
     const jsonDate=(field)=>{
@@ -531,27 +540,16 @@ async function aiEnrichBatch(items) {
   const system =
     "あなたは、AIに詳しくない人にも理解できる日本語で伝えるAIニュース編集者です。" +
     "製品アップデート、新機能、使い方、料金変更だけでなく、AI政策、規制、著作権、補助金・助成金、AI関連企業・株式、研究、セキュリティ、半導体など、利用者の仕事や生活に影響する情報を重視してください。" +
-    "記事本文の抜粋にない数字・人物・効果は作らず、不明な点は不明と明記してください。広告、別テーマの誤ヒット、根拠の薄い記事は除外してください。" +
+    "記事本文の抜粋にない数字・人物・効果は作らず、不明な点は不明と明記してください。除外するのは広告・宣伝と、AIと無関係な別テーマの誤ヒットだけです。それ以外の記事は、確認できる事実の範囲で伝えることを優先してください。" +
     "要約文は元記事の論点と叙述順序を尊重し、主語と出来事から直接書き始め、元記事で確認できる事実・今後の予定・発表者の見解などで自然に結んでください。" +
     "『まず、このニュースをひと言でいうと』『かんたんに言うと』『この記事では』などのメタな前置きや、元記事にない一般論・注意喚起・安心を促す定型文は使わないでください。";
   const user =
-    "次のAI関連ニュース候補(JSON)を確認し、一般の利用者が知っておく価値のある記事だけを残してください。\n" +
+    "次のAI関連ニュース候補(JSON)を確認し、候補ごとに採用または除外を判定してください。すべての候補番号iについて必ず1件ずつ出力します。採用する場合は下記の全項目、除外する場合は {\"i\":元番号,\"skip\":true,\"reason_ja\":\"10〜40字の除外理由\"} だけを出力してください。\n" +
     "出力は次の形式のJSON配列だけ（前置き・説明・コードフェンスは一切不要）:\n" +
-    '[{"i":元番号,"title_ja":"媒体名を除いた自然な日本語タイトル","summary_ja":"60〜100字で主語と結論が分かる要約","detail_ja":"220〜360字。元記事の始まり方と論旨に沿い、主語・出来事から直接始め、専門用語を説明しながら事実を自然につなぎ、元記事で確認できる結論・現状・今後の予定で終える解説","change_ja":"何が新しいかを1〜2文","impact_ja":"日本の仕事・経営・生活への影響を1〜2文","action_ja":"元記事から具体的に確認できる次の確認事項・期限・利用条件を1〜2文。根拠がなければ行動を作らず、現時点の状況を簡潔に書く","event_date":"記事本文に出来事の年月日が明記されている場合だけYYYY-MM-DD、不明なら空文字","event_status":"発表済み|開始済み|予定|継続中|不明","story_entities":["企業名・製品名など話題を識別する固有名詞を1〜3件"],"importance":"S|A|B|C","categories":["指定カテゴリから1〜3件"]}]\n' +
+    '[{"i":元番号,"title_ja":"媒体名を除いた自然な日本語タイトル","summary_ja":"60〜100字で主語と結論が分かる要約","detail_ja":"220〜360字。元記事の始まり方と論旨に沿い、主語・出来事から直接始め、専門用語を説明しながら事実を自然につなぎ、元記事で確認できる結論・現状・今後の予定で終える解説","change_ja":"何が新しいかを1〜2文","impact_ja":"日本の仕事・経営・生活への影響を1〜2文","action_ja":"元記事から具体的に確認できる次の確認事項・期限・利用条件を1〜2文。根拠がなければ行動を作らず、現時点の状況を簡潔に書く","event_date":"記事本文に出来事の年月日が明記されている場合だけYYYY-MM-DD、不明なら空文字","event_status":"発表済み|開始済み|予定|継続中|不明","story_entities":["企業名・製品名など話題を識別する固有名詞を1〜3件"],"importance":"S|A|B|C","categories":["指定カテゴリから1〜3件"],"primary_entity":"主体となる企業・組織名","story_subject":"具体的な製品・モデル・法律・事案・取引・計画の名前","event_type":"release|pricing|funding|security|policy|partnership|acquisition|research|other","event_stage":"rumor|announced|planned|beta|launched|expanded|paused|delayed|cancelled|investigating|cause_identified|fixed|restored|proposed|approved|enacted|completed|denied|corrected|other","event_scope":"API・デスクトップ・日本・全世界・影響範囲など","fact_slots":[{"type":"amount|price|region|date|availability|status|count|version|other","scope":"何についての事実か","value":"通貨・単位を含めて正規化した値"}],"new_facts_ja":["この記事で確認できる重要な事実。記事にない事実は書かない"]}]\n' +
     "指定カテゴリ:"+JSON.stringify(ALLOWED_CATEGORIES)+"\n"+
-    "英語・中国語は自然な日本語に翻訳してください。article_contextを最優先の根拠にし、情報不足でもタイトルを言い換えただけの要約は作らないでください。detail_jaは元記事の冒頭の問題提起・発表内容から入り、記事後半に結論・現状・今後の予定があればそれに沿って終えてください。説明のための定型的な導入や、どの記事にも当てはまる助言で文字数を埋めてはいけません。event_date_candidatesは本文中で出来事を表す文の近くに明記された日付候補です。候補の文脈を確認し、発表日・施行日・発生日・提供開始日・予定日として明確なものだけevent_dateへ入れてください。記事の掲載日や更新日は出来事の日にしないでください。候補がない、または意味が曖昧なら空文字にしてください。価値や根拠が足りない記事は出力しないでください。\n候補:\n" +
-    JSON.stringify(list)+
-    "\nFor every retained article, also return these machine-readable fields. They are required for cross-source story matching: "+
-    '"primary_entity":"main company or organization",'+
-    '"story_subject":"specific product, model, law, incident, deal, or program",'+
-    '"event_type":"release|pricing|funding|security|policy|partnership|acquisition|research|other",'+
-    '"event_stage":"rumor|announced|planned|beta|launched|expanded|paused|delayed|cancelled|investigating|cause_identified|fixed|restored|proposed|approved|enacted|completed|denied|corrected|other",'+
-    '"event_scope":"API, desktop, Japan, global, affected systems, etc.",'+
-    '"fact_slots":[{"type":"amount|price|region|date|availability|status|count|version|other","scope":"what the fact applies to","value":"normalized value including base unit and currency when applicable"}],'+
-    '"new_facts_ja":["material facts stated by this article; do not add facts not present in the source"]}. '+
-    "Distinguish model/product names exactly (for example Gemini 3 Flash is not Gemini 3 Pro). "+
-    "Do not treat publication dates, page-view counts, rounded currency conversions, or 5 versus 5.0 as new progress. "+
-    "A changed region/channel is progress only when the same product or policy actually expands there.";
+    "英語・中国語は自然な日本語に翻訳してください。article_contextを最優先の根拠にし、情報不足でもタイトルを言い換えただけの要約は作らないでください。detail_jaは元記事の冒頭の問題提起・発表内容から入り、記事後半に結論・現状・今後の予定があればそれに沿って終えてください。説明のための定型的な導入や、どの記事にも当てはまる助言で文字数を埋めてはいけません。event_date_candidatesは本文中で出来事を表す文の近くに明記された日付候補です。候補の文脈を確認し、発表日・施行日・発生日・提供開始日・予定日として明確なものだけevent_dateへ入れてください。記事の掲載日や更新日は出来事の日にしないでください。候補がない、または意味が曖昧なら空文字にしてください。skipにするのは、広告・宣伝、AIと無関係な誤ヒット、実質的な事実がひとつも確認できない記事だけです。article_contextが短い・取得できていない場合でも、タイトルと抜粋から確認できる事実の範囲で要約を作成し、不明な点は不明と書いて採用してください。primary_entity以下の構造化項目は話題の同一判定に使うため、採用する記事では必ず出力してください(fact_slotsは確認できる事実だけ。なければ空配列)。モデル・製品名は正確に区別し(例: Gemini 3 FlashとGemini 3 Proは別物)、掲載日・閲覧数・四捨五入した換算金額・『5』と『5.0』の表記差を新しい進展として扱わないでください。地域や提供チャネルの違いは、同じ製品・制度が実際にそこへ拡大した場合だけ進展です。\n候補:\n" +
+    JSON.stringify(list);
 
   let response;
   let attempts=0;
@@ -560,18 +558,32 @@ async function aiEnrichBatch(items) {
     try { response = await callClaude(system, user); break; }
     catch (e) { console.error("AI厳選 試行" + (attempt + 1) + " 失敗:", String(e.message || e).slice(0, 200)); }
   }
-  if(!response)return {ok:false,items:[],rejected:[],usage:{},attempts};
-  const arr = parseJsonArray(response.text);
+  if(!response)return {ok:false,items:[],rejected:[],incomplete:[],usage:{},attempts};
+  let arr = parseJsonArray(response.text);
+  if (!arr && response.stopReason === "max_tokens") {
+    // 出力が切り詰められた場合は、完全に閉じた要素までを部分復元してバッチ全損を避ける。
+    const start = response.text.indexOf("[");
+    const lastComplete = response.text.lastIndexOf("},");
+    if (start >= 0 && lastComplete > start) {
+      arr = parseJsonArray(response.text.slice(start, lastComplete + 1) + "]");
+      if (arr) console.error("AI応答がmax_tokensで切り詰められたため、" + arr.length + "件を部分復元しました");
+    }
+  }
   if (!arr) {
     console.error("AI応答をJSON解析できませんでした。stop_reason="+response.stopReason+" chars="+response.text.length);
-    return {ok:false,charged:true,items:[],rejected:[],usage:response.usage||{},attempts};
+    return {ok:false,charged:true,items:[],rejected:[],incomplete:[],usage:response.usage||{},attempts};
   }
 
   const out = [];
   const acceptedIndexes=new Set();
+  const skipReasons=new Map();
   for (const e of arr) {
     const idx = Number(e && e.i);
     if (!Number.isInteger(idx) || idx < 0 || idx >= items.length) continue;
+    if (e && e.skip === true) {
+      if(!acceptedIndexes.has(idx))skipReasons.set(idx,normalizeStoryField(e.reason_ja||e.reason,160)||"理由未記載");
+      continue;
+    }
     const src = items[idx];
     const titleJa = cleanDisplayTitle((e.title_ja || "").toString().trim() || src.title,src.source_name);
     const sumJa = (e.summary_ja || "").toString().trim();
@@ -624,9 +636,22 @@ async function aiEnrichBatch(items) {
       acceptedIndexes.add(idx);
     }
   }
-  const rejected=items.filter((_item,index)=>!acceptedIndexes.has(index));
-  console.error("AI要約: "+out.length+"/"+items.length+"件（model="+AI_MODEL+"）");
-  return {ok:true,charged:true,items:out,rejected,usage:response.usage||{},attempts};
+  // モデルが明示的にskipした記事だけを「不採用」として記録し、
+  // 応答から漏れた・必須項目が欠けた記事は「retry」(後で再挑戦)に回す。
+  const rejected=[];
+  const rejectedReasons=[];
+  const incomplete=[];
+  items.forEach((source,index)=>{
+    if(acceptedIndexes.has(index))return;
+    if(skipReasons.has(index)){
+      rejected.push(source);
+      rejectedReasons.push("ai_skip: "+skipReasons.get(index));
+    }else{
+      incomplete.push(source);
+    }
+  });
+  console.error("AI要約: "+out.length+"/"+items.length+"件（skip "+rejected.length+" / retry "+incomplete.length+" / model="+AI_MODEL+"）");
+  return {ok:true,charged:true,items:out,rejected,rejectedReasons,incomplete,usage:response.usage||{},attempts};
 }
 
 async function enrichNewItems(items,cache,ledger,lane="regular") {
@@ -660,7 +685,7 @@ async function enrichNewItems(items,cache,ledger,lane="regular") {
       attempts:result.attempts,
       processed:result.charged?batch.length:0,
       enriched:result.items.length,
-      rejected:result.rejected.length
+      rejected:result.rejected.length+((result.incomplete||[]).length)
     });
     if(!result.ok){
       if(result.charged){
@@ -676,8 +701,14 @@ async function enrichNewItems(items,cache,ledger,lane="regular") {
         || batch.find(candidate=>normalizedStoryTitle(candidate.title)===normalizedStoryTitle(item.title));
       if(source)rememberCacheResult(cache,source,"enriched",item,lane);
     }
-    for(const source of result.rejected){
-      rememberCacheResult(cache,source,"rejected",null,lane,"ai_filtered_or_incomplete");
+    result.rejected.forEach((source,index)=>{
+      rememberCacheResult(cache,source,"rejected",null,lane,
+        (result.rejectedReasons&&result.rejectedReasons[index])||"ai_filtered");
+      rejectedCount++;
+    });
+    // 応答漏れ・必須項目不足はRETRY_TTL経過後に自動で再挑戦する。
+    for(const source of (result.incomplete||[])){
+      rememberCacheResult(cache,source,"retry",null,lane,"missing_or_incomplete_ai_output");
       rejectedCount++;
     }
     checkpointAiState(cache,ledger);
@@ -1101,7 +1132,13 @@ function compareMaterialFacts(previous,current) {
   const beforeByKey=new Map(before.map(slot=>[factSlotKey(slot,previous),slot]));
   const changes=[];
   for(const slot of after){
-    if(slot.type==="other")continue;
+    if(slot.type==="other"){
+      // 許可外タイプが潰された"other"スロットも、同一キーで値が変わった場合は進展として扱う。
+      // (スコープが雑多なotherの新規追加は偽続報を生みやすいため、addedにはしない)
+      const old=beforeByKey.get(factSlotKey(slot,current));
+      if(old&&old.normalized_value!==slot.normalized_value)changes.push({kind:"changed",before:old,slot});
+      continue;
+    }
     let old=beforeByKey.get(factSlotKey(slot,current));
     if(!old){
       old=before.find(candidate=>candidate.type===slot.type&&
@@ -1439,7 +1476,7 @@ function normalizeTimelineItem(item) {
   };
 }
 
-function connectStoryTimeline(items,historyItems=[]) {
+function connectStoryTimeline(items,historyItems=[],publishedIds=null) {
   const history=historyItems.map(normalizeTimelineItem).sort((a,b)=>articleTime(a)-articleTime(b));
   const result=[];
   const ordered=[...items].map(normalizeTimelineItem).sort((a,b)=>articleTime(a)-articleTime(b));
@@ -1468,12 +1505,23 @@ function connectStoryTimeline(items,historyItems=[]) {
     const previous=best&&best.candidate;
     const relation=previous?classifyStoryRelation(previous,source,best.match):
       {decision:"new",confidence:1,reasons:["no_previous_story"],changes:[]};
+    // CI検証ゲート(確信度0.85)を満たさない続報・訂正は、公開全体を止めないよう
+    // 続報リンクなしの通常記事へ降格する(記事自体は公開される)。
+    if((relation.decision==="follow_up"||relation.decision==="correction")&&relation.confidence<0.85){
+      relation.decision="uncertain";
+      relation.reasons=[...relation.reasons,"low_confidence_follow_up_demoted"];
+    }
+    // 完全一致の再掲載は直近ウィンドウ内だけ抑制する。公開済み記事は再判定で消さない。
+    if(relation.decision==="duplicate"){
+      const alreadyPublished=Boolean(publishedIds&&source.article_id&&publishedIds.has(source.article_id));
+      const gap=best&&Number.isFinite(best.gap)?best.gap:0;
+      if(!alreadyPublished&&gap<=DUPLICATE_SUPPRESS_WINDOW_MS)continue;
+      relation.decision="uncertain";
+      relation.reasons=[...relation.reasons,alreadyPublished?"published_item_protected":"stale_duplicate_kept_as_uncertain"];
+    }
     source.dedupe_decision=relation.decision;
     source.dedupe_reasons=relation.reasons;
     source.relation_confidence=relation.confidence;
-    // The same event is suppressed for the full story-history window. Ambiguous
-    // matches are kept so that an uncertain classifier never silently deletes news.
-    if(relation.decision==="duplicate")continue;
     if(previous&&(relation.decision==="follow_up"||relation.decision==="correction")){
       const shared=[...new Set(storyEntitiesFor(previous).map(value=>value.toLowerCase()))]
         .find(value=>new Set(storyEntitiesFor(source).map(v=>v.toLowerCase())).has(value))||"topic";
@@ -1686,13 +1734,23 @@ function bootstrapCacheResult(cache,source,result) {
   const importanceOrder={S:4,A:3,B:2,C:1};
   // 既存の正本を先に残す。新しい転載を先に残してから履歴照合すると、
   // 「既存原記事を消す → 転載も履歴重複で消す」という二重除外が起きる。
-  const baseFinal=dedupeStories([...recentPrevious,...cachedEnriched,...reused,...newlyEnriched])
-    .filter(isCompleteEnrichedItem)
+  const rankedPool=dedupeStories([...recentPrevious,...cachedEnriched,...reused,...newlyEnriched])
+    .filter(isCompleteEnrichedItem);
+  // 新着保証枠: 重要度に関係なく直近72時間の記事を最大12件確保し、
+  // 残り枠を重要度順で埋める。C記事が要約後に必ず捨てられる固定化を防ぐ。
+  const freshCutoff=Date.now()-72*3600000;
+  const freshPicks=rankedPool.filter(item=>articleTime(item)>=freshCutoff)
+    .sort((a,b)=>articleTime(b)-articleTime(a)).slice(0,12);
+  const freshKeys=new Set(freshPicks.map(item=>item.article_id||stableArticleId(item)));
+  const restPicks=rankedPool.filter(item=>!freshKeys.has(item.article_id||stableArticleId(item)))
     .sort((a,b)=>(importanceOrder[b.importance]||0)-(importanceOrder[a.importance]||0)||
       articleTime(b)-articleTime(a))
-    .slice(0,AI_MAX)
-    .sort((a,b)=>articleTime(b)-articleTime(a));
-  const connectedFinal=connectStoryTimeline(baseFinal,storyIndex.items);
+    .slice(0,Math.max(0,AI_MAX-freshPicks.length));
+  const capDropped=rankedPool.length-freshPicks.length-restPicks.length;
+  if(capDropped>0)console.error("PUBLISH CAP: 完成記事のうち"+capDropped+"件が60件枠から漏れました");
+  const baseFinal=[...freshPicks,...restPicks].sort((a,b)=>articleTime(b)-articleTime(a));
+  const publishedIds=new Set(previous.map(item=>item&&item.article_id).filter(Boolean));
+  const connectedFinal=connectStoryTimeline(baseFinal,storyIndex.items,publishedIds);
   // During the v7 migration, a legacy summary and its newly structured version
   // can share the same stable article ID while having different content hashes.
   // Never publish both; prefer the current structured representation.

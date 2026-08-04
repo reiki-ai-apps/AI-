@@ -112,72 +112,93 @@ jobs:
           ]);
           const normalize = value => String(value || "").normalize("NFKC")
             .toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "");
+          const fatal = [];
+          const invalidIndexes = new Set();
+          const itemError = (index, message) => { invalidIndexes.add(index); return `${index + 1}件目: ${message}`; };
           const errors = [];
-          if (!Array.isArray(items) || items.length < 8) {
-            errors.push(`記事数が不足しています: ${Array.isArray(items) ? items.length : "not-array"}`);
+          if (!Array.isArray(items)) {
+            console.error("data.json が配列ではありません");
+            process.exit(1);
           }
-          if (Array.isArray(items) && items.length > 60) {
-            errors.push(`公開上限60件を超えています: ${items.length}`);
+          if (items.length > 60) {
+            fatal.push(`公開上限60件を超えています: ${items.length}`);
           }
-          (Array.isArray(items) ? items : []).forEach((item, index) => {
+          items.forEach((item, index) => {
             for (const key of required) {
               if (typeof item[key] !== "string" || !item[key].trim()) {
-                errors.push(`${index + 1}件目: ${key} が空です`);
+                errors.push(itemError(index, `${key} が空です`));
               }
             }
             if (!Array.isArray(item.related_categories) || item.related_categories.length === 0) {
-              errors.push(`${index + 1}件目: related_categories が空です`);
+              errors.push(itemError(index, "related_categories が空です"));
             }
             if (!Array.isArray(item.story_entities) || item.story_entities.length === 0) {
-              errors.push(`${index + 1}件目: story_entities が空です`);
+              errors.push(itemError(index, "story_entities が空です"));
             }
             if (!item.source_published_at && !["unknown", "updated_only"].includes(item.source_date_status)) {
-              errors.push(`${index + 1}件目: 情報元掲載日がないのに日付確認済みになっています`);
+              errors.push(itemError(index, "情報元掲載日がないのに日付確認済みになっています"));
             }
             if (item.event_date_precision === "unknown" && item.event_at) {
-              errors.push(`${index + 1}件目: 出来事の日付精度と値が矛盾しています`);
+              errors.push(itemError(index, "出来事の日付精度と値が矛盾しています"));
             }
             if (item.event_at && !/^20\d{2}-\d{2}-\d{2}$/.test(item.event_at)) {
-              errors.push(`${index + 1}件目: 出来事の日がYYYY-MM-DDではありません`);
+              errors.push(itemError(index, "出来事の日がYYYY-MM-DDではありません"));
             }
             if (["follow_up", "correction"].includes(item.relation_type) &&
                 (!item.previous_article_id || !item.continuation_lead || Number(item.relation_confidence) < 0.85)) {
-              errors.push(`${index + 1}件目: 続報・訂正の前回情報または確信度が不足しています`);
+              errors.push(itemError(index, "続報・訂正の前回情報または確信度が不足しています"));
             }
             if (["follow_up", "correction"].includes(item.relation_type) &&
                 (!Number.isFinite(Number(item.story_sequence)) || Number(item.story_sequence) < 2)) {
-              errors.push(`${index + 1}件目: 続報番号が不正です`);
+              errors.push(itemError(index, "続報番号が不正です"));
             }
             if (!["S", "A", "B", "C"].includes(String(item.importance || "").toUpperCase())) {
-              errors.push(`${index + 1}件目: importance がS〜Cではありません`);
+              errors.push(itemError(index, "importance がS〜Cではありません"));
             }
             if (demoTitles.has(item.title)) {
-              errors.push(`${index + 1}件目: デモ記事が混入しています`);
+              errors.push(itemError(index, "デモ記事が混入しています"));
             }
             const normalizedTitle = normalize(item.title);
             const normalizedSummary = normalize(item.raw_excerpt);
             if (normalizedTitle && normalizedSummary &&
                 (normalizedTitle === normalizedSummary ||
                  (normalizedSummary.includes(normalizedTitle) && normalizedSummary.length < normalizedTitle.length + 35))) {
-              errors.push(`${index + 1}件目: 要約がタイトルの繰り返しです`);
+              errors.push(itemError(index, "要約がタイトルの繰り返しです"));
             }
             const explanation = [
               item.raw_excerpt, item.detail, item.change_summary,
               item.impact_summary, item.action_suggestion
             ].join("");
             if (!/[ぁ-んァ-ヶ一-龠々]/.test(explanation)) {
-              errors.push(`${index + 1}件目: 日本語の解説がありません`);
+              errors.push(itemError(index, "日本語の解説がありません"));
             }
             const unnatural = `${item.detail || ""}\n${item.action_suggestion || ""}`;
             if (/^(?:まず[、,]\s*)?このニュースを(?:ひと|一)言で(?:いう|言う)と|^かんたんに言うと|すぐに全部のやり方を変える必要はありません|小さな作業から試すと安心です/.test(unnatural.trim())) {
-              errors.push(`${index + 1}件目: 定型的で不自然な書き出し・結びがあります`);
+              errors.push(itemError(index, "定型的で不自然な書き出し・結びがあります"));
             }
           });
-          if (errors.length) {
-            console.error(errors.slice(0, 40).join("\n"));
+          // 不備のある記事は個別に除外して残りを公開する。1件の不備で全体を止めない。
+          if (fatal.length) {
+            console.error(fatal.join("\n"));
             process.exit(1);
           }
-          console.log(`検証OK: ${items.length}件すべてに要約・解説・分類があります`);
+          if (invalidIndexes.size) {
+            console.error(`検証除外: ${invalidIndexes.size}件を公開から外します`);
+            console.error(errors.slice(0, 40).join("\n"));
+            const kept = items.filter((_, index) => !invalidIndexes.has(index));
+            if (kept.length < 8) {
+              console.error(`残り記事が8件未満(${kept.length}件)のため公開を中止します`);
+              process.exit(1);
+            }
+            fs.writeFileSync("data.json", JSON.stringify(kept, null, 2) + "\n");
+            console.log(`検証OK: ${kept.length}件を公開します (${invalidIndexes.size}件除外)`);
+          } else {
+            if (items.length < 8) {
+              console.error(`記事数が不足しています: ${items.length}`);
+              process.exit(1);
+            }
+            console.log(`検証OK: ${items.length}件すべてに要約・解説・分類があります`);
+          }
           NODE
 
       - name: persist validated public data
