@@ -2371,6 +2371,18 @@ const DB = {
     return this._data;
   },
   _quotaWarned:false,
+  // セッション開始時点の記事・ツールID集合と時刻。クラウド状態とのマージで
+  // 「この端末でセッション後に変わったレコード」を判定する基準になる。
+  _bootAt:'',
+  _bootIds:null,
+  captureBootBaseline(){
+    const d=this._data||{};
+    this._bootAt=nowISO();
+    this._bootIds=new Set([
+      ...(Array.isArray(d.updates)?d.updates:[]).map(u=>u&&u.id),
+      ...(Array.isArray(d.tools)?d.tools:[]).map(t=>t&&t.id)
+    ].filter(Boolean));
+  },
   save(sync=true){
     try{
       localStorage.setItem(this.KEY, JSON.stringify(this._data));
@@ -2390,17 +2402,133 @@ const DB = {
   reset(){ this._data = seedData(); this.save(); },
 };
 let appStateSyncTimer=null;
+/* クラウド状態を土台に、この端末でセッション開始後に生じた変更だけを接ぎ木する。
+   起動直後の数秒間に行った既読化・テーマ選択・新着取込が、後から届く
+   クラウドのスナップショットで丸ごと巻き戻らないようにするためのマージ。
+   新規端末(ローカル=シードデータ)では全レコードが「未変更」判定になるため、
+   クラウドの会員データを一切壊さない。 */
+function mergeMemberState(cloud,local){
+  const merged={...cloud};
+  merged.tools=Array.isArray(cloud.tools)?[...cloud.tools]:[];
+  merged.updates=Array.isArray(cloud.updates)?[...cloud.updates]:[];
+  merged.seen_articles=Array.isArray(cloud.seen_articles)?[...cloud.seen_articles]:[];
+  if(!Array.isArray(merged.fetch_logs))merged.fetch_logs=Array.isArray(local?.fetch_logs)?[...local.fetch_logs]:[];
+  let grafts=0;
+  const bootAt=DB._bootAt||'';
+  const bootIds=DB._bootIds||new Set();
+  const touchedLocally=record=>Boolean(record&&record.id&&(!bootIds.has(record.id)||(record.updated_at||'')>bootAt));
+  if(!local)return {state:merged,grafts};
+
+  /* ツール: id→slug→名前の順で照合。既存ツールにはユーザー設定だけ反映し、
+     クラウドに無いツールだけ追加する(ID差し替えによる参照切れを起こさない)。 */
+  const toolBySlug=new Map(),toolByName=new Map(),toolByIdMap=new Map();
+  merged.tools.forEach(t=>{if(!t)return;toolByIdMap.set(t.id,t);if(t.slug)toolBySlug.set(t.slug,t);if(t.name)toolByName.set(t.name,t);});
+  const toolRemap=new Map();
+  (Array.isArray(local.tools)?local.tools:[]).forEach(t=>{
+    if(!t)return;
+    const counterpart=toolByIdMap.get(t.id)||toolBySlug.get(t.slug)||toolByName.get(t.name);
+    if(counterpart){
+      if(counterpart.id!==t.id)toolRemap.set(t.id,counterpart.id);
+      // 起動時から存在したツールへの設定変更だけ反映する。
+      // この端末で自動生成された同名ツール(新ID)でクラウドの設定を潰さない。
+      if(bootIds.has(t.id)&&(t.updated_at||'')>bootAt&&(t.updated_at||'')>(counterpart.updated_at||'')){
+        counterpart.is_using=t.is_using;
+        counterpart.priority=t.priority;
+        counterpart.is_active=t.is_active;
+        counterpart.memo=t.memo;
+        counterpart.updated_at=t.updated_at;
+        grafts++;
+      }
+    }else if(touchedLocally(t)){
+      merged.tools.push(t);
+      toolByIdMap.set(t.id,t);if(t.slug)toolBySlug.set(t.slug,t);if(t.name)toolByName.set(t.name,t);
+      grafts++;
+    }
+  });
+
+  /* 記事: セッション中に追加・変更したものだけ、記事ID→URL→タイトルで照合して反映。 */
+  const upById=new Map(),upByArticleId=new Map(),upByKey=new Map();
+  merged.updates.forEach(u=>{
+    if(!u)return;
+    upById.set(u.id,u);
+    if(u.article_id)upByArticleId.set(String(u.article_id),u);
+    const k=articleKeys(u);
+    if(k.u)upByKey.set('u:'+k.u,u);
+    if(k.t)upByKey.set('t:'+k.t,u);
+  });
+  (Array.isArray(local.updates)?local.updates:[]).forEach(u=>{
+    if(!u||!touchedLocally(u))return;
+    const k=articleKeys(u);
+    const counterpart=upById.get(u.id)
+      ||(u.article_id?upByArticleId.get(String(u.article_id)):null)
+      ||(k.u?upByKey.get('u:'+k.u):null)
+      ||(k.t?upByKey.get('t:'+k.t):null);
+    if(counterpart){
+      if((u.updated_at||'')>(counterpart.updated_at||'')){
+        const index=merged.updates.indexOf(counterpart);
+        if(index>=0){
+          // クラウド側のID・ツール参照を保ち、内容とステータスを新しい方に更新する。
+          merged.updates[index]={...u,id:counterpart.id,tool_id:toolRemap.get(u.tool_id)||counterpart.tool_id};
+          grafts++;
+        }
+      }
+    }else{
+      merged.updates.push({...u,tool_id:toolRemap.get(u.tool_id)||u.tool_id});
+      grafts++;
+    }
+  });
+
+  /* 閲覧履歴: キー単位で統合し、取込済み・削除フラグは両方を尊重する。 */
+  const seenByU=new Map(),seenByT=new Map();
+  merged.seen_articles.forEach(s=>{if(!s)return;if(s.u)seenByU.set(s.u,s);if(s.t)seenByT.set(s.t,s);});
+  (Array.isArray(local.seen_articles)?local.seen_articles:[]).forEach(s=>{
+    if(!s)return;
+    const hit=(s.u&&seenByU.get(s.u))||(s.t&&seenByT.get(s.t));
+    if(hit){
+      if(s.complete)hit.complete=true;
+      if(s.deleted){hit.deleted=true;if(s.deleted_at&&!hit.deleted_at)hit.deleted_at=s.deleted_at;}
+      if(s.u&&!hit.u){hit.u=s.u;seenByU.set(s.u,hit);}
+      if(s.t&&!hit.t){hit.t=s.t;seenByT.set(s.t,hit);}
+    }else{
+      merged.seen_articles.push(s);
+      if(s.u)seenByU.set(s.u,s);
+      if(s.t)seenByT.set(s.t,s);
+    }
+  });
+  if(merged.seen_articles.length>12000)merged.seen_articles.splice(0,merged.seen_articles.length-12000);
+
+  /* この端末でセッション中に削除した記事は、クラウド側の複製も取り除く。 */
+  const deletedNow=merged.seen_articles.filter(s=>s&&s.deleted&&(s.deleted_at||'')>bootAt);
+  if(deletedNow.length){
+    const delU=new Set(deletedNow.map(s=>s.u).filter(Boolean));
+    const delT=new Set(deletedNow.map(s=>s.t).filter(Boolean));
+    const before=merged.updates.length;
+    merged.updates=merged.updates.filter(u=>{
+      const k=articleKeys(u);
+      return !((k.u&&delU.has(k.u))||(k.t&&delT.has(k.t)));
+    });
+    if(merged.updates.length!==before)grafts++;
+  }
+
+  /* 設定: テーマ選択済みフラグはどちらかが真なら維持する。 */
+  if(local.settings?.themeSelectionConfigured===true){
+    if(!merged.settings)merged.settings={...local.settings};
+    else if(merged.settings.themeSelectionConfigured!==true){merged.settings.themeSelectionConfigured=true;grafts++;}
+  }
+  return {state:merged,grafts};
+}
 async function loadMemberAppState(){
   if(!memberClient||!memberState.user)return;
   if(loadedMemberStateFor===memberState.user.id)return;
   clearTimeout(appStateSyncTimer);
   const {data,error}=await memberClient.from('user_states').select('state').maybeSingle();
   if(!error&&data?.state&&Array.isArray(data.state.tools)&&Array.isArray(data.state.updates)){
-    DB._data=data.state;
+    const {state:mergedState,grafts}=mergeMemberState(data.state,DB._data);
+    DB._data=mergedState;
     const migrated=runMigrations(DB._data);
     try{localStorage.setItem(DB.KEY,JSON.stringify(DB._data));}catch(e){console.warn('storage save failed',e);}
-    // 会員データに追加した標準テーマもSupabaseへ戻し、次回起動後も残す。
-    if(migrated)await saveMemberAppState();
+    // 接ぎ木した変更や移行結果はクラウドへ書き戻し、次回起動後も残す。
+    if(migrated||grafts>0)await saveMemberAppState();
   }else if(!error){
     await saveMemberAppState();
   }
@@ -4489,6 +4617,8 @@ function bootApp(){
     route=routeFromHash();
     history.replaceState({aiRadar:true,name:route.name,param:route.param},'',routeHref(route.name,route.param));
     DB.load();
+    // クラウド状態とのマージ基準になる「セッション開始時点」を記録する。
+    DB.captureBootBaseline();
     render();
   }finally{
     // 途中で例外が起きても起動オーバーレイは必ず退場させ、画面が固まらないようにする。
