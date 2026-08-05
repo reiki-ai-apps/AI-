@@ -2,6 +2,212 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_5d3efd790e2e342f584d",
+      "story_id": "story_730edd483c724780a2",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Qwen-Image-3.0-Pro、API提供開始 1Kあたり0.04ドル・1分間1リクエスト制限",
+      "source_published_at": "2026-08-05T14:31:14.000Z",
+      "published_at": "2026-08-05T14:31:14.000Z",
+      "fetched_at": "2026-08-05T14:34:54.583Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "アリババ系Qwenの画像生成モデル「Qwen-Image-3.0-Pro」がAPI提供を開始し、1,000単位あたり0.04ドルの料金と1分間1リクエストの制限が設定された。",
+      "source_name": "TECH NOISY",
+      "source_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE41SWRqM1JFME1lYVZlSzI4YWVJdXl5Qk1MU01FX3hnVks3aFJHNUZ6blA0dzJpSlFQMXVZWHItVWpoN002WjBVM1pkWDlINXR6Y0hCVnZ6OFhpd1B4SndIYll6bDB5OFp1TkhhbVVXX04?oc=5",
+      "story_entities": [
+        "Qwen-Image-3.0-Pro",
+        "Alibaba",
+        "qwen-image-3.0-pro",
+        "alibaba",
+        "qwen"
+      ],
+      "primary_entity": "Alibaba/Qwen",
+      "story_subject": "Qwen-Image-3.0-Pro",
+      "event_type": "pricing",
+      "event_stage": "launched",
+      "event_scope": "API",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "Qwen-Image-3.0-Pro API 1Kあたり",
+          "value": "$0.04",
+          "normalized_value": "0.04USD"
+        },
+        {
+          "type": "other",
+          "scope": "レート制限",
+          "value": "1RPM",
+          "normalized_value": "1"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Qwen-Image-3.0-ProのAPIが公開され、料金体系とレート制限が明らかになった。",
+      "detail": "TECH NOISYによると、アリババ系Qwenの新しい画像生成モデル「Qwen-Image-3.0-Pro」のAPI提供が始まった。料金は1,000単位あたり0.04ドルに設定され、利用できるリクエスト数は1分間に1回までに制限されている。低価格ながら厳しいレート制限が課されており、大量利用には不向きな設計となっている。今後、制限緩和や料金体系の変更があるかどうかは記事からは確認できない。",
+      "new_facts": [
+        "Qwen-Image-3.0-ProのAPI提供が始まり、1Kあたり0.04ドルの料金と1分間1リクエストのレート制限が設定された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_cbea61ca324b0e3b26f2",
+      "story_id": "story_37f200ba8888c59848",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Paperclip AIに脆弱性、認証なしでコマンド実行が可能に",
+      "source_published_at": "2026-08-05T14:30:00.000Z",
+      "published_at": "2026-08-05T14:30:00.000Z",
+      "fetched_at": "2026-08-05T14:34:55.440Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "Paperclip AIに脆弱性が見つかり、認証を経ていない攻撃者がシステム上で任意のコマンドを実行できる状態にあることが報じられた。",
+      "source_name": "Infosecurity Magazine",
+      "source_url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOODNVdXFYN1JyX0JuWUNpMUkwWmJ2ekFRODNrYWNtbEVrLW1xcWJxeUxvTUdBSXZ5LWI2bG1XamhaX05NUUlVdHdtbjhWam5NaUpJMmotcWhYMVFzN2RHMmdjRmwtcFd5MEJmc3lIMHNBaGNxRVZvelROSVQ0cV9lSzZB?oc=5",
+      "story_entities": [
+        "Paperclip AI",
+        "paperclipai",
+        "paperclip"
+      ],
+      "primary_entity": "Paperclip AI",
+      "story_subject": "Paperclip AIの脆弱性",
+      "event_type": "security",
+      "event_stage": "announced",
+      "event_scope": "影響範囲不明",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Paperclip AIに未認証でもコマンド実行が可能な脆弱性が存在することが新たに報じられた。",
+      "detail": "Infosecurity Magazineが報じたところによると、Paperclip AIというツールに複数の脆弱性が見つかり、認証を経ていない攻撃者がシステム上で任意のコマンドを実行できる状態にあるという。具体的な脆弱性の内容やCVE番号、影響を受けるバージョン、開発元の対応状況については記事から確認できず不明である。修正パッチの提供時期についても言及がなく、現時点で詳細は明らかになっていない。",
+      "new_facts": [
+        "Paperclip AIに脆弱性があり、認証なしの攻撃者がコマンドを実行できる状態にあることが報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_84e95665fea401445389",
+      "story_id": "story_b6507f21d15acfb5a2",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "中国の食材宅配大手・锅圈、AIエージェント「锅宝」を提供開始",
+      "source_published_at": "2026-08-05T14:19:48.000Z",
+      "published_at": "2026-08-05T14:19:48.000Z",
+      "fetched_at": "2026-08-05T14:34:54.583Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "中国の食材小売企業「锅圈」が独自開発のAIエージェント「锅宝」を導入し、家庭向け食事サービスにAIを本格活用し始めた。",
+      "source_name": "中华网",
+      "source_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE8zVlFGN2xMR1hlbnp4Z3g0ZW1HcXpodVhZc1BtOHhocUVJMTJiamlUbldoSEpNR2k0TjdfOFRiUzJHSWdQQXktS0RIU0Fzd3ZlMDhuOGZXNEJ2WGxJMGc?oc=5",
+      "story_entities": [
+        "中国AI・基盤モデル",
+        "中国ai基盤モデル"
+      ],
+      "primary_entity": "锅圈",
+      "story_subject": "AIエージェント「锅宝」",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "中国",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "锅圈が自社開発のAIエージェント「锅宝」を新たに公開した。",
+      "detail": "中国の食材宅配・小売チェーン「锅圈（グオチュエン）」が、自社開発のAIエージェント「锅宝」を公開した。ByteDanceのAIアシスタント「豆包（Doubao）」になぞらえて紹介されており、家庭の食事シーンにAIを組み込む動きとして報じられている。具体的な機能やサービス範囲、利用開始時期などの詳細は記事から確認できないが、家庭向け飲食分野でのAI活用が中国で進んでいることを示す事例となっている。",
+      "new_facts": [
+        "锅圈が自社開発AIエージェント「锅宝」を公開した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_78aa8389c6cfc1248534",
+      "story_id": "story_d6b244f08b587b74f1",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Linux Foundation、AIのコストと価値の標準化団体「Tokenomics Foundation」を設立",
+      "source_published_at": "2026-08-05T14:15:26.000Z",
+      "published_at": "2026-08-05T14:15:26.000Z",
+      "fetched_at": "2026-08-05T14:34:55.440Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Linux FoundationがAI利用のコストや価値を測る標準策定のための新団体「Tokenomics Foundation」を発足させた。",
+      "source_name": "HPCwire",
+      "source_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOZHJvd0lBUWEtaklRNWxNLUJwSk5SYjRMRm9QckYxMnVWM2lVZmVua3p1bzdYbHgtQXF5U3JzVmx6bTA5d3pDWnhIN3VmYTI5b3dTcGcteFJlZVp0ZFVveXNjSkdXbFNhTnJ2akxIVkVCOHlpTkRQenFtdktrakJEM3VaYl9hWm0zakd1ZXlCRG16cDZkLWN6VzlFN3pONU9NRGxzUGdMU1lNRncta1RPZWc3cWhhUWpSLUdN?oc=5",
+      "story_entities": [
+        "Linux Foundation",
+        "Tokenomics Foundation",
+        "linuxfoundation",
+        "tokenomicsfoundation",
+        "linux"
+      ],
+      "primary_entity": "Linux Foundation",
+      "story_subject": "Tokenomics Foundation",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "世界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Linux FoundationがAIコスト・価値の標準策定を担う新団体を新たに設立した。",
+      "detail": "オープンソースソフトウェアの推進団体であるLinux Foundationは、AIの利用コストや価値を評価するための標準策定を目的とした新組織「Tokenomics Foundation」を設立したと発表した。生成AIの普及に伴い、トークン消費量や処理コストなど、AI利用の経済性を統一的に測る指標が求められている状況を踏まえたものとみられる。具体的な参加企業や標準化の対象範囲、策定スケジュールなどの詳細は記事から確認できないが、AI関連コストの透明化に向けた業界的な取り組みとして注目される。",
+      "new_facts": [
+        "Linux FoundationがAIのコスト・価値標準化を目的とした「Tokenomics Foundation」を設立した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_0e3164b41608aceb7203",
+      "story_id": "story_20c8a710a253903220",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "米高官、米国製オープンソースAIの世界普及に意欲",
+      "source_published_at": "2026-08-05T14:15:00.000Z",
+      "published_at": "2026-08-05T14:15:00.000Z",
+      "fetched_at": "2026-08-05T14:34:55.440Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "米国のサイバーセキュリティ担当高官が、米国製オープンソースAIを世界各国に採用してもらいたいとの意向を示した。",
+      "source_name": "nextgov.com",
+      "source_url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQNnNHS1J1N1NBN09aRjEzM1dVQXFHUnl5c3hxLWU2WFkwdFUybkJJWmh2MTRIOTJxeXJKajZZTjZiMUtQM2ROOTJ4Z1U0aVBSdkMtN3FWNUZwWDZ4dzYwQlBmV3JBeU53Uy1mbzE1UWdCd2M1Vlp2b2ZhQlRabTRGUUdtSDBLMXQ0bGdKaG00OVJtMW9JMFBTX2stQU9WdFI3RUV5bmw0UHo5Wi14RGJYU0p6OU9HckhBTk1sSFNSU1AzeW9uZW9wRnFfUmlDam1aN1Jidi1uRzBJMVVfNEFPUQ?oc=5",
+      "story_entities": [
+        "米国政府",
+        "オープンソースAI",
+        "オープンソースai"
+      ],
+      "primary_entity": "米国政府(サイバーセキュリティ担当高官)",
+      "story_subject": "米国製オープンソースAIの国際普及",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "世界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "米国の高官が、米国製オープンソースAIの海外普及を後押しする意向を表明した。",
+      "detail": "nextgov.comの報道によると、米国のサイバーセキュリティ分野を担当する高官が、米国発のオープンソースAIを世界各国に採用してもらいたいとの考えを示した。同高官の氏名や具体的な発言内容、対象となるAIモデルの名称、実現に向けた施策の詳細は記事からは確認できず不明である。米国が主導する形でオープンソースAIの国際標準化を進めたい意図があるとみられるが、今後の具体策は明らかになっていない。",
+      "new_facts": [
+        "米国のサイバーセキュリティ担当高官が、米国製オープンソースAIの世界的な採用を推進する考えを示した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_d9a7c5e65ebf4f857879",
       "story_id": "story_395ba3b1695e1b0118",
       "story_sequence": 1,
@@ -140,6 +346,47 @@
       "detail": "金融分野でのデータ活用を推進する団体FDUAが、生成AIの利用に関する指針を改訂したと報じられた。改訂内容としては、生成AIシステムやデータへのアクセス権限を管理する『権限管理』の項目が新たに明記された点が挙げられる。改訂の具体的な背景や適用時期、対象となる金融機関の範囲などは記事本文からは不明。生成AIの業務利用が広がる中、金融業界における安全な運用ルールの整備が進んでいる状況がうかがえる。",
       "new_facts": [
         "FDUAが生成AI指針を改訂し、権限管理の項目を新たに明記した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_051e5d14be991a478288",
+      "story_id": "story_515a585249962b5e08",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5982608695652174,
+      "title": "FDUAが生成AI指針を改訂、権限管理を明記",
+      "source_published_at": "2026-08-05T10:57:31.000Z",
+      "published_at": "2026-08-05T10:57:31.000Z",
+      "fetched_at": "2026-08-05T14:34:53.266Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "FDUAが生成AIの活用指針を改訂し、新たに「権限管理」の項目を明記した。改訂の具体的な内容や適用範囲は不明。",
+      "source_name": "nikkinonline.com",
+      "source_url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5nYzdYaXhQN1JPZXZsME9MYmNSRGUtWkg2LUhXclZ1djhyWVJMc2pwNWpqMlpWeE9iZThPSV8yQjFJVkFuU08zcmdCSm05SE5wTGpiQUdqcw?oc=5",
+      "story_entities": [
+        "FDUA",
+        "生成AI指針",
+        "fdua",
+        "生成ai指針"
+      ],
+      "primary_entity": "FDUA",
+      "story_subject": "生成AI指針(権限管理の明記)",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "日本",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type"
+      ],
+      "change_summary": "FDUAの生成AI指針に「権限管理」の項目が新たに明記された。",
+      "detail": "FDUAは生成AIの活用に関する指針を改訂し、新たに「権限管理」の項目を明記した。生成AIの利用が広がる中、誰がどのデータや機能にアクセスできるかを管理する権限管理の重要性が増していることを踏まえた改定とみられる。具体的な改訂の中身や適用対象、施行時期については記事から詳細を確認できないが、生成AIを導入する組織に対しアクセス権限の管理体制整備を促す動きとして注目される。",
+      "new_facts": [
+        "FDUAが生成AI指針を改訂し「権限管理」を明記した"
       ],
       "event_date_precision": "unknown"
     },
@@ -385,6 +632,49 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_ada6f42212e6c39e2df2_rev_ce537227942e",
+      "story_id": "story_7f3a869d06443a3ff4",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.673,
+      "title": "AIガバナンス第三者認証制度「C認証」が運用開始",
+      "source_published_at": "2026-08-05T09:00:23.000Z",
+      "published_at": "2026-08-05T09:00:23.000Z",
+      "fetched_at": "2026-08-05T14:34:51.856Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "AIガバナンスに関する第三者認証制度が新設され、「C認証」の名称で運用が始まった。運営主体や認証基準の詳細は不明。",
+      "source_name": "株式会社インプレス",
+      "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5EY2RHdXdvZkxtM0Y2Si1NbU9ObHc1Z2RHUVlZZlJSZ1FjdU1TR3pPb3RYcEo2eUx4UlhRZXQ2VE5OQWlsMHBUM1dTQTFLM09LWFlUOUNndkoxNVpNVEdxZ1gyRQ?oc=5",
+      "story_entities": [
+        "C認証",
+        "AIガバナンス",
+        "c認証",
+        "aiガバナンス"
+      ],
+      "primary_entity": "不明(制度運営主体不明)",
+      "story_subject": "C認証(AIガバナンス第三者認証制度)",
+      "event_type": "policy",
+      "event_stage": "launched",
+      "event_scope": "日本",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "shared_entity",
+        "same_event_type",
+        "similar_title",
+        "same_scope"
+      ],
+      "change_summary": "AIガバナンスを第三者が審査・認証する新制度「C認証」の運用が新たに始まった。",
+      "detail": "AIガバナンスの状況を第三者が審査し認証する新制度「C認証」の運用が始まったと発表された。企業が生成AIやAIシステムを導入する際のガバナンス体制を外部機関が評価する仕組みとみられるが、運営団体や具体的な審査基準、対象企業の範囲などの詳細は記事から確認できない。AIの利活用が拡大する中、企業のガバナンス体制を可視化する認証制度への関心が高まっている状況で、今後の制度の運用方針や参加企業の動向が注目される。",
+      "new_facts": [
+        "AIガバナンスの第三者認証制度「C認証」の運用が始まった"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_e961d78d86a3af99ab92",
       "story_id": "story_f990500bfbf005d080",
       "story_sequence": 1,
@@ -593,6 +883,59 @@
       "detail": "記事によると、中国のテック大手テンセントは新しいAIモデル『Hy3』の提供をグローバルに開始したという。企業の業務効率化を支援することを目的としているとされるが、モデルの具体的な性能や対応言語、価格、提供形態などの詳細は記事内で明らかにされていない。テンセントは以前から『Hunyuan（混元）』ブランドのAIモデルを展開しており、Hy3がこの系列に位置づけられるモデルかどうかも不明。今後、公式発表による詳細情報の確認が必要となる。",
       "new_facts": [
         "テンセントが新AIモデル『Hy3』のグローバル提供を開始したと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_7bd515855c2de12af96e",
+      "story_id": "story_2abb83dd242ac0d19f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AI関連株、7月に時価総額2.2兆ドル減 GPUレンタル料は50%超上昇",
+      "source_published_at": "2026-08-05T05:26:00.000Z",
+      "published_at": "2026-08-05T05:26:00.000Z",
+      "fetched_at": "2026-08-05T14:34:52.558Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "7月にAI関連株の時価総額が2.2兆ドル減少した一方、著名トレーダーはGPUレンタル料金がむしろ50%超上昇しているとして業界のファンダメンタルズ悪化を否定した。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5KdXZ3bHE3ZVZ0dmI4TUZlcDRYaGR1OHJxVzU1alZHVUs0alZFZ2lyWllQSk8wT0w5NUE4V24xdVFPTFk4amsyMWNrd0x4dy1VWVNBWjRobkFaOW02cmp1NlBVR0FMdlFNaGdqUi1DV1BOYkhm?oc=5",
+      "story_entities": [
+        "AI株",
+        "GPUレンタル料",
+        "ai株",
+        "gpuレンタル料"
+      ],
+      "primary_entity": "AI関連株式市場",
+      "story_subject": "AI株の時価総額急落とGPUレンタル料上昇",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "世界(株式市場)",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "AI関連株時価総額減少",
+          "value": "2.2兆ドル",
+          "normalized_value": "2200000000000USD"
+        },
+        {
+          "type": "amount",
+          "scope": "GPUレンタル料上昇率",
+          "value": "50%超",
+          "normalized_value": "50%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "7月のAI関連株急落の背景について、GPUレンタル料金の上昇を根拠にファンダメンタルズは悪化していないとの見方が示された。",
+      "detail": "BigGoファイナンスの報道によると、AI関連株は7月に世界全体で時価総額2.2兆ドルを失った。一方で「伝説的トレーダー」と紹介される人物は、AI開発に使われるGPUのレンタル料金がむしろ50%超上昇していると指摘し、これはAI需要が依然堅調であることを示すとして、株価下落は業界のファンダメンタルズ悪化によるものではないとの見方を示した。トレーダーの氏名や具体的な企業名は記事からは確認できず不明である。",
+      "new_facts": [
+        "7月にAI関連株の時価総額が世界全体で2.2兆ドル減少した",
+        "著名トレーダーはGPUレンタル料金が50%超上昇したとして、AI業界のファンダメンタルズ悪化はないとの見解を示した"
       ],
       "event_date_precision": "unknown"
     },
@@ -941,6 +1284,54 @@
         "AMDが2026年7~9月期の売上高見通しを130億ドルと発表した",
         "AIデータセンター需要が業績の追い風となっている",
         "発表後の株価は軟調に推移した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_05f25c1275d46884fd50_rev_5f753af3d594",
+      "story_id": "story_6b130d4a7955b77b47",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.8400000000000001,
+      "title": "AMD、7〜9月期売上高見通し130億ドル AIデータセンター需要が追い風も株価は軟調",
+      "source_published_at": "2026-08-04T21:55:00.000Z",
+      "published_at": "2026-08-04T21:55:00.000Z",
+      "fetched_at": "2026-08-05T14:34:52.558Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "AMDが7〜9月期の売上高見通しを130億ドルと発表し、AI向けデータセンター需要の拡大が背景にあるとした一方、株価は軟調に推移した。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE0xYUQ5aWJFVUlIMVlfV0hMQnl4MUNBeFVhOEVUaUVTN0hiZTd4bGdaMkhBMEhtbzVkWURKTnNvZFdKdmVxYnNSX29wTk1BMkQ0MzBQa0ZtcGpZYVF4TmNNZlZZVGp3RUhKaHRTSjIxRmNmdmRy?oc=5",
+      "story_entities": [
+        "AMD",
+        "amd"
+      ],
+      "primary_entity": "AMD",
+      "story_subject": "2026年7-9月期売上高見通し",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "世界",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "AMD 2026年7-9月期売上高見通し",
+          "value": "130億ドル",
+          "normalized_value": "13000000000USD"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "same_url_content_changed"
+      ],
+      "change_summary": "AMDが7〜9月期売上高見通しを130億ドルと新たに公表した。",
+      "detail": "半導体大手AMDが7〜9月期（第3四半期）の売上高見通しを130億ドルと発表した。AI向けデータセンター需要の拡大が業績の追い風になっているとされる一方で、発表後の株価は軟調な値動きとなった。具体的な増収要因や投資家の懸念材料の詳細は記事本文からは限定的にしか確認できないが、AI半導体市場の拡大とその評価をめぐる市場の反応の一端を示す動きとなっている。",
+      "new_facts": [
+        "AMDが7〜9月期売上高見通しを130億ドルと発表した",
+        "AI向けデータセンター需要が業績の追い風とされる一方、株価は軟調だった"
       ],
       "event_date_precision": "unknown"
     },
