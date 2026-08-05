@@ -2378,12 +2378,59 @@
       "canonical_url": "https://news.google.com/rss/articles/cbmivkfvx3lxtfbsuglcay12rmjrzefhs3dsetbnnm94zznxujvvm0xpywo3tkrwa0hpnjdwnfy5rna0x1n6z2httersddlimtkwwvdpsgpscms3mxdzckvr",
       "content_hash": "e971191c6305b8d85b204644e9156e0d4c726af77946c3ccb72faa71fb89ce4e",
       "story_key": "2c4910c5204dd7e0e3983f10da25b8508143f0e7b52392a6c66b2c93ae41c689",
-      "status": "rejected",
-      "processed_at": "2026-08-03T03:56:14.202Z",
+      "status": "enriched",
+      "processed_at": "2026-08-05T03:35:43.024Z",
       "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-02-v7-structured-story-diff",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
       "lane": "regular",
-      "reason": "ai_filtered_or_incomplete"
+      "reason": "",
+      "result": {
+        "tool": "Gemini",
+        "title": "GoogleのAIエージェント「Gemini Spark」、日本のProユーザー向けに提供開始",
+        "source_url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBSUGlCay12RmJRZEFHS3dseTBnNm94ZzNxUjVvM0xpYWo3TkRWa0hPNjdWNFY5RnA0X1N6Z2hTTERsdDliMTkwWVdpSGpScms3MXdzckVR?oc=5",
+        "source_name": "EnterpriseZine",
+        "is_official": false,
+        "published_at": "2026-08-05T01:57:16.000Z",
+        "source_published_at": "2026-08-05T01:57:16.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-05T03:33:43.570Z",
+        "event_at": "",
+        "event_status": "開始済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Google",
+          "Gemini Spark",
+          "Gemini Pro"
+        ],
+        "primary_entity": "Google",
+        "story_subject": "Gemini Spark",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "日本・Proユーザー",
+        "fact_slots": [
+          {
+            "type": "availability",
+            "scope": "提供対象",
+            "value": "日本のGemini Proユーザー",
+            "normalized_value": "japanのgeminiproユーザー"
+          }
+        ],
+        "new_facts": [
+          "Gemini SparkというAIエージェントが日本のGemini Proユーザー向けに順次提供開始された"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Googleが新AIエージェント「Gemini Spark」を日本のGemini Proユーザー向けに順次提供を開始したと発表された。",
+        "detail": "Googleは新たなAIエージェント「Gemini Spark」の提供を、日本のGemini Proユーザーを対象に順次開始した。詳細な機能や利用条件については記事内で明示されていないが、Proプラン契約者から段階的に利用可能になる見込みである。今後、対象ユーザーの拡大や機能追加が行われるかが注目される。",
+        "change_summary": "Gemini Sparkという新しいAIエージェントが日本のProユーザー向けに提供開始されたことが新しい動き。",
+        "impact_summary": "日本のGemini Pro契約者は新たなAIエージェント機能を業務や日常利用で試せるようになる。",
+        "action_suggestion": "日本のGemini Proユーザーは自身のアカウントでGemini Sparkが利用可能になっているか確認するとよい。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
     },
     "url:https://news.google.com/rss/articles/cbmiakfvx3lxte9rqu1gxzvhyjhmlundtnzjnnjkt2nurnnicfneatbma2zpakzmb2w0b19ucmpwdkoydwm1uuc1qkzwx3g5cdrmsgtzq2pjm1bzzgr3whhiyxqzml9naw9iadrot2wttlbuaxc": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte9rqu1gxzvhyjhmlundtnzjnnjkt2nurnnicfneatbma2zpakzmb2w0b19ucmpwdkoydwm1uuc1qkzwx3g5cdrmsgtzq2pjm1bzzgr3whhiyxqzml9naw9iadrot2wttlbuaxc",
@@ -3896,7 +3943,348 @@
       "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
       "lane": "emergency",
       "reason": "ai_skip: 具体的事実がなく生成AI詐欺対策の一般的な注意喚起のみ"
+    },
+    "url:https://openai.com/index/third-party-cyber-evaluations-involving-openai-models": {
+      "canonical_url": "https://openai.com/index/third-party-cyber-evaluations-involving-openai-models",
+      "content_hash": "4a1485548657e4a355ff7cff02a1b68a879229b2bf071c649a685877cbab0962",
+      "story_key": "ea77e3568c8bc9e1c15f800d56e4c5a14f4a55a9e9f556fc6af78b4d752c4877",
+      "status": "enriched",
+      "processed_at": "2026-08-05T03:34:59.040Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "ChatGPT / OpenAI",
+        "title": "OpenAI、サードパーティによるサイバーセキュリティ評価インシデントを説明",
+        "source_url": "https://openai.com/index/third-party-cyber-evaluations-involving-openai-models",
+        "source_name": "openai.com",
+        "is_official": true,
+        "published_at": "2026-08-04T19:00:00.000Z",
+        "source_published_at": "2026-08-04T19:00:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-05T03:33:42.366Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "OpenAI"
+        ],
+        "primary_entity": "OpenAI",
+        "story_subject": "サードパーティによるサイバーセキュリティ評価",
+        "event_type": "security",
+        "event_stage": "other",
+        "event_scope": "AIモデル評価",
+        "fact_slots": [],
+        "new_facts": [
+          "OpenAIがサードパーティによるサイバーセキュリティ評価に関する最近のインシデントについて説明した",
+          "OpenAIがAIモデルのテストと評価を強化する新たな安全策を発表した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "OpenAIが公式ブログで、外部機関によるサイバーセキュリティ評価をめぐる最近のインシデントを説明し、モデル評価体制を強化する新たな安全策を発表した。",
+        "detail": "OpenAIは公式ブログで、サードパーティ（外部の研究者や機関）によるサイバーセキュリティ評価に関連して最近発生したインシデントについて説明した。具体的なインシデントの内容や被害範囲は本文からは不明だが、AIモデルのテストと評価の信頼性を高めるための新たな安全策を概説したという。外部評価者との連携体制やレッドチーム演習の実施方法を見直す動きとみられ、今後、評価プロセスの透明性向上や再発防止策の具体化が進むとみられる。",
+        "change_summary": "OpenAIが外部評価をめぐるインシデントを公式に説明し、モデル評価の安全策強化を発表した。",
+        "impact_summary": "AIモデルの安全性評価に関わる研究者・企業にとって、外部評価の実施基準やルールが今後変わる可能性がある。",
+        "action_suggestion": "具体的な安全策の内容や適用範囲は本文からは不明で、OpenAIの今後の詳細発表を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "セキュリティ",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmihwfbvv95cuxprndsbxdkzgzqexljdtnjck5ya1rkyxdabkfjrtr0mghwy1jnmglocnzqenpdyuthrmvuc013bjzjcuq1d0fwsni0wvu2whywytmwnuy2yxlpqjhccffkwlzquejotu84nvpvn0dsclrzdc0xsevwsld4ys1zze01qug5a0l0efk": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmihwfbvv95cuxprndsbxdkzgzqexljdtnjck5ya1rkyxdabkfjrtr0mghwy1jnmglocnzqenpdyuthrmvuc013bjzjcuq1d0fwsni0wvu2whywytmwnuy2yxlpqjhccffkwlzquejotu84nvpvn0dsclrzdc0xsevwsld4ys1zze01qug5a0l0efk",
+      "content_hash": "7c941f306e7950977cf6cb78d65b12511308e75abb4f5e782c412658c55ee67e",
+      "story_key": "d9333b214351cbb47a7087d631e4c37cf2923dd41e008cad8a0d9c62ed15ebad",
+      "status": "enriched",
+      "processed_at": "2026-08-05T03:34:59.040Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "世界の新モデル・速報",
+        "title": "Cloudflare、ステーブルコイン対応ウォレットを発表 AIエージェント決済への対応も視野に",
+        "source_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPRndSbXdKZGZQeXlJdTNJck5Ya1RKYXdabkFjRTR0MGhWY1JnMGlocnZQenpDYUthRmVUc013bjZjcUQ1d0FwSnI0WVU2WHYwYTMwNUY2YXlpQjhCcFFKWlZqUEJOTU84NVpvN0dsclRZdC0xSEVWSld4YS1ZZE01QUg5a0l0eFk?oc=5",
+        "source_name": "Yahoo!ファイナンス",
+        "is_official": false,
+        "published_at": "2026-08-05T02:47:00.000Z",
+        "source_published_at": "2026-08-05T02:47:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-05T03:33:54.604Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Cloudflare"
+        ],
+        "primary_entity": "Cloudflare",
+        "story_subject": "ステーブルコイン対応ウォレット",
+        "event_type": "release",
+        "event_stage": "announced",
+        "event_scope": "決済・AIエージェント",
+        "fact_slots": [],
+        "new_facts": [
+          "Cloudflareがステーブルコイン対応ウォレットを発表した",
+          "このウォレットはAIエージェントによる決済への対応も見据えている"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Cloudflareがステーブルコイン対応のウォレットを発表し、AIエージェントによる決済にも対応する方向性を示した。",
+        "detail": "Cloudflareがステーブルコイン（価格が安定するよう設計された暗号資産）に対応するウォレットを発表した。このウォレットはAIエージェントによる決済にも対応させることを見据えているとされる。具体的な機能や提供開始時期、対応する暗号資産の種類などの詳細は本文からは確認できないが、AIエージェントが自律的に取引や決済を行う仕組みづくりの一環とみられる。",
+        "change_summary": "Cloudflareが新たにステーブルコイン対応ウォレットを発表し、AIエージェント決済への対応を打ち出した。",
+        "impact_summary": "AIエージェントが自動で決済を行う仕組みが広がれば、EC事業者やサブスクリプション事業者の業務フローに影響を与える可能性がある。",
+        "action_suggestion": "提供開始時期や対応地域、具体的な決済機能の詳細は本文からは不明で、Cloudflareの今後の公式発表を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "企業・株式",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-july-2026": {
+      "canonical_url": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-july-2026",
+      "content_hash": "c686769aa933600978a9409b54a563000796509f89bc6f7675a0b8bb000c0de3",
+      "story_key": "1227998e19d09ce1dcaf7c02c77ebdb0ac34b9462b34f871637b5a7429b2aa2b",
+      "status": "enriched",
+      "processed_at": "2026-08-05T03:34:59.040Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Gemini",
+        "title": "Google、2026年7月のAI関連発表をまとめて紹介",
+        "source_url": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-july-2026/",
+        "source_name": "blog.google",
+        "is_official": true,
+        "published_at": "2026-08-04T13:00:00.000Z",
+        "source_published_at": "2026-08-04T13:00:00.000Z",
+        "source_updated_at": "2026-08-04T21:10:41.724Z",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-05T03:33:43.570Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Gemini",
+          "Gemini Robotics ER 2",
+          "Gemini Spark"
+        ],
+        "primary_entity": "Google",
+        "story_subject": "Google 2026年7月のAI関連発表まとめ",
+        "event_type": "release",
+        "event_stage": "announced",
+        "event_scope": "全世界(一部機能は対象国・言語限定)",
+        "fact_slots": [
+          {
+            "type": "count",
+            "scope": "AIエージェント構築向け新Geminiモデル数",
+            "value": "3種類",
+            "normalized_value": "3"
+          }
+        ],
+        "new_facts": [
+          "Googleが7月にAIエージェント構築向けの新しいGeminiモデルを3種類発表した",
+          "ロボットの推論・協働・実世界タスク解決を支援するGemini Robotics ER 2を発表した",
+          "Webの雑務を自動化するGemini Sparkの提供を進めている",
+          "早期の森林火災検知のための新しい人工衛星との連携を発表した",
+          "職人技能人材を支援するための新しいパートナーシップ(skilled trades alliance)を発表した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Googleが公式ブログで7月のAI関連更新をまとめ、AIエージェント向けの新Geminiモデル3種類やロボティクス、創作ツールの進展を紹介した。",
+        "detail": "Googleが公式ブログで、2026年7月に発表した主要なAI関連の更新をまとめて紹介した。大規模なAIエージェントを構築するための新しいGeminiモデル3種類や、ロボットが推論・連携・実世界の課題解決を助けるGemini Robotics ER 2の発表を取り上げている。加えて音楽・動画制作向けの新しい創作ツール、Web上の雑務を自動化するGemini Spark、検索アプリとの連携強化、新しいAndroid端末へのデータ移行の簡略化なども紹介された。さらに早期の森林火災検知を目的とした人工衛星の展開や、技能職の人材育成を支援する新しい提携（skilled trades alliance）にも触れている。Google DeepMindの共同創業者兼CEOであるデミス・ハサビス氏もこの時期についてのビジョンを共有したという。",
+        "change_summary": "Googleが7月のAI関連発表をまとめ、新しいGeminiモデルやロボティクス、創作ツールなどの進展を紹介した。",
+        "impact_summary": "AIエージェント開発者や、動画・音楽制作、日常のタスク管理にAIを活用するユーザーにとって、Googleの新機能や新モデルの活用範囲が広がる可能性がある。",
+        "action_suggestion": "一部機能は18歳以上の対象国・言語向けに限定されており、詳細な提供地域や機能内容はGoogle公式の各発表ページで確認する必要がある。",
+        "importance": "A",
+        "related_categories": [
+          "AIツール・モデル",
+          "研究・技術"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiqefvx3lxte1gze81cet5wvzuckhsylhjvwx6s25ltmltsm8tdxnyc0twzxrttjjvtk9gehhrn2nqztd2cfjjd0q": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiqefvx3lxte1gze81cet5wvzuckhsylhjvwx6s25ltmltsm8tdxnyc0twzxrttjjvtk9gehhrn2nqztd2cfjjd0q",
+      "content_hash": "bf5429f1b00ef030f423b4c60ea3727fb5c0e450f82c397536b1b6108887c075",
+      "story_key": "e2cbc763e8ccfd9424e7b4c85696c059e6e8b731da585daaf51b666084c3d452",
+      "status": "rejected",
+      "processed_at": "2026-08-05T03:34:59.040Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: タイトルのみで具体的な論考内容が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmilafbvv95cuxqwg1mwjhxsfjsqvp5d043ufduyjnynfrgelhhcnr0ujl0owfstzg2zlzum0zfyufia1j0r2fszlzpchrqdefitzztavzvz2fkwknztfjrclznc1pqwlnwa1pmte8wb1z5vtbfaly0r2xaejdkdfnhsdhgrnzcvdjadjdmsjrnztldrkdownlcbw1qnxjn0ggaaufvx3lxte5jz3b3nxhyrzjkbwhdvnnxumx6qvjvoem0vfhnwdniewtpck0tqlvzntdsm09mbuzpnzjtce9ju0j4rlvdqvrrcl9dbjvba1bmdgvrnmk2nvu3cwtjtgrovi1xvxhxewotquvzbtjdutytdtjyskzpse91lxrtueljbg5uwnpyohvsmzdezgz5qm9ku2r2zfbxc1e": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmilafbvv95cuxqwg1mwjhxsfjsqvp5d043ufduyjnynfrgelhhcnr0ujl0owfstzg2zlzum0zfyufia1j0r2fszlzpchrqdefitzztavzvz2fkwknztfjrclznc1pqwlnwa1pmte8wb1z5vtbfaly0r2xaejdkdfnhsdhgrnzcvdjadjdmsjrnztldrkdownlcbw1qnxjn0ggaaufvx3lxte5jz3b3nxhyrzjkbwhdvnnxumx6qvjvoem0vfhnwdniewtpck0tqlvzntdsm09mbuzpnzjtce9ju0j4rlvdqvrrcl9dbjvba1bmdgvrnmk2nvu3cwtjtgrovi1xvxhxewotquvzbtjdutytdtjyskzpse91lxrtueljbg5uwnpyohvsmzdezgz5qm9ku2r2zfbxc1e",
+      "content_hash": "3d05b47ad08b1370d60ff3562627b7f219806ae9ee311b6d6b93ef82184c4ce1",
+      "story_key": "f65dc396bc1bed5cf121027cc31f6e3e79fe2086b60da5b41c40ce37cc41b1fd",
+      "status": "rejected",
+      "processed_at": "2026-08-05T03:34:59.040Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: タイトルのみで具体的な発表内容が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmif0fvx3lxte40qmxlwwd6wjvsampxqvuwv3znrvhtvhhfcmljnxjku1lqykz2t19kx2rmsnzqwmzty3rusjdmnfdqc2dbr1lguexnbzzoagrsx0fcd3dqnezku2e5mhrymlo1wlpzx052odlimhrflu1hrtk4ae9pswcxsxvomtg": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmif0fvx3lxte40qmxlwwd6wjvsampxqvuwv3znrvhtvhhfcmljnxjku1lqykz2t19kx2rmsnzqwmzty3rusjdmnfdqc2dbr1lguexnbzzoagrsx0fcd3dqnezku2e5mhrymlo1wlpzx052odlimhrflu1hrtk4ae9pswcxsxvomtg",
+      "content_hash": "e55a58a58d862bac266cfba341baaf3c5e673d1d54ce41e40818afd442961028",
+      "story_key": "2322ee782825b67684b2a87bc245f76576bf0d4610a1d938a25fcda511dbcb5c",
+      "status": "rejected",
+      "processed_at": "2026-08-05T03:34:59.041Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: タイトルのみで具体的な比較内容が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmijafbvv95cuxqlxm2s2ffre45sfgynzkyrutnvtczamloq3dzmk10zmvjsej1c3hhtulqejlzlutdzghfbjf4efrcuezhmhlmbkthzzi0bjh2clviewxroe5plxbozw02wmxxy3pjvti0uujndw5loe9islnryxpqqmffbgzedjlqyxzyb2jiskdqyvdmbg": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmijafbvv95cuxqlxm2s2ffre45sfgynzkyrutnvtczamloq3dzmk10zmvjsej1c3hhtulqejlzlutdzghfbjf4efrcuezhmhlmbkthzzi0bjh2clviewxroe5plxbozw02wmxxy3pjvti0uujndw5loe9islnryxpqqmffbgzedjlqyxzyb2jiskdqyvdmbg",
+      "content_hash": "0d00ef6a6e945c27ff4caeac73103b92730591f56f0fffc5d81c944bf3828f0b",
+      "story_key": "8f79e9ab3ae8ba69a7c742d6ad4a5853026b626fce8a8f7a95763a1fa4fdae8d",
+      "status": "enriched",
+      "processed_at": "2026-08-05T03:35:43.023Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "中国AI・基盤モデル",
+        "title": "MiniMax(MINIMAX-W)の香港株が12%超上昇",
+        "source_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQLXM2S2FfRE45SFgyNzkyRUtNVTczamloQ3dzMk10ZmVJSEJ1c3hhTUlQejlZLUtDZGhFbjF4eFRCUEZHMHlmbktHZzI0bjh2clVieWxROE5PLXBoZW02WmxxY3pjVTI0UUJNdW5LOE9iSlNrYXpQQmFFbGZEdjlqYXZYb2JISkdqYVdMbg?oc=5",
+        "source_name": "搜狐网",
+        "is_official": false,
+        "published_at": "2026-08-05T03:23:13.000Z",
+        "source_published_at": "2026-08-05T03:23:13.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-05T03:33:53.868Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "MiniMax",
+          "MINIMAX-W",
+          "香港株式市場"
+        ],
+        "primary_entity": "MiniMax",
+        "story_subject": "MINIMAX-W株価",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "香港株式市場",
+        "fact_slots": [
+          {
+            "type": "amount",
+            "scope": "株価上昇率",
+            "value": "12%超",
+            "normalized_value": "12%"
+          }
+        ],
+        "new_facts": [
+          "MiniMaxの香港上場株(MINIMAX-W)が取引中に12%超上昇した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "香港市場で中国AI企業MiniMaxの株式(MINIMAX-W)が取引中に12%超上昇したと報じられた。",
+        "detail": "香港株式市場で、中国のAI企業MiniMaxの株式(ティッカー:MINIMAX-W)が取引時間中に12%超上昇したと伝えられた。報道は株価変動を短く伝えるのみで、上昇の具体的な要因や関連する材料、時系列の詳細は明らかにされていない。今後、上昇の背景や市場の反応について続報が出るか注目される。",
+        "change_summary": "MiniMaxの香港上場株が取引中に12%超上昇したことが報じられた。",
+        "impact_summary": "中国AI企業の株価動向は投資家心理を映す指標となるが、日本への直接的な影響は現時点で不明。",
+        "action_suggestion": "具体的な上昇要因や関連発表は記事内で明らかにされておらず、続報の確認が必要。",
+        "importance": "C",
+        "related_categories": [
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmijgfbvv95cuxqdjdxbvc3anldmtb3x2o4ampsbjj1cndjvs1jouphwwnwbgrtvvfsdvzsrwozzxdmbu53vg5scy1nnjlhemfhvkmtvndjrudmwjrjbdludkpgbl9szenanjgzz3dpa3hdtxhssjb1oddkr3h6etbicxp0y0xhz29xce9ltjvebnfudtzcwfjr": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmijgfbvv95cuxqdjdxbvc3anldmtb3x2o4ampsbjj1cndjvs1jouphwwnwbgrtvvfsdvzsrwozzxdmbu53vg5scy1nnjlhemfhvkmtvndjrudmwjrjbdludkpgbl9szenanjgzz3dpa3hdtxhssjb1oddkr3h6etbicxp0y0xhz29xce9ltjvebnfudtzcwfjr",
+      "content_hash": "23c03eaae80aef981a6df6dc183f41e29f5d3a1f3cf6eb986c82221c3dd51218",
+      "story_key": "086d2122da9faf5f4bdc2360d80e9ef1e0b0d524286c131a45d2387fc8e08975",
+      "status": "enriched",
+      "processed_at": "2026-08-05T03:35:43.024Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "世界の新モデル・速報",
+        "title": "米国家サイバー長官、新規制なしでAIの安全確保を目指す方針を説明",
+        "source_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQdjdXbVc3anlDMTB3X2o4ampSbjJ1cndjVS1JOUpHWWNwbGRTVVFsdVZsRWozZXdmbU53VG5scy1NNjlhemFHVkMtVndjRUdMWjRjbDludkpGbl9SZENaNjgzZ3dPa3hDTXhsSjB1ODdkR3h6eTBIcXp0Y0xhZ29XcE9LTjVEbnFudTZCWFJR?oc=5",
+        "source_name": "CyberScoop",
+        "is_official": false,
+        "published_at": "2026-08-05T03:18:30.000Z",
+        "source_published_at": "2026-08-05T03:18:30.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-05T03:33:54.604Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "National Cyber Director",
+          "White House",
+          "AIセキュリティ"
+        ],
+        "primary_entity": "米国家サイバー長官(National Cyber Director)",
+        "story_subject": "AIセキュリティに関するホワイトハウスの方針",
+        "event_type": "policy",
+        "event_stage": "announced",
+        "event_scope": "米国",
+        "fact_slots": [],
+        "new_facts": [
+          "米国家サイバー長官が新規制を設けずにAIのセキュリティを確保する方針を説明した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "米国のNational Cyber Directorが、新たな規制を設けずにAIのセキュリティを確保するホワイトハウスの方針を説明した。",
+        "detail": "米国のNational Cyber Director(国家サイバー長官)が、AIのセキュリティ確保に向けたホワイトハウスの取り組みについて説明した。新たな法規制を制定するのではなく、既存の枠組みや業界との連携を通じてAIシステムの安全性を高める方針であることが示された。具体的な施策の詳細や実施スケジュールについては記事内で明示されていない。",
+        "change_summary": "米政権がAIセキュリティ対策において新規立法を避け、既存の枠組み活用を重視する方針を示したことが新しい点。",
+        "impact_summary": "米国の規制方針は国際的なAIガバナンス議論に影響し、日本企業の対米AI事業戦略にも参考情報となる。",
+        "action_suggestion": "具体的な施策内容や実施時期は記事内で示されておらず、今後の政府発表を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "政策・行政",
+          "セキュリティ"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte9toenysnbly21lnfntcdywoezvqzyyuvk2c09fyuteehbwvzftvndvave5reyyy2rsmfvrtldib2zex2jnyzu5avb3cnzkdtruuwlarndivvyyru5sd2tablzxmgjiovoxule": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte9toenysnbly21lnfntcdywoezvqzyyuvk2c09fyuteehbwvzftvndvave5reyyy2rsmfvrtldib2zex2jnyzu5avb3cnzkdtruuwlarndivvyyru5sd2tablzxmgjiovoxule",
+      "content_hash": "9e29d64f2f77cb873471efe59e557740131be07092557795340782539e1aef1e",
+      "story_key": "b5c7f46ea089234d615384a76cd94577e46cce229ab2d5e205d10bbac960040f",
+      "status": "rejected",
+      "processed_at": "2026-08-05T03:35:43.024Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 研修サービスの宣伝記事のため除外"
+    },
+    "url:https://news.google.com/rss/articles/cbmiggfbvv95cuxobjfkmnpsowpvcm9sce9ytfzywdf1tkznejhpwfzwy0zdd2pezkutv3a3bnjuwlnrewzgejrunwdxvff3r3hmx1pncut2mndqtzrrx1owyupoujbrvwjuwxrlzi04ylvdzepidmpjnkdjn2haei1kvjhvqlfjb1zin3h30ggwaufvx3lxte1sexdbt2u0aktfnxqtofz1rdnpseths3rmcwnfouxdqtlcsdfnvwxmbkzedzzjbudvnmzebmzlrtbmqnlpvu51cvrmvghjrmxcofy5a0jzutnnv1zev0ltnu5dsuxzqwjcq1hps0fvoe85telhxzhnc0zmdm5vsu0tbtdxwmhss0hnddvmem90qm41s2vzzw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiggfbvv95cuxobjfkmnpsowpvcm9sce9ytfzywdf1tkznejhpwfzwy0zdd2pezkutv3a3bnjuwlnrewzgejrunwdxvff3r3hmx1pncut2mndqtzrrx1owyupoujbrvwjuwxrlzi04ylvdzepidmpjnkdjn2haei1kvjhvqlfjb1zin3h30ggwaufvx3lxte1sexdbt2u0aktfnxqtofz1rdnpseths3rmcwnfouxdqtlcsdfnvwxmbkzedzzjbudvnmzebmzlrtbmqnlpvu51cvrmvghjrmxcofy5a0jzutnnv1zev0ltnu5dsuxzqwjcq1hps0fvoe85telhxzhnc0zmdm5vsu0tbtdxwmhss0hnddvmem90qm41s2vzzw",
+      "content_hash": "06511afa789481b9122813e6fb9408bc07b46a7cf301674cb418784570a29721",
+      "story_key": "f82fcb88696f2000d4f0aed709a9f8adb33dd4b79cb9754b701490a03ff6b806",
+      "status": "rejected",
+      "processed_at": "2026-08-05T03:35:43.024Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: ウェビナー告知のみで実質情報がないため除外"
+    },
+    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte1jn3betud5sjd2a3nybwkycy1wrtziylzfdmc3bwj0ttvuvjlfnzbkafphq0fwtnrssxd3mff4tw91ueg3cjetc0pytfg4qulfz0t2blbpdwj4rjfqdkmznnktevjfvedsmhc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte1jn3betud5sjd2a3nybwkycy1wrtziylzfdmc3bwj0ttvuvjlfnzbkafphq0fwtnrssxd3mff4tw91ueg3cjetc0pytfg4qulfz0t2blbpdwj4rjfqdkmznnktevjfvedsmhc",
+      "content_hash": "c7e189d03dee8ea1dd97f5b19ea65adb9b508eb43fd3daa76554398685481c77",
+      "story_key": "c725eeb55ea47e8bce950be2155525d4a0336676c4bd4d5b3549dd13f1542a64",
+      "status": "rejected",
+      "processed_at": "2026-08-05T03:35:43.024Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: ウェビナー開催告知の宣伝記事のため除外"
     }
   },
-  "updated_at": "2026-08-04T22:30:13.541Z"
+  "updated_at": "2026-08-05T03:35:43.024Z"
 }
