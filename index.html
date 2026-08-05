@@ -1901,6 +1901,15 @@
 
 <script id="supabaseSdk" defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.100.0"></script>
 <script>
+/* 同一セッションの2回目以降の読み込み(スワイプ遷移によるスナップショット・
+   再読込を含む)では、起動画面を最初から表示しない。ページを切り替えるたびに
+   起動アイコンが一瞬現れる問題の対策。 */
+try{
+  if(sessionStorage.getItem('aiRadarBooted')==='1'){
+    const bootOverlay=document.getElementById('aiBoot');
+    if(bootOverlay)bootOverlay.remove();
+  }
+}catch(_bootGateError){}
 const EMBEDDED_ASSETS={"hero":"./assets/ai-radar-human-hero.webp","icon":"./assets/ai-radar-icon.webp"};
 const EMBEDDED_CARD_ART={"robot":"./assets/ai-card-robot.webp","city":"./assets/ai-card-city.webp","quantum":"./assets/ai-card-quantum.webp"};
 const EMBEDDED_EXTRA_ART={"space":"./assets/ai-card-space.webp","cyber":"./assets/ai-card-cyber.webp","bio":"./assets/ai-card-bio.webp","factory":"./assets/ai-card-factory.webp","finance":"./assets/ai-card-finance.webp","creative":"./assets/ai-card-creative.webp"};
@@ -4648,13 +4657,21 @@ function setupPWA(){
    ============================================================ */
 function dismissBootScreen(){
   const boot=document.getElementById('aiBoot');
+  // 以後の同一セッション再読込では起動画面を最初から出さない。
+  try{sessionStorage.setItem('aiRadarBooted','1');}catch(_e){}
   if(!boot)return;
   const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finish=()=>{const el=document.getElementById('aiBoot');if(el)el.remove();};
+  // 非表示タブ・バックグラウンド起動ではrequestAnimationFrameが発火しないため、
+  // アニメーションなしで即座に取り除く(残留すると全画面を塞ぎ続ける)。
+  if(document.visibilityState!=='visible'){finish();return;}
   // 最初の画面が描画された直後に退場。固定で2秒以上待たせない。
   requestAnimationFrame(()=>window.setTimeout(()=>{
     boot.classList.add('is-ready');
-    window.setTimeout(()=>boot.remove(),reduceMotion?80:360);
+    window.setTimeout(finish,reduceMotion?80:360);
   },reduceMotion?0:220));
+  // rAFやタイマーが遅延しても、2秒後には必ず消す保険。
+  window.setTimeout(finish,2000);
 }
 async function finishBootInBackground(){
   const returnedFromPayment=isPaymentReturn();
