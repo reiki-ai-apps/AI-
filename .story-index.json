@@ -308,7 +308,7 @@
       "story_id": "story_cdb2fafb189ef088ec",
       "story_sequence": 1,
       "relation_type": "new",
-      "relation_confidence": 1,
+      "relation_confidence": 0.5982608695652174,
       "title": "FDUA、生成AIガイドラインを改訂し権限管理を明記",
       "source_published_at": "2026-08-05T10:57:31.000Z",
       "published_at": "2026-08-05T10:57:31.000Z",
@@ -338,9 +338,11 @@
         }
       ],
       "structured_complete": true,
-      "dedupe_decision": "new",
+      "dedupe_decision": "uncertain",
       "dedupe_reasons": [
-        "no_previous_story"
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type"
       ],
       "change_summary": "生成AI指針の改訂により『権限管理』の項目が新たに明記された。",
       "detail": "金融分野でのデータ活用を推進する団体FDUAが、生成AIの利用に関する指針を改訂したと報じられた。改訂内容としては、生成AIシステムやデータへのアクセス権限を管理する『権限管理』の項目が新たに明記された点が挙げられる。改訂の具体的な背景や適用時期、対象となる金融機関の範囲などは記事本文からは不明。生成AIの業務利用が広がる中、金融業界における安全な運用ルールの整備が進んでいる状況がうかがえる。",
@@ -597,7 +599,7 @@
       "story_id": "story_9a54935e4d58a78ed8",
       "story_sequence": 1,
       "relation_type": "new",
-      "relation_confidence": 1,
+      "relation_confidence": 0.673,
       "title": "AIガバナンス第三者認証制度「C認証」の運用開始",
       "source_published_at": "2026-08-05T09:00:23.000Z",
       "published_at": "2026-08-05T09:00:23.000Z",
@@ -620,9 +622,13 @@
       "event_scope": "日本",
       "fact_slots": [],
       "structured_complete": true,
-      "dedupe_decision": "new",
+      "dedupe_decision": "uncertain",
       "dedupe_reasons": [
-        "no_previous_story"
+        "same_url",
+        "shared_entity",
+        "same_event_type",
+        "similar_title",
+        "same_scope"
       ],
       "change_summary": "企業のAIガバナンス体制を第三者が評価・認証する「C認証」制度の運用が新たに始まった。",
       "detail": "AIを導入する企業のガバナンス体制を外部の第三者機関が評価し認証する新たな制度「C認証」の運用が始まったと発表された。AIガバナンスとは、AIの開発・利用に伴うリスク管理や倫理面の体制整備を指し、近年多くの企業で対応が求められている分野である。この認証制度により、企業は自社のAI活用体制が一定の基準を満たしていることを外部から証明できるようになるとみられる。ただし認証の具体的な審査基準や運営主体、対象企業の範囲など詳細は記事からは確認できず、不明な点が多い。",
@@ -1244,7 +1250,7 @@
       "story_id": "story_e67279618c0fa9c867",
       "story_sequence": 1,
       "relation_type": "new",
-      "relation_confidence": 1,
+      "relation_confidence": 0.8400000000000001,
       "title": "AMD、7~9月期売上高見通しを130億ドルに",
       "source_published_at": "2026-08-04T21:55:00.000Z",
       "published_at": "2026-08-04T21:55:00.000Z",
@@ -1274,9 +1280,12 @@
         }
       ],
       "structured_complete": true,
-      "dedupe_decision": "new",
+      "dedupe_decision": "uncertain",
       "dedupe_reasons": [
-        "no_previous_story"
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "same_url_content_changed"
       ],
       "change_summary": "AMDが2026年7~9月期の売上高見通しを130億ドルと発表した。",
       "detail": "AMDは7~9月期(第3四半期)の売上高見通しを130億ドルと発表した。AIデータセンター向け半導体の需要拡大が業績を押し上げる要因となっているが、市場の期待には届かなかったとみられ、発表後の株価は軟調な値動きとなった。生成AIの普及に伴いデータセンター向けGPUやアクセラレータの需要が続く中、AMDはNVIDIAなどと並びAI向け半導体市場での存在感を強めている。今後の四半期決算でAI関連売上の実績がどう推移するかが焦点となる。",
