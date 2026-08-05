@@ -466,14 +466,16 @@
     "story_id": "story_cdb2fafb189ef088ec",
     "story_sequence": 1,
     "relation_type": "new",
-    "relation_confidence": 1,
+    "relation_confidence": 0.5982608695652174,
     "previous_article_id": "",
     "previous_title": "",
     "previous_source_published_at": "",
     "continuation_lead": "",
-    "dedupe_decision": "new",
+    "dedupe_decision": "uncertain",
     "dedupe_reasons": [
-      "no_previous_story"
+      "same_primary_entity",
+      "uncertain_subject",
+      "same_event_type"
     ]
   },
   {
@@ -861,14 +863,18 @@
     "story_id": "story_9a54935e4d58a78ed8",
     "story_sequence": 1,
     "relation_type": "new",
-    "relation_confidence": 1,
+    "relation_confidence": 0.673,
     "previous_article_id": "",
     "previous_title": "",
     "previous_source_published_at": "",
     "continuation_lead": "",
-    "dedupe_decision": "new",
+    "dedupe_decision": "uncertain",
     "dedupe_reasons": [
-      "no_previous_story"
+      "same_url",
+      "shared_entity",
+      "same_event_type",
+      "similar_title",
+      "same_scope"
     ]
   },
   {
@@ -1411,14 +1417,17 @@
     "story_id": "story_e67279618c0fa9c867",
     "story_sequence": 1,
     "relation_type": "new",
-    "relation_confidence": 1,
+    "relation_confidence": 0.8400000000000001,
     "previous_article_id": "",
     "previous_title": "",
     "previous_source_published_at": "",
     "continuation_lead": "",
-    "dedupe_decision": "new",
+    "dedupe_decision": "uncertain",
     "dedupe_reasons": [
-      "no_previous_story"
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "same_url_content_changed"
     ]
   },
   {
