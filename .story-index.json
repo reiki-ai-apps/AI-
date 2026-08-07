@@ -724,9 +724,14 @@
       "event_scope": "企業向けAI利用管理",
       "fact_slots": [],
       "structured_complete": true,
-      "dedupe_decision": "new",
+      "dedupe_decision": "uncertain",
       "dedupe_reasons": [
-        "no_previous_story"
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "similar_title",
+        "same_url_content_changed"
       ],
       "change_summary": "Cloudflareが認証情報に基づきAI利用を制御する新機能を発表した。",
       "detail": "Cloudflareは、企業がAIサービスの利用を安全に管理できる新機能「Identity-Aware AI Gateway」を発表した。これは利用者の認証情報（アイデンティティ）を踏まえてAIへのアクセスを制御する仕組みとされる。記事の抜粋では発表内容の概要のみが示されており、具体的な機能詳細や対象顧客、提供開始時期などは明らかになっていない。企業がAI利用の可視化や統制を強化する動きの一環として位置づけられる。",
