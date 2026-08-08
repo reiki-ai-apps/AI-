@@ -66,7 +66,7 @@ for (const [index, source] of inlineScripts.entries()) {
 }
 
 const schema = fs.readFileSync(path.join(root, "supabase", "schema.sql"), "utf8");
-for (const table of ["profiles", "subscriptions", "stripe_events", "user_states", "article_views", "support_requests", "reviews"]) {
+for (const table of ["profiles", "subscriptions", "stripe_events", "user_states", "article_views", "support_requests", "reviews", "unique_visitors"]) {
   const pattern = new RegExp(`alter table public\\.${table} enable row level security`, "i");
   if (!pattern.test(schema)) findings.push(`supabase/schema.sql: RLS missing for ${table}`);
 }
@@ -99,6 +99,15 @@ if (!/grant execute on function public\.submit_public_review\(text, text, intege
 }
 if (!/create unique index if not exists reviews_reviewer_key_hash_key/i.test(schema)) {
   findings.push("supabase/schema.sql: public review duplicate-prevention index missing");
+}
+if (!/rpc\('register_unique_visitor',\{p_visitor_key_hash:visitorHash\}\)/.test(html)) {
+  findings.push("index.html: cumulative unique visitor RPC missing");
+}
+if (!/grant execute on function public\.register_unique_visitor\(text\) to anon, authenticated/i.test(schema)) {
+  findings.push("supabase/schema.sql: unique visitor RPC is not granted safely");
+}
+if (!/revoke all on table public\.unique_visitors from anon, authenticated/i.test(schema)) {
+  findings.push("supabase/schema.sql: raw unique visitor hashes are exposed");
 }
 
 if (findings.length) {
