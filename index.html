@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" style="background:#070b14">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -2027,7 +2027,7 @@ const FEATURED_AI_TOOL_NAMES = [
 function googleNewsRss(query){
   return query ? `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=ja&gl=JP&ceid=JP:ja` : '';
 }
-const STATUS_LABELS = {unread:'未読',read:'既読',try_later:'あとで試す',tried:'試した',adopted:'導入済み',ignored:'無視'};
+const STATUS_LABELS = {unread:'未読',read:'既読',try_later:'後で見る',tried:'試した',adopted:'導入済み',ignored:'無視'};
 const STATUS_ORDER = ['unread','read','try_later','tried','adopted','ignored'];
 const TOOL_COLORS = ['#4f46e5','#0ea5e9','#16a34a','#db2777','#ea580c','#7c3aed','#0891b2','#ca8a04','#dc2626','#059669'];
 
@@ -2069,6 +2069,14 @@ const PLAN_RULES={
 };
 function effectivePlanKey(){
   const sub=memberState.subscription;
+  if(!sub&&!memberState.ready){
+    // 会員確認が終わるまでは前回確定したプランで表示する。
+    // 起動直後に全記事が一瞬表示されてからテーマ絞り込みされるのを防ぐ。
+    try{
+      const cached=localStorage.getItem('ai_radar_last_plan');
+      if(cached==='standard'||cached==='premium')return cached;
+    }catch(_e){}
+  }
   if(!sub||!['standard','premium'].includes(sub.plan))return 'free';
   if(['active','trialing'].includes(sub.status))return sub.plan;
   if(sub.status==='canceled'&&sub.current_period_end&&new Date(sub.current_period_end)>new Date())return sub.plan;
@@ -2147,6 +2155,8 @@ async function refreshMemberState(session){
     if(membership?.access_source==='operator_grant')window.setTimeout(loadRegisteredUserCount,0);
   }
   memberState.ready=true;
+  // 次回起動時の初期表示に使うため、確定したプランを保存する。
+  try{localStorage.setItem('ai_radar_last_plan',effectivePlanKey());}catch(_e){}
   renderNav();
   render();
   if(memberState.user)window.setTimeout(maybeShowReviewPrompt,700);
@@ -3216,7 +3226,7 @@ const NAV = [
     {id:'home',label:'ホーム',icon:'home'},
     {id:'updates',label:'すべての記事',icon:'updates'},
     {id:'categories',label:'ジャンル別',icon:'category'},
-    {id:'try-list',label:'あとで試す',icon:'flask'},
+    {id:'try-list',label:'後で見る',icon:'flask'},
   ]},
   {group:'管理',items:[
     {id:'tools',label:'フィード設定',icon:'tools'},
@@ -3324,7 +3334,7 @@ const PAGE_META = {
   home:['ホーム','未読のAIニュースを優先して表示'],
   updates:['すべての記事','既読・未読をまとめて検索・絞り込み'],
   categories:['ジャンル別','関心のあるAI分野ごとに情報を確認'],
-  'try-list':['あとで試す','試す・試した・導入済みを管理'],
+  'try-list':['後で見る','保存した記事をあとから見返せます'],
   tools:['フィード設定','興味のあるAI情報を選び、自分専用のレーダーを設定'],
   'tool-form':['情報テーマを編集',''],
   fetch:['取得実行','登録した情報テーマの最新ニュースを取得'],
@@ -3454,7 +3464,7 @@ function updateCard(u){
         <button class="card-open card-detail" onclick="go('update-detail','${u.id}')">${icon('eye')}要約を見る</button>
         ${u.source_url?`<button class="card-source" onclick="openSourceArticle('${u.id}')" aria-label="情報元の記事を外部サイトで読む">${icon('ext')}情報元の記事を読む</button>`:''}
         ${u.status==='unread'?`<button class="mark-read card-action-labeled" onclick="markRead('${u.id}')" aria-label="既読にする" title="読んだ記事として記録する">${icon('check')}<span>既読にする</span></button>`:''}
-        ${u.status!=='try_later'?`<button class="icon-action card-action-labeled" onclick="quickStatus('${u.id}','try_later');render()" aria-label="あとで試すに保存" title="あとで試す一覧に保存する">${icon('flask')}<span>あとで試す</span></button>`:''}
+        ${u.status!=='try_later'?`<button class="icon-action card-action-labeled" onclick="quickStatus('${u.id}','try_later');render()" aria-label="後で見るに保存" title="後で見る一覧に保存する">${icon('flask')}<span>後で見る</span></button>`:''}
       </div>
     </div>
   </article>`;
@@ -3555,7 +3565,7 @@ function renderHome(v){
   <div class="quick-stats">
     <span class="signal-count">未読${unread}件・最終更新 ${latest}</span>
     <button class="mini-chip" onclick="openAllUpdates()">すべての記事 ${allPlanUpdates.length}</button>
-    ${tryLater?`<button class="mini-chip" onclick="go('try-list')">あとで試す ${tryLater}</button>`:''}
+    ${tryLater?`<button class="mini-chip" onclick="go('try-list')">後で見る ${tryLater}</button>`:''}
   </div><button class="btn mobile-home-search" onclick="openAllUpdates()">${icon('updates')}<span><strong>すべての記事を見る</strong><small>既読・未読をまとめて検索できます</small></span></button>`;
 
   if(!list.length){
@@ -3687,26 +3697,19 @@ function renderDetail(v){
 
 /* 右サイド共通パネル（読み／編集 両モードで使用） */
 function detailSidebar(u,tool){
+  const saved=u.status==='try_later';
   return `<div class="form-card">
-      <h3>${icon('flask')} ステータス</h3>
-      <select class="filter" style="width:100%" id="d_status" onchange="quickStatus('${u.id}',this.value)">
-        ${STATUS_ORDER.map(s=>`<option value="${s}" ${u.status===s?'selected':''}>${STATUS_LABELS[s]}</option>`).join('')}
-      </select>
-      <div class="quick-status">
-        <button class="btn btn-sm" style="flex:1" onclick="quickStatus('${u.id}','try_later')">${icon('flask')}あとで試す</button>
-        <button class="btn btn-sm" style="flex:1" onclick="quickStatus('${u.id}','adopted')">${icon('check')}導入済み</button>
-      </div>
-    </div>
-    <div class="form-card" style="margin-top:16px">
-      <h3>${icon('updates')} 情報</h3>
-      <div class="meta-list">
-        <div class="row"><span class="k">対象ツール</span><span class="v">${esc(tool?tool.name:'—')}</span></div>
-        <div class="row"><span class="k">情報元掲載</span><span class="v">${esc(sourcePublishedLabel(u))}</span></div>
-        ${u.source_updated_at?`<div class="row"><span class="k">情報元更新</span><span class="v">${esc(fmtDateTime(u.source_updated_at))}</span></div>`:''}
-        <div class="row"><span class="k">レーダー取得</span><span class="v">${esc(fmtDateTime(u.fetched_at))}</span></div>
-      </div>
-      <button class="btn btn-danger btn-sm" style="width:100%;margin-top:14px" onclick="confirmDeleteUpdate('${u.id}')">${icon('trash')}このアップデートを削除</button>
+      <h3>${icon('eye')} 後で見る</h3>
+      <button class="btn ${saved?'':'btn-primary'}" style="width:100%" onclick="toggleWatchLater('${u.id}')">${icon(saved?'check':'plus')}${saved?'保存済み（タップで解除）':'後で見るに保存'}</button>
+      ${saved?`<button class="btn btn-sm" style="width:100%;margin-top:10px" onclick="go('try-list')">${icon('updates')}保存した記事の一覧を見る</button>`:''}
     </div>`;
+}
+function toggleWatchLater(id){
+  const u=updateById(id); if(!u)return;
+  const saved=u.status==='try_later';
+  setStatus(id,saved?'read':'try_later');
+  toast(saved?'「後で見る」への保存を解除しました':'「後で見る」に保存しました。あとから見返せます','ok');
+  render();
 }
 
 /* 読みやすい1ブロック（内容があれば表示、無ければ「追加」ボタン） */
@@ -3788,15 +3791,7 @@ function renderDetailRead(v,u,tool){
         <div class="rb-body">${esc(friendlyExplanation)}</div>
       </div>`:''}
 
-      <div class="source-trust" aria-label="情報元の確認">
-        <div class="source-trust-item"><span>掲載元</span><strong>${esc(u.source_name||'情報元の記事')}</strong></div>
-        <div class="source-trust-item"><span>情報の種類</span><strong class="source-badge">${u.is_official?'公式発表':'報道・公開記事'}</strong></div>
-        <div class="source-trust-item"><span>情報元の記事掲載日時</span><strong>${esc(sourcePublishedLabel(u))}</strong></div>
-        ${u.source_updated_at?`<div class="source-trust-item"><span>情報元の最終更新</span><strong>${esc(fmtDateTime(u.source_updated_at))}</strong></div>`:''}
-      </div>
-      <div class="notice-card"><b>AIによる要約です</b><span>内容に誤りや不足がある場合があります。契約・投資・法律・医療など重要な判断は、必ず公式発表や情報元の記事も確認してください。</span></div>
       ${u.source_url?`<button class="btn btn-primary" onclick="openSourceArticle('${u.id}')" style="display:inline-flex;width:fit-content;margin-bottom:14px" aria-label="情報元の記事を外部サイトで読む">${icon('ext')}情報元の記事を読む（外部サイト）</button>`:''}
-      <button class="btn btn-sm" onclick="go('support','${u.id}')" style="margin:0 0 14px 8px">${icon('inbox')}内容の誤りを報告</button>
 
       ${readBlock(u.id,'何が変わったか',u.simple_explanation,'eye','#2563eb','#e7efff')}
       ${readBlock(u.id,'仕事への影響',u.impact_summary,'bolt','#7c5cf6','#efeaff')}
@@ -4300,11 +4295,11 @@ function renderTryList(v){
   ups.forEach(u=>{ if(counts[u.status]!=null)counts[u.status]++; });
   document.getElementById('topActions').innerHTML='';
 
-  const tabs=[['try_later','あとで試す'],['tried','試した'],['adopted','導入済み']];
+  const tabs=[['try_later','後で見る'],['tried','試した'],['adopted','導入済み']];
   let html=`<div class="seg" style="margin-bottom:18px">${tabs.map(([k,l])=>`<button class="${tryTab===k?'on':''}" onclick="tryTab='${k}';renderTryList(document.getElementById('view'))">${l} <span style="opacity:.6">${counts[k]}</span></button>`).join('')}</div>`;
 
   const list=ups.filter(u=>u.status===tryTab).sort((a,b)=>b.score-a.score);
-  if(!list.length){ v.innerHTML=html+emptyState('ここにはまだありません','アップデート詳細で「あとで試す」「導入済み」に設定すると表示されます。'); return; }
+  if(!list.length){ v.innerHTML=html+emptyState('ここにはまだありません','記事詳細で「後で見る」に保存すると、ここに表示されます。'); return; }
 
   html+=`<div class="grid cols-2">`;
   list.forEach(u=>{
@@ -4317,7 +4312,7 @@ function renderTryList(v){
       <div style="font-weight:700;font-size:15px;line-height:1.4;cursor:pointer" onclick="go('update-detail','${u.id}')">${esc(u.title)}</div>
       <div style="font-size:13px;color:var(--text-soft);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${esc(u.action_suggestion||u.manual_summary||u.raw_excerpt||'')}</div>
       <div style="display:flex;gap:7px;margin-top:2px;flex-wrap:wrap">
-        ${tryTab!=='try_later'?`<button class="btn btn-sm" onclick="quickStatus('${u.id}','try_later');renderTryList(document.getElementById('view'))">${icon('flask')}あとで試す</button>`:''}
+        ${tryTab!=='try_later'?`<button class="btn btn-sm" onclick="quickStatus('${u.id}','try_later');renderTryList(document.getElementById('view'))">${icon('flask')}後で見る</button>`:''}
         ${tryTab!=='tried'?`<button class="btn btn-sm" onclick="quickStatus('${u.id}','tried');renderTryList(document.getElementById('view'))">${icon('check')}試した</button>`:''}
         ${tryTab!=='adopted'?`<button class="btn btn-sm" onclick="quickStatus('${u.id}','adopted');renderTryList(document.getElementById('view'))">${icon('star')}導入済み</button>`:''}
         <button class="btn btn-sm btn-ghost" style="margin-left:auto" onclick="quickStatus('${u.id}','ignored');renderTryList(document.getElementById('view'))">外す</button>
