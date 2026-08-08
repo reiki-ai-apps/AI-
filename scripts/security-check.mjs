@@ -85,6 +85,21 @@ if (/grant\s+(?:all|insert|update|delete)[^;]*on table public\.subscriptions to 
 if (/record_article_view'[\s\S]{0,180}p_limit/.test(html)) {
   findings.push("index.html: client still sends a subscription limit to the RPC");
 }
+if (!/rpc\('public_review_status',\{p_reviewer_key_hash:reviewerHash\}\)/.test(html)) {
+  findings.push("index.html: anonymous review status check missing");
+}
+if (!/rpc\('submit_public_review',\{p_reviewer_key_hash:reviewerHash/.test(html)) {
+  findings.push("index.html: anonymous review submission missing");
+}
+if (!/grant execute on function public\.public_review_status\(text\) to anon, authenticated/i.test(schema)) {
+  findings.push("supabase/schema.sql: public review status RPC is not granted safely");
+}
+if (!/grant execute on function public\.submit_public_review\(text, text, integer, text\) to anon, authenticated/i.test(schema)) {
+  findings.push("supabase/schema.sql: public review submission RPC is not granted safely");
+}
+if (!/create unique index if not exists reviews_reviewer_key_hash_key/i.test(schema)) {
+  findings.push("supabase/schema.sql: public review duplicate-prevention index missing");
+}
 
 if (findings.length) {
   console.error("Security checks failed:");
