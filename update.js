@@ -46,11 +46,11 @@ const OFFICIAL_UPDATE_PAGES = {
   Cursor:["https://cursor.com/changelog"],
   Windsurf:["https://windsurf.com/changelog"],
   Lovable:["https://docs.lovable.dev/changelog"],
-  "Replit Agent":["https://replit.com/updates"],
+  "Replit Agent":["https://replit.com/blog/category/product"],
   ElevenLabs:["https://elevenlabs.io/blog/category/product"],
   HeyGen:["https://www.heygen.com/blog/category/product-updates"],
   "Notion AI":["https://www.notion.com/releases"],
-  Gamma:["https://help.gamma.app/en/collections/7861342-product-updates"]
+  Gamma:["https://ideas.gamma.app/changelog"]
 };
 
 // 各ツール。feeds=検証済みフィード（公式RSS＋GoogleニュースRSS）、match=その記事が本当にそのツールの話か判定する正規表現
