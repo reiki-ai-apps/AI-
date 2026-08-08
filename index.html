@@ -2157,8 +2157,8 @@ async function refreshMemberState(session){
   memberState.ready=true;
   // 次回起動時の初期表示に使うため、確定したプランを保存する。
   try{localStorage.setItem('ai_radar_last_plan',effectivePlanKey());}catch(_e){}
-  renderNav();
-  render();
+  // 表示内容が変わらない場合は再描画せず、起動時に画面が切り替わって見えるのを防ぐ。
+  renderIfChanged();
   if(memberState.user)window.setTimeout(maybeShowReviewPrompt,700);
 }
 function queueMemberRefresh(session){
@@ -3349,6 +3349,26 @@ const PAGE_META = {
 };
 
 let _lastRenderedRoute=null;
+let _lastRenderSig='';
+/* 画面に影響する状態の要約。起動時の会員確認・新着同期の完了後に、
+   見た目が変わらないのに全再描画して画面が切り替わって見えるのを防ぐ。 */
+function renderSignature(){
+  try{
+    const planUpdates=getPlanUpdates();
+    return [
+      route.name,route.param||'',
+      effectivePlanKey(),memberState.user?.id||'',memberState.ready?1:0,
+      planUpdates.length,
+      planUpdates.filter(u=>u.status==='unread').length,
+      planUpdates.filter(u=>u.status==='try_later').length
+    ].join('|');
+  }catch(_e){return 'sig-'+Date.now();}
+}
+function renderIfChanged(){
+  if(renderSignature()===_lastRenderSig)return false;
+  render();
+  return true;
+}
 function render(){
   renderNav();
   const meta = PAGE_META[route.name]||['',''];
@@ -3359,6 +3379,7 @@ function render(){
   const routeKey=route.name+'|'+(route.param||'');
   v.classList.toggle('route-anim',_lastRenderedRoute!==routeKey);
   _lastRenderedRoute=routeKey;
+  _lastRenderSig=renderSignature();
   // 再描画後も閲覧人数の表示を復元する(ホーム以外では要素が無いだけ)。
   window.setTimeout(applyOnlineCount,0);
   ({
@@ -4691,7 +4712,8 @@ async function finishBootInBackground(){
   }
   if(syncPromise)await syncPromise;
   else await syncFromDataJson(false,false,!returnedFromPayment||paymentConfirmed);
-  render();
+  // 新着取込や会員確認で表示が変わったときだけ再描画する。
+  renderIfChanged();
   // 閲覧人数カウンターを起動する。SDK到着が遅れた場合に備えて1回だけ再試行する。
   initPresenceCounter();
   if(!presenceChannel)window.setTimeout(initPresenceCounter,10000);

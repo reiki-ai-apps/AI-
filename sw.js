@@ -1,6 +1,6 @@
 // アプリシェルの構成を変えたときは日付を更新する。
 // 画像などの静的アセットも network-first なので、同名差し替えは次回通信時に反映される。
-const CACHE_NAME = "ai-radar-v3-20260808-detail-simplify-v1";
+const CACHE_NAME = "ai-radar-v3-20260808-instant-start-v1";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -53,16 +53,25 @@ self.addEventListener("fetch", event => {
   }
 
   if (request.mode === "navigate") {
+    // キャッシュ即応・裏で更新: アプリ本体はキャッシュから即座に返して
+    // 「開いた直後の真っ白な画面」をなくす。同時に裏で最新版を取得して
+    // キャッシュを更新し、新版が届いたら sw.js 更新経由でアプリ内の
+    // 「今すぐ更新」通知が出る。
     event.respondWith(
-      fetch(request)
-        .then(response => {
+      caches.match("./index.html").then(cached => {
+        const network = fetch(request).then(response => {
           if (response.ok) {
             const copy = response.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put(request, copy)).catch(() => {});
+            caches.open(CACHE_NAME).then(cache => cache.put("./index.html", copy)).catch(() => {});
           }
           return response;
-        })
-        .catch(() => caches.match(request).then(hit => hit || caches.match("./index.html")))
+        });
+        if (cached) {
+          network.catch(() => {});
+          return cached;
+        }
+        return network.catch(() => caches.match("./index.html").then(hit => hit || Response.error()));
+      })
     );
     return;
   }
