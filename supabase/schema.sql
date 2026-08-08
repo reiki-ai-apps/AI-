@@ -69,6 +69,14 @@ create table if not exists public.reviews (
   updated_at timestamptz not null default now()
 );
 
+-- Cumulative unique visitors. Only a one-way browser-key hash is stored, so
+-- repeat views from the same browser do not increase the public count.
+create table if not exists public.unique_visitors (
+  visitor_key_hash text primary key
+    check (visitor_key_hash ~ '^[0-9a-f]{64}$'),
+  first_seen_at timestamptz not null default now()
+);
+
 -- Public visitors are identified only by a one-way browser key hash. Existing
 -- member reviews keep their user_id; new public reviews may omit it.
 alter table public.reviews alter column user_id drop not null;
@@ -477,6 +485,29 @@ as $$
   select count(*) from public.profiles;
 $$;
 
+create or replace function public.register_unique_visitor(p_visitor_key_hash text)
+returns bigint
+language plpgsql
+security definer
+set search_path = ''
+as $$
+declare
+  v_hash text := lower(trim(coalesce(p_visitor_key_hash, '')));
+  v_count bigint;
+begin
+  if v_hash !~ '^[0-9a-f]{64}$' then
+    raise exception 'invalid visitor key';
+  end if;
+
+  insert into public.unique_visitors (visitor_key_hash)
+  values (v_hash)
+  on conflict (visitor_key_hash) do nothing;
+
+  select count(*) into v_count from public.unique_visitors;
+  return v_count;
+end;
+$$;
+
 -- Let an authenticated free user permanently delete only their own account.
 -- Paid accounts must be canceled first so billing cannot continue after deletion.
 create or replace function public.delete_own_free_account()
@@ -519,6 +550,7 @@ alter table public.user_states enable row level security;
 alter table public.article_views enable row level security;
 alter table public.support_requests enable row level security;
 alter table public.reviews enable row level security;
+alter table public.unique_visitors enable row level security;
 
 drop policy if exists "Users can read their own profile" on public.profiles;
 create policy "Users can read their own profile"
@@ -572,6 +604,7 @@ revoke all on table public.user_states from anon, authenticated;
 revoke all on table public.article_views from anon, authenticated;
 revoke all on table public.support_requests from anon, authenticated;
 revoke all on table public.reviews from anon, authenticated;
+revoke all on table public.unique_visitors from anon, authenticated;
 
 grant select on table public.profiles to authenticated;
 grant update (display_name) on table public.profiles to authenticated;
@@ -592,6 +625,8 @@ revoke all on function public.submit_review(text, integer, text) from public;
 grant execute on function public.submit_review(text, integer, text) to authenticated;
 revoke all on function public.registered_user_count() from public;
 grant execute on function public.registered_user_count() to anon, authenticated;
+revoke all on function public.register_unique_visitor(text) from public;
+grant execute on function public.register_unique_visitor(text) to anon, authenticated;
 revoke all on function public.record_article_view(text) from public;
 grant execute on function public.record_article_view(text) to authenticated;
 revoke all on function public.delete_own_free_account() from public;
@@ -604,3 +639,4 @@ grant all on table public.user_states to service_role;
 grant all on table public.article_views to service_role;
 grant all on table public.support_requests to service_role;
 grant all on table public.reviews to service_role;
+grant all on table public.unique_visitors to service_role;
