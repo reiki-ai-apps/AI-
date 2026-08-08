@@ -2587,52 +2587,32 @@ function scheduleMemberAppStateSync(){
   appStateSyncTimer=setTimeout(saveMemberAppState,700);
 }
 
-/* ---------- 現在の閲覧人数 (Supabase Realtime Presence) ----------
-   接続中のクライアント数を出席チャンネルで数える。個人情報は送らず、
-   同一ブラウザの複数タブは同じ匿名キーで1人と数える。
-   Realtimeに接続できない環境では表示ごと隠す。 */
-let onlineUserCount=null;
-let presenceChannel=null;
-function clientPresenceKey(){
-  try{
-    let key=localStorage.getItem('ai_radar_presence_id');
-    if(!key){
-      key='p-'+Math.random().toString(36).slice(2,12)+Date.now().toString(36);
-      localStorage.setItem('ai_radar_presence_id',key);
-    }
-    return key;
-  }catch(_e){
-    return 'p-'+Math.random().toString(36).slice(2,12);
-  }
-}
-function applyOnlineCount(){
+/* ---------- 累計ユニーク閲覧人数 ----------
+   レビュー重複防止と同じ匿名ブラウザキーをSHA-256化し、初回だけ数える。 */
+let totalVisitorCount=null;
+let visitorCounterStarted=false;
+function applyVisitorCount(){
   const el=document.getElementById('onlineNow');
   if(!el)return;
-  if(onlineUserCount===null||onlineUserCount<1){el.style.display='none';return;}
+  if(totalVisitorCount===null||totalVisitorCount<1){el.style.display='none';return;}
   el.style.display='';
   const label=el.querySelector('b');
-  if(label)label.textContent=String(onlineUserCount);
+  if(label)label.textContent=Number(totalVisitorCount).toLocaleString('ja-JP');
 }
-function initPresenceCounter(){
-  if(presenceChannel||!ensureMemberClient())return;
+async function initUniqueVisitorCounter(){
+  if(visitorCounterStarted||!ensureMemberClient())return;
+  visitorCounterStarted=true;
   try{
-    const channel=memberClient.channel('online-users',{config:{presence:{key:clientPresenceKey()}}});
-    presenceChannel=channel;
-    channel.on('presence',{event:'sync'},()=>{
-      onlineUserCount=Object.keys(channel.presenceState()).length;
-      applyOnlineCount();
-    });
-    channel.subscribe(status=>{
-      if(status==='SUBSCRIBED'){
-        channel.track({at:new Date().toISOString()}).catch(()=>{});
-      }else if(status==='CHANNEL_ERROR'||status==='TIMED_OUT'||status==='CLOSED'){
-        onlineUserCount=null;
-        applyOnlineCount();
-      }
-    });
+    const visitorHash=await publicReviewerHash();
+    const {data,error}=await memberClient.rpc('register_unique_visitor',{p_visitor_key_hash:visitorHash});
+    if(error)throw error;
+    const count=Number(data);
+    if(Number.isFinite(count)&&count>=0)totalVisitorCount=count;
   }catch(_e){
-    onlineUserCount=null;
+    totalVisitorCount=null;
+    visitorCounterStarted=false;
   }
+  applyVisitorCount();
 }
 function uid(){ return 'id-'+Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4); }
 function nowISO(){ return new Date().toISOString(); }
@@ -3392,8 +3372,8 @@ function render(){
   v.classList.toggle('route-anim',_lastRenderedRoute!==routeKey);
   _lastRenderedRoute=routeKey;
   _lastRenderSig=renderSignature();
-  // 再描画後も閲覧人数の表示を復元する(ホーム以外では要素が無いだけ)。
-  window.setTimeout(applyOnlineCount,0);
+  // 再描画後も累計閲覧人数の表示を復元する(ホーム以外では要素が無いだけ)。
+  window.setTimeout(applyVisitorCount,0);
   ({
     home:renderHome, updates:renderUpdates, categories:renderCategories,
     'try-list':renderTryList, tools:renderTools, 'tool-form':renderToolForm,
@@ -3578,12 +3558,12 @@ function renderHome(v){
   const coverSummary=cover?(cover.manual_summary||cover.ai_summary||cover.raw_excerpt||'要約を確認できます。'):'';
   const coverTool=cover?toolById(cover.tool_id):null;
   const coverCopy=cover?`
-      <div class="live-line"><span class="live-dot"></span>TODAY'S TOP SIGNAL<span id="onlineNow" class="online-now" style="display:none">現在<b>—</b>人が閲覧中</span></div>
+      <div class="live-line"><span class="live-dot"></span>TODAY'S TOP SIGNAL<span id="onlineNow" class="online-now" style="display:none">これまでに<b>—</b>人が閲覧</span></div>
       <div class="daily-cover-meta">${rankBadge(cover.rank)}<span class="daily-cover-source"><b>情報元</b>${esc(cover.source_name||coverTool?.name||'確認中')}・${esc(sourcePublishedLabel(cover))}</span></div>
       <h2>${esc(cover.title)}</h2>
       <p>${esc(coverSummary)}</p>
       <div class="daily-cover-actions"><button class="btn btn-primary" onclick="go('update-detail','${cover.id}')">${icon('eye')}最新のトップニュースを見る</button><span class="daily-cover-note">情報更新時の最新記事を固定表示</span></div>`:`
-      <div class="live-line"><span class="live-dot"></span>LIVE INTELLIGENCE FEED<span id="onlineNow" class="online-now" style="display:none">現在<b>—</b>人が閲覧中</span></div>
+      <div class="live-line"><span class="live-dot"></span>LIVE INTELLIGENCE FEED<span id="onlineNow" class="online-now" style="display:none">これまでに<b>—</b>人が閲覧</span></div>
       <h2>世界のAI変化を、<br>仕事の判断へ。</h2>
       <p>英語・中国語・日本語の情報を横断監視。何が変わったか、仕事への影響、次にやることまで、やさしい日本語で確認できます。</p>
       <div class="coverage-proof" aria-label="情報収集の特徴">
@@ -4726,9 +4706,9 @@ async function finishBootInBackground(){
   else await syncFromDataJson(false,false,!returnedFromPayment||paymentConfirmed);
   // 新着取込や会員確認で表示が変わったときだけ再描画する。
   renderIfChanged();
-  // 閲覧人数カウンターを起動する。SDK到着が遅れた場合に備えて1回だけ再試行する。
-  initPresenceCounter();
-  if(!presenceChannel)window.setTimeout(initPresenceCounter,10000);
+  // 累計ユニーク閲覧数を登録する。SDK到着が遅れた場合に備えて1回だけ再試行する。
+  initUniqueVisitorCounter();
+  if(!visitorCounterStarted)window.setTimeout(initUniqueVisitorCounter,10000);
 }
 function bootApp(){
   try{
@@ -4970,8 +4950,8 @@ function renderTerms(v){
     <h3>7. 準拠法</h3><p>本規約は日本法に準拠します。紛争が生じた場合は、法令で認められる範囲で当社所在地を管轄する裁判所を第一審の専属的合意管轄とします。</p>`);
 }
 function renderPrivacy(v){
-  v.innerHTML=legalShell('プライバシーポリシー','2026年7月25日',`
-    <h3>収集する情報</h3><p>メールアドレス、認証用ID、契約プラン・決済状態、アプリ内の情報テーマ・保存・閲覧履歴・設定、お問い合わせ内容、セキュリティや障害調査に必要なログを取り扱います。カード番号は当社では保持せずStripeが処理します。</p>
+  v.innerHTML=legalShell('プライバシーポリシー','2026年8月8日',`
+    <h3>収集する情報</h3><p>メールアドレス、認証用ID、契約プラン・決済状態、アプリ内の情報テーマ・保存・閲覧履歴・設定、お問い合わせ内容、セキュリティや障害調査に必要なログを取り扱います。また、レビューの重複投稿防止と累計閲覧人数の重複計上防止のため、ブラウザ内の匿名識別子を一方向ハッシュ化した値を保存します。カード番号は当社では保持せずStripeが処理します。</p>
     <h3>利用目的</h3><p>本人認証、サービス提供、設定同期、プラン判定、料金請求、問い合わせ対応、不正利用防止、品質改善、法令対応のために利用します。</p>
     <h3>外部サービス</h3><p>認証・データ保存にSupabase、決済にStripe、公開配信にGitHub Pagesを利用します。各事業者は業務に必要な範囲でデータを処理する場合があります。</p>
     <h3>第三者提供</h3><p>本人の同意がある場合、業務委託に必要な場合、法令に基づく場合を除き、個人データを第三者へ提供しません。</p>

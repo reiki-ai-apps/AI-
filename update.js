@@ -8,6 +8,51 @@
 const fs = require("fs");
 const crypto = require("crypto");
 
+// ホームの「主要AIアプリ・ツール」と収集対象を同じ一覧で監査する。
+// 公式更新ページを毎回確認し、日本語ニュースだけでは拾いにくい製品更新も補う。
+const FEATURED_RESEARCH_TOOL_NAMES = [
+  "Kling AI", "Google Veo", "ChatGPT / OpenAI", "Claude / Claude Code", "Gemini",
+  "Runway", "Midjourney", "Adobe Firefly", "Perplexity", "Grok / xAI", "DeepSeek",
+  "Manus AI", "Genspark", "Microsoft Copilot", "GitHub Copilot", "Cursor", "Windsurf",
+  "Lovable", "Replit Agent", "ElevenLabs", "HeyGen", "Notion AI", "Gamma"
+];
+const FEATURED_RESEARCH_SET = new Set(FEATURED_RESEARCH_TOOL_NAMES);
+const FEATURED_RESEARCH_QUERY = {
+  "Kling AI":"Kling AI", "Google Veo":"Google Veo", "ChatGPT / OpenAI":"OpenAI ChatGPT",
+  "Claude / Claude Code":"Anthropic Claude", Gemini:"Google Gemini", Runway:"Runway AI",
+  Midjourney:"Midjourney", "Adobe Firefly":"Adobe Firefly", Perplexity:"Perplexity AI",
+  "Grok / xAI":"Grok xAI", DeepSeek:"DeepSeek AI", "Manus AI":"Manus AI",
+  Genspark:"Genspark AI", "Microsoft Copilot":"Microsoft Copilot", "GitHub Copilot":"GitHub Copilot",
+  Cursor:"Cursor AI editor", Windsurf:"Windsurf AI coding", Lovable:"Lovable AI app",
+  "Replit Agent":"Replit Agent", ElevenLabs:"ElevenLabs", HeyGen:"HeyGen",
+  "Notion AI":"Notion AI", Gamma:"Gamma AI presentation"
+};
+const OFFICIAL_UPDATE_PAGES = {
+  "Kling AI":["https://klingai.com/global/"],
+  "Google Veo":["https://deepmind.google/models/veo/"],
+  "ChatGPT / OpenAI":["https://help.openai.com/en/articles/6825453-chatgpt-release-notes"],
+  "Claude / Claude Code":["https://docs.anthropic.com/en/release-notes/overview"],
+  Gemini:["https://gemini.google/release-notes/"],
+  Runway:["https://runwayml.com/news/"],
+  Midjourney:["https://updates.midjourney.com/"],
+  "Adobe Firefly":["https://helpx.adobe.com/firefly/whats-new.html"],
+  Perplexity:["https://www.perplexity.ai/hub/blog"],
+  "Grok / xAI":["https://docs.x.ai/docs/release-notes"],
+  DeepSeek:["https://api-docs.deepseek.com/news/"],
+  "Manus AI":["https://manus.im/updates"],
+  Genspark:["https://www.genspark.ai/blog"],
+  "Microsoft Copilot":["https://learn.microsoft.com/en-us/microsoft-365/copilot/release-notes"],
+  "GitHub Copilot":["https://github.blog/changelog/label/copilot/"],
+  Cursor:["https://cursor.com/changelog"],
+  Windsurf:["https://windsurf.com/changelog"],
+  Lovable:["https://docs.lovable.dev/changelog"],
+  "Replit Agent":["https://replit.com/updates"],
+  ElevenLabs:["https://elevenlabs.io/blog/category/product"],
+  HeyGen:["https://www.heygen.com/blog/category/product-updates"],
+  "Notion AI":["https://www.notion.com/releases"],
+  Gamma:["https://help.gamma.app/en/collections/7861342-product-updates"]
+};
+
 // 各ツール。feeds=検証済みフィード（公式RSS＋GoogleニュースRSS）、match=その記事が本当にそのツールの話か判定する正規表現
 const TOOLS = [
   { name: "ChatGPT / OpenAI", match: /chatgpt|openai/i, feeds: [
@@ -37,6 +82,8 @@ const TOOLS = [
     "https://news.google.com/rss/search?q=Manus%20AI%20agent%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
   { name: "Genspark", match: /genspark/i, feeds: [
     "https://news.google.com/rss/search?q=Genspark%20AI%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
+  { name: "Microsoft Copilot", match: /microsoft\s+(?:365\s+)?copilot|copilot.*microsoft|microsoft.*copilot/i, feeds: [
+    "https://news.google.com/rss/search?q=Microsoft%20Copilot%20when:7d&hl=ja&gl=JP&ceid=JP:ja" ] },
   { name: "GitHub Copilot", match: /github\s+copilot/i, feeds: [
     "https://news.google.com/rss/search?q=GitHub%20Copilot%20when:3d&hl=ja&gl=JP&ceid=JP:ja" ] },
   { name: "Windsurf", match: /windsurf.*(?:AI|code|coding)|(?:AI|code|coding).*windsurf/i, feeds: [
@@ -776,6 +823,36 @@ function parseFeed(xml, official, fallbackSource) {
   return out;
 }
 
+function decodeHtmlText(value) {
+  return stripTags(String(value||""))
+    .replace(/\s+/g," ")
+    .trim();
+}
+
+// RSSを提供しない公式変更履歴も、見出しと概要を根拠として候補化する。
+// URLと内容ハッシュはAIキャッシュで照合され、内容が変わった時だけ再要約される。
+function parseOfficialUpdatePage(html, url, toolName) {
+  const source=String(html||"")
+    .replace(/<script\b[\s\S]*?<\/script>/gi,"")
+    .replace(/<style\b[\s\S]*?<\/style>/gi,"")
+    .replace(/<noscript\b[\s\S]*?<\/noscript>/gi,"")
+    .replace(/<svg\b[\s\S]*?<\/svg>/gi,"");
+  const metaMatch=source.match(/<meta[^>]+(?:name|property)=["'](?:description|og:description)["'][^>]+content=["']([^"']+)["']/i)
+    || source.match(/<meta[^>]+content=["']([^"']+)["'][^>]+(?:name|property)=["'](?:description|og:description)["']/i);
+  const headings=[...source.matchAll(/<h[1-3]\b[^>]*>([\s\S]*?)<\/h[1-3]>/gi)]
+    .map(match=>decodeHtmlText(match[1]))
+    .filter(text=>text.length>=4&&text.length<=180&&!/^(menu|navigation|resources|footer|product updates?)$/i.test(text));
+  const uniqueHeadings=[...new Set(headings)].slice(0,8);
+  const description=decodeHtmlText(metaMatch&&metaMatch[1]||"");
+  const excerpt=[description,...uniqueHeadings].filter(Boolean).join(" / ").slice(0,500);
+  if(!excerpt)return null;
+  const title=`${toolName} 公式更新: ${uniqueHeadings[0]||"最新の変更内容"}`.slice(0,220);
+  return {
+    title,link:url,date:"",updatedAt:"",dateSource:"unknown",desc:excerpt,
+    official:true,sourceName:`${toolName} 公式更新情報`
+  };
+}
+
 async function fetchText(url) {
   const controller=new AbortController();
   const timeout=setTimeout(()=>controller.abort(),12000);
@@ -900,6 +977,7 @@ function candidateScore(item) {
   const ageHours=Math.max(0,(Date.now()-new Date(item.published_at||0).getTime())/3600000);
   let score=Math.max(0,96-ageHours);
   if(item.is_official)score+=35;
+  if(FEATURED_RESEARCH_SET.has(item.tool))score+=22;
   if(/中国AI|世界の新モデル|政策|規制|補助金|セキュリティ|半導体/.test(item.tool||""))score+=16;
   if(/発表|公開|提供開始|新モデル|規制|法案|提携|買収|資金調達|脆弱性|料金/.test(item.title||""))score+=12;
   return score;
@@ -929,6 +1007,12 @@ function selectProtectedCandidates(items,limit) {
   };
   for(const bucket of ["policy","security","frontier","semiconductor"]){
     const item=sorted.find(candidate=>criticalBucket(candidate)===bucket&&!selectedKeys.has(articleCacheKey(candidate)));
+    if(item)add(item);
+  }
+  // 主要ツールの候補を最低1件ずつ巡回させ、人気製品だけへの偏りを防ぐ。
+  for(const toolName of FEATURED_RESEARCH_TOOL_NAMES){
+    if(selected.length>=limit)break;
+    const item=sorted.find(candidate=>candidate.tool===toolName&&!selectedKeys.has(articleCacheKey(candidate)));
     if(item)add(item);
   }
   for(const item of sorted){
@@ -1610,9 +1694,20 @@ function bootstrapCacheResult(cache,source,result) {
   const out = [];
   for (const t of TOOLS) {
     let items = [];
-    for (const url of t.feeds) {
+    const feeds=[...t.feeds];
+    if(FEATURED_RESEARCH_SET.has(t.name)){
+      const query=FEATURED_RESEARCH_QUERY[t.name]||t.name;
+      feeds.push(`https://news.google.com/rss/search?q=${encodeURIComponent(`"${query}" (release OR update OR "new feature") when:14d`)}&hl=en-US&gl=US&ceid=US:en`);
+    }
+    for (const url of feeds) {
       try { items = items.concat(parseFeed(await fetchText(url), isOfficial(url), sourceLabelFromUrl(url))); }
       catch (e) { console.error("  fetch fail", url, String(e.message || e).slice(0, 60)); }
+    }
+    for(const url of OFFICIAL_UPDATE_PAGES[t.name]||[]){
+      try{
+        const officialItem=parseOfficialUpdatePage(await fetchText(url),url,t.name);
+        if(officialItem)items.push(officialItem);
+      }catch(e){ console.error("  official page fail",url,String(e.message||e).slice(0,60)); }
     }
     const before = items.length;
     let kept = items.filter(it => keep(it, t));              // ★ノイズ除外（厳選①）
@@ -1736,19 +1831,26 @@ function bootstrapCacheResult(cache,source,result) {
   // 「既存原記事を消す → 転載も履歴重複で消す」という二重除外が起きる。
   const rankedPool=dedupeStories([...recentPrevious,...cachedEnriched,...reused,...newlyEnriched])
     .filter(isCompleteEnrichedItem);
-  // 新着保証枠: 重要度に関係なく直近72時間の記事を最大12件確保し、
-  // 残り枠を重要度順で埋める。C記事が要約後に必ず捨てられる固定化を防ぐ。
+  // 主要ツールは各1件を優先確保し、画面にあるのに進化情報が出ない状態を防ぐ。
+  const featuredPicks=[];
+  for(const toolName of FEATURED_RESEARCH_TOOL_NAMES){
+    const item=rankedPool.filter(candidate=>candidate.tool===toolName)
+      .sort((a,b)=>articleTime(b)-articleTime(a))[0];
+    if(item)featuredPicks.push(item);
+  }
+  const featuredKeys=new Set(featuredPicks.map(item=>item.article_id||stableArticleId(item)));
+  // 新着保証枠: 主要ツール枠を除いた残りから直近72時間の記事を最大12件確保する。
   const freshCutoff=Date.now()-72*3600000;
-  const freshPicks=rankedPool.filter(item=>articleTime(item)>=freshCutoff)
-    .sort((a,b)=>articleTime(b)-articleTime(a)).slice(0,12);
-  const freshKeys=new Set(freshPicks.map(item=>item.article_id||stableArticleId(item)));
-  const restPicks=rankedPool.filter(item=>!freshKeys.has(item.article_id||stableArticleId(item)))
+  const freshPicks=rankedPool.filter(item=>!featuredKeys.has(item.article_id||stableArticleId(item))&&articleTime(item)>=freshCutoff)
+    .sort((a,b)=>articleTime(b)-articleTime(a)).slice(0,Math.min(12,Math.max(0,AI_MAX-featuredPicks.length)));
+  const reservedKeys=new Set([...featuredKeys,...freshPicks.map(item=>item.article_id||stableArticleId(item))]);
+  const restPicks=rankedPool.filter(item=>!reservedKeys.has(item.article_id||stableArticleId(item)))
     .sort((a,b)=>(importanceOrder[b.importance]||0)-(importanceOrder[a.importance]||0)||
       articleTime(b)-articleTime(a))
-    .slice(0,Math.max(0,AI_MAX-freshPicks.length));
-  const capDropped=rankedPool.length-freshPicks.length-restPicks.length;
+    .slice(0,Math.max(0,AI_MAX-featuredPicks.length-freshPicks.length));
+  const capDropped=rankedPool.length-featuredPicks.length-freshPicks.length-restPicks.length;
   if(capDropped>0)console.error("PUBLISH CAP: 完成記事のうち"+capDropped+"件が60件枠から漏れました");
-  const baseFinal=[...freshPicks,...restPicks].sort((a,b)=>articleTime(b)-articleTime(a));
+  const baseFinal=[...featuredPicks,...freshPicks,...restPicks].sort((a,b)=>articleTime(b)-articleTime(a));
   const publishedIds=new Set(previous.map(item=>item&&item.article_id).filter(Boolean));
   const connectedFinal=connectStoryTimeline(baseFinal,storyIndex.items,publishedIds);
   // During the v7 migration, a legacy summary and its newly structured version
