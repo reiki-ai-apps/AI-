@@ -31,6 +31,9 @@ jobs:
       - name: test AI cache, protected slots, and reuse rules
         run: node scripts/test-ai-operations.mjs
 
+      - name: test featured tool research coverage
+        run: node scripts/test-tool-research-coverage.mjs
+
       - name: validate optional USD budget settings
         env:
           AI_DAILY_BUDGET_USD: ${{ vars.AI_DAILY_BUDGET_USD }}
