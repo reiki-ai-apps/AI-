@@ -121,6 +121,12 @@ if (!/function public\.register_unique_visitor\(p_visitor_key_hash text\)\s*retu
 if (!/rpc\('operator_metrics'\)/.test(html) || !/access_source==='operator_grant'[\s\S]{0,180}loadOperatorMetrics\(\)/.test(html)) {
   findings.push("index.html: operator-only metrics loading is missing");
 }
+if (/\.operator-metrics\{display:none\}/.test(html)) {
+  findings.push("index.html: operator metrics are hidden on a supported viewport");
+}
+if (!/setInterval\(refreshOperatorMetrics,60000\)/.test(html)) {
+  findings.push("index.html: operator metrics are not refreshed persistently");
+}
 if (!/function public\.operator_metrics\(\)\s*returns jsonb[\s\S]{0,900}operator_grant/i.test(schema)) {
   findings.push("supabase/schema.sql: server-side operator metrics authorization is missing");
 }
