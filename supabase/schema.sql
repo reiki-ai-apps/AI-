@@ -506,6 +506,42 @@ begin
 end;
 $$;
 
+-- Return aggregate usage metrics only to the account that already has the
+-- server-issued operator_grant membership. Ordinary authenticated users are rejected.
+create or replace function public.operator_metrics()
+returns jsonb
+language plpgsql
+stable
+security definer
+set search_path = ''
+as $$
+declare
+  v_membership jsonb;
+  v_access_source text;
+begin
+  if auth.uid() is null then
+    raise insufficient_privilege using message = 'operator access required';
+  end if;
+
+  execute 'select to_jsonb(public.get_my_membership())'
+    into v_membership;
+
+  v_access_source := coalesce(
+    v_membership ->> 'access_source',
+    v_membership -> 'get_my_membership' ->> 'access_source'
+  );
+
+  if v_access_source is distinct from 'operator_grant' then
+    raise insufficient_privilege using message = 'operator access required';
+  end if;
+
+  return jsonb_build_object(
+    'registered_users', (select count(*) from public.profiles),
+    'unique_visitors', (select count(*) from public.unique_visitors)
+  );
+end;
+$$;
+
 -- Let an authenticated free user permanently delete only their own account.
 -- Paid accounts must be canceled first so billing cannot continue after deletion.
 create or replace function public.delete_own_free_account()
@@ -625,6 +661,9 @@ revoke all on function public.registered_user_count() from public;
 revoke all on function public.registered_user_count() from anon, authenticated;
 revoke all on function public.register_unique_visitor(text) from public;
 grant execute on function public.register_unique_visitor(text) to anon, authenticated;
+revoke all on function public.operator_metrics() from public;
+revoke all on function public.operator_metrics() from anon;
+grant execute on function public.operator_metrics() to authenticated;
 revoke all on function public.record_article_view(text) from public;
 grant execute on function public.record_article_view(text) to authenticated;
 revoke all on function public.delete_own_free_account() from public;
