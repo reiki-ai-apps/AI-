@@ -236,6 +236,13 @@
   .mark-read svg{width:13px;height:13px}
   .auto-status{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--brand-ink);background:var(--brand-soft);border:1px solid #dcdcff;border-radius:999px;padding:5px 12px;white-space:nowrap}
   .auto-status .spin{width:13px;height:13px;border:2px solid #c7c5ff;border-top-color:var(--brand);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+  .operator-metrics{display:inline-flex;align-items:center;gap:8px;padding:6px 11px;border:1px solid rgba(66,219,231,.34);border-radius:999px;background:rgba(7,28,48,.88);color:#a9f6fb;font-size:10.5px;font-weight:800;white-space:nowrap;box-shadow:0 0 18px rgba(35,205,220,.1)}
+  .operator-metrics::before{content:"ADMIN";color:#59e4ed;font-size:8px;letter-spacing:.12em}
+  .operator-metrics strong{color:#fff;font-size:11px}
+  .operator-metric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .operator-metric-card{padding:14px 16px;border:1px solid rgba(69,216,229,.24);border-radius:13px;background:rgba(5,25,43,.55)}
+  .operator-metric-card span{display:block;color:var(--text-mute);font-size:11px;font-weight:700;margin-bottom:4px}
+  .operator-metric-card strong{color:#e9fdff;font-size:22px;font-weight:900}
   @keyframes spin{to{transform:rotate(360deg)}}
   .status.ignored::before{box-shadow:none}
   .status.read::before{box-shadow:none}
@@ -873,6 +880,7 @@
     .topbar .page-sub{font-size:10.5px!important;max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .topbar .btn{min-height:38px;padding:7px 10px;font-size:0}
     .topbar .btn svg{width:17px;height:17px}
+    .operator-metrics{display:none}
     .content{padding:16px 14px calc(92px + env(safe-area-inset-bottom))}
     .radar-overview{display:block;min-height:214px;padding:25px 23px;margin-bottom:17px;border-radius:18px}
     .radar-overview::before{width:340px;height:340px;right:-190px;top:-120px}
@@ -2044,7 +2052,7 @@ function waitForSupabaseSdk(timeoutMs=6000){
     window.setTimeout(done,timeoutMs);
   });
 }
-const memberState={ready:false,user:null,subscription:null,reviews:[],reviewStatus:null,message:'',error:false,recovery:false};
+const memberState={ready:false,user:null,subscription:null,operatorMetrics:null,reviews:[],reviewStatus:null,message:'',error:false,recovery:false};
 let memberRefreshQueue=Promise.resolve();
 let loadedMemberStateFor='';
 let memberStateDirty=false;
@@ -2096,6 +2104,32 @@ async function loadMembership(){
   const hasStripe=!!(sub.stripe_customer_id&&sub.stripe_subscription_id);
   return {...sub,access_source:hasStripe?'stripe':'account',has_stripe_subscription:hasStripe,stripe_plan:hasStripe?sub.plan:null,stripe_status:hasStripe?sub.status:null,stripe_current_period_end:hasStripe?sub.current_period_end:null};
 }
+function validOperatorMetrics(data){
+  const registeredUsers=Number(data?.registered_users);
+  const uniqueVisitors=Number(data?.unique_visitors);
+  if(!Number.isFinite(registeredUsers)||registeredUsers<0||!Number.isFinite(uniqueVisitors)||uniqueVisitors<0)return null;
+  return {registeredUsers,uniqueVisitors};
+}
+async function loadOperatorMetrics(){
+  if(!memberClient||!memberState.user||memberState.subscription?.access_source!=='operator_grant')return null;
+  const {data,error}=await memberClient.rpc('operator_metrics');
+  if(error)return null;
+  return validOperatorMetrics(data);
+}
+function renderOperatorMetrics(){
+  const existing=document.getElementById('operatorMetrics');
+  const metrics=memberState.operatorMetrics;
+  const isOperator=memberState.subscription?.access_source==='operator_grant';
+  if(!isOperator||!metrics){if(existing)existing.remove();return;}
+  const badge=existing||document.createElement('span');
+  badge.id='operatorMetrics';
+  badge.className='operator-metrics';
+  badge.setAttribute('aria-label',`管理者統計。累計閲覧者${metrics.uniqueVisitors}人、登録者${metrics.registeredUsers}人`);
+  badge.innerHTML='<span>閲覧 <strong data-operator-visitors></strong>人</span><span>登録 <strong data-operator-users></strong>人</span>';
+  badge.querySelector('[data-operator-visitors]').textContent=metrics.uniqueVisitors.toLocaleString('ja-JP');
+  badge.querySelector('[data-operator-users]').textContent=metrics.registeredUsers.toLocaleString('ja-JP');
+  if(!existing)document.querySelector('.topbar .spacer')?.before(badge);
+}
 function authErrorMessage(error){
   const msg=String(error?.message||error||'');
   if(/invalid login credentials/i.test(msg))return 'メールアドレスまたはパスワードが正しくありません。';
@@ -2110,6 +2144,7 @@ async function refreshMemberState(session){
   if(previousUserId!==nextUserId)loadedMemberStateFor='';
   memberState.user=session?.user||null;
   memberState.subscription=null;
+  memberState.operatorMetrics=null;
   memberState.reviewStatus=null;
   if(memberState.user&&memberClient){
     // 契約・クラウド設定・レビュー状態は互いに独立しているため並列取得する。
@@ -2120,12 +2155,14 @@ async function refreshMemberState(session){
       loadReviewStatus()
     ]);
     memberState.subscription=membership;
+    if(membership?.access_source==='operator_grant')memberState.operatorMetrics=await loadOperatorMetrics();
   }else if(memberClient){
     await loadReviewStatus();
   }
   memberState.ready=true;
   // 次回起動時の初期表示に使うため、確定したプランを保存する。
   try{localStorage.setItem('ai_radar_last_plan',effectivePlanKey());}catch(_e){}
+  renderOperatorMetrics();
   // 表示内容が変わらない場合は再描画せず、起動時に画面が切り替わって見えるのを防ぐ。
   renderIfChanged();
 }
@@ -3323,6 +3360,7 @@ function render(){
   v.classList.toggle('route-anim',_lastRenderedRoute!==routeKey);
   _lastRenderedRoute=routeKey;
   _lastRenderSig=renderSignature();
+  renderOperatorMetrics();
   ({
     home:renderHome, updates:renderUpdates, categories:renderCategories,
     'try-list':renderTryList, tools:renderTools, 'tool-form':renderToolForm,
@@ -4748,6 +4786,10 @@ function renderAccount(v){
         <div><h3 id="operatorBenefitTitle">運営者向けプレミアム特典</h3><p>この特典自体には請求がありません。別に契約したStripeサブスクとは独立しています。</p></div>
         <span class="billing-badge">請求なし・期限なし</span>
       </div>
+      ${memberState.operatorMetrics?`<div class="operator-metric-grid" aria-label="管理者だけに表示される利用状況">
+        <div class="operator-metric-card"><span>累計ユニーク閲覧者数</span><strong>${memberState.operatorMetrics.uniqueVisitors.toLocaleString('ja-JP')}人</strong></div>
+        <div class="operator-metric-card"><span>登録者数</span><strong>${memberState.operatorMetrics.registeredUsers.toLocaleString('ja-JP')}人</strong></div>
+      </div>`:'<p class="billing-help">管理者統計を取得できませんでした。少し待ってから再読み込みしてください。</p>'}
       <p class="billing-help">${hasStripeSubscription?'下の「契約・お支払い管理」から、別に契約中のStripeサブスクを確認・解約できます。':'料金の請求や自動更新はありません。特典はSupabaseの運営者設定でのみ変更できます。'}</p>
     </section>`:''}
     ${hasStripeSubscription?`<section class="billing-panel" aria-labelledby="billingTitle">
