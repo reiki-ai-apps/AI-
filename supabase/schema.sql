@@ -474,7 +474,7 @@ select
 from auth.users
 on conflict (id) do nothing;
 
--- Publicly expose only the total registration count. No profile fields are returned.
+-- Internal operator metric. It is not executable by public application roles.
 create or replace function public.registered_user_count()
 returns bigint
 language sql
@@ -486,14 +486,13 @@ as $$
 $$;
 
 create or replace function public.register_unique_visitor(p_visitor_key_hash text)
-returns bigint
+returns boolean
 language plpgsql
 security definer
 set search_path = ''
 as $$
 declare
   v_hash text := lower(trim(coalesce(p_visitor_key_hash, '')));
-  v_count bigint;
 begin
   if v_hash !~ '^[0-9a-f]{64}$' then
     raise exception 'invalid visitor key';
@@ -503,8 +502,7 @@ begin
   values (v_hash)
   on conflict (visitor_key_hash) do nothing;
 
-  select count(*) into v_count from public.unique_visitors;
-  return v_count;
+  return true;
 end;
 $$;
 
@@ -624,7 +622,7 @@ grant execute on function public.review_prompt_status() to authenticated;
 revoke all on function public.submit_review(text, integer, text) from public;
 grant execute on function public.submit_review(text, integer, text) to authenticated;
 revoke all on function public.registered_user_count() from public;
-grant execute on function public.registered_user_count() to anon, authenticated;
+revoke all on function public.registered_user_count() from anon, authenticated;
 revoke all on function public.register_unique_visitor(text) from public;
 grant execute on function public.register_unique_visitor(text) to anon, authenticated;
 revoke all on function public.record_article_view(text) from public;
