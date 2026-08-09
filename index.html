@@ -114,11 +114,6 @@
   .brand-logo svg{width:23px;height:23px;position:relative;z-index:1}
   .brand-name{font-weight:800;font-size:16px;letter-spacing:.01em;line-height:1.15;color:#fff}
   .brand-sub{font-size:10.5px;color:rgba(235,238,255,.45);font-weight:700;letter-spacing:.14em;margin-top:2px}
-  .registered-count{display:inline-flex;align-items:center;gap:5px;margin-top:6px;color:rgba(211,224,244,.58);font-size:9.5px;font-weight:700;letter-spacing:.04em}
-  .registered-count::before{content:"";width:5px;height:5px;border-radius:50%;background:#4fdde5;box-shadow:0 0 7px rgba(79,221,229,.65)}
-  .registered-count strong{color:#d9f8fb;font-size:10.5px;font-weight:900}
-  .top-registered-count{display:none;margin:0 4px 0 9px;padding:4px 8px;border:1px solid rgba(72,213,225,.18);border-radius:999px;background:rgba(8,28,45,.48)}
-
   .nav{padding:10px 14px;flex:1;overflow-y:auto}
   .nav::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);background-clip:content-box;border:2px solid transparent}
   .nav-group-title{
@@ -813,12 +808,8 @@
   }
   .overview-copy{position:relative;z-index:2;max-width:650px}
   .live-line{display:flex;align-items:center;gap:8px;font-size:10.5px;font-weight:800;letter-spacing:.17em;color:#76e8f5;margin-bottom:15px}
-  .online-now{margin-left:14px;padding-left:14px;border-left:1px solid rgba(118,232,245,.28);font-size:9.5px;letter-spacing:.08em;color:#8fd9ce;font-weight:700;white-space:nowrap}
-  .online-now b{color:#5df7d8;font-size:11.5px;margin:0 2px}
-  /* 狭い画面ではLIVE行を折り返し、カウンターが見切れないようにする */
   @media(max-width:760px){
     .live-line{flex-wrap:wrap;width:auto!important;max-width:100%}
-    .online-now{margin-left:0;padding-left:0;border-left:0;flex-basis:100%;margin-top:3px}
   }
   .live-dot{position:relative;width:7px;height:7px;border-radius:50%;background:#36e7ae;box-shadow:0 0 0 5px rgba(54,231,174,.08),0 0 16px rgba(54,231,174,.75)}
   /* box-shadowを動かすと毎フレームpaintが走るため、transform/opacityだけで脈動させる */
@@ -1226,7 +1217,6 @@
       linear-gradient(180deg,rgba(1,5,15,.48),rgba(2,7,18,.74) 42%,rgba(1,4,12,.91)),
       var(--hero-art) 69% top/auto 100vh fixed no-repeat!important}
     .topbar-logo{display:block}
-    .top-registered-count{display:inline-flex}
     .menu-btn{display:none!important}
     .radar-overview{min-height:300px;background:
       linear-gradient(90deg,rgba(1,6,17,.96) 0%,rgba(2,8,20,.76) 53%,rgba(2,7,17,.06) 100%),
@@ -1863,7 +1853,6 @@
       <div>
         <div class="brand-name">AI進化レーダー</div>
         <div class="brand-sub">AI UPDATE RADAR</div>
-        <div class="registered-count" data-registered-count hidden>現在の登録者数：<strong>—</strong>人</div>
       </div>
     </div>
     <nav class="nav" id="nav"></nav>
@@ -1891,7 +1880,6 @@
         <div class="page-sub" id="pageSub"></div>
       </div>
       <span id="autoStatus" class="auto-status" style="display:none"></span>
-      <span class="registered-count top-registered-count" data-registered-count hidden>現在の登録者数：<strong>—</strong>人</span>
       <div class="spacer"></div>
       <div id="topActions"></div>
     </header>
@@ -2056,7 +2044,7 @@ function waitForSupabaseSdk(timeoutMs=6000){
     window.setTimeout(done,timeoutMs);
   });
 }
-const memberState={ready:false,user:null,subscription:null,registeredCount:null,reviews:[],reviewStatus:null,message:'',error:false,recovery:false};
+const memberState={ready:false,user:null,subscription:null,reviews:[],reviewStatus:null,message:'',error:false,recovery:false};
 let memberRefreshQueue=Promise.resolve();
 let loadedMemberStateFor='';
 let memberStateDirty=false;
@@ -2116,35 +2104,12 @@ function authErrorMessage(error){
   if(/email/i.test(msg))return 'メールアドレスを確認してください。';
   return '処理を完了できませんでした。少し待ってからもう一度お試しください。';
 }
-function renderRegisteredCount(){
-  const isOperator=!!memberState.user&&memberState.subscription?.access_source==='operator_grant';
-  document.querySelectorAll('[data-registered-count]').forEach(el=>{
-    const count=memberState.registeredCount;
-    el.hidden=!(isOperator&&Number.isFinite(count));
-    const value=el.querySelector('strong');
-    if(value&&Number.isFinite(count))value.textContent=new Intl.NumberFormat('ja-JP').format(count);
-  });
-}
-async function loadRegisteredUserCount(){
-  if(!memberClient||!memberState.user||memberState.subscription?.access_source!=='operator_grant'){
-    memberState.registeredCount=null;
-    renderRegisteredCount();
-    return;
-  }
-  const {data,error}=await memberClient.rpc('registered_user_count');
-  if(error){memberState.registeredCount=null;renderRegisteredCount();return;}
-  const count=Number(data);
-  if(!Number.isFinite(count)||count<0)return;
-  memberState.registeredCount=count;
-  renderRegisteredCount();
-}
 async function refreshMemberState(session){
   const previousUserId=memberState.user?.id||'';
   const nextUserId=session?.user?.id||'';
   if(previousUserId!==nextUserId)loadedMemberStateFor='';
   memberState.user=session?.user||null;
   memberState.subscription=null;
-  memberState.registeredCount=null;
   memberState.reviewStatus=null;
   if(memberState.user&&memberClient){
     // 契約・クラウド設定・レビュー状態は互いに独立しているため並列取得する。
@@ -2155,7 +2120,6 @@ async function refreshMemberState(session){
       loadReviewStatus()
     ]);
     memberState.subscription=membership;
-    if(membership?.access_source==='operator_grant')window.setTimeout(loadRegisteredUserCount,0);
   }else if(memberClient){
     await loadReviewStatus();
   }
@@ -2587,32 +2551,19 @@ function scheduleMemberAppStateSync(){
   appStateSyncTimer=setTimeout(saveMemberAppState,700);
 }
 
-/* ---------- 累計ユニーク閲覧人数 ----------
-   レビュー重複防止と同じ匿名ブラウザキーをSHA-256化し、初回だけ数える。 */
-let totalVisitorCount=null;
-let visitorCounterStarted=false;
-function applyVisitorCount(){
-  const el=document.getElementById('onlineNow');
-  if(!el)return;
-  if(totalVisitorCount===null||totalVisitorCount<1){el.style.display='none';return;}
-  el.style.display='';
-  const label=el.querySelector('b');
-  if(label)label.textContent=Number(totalVisitorCount).toLocaleString('ja-JP');
-}
-async function initUniqueVisitorCounter(){
-  if(visitorCounterStarted||!ensureMemberClient())return;
-  visitorCounterStarted=true;
+/* ---------- 匿名の利用状況集計 ----------
+   レビュー重複防止と同じ匿名ブラウザキーをSHA-256化し、初回だけ登録する。人数はブラウザへ返さない。 */
+let visitorRegistrationStarted=false;
+async function registerUniqueVisitor(){
+  if(visitorRegistrationStarted||!ensureMemberClient())return;
+  visitorRegistrationStarted=true;
   try{
     const visitorHash=await publicReviewerHash();
-    const {data,error}=await memberClient.rpc('register_unique_visitor',{p_visitor_key_hash:visitorHash});
+    const {error}=await memberClient.rpc('register_unique_visitor',{p_visitor_key_hash:visitorHash});
     if(error)throw error;
-    const count=Number(data);
-    if(Number.isFinite(count)&&count>=0)totalVisitorCount=count;
   }catch(_e){
-    totalVisitorCount=null;
-    visitorCounterStarted=false;
+    visitorRegistrationStarted=false;
   }
-  applyVisitorCount();
 }
 function uid(){ return 'id-'+Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4); }
 function nowISO(){ return new Date().toISOString(); }
@@ -3372,8 +3323,6 @@ function render(){
   v.classList.toggle('route-anim',_lastRenderedRoute!==routeKey);
   _lastRenderedRoute=routeKey;
   _lastRenderSig=renderSignature();
-  // 再描画後も累計閲覧人数の表示を復元する(ホーム以外では要素が無いだけ)。
-  window.setTimeout(applyVisitorCount,0);
   ({
     home:renderHome, updates:renderUpdates, categories:renderCategories,
     'try-list':renderTryList, tools:renderTools, 'tool-form':renderToolForm,
@@ -3558,12 +3507,12 @@ function renderHome(v){
   const coverSummary=cover?(cover.manual_summary||cover.ai_summary||cover.raw_excerpt||'要約を確認できます。'):'';
   const coverTool=cover?toolById(cover.tool_id):null;
   const coverCopy=cover?`
-      <div class="live-line"><span class="live-dot"></span>TODAY'S TOP SIGNAL<span id="onlineNow" class="online-now" style="display:none">これまでに<b>—</b>人が閲覧</span></div>
+      <div class="live-line"><span class="live-dot"></span>TODAY'S TOP SIGNAL</div>
       <div class="daily-cover-meta">${rankBadge(cover.rank)}<span class="daily-cover-source"><b>情報元</b>${esc(cover.source_name||coverTool?.name||'確認中')}・${esc(sourcePublishedLabel(cover))}</span></div>
       <h2>${esc(cover.title)}</h2>
       <p>${esc(coverSummary)}</p>
       <div class="daily-cover-actions"><button class="btn btn-primary" onclick="go('update-detail','${cover.id}')">${icon('eye')}最新のトップニュースを見る</button><span class="daily-cover-note">情報更新時の最新記事を固定表示</span></div>`:`
-      <div class="live-line"><span class="live-dot"></span>LIVE INTELLIGENCE FEED<span id="onlineNow" class="online-now" style="display:none">これまでに<b>—</b>人が閲覧</span></div>
+      <div class="live-line"><span class="live-dot"></span>LIVE INTELLIGENCE FEED</div>
       <h2>世界のAI変化を、<br>仕事の判断へ。</h2>
       <p>英語・中国語・日本語の情報を横断監視。何が変わったか、仕事への影響、次にやることまで、やさしい日本語で確認できます。</p>
       <div class="coverage-proof" aria-label="情報収集の特徴">
@@ -4706,9 +4655,9 @@ async function finishBootInBackground(){
   else await syncFromDataJson(false,false,!returnedFromPayment||paymentConfirmed);
   // 新着取込や会員確認で表示が変わったときだけ再描画する。
   renderIfChanged();
-  // 累計ユニーク閲覧数を登録する。SDK到着が遅れた場合に備えて1回だけ再試行する。
-  initUniqueVisitorCounter();
-  if(!visitorCounterStarted)window.setTimeout(initUniqueVisitorCounter,10000);
+  // 匿名の利用状況を登録する。SDK到着が遅れた場合に備えて1回だけ再試行する。
+  registerUniqueVisitor();
+  if(!visitorRegistrationStarted)window.setTimeout(registerUniqueVisitor,10000);
 }
 function bootApp(){
   try{
@@ -4951,7 +4900,7 @@ function renderTerms(v){
 }
 function renderPrivacy(v){
   v.innerHTML=legalShell('プライバシーポリシー','2026年8月8日',`
-    <h3>収集する情報</h3><p>メールアドレス、認証用ID、契約プラン・決済状態、アプリ内の情報テーマ・保存・閲覧履歴・設定、お問い合わせ内容、セキュリティや障害調査に必要なログを取り扱います。また、レビューの重複投稿防止と累計閲覧人数の重複計上防止のため、ブラウザ内の匿名識別子を一方向ハッシュ化した値を保存します。カード番号は当社では保持せずStripeが処理します。</p>
+    <h3>収集する情報</h3><p>メールアドレス、認証用ID、契約プラン・決済状態、アプリ内の情報テーマ・保存・閲覧履歴・設定、お問い合わせ内容、セキュリティや障害調査に必要なログを取り扱います。また、レビューの重複投稿防止と匿名の利用状況集計の重複防止のため、ブラウザ内の匿名識別子を一方向ハッシュ化した値を保存します。カード番号は当社では保持せずStripeが処理します。</p>
     <h3>利用目的</h3><p>本人認証、サービス提供、設定同期、プラン判定、料金請求、問い合わせ対応、不正利用防止、品質改善、法令対応のために利用します。</p>
     <h3>外部サービス</h3><p>認証・データ保存にSupabase、決済にStripe、公開配信にGitHub Pagesを利用します。各事業者は業務に必要な範囲でデータを処理する場合があります。</p>
     <h3>第三者提供</h3><p>本人の同意がある場合、業務委託に必要な場合、法令に基づく場合を除き、個人データを第三者へ提供しません。</p>
