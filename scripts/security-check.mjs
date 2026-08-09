@@ -101,13 +101,22 @@ if (!/create unique index if not exists reviews_reviewer_key_hash_key/i.test(sch
   findings.push("supabase/schema.sql: public review duplicate-prevention index missing");
 }
 if (!/rpc\('register_unique_visitor',\{p_visitor_key_hash:visitorHash\}\)/.test(html)) {
-  findings.push("index.html: cumulative unique visitor RPC missing");
+  findings.push("index.html: anonymous unique visitor registration RPC missing");
 }
 if (!/grant execute on function public\.register_unique_visitor\(text\) to anon, authenticated/i.test(schema)) {
   findings.push("supabase/schema.sql: unique visitor RPC is not granted safely");
 }
 if (!/revoke all on table public\.unique_visitors from anon, authenticated/i.test(schema)) {
   findings.push("supabase/schema.sql: raw unique visitor hashes are exposed");
+}
+if (/data-registered-count|rpc\('registered_user_count'\)|id=["']onlineNow["']|これまでに\s*<b>[\s\S]*?人が閲覧/.test(html)) {
+  findings.push("index.html: user-visible audience or registration count remains");
+}
+if (/grant execute on function public\.registered_user_count\(\) to (?:anon|authenticated|anon, authenticated)/i.test(schema)) {
+  findings.push("supabase/schema.sql: registered-user count is exposed to an application role");
+}
+if (!/function public\.register_unique_visitor\(p_visitor_key_hash text\)\s*returns boolean/i.test(schema)) {
+  findings.push("supabase/schema.sql: unique visitor RPC must not return a total count");
 }
 
 if (findings.length) {
