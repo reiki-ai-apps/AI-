@@ -2,6 +2,54 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_c11da3b3107d4974483d",
+      "story_id": "story_d8f04f207438c05541",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Midjourney、バージョン8.2を公開しMidjourney初の企業買収も発表",
+      "source_published_at": "2026-08-09T04:37:27.935Z",
+      "published_at": "2026-08-09T04:37:27.935Z",
+      "fetched_at": "2026-08-09T04:37:27.935Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "画像生成AI「Midjourney」が公式ブログでバージョン8.2の更新内容を公表し、同社初の企業買収やハードウェア発表の生配信予定も明らかにした。",
+      "source_name": "Midjourney 公式更新情報",
+      "source_url": "https://updates.midjourney.com/",
+      "story_entities": [
+        "Midjourney",
+        "Version 8.2",
+        "midjourney",
+        "version8.2"
+      ],
+      "primary_entity": "Midjourney",
+      "story_subject": "Midjourney Version 8.2および企業買収発表",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "Midjourneyサービス全体",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "Midjourneyのバージョン",
+          "value": "Version 8.2",
+          "normalized_value": "v8.2"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Midjourneyがバージョン8.2の更新内容と、同社初の企業買収、ハードウェア発表の生配信予定を公表した。",
+      "detail": "Midjourneyは公式ブログで、画像生成AIサービスの最新版「Version 8.2」に関する更新情報を公開した。更新内容には、ドラフトモードでのランダムスタイル機能の追加や、V8.1向けのドラフトモード機能、新機能のプレビューなどが含まれる。あわせて、Midjourneyとして初めてとなる企業買収を実施したことも公表された。さらに、ハードウェアに関する発表を行うライブ配信の予定も告知されている。詳細な買収先企業名やハードウェアの内容については記事本文からは確認できない。",
+      "new_facts": [
+        "MidjourneyがVersion 8.2の更新内容を公開した",
+        "Midjourneyが初めての企業買収を実施したと発表した",
+        "Midjourneyがハードウェア発表の生配信を予定していると告知した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_9b23805b85b3e26ad2ae",
       "story_id": "story_2d9db6e55428c1570c",
       "story_sequence": 1,
@@ -166,6 +214,88 @@
       "detail": "OpenAIは、AIを使ってプレゼンテーション資料を自動生成するスタートアップ「NextSlide」を買収したと報じられた。NextSlideはテキストの指示からスライドのレイアウトやデザインを組み立てるサービスで、OpenAIはこの技術をChatGPTに取り込むことで、資料作成やビジュアル表現に関する機能を強化する狙いとみられる。買収額や契約条件、統合の具体的な時期など詳細は現時点で明らかになっていない。",
       "new_facts": [
         "OpenAIがAIプレゼン作成スタートアップNextSlideを買収した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_4df5c81445165ccf656e",
+      "story_id": "story_5023da9a26f967c465",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5184615384615384,
+      "title": "GoogleがGemini Notebookへの新規ソース追加を簡単にする機能を提供",
+      "source_published_at": "2026-08-08T20:22:00.000Z",
+      "published_at": "2026-08-08T20:22:00.000Z",
+      "fetched_at": "2026-08-09T04:37:25.221Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "Googleが、AIノートアプリ「Gemini Notebook」に新しい情報源を追加する操作をより簡単にする改良を行ったと報じられた。",
+      "source_name": "Android Authority",
+      "source_url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOakFPTkx2Z2tyOG1xbV8yaHR2eW9IdUNNb1NmdmRLMUUySnE4Tk5NMVZWTW9ocGJpd1Y2RXpMbjhmYWJScUtHVXJVMWMtQXZ0M012MXB4T1pmM1g2OVdDNG5MVEJHR1Z0LUxSdUp0T2IxMmd2ZGN3dUR3VUp1NDBfRA?oc=5",
+      "story_entities": [
+        "Google",
+        "Gemini Notebook",
+        "google",
+        "gemininotebook",
+        "google-gemini"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "Gemini Notebookのソース追加機能改善",
+      "event_type": "release",
+      "event_stage": "other",
+      "event_scope": "Gemini Notebook",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject"
+      ],
+      "change_summary": "Gemini Notebookで新しい情報源を追加する操作が簡単になったと報じられた。",
+      "detail": "Android Authorityによると、GoogleはAIを活用したノート作成アプリ「Gemini Notebook」において、ユーザーが新しい資料や情報源を取り込む際の操作を簡略化する変更を加えた。具体的にどの操作が変わったかの詳細は記事から明確ではないが、ソース追加の手間を減らすことで、資料をまとめて要約や質問応答に利用しやすくする狙いとみられる。Googleは同種のAIノートツールで機能改善を継続的に行っており、今回の変更もその一環とされる。",
+      "new_facts": [
+        "GoogleがGemini Notebookで新しい情報源を追加する操作を簡単にしたと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_15fea80617a9f0c665aa",
+      "story_id": "story_7fc686d05dde4c2afd",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Rubrik、Anthropic「Claude Code」向けAIエージェント向けセキュリティ基盤「Agent Cloud」を発表",
+      "source_published_at": "2026-08-08T09:18:11.000Z",
+      "published_at": "2026-08-08T09:18:11.000Z",
+      "fetched_at": "2026-08-09T04:37:24.214Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "データセキュリティ企業Rubrikが、AnthropicのClaude Codeなど向けにAIエージェントのセキュリティ基盤「Rubrik Agent Cloud」を発表した。",
+      "source_name": "thinkit.co.jp",
+      "source_url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBuR3BjT083RktwYVhyLUNteG9PTjNoVHBIVXBfaDRJbkRjMnVzWU5vYzRYcTF0LXJPZFhJMmJFWXBtcnkzMEhYQTNQaw?oc=5",
+      "story_entities": [
+        "Rubrik",
+        "Anthropic",
+        "Claude Code",
+        "rubrik",
+        "anthropic"
+      ],
+      "primary_entity": "Rubrik",
+      "story_subject": "Rubrik Agent Cloud",
+      "event_type": "security",
+      "event_stage": "announced",
+      "event_scope": "Claude Code向け",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "RubrikがAIエージェント専用のセキュリティ・データ保護基盤「Agent Cloud」を新たに発表した。",
+      "detail": "データセキュリティ企業Rubrikが、AnthropicのAIコーディングツール「Claude Code」などのAIエージェント向けに、セキュリティ基盤「Rubrik Agent Cloud」を発表した。AIエージェントが企業データやシステムへのアクセス権を持つケースが増える中、エージェントの権限管理や監査、バックアップなどを行う仕組みとされる。具体的な機能構成や提供開始時期など詳細は記事本文からは確認できていない。",
+      "new_facts": [
+        "RubrikがAIエージェント向けセキュリティ基盤「Rubrik Agent Cloud」を発表した",
+        "対象にAnthropicのClaude Codeが含まれる"
       ],
       "event_date_precision": "unknown"
     },
@@ -692,6 +822,47 @@
       "new_facts": [
         "DeepSeekの新AIモデルは比較対象の「Fable5」より105倍安いとされる",
         "価格が安くても総コストは下がらないと指摘されている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_9c566c96687724b8253b",
+      "story_id": "story_ddc5887fc504325d9e",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "著名投資家マイケル・バリー氏、Adobeの生成AI戦略Fireflyを評価",
+      "source_published_at": "2026-08-08T03:58:25.000Z",
+      "published_at": "2026-08-08T03:58:25.000Z",
+      "fetched_at": "2026-08-09T04:37:40.295Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "投資家マイケル・バリー氏がSaaS分析でAdobeを「見逃せない好機」と評し、生成AIツールFireflyやOpenAI・Googleとの連携を評価していると報じられた。",
+      "source_name": "Stocktwits",
+      "source_url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxPWTVpSEp3NVZRaml5ZldGSnRBaWlIMnJydEw5dFhfVzdlbFJ2MTllV1A3U0c0bHA3NE1VbHFERjlXMTktbkNZbE9NeG1tWkJyZmFlV21uRVUyMWp0R1U2N3hkYVBvWGcyTURpcHpuTnVZdGdwem95alZzQ1dWTW5xbFNnTTZLQVpYQ3ZBblNSV2FmYllJSkFiODZRN1pGN0kxRzZtaUtaNjJRNk5UaUFsal9BRFBxZWtDUnJ3Ukc2M2JkMmxubTJkMmVMRDNLUXViMnYzSU80RmJIZ09UdGxYOUpWamRoT2hXc3p5Vl85RXp4N04yQ2RfUGs5NjJjQTN0Wjkycw?oc=5",
+      "story_entities": [
+        "Adobe",
+        "Firefly",
+        "マイケル・バリー",
+        "adobe",
+        "firefly"
+      ],
+      "primary_entity": "Adobe",
+      "story_subject": "AdobeのFireflyおよびAI提携に対する投資家評価",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "Adobe株・SaaS市場",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "著名投資家がAdobeのAI戦略、特にFireflyとOpenAI・Googleとの提携を評価対象として取り上げた。",
+      "detail": "Stocktwitsの報道によると、著名投資家として知られるマイケル・バリー氏は、最新のSaaS（サブスクリプション型ソフトウェア）分析の中でAdobeを「fat pitch」、すなわち絶好の投資機会と表現した。バリー氏は特に、Adobeの生成AIツール「Firefly」や、OpenAIおよびGoogleとのAI関連の提携関係を評価の根拠として挙げているという。記事では、Adobeが自社の画像・動画生成AIとともに他社AI企業との連携を進めている点が、投資判断の材料として注目されている。",
+      "new_facts": [
+        "マイケル・バリー氏がAdobeを『fat pitch』と評したと報じられた",
+        "評価の根拠としてFireflyやOpenAI・Googleとの提携が挙げられている"
       ],
       "event_date_precision": "unknown"
     },
@@ -8286,7 +8457,7 @@
       "story_id": "story_2785705e7d0827980b",
       "story_sequence": 1,
       "relation_type": "new",
-      "relation_confidence": 1,
+      "relation_confidence": 0.5163636363636364,
       "title": "Gemini SparkがChromeと連携、ネットの雑務を自動代行",
       "source_published_at": "2026-07-30T20:00:00.000Z",
       "published_at": "2026-07-30T20:00:00.000Z",
@@ -8310,9 +8481,10 @@
       "event_scope": "",
       "fact_slots": [],
       "structured_complete": false,
-      "dedupe_decision": "new",
+      "dedupe_decision": "uncertain",
       "dedupe_reasons": [
-        "no_previous_story"
+        "shared_entity",
+        "same_subject"
       ],
       "change_summary": "Chromeとの統合による新たな自動操作機能を追加し、Google AI Pro加入者向けに160以上の国・地域で利用開始しました。",
       "detail": "Gemini Sparkは、ユーザーに代わってウェブ上の作業をこなすGoogleのAIエージェント機能です。今回Chromeブラウザと直接連携することで、本人の許可のもと、保存済みのログイン情報やパスワードを使い、賃貸物件の内見予約や航空券の検索・予約開始といった面倒なネット手続きを代行できるようになりました。悪意ある指示を紛れ込ませる「プロンプトインジェクション」という攻撃への対策も施され、支払いなど重要な操作は必ず本人に確認を求める仕組みです。まずは米国から提供を始め、順次対象地域を広げる予定です。",
@@ -8601,6 +8773,46 @@
       "change_summary": "GPT-5.6シリーズの利用価格が最大80%引き下げられ、一部モデルの処理速度も大幅に向上しました。",
       "detail": "GPT-5.6には複数の種類（Luna、Terra、Sol）があり、それぞれ用途や性能が異なります。今回、Lunaは価格が80%下がり、Terraも20%下がりました。またSolは価格は変わらないものの、高速処理モードの速度が従来の1.5倍から2.5倍に向上しています。これらの変更は、AIサービスを仲介するAI Gateway経由の利用に反映され、追加の手数料なしで反映される点がポイントです。",
       "new_facts": [],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_12497a65dae6916404aa",
+      "story_id": "story_63ad60a9d91b973bae",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Googleの新モデル「Gemini Omni」、リークされたデモ動画でVeo 3.1を上回るとの情報",
+      "source_published_at": "2026-07-28T07:50:41.000Z",
+      "published_at": "2026-07-28T07:50:41.000Z",
+      "fetched_at": "2026-08-09T04:37:27.438Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "リークされたデモ動画で、Googleの新モデル「Gemini Omni」がVeo 3.1より優れた動画生成性能を示したと報じられた。",
+      "source_name": "TechJuice",
+      "source_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNRXlxLWhaMDFzVGlpRHNKNnlUQmlMQWRvRVphUGVoMmFBNGVlbXdQUzJzZzFTODIwSlFmd3UxNjRaZTZmbmJmX1YzX2xpazZPOGwwd0tKNWRqNjhaN0JaZmRJMFNWS1Z1MW51VUo0Zlo2UkZxNnlzZXVmSXVrSzZVcUMxaloyYXpq?oc=5",
+      "story_entities": [
+        "Google",
+        "Gemini Omni",
+        "Veo 3.1",
+        "google",
+        "geminiomni"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "Gemini Omni",
+      "event_type": "other",
+      "event_stage": "rumor",
+      "event_scope": "不明",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "リーク情報として、Googleの新モデル「Gemini Omni」がVeo 3.1を上回る動画生成性能を示したとされる。",
+      "detail": "リークされたデモ動画を基に、Googleが開発中とされる新モデル「Gemini Omni」が、既存の動画生成モデル「Veo 3.1」を上回る性能を示したと報じられている。この情報はリーク経由であり、Google公式の発表ではない。具体的な機能や公開時期など詳細は記事本文からは確認できていない。",
+      "new_facts": [
+        "リークされたデモ動画でGemini OmniがVeo 3.1を上回ったと報じられた"
+      ],
       "event_date_precision": "unknown"
     }
   ]
