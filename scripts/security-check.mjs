@@ -118,6 +118,18 @@ if (/grant execute on function public\.registered_user_count\(\) to (?:anon|auth
 if (!/function public\.register_unique_visitor\(p_visitor_key_hash text\)\s*returns boolean/i.test(schema)) {
   findings.push("supabase/schema.sql: unique visitor RPC must not return a total count");
 }
+if (!/rpc\('operator_metrics'\)/.test(html) || !/access_source==='operator_grant'[\s\S]{0,180}loadOperatorMetrics\(\)/.test(html)) {
+  findings.push("index.html: operator-only metrics loading is missing");
+}
+if (!/function public\.operator_metrics\(\)\s*returns jsonb[\s\S]{0,900}operator_grant/i.test(schema)) {
+  findings.push("supabase/schema.sql: server-side operator metrics authorization is missing");
+}
+if (/grant execute on function public\.operator_metrics\(\) to (?:anon|anon, authenticated)/i.test(schema)) {
+  findings.push("supabase/schema.sql: operator metrics are exposed anonymously");
+}
+if (!/grant execute on function public\.operator_metrics\(\) to authenticated/i.test(schema)) {
+  findings.push("supabase/schema.sql: authenticated operator metrics grant is missing");
+}
 
 if (findings.length) {
   console.error("Security checks failed:");
