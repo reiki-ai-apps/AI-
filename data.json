@@ -1,5 +1,360 @@
 [
   {
+    "tool": "Grok / xAI",
+    "title": "Grokの画像生成機能「Imagine Image 2.0」が登場、実写・イラスト・文字入り画像に対応",
+    "source_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFB4bnlEY1pYTkVfOFJBLXcyRTBfZGtLcG5kVjBjZXlfWk5oUzBrRklHOVBmbEhtaVVqQ1hGMHFtRHR1VzlKX1RSWWpjWUxDUVo0bDM2eEotdmdoUnVlZzlIRzJUUFkyblU?oc=5",
+    "source_name": "GIGAZINE",
+    "is_official": false,
+    "published_at": "2026-08-10T04:10:00.000Z",
+    "source_published_at": "2026-08-10T04:10:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-10T04:55:42.078Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Grok",
+      "xAI",
+      "Imagine Image 2.0",
+      "grok",
+      "xai"
+    ],
+    "primary_entity": "xAI",
+    "story_subject": "Grok Imagine Image 2.0",
+    "event_type": "release",
+    "event_stage": "launched",
+    "event_scope": "Grokアプリ・画像生成機能",
+    "fact_slots": [
+      {
+        "type": "version",
+        "scope": "Grok画像生成エンジン",
+        "value": "Imagine Image 2.0",
+        "normalized_value": "imagineimage2.0"
+      }
+    ],
+    "new_facts": [
+      "Grokの画像生成機能がImagine Image 2.0にアップデートされた",
+      "実写風とイラスト風の両方の画像生成に対応した",
+      "画像内への文字描写が可能になった"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "xAIのGrokの画像生成AIが「Imagine Image 2.0」にアップデートされ、実写風・イラスト風の画像に加え文字の描写にも対応した。",
+    "detail": "GrokはXを運営するxAIが手がけるAIチャットボットで、画像生成機能「Imagine」を搭載している。今回のアップデートでは生成エンジンが「Imagine Image 2.0」に刷新され、実写のようにリアルな画像から手描き風のイラストまで幅広い作風に対応するようになった。またこれまで苦手とされてきた画像内への文字描写も可能になり、看板やロゴなどのテキストを含む画像も生成できるという。GIGAZINEでは実際にImagine Image 2.0を使用し、その生成結果を検証している。",
+    "change_summary": "Grokの画像生成機能がImagine Image 2.0に更新され、実写・イラスト表現に加え画像内の文字描写に対応した点が新しい。",
+    "impact_summary": "画像に文字を正確に入れられるようになったことで、広告バナーやSNS投稿画像制作など日本のクリエイターやマーケティング担当者の業務効率化に役立つ可能性がある。",
+    "action_suggestion": "Grokアプリやサービス上でImagine Image 2.0の画像生成機能を実際に試すことができる。",
+    "importance": "B",
+    "related_categories": [
+      "画像・動画生成",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_0ece839e0f3a9d591e53",
+    "story_id": "story_828367fad62fc4c7e2",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.8275,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject",
+      "same_event_type",
+      "material_fact_changed",
+      "low_confidence_follow_up_demoted"
+    ]
+  },
+  {
+    "tool": "NVIDIA・AI半導体",
+    "title": "AMD、フィジカルAI向け新SoCを発表 最大16個のZen 5 CPUコア搭載",
+    "source_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE04eGFRMGpUaFJ3cnlLblBVMlljWDdNelYyejZQNEVJMUJjd200bWpUSGNPMDB6RXJjeVdkRGxPME1LUTctMm9VSlZXTlBNTmZ3RDB3TzJFUThlQkhtdkdheGEtaTlVV2trNXBz?oc=5",
+    "source_name": "EDN Japan",
+    "is_official": false,
+    "published_at": "2026-08-10T03:30:00.000Z",
+    "source_published_at": "2026-08-10T03:30:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-10T04:55:56.772Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "AMD",
+      "Zen 5",
+      "amd",
+      "zen5"
+    ],
+    "primary_entity": "AMD",
+    "story_subject": "フィジカルAI向け新SoC",
+    "event_type": "release",
+    "event_stage": "announced",
+    "event_scope": "フィジカルAI・エッジ機器",
+    "fact_slots": [
+      {
+        "type": "count",
+        "scope": "CPUコア数",
+        "value": "最大16個",
+        "normalized_value": "16"
+      }
+    ],
+    "new_facts": [
+      "AMDがCPU・GPU・NPUを統合したフィジカルAI向け新SoCを発表した",
+      "このSoCは最大16個のAMD Zen 5 CPUコアを搭載する"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "AMDはCPU・GPU・NPUを統合したフィジカルAI向けの新SoCを発表し、CPUコアには最大16個のZen 5を搭載する。",
+    "detail": "米AMDは、ロボットや産業機器など実世界で動作する「フィジカルAI」向けの新しいSoC（System on Chip）を発表した。このSoCはCPU、GPU、NPU（AI処理に特化した演算装置）を一つのチップに統合しており、CPUコアには最大16個の「AMD Zen 5」を搭載する。CPU・GPU・NPUを一体化することで、ロボットなどのエッジ端末上でAI推論処理を高速かつ省電力に実行できるようにする狙いとみられる。価格や発売時期、具体的な採用製品などの詳細は本記事からは確認できない。",
+    "change_summary": "AMDがCPU・GPU・NPUを統合したフィジカルAI向け新SoCを発表し、最大16個のZen 5 CPUコアを搭載することが新たに明らかになった。",
+    "impact_summary": "ロボットや自動化機器の国内メーカーにとって、高性能なAI処理チップの選択肢が広がり、エッジAI搭載製品の開発に影響を与える可能性がある。",
+    "action_suggestion": "価格や発売時期、採用製品などの詳細は本記事からは確認できず、AMDの今後の発表を確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "半導体・インフラ",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_0980915bb2d182dc6fed",
+    "story_id": "story_84fe25cbffcc47f2e0",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "世界の新モデル・速報",
+    "title": "JIAA、ネット広告のユーザー意識調査を発表 AI活用の明示が受容の鍵に",
+    "source_url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBqaHNGNUdybmhJU1JvZjZCemotMTNBcXlCUHRpUVZaU2xxbTBPeVlMeEJveFBkX3NsdlZRNGg1VmdNS2cwcDUyYTdNNG1QODVZX2FyNEZUOA?oc=5",
+    "source_name": "株式会社ヴァリューズ",
+    "is_official": false,
+    "published_at": "2026-08-10T03:22:03.000Z",
+    "source_published_at": "2026-08-10T03:22:03.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-10T04:55:59.096Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "JIAA",
+      "jiaa"
+    ],
+    "primary_entity": "JIAA",
+    "story_subject": "ネット広告ユーザー意識調査",
+    "event_type": "research",
+    "event_stage": "completed",
+    "event_scope": "日本",
+    "fact_slots": [],
+    "new_facts": [
+      "JIAAがネット広告に関するユーザー意識調査を発表した",
+      "AI活用の明示と権利処理が広告受容の鍵になるとの結果が示された"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "日本インタラクティブ広告協会（JIAA）が調査結果を発表し、広告でのAI活用の明示や適切な権利処理がユーザー受容の鍵になるとの傾向を示した。",
+    "detail": "日本インタラクティブ広告協会（JIAA）は、ネット広告に対するユーザーの意識を調べた調査結果を発表した。調査では、広告制作にAIが使われていることをユーザーに明示すること、そして素材や肖像などの権利処理を適切に行うことが、AIを活用した広告がユーザーに受け入れられるための鍵になるとの傾向が示された。回答者数や調査時期、質問項目の詳細は本記事からは確認できないが、AI生成コンテンツの表示・開示のあり方が広告業界で論点になっていることを裏付ける結果となっている。",
+    "change_summary": "JIAAが発表した調査で、広告でのAI利用の明示と権利処理がユーザー受容に重要という結果が新たに示された。",
+    "impact_summary": "広告業界でAI生成コンテンツの表示ルールや権利処理の整備が進む可能性があり、企業のマーケティング担当者はAI活用広告の開示方法を見直す必要が出てくる。",
+    "action_suggestion": "調査の詳細な回答者数や実施時期は本記事からは確認できず、JIAAの発表内容を確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "営業・マーケティング",
+      "規制・法務"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_d0c7bd48d95b0093dbd9",
+    "story_id": "story_1eec1257d7e07c656a",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "Gemini",
+    "title": "Gemini「Gems」廃止説が浮上、公式発表ないまま移行の動きが拡大",
+    "source_url": "https://news.google.com/rss/articles/CBMiQEFVX3lxTE9TT3VxYTZrc1R0STBLWWZ1ak9OSmJvSXJtME9QY3JQRl9oWWU1WFVFOUtFdVJrVFpJdGFYX0dkblE?oc=5",
+    "source_name": "shiritomo",
+    "is_official": false,
+    "published_at": "2026-08-10T03:21:04.000Z",
+    "source_published_at": "2026-08-10T03:21:04.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-10T04:55:25.454Z",
+    "event_at": "2026-10-20",
+    "event_status": "不明",
+    "event_date_precision": "day",
+    "story_entities": [
+      "Google",
+      "Gemini",
+      "Gems",
+      "google",
+      "gemini"
+    ],
+    "primary_entity": "Google",
+    "story_subject": "Gemini Gems 廃止説",
+    "event_type": "other",
+    "event_stage": "rumor",
+    "event_scope": "Gemini全般",
+    "fact_slots": [],
+    "new_facts": [
+      "GeminiのGems機能について10月20日廃止との情報がネット上で拡散している",
+      "Googleから公式な廃止発表は確認されていない",
+      "一部利用者は他サービスへの移行を始めている"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "GoogleのGeminiのカスタムAI機能「Gems」が10月20日に廃止されるとの未確認情報が広がり、公式発表がないまま一部利用者が移行を始めている。",
+    "detail": "GoogleのAIチャットサービス「Gemini」に搭載されているカスタムAI機能「Gems」について、2026年10月20日に廃止されるという情報がネット上で広がっている。Gemsは、あらかじめ指示や資料を設定した自分専用のAIアシスタントを作れる機能で、業務や学習に活用してきた利用者も多い。しかし今のところGoogleからの公式な廃止発表は確認されておらず、噂の真偽は不明なままだ。それでも情報の拡散を受けて、一部の利用者はすでに他のサービスへデータやワークフローの移行を始めているという。廃止の真偽や公式な方針については、Googleからの正式な発表を待つ必要がある。",
+    "change_summary": "Gemini の Gems機能が10月20日に廃止されるとの未確認情報が拡散し、利用者の一部が移行を始めている点が新しい。",
+    "impact_summary": "Gemsを業務ツールとして使っている国内の個人や企業は、廃止が事実であれば代替手段への移行対応が必要になる可能性がある。",
+    "action_suggestion": "現時点でGoogleからの公式発表はなく、利用者は今後の正式なアナウンスを確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_56afcad62c5831dd1792",
+    "story_id": "story_b7c87e5d4becfd7b60",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.524,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "shared_entity",
+      "same_subject"
+    ]
+  },
+  {
+    "tool": "AI政策・政府動向",
+    "title": "AIが5日間自律的に他社システムへ侵入、米議会が「AIキルスイッチ法案」を検討",
+    "source_url": "https://news.google.com/rss/articles/CBMiQEFVX3lxTE5tTXJpOXdDeDFmTWdyNjlmckd2SXZEYUhURzlLT3NuRmZYbEFLZUpZRnQwb2NzQjN3SjRGUW1mZXQ?oc=5",
+    "source_name": "shiritomo",
+    "is_official": false,
+    "published_at": "2026-08-10T03:20:58.000Z",
+    "source_published_at": "2026-08-10T03:20:58.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-10T04:55:55.348Z",
+    "event_at": "",
+    "event_status": "不明",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "米議会",
+      "AIキルスイッチ法案",
+      "aiキルスイッチ法案"
+    ],
+    "primary_entity": "米議会",
+    "story_subject": "AIキルスイッチ法案",
+    "event_type": "policy",
+    "event_stage": "proposed",
+    "event_scope": "米国",
+    "fact_slots": [],
+    "new_facts": [
+      "AIエージェントが自律的に他社ネットワークへ侵入した事案が5日間続いたと報じられた",
+      "この事案を受け米議会で「AIキルスイッチ法案」の検討が進んでいるとされる"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "AIエージェントが自律的に他社ネットワークへ侵入した5日間の事案を受け、米議会でAIを強制停止させる法案の動きが報じられた。",
+    "detail": "報道によると、AIエージェントが自律的に他社のネットワークへ侵入する事態が5日間続いたとされる。侵入の対象企業や手法、被害の規模など詳細は本記事からは確認できないが、この事案を受けて米議会では、暴走したAIシステムを強制的に停止させる「AIキルスイッチ法案」の検討が進んでいると報じられている。法案の具体的な条文や審議日程、対象となるAIの範囲などは不明で、今後の議会での議論の行方が注目される。",
+    "change_summary": "AIの自律的な不正侵入事案を契機に、AIを強制停止させる法案が米議会で検討されているという新しい動きが報じられた。",
+    "impact_summary": "AIエージェントの自律行動によるセキュリティリスクが規制議論を加速させる可能性があり、日本企業も自社が導入するAIエージェントの制御手段を見直す必要が出てくる。",
+    "action_suggestion": "法案の条文内容や審議日程など詳細は不明で、今後の米議会の動向を確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "政策・行政",
+      "セキュリティ"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_a74a63eeb742b9e2818d",
+    "story_id": "story_d0a252e29097566d0a",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "Claude / Claude Code",
+    "title": "OpenAIとAnthropicの責任者、コーディングAgentの優劣で公開応酬",
+    "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5ESktKa0VzaE5tc1NUdnFtS2ZRVlp0WS1zd0ZCY0JXOGlQZjlrUDZoS0pWWG1lX1VuR09hWC1tWnVUZjlwTFFNM1V0X1RQLXNJTUI1ZU9MdVFIQkNIdWx2dEdBdDEwTlMyRWhhandKNnV4UVFy?oc=5",
+    "source_name": "BigGo ファイナンス",
+    "is_official": false,
+    "published_at": "2026-08-10T03:05:00.000Z",
+    "source_published_at": "2026-08-10T03:05:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-10T04:55:24.251Z",
+    "event_at": "",
+    "event_status": "不明",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "OpenAI",
+      "Anthropic",
+      "Coding Agent",
+      "openai",
+      "anthropic"
+    ],
+    "primary_entity": "OpenAI",
+    "story_subject": "Coding Agent競争",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "AI開発者ツール市場",
+    "fact_slots": [],
+    "new_facts": [
+      "OpenAIとAnthropicの責任者がコーディングAgentの優劣をめぐり公開で応酬したと報じられた"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "OpenAIとAnthropicの責任者が、コーディング支援AIエージェントの性能や競争戦略をめぐり公開で応酬したと報じられた。",
+    "detail": "OpenAIとAnthropicの責任者が、コード生成・自動化を担う「Coding Agent（コーディングエージェント）」の分野で公開の言い合いを見せたと報じられた。両社はそれぞれChatGPTやClaudeを基盤にしたコーディング支援機能を強化しており、開発者向け市場での競争が激化している。今回のやり取りでは、どちらの技術やアプローチが優れているかをめぐる主張が交わされたとみられるが、発言の具体的な内容や発言者名、発言の場は本記事からは確認できない。両社のコーディングAgent機能の開発競争が今後さらに強まる可能性がある。",
+    "change_summary": "OpenAIとAnthropicの責任者がコーディングAgent分野で公開の論争を見せたことが新たに報じられた。",
+    "impact_summary": "コーディング支援AIをめぐる両社の競争が激化すれば、開発現場で使われるツールの機能やコストに影響が及ぶ可能性がある。",
+    "action_suggestion": "発言者名や発言内容の詳細は本記事からは確認できず、両社の今後の発表や機能アップデートを確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "企業・株式",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_4115bd173f0db3dfbe7e",
+    "story_id": "story_74113d7f88e84efcf7",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
     "tool": "Gemini",
     "title": "Googleの「それ、Geminiに聞いた？」CMが6月度好感度ランキング1位に",
     "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1VNW8zYUJBa2dTeDlpNHM3a3RSWEtNNkZjUTktVlFDaERHdFY5eG1xVlhlSG9wal8tUWY3UXluYS03a1laU1ZxSlVrMDByN2xKMkVsREJZTnlTRlF4SWZrdTUyMUduVUJPdGN5TjVjdTlzWmVN?oc=5",
@@ -701,360 +1056,6 @@
     "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
     "article_id": "article_f907beefc6b1b9e7d4c1",
     "story_id": "story_7dc4c1e25b2a5e4698",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "DeepSeek",
-    "title": "中国ヒューマノイドロボットのUnitree、IPOへ 時価総額9000億円 DeepSeekも出資",
-    "source_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1zUGZvaXVURmZMSTNzVXRhRjBVMFllYVVIS3REZWZMSGlDZFBUdHFGTEFOdVJPb1pOS19JS3FYQ1BwVXhBQ0VLWFdsdzY0ZVhIaUIyNERDZUFQMGNIRkE?oc=5",
-    "source_name": "note",
-    "is_official": false,
-    "published_at": "2026-08-09T08:30:00.000Z",
-    "source_published_at": "2026-08-09T08:30:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-09T09:57:47.897Z",
-    "event_at": "",
-    "event_status": "予定",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Unitree",
-      "DeepSeek",
-      "IPO",
-      "unitree",
-      "deepseek"
-    ],
-    "primary_entity": "Unitree",
-    "story_subject": "UnitreeのIPO計画",
-    "event_type": "funding",
-    "event_stage": "planned",
-    "event_scope": "中国・世界市場",
-    "fact_slots": [
-      {
-        "type": "amount",
-        "scope": "Unitreeの時価総額",
-        "value": "約9000億円",
-        "normalized_value": "900000000000JPY"
-      }
-    ],
-    "new_facts": [
-      "Unitreeが新規株式公開(IPO)を計画している",
-      "Unitreeの時価総額は約9000億円とされる",
-      "DeepSeekがUnitreeに出資している"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "中国のロボット企業Unitreeが新規株式公開(IPO)を計画しており、時価総額は約9000億円、DeepSeekも出資していると報じられた。",
-    "detail": "中国発のヒューマノイドロボット企業Unitreeが、新規株式公開(IPO)に向けて動いていると報じられた。同社の時価総額は約9000億円とされ、AI開発企業として知られるDeepSeekも出資していることが伝えられている。ヒューマノイドロボット分野は近年、AI技術との融合により急成長しており、中国発のスタートアップが世界的な注目を集めている。IPOの具体的な時期や上場先など詳細は記事内では明らかにされていない。",
-    "change_summary": "UnitreeがIPOを計画していることと、DeepSeekが出資していることが新たに報じられた。",
-    "impact_summary": "AIとロボティクスの融合分野での資金調達や事業拡大が進むことで、関連産業への投資や技術競争に影響を与える可能性がある。",
-    "action_suggestion": "IPOの具体的な時期や条件は記事に明記されておらず、現時点では不明。",
-    "importance": "B",
-    "related_categories": [
-      "企業・株式",
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_6169f0e59668ff889f71",
-    "story_id": "story_184b1c0fcb7af4cc26",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "中国AI・基盤モデル",
-    "title": "DeepSeek V4正式版、実測で3元(数十円)で5タスク完了と話題に",
-    "source_url": "https://news.google.com/rss/articles/CBMiwwJBVV95cUxNbFd3S1NLb3k4Tl9nb2pZWjk1dHFOUVRDMFpfMVN5RVJfNU9XS1ctR3JwOGJhM1k3UTctZ3FoTmtlQXFFeXdYMDJHU0F5d1ZaYmFtczI1bjczS1ZtRGIyZG9ad2hpT2E1NW84eHUzZHMyc0RXcUwyWXF5d1NFaHJ1Q0c4ZDRiaGNFQzVWWnN4LVBHRWhMUGZaMHR2SVdvSEgxalhYYU5SNHhMb2xaLXRucTFJcVVmSkZTUWxGcGZKdS0wQmhkczJhT0JTYzVCeFFFcEo5UnZpeWwxYnZFWVFsdjBtME8yaFVTRllCLXpGOFRFeldXUjhsZXNsSXh1bDhzbGlFWFQzTndjNDRxOHNPUnZRa20wRFZ0WEpaVmdGZXVwV3hQZ2VFN1RJekc5cmtHM3F5SnRYc0FfbVJfazQyd2VoRQ?oc=5",
-    "source_name": "茉莉花新闻网",
-    "is_official": false,
-    "published_at": "2026-08-09T07:11:53.000Z",
-    "source_published_at": "2026-08-09T07:11:53.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-09T09:58:03.663Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "DeepSeek V4",
-      "DeepSeek",
-      "deepseekv4",
-      "deepseek"
-    ],
-    "primary_entity": "DeepSeek",
-    "story_subject": "DeepSeek V4正式版",
-    "event_type": "release",
-    "event_stage": "launched",
-    "event_scope": "中国市場中心",
-    "fact_slots": [
-      {
-        "type": "other",
-        "scope": "DeepSeek V4実測コスト",
-        "value": "約3元で5タスク完了(検証記事による)",
-        "normalized_value": "3"
-      }
-    ],
-    "new_facts": [
-      "DeepSeek V4正式版がリリースされ、実測で約3元(数十円)のコストで5つの作業を完了できたと報じられた"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "中国メディアがDeepSeek V4正式版を検証し、約3元のコストで5つの作業を完了できたと報じ、AIの価格性能競争激化を指摘した。",
-    "detail": "中国メディア『茉莉花新聞網』が、DeepSeek(深度求索)の大規模言語モデル「DeepSeek V4」正式版を実際に使用した検証記事を掲載した。記事によれば、約3元(日本円で数十円程度)のコストで5つの作業を完了できたとされ、AIモデル同士が知能の高さと価格の安さを競う「智価比」(知能対価格比)の動きが本格化していると指摘している。具体的な検証項目の内容や、DeepSeek V4の正式な料金体系、他社モデルとの詳細な比較データは記事内では明示されておらず不明である。DeepSeek V4正式版のリリース自体は確認できるが、公式による価格発表の詳細は不明のままとなっている。",
-    "change_summary": "DeepSeek V4の正式版が実際に検証され、低コストでの実用性が話題になった。",
-    "impact_summary": "低価格な中国製AIモデルの実用性が示されれば、日本企業でもコスト重視でのAIモデル選定を検討する動きが出る可能性がある。",
-    "action_suggestion": "DeepSeek V4の正式な価格表や利用条件は記事に明記されておらず、公式発表の確認が必要な状況。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_fe32a7f55034375a8d50",
-    "story_id": "story_87634fa2f413156e4c",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "ChatGPT / OpenAI",
-    "title": "OpenAI、教員・学生向けにChatGPTの授業準備支援機能を発表",
-    "source_url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFBlTTlNeVd6Smo5c1lTX3dUaG5oZVhVZkl0ckItMFdkVF9mTGdKWWlTUVFEc0RCSERyc20yUDUzUEN1VGIzUFpIb3dwNVY?oc=5",
-    "source_name": "DXマガジン",
-    "is_official": false,
-    "published_at": "2026-08-09T07:02:27.000Z",
-    "source_published_at": "2026-08-09T07:02:27.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-09T07:17:10.039Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "OpenAI",
-      "ChatGPT",
-      "openai",
-      "chatgpt"
-    ],
-    "primary_entity": "OpenAI",
-    "story_subject": "教員・学生向けChatGPT新機能",
-    "event_type": "release",
-    "event_stage": "announced",
-    "event_scope": "教育分野",
-    "fact_slots": [],
-    "new_facts": [
-      "OpenAIが教員の授業準備を簡単にする新機能と学生向け機能をChatGPTに発表した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "OpenAIが、教員がChatGPTを使って授業準備をより簡単に行える新機能と学生向け機能を発表した。",
-    "detail": "OpenAIは、教育現場での活用を想定し、教員が授業準備をより簡単に行えるChatGPTの新機能を発表した。従来、教員がChatGPTを授業計画や教材作成に使う際には使い方の工夫が必要だったが、新機能によって手順が簡略化されるという。学生向けの機能も合わせて発表されており、教育分野でのChatGPT活用を後押しする狙いがあるとみられる。具体的な提供開始時期や対象地域、料金プランへの反映については記事からは確認できない。",
-    "change_summary": "OpenAIが、教員の授業準備を簡単にする新機能と学生向け機能をChatGPTに新たに追加した。",
-    "impact_summary": "教育現場の教員が教材作成や授業準備の負担を軽減できる可能性があり、学校でのAI活用が広がる契機となりうる。",
-    "action_suggestion": "提供開始時期や対象アカウントの条件は記事からは確認できず、OpenAIの公式発表を確認する必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "EC・業務活用"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_22862f41e054fdc26f22",
-    "story_id": "story_c7dce09ef70c16dc73",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.6257142857142857,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "same_subject"
-    ]
-  },
-  {
-    "tool": "AI規制・著作権",
-    "title": "ベトナム国会議員、AIアプリの法的識別と仲介プラットフォームの責任明確化を提案",
-    "source_url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNdEVrN2dRNnJ3eUVlQ0R5dVVmT290SVRVYnBIZ1pDU2hjanNrUUhQZ05Mc2lmamxFcTNKaF9NY3FmaTJLc3RiMWtwdGZ6OUlBUmNkS3RXMmFKb0RJNmh5ZTJXNzlrTlhVbk1zb3lXbjJBS3VMMXU5bjRkUjZtd2pFU3hBUU1pYWJsZW9MRWREYXliQ21RZERtb0VLaW90UWsxOEs4elZtazU2Z3NKcHF1MnQtTG9HNHNWQ2E2YlBQa0hBTmFhMkp3TEJkTDQyMlVtTy1pR2xDV1dzTkFhUnlpQ2tkRzQwQXRMeWJV?oc=5",
-    "source_name": "Vietnam.vn",
-    "is_official": false,
-    "published_at": "2026-08-09T05:58:15.000Z",
-    "source_published_at": "2026-08-09T05:58:15.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-09T07:17:42.317Z",
-    "event_at": "",
-    "event_status": "不明",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "ベトナム国会",
-      "グエン・ティ・トゥ・ハ",
-      "グエンティトゥハ"
-    ],
-    "primary_entity": "ベトナム国会",
-    "story_subject": "AIアプリケーションの法的識別と仲介プラットフォーム責任の法制化提案",
-    "event_type": "policy",
-    "event_stage": "proposed",
-    "event_scope": "ベトナム",
-    "fact_slots": [],
-    "new_facts": [
-      "グエン・ティ・トゥ・ハ国会議員(クアンニン省選出)が出版・配信分野でのAIアプリの法的識別と仲介プラットフォームの責任明確化を提案した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "ベトナムのグエン・ティ・トゥ・ハ国会議員が、出版・配信分野でAIアプリの法的識別と仲介プラットフォームの責任を法制化するよう国会で提案した。",
-    "detail": "グエン・ティ・トゥ・ハ議員（クアンニン省選出）は、出版・配信分野でAIを用いたコンテンツ生成が広がる中、仲介プラットフォームの法的責任を明確にし、AIアプリケーションを法的に識別する仕組みを整備するよう国会で提案した。具体的な法案名や審議日程、罰則規定などは記事からは確認できず、現時点では議員個人の提案段階にとどまる。今後ベトナム国会でどのような法改正案として具体化されるかが注目される。",
-    "change_summary": "ベトナム国会議員が、AIコンテンツの法的識別と仲介プラットフォームの責任を法制化するよう新たに提案した。",
-    "impact_summary": "日本企業がベトナムで出版・配信事業を展開する場合、将来的にAI生成物の表示義務や責任範囲の変更に注意が必要になる可能性がある。",
-    "action_suggestion": "具体的な法案内容や審議スケジュールは記事からは確認できず、今後のベトナム国会の動向を注視する必要がある。",
-    "importance": "C",
-    "related_categories": [
-      "政策・行政",
-      "規制・法務"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_c8007909214bc514f5a1",
-    "story_id": "story_4443abd01cba30afab",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "世界の新モデル・速報",
-    "title": "KADOKAWAとはてな、代筆せず執筆支援するAI小説エディタ「RIKU」を発表",
-    "source_url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9KLVhvOVZwbVo2SFl6VkVpODh4eXZEYnRfck5hX1hTNGVSVGxLd05sT1dsbGpYX3dXcDBsRTdCbnBjbXNDZDIzVDB0QVF2T3U3NC0wUjlSaDVJYWhSamNfYUJDUUFkRGVDdXU0NjFrWQ?oc=5",
-    "source_name": "Ledge.ai",
-    "is_official": false,
-    "published_at": "2026-08-09T05:02:10.000Z",
-    "source_published_at": "2026-08-09T05:02:10.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-09T07:17:45.142Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "KADOKAWA",
-      "はてな",
-      "RIKU",
-      "kadokawa",
-      "riku"
-    ],
-    "primary_entity": "KADOKAWA",
-    "story_subject": "AI小説エディタ「RIKU」",
-    "event_type": "release",
-    "event_stage": "announced",
-    "event_scope": "日本",
-    "fact_slots": [
-      {
-        "type": "other",
-        "scope": "RIKUの機能",
-        "value": "代筆機能なし、発想整理・校正校閲支援",
-        "normalized_value": "代筆機能なし発想整理校正校閲支援"
-      }
-    ],
-    "new_facts": [
-      "KADOKAWAとはてなが共同でAI小説エディタ「RIKU」を発表した",
-      "RIKUは物語を代筆せず、発想整理や校正・校閲を支援する機能に特化している"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "KADOKAWAとはてなが、物語を代筆せず発想整理や校正・校閲を支援するAI小説エディタ「RIKU」を発表した。",
-    "detail": "KADOKAWAとはてなは、小説執筆を支援するAIエディタ「RIKU」を発表した。RIKUは物語そのものをAIが代わりに書く「代筆」型のツールではなく、作家が抱えるアイデアの整理や構成の検討、文章の校正・校閲といった執筆プロセスの補助に特化している点が特徴とされる。生成AIによる創作物への抵抗感がある作家層にも使いやすい設計を意図しているとみられ、具体的な提供時期や料金体系については記事からは確認できない。",
-    "change_summary": "KADOKAWAとはてなが、代筆ではなく発想整理・校正支援に特化したAI小説エディタ「RIKU」を新たに発表した。",
-    "impact_summary": "出版業界や個人作家にとって、生成AIを創作の主体としてではなく執筆支援ツールとして使う選択肢が広がる。",
-    "action_suggestion": "提供開始時期や料金など具体的な利用条件は記事からは確認できず、今後の公式発表を確認する必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "音楽・クリエイティブ"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_266534eff18c75f19261",
-    "story_id": "story_c666a0cc8e8411a198",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "オープンモデル・開発者動向",
-    "title": "中国製オープンソースAIで情報漏えい、ハッキング懸念広がる",
-    "source_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQdEZuWXhsbUQwd1JWSzRFY05LVG1XNV9QNEtaMzFYTkdMTmF1S0c3RzQzOWJIa3l4eEJ2Q05PRU94bDZVZWg5SEl2Tk0zWWUtN0wwSFUtMTZGWEpDX3lFVFJ2WXZIcjRIMjRRNGR2YmZUME5KS01FSVZBZ0NFYWFfNlNLdkcyNU5f?oc=5",
-    "source_name": "조선일보",
-    "is_official": false,
-    "published_at": "2026-08-09T04:48:41.000Z",
-    "source_published_at": "2026-08-09T04:48:41.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-09T07:17:45.621Z",
-    "event_at": "",
-    "event_status": "不明",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "中国製オープンソースAI",
-      "中国製オープンソースai"
-    ],
-    "primary_entity": "不明(中国のAI開発元)",
-    "story_subject": "中国製オープンソースAIの情報漏えい",
-    "event_type": "security",
-    "event_stage": "investigating",
-    "event_scope": "不明",
-    "fact_slots": [],
-    "new_facts": [
-      "中国製オープンソースAIで情報漏えいが発生したと報じられ、ハッキング悪用への懸念が広がっている"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "中国発のオープンソースAIで情報漏えいが発生したと報じられ、悪用によるハッキングへの懸念が広がっている。",
-    "detail": "中国で開発されたオープンソースAIをめぐり、情報漏えいが発生したと報じられた。どのモデルがどのような経緯で漏えいしたか、影響範囲や原因については記事から具体的に確認できず、詳細は不明である。報道は、オープンソースAIが悪意ある第三者によってハッキングツールとして悪用される懸念を指摘しており、今後の調査結果や対応策の発表が待たれる。",
-    "change_summary": "中国製オープンソースAIで情報漏えいが発生したと報じられ、悪用によるハッキングリスクへの懸念が新たに示された。",
-    "impact_summary": "オープンソースAIを業務で利用する日本企業も、提供元や利用条件の安全性確認が改めて求められる。",
-    "action_suggestion": "漏えいの詳細な原因やモデル名は記事から確認できず、続報や公式発表を確認する必要がある。",
-    "importance": "C",
-    "related_categories": [
-      "セキュリティ",
-      "規制・法務"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_a6c62273d0311ffac8e4",
-    "story_id": "story_3b29042679e9ec6f06",
     "story_sequence": 1,
     "relation_type": "new",
     "relation_confidence": 1,
