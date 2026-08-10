@@ -35,6 +35,7 @@ for (const file of textFiles) {
 
 const htmlPath = path.join(root, "index.html");
 const html = fs.readFileSync(htmlPath, "utf8");
+const serviceWorker = fs.readFileSync(path.join(root, "sw.js"), "utf8");
 const requiredHtmlControls = [
   ["Content Security Policy", /http-equiv="Content-Security-Policy"/],
   ["referrer policy", /name="referrer" content="strict-origin-when-cross-origin"/],
@@ -129,6 +130,9 @@ if (!/setInterval\(refreshOperatorMetrics,60000\)/.test(html)) {
 }
 if (!/select\('state,updated_at'\)/.test(html) || !/setInterval\(\(\)=>syncMemberAppStateFromCloud\(\),60000\)/.test(html)) {
   findings.push("index.html: account state is not synchronized across devices");
+}
+if (!/request\.mode === "navigate" && isAppDocument/.test(serviceWorker) || !/url\.pathname === scopePath/.test(serviceWorker)) {
+  findings.push("sw.js: non-app navigation can poison the app-shell cache");
 }
 if (!/auth\.uid\(\)\)\s*=\s*user_id/.test(schema) || !/on public\.user_states for (?:select|insert|update) to authenticated/i.test(schema)) {
   findings.push("supabase/schema.sql: account state is not protected by account RLS");

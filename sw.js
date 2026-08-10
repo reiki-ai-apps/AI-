@@ -1,6 +1,6 @@
 // アプリシェルの構成を変えたときは日付を更新する。
 // 画像などの静的アセットも network-first なので、同名差し替えは次回通信時に反映される。
-const CACHE_NAME = "ai-radar-v3-20260810-account-sync-v1";
+const CACHE_NAME = "ai-radar-v3-20260810-account-sync-v2";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -52,7 +52,10 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-  if (request.mode === "navigate") {
+  const scopePath = new URL(self.registration.scope).pathname;
+  const isAppDocument = url.pathname === scopePath || url.pathname === `${scopePath}index.html`;
+
+  if (request.mode === "navigate" && isAppDocument) {
     // キャッシュ即応・裏で更新: アプリ本体はキャッシュから即座に返して
     // 「開いた直後の真っ白な画面」をなくす。同時に裏で最新版を取得して
     // キャッシュを更新し、新版が届いたら sw.js 更新経由でアプリ内の
@@ -73,6 +76,13 @@ self.addEventListener("fetch", event => {
         return network.catch(() => caches.match("./index.html").then(hit => hit || Response.error()));
       })
     );
+    return;
+  }
+
+  // sw.js・manifest・画像などをブラウザで直接開いても、index.html の
+  // キャッシュへ上書きしない。アプリ本体のURLだけをアプリシェルとして扱う。
+  if (request.mode === "navigate") {
+    event.respondWith(fetch(request));
     return;
   }
 
