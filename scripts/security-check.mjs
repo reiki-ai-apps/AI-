@@ -127,6 +127,12 @@ if (/\.operator-metrics\{display:none\}/.test(html)) {
 if (!/setInterval\(refreshOperatorMetrics,60000\)/.test(html)) {
   findings.push("index.html: operator metrics are not refreshed persistently");
 }
+if (!/select\('state,updated_at'\)/.test(html) || !/setInterval\(\(\)=>syncMemberAppStateFromCloud\(\),60000\)/.test(html)) {
+  findings.push("index.html: account state is not synchronized across devices");
+}
+if (!/auth\.uid\(\)\)\s*=\s*user_id/.test(schema) || !/on public\.user_states for (?:select|insert|update) to authenticated/i.test(schema)) {
+  findings.push("supabase/schema.sql: account state is not protected by account RLS");
+}
 if (!/function public\.operator_metrics\(\)\s*returns jsonb[\s\S]{0,900}operator_grant/i.test(schema)) {
   findings.push("supabase/schema.sql: server-side operator metrics authorization is missing");
 }

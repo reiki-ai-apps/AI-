@@ -2054,9 +2054,12 @@ function waitForSupabaseSdk(timeoutMs=6000){
     window.setTimeout(done,timeoutMs);
   });
 }
-const memberState={ready:false,user:null,subscription:null,operatorMetrics:null,reviews:[],reviewStatus:null,message:'',error:false,recovery:false};
+const memberState={ready:false,user:null,subscription:null,operatorMetrics:null,reviews:[],reviewStatus:null,message:'',error:false,recovery:false,cloudSyncStatus:'idle',cloudSyncedAt:null};
 let memberRefreshQueue=Promise.resolve();
 let operatorMetricsRefreshTimer=null;
+let memberCloudSyncTimer=null;
+let memberCloudSyncInFlight=null;
+let lastCloudStateUpdatedAt='';
 let loadedMemberStateFor='';
 let memberStateDirty=false;
 let lastAuthUserId='';
@@ -2158,7 +2161,9 @@ function startOperatorMetricsRefresh(){
   }
 }
 document.addEventListener('visibilitychange',()=>{
-  if(document.visibilityState==='visible'&&memberState.subscription?.access_source==='operator_grant')refreshOperatorMetrics();
+  if(document.visibilityState!=='visible')return;
+  if(memberState.subscription?.access_source==='operator_grant')refreshOperatorMetrics();
+  if(memberState.user)syncMemberAppStateFromCloud();
 });
 function authErrorMessage(error){
   const msg=String(error?.message||error||'');
@@ -2171,7 +2176,12 @@ function authErrorMessage(error){
 async function refreshMemberState(session){
   const previousUserId=memberState.user?.id||'';
   const nextUserId=session?.user?.id||'';
-  if(previousUserId!==nextUserId)loadedMemberStateFor='';
+  if(previousUserId!==nextUserId){
+    loadedMemberStateFor='';
+    lastCloudStateUpdatedAt='';
+    memberState.cloudSyncStatus=nextUserId?'syncing':'idle';
+    memberState.cloudSyncedAt=null;
+  }
   memberState.user=session?.user||null;
   memberState.subscription=null;
   memberState.operatorMetrics=null;
@@ -2193,6 +2203,7 @@ async function refreshMemberState(session){
   // 次回起動時の初期表示に使うため、確定したプランを保存する。
   try{localStorage.setItem('ai_radar_last_plan',effectivePlanKey());}catch(_e){}
   startOperatorMetricsRefresh();
+  startMemberCloudSync();
   renderOperatorMetrics();
   // 表示内容が変わらない場合は再描画せず、起動時に画面が切り替わって見えるのを防ぐ。
   renderIfChanged();
@@ -2472,6 +2483,25 @@ const DB = {
   reset(){ this._data = seedData(); this.save(); },
 };
 let appStateSyncTimer=null;
+function cloudSyncLabel(){
+  if(!memberState.user)return '未ログイン';
+  if(memberState.cloudSyncStatus==='syncing')return '同期中…';
+  if(memberState.cloudSyncStatus==='error')return '同期を再試行します';
+  if(memberState.cloudSyncStatus==='synced')return memberState.cloudSyncedAt?`同期済み ${new Date(memberState.cloudSyncedAt).toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})}`:'同期済み';
+  return '同期待ち';
+}
+function setCloudSyncStatus(status,syncedAt=null){
+  memberState.cloudSyncStatus=status;
+  if(syncedAt)memberState.cloudSyncedAt=syncedAt;
+  document.querySelectorAll('[data-account-sync-status]').forEach(el=>{el.textContent=cloudSyncLabel();});
+}
+function stopMemberCloudSync(){
+  if(memberCloudSyncTimer!==null){window.clearInterval(memberCloudSyncTimer);memberCloudSyncTimer=null;}
+}
+function startMemberCloudSync(){
+  stopMemberCloudSync();
+  if(memberState.user&&memberClient)memberCloudSyncTimer=window.setInterval(()=>syncMemberAppStateFromCloud(),60000);
+}
 /* クラウド状態を土台に、この端末でセッション開始後に生じた変更だけを接ぎ木する。
    起動直後の数秒間に行った既読化・テーマ選択・新着取込が、後から届く
    クラウドのスナップショットで丸ごと巻き戻らないようにするためのマージ。
@@ -2587,11 +2617,20 @@ function mergeMemberState(cloud,local){
   }
   return {state:merged,grafts};
 }
-async function loadMemberAppState(){
+async function loadMemberAppState(force=false){
   if(!memberClient||!memberState.user)return;
-  if(loadedMemberStateFor===memberState.user.id)return;
+  if(loadedMemberStateFor===memberState.user.id&&!force)return;
   clearTimeout(appStateSyncTimer);
-  const {data,error}=await memberClient.from('user_states').select('state').maybeSingle();
+  setCloudSyncStatus('syncing');
+  if(force&&lastCloudStateUpdatedAt){
+    const latest=await memberClient.from('user_states').select('updated_at').maybeSingle();
+    if(latest.error){setCloudSyncStatus('error');return false;}
+    if(latest.data?.updated_at===lastCloudStateUpdatedAt){
+      setCloudSyncStatus('synced',new Date().toISOString());
+      return false;
+    }
+  }
+  const {data,error}=await memberClient.from('user_states').select('state,updated_at').maybeSingle();
   if(!error&&data?.state&&Array.isArray(data.state.tools)&&Array.isArray(data.state.updates)){
     const {state:mergedState,grafts}=mergeMemberState(data.state,DB._data);
     DB._data=mergedState;
@@ -2604,19 +2643,45 @@ async function loadMemberAppState(){
   }
   if(!error){
     loadedMemberStateFor=memberState.user.id;
+    lastCloudStateUpdatedAt=data?.updated_at||lastCloudStateUpdatedAt;
     memberStateDirty=false;
+    setCloudSyncStatus('synced',new Date().toISOString());
+    if(force)renderIfChanged();
+    return true;
   }
+  setCloudSyncStatus('error');
+  return false;
 }
 async function saveMemberAppState(){
   if(!memberClient||!memberState.user||!DB._data)return;
+  setCloudSyncStatus('syncing');
+  const remote=await memberClient.from('user_states').select('state,updated_at').maybeSingle();
+  if(!remote.error&&remote.data?.state&&Array.isArray(remote.data.state.tools)&&Array.isArray(remote.data.state.updates)){
+    const {state}=mergeMemberState(remote.data.state,DB._data);
+    DB._data=state;
+    try{localStorage.setItem(DB.KEY,JSON.stringify(DB._data));}catch(e){console.warn('storage save failed',e);}
+  }
   const snapshot=DB._data;
-  const {error}=await memberClient.from('user_states').upsert({user_id:memberState.user.id,state:snapshot},{onConflict:'user_id'});
-  if(!error&&snapshot===DB._data)memberStateDirty=false;
+  const {data,error}=await memberClient.from('user_states').upsert({user_id:memberState.user.id,state:snapshot},{onConflict:'user_id'}).select('updated_at').single();
+  if(!error){
+    lastCloudStateUpdatedAt=data?.updated_at||lastCloudStateUpdatedAt;
+    if(snapshot===DB._data)memberStateDirty=false;
+    setCloudSyncStatus('synced',new Date().toISOString());
+  }else setCloudSyncStatus('error');
 }
 function scheduleMemberAppStateSync(){
   if(!memberState.user||!memberClient)return;
   clearTimeout(appStateSyncTimer);
   appStateSyncTimer=setTimeout(saveMemberAppState,700);
+}
+async function syncMemberAppStateFromCloud(options={}){
+  if(!memberState.user||!memberClient)return false;
+  if(memberCloudSyncInFlight)return memberCloudSyncInFlight;
+  memberCloudSyncInFlight=loadMemberAppState(true).then(changed=>{
+    if(options.showToast)toast(changed?'PC・スマホのアカウント情報を同期しました':'最新の状態です','ok');
+    return changed;
+  }).finally(()=>{memberCloudSyncInFlight=null;});
+  return memberCloudSyncInFlight;
 }
 
 /* ---------- 匿名の利用状況集計 ----------
@@ -4770,7 +4835,7 @@ function renderAccount(v){
   }
   if(!memberState.user){
     v.innerHTML=`<div class="account-page"><section class="account-panel">
-      <div class="account-head"><div class="pricing-eyebrow">SECURE MEMBER ACCESS</div><h2>ログイン・無料登録</h2><p>決済前にアカウントを作成すると、契約したプランがこのアカウントへ反映されます。</p></div>
+      <div class="account-head"><div class="pricing-eyebrow">SECURE MEMBER ACCESS</div><h2>ログイン・無料登録</h2><p>PCとスマホを連動するには、両方で同じメールアドレスの既存アカウントへログインしてください。別の無料登録を作ると連動しません。</p></div>
       <div class="auth-form">
         <div class="auth-field"><label for="authEmail">メールアドレス</label><input id="authEmail" type="email" autocomplete="email" inputmode="email" placeholder="name@example.com"></div>
         <div class="auth-field"><label for="authPassword">パスワード（8文字以上）</label><div class="password-input-wrap"><input id="authPassword" type="password" autocomplete="current-password" minlength="8" placeholder="8文字以上"><button type="button" class="password-toggle" aria-label="パスワードを表示する" aria-pressed="false" onclick="togglePasswordVisibility('authPassword',this)">${icon('eye')}<span>表示</span></button></div></div>
@@ -4796,11 +4861,12 @@ function renderAccount(v){
     <div class="account-head"><div class="pricing-eyebrow">MEMBER STATUS</div><h2>会員情報</h2><p>ログイン中のアカウントと現在の契約状態です。</p></div>
     <div class="member-summary">
       <div class="member-row"><span>メールアドレス</span><strong>${esc(memberState.user.email||'—')}</strong></div>
+      <div class="member-row"><span>PC・スマホ同期</span><strong data-account-sync-status>${cloudSyncLabel()}</strong></div>
       <div class="member-row"><span>現在のプラン</span><strong class="member-plan">${memberPlanLabel(sub.plan)}</strong></div>
       <div class="member-row"><span>${isOperatorGrant?'利用資格':'契約状態'}</span><strong>${isOperatorGrant?'運営者特典（請求なし）':memberStatusLabel(sub.status)}</strong></div>
       ${hasStripeSubscription?`<div class="member-row"><span>Stripe契約</span><strong>${memberPlanLabel(stripePlan)}・${memberStatusLabel(stripeStatus)}</strong></div>`:''}
       ${stripeCurrentPeriodEnd?`<div class="member-row"><span>${periodLabel}</span><strong>${fmtDate(stripeCurrentPeriodEnd)}まで</strong></div>`:''}
-      <div class="auth-actions"><button class="btn btn-primary" onclick="go('pricing')">${icon('star')}料金プランを見る</button>${currentRules().csv?`<button class="btn" onclick="exportUpdatesCsv()">${icon('updates')}CSVを書き出す</button>`:''}<button class="btn" onclick="sendPasswordReset()">${icon('edit')}パスワード再設定</button><button class="btn" onclick="signOutMember()">${icon('arrowLeft')}ログアウト</button></div>
+      <div class="auth-actions"><button class="btn btn-primary" onclick="syncMemberAppStateFromCloud({showToast:true})">${icon('shuffle')}今すぐ同期</button><button class="btn" onclick="go('pricing')">${icon('star')}料金プランを見る</button>${currentRules().csv?`<button class="btn" onclick="exportUpdatesCsv()">${icon('updates')}CSVを書き出す</button>`:''}<button class="btn" onclick="sendPasswordReset()">${icon('edit')}パスワード再設定</button><button class="btn" onclick="signOutMember()">${icon('arrowLeft')}ログアウト</button></div>
     </div>
     <section class="member-feature-guide" aria-labelledby="memberFeaturesTitle">
       <h3 id="memberFeaturesTitle">${isPaid?`${memberPlanLabel(sub.plan)}で使える設定`:'有料プランで解放される設定'}</h3>
@@ -4814,7 +4880,7 @@ function renderAccount(v){
     </section>
     ${isOperatorGrant?`<section class="billing-panel" aria-labelledby="operatorBenefitTitle">
       <div class="billing-panel-head">
-        <div><h3 id="operatorBenefitTitle">運営者向けプレミアム特典</h3><p>この特典自体には請求がありません。別に契約したStripeサブスクとは独立しています。</p></div>
+        <div><h3 id="operatorBenefitTitle">運営者向けプレミアム特典</h3><p>この管理者アカウントに紐づく特典です。同じアカウントでログインすれば、PCでもスマホでも閲覧者数・登録者数を確認できます。</p></div>
         <span class="billing-badge">請求なし・期限なし</span>
       </div>
       ${memberState.operatorMetrics?`<div class="operator-metric-grid" aria-label="管理者だけに表示される利用状況">
