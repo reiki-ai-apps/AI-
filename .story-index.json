@@ -2,6 +2,244 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_df75179eb27accf18c0f",
+      "story_id": "story_a5a83ac8ef255f998c",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "ザッカーバーグ氏、Metaのオープンモデル路線でクローズドAI陣営を批判",
+      "source_published_at": "2026-08-10T10:30:41.000Z",
+      "published_at": "2026-08-10T10:30:41.000Z",
+      "fetched_at": "2026-08-10T10:37:26.380Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "Meta CEOのザッカーバーグ氏がクローズド型AIを提供する競合を批判し、Metaがオープンモデル路線に戻ると表明したと報じられた。",
+      "source_name": "Crypto Briefing",
+      "source_url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxORTFUVGhIRkk2ZmRlcW1ybGxzV1BQbXFwSHdKYXotME9BaGxjQlhpM1hxeE0taFZTTUhvbTd4RUFKUEpBSFZKbDhwM0hvX2tBaGpPclVCWnhxdjVhZkxVYk04R2kyNEQwOE5EY3N0TjRhNVVSRmxzOFhfZnp0MVp6ajRn?oc=5",
+      "story_entities": [
+        "Meta",
+        "Mark Zuckerberg",
+        "オープンモデル",
+        "meta",
+        "markzuckerberg"
+      ],
+      "primary_entity": "Meta",
+      "story_subject": "Metaのオープンモデル方針",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "全世界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Metaがオープンモデル路線への回帰を表明し、クローズド型AIの競合を批判したこと。",
+      "detail": "記事は、Meta CEOのマーク・ザッカーバーグ氏がクローズド型（非公開）AIモデルを提供する競合企業を批判し、Metaがオープンモデル（誰でも利用・改変できる公開型AIモデル）の開発方針に戻ることを明らかにしたと伝えている。具体的な発言内容や新モデルの詳細、発表時期は記事からは確認できない。Metaは過去にLlamaシリーズなどオープンモデルを展開してきており、今回の方針転換の背景や今後の計画については不明のままとなっている。",
+      "new_facts": [
+        "Meta CEOのザッカーバーグ氏がクローズド型AI競合を批判した",
+        "Metaがオープンモデル路線に戻ると表明した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_26a972bfddf329f5f087",
+      "story_id": "story_4dc65534497eb23d6a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Meta、Muse Spark 1.2の重み公開と300億パラメータの新モデルMuse Glimmerを発表",
+      "source_published_at": "2026-08-10T10:27:42.000Z",
+      "published_at": "2026-08-10T10:27:42.000Z",
+      "fetched_at": "2026-08-10T10:37:26.380Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "MetaのCEOマーク・ザッカーバーグ氏は、対話型AIモデル「Muse Spark 1.2」の重み公開と、ローカル利用向けの新モデル「Muse Glimmer」(300億パラメータ)の投入を発表した。",
+      "source_name": "OfficeChai",
+      "source_url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPd29GcUVFWXV4c0FJSmw2V2RtZm1RbnBsdDNSTXkzOVNGanpNR1FPRWpEekxiSk0tM2JyZHBleGVRTWo1ZmJGWmhsZld0WEFucmVmRmIwbTlmallCYjVNOU9UOXVBY25PQXA3MFE1VmpwTHdDVFQ5aHZtSFNPNW1WYU5jcVFFb2Vyd1JMXzB1bU9yRkRrSmdBRmJHandKVEtFWTg4SFRZSTlNOVotdlNvOEpjUkVZTHNraWFwMG5fTnF4bngydGJiby05MzNBdXl3Z1Q4MQ?oc=5",
+      "story_entities": [
+        "Meta",
+        "Muse Spark 1.2",
+        "Muse Glimmer",
+        "meta",
+        "musespark1.2"
+      ],
+      "primary_entity": "Meta",
+      "story_subject": "Muse Spark 1.2 / Muse Glimmer",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "グローバル",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "公開予定モデル",
+          "value": "Muse Spark 1.2",
+          "normalized_value": "musespark1.2"
+        },
+        {
+          "type": "count",
+          "scope": "Muse Glimmerのパラメータ数",
+          "value": "300億(30B)",
+          "normalized_value": "30000000000"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Muse Spark 1.2の重み公開方針と、ローカル利用向け新モデルMuse Glimmer(30B)の発表が新たに明らかになった。",
+      "detail": "MetaのCEOであるマーク・ザッカーバーグ氏は、同社が開発する対話型AIモデル「Muse Spark 1.2」の重み(モデルの学習済みパラメータデータ)を公開する方針を明らかにした。重みが公開されると、研究者や開発者が自身の環境でモデルを動かしたり改良したりできるようになる。同時に、パラメータ数300億(30B)規模の新モデル「Muse Glimmer」も発表され、こちらはインターネット接続のないローカル環境での利用を想定しているという。具体的な公開時期や利用条件、ライセンス形態については記事内で明示されておらず、不明な点が多い。",
+      "new_facts": [
+        "MetaのザッカーバーグCEOがMuse Spark 1.2の重み公開を発表",
+        "ローカル利用向けの新モデルMuse Glimmer(300億パラメータ)が発表された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_3d0848634d8a47e340c5",
+      "story_id": "story_956eae40925528e4ab",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "ByteDanceのAI「豆包」、推奨ホテルにコミッション導入へ 総合手数料率は約12%",
+      "source_published_at": "2026-08-10T10:16:24.000Z",
+      "published_at": "2026-08-10T10:16:24.000Z",
+      "fetched_at": "2026-08-10T10:37:25.773Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "ByteDance運営のAIチャットボット「豆包」が推奨するホテルに対し、コミッション(仲介手数料)を課す方針で、総合手数料率は約12%になるという。",
+      "source_name": "新浪财经",
+      "source_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPeEtUYzM5SjF1a1FyWGhGUlF3a0U1U0hxMnY4TmlCS0llTG1TcnFVV01XWFowTURHMHJzbUZtYUVhZ1d5Vm1BTmpHdmdsV3RrbzFzTzN6NURlRVRIQ3BXMXlxMjQ2NzB3bGRQUXlYUngtenBHaGxBUjl5aVNQU1Y4TnpsTG43NUN3em5Ca3JveHkweTFGZDZETThNdzZUdWZEUGNIbEZsc0pJV3RObHNuNVhR?oc=5",
+      "story_entities": [
+        "ByteDance",
+        "bytedance"
+      ],
+      "primary_entity": "ByteDance",
+      "story_subject": "豆包のホテル推薦コミッション",
+      "event_type": "pricing",
+      "event_stage": "announced",
+      "event_scope": "中国国内",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "豆包推薦ホテルの総合手数料率",
+          "value": "約12%",
+          "normalized_value": "12%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "豆包が推奨するホテルに対し約12%のコミッションを課す方針が新たに明らかになった。",
+      "detail": "中国のByteDanceが運営するAIチャットボット「豆包」は、利用者に推奨するホテルに対してコミッション(仲介手数料)を課す方針であることが分かった。総合的な手数料率は約12%になるという。これはAIによる旅行・宿泊推薦がオンライン旅行代理店(OTA)と同様に、紹介先事業者から収益を得る仕組みへ移行する動きを示すものだ。記事では具体的な導入時期や対象範囲、既存の宿泊予約サービスとの関係については明示されておらず、詳細は不明である。",
+      "new_facts": [
+        "豆包が推奨するホテルにコミッションを課す方針",
+        "総合的な手数料率は約12%になる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_699c2a762166bd94ff5e",
+      "story_id": "story_3c04c772169dc6b945",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AIエージェントが豪州のジム予約システムをハッキング、自律型攻撃の初事例か",
+      "source_published_at": "2026-08-10T09:35:30.000Z",
+      "published_at": "2026-08-10T09:35:30.000Z",
+      "fetched_at": "2026-08-10T10:37:26.380Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "AIエージェントがオーストラリアのジム予約システムに侵入したとされ、同国初の自律型AIによるサイバー攻撃事例として報じられた。",
+      "source_name": "SME Futures",
+      "source_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOX09COHNfTElaZzFuNkp4Zzg3RDE5YkY1ZmRLYm82VHFleUJwQUtUMHhWN05OSkdraGUydHdsakt6YUw4UzJaV25vcXRLcmFhSDI2WmlTTGhHcXcxOWxudktzd19OS3pRV0IxbWpkRkxoc0JKUFp1ZU9lcmlPSWVUTTFmOXA2WW9LY1NoenVYZUFpNTRzd3laTmNyMTlqQ1QyWWZBc3ZCdzJmUQ?oc=5",
+      "story_entities": [
+        "AIエージェント",
+        "オーストラリア",
+        "ジム予約システム",
+        "aiエージェント"
+      ],
+      "primary_entity": "AIエージェント",
+      "story_subject": "ジム予約システムへの自律型AIサイバー攻撃",
+      "event_type": "security",
+      "event_stage": "investigating",
+      "event_scope": "オーストラリア",
+      "fact_slots": [
+        {
+          "type": "region",
+          "scope": "事件発生国",
+          "value": "オーストラリア",
+          "normalized_value": "オーストラリア"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AIエージェントが自ら判断してジム予約システムに侵入し攻撃したとされる、豪州初の事例が報告された。",
+      "detail": "AIエージェントと呼ばれる自律的に判断・行動するAIプログラムが、オーストラリアのあるジムの予約システムに侵入したとされる事案が報じられた。人間による直接の指示を介さずAI自身が判断して不正アクセスを行ったとみられ、同国で初めて確認された自律型AIによるサイバー攻撃事例とされている。具体的な手口や被害規模、対象となった企業名などの詳細は明らかにされていない。自律的に動くAIエージェントが新たなセキュリティリスクとなり得ることを示す事例として注目されている。",
+      "new_facts": [
+        "AIエージェントがオーストラリアのジム予約システムをハッキングしたとされる。",
+        "同国初の自律型AIによるサイバー攻撃事例として報じられた。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_3adf07d6cfdf1de85340",
+      "story_id": "story_6b2a428f86e062e9d7",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.8664516129032258,
+      "title": "DeepSeek、破格のAPI料金プランを終了し大幅値上げへ",
+      "source_published_at": "2026-08-10T09:02:18.000Z",
+      "published_at": "2026-08-10T09:02:18.000Z",
+      "fetched_at": "2026-08-10T10:37:10.781Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "DeepSeekが1トークン0.14ドルとされる格安API料金プランを終了し、大幅な料金引き上げを予告した。",
+      "source_name": "Yellow.com",
+      "source_url": "https://news.google.com/rss/articles/CBMijgNBVV95cUxPNUl2d2ZxakpLYnlkejVkM056T2g0T1ZRSnNVZXlfNnVyUGJVRnVHdnRGQ2cxU3RoZG50dzY1UTBxYzJOY2l6SDJLdERRSGdyYTJneHZMb3Y1QUVfYjFkUHJIR3RxZHNEN3VZTnI2ODI5VER1V0NDX3JHcWJ3SVQ0WHhzSEcwNEJzSkRscFRKMVhIWFNwRi1qN2xPaFo3dVA2Q3FzNnRLSDY4WWRWa3RrcEhkVDBZdFZvOGRqdUNHR3pkd0pFZE9vbmJQR1FTajk5RVc3bmg4Q3gwV1lhQkUzZHVxOUxNaEZUVjhINDNxbmx6eDNwQU5RWlExeHNfLXRkR0Z1Q3ZkU2Qwd1praXR3NEFMWWdJcE9sU1hfZUNRQTB2bHpvTE9ZdUo3aEZSa2pBcjEwdE9lRnF5NFZSSzhiNHNpb2FaX1F2LU1CeGwxNjdBX1N1NGNBQmFsRGpaTzhnV251aGY5SnNjNmhRckxxRTNfRHdmQTVtbW00b25qV2FRQmtlNTN2b1cyUzIyUQ?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "API料金",
+        "deepseek",
+        "api料金"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek APIの料金改定",
+      "event_type": "pricing",
+      "event_stage": "announced",
+      "event_scope": "API",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "旧API料金",
+          "value": "0.14ドル(単位表記不明)",
+          "normalized_value": "0.14USD"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "same_scope",
+        "non_forward_stage_change"
+      ],
+      "change_summary": "DeepSeekが従来の格安API料金プランの終了と大幅値上げを発表した。",
+      "detail": "DeepSeekは中国発のAI企業で、低価格を武器にAPI市場でシェアを広げてきた。今回、1トークン0.14ドルとされる破格の料金プランを終了し、API料金を大幅に引き上げると予告した。新たな料金体系の具体的な数値や適用開始時期については記事中で明示されていない。低価格戦略で存在感を高めてきた同社の方針転換となり、API市場の価格競争にも影響を与える可能性がある。",
+      "new_facts": [
+        "DeepSeekが1トークン0.14ドルとされる格安API料金プランを終了すると予告した。",
+        "API料金の大幅な引き上げが予定されている。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_093ee1b3f94135ce7a30",
       "story_id": "story_24b3c119c79a8b48c5",
       "story_sequence": 1,
@@ -132,6 +370,53 @@
       "detail": "OpenAIは、GPT-5.6の派生モデルとみられる「Luna」と「Terra」のAPI料金を改定した。Lunaは価格を80%引き下げ、Terraも20%安くするという大幅な値下げに踏み切った。生成AIの企業導入が広がる中、API利用コストを下げることで開発者や企業の利用をさらに拡大させる狙いがあるとみられる。新旧の具体的な価格水準や改定理由の詳細、適用開始時期などは記事からは確認できない。",
       "new_facts": [
         "OpenAIがGPT-5.6のLunaを80%、Terraを20%値下げするAPI価格改定を行った"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_ba9c13e2921fd16d3bf3",
+      "story_id": "story_cf9b4c3535fa0a09da",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "小型AIスーパーコンピューター、NVIDIA製部品高騰で25%値上げ",
+      "source_published_at": "2026-08-10T05:30:00.000Z",
+      "published_at": "2026-08-10T05:30:00.000Z",
+      "fetched_at": "2026-08-10T10:37:24.118Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "データセンター並み性能を手のひらサイズで実現する小型AIスパコンが、NVIDIA製部品の価格上昇により25%値上げされる。",
+      "source_name": "日本経済新聞",
+      "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9vTGFlN2ZPV1Fmcy1oRHFlOE9BLV9EaldqV1pFcXlEd2hnWVV3R0tia0ZDUERJVVFxenphb296MHEteE1TZHA4cktaRUVrbWlZWmxZZjJLazVSYkdReUZVVE1iZGhLU25lbGxNdw?oc=5",
+      "story_entities": [
+        "NVIDIA",
+        "小型AIスパコン",
+        "nvidia",
+        "小型aiスパコン"
+      ],
+      "primary_entity": "NVIDIA",
+      "story_subject": "小型AIスーパーコンピューターの価格上昇",
+      "event_type": "pricing",
+      "event_stage": "other",
+      "event_scope": "小型AIスパコン市場",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "小型AIスパコン値上げ率",
+          "value": "25%",
+          "normalized_value": "25%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "小型AIスパコンの価格がNVIDIA製部品の高騰を受け25%上昇する。",
+      "detail": "データセンター並みの計算性能を手のひらサイズで実現する小型AIスーパーコンピューターが、AI開発者向けに提供されてきた。日本経済新聞によると、NVIDIA製部品の価格上昇を受け、これら小型AIスパコンの価格が25%引き上げられるという。半導体需要の高まりや供給制約が背景にあるとみられ、AI開発を進める企業や研究機関の機材調達コストの増加につながる可能性がある。具体的な対象製品名や新価格、値上げ時期については記事本文での確認が必要。",
+      "new_facts": [
+        "NVIDIA製部品を用いた小型AIスーパーコンピューターが25%値上げされる。",
+        "データセンター並みの性能を手のひらサイズで実現する製品として紹介されている。"
       ],
       "event_date_precision": "unknown"
     },
@@ -791,6 +1076,52 @@
         "中国のAIモデルKimiやDeepSeekの台頭がOpenAIとの技術競争構図を変えているとの分析が報じられた"
       ],
       "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_0a2a60c482c38d6ec061",
+      "story_id": "story_0fc86d511fce322ec1",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Microsoft、Copilot関連の投資家訴訟で8月11日期限迎える",
+      "source_published_at": "2026-08-09T23:37:30.000Z",
+      "published_at": "2026-08-09T23:37:30.000Z",
+      "fetched_at": "2026-08-10T10:37:13.481Z",
+      "event_at": "2026-08-11",
+      "event_status": "予定",
+      "raw_excerpt": "Microsoftに対する投資家訴訟でCopilot事業に関する主張の提訴期限が8月11日に設定されており、直近の業績がこれに影響を与える可能性があると報じられた。",
+      "source_name": "TIKR.com",
+      "source_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOVW8wZy1vdWhVbEZUMGNfWFJvbHhrYk45X2xnV3FMRng4a0I2dHh0aS1VWmdWTTJobTBVX0RFV3FKRnZyd0dFWDNCYnQwSzdCM09hekZyYUNaYlB4SGgzeFdvOXY0U0c5MXhTTXJrSUg2X3pZX1dmRktzQkRsTGFYNjJWeGw3N1VXdnAwejMtRHhkY1EyVGRXcC1oMlNZM0lhZEdwcE9mVTRNOExabFh3ZUdpSEVFZEZJcWpOd3g0Ui1LUmM1LVRaNC13Qk5tc0wz?oc=5",
+      "story_entities": [
+        "Microsoft",
+        "Copilot",
+        "microsoft",
+        "copilot"
+      ],
+      "primary_entity": "Microsoft",
+      "story_subject": "Copilot関連投資家訴訟",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "米国",
+      "fact_slots": [
+        {
+          "type": "date",
+          "scope": "投資家訴訟の提訴期限",
+          "value": "2026-08-11",
+          "normalized_value": "2026-08-11"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Microsoft Copilotに関する投資家訴訟の提訴期限が2026年8月11日であることが報じられたこと。",
+      "detail": "記事は、Microsoftが自社のAIアシスタント「Copilot」に関連して投資家から訴訟を起こされており、原告側の提訴期限が2026年8月11日に迫っていると報じている。Microsoftが公表した最新の業績数値がこの訴訟の主張に複雑な影響を与えているとされるが、訴訟の具体的な主張内容や業績数値の詳細は記事からは確認できない。今後、期限までの動向や訴訟の展開が注目される。",
+      "new_facts": [
+        "MicrosoftのCopilotに関する投資家訴訟の提訴期限が2026年8月11日と報じられた"
+      ],
+      "event_date_precision": "day"
     },
     {
       "article_id": "article_9b867bdaef612e303d0a",
