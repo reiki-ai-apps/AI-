@@ -131,6 +131,9 @@ if (!/setInterval\(refreshOperatorMetrics,60000\)/.test(html)) {
 if (!/select\('state,updated_at'\)/.test(html) || !/setInterval\(\(\)=>syncMemberAppStateFromCloud\(\),60000\)/.test(html)) {
   findings.push("index.html: account state is not synchronized across devices");
 }
+if (!/id="mobileOfficialMedia"/.test(html) || !/class="mobile-media-shortcut"/.test(html) || !/mobileOfficialMedia[\s\S]{0,1800}note\.com\/natty_swan9072/.test(html)) {
+  findings.push("index.html: KIZASHI official media is not easy to find on mobile");
+}
 if (!/request\.mode === "navigate" && isAppDocument/.test(serviceWorker) || !/url\.pathname === scopePath/.test(serviceWorker)) {
   findings.push("sw.js: non-app navigation can poison the app-shell cache");
 }

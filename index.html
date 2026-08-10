@@ -1792,6 +1792,7 @@
   .official-media-link{display:flex;min-width:0;min-height:38px;align-items:center;justify-content:center;gap:5px;border:1px solid rgba(99,174,216,.22);border-radius:9px;background:rgba(11,25,51,.82);color:#dbe7f7;text-decoration:none;font-size:10px;font-weight:800;transition:.18s ease}
   .official-media-link:hover{transform:translateY(-1px);border-color:rgba(91,235,242,.58);background:rgba(14,45,70,.9);color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.24)}
   .official-media-mark{display:grid;width:19px;height:19px;place-items:center;border-radius:6px;background:linear-gradient(135deg,#0c9fbd,#503dcc);color:#fff;font-size:8px;letter-spacing:-.03em}
+  .mobile-media-shortcut,.mobile-media-hub{display:none}
   .media-promo{margin-top:18px;padding:20px;border:1px solid rgba(73,218,232,.24);border-radius:16px;background:linear-gradient(135deg,rgba(5,25,43,.82),rgba(14,17,49,.76))}
   /* Public member reviews */
   .reviews-page{max-width:980px;margin:0 auto;padding-bottom:30px}
@@ -1817,6 +1818,10 @@
   @media(max-width:760px){
     .media-promo{padding:17px 14px}.media-promo-head{display:block}.media-promo h3{font-size:17px}
     .media-promo .official-media-links{grid-template-columns:1fr}.media-promo .official-media-link{justify-content:flex-start;padding:0 14px}
+    .mobile-media-shortcut{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 10px;border:1px solid rgba(76,230,239,.48);border-radius:999px;background:linear-gradient(135deg,rgba(10,137,165,.30),rgba(79,61,198,.30));color:#eaffff;font-size:9px;font-weight:900;letter-spacing:.04em;white-space:nowrap;box-shadow:0 0 16px rgba(48,218,230,.16)}
+    .mobile-media-hub{display:block;margin:0 0 12px;padding:13px;border:1px solid rgba(77,225,235,.38);border-radius:15px;background:linear-gradient(135deg,rgba(5,34,52,.96),rgba(15,20,57,.96));box-shadow:0 12px 30px rgba(0,0,0,.26),inset 0 1px rgba(169,247,255,.08)}
+    .mobile-media-hub-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.mobile-media-hub-title{display:grid;gap:2px}.mobile-media-hub-title b{color:#f4fbff;font-size:13px}.mobile-media-hub-title span{color:#69e9ee;font-size:8.5px;font-weight:900;letter-spacing:.12em}.mobile-media-hub-note{color:#a5b4c8;font-size:9px;font-weight:700;white-space:nowrap}
+    .mobile-media-hub .official-media-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.mobile-media-hub .official-media-link{min-height:44px;justify-content:flex-start;padding:0 11px;border-color:rgba(94,193,224,.30);background:rgba(7,20,43,.88);font-size:10.5px}.mobile-media-hub .official-media-link:active{transform:scale(.98);background:rgba(19,75,99,.86)}.mobile-media-hub .official-media-mark{width:23px;height:23px;font-size:8px}
   }
   .nav-legal{display:flex;flex-wrap:wrap;gap:4px 10px;padding:14px 12px 2px;border-top:1px solid rgba(112,151,196,.13)}
   .nav-legal button,.link-button,.auth-consent button{padding:0;border:0;background:none;color:#8291a8;font:inherit;font-size:9.5px;text-decoration:underline;cursor:pointer}
@@ -1891,6 +1896,7 @@
       </div>
       <span id="autoStatus" class="auto-status" style="display:none"></span>
       <div class="spacer"></div>
+      <button class="mobile-media-shortcut" onclick="openOfficialMedia()" aria-label="KIZASHI公式SNSを表示">公式SNS</button>
       <div id="topActions"></div>
     </header>
     <main class="content" id="view"></main>
@@ -3373,6 +3379,10 @@ window.addEventListener('popstate',event=>{
   _navigate(next.name,next.param);
 });
 function toggleMenu(open){ document.getElementById('sidebar').classList.toggle('open',open); document.getElementById('scrim').classList.toggle('show',open); }
+function openOfficialMedia(){
+  if(route.name!=='home')go('home');
+  window.setTimeout(()=>document.getElementById('mobileOfficialMedia')?.scrollIntoView({behavior:'smooth',block:'start'}),80);
+}
 
 function renderNav(){
   const planUpdates=getPlanUpdates();
@@ -3652,7 +3662,15 @@ function renderHome(v){
       <div class="coverage-proof" aria-label="情報収集の特徴">
         <span>日本語・英語・中国語</span><span>3時間ごとに更新</span><span>元記事はプラン別の月間枠で確認</span>
       </div>`;
-  let html = `<section class="radar-overview ${cover?'has-daily-cover':''}" aria-label="${cover?'本日のトップニュース':'AIシグナル概要'}">
+  let html = `<section class="mobile-media-hub" id="mobileOfficialMedia" aria-label="KIZASHI公式SNS">
+    <div class="mobile-media-hub-head"><div class="mobile-media-hub-title"><span>KIZASHI OFFICIAL</span><b>公式SNS・動画はこちら</b></div><span class="mobile-media-hub-note">4つの公式アカウント</span></div>
+    <div class="official-media-links">
+      <a class="official-media-link" href="https://www.youtube.com/@kizashi_jp" target="_blank" rel="noopener noreferrer" aria-label="KIZASHIのYouTubeを開く"><span class="official-media-mark">YT</span><span>YouTube</span></a>
+      <a class="official-media-link" href="https://x.com/KIZASHI_jp" target="_blank" rel="noopener noreferrer" aria-label="KIZASHIのXを開く"><span class="official-media-mark">X</span><span>X</span></a>
+      <a class="official-media-link" href="https://www.instagram.com/kizashi_jp/" target="_blank" rel="noopener noreferrer" aria-label="KIZASHIのInstagramを開く"><span class="official-media-mark">IG</span><span>Instagram</span></a>
+      <a class="official-media-link" href="https://note.com/natty_swan9072" target="_blank" rel="noopener noreferrer" aria-label="KIZASHIのnoteを開く"><span class="official-media-mark">note</span><span>note</span></a>
+    </div>
+  </section><section class="radar-overview ${cover?'has-daily-cover':''}" aria-label="${cover?'本日のトップニュース':'AIシグナル概要'}">
     <div class="hud-hex-field" aria-hidden="true"><span class="hud-hex h1"></span><span class="hud-hex h2"></span><span class="hud-hex h3"></span><span class="hud-hex h4"></span><span class="hud-hex h5"></span></div>
     <div class="overview-copy">${coverCopy}</div>
     <div class="radar-orb" aria-label="未読${unread}件"><strong>${unread}</strong><small>UNREAD SIGNALS</small></div>
