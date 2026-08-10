@@ -1,6 +1,6 @@
 // アプリシェルの構成を変えたときは日付を更新する。
 // 画像などの静的アセットも network-first なので、同名差し替えは次回通信時に反映される。
-const CACHE_NAME = "ai-radar-v3-20260810-mobile-media-v1";
+const CACHE_NAME = "ai-radar-v3-20260810-force-latest-v1";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -12,20 +12,31 @@ const APP_SHELL = [
 
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache =>
-      cache.addAll(APP_SHELL)
-        // data.json はベストエフォートで先読みする(失敗してもインストールは成功させる)。
-        .then(() => cache.add("./data.json").catch(() => {}))
-    )
+    caches.open(CACHE_NAME).then(async cache => {
+      // HTTPキャッシュに残った古いHTMLを再利用せず、公開中の最新版を保存する。
+      await Promise.all(APP_SHELL.map(async path => {
+        const response = await fetch(path,{cache:"reload"});
+        if(!response.ok)throw new Error(`app shell fetch failed: ${path}`);
+        await cache.put(path,response);
+      }));
+      // data.json はベストエフォートで先読みする(失敗してもインストールは成功させる)。
+      await fetch("./data.json",{cache:"reload"}).then(response=>response.ok?cache.put("./data.json",response):undefined).catch(()=>{});
+    })
   );
   self.skipWaiting();
 });
 
 self.addEventListener("activate", event => {
   event.waitUntil(
-    caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))))
+    (async()=>{
+      const keys=await caches.keys();
+      await Promise.all(keys.filter(key=>key!==CACHE_NAME).map(key=>caches.delete(key)));
+      await self.clients.claim();
+      // 旧HTMLを表示中のスマホも、新しいService Workerの有効化後に自動で最新版へ切り替える。
+      const windows=await self.clients.matchAll({type:"window",includeUncontrolled:true});
+      await Promise.all(windows.filter(client=>client.visibilityState==="visible").map(client=>client.navigate(client.url).catch(()=>null)));
+    })()
   );
-  self.clients.claim();
 });
 
 self.addEventListener("fetch", event => {
@@ -56,25 +67,16 @@ self.addEventListener("fetch", event => {
   const isAppDocument = url.pathname === scopePath || url.pathname === `${scopePath}index.html`;
 
   if (request.mode === "navigate" && isAppDocument) {
-    // キャッシュ即応・裏で更新: アプリ本体はキャッシュから即座に返して
-    // 「開いた直後の真っ白な画面」をなくす。同時に裏で最新版を取得して
-    // キャッシュを更新し、新版が届いたら sw.js 更新経由でアプリ内の
-    // 「今すぐ更新」通知が出る。
+    // アプリ本体はネットワークを優先し、スマホに古い画面を残さない。
+    // オフライン時だけ、インストール時に保存したHTMLへフォールバックする。
     event.respondWith(
-      caches.match("./index.html").then(cached => {
-        const network = fetch(request).then(response => {
-          if (response.ok) {
-            const copy = response.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put("./index.html", copy)).catch(() => {});
-          }
-          return response;
-        });
-        if (cached) {
-          network.catch(() => {});
-          return cached;
+      fetch(request,{cache:"no-store"}).then(response => {
+        if (response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put("./index.html", copy)).catch(() => {});
         }
-        return network.catch(() => caches.match("./index.html").then(hit => hit || Response.error()));
-      })
+        return response;
+      }).catch(() => caches.match("./index.html").then(hit => hit || Response.error()))
     );
     return;
   }

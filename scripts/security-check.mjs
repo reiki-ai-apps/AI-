@@ -137,6 +137,12 @@ if (!/id="mobileOfficialMedia"/.test(html) || !/class="mobile-media-shortcut"/.t
 if (!/request\.mode === "navigate" && isAppDocument/.test(serviceWorker) || !/url\.pathname === scopePath/.test(serviceWorker)) {
   findings.push("sw.js: non-app navigation can poison the app-shell cache");
 }
+if (!/fetch\(request,\{cache:"no-store"\}\)/.test(serviceWorker) || !/client\.navigate\(client\.url\)/.test(serviceWorker)) {
+  findings.push("sw.js: mobile clients can remain on stale app HTML");
+}
+if (/toastAction\('アプリが新しくなりました'/.test(html) || !/controllerchange'[\s\S]{0,260}window\.location\.reload\(\)/.test(html)) {
+  findings.push("index.html: app updates still require manual reload");
+}
 if (!/auth\.uid\(\)\)\s*=\s*user_id/.test(schema) || !/on public\.user_states for (?:select|insert|update) to authenticated/i.test(schema)) {
   findings.push("supabase/schema.sql: account state is not protected by account RLS");
 }

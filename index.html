@@ -4746,9 +4746,8 @@ function setupPWA(){
   navigator.serviceWorker.addEventListener('controllerchange',()=>{
     if(!hadController||updatePromptShown)return;
     updatePromptShown=true;
-    // 新しいService Workerが制御を引き継いだ = 新バージョンが配信された。
-    // 開きっぱなしのスマホ・PWAでも、その場で新しいアプリに切り替えられるようにする。
-    toastAction('アプリが新しくなりました','今すぐ更新',()=>window.location.reload(),'ok');
+    // 新しいService Workerが制御を引き継いだら、操作を求めず最新版へ切り替える。
+    window.location.reload();
   });
   window.addEventListener('load',()=>{
     navigator.serviceWorker.register('./sw.js').then(reg=>{
