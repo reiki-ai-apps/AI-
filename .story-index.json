@@ -2,6 +2,104 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_d41d4500c12f236ec663",
+      "story_id": "story_16df7e8dc210d92964",
+      "story_sequence": 2,
+      "relation_type": "follow_up",
+      "relation_confidence": 0.9156249999999999,
+      "title": "GitHub Copilotにオープンウェイトモデル「Kimi K3」が正式提供開始",
+      "source_published_at": "2026-08-11T09:00:00.000Z",
+      "published_at": "2026-08-11T09:00:00.000Z",
+      "fetched_at": "2026-08-11T10:12:09.728Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "GitHub Copilotで新たにオープンウェイトモデル「Kimi K3」が正式に利用可能になった。",
+      "source_name": "CodeZine",
+      "source_url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5EOExzVnJxXzFjSDN2Q25PaTlzWm11SW9CMVcwYmFrdmJRaGZ4UzNWTGtsNzdLTFFlMkJJeVhtbGdldlFFejk0aDNMVERLZw?oc=5",
+      "story_entities": [
+        "GitHub Copilot",
+        "Kimi K3",
+        "githubcopilot",
+        "kimik3",
+        "moonshot-ai"
+      ],
+      "primary_entity": "GitHub Copilot",
+      "story_subject": "Kimi K3",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "GitHub Copilot",
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "Kimi K3のGitHub Copilotでの提供状況",
+          "value": "正式提供開始",
+          "normalized_value": "正式提供開始"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "follow_up",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "same_scope",
+        "material_fact_changed"
+      ],
+      "change_summary": "GitHub Copilotのモデル選択肢に、オープンウェイトモデル「Kimi K3」が正式に追加された。",
+      "detail": "GitHub Copilotは開発者向けのAIコーディング支援サービスで、複数のAIモデルを選んで使える仕組みを備えている。今回、その選択肢にオープンウェイトモデルの「Kimi K3」が追加され、正式提供が始まった。オープンウェイトモデルは重みが公開されているモデルで、利用者が自ら動かすことも可能な点が特徴とされる。GitHub Copilot利用者は今後、コード生成や補完の際にKimi K3を選択して使えるようになる。",
+      "new_facts": [
+        "GitHub CopilotでオープンウェイトモデルKimi K3が正式に利用可能になった"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_bf236a5718e62637b97e",
+      "story_id": "story_01e9bc080a1f18c785",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "OpenSSH 10.5がセキュリティ脆弱性を修正、AI支援によるバグ発見に対応",
+      "source_published_at": "2026-08-11T08:44:44.000Z",
+      "published_at": "2026-08-11T08:44:44.000Z",
+      "fetched_at": "2026-08-11T10:12:23.152Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenSSHプロジェクトが最新版10.5を公開し、AIを使った手法で見つかった脆弱性を修正した。AI支援によるバグ発見への対応としている。",
+      "source_name": "Linuxiac",
+      "source_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPQnR5MFI2bUc2ejFYb3RzbU5vaThJMEZHS2M1cHZfa29xUEgzallLcWRQLS1hVDJHMjFFZkh3TlFVWmFPcFhQVG5lbkdRYm1yRGJuMXdySlc2OFRGSFNhenRlU3lrTUg0ZF82RlYtWjFLZjYxYl9sVk5XOW9NQlFBeHg4dnJZTTR0Q0dRcmJHY3B2cWJLNHJKUGVVc2E1UGs2R0ZjWHR0bw?oc=5",
+      "story_entities": [
+        "OpenSSH",
+        "OpenSSH 10.5",
+        "openssh",
+        "openssh10.5"
+      ],
+      "primary_entity": "OpenSSHプロジェクト",
+      "story_subject": "OpenSSH 10.5",
+      "event_type": "security",
+      "event_stage": "fixed",
+      "event_scope": "OpenSSH全般",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "OpenSSHの最新バージョン",
+          "value": "10.5",
+          "normalized_value": "10.5"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "OpenSSH 10.5がリリースされ、AI支援で見つかったセキュリティ脆弱性が修正された。",
+      "detail": "OpenSSHは暗号化された安全な通信を実現するための代表的なソフトウェアで、多くのサーバーやネットワーク機器で使われている。今回公開されたバージョン10.5では、セキュリティ上の欠陥が修正された。修正の背景として、AIを活用したバグ発見の動きにプロジェクトが対応した点が挙げられている。具体的にどのような脆弱性がAIによって見つかったのかなど詳細は記事からは確認できない。",
+      "new_facts": [
+        "OpenSSH 10.5がセキュリティ脆弱性を修正した",
+        "修正はAI支援によるバグ発見への対応とされている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_eb45d8e6ba30377e839f",
       "story_id": "story_65f4425405aaaedfe4",
       "story_sequence": 1,
@@ -180,6 +278,60 @@
       "new_facts": [
         "Googleの動画生成モデル最新版Veo 3.1がネイティブ音声対応を追加した",
         "動画の長時間生成や実写に近いリアリズム、プロンプト追従性の向上が図られた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_115308dae8ce1be48c3d",
+      "story_id": "story_f50d619b6e1e6a4b6f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "CloudSEK調査、2500社超・43万件超のCI/CDパイプラインが流出する2026年最大級のAI関連サプライチェーン侵害",
+      "source_published_at": "2026-08-11T04:32:20.000Z",
+      "published_at": "2026-08-11T04:32:20.000Z",
+      "fetched_at": "2026-08-11T10:12:25.240Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "セキュリティ企業CloudSEKが、2500社以上と43万4000件超のCI/CDパイプラインが流出したAI関連サプライチェーン侵害を報告した。2026年最大級の被害規模とされる。",
+      "source_name": "CloudSEK",
+      "source_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQRXVQZ1liem5hVGxRNkpnUGZLRHBuNXRhUWljUy1KTnRxdmE0amdiV0taX0pzRzRYa3lvbUZabzhhQ2REeEwycVlYNy11dnlDN21OTTdxYkJTNXRlVVAyUFNYTHBrUC1neWYyU0w4LW53S1lHdFJpODJXZWFjZk5xSU5CcmVQcXI0NVJvdnpsSFhfLU0?oc=5",
+      "story_entities": [
+        "CloudSEK",
+        "CI/CD",
+        "cloudsek",
+        "cicd"
+      ],
+      "primary_entity": "CloudSEK",
+      "story_subject": "AIサプライチェーン侵害",
+      "event_type": "security",
+      "event_stage": "investigating",
+      "event_scope": "世界のCI/CDパイプライン利用企業",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "影響を受けた企業数",
+          "value": "2500社超",
+          "normalized_value": "2500"
+        },
+        {
+          "type": "count",
+          "scope": "流出したCI/CDパイプライン数",
+          "value": "434000件超",
+          "normalized_value": "434000"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "CloudSEKが2500社超・43万4000件超のCI/CDパイプライン流出を伴う大規模なAI関連サプライチェーン侵害を報告した。",
+      "detail": "セキュリティ企業CloudSEKは、企業のソフトウェア開発で使われるCI/CD(継続的インテグレーション・継続的デリバリー)パイプラインが大規模に流出したと報告した。CI/CDパイプラインはソフトウェアの自動テストや配布に使われる仕組みで、そこに含まれる認証情報などが漏れると、関連する多数のシステムに影響が及ぶ可能性がある。報告によれば、2500社を超える企業と43万4000件を超えるパイプラインが流出しており、AIに関連するサプライチェーン侵害としては2026年で最大級とされている。被害の具体的な原因や対応状況について、詳細は記事からは確認できない。",
+      "new_facts": [
+        "2500社超が影響を受けた",
+        "43万4000件超のCI/CDパイプラインが流出した",
+        "2026年最大級のAI関連サプライチェーン侵害とされている"
       ],
       "event_date_precision": "unknown"
     },
@@ -439,6 +591,44 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_e61730487391f6685545_rev_0d9c55e849e2",
+      "story_id": "story_e3c0c57069fdb0d72a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "エヌビディアのAI関連金融、原油急騰と重なり半導体株に「市場崩壊」リスクの警告",
+      "source_published_at": "2026-08-11T00:36:00.000Z",
+      "published_at": "2026-08-11T00:36:00.000Z",
+      "fetched_at": "2026-08-11T10:12:20.447Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "エヌビディアのAI関連の金融活動が市場崩壊を招く恐れがあると警告され、原油価格急騰も重なり半導体株が二重の打撃を受けているとされる。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE8yREJqeXdncW5UcHJwWnVQRkdKT0kxZjhWLXFLaUVNY05tSkl2WXp4Wm8zalExVmdWOEVfNjQwTWVGVVVUTFVHYndBdGJpSk9tVUZlMFVPN2VYT2txb0JjRVh0TnhfRHdYd3VUd2JxSTg0WkQw?oc=5",
+      "story_entities": [
+        "エヌビディア",
+        "半導体株"
+      ],
+      "primary_entity": "エヌビディア",
+      "story_subject": "エヌビディアのAI関連金融と半導体株への影響",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "半導体株市場",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "エヌビディアのAI関連金融活動に市場崩壊リスクの警告が出され、原油急騰と合わさり半導体株への二重の打撃が指摘された。",
+      "detail": "記事は、エヌビディアが関わるAI分野の金融的な取り組みについて、市場崩壊を招く恐れがあるとの警告を伝えている。同時に原油価格の急騰が起きており、これが半導体株にさらなる打撃を与える二重のリスクとして指摘されている。半導体株はAI需要への期待から高く評価されてきた面があり、そこに金融面のリスク警告とエネルギーコスト上昇が重なる構図が示されている。誰が警告を発したのか、具体的な数値や根拠については記事の抜粋からは確認できない。",
+      "new_facts": [
+        "エヌビディアのAI関連金融活動に市場崩壊リスクの警告が出た",
+        "原油価格急騰が半導体株に打撃を与えているとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_22d458fe3296bb82307b",
       "story_id": "story_3d8ca9c60a7474d085",
       "story_sequence": 1,
@@ -661,6 +851,45 @@
       "new_facts": [
         "OpenAI CFOサラ・フライアー氏がAI活用による財務部門構築の教訓を共有",
         "自動化予測やAI ROIの考え方など5つの学びを紹介"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_6546709e49a8db60b5f4",
+      "story_id": "story_420aa572ed501837c5",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5664516129032258,
+      "title": "DeepSeek、近く大幅な料金改定へ",
+      "source_published_at": "2026-08-10T15:50:32.000Z",
+      "published_at": "2026-08-10T15:50:32.000Z",
+      "fetched_at": "2026-08-11T10:12:06.281Z",
+      "event_at": "",
+      "event_status": "予定",
+      "raw_excerpt": "中国のAI企業DeepSeekが、近いうちに大幅な価格上昇を実施する見通しであることが報じられた。",
+      "source_name": "Mashable",
+      "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1TYnlmRGFncUZmMnl4UTNuNVp2ZzdUS0I1U215ZXBRVmE5Z1UzZVVTMzBZQWZRZm5uS0I2dlpRREhqWXR6dDczYUlOclJncmJMWVc4bzA5QVdpWFYwMXBTQTJYS2V1VDZsWWc?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "deepseek"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeekの価格改定",
+      "event_type": "pricing",
+      "event_stage": "planned",
+      "event_scope": "サービス全体(詳細不明)",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type"
+      ],
+      "change_summary": "DeepSeekが近く価格を大幅に引き上げる方針であることが報じられた。",
+      "detail": "DeepSeekは、自社のAIサービスについて近く「大幅な」価格上昇を行う予定であることが明らかになった。低価格を強みに急速にユーザーを増やしてきた同社だが、具体的な値上げ幅や実施時期、対象となるサービス範囲（API利用料か有料プランかなど）は記事内で明示されていない。値上げの背景として運用コストの増加や価格戦略の見直しが推測されるが、公式な理由は記事から確認できず、今後の公式発表が待たれる状況となっている。",
+      "new_facts": [
+        "DeepSeekが近く「大幅な」価格上昇を実施する予定であることが報じられた"
       ],
       "event_date_precision": "unknown"
     },
