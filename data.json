@@ -1,5 +1,306 @@
 [
   {
+    "tool": "Google Veo",
+    "title": "Google、動画生成AI「Veo 3.1」で音声とリアリズムを強化",
+    "source_url": "https://deepmind.google/models/veo/",
+    "source_name": "Google Veo 公式更新情報",
+    "is_official": true,
+    "published_at": "2026-08-11T04:40:52.575Z",
+    "source_published_at": "2026-08-11T04:40:52.575Z",
+    "source_updated_at": "",
+    "source_date_status": "unknown",
+    "fetched_at": "2026-08-11T04:40:52.575Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Google",
+      "Veo 3.1",
+      "google",
+      "veo3.1",
+      "google-gemini"
+    ],
+    "primary_entity": "Google",
+    "story_subject": "Veo 3.1",
+    "event_type": "release",
+    "event_stage": "launched",
+    "event_scope": "全世界",
+    "fact_slots": [
+      {
+        "type": "version",
+        "scope": "動画生成モデルのバージョン",
+        "value": "Veo 3.1",
+        "normalized_value": "veo3.1"
+      }
+    ],
+    "new_facts": [
+      "Googleの動画生成モデル最新版Veo 3.1がネイティブ音声対応を追加した",
+      "動画の長時間生成や実写に近いリアリズム、プロンプト追従性の向上が図られた"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Googleが動画生成モデルVeo 3.1を提供し、ネイティブ音声対応や実写に近いリアリズム、プロンプト追従性の向上を実現した。",
+    "detail": "Googleは動画生成AI「Veo」の最新版Veo 3.1について、映像制作者やストーリーテラー向けにネイティブ音声機能と動画の長時間生成を含む拡張されたクリエイティブ制御を導入したと紹介している。現実世界の物理法則や音響表現の再現度を高めたことで、よりリアルな映像生成が可能になったとし、指示への追従精度(プロンプトアドヒアランス)も改善されたと説明している。従来よりも高い制御性・一貫性・創造性を音声面も含めて実現したモデルと位置づけている。",
+    "change_summary": "Veo 3.1でネイティブ音声対応、動画の長時間生成、リアリズムとプロンプト追従性の向上が新たに加わった。",
+    "impact_summary": "動画制作の表現力と効率が高まり、映像・広告・エンターテインメント業界でのAI活用がさらに進む可能性がある。",
+    "action_suggestion": "Googleの公式ページでVeo 3.1の新機能詳細や利用方法を確認できる。",
+    "importance": "A",
+    "related_categories": [
+      "画像・動画生成",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_5bebc23d204d9e0b4d5d",
+    "story_id": "story_ea45135b57310f414f",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "AIベンチマーク・研究速報",
+    "title": "複数の結論を持つ理論体系を一意化する統一的枠組みの研究論文",
+    "source_url": "https://arxiv.org/abs/2608.07476",
+    "source_name": "rss.arxiv.org",
+    "is_official": true,
+    "published_at": "2026-08-11T04:00:00.000Z",
+    "source_published_at": "2026-08-11T04:00:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-11T04:41:27.728Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "構造理論",
+      "LLMハルシネーション",
+      "llmハルシネーション"
+    ],
+    "primary_entity": "arXiv投稿者(著者不明)",
+    "story_subject": "構造理論における一意化の統一的枠組み",
+    "event_type": "research",
+    "event_stage": "other",
+    "event_scope": "学術研究(arXiv投稿)",
+    "fact_slots": [],
+    "new_facts": [
+      "論文は『閉包安定化』『大域完備化』『一意化』という3段階の正規化概念を定義した",
+      "LLMによる推論のハルシネーションを『裏付けのない一意化』として位置づけた"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "研究者が複数の結論候補を持つ理論体系から一意の解釈を導く形式的枠組みを提案し、LLMの幻覚を『裏付けのない一意化』と位置づけた。",
+    "detail": "この論文は、公理と推論規則からなる『構造理論』が複数の整合的な結論候補(可塑性)を持つ場合に、どのようにして一意な標準解釈を導けるかを扱う形式的枠組みを提示している。非決定性を認識的多様性(Type E)と構造的多様性(Type S)に分類し、演算子ベースの完備化とセレクタベースの構成という2つの一意化メカニズムを示した。Type Sの強い部分クラスでは一意化が達成される一方、Type Eでは完全な一意化に必要な大域的合流性が未解決の課題として残るとしている。この枠組みはLLMによる推論にも応用可能で、ハルシネーション(幻覚)を裏付けのない一意化として捉え直せると論じている。",
+    "change_summary": "複数の結論候補を持つ理論体系の一意化を数学的に分類し、演算子ベースとセレクタベースの2つの構成メカニズムを提示した点が新しい。",
+    "impact_summary": "抽象的な理論研究であり、一般利用者への直接的な影響は現時点では限定的だが、LLMの幻覚現象の理論的理解に寄与し得る。",
+    "action_suggestion": "論文は理論的枠組みの提案段階であり、Type Eにおける大域的合流性の解決など今後の研究課題が残されている。",
+    "importance": "C",
+    "related_categories": [
+      "研究・技術"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_60eee8220e878d586086",
+    "story_id": "story_efa46c5bda2fad5cd5",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "AIベンチマーク・研究速報",
+    "title": "可変長シーケンス学習を高速化する新手法「Data-Centric Parallel」",
+    "source_url": "https://arxiv.org/abs/2608.07524",
+    "source_name": "rss.arxiv.org",
+    "is_official": true,
+    "published_at": "2026-08-11T04:00:00.000Z",
+    "source_published_at": "2026-08-11T04:00:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-11T04:41:27.728Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Data-Centric Parallel",
+      "NVIDIA H200",
+      "data-centricparallel",
+      "nvidiah200",
+      "data-centric"
+    ],
+    "primary_entity": "研究チーム(著者不明)",
+    "story_subject": "Data-Centric Parallel(DCP)",
+    "event_type": "research",
+    "event_stage": "other",
+    "event_scope": "学術研究(arXiv投稿)",
+    "fact_slots": [
+      {
+        "type": "amount",
+        "scope": "学習速度の向上率",
+        "value": "最大2.88倍",
+        "normalized_value": "2.88"
+      },
+      {
+        "type": "count",
+        "scope": "使用GPU数",
+        "value": "32基のH200",
+        "normalized_value": "32"
+      }
+    ],
+    "new_facts": [
+      "新手法Data-Centric Parallel(DCP)はバッチごとのシーケンス長に応じて並列度や勾配蓄積などのランタイム設定を動的に調整する",
+      "32基のNVIDIA H200 GPUで最大2.88倍の学習速度向上を達成したと報告された",
+      "既存モデルへの統合はわずか10行のコード追加で可能とされる"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "研究者が可変長シーケンスの深層学習を高速化する新手法DCPを発表し、32基のH200 GPUで最大2.88倍の速度向上を達成した。",
+    "detail": "可変長のシーケンスを深層学習で訓練する際、既存手法は効率性と使いやすさのどちらかを犠牲にする必要があった。単純な静的設定は処理負荷の偏りによる非効率を招き、複雑な手法は新しいモデルへの適用時に大幅なコード変更を要していた。研究者らはこの課題を解決するため、データ自体がランタイム設定を駆動する『Data-Centric Parallel(DCP)』を提案した。各バッチのシーケンス長に応じて並列サイズや勾配蓄積、再計算などの設定を動的に調整する仕組みで、実験では32基のNVIDIA H200 GPU上で最大2.88倍の高速化を達成したという。既存モデルへの統合もわずか10行のコード追加で可能とされ、今後の分散学習研究の基盤となることが期待されている。",
+    "change_summary": "データの特性に応じて並列処理設定を動的に変える新手法DCPが提案され、既存手法より高い効率化を実現した。",
+    "impact_summary": "大規模言語モデルなどの学習効率が向上すれば、AI開発の計算コスト削減や開発速度の向上につながる可能性がある。",
+    "action_suggestion": "論文は既存モデルへの統合が10行のコードで可能としており、今後のオープンソース実装や実運用での採用状況が注目される。",
+    "importance": "B",
+    "related_categories": [
+      "研究・技術",
+      "半導体・インフラ"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_a8ee79cd7040d29d955c",
+    "story_id": "story_348041e4592eb0b733",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "Claude / Claude Code",
+    "title": "Claude、新モデルの生成文にコピペ後も残る「見えない透かし」導入へ",
+    "source_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9rakJqMjhjSXFpci1sOG1CcEg2R1g3ZHRFSTRMbXF3WTJ4SE5ydHBfdG12UGc0ZmtjbWN6MUF6ZEgxOEdtdjB1UHR6OGNRQXEyb0lSUEROYURpbnJxdlZYVtIBZkFVX3lxTFByMlhRS2xsZndoTW1QOFpHa2x3Z3JvRUVXMkxLVk52d2ZEOWhFc3BJNlNIQnlZazd1dDJvWGtMX2hMaWdXa1RUcDBlYlVXMWRJMHB4YkowNGFsMGM1VlRtUUVuS2NJdw?oc=5",
+    "source_name": "リアルサウンド",
+    "is_official": false,
+    "published_at": "2026-08-11T03:21:47.000Z",
+    "source_published_at": "2026-08-11T03:21:47.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-11T04:40:48.828Z",
+    "event_at": "",
+    "event_status": "予定",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Claude",
+      "Anthropic",
+      "claude",
+      "anthropic"
+    ],
+    "primary_entity": "Anthropic",
+    "story_subject": "Claudeの新モデルにおける見えない透かし機能",
+    "event_type": "release",
+    "event_stage": "planned",
+    "event_scope": "Claudeの新モデル",
+    "fact_slots": [],
+    "new_facts": [
+      "Anthropicが新しいClaudeモデルの生成テキストにコピペ後も残る「見えない透かし」を導入する方針を示した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Anthropicが新しいClaudeモデルで生成した文章に、コピペしても消えない「見えない透かし」を導入する方針を示した。",
+    "detail": "Claudeを開発するAnthropicが、新モデルの生成テキストに対して「見えない透かし」を組み込む仕組みを導入する方針であることが伝えられた。この透かしは通常の見た目では確認できないが、テキストをコピーして別の場所に貼り付けた後でも残る特徴を持つとされ、AIが生成した文章かどうかを識別する手段になり得る。具体的な技術方式や対応モデル、導入時期といった詳細は記事からは確認できず、今後の発表を待つ必要がある。",
+    "change_summary": "Claudeの新モデルで、コピペ後も残る見えない透かしをテキストに埋め込む機能が導入される方針が示された。",
+    "impact_summary": "AI生成文章と人間が書いた文章の判別が容易になる可能性があり、教育現場や企業のコンテンツチェック業務に影響を与えうる。",
+    "action_suggestion": "具体的な導入モデルや時期については、Anthropicからの今後の正式発表を確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル",
+      "研究・技術"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_35acdefe662b0308cec8",
+    "story_id": "story_687861ec3859b54806",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.6175609756097561,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject"
+    ]
+  },
+  {
+    "tool": "Gemini",
+    "title": "Gemini搭載の新型Google Homeスピーカー、従来のGoogleアシスタントとの違いを解説",
+    "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFAtWFZmWnRQUlljVHF6UGI3RVg1YkRYYV9hSlkzVTJxUVRBWXRKWlZnNzUyUDVkeWFyUWdlUFYtUWt2MVN2b2ZCT0ZET2ZhNFZMdjAwV01yY0FWTER2Um44TlBfNFNQNmpGd2JES3lvOFlubG4wNnliSjJCZmJBSXc?oc=5",
+    "source_name": "Yahoo!ニュース",
+    "is_official": false,
+    "published_at": "2026-08-11T02:30:00.000Z",
+    "source_published_at": "2026-08-11T02:30:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-11T04:40:50.018Z",
+    "event_at": "",
+    "event_status": "不明",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Google Home",
+      "Gemini",
+      "Googleアシスタント",
+      "googlehome",
+      "gemini"
+    ],
+    "primary_entity": "Google",
+    "story_subject": "新型Google HomeスピーカーへのGemini搭載",
+    "event_type": "release",
+    "event_stage": "announced",
+    "event_scope": "不明",
+    "fact_slots": [],
+    "new_facts": [
+      "新型Google HomeスピーカーにGeminiが搭載され、従来のGoogleアシスタントとの違いが記事で解説されている"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "新型Google HomeスピーカーにGeminiが搭載され、従来のGoogleアシスタントとの機能面の違いが記事で紹介されている。",
+    "detail": "新型のGoogle HomeスピーカーにAIアシスタント「Gemini」が搭載されたことを受け、これまで搭載されていたGoogleアシスタントとの違いを解説する記事が公開された。Geminiの搭載によりスマートスピーカーの応答や機能がどう変わるのかが焦点となっているが、具体的な対応機能や価格、発売時期といった詳細情報は記事の抜粋からは確認できない。従来のGoogleアシスタントとの使い分けや移行時期についても、現時点で明記された情報はない。",
+    "change_summary": "新型Google HomeスピーカーにGeminiが搭載され、従来のGoogleアシスタントとの違いが記事で比較・解説された。",
+    "impact_summary": "スマートスピーカーを利用する家庭のユーザーにとって、AIアシスタントの応答性や機能面の変化が生活の利便性に影響する可能性がある。",
+    "action_suggestion": "新型スピーカーの発売時期や価格、Geminiの具体的な対応機能については、続報や公式発表を確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_8700adf37faf98b05053",
+    "story_id": "story_7ebe01373b53fa49a7",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.5342857142857143,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "shared_entity",
+      "same_subject"
+    ]
+  },
+  {
     "tool": "NVIDIA・AI半導体",
     "title": "NvidiaのAI融資に「市場崩壊」警告、原油急騰が半導体株を圧迫",
     "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE8yREJqeXdncW5UcHJwWnVQRkdKT0kxZjhWLXFLaUVNY05tSkl2WXp4Wm8zalExVmdWOEVfNjQwTWVGVVVUTFVHYndBdGJpSk9tVUZlMFVPN2VYT2txb0JjRVh0TnhfRHdYd3VUd2JxSTg0WkQw?oc=5",
@@ -110,6 +411,69 @@
     "dedupe_reasons": [
       "same_primary_entity",
       "same_subject"
+    ]
+  },
+  {
+    "tool": "NVIDIA・AI半導体",
+    "title": "NVIDIA関連の5,000億ドル規模資金調達報道でウォール街が目標株価を引き上げ",
+    "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE40NzZfUnAzY2UydzBxZGE4VXJrVDc1X1UwMGVIclNaZTlPcEVJaXhlZklJcW85V25SQlptMHBaSHVYY2Z2bzFwWTdGSTBnWWtiT1RVMUVJNzRaMm9aelNFbEJJWHo0UUsxRDU3a1NyNWh1a0s1?oc=5",
+    "source_name": "BigGo ファイナンス",
+    "is_official": false,
+    "published_at": "2026-08-10T22:55:00.000Z",
+    "source_published_at": "2026-08-10T22:55:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-11T04:41:22.954Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "NVIDIA",
+      "nvidia"
+    ],
+    "primary_entity": "NVIDIA",
+    "story_subject": "NVIDIA関連の5,000億ドル規模資金調達",
+    "event_type": "funding",
+    "event_stage": "announced",
+    "event_scope": "世界の株式市場",
+    "fact_slots": [
+      {
+        "type": "amount",
+        "scope": "資金調達規模",
+        "value": "5000億ドル",
+        "normalized_value": "500000000000USD"
+      }
+    ],
+    "new_facts": [
+      "NVIDIA関連で5,000億ドル規模の資金調達が報じられた",
+      "ウォール街の複数アナリストがNVIDIAの目標株価を引き上げた"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "NVIDIAをめぐる5,000億ドル規模の資金調達が報じられ、ウォール街の複数アナリストが同社の目標株価を引き上げた。",
+    "detail": "記事は見出し情報が中心で詳細な説明は乏しいが、NVIDIAに関連して5,000億ドル規模の資金調達が話題となっていることを伝えている。これを受けてウォール街の証券アナリストが同社の目標株価を引き上げたとされ、AI関連分野への資金流入が再び活発化している動きの一端とみられる。ただし、資金の出所や具体的な用途、調達の実施時期など詳細な内容は本文からは確認できない。",
+    "change_summary": "NVIDIAに絡む5,000億ドル規模の資金調達が報じられ、これを受けて複数のアナリストが目標株価を引き上げた。",
+    "impact_summary": "AI半導体最大手であるNVIDIAの株価動向や資金調達規模は、日本の半導体関連企業や設備投資計画にも波及し得る。",
+    "action_suggestion": "資金調達の具体的な内容や実施時期については、今後の公式発表や続報の確認が必要な状況である。",
+    "importance": "A",
+    "related_categories": [
+      "企業・株式",
+      "半導体・インフラ"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_cb210f24bde8a10a762d",
+    "story_id": "story_d5a2806b7d0fd6f900",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.66,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "shared_entity",
+      "same_subject",
+      "same_event_type"
     ]
   },
   {
@@ -231,6 +595,61 @@
     "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
     "article_id": "article_5367cc95a8fd98172eb1",
     "story_id": "story_7840b412beba24a62c",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "ChatGPT / OpenAI",
+    "title": "OpenAI、テキサス州知事に責任あるAIインフラ整備への支持表明の書簡を送付",
+    "source_url": "https://openai.com/index/responsible-ai-infrastructure-texas",
+    "source_name": "openai.com",
+    "is_official": true,
+    "published_at": "2026-08-10T14:00:00.000Z",
+    "source_published_at": "2026-08-10T14:00:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-11T04:40:47.237Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "OpenAI",
+      "Greg Abbott",
+      "Texas",
+      "openai",
+      "gregabbott"
+    ],
+    "primary_entity": "OpenAI",
+    "story_subject": "テキサス州のAIインフラ整備に関する書簡",
+    "event_type": "policy",
+    "event_stage": "announced",
+    "event_scope": "テキサス州",
+    "fact_slots": [],
+    "new_facts": [
+      "OpenAIがテキサス州知事グレッグ・アボット氏宛てに責任あるAIインフラ整備への支持を表明する書簡を送付した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "OpenAIがテキサス州のグレッグ・アボット知事に書簡を送り、責任あるAIインフラ整備への支持と協力姿勢を表明した。",
+    "detail": "OpenAIはテキサス州知事グレッグ・アボット氏に宛てて、州内での責任あるAIインフラ整備に関する書簡を送付した。書簡では、信頼性が高く透明性のある形でのAIインフラの拡大が、テキサス州民に利益をもたらすとして支持する姿勢が示されている。具体的な投資額や施設計画、規制への言及など詳細な内容は記事からは確認できず、書簡送付という事実のみが伝えられている。今後、テキサス州とOpenAIの間で具体的な協力策が示されるかは不明。",
+    "change_summary": "OpenAIがテキサス州知事に責任あるAIインフラ整備への支持を表明する書簡を送ったことが明らかになった。",
+    "impact_summary": "米国内でのAIインフラ拡大に対する政治・行政との連携の動きであり、日本企業がAIインフラ投資を検討する際の海外動向の参考になる。",
+    "action_suggestion": "書簡の詳細な内容や今後のテキサス州との具体的な協力計画については、続報を確認する必要がある。",
+    "importance": "C",
+    "related_categories": [
+      "政策・行政"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_3d196224ab27a2df369c",
+    "story_id": "story_ef47214a3a8002a068",
     "story_sequence": 1,
     "relation_type": "new",
     "relation_confidence": 1,
@@ -686,62 +1105,6 @@
     ]
   },
   {
-    "tool": "NVIDIA・AI半導体",
-    "title": "AI半導体ブームで村田製作所とIbidenが過去最高業績",
-    "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE14MUpMNHpmOFZxR1JfTlFDdGc2ODhkOVRWVDJmcWp6QkhXWXNydFR5VlMydTRqTDNlYVUxRXJta3h2QXhHM3ZXRmZabUM0NkJfdXY5c29BdW1zTzdtaXJWWERhYU1NMHdlYzU4UkIzRXpkb3VV?oc=5",
-    "source_name": "BigGo ファイナンス",
-    "is_official": false,
-    "published_at": "2026-08-10T06:26:00.000Z",
-    "source_published_at": "2026-08-10T06:26:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-10T08:05:34.223Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "村田製作所",
-      "Ibiden",
-      "AI半導体",
-      "ibiden",
-      "ai半導体"
-    ],
-    "primary_entity": "村田製作所",
-    "story_subject": "AI半導体ブームによる業績向上",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "日本",
-    "fact_slots": [],
-    "new_facts": [
-      "村田製作所とIbidenがAI半導体ブームを追い風に揃って過去最高業績を記録した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "半導体部材を手がける村田製作所とIbidenが、AI半導体需要の拡大を追い風に揃って過去最高業績を記録した。",
-    "detail": "電子部品・半導体部材メーカーの村田製作所とIbidenは、AI向け半導体需要の拡大を背景に、揃って過去最高の業績を記録した。両社は「隠れた強者」として、生成AIやデータセンター向け半導体のサプライチェーンで重要な部材を供給しており、AIブームの拡大がその業績を押し上げた形となっている。具体的な決算数値や成長率などの詳細は記事からは確認できないが、日本の部材メーカーがAI需要の恩恵を受けている実態が示されている。",
-    "change_summary": "村田製作所とIbidenがAI半導体需要の追い風で過去最高業績を記録したことが明らかになった。",
-    "impact_summary": "AI半導体需要の拡大は日本の電子部品・部材メーカーの業績にも波及しており、関連産業の投資判断や株式市場への注目材料となる。",
-    "action_suggestion": "具体的な決算数値や今後の見通しは記事内で確認できず、各社の決算発表資料の確認が必要。",
-    "importance": "B",
-    "related_categories": [
-      "半導体・インフラ",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_23df7161f67778df4e55",
-    "story_id": "story_e3c0949d70a21a3e9d",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
     "tool": "ChatGPT / OpenAI",
     "title": "OpenAI、GPT-5.6「Luna」を80%値下げ、「Terra」も20%値下げ",
     "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE8wNzVaSm15Y0FENWdtQnRrem1QUjZuNnpMYjRSOHg0cEZQNnpVZ2dPSmIyVkNwWW50V2xuN2dtM3NjaXpMRlJtMzA4SXBhc3RqczRV?oc=5",
@@ -809,262 +1172,6 @@
     "dedupe_reasons": [
       "same_primary_entity",
       "same_subject"
-    ]
-  },
-  {
-    "tool": "NVIDIA・AI半導体",
-    "title": "小型AIスーパーコンピューター、NVIDIA製部品高騰で25%値上げ",
-    "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9vTGFlN2ZPV1Fmcy1oRHFlOE9BLV9EaldqV1pFcXlEd2hnWVV3R0tia0ZDUERJVVFxenphb296MHEteE1TZHA4cktaRUVrbWlZWmxZZjJLazVSYkdReUZVVE1iZGhLU25lbGxNdw?oc=5",
-    "source_name": "日本経済新聞",
-    "is_official": false,
-    "published_at": "2026-08-10T05:30:00.000Z",
-    "source_published_at": "2026-08-10T05:30:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-10T10:37:24.118Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "NVIDIA",
-      "小型AIスパコン",
-      "nvidia",
-      "小型aiスパコン"
-    ],
-    "primary_entity": "NVIDIA",
-    "story_subject": "小型AIスーパーコンピューターの価格上昇",
-    "event_type": "pricing",
-    "event_stage": "other",
-    "event_scope": "小型AIスパコン市場",
-    "fact_slots": [
-      {
-        "type": "price",
-        "scope": "小型AIスパコン値上げ率",
-        "value": "25%",
-        "normalized_value": "25%"
-      }
-    ],
-    "new_facts": [
-      "NVIDIA製部品を用いた小型AIスーパーコンピューターが25%値上げされる。",
-      "データセンター並みの性能を手のひらサイズで実現する製品として紹介されている。"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "データセンター並み性能を手のひらサイズで実現する小型AIスパコンが、NVIDIA製部品の価格上昇により25%値上げされる。",
-    "detail": "データセンター並みの計算性能を手のひらサイズで実現する小型AIスーパーコンピューターが、AI開発者向けに提供されてきた。日本経済新聞によると、NVIDIA製部品の価格上昇を受け、これら小型AIスパコンの価格が25%引き上げられるという。半導体需要の高まりや供給制約が背景にあるとみられ、AI開発を進める企業や研究機関の機材調達コストの増加につながる可能性がある。具体的な対象製品名や新価格、値上げ時期については記事本文での確認が必要。",
-    "change_summary": "小型AIスパコンの価格がNVIDIA製部品の高騰を受け25%上昇する。",
-    "impact_summary": "AI開発企業や研究機関にとって機材調達コストが増加し、予算計画の見直しが必要になる可能性がある。",
-    "action_suggestion": "対象製品名や新価格、値上げ時期の詳細について日本経済新聞の記事本文を確認する必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "半導体・インフラ",
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_ba9c13e2921fd16d3bf3",
-    "story_id": "story_cf9b4c3535fa0a09da",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "Gemini",
-    "title": "Gemini Notebook（旧NotebookLM）のスライドから透かしを消す方法が紹介",
-    "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9UQ3BlZFJkQzUwazhhcWVXMVEzdENDSm0tb21Vb3Jmako0aWd5WkRTQXdSWU4yTzNjNVpGR0E4TWM2cmlYckRsUDNzT1VRRzZFZklhOHRuSTZqUzBvWkxJUDNaWG9HOVRI?oc=5",
-    "source_name": "ニコニコニュース",
-    "is_official": false,
-    "published_at": "2026-08-10T05:03:22.000Z",
-    "source_published_at": "2026-08-10T05:03:22.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-10T08:05:03.852Z",
-    "event_at": "",
-    "event_status": "不明",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Gemini Notebook",
-      "NotebookLM",
-      "gemininotebook",
-      "notebooklm",
-      "google-gemini"
-    ],
-    "primary_entity": "Google",
-    "story_subject": "Gemini Notebookのスライド透かし削除",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "デスクトップ",
-    "fact_slots": [],
-    "new_facts": [
-      "Gemini Notebook(旧NotebookLM)で生成したスライドから透かしを削除する方法が紹介された"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "Google の Gemini Notebook（旧NotebookLM）で作成したスライドに入る透かしを削除する手順が紹介されている。",
-    "detail": "Gemini Notebook（旧NotebookLM）はGoogleが提供するAIノートブックツールで、資料からスライドを自動生成できる。生成されたスライドには透かしが入ることがあり、記事ではその透かしを削除する具体的な操作手順を紹介している。詳細な条件や対象プランなど本文からは不明な点も多いが、無料利用時に付与される透かしを消したいユーザー向けの実用的な情報として取り上げられている。",
-    "change_summary": "Gemini Notebookで生成したスライドの透かしを削除する手順が新たに紹介された。",
-    "impact_summary": "資料作成にGemini Notebookを使う会社員や学生にとって、見た目を整えたスライドを外部提出しやすくなる可能性がある。",
-    "action_suggestion": "透かし削除の対象範囲や利用条件は記事から不明なため、実際に試す場合は自身の利用プランの規約を確認する必要がある。",
-    "importance": "C",
-    "related_categories": [
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_5a358d0cb04abfc29f6d",
-    "story_id": "story_0d9f4f61a736d6916b",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.5205714285714286,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "shared_entity",
-      "same_subject"
-    ]
-  },
-  {
-    "tool": "Grok / xAI",
-    "title": "xAI、画像生成AI「Imagine Image 2.0」を公開し部分編集機能を強化",
-    "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9aM21ZWUlpYnRFanUtaWVkNkhqODVleUVpTGpDeTFKN0huTFFBM2g0TUVuRi1sMzJHbW1rV0dBVVFLZlJmcDhFVU5ENDlZOUl4OEY2Tjc4QmNXNlZxT1VNZzVoZVRCVTMtWEFKcGRnRndJSk5F?oc=5",
-    "source_name": "BigGo ファイナンス",
-    "is_official": false,
-    "published_at": "2026-08-10T04:55:00.000Z",
-    "source_published_at": "2026-08-10T04:55:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-10T08:05:20.350Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "xAI",
-      "Imagine Image 2.0",
-      "xai",
-      "imagineimage2.0",
-      "imagine"
-    ],
-    "primary_entity": "xAI",
-    "story_subject": "Imagine Image 2.0",
-    "event_type": "release",
-    "event_stage": "launched",
-    "event_scope": "全世界",
-    "fact_slots": [
-      {
-        "type": "version",
-        "scope": "Imagine Image",
-        "value": "2.0",
-        "normalized_value": "2.0"
-      }
-    ],
-    "new_facts": [
-      "xAIが画像生成AI「Imagine Image 2.0」を公開した",
-      "部分編集機能が強化され商用利用が訴求されている"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "イーロン・マスク氏率いるxAIが画像生成AI「Imagine Image 2.0」を公開し、部分編集機能を強化して商用利用を訴求している。",
-    "detail": "xAIはイーロン・マスク氏が率いるAI企業で、画像生成AIのImagineシリーズを提供している。今回公開された「Imagine Image 2.0」では、画像の一部だけを編集できる部分編集機能が強化され、商用利用を意識した機能拡充が図られている。競合となる画像生成AIとの差別化を狙った動きとみられるが、料金や提供地域など具体的な条件については本文の抜粋からは確認できない。",
-    "change_summary": "xAIが部分編集機能を強化した新バージョン「Imagine Image 2.0」を公開した。",
-    "impact_summary": "商用のクリエイティブ制作や広告分野で画像編集の選択肢が増える可能性がある。",
-    "action_suggestion": "料金や利用条件など詳細は公式発表の続報を確認する必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "画像・動画生成",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_06fa3e00fb5d2a3c77f8",
-    "story_id": "story_2a0c2d7c9f1705659a",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.8310526315789474,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "same_subject",
-      "same_event_type",
-      "material_fact_changed",
-      "low_confidence_follow_up_demoted"
-    ]
-  },
-  {
-    "tool": "Grok / xAI",
-    "title": "Grokの画像生成機能「Imagine Image 2.0」が登場、実写・イラスト・文字入り画像に対応",
-    "source_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFB4bnlEY1pYTkVfOFJBLXcyRTBfZGtLcG5kVjBjZXlfWk5oUzBrRklHOVBmbEhtaVVqQ1hGMHFtRHR1VzlKX1RSWWpjWUxDUVo0bDM2eEotdmdoUnVlZzlIRzJUUFkyblU?oc=5",
-    "source_name": "GIGAZINE",
-    "is_official": false,
-    "published_at": "2026-08-10T04:10:00.000Z",
-    "source_published_at": "2026-08-10T04:10:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-10T04:55:42.078Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Grok",
-      "xAI",
-      "Imagine Image 2.0",
-      "grok",
-      "xai"
-    ],
-    "primary_entity": "xAI",
-    "story_subject": "Grok Imagine Image 2.0",
-    "event_type": "release",
-    "event_stage": "launched",
-    "event_scope": "Grokアプリ・画像生成機能",
-    "fact_slots": [
-      {
-        "type": "version",
-        "scope": "Grok画像生成エンジン",
-        "value": "Imagine Image 2.0",
-        "normalized_value": "imagineimage2.0"
-      }
-    ],
-    "new_facts": [
-      "Grokの画像生成機能がImagine Image 2.0にアップデートされた",
-      "実写風とイラスト風の両方の画像生成に対応した",
-      "画像内への文字描写が可能になった"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "xAIのGrokの画像生成AIが「Imagine Image 2.0」にアップデートされ、実写風・イラスト風の画像に加え文字の描写にも対応した。",
-    "detail": "GrokはXを運営するxAIが手がけるAIチャットボットで、画像生成機能「Imagine」を搭載している。今回のアップデートでは生成エンジンが「Imagine Image 2.0」に刷新され、実写のようにリアルな画像から手描き風のイラストまで幅広い作風に対応するようになった。またこれまで苦手とされてきた画像内への文字描写も可能になり、看板やロゴなどのテキストを含む画像も生成できるという。GIGAZINEでは実際にImagine Image 2.0を使用し、その生成結果を検証している。",
-    "change_summary": "Grokの画像生成機能がImagine Image 2.0に更新され、実写・イラスト表現に加え画像内の文字描写に対応した点が新しい。",
-    "impact_summary": "画像に文字を正確に入れられるようになったことで、広告バナーやSNS投稿画像制作など日本のクリエイターやマーケティング担当者の業務効率化に役立つ可能性がある。",
-    "action_suggestion": "Grokアプリやサービス上でImagine Image 2.0の画像生成機能を実際に試すことができる。",
-    "importance": "B",
-    "related_categories": [
-      "画像・動画生成",
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_0ece839e0f3a9d591e53",
-    "story_id": "story_828367fad62fc4c7e2",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.8275,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "same_subject",
-      "same_event_type",
-      "material_fact_changed",
-      "low_confidence_follow_up_demoted"
     ]
   },
   {
@@ -3359,115 +3466,6 @@
     "previous_source_published_at": "",
     "continuation_lead": "",
     "new_facts": [],
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "Gemini",
-    "title": "Gemini SparkがChromeと連携、ネットの雑務を自動代行",
-    "source_url": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-spark-updates-july-2026/",
-    "source_name": "blog.google",
-    "is_official": true,
-    "published_at": "2026-07-30T20:00:00.000Z",
-    "raw_excerpt": "GoogleのAIエージェント「Gemini Spark」がChromeと統合し、ログイン情報を使って予約や調べ物などを自動でこなせるようになった。",
-    "detail": "Gemini Sparkは、ユーザーに代わってウェブ上の作業をこなすGoogleのAIエージェント機能です。今回Chromeブラウザと直接連携することで、本人の許可のもと、保存済みのログイン情報やパスワードを使い、賃貸物件の内見予約や航空券の検索・予約開始といった面倒なネット手続きを代行できるようになりました。悪意ある指示を紛れ込ませる「プロンプトインジェクション」という攻撃への対策も施され、支払いなど重要な操作は必ず本人に確認を求める仕組みです。まずは米国から提供を始め、順次対象地域を広げる予定です。",
-    "change_summary": "Chromeとの統合による新たな自動操作機能を追加し、Google AI Pro加入者向けに160以上の国・地域で利用開始しました。",
-    "impact_summary": "将来的に日本でも展開されれば、ネット予約や調べ物といった日常作業の自動化が進む可能性がありますが、パスワード情報を扱うため安全対策の内容を理解しておく必要があります。",
-    "action_suggestion": "Google AI Proのサービス範囲や日本での提供時期に関する続報を確認する。",
-    "importance": "A",
-    "related_categories": [
-      "AIツール・モデル",
-      "アプリ開発・自動化"
-    ],
-    "article_id": "article_52aa7b8ad42c4d3f8ec2",
-    "source_published_at": "2026-07-30T20:00:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-02T02:31:54.221Z",
-    "event_at": "",
-    "event_status": "不明",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "google-gemini",
-      "gemini",
-      "spark",
-      "chrome",
-      "google"
-    ],
-    "primary_entity": "",
-    "story_subject": "",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "",
-    "fact_slots": [],
-    "story_id": "story_2785705e7d0827980b",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.5163636363636364,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "new_facts": [],
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "shared_entity",
-      "same_subject"
-    ]
-  },
-  {
-    "tool": "Google Veo",
-    "title": "Googleの新モデル「Gemini Omni」、リークされたデモ動画でVeo 3.1を上回るとの情報",
-    "source_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNRXlxLWhaMDFzVGlpRHNKNnlUQmlMQWRvRVphUGVoMmFBNGVlbXdQUzJzZzFTODIwSlFmd3UxNjRaZTZmbmJmX1YzX2xpazZPOGwwd0tKNWRqNjhaN0JaZmRJMFNWS1Z1MW51VUo0Zlo2UkZxNnlzZXVmSXVrSzZVcUMxaloyYXpq?oc=5",
-    "source_name": "TechJuice",
-    "is_official": false,
-    "published_at": "2026-07-28T07:50:41.000Z",
-    "source_published_at": "2026-07-28T07:50:41.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-09T04:37:27.438Z",
-    "event_at": "",
-    "event_status": "不明",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Google",
-      "Gemini Omni",
-      "Veo 3.1",
-      "google",
-      "geminiomni"
-    ],
-    "primary_entity": "Google",
-    "story_subject": "Gemini Omni",
-    "event_type": "other",
-    "event_stage": "rumor",
-    "event_scope": "不明",
-    "fact_slots": [],
-    "new_facts": [
-      "リークされたデモ動画でGemini OmniがVeo 3.1を上回ったと報じられた"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "リークされたデモ動画で、Googleの新モデル「Gemini Omni」がVeo 3.1より優れた動画生成性能を示したと報じられた。",
-    "detail": "リークされたデモ動画を基に、Googleが開発中とされる新モデル「Gemini Omni」が、既存の動画生成モデル「Veo 3.1」を上回る性能を示したと報じられている。この情報はリーク経由であり、Google公式の発表ではない。具体的な機能や公開時期など詳細は記事本文からは確認できていない。",
-    "change_summary": "リーク情報として、Googleの新モデル「Gemini Omni」がVeo 3.1を上回る動画生成性能を示したとされる。",
-    "impact_summary": "動画生成AIの競争が続く中、公式発表前の情報であり内容の確度には注意が必要。",
-    "action_suggestion": "現時点でGoogleからの公式発表はなく、正式発表を待つ必要がある。",
-    "importance": "C",
-    "related_categories": [
-      "画像・動画生成",
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_12497a65dae6916404aa",
-    "story_id": "story_63ad60a9d91b973bae",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
     "dedupe_decision": "new",
     "dedupe_reasons": [
       "no_previous_story"
