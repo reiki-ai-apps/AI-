@@ -11546,17 +11546,6 @@
         "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
       }
     },
-    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte9vsujiym8tm1dmemtfrgpwdc16mww2qmxzmu9nvgxhddr1nxzyavvnwxlzy1hqmlfuz2hpwwjycuxmvkh2whpma3hfamszeepqogldyzjsbzd2rmwyqnvzmmrplvvktepyake": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte9vsujiym8tm1dmemtfrgpwdc16mww2qmxzmu9nvgxhddr1nxzyavvnwxlzy1hqmlfuz2hpwwjycuxmvkh2whpma3hfamszeepqogldyzjsbzd2rmwyqnvzmmrplvvktepyake",
-      "content_hash": "55e46b9b638f56ba0708b95835f3b029fecbe82592cfaf817c092efb4ef50d28",
-      "story_key": "45bbb00a357497dbbdfab4455b2888749a907e0f90aaa18525e6ccaea6dfb80e",
-      "status": "rejected",
-      "processed_at": "2026-08-10T02:37:11.106Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "ai_skip: 登壇報告の宣伝的PR記事のため除外"
-    },
     "url:https://news.google.com/rss/articles/cbmidefvx3lxte1vnw8zyujba2dtedlpnhm3a3rswetnnkzjutktvlfdaerhdfy5eg1xvlhlsg9wal8tuwy3uxluys03a1lau1zxslvrmdbyn2xkmkvsrejztnltrlf4swzrdtuymuduvujpdgn5tjvjdtlzwmvn": {
       "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte1vnw8zyujba2dtedlpnhm3a3rswetnnkzjutktvlfdaerhdfy5eg1xvlhlsg9wal8tuwy3uxluys03a1lau1zxslvrmdbyn2xkmkvsrejztnltrlf4swzrdtuymuduvujpdgn5tjvjdtlzwmvn",
       "content_hash": "912ffe66c69f5c916a25123f75d9f517de6d6d7ebcbb93bcf6513964ddb7d8d7",
@@ -14744,7 +14733,544 @@
       "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
       "lane": "emergency",
       "reason": "ai_skip: 推測的見出しのみで確認できる事実がない"
+    },
+    "url:https://news.google.com/rss/articles/cbmibefvx3lxte13vhnub085v3bobnd6ogfpewz3ynhvaeq2b0fkcy0xwu1ate1kqzfvywizdupgntbtvmnlbfftddrlsurree5eslk1zg1mstfsakzhsmjcendscnror0dowufuwguzbxr2yulsuw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmibefvx3lxte13vhnub085v3bobnd6ogfpewz3ynhvaeq2b0fkcy0xwu1ate1kqzfvywizdupgntbtvmnlbfftddrlsurree5eslk1zg1mstfsakzhsmjcendscnror0dowufuwguzbxr2yulsuw",
+      "content_hash": "872d1a7794f179e241fb64bda1cb6bb64d4fc3c52991fccd5e6e90675cb45834",
+      "story_key": "592a00cb517715069462499c5e017b672f502e6c2878e3681dff9ec50a7ff52e",
+      "status": "enriched",
+      "processed_at": "2026-08-12T02:47:25.740Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Manus AI",
+        "title": "中国のAI企業Manus、Metaによる買収から独立へ 中国政府が反発",
+        "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE13VHNUb085V3Bobnd6OGFPeWZ3YnhVaEQ2b0Fkcy0xWU1aTE1kQzFVYWIzdUpGNTBtVmNLbFFTdDRLSURreE5ESlk1ZG1mSTFsakZHSmJCendscnRoR0doWUFuWGUzbXR2YUlSUw?oc=5",
+        "source_name": "日本経済新聞",
+        "is_official": false,
+        "published_at": "2026-08-11T16:15:40.000Z",
+        "source_published_at": "2026-08-11T16:15:40.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T02:46:07.657Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Manus AI",
+          "Meta",
+          "中国政府"
+        ],
+        "primary_entity": "Manus AI",
+        "story_subject": "Metaによる買収からの独立",
+        "event_type": "acquisition",
+        "event_stage": "denied",
+        "event_scope": "中国",
+        "fact_slots": [],
+        "new_facts": [
+          "Manusはメタからの独立という形となり、中国政府がメタによる買収に反発したと報じられている。"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "中国発AIスタートアップManusがMetaとの資本提携から独立する方向となり、背景には中国政府の反発があったと報じられている。",
+        "detail": "中国発のAIスタートアップ「Manus」が、Metaによる買収・提携の動きから独立する方向にあると報じられた。記事によれば、この動きの背景には中国政府がMetaによる買収に反発したことがあるとされる。中国のAI企業が海外大手テック企業の資本を受け入れることに対し、当局が警戒感を示した事例として取り上げられている。具体的な出資比率や交渉の詳細は記事からは確認できず、今後Manusがどのような資本構成・提携先で事業を進めるかは不明のままとなっている。",
+        "change_summary": "ManusとMetaの資本提携が中国政府の反発により独立という形に落ち着いたと報じられた。",
+        "impact_summary": "中国AI企業への海外資本参入に対する規制姿勢が強まる可能性があり、日本企業が中国AI企業と提携する際にも当局動向を注視する必要が出てくる。",
+        "action_suggestion": "Manusの今後の資本構成や事業方針について、追加の公式発表を確認する必要がある。",
+        "importance": "A",
+        "related_categories": [
+          "企業・株式",
+          "政策・行政"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmipafbvv95cuxnb2l6bulsblk4x0zub3lsy0r0sepzqutgbc1nzwxwbgu5cwvaes1hrjd3cdq0tu9vd3zntf9psmyyufzcou9cbvjsv21tz2t0zf81s0hqb0y0rurjy1byntdfzji1qndmuzfkszd0ai1kodbpanf4dwpdd081adhtynjtqmfoynhudm0zlvm5uxfwmm4xnwewv3ptsm95wvdaq29sdg": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmipafbvv95cuxnb2l6bulsblk4x0zub3lsy0r0sepzqutgbc1nzwxwbgu5cwvaes1hrjd3cdq0tu9vd3zntf9psmyyufzcou9cbvjsv21tz2t0zf81s0hqb0y0rurjy1byntdfzji1qndmuzfkszd0ai1kodbpanf4dwpdd081adhtynjtqmfoynhudm0zlvm5uxfwmm4xnwewv3ptsm95wvdaq29sdg",
+      "content_hash": "9532195b8e4bac62b4c20202b86facc8816f66579de07452be914a3f1141b183",
+      "story_key": "28b2197ecaddac24d7213c26442a02239986d54c0a638c98abdad48a3727c50b",
+      "status": "enriched",
+      "processed_at": "2026-08-12T02:47:25.740Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "AIセキュリティ",
+        "title": "AI議事録ツール「tl;dv」でFirestore設定不備、18万件超の会議情報が公開状態に",
+        "source_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNb2l6bUlSblk4X0ZUb3lsY0R0SEpZQUtGbC1nZWxWbGU5cWVaeS1hRjd3cDQ0TU9Vd3ZNTF9pSmYyUFZCOU9CbVJsV21TZ2t0ZF81S0hqb0Y0RURJY1ByNTdfZjI1QndMUzFkSzd0ai1kODBPanF4dWpDd081aDhTYnJTQmFOYnhUdm0zLVM5UXFwMm4xNWEwV3pTSm95WVdaQ29Sdg?oc=5",
+        "source_name": "合同会社ロケットボーイズ",
+        "is_official": false,
+        "published_at": "2026-08-11T23:36:55.000Z",
+        "source_published_at": "2026-08-11T23:36:55.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T02:46:21.601Z",
+        "event_at": "",
+        "event_status": "継続中",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "tl;dv",
+          "Firestore"
+        ],
+        "primary_entity": "tl;dv",
+        "story_subject": "Firestore設定不備による会議情報の公開",
+        "event_type": "security",
+        "event_stage": "investigating",
+        "event_scope": "tl;dv利用企業全体",
+        "fact_slots": [
+          {
+            "type": "count",
+            "scope": "公開された会議情報件数",
+            "value": "18万件超",
+            "normalized_value": "180000"
+          }
+        ],
+        "new_facts": [
+          "Firestoreの設定不備により18万件超の会議情報が公開状態にあった。",
+          "進行中の通話に無断で参加できる状態も確認された。",
+          "研究者側と企業側の説明が対立している。"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "AI議事録サービス「tl;dv」でクラウドデータベースFirestoreの設定不備が見つかり、18万件超の会議情報が外部から閲覧可能な状態だったと報告された。",
+        "detail": "AIを使った会議議事録作成サービス「tl;dv」において、GoogleのクラウドデータベースサービスFirestoreの設定に不備があり、18万件を超える会議情報が外部からアクセス可能な状態になっていたと研究者が指摘した。記事によれば、進行中の通話に無断で参加できる状態も確認されたとされる。一方で、この指摘に対し企業側の説明は研究者側の主張と対立しており、被害の実態や修正状況について見解の相違があるという。現時点で問題が完全に修正されたかどうかは記事から確認できず、双方の説明の食い違いが続いている状況が伝えられている。",
+        "change_summary": "Firestoreの設定不備により18万件超の会議情報が外部に公開され、通話への無断参加も可能な状態だったと報告された。",
+        "impact_summary": "AI議事録ツールを業務で利用する企業にとって、会議内容の機密性が損なわれるリスクがあり、利用中の企業はセキュリティ設定の確認が必要となる。",
+        "action_suggestion": "tl;dv利用企業は、自社の会議データへの外部アクセス有無や企業側からの修正報告を確認することが求められる。",
+        "importance": "A",
+        "related_categories": [
+          "セキュリティ",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmibefvx3lxte1uwdbmc1nfuuvlr1qys3dnu3feu1fqyvdaowpkbxn3mgrrtmjjsfywqnrnshh2ywdhugd3mfbpqwfhu0tjenpqrghgohh3wghfahzvoxbfb2pxwepjogmxa3jvdglxuvrjcevlcq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmibefvx3lxte1uwdbmc1nfuuvlr1qys3dnu3feu1fqyvdaowpkbxn3mgrrtmjjsfywqnrnshh2ywdhugd3mfbpqwfhu0tjenpqrghgohh3wghfahzvoxbfb2pxwepjogmxa3jvdglxuvrjcevlcq",
+      "content_hash": "617793dec8c02fd49dc0e11fd2c19e2afb125f514d2edcb3dcd02502a491cfed",
+      "story_key": "6aafa9cf117e7d029adf29cdbc5d16434b5803c54632cec5e22abfe8d5fcba8c",
+      "status": "enriched",
+      "processed_at": "2026-08-12T02:47:25.740Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "DeepSeek",
+        "title": "DeepSeek、中国のヒト型ロボット新興企業と資本提携",
+        "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1UWDBMc1NFUUVLR1QyS3dNU3FEU1FQYVdaOWpkbXN3MGRrTmJjSFYwQnRNSHh2YWdHUGd3MFBPQWFHU0tjenpQRGhGOHh3WGhFaHZvOXBfb2pxWEpjOGMxa3JVdGlXUVRJcEVlcQ?oc=5",
+        "source_name": "日本経済新聞",
+        "is_official": false,
+        "published_at": "2026-08-11T20:00:00.000Z",
+        "source_published_at": "2026-08-11T20:00:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T02:46:06.324Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "DeepSeek",
+          "ヒト型ロボット新興企業"
+        ],
+        "primary_entity": "DeepSeek",
+        "story_subject": "ヒト型ロボット新興企業との資本提携",
+        "event_type": "partnership",
+        "event_stage": "announced",
+        "event_scope": "中国",
+        "fact_slots": [],
+        "new_facts": [
+          "DeepSeekがヒト型ロボット新興企業と資本提携した。",
+          "フィジカルAI分野への進出が中国国内で進められているとされる。"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "中国のAI企業DeepSeekが、ヒト型ロボットを開発する新興企業と資本提携し、フィジカルAI分野への進出を進めていると報じられた。",
+        "detail": "中国のAI企業DeepSeekが、ヒト型ロボットを開発する新興企業と資本提携を結んだと報じられた。記事によれば、この提携はロボットなど物理的な機器にAIを組み込む「フィジカルAI」分野を中国国内で推進する動きの一環とされる。DeepSeekはこれまで大規模言語モデルの開発で知られてきたが、今回の提携によりソフトウェアだけでなくハードウェア分野への展開を強める狙いがあるとみられる。提携先企業名や出資額など具体的な条件は記事からは確認できず、今後の事業展開の詳細は不明である。",
+        "change_summary": "DeepSeekがヒト型ロボット新興企業と資本提携し、フィジカルAI分野への参入を明らかにした。",
+        "impact_summary": "中国AI企業がハードウェア分野に進出することで、ロボティクスとAIを組み合わせた製品開発の競争が国際的に激化する可能性がある。",
+        "action_suggestion": "提携先企業名や出資規模など詳細については、今後の追加発表を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "企業・株式",
+          "研究・技術"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiw0fvx3lxte44mjzuedm5tejnz3r1m1u1sjh0tkq3dfvrwndeedvgywizshatcmvjv0vhuevjd20xnvrbz0k0edvjqzd6oew2rdbyrjnoouvlcwtmq2nxa2vwzmm": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiw0fvx3lxte44mjzuedm5tejnz3r1m1u1sjh0tkq3dfvrwndeedvgywizshatcmvjv0vhuevjd20xnvrbz0k0edvjqzd6oew2rdbyrjnoouvlcwtmq2nxa2vwzmm",
+      "content_hash": "18fed9418962ac1096c4b02aabd1880ce9cc7dbaa1670c37ebe0d9f3f08f95da",
+      "story_key": "7f7df9cb60661a0013ad54459d2af93fbacbefdfd0f1e1b923b5ac3c25c8c006",
+      "status": "enriched",
+      "processed_at": "2026-08-12T02:47:25.740Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "NVIDIA・AI半導体",
+        "title": "NVIDIAが「銀行」のような存在に、5000億ドル規模のAI循環金融が拡大",
+        "source_url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE44MjZueDM5TEJnZ3R1M1U1Sjh0TkQ3dFVRWndEeDVGYWIzSHAtcmVjV0VhUEVjd20xNVRBZ0k0eDVjQzd6OEw2RDByRjNOOUVLcWtmQ2NXa2VwZmM?oc=5",
+        "source_name": "アゴラ 言論プラットフォーム",
+        "is_official": false,
+        "published_at": "2026-08-11T22:00:03.000Z",
+        "source_published_at": "2026-08-11T22:00:03.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T02:46:20.912Z",
+        "event_at": "",
+        "event_status": "継続中",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "NVIDIA"
+        ],
+        "primary_entity": "NVIDIA",
+        "story_subject": "AI循環金融の拡大",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "世界的なAI投資市場",
+        "fact_slots": [
+          {
+            "type": "amount",
+            "scope": "AI循環金融の規模",
+            "value": "5000億ドル",
+            "normalized_value": "500000000000USD"
+          }
+        ],
+        "new_facts": [
+          "NVIDIAの投資と製品販売を組み合わせた資金循環の規模が5000億ドルに膨らんでいると指摘されている。"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "NVIDIAが投資先企業への出資と自社製品の販売を組み合わせた資金循環の規模が5000億ドルに達し、金融機関的な役割を持ちつつあると指摘されている。",
+        "detail": "NVIDIAが投資先のAI関連企業に出資し、その資金で自社の半導体などを購入させる、いわゆる「循環金融」の規模が5000億ドルに膨らんでいると指摘する記事。記事はこの構造をNVIDIAがまるで銀行のように資金を循環させていると表現している。AI業界全体でNVIDIAの製品需要が高まる一方、出資と購入が連鎖する構造がどこまで持続可能かという論点が提起されている。具体的な出資先企業名や個別の金額配分については記事からは確認できず、全体像としての5000億ドルという規模のみが示されている。",
+        "change_summary": "NVIDIAの投資と製品販売を組み合わせた資金循環の規模が5000億ドルに達したと指摘された。",
+        "impact_summary": "AI関連投資の資金循環構造が拡大していることは、半導体業界への投資判断や株式市場の評価に影響を与える可能性がある。",
+        "action_suggestion": "NVIDIAの出資先企業や資金循環の詳細な内訳について、今後の追加情報を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "半導体・インフラ",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiaefvx3lxte1qsvjtvlpbng5iqjfpcxvmwvvnnhj2wmu5rwnucxpabhrnexzpsgpjc1pczhjzz0ptuddxekpgawfamuztd1vjwdixwm1fchn2djdesg5jnkl4mnvzwxhynhrnzfp0dghp": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxte1qsvjtvlpbng5iqjfpcxvmwvvnnhj2wmu5rwnucxpabhrnexzpsgpjc1pczhjzz0ptuddxekpgawfamuztd1vjwdixwm1fchn2djdesg5jnkl4mnvzwxhynhrnzfp0dghp",
+      "content_hash": "5285571223dd53e9a337be5c7bf42c48ed6bc08087a984a62cd6de3939f38c42",
+      "story_key": "74f1afcaad8220ae633f204153084fd58e94ff203ec8db3ed88d1de94452d880",
+      "status": "enriched",
+      "processed_at": "2026-08-12T02:47:25.740Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "ChatGPT / OpenAI",
+        "title": "OpenAI、Linux向け「ChatGPT」アプリをプレビュー公開",
+        "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1qSVJTVlpBNG5IQjFpcXVMWVVNNHJ2WmU5RWNucXpabHRNeXZPSGpJc1pCZHJzZ0ptUDdXekpGaWFaMUZtd1VjWDIxWm1FcHN2djdESG5JNkl4MnVZWXhyNHRnZFp0dGhP?oc=5",
+        "source_name": "マイナビニュース",
+        "is_official": false,
+        "published_at": "2026-08-12T01:21:38.000Z",
+        "source_published_at": "2026-08-12T01:21:38.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T02:45:44.895Z",
+        "event_at": "",
+        "event_status": "開始済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "OpenAI",
+          "ChatGPT",
+          "Codex"
+        ],
+        "primary_entity": "OpenAI",
+        "story_subject": "ChatGPT Linuxアプリ",
+        "event_type": "release",
+        "event_stage": "beta",
+        "event_scope": "Linuxデスクトップ",
+        "fact_slots": [
+          {
+            "type": "availability",
+            "scope": "ChatGPT Linux版",
+            "value": "プレビュー公開",
+            "normalized_value": "プレビュー公開"
+          }
+        ],
+        "new_facts": [
+          "OpenAIがLinux向けChatGPTアプリをプレビュー公開した。",
+          "CodexをGUI上で利用・管理できるようになった。"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "OpenAIがLinux向けの「ChatGPT」アプリをプレビュー版として公開し、コーディング支援機能CodexをGUI上で利用・管理できるようになった。",
+        "detail": "OpenAIがLinux向けの「ChatGPT」アプリをプレビュー版として公開したと報じられた。これにより、これまでコマンドライン中心で使われていたコーディング支援機能「Codex」を、グラフィカルなユーザーインターフェース（GUI）上で利用・管理できるようになったという。macOSやWindowsに続きLinux版が加わったことで、開発者がOSを問わずChatGPTアプリを使える環境が広がる。現時点ではプレビュー公開であり、今後正式版としてどのような機能追加や修正が行われるかは記事からは確認できない。",
+        "change_summary": "OpenAIがLinux向けChatGPTアプリをプレビュー公開し、CodexをGUIで操作できるようにした。",
+        "impact_summary": "Linux環境で開発を行うエンジニアがGUI上でCodexを含むChatGPT機能を利用できるようになり、業務効率化につながる可能性がある。",
+        "action_suggestion": "現時点はプレビュー版のため、正式版のリリース時期や追加機能について今後の発表を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "アプリ開発・自動化"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiw0fvx3lxtfblvvrhvxcyvxy5uznxzfboajy3uwjrmk4yaudsaejetglgzhf5oxhbs1iya2xbcuo5svjlytfrnv82tm96aefyrjv4dnpyzxjsdxz5ul9tmmlwb0k": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiw0fvx3lxtfblvvrhvxcyvxy5uznxzfboajy3uwjrmk4yaudsaejetglgzhf5oxhbs1iya2xbcuo5svjlytfrnv82tm96aefyrjv4dnpyzxjsdxz5ul9tmmlwb0k",
+      "content_hash": "064393e9835e9ce564858ee928e5fc72cab34c17efbf0edfd38974f62055ce6f",
+      "story_key": "0ffc91e8bbf8f49778f63d3b65749140efc06799b4af0d81d1ec092df5484b7f",
+      "status": "rejected",
+      "processed_at": "2026-08-12T02:47:25.740Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 無関係な人物名混在で内容不明瞭な低品質記事"
+    },
+    "url:https://news.google.com/rss/articles/cbmiekfvx3lxte5rqkpkam9ly2v0mlv4a1devjdvsmxzvljjrhbhrxpioe96whjowvpgqzhiwfzibktmtzqzze55t01dyw4xwvbiv19smghzbgrvs2tznf9jqwjmnme4ngd1lwvhmme2ngxwr1z6qvmzsvvleexzbm1zvzln": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiekfvx3lxte5rqkpkam9ly2v0mlv4a1devjdvsmxzvljjrhbhrxpioe96whjowvpgqzhiwfzibktmtzqzze55t01dyw4xwvbiv19smghzbgrvs2tznf9jqwjmnme4ngd1lwvhmme2ngxwr1z6qvmzsvvleexzbm1zvzln",
+      "content_hash": "3766375b6d80e802e776ddcf266458278bdc2d343cd946bf7b971bbe44e50897",
+      "story_key": "6f52076382b3ceb2944482113e301c05b05cd54fea9e4452a964c9a057eaebc3",
+      "status": "enriched",
+      "processed_at": "2026-08-12T02:48:23.708Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Claude / Claude Code",
+        "title": "Anthropic、Claudeの生成文章に「目に見えない透かし」を導入と発表",
+        "source_url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5RQkpkam9lY2V0MlV4a1dEVjdvSmxZVlJJRHBhRXpIOE96WHJoWVpGQzhiWFZibktmTzQzZE55T01DYW4xWVBIV19sMGhZbGRVS2tzNF9jQWJMNmE4NGd1LWVHMmE2NGxwR1Z6QVMzSVVLeExZbm1zVzln?oc=5",
+        "source_name": "GIGAZINE",
+        "is_official": false,
+        "published_at": "2026-08-12T01:40:00.000Z",
+        "source_published_at": "2026-08-12T01:40:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T02:45:46.624Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Anthropic",
+          "Claude"
+        ],
+        "primary_entity": "Anthropic",
+        "story_subject": "Claudeの文章透かし機能",
+        "event_type": "release",
+        "event_stage": "announced",
+        "event_scope": "全世界",
+        "fact_slots": [
+          {
+            "type": "availability",
+            "scope": "透かし機能の適用範囲",
+            "value": "全世界(日本含む)",
+            "normalized_value": "全世界japan含む"
+          }
+        ],
+        "new_facts": [
+          "Anthropicがclaudeの生成文章に目に見えない透かしを埋め込む機能を発表した",
+          "日本を含む全世界で適用される予定"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "AnthropicがClaudeの生成する文章に不可視の電子透かしを埋め込む機能を発表し、日本を含む全世界で順次適用する予定。",
+        "detail": "Anthropicは、対話型AI「Claude」が生成する文章に人の目では見えない透かし(ウォーターマーク)を埋め込む新機能を発表した。この透かしにより、文章がClaudeによって生成されたものかどうかを判別できるようになるという。AI生成コンテンツの識別は誤情報対策や著作権管理の観点から注目されており、Anthropicはこの機能を日本を含む全世界で適用する予定としている。具体的な技術仕様や検証方法についての詳細は記事内で明らかにされていない。",
+        "change_summary": "Claudeが出力する文章に不可視の透かしを付与する機能が新たに発表された。",
+        "impact_summary": "AI生成文章の判別が容易になり、教育・出版・企業のコンテンツ管理に影響を与える可能性がある。",
+        "action_suggestion": "透かしの詳細な技術仕様や適用開始時期については今後の発表を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "研究・技術"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiykfvx3lxte5olv9ftc1jdwnpahpbvuixz3znbkzeofpisk5fnflsstnbzww1bzlkwenydehsu3hfmxlmawzjseizvv84cxytefjrq0wysdbtukntrjrmrxzwqupuofbpqkr3": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiykfvx3lxte5olv9ftc1jdwnpahpbvuixz3znbkzeofpisk5fnflsstnbzww1bzlkwenydehsu3hfmxlmawzjseizvv84cxytefjrq0wysdbtukntrjrmrxzwqupuofbpqkr3",
+      "content_hash": "76d0b803c0141c08df59539bafa1c38aaef5d02c682e060384cc362c38310e87",
+      "story_key": "aec04272f8238a64cc66ed3c97178f9c4dbb17686826c47a1fe1c2f207122a4a",
+      "status": "enriched",
+      "processed_at": "2026-08-12T02:48:23.708Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Gemini",
+        "title": "GoogleマップにGemini搭載、旅行計画や混雑・遅延確認を対話形式で相談可能に",
+        "source_url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5OLV9fTC1JdWNPaHpBVUIxZ3ZNbkZEOFpiSk5FNFlSSTNBZWw1bzlkWENYdEhSU3hFMXlMaWZJSEIzVV84cXYteFJRQ0wySDBTUkNTRjRMRXZwQUpuOFBpQkR3?oc=5",
+        "source_name": "Ledge.ai",
+        "is_official": false,
+        "published_at": "2026-08-12T01:07:07.000Z",
+        "source_published_at": "2026-08-12T01:07:07.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T02:45:47.846Z",
+        "event_at": "",
+        "event_status": "開始済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Google マップ",
+          "Gemini"
+        ],
+        "primary_entity": "Google",
+        "story_subject": "Google マップのGemini統合機能",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "日本",
+        "fact_slots": [
+          {
+            "type": "region",
+            "scope": "提供地域",
+            "value": "日本",
+            "normalized_value": "japan"
+          }
+        ],
+        "new_facts": [
+          "Google マップにGeminiを組み込んだ新機能が日本で順次提供開始された",
+          "お盆の旅行計画や混雑・遅延確認を対話形式で行える"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Googleマップに生成AI「Gemini」を組み込んだ新機能が日本で順次提供開始され、お盆の旅行計画や混雑・遅延状況を対話形式で確認できるようになった。",
+        "detail": "Googleは、地図アプリ「Google マップ」に生成AI「Gemini」を組み込んだ新機能を日本で順次提供開始した。この機能により、利用者はお盆期間中の旅行計画について対話形式でGeminiに相談したり、道路の混雑状況や交通機関の遅延情報を尋ねたりできるようになる。従来の検索や地図表示だけでなく、会話形式で移動に関する疑問を解決できる点が特徴で、今後段階的に対応機能や地域が拡大していく見込みだ。",
+        "change_summary": "GoogleマップでGeminiに旅行計画や交通状況を相談できる新機能が追加された。",
+        "impact_summary": "旅行者や通勤者が渋滞・遅延情報をより簡単に把握できるようになり、移動計画の効率化に役立つ。",
+        "action_suggestion": "対応地域や利用条件は順次拡大中のため、Googleマップアプリの更新状況を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "EC・業務活用"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmikwdbvv95cuxnouxiwlhix2xydem4ytnxtdhqykdvslbvdffywhlyynm2u0vsdfewywdyltrntg1oudvjwtcxyzbqqxjlu3hfoujtwdjrrxbibemxvhqty2flys0ys0vyq3rmynvkv29sofbva1zjn3f0ovrqzhbmbhpoc3lyoxk2rdiyqvu3dexgmfjtr1a0luvkmzzpze0wtdhhzgzlzmj4ng9ycezpvkrmmnbhxy0xtwfmbjlnrmjsazhvyvf3evhzne1bynfrvfpnys1qmwxrwwjqruv4dej5aldmnhuwbffxsv9gn0frze1du01vdlz4vfbxx2cwoewtlxrwsdjhek90qnpjaek3v3d0twfsouzms25wwvq5n2ttzdnmde1pd0jwchiyogo5mdr3nehuv3hwovc4skuzvhkzq1budu00znvdugxttfzeoulwedffsvzvzkhvcxvmq3kwm0jwuvfkv3jiejzlcu5aaks0qunjzu5ey0nrngjnyvn2n25kcw1quk5iywqwadzfnunfuwhhql9lngnrme1vaxbjxzvkefz0ne9ba2jqajhoeu05ylo4rlfvqxc5uhrrlwlpuhb1exiwqvrit3dwnhjpses1vgoznha0vvbfre51z1pkddcwuglgmk0wwwnecfbtm1hmqklxwmv0dk51owvkrulny2c4bdriyji0wultvdbnudj1wf9hwvqzmhpqrtcytdlzvdjru2hvltlfvjbjn0m0vepya2xfrlhjdlitahn3bmfkuxbzcwluzwtire5saetimjztt3vwukdzatlamhrqew9ksg9mltvix010vgzzwtctv3bvmm91du9fwg9lwmhhberwdexibznsak1fbwfhn0rqtgn2r1jlzfvdvhltumlby194uzjjsue0y0fmqwpdv0xswnrgvlffce1yohrybvfkumm2mnfrmlfjbv9dek5qwem3ltbxs1bfzu5yywphsfnerxhluk5taul4tthjvg1kc1hqm1zuazltrk04b0tedmxhzm91oerpb2l1znzxvgfmwe1gxze3ag5osvzhsdbxt3dzagrhaedrd09ylwm1tu9izegtuk1hv1hlu2lxm1f2tjhgwulgsjnidvjwelbzbhbrdgfzyw5lohjbekk0aep1uuj0sjjaukrmel9jvgrzmgz2vlzfd1hly3yzdm53bkruvfcwm3c1t0rlsuu": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmikwdbvv95cuxnouxiwlhix2xydem4ytnxtdhqykdvslbvdffywhlyynm2u0vsdfewywdyltrntg1oudvjwtcxyzbqqxjlu3hfoujtwdjrrxbibemxvhqty2flys0ys0vyq3rmynvkv29sofbva1zjn3f0ovrqzhbmbhpoc3lyoxk2rdiyqvu3dexgmfjtr1a0luvkmzzpze0wtdhhzgzlzmj4ng9ycezpvkrmmnbhxy0xtwfmbjlnrmjsazhvyvf3evhzne1bynfrvfpnys1qmwxrwwjqruv4dej5aldmnhuwbffxsv9gn0frze1du01vdlz4vfbxx2cwoewtlxrwsdjhek90qnpjaek3v3d0twfsouzms25wwvq5n2ttzdnmde1pd0jwchiyogo5mdr3nehuv3hwovc4skuzvhkzq1budu00znvdugxttfzeoulwedffsvzvzkhvcxvmq3kwm0jwuvfkv3jiejzlcu5aaks0qunjzu5ey0nrngjnyvn2n25kcw1quk5iywqwadzfnunfuwhhql9lngnrme1vaxbjxzvkefz0ne9ba2jqajhoeu05ylo4rlfvqxc5uhrrlwlpuhb1exiwqvrit3dwnhjpses1vgoznha0vvbfre51z1pkddcwuglgmk0wwwnecfbtm1hmqklxwmv0dk51owvkrulny2c4bdriyji0wultvdbnudj1wf9hwvqzmhpqrtcytdlzvdjru2hvltlfvjbjn0m0vepya2xfrlhjdlitahn3bmfkuxbzcwluzwtire5saetimjztt3vwukdzatlamhrqew9ksg9mltvix010vgzzwtctv3bvmm91du9fwg9lwmhhberwdexibznsak1fbwfhn0rqtgn2r1jlzfvdvhltumlby194uzjjsue0y0fmqwpdv0xswnrgvlffce1yohrybvfkumm2mnfrmlfjbv9dek5qwem3ltbxs1bfzu5yywphsfnerxhluk5taul4tthjvg1kc1hqm1zuazltrk04b0tedmxhzm91oerpb2l1znzxvgfmwe1gxze3ag5osvzhsdbxt3dzagrhaedrd09ylwm1tu9izegtuk1hv1hlu2lxm1f2tjhgwulgsjnidvjwelbzbhbrdgfzyw5lohjbekk0aep1uuj0sjjaukrmel9jvgrzmgz2vlzfd1hly3yzdm53bkruvfcwm3c1t0rlsuu",
+      "content_hash": "c3cd1ab8edaac9cdee8972bdc695801ba2579d2b8455175f1b506bce75de4002",
+      "story_key": "2f8143c0910b085ada8a7773823b2365deadf815d6345d89a9ce98b9b954d798",
+      "status": "enriched",
+      "processed_at": "2026-08-12T02:48:23.708Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Perplexity",
+        "title": "OpticOdds、PerplexityのAIブラウザ上でスポーツベッティング向けオッズデータ提供へ",
+        "source_url": "https://news.google.com/rss/articles/CBMikwdBVV95cUxNOUxiWlhIX2xydEM4YTNXTDhQYkdVSlBvdFFyWHlyYnM2U0VsdFEwYWdyLTRNTG1OUDVjWTcxYzBqQXJLU3hfOUJTWDJRRXBibEMxVHQtY2FLYS0yS0VYQ3RMYnVKV29SOFBVa1ZJN3F0OVRQZHBMbHpOc3lYOXk2RDIyQVU3dExGMFJtR1A0LUVKMzZpZE0wTDhHZGZlZmJ4NG9ycEZPVkRMMnBhXy0xTWFMbjlnRmJsazhVYVF3eVhZNE1BYnFrVFpnYS1QMWxRWWJQRUV4dEJ5aldMNHUwbFFxSV9GN0FrZE1DU01VdlZ4VFBxX2cwOEwtLXRwSDJHek90QnpJaEk3V3d0TWFsOUZMS25WWVQ5N2tTZDNMdE1Pd0JWcHIyOGo5MDR3NEhUV3hwOVc4SkUzVHkzQ1BudU00ZnVDUGxtTFZEOUlWeDFfSVZvZkhvcXVmQ3kwM0JWUVFkV3JiejZLcU5aaks0QUNjZU5EY0NrNGJNYVN2N25KcW1qUk5IYWQwaDZfNUNFUWhHQl9LNGNrME1VaXBjXzVKeFZ0NE9Ba2JqajhOeU05Ylo4RlFvQXc5UHRrLWlpUHB1eXIwQVRiT3dWNHJpSEs1VGozNHA0VVBFRE51Z1pKdDcwUGlGMk0wWWNEcFBtM1hMQklXWmV0dk51OWVkRUlnY2c4bDRIYjI0WUltVDBNUDJ1WF9HWVQzMHpQRTcyTDlZVDJRU2hVLTlfVjBjN0M0VEpya2xFRlhjdlItaHN3bmFkUXBZcWluZWtIRE5SaEtIMjZtT3VWUkdzaTlaMHRQeW9kSG9MLTVIX010VGZzWTctV3BVMm91dU9FWG9LWmhHbERWdExIbzNsak1FbWFhN0RqTGN2R1JlZFVDVHltUmlBY194UzJJSUE0Y0FMQWpDV0xSWnRGVlFfcE1YOHRybVFKUmM2MnFrMlFjbV9Dek5QWEM3LTBXS1BfZU5YYWphSFNERXhlUk5taUl4TThJVG1Kc1hQM1ZUazlTRk04b0tEdmxHZm91OERPb2l1ZnZXVGFMWE1GXzE3aG5oSVZHSDBxT3dZaGRhaEdrd09YLWM1TU9iZEgtUk1HV1hlU2lxM1F2TjhGWUlGSjNIdVJwelBZbHBrdGFZYW5LOHJBekk0aEp1UUJ0SjJaUkRmel9jVGRZMGZ2VlZfd1hlY3Yzdm53bkRUVFcwM3c1T0RLSUU?oc=5",
+        "source_name": "Yogonet",
+        "is_official": false,
+        "published_at": "2026-08-11T14:08:06.000Z",
+        "source_published_at": "2026-08-11T14:08:06.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T02:46:03.872Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "OpticOdds",
+          "Perplexity"
+        ],
+        "primary_entity": "OpticOdds",
+        "story_subject": "Perplexity内でのスポーツベッティングデータ提供",
+        "event_type": "partnership",
+        "event_stage": "announced",
+        "event_scope": "不明",
+        "fact_slots": [],
+        "new_facts": [
+          "OpticOddsがPerplexityのブラウザ機能内でスポーツベッティングのクエリを支援すると発表した",
+          "機関投資家レベルのデータを消費者に提供するとしている"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "スポーツデータ企業OpticOddsが、Perplexityのブラウザ機能内でスポーツベッティングのクエリに対応し、機関投資家レベルのデータを消費者に提供すると発表した。",
+        "detail": "スポーツデータ企業OpticOddsは、AI検索サービスPerplexityのブラウザ機能内でスポーツベッティングに関するクエリに対応すると発表した。これにより、これまで機関投資家向けに提供していたようなオッズデータを、一般消費者もPerplexity経由で利用できるようになるという。両社の提携の詳細な開始時期や対象地域、料金体系などについては記事内で明らかにされておらず、今後の情報公開が待たれる。",
+        "change_summary": "OpticOddsのオッズデータがPerplexityのAI機能内で利用可能になった。",
+        "impact_summary": "一般消費者がAIを通じて専門的なベッティングデータへアクセスしやすくなる可能性がある。",
+        "action_suggestion": "提供開始時期や対象地域など詳細は記事で明記されておらず、今後の発表を確認する必要がある。",
+        "importance": "C",
+        "related_categories": [
+          "AIツール・モデル",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxte85azfpdxnqytjhbnnkwwphthzurnbhq04yrldzc2ruvxzix21fyuswczh3mfdptfowrmuxtmppdtlguv9ybgzhbzu3qvrozexdefvr": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxte85azfpdxnqytjhbnnkwwphthzurnbhq04yrldzc2ruvxzix21fyuswczh3mfdptfowrmuxtmppdtlguv9ybgzhbzu3qvrozexdefvr",
+      "content_hash": "1b2b2621fb20cdd7784dee4384eedf267cdf749ba01890f863220bd7e411af6b",
+      "story_key": "a4dacbe0fe829a0bd29e2f768dbb977a82070852bc85c644cafd330b7eafc7cf",
+      "status": "enriched",
+      "processed_at": "2026-08-12T02:48:23.708Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Grok / xAI",
+        "title": "xAIとCursorが「Grok Bot」公開、iPhone・Macから作業を任せられるAIエージェントに",
+        "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE85azFPdXNQYTJhbnNKWWpHTHZuRnBhQ04yRldzc2RuVXZIX21fYUswczh3MFdPTFowRmUxTmppdTlGUV9YbGZhbzU3QVROZExDeFVR?oc=5",
+        "source_name": "innovaTopia",
+        "is_official": false,
+        "published_at": "2026-08-12T01:50:10.000Z",
+        "source_published_at": "2026-08-12T01:50:10.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T02:46:04.910Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "xAI",
+          "Cursor",
+          "Grok Bot"
+        ],
+        "primary_entity": "xAI",
+        "story_subject": "Grok Bot",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "iPhone・Mac",
+        "fact_slots": [],
+        "new_facts": [
+          "xAIとCursorが「Grok Bot」を公開した",
+          "iPhoneやMacから仕事を任せられるAIエージェントとして提供される"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "xAIとCursorが共同で「Grok Bot」を公開し、iPhoneやMacから仕事を委任できるAIエージェント機能を提供する。",
+        "detail": "xAIとコード編集ツールを手がけるCursorは、Grokを活用したAIエージェント「Grok Bot」を公開した。iPhoneやMacからGrok Botに指示を送ることで、コーディングなどの作業をAIエージェントに任せられるようになるという。両社の連携によって、モバイル端末やパソコンからより手軽にAIへ業務を委任できる環境が整いつつあり、今後の対応範囲の拡大が見込まれる。",
+        "change_summary": "xAIとCursorの提携により、Grokを使ったAIエージェント「Grok Bot」が新たに公開された。",
+        "impact_summary": "開発者やビジネスユーザーがモバイル・PCから直接AIに作業を依頼できるようになり、業務効率化に影響する可能性がある。",
+        "action_suggestion": "対応環境や利用条件など詳細は今後の発表・公式情報で確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "アプリ開発・自動化"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmimgfbvv95cuxpx3hlnndswjdlwla5swu5zlhuts1rx0ding9vuufxbxbrszvjmxpdsxrqzfdxrw9wohdacmprndrivlhvuuv5ymdxm1rovnbbew5vdw1pddnizwdit3jhs0vyylnsmlhlwfqytxnlm3hnwgzoqm41unzcbmtdc2tedgnxtzfmrwvvwuthuju5ovrzaepdvfewagzr": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmimgfbvv95cuxpx3hlnndswjdlwla5swu5zlhuts1rx0ding9vuufxbxbrszvjmxpdsxrqzfdxrw9wohdacmprndrivlhvuuv5ymdxm1rovnbbew5vdw1pddnizwdit3jhs0vyylnsmlhlwfqytxnlm3hnwgzoqm41unzcbmtdc2tedgnxtzfmrwvvwuthuju5ovrzaepdvfewagzr",
+      "content_hash": "efccbb99663f70cec5a605b88e3e0ba64d5e51c1e67877a0c75a5db4f99806ed",
+      "story_key": "f1edac7036e2e636c7dc3aab7545ede66b5030df247ed03dd62a820f9c746cd7",
+      "status": "rejected",
+      "processed_at": "2026-08-12T02:48:23.708Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: AI無関係、SFO空港の滑走路運用ルールに関する記事"
+    },
+    "url:https://news.google.com/rss/articles/cbmixefvx3lxtfbvnmjzel9lnuhrbddzu1v5d19iblrkrgzzd0vhahrzogdodlhueu1nzdv0mjf3ajn3sefltxo3b0jystc3dgfcawxusmc0uhhtb0qwskziemnszjdi": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmixefvx3lxtfbvnmjzel9lnuhrbddzu1v5d19iblrkrgzzd0vhahrzogdodlhueu1nzdv0mjf3ajn3sefltxo3b0jystc3dgfcawxusmc0uhhtb0qwskziemnszjdi",
+      "content_hash": "d16b15c248137f60b8ca7f84274bfa4c48511c67f81ab46db973af193c06d954",
+      "story_key": "1eb1342a9633e64a1ceab306d9499ce59e8784dd75b95bfcd1bef61383cf9abd",
+      "status": "rejected",
+      "processed_at": "2026-08-12T02:48:23.708Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 百科事典的な概説記事で新規性のある事実がない"
     }
   },
-  "updated_at": "2026-08-11T22:06:40.372Z"
+  "updated_at": "2026-08-12T02:48:23.708Z"
 }
