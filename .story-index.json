@@ -187,8 +187,8 @@
     {
       "article_id": "article_941de42bd85d885d9d45",
       "story_id": "story_8c8c4b6ca70c8b0b20",
-      "story_sequence": 1,
-      "relation_type": "new",
+      "story_sequence": 3,
+      "relation_type": "follow_up",
       "relation_confidence": 1,
       "title": "組織可視化AI「SymVal AI」が正式提供開始、セキュリティ・生産性・コンディションをスコア化",
       "source_published_at": "2026-08-12T06:46:00.000Z",
@@ -218,9 +218,13 @@
         }
       ],
       "structured_complete": true,
-      "dedupe_decision": "new",
+      "dedupe_decision": "follow_up",
       "dedupe_reasons": [
-        "no_previous_story"
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "same_scope"
       ],
       "change_summary": "SymVal AIが8月12日に正式提供を開始した。",
       "detail": "組織の状態を可視化するAIサービス「SymVal AI」が2026年8月12日に正式提供を開始した。企業のセキュリティ、生産性、従業員のコンディションといった複数の指標をスコア化し、見える化することを特徴とするサービスだという。組織運営における課題を数値で把握できるようにすることで、経営判断や人事施策への活用を想定しているとみられる。提供形態や料金、対応企業規模などの詳細は現時点で明らかではない。",
@@ -708,7 +712,7 @@
       "story_id": "story_8d046a03335bdafd58",
       "story_sequence": 1,
       "relation_type": "new",
-      "relation_confidence": 1,
+      "relation_confidence": 0.6218181818181818,
       "title": "サムスン電子とSKハイニックス急伸、米半導体株高でKOSPIも2%超上昇",
       "source_published_at": "2026-08-12T01:55:00.000Z",
       "published_at": "2026-08-12T01:55:00.000Z",
@@ -751,9 +755,11 @@
         }
       ],
       "structured_complete": true,
-      "dedupe_decision": "new",
+      "dedupe_decision": "uncertain",
       "dedupe_reasons": [
-        "no_previous_story"
+        "same_url",
+        "same_primary_entity",
+        "uncertain_subject"
       ],
       "change_summary": "サムスン電子株が4%高、SKハイニックス株が2%高となり、KOSPIが2%超上昇した。",
       "detail": "韓国市場でサムスン電子株が4%高、SKハイニックス株が2%高と急伸し、これを牽引役として韓国総合株価指数(KOSPI)は2%を超える上昇を記録した。背景には米国の半導体関連株の上昇があるとされ、AI向け半導体需要への期待が投資家心理を押し上げた形とみられる。米国市場での半導体株高の流れが韓国市場にも波及し、AI関連の設備投資や需要拡大への期待が株式市場全体に反映されている。記事では具体的な要因の詳細までは述べられていないが、米半導体株高が直接の追い風になったとしている。",
@@ -8413,6 +8419,55 @@
         "増資発表を受けMiniMax株価が約20%上昇した"
       ],
       "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_681923b6852fdf54e3b5",
+      "story_id": "story_135e262aceb87912b9",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Google DeepMindが経営体制を刷新、ハサビス氏は会長兼Alphabetチーフサイエンティストへ",
+      "source_published_at": "2026-08-06T03:22:00.000Z",
+      "published_at": "2026-08-06T03:22:00.000Z",
+      "fetched_at": "2026-08-12T00:00:00.000Z",
+      "event_at": "2026-08-05",
+      "event_status": "発表済み",
+      "raw_excerpt": "GoogleはGoogle DeepMindの経営体制変更を発表した。デミス・ハサビス氏はCEOを退任して会長兼Alphabetチーフサイエンティストに就き、コライ・カブクチュオール氏が後任CEOとなる。",
+      "source_name": "ケータイ Watch",
+      "source_url": "https://k-tai.watch.impress.co.jp/docs/news/2131052.html",
+      "story_entities": [
+        "Google DeepMind",
+        "デミス・ハサビス",
+        "コライ・カブクチュオール",
+        "ジェフ・ディーン",
+        "googledeepmind"
+      ],
+      "primary_entity": "Google DeepMind",
+      "story_subject": "Google DeepMindの経営・研究体制刷新",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "全世界",
+      "fact_slots": [
+        {
+          "type": "date",
+          "scope": "Googleによる発表日",
+          "value": "2026年8月5日",
+          "normalized_value": "2026-08-05"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "世界有数のAI研究所でCEO交代と研究指導体制の変更が同時に発表され、著名研究者2人の退社も明らかになった。",
+      "detail": "Googleは、AI研究・開発部門Google DeepMindの経営体制を変更する。デミス・ハサビス氏はCEOを退任し、新たに会長兼Alphabetのチーフサイエンティストに就任する。後任CEOにはコライ・カブクチュオール氏が就き、ハサビス氏は引き続き研究全般を助言する。また、ジェフ・ディーン氏とサンジェイ・ゲマワット氏は退社して、機械学習と科学の発展を目的とする独立公益法人を設立する。Googleはその設立投資家およびクラウドパートナーとして協力する。",
+      "new_facts": [
+        "デミス・ハサビス氏がGoogle DeepMindのCEOを退任し、会長兼Alphabetチーフサイエンティストに就任する",
+        "コライ・カブクチュオール氏が後任CEOとなる",
+        "ジェフ・ディーン氏とサンジェイ・ゲマワット氏が退社し、独立公益法人を設立する"
+      ],
+      "event_date_precision": "day"
     },
     {
       "article_id": "article_e5bb03e6d2256d292770",
