@@ -2,6 +2,171 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_724a89025e5955238c5b",
+      "story_id": "story_4101f7080fd451d396",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6789473684210525,
+      "title": "Geminiの月間アクティブユーザーが10億人突破、音声利用は63%に",
+      "source_published_at": "2026-08-12T04:36:16.000Z",
+      "published_at": "2026-08-12T04:36:16.000Z",
+      "fetched_at": "2026-08-12T05:03:29.583Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Googleは対話AI「Gemini」の月間アクティブユーザー数が10億人を突破し、音声機能の利用比率が63%に達したと発表した。",
+      "source_name": "ケータイ Watch",
+      "source_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1Zb010a3FlZXM1SlRqLTRDQlNuSEx5SGdsTXI0YjBFWVZEUVhfS0M0WFVMN1hIcTRqbEMwUHRpeFVsN1ZMd2ZHcmE1b1ZFaTNSYjJ2MXFVV25UelhHa3JxZzlCeDE0Vlk?oc=5",
+      "story_entities": [
+        "Google",
+        "Gemini",
+        "google",
+        "gemini",
+        "google-gemini"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "Gemini",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "全世界",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "Geminiの月間アクティブユーザー数",
+          "value": "10億人",
+          "normalized_value": "1000000000"
+        },
+        {
+          "type": "other",
+          "scope": "音声機能の利用比率",
+          "value": "63%",
+          "normalized_value": "63%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_scope"
+      ],
+      "change_summary": "GeminiのMAUが10億人を突破し、音声利用比率63%という具体的な利用実態が公表された。",
+      "detail": "Googleは、対話型AIアシスタント「Gemini」の月間アクティブユーザー（MAU）数が10億人を超えたことを明らかにした。あわせて、テキスト入力だけでなく音声で指示や質問をするユーザーの割合が63%に達しているとも説明している。スマートフォンや専用アプリを通じて日常的にAIと会話する利用スタイルが広がっていることを示す数字であり、Googleは今後もGeminiの機能拡充を進める方針とみられる。",
+      "new_facts": [
+        "Geminiの月間アクティブユーザー数が10億人を突破した",
+        "Geminiの音声機能利用比率が63%に達した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_43dbbb8e53dbb9d89b01",
+      "story_id": "story_028c910b70a1ec2618",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5189473684210526,
+      "title": "フランスメディア、GoogleのAI検索に反発しトラフィック減少を主張",
+      "source_published_at": "2026-08-12T02:36:00.000Z",
+      "published_at": "2026-08-12T02:36:00.000Z",
+      "fetched_at": "2026-08-12T05:04:00.184Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "フランスのメディア団体がGoogleのAI検索機能によりトラフィックが38%減少したと主張し、別途の補償を求めている。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBDdnF6cnh6QlJLc2hUb3Z3LXZ3STVpbkswVEpTZzJBdFNHV1dScmVTbERqbDdmZzVRY241b0ZqSy1fTXlaeldfaVoza3lpR0VKY3owWDQ1MHU2S3pmeEZ5S1V3UjBqbGMwOFNRaFYwUjR2dWRE?oc=5",
+      "story_entities": [
+        "Google",
+        "フランスメディア",
+        "AI検索",
+        "google",
+        "ai検索"
+      ],
+      "primary_entity": "フランスメディア団体",
+      "story_subject": "GoogleのAI検索によるトラフィック減少問題",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "フランス",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "トラフィック減少率",
+          "value": "38%",
+          "normalized_value": "38%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject"
+      ],
+      "change_summary": "フランスメディアがGoogleのAI検索によるトラフィック38%減少を主張し、別途の補償を要求した。",
+      "detail": "フランスのメディア各社が、GoogleのAI検索機能導入によりウェブサイトへのアクセスが大幅に減少していると訴えている。記事によれば、トラフィックは38%減少したとされ、メディア側はGoogleに対し既存の著作権関連の支払いとは別に、AI検索による影響への補償を求めている。GoogleのAI検索は、検索結果画面上で要約を生成し利用者がリンク先サイトを訪れなくても情報を得られる仕組みで、これがメディアサイトへの流入減少につながっているとの指摘がある。フランスでのこの動きは、AI検索とニュース産業の収益構造をめぐる対立が世界的に広がっていることを示す事例の一つとなっている。",
+      "new_facts": [
+        "フランスメディアがGoogleのAI検索でトラフィックが38%減少したと主張",
+        "メディア側は既存の支払いとは別の補償を要求"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_b4c3f648f3fbd5357de8",
+      "story_id": "story_8d046a03335bdafd58",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "サムスン電子とSKハイニックス急伸、米半導体株高でKOSPIも2%超上昇",
+      "source_published_at": "2026-08-12T01:55:00.000Z",
+      "published_at": "2026-08-12T01:55:00.000Z",
+      "fetched_at": "2026-08-12T05:04:00.727Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "韓国の半導体大手サムスン電子とSKハイニックスの株価が急伸し、米国半導体株高を受けて韓国総合株価指数KOSPIも2%超上昇した。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5aYmRxTExYM2R6M0lYLTkzZ0JQSEl0UldKczE5Tml0X0N5R0J1MlY0NGpmUFVBZ2tJeWtpSUlJVWRiV29MV3UtWk9FMVNCLWJTM19DN2d1SFc0ZjhVQlJIeFBmRW1DcEw0MEJsTVRWci04SVA3?oc=5",
+      "story_entities": [
+        "サムスン電子",
+        "SKハイニックス",
+        "KOSPI",
+        "skハイニックス",
+        "kospi"
+      ],
+      "primary_entity": "サムスン電子",
+      "story_subject": "米半導体株高による韓国市場の株価上昇",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "韓国",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "サムスン電子株価上昇率",
+          "value": "4%",
+          "normalized_value": "4%"
+        },
+        {
+          "type": "amount",
+          "scope": "SKハイニックス株価上昇率",
+          "value": "2%",
+          "normalized_value": "2%"
+        },
+        {
+          "type": "amount",
+          "scope": "KOSPI上昇率",
+          "value": "2%超",
+          "normalized_value": "2%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "サムスン電子株が4%高、SKハイニックス株が2%高となり、KOSPIが2%超上昇した。",
+      "detail": "韓国市場でサムスン電子株が4%高、SKハイニックス株が2%高と急伸し、これを牽引役として韓国総合株価指数(KOSPI)は2%を超える上昇を記録した。背景には米国の半導体関連株の上昇があるとされ、AI向け半導体需要への期待が投資家心理を押し上げた形とみられる。米国市場での半導体株高の流れが韓国市場にも波及し、AI関連の設備投資や需要拡大への期待が株式市場全体に反映されている。記事では具体的な要因の詳細までは述べられていないが、米半導体株高が直接の追い風になったとしている。",
+      "new_facts": [
+        "サムスン電子株が4%高、SKハイニックス株が2%高",
+        "韓国総合株価指数KOSPIが2%超上昇"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_f15553b15ff131868179",
       "story_id": "story_8defa5c18af201dd85",
       "story_sequence": 1,
@@ -190,6 +355,58 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_b732d57c9ba1ce1ec17c",
+      "story_id": "story_2a0c2d7c9f1705659a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.8405263157894737,
+      "title": "Grokの新画像生成モデル「Imagine Image 2.0」公開、部分修正に対応",
+      "source_published_at": "2026-08-12T01:04:11.000Z",
+      "published_at": "2026-08-12T01:04:11.000Z",
+      "fetched_at": "2026-08-12T05:03:46.349Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "xAIはGrokの新画像生成モデル「Imagine Image 2.0」を公開し、画像の一部だけを修正できる機能を新たに搭載した。",
+      "source_name": "ビジネス+IT",
+      "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1ZVlE0TmRxbFVGdlZiZnNmZjRqSlhJVnhkUDVYdnRaMDRWcDRQV3FuLWtIVVY1NnAzVXZ6OGM4VU03LTRoRUx2THNoNVFDcGtoUS1z?oc=5",
+      "story_entities": [
+        "xAI",
+        "Grok",
+        "Imagine Image 2.0",
+        "xai",
+        "grok"
+      ],
+      "primary_entity": "xAI",
+      "story_subject": "Imagine Image 2.0",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Grokアプリ",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "Grok画像生成モデル",
+          "value": "Imagine Image 2.0",
+          "normalized_value": "imagineimage2.0"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "material_fact_changed",
+        "low_confidence_follow_up_demoted"
+      ],
+      "change_summary": "Grokの画像生成モデルが「Imagine Image 2.0」に更新され、画像の部分修正機能が新たに加わった。",
+      "detail": "xAIは、対話AI「Grok」の画像生成機能である「Imagine」を刷新し、新モデル「Imagine Image 2.0」を公開した。従来のバージョンでは画像全体を生成し直す必要があったのに対し、新モデルでは生成済みの画像の一部分だけを指定して修正・差し替えできるようになった点が特徴とされている。細部の調整がしやすくなったことで、イラストや写真加工など実務での使い勝手向上が期待される。",
+      "new_facts": [
+        "xAIがGrokの新画像生成モデル「Imagine Image 2.0」を公開した",
+        "新モデルは画像の一部だけを修正する機能に対応した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_4c35f8c7651e30017132",
       "story_id": "story_1a27060fb287133183",
       "story_sequence": 1,
@@ -282,6 +499,54 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_f20e27cdc4cda4ef0f66",
+      "story_id": "story_2ea5a35474e9e35b1e",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6257142857142857,
+      "title": "OpenAI、Linux版ChatGPTデスクトップアプリのプレビュー版を公開",
+      "source_published_at": "2026-08-11T21:59:49.000Z",
+      "published_at": "2026-08-11T21:59:49.000Z",
+      "fetched_at": "2026-08-12T05:03:27.253Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "OpenAIがLinux向けChatGPTデスクトップアプリのプレビュー版を公開し、Windows・macOSに続き対応OSを拡大した。",
+      "source_name": "디지털투데이",
+      "source_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPOHQ0c05MYjc3VDNySEJBTFhsc2NIcW4xY0hyTU16cDdvMjgwZHJqWnNQVVNtMkQ5WWd2TURJWEhPeFRmd0RfM2x3NEJBMGczWXZZT01ndDU5SENVb29VY3ZNQWRtZHlOdzh4a3ZERnkxUm5rWFQ0VWhhMDlEWDBWNmQtaG54V1lYQkFGbE91LW93R3Zh?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT",
+        "Linux",
+        "openai",
+        "chatgpt"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPTデスクトップアプリ Linux版",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Linux",
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "Linux版ChatGPTデスクトップアプリ",
+          "value": "プレビュー版公開",
+          "normalized_value": "プレビュー版公開"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "ChatGPTデスクトップアプリがLinux向けにプレビュー版として新たに公開された。",
+      "detail": "OpenAIは、これまでWindowsやmacOS向けに提供してきたChatGPTデスクトップアプリについて、Linux向けのプレビュー版を新たに公開した。これによりLinux環境の利用者もデスクトップアプリを通じてChatGPTを利用できるようになる。プレビュー版としての提供のため、正式版に向けて今後さらに機能追加や修正が行われる見込みとみられる。記事ではLinux版の具体的な機能差分までは触れられていないが、対応プラットフォームの拡大がOpenAIの取り組みとして示されている。",
+      "new_facts": [
+        "OpenAIがLinux向けChatGPTデスクトップアプリのプレビュー版を公開した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_874921cd1a8733584ca3",
       "story_id": "story_fd22c4e66dbd472f4b",
       "story_sequence": 1,
@@ -317,6 +582,63 @@
       "new_facts": [
         "DeepSeekがヒト型ロボット新興企業と資本提携した。",
         "フィジカルAI分野への進出が中国国内で進められているとされる。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_9dbe8f96059d27ad85c0",
+      "story_id": "story_8050755e8904f55dd1",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.607,
+      "title": "DeepSeek V4 Flash、テスト実行コスト72ドルでKimi K3の33分の1の安さ",
+      "source_published_at": "2026-08-11T18:07:00.000Z",
+      "published_at": "2026-08-11T18:07:00.000Z",
+      "fetched_at": "2026-08-12T05:03:47.528Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "DeepSeekの新モデル「V4 Flash」がフルテストスイートの実行費用72ドルを記録し、競合Kimi K3の33分の1という低価格を示した。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE45RnA5Rlp6Wk1kMmIxMVJDQkVHeGstdkMzWEl2Y1BFYUtvMzdkaW5WSXFaSGF6V0NOSmNEcDBHTEhTOFItb1FkaVRzSEZkc21IaFlxSC1PQjRDZ3Z5anFFbGthWjJCRnREUmlRbnJkUm1yNGVf?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "DeepSeek V4 Flash",
+        "Kimi K3",
+        "deepseek",
+        "deepseekv4flash"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek V4 Flash",
+      "event_type": "pricing",
+      "event_stage": "announced",
+      "event_scope": "API",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "フルテストスイート実行コスト",
+          "value": "72ドル",
+          "normalized_value": "72USD"
+        },
+        {
+          "type": "other",
+          "scope": "Kimi K3との価格比",
+          "value": "33分の1",
+          "normalized_value": "33"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type",
+        "same_scope"
+      ],
+      "change_summary": "DeepSeek V4 Flashがフルテストスイートの実行コストを72ドルに抑え、Kimi K3比33分の1の価格差を示した。",
+      "detail": "DeepSeekが公開した新モデル「V4 Flash」は、ソフトウェアの動作確認を行う一連のテスト（フルテストスイート）を実行するコストが72ドルにとどまったことが報じられた。これは競合モデルとされる「Kimi K3」でのコストと比較して33分の1に相当する低価格だという。AIモデルを実務のテストや検証業務に使う際のコスト差が明確な形で示された事例で、価格競争力を武器にした低コストモデルの動きが引き続き注目されている。",
+      "new_facts": [
+        "DeepSeek V4 Flashはフルテストスイートの実行コストが72ドルだった",
+        "この価格はKimi K3の33分の1だった"
       ],
       "event_date_precision": "unknown"
     },
