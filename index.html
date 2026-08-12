@@ -2960,7 +2960,8 @@ function getPlanUpdates(){
   const limit=currentRules().topics;
   const selectedTools=getTools().filter(t=>t.is_using);
   const selected=new Set((Number.isFinite(limit)?selectedTools.slice(0,limit):selectedTools).map(t=>t.id));
-  return selected.size?all.filter(u=>selected.has(u.tool_id)):all;
+  // 業界全体へ波及する重要度Sの記事は、ユーザーの選択テーマ外でもホームに必ず届ける。
+  return selected.size?all.filter(u=>selected.has(u.tool_id)||rankFromImportance(u.importance)==='S'):all;
 }
 function getLogs(){ return DB.load().fetch_logs; }
 function toolById(id){ return getTools().find(t=>t.id===id); }

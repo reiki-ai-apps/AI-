@@ -30,6 +30,9 @@ for(const marker of [
 if(!/const cover=selectLatestCover\(allUpdates\)/.test(html)){
   throw new Error("top news is not selected from all articles independently of user themes");
 }
+if(!/selected\.has\(u\.tool_id\)\|\|rankFromImportance\(u\.importance\)==='S'/.test(html)){
+  throw new Error("S-ranked industry news can still disappear from a themed home feed");
+}
 if(!html.includes("テーマ設定に関係なく重要度で選定")){
   throw new Error("top-news importance policy is not communicated in the UI");
 }
