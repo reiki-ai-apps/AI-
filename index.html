@@ -3623,13 +3623,31 @@ async function openSourceArticle(id){
 /* ============================================================
    HOME (/)  仕様書6-1
    ============================================================ */
+function globalCoverScore(item,now=Date.now()){
+  const importance=rankFromImportance(item?.importance)||item?.rank||'C';
+  const importanceBase={S:1000,A:620,B:240,C:0}[importance]||0;
+  const published=validArticleDate(articleTimelineAt(item));
+  const ageHours=published?Math.max(0,(now-published)/3600000):336;
+  const freshness=Math.max(0,168-ageHours);
+  const text=[item?.title,item?.ai_summary,item?.easy_summary,item?.source_name].join(' ').toLowerCase();
+  let impact=0;
+  if(/deepmind|openai|anthropic|google|meta|microsoft|xai|nvidia|人工知能|生成ai/.test(text))impact+=35;
+  if(/ceo|chief scientist|leadership|reorganiz|restructur|resign|depart|chairman|経営体制|研究体制|最高経営責任者|チーフサイエンティスト|退任|退社|辞任|就任|会長|再編|幹部/.test(text))impact+=220;
+  if(/policy|regulation|law|government|規制|政府|法律|法案|著作権/.test(text))impact+=180;
+  if(/security|vulnerability|breach|cyber|セキュリティ|脆弱性|情報漏えい|攻撃|安全性/.test(text))impact+=160;
+  if(/new model|foundation model|新モデル|基盤モデル|買収|大型投資|資金調達/.test(text))impact+=140;
+  return importanceBase+freshness+impact+(item?.is_official?20:0);
+}
 function selectLatestCover(items){
-  // 表紙は既読状態や評価点に左右されず、公開データ内の最新記事に固定する。
-  // 同時刻の記事はIDで決定順を固定し、再描画のたびに表紙が入れ替わらないようにする。
-  return [...(items||[])]
-    .filter(item=>validArticleDate(articleTimelineAt(item))>0)
+  // トップ記事はユーザーの選択テーマではなく全公開記事から選ぶ。
+  // 直近14日を対象に、単純な新着順ではなく編集重要度・全業界への影響・鮮度で決定する。
+  const dated=[...(items||[])].filter(item=>validArticleDate(articleTimelineAt(item))>0);
+  const cutoff=Date.now()-14*86400000;
+  const recent=dated.filter(item=>validArticleDate(articleTimelineAt(item))>=cutoff);
+  return (recent.length?recent:dated)
     .sort((a,b)=>
-      validArticleDate(articleTimelineAt(b))-validArticleDate(articleTimelineAt(a))
+      globalCoverScore(b)-globalCoverScore(a)
+      ||validArticleDate(articleTimelineAt(b))-validArticleDate(articleTimelineAt(a))
       ||String(b.id||'').localeCompare(String(a.id||''),'ja')
     )[0]||null;
 }
@@ -3646,7 +3664,7 @@ function renderHome(v){
     `<button class="btn btn-sm" onclick="openAllUpdates()">${icon('updates')}すべての記事を見る</button>`;
 
   const latest=allPlanUpdates.length?fmtDate(articleTimelineAt([...allPlanUpdates].sort(byFeedOrder)[0])):'—';
-  // 表紙は全記事の最新1件。既読にしても表紙は変えず、次回データ更新時だけ切り替える。
+  // 表紙は設定テーマに関係なく、全記事の中で最も重要な1件を選ぶ。
   const cover=selectLatestCover(allUpdates);
   const coverSummary=cover?(cover.manual_summary||cover.ai_summary||cover.raw_excerpt||'要約を確認できます。'):'';
   const coverTool=cover?toolById(cover.tool_id):null;
@@ -3655,7 +3673,7 @@ function renderHome(v){
       <div class="daily-cover-meta">${rankBadge(cover.rank)}<span class="daily-cover-source"><b>情報元</b>${esc(cover.source_name||coverTool?.name||'確認中')}・${esc(sourcePublishedLabel(cover))}</span></div>
       <h2>${esc(cover.title)}</h2>
       <p>${esc(coverSummary)}</p>
-      <div class="daily-cover-actions"><button class="btn btn-primary" onclick="go('update-detail','${cover.id}')">${icon('eye')}最新のトップニュースを見る</button><span class="daily-cover-note">情報更新時の最新記事を固定表示</span></div>`:`
+      <div class="daily-cover-actions"><button class="btn btn-primary" onclick="go('update-detail','${cover.id}')">${icon('eye')}重要トップニュースを見る</button><span class="daily-cover-note">テーマ設定に関係なく重要度で選定</span></div>`:`
       <div class="live-line"><span class="live-dot"></span>LIVE INTELLIGENCE FEED</div>
       <h2>世界のAI変化を、<br>仕事の判断へ。</h2>
       <p>英語・中国語・日本語の情報を横断監視。何が変わったか、仕事への影響、次にやることまで、やさしい日本語で確認できます。</p>

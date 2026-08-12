@@ -34,6 +34,9 @@ jobs:
       - name: test featured tool research coverage
         run: node scripts/test-tool-research-coverage.mjs
 
+      - name: test global top news and AI industry leadership coverage
+        run: node scripts/test-global-top-news.mjs
+
       - name: validate optional USD budget settings
         env:
           AI_DAILY_BUDGET_USD: ${{ vars.AI_DAILY_BUDGET_USD }}

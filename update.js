@@ -115,6 +115,10 @@ const TOOLS = [
   { name: "NotebookLM", match: /notebooklm|ノートブックlm/i, feeds: [
     "https://news.google.com/rss/search?q=Google%20NotebookLM%20when:7d&hl=ja&gl=JP&ceid=JP:ja",
     "https://blog.google/innovation-and-ai/products/notebooklm/rss/" ] },
+  // 製品名検索だけでは落ちる、AI大手・主要研究所の経営、人事、研究体制の転換を横断監視する。
+  { name: "AI業界・経営重要速報", match: /(?=.*(?:openai|anthropic|google|deepmind|meta|microsoft|xai|x\.ai|nvidia|amazon|apple|deepseek|mistral|人工知能|生成AI|AI))(?=.*(?:ceo|chief|leadership|reorganiz|restructur|resign|depart|appoint|chairman|acqui|invest|partner|経営|人事|退任|退社|辞任|就任|会長|再編|組織|幹部|買収|投資|提携))/i, feeds: [
+    "https://news.google.com/rss/search?q=%28AI%20OR%20%E4%BA%BA%E5%B7%A5%E7%9F%A5%E8%83%BD%20OR%20%E7%94%9F%E6%88%90AI%29%20%28CEO%20OR%20%E7%B5%8C%E5%96%B6%20OR%20%E4%BA%BA%E4%BA%8B%20OR%20%E9%80%80%E4%BB%BB%20OR%20%E5%B0%B1%E4%BB%BB%20OR%20%E5%86%8D%E7%B7%A8%20OR%20%E8%B2%B7%E5%8F%8E%20OR%20%E6%8A%95%E8%B3%87%20OR%20%E6%8F%90%E6%90%BA%29%20when:7d&hl=ja&gl=JP&ceid=JP:ja",
+    "https://news.google.com/rss/search?q=%28AI%20OR%20%22artificial%20intelligence%22%29%20%28CEO%20OR%20leadership%20OR%20reorganization%20OR%20restructuring%20OR%20resigns%20OR%20departs%20OR%20acquisition%20OR%20investment%20OR%20partnership%29%20when:7d&hl=en-US&gl=US&ceid=US:en" ] },
   { name: "AI政策・政府動向", match: /AI|人工知能|生成AI/i, feeds: [
     "https://news.google.com/rss/search?q=%E7%94%9F%E6%88%90AI%20%E6%94%BF%E7%AD%96%20%E6%94%BF%E5%BA%9C%20when:7d&hl=ja&gl=JP&ceid=JP:ja" ] },
   { name: "AIと政治・選挙", match: /AI|人工知能|生成AI/i, feeds: [
@@ -587,6 +591,7 @@ async function aiEnrichBatch(items) {
   const system =
     "あなたは、AIに詳しくない人にも理解できる日本語で伝えるAIニュース編集者です。" +
     "製品アップデート、新機能、使い方、料金変更だけでなく、AI政策、規制、著作権、補助金・助成金、AI関連企業・株式、研究、セキュリティ、半導体など、利用者の仕事や生活に影響する情報を重視してください。" +
+    "主要AI企業・研究所のCEO交代、著名研究者の退社、経営・研究体制の再編、大型買収・投資・提携は、製品名がタイトルになくても業界全体への波及を評価し、重要度SまたはAを積極的に検討してください。" +
     "記事本文の抜粋にない数字・人物・効果は作らず、不明な点は不明と明記してください。除外するのは広告・宣伝と、AIと無関係な別テーマの誤ヒットだけです。それ以外の記事は、確認できる事実の範囲で伝えることを優先してください。" +
     "要約文は元記事の論点と叙述順序を尊重し、主語と出来事から直接書き始め、元記事で確認できる事実・今後の予定・発表者の見解などで自然に結んでください。" +
     "『まず、このニュースをひと言でいうと』『かんたんに言うと』『この記事では』などのメタな前置きや、元記事にない一般論・注意喚起・安心を促す定型文は使わないでください。";
@@ -978,8 +983,10 @@ function candidateScore(item) {
   let score=Math.max(0,96-ageHours);
   if(item.is_official)score+=35;
   if(FEATURED_RESEARCH_SET.has(item.tool))score+=22;
+  if(item.tool==="AI業界・経営重要速報")score+=34;
   if(/中国AI|世界の新モデル|政策|規制|補助金|セキュリティ|半導体/.test(item.tool||""))score+=16;
   if(/発表|公開|提供開始|新モデル|規制|法案|提携|買収|資金調達|脆弱性|料金/.test(item.title||""))score+=12;
+  if(/CEO|最高経営責任者|会長|チーフサイエンティスト|経営体制|研究体制|人事|退任|退社|辞任|就任|再編|幹部/.test(item.title||""))score+=28;
   return score;
 }
 
@@ -989,6 +996,7 @@ function criticalBucket(item) {
   if(/security|vulnerability|breach|cyber|セキュリティ|脆弱性|情報漏えい|攻撃/.test(text))return "security";
   if(/moonshot|kimi|deepseek|qwen|zhipu|minimax|world.{0,4}model|new model|中国ai|新モデル|基盤モデル/.test(text))return "frontier";
   if(/nvidia|gpu|semiconductor|半導体|データセンター|aiインフラ/.test(text))return "semiconductor";
+  if(/ceo|chief scientist|leadership|reorganiz|restructur|resign|depart|chairman|経営体制|研究体制|最高経営責任者|チーフサイエンティスト|退任|退社|辞任|就任|会長|再編|幹部/.test(text))return "leadership";
   return "";
 }
 
@@ -1005,7 +1013,7 @@ function selectProtectedCandidates(items,limit) {
     toolCounts.set(item.tool,(toolCounts.get(item.tool)||0)+1);
     return true;
   };
-  for(const bucket of ["policy","security","frontier","semiconductor"]){
+  for(const bucket of ["policy","security","frontier","semiconductor","leadership"]){
     const item=sorted.find(candidate=>criticalBucket(candidate)===bucket&&!selectedKeys.has(articleCacheKey(candidate)));
     if(item)add(item);
   }
