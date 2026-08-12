@@ -12600,14 +12600,14 @@
     },
     "url:https://news.google.com/rss/articles/cbmiswfbvv95cuxonv9kszjtqkftudr6yuniuddgvfbjswe0mju2tdfjmnbym2nkumdbrdk0ngk1dwhuclhxnfbadvh0a0trr0xwnf85ywnqmzzoslzuethqntjmbnzitw5ja041ekq5nhg1sutzvethes1sevczcxk2thpmbem1sw04cvktoee5oujivnpfefj5cff4yw9jnnjyr1ptthziv3pyoxvbutqxuno0cm9oukyzdi1xma": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiswfbvv95cuxonv9kszjtqkftudr6yuniuddgvfbjswe0mju2tdfjmnbym2nkumdbrdk0ngk1dwhuclhxnfbadvh0a0trr0xwnf85ywnqmzzoslzuethqntjmbnzitw5ja041ekq5nhg1sutzvethes1sevczcxk2thpmbem1sw04cvktoee5oujivnpfefj5cff4yw9jnnjyr1ptthziv3pyoxvbutqxuno0cm9oukyzdi1xma",
-      "content_hash": "70246c6eb34d129545c97ad1829ed49d842964674f042c9f6f53562abf9e788c",
+      "content_hash": "b734c7d50d6f9d85a543d18963c92e58c90ea57f5d93d017b4543196f547246b",
       "story_key": "f2a67706912d55320e8d1b050a9aba8b93650a5fa27a310ccbe58608cf219617",
       "status": "rejected",
-      "processed_at": "2026-08-12T05:05:41.758Z",
+      "processed_at": "2026-08-12T07:56:00.619Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
       "lane": "regular",
-      "reason": "ai_skip: 複数製品を比較する広告的な比較記事で新事実に乏しい"
+      "reason": "ai_skip: 比較記事のみで具体的な事実が確認できない"
     },
     "url:https://news.google.com/rss/articles/cbmipwfbvv95cuxqenu4m3oznwuybko3slrjaelysk15mtdyu1h6exffdmdmy1n5qzljtkz3qznhmhr6d19eougysnq2b0zxaujax0zwbc1nzmvnvu83dvljzxnynxe5uwzbahvzlxpvqwhbwgvnuhfoqkncek0tsexqmgoty3n5tjlvsnfqbtjns0pqv0dhdu9kzhrom0zprehsynrmnemzewzgdxvpzehytq": {
       "canonical_url": "https://news.google.com/rss/articles/cbmipwfbvv95cuxqenu4m3oznwuybko3slrjaelysk15mtdyu1h6exffdmdmy1n5qzljtkz3qznhmhr6d19eougysnq2b0zxaujax0zwbc1nzmvnvu83dvljzxnynxe5uwzbahvzlxpvqwhbwgvnuhfoqkncek0tsexqmgoty3n5tjlvsnfqbtjns0pqv0dhdu9kzhrom0zprehsynrmnemzewzgdxvpzehytq",
@@ -15662,7 +15662,491 @@
       "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
       "lane": "regular",
       "reason": "ai_skip: 事実関係が確認できない意見ブログで根拠が薄い"
+    },
+    "url:https://news.google.com/rss/articles/cbmifefvx3lxte1td3e4wlezq0dlcfpuago5ckdsnwsxu1lvt1hkzwrcdkfpsen1nxe3si0yrjfuddb1lwjkufrqaffmnc1qtldvu3ixofzcynrhuhfyz0fqzfnjx05oqnnhc0vdvnbgykrswu5vmzrtzxjkae1mtejfrlpsdzfsaxxbvv95cuxnu3dxofprm0nhs3bavghqoxjhujvrmvnzvu9ysmvkqnzbt0hddtvxn0otmkyxbnqwds1izfbuamhrzjqtue5xvvnymthwqmj0r1bxwgdbamrty19otkjzyxnfq1zwrmjebflovtm0u2vyzghntexcx0zaunc3": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmifefvx3lxte1td3e4wlezq0dlcfpuago5ckdsnwsxu1lvt1hkzwrcdkfpsen1nxe3si0yrjfuddb1lwjkufrqaffmnc1qtldvu3ixofzcynrhuhfyz0fqzfnjx05oqnnhc0vdvnbgykrswu5vmzrtzxjkae1mtejfrlpsdzfsaxxbvv95cuxnu3dxofprm0nhs3bavghqoxjhujvrmvnzvu9ysmvkqnzbt0hddtvxn0otmkyxbnqwds1izfbuamhrzjqtue5xvvnymthwqmj0r1bxwgdbamrty19otkjzyxnfq1zwrmjebflovtm0u2vyzghntexcx0zaunc3",
+      "content_hash": "a97aea34d3e1ac9a533ace971e9b4f149ada8f584033d57b4286f0b537fd723f",
+      "story_key": "006dc83084777baab0eb7cf0ac7229318892eb1fdd93afa7de3317fcaf434d60",
+      "status": "enriched",
+      "processed_at": "2026-08-12T07:55:17.134Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Manus AI",
+        "title": "中国発AIエージェント「Manus」がMetaから独立、中国政府の反発でデータ一部削除",
+        "source_url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1Td3E4WlEzQ0dLcFpUaGo5ckdSNWsxU1lVT1hKZWRCdkFPSEN1NXE3Si0yRjFudDB1LWJkUFRqaFFmNC1QTldVU3IxOFZCYnRHUHFYZ0FqZFNjX05OQnNhc0VDVnBGYkRsWU5VMzRTZXJkaE1MTEJfRlpSdzfSAXxBVV95cUxNU3dxOFpRM0NHS3BaVGhqOXJHUjVrMVNZVU9YSmVkQnZBT0hDdTVxN0otMkYxbnQwdS1iZFBUamhRZjQtUE5XVVNyMThWQmJ0R1BxWGdBamRTY19OTkJzYXNFQ1ZwRmJEbFlOVTM0U2VyZGhNTExCX0ZaUnc3?oc=5",
+        "source_name": "Infoseek",
+        "is_official": false,
+        "published_at": "2026-08-12T06:20:08.000Z",
+        "source_published_at": "2026-08-12T06:20:08.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T07:53:43.088Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Manus",
+          "Meta",
+          "中国政府"
+        ],
+        "primary_entity": "Manus AI",
+        "story_subject": "ManusのMetaからの独立",
+        "event_type": "acquisition",
+        "event_stage": "cancelled",
+        "event_scope": "中国・全世界",
+        "fact_slots": [],
+        "new_facts": [
+          "Manusが米Metaからの独立方針を示した",
+          "中国政府がManusの買収に反発した",
+          "反発を受けManusは一部ユーザーデータを削除した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "中国発AIエージェント「Manus」が米Metaからの独立方針を示し、中国政府の買収反発を受け一部ユーザーデータを削除した。",
+        "detail": "中国発の自律型AIエージェント「Manus」が、米Metaによる買収から独立する方針を示した。背景には中国政府が海外企業によるManusの買収に反発したことがあるとされる。この動きを受け、Manus側は一部のユーザーデータを削除する対応も取ったという。Manusは中国発のAIエージェントとして注目を集めてきたが、米中間の技術・データを巡る緊張が具体的な事業判断に影響した事例として受け止められている。現時点で独立後の運営体制や資金面の詳細は明らかになっていない。",
+        "change_summary": "ManusがMetaからの独立方針を示し、中国政府の反発でユーザーデータの一部削除に至った。",
+        "impact_summary": "米中間のAI・データ規制の緊張が具体的な企業の事業判断に及ぶ事例として、国際展開するAI企業の動向に注視が必要になる。",
+        "action_suggestion": "独立後の運営体制や資金面の詳細は現時点で不明であり、今後の公式発表を確認する必要がある。",
+        "importance": "A",
+        "related_categories": [
+          "企業・株式",
+          "規制・法務",
+          "政策・行政"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmia0fvx3lxte9lsmt5nxq1mkhzdmtfovfydhv2suhzswvxlvg0u3iwwum5rdfwtxlreu04cgjpemphswpsn2rmqmljxzngu3pfmwdwbw9zzkzbyl9xd2mwoxpfshbzbjjjahfyowlpogdrsgzz": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmia0fvx3lxte9lsmt5nxq1mkhzdmtfovfydhv2suhzswvxlvg0u3iwwum5rdfwtxlreu04cgjpemphswpsn2rmqmljxzngu3pfmwdwbw9zzkzbyl9xd2mwoxpfshbzbjjjahfyowlpogdrsgzz",
+      "content_hash": "aaa01b958965e7517133193d851252944738b984a5cb8dba2eec9d026dd4c6aa",
+      "story_key": "5c1be3989100da5ed23804edcb6b24fa239606b67e115f7005a3a4adf4fc2cc8",
+      "status": "enriched",
+      "processed_at": "2026-08-12T07:55:17.135Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "AIセキュリティ",
+        "title": "組織可視化AI「SymVal AI」が正式提供開始、セキュリティ・生産性・コンディションをスコア化",
+        "source_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9lSmt5NXQ1MkhZdmtfOVFYdHV2SUhZSWVXLVg0U3IwWUM5RDFWTXlreU04cGJpemphSWpSN2RMQmljXzNGU3pFMWdWbW9ZZkZBYl9Xd2MwOXpfSHBzbjJjaHFyOWlpOGdrSGZz?oc=5",
+        "source_name": "時事ドットコム",
+        "is_official": false,
+        "published_at": "2026-08-12T06:46:00.000Z",
+        "source_published_at": "2026-08-12T06:46:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T07:53:54.792Z",
+        "event_at": "2026-08-12",
+        "event_status": "発表済み",
+        "event_date_precision": "day",
+        "story_entities": [
+          "SymVal AI"
+        ],
+        "primary_entity": "SymVal AI",
+        "story_subject": "組織可視化AI「SymVal AI」の正式提供",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "日本",
+        "fact_slots": [
+          {
+            "type": "date",
+            "scope": "正式提供開始日",
+            "value": "2026-08-12",
+            "normalized_value": "2026-08-12"
+          }
+        ],
+        "new_facts": [
+          "SymVal AIが2026年8月12日に正式提供を開始した",
+          "セキュリティ・生産性・コンディションをスコアで可視化するサービスである"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "組織可視化AI「SymVal AI」が8月12日に正式提供を開始し、企業のセキュリティ・生産性・従業員コンディションをスコアで見える化する。",
+        "detail": "組織の状態を可視化するAIサービス「SymVal AI」が2026年8月12日に正式提供を開始した。企業のセキュリティ、生産性、従業員のコンディションといった複数の指標をスコア化し、見える化することを特徴とするサービスだという。組織運営における課題を数値で把握できるようにすることで、経営判断や人事施策への活用を想定しているとみられる。提供形態や料金、対応企業規模などの詳細は現時点で明らかではない。",
+        "change_summary": "SymVal AIが8月12日に正式提供を開始した。",
+        "impact_summary": "企業の人事・IT部門がセキュリティリスクや生産性、従業員コンディションを数値で把握しやすくなる可能性がある。",
+        "action_suggestion": "提供形態や料金など詳細は現時点で不明であり、公式発表での確認が必要。",
+        "importance": "C",
+        "related_categories": [
+          "AIツール・モデル",
+          "セキュリティ"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmit0fvx3lxte5fzgrfwmx6cjhpyufwburqstj2lupwulhid3fmcjvitm16rjutdzdblwpgzvlrqjfacgqtcmk4r1hvejhbuzv2yllydfnvqwm": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmit0fvx3lxte5fzgrfwmx6cjhpyufwburqstj2lupwulhid3fmcjvitm16rjutdzdblwpgzvlrqjfacgqtcmk4r1hvejhbuzv2yllydfnvqwm",
+      "content_hash": "d7e098ae6a479407465626a925c050dd72db20a13cbc47d8bc699ad7d8d7ba47",
+      "story_key": "a92f349300c0e1ddeec3073ba8a107af27c0521967cc4ac5489151f88b9ea020",
+      "status": "enriched",
+      "processed_at": "2026-08-12T07:55:17.135Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "AI企業・関連株",
+        "title": "NVIDIA、金融大手6社とAIインフラ整備で5000億ドル規模の資金調達提携",
+        "source_url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5fZGRfWmx6cjhPYUFWbURQSTJ2LUpWUlhId3FmcjVITm16RjUtdzdBLWpGZVlrQjFacGQtcmk4R1hvejhBUzV2YllydFNvQWM?oc=5",
+        "source_name": "ビジネス+IT",
+        "is_official": false,
+        "published_at": "2026-08-12T02:00:00.000Z",
+        "source_published_at": "2026-08-12T02:00:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T07:53:53.899Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "NVIDIA"
+        ],
+        "primary_entity": "NVIDIA",
+        "story_subject": "金融大手6社とのAIインフラ資金調達提携",
+        "event_type": "funding",
+        "event_stage": "announced",
+        "event_scope": "全世界",
+        "fact_slots": [
+          {
+            "type": "amount",
+            "scope": "資金調達規模",
+            "value": "5000億ドル",
+            "normalized_value": "500000000000USD"
+          },
+          {
+            "type": "count",
+            "scope": "提携金融機関数",
+            "value": "6社",
+            "normalized_value": "6"
+          }
+        ],
+        "new_facts": [
+          "NVIDIAが金融大手6社とAIインフラ整備向けの資金調達で提携した",
+          "調達規模は5000億ドル規模とされる"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "NVIDIAが金融大手6社と提携し、AIインフラ整備に向けて5000億ドル規模の資金調達を進めると報じられた。",
+        "detail": "米NVIDIAが、AIインフラ整備に向けて金融大手6社と5000億ドル規模の資金調達で提携したと報じられた。生成AIの普及に伴いデータセンターや半導体への投資需要が急増しており、NVIDIAは自社のGPUを中心とするAI基盤整備を金融機関との連携で加速させる狙いがあるとみられる。具体的にどの金融機関が参加し、資金がどの用途に配分されるかなど詳細は今後明らかになる見通しで、AI関連投資が金融業界を巻き込む形で拡大している実態を示す動きといえる。",
+        "change_summary": "NVIDIAが金融大手6社と5000億ドル規模のAIインフラ資金調達で提携した。",
+        "impact_summary": "AIインフラ投資が金融業界を巻き込みさらに拡大することで、半導体・データセンター関連の需給や投資動向に影響を与える可能性がある。",
+        "action_suggestion": "参加金融機関の詳細や資金の使途など、今後の公式発表内容を確認する必要がある。",
+        "importance": "S",
+        "related_categories": [
+          "半導体・インフラ",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxte5ynzywc05gu2x3zhhmthc2ckv0eknmv2rabxbvdxlovgt6wnzurtbjc1zlwta1uk5kd01kzjlbbmfwzm1wck5vu1bma1j2vmpqthrr": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxte5ynzywc05gu2x3zhhmthc2ckv0eknmv2rabxbvdxlovgt6wnzurtbjc1zlwta1uk5kd01kzjlbbmfwzm1wck5vu1bma1j2vmpqthrr",
+      "content_hash": "bc748820d96fb9d7cb94b4555c3bfac31e524918a25fe6612743c96187c2da19",
+      "story_key": "1a520879a966ee94e81939e294774a284bccb2d7854f57f6b1530678d7366f06",
+      "status": "enriched",
+      "processed_at": "2026-08-12T07:55:17.135Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "ChatGPT / OpenAI",
+        "title": "OpenAI、Linux版ChatGPTデスクトップアプリを公開",
+        "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5YNzYwc05GU2x3ZHhmTHc2ckV0ekNmV2RabXBvdXlOVGt6WnZuRTBjc1ZLWTA1Uk5Kd01KZjlBbmFWZm1wck5vU1Bma1J2VmpqTHRr?oc=5",
+        "source_name": "innovaTopia",
+        "is_official": false,
+        "published_at": "2026-08-12T06:15:14.000Z",
+        "source_published_at": "2026-08-12T06:15:14.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T07:53:21.756Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "OpenAI",
+          "ChatGPT",
+          "Codex"
+        ],
+        "primary_entity": "OpenAI",
+        "story_subject": "Linux版ChatGPTデスクトップアプリ",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "Linux",
+        "fact_slots": [
+          {
+            "type": "availability",
+            "scope": "Linux版ChatGPTデスクトップアプリ",
+            "value": "公開",
+            "normalized_value": "公開"
+          }
+        ],
+        "new_facts": [
+          "OpenAIがLinux版ChatGPTデスクトップアプリを公開した",
+          "Chat・Work・Codexの機能がデスクトップアプリに統合された"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "OpenAIがLinux版ChatGPTデスクトップアプリを公開し、Chat・Work・Codexの機能をデスクトップに統合した。",
+        "detail": "OpenAIがLinux版のChatGPTデスクトップアプリを公開した。これまでWindowsやmacOS向けに提供されていたデスクトップアプリがLinux環境でも利用できるようになり、通常のチャット機能に加えて、共同作業向けの「Work」機能や、コード生成・実行を担う「Codex」機能もデスクトップアプリ上で統合的に使えるようになった。開発者やエンジニアなどLinuxを業務環境として使うユーザーにとって、ブラウザを介さずに主要機能へアクセスできる選択肢が増えたことになる。",
+        "change_summary": "ChatGPTデスクトップアプリがLinux向けに新たに提供され、Chat・Work・Codex機能が統合された。",
+        "impact_summary": "Linuxを業務環境とする開発者やエンジニアが、ブラウザなしで主要なChatGPT機能を利用しやすくなる。",
+        "action_suggestion": "Linux版アプリの入手方法や対応ディストリビューションなど詳細は公式情報で確認が必要。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte1un2rjew5hcfjqn0jcmmlqwjjpeu5xnzu4mdlbnedgemtclvjvx1ret2rozklyrtr1svl6z01suvdxmmtozketlxzvdwx2ugrrc2taauw2ofz4amq5b2flze9yc1vkv1rxtee": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte1un2rjew5hcfjqn0jcmmlqwjjpeu5xnzu4mdlbnedgemtclvjvx1ret2rozklyrtr1svl6z01suvdxmmtozketlxzvdwx2ugrrc2taauw2ofz4amq5b2flze9yc1vkv1rxtee",
+      "content_hash": "e6e4284b08b9c6b5fcbdf7366024709acb2b4527c3ef7a8b90586e000e8ecc84",
+      "story_key": "a43c83446b8540a7ff6157735fac7d81b312503486f99638f4f21d10c1f3faaa",
+      "status": "enriched",
+      "processed_at": "2026-08-12T07:55:17.135Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Claude / Claude Code",
+        "title": "ConoHa VPS、国内クラウド事業者初のClaude用コネクタ提供開始",
+        "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1uN2RjeW5hcFJQN0JCMmlqWjJpeU5xNzU4MDlBNEdGemtCLVJVX1RET2ROZklyRTR1SVl6Z01SUVdxMmtOZkEtLXZvdWx2UGRRc2taaUw2OFZ4amQ5b2FLZE9yc1VkV1RXTEE?oc=5",
+        "source_name": "PR TIMES",
+        "is_official": false,
+        "published_at": "2026-08-12T05:00:02.000Z",
+        "source_published_at": "2026-08-12T05:00:02.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T07:53:23.175Z",
+        "event_at": "",
+        "event_status": "開始済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "ConoHa VPS",
+          "GMOインターネット",
+          "Claude"
+        ],
+        "primary_entity": "GMOインターネット",
+        "story_subject": "ConoHa VPSのClaudeコネクタ提供",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "日本",
+        "fact_slots": [
+          {
+            "type": "availability",
+            "scope": "Claudeコネクタ提供",
+            "value": "国内クラウド事業者として初",
+            "normalized_value": "国内クラウド事業者として初"
+          }
+        ],
+        "new_facts": [
+          "ConoHa VPSが国内クラウド事業者として初めてAnthropic「Claude」のコネクタを提供開始した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "GMOインターネットのConoHa VPSが、国内クラウド事業者として初めてAnthropic「Claude」用のコネクタ提供を開始した。",
+        "detail": "GMOインターネットが提供するクラウドサービス「ConoHa VPS」が、国内クラウド事業者として初めてAnthropicの対話AI「Claude」向けのコネクタ提供を開始した。コネクタは外部サービスとClaudeを連携させる仕組みで、これによりConoHa VPS上のシステムとClaudeを組み合わせた活用がしやすくなるとみられる。国内クラウド基盤とAIサービスの連携が進む動きの一例であり、詳細な機能や対応範囲については公式発表を確認する必要がある。",
+        "change_summary": "ConoHa VPSが国内クラウド事業者として初めてClaude用コネクタの提供を開始した。",
+        "impact_summary": "国内のクラウド利用企業がClaudeとの連携を進めやすくなり、業務システムへのAI活用が広がる可能性がある。",
+        "action_suggestion": "コネクタの対応機能や利用条件など詳細は公式発表での確認が必要。",
+        "importance": "C",
+        "related_categories": [
+          "AIツール・モデル",
+          "半導体・インフラ"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmie0fvx3lxte1yz0luuwrpz3kym1nhuedlcy15clfgegrst2e3qujxcnk3shzwoxu0dujys2dllvjotg56mehdwjdurfz2y3vqcvblnhdwy1h3a1peynl0ykvctvh2r3uzqtiwde9smulpte5lqm9sdwv5b0tzzmvtvwjhqq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmie0fvx3lxte1yz0luuwrpz3kym1nhuedlcy15clfgegrst2e3qujxcnk3shzwoxu0dujys2dllvjotg56mehdwjdurfz2y3vqcvblnhdwy1h3a1peynl0ykvctvh2r3uzqtiwde9smulpte5lqm9sdwv5b0tzzmvtvwjhqq",
+      "content_hash": "0e66ed776d7f30906787ed126bbed3e2f3fcc7a5ebede99eaf1ef1d705fe84ec",
+      "story_key": "d4e121b4bc73944eee350e3bed15a00da1dbcf0fcc360ffa28e9e675a3b5e742",
+      "status": "rejected",
+      "processed_at": "2026-08-12T07:55:17.135Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 自社サービスの効果を訴える事例紹介型の広告記事"
+    },
+    "url:https://news.google.com/rss/articles/cbmiuefvx3lxte1sblz3wwxevwu4njzldthetelxsfkxu0p2zejic1hjtflyb1lpd2fmu1hxmg5ammdkq1hooejlwunruxruohj1dy1lelu0uvvz0gfqqvvfexfmtvjuvndzbervztg2nmv1oermsxfiwtftsnzkqkhzwgnmwxjvwwl3ywztwfcwbloyz0pdwe44qktzq1frdfq4cnv3lut6vtrrvvk": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiuefvx3lxte1sblz3wwxevwu4njzldthetelxsfkxu0p2zejic1hjtflyb1lpd2fmu1hxmg5ammdkq1hooejlwunruxruohj1dy1lelu0uvvz0gfqqvvfexfmtvjuvndzbervztg2nmv1oermsxfiwtftsnzkqkhzwgnmwxjvwwl3ywztwfcwbloyz0pdwe44qktzq1frdfq4cnv3lut6vtrrvvk",
+      "content_hash": "c67dae9341d34f74d2333ecde20b91b63de8b23164cc25d0fd1707e27b4b0305",
+      "story_key": "0d600cd91471b575f207d0ef95c3f3ffa0e3df4407a61a200dff542bff780acf",
+      "status": "enriched",
+      "processed_at": "2026-08-12T07:56:00.618Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Gemini",
+        "title": "安川電機、GoogleのGeminiを搭載したエージェンティック・ロボットシステムを開発",
+        "source_url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1SblZ3WWxEVWU4NjZldThETElxSFkxU0p2ZEJIc1hjTFlyb1lpd2FmU1hXMG5aMmdKQ1hOOEJLWUNRUXRUOHJ1dy1LelU0UVVZ0gFQQVVfeXFMTVJuVndZbERVZTg2NmV1OERMSXFIWTFTSnZkQkhzWGNMWXJvWWl3YWZTWFcwbloyZ0pDWE44QktZQ1FRdFQ4cnV3LUt6VTRRVVk?oc=5",
+        "source_name": "iotnews.jp",
+        "is_official": false,
+        "published_at": "2026-08-12T06:07:38.000Z",
+        "source_published_at": "2026-08-12T06:07:38.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T07:53:24.178Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "安川電機",
+          "Google DeepMind",
+          "Gemini"
+        ],
+        "primary_entity": "安川電機",
+        "story_subject": "エージェンティック・ロボットシステム",
+        "event_type": "release",
+        "event_stage": "announced",
+        "event_scope": "日本(安川電機の製品開発)",
+        "fact_slots": [],
+        "new_facts": [
+          "安川電機がGoogle DeepMindのGeminiを搭載した「エージェンティック・ロボットシステム」を開発した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "安川電機がGoogle DeepMindの生成AI「Gemini」をロボットに組み込んだ「エージェンティック・ロボットシステム」を開発したと発表した。",
+        "detail": "安川電機がGoogle DeepMindの生成AI「Gemini」をロボットに搭載する「エージェンティック・ロボットシステム」を開発したと発表した。エージェンティックとは、AIが人間の細かな指示を待たずに状況を自ら判断し、複数の工程を自律的に実行する能力を指す言葉で、産業用ロボットにこの仕組みを組み込むことで、従来型のプログラミングに頼らないタスク遂行を目指す狙いがあるとみられる。具体的な対応機種や提供時期、実証現場などの詳細は記事内では明らかにされていない。",
+        "change_summary": "安川電機がGoogle DeepMindのGeminiを活用した新たなロボットシステムを開発したことが明らかになった。",
+        "impact_summary": "産業用ロボットに生成AIの自律判断能力が組み込まれることで、日本の製造業における自動化や省人化の進め方に影響を与える可能性がある。",
+        "action_suggestion": "対応機種や提供開始時期など具体的な詳細は記事内で明らかにされておらず、今後の公式発表を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "研究・技術"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmigafbvv95cuxpqwtjewnwtnbenehintdivexwde02txlcmelulv9sbwhqvzruugj4re5edml5znznxzbhowuwm1ywsdh2wvozs0vdvdvgrungb0pxcdc4ovetbddxcktds3nkdhq4mg1bsmnsx3ftuxrfltd0ekl5awvztxjtnf85sw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmigafbvv95cuxpqwtjewnwtnbenehintdivexwde02txlcmelulv9sbwhqvzruugj4re5edml5znznxzbhowuwm1ywsdh2wvozs0vdvdvgrungb0pxcdc4ovetbddxcktds3nkdhq4mg1bsmnsx3ftuxrfltd0ekl5awvztxjtnf85sw",
+      "content_hash": "cab1e05505ae511303fc0e6e83287efd61f4b513c8cfafb8c68d0bc189ed151c",
+      "story_key": "e9b4b57d0f8ea593883542e7fe23c2bbe5ab111783393146fd6afba5d54507bf",
+      "status": "enriched",
+      "processed_at": "2026-08-12T07:56:00.618Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Grok / xAI",
+        "title": "xAI、業務アプリを操作するAIエージェント「Grok Bot」を公開",
+        "source_url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPQWtJeWNwTnBENEhINTdiVExWdE02TXlCMElULV9SbWhQVzRUUGJ4RE5Edml5ZnZnXzBHOWUwM1YwSDh2WVozS0VDVDVGRUNGb0pXcDc4OVEtbDdxcktDS3NkdHQ4MG1BSmNsX3FTUXRFLTd0ekl5aWVZTXJTNF85Sw?oc=5",
+        "source_name": "ITmedia",
+        "is_official": false,
+        "published_at": "2026-08-12T06:37:32.000Z",
+        "source_published_at": "2026-08-12T06:37:32.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T07:53:40.240Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "xAI",
+          "Grok Bot"
+        ],
+        "primary_entity": "xAI",
+        "story_subject": "Grok Bot",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "業務アプリ全般",
+        "fact_slots": [],
+        "new_facts": [
+          "xAIが業務アプリを操作するAIエージェント「Grok Bot」を公開した",
+          "Grok Botは24時間稼働し業務アプリにログインして操作を代行する"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "xAIが24時間働く“AI同僚”として業務アプリにログインし操作を代行する「Grok Bot」を公開した。",
+        "detail": "xAIが新たにAIエージェント「Grok Bot」を公開した。Grok Botは24時間働く“AI同僚”として位置づけられ、企業の業務アプリケーションに実際にログインして操作を代行することで、人間に代わって仕事を任せられる点が特徴とされる。単に回答を生成するだけでなく、業務システムを直接操作して作業を完了させる「エージェント型AI」としての性格が強調されており、対応アプリの範囲や提供開始条件など詳細は記事内で明らかにされていない。",
+        "change_summary": "xAIが業務アプリへのログイン・操作を代行できるAIエージェント「Grok Bot」を新たに公開した。",
+        "impact_summary": "企業の定型業務やシステム操作をAIに任せられる可能性が広がり、日本企業の業務効率化や人員配置の見直しにも影響しうる。",
+        "action_suggestion": "対応アプリの範囲や利用開始条件など具体的な詳細は記事内で明記されておらず、今後の公式発表を確認する必要がある。",
+        "importance": "A",
+        "related_categories": [
+          "AIツール・モデル",
+          "アプリ開発・自動化"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmid0fvx3lxtfb1rmi2znzcx0g1vzlfau1tntb6nlribvbvahl6umxqowvsqtgwueu4aurtv2tkc3d3b2tnq1f3vfdqz0ffsjzerkhkc0lickz0v2jsngywrzaxqmrvuenxwv9mb2nlmwjls3pgn01uv0jmuxlnehew": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmid0fvx3lxtfb1rmi2znzcx0g1vzlfau1tntb6nlribvbvahl6umxqowvsqtgwueu4aurtv2tkc3d3b2tnq1f3vfdqz0ffsjzerkhkc0lickz0v2jsngywrzaxqmrvuenxwv9mb2nlmwjls3pgn01uv0jmuxlnehew",
+      "content_hash": "da2c4922c5ee009bf64ad69ffbe9cf67771a0041a988b6f72f46ed609d60c014",
+      "story_key": "0916469af5cabdfc6c459a29993f2592bd358448cb09a870c6947d91e9077b8b",
+      "status": "enriched",
+      "processed_at": "2026-08-12T07:56:00.619Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "DeepSeek",
+        "title": "DeepSeek、データセンター建設に参入し新規採用を開始",
+        "source_url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFB1RmI2ZnZCX0g1VzlfaU1tNTB6NlRIbVBVaHl6UmxqOWVSQTgwUEU4aURtV2tKc3d3b2tNQ1F3VFdQZ0FfSjZERkhkc0lIckZ0V2JSNGYwRzAxQmRVUENXWV9mb2NLMWJLS3pGN01UV0JMUXlNeHEw?oc=5",
+        "source_name": "Investing.com - FX | 株式市場 | ファイナンス | 金融ニュース",
+        "is_official": false,
+        "published_at": "2026-08-12T06:10:00.000Z",
+        "source_published_at": "2026-08-12T06:10:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-12T07:53:41.590Z",
+        "event_at": "",
+        "event_status": "開始済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "DeepSeek",
+          "財新"
+        ],
+        "primary_entity": "DeepSeek",
+        "story_subject": "データセンター建設事業への参入",
+        "event_type": "other",
+        "event_stage": "announced",
+        "event_scope": "中国",
+        "fact_slots": [],
+        "new_facts": [
+          "DeepSeekがデータセンター建設事業に参入した",
+          "DeepSeekが新たな採用活動を開始した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "中国AI企業DeepSeekがデータセンター建設事業に参入し、新たな採用活動を開始したと財新が報じた。",
+        "detail": "中国のAI企業DeepSeekが自社でデータセンターの建設に乗り出し、新たな人材採用を始めたと中国メディア財新が報じた。DeepSeekはこれまで低コストで高性能な大規模言語モデルを開発してきたことで知られるが、今回の動きは自社でAI計算基盤（データセンター）を確保する体制強化を狙ったものとみられる。具体的な建設地や投資規模、採用人数などの詳細は記事中で明らかにされていない。",
+        "change_summary": "DeepSeekがデータセンター建設事業に新規参入し、関連の採用活動を始めたことが明らかになった。",
+        "impact_summary": "AI開発競争が激化する中、DeepSeekが自社インフラ強化に乗り出すことは、中国AI企業の計算資源確保競争や半導体需要にも影響を与える可能性がある。",
+        "action_suggestion": "建設地や投資規模、採用の詳細は現時点で不明であり、今後の続報を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "半導体・インフラ",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmioafbvv95cuxpsnbhd09ubnbuzgnna2jywwiwm1i4r1riy1jfsg4twgfmwun6cecwqupbuje4medna0h0dvbuoe90mxiwsvdhr2d5yndardhly2vvzwm4ujdzwg9xzgvwoupzqzbubm1xx1lvm2y2zvfoawrhdi0yz0lot0raakxkdvr3slpfy3fpee1qwdh5vmpyslhbbnzvwi1xn0fewxha": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmioafbvv95cuxpsnbhd09ubnbuzgnna2jywwiwm1i4r1riy1jfsg4twgfmwun6cecwqupbuje4medna0h0dvbuoe90mxiwsvdhr2d5yndardhly2vvzwm4ujdzwg9xzgvwoupzqzbubm1xx1lvm2y2zvfoawrhdi0yz0lot0raakxkdvr3slpfy3fpee1qwdh5vmpyslhbbnzvwi1xn0fewxha",
+      "content_hash": "faf721c03d9d4c5e3a911c1ea2ef036e62dca318a5bf60425fe5060909bf457c",
+      "story_key": "654c17867acecbaae96eda741f6e2c52863aa17884ce801593b7586b470a4fd7",
+      "status": "rejected",
+      "processed_at": "2026-08-12T07:56:00.619Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 空港滑走路のニュースでAIと無関係な誤ヒット"
+    },
+    "url:https://news.google.com/rss/articles/cbmiwefvx3lxte51tktrr2hnburywdfzvvvrlwdzy0lxvujjsk5jenn6q3hxymjishe3d1y5mmh0tldrdlk4uxffb1hfnzdmmmxeueq3sjeyq3bkzvvbzha2wdu": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiwefvx3lxte51tktrr2hnburywdfzvvvrlwdzy0lxvujjsk5jenn6q3hxymjishe3d1y5mmh0tldrdlk4uxffb1hfnzdmmmxeueq3sjeyq3bkzvvbzha2wdu",
+      "content_hash": "5086fb305f86d5862a9d28ad59361b59c5d4106a2311045019da823f57fcbd20",
+      "story_key": "d74d41ec0a9914c20104786d908be68f126ed90b4c0ecfa4ade1c95f5cc795ca",
+      "status": "rejected",
+      "processed_at": "2026-08-12T07:56:00.619Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: レビュー記事で具体的な事実が確認できない"
     }
   },
-  "updated_at": "2026-08-12T05:05:41.758Z"
+  "updated_at": "2026-08-12T07:56:00.619Z"
 }
