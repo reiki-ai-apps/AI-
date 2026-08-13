@@ -119,7 +119,7 @@ if (/grant execute on function public\.registered_user_count\(\) to (?:anon|auth
 if (!/function public\.register_unique_visitor\(p_visitor_key_hash text\)\s*returns boolean/i.test(schema)) {
   findings.push("supabase/schema.sql: unique visitor RPC must not return a total count");
 }
-if (!/rpc\('operator_metrics'\)/.test(html) || !/access_source==='operator_grant'[\s\S]{0,180}loadOperatorMetrics\(\)/.test(html)) {
+if (!/rpc\('operator_metrics'\)/.test(html) || !/access_source==='operator_grant'[\s\S]{0,180}refreshOperatorMetrics\(\)/.test(html)) {
   findings.push("index.html: operator-only metrics loading is missing");
 }
 if (/\.operator-metrics\{display:none\}/.test(html)) {
@@ -127,6 +127,14 @@ if (/\.operator-metrics\{display:none\}/.test(html)) {
 }
 if (!/setInterval\(refreshOperatorMetrics,60000\)/.test(html)) {
   findings.push("index.html: operator metrics are not refreshed persistently");
+}
+if (!/operatorMetricsStatus='error'[\s\S]{0,220}operatorMetricsUpdatedAt=null/.test(html) ||
+    !/取得エラー・再確認してください/.test(html) ||
+    !/operatorMetricsTimeLabel/.test(html)) {
+  findings.push("index.html: stale operator metrics can be mistaken for current actual counts");
+}
+if (!/scheduleUniqueVisitorRetry/.test(html) || !/window\.addEventListener\('online',[\s\S]{0,180}registerUniqueVisitor\(\)/.test(html)) {
+  findings.push("index.html: failed unique visitor registrations are not retried reliably");
 }
 if (!/select\('state,updated_at'\)/.test(html) || !/setInterval\(\(\)=>syncMemberAppStateFromCloud\(\),60000\)/.test(html)) {
   findings.push("index.html: account state is not synchronized across devices");
