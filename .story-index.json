@@ -2,6 +2,214 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_7f7c1783d17cf6e003c6",
+      "story_id": "story_71489d9aa2301bacb1",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Manus AI、独立企業として運営再開へ",
+      "source_published_at": "2026-08-13T05:09:21.298Z",
+      "published_at": "2026-08-13T05:09:21.298Z",
+      "fetched_at": "2026-08-13T05:09:21.298Z",
+      "event_at": "",
+      "event_status": "予定",
+      "raw_excerpt": "Manus AIは近く独立企業として運営を再開すると発表し、利用者にはアカウントに関する対応が必要になる場合があるとしている。",
+      "source_name": "Manus AI 公式更新情報",
+      "source_url": "https://manus.im/updates",
+      "story_entities": [
+        "Manus AI",
+        "manusai",
+        "manus"
+      ],
+      "primary_entity": "Manus AI",
+      "story_subject": "Manus AIの独立運営再開",
+      "event_type": "other",
+      "event_stage": "planned",
+      "event_scope": "全世界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Manus AIが独立企業として運営を再開する方針を明らかにしたことが新しい。",
+      "detail": "Manus AIは公式更新情報で、同サービスが近く独立企業として運営を再開すると発表した。Manusはタスクの実行やワークフローの自動化を行う『アクションエンジン』を掲げるサービスで、これまでの運営体制から独立した会社としての運営に移行する見通しだという。公式発表では、利用者のアカウントについて対応が必要になる可能性があると案内されており、具体的な時期や変更内容は記事本文では明らかにされていない。",
+      "new_facts": [
+        "Manus AIが近く独立企業として運営を再開すると発表した",
+        "利用者のアカウントに関して対応が必要になる可能性があるとしている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_6b611841ba1fe46c72ef",
+      "story_id": "story_62dbba99f2f6bb7a13",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.556,
+      "title": "DeepSeek、APIモデルを最新版に更新",
+      "source_published_at": "2026-08-13T05:09:04.928Z",
+      "published_at": "2026-08-13T05:09:04.928Z",
+      "fetched_at": "2026-08-13T05:09:04.928Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "DeepSeekはAPI提供モデルのdeepseek-v4-flashとdeepseek-v4-proをそれぞれ新バージョンに更新したと発表した。",
+      "source_name": "DeepSeek 公式更新情報",
+      "source_url": "https://api-docs.deepseek.com/news/",
+      "story_entities": [
+        "DeepSeek",
+        "DeepSeek-V4-Flash-0731",
+        "DeepSeek-V4-Pro-0813",
+        "deepseek",
+        "deepseek-v4-flash-0731"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek APIモデル更新",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "API",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "deepseek-v4-flash",
+          "value": "DeepSeek-V4-Flash-0731",
+          "normalized_value": "deepseekv4flash0731"
+        },
+        {
+          "type": "version",
+          "scope": "deepseek-v4-pro",
+          "value": "DeepSeek-V4-Pro-0813",
+          "normalized_value": "deepseekv4pro0813"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type"
+      ],
+      "change_summary": "DeepSeekのAPIモデルdeepseek-v4-flashとdeepseek-v4-proが新しいバージョンに更新されたことが新しい。",
+      "detail": "DeepSeekは公式のAPIドキュメントで、提供中のモデルのバージョン更新を発表した。deepseek-v4-flashは「DeepSeek-V4-Flash-0731」に、deepseek-v4-proは「DeepSeek-V4-Pro-0813」にそれぞれ更新されたという。呼び出し方法に変更はなく、利用者は引き続きdeepseek-v4-flashやdeepseek-v4-proという名称でAPIを呼び出すだけで最新版にアクセスできる。DeepSeek APIはOpenAIやAnthropicのAPI形式と互換性があり、Claude CodeやGitHub Copilotなど既存のツールでもコード変更なしに利用できるとしている。",
+      "new_facts": [
+        "deepseek-v4-flashがDeepSeek-V4-Flash-0731に更新された",
+        "deepseek-v4-proがDeepSeek-V4-Pro-0813に更新された",
+        "呼び出し方法(モデル名)は変更されていない"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_20cf339db543fe6b1328",
+      "story_id": "story_6786905945eedd2d3a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6175609756097561,
+      "title": "Claude Code v2.1.229公開、リモートセッション再開やプラグイン機能を追加",
+      "source_published_at": "2026-08-13T05:06:41.646Z",
+      "published_at": "2026-08-13T05:06:41.646Z",
+      "fetched_at": "2026-08-13T05:06:41.646Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "AnthropicはコーディングツールClaude Codeのバージョン2.1.229を公開し、リモートセッションの再開機能やプラグイン管理コマンドなどを追加した。",
+      "source_name": "github.com",
+      "source_url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.229",
+      "story_entities": [
+        "Claude Code",
+        "Anthropic",
+        "v2.1.229",
+        "claudecode",
+        "anthropic"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude Code v2.1.229",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "開発者向けCLIツール",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "Claude Codeのバージョン",
+          "value": "v2.1.229",
+          "normalized_value": "v2.1.229"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Claude Codeにリモートセッション再開、セルフホスト環境でのフック対応、接続維持のためのキープアライブ、プラグイン管理コマンドが新たに追加された。",
+      "detail": "Claude Codeはターミナル上で動作し、コードベースを理解してタスク実行や説明、git操作を自然言語でこなすエージェント型のコーディングツール。今回公開されたv2.1.229では、直近のリモート制御セッションを再開できる「claude remote-control --continue」の仕様が文書化されたほか、自己管理型ランナーでのセッションにおいてもマネージド環境と同様のフック機能が使えるよう対応した。また、長い思考時間中でもVertexやBedrockなどの上流サービスとの接続がアイドルタイムアウトで切断されないよう、ゲートウェイのストリーミング応答にSSEキープアライブを追加。さらに、IDEなどローカルのコマンドからプラグインディレクトリを出力し解決できる、プラグインマーケットプレイスのコマンドソース機能も加わった。",
+      "new_facts": [
+        "Claude Code v2.1.229でリモートセッション再開機能『claude remote-control --continue』が文書化された",
+        "セルフホスト型ランナーのセッションでもマネージド環境と同様のフック機能が使えるようになった",
+        "長時間の思考中でも接続が切れないようゲートウェイにSSEキープアライブが追加された",
+        "プラグインマーケットプレイスのコマンドソース機能が追加された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_d7fbde8a919980f100a1",
+      "story_id": "story_8ea01aeb887acefe84",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AIコーディングエージェントの自律研究能力を測る新ベンチマーク「AutoWorldModel-Bench」",
+      "source_published_at": "2026-08-13T04:00:00.000Z",
+      "published_at": "2026-08-13T04:00:00.000Z",
+      "fetched_at": "2026-08-13T05:15:18.022Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "研究者らは、AIコーディングエージェントが世界モデルを自律的に改善する能力を評価する新ベンチマーク「AutoWorldModel-Bench」を発表した。",
+      "source_name": "rss.arxiv.org",
+      "source_url": "https://arxiv.org/abs/2608.11216",
+      "story_entities": [
+        "AutoWorldModel-Bench",
+        "Codex-5.4",
+        "Claude Opus 4.6",
+        "autoworldmodel-bench",
+        "codex-5.4"
+      ],
+      "primary_entity": "AutoWorldModel-Bench研究チーム",
+      "story_subject": "AutoWorldModel-Bench",
+      "event_type": "research",
+      "event_stage": "other",
+      "event_scope": "研究論文(arXiv)",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "実験セッション数",
+          "value": "64セッション",
+          "normalized_value": "64"
+        },
+        {
+          "type": "count",
+          "scope": "改善に成功したセッション数",
+          "value": "63/64セッション",
+          "normalized_value": "63"
+        },
+        {
+          "type": "other",
+          "scope": "研究的な工夫の割合",
+          "value": "91%",
+          "normalized_value": "91%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AIコーディングエージェントの自律的な研究能力を、仕様通りの実装作業とは異なる観点で評価する新しいベンチマークが提案された。",
+      "detail": "世界モデル（環境の状態変化を予測するモデル）の研究は、アーキテクチャや学習目的、状態表現の組み合わせが複雑で、単一の最適解がない分野とされる。研究者らはこの特性を利用し、AIコーディングエージェントが自律的な研究者として振る舞う評価環境「AutoWorldModel-Bench」を提案した。8種類のゲーム環境で、決められた計算予算のもとエージェントに世界モデルの出発点を改善させる閉ループ形式のベンチマークで、64回のセッションのうちCodex-5.4とClaude Opus 4.6が63回で改善に成功し、91%のケースで単なるパラメータ調整ではない研究的な工夫（新しい目的関数や表現、ロールアウト手順、アーキテクチャ変更など）が採用されたと報告している。",
+      "new_facts": [
+        "AIコーディングエージェントの自律研究能力を測る新ベンチマーク「AutoWorldModel-Bench」が発表された",
+        "64セッション中63セッションでCodex-5.4とClaude Opus 4.6が世界モデルの出発点を改善した",
+        "91%のセッションで単なるパラメータ調整ではない研究的な工夫が採用された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_0b065fa44354f8cae272",
       "story_id": "story_3945e788d37d071ef4",
       "story_sequence": 1,
@@ -865,6 +1073,48 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_e063daae6225e1569539",
+      "story_id": "story_a6d48ed6f746bb45df",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "OpenAI調査:企業のAI活用が「支援」から「実行」の段階へ移行",
+      "source_published_at": "2026-08-12T06:00:00.000Z",
+      "published_at": "2026-08-12T06:00:00.000Z",
+      "fetched_at": "2026-08-13T05:06:28.580Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIの調査によると、企業はChatGPTやCodexを用いたエージェント型AIの導入を進めており、先進的な企業ほど導入が先行していることが分かった。",
+      "source_name": "openai.com",
+      "source_url": "https://openai.com/index/how-enterprises-put-ai-to-work",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT",
+        "Codex",
+        "openai",
+        "chatgpt"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "企業のエージェント型AI導入調査",
+      "event_type": "research",
+      "event_stage": "other",
+      "event_scope": "企業のAI導入・業務活用",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "OpenAIが企業のAI導入実態に関する調査結果を新たに公表した。",
+      "detail": "OpenAIは企業のAI導入状況に関する調査を公表し、企業がAIを単なる補助ツールとして使う段階から、実際の業務を任せる「実行」の段階へと移行しつつある実態を報告した。調査では、ChatGPTやコーディング支援ツールCodexを活用したエージェント型AIの導入事例が取り上げられ、AI活用を先行させている「フロンティア企業」ほど他社より導入が進んでいる傾向が示されたという。具体的な導入企業数や統計値は記事内では示されていない。",
+      "new_facts": [
+        "OpenAIの調査で企業のAI活用が『支援』段階から『実行』段階へ移行していることが示された",
+        "ChatGPTやCodexを使ったエージェント型AI導入が進んでいる企業事例が報告された",
+        "AI導入で先行する『フロンティア企業』ほど他社より導入が進んでいる傾向が示された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_5bf97473daaa3795c6ed",
       "story_id": "story_42e66fa97833ee5027",
       "story_sequence": 1,
@@ -917,7 +1167,7 @@
       "story_id": "story_4101f7080fd451d396",
       "story_sequence": 1,
       "relation_type": "new",
-      "relation_confidence": 0.6789473684210525,
+      "relation_confidence": 0.6993750000000001,
       "title": "Geminiの月間アクティブユーザーが10億人突破、音声利用は63%に",
       "source_published_at": "2026-08-12T04:36:16.000Z",
       "published_at": "2026-08-12T04:36:16.000Z",
@@ -1435,6 +1685,62 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_798cc5879a3dbf4e6594",
+      "story_id": "story_2039ce09931d4dc36b",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "xAI、コーディング向け新モデル「Grok 4.6」をAPIで提供開始",
+      "source_published_at": "2026-08-12T00:00:00.000Z",
+      "published_at": "2026-08-12T00:00:00.000Z",
+      "fetched_at": "2026-08-13T05:08:48.893Z",
+      "event_at": "2026-08-05",
+      "event_status": "発表済み",
+      "raw_excerpt": "xAIはコーディングやエージェント処理向けの新モデル「Grok 4.6」をAPIで公開し、50万トークンの文脈窓と新料金体系を導入した。",
+      "source_name": "Grok / xAI 公式更新情報",
+      "source_url": "https://docs.x.ai/docs/release-notes",
+      "story_entities": [
+        "xAI",
+        "Grok 4.6",
+        "xai",
+        "grok4.6",
+        "grok"
+      ],
+      "primary_entity": "xAI",
+      "story_subject": "Grok 4.6",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "API",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "Grok 4.6 API料金(20万トークン未満)",
+          "value": "入力$2/百万トークン、キャッシュ入力$0.5/百万トークン、出力$6/百万トークン",
+          "normalized_value": "2USD"
+        },
+        {
+          "type": "version",
+          "scope": "文脈窓",
+          "value": "500,000トークン",
+          "normalized_value": "500000トークン"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "xAIがGrok 4.6をAPIで公開し、50万トークンの文脈窓と段階的な新料金体系を設定したことが新しい。",
+      "detail": "xAIは公式の更新履歴で、コーディングやエージェント作業、知識労働向けの新モデル「Grok 4.6」をxAI API上で提供開始したと発表した。文脈窓は50万トークンに達し、テキストと画像の入力に対応する一方、出力はテキストのみで文字数制限はない。料金は20万トークン未満のプロンプトで入力100万トークンあたり2ドル、キャッシュ入力0.5ドル、出力6ドルで、それを超えると入力4ドル、キャッシュ入力1ドル、出力12ドルとなる。推論の強度は低・中・高(既定)・超高から選択できる。同時期の更新では、常時稼働するクラウド上で作業する「Grok Bot」や、動画生成モデル「grok-imagine-video-1.5」のテキスト・画像・参照からの動画生成対応、音声対話モデル「grok-voice-think-fast-2.0」の提供開始なども公表されている。",
+      "new_facts": [
+        "xAIがGrok 4.6をAPIで提供開始した",
+        "文脈窓は50万トークンで画像入力にも対応する",
+        "料金は20万トークンを境に段階的に変わる",
+        "Grok Botや動画生成モデルgrok-imagine-video-1.5の更新も同時に発表された"
+      ],
+      "event_date_precision": "day"
+    },
+    {
       "article_id": "article_4c35f8c7651e30017132",
       "story_id": "story_1a27060fb287133183",
       "story_sequence": 1,
@@ -1754,6 +2060,55 @@
       "detail": "中国発のAIスタートアップ「Manus」が、Metaによる買収・提携の動きから独立する方向にあると報じられた。記事によれば、この動きの背景には中国政府がMetaによる買収に反発したことがあるとされる。中国のAI企業が海外大手テック企業の資本を受け入れることに対し、当局が警戒感を示した事例として取り上げられている。具体的な出資比率や交渉の詳細は記事からは確認できず、今後Manusがどのような資本構成・提携先で事業を進めるかは不明のままとなっている。",
       "new_facts": [
         "Manusはメタからの独立という形となり、中国政府がメタによる買収に反発したと報じられている。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_8db33a08ff70251f87c4",
+      "story_id": "story_e6c1c059111604e55d",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.524,
+      "title": "Geminiアプリ、月間利用者数が10億人を突破",
+      "source_published_at": "2026-08-11T16:00:00.000Z",
+      "published_at": "2026-08-11T16:00:00.000Z",
+      "fetched_at": "2026-08-13T05:06:57.482Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Googleは、対話型AIアプリ「Gemini」の月間利用者数が10億人を超え、同社史上最も急成長した製品になったと発表した。",
+      "source_name": "blog.google",
+      "source_url": "https://blog.google/innovation-and-ai/products/gemini-app/one-billion-monthly-users/",
+      "story_entities": [
+        "Google",
+        "Gemini",
+        "google",
+        "gemini",
+        "google-gemini"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "Geminiアプリ",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "全世界",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "月間アクティブ利用者数",
+          "value": "10億人超",
+          "normalized_value": "1000000000"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject"
+      ],
+      "change_summary": "Geminiアプリの月間利用者数が10億人を超え、Google史上最速で成長した製品となったことが明らかになった。",
+      "detail": "Googleは公式ブログで、対話型AIアプリ「Gemini」の月間利用者数が10億人を突破したと発表した。これはGoogleの製品史上、最も早いペースでの成長だという。同社は利用状況に関するデータも公開し、Geminiがどのように使われているかを示した。Googleは今後も『次の10億人』に向けた開発を続け、Geminiを最もパーソナルで先回りし、強力なアシスタントにすることを目標に掲げている。",
+      "new_facts": [
+        "Geminiアプリの月間利用者数が10億人を突破した",
+        "GoogleはGeminiを同社史上最も急成長した製品と説明している"
       ],
       "event_date_precision": "unknown"
     },
