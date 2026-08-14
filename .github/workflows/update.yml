@@ -211,6 +211,7 @@ jobs:
         run: |
           node scripts/build-public-articles.mjs
           node scripts/test-growth-readiness.mjs
+          node scripts/test-light-theme.mjs
 
       - name: persist validated public data
         run: |

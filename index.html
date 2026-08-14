@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" style="background:#070b14">
+<html lang="ja" style="background:#f6f8fc">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -18,7 +18,7 @@
 <meta name="twitter:title" content="AI進化レーダー｜毎日3分で重要なAI変化を確認" />
 <meta name="twitter:description" content="重要AIニュースを、変化・影響・次の行動までやさしく整理。" />
 <meta name="twitter:image" content="https://reiki-ai-apps.github.io/AI-/assets/ai-radar-human-hero.webp" />
-<meta name="theme-color" content="#070b14" />
+<meta name="theme-color" content="#ffffff" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -1870,6 +1870,171 @@
   .support-form{display:grid;gap:16px;margin-top:20px}.support-form label{display:grid;gap:7px;color:#b9c7d8;font-size:11.5px;font-weight:800}.support-form select,.support-form textarea{width:100%;padding:12px;border:1px solid rgba(112,151,196,.28);border-radius:11px;background:rgba(4,13,29,.82);color:#f3f7ff;font:inherit;line-height:1.65;outline:none}.support-form textarea:focus,.support-form select:focus{border-color:rgba(72,218,230,.65);box-shadow:0 0 0 3px rgba(61,207,222,.1)}
   @media(max-width:600px){.legal-section{padding:22px 16px}.legal-section h2{font-size:23px}.legal-table,.legal-table tbody,.legal-table tr,.legal-table th,.legal-table td{display:block}.legal-table th{width:auto;border-bottom:0;padding-bottom:7px}.legal-table td{padding-top:7px}.legal-contact,.account-danger{align-items:flex-start;flex-direction:column}}
 
+  /* V5.2 / Light knowledge-media theme
+     Calm, trustworthy reading surfaces; the single top signal remains cinematic. */
+  .light-media-theme{
+    --bg:#f6f8fc;--surface:#ffffff;--surface-2:#f1f5fa;
+    --border:#dce4ef;--border-strong:#c9d5e4;
+    --text:#172033;--text-soft:#5d6b80;--text-mute:#8190a5;
+    --brand:#5265d8;--brand-2:#7557d5;--brand-soft:#edf1ff;--brand-ink:#374aa7;
+    --side-bg:#ffffff;--side-bg-2:#ffffff;--side-text:#42516a;--side-mute:#7c899d;
+    background:
+      radial-gradient(circle at 90% 4%,rgba(72,195,214,.10),transparent 28rem),
+      radial-gradient(circle at 12% 92%,rgba(117,87,213,.07),transparent 30rem),
+      linear-gradient(180deg,#f8fafc 0%,#f3f6fb 100%)!important;
+    background-size:auto!important;color:var(--text)!important;
+  }
+  .light-media-theme .main{background:transparent!important}
+  .light-media-theme .sidebar{
+    background:rgba(255,255,255,.97)!important;border-right:1px solid #e0e7f1!important;
+    box-shadow:8px 0 30px rgba(42,58,91,.05)!important;
+  }
+  .light-media-theme .sidebar::before{opacity:.055!important;filter:grayscale(.2) saturate(.55)!important}
+  .light-media-theme .brand::after{background:linear-gradient(90deg,transparent,#d5deea,transparent)!important}
+  .light-media-theme .brand-name,.light-media-theme .brand-title{color:#19263b!important;text-shadow:none!important}
+  .light-media-theme .brand-sub,.light-media-theme .brand small{color:#7c899d!important}
+  .light-media-theme .nav-label{color:#8290a3!important}
+  .light-media-theme .nav-item{color:#526077!important;border-color:transparent!important;background:transparent!important;box-shadow:none!important}
+  .light-media-theme .nav-item svg{background:#edf3f8!important;color:#53627a!important;filter:none!important}
+  .light-media-theme .nav-item:hover{color:#24334a!important;border-color:#dbe6ef!important;background:#f5f8fb!important;box-shadow:0 8px 20px rgba(42,58,91,.07)!important}
+  .light-media-theme .nav-item.active{color:#22465f!important;border-color:#b8e2e8!important;background:linear-gradient(105deg,#eaf8fa,#f1effd)!important;box-shadow:inset 3px 0 #24aebe,0 8px 22px rgba(55,102,131,.09)!important}
+  .light-media-theme .nav-item.active svg{background:linear-gradient(145deg,#2bb7c3,#6759cc)!important;color:#fff!important;filter:none!important}
+  .light-media-theme .nav-item .badge{border-color:#d4deea!important;background:#edf2f8!important;color:#53647b!important;box-shadow:none!important}
+  .light-media-theme .official-media{border-color:#d8e5ee!important;background:#f7fafc!important;box-shadow:0 8px 24px rgba(48,65,93,.05)}
+  .light-media-theme .official-media-kicker{color:#178a98!important}
+  .light-media-theme .official-media-title{color:#1f2b3e!important}
+  .light-media-theme .official-media-copy{color:#6c7b90!important}
+  .light-media-theme .official-media-link{border-color:#d8e3ed!important;background:#fff!important;color:#34435a!important;box-shadow:0 3px 10px rgba(42,58,91,.04)}
+  .light-media-theme .official-media-link:hover{border-color:#78cbd5!important;background:#f1fbfc!important;color:#172b3d!important;box-shadow:0 8px 20px rgba(45,95,111,.10)!important}
+  .light-media-theme .nav-legal{border-top-color:#e1e7ef!important}
+  .light-media-theme .nav-legal button,.light-media-theme .link-button,.light-media-theme .auth-consent button{color:#718096!important}
+
+  .light-media-theme .topbar{background:rgba(255,255,255,.90)!important;border-bottom-color:#e2e8f0!important;box-shadow:0 8px 24px rgba(48,65,93,.035)!important}
+  .light-media-theme .topbar h1,.light-media-theme .page-title{color:#172033!important;text-shadow:none!important}
+  .light-media-theme .page-sub{color:#758297!important}
+  .light-media-theme .menu-btn,.light-media-theme .btn-icon{border-color:#d8e2ec!important;background:#fff!important;color:#516078!important;box-shadow:0 4px 12px rgba(42,58,91,.05)!important}
+  .light-media-theme .mobile-media-shortcut{border-color:#9bd6dc!important;background:linear-gradient(135deg,#e4f7f8,#efedfd)!important;color:#256672!important;box-shadow:none!important}
+
+  .light-media-theme .quick-stats{border-color:#dce6ef!important;background:rgba(255,255,255,.82)!important;box-shadow:0 8px 24px rgba(48,65,93,.045)!important}
+  .light-media-theme .quick-stats .signal-count{color:#5d6d83!important}
+  .light-media-theme .mini-chip{border-color:#d2deea!important;background:#fff!important;color:#43536b!important;box-shadow:none!important}
+  .light-media-theme .day-head span{border-color:#cddfe8!important;background:linear-gradient(105deg,#f0fafb,#f5f3fd)!important;color:#34465d!important;box-shadow:0 6px 18px rgba(42,58,91,.06)!important}
+  .light-media-theme .day-head::after{background:linear-gradient(90deg,#9fd7de,#d6d9eb,transparent)!important;box-shadow:none!important}
+
+  .light-media-theme .ucard{
+    border-color:#dce5ee!important;
+    background-image:
+      linear-gradient(100deg,rgba(255,255,255,.99) 0%,rgba(255,255,255,.97) 55%,rgba(248,251,253,.91) 76%,rgba(244,248,252,.78) 100%),
+      radial-gradient(circle at 88% 42%,rgba(70,171,190,.08),transparent 40%),
+      var(--card-art,var(--art-quantum))!important;
+    background-position:center,center,right center!important;background-size:auto,auto,cover!important;
+    background-blend-mode:normal,normal,luminosity!important;
+    box-shadow:0 10px 28px rgba(43,61,89,.08),inset 0 1px #fff!important;
+  }
+  .light-media-theme .ucard::before{background:linear-gradient(180deg,transparent,#27b2c1 25%,#6a5bd3 70%,transparent)!important;box-shadow:none!important}
+  .light-media-theme .ucard::after{display:none!important}
+  .light-media-theme .ucard:hover{transform:translateY(-3px)!important;border-color:#9bcfd6!important;box-shadow:0 18px 42px rgba(43,61,89,.13)!important}
+  .light-media-theme .ucard-top,.light-media-theme .ucard-footer{border-color:#e4eaf1!important}
+  .light-media-theme .ucard-tool span{color:#55647a!important;text-shadow:none!important}
+  .light-media-theme .ucard-date{border-color:#e0e6ee!important;background:#f4f7fa!important;color:#7a8799!important}
+  .light-media-theme .ucard h3{color:#18243a!important;text-shadow:none!important}
+  .light-media-theme .summary-wrap{border-left-color:#54bdc7!important;background:linear-gradient(90deg,#f0fafb,rgba(247,250,252,.65))!important;box-shadow:none!important;color:#526278!important}
+  .light-media-theme .ai-label{border-color:#acdbe0!important;background:linear-gradient(120deg,#e5f7f8,#eeecfb)!important;color:#257786!important;text-shadow:none!important}
+  .light-media-theme .card-summary,.light-media-theme .ucard-summary,.light-media-theme .ucard p{color:#5b697c!important}
+  .light-media-theme .chip,.light-media-theme .status{border-color:#d6deea!important;background:#f1f4f8!important;color:#58677d!important;box-shadow:none!important}
+  .light-media-theme .chip.cat{border-color:#d5d1ef!important;background:#f0eefc!important;color:#6254a5!important}
+  .light-media-theme .status.unread{border-color:#a8d8dd!important;background:#eaf8f9!important;color:#147a87!important}
+  .light-media-theme .status.try_later{border-color:#f2d09e!important;background:#fff6e8!important;color:#a65f0d!important}
+
+  .light-media-theme .stat,.light-media-theme .form-card,.light-media-theme .table-wrap,.light-media-theme .read-block,.light-media-theme .cat-tile,.light-media-theme .modal,
+  .light-media-theme .plan-card,.light-media-theme .setting-card,.light-media-theme .selected-topics-panel,.light-media-theme .featured-tools-panel,
+  .light-media-theme .topic-mobile-card,.light-media-theme .member-feature-guide,.light-media-theme .account-panel,.light-media-theme .billing-panel,
+  .light-media-theme .review-hero,.light-media-theme .review-form,.light-media-theme .review-card,.light-media-theme .reviews-preview,
+  .light-media-theme .media-promo,.light-media-theme .legal-section{
+    border-color:#dce5ee!important;background:#fff!important;background-image:none!important;
+    box-shadow:0 10px 30px rgba(43,61,89,.07)!important;
+  }
+  .light-media-theme .plan-card.recommended{border-color:#8bcfd7!important;background:linear-gradient(155deg,#f4fbfc,#f7f5ff)!important;box-shadow:0 16px 38px rgba(52,94,116,.12)!important}
+  .light-media-theme .pricing-hero,.light-media-theme .settings-hero{border-color:#d5e2ec!important;background:linear-gradient(135deg,#fff,#f0f7fb 60%,#f2effd)!important;box-shadow:0 12px 34px rgba(43,61,89,.08)!important}
+  .light-media-theme .pricing-hero h2,.light-media-theme .settings-hero h2,.light-media-theme .plan-card h3,
+  .light-media-theme .setting-card-head h3,.light-media-theme .settings-benefit h3,.light-media-theme .settings-table-title h3,
+  .light-media-theme .selected-topics-head h3,.light-media-theme .featured-tools-head h3,.light-media-theme .member-feature-guide h3,
+  .light-media-theme .account-head h2,.light-media-theme .review-hero h2,.light-media-theme .review-form h3,
+  .light-media-theme .review-section-title h3,.light-media-theme .reviews-preview-head h3,.light-media-theme .media-promo h3,
+  .light-media-theme .legal-section h2,.light-media-theme .legal-section h3{color:#1a273b!important;text-shadow:none!important}
+  .light-media-theme .pricing-hero p,.light-media-theme .settings-hero p,.light-media-theme .plan-desc,.light-media-theme .plan-features li,
+  .light-media-theme .pricing-common,.light-media-theme .setting-card p,.light-media-theme .settings-benefit p,
+  .light-media-theme .selected-topics-head p,.light-media-theme .featured-tools-head p,.light-media-theme .topic-mobile-detail,
+  .light-media-theme .member-feature-guide p,.light-media-theme .account-head p,.light-media-theme .review-hero p,
+  .light-media-theme .review-form>p,.light-media-theme .review-body,.light-media-theme .media-promo p,.light-media-theme .legal-section p{color:#607086!important}
+  .light-media-theme .plan-price,.light-media-theme .plan-price strong,.light-media-theme .setting-value,.light-media-theme .member-row strong,
+  .light-media-theme .review-score strong,.light-media-theme .review-author{color:#1b293e!important}
+  .light-media-theme .plan-result,.light-media-theme .settings-benefit,.light-media-theme .pricing-common,
+  .light-media-theme .settings-step,.light-media-theme .locked-topic,.light-media-theme .selected-topic-item,
+  .light-media-theme .member-feature-item,.light-media-theme .account-value-list li,.light-media-theme .member-row,
+  .light-media-theme .review-score,.light-media-theme .review-notice,.light-media-theme .notice-card{
+    border-color:#dce6ee!important;background:#f5f8fb!important;color:#56677d!important;
+  }
+  .light-media-theme .settings-step span,.light-media-theme .selected-topic-item strong,.light-media-theme .member-feature-item,
+  .light-media-theme .account-value-list li,.light-media-theme .member-row span{color:#526278!important}
+  .light-media-theme .featured-tool-button,.light-media-theme .free-topic-demo-button,.light-media-theme .mobile-settings-details,
+  .light-media-theme .topic-settings-search{border-color:#d9e3ec!important;background:#f7f9fc!important;color:#43536a!important}
+  .light-media-theme .featured-tool-button:hover{border-color:#86ccd4!important;background:#effafb!important}
+  .light-media-theme .featured-tool-button.is-selected,.light-media-theme .free-topic-demo-button.is-selected{border-color:#65bdc8!important;background:linear-gradient(135deg,#dff5f7,#ece9fb)!important;color:#273e5a!important}
+  .light-media-theme .featured-tool-copy b,.light-media-theme .topic-mobile-title{color:#26364c!important}
+  .light-media-theme .featured-tool-copy small{color:#718096!important}
+  .light-media-theme .topic-settings-search input{color:#26364c!important}
+  .light-media-theme .current-plan-pill,.light-media-theme .plan-ribbon,.light-media-theme .setting-state,.light-media-theme .member-plan{border-color:#a7d9de!important;background:#eaf8f9!important;color:#247985!important}
+
+  .light-media-theme .review-field label,.light-media-theme .review-label,.light-media-theme .auth-field label,
+  .light-media-theme .support-form label,.light-media-theme .auth-consent{color:#58687f!important}
+  .light-media-theme .review-field input,.light-media-theme .review-field textarea,.light-media-theme .auth-field input,
+  .light-media-theme .support-form select,.light-media-theme .support-form textarea,
+  .light-media-theme .search,.light-media-theme select.filter,.light-media-theme .field input,.light-media-theme .field select,.light-media-theme .field textarea{
+    border-color:#d5e0ea!important;background:#fff!important;background-image:none!important;color:#26364c!important;box-shadow:inset 0 1px 2px rgba(34,51,76,.03)!important;
+  }
+  .light-media-theme .star-rating button{border-color:#d7e0e9!important;background:#f7f9fc!important;color:#9ca8b8!important}
+  .light-media-theme .star-rating button:hover,.light-media-theme .star-rating button.active{border-color:#7cc6cf!important;background:#eaf8f9!important;color:#188391!important;text-shadow:none!important}
+  .light-media-theme .password-toggle{border-color:#d5e0ea!important;background:#f3f7fa!important;color:#53657b!important}
+  .light-media-theme .legal-table th,.light-media-theme .legal-table td{border-color:#dfe6ee!important}
+  .light-media-theme .legal-table th{background:#f2f6f9!important;color:#34445b!important}
+  .light-media-theme .legal-table td,.light-media-theme .legal-contact{color:#5d6d82!important}
+  .light-media-theme .account-danger{background:#fff5f6!important;border-color:#f0ced5!important}.light-media-theme .account-danger b{color:#a3324a!important}
+  .light-media-theme .source-trust-item,.light-media-theme .timeline-meta span,.light-media-theme .story-new-facts{
+    border-color:#dbe5ee!important;background:#f6f9fb!important;color:#56677c!important;
+  }
+  .light-media-theme .source-trust-item strong,.light-media-theme .timeline-meta span,.light-media-theme .continuation-card{color:#34465d!important}
+  .light-media-theme .continuation-card{border-color:#c8ddeb!important;background:linear-gradient(135deg,#edf8fa,#f1effb)!important}
+
+  /* The top signal is the sole dark focal area on the light canvas. */
+  .light-media-theme .radar-overview{
+    color:#f4f8ff!important;border-color:rgba(75,213,230,.42)!important;
+    background:
+      linear-gradient(100deg,rgba(3,14,31,.98) 0%,rgba(5,16,35,.94) 58%,rgba(6,12,33,.72) 100%),
+      var(--hero-art) 58% 54%/cover no-repeat!important;
+    box-shadow:0 22px 55px rgba(18,34,61,.25),0 0 28px rgba(32,180,205,.08)!important;
+  }
+  .light-media-theme .radar-overview h2{color:#f7fbff!important;text-shadow:0 4px 22px rgba(0,0,0,.7)!important}
+  .light-media-theme .radar-overview p{color:#c2cede!important;text-shadow:0 2px 14px rgba(0,0,0,.7)!important}
+  .light-media-theme .radar-overview .daily-cover-source{color:#b4c3d6!important}
+  .light-media-theme .radar-overview .daily-cover-source b,.light-media-theme .radar-overview .coverage-proof span::before{color:#6ce8ee!important}
+  .light-media-theme .radar-overview .daily-cover-note{color:#9aabc1!important}
+  .light-media-theme .radar-overview .coverage-proof span{border-color:rgba(91,211,225,.24)!important;background:rgba(5,25,43,.68)!important;color:#c0d0df!important}
+
+  .light-media-theme .bottom-nav{border-color:#d9e2ec!important;background:rgba(255,255,255,.97)!important;box-shadow:0 14px 38px rgba(35,53,80,.16)!important}
+  .light-media-theme .bottom-item{color:#7a8799!important}
+  .light-media-theme .bottom-item.active{color:#287c89!important;background:#edf8f9!important}
+  .light-media-theme .mobile-media-hub{border-color:#cbe2e8!important;background:linear-gradient(135deg,#fff,#f0f7fb 65%,#f2effd)!important;box-shadow:0 10px 28px rgba(43,61,89,.08)!important}
+  .light-media-theme .mobile-media-hub-title b{color:#1d2a3e!important}.light-media-theme .mobile-media-hub-title span{color:#197f8c!important}.light-media-theme .mobile-media-hub-note{color:#738197!important}
+  .light-media-theme .mobile-media-hub .official-media-link{border-color:#d7e2ec!important;background:#fff!important;color:#35465d!important}
+  @media(max-width:760px){
+    .light-media-theme .sidebar{box-shadow:18px 0 45px rgba(35,53,80,.18)!important}
+    .light-media-theme .ucard{background-position:center,center,75% center!important;background-size:auto,auto,auto 100%!important}
+    .light-media-theme .mobile-media-hub{padding:10px!important}
+    .light-media-theme .mobile-media-hub-head{margin-bottom:7px!important}
+    .light-media-theme .mobile-media-hub .official-media-link{min-height:38px!important}
+  }
+
   /* モバイルでは background-attachment:fixed が毎フレーム全画面再描画を招く
      (iOSはそもそも非対応)ため、スクロール追従に切り替えてかくつきを防ぐ */
   @media(max-width:760px){
@@ -1877,7 +2042,7 @@
   }
 </style>
 </head>
-<body>
+<body class="light-media-theme">
 <div class="ai-boot" id="aiBoot" aria-hidden="true">
   <div class="boot-panel">
     <div class="boot-icon-wrap"><img class="boot-icon" data-ai-icon src="./assets/ai-radar-icon.webp" alt="" width="152" height="152" /></div>
