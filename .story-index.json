@@ -2,6 +2,246 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_00c543b3c8ba1262c5c3",
+      "story_id": "story_acb571947685bcdb5b",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5517647058823529,
+      "title": "DeepSeekがAIエージェント用ハーネス「DeepSeek Harness」v0.1を公開",
+      "source_published_at": "2026-08-14T07:31:00.000Z",
+      "published_at": "2026-08-14T07:31:00.000Z",
+      "fetched_at": "2026-08-14T07:51:37.608Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "DeepSeekがAIエージェントを構築・実行するための基盤ツール「DeepSeek Harness」のバージョン0.1を公開した。",
+      "source_name": "GIGAZINE",
+      "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1iZVp5cVZNYnI5cTMwNHJ1aU15RXphT205UmJtdHphcmJBY25LSWR0QmNGb0tTWVJ1V0JMbVBLWjhkRWVwekd3a3JKLUwxeGlnajlvUmkxd2ZuQlJBTXpPbVlkY2x4VVA2?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "DeepSeek Harness",
+        "deepseek",
+        "deepseekharness",
+        "harness"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek Harness v0.1",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "AIエージェント開発",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "DeepSeek Harness",
+          "value": "v0.1",
+          "normalized_value": "v0.1"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type"
+      ],
+      "change_summary": "DeepSeekがAIエージェント構築用の新ツール「DeepSeek Harness」の初版（v0.1）を新たに公開した。",
+      "detail": "DeepSeekは、AIエージェントを動かすための「ハーネス」と呼ばれる基盤ソフトウェアの最初のバージョン「DeepSeek Harness v0.1」を公開した。ハーネスとは、AIモデルが外部ツールを呼び出したり、複数の手順をまとめて自律的にタスクを遂行したりする際の実行環境を提供する仕組みを指す。今回のv0.1公開により、開発者はDeepSeekのモデルを使ってエージェント的な処理を構築しやすくなる。詳細な機能や対応環境については記事内で明記されていない部分もあるが、AIエージェント開発の基盤整備を進める動きとして報じられている。",
+      "new_facts": [
+        "DeepSeekがAIエージェント用ハーネス「DeepSeek Harness」のv0.1を公開した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_d1d36c471f79818e5a3e",
+      "story_id": "story_295e381dd4b67083cf",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AirbnbのCEO、AIが自社コードの60%を書いていると発言、AI時代を勝ち抜く鍵は『創業者モード』の維持",
+      "source_published_at": "2026-08-14T07:01:00.000Z",
+      "published_at": "2026-08-14T07:01:00.000Z",
+      "fetched_at": "2026-08-14T07:51:49.154Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "AirbnbのCEOが、AIが自社のコードの60%を書いていると述べ、AI時代に競争優位を保つには『創業者モード』の継続が重要だと語った。",
+      "source_name": "Fortune",
+      "source_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOZWhZMmRPNlNQanhLdFhzcmp5SHlTR3RheTlmZlFvTmU2bFVndDhRZGk0WTVLUE5tb0x1QzZ3Q3pwSktiTnRYei1PQlJoZU1ycVRsdjJfYl8wT3RfLUZPVVpsSXppUFJHNTBzaW55enNRV1NIQTJ6dFE3bVMyOEdBMEpsaEUwZW80eE00RUh0TmRXc1RNUkFJOTdTd1lYQQ?oc=5",
+      "story_entities": [
+        "Airbnb",
+        "airbnb"
+      ],
+      "primary_entity": "Airbnb",
+      "story_subject": "AIによるコーディング比率と経営方針",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "Airbnbの開発体制",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "AirbnbのコードのうちAIが書いた割合",
+          "value": "60%",
+          "normalized_value": "60%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AirbnbのCEOが、自社コードの60%がAIによって書かれていることを明らかにし、AI時代の経営には『創業者モード』の維持が重要だと述べた。",
+      "detail": "Airbnbの最高経営責任者（CEO）は、同社のソフトウェア開発においてAIがすでにコードの60%を書いていると明らかにした。生成AIによるコーディング支援がここまで浸透している実態を示すもので、企業の開発体制がAI活用を前提としたものに変化していることをうかがわせる。同CEOはさらに、AI時代に企業が勝ち残るためには、創業初期のような迅速な意思決定とこだわりを持つ『創業者モード』を維持することが重要だとの見解を示した。記事はAI導入が進む企業経営における組織運営の在り方について論じている。",
+      "new_facts": [
+        "AirbnbのCEOは自社コードの60%をAIが書いていると述べた",
+        "同CEOはAI時代に勝ち抜く鍵として『創業者モード』の維持を挙げた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_6098db8651d36479c6ed",
+      "story_id": "story_c01a6af0342deb96d4",
+      "story_sequence": 2,
+      "relation_type": "follow_up",
+      "relation_confidence": 0.9257894736842105,
+      "title": "OpenAI、GPT-5.6 Solを最大14倍高速化する「Ultrafastモード」を発表",
+      "source_published_at": "2026-08-14T06:45:31.000Z",
+      "published_at": "2026-08-14T06:45:31.000Z",
+      "fetched_at": "2026-08-14T07:51:14.983Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIが、モデル「GPT-5.6 Sol」の処理速度を最大14倍に高速化する「Ultrafastモード」を発表した。",
+      "source_name": "Yellow.com",
+      "source_url": "https://news.google.com/rss/articles/CBMivAJBVV95cUxQeUZJWElmN2ZaNTlCUVB0Qm83VTNjcE85Y09TZkNwWXZ3N28zbmVScFBrcE9TTXVLVUVKcnR4UkZ4RUw0Y0Zxb25ZbUxCU244U3hGV1Y4YlZQVVY4TFlIRzJIUDN4a1NVRWVTMkNiUi1vRllpRC05N1hMb1BxN2xCUHdFZjFhcmRwSGE2aFEyZUNweXFVbVc4R250eWJKOW1QM3pRaGdQZGUxOW1LRWFDS3R5d0NSNEx1WEExWkhibTJKX0hUMzFPYUpnaDVuZHA0OTM1MGFmUGdzLW5ka3RSWHFyeDYxYTZpZ0hPcGRQV0RCeWJWcW1Jb0JaN0R0cW1JeldXeERsVGt5SUhxU2ozRVVqSXNlUVY5b0N4Qi1iR243UjlScjhFa0JWQlNWOHdNSzhBaV9laXdaSFJZ?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "GPT-5.6 Sol",
+        "Ultrafastモード",
+        "openai",
+        "gpt-5.6sol"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "GPT-5.6 Sol Ultrafastモード",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "GPT-5.6 Sol",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "Ultrafastモードによる高速化倍率",
+          "value": "最大14倍",
+          "normalized_value": "14"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "follow_up",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "similar_title",
+        "material_fact_changed"
+      ],
+      "change_summary": "OpenAIがGPT-5.6 Sol向けに、応答速度を最大14倍に高速化する新機能「Ultrafastモード」を新たに発表した。",
+      "detail": "OpenAIは、同社のモデル「GPT-5.6 Sol」向けに、処理速度を最大14倍に高速化する新機能「Ultrafastモード」を発表した。応答速度の大幅な向上は、リアルタイム性が求められるアプリケーションやサービスでの利用を後押しする可能性がある。ただし、Ultrafastモードの具体的な仕組みや対応範囲、料金への影響などの詳細は記事内では明らかになっておらず、不明な点が残る。",
+      "new_facts": [
+        "OpenAIがGPT-5.6 Sol向けの新機能「Ultrafastモード」を発表した",
+        "Ultrafastモードにより処理速度が最大14倍になるとされている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_ed5d8a29d4ab7e644b3d",
+      "story_id": "story_1bf06a3e6e91939abb",
+      "story_sequence": 2,
+      "relation_type": "follow_up",
+      "relation_confidence": 0.9055,
+      "title": "Google、コーディング性能を強化した新モデル「Gemini 3.7 Flash」を公開",
+      "source_published_at": "2026-08-14T06:35:09.000Z",
+      "published_at": "2026-08-14T06:35:09.000Z",
+      "fetched_at": "2026-08-14T07:51:19.761Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "Googleがコーディング性能を高めた新AIモデル「Gemini 3.7 Flash」を公開し、2026年内はAPI利用料金を従来の半額に設定した。",
+      "source_name": "Yahoo!ニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBhbWN3RWk1WVA4TGNnWnZXQ3VzdElhTUhTWDNLOWhHbzZLTjlXaDQ0RTZyQmJjaDVURUVUTy1fUVk1dEI0RlE0Znp6NjNnZjVaSkNGMkRyVEVIWHhkNHJSd1F4UmF3RlNWcFV2c1lyS3pvalAzcUswRmlPd1VXVzg?oc=5",
+      "story_entities": [
+        "Google",
+        "Gemini 3.7 Flash",
+        "google",
+        "gemini3.7flash",
+        "google-gemini"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "Gemini 3.7 Flash",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "API",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "Gemini 3.7 Flash API料金",
+          "value": "2026年内は従来の半額",
+          "normalized_value": "2026"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "follow_up",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "same_scope",
+        "material_fact_changed"
+      ],
+      "change_summary": "コーディング性能を高めた新モデル「Gemini 3.7 Flash」が公開され、2026年内はAPI料金が従来の半額になる点が新しい。",
+      "detail": "Googleは新しいAIモデル「Gemini 3.7 Flash」を公開した。従来モデルからコーディング性能が向上しており、開発者向けのAPI経由での利用が想定されている。料金面では2026年内、従来モデルの半額でAPIを利用できる措置が取られており、開発者にとってコスト面での導入メリットがある。具体的な性能向上の数値や対応言語、料金改定後の水準など詳細は記事からは確認できないが、Googleは引き続きコーディング向けAIモデルの強化を進めている。",
+      "new_facts": [
+        "Googleがコーディング性能を強化した新モデル「Gemini 3.7 Flash」を公開した",
+        "2026年内はAPI利用料金が従来の半額に設定されている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_603ad035bc3930f2ce19",
+      "story_id": "story_ce348d5daf4864f67c",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6570731707317072,
+      "title": "Anthropic、Claudeの生成文に不可視の透かしを導入 EU AI法対応で波紋",
+      "source_published_at": "2026-08-14T06:18:55.000Z",
+      "published_at": "2026-08-14T06:18:55.000Z",
+      "fetched_at": "2026-08-14T07:51:16.372Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "Anthropicが対話AI「Claude」の生成テキストに人の目には見えない透かしを組み込み、EU AI法対応を進めていることが波紋を呼んでいる。",
+      "source_name": "디지털투데이",
+      "source_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQRVQyNENKNUlneXhfVzM4RlpndXA1bGJEMEF2ZDRWTFZsOEJ5RXBiWW9iLV9ZTzFWcDY2U201NUVZWXdUTzc5T193aFY0QU1OSHZoUC1NV3UyZDZpMXBDSVQ1cGE0MlF3eHlISGY1dklmTnZRY1pOMWN0SmVjM2d0WktoQjRxZnlLRjg2N3VCMXNNY2IyWHM2S090M2lCUUFtRlFkNDZjUTVVemN1WVYteTE0R3A3MU0?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "EU AI法",
+        "anthropic",
+        "claude"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude生成文への不可視透かし導入",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "EU",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Claudeの生成文に不可視の透かしを付与する対応が明らかになった点が新しい。",
+      "detail": "Anthropicが自社の対話AI「Claude」が生成する文章に、人間には見えない電子透かしを埋め込んでいることが伝えられた。これはEUで施行されているAI法が求める、AI生成コンテンツの識別可能性への対応とみられる。透かしの具体的な技術方式や適用範囲、検出方法などの詳細は記事からは確認できず、対応の是非を巡って波紋が広がっている段階にとどまる。今後、Anthropicから正式な仕組みの説明があるかどうかが注目される。",
+      "new_facts": [
+        "AnthropicがClaudeの生成テキストに不可視の透かしを導入したと伝えられた",
+        "EU AI法対応が背景とされている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_05a428376b25e4a21c35",
       "story_id": "story_4e20b6e6afbb08d435",
       "story_sequence": 1,
@@ -248,6 +488,59 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_25511b6f973f1c57483c_rev_239d32846d93",
+      "story_id": "story_a3936c5fd904e6df32",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "DeepSeek、1.7兆パラメータモデル「DeepSeek-V4-Pro」を正式公開",
+      "source_published_at": "2026-08-14T01:22:56.000Z",
+      "published_at": "2026-08-14T01:22:56.000Z",
+      "fetched_at": "2026-08-14T07:51:37.608Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "中国DeepSeekが1.7兆パラメータの新モデル「DeepSeek-V4-Pro」を正式公開し、エージェント機能の強化で他社モデルとの性能差を解消したとされる。",
+      "source_name": "PC Watch",
+      "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFA2ZVQ4OUMtN05zc1NacExZMkZKcFhyT1VjN00xSm5VLXNLT0ZUNjRybndsTjF0ZU1mOHVtMUNhZ3Y0WjFfUEQwVldodVBkc3FBNXFNYXRWLTZlT0s4bTk1Q25Kbw?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "DeepSeek-V4-Pro",
+        "deepseek",
+        "deepseek-v4-pro"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek-V4-Pro",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "全世界",
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "パラメータ数",
+          "value": "1.7兆",
+          "normalized_value": "1700000000000"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "similar_title",
+        "same_scope",
+        "same_url_content_changed"
+      ],
+      "change_summary": "1.7兆パラメータの新モデル「DeepSeek-V4-Pro」が正式公開され、エージェント機能の強化が図られた点が新しい。",
+      "detail": "DeepSeekはパラメータ数1.7兆に達する新モデル「DeepSeek-V4-Pro」を正式に公開した。今回のモデルではAIエージェント機能が強化されており、これまで他の主要モデルに対して劣勢だった性能面での「下剋上」状態が解消されたと伝えられている。具体的なベンチマーク数値や対応するタスクの詳細、提供形態（API・オープンウェイトの有無など）は記事からは確認できないが、大規模モデルの開発競争において中国企業が改めて存在感を示す形となった。",
+      "new_facts": [
+        "DeepSeekが1.7兆パラメータの新モデル「DeepSeek-V4-Pro」を正式公開した",
+        "エージェント機能の強化により他社モデルとの性能差が解消されたとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_756b36f8c3d80fdfeb84",
       "story_id": "story_2ea5a35474e9e35b1e",
       "story_sequence": 2,
@@ -295,6 +588,45 @@
       "detail": "OpenAIはこれまでWindowsとMac向けに提供していたChatGPTのデスクトップアプリについて、新たにLinux向けのプレビュー版を公開した。デスクトップアプリはブラウザを開かずにOS上で直接ChatGPTを操作できるソフトで、開発者やエンジニアの利用が多いLinux環境への対応拡大により、ブラウザ経由に依存していたLinuxユーザーもネイティブアプリの利便性を得られるようになる。現時点ではプレビュー版としての公開であり、詳細な対応機能や正式版への移行時期は明らかにされていない。",
       "new_facts": [
         "OpenAIがLinux向けChatGPTデスクトップアプリのプレビュー版を公開した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_bf6de3a156abb326b73c",
+      "story_id": "story_1b60ff063169b83c00",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "生成AIは長く読ませても深く考えさせても賢くなるとは限らない、トークン節約のコツ",
+      "source_published_at": "2026-08-14T00:00:00.000Z",
+      "published_at": "2026-08-14T00:00:00.000Z",
+      "fetched_at": "2026-08-14T07:51:51.525Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "生成AIは入力を長くしたり思考時間を増やしても必ずしも精度が上がらず、トークン消費を抑える工夫が有効だと解説する記事。",
+      "source_name": "ASCII.jp",
+      "source_url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5CbWRDTzFJZmt5UVZ1RVYyUUdOcFNkT2I3YVIxMFpnNFhlLUl0MXlOcTVrT1pCWnNPcFpISi1MR3ZsYlhkejE3ME16dUlqeklZT25rYg?oc=5",
+      "story_entities": [
+        "生成AI",
+        "トークン節約",
+        "生成ai"
+      ],
+      "primary_entity": "生成AI利用者",
+      "story_subject": "トークン節約テクニック",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "生成AI利用全般",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "生成AIの「長い入力・長い思考」が必ずしも精度向上につながらないという点と、トークン節約のための実践的な工夫が紹介された。",
+      "detail": "生成AIの利用では、プロンプトを長くしたり「深く考えさせる」設定にすれば精度が上がると考えられがちだが、記事はそれが常に正しいわけではないと指摘する。トークン（AIが処理する文字の単位）を無駄に消費すると、コストや応答速度に悪影響が出るだけで、結果の質が向上しない場合もあるという。記事ではトークンを節約しながら効果的に生成AIを使うための具体的なテクニックが紹介されている。",
+      "new_facts": [
+        "生成AIは入力を長くしたり思考時間を増やしても必ずしも精度が向上しないと指摘されている",
+        "トークン消費を抑えるための具体的なテクニックが紹介されている"
       ],
       "event_date_precision": "unknown"
     },
@@ -457,6 +789,54 @@
       "detail": "米ニューヨーク・タイムズによると、OpenAIの幹部デニース・ドレッサー氏が退社した。同社では近年、幹部の退社が相次いで報じられており、今回もその一例として伝えられている。記事は退社の経緯や後任、担当していた業務の詳細には触れていない。相次ぐ幹部退社は、急成長を続けるOpenAIの組織運営や経営体制に関心が集まっていることを示す動きといえる。",
       "new_facts": [
         "OpenAIの幹部デニース・ドレッサー氏が退社した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_d154051219e2d11efc1a",
+      "story_id": "story_640d4917f8511fa1b3",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "2027年もHBM供給逼迫が続く見通し、NVIDIA Rubin Ultraのメモリー構成見直しが示すAI半導体の競争軸",
+      "source_published_at": "2026-08-13T21:14:19.000Z",
+      "published_at": "2026-08-13T21:14:19.000Z",
+      "fetched_at": "2026-08-14T07:51:50.885Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "AI半導体向け高帯域メモリー(HBM)の供給不足が2027年も続く見通しで、NVIDIAがRubin Ultraのメモリー構成を見直す動きが競争軸として注目されている。",
+      "source_name": "オルタナティブ・ブログ",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5Na2JxUzhRT3p0Y2ZPRXZteDE0RWxGSERmN2x5Tkg1QTVPNnFhQmZ3MHFaVWhXN0swRGxoV1ZGSldxa0J0aHczODU4eWJodG12c1Q1eUNfWkF4RnJOR2xlWmpOVmdLS3JrVzV5YkZiVUlVQmZuSnhVSmU0WFZFTTg?oc=5",
+      "story_entities": [
+        "NVIDIA",
+        "Rubin Ultra",
+        "HBM",
+        "nvidia",
+        "rubinultra"
+      ],
+      "primary_entity": "NVIDIA",
+      "story_subject": "Rubin Ultraのメモリー構成とHBM供給逼迫",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "AI半導体業界",
+      "fact_slots": [
+        {
+          "type": "date",
+          "scope": "HBM供給逼迫の見通し年",
+          "value": "2027年",
+          "normalized_value": "2027年"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "HBMの供給逼迫が2027年も継続する見通しであることと、NVIDIAがRubin Ultraでメモリー構成を見直している動きが取り上げられた。",
+      "detail": "AI向け半導体で使われる高帯域メモリー（HBM）は需要が旺盛で、供給が逼迫する状況が2027年も続く見通しだと指摘されている。記事では、NVIDIAの次世代GPU「Rubin Ultra」においてメモリー構成の見直しが進められている点を取り上げ、これがAI半導体業界における今後の競争軸になり得ると分析している。HBMはAIモデルの学習・推論に必要な大量データを高速処理するための重要な部品であり、その供給状況はAI半導体全体の性能や価格に直結する。記事は『ビジネス2.0』の視点から、こうした部品供給とアーキテクチャ設計の関係を解説している。",
+      "new_facts": [
+        "HBMの供給逼迫が2027年も続く見通しであると指摘されている",
+        "NVIDIAがRubin Ultraのメモリー構成見直しを進めている"
       ],
       "event_date_precision": "unknown"
     },
