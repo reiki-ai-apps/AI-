@@ -207,11 +207,16 @@ jobs:
           }
           NODE
 
+      - name: build public article pages and growth checks
+        run: |
+          node scripts/build-public-articles.mjs
+          node scripts/test-growth-readiness.mjs
+
       - name: persist validated public data
         run: |
           git config user.name "ai-radar-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data.json index.html
+          git add data.json index.html articles sitemap.xml robots.txt
           if git diff --staged --quiet; then
             echo "Published data is already current"
             exit 0

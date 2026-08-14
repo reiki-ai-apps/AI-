@@ -7,6 +7,17 @@
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>AI進化レーダー</title>
 <meta name="description" content="AIツール、政策、補助金、企業・株式まで、AIに関わる最新情報を集めて重要度判定するダッシュボード" />
+<link rel="canonical" href="https://reiki-ai-apps.github.io/AI-/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="AI進化レーダー" />
+<meta property="og:title" content="AI進化レーダー｜毎日3分で重要なAI変化を確認" />
+<meta property="og:description" content="テーマ設定に関係なく重要ニュースを優先表示。何が変わったか、仕事への影響、次にやることを一次情報付きで確認できます。" />
+<meta property="og:url" content="https://reiki-ai-apps.github.io/AI-/" />
+<meta property="og:image" content="https://reiki-ai-apps.github.io/AI-/assets/ai-radar-human-hero.webp" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI進化レーダー｜毎日3分で重要なAI変化を確認" />
+<meta name="twitter:description" content="重要AIニュースを、変化・影響・次の行動までやさしく整理。" />
+<meta name="twitter:image" content="https://reiki-ai-apps.github.io/AI-/assets/ai-radar-human-hero.webp" />
 <meta name="theme-color" content="#070b14" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="mobile-web-app-capable" content="yes" />
@@ -247,6 +258,7 @@
   .operator-metric-card{padding:14px 16px;border:1px solid rgba(69,216,229,.24);border-radius:13px;background:rgba(5,25,43,.55)}
   .operator-metric-card span{display:block;color:var(--text-mute);font-size:11px;font-weight:700;margin-bottom:4px}
   .operator-metric-card strong{color:#e9fdff;font-size:22px;font-weight:900}
+  .operator-funnel-title{margin:20px 0 8px;color:#dceeff;font-size:13px}.operator-funnel-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.operator-funnel-grid .operator-metric-card{padding:11px 12px}.operator-funnel-grid .operator-metric-card strong{font-size:18px}
   .operator-metric-state{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:11px;color:#7f8da3;font-size:10.5px;font-weight:700}
   .operator-metric-state::before{content:"";width:7px;height:7px;border-radius:50%;background:#f0b94c;box-shadow:0 0 8px rgba(240,185,76,.45)}
   .operator-metric-state.is-live{color:#71e5bf}.operator-metric-state.is-live::before{background:#45e0aa;box-shadow:0 0 8px rgba(69,224,170,.6)}
@@ -890,7 +902,7 @@
     .topbar .btn{min-height:38px;padding:7px 10px;font-size:0}
     .topbar .btn svg{width:17px;height:17px}
     .operator-metrics{display:inline-flex;position:fixed;top:calc(76px + env(safe-area-inset-top));right:10px;z-index:65;gap:6px;padding:5px 8px;font-size:9.5px;box-shadow:0 8px 24px rgba(0,0,0,.38),0 0 18px rgba(35,205,220,.18)}
-    .operator-metrics::before{display:none}
+    .operator-metrics::before{display:none}.operator-funnel-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     .operator-metrics strong{font-size:10.5px}
     .operator-metrics-status{padding-left:5px;font-size:8px}
     .content{padding:16px 14px calc(92px + env(safe-area-inset-bottom))}
@@ -1700,6 +1712,7 @@
   .plan-price strong{font-size:34px;line-height:1;font-weight:900;letter-spacing:-.04em}
   .plan-price span{padding-bottom:3px;color:#8f9db2;font-size:10.5px;font-weight:700}
   .plan-desc{min-height:48px;margin:0 0 18px;color:#a4b0c3;font-size:12.5px;line-height:1.7}
+  .plan-result{margin:-7px 0 17px;padding:9px 10px;border-left:2px solid #50dfe8;background:rgba(31,157,177,.09);color:#c2e8ed;font-size:10.5px;font-weight:800;line-height:1.6}
   .plan-divider{height:1px;margin-bottom:17px;background:linear-gradient(90deg,rgba(77,203,219,.28),rgba(104,103,213,.13),transparent)}
   .plan-features{display:grid;gap:11px;margin:0 0 22px;padding:0;list-style:none}
   .plan-features li{display:flex;align-items:flex-start;gap:8px;color:#c0cada;font-size:12px;line-height:1.55}
@@ -1769,6 +1782,8 @@
   .account-panel{position:relative;overflow:hidden;padding:28px;border:1px solid rgba(74,204,225,.30);border-radius:18px;background:linear-gradient(145deg,rgba(7,24,47,.98),rgba(9,13,35,.98));box-shadow:0 24px 58px rgba(0,0,0,.32),inset 0 1px rgba(174,245,255,.07)}
   .account-panel::after{content:"";position:absolute;right:-80px;top:-100px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(67,213,228,.16),rgba(77,62,218,.08) 46%,transparent 72%);pointer-events:none}
   .account-head{position:relative;z-index:1;margin-bottom:22px}.account-head h2{margin:0 0 8px;color:#f5f8ff;font-size:27px;line-height:1.4}.account-head p{margin:0;color:#9dabc0;font-size:12.5px;line-height:1.75}
+  .account-value-list{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:-7px 0 20px;padding:0;list-style:none}.account-value-list li{display:flex;align-items:flex-start;gap:7px;padding:10px;border:1px solid rgba(82,196,214,.18);border-radius:10px;background:rgba(6,25,43,.62);color:#bfd0df;font-size:10.5px;line-height:1.55}.account-value-list svg{width:15px;height:15px;flex:0 0 15px;color:#5ee2e7}
+  .detail-share-actions{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 14px}.detail-share-actions .btn{width:fit-content}
   .auth-form{position:relative;z-index:1;display:grid;gap:14px}.auth-field{display:grid;gap:7px}.auth-field label{color:#aebbd0;font-size:11px;font-weight:800}.auth-field input{width:100%;min-height:46px;padding:10px 13px;border:1px solid rgba(112,151,196,.28);border-radius:11px;background:rgba(4,13,29,.80);color:#f3f7ff;font:inherit;outline:none}.auth-field input:focus{border-color:rgba(72,218,230,.65);box-shadow:0 0 0 3px rgba(61,207,222,.10)}
   .password-input-wrap{position:relative}.password-input-wrap input{padding-right:82px}.password-toggle{position:absolute;right:7px;top:50%;display:inline-flex;align-items:center;justify-content:center;gap:5px;min-width:68px;min-height:32px;padding:6px 9px;border:1px solid rgba(99,184,218,.24);border-radius:8px;background:rgba(12,36,61,.92);color:#a9dce8;font:inherit;font-size:10.5px;font-weight:800;cursor:pointer;transform:translateY(-50%);transition:border-color .18s ease,background .18s ease,color .18s ease}.password-toggle svg{width:15px;height:15px}.password-toggle:hover{border-color:rgba(87,222,231,.52);background:rgba(17,64,88,.96);color:#e1fbff}.password-toggle:focus-visible{outline:2px solid #68e3ec;outline-offset:2px}.password-toggle[aria-pressed="true"]{border-color:rgba(87,222,231,.48);background:rgba(20,91,112,.92);color:#ecfeff}
   .auth-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}.auth-actions .btn{justify-content:center;min-width:150px}.auth-message{display:none;margin-top:14px;padding:11px 13px;border:1px solid rgba(91,205,220,.23);border-radius:10px;background:rgba(10,36,54,.64);color:#b8dfe5;font-size:11.5px;line-height:1.65}.auth-message.show{display:block}.auth-message.error{border-color:rgba(242,115,138,.30);background:rgba(64,18,34,.56);color:#ffc2ce}
@@ -1832,6 +1847,7 @@
     .mobile-media-hub{display:block;margin:0 0 12px;padding:13px;border:1px solid rgba(77,225,235,.38);border-radius:15px;background:linear-gradient(135deg,rgba(5,34,52,.96),rgba(15,20,57,.96));box-shadow:0 12px 30px rgba(0,0,0,.26),inset 0 1px rgba(169,247,255,.08)}
     .mobile-media-hub-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.mobile-media-hub-title{display:grid;gap:2px}.mobile-media-hub-title b{color:#f4fbff;font-size:13px}.mobile-media-hub-title span{color:#69e9ee;font-size:8.5px;font-weight:900;letter-spacing:.12em}.mobile-media-hub-note{color:#a5b4c8;font-size:9px;font-weight:700;white-space:nowrap}
     .mobile-media-hub .official-media-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.mobile-media-hub .official-media-link{min-height:44px;justify-content:flex-start;padding:0 11px;border-color:rgba(94,193,224,.30);background:rgba(7,20,43,.88);font-size:10.5px}.mobile-media-hub .official-media-link:active{transform:scale(.98);background:rgba(19,75,99,.86)}.mobile-media-hub .official-media-mark{width:23px;height:23px;font-size:8px}
+    .account-value-list{grid-template-columns:1fr}.detail-share-actions{display:grid}.detail-share-actions .btn{width:100%!important}
   }
   .nav-legal{display:flex;flex-wrap:wrap;gap:4px 10px;padding:14px 12px 2px;border-top:1px solid rgba(112,151,196,.13)}
   .nav-legal button,.link-button,.auth-consent button{padding:0;border:0;background:none;color:#8291a8;font:inherit;font-size:9.5px;text-decoration:underline;cursor:pointer}
@@ -2131,7 +2147,12 @@ function validOperatorMetrics(data){
   const registeredUsers=Number(data?.registered_users);
   const uniqueVisitors=Number(data?.unique_visitors);
   if(!Number.isFinite(registeredUsers)||registeredUsers<0||!Number.isFinite(uniqueVisitors)||uniqueVisitors<0)return null;
-  return {registeredUsers,uniqueVisitors};
+  const raw=data?.funnel_7d;
+  const value=key=>Math.max(0,Number.isFinite(Number(raw[key]))?Number(raw[key]):0);
+  return {registeredUsers,uniqueVisitors,funnel7d:raw&&typeof raw==='object'?{
+    landingSessions:value('landing_sessions'),articleSessions:value('article_sessions'),pricingSessions:value('pricing_sessions'),
+    signupStarts:value('signup_starts'),signupSuccesses:value('signup_successes'),checkoutStarts:value('checkout_starts'),paymentsConfirmed:value('payments_confirmed')
+  }:null};
 }
 async function loadOperatorMetrics(){
   if(!memberClient||!memberState.user||memberState.subscription?.access_source!=='operator_grant')return null;
@@ -2172,6 +2193,7 @@ function renderOperatorMetrics(){
   if(!existing)document.querySelector('.topbar .spacer')?.before(badge);
   document.querySelectorAll('[data-operator-account-visitors]').forEach(el=>{el.textContent=metrics?`${metrics.uniqueVisitors.toLocaleString('ja-JP')}人`:'—';});
   document.querySelectorAll('[data-operator-account-users]').forEach(el=>{el.textContent=metrics?`${metrics.registeredUsers.toLocaleString('ja-JP')}人`:'—';});
+  document.querySelectorAll('[data-funnel-key]').forEach(el=>{const key=el.dataset.funnelKey;el.textContent=metrics?.funnel7d?metrics.funnel7d[key].toLocaleString('ja-JP'):'—';});
   document.querySelectorAll('[data-operator-metrics-state]').forEach(el=>{el.className=`operator-metric-state ${status==='live'?'is-live':status==='error'?'is-error':''}`;el.querySelector('span').textContent=statusLabel;});
 }
 function stopOperatorMetricsRefresh(){
@@ -2355,8 +2377,10 @@ async function signUpMember(){
   if(!email||password.length<8){setAuthMessage('メールアドレスと8文字以上のパスワードを入力してください。',true);return;}
   if(!consent){setAuthMessage('利用規約とプライバシーポリシーへの同意が必要です。',true);return;}
   setAuthMessage('登録しています…',false);
+  trackAppEvent('signup_start',{route:'account'});
   const {data,error}=await memberClient.auth.signUp({email,password,options:{emailRedirectTo:AUTH_RETURN_URL}});
   if(error){setAuthMessage(authErrorMessage(error),true);return;}
+  if(data.user)trackAppEvent('signup_success',{route:'account'});
   if(data.session){setAuthMessage('登録が完了しました。',false);await refreshMemberState(data.session);}
   else setAuthMessage('確認メールを送りました。メール内のリンクを押して登録を完了してください。',false);
 }
@@ -2412,6 +2436,7 @@ function beginCheckout(plan,baseUrl){
   const checkout=new URL(safeCheckout);
   checkout.searchParams.set('client_reference_id',memberState.user.id);
   if(memberState.user.email)checkout.searchParams.set('prefilled_email',memberState.user.email);
+  trackAppEvent('checkout_start',{route:'pricing',plan});
   window.open(checkout.toString(),'_blank','noopener,noreferrer');
 }
 function isPaymentReturn(){return new URL(location.href).searchParams.get('payment')==='success';}
@@ -2436,6 +2461,7 @@ async function confirmSubscriptionAfterPayment(){
     const data=await loadMembership();
     if(data&&['standard','premium'].includes(data.plan)&&['active','trialing'].includes(data.status)){
       memberState.subscription=data;
+      trackAppEvent('payment_confirmed',{route:'pricing',plan:data.plan});
       renderNav();
       go('tools');
       toast(`${memberPlanLabel(data.plan)}が有効になりました。最初に情報テーマを設定しましょう`,'ok');
@@ -2771,8 +2797,95 @@ async function registerUniqueVisitor(){
     scheduleUniqueVisitorRetry();
   }
 }
+
+/* ---------- AWE conversion measurement ----------
+   A random session key is hashed before transmission. No email, IP address,
+   full referrer URL or article text is sent as an analytics event. */
+const GROWTH_EVENT_QUEUE_KEY='ai_radar_growth_event_queue_v1';
+const GROWTH_SESSION_KEY='ai_radar_growth_session_v1';
+const GROWTH_EVENT_NAMES=new Set(['landing_view','route_view','article_view','pricing_view','signup_start','signup_success','checkout_start','payment_confirmed','share_click','source_open']);
+let growthFlushInFlight=null;
+let growthRpcRetryAfter=0;
+let transientGrowthSession='';
+function randomUuid(){
+  if(crypto.randomUUID)return crypto.randomUUID();
+  const bytes=crypto.getRandomValues(new Uint8Array(16));bytes[6]=(bytes[6]&15)|64;bytes[8]=(bytes[8]&63)|128;
+  const hex=Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
+  return `${hex.slice(0,8)}-${hex.slice(8,12)}-${hex.slice(12,16)}-${hex.slice(16,20)}-${hex.slice(20)}`;
+}
+function growthSessionId(){
+  try{
+    let key=sessionStorage.getItem(GROWTH_SESSION_KEY)||'';
+    if(!/^[0-9a-f-]{36}$/i.test(key)){key=randomUuid();sessionStorage.setItem(GROWTH_SESSION_KEY,key);}
+    return key;
+  }catch(_error){if(!transientGrowthSession)transientGrowthSession=randomUuid();return transientGrowthSession;}
+}
+async function hashAnonymousValue(value){
+  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(String(value||'')));
+  return Array.from(new Uint8Array(digest),byte=>byte.toString(16).padStart(2,'0')).join('');
+}
+function growthAttribution(){
+  const storageKey='ai_radar_growth_attribution_v1';
+  try{
+    const cached=JSON.parse(sessionStorage.getItem(storageKey)||'null');
+    if(cached&&typeof cached==='object')return cached;
+  }catch(_error){}
+  const params=new URL(location.href).searchParams;
+  let referrerHost='';
+  try{if(document.referrer)referrerHost=new URL(document.referrer).hostname.toLowerCase();}catch(_error){}
+  const value={
+    utmSource:(params.get('utm_source')||'').slice(0,100),utmMedium:(params.get('utm_medium')||'').slice(0,100),
+    utmCampaign:(params.get('utm_campaign')||'').slice(0,160),referrerHost:referrerHost.slice(0,160)
+  };
+  try{sessionStorage.setItem(storageKey,JSON.stringify(value));}catch(_error){}
+  return value;
+}
+function growthEventQueue(){
+  try{const value=JSON.parse(localStorage.getItem(GROWTH_EVENT_QUEUE_KEY)||'[]');return Array.isArray(value)?value.slice(-50):[];}catch(_error){return [];}
+}
+function saveGrowthEventQueue(queue){try{localStorage.setItem(GROWTH_EVENT_QUEUE_KEY,JSON.stringify(queue.slice(-50)));}catch(_error){}}
+async function trackAppEvent(eventName,details={}){
+  if(!GROWTH_EVENT_NAMES.has(eventName))return;
+  const attribution=growthAttribution();
+  const event={
+    eventId:randomUuid(),eventName,sessionKeyHash:await hashAnonymousValue(growthSessionId()),
+    route:String(details.route||route.name||'home').slice(0,80),articleId:String(details.articleId||'').slice(0,100),
+    plan:['standard','premium'].includes(details.plan||effectivePlanKey())?(details.plan||effectivePlanKey()):'free',
+    ...attribution,occurredAt:new Date().toISOString()
+  };
+  const queue=growthEventQueue();queue.push(event);saveGrowthEventQueue(queue);
+  void flushAppEvents();
+}
+async function flushAppEvents(){
+  if(growthFlushInFlight)return growthFlushInFlight;
+  if(Date.now()<growthRpcRetryAfter||!ensureMemberClient())return false;
+  growthFlushInFlight=(async()=>{
+    const queue=growthEventQueue();
+    while(queue.length){
+      const event=queue[0];
+      const {error}=await memberClient.rpc('record_app_event',{
+        p_event_id:event.eventId,p_event_name:event.eventName,p_session_key_hash:event.sessionKeyHash,
+        p_route:event.route,p_article_id:event.articleId,p_plan:event.plan,p_utm_source:event.utmSource,
+        p_utm_medium:event.utmMedium,p_utm_campaign:event.utmCampaign,p_referrer_host:event.referrerHost,p_occurred_at:event.occurredAt
+      });
+      if(error){
+        if(['PGRST202','42883'].includes(String(error.code||''))||/record_app_event/i.test(String(error.message||'')))growthRpcRetryAfter=Date.now()+5*60000;
+        break;
+      }
+      queue.shift();saveGrowthEventQueue(queue);
+    }
+    return queue.length===0;
+  })().finally(()=>{growthFlushInFlight=null;});
+  return growthFlushInFlight;
+}
+function trackRouteView(){
+  trackAppEvent('route_view',{route:route.name});
+  if(route.name==='update-detail')trackAppEvent('article_view',{route:route.name,articleId:String(updateById(route.param)?.article_id||route.param||'').slice(0,100)});
+  if(route.name==='pricing')trackAppEvent('pricing_view',{route:route.name});
+}
 window.addEventListener('online',()=>{
   registerUniqueVisitor();
+  flushAppEvents();
   if(memberState.subscription?.access_source==='operator_grant')refreshOperatorMetrics();
 });
 function uid(){ return 'id-'+Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4); }
@@ -3036,7 +3149,10 @@ function getPlanUpdates(){
 }
 function getLogs(){ return DB.load().fetch_logs; }
 function toolById(id){ return getTools().find(t=>t.id===id); }
-function updateById(id){ return getUpdates().find(u=>u.id===id); }
+function updateById(id){
+  const key=String(id||'');
+  return getUpdates().find(u=>u.id===key||String(u.article_id||'')===key);
+}
 function toolColor(id){ const idx=getTools().findIndex(t=>t.id===id); return TOOL_COLORS[idx%TOOL_COLORS.length]; }
 
 function saveTool(t){
@@ -3435,7 +3551,7 @@ function _navigate(name, param){
   if(name==='update-detail') detailEdit=false;
   route={name, param:param||null};
   if(isMobile()) toggleMenu(false);
-  window.scrollTo(0,0); render();
+  window.scrollTo(0,0); render();trackRouteView();
 }
 function goBack(){
   if(route.name==='tool-form'&&toolFormDirty){
@@ -3690,6 +3806,28 @@ async function openSourceArticle(id){
   }else{
     window.open(sourceUrl,'_blank','noopener,noreferrer');
   }
+  trackAppEvent('source_open',{articleId:String(u.article_id||u.id||'').slice(0,100)});
+}
+function publicArticleUrl(u){
+  const articleId=String(u?.article_id||u?.id||'').trim();
+  if(/^[A-Za-z0-9_-]{8,100}$/.test(articleId)){
+    const appRoot=new URL('./',`${location.origin}${location.pathname}`);
+    return new URL(`articles/${encodeURIComponent(articleId)}/`,appRoot).toString();
+  }
+  return new URL(routeHref('update-detail',u?.id||''),location.origin).toString();
+}
+async function shareArticle(id){
+  const u=updateById(id);if(!u)return;
+  const url=publicArticleUrl(u);
+  const payload={title:u.title,text:'AI進化レーダーで、重要な変化と仕事への影響を確認できます。',url};
+  try{
+    if(navigator.share)await navigator.share(payload);
+    else if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(url);toast('記事リンクをコピーしました','ok');}
+    else{window.prompt('この記事リンクをコピーしてください',url);}
+    trackAppEvent('share_click',{articleId:String(u.article_id||u.id||'').slice(0,100)});
+  }catch(error){
+    if(error?.name!=='AbortError')toast('共有できませんでした。もう一度お試しください。','err');
+  }
 }
 
 /* ============================================================
@@ -3745,14 +3883,14 @@ function renderHome(v){
       <div class="daily-cover-meta">${rankBadge(cover.rank)}<span class="daily-cover-source"><b>情報元</b>${esc(cover.source_name||coverTool?.name||'確認中')}・${esc(sourcePublishedLabel(cover))}</span></div>
       <h2>${esc(cover.title)}</h2>
       <p>${esc(coverSummary)}</p>
-      <div class="daily-cover-actions"><button class="btn btn-primary" onclick="go('update-detail','${cover.id}')">${icon('eye')}重要トップニュースを見る</button><span class="daily-cover-note">テーマ設定に関係なく重要度で選定</span></div>`:`
+      <div class="daily-cover-actions"><button class="btn btn-primary" onclick="go('update-detail','${cover.id}')">${icon('eye')}重要トップニュースを見る</button><span class="daily-cover-note">テーマ設定に関係なく重要度で選定・毎日3分で要点確認</span></div>`:`
       <div class="live-line"><span class="live-dot"></span>LIVE INTELLIGENCE FEED</div>
       <h2>世界のAI変化を、<br>仕事の判断へ。</h2>
       <p>英語・中国語・日本語の情報を横断監視。何が変わったか、仕事への影響、次にやることまで、やさしい日本語で確認できます。</p>
       <div class="coverage-proof" aria-label="情報収集の特徴">
         <span>日本語・英語・中国語</span><span>3時間ごとに更新</span><span>元記事はプラン別の月間枠で確認</span>
       </div>`;
-  let html = `<section class="mobile-media-hub" id="mobileOfficialMedia" aria-label="KIZASHI公式SNS">
+  const mobileMediaHtml=`<section class="mobile-media-hub" id="mobileOfficialMedia" aria-label="KIZASHI公式SNS">
     <div class="mobile-media-hub-head"><div class="mobile-media-hub-title"><span>KIZASHI OFFICIAL</span><b>公式SNS・動画はこちら</b></div><span class="mobile-media-hub-note">4つの公式アカウント</span></div>
     <div class="official-media-links">
       <a class="official-media-link" href="https://www.youtube.com/@kizashi_jp" target="_blank" rel="noopener noreferrer" aria-label="KIZASHIのYouTubeを開く"><span class="official-media-mark">YT</span><span>YouTube</span></a>
@@ -3760,7 +3898,8 @@ function renderHome(v){
       <a class="official-media-link" href="https://www.instagram.com/kizashi_jp/" target="_blank" rel="noopener noreferrer" aria-label="KIZASHIのInstagramを開く"><span class="official-media-mark">IG</span><span>Instagram</span></a>
       <a class="official-media-link" href="https://note.com/natty_swan9072" target="_blank" rel="noopener noreferrer" aria-label="KIZASHIのnoteを開く"><span class="official-media-mark">note</span><span>note</span></a>
     </div>
-  </section><section class="radar-overview ${cover?'has-daily-cover':''}" aria-label="${cover?'本日のトップニュース':'AIシグナル概要'}">
+  </section>`;
+  let html = `<section class="radar-overview ${cover?'has-daily-cover':''}" aria-label="${cover?'本日のトップニュース':'AIシグナル概要'}">
     <div class="hud-hex-field" aria-hidden="true"><span class="hud-hex h1"></span><span class="hud-hex h2"></span><span class="hud-hex h3"></span><span class="hud-hex h4"></span><span class="hud-hex h5"></span></div>
     <div class="overview-copy">${coverCopy}</div>
     <div class="radar-orb" aria-label="未読${unread}件"><strong>${unread}</strong><small>UNREAD SIGNALS</small></div>
@@ -3770,7 +3909,7 @@ function renderHome(v){
     <span class="signal-count">未読${unread}件・最終更新 ${latest}</span>
     <button class="mini-chip" onclick="openAllUpdates()">すべての記事 ${allPlanUpdates.length}</button>
     ${tryLater?`<button class="mini-chip" onclick="go('try-list')">後で見る ${tryLater}</button>`:''}
-  </div><button class="btn mobile-home-search" onclick="openAllUpdates()">${icon('updates')}<span><strong>すべての記事を見る</strong><small>既読・未読をまとめて検索できます</small></span></button>`;
+  </div><button class="btn mobile-home-search" onclick="openAllUpdates()">${icon('updates')}<span><strong>すべての記事を見る</strong><small>既読・未読をまとめて検索できます</small></span></button>${mobileMediaHtml}`;
 
   if(!list.length){
     html+=emptyState('未読ニュースはありません','読んだ記事は「すべての記事」からいつでも確認できます。');
@@ -3995,7 +4134,10 @@ function renderDetailRead(v,u,tool){
         <div class="rb-body">${esc(friendlyExplanation)}</div>
       </div>`:''}
 
-      ${u.source_url?`<button class="btn btn-primary" onclick="openSourceArticle('${u.id}')" style="display:inline-flex;width:fit-content;margin-bottom:14px" aria-label="情報元の記事を外部サイトで読む">${icon('ext')}情報元の記事を読む（外部サイト）</button>`:''}
+      <div class="detail-share-actions">
+        ${u.source_url?`<button class="btn btn-primary" onclick="openSourceArticle('${u.id}')" aria-label="情報元の記事を外部サイトで読む">${icon('ext')}情報元の記事を読む</button>`:''}
+        <button class="btn" onclick="shareArticle('${u.id}')" aria-label="この記事を共有する">${icon('shuffle')}この記事を共有</button>
+      </div>
 
       ${readBlock(u.id,'何が変わったか',u.simple_explanation,'eye','#2563eb','#e7efff')}
       ${readBlock(u.id,'仕事への影響',u.impact_summary,'bolt','#7c5cf6','#efeaff')}
@@ -4898,6 +5040,7 @@ async function finishBootInBackground(){
   renderIfChanged();
   // 匿名の利用状況を登録する。通信やSDK到着が遅い場合は成功するまで間隔を空けて再試行する。
   registerUniqueVisitor();
+  flushAppEvents();
 }
 function bootApp(){
   try{
@@ -4907,6 +5050,13 @@ function bootApp(){
     // クラウド状態とのマージ基準になる「セッション開始時点」を記録する。
     DB.captureBootBaseline();
     render();
+    try{
+      if(!sessionStorage.getItem('ai_radar_landing_tracked_v1')){
+        sessionStorage.setItem('ai_radar_landing_tracked_v1','1');
+        trackAppEvent('landing_view',{route:route.name});
+      }
+    }catch(_error){trackAppEvent('landing_view',{route:route.name});}
+    trackRouteView();
   }finally{
     // 途中で例外が起きても起動オーバーレイは必ず退場させ、画面が固まらないようにする。
     dismissBootScreen();
@@ -4941,7 +5091,12 @@ function renderAccount(v){
   }
   if(!memberState.user){
     v.innerHTML=`<div class="account-page"><section class="account-panel">
-      <div class="account-head"><div class="pricing-eyebrow">SECURE MEMBER ACCESS</div><h2>ログイン・無料登録</h2><p>PCとスマホを連動するには、両方で同じメールアドレスの既存アカウントへログインしてください。別の無料登録を作ると連動しません。</p></div>
+      <div class="account-head"><div class="pricing-eyebrow">SECURE MEMBER ACCESS</div><h2>無料登録で、続きをどの端末でも。</h2><p>PCとスマホを連動するには、両方で同じメールアドレスの既存アカウントへログインしてください。無料登録にカード情報は不要です。</p></div>
+      <ul class="account-value-list" aria-label="無料登録でできること">
+        <li>${icon('shuffle')}設定・保存・既読状態をPCとスマホで同期</li>
+        <li>${icon('updates')}重要AIニュースをあとから見返せる</li>
+        <li>${icon('check')}無料登録はカード情報不要</li>
+      </ul>
       <div class="auth-form">
         <div class="auth-field"><label for="authEmail">メールアドレス</label><input id="authEmail" type="email" autocomplete="email" inputmode="email" placeholder="name@example.com"></div>
         <div class="auth-field"><label for="authPassword">パスワード（8文字以上）</label><div class="password-input-wrap"><input id="authPassword" type="password" autocomplete="current-password" minlength="8" placeholder="8文字以上"><button type="button" class="password-toggle" aria-label="パスワードを表示する" aria-pressed="false" onclick="togglePasswordVisibility('authPassword',this)">${icon('eye')}<span>表示</span></button></div></div>
@@ -4992,6 +5147,16 @@ function renderAccount(v){
       <div class="operator-metric-grid" aria-label="管理者だけに表示される現在の実数">
         <div class="operator-metric-card"><span>累計ユニーク閲覧（端末・ブラウザー）</span><strong data-operator-account-visitors>${memberState.operatorMetrics?`${memberState.operatorMetrics.uniqueVisitors.toLocaleString('ja-JP')}人`:'—'}</strong></div>
         <div class="operator-metric-card"><span>作成済み登録アカウント</span><strong data-operator-account-users>${memberState.operatorMetrics?`${memberState.operatorMetrics.registeredUsers.toLocaleString('ja-JP')}人`:'—'}</strong></div>
+      </div>
+      <h4 class="operator-funnel-title">直近7日間の流れ（管理者のみ）</h4>
+      <div class="operator-metric-grid operator-funnel-grid" aria-label="直近7日間の匿名ファネル">
+        <div class="operator-metric-card"><span>訪問セッション</span><strong data-funnel-key="landingSessions">${memberState.operatorMetrics?.funnel7d?.landingSessions??'—'}</strong></div>
+        <div class="operator-metric-card"><span>記事を確認</span><strong data-funnel-key="articleSessions">${memberState.operatorMetrics?.funnel7d?.articleSessions??'—'}</strong></div>
+        <div class="operator-metric-card"><span>料金を確認</span><strong data-funnel-key="pricingSessions">${memberState.operatorMetrics?.funnel7d?.pricingSessions??'—'}</strong></div>
+        <div class="operator-metric-card"><span>無料登録を開始</span><strong data-funnel-key="signupStarts">${memberState.operatorMetrics?.funnel7d?.signupStarts??'—'}</strong></div>
+        <div class="operator-metric-card"><span>無料登録が成立</span><strong data-funnel-key="signupSuccesses">${memberState.operatorMetrics?.funnel7d?.signupSuccesses??'—'}</strong></div>
+        <div class="operator-metric-card"><span>決済を開始</span><strong data-funnel-key="checkoutStarts">${memberState.operatorMetrics?.funnel7d?.checkoutStarts??'—'}</strong></div>
+        <div class="operator-metric-card"><span>契約反映を確認</span><strong data-funnel-key="paymentsConfirmed">${memberState.operatorMetrics?.funnel7d?.paymentsConfirmed??'—'}</strong></div>
       </div>
       <div class="operator-metric-state ${memberState.operatorMetricsStatus==='live'?'is-live':memberState.operatorMetricsStatus==='error'?'is-error':''}" data-operator-metrics-state><span>${esc(operatorMetricsStatusLabel())}</span><button class="btn operator-metric-refresh" type="button" onclick="refreshOperatorMetrics()">今すぐ再取得</button></div>
       <p class="billing-help">表示値はSupabaseへ記録された現在の実数です。匿名閲覧はログイン情報がないため、同じ端末・ブラウザーの重複を除いた累計であり、異なる端末を使う同一人物を完全には統合できません。</p>
@@ -5146,9 +5311,9 @@ function renderTerms(v){
     <h3>7. 準拠法</h3><p>本規約は日本法に準拠します。紛争が生じた場合は、法令で認められる範囲で当社所在地を管轄する裁判所を第一審の専属的合意管轄とします。</p>`);
 }
 function renderPrivacy(v){
-  v.innerHTML=legalShell('プライバシーポリシー','2026年8月8日',`
-    <h3>収集する情報</h3><p>メールアドレス、認証用ID、契約プラン・決済状態、アプリ内の情報テーマ・保存・閲覧履歴・設定、お問い合わせ内容、セキュリティや障害調査に必要なログを取り扱います。また、レビューの重複投稿防止と匿名の利用状況集計の重複防止のため、ブラウザ内の匿名識別子を一方向ハッシュ化した値を保存します。カード番号は当社では保持せずStripeが処理します。</p>
-    <h3>利用目的</h3><p>本人認証、サービス提供、設定同期、プラン判定、料金請求、問い合わせ対応、不正利用防止、品質改善、法令対応のために利用します。</p>
+  v.innerHTML=legalShell('プライバシーポリシー','2026年8月14日',`
+    <h3>収集する情報</h3><p>メールアドレス、認証用ID、契約プラン・決済状態、アプリ内の情報テーマ・保存・閲覧履歴・設定、お問い合わせ内容、セキュリティや障害調査に必要なログを取り扱います。また、レビューの重複投稿防止、累計閲覧数、画面・記事・登録・決済導線の匿名集計のため、ブラウザ内のランダムな識別子を一方向ハッシュ化した値、画面名、記事ID、参照元のホスト名、UTM項目を保存します。メールアドレス、IPアドレス、参照元の完全なURL、記事本文は分析イベントの項目として保存しません。カード番号は当社では保持せずStripeが処理します。</p>
+    <h3>利用目的</h3><p>本人認証、サービス提供、設定同期、プラン判定、料金請求、問い合わせ対応、不正利用防止、個人を表示しない利用状況・導線の集計、品質改善、法令対応のために利用します。</p>
     <h3>外部サービス</h3><p>認証・データ保存にSupabase、決済にStripe、公開配信にGitHub Pagesを利用します。各事業者は業務に必要な範囲でデータを処理する場合があります。</p>
     <h3>第三者提供</h3><p>本人の同意がある場合、業務委託に必要な場合、法令に基づく場合を除き、個人データを第三者へ提供しません。</p>
     <h3>保存期間と安全管理</h3><p>利用目的に必要な期間、法令上必要な期間、契約・問い合わせ対応に必要な期間保存し、アクセス制御、通信の暗号化、権限分離など合理的な安全管理を行います。</p>
@@ -5182,7 +5347,7 @@ function pricingPlanAction(p,currentPlan){
     return `<button class="btn plan-cta" onclick="go('account')">${icon('user')}無料で登録</button>`;
   }
   if(!p.checkoutUrl)return `<button class="btn plan-cta" disabled aria-disabled="true">${icon('updates')}本番提供の準備中</button>`;
-  const label=memberState.user?p.cta:'ログインして決済';
+  const label=memberState.user?p.cta:'無料登録して申し込む';
   return `<button class="btn ${p.recommended?'btn-primary':''} plan-cta" onclick="beginCheckout('${p.key}','${p.checkoutUrl}')" aria-label="${p.name}の決済へ進む">${icon(memberState.user?'ext':'user')}${label}</button>`;
 }
 function renderPricing(v){
@@ -5190,17 +5355,17 @@ function renderPricing(v){
   const currentPlan=effectivePlanKey();
   const plans=[
     {
-      key:'free',kicker:'まずは無料で試す',name:'無料',price:'¥0',unit:'ずっと無料',desc:'運営が厳選したAIニュースを、おまかせで気軽に確認したい方へ。',
-      features:['今日の重要AIニュースを表示','好きな情報テーマの選択はできません','情報元の記事は毎月1記事まで','やさしいAI要約を利用可能','閲覧履歴を3日間保存'],
-      cta:'無料で登録'
-    },
-    {
-      key:'standard',kicker:'毎日の情報収集を効率化',name:'スタンダード',price:'¥980',unit:'税込／月',desc:'必要なAI情報を見逃さず、仕事に活かしたい個人ユーザー向け。',
-      features:['好きな情報テーマを5件まで選択','選んだテーマ中心の専用フィード','情報元の記事は毎月3記事まで','ジャンル別フィルターと保存機能','閲覧履歴を30日間保存','重要ニュース通知（提供予定）'],
+      key:'standard',kicker:'毎日の情報収集を自分専用に',name:'スタンダード',price:'¥980',unit:'税込／月',desc:'毎日、自分に必要なAI変化だけを短時間で確認したい個人向け。',result:'テーマを選ぶだけで、重要情報の確認と振り返りを1か所に。',
+      features:['好きな情報テーマを5件まで選択','重要トップニュースはテーマ外でも表示','PC・スマホで設定と保存を同期','情報元の記事は毎月3記事まで','閲覧履歴を30日間保存'],
       cta:'スタンダードに登録',checkoutUrl:'https://buy.stripe.com/14AbJ16PCdQl40b81s4ZG02',recommended:true
     },
     {
-      key:'premium',kicker:'本格的な情報活用へ',name:'プレミアム',price:'¥2,980',unit:'税込／月',desc:'複数事業やチームで、AIの変化を深く管理・分析したい方向け。',
+      key:'free',kicker:'まずは重要ニュースを確認',name:'無料',price:'¥0',unit:'ずっと無料',desc:'運営が厳選した重要AIニュースを、おまかせで気軽に確認したい方へ。',result:'カード登録なしで、今日の重要な変化をすぐ確認。',
+      features:['今日の重要AIニュースを表示','重要トップニュースはテーマ外でも表示','情報元の記事は毎月1記事まで','やさしいAI要約を利用可能','閲覧履歴を3日間保存'],
+      cta:'無料で登録'
+    },
+    {
+      key:'premium',kicker:'横断調査と記録を効率化',name:'プレミアム',price:'¥2,980',unit:'税込／月',desc:'複数の事業・調査テーマを横断して、AIの変化を深く管理したい方向け。',result:'テーマ数や元記事枠を気にせず、調査記録をCSVでも活用。',
       features:['好きな情報テーマを無制限に選択','選んだテーマ中心の専用フィード','情報元の記事を回数制限なく確認','テーマ・キーワードで絞り込み','閲覧履歴を30日間保存','CSVデータ書き出し'],
       cta:'プレミアムに登録',checkoutUrl:'https://buy.stripe.com/28E9AT3DqeUp1S33Lc4ZG03'
     }
@@ -5208,8 +5373,8 @@ function renderPricing(v){
   v.innerHTML=`<div class="pricing-page">
     <section class="pricing-hero">
       <div class="pricing-eyebrow">AI UPDATE RADAR MEMBERSHIP</div>
-      <h2>必要な深さに合わせて、<br>3つのプラン。</h2>
-      <p>件数ではなく、選べるツールと情報収集の深さで比較。無料はおまかせ、上位プランでは自分専用のフィードを作れます。</p>
+      <h2>毎日3分の確認を、<br>自分専用に。</h2>
+      <p>無料は重要ニュースをおまかせで確認。スタンダード以上では興味のあるテーマを選び、PCとスマホで同じ保存・設定を使えます。</p>
     </section>
     <div class="pricing-grid">
       ${plans.map(p=>`<article class="plan-card ${p.recommended?'recommended':''}" aria-labelledby="plan-${p.key}">
@@ -5218,6 +5383,7 @@ function renderPricing(v){
         <h3 id="plan-${p.key}">${p.name}</h3>
         <div class="plan-price"><strong>${p.price}</strong><span>${p.unit}</span></div>
         <p class="plan-desc">${p.desc}</p>
+        <div class="plan-result">${p.result}</div>
         <div class="plan-divider"></div>
         <ul class="plan-features">${p.features.map(f=>`<li>${icon('check')}<span>${f}</span></li>`).join('')}</ul>
         ${pricingPlanAction(p,currentPlan)}
