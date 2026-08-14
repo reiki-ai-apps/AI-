@@ -30,6 +30,8 @@ for(const id of ids){
   if(!fs.existsSync(file)){failures.push(`記事ページがありません: ${id}`);continue;}
   const page=fs.readFileSync(file,"utf8");
   if(!page.includes('application/ld+json')||!page.includes(`/articles/${encodeURIComponent(id)}/`))failures.push(`記事SEOが不完全です: ${id}`);
+  if(!page.includes(`href="https://reiki-ai-apps.github.io/AI-/">最新ニュースをアプリで見る</a>`))failures.push(`記事から最新ニュースへの導線がありません: ${id}`);
+  if(page.includes('#update-detail/'))failures.push(`保存期間後に切れる記事詳細リンクがあります: ${id}`);
 }
 requireText(read("robots.txt"),'Sitemap: https://reiki-ai-apps.github.io/AI-/sitemap.xml');
 requireText(read("sitemap.xml"),'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');

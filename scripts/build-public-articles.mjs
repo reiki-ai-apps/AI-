@@ -31,7 +31,7 @@ function paragraph(label,value){
 }
 function page(item,id){
   const canonical=`${baseUrl}articles/${encodeURIComponent(id)}/`;
-  const appUrl=`${baseUrl}#update-detail/${encodeURIComponent(item.id||id)}`;
+  const appUrl=baseUrl;
   const title=clean(item.title,120)||"AI重要ニュース";
   const description=clean(item.easy_summary||item.raw_excerpt||item.detail,180)||"AI進化レーダーが重要度と仕事への影響を整理したAIニュースです。";
   const published=isoDate(item.source_published_at||item.published_at||item.fetched_at);
@@ -67,7 +67,7 @@ function page(item,id){
 </style></head><body><main>
 <a class="brand" href="${baseUrl}"><img src="${baseUrl}assets/ai-radar-icon-192.png" alt="">AI進化レーダー</a>
 <article class="hero"><div class="meta"><span class="rank">重要度${esc(String(item.importance||"B").toUpperCase())}</span>${esc(item.source_name||"情報元確認済み")}・${esc(displayDate(item.source_published_at||item.published_at||item.fetched_at))}</div><h1>${esc(title)}</h1><p class="lead">${esc(description)}</p>
-<div class="actions"><a class="button" href="${appUrl}">アプリで詳しく見る</a></div></article>
+<div class="actions"><a class="button" href="${appUrl}">最新ニュースをアプリで見る</a></div></article>
 ${paragraph("何が変わったか",item.change_summary||item.simple_explanation)}
 ${paragraph("仕事への影響",item.impact_summary)}
 ${paragraph("次に確認すること",item.action_suggestion)}
