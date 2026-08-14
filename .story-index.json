@@ -2,6 +2,55 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_05a428376b25e4a21c35",
+      "story_id": "story_4e20b6e6afbb08d435",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "WordPress脆弱性40件を確認、半数は認証不要で悪用可能 AI Engineには管理者アカウント作成の欠陥",
+      "source_published_at": "2026-08-14T02:20:32.000Z",
+      "published_at": "2026-08-14T02:20:32.000Z",
+      "fetched_at": "2026-08-14T05:03:51.840Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "7月30日〜8月5日にWordPress関連で脆弱性40件が確認され、半数は認証不要で悪用可能、AI Engineには管理者アカウントを作られる欠陥があった。",
+      "source_name": "マイナビニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9uaTBDZzRkVTlRcTlpcjdDN2NPSUN2T3NZajlmMzBuWFY5d01zTlVMUWlLR1pwNVhmMWlxMDFwLTB0dHV6Y1RNbDhpTENRWUFiSUdMOE9Lb1VCUld5YnZRQ3l0Mm5DNUNZLXc1TWZpMnUtakQ1?oc=5",
+      "story_entities": [
+        "WordPress",
+        "AI Engine",
+        "wordpress",
+        "aiengine",
+        "engine"
+      ],
+      "primary_entity": "WordPress",
+      "story_subject": "WordPressプラグインの脆弱性(AI Engine含む)",
+      "event_type": "security",
+      "event_stage": "other",
+      "event_scope": "WordPressサイト運営者全般",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "確認された脆弱性件数",
+          "value": "40件",
+          "normalized_value": "40"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "7月30日〜8月5日の週にWordPress関連で40件の脆弱性が新たに確認され、AI Engineの脆弱性が具体的に指摘された。",
+      "detail": "マイナビニュースが7月30日から8月5日の期間に確認されたWordPress関連の脆弱性をまとめた。対象期間中に合計40件の脆弱性が報告され、そのうち約半数は攻撃者が認証情報を持たなくても悪用できる状態だったという。AIチャットボット構築などに使われる人気プラグイン「AI Engine」にも脆弱性が見つかり、悪用されると第三者が管理者権限を持つアカウントを新規に作成できてしまう恐れがあるとされる。WordPressは世界で広く使われるCMSであり、プラグインの脆弱性はサイト運営者にとって継続的なリスクとなっている。記事では具体的な修正状況までは示されておらず、利用者は自身の環境で該当プラグインのバージョンを確認することが求められる。",
+      "new_facts": [
+        "7月30日〜8月5日の期間にWordPress関連の脆弱性が40件確認された",
+        "確認された脆弱性のうち約半数は認証不要で悪用可能だった",
+        "AI Engineプラグインには管理者アカウントを新規作成されうる脆弱性が見つかった"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_a9c07d7ee62ca6d658b6",
       "story_id": "story_c01a6af0342deb96d4",
       "story_sequence": 1,
@@ -148,6 +197,108 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_25511b6f973f1c57483c",
+      "story_id": "story_a3936c5fd904e6df32",
+      "story_sequence": 3,
+      "relation_type": "follow_up",
+      "relation_confidence": 0.8859999999999999,
+      "title": "DeepSeek、1.7兆パラメータの新モデル「DeepSeek-V4-Pro」を正式公開",
+      "source_published_at": "2026-08-14T01:22:56.000Z",
+      "published_at": "2026-08-14T01:22:56.000Z",
+      "fetched_at": "2026-08-14T05:03:37.202Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "中国DeepSeekが1.7兆パラメータ規模の新モデル「DeepSeek-V4-Pro」を正式公開し、エージェント機能を強化した。",
+      "source_name": "pc.watch.impress.co.jp",
+      "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFA2ZVQ4OUMtN05zc1NacExZMkZKcFhyT1VjN00xSm5VLXNLT0ZUNjRybndsTjF0ZU1mOHVtMUNhZ3Y0WjFfUEQwVldodVBkc3FBNXFNYXRWLTZlT0s4bTk1Q25Kbw?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "DeepSeek-V4-Pro",
+        "deepseek",
+        "deepseek-v4-pro"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek-V4-Pro",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "全世界",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "パラメータ数",
+          "value": "1.7兆",
+          "normalized_value": "1700000000000"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "follow_up",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "same_scope",
+        "material_fact_changed"
+      ],
+      "change_summary": "1.7兆パラメータの新モデルDeepSeek-V4-Proが新たに公開され、エージェント機能が強化された。",
+      "detail": "中国のAI企業DeepSeekが、パラメータ数1.7兆規模の新モデル「DeepSeek-V4-Pro」を正式に公開した。エージェント機能、つまり複数の作業を自律的にこなす能力が強化されたとされ、記事は競合モデルとの性能競争における『下剋上』の解消、すなわちDeepSeekが再び優位に立ったことを示す内容として紹介している。DeepSeekはこれまでも低コストで高性能なモデルを公開し、米国の大手AI企業に対抗する存在として注目されてきた。今回のV4-Proの公開により、大規模言語モデル市場での競争がさらに激しくなる可能性がある。具体的な性能評価やベンチマーク結果、提供方法の詳細は記事からは確認できない。",
+      "new_facts": [
+        "DeepSeekが1.7兆パラメータの新モデルDeepSeek-V4-Proを正式公開した",
+        "エージェント機能が強化されたとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_756b36f8c3d80fdfeb84",
+      "story_id": "story_2ea5a35474e9e35b1e",
+      "story_sequence": 2,
+      "relation_type": "follow_up",
+      "relation_confidence": 0.905,
+      "title": "OpenAIがLinux向け「ChatGPT」デスクトップアプリのプレビュー版を公開",
+      "source_published_at": "2026-08-14T00:57:00.000Z",
+      "published_at": "2026-08-14T00:57:00.000Z",
+      "fetched_at": "2026-08-14T05:03:16.555Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIがLinux向けにChatGPTデスクトップアプリのプレビュー版を公開し、Windows・Mac以外のユーザーも利用可能になった。",
+      "source_name": "japan.zdnet.com",
+      "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5CVGVrb2l2YlJHZnlyam5UWUZLT29PTVU2akJYNE84MFNpbjJSX2czUEREaXBka09raWFNdjNtSWwtcGVYS2VXcU5ZbUVIUVNzM3hZ?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT",
+        "Linux",
+        "openai",
+        "chatgpt"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPTデスクトップアプリ Linux版",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Linuxデスクトップ",
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "ChatGPTデスクトップアプリ",
+          "value": "Linux向けプレビュー版",
+          "normalized_value": "linux向けプレビュー版"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "follow_up",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "similar_title",
+        "material_fact_changed"
+      ],
+      "change_summary": "ChatGPTデスクトップアプリの対応OSにLinuxが新たに加わった。",
+      "detail": "OpenAIはこれまでWindowsとMac向けに提供していたChatGPTのデスクトップアプリについて、新たにLinux向けのプレビュー版を公開した。デスクトップアプリはブラウザを開かずにOS上で直接ChatGPTを操作できるソフトで、開発者やエンジニアの利用が多いLinux環境への対応拡大により、ブラウザ経由に依存していたLinuxユーザーもネイティブアプリの利便性を得られるようになる。現時点ではプレビュー版としての公開であり、詳細な対応機能や正式版への移行時期は明らかにされていない。",
+      "new_facts": [
+        "OpenAIがLinux向けChatGPTデスクトップアプリのプレビュー版を公開した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_f4b5393a6c0be089a349",
       "story_id": "story_b51501d9f4eb13d221",
       "story_sequence": 1,
@@ -227,6 +378,46 @@
       "detail": "AnthropicがClaudeのアップデートで生成コンテンツに透かし（ウォーターマーク）を付与する仕組みを導入したとみられる中、その透かしを除去するツールを提供する市場が新たに現れたと報じられている。透かしはAI生成物の識別や不正利用防止に使われる技術だが、除去ツールが出回ることでその効果が損なわれる懸念がある。記事では市場の出現自体が伝えられているのみで、具体的なツール名や規模、対応策の詳細は明らかにされていない。",
       "new_facts": [
         "AnthropicのClaudeアップデート後にAI透かし除去ツールの市場が出現していると報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_a31b50e7cdbdcc600c91",
+      "story_id": "story_1d25bb5359b9040815",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.524,
+      "title": "著名投資家バリー氏、NVIDIAのAI拡大路線に「エンロンの影」と警鐘",
+      "source_published_at": "2026-08-13T21:37:16.000Z",
+      "published_at": "2026-08-13T21:37:16.000Z",
+      "fetched_at": "2026-08-14T05:03:51.213Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "著名投資家マイケル・バリー氏がNVIDIAのAI関連事業拡大をエンロン事件になぞらえ、現在のリスク水準は当時の数十倍に達していると指摘した。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1lRUhPTHNPQVY3dmdWbVdhMFN1NVpVTnp2d3N6cEVkU0JlMXlzRnhlYllVRExRa3FOTlcyU1FQZHF4cmZCeVFqR1RjeUkwZWNIVzVJcU9LaEluZXlKc19rNGlXZFNNUHJQYVBETWt1NERsYTFp?oc=5",
+      "story_entities": [
+        "NVIDIA",
+        "Michael Burry",
+        "nvidia",
+        "michaelburry"
+      ],
+      "primary_entity": "NVIDIA",
+      "story_subject": "NVIDIAのAI関連事業拡大に対するバリー氏の警鐘",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "投資家・市場全般",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject"
+      ],
+      "change_summary": "バリー氏がNVIDIAのAI拡大戦略をエンロン事件になぞらえて批判する新たな発言をした。",
+      "detail": "著名な空売り投資家として知られるマイケル・バリー氏が、NVIDIAを中心としたAI関連事業の拡大について警鐘を鳴らした。バリー氏は、その拡大の様子をかつて巨額の不正会計で破綻した米エネルギー企業エンロンになぞらえ、現在のリスク水準はエンロン当時の『数十倍』に達していると指摘したという。バリー氏は過去に住宅バブルの崩壊を予見したことで知られ、その発言は市場関係者の間で注目されやすい。今回の指摘は、生成AI関連銘柄への投資が過熱しているとの懸念が広がる中で出されたものであり、具体的な数値の算出根拠や今後の見通しについては記事内では詳しく示されていない。",
+      "new_facts": [
+        "著名投資家マイケル・バリー氏がNVIDIAのAI拡大戦略をエンロン事件になぞらえて批判した"
       ],
       "event_date_precision": "unknown"
     },
@@ -3768,6 +3959,49 @@
       "new_facts": [
         "エヌビディアのAI関連金融活動に市場崩壊リスクの警告が出た",
         "原油価格急騰が半導体株に打撃を与えているとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_935e06d1777b7cdf5e20",
+      "story_id": "story_0c3c08b493e0f78409",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6941463414634146,
+      "title": "AmazonがPerplexity AI関連訴訟で敗訴、AIエージェントのルールに影響か",
+      "source_published_at": "2026-08-11T00:36:00.000Z",
+      "published_at": "2026-08-11T00:36:00.000Z",
+      "fetched_at": "2026-08-14T05:03:35.012Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "米国でAmazonがPerplexity AIを巡る訴訟に敗訴し、AIエージェントに関する法的ルールの見直しにつながる可能性が指摘されている。",
+      "source_name": "MLex",
+      "source_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNcHY4b2g2SVlKSEVpMlVQQTdHTkE3c0ozbnRIT3ZRWHhvNnNhWjVSM2pibmpDdXJKdHhDRHdKYUYtZTFZTklKSE9hZXU4MlZrVFdEWGoxNXczU2tleXBFZG5feFdLSldUX0pfSkg4Vmx2dUU4dDJDNlZzbnhBc25CaGlhUlg0bUpFc3RSTFh4c2ZVWl94dHVFa0FMSVIwSjg0Mnc3c2RxN1RjMUh1OFk5NkJSRdIBWkFVX3lxTE10SmNabGhMTm5kVjBwRWFDNVNUYjY2b08yM0c3R2lEczAwR1E3M2dGeVNlTjhtbGs0VkZ2OUNQSUhkeG03V0hsQklhWS0wVHk3V1dDZTVOMGtDdw?oc=5",
+      "story_entities": [
+        "Amazon",
+        "Perplexity AI",
+        "amazon",
+        "perplexityai",
+        "perplexity"
+      ],
+      "primary_entity": "Amazon",
+      "story_subject": "Perplexity AIを巡る訴訟",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "米国",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type",
+        "same_scope"
+      ],
+      "change_summary": "AIエージェントの法的扱いを巡る訴訟でAmazonの敗訴が伝えられた。",
+      "detail": "米国での訴訟でAmazonがPerplexity AIに関連する法的争いに敗れたことが伝えられた。この訴訟結果は、ウェブサイトの情報を自動で取得・要約するAIエージェントが、既存のサービス利用規約や著作権のルールとどう折り合うべきかという問題に関わっており、今後の同種訴訟や業界慣行に影響を与える可能性があるとされる。判決の具体的な内容や、Amazon側が控訴するかどうかについては記事内で明らかにされていない。",
+      "new_facts": [
+        "米国の訴訟でAmazonがPerplexity AIに関連する裁判に敗訴したと報じられた"
       ],
       "event_date_precision": "unknown"
     },
@@ -7991,7 +8225,7 @@
     {
       "article_id": "article_960a68e37351b9268b7b",
       "story_id": "story_60b8411aa2b90dc676",
-      "story_sequence": 7,
+      "story_sequence": 9,
       "relation_type": "follow_up",
       "relation_confidence": 1,
       "title": "AdobeがPhotoshopやFirefly、AcrobatをChatGPT上で使えるプラグインを公開",
