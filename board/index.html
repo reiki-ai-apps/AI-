@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>REIKI POST BOARD — SNS投稿カレンダー</title>
+<meta name="description" content="AIニュース／AIクリエイティブの4SNS投稿を、月間で直読し、今日の次対応を迷わず終える投稿司令盤。">
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="app.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#main">本文へ移動</a>
+
+<header class="app-header">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span>
+      <span class="brand-name">REIKI</span><br>
+      <span class="brand-sub">POST BOARD</span>
+    </span>
+  </div>
+
+  <nav class="nav" id="nav" aria-label="画面"></nav>
+
+  <div class="header-tools">
+    <label class="sr-only" for="role-select">操作する役割</label>
+    <select class="role-select" id="role-select"></select>
+  </div>
+</header>
+
+<main id="main" tabindex="-1"></main>
+
+<div id="overlay-root"></div>
+<div class="toasts" id="toast-root" role="status" aria-live="polite"></div>
+
+<noscript>
+  <p style="padding:24px">このツールはJavaScriptが必要です。</p>
+</noscript>
+
+<script type="module" src="js/ui/app.js?v=1"></script>
+</body>
+</html>
