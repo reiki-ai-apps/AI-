@@ -4132,15 +4132,20 @@ function globalCoverScore(item,now=Date.now()){
   if(/new model|foundation model|新モデル|基盤モデル|買収|大型投資|資金調達/.test(text))impact+=140;
   return importanceBase+freshness+impact+(item?.is_official?20:0);
 }
-function selectLatestCover(items){
+function selectLatestCover(items,now=Date.now()){
   // トップ記事はユーザーの選択テーマではなく全公開記事から選ぶ。
-  // 直近14日を対象に、単純な新着順ではなく編集重要度・全業界への影響・鮮度で決定する。
+  // まず直近24時間から選び、ニュースが無い場合だけ72時間・14日へ広げる。
+  // 古いS記事の固定加点で、新しい重要記事が何日もトップへ出ない状態を防ぐ。
   const dated=[...(items||[])].filter(item=>validArticleDate(articleTimelineAt(item))>0);
-  const cutoff=Date.now()-14*86400000;
-  const recent=dated.filter(item=>validArticleDate(articleTimelineAt(item))>=cutoff);
-  return (recent.length?recent:dated)
+  let candidates=[];
+  for(const hours of [24,72,14*24]){
+    const cutoff=now-hours*3600000;
+    candidates=dated.filter(item=>validArticleDate(articleTimelineAt(item))>=cutoff);
+    if(candidates.length)break;
+  }
+  return (candidates.length?candidates:dated)
     .sort((a,b)=>
-      globalCoverScore(b)-globalCoverScore(a)
+      globalCoverScore(b,now)-globalCoverScore(a,now)
       ||validArticleDate(articleTimelineAt(b))-validArticleDate(articleTimelineAt(a))
       ||String(b.id||'').localeCompare(String(a.id||''),'ja')
     )[0]||null;

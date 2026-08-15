@@ -33,7 +33,7 @@ const checks=[
   [html.includes("The top signal is the sole dark focal area"),"top signal has an intentional dark restoration"],
   [html.includes(".light-media-theme .mobile-media-hub"),"mobile KIZASHI media hub has light styling"],
   [manifest.background_color==="#f6f8fc"&&manifest.theme_color==="#ffffff","PWA colors are light"],
-  [worker.includes("ai-radar-v5-20260814-light-contrast-v2"),"service worker cache was bumped"]
+  [worker.includes("ai-radar-v5-20260815-fresh-top-v3"),"service worker cache was bumped"]
 ];
 
 if(!article)checks.push([false,"at least one public article exists"]);

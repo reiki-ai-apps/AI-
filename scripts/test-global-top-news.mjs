@@ -48,19 +48,34 @@ vm.runInNewContext(`
 `,context);
 
 const now=Date.now();
-const important={id:"important",title:"Google DeepMindがCEO交代と研究体制を再編",importance:"S",published_at:new Date(now-6*86400000).toISOString()};
+const staleCritical={id:"stale-critical",title:"Google DeepMindがCEO交代と研究体制を再編",importance:"S",published_at:new Date(now-47*3600000).toISOString()};
+const freshImportant={id:"fresh-important",title:"OpenAIが重要な新モデルを公開",importance:"A",published_at:new Date(now-6*3600000).toISOString()};
+if(context.pick([staleCritical,freshImportant],now)?.id!=="fresh-important"){
+  throw new Error("an older S article still prevents the daily top story from updating");
+}
+const recentCritical={id:"recent-critical",title:"Google DeepMindがCEO交代と研究体制を再編",importance:"S",published_at:new Date(now-18*3600000).toISOString()};
 const merelyLatest={id:"latest",title:"小規模なUI更新",importance:"B",published_at:new Date(now-3600000).toISOString()};
-if(context.pick([merelyLatest,important])?.id!=="important"){
-  throw new Error("a merely newer article still displaces an industry-critical article");
+if(context.pick([merelyLatest,recentCritical],now)?.id!=="recent-critical"){
+  throw new Error("a minor update displaces an industry-critical article inside the fresh window");
+}
+const olderImportant={id:"older-important",title:"重要な業界再編",importance:"S",published_at:new Date(now-6*86400000).toISOString()};
+const olderMinor={id:"older-minor",title:"小規模な変更",importance:"B",published_at:new Date(now-5*86400000).toISOString()};
+if(context.pick([olderMinor,olderImportant],now)?.id!=="older-important"){
+  throw new Error("importance fallback fails when there is no news in the fresh windows");
 }
 
 const missedArticle=data.find(item=>item.article_id==="article_681923b6852fdf54e3b5");
 if(!missedArticle||missedArticle.importance!=="S"||!missedArticle.source_url.includes("k-tai.watch.impress.co.jp")){
   throw new Error("the verified Google DeepMind leadership article is not published as an S article");
 }
-const currentTop=context.pick(data);
-if(!currentTop||!['S','A'].includes(currentTop.importance)){
-  throw new Error("the current global top story is not an industry-important article");
+const currentTop=context.pick(data,now);
+const hasFreshData=data.some(item=>{
+  const time=new Date(item.published_at||item.source_published_at||item.fetched_at||'').getTime();
+  return Number.isFinite(time)&&time>=now-24*3600000;
+});
+const currentTopTime=new Date(currentTop?.published_at||currentTop?.source_published_at||currentTop?.fetched_at||'').getTime();
+if(!currentTop||hasFreshData&&currentTopTime<now-24*3600000){
+  throw new Error("the current global top story is stale despite fresh published data");
 }
 
-console.log("Global top-news selection and industry leadership coverage passed.");
+console.log(`Global top-news selection and industry leadership coverage passed. Current: ${currentTop.title}`);
