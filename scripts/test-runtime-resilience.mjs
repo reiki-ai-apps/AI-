@@ -59,6 +59,9 @@ if(metricsRefresh){
 for(const [needle,label] of [
   ["data-operator-visitors","desktop and mobile operator badge keeps the visitor count"],
   ["data-operator-users","desktop and mobile operator badge keeps the registration count"],
+  ["id=\"mobileOperatorMetricsSlot\"","mobile has a dedicated operator metrics mount point"],
+  ["mobileBadge.id='mobileOperatorMetrics'","mobile receives its own rendered operator badge"],
+  [".mobile-operator-metrics-slot .operator-metrics","mobile badge has an explicit visible layout"],
   ["data-operator-account-visitors","account page keeps the visitor count"],
   ["data-operator-account-users","account page keeps the registration count"],
   [".operator-metrics-status.is-stale","stale values are visibly distinguished from live values"],
@@ -66,6 +69,11 @@ for(const [needle,label] of [
   ["VISITOR_REGISTRATION_MAX_ATTEMPTS=5","visitor registration retry count is bounded"],
   ["catch(()=>{setCloudSyncStatus('error');return false;})","cloud polling cannot reject without a handler"]
 ])expect(index.includes(needle),label);
+
+const authInit=section("async function initMemberAuth\\(\\)\\{","async function loadPublishedReviews");
+expect(authInit.includes("if(event==='INITIAL_SESSION'&&nextUserId===lastAuthUserId)return"),"only the duplicate initial session is skipped");
+expect(!authInit.includes("event==='TOKEN_REFRESHED')&&nextUserId===lastAuthUserId"),"phone token refresh is never skipped");
+expect(authInit.indexOf("memberClient.auth.onAuthStateChange")<authInit.indexOf("await queueMemberRefresh(data.session)"),"auth listener is installed before slow initial account loading");
 
 expect(workflow.includes("node scripts/test-runtime-resilience.mjs"),"scheduled news updates run the stability regression test");
 
