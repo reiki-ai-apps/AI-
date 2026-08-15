@@ -2,6 +2,58 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_00c543b3c8ba1262c5c3_rev_d0741aa00d20",
+      "story_id": "story_acb571947685bcdb5b",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "DeepSeek、AIエージェント向けハーネス「DeepSeek Harness」v0.1を公開",
+      "source_published_at": "2026-08-15T05:10:56.000Z",
+      "published_at": "2026-08-15T05:10:56.000Z",
+      "fetched_at": "2026-08-15T06:58:33.639Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "DeepSeekがAIエージェントを動かすための土台となるソフト「DeepSeek Harness」のバージョン0.1を公開した。",
+      "source_name": "GIGAZINE",
+      "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1iZVp5cVZNYnI5cTMwNHJ1aU15RXphT205UmJtdHphcmJBY25LSWR0QmNGb0tTWVJ1V0JMbVBLWjhkRWVwekd3a3JKLUwxeGlnajlvUmkxd2ZuQlJBTXpPbVlkY2x4VVA2?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "DeepSeek Harness",
+        "deepseek",
+        "deepseekharness",
+        "harness"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek Harness v0.1",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "開発者向け",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "DeepSeek Harness",
+          "value": "v0.1",
+          "normalized_value": "v0.1"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "similar_title",
+        "same_url_content_changed"
+      ],
+      "change_summary": "DeepSeekが自社モデル向けのAIエージェント実行基盤「DeepSeek Harness」v0.1を新たに公開した。",
+      "detail": "DeepSeekは、AIエージェントを実行させるための基盤ソフトウェアである「ハーネス」の新版「DeepSeek Harness」v0.1を公開した。ハーネスとは、AIモデル単体では扱えないタスク管理やツール呼び出しなどを仲介し、実際にエージェントとして動作させるための枠組みを指す。今回の公開により、開発者はDeepSeekのモデルを使ったAIエージェントをより手軽に構築・検証できるようになる。バージョン番号が0.1であることから、現時点では初期段階の公開とみられる。",
+      "new_facts": [
+        "DeepSeekがAIエージェント実行基盤「DeepSeek Harness」のv0.1を公開した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_1b6d00d2e7e7841dc0ca",
       "story_id": "story_1bf06a3e6e91939abb",
       "story_sequence": 1,
@@ -511,6 +563,57 @@
       "new_facts": [
         "DeepSeekがエージェント基盤「DeepSeek Harness」を開発者プレビューとして公開した",
         "各機能をプラグインとして組み替え可能な設計になっている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_2c38a0752b21365112c9",
+      "story_id": "story_7b43c341e7a1a428f5",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "NVIDIA、金融大手6社と5000億ドル超の資金調達枠を構築",
+      "source_published_at": "2026-08-14T08:05:15.000Z",
+      "published_at": "2026-08-14T08:05:15.000Z",
+      "fetched_at": "2026-08-15T06:58:47.632Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "NVIDIAが金融機関6社と5000億ドルを超える資金調達枠を設け、コンピューティング資源を投資対象の資産クラスとして扱う動きを進めている。",
+      "source_name": "innovaTopia",
+      "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE05WXhnaEtpa3oweFFqWjJBd1ZfMWxaZUNmTDJtMWVVZVBXSXFCSE0zQjdMdG5XQ0hXU3V5enltSjQzalFCa0VzdGJTZHh2UTF5dURmRW5QVjhaYmVjYmV3NU43RTA0VG82eFZIYw?oc=5",
+      "story_entities": [
+        "NVIDIA",
+        "nvidia"
+      ],
+      "primary_entity": "NVIDIA",
+      "story_subject": "金融6社との5000億ドル超資金調達枠",
+      "event_type": "funding",
+      "event_stage": "announced",
+      "event_scope": "世界",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "資金調達枠",
+          "value": "5000億ドル超",
+          "normalized_value": "500000000000USD"
+        },
+        {
+          "type": "count",
+          "scope": "提携金融機関数",
+          "value": "6社",
+          "normalized_value": "6"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "NVIDIAが金融機関6社と組み、5000億ドル超のコンピュート向け資金調達枠を新設した。",
+      "detail": "NVIDIAは金融大手6社との間で、5000億ドルを超える規模の資金調達枠を構築したと伝えられている。この枠組みは、AI向けの計算資源であるコンピュートを、株式や債券のような投資対象の「資産クラス」として位置づける狙いがあるという。AI需要の急拡大に伴い、データセンターやGPUなどの計算基盤への投資額が膨らむ中、金融機関を巻き込んだ大型の資金調達スキームを整備する動きとみられる。記事では、この資金枠がNVIDIAとAI関連インフラ投資の資金源をどう変えるかが焦点となっている。",
+      "new_facts": [
+        "NVIDIAが金融機関6社と5000億ドルを超える資金調達枠を構築した",
+        "この枠組みはコンピュートを資産クラスとして扱う狙いがある"
       ],
       "event_date_precision": "unknown"
     },
