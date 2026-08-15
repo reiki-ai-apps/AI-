@@ -4235,8 +4235,9 @@ function globalCoverScore(item,now=Date.now()){
 }
 function selectLatestCover(items,now=Date.now()){
   // トップ記事はユーザーの選択テーマではなく全公開記事から選ぶ。
-  // まず直近24時間から選び、ニュースが無い場合だけ72時間・14日へ広げる。
-  // 古いS記事の固定加点で、新しい重要記事が何日もトップへ出ない状態を防ぐ。
+  // まず直近24時間のS/A記事から「掲載日時が最も新しい記事」を選ぶ。
+  // 重要記事が無い場合だけB/Cを含め、72時間・14日へ段階的に広げる。
+  // 強いキーワード加点より新しさを優先し、新しい重要記事が入るたびに表紙を切り替える。
   const dated=[...(items||[])].filter(item=>validArticleDate(articleTimelineAt(item))>0);
   let candidates=[];
   for(const hours of [24,72,14*24]){
@@ -4244,13 +4245,24 @@ function selectLatestCover(items,now=Date.now()){
     candidates=dated.filter(item=>validArticleDate(articleTimelineAt(item))>=cutoff);
     if(candidates.length)break;
   }
-  return (candidates.length?candidates:dated)
+  const pool=candidates.length?candidates:dated;
+  const important=pool.filter(item=>['S','A'].includes(rankFromImportance(item?.importance)||item?.rank));
+  return (important.length?important:pool)
     .sort((a,b)=>
-      globalCoverScore(b,now)-globalCoverScore(a,now)
-      ||validArticleDate(articleTimelineAt(b))-validArticleDate(articleTimelineAt(a))
+      validArticleDate(articleTimelineAt(b))-validArticleDate(articleTimelineAt(a))
+      ||globalCoverScore(b,now)-globalCoverScore(a,now)
       ||String(b.id||'').localeCompare(String(a.id||''),'ja')
     )[0]||null;
 }
+const TOP_STORY_REFRESH_MS=5*60000;
+let activeTopStoryId='';
+function refreshTopStoryIfNeeded(){
+  if(document.visibilityState!=='visible'||route.name!=='home')return;
+  const nextId=String(selectLatestCover(getUpdates())?.id||'');
+  if(nextId!==activeTopStoryId)render();
+}
+document.addEventListener('visibilitychange',refreshTopStoryIfNeeded);
+window.setInterval(refreshTopStoryIfNeeded,TOP_STORY_REFRESH_MS);
 function renderHome(v){
   recomputeAll();
   const allPlanUpdates=getPlanUpdates();
@@ -4266,6 +4278,7 @@ function renderHome(v){
   const latest=allPlanUpdates.length?fmtDate(articleTimelineAt([...allPlanUpdates].sort(byFeedOrder)[0])):'—';
   // 表紙は設定テーマに関係なく、全記事の中で最も重要な1件を選ぶ。
   const cover=selectLatestCover(allUpdates);
+  activeTopStoryId=String(cover?.id||'');
   const coverSummary=cover?(cover.manual_summary||cover.ai_summary||cover.raw_excerpt||'要約を確認できます。'):'';
   const coverTool=cover?toolById(cover.tool_id):null;
   const coverCopy=cover?`
@@ -5143,7 +5156,7 @@ function setAutoStatus(on){
 let _syncDone=false;
 let _lastSyncAt=0;
 /* タブやPWAを開きっぱなしでも、画面に戻ったとき・一定時間ごとに新着を取り込む */
-const RESYNC_STALE_MS=15*60000;
+const RESYNC_STALE_MS=5*60000;
 function resyncIfStale(){
   if(document.visibilityState!=='visible')return;
   if(!_lastSyncAt||Date.now()-_lastSyncAt<RESYNC_STALE_MS)return;
@@ -5151,7 +5164,7 @@ function resyncIfStale(){
   void syncFromDataJson(true,true,true);
 }
 document.addEventListener('visibilitychange',resyncIfStale);
-window.setInterval(resyncIfStale,10*60000);
+window.setInterval(resyncIfStale,5*60000);
 function looksCorruptedText(value){
   const s=String(value||'');
   if(!s)return false;

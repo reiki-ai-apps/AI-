@@ -58,6 +58,11 @@ const merelyLatest={id:"latest",title:"小規模なUI更新",importance:"B",publ
 if(context.pick([merelyLatest,recentCritical],now)?.id!=="recent-critical"){
   throw new Error("a minor update displaces an industry-critical article inside the fresh window");
 }
+const newestImportant={id:"newest-important",title:"NVIDIAが大型AI投資を発表",importance:"A",published_at:new Date(now-2*3600000).toISOString()};
+const olderCritical={id:"older-critical",title:"OpenAIが経営体制を再編",importance:"S",published_at:new Date(now-8*3600000).toISOString()};
+if(context.pick([olderCritical,newestImportant],now)?.id!=="newest-important"){
+  throw new Error("the newest important article does not replace an older high-scoring article");
+}
 const olderImportant={id:"older-important",title:"重要な業界再編",importance:"S",published_at:new Date(now-6*86400000).toISOString()};
 const olderMinor={id:"older-minor",title:"小規模な変更",importance:"B",published_at:new Date(now-5*86400000).toISOString()};
 if(context.pick([olderMinor,olderImportant],now)?.id!=="older-important"){
@@ -76,6 +81,26 @@ const hasFreshData=data.some(item=>{
 const currentTopTime=new Date(currentTop?.published_at||currentTop?.source_published_at||currentTop?.fetched_at||'').getTime();
 if(!currentTop||hasFreshData&&currentTopTime<now-24*3600000){
   throw new Error("the current global top story is stale despite fresh published data");
+}
+const newestPublishedImportant=data
+  .filter(item=>['S','A'].includes(String(item.importance||'').toUpperCase()))
+  .filter(item=>{
+    const time=new Date(item.published_at||item.source_published_at||item.fetched_at||'').getTime();
+    return Number.isFinite(time)&&time>=now-24*3600000;
+  })
+  .sort((a,b)=>new Date(b.published_at||b.source_published_at||b.fetched_at)-new Date(a.published_at||a.source_published_at||a.fetched_at))[0];
+if(newestPublishedImportant&&currentTop?.article_id!==newestPublishedImportant.article_id){
+  throw new Error("the live top story is not the newest published S/A article");
+}
+for(const marker of [
+  'const TOP_STORY_REFRESH_MS=5*60000',
+  'window.setInterval(refreshTopStoryIfNeeded,TOP_STORY_REFRESH_MS)',
+  "document.addEventListener('visibilitychange',refreshTopStoryIfNeeded)",
+  "activeTopStoryId=String(cover?.id||'')",
+  'const RESYNC_STALE_MS=5*60000',
+  'window.setInterval(resyncIfStale,5*60000)'
+]){
+  if(!html.includes(marker))throw new Error(`periodic top-story refresh safeguard missing: ${marker}`);
 }
 
 console.log(`Global top-news selection and industry leadership coverage passed. Current: ${currentTop.title}`);
