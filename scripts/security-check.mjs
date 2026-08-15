@@ -128,9 +128,10 @@ if (/\.operator-metrics\{display:none\}/.test(html)) {
 if (!/setInterval\(refreshOperatorMetrics,60000\)/.test(html)) {
   findings.push("index.html: operator metrics are not refreshed persistently");
 }
-if (!/operatorMetricsStatus='error'[\s\S]{0,220}operatorMetricsUpdatedAt=null/.test(html) ||
-    !/取得エラー・再確認してください/.test(html) ||
-    !/operatorMetricsTimeLabel/.test(html)) {
+if (!/operatorMetricsStatus=memberState\.operatorMetrics\?'stale':'error'/.test(html) ||
+    !/再取得待ち・最終/.test(html) ||
+    !/operatorMetricsTimeLabel/.test(html) ||
+    !/operator-metrics-status\.is-stale/.test(html)) {
   findings.push("index.html: stale operator metrics can be mistaken for current actual counts");
 }
 if (!/scheduleUniqueVisitorRetry/.test(html) || !/window\.addEventListener\('online',[\s\S]{0,180}registerUniqueVisitor\(\)/.test(html)) {

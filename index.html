@@ -253,6 +253,7 @@
   .operator-metrics-status{display:inline-flex;align-items:center;gap:4px;padding-left:7px;border-left:1px solid rgba(116,224,232,.2);color:#9ba9bc;font-size:8.5px;font-weight:800}
   .operator-metrics-status::before{content:"";width:6px;height:6px;border-radius:50%;background:#f0b94c;box-shadow:0 0 8px rgba(240,185,76,.5)}
   .operator-metrics-status.is-live{color:#71e5bf}.operator-metrics-status.is-live::before{background:#45e0aa;box-shadow:0 0 8px rgba(69,224,170,.65)}
+  .operator-metrics-status.is-stale{color:#ffd27a}.operator-metrics-status.is-stale::before{background:#f0b94c;box-shadow:0 0 8px rgba(240,185,76,.65)}
   .operator-metrics-status.is-error{color:#ff9aab}.operator-metrics-status.is-error::before{background:#ff617c;box-shadow:0 0 8px rgba(255,97,124,.65)}
   .operator-metric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
   .operator-metric-card{padding:14px 16px;border:1px solid rgba(69,216,229,.24);border-radius:13px;background:rgba(5,25,43,.55)}
@@ -262,6 +263,7 @@
   .operator-metric-state{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:11px;color:#7f8da3;font-size:10.5px;font-weight:700}
   .operator-metric-state::before{content:"";width:7px;height:7px;border-radius:50%;background:#f0b94c;box-shadow:0 0 8px rgba(240,185,76,.45)}
   .operator-metric-state.is-live{color:#71e5bf}.operator-metric-state.is-live::before{background:#45e0aa;box-shadow:0 0 8px rgba(69,224,170,.6)}
+  .operator-metric-state.is-stale{color:#ffd27a}.operator-metric-state.is-stale::before{background:#f0b94c;box-shadow:0 0 8px rgba(240,185,76,.6)}
   .operator-metric-state.is-error{color:#ff9aab}.operator-metric-state.is-error::before{background:#ff617c;box-shadow:0 0 8px rgba(255,97,124,.6)}
   .operator-metric-refresh{min-height:30px!important;margin-left:auto;padding:5px 10px!important;font-size:9.5px!important}
   @keyframes spin{to{transform:rotate(360deg)}}
@@ -2417,15 +2419,47 @@ function memberStatusLabel(status){return ({active:'契約中',trialing:'トラ�
 function hasStripeContract(sub=memberState.subscription){
   return !!sub&&(sub.has_stripe_subscription===true||sub.access_source==='stripe');
 }
+const MEMBERSHIP_CACHE_KEY='ai_radar_verified_membership_v1';
+const defaultMembership=()=>({plan:'free',status:'inactive',current_period_end:null,access_source:'account',has_stripe_subscription:false});
+const waitMs=ms=>new Promise(resolve=>window.setTimeout(resolve,ms));
+function cachedMembershipForUser(userId){
+  if(!userId)return null;
+  try{
+    const cached=JSON.parse(localStorage.getItem(MEMBERSHIP_CACHE_KEY)||'null');
+    return cached?.userId===userId&&cached?.membership&&typeof cached.membership==='object'?cached.membership:null;
+  }catch(_error){return null;}
+}
+function cacheMembershipForUser(userId,membership){
+  if(!userId||!membership)return;
+  const cachedMembership={
+    plan:membership.plan,status:membership.status,current_period_end:membership.current_period_end||null,
+    access_source:membership.access_source,has_stripe_subscription:membership.has_stripe_subscription===true,
+    stripe_plan:membership.stripe_plan||null,stripe_status:membership.stripe_status||null,
+    stripe_current_period_end:membership.stripe_current_period_end||null
+  };
+  try{localStorage.setItem(MEMBERSHIP_CACHE_KEY,JSON.stringify({userId,membership:cachedMembership}));}catch(_error){}
+}
 async function loadMembership(){
-  if(!memberClient||!memberState.user)return {plan:'free',status:'inactive',current_period_end:null,access_source:'account',has_stripe_subscription:false};
-  const result=await memberClient.rpc('get_my_membership');
-  if(!result.error&&result.data)return result.data;
+  const safeFallback=memberState.subscription||cachedMembershipForUser(memberState.user?.id)||defaultMembership();
+  if(!memberClient||!memberState.user)return safeFallback;
+  for(const delay of [0,500,1400]){
+    if(delay)await waitMs(delay);
+    try{
+      const result=await memberClient.rpc('get_my_membership');
+      if(!result.error&&result.data)return result.data;
+    }catch(_error){}
+  }
+  // subscriptions alone cannot represent an operator grant. Keep a previously
+  // verified operator grant until get_my_membership succeeds again.
+  if(safeFallback.access_source==='operator_grant')return safeFallback;
   // Keep existing members usable while a database migration is being deployed.
-  const fallback=await memberClient.from('subscriptions').select('plan,status,current_period_end,stripe_customer_id,stripe_subscription_id').maybeSingle();
-  const sub=fallback.data||{plan:'free',status:'inactive',current_period_end:null};
-  const hasStripe=!!(sub.stripe_customer_id&&sub.stripe_subscription_id);
-  return {...sub,access_source:hasStripe?'stripe':'account',has_stripe_subscription:hasStripe,stripe_plan:hasStripe?sub.plan:null,stripe_status:hasStripe?sub.status:null,stripe_current_period_end:hasStripe?sub.current_period_end:null};
+  try{
+    const fallback=await memberClient.from('subscriptions').select('plan,status,current_period_end,stripe_customer_id,stripe_subscription_id').maybeSingle();
+    if(fallback.error)return safeFallback;
+    const sub=fallback.data||safeFallback;
+    const hasStripe=!!(sub.stripe_customer_id&&sub.stripe_subscription_id);
+    return {...sub,access_source:hasStripe?'stripe':'account',has_stripe_subscription:hasStripe,stripe_plan:hasStripe?sub.plan:null,stripe_status:hasStripe?sub.status:null,stripe_current_period_end:hasStripe?sub.current_period_end:null};
+  }catch(_error){return safeFallback;}
 }
 function validOperatorMetrics(data){
   const registeredUsers=Number(data?.registered_users);
@@ -2453,7 +2487,9 @@ function operatorMetricsTimeLabel(value){
 }
 function operatorMetricsStatusLabel(){
   if(memberState.operatorMetricsStatus==='live')return `実数 ${operatorMetricsTimeLabel(memberState.operatorMetricsUpdatedAt)}取得`;
+  if(memberState.operatorMetricsStatus==='stale')return `再取得待ち・最終 ${operatorMetricsTimeLabel(memberState.operatorMetricsUpdatedAt)}`;
   if(memberState.operatorMetricsStatus==='error')return '取得エラー・再確認してください';
+  if(memberState.operatorMetricsStatus==='loading'&&memberState.operatorMetricsUpdatedAt)return `更新中・最終 ${operatorMetricsTimeLabel(memberState.operatorMetricsUpdatedAt)}`;
   return '実数を確認中';
 }
 function renderOperatorMetrics(){
@@ -2472,19 +2508,19 @@ function renderOperatorMetrics(){
   badge.querySelector('[data-operator-visitors]').textContent=metrics?metrics.uniqueVisitors.toLocaleString('ja-JP'):'—';
   badge.querySelector('[data-operator-users]').textContent=metrics?metrics.registeredUsers.toLocaleString('ja-JP'):'—';
   const badgeStatus=badge.querySelector('[data-operator-metrics-status]');
-  badgeStatus.className=`operator-metrics-status ${status==='live'?'is-live':status==='error'?'is-error':''}`;
-  badgeStatus.textContent=status==='live'?operatorMetricsTimeLabel(memberState.operatorMetricsUpdatedAt):status==='error'?'エラー':'確認中';
+  badgeStatus.className=`operator-metrics-status ${status==='live'?'is-live':status==='stale'?'is-stale':status==='error'?'is-error':''}`;
+  badgeStatus.textContent=status==='live'?operatorMetricsTimeLabel(memberState.operatorMetricsUpdatedAt):status==='stale'?'再取得待ち':status==='error'?'エラー':'確認中';
   if(!existing)document.querySelector('.topbar .spacer')?.before(badge);
   document.querySelectorAll('[data-operator-account-visitors]').forEach(el=>{el.textContent=metrics?`${metrics.uniqueVisitors.toLocaleString('ja-JP')}人`:'—';});
   document.querySelectorAll('[data-operator-account-users]').forEach(el=>{el.textContent=metrics?`${metrics.registeredUsers.toLocaleString('ja-JP')}人`:'—';});
   document.querySelectorAll('[data-funnel-key]').forEach(el=>{const key=el.dataset.funnelKey;el.textContent=metrics?.funnel7d?metrics.funnel7d[key].toLocaleString('ja-JP'):'—';});
-  document.querySelectorAll('[data-operator-metrics-state]').forEach(el=>{el.className=`operator-metric-state ${status==='live'?'is-live':status==='error'?'is-error':''}`;el.querySelector('span').textContent=statusLabel;});
+  document.querySelectorAll('[data-operator-metrics-state]').forEach(el=>{el.className=`operator-metric-state ${status==='live'?'is-live':status==='stale'?'is-stale':status==='error'?'is-error':''}`;el.querySelector('span').textContent=statusLabel;});
 }
 function stopOperatorMetricsRefresh(){
   if(operatorMetricsRefreshTimer!==null){window.clearInterval(operatorMetricsRefreshTimer);operatorMetricsRefreshTimer=null;}
 }
 async function refreshOperatorMetrics(){
-  if(!memberClient||!memberState.user||memberState.subscription?.access_source!=='operator_grant'){
+  if(!memberState.user||memberState.subscription?.access_source!=='operator_grant'){
     stopOperatorMetricsRefresh();
     memberState.operatorMetrics=null;
     memberState.operatorMetricsStatus='idle';
@@ -2493,20 +2529,31 @@ async function refreshOperatorMetrics(){
     renderOperatorMetrics();
     return;
   }
+  if(!memberClient){
+    memberState.operatorMetricsStatus=memberState.operatorMetrics?'stale':'error';
+    memberState.operatorMetricsError='接続の復旧後に自動で再取得します';
+    renderOperatorMetrics();
+    return;
+  }
   if(operatorMetricsRefreshInFlight)return operatorMetricsRefreshInFlight;
   memberState.operatorMetricsStatus='loading';
   renderOperatorMetrics();
   operatorMetricsRefreshInFlight=(async()=>{
     try{
-      memberState.operatorMetrics=await loadOperatorMetrics();
+      let metrics=null;
+      let lastError=null;
+      for(const delay of [0,700,1800]){
+        if(delay)await waitMs(delay);
+        try{metrics=await loadOperatorMetrics();break;}catch(error){lastError=error;}
+      }
+      if(!metrics)throw lastError||new Error('管理者統計を取得できませんでした');
+      memberState.operatorMetrics=metrics;
       memberState.operatorMetricsStatus='live';
       memberState.operatorMetricsUpdatedAt=new Date().toISOString();
       memberState.operatorMetricsError='';
     }catch(error){
-      // 古い数字を現在の実数として見せない。失敗は明示し、次回の自動・手動更新で再取得する。
-      memberState.operatorMetrics=null;
-      memberState.operatorMetricsStatus='error';
-      memberState.operatorMetricsUpdatedAt=null;
+      // A transient failure must not erase the last verified counts.
+      memberState.operatorMetricsStatus=memberState.operatorMetrics?'stale':'error';
       memberState.operatorMetricsError=String(error?.message||'管理者統計を取得できませんでした');
     }finally{
       operatorMetricsRefreshInFlight=null;
@@ -2538,6 +2585,11 @@ function authErrorMessage(error){
 async function refreshMemberState(session){
   const previousUserId=memberState.user?.id||'';
   const nextUserId=session?.user?.id||'';
+  const sameUser=!!nextUserId&&previousUserId===nextUserId;
+  const previousSubscription=sameUser?memberState.subscription:cachedMembershipForUser(nextUserId);
+  const previousMetrics=sameUser?memberState.operatorMetrics:null;
+  const previousMetricsStatus=sameUser?memberState.operatorMetricsStatus:'idle';
+  const previousMetricsUpdatedAt=sameUser?memberState.operatorMetricsUpdatedAt:null;
   if(previousUserId!==nextUserId){
     loadedMemberStateFor='';
     lastCloudStateUpdatedAt='';
@@ -2545,24 +2597,27 @@ async function refreshMemberState(session){
     memberState.cloudSyncedAt=null;
   }
   memberState.user=session?.user||null;
-  memberState.subscription=null;
-  memberState.operatorMetrics=null;
-  memberState.operatorMetricsStatus='idle';
-  memberState.operatorMetricsUpdatedAt=null;
+  memberState.subscription=previousSubscription;
+  memberState.operatorMetrics=previousMetrics;
+  memberState.operatorMetricsStatus=previousMetricsStatus;
+  memberState.operatorMetricsUpdatedAt=previousMetricsUpdatedAt;
   memberState.operatorMetricsError='';
   memberState.reviewStatus=null;
   if(memberState.user&&memberClient){
     // 契約・クラウド設定・レビュー状態は互いに独立しているため並列取得する。
     // 起動時の3回分の通信待ちを1回分に短縮する。
-    const [membership]=await Promise.all([
+    const [membership]=await Promise.allSettled([
       loadMembership(),
       loadMemberAppState(),
       loadReviewStatus()
     ]);
-    memberState.subscription=membership;
-    if(membership?.access_source==='operator_grant')await refreshOperatorMetrics();
+    if(membership.status==='fulfilled'){
+      memberState.subscription=membership.value;
+      cacheMembershipForUser(memberState.user.id,membership.value);
+    }
+    await refreshOperatorMetrics();
   }else if(memberClient){
-    await loadReviewStatus();
+    await Promise.allSettled([loadReviewStatus()]);
   }
   memberState.ready=true;
   // 次回起動時の初期表示に使うため、確定したプランを保存する。
@@ -2991,6 +3046,7 @@ async function loadMemberAppState(force=false){
   if(loadedMemberStateFor===memberState.user.id&&!force)return;
   clearTimeout(appStateSyncTimer);
   setCloudSyncStatus('syncing');
+  try{
   if(force&&lastCloudStateUpdatedAt){
     const latest=await memberClient.from('user_states').select('updated_at').maybeSingle();
     if(latest.error){setCloudSyncStatus('error');return false;}
@@ -3006,9 +3062,9 @@ async function loadMemberAppState(force=false){
     const migrated=runMigrations(DB._data);
     try{localStorage.setItem(DB.KEY,JSON.stringify(DB._data));}catch(e){console.warn('storage save failed',e);}
     // 接ぎ木した変更や移行結果はクラウドへ書き戻し、次回起動後も残す。
-    if(migrated||grafts>0)await saveMemberAppState();
+    if((migrated||grafts>0)&&!await saveMemberAppState())return false;
   }else if(!error){
-    await saveMemberAppState();
+    if(!await saveMemberAppState())return false;
   }
   if(!error){
     loadedMemberStateFor=memberState.user.id;
@@ -3018,12 +3074,14 @@ async function loadMemberAppState(force=false){
     if(force)renderIfChanged();
     return true;
   }
+  }catch(_error){}
   setCloudSyncStatus('error');
   return false;
 }
 async function saveMemberAppState(){
-  if(!memberClient||!memberState.user||!DB._data)return;
+  if(!memberClient||!memberState.user||!DB._data)return false;
   setCloudSyncStatus('syncing');
+  try{
   const remote=await memberClient.from('user_states').select('state,updated_at').maybeSingle();
   if(!remote.error&&remote.data?.state&&Array.isArray(remote.data.state.tools)&&Array.isArray(remote.data.state.updates)){
     const {state}=mergeMemberState(remote.data.state,DB._data);
@@ -3032,11 +3090,15 @@ async function saveMemberAppState(){
   }
   const snapshot=DB._data;
   const {data,error}=await memberClient.from('user_states').upsert({user_id:memberState.user.id,state:snapshot},{onConflict:'user_id'}).select('updated_at').single();
-  if(!error){
-    lastCloudStateUpdatedAt=data?.updated_at||lastCloudStateUpdatedAt;
-    if(snapshot===DB._data)memberStateDirty=false;
-    setCloudSyncStatus('synced',new Date().toISOString());
-  }else setCloudSyncStatus('error');
+  if(error)throw error;
+  lastCloudStateUpdatedAt=data?.updated_at||lastCloudStateUpdatedAt;
+  if(snapshot===DB._data)memberStateDirty=false;
+  setCloudSyncStatus('synced',new Date().toISOString());
+  return true;
+  }catch(_error){
+    setCloudSyncStatus('error');
+    return false;
+  }
 }
 function scheduleMemberAppStateSync(){
   if(!memberState.user||!memberClient)return;
@@ -3049,7 +3111,7 @@ async function syncMemberAppStateFromCloud(options={}){
   memberCloudSyncInFlight=loadMemberAppState(true).then(changed=>{
     if(options.showToast)toast(changed?'PC・スマホのアカウント情報を同期しました':'最新の状態です','ok');
     return changed;
-  }).finally(()=>{memberCloudSyncInFlight=null;});
+  }).catch(()=>{setCloudSyncStatus('error');return false;}).finally(()=>{memberCloudSyncInFlight=null;});
   return memberCloudSyncInFlight;
 }
 
@@ -3059,8 +3121,15 @@ let visitorRegistrationStarted=false;
 let visitorRegistrationComplete=false;
 let visitorRegistrationAttempts=0;
 let visitorRegistrationRetryTimer=null;
+const VISITOR_REGISTRATION_MAX_ATTEMPTS=5;
+function isMissingSupabaseRpc(error,rpcName){
+  const code=String(error?.code||'');
+  const status=Number(error?.status||error?.statusCode||0);
+  const details=[error?.message,error?.details,error?.hint].filter(Boolean).join(' ');
+  return ['PGRST202','42883'].includes(code)||status===404||new RegExp(`(?:${rpcName}.*(?:not found|schema cache|does not exist)|(?:not found|schema cache|does not exist).*${rpcName})`,'i').test(details);
+}
 function scheduleUniqueVisitorRetry(){
-  if(visitorRegistrationComplete||visitorRegistrationRetryTimer!==null)return;
+  if(visitorRegistrationComplete||visitorRegistrationRetryTimer!==null||visitorRegistrationAttempts>=VISITOR_REGISTRATION_MAX_ATTEMPTS)return;
   const delay=Math.min(60000,5000*Math.pow(2,Math.min(visitorRegistrationAttempts,3)));
   visitorRegistrationRetryTimer=window.setTimeout(()=>{visitorRegistrationRetryTimer=null;registerUniqueVisitor();},delay);
 }
@@ -3075,8 +3144,9 @@ async function registerUniqueVisitor(){
     visitorRegistrationComplete=true;
     visitorRegistrationAttempts=0;
     if(visitorRegistrationRetryTimer!==null){window.clearTimeout(visitorRegistrationRetryTimer);visitorRegistrationRetryTimer=null;}
-  }catch(_e){
+  }catch(error){
     visitorRegistrationStarted=false;
+    if(isMissingSupabaseRpc(error,'register_unique_visitor')){visitorRegistrationComplete=true;return;}
     visitorRegistrationAttempts++;
     scheduleUniqueVisitorRetry();
   }
@@ -3087,10 +3157,17 @@ async function registerUniqueVisitor(){
    full referrer URL or article text is sent as an analytics event. */
 const GROWTH_EVENT_QUEUE_KEY='ai_radar_growth_event_queue_v1';
 const GROWTH_SESSION_KEY='ai_radar_growth_session_v1';
+const GROWTH_RPC_BACKOFF_KEY='ai_radar_growth_rpc_backoff_v1';
+const GROWTH_RPC_MISSING_BACKOFF_MS=6*60*60*1000;
 const GROWTH_EVENT_NAMES=new Set(['landing_view','route_view','article_view','pricing_view','signup_start','signup_success','checkout_start','payment_confirmed','share_click','source_open']);
 let growthFlushInFlight=null;
 let growthRpcRetryAfter=0;
 let transientGrowthSession='';
+try{
+  const storedRetryAfter=Number(localStorage.getItem(GROWTH_RPC_BACKOFF_KEY)||0);
+  if(Number.isFinite(storedRetryAfter)&&storedRetryAfter>Date.now())growthRpcRetryAfter=storedRetryAfter;
+  else localStorage.removeItem(GROWTH_RPC_BACKOFF_KEY);
+}catch(_error){}
 function randomUuid(){
   if(crypto.randomUUID)return crypto.randomUUID();
   const bytes=crypto.getRandomValues(new Uint8Array(16));bytes[6]=(bytes[6]&15)|64;bytes[8]=(bytes[8]&63)|128;
@@ -3129,7 +3206,7 @@ function growthEventQueue(){
 }
 function saveGrowthEventQueue(queue){try{localStorage.setItem(GROWTH_EVENT_QUEUE_KEY,JSON.stringify(queue.slice(-50)));}catch(_error){}}
 async function trackAppEvent(eventName,details={}){
-  if(!GROWTH_EVENT_NAMES.has(eventName))return;
+  if(!GROWTH_EVENT_NAMES.has(eventName)||Date.now()<growthRpcRetryAfter)return;
   const attribution=growthAttribution();
   const event={
     eventId:randomUuid(),eventName,sessionKeyHash:await hashAnonymousValue(growthSessionId()),
@@ -3147,13 +3224,20 @@ async function flushAppEvents(){
     const queue=growthEventQueue();
     while(queue.length){
       const event=queue[0];
-      const {error}=await memberClient.rpc('record_app_event',{
-        p_event_id:event.eventId,p_event_name:event.eventName,p_session_key_hash:event.sessionKeyHash,
-        p_route:event.route,p_article_id:event.articleId,p_plan:event.plan,p_utm_source:event.utmSource,
-        p_utm_medium:event.utmMedium,p_utm_campaign:event.utmCampaign,p_referrer_host:event.referrerHost,p_occurred_at:event.occurredAt
-      });
-      if(error){
-        if(['PGRST202','42883'].includes(String(error.code||''))||/record_app_event/i.test(String(error.message||'')))growthRpcRetryAfter=Date.now()+5*60000;
+      try{
+        const {error}=await memberClient.rpc('record_app_event',{
+          p_event_id:event.eventId,p_event_name:event.eventName,p_session_key_hash:event.sessionKeyHash,
+          p_route:event.route,p_article_id:event.articleId,p_plan:event.plan,p_utm_source:event.utmSource,
+          p_utm_medium:event.utmMedium,p_utm_campaign:event.utmCampaign,p_referrer_host:event.referrerHost,p_occurred_at:event.occurredAt
+        });
+        if(error)throw error;
+      }catch(error){
+        if(isMissingSupabaseRpc(error,'record_app_event')){
+          growthRpcRetryAfter=Date.now()+GROWTH_RPC_MISSING_BACKOFF_MS;
+          try{localStorage.setItem(GROWTH_RPC_BACKOFF_KEY,String(growthRpcRetryAfter));}catch(_error){}
+          queue.length=0;
+          saveGrowthEventQueue(queue);
+        }else growthRpcRetryAfter=Date.now()+60000;
         break;
       }
       queue.shift();saveGrowthEventQueue(queue);
@@ -3168,6 +3252,7 @@ function trackRouteView(){
   if(route.name==='pricing')trackAppEvent('pricing_view',{route:route.name});
 }
 window.addEventListener('online',()=>{
+  if(!visitorRegistrationComplete)visitorRegistrationAttempts=0;
   registerUniqueVisitor();
   flushAppEvents();
   if(memberState.subscription?.access_source==='operator_grant')refreshOperatorMetrics();
@@ -5447,7 +5532,7 @@ function renderAccount(v){
         <div class="operator-metric-card"><span>決済を開始</span><strong data-funnel-key="checkoutStarts">${memberState.operatorMetrics?.funnel7d?.checkoutStarts??'—'}</strong></div>
         <div class="operator-metric-card"><span>契約反映を確認</span><strong data-funnel-key="paymentsConfirmed">${memberState.operatorMetrics?.funnel7d?.paymentsConfirmed??'—'}</strong></div>
       </div>
-      <div class="operator-metric-state ${memberState.operatorMetricsStatus==='live'?'is-live':memberState.operatorMetricsStatus==='error'?'is-error':''}" data-operator-metrics-state><span>${esc(operatorMetricsStatusLabel())}</span><button class="btn operator-metric-refresh" type="button" onclick="refreshOperatorMetrics()">今すぐ再取得</button></div>
+      <div class="operator-metric-state ${memberState.operatorMetricsStatus==='live'?'is-live':memberState.operatorMetricsStatus==='stale'?'is-stale':memberState.operatorMetricsStatus==='error'?'is-error':''}" data-operator-metrics-state><span>${esc(operatorMetricsStatusLabel())}</span><button class="btn operator-metric-refresh" type="button" onclick="refreshOperatorMetrics()">今すぐ再取得</button></div>
       <p class="billing-help">表示値はSupabaseへ記録された現在の実数です。匿名閲覧はログイン情報がないため、同じ端末・ブラウザーの重複を除いた累計であり、異なる端末を使う同一人物を完全には統合できません。</p>
       <p class="billing-help">${hasStripeSubscription?'下の「契約・お支払い管理」から、別に契約中のStripeサブスクを確認・解約できます。':'料金の請求や自動更新はありません。特典はSupabaseの運営者設定でのみ変更できます。'}</p>
     </section>`:''}
