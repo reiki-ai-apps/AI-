@@ -6,6 +6,7 @@
 import { el, clear, replace, button, append, focus } from '../core/dom.js';
 import { ApiRepo } from '../store/apiRepo.js';
 import { openGithubDatabase } from '../store/githubdb.js';
+import { openPublicDatabase } from '../store/publicdb.js';
 import { Repo } from '../store/repo.js';
 import { loadConnection, isStaticHost, loadLocalPref, saveLocalPref } from '../store/backend.js';
 import { buildGithubSetupForm } from './connectionSetup.js';
@@ -71,7 +72,7 @@ const app = {
 
   async refresh() {
     // GitHubモードでは、他の端末やスキルの書き込みを拾ってから描く。
-    if (app.ctx?.backend === 'github') {
+    if (app.ctx?.backend === 'github' || app.ctx?.backend === 'public') {
       await app.ctx.db.refreshIfStale(4_000).catch(() => {});
     }
     await render();
@@ -79,7 +80,7 @@ const app = {
 
   /** 表示単位などの軽い好みの保存先（GitHubモードはコミットを増やさない）。 */
   saveViewPref(mode) {
-    if (app.ctx?.backend === 'github') saveLocalPref('calendar_view', mode);
+    if (app.ctx?.backend === 'github' || app.ctx?.backend === 'public') saveLocalPref('calendar_view', mode);
     else app.ctx.repo.setSetting('calendar_view', mode).catch(() => {});
   },
 
@@ -205,9 +206,10 @@ async function boot() {
       const db = await openGithubDatabase(connection);
       app.ctx = { repo: new Repo(db, clock), clock, db, mode: 'SOLO', backend: 'github', actor: { userId: USER_ID, role: state.role } };
     } else if (isStaticHost()) {
-      // Pagesで開いたが設定がまだ無い → 初期設定へ
-      renderGithubSetup();
-      return;
+      // 公開Pagesは合鍵不要の閲覧専用。更新はPC/Codex側のGit操作だけで行う。
+      const db = await openPublicDatabase();
+      state.role = 'VIEWER';
+      app.ctx = { repo: new Repo(db, clock), clock, db, mode: 'SOLO', backend: 'public', actor: { userId: USER_ID, role: state.role } };
     } else {
       // ローカルサーバー（npm start）モード
       app.ctx = {
@@ -218,11 +220,11 @@ async function boot() {
         actor: { userId: USER_ID, role: state.role },
       };
     }
-    if ((await app.ctx.repo.listSocialAccounts()).length === 0) {
+    if (app.ctx.backend !== 'public' && (await app.ctx.repo.listSocialAccounts()).length === 0) {
       await seedSocialAccounts(app.ctx);
     }
     // 前回選んだ表示単位を復元する（GitHubモードではコミットを増やさないよう端末に置く）
-    const savedView = app.ctx.backend === 'github'
+    const savedView = app.ctx.backend === 'github' || app.ctx.backend === 'public'
       ? loadLocalPref('calendar_view', 'week')
       : await app.ctx.repo.getSetting('calendar_view', 'week');
     if (savedView === 'week' || savedView === 'month') state.view = savedView;
@@ -253,23 +255,23 @@ async function boot() {
   buildRoleSelect();
 
   const hash = location.hash.replace('#', '');
-  if (SCREENS.some((s) => s.id === hash)) state.route = hash;
+    if (visibleScreens().some((s) => s.id === hash)) state.route = hash;
   window.addEventListener('hashchange', async () => {
     // §26 スキルがURLで送ってきた意図。開いたままのタブへ届く場合もここを通る。
-    if (hasIntentLink()) {
+    if (app.ctx.backend !== 'public' && hasIntentLink()) {
       state.route = 'connections';
       await consumeIntentLink(app);
       await render();
       return;
     }
     const next = location.hash.replace('#', '');
-    if (SCREENS.some((s) => s.id === next) && next !== state.route) {
+    if (visibleScreens().some((s) => s.id === next) && next !== state.route) {
       state.route = next;
       render();
     }
   });
 
-  if (hasIntentLink()) {
+  if (app.ctx.backend !== 'public' && hasIntentLink()) {
     state.route = 'connections';
     await consumeIntentLink(app);
   }
@@ -309,7 +311,7 @@ function renderSkeleton() {
 
 function buildNav() {
   clear(navHost);
-  for (const screen of SCREENS) {
+  for (const screen of visibleScreens()) {
     const badge = el('span', { class: 'nav-badge', hidden: true });
     const item = button(screen.label, {
       class: 'nav-item',
@@ -326,16 +328,24 @@ function buildNav() {
 
 function buildRoleSelect() {
   clear(roleSelect);
-  for (const id of ROLE_ORDER) {
+  const roles = app.ctx.backend === 'public' ? ['VIEWER'] : ROLE_ORDER;
+  for (const id of roles) {
     roleSelect.appendChild(el('option', { value: id }, `役割：${roleLabel(id)}`));
   }
   roleSelect.value = state.role;
+  roleSelect.disabled = app.ctx.backend === 'public';
   roleSelect.addEventListener('change', () => {
     state.role = roleSelect.value;
     app.ctx.actor = { userId: USER_ID, role: state.role };
     app.toast(`${ROLES[state.role].label}として操作します（権限：${ROLES[state.role].scope}）`);
     render();
   });
+}
+
+function visibleScreens() {
+  return app.ctx?.backend === 'public'
+    ? SCREENS.filter((screen) => screen.id !== 'connections')
+    : SCREENS;
 }
 
 function syncNav() {
@@ -355,7 +365,9 @@ let renderToken = 0;
 
 async function render() {
   const token = ++renderToken;
-  const screen = SCREENS.find((s) => s.id === state.route) ?? SCREENS[0];
+  const screens = visibleScreens();
+  const screen = screens.find((s) => s.id === state.route) ?? screens[0];
+  state.route = screen.id;
 
   try {
     state.pendingCount = (await app.ctx.repo.listPendingApprovals()).length;
