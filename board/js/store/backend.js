@@ -39,7 +39,9 @@ export function clearConnection() {
 
 /** Pages など、同一オリジンにAPIサーバーが居ない場所で開かれているか。 */
 export function isStaticHost() {
-  return location.hostname.endsWith('github.io') || location.protocol === 'file:';
+  return location.hostname === 'reiki-ai-apps.github.io'
+    || location.protocol === 'file:'
+    || new URLSearchParams(location.search).get('public') === '1';
 }
 
 /** 表示単位などの軽い好みは、GitHubモードではコミットせず端末に置く。 */
