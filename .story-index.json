@@ -2,6 +2,96 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_35fcdb866d715c241e43",
+      "story_id": "story_27b22d244715a38f86",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5594594594594595,
+      "title": "DeepSeekがエージェント基盤を公開、モデルからUIまで全機能をプラグイン化",
+      "source_published_at": "2026-08-15T07:19:53.000Z",
+      "published_at": "2026-08-15T07:19:53.000Z",
+      "fetched_at": "2026-08-15T09:42:38.499Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "DeepSeekがAIエージェントの開発基盤を公開し、モデルからユーザーインターフェースまで全機能をプラグイン形式で構成可能にした。",
+      "source_name": "XenoSpectrum",
+      "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBCa2MxUDVzc1FTWHNLWktKdkEtNzlFeUpMVTB5bGF4eHVMaTNsRTlEeXh5N2dRcTB6RWw0SFdLNnJOMG9uYXhMWkFqQ3ZwTDNqM2hfM0NJTE5TZTRSYTNxS19tdm4wbGgwbWlaLQ?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "deepseek"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "AIエージェント基盤",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "全世界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_subject",
+        "same_event_type"
+      ],
+      "change_summary": "DeepSeekがモデルからUIまで全機能をプラグイン化したエージェント基盤を新たに公開した点が新しい。",
+      "detail": "DeepSeekが新たなAIエージェント基盤を公開した。この基盤では、AIエージェントを構成する要素がモデル部分からユーザーインターフェース（UI）に至るまで、すべてプラグインとして扱われる設計になっているという。これにより、開発者は必要な機能を組み合わせて独自のエージェントシステムを構築しやすくなる可能性がある。基盤の具体的な対応言語やライセンス形態、既存製品との連携方法など詳細は記事内では明らかにされていない。",
+      "new_facts": [
+        "DeepSeekがAIエージェント基盤を公開した",
+        "モデルからUIまで全機能がプラグイン形式で構成可能"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_488335d34162bc9d2c3f",
+      "story_id": "story_1801b667f143459a7b",
+      "story_sequence": 2,
+      "relation_type": "follow_up",
+      "relation_confidence": 0.8979999999999999,
+      "title": "Z.ai、新モデル「GLM-5.3」を発表 コーディングと脆弱性解析を強化",
+      "source_published_at": "2026-08-15T06:46:00.000Z",
+      "published_at": "2026-08-15T06:46:00.000Z",
+      "fetched_at": "2026-08-15T09:42:54.253Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Z.aiがAIモデル「GLM-5.3」を発表し、コーディング能力と脆弱性解析機能を強化、モデルの重みは2週間後に公開予定と明らかにした。",
+      "source_name": "gihyo.jp",
+      "source_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5zM2dfQVVUWGtSYUtIWlZLQXFWU2FIbC1DUUZ0TzZSQUZIYjgxWWpiT3NqU1FPM25tU096dTNuWUxyOGd6X3o0NlBLREE5THh0SWY0Vmh0TDRtOFNa?oc=5",
+      "story_entities": [
+        "Z.ai",
+        "GLM-5.3",
+        "z.ai",
+        "glm-5.3"
+      ],
+      "primary_entity": "Z.ai",
+      "story_subject": "GLM-5.3",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "全世界",
+      "fact_slots": [
+        {
+          "type": "date",
+          "scope": "モデル重み公開時期",
+          "value": "発表から2週間後",
+          "normalized_value": "発表から2週間後"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "follow_up",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "same_scope",
+        "material_fact_changed"
+      ],
+      "change_summary": "Z.aiがGLM-5.3を新たに発表し、コーディングと脆弱性解析機能を強化した点が新しい。",
+      "detail": "Z.aiが新しいAIモデル「GLM-5.3」を発表した。今回のモデルではコーディング支援機能と脆弱性解析の精度が強化されたという。モデルの重み（ニューラルネットワークの学習済みパラメータ）については、発表から2週間後に公開される予定と伝えられている。具体的な性能指標や対応言語、ベンチマーク結果などの詳細は記事内では明らかにされておらず、今後の公開情報が待たれる状況にある。",
+      "new_facts": [
+        "Z.aiがGLM-5.3を発表し、コーディングと脆弱性解析機能を強化した",
+        "モデルの重みは発表から2週間後に公開される予定"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_00c543b3c8ba1262c5c3_rev_d0741aa00d20",
       "story_id": "story_acb571947685bcdb5b",
       "story_sequence": 1,
@@ -100,6 +190,85 @@
       "detail": "グーグルは新たなAIモデル「Gemini 3.7 Flash」を発表した。記事は、なぜ今このタイミングで「コーディング特化」かつ「半額」という位置づけの新モデルを投入するのかを論じている。既存のGeminiシリーズと異なり、プログラミング用途への最適化と低価格化を両立させた点が注目されているが、具体的な料金水準や既存モデルとの詳細な性能比較は記事から確認できず、不明な点が残る。",
       "new_facts": [
         "グーグルがコーディング特化・半額を特徴とする新AI「Gemini 3.7 Flash」を投入した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_4854a187640fe73b0068",
+      "story_id": "story_8baf0701078df341f3",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6365714285714286,
+      "title": "DeepSeek、API価格を大幅値上げへ 「価格破壊」の主役に何が起きているのか",
+      "source_published_at": "2026-08-15T03:01:40.000Z",
+      "published_at": "2026-08-15T03:01:40.000Z",
+      "fetched_at": "2026-08-15T09:42:38.499Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "中国AI企業DeepSeekがAPI価格を大幅に値上げする方針とされ、これまでの低価格戦略からの転換が注目されている。",
+      "source_name": "Yahoo!ニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQbGtXbGhDbmpCRFBBVlFsV2NUUVVpVjBWdVUtcWZIQWRyZFZJUDExbmRBRFFXZWpNS3BqaXNPekh3UGZ4dTM0eEx6aHdYUjFXb0l3UXd6ZDduaTV2Y3h0a2wyaVdsOURGa05EUGYtUW1JaTZMVWpzd3pLeGIwVndpdFIwRGlDV2hiTkNkVEJ3?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "deepseek"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek API価格改定",
+      "event_type": "pricing",
+      "event_stage": "announced",
+      "event_scope": "API",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type",
+        "same_scope"
+      ],
+      "change_summary": "DeepSeekが従来の低価格API戦略から一転し、大幅な値上げに踏み切るとされる。",
+      "detail": "DeepSeekは低価格なAPIを武器に世界のAI業界で「価格破壊」を主導してきた企業とされるが、今回そのAPI価格を大幅に値上げする方向にあると報じられた。詳細な値上げ幅や実施時期については記事本文からは確認できないが、これまで価格競争を仕掛けてきた側の企業が方針転換を迫られている背景に関心が集まっている。今後、具体的な新料金体系や値上げの理由、他社への影響についての続報が待たれる状況。",
+      "new_facts": [
+        "DeepSeekがAPI価格を大幅に値上げする方針とされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_f895fdf4036a82581a64",
+      "story_id": "story_6086e78a9fe10024c4",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "ノースカロライナ大学のAI担当副学長ジェフリー・バードゼル氏が辞任",
+      "source_published_at": "2026-08-15T00:54:59.000Z",
+      "published_at": "2026-08-15T00:54:59.000Z",
+      "fetched_at": "2026-08-15T09:42:50.318Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "米ノースカロライナ大学チャペルヒル校でAI担当副学長を務めていたジェフリー・バードゼル氏が、データ・情報科学スクール開設を前に辞任した。",
+      "source_name": "The Daily Tar Heel",
+      "source_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxONXFMaF9GZ3NKV2dTbXQwSUdCS3hTTWhmc2lhSGpHay1ISTZrUjhSUEtrWUlZTjBBcXBDY2hKd3Bfc3BKcFhEay01cXZRd25JTFREdF81dUszaG0xUnEyVkNxMWNVOVgzR1g0TFlmR1pLbVhkcjdocnJncERKS3pRVHljeXVSY1F5djJKeF9yLTU1TkJYNmd4aDRPbzhSX2pXZ3Nn?oc=5",
+      "story_entities": [
+        "Jeffrey Bardzell",
+        "ノースカロライナ大学チャペルヒル校",
+        "jeffreybardzell"
+      ],
+      "primary_entity": "ノースカロライナ大学チャペルヒル校",
+      "story_subject": "AI担当副学長の辞任",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "米国・大学",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "大学のAI担当トップだったバードゼル氏の辞任が、新学部開設前というタイミングで明らかになった。",
+      "detail": "米ノースカロライナ大学チャペルヒル校でVice Provost for AI（AI担当副学長）を務めていたジェフリー・バードゼル氏が辞任したことが分かった。同氏の辞任は、大学が新設予定のデータ・情報科学スクール（school of data and information science）の開設を控えたタイミングで明らかになった。辞任の具体的な理由や後任人事については記事からは不明。",
+      "new_facts": [
+        "ノースカロライナ大学チャペルヒル校のAI担当副学長ジェフリー・バードゼル氏が辞任した",
+        "データ・情報科学スクールの開設を控えたタイミングでの辞任だった"
       ],
       "event_date_precision": "unknown"
     },
@@ -1764,6 +1933,46 @@
       "new_facts": [
         "イスラエル政府が国家AI戦略計画を発表した",
         "AIアクセラレータを10万基規模で確保する目標を掲げている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_a9d0f86fb163195e3ee9",
+      "story_id": "story_e787fbf553924cebb3",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "テンセント、中国AI新興Manusの筆頭株主に Metaから株式引き受け",
+      "source_published_at": "2026-08-13T10:04:53.000Z",
+      "published_at": "2026-08-13T10:04:53.000Z",
+      "fetched_at": "2026-08-15T09:42:39.977Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "中国IT大手テンセントが、AIスタートアップManusの株式をMetaから引き受け、筆頭株主となったことが明らかになった。",
+      "source_name": "日本経済新聞",
+      "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE91YVdRbXR2WVZhRzJxZXUwOEdCQlZTM0dyOXNyVkh4WWZnaWtEeW95RWxHWTN4MTJGX3lRaEVDMTVfeWpmajlua1hKdFMxd3FsMnN2a0lkUnp4LVlFSjNXZVFtMFNKQ01LSWF4RA?oc=5",
+      "story_entities": [
+        "テンセント",
+        "Manus",
+        "Meta",
+        "manus",
+        "meta"
+      ],
+      "primary_entity": "テンセント",
+      "story_subject": "Manus株式のテンセントへの移転",
+      "event_type": "acquisition",
+      "event_stage": "announced",
+      "event_scope": "中国",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "MetaがManusに保有していた株式をテンセントが引き受け、テンセントが筆頭株主となった。",
+      "detail": "中国の大手IT企業テンセントが、中国発のAIスタートアップ「Manus」の株式をMetaから引き受け、同社の筆頭株主になったことが報じられた。Manusは自律的にタスクを実行するAIエージェントとして注目を集めてきた企業で、これまでMetaが株式を保有していたとみられる。今回の株式異動により、テンセントがManusの経営や技術開発に対して影響力を強める可能性がある。具体的な取得株式数や金額、今後の事業方針については記事本文からは確認できない。",
+      "new_facts": [
+        "テンセントがMetaからManusの株式を引き受け筆頭株主になった"
       ],
       "event_date_precision": "unknown"
     },
