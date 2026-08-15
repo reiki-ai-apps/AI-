@@ -1,5 +1,71 @@
 [
   {
+    "tool": "Gemini",
+    "title": "グーグル、コーディング特化で価格半分の新AI「Gemini 3.7 Flash」を投入",
+    "source_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNLTk1RGZWNjJ4bFBHc1N5VjcxOFBHb1ZCd0FhR0hVbE5MTmY1NWRBSFA1XzNCUWJlSWc4OFBtLXVqaklpbERnZmFUdTRReU15RGUtS2hubm1sek8yc1U1YzdGaFBncVQ4R1dRLWFEUXdGM000WWtRdDZSUUR6NUpoYmk3YmhBU3Yx?oc=5",
+    "source_name": "Yahoo!ニュース",
+    "is_official": false,
+    "published_at": "2026-08-15T03:13:18.000Z",
+    "source_published_at": "2026-08-15T03:13:18.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-15T03:55:10.284Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Google",
+      "Gemini 3.7 Flash",
+      "google",
+      "gemini3.7flash",
+      "google-gemini"
+    ],
+    "primary_entity": "Google",
+    "story_subject": "Gemini 3.7 Flash",
+    "event_type": "release",
+    "event_stage": "announced",
+    "event_scope": "開発者向けコーディング支援",
+    "fact_slots": [
+      {
+        "type": "price",
+        "scope": "Gemini 3.7 Flashの価格",
+        "value": "従来モデルの半額(具体的金額不明)",
+        "normalized_value": "従来モデルの半額具体的金額不明"
+      }
+    ],
+    "new_facts": [
+      "グーグルがコーディング特化・半額を特徴とする新AI「Gemini 3.7 Flash」を投入した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "グーグルは新型AIモデル「Gemini 3.7 Flash」を投入し、コーディング用途に特化しつつ価格を従来の半額に抑えた点が特徴とされる。",
+    "detail": "グーグルは新たなAIモデル「Gemini 3.7 Flash」を発表した。記事は、なぜ今このタイミングで「コーディング特化」かつ「半額」という位置づけの新モデルを投入するのかを論じている。既存のGeminiシリーズと異なり、プログラミング用途への最適化と低価格化を両立させた点が注目されているが、具体的な料金水準や既存モデルとの詳細な性能比較は記事から確認できず、不明な点が残る。",
+    "change_summary": "グーグルがコーディング特化かつ従来より安価な新モデル「Gemini 3.7 Flash」を投入したことが新しい動きである。",
+    "impact_summary": "開発者やエンジニアにとって、低コストでコーディング支援AIを利用できる選択肢が増える可能性がある。",
+    "action_suggestion": "具体的な料金体系や提供開始時期について、グーグルの公式発表で詳細を確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル",
+      "アプリ開発・自動化"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_1b6d00d2e7e7841dc0ca",
+    "story_id": "story_1bf06a3e6e91939abb",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.8455,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject",
+      "same_event_type",
+      "non_forward_stage_change"
+    ]
+  },
+  {
     "tool": "DeepSeek",
     "title": "DeepSeekがAIエージェント向けツール「DeepSeek Harness」v0.1を公開",
     "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1iZVp5cVZNYnI5cTMwNHJ1aU15RXphT205UmJtdHphcmJBY25LSWR0QmNGb0tTWVJ1V0JMbVBLWjhkRWVwekd3a3JKLUwxeGlnajlvUmkxd2ZuQlJBTXpPbVlkY2x4VVA2?oc=5",
@@ -109,6 +175,62 @@
     "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
     "article_id": "article_97c30b0d960fda3eac14",
     "story_id": "story_1ef6c47fee6d1c00dd",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.6482926829268293,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject"
+    ]
+  },
+  {
+    "tool": "Claude / Claude Code",
+    "title": "Claudeの文章透かしは何を証明できるのか、Anthropicが検出の限界を説明",
+    "source_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPTk5zbXp4bkl5LXl1d0lnSDdXb19vYUcyWTZJZjBLenRrV2ViOWJhS3hhTEoxbmNsbm1fTmZGYWhSUjZjMVZ1VzF4aUdUa19nVXFsLWVRdkFocUpnUTRkVURZZjBkOGVjZWFiX0p4dVFiQXlPa05JRTU0bjJQRFF2V3BjWGk0UQ?oc=5",
+    "source_name": "XenoSpectrum",
+    "is_official": false,
+    "published_at": "2026-08-14T22:19:44.000Z",
+    "source_published_at": "2026-08-14T22:19:44.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-15T03:55:09.017Z",
+    "event_at": "",
+    "event_status": "不明",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Anthropic",
+      "Claude",
+      "anthropic",
+      "claude"
+    ],
+    "primary_entity": "Anthropic",
+    "story_subject": "Claudeの文章透かし技術",
+    "event_type": "research",
+    "event_stage": "other",
+    "event_scope": "Claude利用者・AI生成文章の検出全般",
+    "fact_slots": [],
+    "new_facts": [
+      "Anthropicが自社Claudeの文章透かし技術について検出の限界を説明した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Anthropicは、Claudeが生成した文章に付与する透かし技術について、何を証明でき何を証明できないか、その検出の境界を説明した。",
+    "detail": "AI企業Anthropicは、自社の対話AI「Claude」が生成する文章に埋め込む透かし（ウォーターマーク）技術について、その検出能力の限界を自ら説明した。透かしはAI生成文章の判別に使われる技術だが、記事は透かしがどこまで「AIが書いた」と証明できるのか、その境界線に焦点を当てている。具体的な検出精度や適用範囲の数値は記事から確認できず、Anthropicが何を明らかにしたかの詳細は不明な部分が残る。",
+    "change_summary": "Anthropicが自社の文章透かし技術について、証明できる範囲と限界を明らかにした点が新しい。",
+    "impact_summary": "AI生成文章の判別技術に依存する教育現場や企業のコンテンツ審査において、透かし検出の限界を踏まえた運用見直しが求められる可能性がある。",
+    "action_suggestion": "透かし技術の具体的な検出条件や適用範囲について、Anthropicの公式発表を確認することが望ましい。",
+    "importance": "B",
+    "related_categories": [
+      "セキュリティ",
+      "研究・技術"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_9fb1e6ee0c950baf9ebe",
+    "story_id": "story_3fff75e1749a0a3850",
     "story_sequence": 1,
     "relation_type": "new",
     "relation_confidence": 0.6482926829268293,
@@ -946,116 +1068,6 @@
     "dedupe_reasons": [
       "same_primary_entity",
       "same_subject"
-    ]
-  },
-  {
-    "tool": "AI業界・経営重要速報",
-    "title": "米国の若年層、AI業界のビリオネアCEOに不信感 世論調査で判明",
-    "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBMVkhyVXVpOGxvOGFhd1UwRWI4TTEzbjdKaFBtbURUZVNYSmNCOFNiblJZV3lWX1NjaGxmMHE0NlJfSFBrakFEUWJwLWdPazlvNVFTYkZLN1c3R082dXJJOVZmSGFfUnpRR1FXajg1bldxY0h1NTBuQ0ZEWDk5WUk?oc=5",
-    "source_name": "Yahoo!ニュース",
-    "is_official": false,
-    "published_at": "2026-08-14T06:00:00.000Z",
-    "source_published_at": "2026-08-14T06:00:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-14T10:18:01.298Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "AI業界",
-      "ビリオネアCEO",
-      "世論調査",
-      "ai業界",
-      "ビリオネアceo"
-    ],
-    "primary_entity": "AI業界",
-    "story_subject": "米国若年層の世論調査",
-    "event_type": "research",
-    "event_stage": "other",
-    "event_scope": "米国",
-    "fact_slots": [],
-    "new_facts": [
-      "米国の若年層を対象とした世論調査で、AI業界のビリオネアCEOへの不信感が示された"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "米国の若年層を対象とした世論調査で、AI業界の億万長者CEOに対する不信感が広がっていることが明らかになった。",
-    "detail": "米国で実施された新たな世論調査により、若年層の間でAI業界を率いる億万長者(ビリオネア)CEOへの不信感が広がっていることが示された。調査を実施した機関名や具体的な不信感の割合など詳細な数値は記事内で明らかにされていないが、AI技術の急速な普及とともに、その恩恵を享受する経営者層への視線が厳しくなっている実態がうかがえる。",
-    "change_summary": "AI業界の経営者層に対する若年層の不信感を示す新しい世論調査結果が公表されたこと。",
-    "impact_summary": "AI企業経営者への社会的信頼が問われる中、日本を含む各国のAI企業も透明性やガバナンスへの説明責任を求められる可能性がある。",
-    "action_suggestion": "調査の実施主体や具体的な数値は記事本文からは確認できず、詳細な調査結果の公表を待つ必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "企業・株式",
-      "その他"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_f0d771200b57f025c379",
-    "story_id": "story_f1e0bce5cd6d4c43b0",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "AIセキュリティ",
-    "title": "日揮グループ、AI活用と統制を両立する「AI基本方針」を制定",
-    "source_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE82ek56Rno4SW01OFZ2N3Z0dnNMWkF6a0xfazdmN09teXJrRGJEclpKZklMcURRcGFnREFBbHhwdkRTTUo2dXFGbUViOG9XZDBIYlFQNXJfRjVUWVVYTUR3?oc=5",
-    "source_name": "PlusWeb3",
-    "is_official": false,
-    "published_at": "2026-08-14T03:40:03.000Z",
-    "source_published_at": "2026-08-14T03:40:03.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-14T10:18:03.897Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "日揮グループ",
-      "AI基本方針",
-      "ai基本方針"
-    ],
-    "primary_entity": "日揮グループ",
-    "story_subject": "AI基本方針",
-    "event_type": "policy",
-    "event_stage": "announced",
-    "event_scope": "日揮グループ社内",
-    "fact_slots": [],
-    "new_facts": [
-      "日揮グループがAI活用とガバナンスを両立する「AI基本方針」を制定した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "日揮グループがAIの事業活用と責任あるガバナンスを両立させる社内方針「AI基本方針」を制定したと発表した。",
-    "detail": "日揮グループは、AIを事業変革の手段として積極活用する一方で、責任ある利用のための統制を確保する「AI基本方針」を制定したと発表した。同方針は、AIを単なる規制対象としてではなく事業成長を支える基盤と位置づけ、活用とガバナンスの両立を目指す内容とされる。具体的な運用ルールや適用開始時期など詳細は記事内で明らかにされていないが、企業のAI活用に伴う社内指針整備の一例として示された。",
-    "change_summary": "日揮グループが新たに「AI基本方針」という社内方針を制定したこと。",
-    "impact_summary": "企業がAI活用を進める際の社内統制・ガバナンス整備の一例として、他企業の方針策定の参考になり得る。",
-    "action_suggestion": "方針の具体的な運用ルールや適用開始時期は記事からは確認できない。",
-    "importance": "C",
-    "related_categories": [
-      "政策・行政",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_cc659e00609152e28a84",
-    "story_id": "story_b21dcf093ff836f050",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
     ]
   },
   {
