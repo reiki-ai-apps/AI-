@@ -2,6 +2,56 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_1b6d00d2e7e7841dc0ca",
+      "story_id": "story_1bf06a3e6e91939abb",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.8455,
+      "title": "グーグル、コーディング特化で価格半分の新AI「Gemini 3.7 Flash」を投入",
+      "source_published_at": "2026-08-15T03:13:18.000Z",
+      "published_at": "2026-08-15T03:13:18.000Z",
+      "fetched_at": "2026-08-15T03:55:10.284Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "グーグルは新型AIモデル「Gemini 3.7 Flash」を投入し、コーディング用途に特化しつつ価格を従来の半額に抑えた点が特徴とされる。",
+      "source_name": "Yahoo!ニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNLTk1RGZWNjJ4bFBHc1N5VjcxOFBHb1ZCd0FhR0hVbE5MTmY1NWRBSFA1XzNCUWJlSWc4OFBtLXVqaklpbERnZmFUdTRReU15RGUtS2hubm1sek8yc1U1YzdGaFBncVQ4R1dRLWFEUXdGM000WWtRdDZSUUR6NUpoYmk3YmhBU3Yx?oc=5",
+      "story_entities": [
+        "Google",
+        "Gemini 3.7 Flash",
+        "google",
+        "gemini3.7flash",
+        "google-gemini"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "Gemini 3.7 Flash",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "開発者向けコーディング支援",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "Gemini 3.7 Flashの価格",
+          "value": "従来モデルの半額(具体的金額不明)",
+          "normalized_value": "従来モデルの半額具体的金額不明"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "non_forward_stage_change"
+      ],
+      "change_summary": "グーグルがコーディング特化かつ従来より安価な新モデル「Gemini 3.7 Flash」を投入したことが新しい動きである。",
+      "detail": "グーグルは新たなAIモデル「Gemini 3.7 Flash」を発表した。記事は、なぜ今このタイミングで「コーディング特化」かつ「半額」という位置づけの新モデルを投入するのかを論じている。既存のGeminiシリーズと異なり、プログラミング用途への最適化と低価格化を両立させた点が注目されているが、具体的な料金水準や既存モデルとの詳細な性能比較は記事から確認できず、不明な点が残る。",
+      "new_facts": [
+        "グーグルがコーディング特化・半額を特徴とする新AI「Gemini 3.7 Flash」を投入した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_00c543b3c8ba1262c5c3_rev_f5cad3d9bc45",
       "story_id": "story_acb571947685bcdb5b",
       "story_sequence": 2,
@@ -89,6 +139,46 @@
       "detail": "AnthropicはClaudeの一部モデルが出力するテキストに、AIが書いた文章であることを示す透かし（ウォーターマーク）を追加したと報じられている。生成AIの文章がどこまで人が書いたものか判別しづらいという懸念は、教育現場やメディアなど各方面から出ていた。今回の対応はそうした声を受けたものとされるが、対象モデルの範囲や透かしの具体的な仕組み、検出方法については記事内で詳細は明らかにされていない。",
       "new_facts": [
         "一部のClaudeモデルの生成テキストに透かしが追加されたと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_9fb1e6ee0c950baf9ebe",
+      "story_id": "story_3fff75e1749a0a3850",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6482926829268293,
+      "title": "Claudeの文章透かしは何を証明できるのか、Anthropicが検出の限界を説明",
+      "source_published_at": "2026-08-14T22:19:44.000Z",
+      "published_at": "2026-08-14T22:19:44.000Z",
+      "fetched_at": "2026-08-15T03:55:09.017Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "Anthropicは、Claudeが生成した文章に付与する透かし技術について、何を証明でき何を証明できないか、その検出の境界を説明した。",
+      "source_name": "XenoSpectrum",
+      "source_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPTk5zbXp4bkl5LXl1d0lnSDdXb19vYUcyWTZJZjBLenRrV2ViOWJhS3hhTEoxbmNsbm1fTmZGYWhSUjZjMVZ1VzF4aUdUa19nVXFsLWVRdkFocUpnUTRkVURZZjBkOGVjZWFiX0p4dVFiQXlPa05JRTU0bjJQRFF2V3BjWGk0UQ?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "anthropic",
+        "claude"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claudeの文章透かし技術",
+      "event_type": "research",
+      "event_stage": "other",
+      "event_scope": "Claude利用者・AI生成文章の検出全般",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Anthropicが自社の文章透かし技術について、証明できる範囲と限界を明らかにした点が新しい。",
+      "detail": "AI企業Anthropicは、自社の対話AI「Claude」が生成する文章に埋め込む透かし（ウォーターマーク）技術について、その検出能力の限界を自ら説明した。透かしはAI生成文章の判別に使われる技術だが、記事は透かしがどこまで「AIが書いた」と証明できるのか、その境界線に焦点を当てている。具体的な検出精度や適用範囲の数値は記事から確認できず、Anthropicが何を明らかにしたかの詳細は不明な部分が残る。",
+      "new_facts": [
+        "Anthropicが自社Claudeの文章透かし技術について検出の限界を説明した"
       ],
       "event_date_precision": "unknown"
     },
