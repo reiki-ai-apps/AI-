@@ -29,7 +29,7 @@ jobs:
           node-version: "24"
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v4
+        uses: github/codeql-action/init@v4.37.3
         with:
           languages: javascript-typescript
 
@@ -37,7 +37,7 @@ jobs:
         run: node scripts/security-check.mjs
 
       - name: Analyze with CodeQL
-        uses: github/codeql-action/analyze@v4
+        uses: github/codeql-action/analyze@v4.37.3
 
   web-baseline:
     name: Monthly web vulnerability baseline
