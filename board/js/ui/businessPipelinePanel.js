@@ -1,8 +1,8 @@
 // 2つ以上の事業を混ぜず、投稿日×媒体×工程だけを一目で確認する面。
 
 import { el } from '../core/dom.js';
-import { productionProgress } from '../domain/production.js';
 import { platformName } from '../domain/platforms.js';
+import { intendedDate, pipelineStage } from '../domain/reservationPlan.js';
 import { platformBadge } from './platformBadge.js';
 
 const PLATFORMS = Object.freeze(['X', 'INSTAGRAM', 'YOUTUBE', 'NOTE']);
@@ -16,27 +16,6 @@ const BUSINESS_LABELS = Object.freeze({
   news: 'KIZASHI（AIニュース）',
   creative: 'REIKI（制作・集客）',
 });
-
-function packageIsReady(pkg) {
-  if (!pkg || pkg.status !== 'ACCEPTED') return false;
-  const checks = (pkg.quality_reviews ?? []).filter((review) => review.review_type !== 'HUMAN_APPROVAL');
-  return checks.length > 0 && checks.every((review) => review.verdict === 'PASS');
-}
-
-function pipelineStage(post, pkg) {
-  if (post.display_state === 'SCHEDULED' || post.display_state === 'PUBLISHING') return 'SCHEDULED';
-  if (post.display_state === 'PENDING_APPROVAL') return 'APPROVAL';
-  if (post.display_state === 'ACTION_REQUIRED') return 'CREATING';
-  if (productionProgress(post.production ?? null).complete || packageIsReady(pkg)) return 'APPROVAL';
-  return 'CREATING';
-}
-
-function intendedDate(post) {
-  const declared = post.internal?.intended_publish_date ?? post.internal?.publish_date ?? null;
-  if (declared) return declared;
-  if (post.internal?.tags?.includes('production-run')) return null;
-  return post.calendar_date_key ?? null;
-}
 
 function emptyCounts() {
   return Object.fromEntries(STAGES.map((stage) => [stage.id, 0]));
