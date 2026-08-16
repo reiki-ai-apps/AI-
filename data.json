@@ -1,5 +1,62 @@
 [
   {
+    "tool": "Claude / Claude Code",
+    "title": "Anthropic、Claudeの見えない透かし技術を公表 全面書き換えで消える弱点も判明",
+    "source_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQd3d6VTlMY01rUGhzWDVNMGkxUW8tNGxWc3ljWjZuR3AyS1NOR29MbHNhSG5mV0NfVjczVTRSR0s2R3Bkcjd3NTVYODNDalNSWExxRTF6SXE1aEZIVjZKeTVqbElpR2lac2ZFNm1zRExRVWZFakx5SzkxVGVTdWtZVXlhU1AxakRCVGtmMDg2UU4zQVJxTklUbjhGdHVQeFVLYVRuemItSS1paVJVQU5BSFYwNTdxMm5oclFKbjNOdmtyZS0yOU9LUA?oc=5",
+    "source_name": "디지털투데이",
+    "is_official": false,
+    "published_at": "2026-08-16T05:09:00.000Z",
+    "source_published_at": "2026-08-16T05:09:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-16T06:59:50.252Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Anthropic",
+      "Claude",
+      "anthropic",
+      "claude"
+    ],
+    "primary_entity": "Anthropic",
+    "story_subject": "Claudeの不可視ウォーターマーク方式",
+    "event_type": "research",
+    "event_stage": "announced",
+    "event_scope": "Claude全体",
+    "fact_slots": [],
+    "new_facts": [
+      "Anthropicが不可視のウォーターマーク方式を公表",
+      "文章を全面的に書き換えると透かしが検出できなくなる"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Anthropicは、Claudeの生成文に埋め込む不可視の透かし方式を公表し、文章を全面的に書き換えると検出できなくなる弱点があることも示した。",
+    "detail": "AnthropicはAIチャットボット「Claude」が生成した文章に埋め込む、目に見えない透かし（ウォーターマーク）の仕組みを公表した。この透かしは文章の一部が変更されても検出できるよう設計されているが、文章全体を大きく書き換えられると検出できなくなる弱点があることも合わせて示された。AI生成文章と人間が書いた文章を区別する技術は教育現場や情報の信頼性確保などで注目されているが、今回の公表により透かし方式には限界があることが改めて浮き彫りになった。",
+    "change_summary": "Anthropicが透かし方式の仕組みを初めて公表し、全面書き換えで検出できなくなる弱点も明らかにした。",
+    "impact_summary": "AI生成コンテンツの判別に透かし技術を活用しようとする企業や教育機関にとって、全面書き換えへの対策が課題として残ることが分かる。",
+    "action_suggestion": "現時点でAnthropicは透かし方式の詳細と限界を公表したのみで、改良版の提供時期などは記事からは不明。",
+    "importance": "B",
+    "related_categories": [
+      "セキュリティ",
+      "研究・技術"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_b1a5867dcc0eebe61518",
+    "story_id": "story_bc37f6bd4cabf7aed0",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.6570731707317072,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject"
+    ]
+  },
+  {
     "tool": "Gemini",
     "title": "Google「Gemini Notebook」に情報ソース自動追加機能が展開開始",
     "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE91UGRELUZubzY0YjhfVWMzcXpTNVJTaGNqTzVzb0FFSUR4bnFTaWIzT2pPdlRfM2hPeDdRck1hajFfTnBqU1FMTUhMeW5LRVVjZVVr?oc=5",
@@ -463,15 +520,18 @@
     "story_id": "story_857a3e6420ffaf62d2",
     "story_sequence": 1,
     "relation_type": "new",
-    "relation_confidence": 0.5175609756097561,
+    "relation_confidence": 0.9367741935483871,
     "previous_article_id": "",
     "previous_title": "",
     "previous_source_published_at": "",
     "continuation_lead": "",
     "dedupe_decision": "uncertain",
     "dedupe_reasons": [
-      "shared_entity",
-      "same_subject"
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "similar_title",
+      "same_url_content_changed"
     ]
   },
   {
@@ -976,72 +1036,6 @@
       "same_event_type",
       "similar_title",
       "same_url_content_changed"
-    ]
-  },
-  {
-    "tool": "Gemini",
-    "title": "グーグル、コーディング特化で価格半分の新AI「Gemini 3.7 Flash」を投入",
-    "source_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNLTk1RGZWNjJ4bFBHc1N5VjcxOFBHb1ZCd0FhR0hVbE5MTmY1NWRBSFA1XzNCUWJlSWc4OFBtLXVqaklpbERnZmFUdTRReU15RGUtS2hubm1sek8yc1U1YzdGaFBncVQ4R1dRLWFEUXdGM000WWtRdDZSUUR6NUpoYmk3YmhBU3Yx?oc=5",
-    "source_name": "Yahoo!ニュース",
-    "is_official": false,
-    "published_at": "2026-08-15T03:13:18.000Z",
-    "source_published_at": "2026-08-15T03:13:18.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-15T03:55:10.284Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Google",
-      "Gemini 3.7 Flash",
-      "google",
-      "gemini3.7flash",
-      "google-gemini"
-    ],
-    "primary_entity": "Google",
-    "story_subject": "Gemini 3.7 Flash",
-    "event_type": "release",
-    "event_stage": "announced",
-    "event_scope": "開発者向けコーディング支援",
-    "fact_slots": [
-      {
-        "type": "price",
-        "scope": "Gemini 3.7 Flashの価格",
-        "value": "従来モデルの半額(具体的金額不明)",
-        "normalized_value": "従来モデルの半額具体的金額不明"
-      }
-    ],
-    "new_facts": [
-      "グーグルがコーディング特化・半額を特徴とする新AI「Gemini 3.7 Flash」を投入した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "グーグルは新型AIモデル「Gemini 3.7 Flash」を投入し、コーディング用途に特化しつつ価格を従来の半額に抑えた点が特徴とされる。",
-    "detail": "グーグルは新たなAIモデル「Gemini 3.7 Flash」を発表した。記事は、なぜ今このタイミングで「コーディング特化」かつ「半額」という位置づけの新モデルを投入するのかを論じている。既存のGeminiシリーズと異なり、プログラミング用途への最適化と低価格化を両立させた点が注目されているが、具体的な料金水準や既存モデルとの詳細な性能比較は記事から確認できず、不明な点が残る。",
-    "change_summary": "グーグルがコーディング特化かつ従来より安価な新モデル「Gemini 3.7 Flash」を投入したことが新しい動きである。",
-    "impact_summary": "開発者やエンジニアにとって、低コストでコーディング支援AIを利用できる選択肢が増える可能性がある。",
-    "action_suggestion": "具体的な料金体系や提供開始時期について、グーグルの公式発表で詳細を確認する必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "アプリ開発・自動化"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_1b6d00d2e7e7841dc0ca",
-    "story_id": "story_1bf06a3e6e91939abb",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.8455,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "same_subject",
-      "same_event_type",
-      "non_forward_stage_change"
     ]
   },
   {
