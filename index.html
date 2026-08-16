@@ -5,21 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://ncosmmesecpqhzfikpmn.supabase.co wss://ncosmmesecpqhzfikpmn.supabase.co; form-action 'self' https://*.stripe.com; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
-<title>AI最新ニュース｜仕事への影響と次の行動を毎日3分で確認｜AI進化レーダー</title>
-<meta name="description" content="生成AI・AIツールの最新ニュースを、何が変わったか、仕事にどう影響するか、次に何を確認するかまで毎日3分で整理。情報元と重要度付きで確認できます。" />
+<title>AI最新ニュース｜仕事への影響と次の行動をやさしく確認｜AI進化レーダー</title>
+<meta name="description" content="生成AI・AIツールの最新ニュースを、何が変わったか、仕事にどう影響するか、次に何を確認するかまでやさしく整理。情報元と重要度付きで確認できます。" />
 <link rel="canonical" href="https://reiki-ai-apps.github.io/AI-/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="AI進化レーダー" />
-<meta property="og:title" content="AI最新ニュース｜仕事への影響を毎日3分で確認" />
+<meta property="og:title" content="AI最新ニュース｜仕事への影響をやさしく確認" />
 <meta property="og:description" content="生成AIの重要ニュースを、変化・仕事への影響・次の確認事項まで情報元付きで整理します。" />
 <meta property="og:url" content="https://reiki-ai-apps.github.io/AI-/" />
 <meta property="og:image" content="https://reiki-ai-apps.github.io/AI-/assets/ai-radar-human-hero.webp" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="AI最新ニュース｜仕事への影響を毎日3分で確認" />
+<meta name="twitter:title" content="AI最新ニュース｜仕事への影響をやさしく確認" />
 <meta name="twitter:description" content="生成AIの重要ニュースを、変化・仕事への影響・次の確認事項まで情報元付きで整理。" />
 <meta name="twitter:image" content="https://reiki-ai-apps.github.io/AI-/assets/ai-radar-human-hero.webp" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://reiki-ai-apps.github.io/AI-/#website","url":"https://reiki-ai-apps.github.io/AI-/","name":"AI進化レーダー","description":"生成AI・AIツールの最新ニュースを、仕事への影響と次の確認事項まで毎日3分で整理するニュースサービス","inLanguage":"ja"},{"@type":"Organization","@id":"https://reiki-ai-apps.github.io/AI-/#organization","name":"KIZASHI","url":"https://reiki-ai-apps.github.io/AI-/","logo":{"@type":"ImageObject","url":"https://reiki-ai-apps.github.io/AI-/assets/ai-radar-icon-512.png"}}]}
+{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://reiki-ai-apps.github.io/AI-/#website","url":"https://reiki-ai-apps.github.io/AI-/","name":"AI進化レーダー","description":"生成AI・AIツールの最新ニュースを、仕事への影響と次の確認事項までやさしく整理するニュースサービス","inLanguage":"ja"},{"@type":"Organization","@id":"https://reiki-ai-apps.github.io/AI-/#organization","name":"KIZASHI","url":"https://reiki-ai-apps.github.io/AI-/","logo":{"@type":"ImageObject","url":"https://reiki-ai-apps.github.io/AI-/assets/ai-radar-icon-512.png"}}]}
 </script>
 <meta name="theme-color" content="#070b14" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -3994,7 +3994,7 @@ function renderNav(){
 }
 
 const PAGE_META = {
-  home:['仕事に効くAI最新ニュース','重要な変化と次の確認事項を毎日3分で整理'],
+  home:['仕事に効くAI最新ニュース','重要な変化と次の確認事項をやさしく整理'],
   updates:['すべての記事','既読・未読をまとめて検索・絞り込み'],
   categories:['ジャンル別','関心のあるAI分野ごとに情報を確認'],
   'try-list':['後で見る','保存した記事をあとから見返せます'],
@@ -4290,7 +4290,7 @@ function renderHome(v){
       <div class="daily-cover-meta">${rankBadge(cover.rank)}<span class="daily-cover-source"><b>情報元</b>${esc(cover.source_name||coverTool?.name||'確認中')}・${esc(sourcePublishedLabel(cover))}</span></div>
       <h2>${esc(cover.title)}</h2>
       <p>${esc(coverSummary)}</p>
-      <div class="daily-cover-actions"><a class="btn btn-primary" href="${esc(publicArticleUrl(cover))}" onclick="event.preventDefault();go('update-detail','${cover.id}')">${icon('eye')}3分で影響と次の行動を見る</a><span class="daily-cover-note">テーマ設定に関係なく重要度で選定・毎日3分で要点確認</span></div>`:`
+      <div class="daily-cover-actions"><a class="btn btn-primary" href="${esc(publicArticleUrl(cover))}" onclick="event.preventDefault();go('update-detail','${cover.id}')">${icon('eye')}やさしい要約を見る</a><span class="daily-cover-note">テーマ設定に関係なく重要度で選定</span></div>`:`
       <div class="live-line"><span class="live-dot"></span>LIVE INTELLIGENCE FEED</div>
       <h2>世界のAI変化を、<br>仕事の判断へ。</h2>
       <p>英語・中国語・日本語の情報を横断監視。何が変わったか、仕事への影響、次にやることまで、やさしい日本語で確認できます。</p>
@@ -4309,7 +4309,7 @@ function renderHome(v){
   let html = `<section class="radar-overview ${cover?'has-daily-cover':''}" aria-label="${cover?'本日のトップニュース':'AIシグナル概要'}">
     <div class="hud-hex-field" aria-hidden="true"><span class="hud-hex h1"></span><span class="hud-hex h2"></span><span class="hud-hex h3"></span><span class="hud-hex h4"></span><span class="hud-hex h5"></span></div>
     <div class="overview-copy">${coverCopy}</div>
-    <div class="radar-orb" aria-label="毎日3分で重要ニュースを確認"><strong>3分</strong><small>DAILY BRIEFING</small></div>
+    <div class="radar-orb" aria-label="未読${unread}件"><strong>${unread}</strong><small>UNREAD SIGNALS</small></div>
   </section>
   <div class="home-feed">
   <div class="quick-stats">
@@ -5780,7 +5780,7 @@ function renderPricing(v){
   v.innerHTML=`<div class="pricing-page">
     <section class="pricing-hero">
       <div class="pricing-eyebrow">AI UPDATE RADAR MEMBERSHIP</div>
-      <h2>毎日3分の確認を、<br>自分専用に。</h2>
+      <h2>重要ニュースの確認を、<br>自分専用に。</h2>
       <p>無料は重要ニュースをおまかせで確認。スタンダード以上では興味のあるテーマを選び、PCとスマホで同じ保存・設定を使えます。</p>
     </section>
     <div class="pricing-grid">

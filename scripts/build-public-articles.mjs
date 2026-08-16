@@ -110,7 +110,7 @@ function page(item,id,related=[]){
 <article class="hero"><div class="meta"><span class="rank">重要度${esc(String(item.importance||"B").toUpperCase())}</span>${esc(item.source_name||"情報元確認済み")}・${esc(displayDate(item.source_published_at||item.published_at||item.fetched_at))}</div><h1>${esc(title)}</h1><p class="lead">${esc(description)}</p>
 <img class="article-image" src="${image}" alt="${esc(title)}の内容を表すイメージ" width="1200" height="675">
 <p class="byline">KIZASHI編集部｜公開情報を整理し、変化・仕事への影響・次の確認事項を明示しています。</p>
-<div class="actions"><a class="button" href="${appUrl}">最新AIニュースを毎日3分で確認</a></div></article>
+<div class="actions"><a class="button" href="${appUrl}">AI最新ニュースをやさしい要約で確認</a></div></article>
 ${paragraph("何が変わったか",item.change_summary||item.simple_explanation)}
 ${paragraph("仕事への影響",item.impact_summary)}
 ${paragraph("次に確認すること",item.action_suggestion)}

@@ -14,7 +14,7 @@ const requireText=(body,text,label)=>{if(!body.includes(text))failures.push(labe
 for(const text of [
   '<link rel="canonical" href="https://reiki-ai-apps.github.io/AI-/"',
   'property="og:title"','name="twitter:card"','"@type":"WebSite"','function shareArticle','無料登録はカード情報不要',
-  '毎日3分の確認を','重要トップニュースはテーマ外でも表示','function trackAppEvent',
+  'やさしい要約を見る','重要トップニュースはテーマ外でも表示','function trackAppEvent',
   "trackAppEvent('signup_start'","trackAppEvent('checkout_start'","data-funnel-key=\"paymentsConfirmed\"",
   "String(u.article_id||'')===key",'href="${esc(publicArticleUrl(u))}"'
 ])requireText(index,text);
@@ -30,10 +30,12 @@ for(const id of ids){
   if(!fs.existsSync(file)){failures.push(`記事ページがありません: ${id}`);continue;}
   const page=fs.readFileSync(file,"utf8");
   if(!page.includes('application/ld+json')||!page.includes('BreadcrumbList')||!page.includes(`/articles/${encodeURIComponent(id)}/`))failures.push(`記事SEOが不完全です: ${id}`);
-  if(!page.includes(`href="https://reiki-ai-apps.github.io/AI-/">最新AIニュースを毎日3分で確認</a>`))failures.push(`記事から最新ニュースへの導線がありません: ${id}`);
+  if(!page.includes(`href="https://reiki-ai-apps.github.io/AI-/">AI最新ニュースをやさしい要約で確認</a>`))failures.push(`記事から最新ニュースへの導線がありません: ${id}`);
   if(!page.includes('class="article-image"')||!page.includes('class="related"'))failures.push(`記事画像または内部リンクがありません: ${id}`);
   if(page.includes('#update-detail/'))failures.push(`保存期間後に切れる記事詳細リンクがあります: ${id}`);
 }
+if(index.includes('3分'))failures.push('意味の不明確な3分訴求がアプリ画面に残っています');
+if(read("scripts/build-public-articles.mjs").includes('3分'))failures.push('意味の不明確な3分訴求が記事生成処理に残っています');
 requireText(read("robots.txt"),'Sitemap: https://reiki-ai-apps.github.io/AI-/sitemap.xml');
 requireText(read("sitemap.xml"),'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 
