@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-16T16:32:32+09:00",
+  "generated_at": "2026-08-16T16:47:26+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -116,6 +116,7 @@
   },
   "monitoring": {
     "cadence": "PT1H",
+    "last_checked_at": "2026-08-16T16:47:26+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに公開証跡と停止理由を軽量確認し、前回制作から6時間以上経過した場合は次回AIニュース制作を低負荷で実行します。各実行結果はBoardへ同期します。"
   },
