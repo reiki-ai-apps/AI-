@@ -18,9 +18,11 @@ import { renderCalendarScreen } from './calendarView.js';
 import { renderApprovalsScreen } from './approvalsView.js';
 import { renderHistoryScreen } from './historyView.js';
 import { renderConnectionsScreen } from './connectionsView.js';
+import { renderStatusScreen } from './statusView.js';
 import { hasIntentLink, consumeIntentLink } from './intentLink.js';
 
 const SCREENS = [
+  { id: 'status', label: '運用状況', render: renderStatusScreen },
   { id: 'calendar', label: '投稿カレンダー', render: renderCalendarScreen },
   { id: 'approvals', label: '承認待ち', render: renderApprovalsScreen },
   { id: 'history', label: '投稿履歴', render: renderHistoryScreen },
@@ -39,7 +41,7 @@ const timeZone = systemTimeZone();
 const clock = systemClock(timeZone);
 
 const state = {
-  route: 'calendar',
+  route: 'status',
   /** カレンダーの単位。既定は週（その週を管理する面）。月は切替で見る。 */
   view: 'week',
   role: 'ADMIN',
