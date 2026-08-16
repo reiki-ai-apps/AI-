@@ -62,7 +62,7 @@ export async function submitForApproval(ctx, channelPostId, { reason = '確認�
  *
  * @param {object} ctx
  * @param {string} channelPostId
- * @param {{comment?:string, allowedRetryDelayMinutes?:number, correlationId?:string}} [options]
+ * @param {{comment?:string, allowedRetryDelayMinutes?:number, correlationId?:string, evidence?:object}} [options]
  */
 export async function approve(ctx, channelPostId, options = {}) {
   assertCan(ctx.actor.role, 'approval.approve');
@@ -107,6 +107,7 @@ export async function approve(ctx, channelPostId, options = {}) {
     revoked_reason: null,
     self_approval: selfCheck.selfApproval,
     comment: options.comment ?? null,
+    evidence: options.evidence ?? null,
   };
 
   const schedule = {

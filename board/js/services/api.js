@@ -56,8 +56,16 @@ const DIRECT = {
   ingestPackage: ingest.ingestPackage,
 };
 
+const PUBLIC_READ_SERVICES = new Set([
+  'describePendingChange',
+  'verifyApprovalStillValid',
+  'describeProduction',
+]);
+
 const call = (ctx, fn, ...args) =>
-  ctx.backend === 'github' ? DIRECT[fn](ctx, ...args) : callService(ctx, fn, args);
+  ctx.backend === 'github' || (ctx.backend === 'public' && PUBLIC_READ_SERVICES.has(fn))
+    ? DIRECT[fn](ctx, ...args)
+    : callService(ctx, fn, args);
 
 // 登録・編集 (§10)
 export const createPostGroup = (ctx, input) => call(ctx, 'createPostGroup', input);
