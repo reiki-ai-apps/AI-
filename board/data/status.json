@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-08-16T14:41:09+09:00",
+  "time_zone": "Asia/Tokyo",
+  "brand_id": "news",
+  "source_skill": "ai_news_v1",
+  "summary": {
+    "published_confirmed": 7,
+    "scheduled": 0,
+    "attention": 2
+  },
+  "channels": [
+    {
+      "id": "instagram",
+      "label": "Instagram",
+      "account": "@kizashi_jp",
+      "url": "https://www.instagram.com/kizashi_jp/",
+      "state": "HEALTHY",
+      "last_verified_at": "2026-08-16T12:13:09+09:00",
+      "latest_published": {
+        "title": "DeepSeek V4-Pro 修正版",
+        "url": "https://www.instagram.com/p/DcEMK9JGctI/"
+      },
+      "next_scheduled": null,
+      "note": "修正版2件の公開証跡あり。8月16日の新規投稿は0件。"
+    },
+    {
+      "id": "x",
+      "label": "X",
+      "account": "@KIZASHI_jp",
+      "url": "https://x.com/KIZASHI_jp",
+      "state": "HEALTHY",
+      "last_verified_at": "2026-08-16T12:13:09+09:00",
+      "latest_published": {
+        "title": "DeepSeek V4-Pro",
+        "url": "https://x.com/KIZASHI_jp/status/2088479199631933754"
+      },
+      "next_scheduled": null,
+      "note": "公開URLを確認済み。次回予約はありません。"
+    },
+    {
+      "id": "note",
+      "label": "note",
+      "account": "KIZASHI / natty_swan9072",
+      "url": "https://note.com/natty_swan9072",
+      "state": "ATTENTION",
+      "last_verified_at": "2026-08-16T14:02:44+09:00",
+      "latest_published": {
+        "title": "DeepSeek V4-Pro",
+        "url": "https://note.com/natty_swan9072/n/nd076d4ef02df"
+      },
+      "next_scheduled": null,
+      "note": "プロフィールのInstagram・YouTubeリンクが保存後に消えるため要確認。"
+    },
+    {
+      "id": "youtube",
+      "label": "YouTube",
+      "account": "KIZASHI / @kizashi_jp",
+      "url": "https://www.youtube.com/@kizashi_jp",
+      "state": "ATTENTION",
+      "last_verified_at": "2026-08-16T12:13:09+09:00",
+      "latest_published": {
+        "title": "AIにどこまで実行させる？権限・業務・費用を3ニュースで判断",
+        "url": "https://www.youtube.com/watch?v=QzJeOSPNR1s"
+      },
+      "next_scheduled": null,
+      "note": "8月15日19時予定Shortsは公開後の確認receiptがないため、公開済み件数には未算入。"
+    },
+    {
+      "id": "radar",
+      "label": "AI進化レーダー",
+      "account": "KIZASHI公式アプリ",
+      "url": "https://reiki-ai-apps.github.io/AI-/",
+      "state": "HEALTHY",
+      "last_verified_at": "2026-08-16T12:13:09+09:00",
+      "latest_published": {
+        "title": "本番反映済み（記事60件）",
+        "url": "https://reiki-ai-apps.github.io/AI-/"
+      },
+      "next_scheduled": null,
+      "note": "本番commit 0ec2c4394f6e8e87470eedea3831a7db6dbbe9f1。未読57件は別表示。"
+    }
+  ],
+  "blockers": [
+    {
+      "id": "note-profile-links",
+      "severity": "ATTENTION",
+      "message": "noteプロフィールのInstagram・YouTubeリンクが保存されない"
+    },
+    {
+      "id": "youtube-short-verification",
+      "severity": "ATTENTION",
+      "message": "YouTube Shortsの公開後確認receiptが未取得"
+    }
+  ],
+  "monitoring": {
+    "cadence": "PT1H",
+    "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
+    "description": "1時間ごとに公開証跡、次回予約、停止理由、Board同期時刻を軽量確認します。動画生成や画像生成は実行しません。"
+  },
+  "evidence": [
+    "outputs/instagram-repair-20260815/receipts/repost-without-delete-receipt.json",
+    "outputs/kizashi-growth-overhaul-20260816/production-release-receipt.json"
+  ]
+}

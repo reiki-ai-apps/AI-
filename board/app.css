@@ -759,6 +759,28 @@ input:invalid { border-color: var(--danger); }
 }
 
 /* --- 進捗パネル（今日できたこと／止まっているもの） ---------------------- */
+.status-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.status-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }
+.status-metric { display: flex; flex-direction: column; gap: 3px; padding: 15px 17px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.status-metric strong { font-size: 26px; line-height: 1; }
+.status-metric span { color: var(--ink-3); font-size: 13px; }
+.status-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.status-card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 16px; min-width: 0; }
+.status-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.status-card-title { margin: 0; font-size: 18px; }
+.status-account { margin: 3px 0 0; color: var(--ink-3); font-size: 13px; }
+.status-pill { display: inline-flex; align-items: center; min-height: 26px; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.status-pill-healthy { color: #17613a; background: #e8f5ed; }
+.status-pill-attention { color: var(--attention); background: var(--attention-soft); }
+.status-pill-blocked { color: var(--danger); background: #fdf3f2; }
+.status-pill-unknown { color: var(--ink-3); background: var(--surface-alt); }
+.status-kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 7px 14px; margin: 15px 0 0; font-size: 13px; }
+.status-kv dt { color: var(--ink-3); }
+.status-kv dd { margin: 0; overflow-wrap: anywhere; }
+.status-note { margin: 13px 0 0; color: var(--ink-2); font-size: 13px; line-height: 1.6; }
+.status-link { margin: 11px 0 0; font-size: 13px; }
+.status-monitor { margin-top: 18px; }
+
 .plain-list { list-style: none; margin: 6px 0 0; padding: 0; }
 .progress-row {
   display: flex; align-items: center; gap: 10px;
@@ -784,3 +806,8 @@ input:invalid { border-color: var(--danger); }
 .setup-step-title { font-weight: 700; font-size: 1.05em; }
 .setup-step-body { margin-top: 8px; }
 .setup-step .btn { min-height: 44px; }
+
+@media (max-width: 767px) {
+  .status-head { flex-direction: column; }
+  .status-summary, .status-grid { grid-template-columns: 1fr; }
+}
