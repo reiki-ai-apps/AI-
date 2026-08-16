@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-08-16T16:34:45+09:00",
+  "time_zone": "Asia/Tokyo",
+  "brand_id": "creative",
+  "brand_label": "REIKI AIクリエイティブ",
+  "source_skill": "ai_creative_v1",
+  "summary": {
+    "published_confirmed": 2,
+    "scheduled": 0,
+    "drafts": 2,
+    "attention": 2
+  },
+  "channels": [
+    {
+      "id": "web",
+      "label": "Web記事",
+      "account": "REIKI Product World",
+      "url": "https://reiki-product-world.rahash.chatgpt.site/",
+      "state": "HEALTHY",
+      "last_verified_at": "2026-08-16T14:18:19+09:00",
+      "latest_published": {
+        "title": "改訂版r2記事2本を公開・本番検査PASS",
+        "url": "https://reiki-product-world.rahash.chatgpt.site/workflow-next-action-interface"
+      },
+      "next_scheduled": null,
+      "note": "8月17日分の改訂版記事2本は公開済み。PC大・PC標準・モバイル、SEO、画像、リンク、CTAが本番PASS。"
+    },
+    {
+      "id": "x",
+      "label": "X",
+      "account": "@reiki_creative",
+      "url": "https://x.com/reiki_creative",
+      "state": "ATTENTION",
+      "last_verified_at": "2026-08-16T14:18:19+09:00",
+      "latest_published": null,
+      "next_scheduled": null,
+      "note": "8月17日昼・夜の2原稿をBoardへDRAFT同期。品質検査はPASS、人間承認は未取得のため予約・投稿していません。"
+    },
+    {
+      "id": "instagram",
+      "label": "Instagram",
+      "account": "@reiki_creative_studio",
+      "url": "https://www.instagram.com/reiki_creative_studio/",
+      "state": "UNKNOWN",
+      "last_verified_at": null,
+      "latest_published": null,
+      "next_scheduled": null,
+      "note": "今回の同期ではログイン・公開状態を確認していません。投稿直前に対象アカウントを再確認します。"
+    },
+    {
+      "id": "board",
+      "label": "REIKI AI Board",
+      "account": "brand_id=creative",
+      "url": "https://reiki-ai-apps.github.io/AI-/board/creative-status.html",
+      "state": "HEALTHY",
+      "last_verified_at": "2026-08-16T16:34:45+09:00",
+      "latest_published": {
+        "title": "8月17日分の現在状態を同期",
+        "url": "https://reiki-ai-apps.github.io/AI-/board/creative-status.html"
+      },
+      "next_scheduled": null,
+      "note": "記事・X・Instagramの状態を媒体別に分離し、未承認を公開済みとして扱いません。"
+    }
+  ],
+  "workstreams": [
+    {"id": "article_20260817_013", "label": "香りを伝える商品画像", "state": "PUBLISHED", "detail": "r2承認済み・本番PASS"},
+    {"id": "article_20260817_014", "label": "次にやることが見えるUI", "state": "PUBLISHED", "detail": "r2承認済み・本番PASS"},
+    {"id": "content_x_20260817_midday_013", "label": "X 8月17日昼枠", "state": "DRAFT", "detail": "Board同期済み・未承認・未予約"},
+    {"id": "content_x_20260817_evening_014", "label": "X 8月17日夜枠", "state": "DRAFT", "detail": "Board同期済み・未承認・未予約"}
+  ],
+  "blockers": [
+    {"id": "x-owner-approval", "severity": "ATTENTION", "message": "X 2本は人間承認待ち。予約・投稿は停止中"},
+    {"id": "instagram-live-verification", "severity": "ATTENTION", "message": "Instagramは対象アカウントと公開状態の再確認が必要"}
+  ],
+  "monitoring": {
+    "cadence": "PT1H",
+    "report_policy": "毎回、記事・X・Instagram・Boardの現在状態を短く報告。変化・障害・承認待ちは明示",
+    "description": "1時間ごとに公開receipt、承認、予約、停止理由、Board同期時刻を軽量確認します。画像・動画生成、投稿、削除、有料APIは実行しません。"
+  },
+  "evidence": [
+    "outputs/operations/2026-08-17-slots.json",
+    "outputs/article/article_20260817_013/article-publication-package.json",
+    "outputs/article/article_20260817_014/article-publication-package.json",
+    "reiki-ai-board-sync/receipts/20260817-midday-commit.json",
+    "reiki-ai-board-sync/receipts/20260817-evening-commit.json"
+  ]
+}
