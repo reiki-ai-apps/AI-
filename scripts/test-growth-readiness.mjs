@@ -14,7 +14,7 @@ const requireText=(body,text,label)=>{if(!body.includes(text))failures.push(labe
 for(const text of [
   '<link rel="canonical" href="https://reiki-ai-apps.github.io/AI-/"',
   'property="og:title"','name="twitter:card"','"@type":"WebSite"','function shareArticle','無料登録はカード情報不要',
-  'やさしい要約を見る','重要トップニュースはテーマ外でも表示','function trackAppEvent',
+  '変化と仕事への影響を見る','重要トップニュースはテーマ外でも表示','function trackAppEvent',
   "trackAppEvent('signup_start'","trackAppEvent('checkout_start'","data-funnel-key=\"paymentsConfirmed\"",
   "String(u.article_id||'')===key",'href="${esc(publicArticleUrl(u))}"'
 ])requireText(index,text);
