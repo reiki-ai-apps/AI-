@@ -8,7 +8,7 @@
 import { el, button, onKeys, focus } from '../core/dom.js';
 import { WEEK_COLUMNS_JA, monthTitle } from '../core/fmt.js';
 import { shiftDateKey, daysInMonth } from '../core/tz.js';
-import { buildMonthView, buildWeekView, rollingWeekStartKey, summaryEntries } from '../domain/calendar.js';
+import { buildMonthView, buildWeekView, rollingWeekStartKey } from '../domain/calendar.js';
 import { displayState } from '../domain/state.js';
 import { toDayPlanView } from '../services/dayplans.js';
 import { buildDayPanel, buildNextActionBar } from './dayPanel.js';
@@ -18,6 +18,7 @@ import { guardedButton } from './states.js';
 import { tierForWidth } from './responsive.js';
 import { platformBadges, badgeLegend, stateLegend } from './platformBadge.js';
 import { buildProgressPanel } from './progressPanel.js';
+import { buildBusinessPipelinePanel } from './businessPipelinePanel.js';
 
 export async function renderCalendarScreen(app) {
   return app.state.view === 'month' ? renderMonth(app) : renderWeek(app);
@@ -34,10 +35,13 @@ async function renderWeek(app) {
   const start = rollingWeekStartKey(selected, app.todayKey());
   const end = shiftDateKey(start, 6);
 
-  const [posts, dayPlanRows, accounts] = await Promise.all([
+  const [posts, pipelinePosts, dayPlanRows, accounts, postGroups, publicationPackages] = await Promise.all([
     repo.listPostsBetween(start, end),
+    repo.listPipelinePosts(),
     repo.listDayPlans(),
     repo.listSocialAccounts(),
+    repo.listPostGroups(),
+    repo.listPublicationPackages(),
   ]);
 
   const view = buildWeekView({
@@ -64,7 +68,7 @@ async function renderWeek(app) {
     }),
   );
 
-  screen.appendChild(buildStatusStrip(app, view.summary, '今日から7日間の投稿状況', 'この7日間の投稿はまだありません'));
+  screen.appendChild(buildBusinessPipelinePanel({ posts: pipelinePosts, postGroups, publicationPackages }));
   screen.appendChild(buildProgressPanel(app, { posts, todayKey: app.todayKey(), timeZone: tz }));
 
   // 「次に確認すること」は週表示では画面幅いっぱいの帯にする。
@@ -97,10 +101,13 @@ async function renderMonth(app) {
   }
   const selected = app.state.selectedDateKey;
 
-  const [posts, dayPlanRows, accounts] = await Promise.all([
+  const [posts, pipelinePosts, dayPlanRows, accounts, postGroups, publicationPackages] = await Promise.all([
     repo.listPostsForMonth(year, month),
+    repo.listPipelinePosts(),
     repo.listDayPlans(),
     repo.listSocialAccounts(),
+    repo.listPostGroups(),
+    repo.listPublicationPackages(),
   ]);
 
   const dayPlans = dayPlanRows.map(toDayPlanView);
@@ -134,7 +141,7 @@ async function renderMonth(app) {
     }),
   );
 
-  screen.appendChild(buildStatusStrip(app, view.summary, `${month}月の投稿状況`, 'この月の投稿はまだありません'));
+  screen.appendChild(buildBusinessPipelinePanel({ posts: pipelinePosts, postGroups, publicationPackages }));
   screen.appendChild(buildProgressPanel(app, { posts, todayKey: app.todayKey(), timeZone: tz }));
   screen.appendChild(buildLegendBar());
 
@@ -207,24 +214,6 @@ function viewButton(app, mode, label) {
       app.update({ view: mode });
     },
   });
-}
-
-function buildStatusStrip(app, summary, label, emptyText) {
-  const strip = el('div', { class: 'status-strip' });
-  strip.appendChild(el('span', { class: 'status-strip-label' }, label));
-  const entries = summaryEntries(summary);
-  if (entries.length === 0) {
-    strip.appendChild(el('span', { class: 'status-item tone-neutral' }, emptyText));
-  }
-  for (const entry of entries) {
-    strip.appendChild(
-      el('span', { class: `status-item tone-${entry.key}` },
-        el('span', null, entry.label),
-        el('b', null, `${entry.count}${entry.unit}`)),
-    );
-  }
-  strip.appendChild(el('span', { class: 'status-filter' }, '表示中：すべてのSNS'));
-  return strip;
 }
 
 /** バッジの読み方。セルの中には凡例を置かない (§06) ので、グリッドの外に出す。 */

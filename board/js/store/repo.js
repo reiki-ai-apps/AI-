@@ -193,6 +193,22 @@ export class Repo {
     return this.db.read(['channelPosts'], (tx) => tx.getAllBy('channelPosts', 'post_group_id', postGroupId));
   }
 
+  /** 全事業の制作中・確認待ち・予約済みを日付横断で集計するための一覧。 */
+  async listPipelinePosts() {
+    const rows = await this.db.read(['channelPosts'], (tx) => tx.getAll('channelPosts'));
+    return rows
+      .filter((p) => !p.deleted_at && !p.cancelled_at && p.display_state !== 'PUBLISHED')
+      .sort((a, b) => String(a.calendar_date_key ?? '').localeCompare(String(b.calendar_date_key ?? '')));
+  }
+
+  async listPostGroups() {
+    return this.db.read(['postGroups'], (tx) => tx.getAll('postGroups'));
+  }
+
+  async listPublicationPackages() {
+    return this.db.read(['publicationPackages'], (tx) => tx.getAll('publicationPackages'));
+  }
+
   async listSocialAccounts() {
     return this.db.read(['socialAccounts'], (tx) => tx.getAll('socialAccounts'));
   }

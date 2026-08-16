@@ -63,21 +63,11 @@ export function buildProgressPanel(app, { posts, todayKey, timeZone }) {
       .map((p) => ({ post: toPostView(p, nowMs), production: p.production ?? null })),
   );
 
-  return el('div', { class: 'card', style: { 'margin-bottom': '14px' } },
-    el('h2', { class: 'card-title' }, 'いまの投稿状況'),
-    buildStageOverview(progressStageSummary(posts)),
+  return el('details', { class: 'card progress-details', style: { 'margin-bottom': '14px' } },
+    el('summary', { class: 'card-title progress-details-summary' }, '投稿ごとの詳細と停止理由'),
     buildDoneBlock(done, timeZone),
     buildBlockedBlock(app, blocked, timeZone),
   );
-}
-
-function buildStageOverview(stages) {
-  return el('section', { class: 'progress-stage-grid', 'aria-label': '投稿工程ごとの件数' },
-    ...stages.map((stage) =>
-      el('div', { class: `progress-stage progress-stage-${stage.tone}` },
-        el('span', { class: 'progress-stage-label' }, stage.label),
-        el('strong', { class: 'progress-stage-count' }, String(stage.count)),
-        el('span', { class: 'progress-stage-unit' }, '件'))));
 }
 
 // --- 今日できたこと ----------------------------------------------------------

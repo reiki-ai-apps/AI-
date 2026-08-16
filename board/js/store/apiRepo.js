@@ -49,9 +49,11 @@ export function callService(ctx, fn, args) {
 
 const READ_METHODS = [
   'listPostsForMonth', 'listPostsBetween', 'listPostsForDay', 'listUpcomingPosts',
+  'listPipelinePosts',
   'listPendingApprovals', 'listHistory', 'listDayPlans', 'getDayPlan',
   'getPost', 'getRevision', 'listRevisions', 'getApproval', 'listApprovalsFor',
   'getPostGroup', 'listChannelPostsOfGroup', 'listSocialAccounts', 'getSocialAccount',
+  'listPostGroups', 'listPublicationPackages',
   'listExecutions', 'listAudit', 'listNotifications', 'activeEmergencyStops',
   'listDeleted', 'exportAll',
 ];

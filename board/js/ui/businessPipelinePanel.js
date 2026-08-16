@@ -1,0 +1,139 @@
+// 2つ以上の事業を混ぜず、投稿日×媒体×工程だけを一目で確認する面。
+
+import { el } from '../core/dom.js';
+import { productionProgress } from '../domain/production.js';
+import { platformName } from '../domain/platforms.js';
+import { platformBadge } from './platformBadge.js';
+
+const PLATFORMS = Object.freeze(['X', 'INSTAGRAM', 'YOUTUBE', 'NOTE']);
+const STAGES = Object.freeze([
+  { id: 'CREATING', label: '制作中', tone: 'progress' },
+  { id: 'APPROVAL', label: '確認待ち', tone: 'attention' },
+  { id: 'SCHEDULED', label: '予約済み', tone: 'scheduled' },
+]);
+
+const BUSINESS_LABELS = Object.freeze({
+  news: 'KIZASHI（AIニュース）',
+  creative: 'REIKI（制作・集客）',
+});
+
+function packageIsReady(pkg) {
+  if (!pkg || pkg.status !== 'ACCEPTED') return false;
+  const checks = (pkg.quality_reviews ?? []).filter((review) => review.review_type !== 'HUMAN_APPROVAL');
+  return checks.length > 0 && checks.every((review) => review.verdict === 'PASS');
+}
+
+function pipelineStage(post, pkg) {
+  if (post.display_state === 'SCHEDULED' || post.display_state === 'PUBLISHING') return 'SCHEDULED';
+  if (post.display_state === 'PENDING_APPROVAL') return 'APPROVAL';
+  if (post.display_state === 'ACTION_REQUIRED') return 'CREATING';
+  if (productionProgress(post.production ?? null).complete || packageIsReady(pkg)) return 'APPROVAL';
+  return 'CREATING';
+}
+
+function intendedDate(post) {
+  const declared = post.internal?.intended_publish_date ?? post.internal?.publish_date ?? null;
+  if (declared) return declared;
+  if (post.internal?.tags?.includes('production-run')) return null;
+  return post.calendar_date_key ?? null;
+}
+
+function emptyCounts() {
+  return Object.fromEntries(STAGES.map((stage) => [stage.id, 0]));
+}
+
+/** 純粋集計。公開済みは投稿履歴へ分離し、これから公開する投稿だけを数える。 */
+export function summarizeBusinessPipeline({ posts = [], postGroups = [], publicationPackages = [] }) {
+  const groups = new Map(postGroups.map((group) => [group.post_group_id, group]));
+  const packages = new Map(publicationPackages.map((pkg) => [pkg.post_group_id, pkg]));
+  const businesses = new Map();
+
+  for (const post of posts) {
+    if (post.deleted_at || post.cancelled_at || post.display_state === 'PUBLISHED') continue;
+    const group = groups.get(post.post_group_id) ?? {};
+    const businessId = group.brand_id ?? post.brand_id ?? group.source_skill ?? 'other';
+    const business = businesses.get(businessId) ?? {
+      id: businessId,
+      label: BUSINESS_LABELS[businessId] ?? businessId,
+      sourceSkill: group.source_skill ?? null,
+      totals: emptyCounts(),
+      days: new Map(),
+    };
+    businesses.set(businessId, business);
+
+    const dateKey = intendedDate(post) ?? 'UNSCHEDULED';
+    const day = business.days.get(dateKey) ?? {
+      dateKey,
+      platforms: Object.fromEntries(PLATFORMS.map((platform) => [platform, emptyCounts()])),
+    };
+    business.days.set(dateKey, day);
+
+    if (!day.platforms[post.platform]) day.platforms[post.platform] = emptyCounts();
+    const stage = pipelineStage(post, packages.get(post.post_group_id));
+    day.platforms[post.platform][stage] += 1;
+    business.totals[stage] += 1;
+  }
+
+  return [...businesses.values()]
+    .map((business) => ({
+      ...business,
+      days: [...business.days.values()].sort((a, b) => {
+        if (a.dateKey === 'UNSCHEDULED') return 1;
+        if (b.dateKey === 'UNSCHEDULED') return -1;
+        return a.dateKey.localeCompare(b.dateKey);
+      }),
+    }))
+    .sort((a, b) => (a.id === 'news' ? -1 : b.id === 'news' ? 1 : a.label.localeCompare(b.label, 'ja')));
+}
+
+export function buildBusinessPipelinePanel(input) {
+  const businesses = summarizeBusinessPipeline(input);
+  return el('section', { class: 'card business-pipeline' },
+    el('div', { class: 'business-pipeline-head' },
+      el('div', null,
+        el('h2', { class: 'card-title' }, '事業別｜投稿予約の進み具合'),
+        el('p', { class: 'field-hint' }, '確認待ちは、制作完了後のあなたの承認待ちです。'))),
+    businesses.length
+      ? el('div', { class: 'business-pipeline-list' }, ...businesses.map((business) => buildBusiness(business)))
+      : el('p', { class: 'empty-state' }, '制作中・確認待ち・予約済みの投稿はありません。'));
+}
+
+function buildBusiness(business) {
+  return el('article', { class: 'business-block' },
+    el('div', { class: 'business-block-head' },
+      el('h3', { class: 'business-block-title' }, business.label),
+      el('span', { class: 'business-block-total' }, `${Object.values(business.totals).reduce((a, b) => a + b, 0)}件`)),
+    el('div', { class: 'business-total-grid' }, ...STAGES.map((stage) =>
+      metric(stage, business.totals[stage.id]))),
+    el('div', { class: 'business-day-list' }, ...business.days.map((day) => buildDay(day))));
+}
+
+function buildDay(day) {
+  const label = day.dateKey === 'UNSCHEDULED' ? '投稿日未定' : `${dateLabel(day.dateKey)}用`;
+  const rows = PLATFORMS.map((platform) =>
+    el('div', { class: 'business-platform-row' },
+      el('div', { class: 'business-platform-name' },
+        platformBadge(platform, { size: 19, decorative: true }),
+        platformName(platform)),
+      el('div', { class: 'business-platform-counts' },
+        ...STAGES.map((stage) => metric(stage, day.platforms[platform]?.[stage.id] ?? 0)))));
+  return el('section', { class: 'business-day' },
+    el('h4', { class: 'business-day-title' }, label),
+    el('div', { class: 'business-platform-list' }, ...rows));
+}
+
+function metric(stage, count) {
+  return el('div', {
+    class: `business-metric business-metric-${stage.tone}${count === 0 ? ' is-zero' : ''}`,
+    title: `${stage.label} ${count}件`,
+  },
+  el('span', { class: 'business-metric-label' }, stage.label),
+  el('strong', { class: 'business-metric-count' }, String(count)));
+}
+
+function dateLabel(dateKey) {
+  const [, month, day] = dateKey.split('-').map(Number);
+  const weekday = new Intl.DateTimeFormat('ja-JP', { weekday: 'short', timeZone: 'UTC' })
+    .format(new Date(`${dateKey}T00:00:00Z`));
+  return `${month}/${day}（${weekday}）`;
+}

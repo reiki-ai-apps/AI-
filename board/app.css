@@ -853,6 +853,67 @@ input:invalid { border-color: var(--danger); }
 }
 .progress-card-next { padding-top: 8px; border-top: 1px solid var(--line-soft); }
 .progress-card-key { color: var(--ink-3); font-size: 12px; }
+.progress-details { padding-top: 12px; }
+.progress-details-summary { cursor: pointer; margin: 0; }
+.progress-details[open] .progress-details-summary { margin-bottom: 12px; }
+
+/* --- 事業別の投稿工程サマリー ------------------------------------------- */
+.business-pipeline { margin-bottom: 14px; }
+.business-pipeline-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.business-pipeline-list { display: grid; gap: 14px; margin-top: 14px; }
+.business-block {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-alt);
+}
+.business-block-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.business-block-title { margin: 0; font-size: 17px; }
+.business-block-total { color: var(--ink-2); font-size: 13px; font-weight: 700; }
+.business-total-grid, .business-platform-counts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+.business-total-grid { margin-top: 10px; }
+.business-day-list { display: grid; gap: 10px; margin-top: 12px; }
+.business-day {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.business-day-title { margin: 0 0 8px; font-size: 14px; }
+.business-platform-list { display: grid; gap: 7px; }
+.business-platform-row {
+  display: grid;
+  grid-template-columns: 126px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.business-platform-name { display: inline-flex; align-items: center; gap: 7px; min-width: 0; font-size: 13px; font-weight: 700; }
+.business-metric {
+  min-width: 0;
+  min-height: 42px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+  border-radius: 8px;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+.business-metric-progress { border-left-color: #7082b8; }
+.business-metric-attention { border-left-color: var(--attention); }
+.business-metric-scheduled { border-left-color: var(--accent); }
+.business-metric.is-zero { opacity: .48; }
+.business-metric-label { min-width: 0; color: var(--ink-2); font-size: 11px; font-weight: 700; line-height: 1.2; }
+.business-metric-count { font-size: 19px; line-height: 1; font-variant-numeric: tabular-nums; }
 
 /* --- はじめての設定（3手順） -------------------------------------------- */
 .setup-step {
@@ -875,4 +936,11 @@ input:invalid { border-color: var(--danger); }
   .progress-stage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .progress-stage { padding: 9px 10px; }
   .progress-card-reason, .progress-card-next { grid-template-columns: 64px minmax(0, 1fr); }
+  .business-pipeline { padding: 12px; }
+  .business-block { padding: 10px; }
+  .business-platform-row { grid-template-columns: 1fr; gap: 5px; padding-top: 7px; border-top: 1px solid var(--line-soft); }
+  .business-platform-row:first-child { padding-top: 0; border-top: 0; }
+  .business-platform-counts { width: 100%; }
+  .business-metric { padding: 5px 6px; }
+  .business-metric-label { font-size: 10px; }
 }
