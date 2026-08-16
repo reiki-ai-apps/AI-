@@ -13,7 +13,8 @@ const section=(start,end)=>{
 };
 
 for(const match of index.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){
-  if(match[1].trim()){
+  const openingTag=match[0].slice(0,match[0].indexOf(">")+1);
+  if(match[1].trim()&&!/type=["']application\/ld\+json["']/i.test(openingTag)){
     try{Function(match[1]);}catch(error){failures.push(`inline application script parses: ${error.message}`);}
   }
 }

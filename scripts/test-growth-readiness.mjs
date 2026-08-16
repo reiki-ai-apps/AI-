@@ -13,10 +13,10 @@ const requireText=(body,text,label)=>{if(!body.includes(text))failures.push(labe
 
 for(const text of [
   '<link rel="canonical" href="https://reiki-ai-apps.github.io/AI-/"',
-  'property="og:title"','name="twitter:card"','function shareArticle','無料登録はカード情報不要',
+  'property="og:title"','name="twitter:card"','"@type":"WebSite"','function shareArticle','無料登録はカード情報不要',
   '毎日3分の確認を','重要トップニュースはテーマ外でも表示','function trackAppEvent',
   "trackAppEvent('signup_start'","trackAppEvent('checkout_start'","data-funnel-key=\"paymentsConfirmed\"",
-  "String(u.article_id||'')===key"
+  "String(u.article_id||'')===key",'href="${esc(publicArticleUrl(u))}"'
 ])requireText(index,text);
 if(index.includes('重要ニュース通知（提供予定）'))failures.push('未提供機能を料金プランに表示しています');
 if(index.includes('複数事業やチームで'))failures.push('未提供のチーム機能を料金説明に含めています');
@@ -29,8 +29,9 @@ for(const id of ids){
   const file=path.join(root,"articles",id,"index.html");
   if(!fs.existsSync(file)){failures.push(`記事ページがありません: ${id}`);continue;}
   const page=fs.readFileSync(file,"utf8");
-  if(!page.includes('application/ld+json')||!page.includes(`/articles/${encodeURIComponent(id)}/`))failures.push(`記事SEOが不完全です: ${id}`);
-  if(!page.includes(`href="https://reiki-ai-apps.github.io/AI-/">最新ニュースをアプリで見る</a>`))failures.push(`記事から最新ニュースへの導線がありません: ${id}`);
+  if(!page.includes('application/ld+json')||!page.includes('BreadcrumbList')||!page.includes(`/articles/${encodeURIComponent(id)}/`))failures.push(`記事SEOが不完全です: ${id}`);
+  if(!page.includes(`href="https://reiki-ai-apps.github.io/AI-/">最新AIニュースを毎日3分で確認</a>`))failures.push(`記事から最新ニュースへの導線がありません: ${id}`);
+  if(!page.includes('class="article-image"')||!page.includes('class="related"'))failures.push(`記事画像または内部リンクがありません: ${id}`);
   if(page.includes('#update-detail/'))failures.push(`保存期間後に切れる記事詳細リンクがあります: ${id}`);
 }
 requireText(read("robots.txt"),'Sitemap: https://reiki-ai-apps.github.io/AI-/sitemap.xml');
