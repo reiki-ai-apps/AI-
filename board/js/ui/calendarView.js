@@ -32,8 +32,9 @@ async function renderWeek(app) {
   const { repo } = app.ctx;
   const tz = app.timeZone;
   const selected = app.state.selectedDateKey;
-  const start = rollingWeekStartKey(selected, app.todayKey());
-  const end = shiftDateKey(start, 6);
+  const dayCount = 3;
+  const start = rollingWeekStartKey(selected, app.todayKey(), dayCount);
+  const end = shiftDateKey(start, dayCount - 1);
 
   const [posts, pipelinePosts, dayPlanRows, accounts, postGroups, publicationPackages] = await Promise.all([
     repo.listPostsBetween(start, end),
@@ -50,25 +51,30 @@ async function renderWeek(app) {
     todayKey: app.todayKey(),
     items: posts.map(toCalendarItem),
     dayPlans: dayPlanRows.map(toDayPlanView),
+    dayCount,
   });
 
   const upcoming = await repo.listUpcomingPosts(app.clock.nowMs(), 10);
+  const pipelineWindowPosts = pipelinePosts.filter((post) => {
+    if (post.internal?.tags?.includes('production-run')) return true;
+    return post.calendar_date_key >= start && post.calendar_date_key <= end;
+  });
   const screen = el('div', { class: 'screen' });
 
   screen.appendChild(
     buildToolbar(app, {
       titleId: 'week-title',
       title: view.title,
-      prevLabel: '前の週',
-      nextLabel: '次の週',
-      onPrev: () => app.update({ selectedDateKey: shiftDateKey(selected, -7) }),
-      onNext: () => app.update({ selectedDateKey: shiftDateKey(selected, 7) }),
+      prevLabel: '前の3日',
+      nextLabel: '次の3日',
+      onPrev: () => app.update({ selectedDateKey: shiftDateKey(selected, -dayCount) }),
+      onNext: () => app.update({ selectedDateKey: shiftDateKey(selected, dayCount) }),
       todayLabel: '今日から',
       selected,
     }),
   );
 
-  screen.appendChild(buildBusinessPipelinePanel({ posts: pipelinePosts, postGroups, publicationPackages }));
+  screen.appendChild(buildBusinessPipelinePanel({ posts: pipelineWindowPosts, postGroups, publicationPackages }));
   screen.appendChild(buildProgressPanel(app, { posts, todayKey: app.todayKey(), timeZone: tz }));
 
   // 「次に確認すること」は週表示では画面幅いっぱいの帯にする。
@@ -101,9 +107,8 @@ async function renderMonth(app) {
   }
   const selected = app.state.selectedDateKey;
 
-  const [posts, pipelinePosts, dayPlanRows, accounts, postGroups, publicationPackages] = await Promise.all([
+  const [posts, dayPlanRows, accounts, postGroups, publicationPackages] = await Promise.all([
     repo.listPostsForMonth(year, month),
-    repo.listPipelinePosts(),
     repo.listDayPlans(),
     repo.listSocialAccounts(),
     repo.listPostGroups(),
@@ -141,7 +146,7 @@ async function renderMonth(app) {
     }),
   );
 
-  screen.appendChild(buildBusinessPipelinePanel({ posts: pipelinePosts, postGroups, publicationPackages }));
+  screen.appendChild(buildBusinessPipelinePanel({ posts, postGroups, publicationPackages }));
   screen.appendChild(buildProgressPanel(app, { posts, todayKey: app.todayKey(), timeZone: tz }));
   screen.appendChild(buildLegendBar());
 
@@ -189,7 +194,7 @@ function buildToolbar(app, o) {
     { class: 'cal-toolbar' },
     el('h1', { class: 'screen-title' }, 'SNS投稿カレンダー'),
     el('div', { class: 'view-switch', role: 'group', 'aria-label': '表示の単位' },
-      viewButton(app, 'week', '週'),
+      viewButton(app, 'week', '3日'),
       viewButton(app, 'month', '月')),
     el('div', { class: 'month-nav' },
       button('‹', { class: 'month-step', 'aria-label': o.prevLabel, onClick: o.onPrev }),

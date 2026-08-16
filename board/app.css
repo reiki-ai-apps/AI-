@@ -278,8 +278,8 @@ a:hover { text-decoration: underline; }
 .next-bar .day-done { font-size: 15px; }
 .next-bar-aux { margin-top: 6px; font-size: 12px; color: var(--ink-3); }
 
-.wk-wrap { overflow-x: auto; }
-.wk { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; min-width: 760px; }
+.wk-wrap { overflow-x: hidden; }
+.wk { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; min-width: 0; }
 .wk-row { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); align-items: stretch; }
 
 .wk-col {
@@ -915,6 +915,51 @@ input:invalid { border-color: var(--danger); }
 .business-metric-label { min-width: 0; color: var(--ink-2); font-size: 11px; font-weight: 700; line-height: 1.2; }
 .business-metric-count { font-size: 19px; line-height: 1; font-variant-numeric: tabular-nums; }
 
+/* --- 投稿詳細：判断に必要な情報だけを先に出す ---------------------------- */
+.detail-summary-card {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-alt);
+}
+.detail-summary-state {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: 800;
+}
+.detail-summary-card .kv { margin-top: 12px; grid-template-columns: 70px minmax(0, 1fr); gap: 7px 10px; }
+.detail-next {
+  display: grid;
+  gap: 4px;
+  margin-top: 13px;
+  padding: 11px;
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.detail-next-label { color: var(--ink-3); font-size: 11px; font-weight: 700; }
+.detail-simple-more {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+.detail-simple-more > summary {
+  padding: 12px 14px;
+  cursor: pointer;
+  font-weight: 700;
+  list-style-position: inside;
+}
+.detail-simple-preview { margin: 0 12px 12px; max-height: 320px; overflow: auto; }
+.detail-advanced-body { display: grid; gap: 18px; padding: 0 14px 14px; }
+.detail-danger-actions > summary { color: var(--ink-2); font-weight: 600; }
+.detail-secondary-actions { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 12px 12px; }
+
 /* --- はじめての設定（3手順） -------------------------------------------- */
 .setup-step {
   border: 1px solid var(--line); border-radius: 10px;
@@ -943,4 +988,7 @@ input:invalid { border-color: var(--danger); }
   .business-platform-counts { width: 100%; }
   .business-metric { padding: 5px 6px; }
   .business-metric-label { font-size: 10px; }
+  .detail-summary-card { padding: 12px; }
+  .detail-summary-card .kv { grid-template-columns: 64px minmax(0, 1fr); }
+  .drawer-foot .btn { flex: 1 1 120px; }
 }

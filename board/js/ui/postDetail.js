@@ -11,13 +11,14 @@ import { publishMode } from '../domain/capabilities.js';
 import { submitForApproval, approve, reject, verifyApprovalStillValid } from '../services/api.js';
 import { cancelSchedule } from '../services/api.js';
 import { describeProduction, updateProduction } from '../services/api.js';
-import { PRODUCTION_KIND_LABELS } from '../domain/production.js';
+import { PRODUCTION_KIND_LABELS, blockingState, productionProgress } from '../domain/production.js';
+import { toPostView } from '../store/repo.js';
 import { can } from '../domain/rbac.js';
 import { claimManualExecution, getApprovedContent, confirmManualPublish, releaseManualClaim, markOutcomeUnknown } from '../services/api.js';
 import { softDeletePost, restorePost } from '../services/api.js';
 import { auditActionLabel } from '../services/audit.js';
 import { openEditDrawer } from './editDrawer.js';
-import { stateTag, failureNotice, guardedButton } from './states.js';
+import { failureNotice, guardedButton } from './states.js';
 
 /** 投稿詳細をドロワーで開く。 */
 export async function openPostDetail(app, channelPostId) {
@@ -56,10 +57,21 @@ async function paint(app, channelPostId, bodyHost, footHost, ctl) {
   const revisions = await repo.listRevisions(channelPostId);
   const approvals = await repo.listApprovalsFor(channelPostId);
   const executions = await repo.listExecutions(channelPostId);
-  const audit = await repo.listAudit({ targetId: channelPostId, limit: 40 });
+  const audit = await repo.listAudit({ targetId: channelPostId, limit: 10 });
   const verdict = await verifyApprovalStillValid(app.ctx, channelPostId).catch(() => null);
   const siblings = await repo.listChannelPostsOfGroup(post.post_group_id);
   const mode = publishMode(post.platform);
+  const production = await describeProduction(app.ctx, channelPostId).catch(() => null);
+  const progress = productionProgress(production);
+  const block = blockingState(toPostView(post, nowMs), production);
+  const trackingOnly = post.internal?.tags?.includes('production-run') === true;
+  const simpleState = block.kind === 'PRODUCTION'
+    ? '制作中'
+    : block.kind === 'APPROVAL'
+      ? '確認待ち'
+      : post.display_state === 'SCHEDULED'
+        ? '予約済み'
+        : displayState(post.display_state).label;
 
   bodyHost.append(
     el(
@@ -67,9 +79,6 @@ async function paint(app, channelPostId, bodyHost, footHost, ctl) {
       null,
       el('div', { class: 'card-meta' }, `${brandName(post.brand_id)}／${platformName(post.platform)}`),
       el('h3', { class: 'card-title' }, group?.project_title ?? post.title),
-      el('div', { style: { display: 'flex', gap: '12px', 'align-items': 'baseline', 'margin-top': '6px' } },
-        stateTag(post.display_state),
-        el('span', { class: 'card-meta' }, displayState(post.display_state).meaning)),
     ),
   );
 
@@ -93,8 +102,34 @@ async function paint(app, channelPostId, bodyHost, footHost, ctl) {
   const fail = failureNotice(post);
   if (fail) bodyHost.appendChild(fail);
 
-  // --- 予定と公開方法 -------------------------------------------------------
   bodyHost.appendChild(
+    el('section', { class: 'detail-summary-card' },
+      el('div', { class: `detail-summary-state tone-${block.kind === 'APPROVAL' ? 'attention' : block.kind === 'PRODUCTION' ? 'progress' : displayState(post.display_state).tone}` }, simpleState),
+      kv([
+        ['何日用', trackingOnly ? '投稿日未定' : fullDayLabel(post.calendar_date_key)],
+        ['投稿先', platformName(post.platform)],
+        ['現在地', production ? `制作 ${progress.label}` : simpleState],
+      ]),
+      block.kind !== 'NONE'
+        ? el('div', { class: 'detail-next' },
+            el('span', { class: 'detail-next-label' }, '次にすること'),
+            el('strong', null, block.next),
+            el('span', { class: 'field-hint' }, block.reason))
+        : null),
+  );
+
+  if (revision?.body) {
+    bodyHost.appendChild(
+      el('details', { class: 'detail-simple-more' },
+        el('summary', null, '投稿内容を見る'),
+        el('div', { class: 'preview detail-simple-preview' }, revision.body)),
+    );
+  }
+
+  const technicalHost = el('div', { class: 'detail-advanced-body' });
+
+  // --- 予定と公開方法 -------------------------------------------------------
+  technicalHost.appendChild(
     section('予定と公開方法', [
       kv([
         ['公開予定日時', `${fullDayLabel(post.calendar_date_key)} ${clockLabel(Date.parse(post.scheduled_at), tz)}`],
@@ -110,11 +145,10 @@ async function paint(app, channelPostId, bodyHost, footHost, ctl) {
   // --- 制作の進み具合 (§10 内部情報) ----------------------------------------
   // 人はここのチェックで申告し、スキルは production.update の意図で申告する。
   // どちらも同じデータに乗るので、報告と盤面がずれない。
-  const production = await describeProduction(app.ctx, channelPostId).catch(() => null);
   if (production && !post.deleted_at) {
     const editable = can(app.state.role, 'post.edit.internal').allowed;
     const doneCount = production.steps.filter((s) => s.done).length;
-    bodyHost.appendChild(
+    technicalHost.appendChild(
       section(`制作の進み具合（${PRODUCTION_KIND_LABELS[production.kind]}・${doneCount}／${production.steps.length}）`, [
         el('ul', { class: 'plain-list' },
           ...production.steps.map((step) => {
@@ -153,7 +187,7 @@ async function paint(app, channelPostId, bodyHost, footHost, ctl) {
   }
 
   // --- 現在の版 -------------------------------------------------------------
-  bodyHost.appendChild(
+  technicalHost.appendChild(
     section(`現在の版（第${revision?.revision_no ?? '—'}版 / 全${revisions.length}版）`, [
       el('div', { class: 'preview' }, revision?.body ?? ''),
       kv([
@@ -180,7 +214,7 @@ async function paint(app, channelPostId, bodyHost, footHost, ctl) {
 
   // --- 承認 -----------------------------------------------------------------
   const approved = approvals.find((a) => a.decision === 'APPROVED' && !a.revoked_at);
-  bodyHost.appendChild(
+  technicalHost.appendChild(
     section('承認', [
       verdict
         ? el('div', { class: verdict.valid ? 'notice' : 'notice notice-attention' },
@@ -216,7 +250,7 @@ async function paint(app, channelPostId, bodyHost, footHost, ctl) {
 
   // --- 同一企画のほかのSNS ---------------------------------------------------
   if (siblings.length > 1) {
-    bodyHost.appendChild(
+    technicalHost.appendChild(
       section('同じ企画のほかのSNS', [
         el('ul', { class: 'kv' },
           ...siblings
@@ -231,7 +265,7 @@ async function paint(app, channelPostId, bodyHost, footHost, ctl) {
   }
 
   // --- 実行 -----------------------------------------------------------------
-  bodyHost.appendChild(
+  technicalHost.appendChild(
     section('実行', [
       executions.length
         ? el('div', { class: 'table-wrap' },
@@ -249,7 +283,7 @@ async function paint(app, channelPostId, bodyHost, footHost, ctl) {
   );
 
   // --- 監査 -----------------------------------------------------------------
-  bodyHost.appendChild(
+  technicalHost.appendChild(
     section('監査', [
       el('div', { class: 'table-wrap' },
         el('table', null,
@@ -264,8 +298,16 @@ async function paint(app, channelPostId, bodyHost, footHost, ctl) {
   );
 
   // --- 操作 -----------------------------------------------------------------
+  bodyHost.appendChild(
+    el('details', { class: 'detail-simple-more detail-advanced' },
+      el('summary', null, '内部情報・履歴を見る'),
+      technicalHost),
+  );
+
   const actions = [];
+  const secondaryActions = [];
   const push = (node) => node && actions.push(node);
+  const pushSecondary = (node) => node && secondaryActions.push(node);
 
   if (post.deleted_at) {
     push(guardedButton(app, 'post.restore', '復元する', {
@@ -288,7 +330,7 @@ async function paint(app, channelPostId, bodyHost, footHost, ctl) {
           await ctl.reload();
         },
       }));
-      push(guardedButton(app, 'approval.reject', '差し戻す', {
+      pushSecondary(guardedButton(app, 'approval.reject', '差し戻す', {
         onClick: async () => {
           const comment = await app.askReason({ title: '差し戻す', message: '作成者へ伝わります。', confirmLabel: '差し戻す' });
           if (!comment) return;
@@ -311,7 +353,7 @@ async function paint(app, channelPostId, bodyHost, footHost, ctl) {
       }));
     }
     if (post.display_state === 'PUBLISHING') {
-      push(guardedButton(app, 'execution.manual', '取りやめる', {
+      pushSecondary(guardedButton(app, 'execution.manual', '取りやめる', {
         onClick: async () => {
           const reason = await app.askReason({ title: '手動投稿を取りやめる', confirmLabel: '取りやめる' });
           if (!reason) return;
@@ -327,7 +369,7 @@ async function paint(app, channelPostId, bodyHost, footHost, ctl) {
       }));
     }
     if (!post.cancelled_at && ['SCHEDULED', 'PENDING_APPROVAL', 'DRAFT', 'QUALITY_REVIEW'].includes(post.display_state)) {
-      push(guardedButton(app, 'schedule.cancel', '取消', {
+      pushSecondary(guardedButton(app, 'schedule.cancel', '取消', {
         onClick: async () => {
           const reason = await app.askReason({ title: '予約を取消す', message: '送信前なので取消できます。', confirmLabel: '取消す', tone: 'danger' });
           if (!reason) return;
@@ -337,7 +379,7 @@ async function paint(app, channelPostId, bodyHost, footHost, ctl) {
         },
       }));
     }
-    push(guardedButton(app, 'post.delete', '削除', {
+    pushSecondary(guardedButton(app, 'post.delete', '削除', {
       class: 'btn btn-danger',
       onClick: async () => {
         const reason = await app.askReason({ title: '投稿を削除する', message: '30日以内なら管理者が復元できます。', confirmLabel: '削除する', tone: 'danger' });
@@ -349,6 +391,13 @@ async function paint(app, channelPostId, bodyHost, footHost, ctl) {
     }));
   }
 
+  if (secondaryActions.length) {
+    bodyHost.appendChild(
+      el('details', { class: 'detail-simple-more detail-danger-actions' },
+        el('summary', null, '差し戻し・取消・削除'),
+        el('div', { class: 'detail-secondary-actions' }, ...secondaryActions)),
+    );
+  }
   footHost.append(...actions);
 }
 

@@ -193,18 +193,29 @@ export function weekStartKey(dateKey) {
  * 今日を基準にした7日単位の表示開始日。
  * 今日〜6日後を最初の窓にし、その外を選んだときだけ前後の7日へ移る。
  */
-export function rollingWeekStartKey(dateKey, todayKey) {
+export function rollingWeekStartKey(dateKey, todayKey, windowDays = 7) {
   const dayMs = 86_400_000;
   const selectedMs = Date.parse(`${dateKey}T00:00:00Z`);
   const todayMs = Date.parse(`${todayKey}T00:00:00Z`);
   if (!Number.isFinite(selectedMs) || !Number.isFinite(todayMs)) return todayKey;
   const offsetDays = Math.round((selectedMs - todayMs) / dayMs);
-  return shiftDateKey(todayKey, Math.floor(offsetDays / 7) * 7);
+  return shiftDateKey(todayKey, Math.floor(offsetDays / windowDays) * windowDays);
 }
 
 /** "8月10日〜16日" のような週の見出し。月をまたぐ場合は両方出す。 */
 export function weekTitle(startKey) {
   const endKey = shiftDateKey(startKey, 6);
+  const s = { m: Number(startKey.slice(5, 7)), d: Number(startKey.slice(8, 10)), y: Number(startKey.slice(0, 4)) };
+  const e = { m: Number(endKey.slice(5, 7)), d: Number(endKey.slice(8, 10)), y: Number(endKey.slice(0, 4)) };
+  if (s.y !== e.y) return `${s.y}年${s.m}月${s.d}日 〜 ${e.y}年${e.m}月${e.d}日`;
+  if (s.m !== e.m) return `${s.y}年${s.m}月${s.d}日 〜 ${e.m}月${e.d}日`;
+  return `${s.y}年${s.m}月${s.d}日 〜 ${e.d}日`;
+}
+
+/** 任意の日数の見出し。投稿管理の既定画面は今日から3日間。 */
+export function rangeTitle(startKey, dayCount) {
+  if (dayCount === 7) return weekTitle(startKey);
+  const endKey = shiftDateKey(startKey, dayCount - 1);
   const s = { m: Number(startKey.slice(5, 7)), d: Number(startKey.slice(8, 10)), y: Number(startKey.slice(0, 4)) };
   const e = { m: Number(endKey.slice(5, 7)), d: Number(endKey.slice(8, 10)), y: Number(endKey.slice(0, 4)) };
   if (s.y !== e.y) return `${s.y}年${s.m}月${s.d}日 〜 ${e.y}年${e.m}月${e.d}日`;
@@ -222,9 +233,9 @@ export function weekTitle(startKey) {
  * @param {Array<{id,brandId,platform,displayState,title,scheduledAtMs,publishedAtMs?}>} input.items
  * @param {Array} [input.dayPlans]
  */
-export function buildWeekView({ startDateKey, timeZone, todayKey, items = [], dayPlans = [] }) {
+export function buildWeekView({ startDateKey, timeZone, todayKey, items = [], dayPlans = [], dayCount = 7 }) {
   const start = startDateKey;
-  const keys = Array.from({ length: 7 }, (_, i) => shiftDateKey(start, i));
+  const keys = Array.from({ length: dayCount }, (_, i) => shiftDateKey(start, i));
   const plans = new Map(dayPlans.map((p) => [p.dateKey, p]));
 
   const byDay = new Map(keys.map((k) => [k, []]));
@@ -286,8 +297,8 @@ export function buildWeekView({ startDateKey, timeZone, todayKey, items = [], da
 
   return {
     startDateKey: start,
-    endDateKey: shiftDateKey(start, 6),
-    title: weekTitle(start),
+    endDateKey: shiftDateKey(start, dayCount - 1),
+    title: rangeTitle(start, dayCount),
     days,
     summary: { counts, emptyDays, pausedDays },
   };

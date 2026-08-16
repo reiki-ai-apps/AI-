@@ -30,3 +30,19 @@ test('週表示は指定した今日から7日間を返す', () => {
     '2026-08-22',
   ]);
 });
+
+test('投稿管理の既定画面は今日・明日・明後日の3日だけを返す', () => {
+  const today = '2026-08-16';
+  assert.equal(rollingWeekStartKey('2026-08-18', today, 3), today);
+  assert.equal(rollingWeekStartKey('2026-08-19', today, 3), '2026-08-19');
+
+  const view = buildWeekView({
+    startDateKey: today,
+    todayKey: today,
+    timeZone: 'Asia/Tokyo',
+    dayCount: 3,
+  });
+  assert.equal(view.endDateKey, '2026-08-18');
+  assert.equal(view.title, '2026年8月16日 〜 18日');
+  assert.deepEqual(view.days.map((day) => day.dateKey), ['2026-08-16', '2026-08-17', '2026-08-18']);
+});

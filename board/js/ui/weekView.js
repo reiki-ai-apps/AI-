@@ -1,4 +1,4 @@
-// 週表示 — 1週間を7列で並べ、投稿を1件ずつ時刻順に出す。
+// 3日表示 — 今日・明日・明後日を並べ、投稿を1件ずつ時刻順に出す。
 //
 // 月表示は「月を直読する」ための要約（状態＋件数）だが、週表示は
 // 「その週を管理する」ための面なので、時刻・SNS・タイトル・状態をそのまま見せる。
@@ -28,6 +28,7 @@ export function buildWeekGrid(app, view, selected) {
   });
 
   const row = el('div', { class: 'wk-row', role: 'row' });
+  row.style.gridTemplateColumns = `repeat(${view.days.length}, minmax(0, 1fr))`;
   for (const day of view.days) row.appendChild(buildColumn(app, day, selected, view));
   grid.appendChild(row);
   return grid;
@@ -130,8 +131,8 @@ function buildColumn(app, day, selected, view) {
     ArrowLeft: () => move(app, day.dateKey, -1, view),
     ArrowRight: () => move(app, day.dateKey, 1, view),
     Home: () => move(app, day.dateKey, -day.weekdayIndexFromMonday ?? 0, view),
-    PageUp: () => app.update({ selectedDateKey: shiftDateKey(day.dateKey, -7) }),
-    PageDown: () => app.update({ selectedDateKey: shiftDateKey(day.dateKey, 7) }),
+    PageUp: () => app.update({ selectedDateKey: shiftDateKey(day.dateKey, -view.days.length) }),
+    PageDown: () => app.update({ selectedDateKey: shiftDateKey(day.dateKey, view.days.length) }),
   });
 
   return col;
