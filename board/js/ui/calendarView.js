@@ -8,7 +8,7 @@
 import { el, button, onKeys, focus } from '../core/dom.js';
 import { WEEK_COLUMNS_JA, monthTitle } from '../core/fmt.js';
 import { shiftDateKey, daysInMonth } from '../core/tz.js';
-import { buildMonthView, buildWeekView, weekStartKey, summaryEntries } from '../domain/calendar.js';
+import { buildMonthView, buildWeekView, rollingWeekStartKey, summaryEntries } from '../domain/calendar.js';
 import { displayState } from '../domain/state.js';
 import { toDayPlanView } from '../services/dayplans.js';
 import { buildDayPanel, buildNextActionBar } from './dayPanel.js';
@@ -31,7 +31,7 @@ async function renderWeek(app) {
   const { repo } = app.ctx;
   const tz = app.timeZone;
   const selected = app.state.selectedDateKey;
-  const start = weekStartKey(selected);
+  const start = rollingWeekStartKey(selected, app.todayKey());
   const end = shiftDateKey(start, 6);
 
   const [posts, dayPlanRows, accounts] = await Promise.all([
@@ -59,12 +59,12 @@ async function renderWeek(app) {
       nextLabel: '次の週',
       onPrev: () => app.update({ selectedDateKey: shiftDateKey(selected, -7) }),
       onNext: () => app.update({ selectedDateKey: shiftDateKey(selected, 7) }),
-      todayLabel: '今週',
+      todayLabel: '今日から',
       selected,
     }),
   );
 
-  screen.appendChild(buildStatusStrip(app, view.summary, '今週の投稿状況', 'この週の投稿はまだありません'));
+  screen.appendChild(buildStatusStrip(app, view.summary, '今日から7日間の投稿状況', 'この7日間の投稿はまだありません'));
   screen.appendChild(buildProgressPanel(app, { posts, todayKey: app.todayKey(), timeZone: tz }));
 
   // 「次に確認すること」は週表示では画面幅いっぱいの帯にする。
