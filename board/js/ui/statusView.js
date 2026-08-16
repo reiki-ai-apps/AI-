@@ -48,6 +48,24 @@ function channelCard(channel) {
   );
 }
 
+function productionCard(production) {
+  if (!production?.last_run) return null;
+  const run = production.last_run;
+  const state = run.state ?? 'UNKNOWN';
+  return el('section', { class: 'card status-production' },
+    el('div', { class: 'status-card-head' },
+      el('div', null,
+        el('h2', { class: 'card-title' }, '次回コンテンツ制作'),
+        el('p', { class: 'screen-desc' }, `実行ID ${run.run_id ?? '未確認'}｜${dateTime(run.finished_at ?? run.started_at)}`)),
+      el('span', { class: `status-pill status-pill-${state.toLowerCase()}` }, STATE_LABELS[state] ?? (state === 'HOLD' ? '品質保留' : state))),
+    el('dl', { class: 'status-kv' },
+      el('dt', null, '現在工程'), el('dd', null, run.stage ?? '未確認'),
+      el('dt', null, '一次情報'), el('dd', null, `${run.verified_primary_count ?? '未確認'} / ${run.required_primary_count ?? '未確認'}件`),
+      el('dt', null, '次の対応'), el('dd', null, run.next_action ?? '未設定')),
+    run.reason ? el('p', { class: 'status-note' }, run.reason) : null,
+    el('p', { class: 'screen-desc' }, production.policy ?? '品質ゲート通過後に公開工程へ進みます。'));
+}
+
 export async function renderStatusScreen(app) {
   const response = await fetch(`data/status.json?t=${Date.now()}`, { cache: 'no-store' });
   if (!response.ok) throw new Error(`運用状況を取得できませんでした（HTTP ${response.status}）。`);
@@ -69,6 +87,7 @@ export async function renderStatusScreen(app) {
       el('div', { class: 'status-metric' }, el('strong', null, String(data.summary?.published_confirmed ?? 0)), el('span', null, '公開確認済み')),
       el('div', { class: 'status-metric' }, el('strong', null, String(data.summary?.scheduled ?? 0)), el('span', null, '予約済み')),
       el('div', { class: 'status-metric' }, el('strong', null, String(data.summary?.attention ?? blockers.length)), el('span', null, '要確認'))),
+    productionCard(data.production),
     el('section', { class: 'status-grid', 'aria-label': '媒体別の状況' }, ...(data.channels ?? []).map(channelCard)),
     el('section', { class: 'card status-monitor' },
       el('h2', { class: 'card-title' }, '自動監視'),

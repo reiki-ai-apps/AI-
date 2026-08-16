@@ -772,6 +772,7 @@ input:invalid { border-color: var(--danger); }
 .status-pill { display: inline-flex; align-items: center; min-height: 26px; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; }
 .status-pill-healthy { color: #17613a; background: #e8f5ed; }
 .status-pill-attention { color: var(--attention); background: var(--attention-soft); }
+.status-pill-hold { color: var(--attention); background: var(--attention-soft); }
 .status-pill-blocked { color: var(--danger); background: #fdf3f2; }
 .status-pill-unknown { color: var(--ink-3); background: var(--surface-alt); }
 .status-kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 7px 14px; margin: 15px 0 0; font-size: 13px; }
@@ -780,6 +781,7 @@ input:invalid { border-color: var(--danger); }
 .status-note { margin: 13px 0 0; color: var(--ink-2); font-size: 13px; line-height: 1.6; }
 .status-link { margin: 11px 0 0; font-size: 13px; }
 .status-monitor { margin-top: 18px; }
+.status-production { margin-bottom: 18px; }
 
 .plain-list { list-style: none; margin: 6px 0 0; padding: 0; }
 .progress-row {

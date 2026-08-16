@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-16T14:41:09+09:00",
+  "generated_at": "2026-08-16T16:15:08+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
     "published_confirmed": 7,
     "scheduled": 0,
-    "attention": 2
+    "attention": 3
   },
   "channels": [
     {
@@ -83,6 +83,11 @@
   ],
   "blockers": [
     {
+      "id": "news-primary-source-quorum",
+      "severity": "ATTENTION",
+      "message": "次回AIニュースは直近72時間の一次情報が3件そろわず制作保留"
+    },
+    {
       "id": "note-profile-links",
       "severity": "ATTENTION",
       "message": "noteプロフィールのInstagram・YouTubeリンクが保存されない"
@@ -93,12 +98,30 @@
       "message": "YouTube Shortsの公開後確認receiptが未取得"
     }
   ],
+  "production": {
+    "cadence": "PT6H",
+    "last_run": {
+      "run_id": "ai-news-20260816-1615-jst",
+      "started_at": "2026-08-16T16:15:08+09:00",
+      "finished_at": "2026-08-16T16:15:08+09:00",
+      "state": "HOLD",
+      "stage": "一次情報確認",
+      "candidate_count": 3,
+      "verified_primary_count": 0,
+      "required_primary_count": 3,
+      "reason": "直近24時間から72時間へ範囲を広げて公式発表を確認しましたが、公開可能な新着3件を一次情報で裏づけられませんでした。二次記事や古い発表は新着として使用していません。",
+      "next_action": "6時間後に一次情報を差分確認し、3件そろった時点で原稿・映像・各SNS派生の制作へ進みます。"
+    },
+    "policy": "各実行をBoardへ記録。品質ゲート通過前は予約・公開しない。"
+  },
   "monitoring": {
     "cadence": "PT1H",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
-    "description": "1時間ごとに公開証跡、次回予約、停止理由、Board同期時刻を軽量確認します。動画生成や画像生成は実行しません。"
+    "description": "1時間ごとに公開証跡と停止理由を軽量確認し、前回制作から6時間以上経過した場合は次回AIニュース制作を低負荷で実行します。各実行結果はBoardへ同期します。"
   },
   "evidence": [
+    "outputs/kizashi-ai-news-20260816-1615/run.json",
+    "outputs/kizashi-ai-news-20260816-1615/gate.json",
     "outputs/instagram-repair-20260815/receipts/repost-without-delete-receipt.json",
     "outputs/kizashi-growth-overhaul-20260816/production-release-receipt.json"
   ]
