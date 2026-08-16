@@ -288,6 +288,8 @@ export function toPostView(post, nowMs = Date.now()) {
     credentialExpired: post.credential_expired === true,
     hasAssets: post.has_assets !== false,
     rightsConfirmed: post.rights_confirmed === true,
+    production: post.production ?? null,
+    trackingOnly: post.internal?.tags?.includes('production-run') === true,
     timeZone: post.time_zone,
   };
 }

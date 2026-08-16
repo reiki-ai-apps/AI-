@@ -14,6 +14,7 @@ export const PRIORITY = Object.freeze([
   CONDITIONS.OUTCOME_UNKNOWN,
   CONDITIONS.PUBLISH_FAILED,
   CONDITIONS.CREDENTIAL_EXPIRED,
+  CONDITIONS.PRODUCTION_HOLD,
   CONDITIONS.MISSING_ASSET_1H,
   CONDITIONS.DUE_FOR_MANUAL_PUBLISH,
   CONDITIONS.UNAPPROVED_24H,
@@ -93,6 +94,8 @@ function shortWhat(item) {
       return platform ? `${platform}の失敗に対応` : '失敗に対応';
     case CONDITIONS.CREDENTIAL_EXPIRED:
       return platform ? `${platform}の再接続` : '再接続';
+    case CONDITIONS.PRODUCTION_HOLD:
+      return platform ? `${platform}の一次情報を確認` : '一次情報を確認';
     case CONDITIONS.MISSING_ASSET_1H:
       return platform ? `${platform}の素材・権利を補う` : '素材・権利を補う';
     case CONDITIONS.DUE_FOR_MANUAL_PUBLISH:

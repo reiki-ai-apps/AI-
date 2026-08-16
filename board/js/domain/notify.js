@@ -31,6 +31,7 @@ export const CONDITIONS = Object.freeze({
   NO_PLAN: 'NO_PLAN',
   PUBLISH_SUCCEEDED: 'PUBLISH_SUCCEEDED',
   DUE_FOR_MANUAL_PUBLISH: 'DUE_FOR_MANUAL_PUBLISH',
+  PRODUCTION_HOLD: 'PRODUCTION_HOLD',
 });
 
 function subjectLabel(post) {
@@ -80,6 +81,24 @@ export function evaluatePost(post, nowMs) {
       nextStep: '接続設定から再接続してください。',
       action: { label: '接続設定を開く', route: 'connections', platform: post.platform },
     });
+  }
+
+  // 制作runのカレンダー記録は公開予約ではない。予定時刻ベースの警告を出さず、
+  // 実際に止まっている制作工程だけを次の一手として示す。
+  if (post.trackingOnly) {
+    const remaining = post.production?.steps?.filter((step) => step.done !== true) ?? [];
+    const first = remaining[0];
+    if (first) {
+      out.push({
+        condition: CONDITIONS.PRODUCTION_HOLD,
+        severity: SEVERITY.ATTENTION.id,
+        subject,
+        cause: `${subject}は「${first.label}」で品質保留中です。`,
+        nextStep: `${first.label}を完了してください。`,
+        action: { label: '制作状況を見る', route: 'post', postId: post.id },
+      });
+    }
+    return out.map((n) => ({ ...n, postId: post.id, dedupeKey: `${n.condition}:${post.id}` }));
   }
 
   // 公開が終わっていないものは、予定時刻を過ぎても対象から外さない。

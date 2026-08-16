@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-16T16:15:08+09:00",
+  "generated_at": "2026-08-16T16:32:32+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -110,7 +110,7 @@
       "verified_primary_count": 0,
       "required_primary_count": 3,
       "reason": "直近24時間から72時間へ範囲を広げて公式発表を確認しましたが、公開可能な新着3件を一次情報で裏づけられませんでした。二次記事や古い発表は新着として使用していません。",
-      "next_action": "6時間後に一次情報を差分確認し、3件そろった時点で原稿・映像・各SNS派生の制作へ進みます。"
+      "next_action": "制作保留runを16日の投稿カレンダーへ4媒体の下書きとして同期済み。6時間後に一次情報を差分確認します。"
     },
     "policy": "各実行をBoardへ記録。品質ゲート通過前は予約・公開しない。"
   },
@@ -122,6 +122,7 @@
   "evidence": [
     "outputs/kizashi-ai-news-20260816-1615/run.json",
     "outputs/kizashi-ai-news-20260816-1615/gate.json",
+    "outputs/kizashi-ai-news-20260816-1615/board-calendar-sync-receipt.json",
     "outputs/instagram-repair-20260815/receipts/repost-without-delete-receipt.json",
     "outputs/kizashi-growth-overhaul-20260816/production-release-receipt.json"
   ]
