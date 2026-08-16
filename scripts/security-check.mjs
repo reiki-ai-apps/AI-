@@ -55,7 +55,7 @@ if (/window\.open\(\s*u\.source_url/.test(html)) {
   findings.push("index.html: unvalidated source URL navigation");
 }
 
-const scriptBlocks = [...html.matchAll(/<script(?<attributes>\s[^>]*)?>(?<source>[\s\S]*?)<\/script\s*>/gi)]
+const scriptBlocks = [...html.matchAll(/<script(?<attributes>\s[^>]*)?>(?<source>[\s\S]*?)<\/script(?:\s[^>]*)?\s*>/gi)]
   .map((match) => ({
     attributes: match.groups?.attributes ?? "",
     source: match.groups?.source ?? "",
