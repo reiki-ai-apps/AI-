@@ -793,6 +793,66 @@ input:invalid { border-color: var(--danger); }
 .progress-time { font-variant-numeric: tabular-nums; color: var(--ink-2); flex: none; }
 .progress-title { flex: 1 1 12em; min-width: 0; }
 .progress-media { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.progress-stage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+.progress-stage {
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-alt);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: baseline;
+  gap: 4px;
+}
+.progress-stage-label { color: var(--ink-2); font-size: 12px; font-weight: 700; }
+.progress-stage-count { font-size: 24px; line-height: 1; }
+.progress-stage-unit { color: var(--ink-3); font-size: 11px; }
+.progress-stage-published { border-left: 4px solid var(--published); }
+.progress-stage-scheduled { border-left: 4px solid var(--accent); }
+.progress-stage-attention { border-left: 4px solid var(--attention); }
+.progress-stage-danger { border-left: 4px solid var(--danger); }
+.progress-stage-progress { border-left: 4px solid #7082b8; }
+.progress-card-list { display: grid; gap: 9px; margin-top: 8px; }
+.progress-card {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.progress-card-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.progress-card-head .tag { margin-left: auto; }
+.progress-card-title {
+  display: block;
+  width: 100%;
+  margin: 8px 0 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 750;
+  text-align: left;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.progress-card-progress { margin-top: 4px; color: var(--ink-3); font-size: 12px; }
+.progress-card-reason, .progress-card-next {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 8px;
+  margin-top: 9px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.progress-card-next { padding-top: 8px; border-top: 1px solid var(--line-soft); }
+.progress-card-key { color: var(--ink-3); font-size: 12px; }
 
 /* --- はじめての設定（3手順） -------------------------------------------- */
 .setup-step {
@@ -812,4 +872,7 @@ input:invalid { border-color: var(--danger); }
 @media (max-width: 767px) {
   .status-head { flex-direction: column; }
   .status-summary, .status-grid { grid-template-columns: 1fr; }
+  .progress-stage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .progress-stage { padding: 9px 10px; }
+  .progress-card-reason, .progress-card-next { grid-template-columns: 64px minmax(0, 1fr); }
 }

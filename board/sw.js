@@ -3,7 +3,7 @@
 // 重要: index.html / app.css / js/ のいずれかを変更したら CACHE_NAME を必ず上げること。
 // 上げ忘れると古いアプリシェルが残り続ける。
 
-const CACHE_NAME = 'reiki-post-board-v23';
+const CACHE_NAME = 'reiki-post-board-v24';
 
 const SHELL = [
   './',
