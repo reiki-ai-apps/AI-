@@ -3962,6 +3962,7 @@ function openOfficialMedia(){
 
 function renderNav(){
   const planUpdates=getPlanUpdates();
+  const total = planUpdates.length;
   const unread = planUpdates.filter(u=>u.status==='unread').length;
   const tryN = planUpdates.filter(u=>u.status==='try_later').length;
   let html='';
@@ -3969,7 +3970,7 @@ function renderNav(){
     html+=`<div class="nav-group-title">${g.group}</div>`;
     g.items.forEach(it=>{
       let badge='';
-      if(it.id==='updates'&&unread) badge=`<span class="badge">${unread}</span>`;
+      if(it.id==='updates'&&total) badge=`<span class="badge">${total}</span>`;
       if(it.id==='try-list'&&tryN) badge=`<span class="badge">${tryN}</span>`;
       const active = route.name===it.id || (route.name==='tool-form'&&it.id==='tools') || (route.name==='update-detail'&&it.id==='updates');
       html+=`<button class="nav-item ${active?'active':''}" onclick="go('${it.id}')">${icon(it.icon)}<span>${it.label}</span>${badge}</button>`;
@@ -3980,7 +3981,7 @@ function renderNav(){
 
   const mobileItems=[
     {id:'home',label:'ホーム',icon:'home'},
-    {id:'updates',label:'記事',icon:'updates',badge:unread},
+    {id:'updates',label:'記事',icon:'updates',badge:total},
     {id:'try-list',label:'保存',icon:'flask',badge:tryN},
     {id:'tools',label:'設定',icon:'tools'},
     {id:'account',label:memberState.user?'会員':'ログイン',icon:'user'},
