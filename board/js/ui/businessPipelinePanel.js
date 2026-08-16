@@ -8,7 +8,7 @@ import { platformBadge } from './platformBadge.js';
 const PLATFORMS = Object.freeze(['X', 'INSTAGRAM', 'YOUTUBE', 'NOTE']);
 const STAGES = Object.freeze([
   { id: 'CREATING', label: '制作中', tone: 'progress' },
-  { id: 'APPROVAL', label: '確認待ち', tone: 'attention' },
+  { id: 'APPROVAL', label: '承認待ち', tone: 'attention' },
   { id: 'SCHEDULED', label: '予約済み', tone: 'scheduled' },
 ]);
 
@@ -91,11 +91,11 @@ export function buildBusinessPipelinePanel(input) {
   return el('section', { class: 'card business-pipeline' },
     el('div', { class: 'business-pipeline-head' },
       el('div', null,
-        el('h2', { class: 'card-title' }, '事業別｜投稿予約の進み具合'),
-        el('p', { class: 'field-hint' }, '確認待ちは、制作完了後のあなたの承認待ちです。'))),
+        el('h2', { class: 'card-title' }, '2事業｜投稿の進み具合'),
+        el('p', { class: 'field-hint' }, '承認待ちは、制作完了後のあなたの最終確認待ちです。'))),
     businesses.length
       ? el('div', { class: 'business-pipeline-list' }, ...businesses.map((business) => buildBusiness(business)))
-      : el('p', { class: 'empty-state' }, '制作中・確認待ち・予約済みの投稿はありません。'));
+      : el('p', { class: 'empty-state' }, '制作中・承認待ち・予約済みの投稿はありません。'));
 }
 
 function buildBusiness(business) {
