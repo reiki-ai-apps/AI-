@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-16T16:34:45+09:00",
+  "generated_at": "2026-08-16T16:47:59+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "creative",
   "brand_label": "REIKI AIクリエイティブ",
@@ -9,7 +9,7 @@
     "published_confirmed": 2,
     "scheduled": 0,
     "drafts": 2,
-    "attention": 2
+    "attention": 3
   },
   "channels": [
     {
@@ -71,12 +71,14 @@
   ],
   "blockers": [
     {"id": "x-owner-approval", "severity": "ATTENTION", "message": "X 2本は人間承認待ち。予約・投稿は停止中"},
-    {"id": "instagram-live-verification", "severity": "ATTENTION", "message": "Instagramは対象アカウントと公開状態の再確認が必要"}
+    {"id": "instagram-live-verification", "severity": "ATTENTION", "message": "Instagramは対象アカウントと公開状態の再確認が必要"},
+    {"id": "hourly-monitor-registration", "severity": "ATTENTION", "message": "1時間監視はCodex自動化機能が利用不能のため登録待ち"}
   ],
   "monitoring": {
-    "cadence": "PT1H",
-    "report_policy": "毎回、記事・X・Instagram・Boardの現在状態を短く報告。変化・障害・承認待ちは明示",
-    "description": "1時間ごとに公開receipt、承認、予約、停止理由、Board同期時刻を軽量確認します。画像・動画生成、投稿、削除、有料APIは実行しません。"
+    "cadence": null,
+    "state": "REGISTRATION_PENDING",
+    "report_policy": "登録完了後は毎回、記事・X・Instagram・Boardの現在状態を短く報告。変化・障害・承認待ちは明示",
+    "description": "1時間監視の内容は準備済みですが、Codex自動化ハンドラーが利用不能のため未登録です。画像・動画生成、投稿、削除、有料APIは実行しません。"
   },
   "evidence": [
     "outputs/operations/2026-08-17-slots.json",
