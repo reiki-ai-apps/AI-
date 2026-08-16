@@ -5,7 +5,12 @@ import { platformName } from '../domain/platforms.js';
 import { intendedDate, pipelineStage } from '../domain/reservationPlan.js';
 import { platformBadge } from './platformBadge.js';
 
-const PLATFORMS = Object.freeze(['X', 'INSTAGRAM', 'YOUTUBE', 'NOTE']);
+const ALL_PLATFORMS = Object.freeze(['X', 'INSTAGRAM', 'YOUTUBE', 'NOTE']);
+const PLATFORMS_BY_BUSINESS = Object.freeze({
+  // REIKIは現在、XとInstagramだけを運用対象にする。
+  creative: Object.freeze(['X', 'INSTAGRAM']),
+  news: ALL_PLATFORMS,
+});
 const STAGES = Object.freeze([
   { id: 'CREATING', label: '制作中', tone: 'progress' },
   { id: 'APPROVAL', label: '承認待ち', tone: 'attention' },
@@ -40,10 +45,13 @@ export function summarizeBusinessPipeline({ posts = [], postGroups = [], publica
     };
     businesses.set(businessId, business);
 
-    const dateKey = intendedDate(post) ?? 'UNSCHEDULED';
+    const isProductionRun = post.internal?.tags?.includes('production-run') ?? false;
+    // KIZASHIの制作runは公開予約ではない。ただし、いつ確認した次回分かは残す。
+    const dateKey = isProductionRun ? (post.calendar_date_key ?? 'UNSCHEDULED') : (intendedDate(post) ?? 'UNSCHEDULED');
     const day = business.days.get(dateKey) ?? {
       dateKey,
-      platforms: Object.fromEntries(PLATFORMS.map((platform) => [platform, emptyCounts()])),
+      isProductionRun,
+      platforms: Object.fromEntries(ALL_PLATFORMS.map((platform) => [platform, emptyCounts()])),
     };
     business.days.set(dateKey, day);
 
@@ -84,12 +92,15 @@ function buildBusiness(business) {
       el('span', { class: 'business-block-total' }, `${Object.values(business.totals).reduce((a, b) => a + b, 0)}件`)),
     el('div', { class: 'business-total-grid' }, ...STAGES.map((stage) =>
       metric(stage, business.totals[stage.id]))),
-    el('div', { class: 'business-day-list' }, ...business.days.map((day) => buildDay(day))));
+  el('div', { class: 'business-day-list' }, ...business.days.map((day) => buildDay(day, business))));
 }
 
-function buildDay(day) {
-  const label = day.dateKey === 'UNSCHEDULED' ? '投稿日未定' : `${dateLabel(day.dateKey)}用`;
-  const rows = PLATFORMS.map((platform) =>
+function buildDay(day, business) {
+  const label = day.isProductionRun
+    ? `${dateLabel(day.dateKey)}確認分｜公開日未定`
+    : day.dateKey === 'UNSCHEDULED' ? '投稿日未定' : `${dateLabel(day.dateKey)}用`;
+  const platforms = PLATFORMS_BY_BUSINESS[business.id] ?? ALL_PLATFORMS;
+  const rows = platforms.map((platform) =>
     el('div', { class: 'business-platform-row' },
       el('div', { class: 'business-platform-name' },
         platformBadge(platform, { size: 19, decorative: true }),

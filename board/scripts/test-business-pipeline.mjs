@@ -36,7 +36,8 @@ test('別事業を分離し、日付・媒体ごとに制作中、確認待ち�
   assert.deepEqual(summary.map((business) => business.id), ['news', 'creative']);
 
   const news = summary[0];
-  assert.equal(news.days[0].dateKey, 'UNSCHEDULED');
+  assert.equal(news.days[0].dateKey, '2026-08-16');
+  assert.equal(news.days[0].isProductionRun, true);
   assert.equal(news.days[0].platforms.YOUTUBE.CREATING, 1);
 
   const creative = summary[1];
