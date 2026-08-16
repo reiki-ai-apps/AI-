@@ -2,6 +2,47 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_b1a5867dcc0eebe61518",
+      "story_id": "story_bc37f6bd4cabf7aed0",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6570731707317072,
+      "title": "Anthropic、Claudeの見えない透かし技術を公表 全面書き換えで消える弱点も判明",
+      "source_published_at": "2026-08-16T05:09:00.000Z",
+      "published_at": "2026-08-16T05:09:00.000Z",
+      "fetched_at": "2026-08-16T06:59:50.252Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Anthropicは、Claudeの生成文に埋め込む不可視の透かし方式を公表し、文章を全面的に書き換えると検出できなくなる弱点があることも示した。",
+      "source_name": "디지털투데이",
+      "source_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQd3d6VTlMY01rUGhzWDVNMGkxUW8tNGxWc3ljWjZuR3AyS1NOR29MbHNhSG5mV0NfVjczVTRSR0s2R3Bkcjd3NTVYODNDalNSWExxRTF6SXE1aEZIVjZKeTVqbElpR2lac2ZFNm1zRExRVWZFakx5SzkxVGVTdWtZVXlhU1AxakRCVGtmMDg2UU4zQVJxTklUbjhGdHVQeFVLYVRuemItSS1paVJVQU5BSFYwNTdxMm5oclFKbjNOdmtyZS0yOU9LUA?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "anthropic",
+        "claude"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claudeの不可視ウォーターマーク方式",
+      "event_type": "research",
+      "event_stage": "announced",
+      "event_scope": "Claude全体",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Anthropicが透かし方式の仕組みを初めて公表し、全面書き換えで検出できなくなる弱点も明らかにした。",
+      "detail": "AnthropicはAIチャットボット「Claude」が生成した文章に埋め込む、目に見えない透かし（ウォーターマーク）の仕組みを公表した。この透かしは文章の一部が変更されても検出できるよう設計されているが、文章全体を大きく書き換えられると検出できなくなる弱点があることも合わせて示された。AI生成文章と人間が書いた文章を区別する技術は教育現場や情報の信頼性確保などで注目されているが、今回の公表により透かし方式には限界があることが改めて浮き彫りになった。",
+      "new_facts": [
+        "Anthropicが不可視のウォーターマーク方式を公表",
+        "文章を全面的に書き換えると透かしが検出できなくなる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_e15c1ab41a944521bff5",
       "story_id": "story_2ae2413d0b2f417e9c",
       "story_sequence": 1,
@@ -311,7 +352,7 @@
       "story_id": "story_857a3e6420ffaf62d2",
       "story_sequence": 1,
       "relation_type": "new",
-      "relation_confidence": 0.5175609756097561,
+      "relation_confidence": 0.9367741935483871,
       "title": "サムスン、Claude Codeで半導体検証を数週間から数日に短縮",
       "source_published_at": "2026-08-15T18:20:00.000Z",
       "published_at": "2026-08-15T18:20:00.000Z",
@@ -337,8 +378,11 @@
       "structured_complete": true,
       "dedupe_decision": "uncertain",
       "dedupe_reasons": [
-        "shared_entity",
-        "same_subject"
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "similar_title",
+        "same_url_content_changed"
       ],
       "change_summary": "サムスンがClaude Codeを使い半導体検証にかかる期間を数週間から数日へ短縮した。",
       "detail": "サムスン電子はAnthropicのAIコーディングツール「Claude Code」を半導体の検証作業に導入し、従来は数週間かかっていた検証プロセスを数日に短縮したという。半導体設計の検証は工程の中でも時間がかかる作業とされており、AIによる効率化が生産性向上につながる事例として注目される。一方で記事は、導入にあたって残る課題もあると指摘しており、全面的な自動化には至っていないもようだ。",
