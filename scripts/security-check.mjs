@@ -55,10 +55,17 @@ if (/window\.open\(\s*u\.source_url/.test(html)) {
   findings.push("index.html: unvalidated source URL navigation");
 }
 
-const inlineScripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)]
-  .map((match) => match[1])
-  .filter((source) => source.trim());
-for (const [index, source] of inlineScripts.entries()) {
+const scriptBlocks = [...html.matchAll(/<script(?<attributes>\s[^>]*)?>(?<source>[\s\S]*?)<\/script>/gi)]
+  .map((match) => ({
+    attributes: match.groups?.attributes ?? "",
+    source: match.groups?.source ?? "",
+  }))
+  .filter(({ source }) => source.trim());
+const inlineScripts = scriptBlocks.filter(({ attributes }) => {
+  const type = attributes.match(/\btype\s*=\s*["']?([^"'\s>]+)/i)?.[1]?.toLowerCase();
+  return !type || ["module", "text/javascript", "application/javascript"].includes(type);
+});
+for (const [index, { source }] of inlineScripts.entries()) {
   try {
     new vm.Script(source, { filename: `index.inline-${index}.js` });
   } catch (error) {
