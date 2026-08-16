@@ -1,6 +1,7 @@
 import { el, button } from '../core/dom.js';
 import { clockLabel, dayHeading } from '../core/fmt.js';
 import { platformName } from '../domain/platforms.js';
+import { platformBadge } from './platformBadge.js';
 import { buildReservationPlan } from '../domain/reservationPlan.js';
 
 const STATE_LABELS = {
@@ -121,9 +122,12 @@ function planItem(item, timeZone) {
   const time = Number.isFinite(timeMs) ? clockLabel(timeMs, timeZone) : '時刻未定';
   return el('li', { class: `status-plan-item is-${stage.tone}` },
     el('div', { class: 'status-plan-item-main' },
+      el('span', { class: 'status-plan-platform' },
+        platformBadge(item.platform, { size: 22, decorative: true }),
+        el('span', null, platformName(item.platform))),
       el('strong', { class: 'status-plan-item-title' }, item.title),
       el('span', { class: 'status-plan-item-meta' },
-        `${businessLabel(item.brandId)}・${platformName(item.platform)}・${item.stage === 'SCHEDULED' ? '予約' : '予定'} ${time}`)),
+        `${businessLabel(item.brandId)}｜${item.stage === 'SCHEDULED' ? '予約' : '予定'} ${time}`)),
     el('span', { class: `status-plan-state is-${stage.tone}` }, stage.label));
 }
 
