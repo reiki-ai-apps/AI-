@@ -18,15 +18,15 @@ import { renderCalendarScreen } from './calendarView.js';
 import { renderApprovalsScreen } from './approvalsView.js';
 import { renderHistoryScreen } from './historyView.js';
 import { renderConnectionsScreen } from './connectionsView.js';
-import { renderStatusScreen } from './statusView.js?v=2';
+import { renderStatusScreen } from './statusView.js?v=3';
 import { hasIntentLink, consumeIntentLink } from './intentLink.js';
 
 const SCREENS = [
-  { id: 'status', label: '運用状況', render: renderStatusScreen },
-  { id: 'calendar', label: '投稿カレンダー', render: renderCalendarScreen },
-  { id: 'approvals', label: '承認待ち', render: renderApprovalsScreen },
-  { id: 'history', label: '投稿履歴', render: renderHistoryScreen },
-  { id: 'connections', label: '接続設定', render: renderConnectionsScreen },
+  { id: 'status', label: '状況', render: renderStatusScreen },
+  { id: 'calendar', label: '予定', render: renderCalendarScreen },
+  { id: 'approvals', label: '承認', render: renderApprovalsScreen },
+  { id: 'history', label: '履歴', render: renderHistoryScreen },
+  { id: 'connections', label: '接続', render: renderConnectionsScreen },
 ];
 
 const USER_ID = 'reiki';
@@ -333,6 +333,7 @@ function buildNav() {
 
 function buildRoleSelect() {
   clear(roleSelect);
+  roleSelect.parentElement.hidden = app.ctx.backend === 'public';
   const roles = app.ctx.backend === 'public' ? ['VIEWER'] : ROLE_ORDER;
   for (const id of roles) {
     roleSelect.appendChild(el('option', { value: id }, `役割：${roleLabel(id)}`));

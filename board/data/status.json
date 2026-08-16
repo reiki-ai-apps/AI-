@@ -9,6 +9,24 @@
     "scheduled": 0,
     "attention": 3
   },
+  "reservation_horizon": {
+    "horizon_days": 2,
+    "state": "DANGER",
+    "days": [
+      {
+        "date": "2026-08-16",
+        "state": "MISSING"
+      },
+      {
+        "date": "2026-08-17",
+        "state": "MISSING"
+      },
+      {
+        "date": "2026-08-18",
+        "state": "MISSING"
+      }
+    ]
+  },
   "channels": [
     {
       "id": "instagram",
@@ -16,6 +34,7 @@
       "account": "@kizashi_jp",
       "url": "https://www.instagram.com/kizashi_jp/",
       "state": "HEALTHY",
+      "reservation_state": "MISSING",
       "last_verified_at": "2026-08-16T12:13:09+09:00",
       "latest_published": {
         "title": "DeepSeek V4-Pro 修正版",
@@ -30,6 +49,7 @@
       "account": "@KIZASHI_jp",
       "url": "https://x.com/KIZASHI_jp",
       "state": "HEALTHY",
+      "reservation_state": "MISSING",
       "last_verified_at": "2026-08-16T12:13:09+09:00",
       "latest_published": {
         "title": "DeepSeek V4-Pro",
@@ -44,6 +64,7 @@
       "account": "KIZASHI / natty_swan9072",
       "url": "https://note.com/natty_swan9072",
       "state": "ATTENTION",
+      "reservation_state": "MISSING",
       "last_verified_at": "2026-08-16T14:02:44+09:00",
       "latest_published": {
         "title": "DeepSeek V4-Pro",
@@ -58,6 +79,7 @@
       "account": "KIZASHI / @kizashi_jp",
       "url": "https://www.youtube.com/@kizashi_jp",
       "state": "ATTENTION",
+      "reservation_state": "MISSING",
       "last_verified_at": "2026-08-16T12:13:09+09:00",
       "latest_published": {
         "title": "AIにどこまで実行させる？権限・業務・費用を3ニュースで判断",
@@ -65,20 +87,6 @@
       },
       "next_scheduled": null,
       "note": "8月15日19時予定Shortsは公開後の確認receiptがないため、公開済み件数には未算入。"
-    },
-    {
-      "id": "radar",
-      "label": "AI進化レーダー",
-      "account": "KIZASHI公式アプリ",
-      "url": "https://reiki-ai-apps.github.io/AI-/",
-      "state": "HEALTHY",
-      "last_verified_at": "2026-08-16T12:13:09+09:00",
-      "latest_published": {
-        "title": "本番反映済み（記事60件）",
-        "url": "https://reiki-ai-apps.github.io/AI-/"
-      },
-      "next_scheduled": null,
-      "note": "本番commit 0ec2c4394f6e8e87470eedea3831a7db6dbbe9f1。未読57件は別表示。"
     }
   ],
   "blockers": [

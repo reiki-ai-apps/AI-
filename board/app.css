@@ -141,6 +141,7 @@ a:hover { text-decoration: underline; }
 }
 
 .header-tools { display: flex; align-items: center; gap: 8px; }
+.header-tools[hidden] { display: none; }
 
 .role-select {
   min-height: var(--tap);
@@ -759,11 +760,20 @@ input:invalid { border-color: var(--danger); }
 }
 
 /* --- 進捗パネル（今日できたこと／止まっているもの） ---------------------- */
-.status-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
-.status-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }
-.status-metric { display: flex; flex-direction: column; gap: 3px; padding: 15px 17px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-.status-metric strong { font-size: 26px; line-height: 1; }
-.status-metric span { color: var(--ink-3); font-size: 13px; }
+.status-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.status-refresh { min-height: 40px; padding: 0 14px; box-shadow: none; }
+.status-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 16px; }
+.status-metric { display: flex; align-items: baseline; justify-content: center; gap: 6px; padding: 12px 8px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); text-align: center; }
+.status-metric strong { font-size: 24px; line-height: 1; }
+.status-metric span { color: var(--ink-3); font-size: 12px; }
+.status-metric.is-attention { border-color: #ead8aa; background: var(--attention-soft); }
+.status-section-title { margin: 0; font-size: 17px; }
+.status-actions { margin-bottom: 16px; padding: 15px 16px; border: 1px solid #ead8aa; border-radius: var(--radius); background: var(--attention-soft); }
+.status-actions-clear { border-color: var(--line); background: var(--surface); }
+.status-action-list { list-style: none; margin: 10px 0 0; padding: 0; }
+.status-action-list li { display: grid; grid-template-columns: 7em minmax(0, 1fr); gap: 10px; padding: 9px 0; border-top: 1px solid rgba(156, 113, 28, .16); }
+.status-action-list strong { font-size: 13px; }
+.status-action-list span { color: var(--ink-2); font-size: 13px; }
 .status-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .status-card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 16px; min-width: 0; }
 .status-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
@@ -773,6 +783,7 @@ input:invalid { border-color: var(--danger); }
 .status-pill-healthy { color: #17613a; background: #e8f5ed; }
 .status-pill-attention { color: var(--attention); background: var(--attention-soft); }
 .status-pill-hold { color: var(--attention); background: var(--attention-soft); }
+.status-pill-danger { color: #9f2d22; background: #fbe9e7; }
 .status-pill-blocked { color: var(--danger); background: #fdf3f2; }
 .status-pill-unknown { color: var(--ink-3); background: var(--surface-alt); }
 .status-kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 7px 14px; margin: 15px 0 0; font-size: 13px; }
@@ -780,8 +791,39 @@ input:invalid { border-color: var(--danger); }
 .status-kv dd { margin: 0; overflow-wrap: anywhere; }
 .status-note { margin: 13px 0 0; color: var(--ink-2); font-size: 13px; line-height: 1.6; }
 .status-link { margin: 11px 0 0; font-size: 13px; }
-.status-monitor { margin-top: 18px; }
-.status-production { margin-bottom: 18px; }
+.status-channel-brief { margin: 13px 0 0; color: #17613a; font-size: 14px; font-weight: 600; }
+.status-channel-brief.is-attention { color: var(--attention); }
+.status-channel-brief.is-danger { color: #9f2d22; }
+.status-details { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 10px; }
+.status-details summary { width: max-content; color: var(--accent); cursor: pointer; font-size: 13px; font-weight: 600; }
+.status-details[open] summary { margin-bottom: 4px; }
+.status-production { margin-bottom: 16px; }
+.status-eyebrow { margin: 0 0 4px; color: var(--ink-3); font-size: 12px; font-weight: 700; }
+.status-production-title { margin: 0; font-size: 20px; }
+.status-production-summary { display: flex; align-items: baseline; gap: 12px; margin-top: 14px; }
+.status-production-summary strong { font-size: 20px; }
+.status-production-summary span { color: var(--ink-2); font-size: 13px; }
+.status-channels-title { margin: 22px 0 10px; }
+.status-monitor-simple { margin: 18px 0 0; color: var(--ink-3); font-size: 12px; text-align: center; }
+.status-reservation { margin-bottom: 16px; padding: 18px; border: 2px solid var(--line); border-radius: var(--radius); }
+.status-reservation.is-danger { border-color: #dc8d86; background: #fff7f6; }
+.status-reservation.is-safe { border-color: #9bc8ae; background: #f3faf6; }
+.status-reservation-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.status-reservation-title { margin: 0; color: #8f251b; font-size: 21px; line-height: 1.4; }
+.status-reservation.is-safe .status-reservation-title { color: #17613a; }
+.status-reservation-instruction { margin-top: 8px; color: var(--ink-2); font-size: 14px; }
+.status-day-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 15px; }
+.status-day { display: grid; gap: 2px; justify-items: center; padding: 10px 6px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); text-align: center; }
+.status-day.is-missing { border-color: #e2aaa5; background: #fdf0ef; }
+.status-day.is-reserved { border-color: #b8d7c4; background: #f2f9f5; }
+.status-day-label { color: var(--ink-3); font-size: 12px; }
+.status-day strong { font-size: 17px; }
+.status-day-state { color: #9f2d22; font-size: 12px; font-weight: 700; }
+.status-day.is-reserved .status-day-state { color: #17613a; }
+.status-reservation-rule { margin-top: 12px; color: #752018; font-size: 13px; font-weight: 600; }
+.status-other-issues { margin-bottom: 16px; }
+.status-other-issues summary { cursor: pointer; color: var(--ink-2); font-weight: 700; }
+.status-other-issues[open] summary { margin-bottom: 4px; }
 
 .plain-list { list-style: none; margin: 6px 0 0; padding: 0; }
 .progress-row {
@@ -991,4 +1033,7 @@ input:invalid { border-color: var(--danger); }
   .detail-summary-card { padding: 12px; }
   .detail-summary-card .kv { grid-template-columns: 64px minmax(0, 1fr); }
   .drawer-foot .btn { flex: 1 1 120px; }
+  .app-header .nav { justify-content: space-between; overflow-x: visible; }
+  .app-header .nav-item { flex: 1 1 0; justify-content: center; padding: 0 8px; }
+  .status-action-list li { grid-template-columns: 6.5em minmax(0, 1fr); }
 }
