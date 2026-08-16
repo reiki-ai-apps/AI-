@@ -196,6 +196,10 @@ async function paint(app, channelPostId, bodyHost, footHost, ctl) {
             ['有効期限', approved.expires_at ? stampLabel(Date.parse(approved.expires_at), tz) : '—'],
             ['本人承認', approved.self_approval ? '単独運用のため本人が承認（記録済み）' : 'いいえ'],
             ['承認根拠ハッシュ', el('span', { class: 'hash' }, approved.approval_basis_hash)],
+            ['承認証跡', approved.evidence?.url
+              ? el('a', { href: approved.evidence.url, target: '_blank', rel: 'noopener noreferrer' },
+                  `${approved.evidence.type === 'GITHUB_ISSUE' ? 'GitHub確認記録' : '確認記録'} #${approved.evidence.issue_number ?? '—'}`)
+              : 'アプリ内監査記録'],
           ])
         : el('p', { class: 'field-hint' }, 'まだ承認されていません。'),
       approvals.filter((a) => a.decision === 'REJECTED').length

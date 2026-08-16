@@ -8,6 +8,7 @@ import { platformName } from '../domain/platforms.js';
 import { approve, reject, describePendingChange, approveGroup } from '../services/api.js';
 import { emptyList, guardedButton, permissionNotice } from './states.js';
 import { openPostDetail } from './postDetail.js';
+import { buildPublicApprovalRequest } from './publicApproval.js';
 
 export async function renderApprovalsScreen(app) {
   const { repo } = app.ctx;
@@ -21,7 +22,14 @@ export async function renderApprovalsScreen(app) {
       el('p', { class: 'screen-desc' }, '上から一件ずつ確認して終わらせます。承認すると、その版・その日時・その投稿先が固定されます。')),
   );
 
-  const notice = permissionNotice(app.state.role, 'approval.approve');
+  const notice = app.ctx.backend === 'public'
+    ? el('div', { class: 'notice' },
+        el('div', null,
+          el('div', { class: 'notice-title' }, '合鍵なしで承認できます'),
+          el('div', { class: 'notice-body' }, '承認ボタンを押し、GitHub画面で「Submit new issue」を押すと確定します。承認者・日時・Revision・Hash・確認URLが証拠として残ります。')),
+        el('div', { class: 'notice-actions' },
+          button('承認結果を更新', { class: 'btn btn-sm', onClick: () => app.refresh() })))
+    : permissionNotice(app.state.role, 'approval.approve');
   if (notice) screen.appendChild(notice);
 
   if (!pending.length) {
@@ -48,6 +56,7 @@ async function buildGroupCard(app, postGroupId, items, tz) {
   const { repo } = app.ctx;
   const group = await repo.getPostGroup(postGroupId);
   const card = el('div', { class: 'card' });
+  const revisions = new Map();
 
   card.appendChild(
     el('div', { class: 'card-head' },
@@ -59,6 +68,7 @@ async function buildGroupCard(app, postGroupId, items, tz) {
 
   for (const post of items) {
     const revision = await repo.getRevision(post.current_revision_id);
+    if (revision) revisions.set(revision.revision_id, revision);
     const diff = await describePendingChange(app.ctx, post.channel_post_id);
 
     card.appendChild(
@@ -89,7 +99,12 @@ async function buildGroupCard(app, postGroupId, items, tz) {
           el('dd', null, revision?.visibility ?? '—')),
 
         el('div', { class: 'card-actions' },
-          guardedButton(app, 'approval.approve', 'このSNSを承認', {
+          app.ctx.backend === 'public'
+            ? el('a', {
+                class: 'btn btn-primary btn-sm',
+                href: await buildPublicApprovalRequest({ group, posts: [post], revisions: new Map([[revision.revision_id, revision]]) }),
+              }, 'GitHubでこのSNSを承認')
+            : guardedButton(app, 'approval.approve', 'このSNSを承認', {
             class: 'btn btn-primary btn-sm',
             onClick: async () => {
               const r = await approve(app.ctx, post.channel_post_id);
@@ -97,7 +112,7 @@ async function buildGroupCard(app, postGroupId, items, tz) {
               await app.refresh();
             },
           }),
-          guardedButton(app, 'approval.reject', '差し戻す', {
+          app.ctx.backend === 'public' ? null : guardedButton(app, 'approval.reject', '差し戻す', {
             class: 'btn btn-sm',
             onClick: async () => {
               const comment = await app.askReason({ title: '差し戻す', message: '作成者へ伝わります。', confirmLabel: '差し戻す' });
@@ -115,7 +130,12 @@ async function buildGroupCard(app, postGroupId, items, tz) {
   if (items.length > 1) {
     card.appendChild(
       el('div', { class: 'card-actions' },
-        guardedButton(app, 'approval.approve', `この企画の${items.length}件をまとめて承認`, {
+        app.ctx.backend === 'public'
+          ? el('a', {
+              class: 'btn btn-primary',
+              href: await buildPublicApprovalRequest({ group, posts: items, revisions }),
+            }, `GitHubで${items.length}件をまとめて承認`)
+          : guardedButton(app, 'approval.approve', `この企画の${items.length}件をまとめて承認`, {
           class: 'btn btn-primary',
           onClick: async () => {
             await approveGroup(app.ctx, items.map((p) => p.channel_post_id));

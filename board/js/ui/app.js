@@ -229,7 +229,10 @@ async function boot() {
     const savedView = app.ctx.backend === 'github' || app.ctx.backend === 'public'
       ? loadLocalPref('calendar_view', 'week')
       : await app.ctx.repo.getSetting('calendar_view', 'week');
-    if (savedView === 'week' || savedView === 'month') state.view = savedView;
+    // スマホで開く公開版は、端末に以前の「月」表示が残っていても
+    // 必ず「今日から7日間」から始める。月表示へは起動後に切り替えられる。
+    if (app.ctx.backend === 'public') state.view = 'week';
+    else if (savedView === 'week' || savedView === 'month') state.view = savedView;
   } catch (error) {
     if (connection) {
       renderGithubSetup(error);

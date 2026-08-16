@@ -189,6 +189,19 @@ export function weekStartKey(dateKey) {
   return shiftDateKey(dateKey, -((wd + 6) % 7));
 }
 
+/**
+ * 今日を基準にした7日単位の表示開始日。
+ * 今日〜6日後を最初の窓にし、その外を選んだときだけ前後の7日へ移る。
+ */
+export function rollingWeekStartKey(dateKey, todayKey) {
+  const dayMs = 86_400_000;
+  const selectedMs = Date.parse(`${dateKey}T00:00:00Z`);
+  const todayMs = Date.parse(`${todayKey}T00:00:00Z`);
+  if (!Number.isFinite(selectedMs) || !Number.isFinite(todayMs)) return todayKey;
+  const offsetDays = Math.round((selectedMs - todayMs) / dayMs);
+  return shiftDateKey(todayKey, Math.floor(offsetDays / 7) * 7);
+}
+
 /** "8月10日〜16日" のような週の見出し。月をまたぐ場合は両方出す。 */
 export function weekTitle(startKey) {
   const endKey = shiftDateKey(startKey, 6);
@@ -203,14 +216,14 @@ export function weekTitle(startKey) {
  * 週表示のRead Model。
  *
  * @param {object} input
- * @param {string} input.startDateKey 週の起点（月曜）
+ * @param {string} input.startDateKey 7日表示の起点
  * @param {string} input.timeZone
  * @param {string} input.todayKey
  * @param {Array<{id,brandId,platform,displayState,title,scheduledAtMs,publishedAtMs?}>} input.items
  * @param {Array} [input.dayPlans]
  */
 export function buildWeekView({ startDateKey, timeZone, todayKey, items = [], dayPlans = [] }) {
-  const start = weekStartKey(startDateKey);
+  const start = startDateKey;
   const keys = Array.from({ length: 7 }, (_, i) => shiftDateKey(start, i));
   const plans = new Map(dayPlans.map((p) => [p.dateKey, p]));
 
