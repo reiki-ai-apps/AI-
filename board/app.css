@@ -939,6 +939,7 @@ input:invalid { border-color: var(--danger); }
 .business-block-title { margin: 0; font-size: 17px; }
 .business-block-total { color: var(--ink-2); font-size: 13px; font-weight: 700; }
 .business-action-summary { margin: 8px 0 0; color: var(--ink-2); font-size: 13px; font-weight: 700; }
+.business-total-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
 .business-day-list { display: grid; gap: 10px; margin-top: 12px; }
 .business-day {
   min-width: 0;
@@ -948,24 +949,24 @@ input:invalid { border-color: var(--danger); }
   background: var(--surface);
 }
 .business-day-title { margin: 0 0 8px; font-size: 14px; }
+.business-stage-headings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin: 0 0 4px 135px; color: var(--ink-3); font-size: 11px; font-weight: 800; text-align: center; }
 .business-platform-list { display: grid; gap: 7px; }
 .business-platform-row {
   display: grid;
-  grid-template-columns: minmax(120px, 1fr) auto;
+  grid-template-columns: 128px minmax(0, 1fr);
   align-items: center;
   gap: 8px;
   min-width: 0;
-  padding: 8px 0;
-  border-top: 1px solid var(--line-soft);
+  padding: 3px 0;
 }
-.business-platform-row:first-child { padding-top: 0; border-top: 0; }
 .business-platform-name { display: inline-flex; align-items: center; gap: 7px; min-width: 0; font-size: 13px; font-weight: 700; }
-.business-stage-summary { display: inline-flex; justify-content: flex-end; flex-wrap: wrap; gap: 5px; }
-.business-stage-summary.is-empty { color: var(--ink-3); font-size: 12px; font-weight: 700; }
-.business-stage-pill { padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight: 800; white-space: nowrap; }
-.business-stage-pill.is-progress { color: #365185; background: #edf1fb; }
-.business-stage-pill.is-attention { color: #8c4e00; background: #ffedc9; }
-.business-stage-pill.is-scheduled { color: #174f98; background: #e9f1ff; }
+.business-platform-counts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+.business-metric { display: flex; align-items: center; justify-content: space-between; gap: 4px; min-height: 38px; padding: 6px 9px; border: 1px solid var(--line-soft); border-left: 4px solid #dfe5f0; border-radius: 8px; color: var(--ink-3); background: #fff; }
+.business-metric-label { font-size: 12px; font-weight: 700; }
+.business-metric-count { font-size: 16px; line-height: 1; }
+.business-metric.is-progress.has-items { border-left-color: #657dbc; color: #233f76; background: #f4f6fc; }
+.business-metric.is-attention.has-items { border-left-color: #b56700; color: #7b4300; background: #fff8eb; }
+.business-metric.is-scheduled.has-items { border-left-color: #5790ee; color: #174f98; background: #f2f7ff; }
 
 /* --- 投稿詳細：判断に必要な情報だけを先に出す ---------------------------- */
 .detail-summary-card {
@@ -1035,7 +1036,13 @@ input:invalid { border-color: var(--danger); }
   .progress-card-reason, .progress-card-next { grid-template-columns: 64px minmax(0, 1fr); }
   .business-pipeline { padding: 12px; }
   .business-block { padding: 10px; }
-  .business-platform-row { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+  .business-total-grid { gap: 6px; }
+  .business-stage-headings { margin-left: 0; }
+  .business-platform-row { grid-template-columns: 1fr; gap: 4px; padding: 5px 0; border-top: 1px solid var(--line-soft); }
+  .business-platform-counts { gap: 5px; }
+  .business-metric { min-height: 34px; padding: 5px 7px; }
+  .business-metric-label { font-size: 11px; }
+  .business-metric-count { font-size: 14px; }
   .detail-summary-card { padding: 12px; }
   .detail-summary-card .kv { grid-template-columns: 64px minmax(0, 1fr); }
   .drawer-foot .btn { flex: 1 1 120px; }

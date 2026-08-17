@@ -17,7 +17,7 @@ import { guardedButton } from './states.js';
 import { tierForWidth } from './responsive.js';
 import { platformBadges } from './platformBadge.js';
 import { buildProgressPanel } from './progressPanel.js';
-import { buildBusinessPipelinePanel } from './businessPipelinePanel.js';
+import { buildBusinessPipelinePanel } from './businessPipelinePanel.js?v=2';
 
 export async function renderCalendarScreen(app) {
   return app.state.view === 'month' ? renderMonth(app) : renderWeek(app);

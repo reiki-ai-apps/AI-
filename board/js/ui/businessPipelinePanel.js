@@ -92,6 +92,8 @@ function buildBusiness(business) {
       el('h3', { class: 'business-block-title' }, business.label),
       el('span', { class: 'business-block-total' }, `${total}件`)),
     el('p', { class: 'business-action-summary' }, businessSummary(business)),
+    el('div', { class: 'business-total-grid', 'aria-label': `${business.label}全体の進捗` },
+      ...STAGES.map((stage) => metric(stage, business.totals[stage.id]))),
   el('div', { class: 'business-day-list' }, ...business.days.map((day) => buildDay(day, business))));
 }
 
@@ -105,10 +107,20 @@ function buildDay(day, business) {
       el('div', { class: 'business-platform-name' },
         platformBadge(platform, { size: 19, decorative: true }),
         platformName(platform)),
-      stageSummary(day.platforms[platform] ?? emptyCounts())));
+      el('div', { class: 'business-platform-counts' },
+        ...STAGES.map((stage) => metric(stage, day.platforms[platform]?.[stage.id] ?? 0)))));
   return el('section', { class: 'business-day' },
     el('h4', { class: 'business-day-title' }, label),
+    el('div', { class: 'business-stage-headings', 'aria-hidden': 'true' },
+      ...STAGES.map((stage) => el('span', null, stage.label))),
     el('div', { class: 'business-platform-list' }, ...rows));
+}
+
+function metric(stage, count) {
+  const active = count > 0;
+  return el('div', { class: `business-metric is-${stage.tone}${active ? ' has-items' : ''}` },
+    el('span', { class: 'business-metric-label' }, stage.label),
+    el('strong', { class: 'business-metric-count' }, active ? `${count}件` : '—'));
 }
 
 function businessSummary(business) {
@@ -117,13 +129,6 @@ function businessSummary(business) {
   if (totals.CREATING > 0) return `いま：${totals.CREATING}件を制作中です。公開日は未定です。`;
   if (totals.SCHEDULED > 0) return `予約済み：${totals.SCHEDULED}件です。`;
   return '予定はありません。';
-}
-
-function stageSummary(counts) {
-  const active = STAGES.filter((stage) => (counts[stage.id] ?? 0) > 0);
-  if (!active.length) return el('span', { class: 'business-stage-summary is-empty' }, '予定なし');
-  return el('span', { class: 'business-stage-summary' }, ...active.map((stage) =>
-    el('span', { class: `business-stage-pill is-${stage.tone}` }, `${stage.label} ${counts[stage.id]}件`)));
 }
 
 function dateLabel(dateKey) {
