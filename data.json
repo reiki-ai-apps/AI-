@@ -1,5 +1,254 @@
 [
   {
+    "tool": "AIベンチマーク・研究速報",
+    "title": "MoE言語モデルの深さ依存感度分析、後期層のエキスパート削減が有効と判明",
+    "source_url": "https://arxiv.org/abs/2608.13565",
+    "source_name": "rss.arxiv.org",
+    "is_official": true,
+    "published_at": "2026-08-17T04:00:00.000Z",
+    "source_published_at": "2026-08-17T04:00:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-17T04:04:25.761Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Qwen3.6-35B-A3B",
+      "Mixture-of-Experts",
+      "XLCoST",
+      "qwen3.6-35b-a3b",
+      "mixture-of-experts"
+    ],
+    "primary_entity": "研究チーム(arXiv投稿者)",
+    "story_subject": "MoEモデルの深さ依存感度分析",
+    "event_type": "research",
+    "event_stage": "other",
+    "event_scope": "研究・学術",
+    "fact_slots": [
+      {
+        "type": "count",
+        "scope": "MoE層数",
+        "value": "40層",
+        "normalized_value": "40"
+      },
+      {
+        "type": "count",
+        "scope": "エキスパート数",
+        "value": "256/層",
+        "normalized_value": "256"
+      },
+      {
+        "type": "count",
+        "scope": "削減エキスパート数(最良policy)",
+        "value": "640/10,240",
+        "normalized_value": "640"
+      }
+    ],
+    "new_facts": [
+      "Qwen3.6-35B-A3Bの後期層(35-39)は積極的なエキスパートマスキングに耐性がある",
+      "640/10,240エキスパートを削減しつつ419/500件の良好出力を維持",
+      "top-kルーティングを8から6に削減すると処理速度が向上し品質低下なし"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "研究者らがQwen3.6-35B-A3BのMoE構造を層ごとに分析し、後期層のエキスパートを大胆に削減しても性能を維持できることを示した。",
+    "detail": "MoE(Mixture-of-Experts)は複数の専門家ネットワークをスパースに活性化して大規模言語モデルを効率化する手法。本研究はQwen3.6-35B-A3B(40層、各256エキスパート、top-8ルーティング)を対象に、層ごとの重要度をマグニチュードベースのマスキングで分析した。XLCoSTコード翻訳ベンチマークで100~500プロンプト規模の評価を行った結果、初期層(0-9)と中間層(10-29)はマスキングに脆弱な一方、後期層(30-39)特に35-39層は積極的なマスキングに耐性があることが判明した。全層一律30%マスキングでは300サンプル中150件しか良好な出力を維持できなかったが、後期層に絞った方針では249~255件を維持しつつ640~1,145のエキスパートを削減できた。500プロンプトの検証では35-39層を50%マスキングする方針が最良のバランスを示し、640/10,240エキスパートの削減で419/500件の良好出力を維持した。またtop-kルーティング幅を8から6に減らすと処理速度が大きく向上し品質低下も見られなかったが、積極的なマスキングとの併用はまだ課題があるとしている。",
+    "change_summary": "MoEモデルの層別感度を体系的に分析し、後期層に絞ったエキスパート削減が全層一律削減より効率的であることを示した。",
+    "impact_summary": "大規模言語モデルの軽量化・高速化に向けた圧縮手法の指針となり、AI開発コストの削減につながる可能性がある。",
+    "action_suggestion": "論文はarXivに公開されており、今後は物理的な重み削除や活性化ベースのスコアリング、再学習による回復が実用化に向けた課題として挙げられている。",
+    "importance": "B",
+    "related_categories": [
+      "研究・技術",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_03b3344dcc9ff8bb0d7b",
+    "story_id": "story_992a26ebfd63e4d3ce",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "ChatGPT / OpenAI",
+    "title": "OpenAI CEOサム・アルトマン氏「大学4年間は長すぎるかもしれない」と発言",
+    "source_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBBWFM1cWFkLXkxNGNVRi0yLVk4Q0VuUHBlZzU4RkVaZVJHMGJPcWhQS3BxdVlVdWVqOWJ5LWJScFIyUjRZT0VBWjBMU01WS3U4Uk9DQUpVS2h0OUdHTzZiMGlzS1dLdXF4WmY2RmozUi1xNXZHbnhLT1ZnUW02QQ?oc=5",
+    "source_name": "Vietnam.vn",
+    "is_official": false,
+    "published_at": "2026-08-17T03:17:36.000Z",
+    "source_published_at": "2026-08-17T03:17:36.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-17T04:03:46.091Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "OpenAI",
+      "サム・アルトマン",
+      "openai",
+      "サムアルトマン"
+    ],
+    "primary_entity": "OpenAI",
+    "story_subject": "サム・アルトマンCEOの大学教育に関する発言",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "全世界",
+    "fact_slots": [],
+    "new_facts": [
+      "サム・アルトマンCEOが大学4年間の教育期間は長すぎるかもしれないと発言した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "OpenAIのサム・アルトマンCEOが、大学教育の4年間という期間は長すぎる可能性があると述べた。",
+    "detail": "OpenAIのサム・アルトマンCEOは、伝統的な大学教育の在り方について疑問を呈し、4年間という修学期間が現代において長すぎるかもしれないとの見解を示した。記事は、AIの進化により学習や就労のあり方が変化する中で、教育制度そのものを見直す必要性を示唆する発言として伝えている。具体的な代替案や政策提言の詳細は記事からは確認できない。",
+    "change_summary": "OpenAI CEOが大学教育の期間の妥当性に疑問を呈する発言をした。",
+    "impact_summary": "AIの普及に伴い教育制度や人材育成のあり方を見直す議論が広がる可能性がある。",
+    "action_suggestion": "記事からは具体的な提言や今後の動きは明らかではなく、発言の背景や文脈については引き続き情報確認が必要。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル",
+      "政策・行政"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_7cc582418b52d4f3bafc",
+    "story_id": "story_8e1b153433d894e829",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "AI業界・経営重要速報",
+    "title": "アンソロピックCEO、AIへの反発拡大には実績で信頼回復が必要と警鐘",
+    "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFB4RkRwNWJwYnhZM2YxakFtRENsQWxIUDctVzA4WkhUR2ZlM1NUR1pWRzRETUM3aGFCSnJseDgtNFFEUVVlUWdSRU5hbGxWdVlJRy1z?oc=5",
+    "source_name": "ビジネス+IT",
+    "is_official": false,
+    "published_at": "2026-08-17T02:10:00.000Z",
+    "source_published_at": "2026-08-17T02:10:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-17T04:04:19.594Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Anthropic",
+      "anthropic"
+    ],
+    "primary_entity": "Anthropic",
+    "story_subject": "AIへの信頼回復に関するCEO発言",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "全世界",
+    "fact_slots": [],
+    "new_facts": [
+      "アンソロピックCEOがAIへの反発拡大を踏まえ信頼回復には実績が必要と発言した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "アンソロピックのCEOが、AIに対する社会的反発が広がる中、信頼を取り戻すには実際の実績を示す必要があると述べた。",
+    "detail": "アンソロピックCEOは、AI技術への反発が広がっている現状に懸念を示し、企業や業界が信頼を回復するためには言葉ではなく実際の成果・実績を積み重ねる必要があると強調した。記事では、AIの急速な普及に伴い社会的な不安や批判が高まっていることを背景に、CEOがこうした発言をしたと伝えている。具体的な数値や施策は明らかではないが、AI企業側が信頼構築のために行動で示す重要性を訴えた形だ。",
+    "change_summary": "アンソロピックCEOが、AIへの反発拡大を踏まえ信頼回復には実績が必要との見解を示した。",
+    "impact_summary": "AI企業やサービス提供者にとって、利用者の信頼獲得が今後の事業展開の鍵となることを改めて示している。",
+    "action_suggestion": "記事からは具体的な施策や時期は明らかでなく、今後のアンソロピックの対応や業界の動きが注目される。",
+    "importance": "A",
+    "related_categories": [
+      "企業・株式",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_516f5ec3625cfb1b348e",
+    "story_id": "story_1c0037307344f42fc4",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "Perplexity",
+    "title": "国産AI検索対策ツール「DolphinX AIO」がClaudeとPerplexityに対応、6種AIの日次計測が可能に",
+    "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE4wWG12TVc2RkVjaXJMUVdERTdYSERkZTRPd0hFZ1NGaDlkcjg0MExyU2UtczNXOHdNVlloWGFGeHlTYUVNOWJzRkZSY0xKeTd6TVVfcS1id1BYZjJ0ajYwLTIzSmcwVlZo?oc=5",
+    "source_name": "ニコニコニュース",
+    "is_official": false,
+    "published_at": "2026-08-17T01:45:25.000Z",
+    "source_published_at": "2026-08-17T01:45:25.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-17T04:04:04.982Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "DolphinX AIO",
+      "Claude",
+      "Perplexity",
+      "dolphinxaio",
+      "claude"
+    ],
+    "primary_entity": "DolphinX AIO",
+    "story_subject": "DolphinX AIO",
+    "event_type": "release",
+    "event_stage": "expanded",
+    "event_scope": "日本国内",
+    "fact_slots": [
+      {
+        "type": "count",
+        "scope": "対応AIモデル数",
+        "value": "6種類",
+        "normalized_value": "6"
+      }
+    ],
+    "new_facts": [
+      "DolphinX AIOがClaudeとPerplexityへの対応を追加した",
+      "6種類のAIモデルの日次同時計測が可能になった"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "国産のAI検索対策ツール「DolphinX AIO」が日次計測機能でClaudeとPerplexityへの対応を追加し、6種類のAIを同時計測できるようになった。",
+    "detail": "国産のAI検索対策ツール「DolphinX AIO」が機能を拡張し、日次計測の対象としてClaudeとPerplexityへの対応を新たに追加した。これにより既存の対応モデルと合わせて、合計6種類のAIサービスでの自社ブランドや情報の表示状況を毎日同時に計測できるようになった。AI検索やチャットボットの回答に自社サイトがどう扱われているかを把握したい企業向けに対応範囲を広げた形で、具体的な計測開始日や料金体系については記事内で明記されていない。",
+    "change_summary": "日次計測の対応AIにClaudeとPerplexityが新たに加わり、計6種類のAIを同時計測できるようになった。",
+    "impact_summary": "企業のマーケティング担当者が複数のAIサービス横断で自社情報の露出状況を把握しやすくなり、AI時代のSEO対応の判断材料が増える。",
+    "action_suggestion": "対応する6種類のAIサービスの詳細や利用条件については提供元の発表を確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "営業・マーケティング",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_eb0739f797d9c25c7bb7",
+    "story_id": "story_e51f8612faa746cffc",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
     "tool": "Gemini",
     "title": "Google、新型Geminiモデルを前回からわずか3週間で投入、価格は半額に",
     "source_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPd3ZiUXpqWlMwMzhPZlhmRDNLXzFQamlESmhtSW54VUY1V0NxQXlzRjlMUUMzb0NXT1NpRGVCN0VwQ1ZNWmNzd05IYWNTN3VCTDVnZkFNV2RteWp0WmJtSHduQ2RTRjZsaG1MOEVwUEF5Mnd3NFJCSlduT2lqV3lXcnBhYUd6dDl3aFE?oc=5",
@@ -774,175 +1023,6 @@
     "dedupe_reasons": [
       "shared_entity",
       "same_subject"
-    ]
-  },
-  {
-    "tool": "Claude / Claude Code",
-    "title": "Anthropic、Claudeの生成テキスト向け電子透かしの仕組みを説明",
-    "source_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNZDVWTExLWHdiVDdHcjI2SVNiQmdrYU4zOS1qNDYwMXpiRVhHVHVfSW5yRlVBN3htWXU4Y2l0bEFsYkx1WUQ0WUZWdXJTUVltZHBqd2xmSFpkcFJXMURDaDZsTk1sZDdMUkZjLTI5VW4zUUVHVlBvaWF1bEpqRndJRldIT08wSGtnNTBNcS1WbWstOG9HNHhCWmwyMmVaNGNEQXFua0ZjNA?oc=5",
-    "source_name": "portalcripto.com.br",
-    "is_official": false,
-    "published_at": "2026-08-16T00:21:02.000Z",
-    "source_published_at": "2026-08-16T00:21:02.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-16T01:57:51.733Z",
-    "event_at": "",
-    "event_status": "不明",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Anthropic",
-      "Claude",
-      "anthropic",
-      "claude"
-    ],
-    "primary_entity": "Anthropic",
-    "story_subject": "Claudeの電子透かし技術",
-    "event_type": "research",
-    "event_stage": "other",
-    "event_scope": "Claude",
-    "fact_slots": [],
-    "new_facts": [
-      "AnthropicがClaudeの電子透かしの仕組みについて説明した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "Anthropicが、ClaudeがAI生成テキストに埋め込む電子透かし(ウォーターマーク)の仕組みについて説明した。",
-    "detail": "AnthropicはAIモデルClaudeが生成する文章に埋め込まれる電子透かしについて、その動作の仕組みを説明したとされる。電子透かしはAIが生成した文章と人間が書いた文章を区別するための技術で、生成コンテンツの識別や不正利用の抑止に用いられることが多い。記事からは技術の詳細な検出方法や対象範囲までは確認できず、今後の情報公開が待たれる。",
-    "change_summary": "Anthropicが、Claudeの生成テキストに使われる電子透かしの仕組みについて説明を行った。",
-    "impact_summary": "AI生成コンテンツの真偽を判定する必要がある教育機関やメディア関係者にとって、識別技術の理解が進む可能性がある。",
-    "action_suggestion": "Anthropicによる具体的な技術文書や公式発表内容の詳細は記事からは確認できず、続報を確認する必要がある。",
-    "importance": "C",
-    "related_categories": [
-      "研究・技術",
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_46decdd5b9f389ba4a50",
-    "story_id": "story_6fac34152d711be650",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.6570731707317072,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "same_subject"
-    ]
-  },
-  {
-    "tool": "世界の新モデル・速報",
-    "title": "ソニー、PS5 Pro向け改良版PSSRの設計を公開",
-    "source_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5wLWtDUnpaOThoQThVdTJmc1Y1eWFQdmJUTk9QSUkxbUJfQlQtTEFRVC11RWFidGJpUTBudkVKN0hyOFJNejdmNE9iUU95N2RucjBGcGk1ZVlxV3IxeVBKRlBDTWI1Y00?oc=5",
-    "source_name": "GAZLOG",
-    "is_official": false,
-    "published_at": "2026-08-15T23:27:00.000Z",
-    "source_published_at": "2026-08-15T23:27:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-16T01:58:27.761Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "ソニー",
-      "PS5 Pro",
-      "PSSR",
-      "ps5pro",
-      "pssr"
-    ],
-    "primary_entity": "ソニー",
-    "story_subject": "PS5 Pro向け改良版PSSR",
-    "event_type": "release",
-    "event_stage": "announced",
-    "event_scope": "PS5 Pro",
-    "fact_slots": [],
-    "new_facts": [
-      "ソニーがPS5 Pro向け改良版PSSRの設計を公開した",
-      "AIモデルの担当範囲を減らし画質と速度の両立を図る設計"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "ソニーがPS5 Pro向けにアップスケーリング技術PSSRの改良版設計を公開し、AIモデルの担当範囲を減らして画質と処理速度の両立を図った。",
-    "detail": "ソニーはPlayStation 5 Proに搭載されているアップスケーリング技術「PSSR」の改良版に関する設計を公開した。従来はAIモデルが画像処理の広い範囲を担っていたが、改良版ではAIモデルが担当する範囲を減らし、その分を別の処理に振り分けることで画質と処理速度の両立を狙ったという。ゲーム機におけるAI活用の設計思想が、性能とのバランスを重視する方向に見直されていることを示す事例となっている。",
-    "change_summary": "PS5 Pro向けPSSRの改良版で、AIモデルの担当範囲を縮小し画質と速度を両立する設計が公開された。",
-    "impact_summary": "PS5 Proユーザーはゲームの描画品質や動作速度の向上を体感できる可能性がある。",
-    "action_suggestion": "改良版PSSRの搭載時期や対象タイトルについては記事内で明記されておらず、今後の発表が待たれる。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "半導体・インフラ"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_b9bd441929c58f2af221",
-    "story_id": "story_2bc9ffb39e628c79a3",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "AI規制・著作権",
-    "title": "ゲーム業界契約書の生成AI禁止条項、もはや定型文に",
-    "source_url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTFA5VzAwb3dqTkxjX2UyM3BXcHJZMVhMcTFrSGFEQmhIQkh0LXhGRWduNjhkYy1FVEFadkZNMEhDM2k0R2s?oc=5",
-    "source_name": "shiritomo",
-    "is_official": false,
-    "published_at": "2026-08-15T23:07:28.000Z",
-    "source_published_at": "2026-08-15T23:07:28.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-16T01:58:24.626Z",
-    "event_at": "",
-    "event_status": "不明",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "ゲーム業界",
-      "生成AI",
-      "契約書",
-      "生成ai"
-    ],
-    "primary_entity": "不明",
-    "story_subject": "ゲーム契約における生成AI禁止条項",
-    "event_type": "policy",
-    "event_stage": "other",
-    "event_scope": "ゲーム業界(日本)",
-    "fact_slots": [],
-    "new_facts": [
-      "弁護士がゲーム関連契約書を分析し、生成AI禁止条項が定型文化していると指摘",
-      "条項の厳格さには企業間で温度差があるとされる"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "弁護士がゲーム関連契約書を分析した結果、生成AI利用を禁止する条項がほぼ定型文として一般化しつつあると指摘、企業間で温度差もあるとした。",
-    "detail": "弁護士が複数のゲーム関連契約書を確認したところ、生成AIの利用を禁止する条項が「もはや定型文」として一般化しつつある実態が明らかになった。一方で、条項の厳格さや適用範囲には企業ごとに温度差があり、一律の対応にはなっていないという。生成AIをめぐる著作権・権利関係の不透明さが背景にあるとみられ、業界内でのルール整備が今後の課題として残る。",
-    "change_summary": "ゲーム業界の契約書に生成AI禁止条項が定型化しつつある実態が明らかになった。",
-    "impact_summary": "ゲーム開発会社やクリエイターは、契約条件に生成AI利用制限が組み込まれる可能性を踏まえた対応が必要になる。",
-    "action_suggestion": "契約締結前に生成AI利用に関する条項の有無と内容を確認することが求められる。",
-    "importance": "B",
-    "related_categories": [
-      "規制・法務",
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_a6f208163ec345d010cc",
-    "story_id": "story_7bf81292b7256f80cc",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
     ]
   },
   {
@@ -3096,62 +3176,6 @@
     "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
     "article_id": "article_b355ea87ec9768021fa4",
     "story_id": "story_204e466ca2c8136b8d",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "Perplexity",
-    "title": "OpticOdds、PerplexityのAIブラウザ上でスポーツベッティング向けオッズデータ提供へ",
-    "source_url": "https://news.google.com/rss/articles/CBMikwdBVV95cUxNOUxiWlhIX2xydEM4YTNXTDhQYkdVSlBvdFFyWHlyYnM2U0VsdFEwYWdyLTRNTG1OUDVjWTcxYzBqQXJLU3hfOUJTWDJRRXBibEMxVHQtY2FLYS0yS0VYQ3RMYnVKV29SOFBVa1ZJN3F0OVRQZHBMbHpOc3lYOXk2RDIyQVU3dExGMFJtR1A0LUVKMzZpZE0wTDhHZGZlZmJ4NG9ycEZPVkRMMnBhXy0xTWFMbjlnRmJsazhVYVF3eVhZNE1BYnFrVFpnYS1QMWxRWWJQRUV4dEJ5aldMNHUwbFFxSV9GN0FrZE1DU01VdlZ4VFBxX2cwOEwtLXRwSDJHek90QnpJaEk3V3d0TWFsOUZMS25WWVQ5N2tTZDNMdE1Pd0JWcHIyOGo5MDR3NEhUV3hwOVc4SkUzVHkzQ1BudU00ZnVDUGxtTFZEOUlWeDFfSVZvZkhvcXVmQ3kwM0JWUVFkV3JiejZLcU5aaks0QUNjZU5EY0NrNGJNYVN2N25KcW1qUk5IYWQwaDZfNUNFUWhHQl9LNGNrME1VaXBjXzVKeFZ0NE9Ba2JqajhOeU05Ylo4RlFvQXc5UHRrLWlpUHB1eXIwQVRiT3dWNHJpSEs1VGozNHA0VVBFRE51Z1pKdDcwUGlGMk0wWWNEcFBtM1hMQklXWmV0dk51OWVkRUlnY2c4bDRIYjI0WUltVDBNUDJ1WF9HWVQzMHpQRTcyTDlZVDJRU2hVLTlfVjBjN0M0VEpya2xFRlhjdlItaHN3bmFkUXBZcWluZWtIRE5SaEtIMjZtT3VWUkdzaTlaMHRQeW9kSG9MLTVIX010VGZzWTctV3BVMm91dU9FWG9LWmhHbERWdExIbzNsak1FbWFhN0RqTGN2R1JlZFVDVHltUmlBY194UzJJSUE0Y0FMQWpDV0xSWnRGVlFfcE1YOHRybVFKUmM2MnFrMlFjbV9Dek5QWEM3LTBXS1BfZU5YYWphSFNERXhlUk5taUl4TThJVG1Kc1hQM1ZUazlTRk04b0tEdmxHZm91OERPb2l1ZnZXVGFMWE1GXzE3aG5oSVZHSDBxT3dZaGRhaEdrd09YLWM1TU9iZEgtUk1HV1hlU2lxM1F2TjhGWUlGSjNIdVJwelBZbHBrdGFZYW5LOHJBekk0aEp1UUJ0SjJaUkRmel9jVGRZMGZ2VlZfd1hlY3Yzdm53bkRUVFcwM3c1T0RLSUU?oc=5",
-    "source_name": "Yogonet",
-    "is_official": false,
-    "published_at": "2026-08-11T14:08:06.000Z",
-    "source_published_at": "2026-08-11T14:08:06.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-12T02:46:03.872Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "OpticOdds",
-      "Perplexity",
-      "opticodds",
-      "perplexity"
-    ],
-    "primary_entity": "OpticOdds",
-    "story_subject": "Perplexity内でのスポーツベッティングデータ提供",
-    "event_type": "partnership",
-    "event_stage": "announced",
-    "event_scope": "不明",
-    "fact_slots": [],
-    "new_facts": [
-      "OpticOddsがPerplexityのブラウザ機能内でスポーツベッティングのクエリを支援すると発表した",
-      "機関投資家レベルのデータを消費者に提供するとしている"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "スポーツデータ企業OpticOddsが、Perplexityのブラウザ機能内でスポーツベッティングのクエリに対応し、機関投資家レベルのデータを消費者に提供すると発表した。",
-    "detail": "スポーツデータ企業OpticOddsは、AI検索サービスPerplexityのブラウザ機能内でスポーツベッティングに関するクエリに対応すると発表した。これにより、これまで機関投資家向けに提供していたようなオッズデータを、一般消費者もPerplexity経由で利用できるようになるという。両社の提携の詳細な開始時期や対象地域、料金体系などについては記事内で明らかにされておらず、今後の情報公開が待たれる。",
-    "change_summary": "OpticOddsのオッズデータがPerplexityのAI機能内で利用可能になった。",
-    "impact_summary": "一般消費者がAIを通じて専門的なベッティングデータへアクセスしやすくなる可能性がある。",
-    "action_suggestion": "提供開始時期や対象地域など詳細は記事で明記されておらず、今後の発表を確認する必要がある。",
-    "importance": "C",
-    "related_categories": [
-      "AIツール・モデル",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_88465b673612ae480762",
-    "story_id": "story_75df8ca1a4f77b572f",
     "story_sequence": 1,
     "relation_type": "new",
     "relation_confidence": 1,
