@@ -86,12 +86,12 @@ export function buildBusinessPipelinePanel(input) {
 }
 
 function buildBusiness(business) {
+  const total = Object.values(business.totals).reduce((a, b) => a + b, 0);
   return el('article', { class: 'business-block' },
     el('div', { class: 'business-block-head' },
       el('h3', { class: 'business-block-title' }, business.label),
-      el('span', { class: 'business-block-total' }, `${Object.values(business.totals).reduce((a, b) => a + b, 0)}件`)),
-    el('div', { class: 'business-total-grid' }, ...STAGES.map((stage) =>
-      metric(stage, business.totals[stage.id]))),
+      el('span', { class: 'business-block-total' }, `${total}件`)),
+    el('p', { class: 'business-action-summary' }, businessSummary(business)),
   el('div', { class: 'business-day-list' }, ...business.days.map((day) => buildDay(day, business))));
 }
 
@@ -105,20 +105,25 @@ function buildDay(day, business) {
       el('div', { class: 'business-platform-name' },
         platformBadge(platform, { size: 19, decorative: true }),
         platformName(platform)),
-      el('div', { class: 'business-platform-counts' },
-        ...STAGES.map((stage) => metric(stage, day.platforms[platform]?.[stage.id] ?? 0)))));
+      stageSummary(day.platforms[platform] ?? emptyCounts())));
   return el('section', { class: 'business-day' },
     el('h4', { class: 'business-day-title' }, label),
     el('div', { class: 'business-platform-list' }, ...rows));
 }
 
-function metric(stage, count) {
-  return el('div', {
-    class: `business-metric business-metric-${stage.tone}${count === 0 ? ' is-zero' : ''}`,
-    title: `${stage.label} ${count}件`,
-  },
-  el('span', { class: 'business-metric-label' }, stage.label),
-  el('strong', { class: 'business-metric-count' }, String(count)));
+function businessSummary(business) {
+  const { totals } = business;
+  if (totals.APPROVAL > 0) return `最優先：${totals.APPROVAL}件の承認後、予約へ進めます。`;
+  if (totals.CREATING > 0) return `いま：${totals.CREATING}件を制作中です。公開日は未定です。`;
+  if (totals.SCHEDULED > 0) return `予約済み：${totals.SCHEDULED}件です。`;
+  return '予定はありません。';
+}
+
+function stageSummary(counts) {
+  const active = STAGES.filter((stage) => (counts[stage.id] ?? 0) > 0);
+  if (!active.length) return el('span', { class: 'business-stage-summary is-empty' }, '予定なし');
+  return el('span', { class: 'business-stage-summary' }, ...active.map((stage) =>
+    el('span', { class: `business-stage-pill is-${stage.tone}` }, `${stage.label} ${counts[stage.id]}件`)));
 }
 
 function dateLabel(dateKey) {

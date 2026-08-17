@@ -938,12 +938,7 @@ input:invalid { border-color: var(--danger); }
 .business-block-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .business-block-title { margin: 0; font-size: 17px; }
 .business-block-total { color: var(--ink-2); font-size: 13px; font-weight: 700; }
-.business-total-grid, .business-platform-counts {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 6px;
-}
-.business-total-grid { margin-top: 10px; }
+.business-action-summary { margin: 8px 0 0; color: var(--ink-2); font-size: 13px; font-weight: 700; }
 .business-day-list { display: grid; gap: 10px; margin-top: 12px; }
 .business-day {
   min-width: 0;
@@ -956,31 +951,21 @@ input:invalid { border-color: var(--danger); }
 .business-platform-list { display: grid; gap: 7px; }
 .business-platform-row {
   display: grid;
-  grid-template-columns: 126px minmax(0, 1fr);
+  grid-template-columns: minmax(120px, 1fr) auto;
   align-items: center;
   gap: 8px;
   min-width: 0;
+  padding: 8px 0;
+  border-top: 1px solid var(--line-soft);
 }
+.business-platform-row:first-child { padding-top: 0; border-top: 0; }
 .business-platform-name { display: inline-flex; align-items: center; gap: 7px; min-width: 0; font-size: 13px; font-weight: 700; }
-.business-metric {
-  min-width: 0;
-  min-height: 42px;
-  padding: 6px 8px;
-  border: 1px solid var(--line);
-  border-left-width: 4px;
-  border-radius: 8px;
-  background: var(--surface);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 5px;
-}
-.business-metric-progress { border-left-color: #7082b8; }
-.business-metric-attention { border-left-color: var(--attention); }
-.business-metric-scheduled { border-left-color: var(--accent); }
-.business-metric.is-zero { opacity: .48; }
-.business-metric-label { min-width: 0; color: var(--ink-2); font-size: 11px; font-weight: 700; line-height: 1.2; }
-.business-metric-count { font-size: 19px; line-height: 1; font-variant-numeric: tabular-nums; }
+.business-stage-summary { display: inline-flex; justify-content: flex-end; flex-wrap: wrap; gap: 5px; }
+.business-stage-summary.is-empty { color: var(--ink-3); font-size: 12px; font-weight: 700; }
+.business-stage-pill { padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight: 800; white-space: nowrap; }
+.business-stage-pill.is-progress { color: #365185; background: #edf1fb; }
+.business-stage-pill.is-attention { color: #8c4e00; background: #ffedc9; }
+.business-stage-pill.is-scheduled { color: #174f98; background: #e9f1ff; }
 
 /* --- 投稿詳細：判断に必要な情報だけを先に出す ---------------------------- */
 .detail-summary-card {
@@ -1050,11 +1035,7 @@ input:invalid { border-color: var(--danger); }
   .progress-card-reason, .progress-card-next { grid-template-columns: 64px minmax(0, 1fr); }
   .business-pipeline { padding: 12px; }
   .business-block { padding: 10px; }
-  .business-platform-row { grid-template-columns: 1fr; gap: 5px; padding-top: 7px; border-top: 1px solid var(--line-soft); }
-  .business-platform-row:first-child { padding-top: 0; border-top: 0; }
-  .business-platform-counts { width: 100%; }
-  .business-metric { padding: 5px 6px; }
-  .business-metric-label { font-size: 10px; }
+  .business-platform-row { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
   .detail-summary-card { padding: 12px; }
   .detail-summary-card .kv { grid-template-columns: 64px minmax(0, 1fr); }
   .drawer-foot .btn { flex: 1 1 120px; }
