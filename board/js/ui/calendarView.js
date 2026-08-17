@@ -84,8 +84,6 @@ async function renderWeek(app) {
     buildNextActionBar(app, { dateKey: selected, posts: dayPosts, dayPlan, upcoming, accounts }),
   );
 
-  screen.appendChild(el('div', { class: 'wk-wrap' }, buildWeekGrid(app, view, selected)));
-
   return screen;
 }
 
