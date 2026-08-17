@@ -54,10 +54,6 @@ async function renderWeek(app) {
   });
 
   const upcoming = await repo.listUpcomingPosts(app.clock.nowMs(), 10);
-  const pipelineWindowPosts = pipelinePosts.filter((post) => {
-    if (post.internal?.tags?.includes('production-run')) return true;
-    return post.calendar_date_key >= start && post.calendar_date_key <= end;
-  });
   const screen = el('div', { class: 'screen' });
 
   screen.appendChild(
@@ -73,7 +69,8 @@ async function renderWeek(app) {
     }),
   );
 
-  screen.appendChild(buildBusinessPipelinePanel({ posts: pipelineWindowPosts, postGroups, publicationPackages }));
+  // 承認待ち・未予約の投稿は日付をまたいでも、解消するまで進捗欄に残す。
+  screen.appendChild(buildBusinessPipelinePanel({ posts: pipelinePosts, postGroups, publicationPackages }));
   screen.appendChild(buildProgressPanel(app, { posts, todayKey: app.todayKey(), timeZone: tz }));
 
   // 「次に確認すること」は週表示では画面幅いっぱいの帯にする。
