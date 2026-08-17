@@ -1,5 +1,297 @@
 [
   {
+    "tool": "Gemini",
+    "title": "Google、新型Geminiモデルを前回からわずか3週間で投入、価格は半額に",
+    "source_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPd3ZiUXpqWlMwMzhPZlhmRDNLXzFQamlESmhtSW54VUY1V0NxQXlzRjlMUUMzb0NXT1NpRGVCN0VwQ1ZNWmNzd05IYWNTN3VCTDVnZkFNV2RteWp0WmJtSHduQ2RTRjZsaG1MOEVwUEF5Mnd3NFJCSlduT2lqV3lXcnBhYUd6dDl3aFE?oc=5",
+    "source_name": "Times Tabloid",
+    "is_official": false,
+    "published_at": "2026-08-17T00:00:45.000Z",
+    "source_published_at": "2026-08-17T00:00:45.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-17T01:55:51.004Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Google",
+      "Gemini",
+      "google",
+      "gemini",
+      "google-gemini"
+    ],
+    "primary_entity": "Google",
+    "story_subject": "新型Geminiモデルの投入と値下げ",
+    "event_type": "release",
+    "event_stage": "launched",
+    "event_scope": "API",
+    "fact_slots": [
+      {
+        "type": "price",
+        "scope": "新型Geminiモデルの価格",
+        "value": "前モデルの半額(具体的金額不明)",
+        "normalized_value": "前モデルの半額具体的金額不明"
+      }
+    ],
+    "new_facts": [
+      "Googleが前回のGeminiモデル公開からわずか3週間で新モデルを投入した",
+      "新モデルの価格は前モデルの半額に設定された"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Googleは前回のGeminiモデル公開からわずか3週間で新モデルを投入し、価格を従来の半額に設定したと報じられた。",
+    "detail": "Googleは前のGeminiモデルを公開してからわずか3週間という短い間隔で、新しいGeminiモデルを投入したと報じられている。新モデルの価格は前モデルの半額に設定されており、AI企業間の開発競争のスピードとコスト競争の激しさを示す事例として取り上げられている。ただし記事の抜粋からは新モデルの具体的な名称や機能面での違いは確認できず、価格についても具体的な金額は明示されていない。",
+    "change_summary": "前モデルからわずか3週間というハイペースで新型Geminiモデルが投入され、価格が半額になった。",
+    "impact_summary": "AI開発企業のAPI利用コストが下がることで、企業のAIサービス導入コストが下がる可能性がある。",
+    "action_suggestion": "具体的なモデル名や適用開始日、正確な価格については記事本文からは不明であり、Googleの公式発表の確認が必要。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル",
+      "企業・株式"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_c3041550b4a25cd80c3e",
+    "story_id": "story_cdcc5a4e093b60281a",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.6205714285714286,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject"
+    ]
+  },
+  {
+    "tool": "ChatGPT / OpenAI",
+    "title": "OpenAI、個人アカウントでのGPTs作成ボタンを非表示に",
+    "source_url": "https://news.google.com/rss/articles/CBMiQEFVX3lxTE00Y25TZjBsZ2tHTE5HOGVCeHN2MVpzLUdLdFBqX1hySDJveVJvVlBJcmRHblhxdmNZbVY1YU5mVEE?oc=5",
+    "source_name": "shiritomo",
+    "is_official": false,
+    "published_at": "2026-08-16T22:17:14.000Z",
+    "source_published_at": "2026-08-16T22:17:14.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-17T01:55:48.212Z",
+    "event_at": "",
+    "event_status": "不明",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "OpenAI",
+      "GPTs",
+      "ChatGPT",
+      "openai",
+      "gpts"
+    ],
+    "primary_entity": "OpenAI",
+    "story_subject": "GPTs作成機能の個人アカウント制限",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "個人アカウント",
+    "fact_slots": [],
+    "new_facts": [
+      "個人向けChatGPTアカウントでGPTs作成ボタンが表示されなくなったと報告されている"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "個人向けChatGPTアカウントでカスタムGPTを作成するボタンが突然表示されなくなり、OpenAIが利用区分の線引きを行ったとみられる。",
+    "detail": "個人向けのChatGPTアカウントで、これまで使えていたカスタムGPT（GPTs）の作成ボタンが突然消えたとの報告がある。OpenAIが個人アカウントと法人・有料プラン向けアカウントの間でGPTs作成機能の利用可否に線引きを行った可能性が指摘されている。ただし具体的な対象範囲や基準、公式のアナウンス内容については記事本文からは詳細が確認できず、不明な点が残る。",
+    "change_summary": "個人アカウントでGPTs作成ボタンが表示されなくなったという変化が報告されている。",
+    "impact_summary": "個人でカスタムGPTを作って業務効率化や情報発信に使っていたユーザーの利用継続に影響する可能性がある。",
+    "action_suggestion": "自身のアカウント種別でGPTs作成が可能かを確認し、OpenAIからの公式な基準発表を待つ必要がある。",
+    "importance": "C",
+    "related_categories": [
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_9c278ab23338b457f8a0",
+    "story_id": "story_d0ee2b40d79499043f",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "Claude / Claude Code",
+    "title": "Anthropicの電子透かし発表直後、透かし除去OSSツールが登場",
+    "source_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9vaFByTUVhaDZFS2F5d3lydUhTdkxMRGp4MVJPR3FHblduYkJUQ0tJcWJHTVhMV1ZqUjBxZXB6RTBYUnJfb1BXMlBpWkdON2o1WDBwdFVVaXNMbDFQMklHaHktWDMzVnM?oc=5",
+    "source_name": "テクノエッジ TechnoEdge",
+    "is_official": false,
+    "published_at": "2026-08-16T22:09:31.000Z",
+    "source_published_at": "2026-08-16T22:09:31.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-17T01:55:49.802Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Anthropic",
+      "Claude",
+      "Gemini",
+      "anthropic",
+      "claude"
+    ],
+    "primary_entity": "Anthropic",
+    "story_subject": "電子透かし除去OSSツール「watermarks-remover」",
+    "event_type": "security",
+    "event_stage": "other",
+    "event_scope": "Claude・Gemini・OpenAI対応",
+    "fact_slots": [],
+    "new_facts": [
+      "Anthropicが電子透かし導入を発表した直後にwatermarks-removerというOSSツールが公開された",
+      "このツールはClaude・Gemini・OpenAIの透かしに対応している"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Anthropicが生成物に電子透かしを付与する仕組みを発表した直後、Claude・Gemini・OpenAIの透かしを除去できるOSSツール「watermarks-remover」が公開された。",
+    "detail": "Anthropicは生成AIの出力に電子透かしを埋め込み、AI生成コンテンツであることを識別できるようにする仕組みを発表した。ところがその発表の直後に、Claude・Gemini・OpenAIといった複数のAIサービスの透かしに対応し、それを除去できるとするオープンソースツール「watermarks-remover」がインターネット上に登場したことがテクノエッジの生成AIクローズアップで報じられた。電子透かしはAI生成物の真正性を担保する対策として期待されていたが、公開直後に対抗ツールが出たことで、その実効性に疑問が投げかけられている。",
+    "change_summary": "Anthropicの電子透かし導入発表に対し、Claude・Gemini・OpenAI対応の透かし除去OSSツールが新たに公開された。",
+    "impact_summary": "電子透かしをAI生成コンテンツ判別の手段としていた企業やメディアの対策が無力化されかねず、偽情報対策や著作権管理に影響する。",
+    "action_suggestion": "ツールの実際の除去精度や各社の対応状況について、現時点で公式な検証結果は明らかになっておらず今後の動向確認が必要。",
+    "importance": "A",
+    "related_categories": [
+      "セキュリティ",
+      "規制・法務"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_0264756e0de6867a5717",
+    "story_id": "story_1c280292bbd21ef1f7",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "AI業界・経営重要速報",
+    "title": "JPモルガンCEO、巨額のAI投資に楽観的な見方を示す",
+    "source_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPSC1tQmFFRmtkSlk0OEV2SlQwbWU1cGFjOENlQlhGbVdkWHY2NFhrUHdwdURmVlRaUXIyUzBsUU1YT3laWC1teTF5RzRBWGZsVWRnbUNzQk5Pa0tpVVBqeDJhZ1JNNGh4SER4a1otMW5PXy1iengxT1dJbk5nckdPQ3dMeHFLZjJ3N2FxY0xWa2hFdno3NzBF?oc=5",
+    "source_name": "Business Insider Japan",
+    "is_official": false,
+    "published_at": "2026-08-16T21:35:00.000Z",
+    "source_published_at": "2026-08-16T21:35:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-17T01:56:22.078Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "JPモルガン",
+      "jpモルガン"
+    ],
+    "primary_entity": "JPモルガン",
+    "story_subject": "AI投資に対するCEOの見解",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "金融業界",
+    "fact_slots": [],
+    "new_facts": [
+      "JPモルガンCEOが巨額のAI投資について楽観的な見方を示した",
+      "最終的には成果をもたらすとの見解を述べた"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "JPモルガンのCEOが巨額のAI投資について楽観視し、最終的には成果をもたらすとの見解を示した。",
+    "detail": "Business Insider Japanの報道によると、JPモルガンのCEOが業界で進む巨額のAI投資について楽観的な見方を示した。CEOは、現在企業各社が投じている巨額のAI関連投資について、最終的には成果をもたらすとの見解を述べたとされる。生成AIブームを背景に、テック企業や金融機関を含む幅広い業界でデータセンターやAIモデル開発への投資が急拡大しており、その投資対効果を疑問視する声も出ている中での発言となる。記事からは具体的な投資額や成果の時期についての言及は確認できないが、金融業界を代表する経営者がAI投資の将来性に前向きな姿勢を示した点が注目される。",
+    "change_summary": "JPモルガンCEOが巨額のAI投資について、最終的には成果をもたらすとの楽観的な見解を新たに示した。",
+    "impact_summary": "金融業界のトップ経営者による発言は、AI投資を続ける他企業や投資家心理にも影響を与える可能性がある。",
+    "action_suggestion": "具体的な投資成果の時期や規模については、今後のJPモルガンの決算発表や関連コメントを確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "企業・株式"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_66496102ba52ebc8ba26",
+    "story_id": "story_cec5c2717506b160c7",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "AI業界・経営重要速報",
+    "title": "関西企業の設備投資、2026年度は5.7%増見込み AIデータセンター関連が牽引",
+    "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9IemJXU29rTHVJb3ZpR0NsSnRLWDVhQVJHQXJUYVJmQjZQdnNhdEJhSlBuY2xEOXJvNDBhaVlTX1JEaG9uNDdBanphUnd1WHZEZ016TUZnNi1aYmV6ZTBTRDR5WVh0LTFiOFZtdQ?oc=5",
+    "source_name": "nikkei.com",
+    "is_official": false,
+    "published_at": "2026-08-16T20:00:00.000Z",
+    "source_published_at": "2026-08-16T20:00:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-17T01:56:22.078Z",
+    "event_at": "",
+    "event_status": "予定",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "関西企業",
+      "AIデータセンター",
+      "aiデータセンター"
+    ],
+    "primary_entity": "関西企業",
+    "story_subject": "2026年度設備投資計画",
+    "event_type": "other",
+    "event_stage": "planned",
+    "event_scope": "関西地域",
+    "fact_slots": [
+      {
+        "type": "amount",
+        "scope": "2026年度設備投資増加率",
+        "value": "前年度比5.7%増",
+        "normalized_value": "5.7%"
+      }
+    ],
+    "new_facts": [
+      "関西企業の2026年度設備投資が前年度比5.7%増の見通しとなった",
+      "AIデータセンター関連投資が増加をけん引している"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "関西企業の2026年度設備投資が5.7%増となる見通しで、AIデータセンター関連の投資が全体を牽引している。",
+    "detail": "日本経済新聞の報道によると、関西の企業による2026年度の設備投資は前年度比5.7%増となる見通しであることが分かった。この増加をけん引しているのがAIデータセンター関連の投資で、AI需要の拡大に対応するための計算資源やインフラ整備への投資が活発化していることがうかがえる。関西圏の企業においても、生成AIやクラウドサービスの利用拡大を背景に、データセンターや関連設備への投資意欲が高まっている状況が示された形となる。具体的な投資額や対象企業の内訳については記事からは明らかではないが、AI関連需要が地域経済の設備投資を押し上げる要因の一つとなっていることが確認できる。",
+    "change_summary": "関西企業の2026年度設備投資が前年度比5.7%増となる見通しで、AIデータセンター関連投資が牽引役であることが新たに示された。",
+    "impact_summary": "AI関連インフラ投資の拡大は、関西圏の建設・電力・IT関連企業の受注機会増加につながる可能性があり、地域経済への波及が期待される。",
+    "action_suggestion": "具体的な投資額の内訳や対象企業については、今後の日経の続報や関連統計の発表を確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "半導体・インフラ",
+      "企業・株式"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_699fb1b45f21d3091a61",
+    "story_id": "story_fcb2ded6ac93b7e415",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
     "tool": "世界の新モデル・速報",
     "title": "MiniMax、音楽生成AI「MiniMax-Music3」を無償公開",
     "source_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5rNHhiekh6dEFieVFLcmJ4OGNOQXJLUVdrUkJnc0otQW5QRHkzaF9JcVp6MXBCMGFhbG55WGRkaGEwZm05UFkxbHUyQ1E0MExLRjh1WENPRTl4ZXVrbmExemFqU3U1cm1idWtjX1BR?oc=5",
@@ -782,186 +1074,6 @@
       "same_subject",
       "similar_title",
       "same_url_content_changed"
-    ]
-  },
-  {
-    "tool": "AI規制・著作権",
-    "title": "世界の古書店で謎の大量買い付け相次ぐ、AIデータ争奪戦との見方",
-    "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1JUkhaNUdiUkZUSW53YzVxazFPQ1RET01zczRka0otRlBmbTBBSDJ3MnEtOEt2Z3c3XzlKeGxhVC16UWJRZDIwbUZTT1JJRXRCeUN4cmZ0azVzN3JDTDRJbm5nRWN1dzExQ3VvYkZNTjBnYnhW?oc=5",
-    "source_name": "finance.biggo.jp",
-    "is_official": false,
-    "published_at": "2026-08-15T15:55:00.000Z",
-    "source_published_at": "2026-08-15T15:55:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-16T09:43:40.169Z",
-    "event_at": "",
-    "event_status": "不明",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "古書店",
-      "AI学習データ",
-      "ai学習データ"
-    ],
-    "primary_entity": "不明",
-    "story_subject": "古書店での大量買い付けとAIデータ収集疑惑",
-    "event_type": "other",
-    "event_stage": "rumor",
-    "event_scope": "世界",
-    "fact_slots": [],
-    "new_facts": [
-      "世界各地の古書店で身元不明の大量買い付けが相次いでいる",
-      "背景に生成AIの学習データ確保があるとの見方が出ている"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "世界各地の古書店で身元不明の大量買い付けが相次ぎ、生成AIの学習データ確保が背景にあるとの見方が出ている。",
-    "detail": "世界各地の古書店で、身元不明の買い手による大量の書籍買い付けが相次いで報告されている。詳細な買い付け主体や目的は明らかになっていないが、生成AIの学習データを確保するための動きではないかとの見方が示されている。書籍という紙媒体のテキストデータが、AIモデルの訓練材料として改めて注目されている可能性があるが、記事の時点では買い付けの正体や規模など多くの点が不明のままとなっている。",
-    "change_summary": "世界の古書店で相次ぐ大量買い付けの背景に、AI学習データ確保の思惑があるとの見方が出た。",
-    "impact_summary": "古書や紙媒体のテキストがAI学習データとして価値を持ち始めれば、出版業界や著作権を巡る議論に影響が及ぶ可能性がある。",
-    "action_suggestion": "買い付けの主体や目的については現時点で不明であり、続報の確認が必要な状況にある。",
-    "importance": "B",
-    "related_categories": [
-      "規制・法務",
-      "その他"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_515b4e717fe50b3b3434",
-    "story_id": "story_c1d4c363cd2ed0577e",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "AI業界・経営重要速報",
-    "title": "CEOのAI過信ギャップが企業に数十億ドルの損失をもたらす",
-    "source_url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1mYzV6LXh2Qy0yMG5xYXk0RGJ4cVhWa2lDdGZkeFVadEFMQ08wbmJzSTViNVVteG1CSzQ5MlVzM3J5SDRvZEg1YVhWT25kaTBaY2tYUHV5UFBBdw?oc=5",
-    "source_name": "Forbes JAPAN",
-    "is_official": false,
-    "published_at": "2026-08-15T14:58:00.000Z",
-    "source_published_at": "2026-08-15T14:58:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-16T04:00:33.468Z",
-    "event_at": "",
-    "event_status": "不明",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "CEO",
-      "AI導入",
-      "過信ギャップ",
-      "ceo",
-      "ai導入"
-    ],
-    "primary_entity": "企業経営層(一般)",
-    "story_subject": "CEOのAI過信ギャップによる経営損失",
-    "event_type": "research",
-    "event_stage": "other",
-    "event_scope": "世界の企業経営",
-    "fact_slots": [],
-    "new_facts": [
-      "CEOのAI能力に対する過信が企業に数十億ドルの損失をもたらしているとされる"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "経営者がAIの能力を過大評価する『過信ギャップ』が企業に数十億ドル規模の損失を生んでいるとForbes JAPANが報じた。",
-    "detail": "Forbes JAPANの記事によると、多くの企業でCEOがAIの能力を過大評価し、実際の業務遂行能力とのあいだに「過信ギャップ」が生じていることが、企業に数十億ドル規模の損失をもたらしているという。経営トップがAI導入の効果を楽観視する一方、現場での実装や運用には想定以上の時間やコストがかかるケースが多く、この認識のズレが投資判断や事業計画に悪影響を及ぼしていると指摘されている。記事は経営層に対し、AIの実力を冷静に見極めた上で導入計画を立てる必要性を示唆している。",
-    "change_summary": "CEOのAIに対する過大評価と実態の乖離が『過信ギャップ』として企業損失につながっていると指摘された。",
-    "impact_summary": "日本企業の経営者にとっても、AI導入を進める際に現場の実態を踏まえた現実的な計画立案が求められる。",
-    "action_suggestion": "具体的な損失額の算出方法や対象企業の詳細は記事内で明示されていない。",
-    "importance": "B",
-    "related_categories": [
-      "企業・株式",
-      "その他"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_01a54a78e1517e0e01da",
-    "story_id": "story_fdfb61ac12bf44630b",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "Gemini",
-    "title": "Google、「Gemini 3.7 Flash」を公開しコーディング性能を強化",
-    "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9QU1dwSUlLMWVfa0pwWllsaDlqT0dsZVBGdkIzX1pqQzZZem5UaG53YU5haS1IUU10S0tmMHZQQ0F4eU12b3VkZmVNYnlmMV9NTmFjbEZpWXdnTUZNSXdsVWY3NTBkVHdQ0gFoQVVfeXFMT1BTV3BJSUsxZV9rSnBaWWxoOWpPR2xlUEZ2QjNfWmpDNll6blRobndhTmFpLUhRTXRLS2YwdlBDQXh5TXZvdWRmZU1ieWYxX01OYWNsRmlZd2dNRk1Jd2xVZjc1MGRUd1A?oc=5",
-    "source_name": "財経新聞",
-    "is_official": false,
-    "published_at": "2026-08-15T10:48:00.000Z",
-    "source_published_at": "2026-08-15T10:48:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-16T01:57:53.013Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Google",
-      "Gemini 3.7 Flash",
-      "google",
-      "gemini3.7flash",
-      "google-gemini"
-    ],
-    "primary_entity": "Google",
-    "story_subject": "Gemini 3.7 Flash",
-    "event_type": "release",
-    "event_stage": "launched",
-    "event_scope": "全世界",
-    "fact_slots": [
-      {
-        "type": "price",
-        "scope": "Gemini 3.7 Flashの特別価格適用期間",
-        "value": "年末まで",
-        "normalized_value": "年末まで"
-      }
-    ],
-    "new_facts": [
-      "Googleが「Gemini 3.7 Flash」を公開した",
-      "コーディング性能が強化された",
-      "年末まで特別価格が提供される"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "Googleが新モデル「Gemini 3.7 Flash」を公開し、コーディング性能を強化するとともに年末まで特別価格を提供すると発表した。",
-    "detail": "財経新聞の報道によると、Googleは新たに「Gemini 3.7 Flash」を公開した。今回のモデルではコーディング性能が強化されているという。あわせて年末までの期間限定で特別価格が適用されることも明らかにされた。記事からはコーディング性能強化の具体的な指標や、特別価格の詳細な割引率までは確認できないが、開発者向けに性能面と価格面の両方で訴求する内容となっている。",
-    "change_summary": "Googleが「Gemini 3.7 Flash」を公開し、コーディング性能の強化と年末までの特別価格提供を発表した。",
-    "impact_summary": "コーディング支援用途でAIモデルを利用する開発者や企業にとって、性能向上と価格面での選択肢拡大につながる可能性がある。",
-    "action_suggestion": "特別価格の適用条件や終了時期の詳細は記事からは確認できず、Googleの公式発表を確認する必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_a2c3fe8c2ce19efa6e0e",
-    "story_id": "story_1bf06a3e6e91939abb",
-    "story_sequence": 3,
-    "relation_type": "follow_up",
-    "relation_confidence": 0.89,
-    "previous_article_id": "article_ed5d8a29d4ab7e644b3d",
-    "previous_title": "Google、コーディング性能を強化した新モデル「Gemini 3.7 Flash」を公開",
-    "previous_source_published_at": "2026-08-14T06:35:09.000Z",
-    "continuation_lead": "この話題の続報です。前回は「Google、コーディング性能を強化した新モデル「Gemini 3.7 Flash」を公開」まで進んでいましたが、今回はGoogleが「Gemini 3.7 Flash」を公開し、コーディング性能の強化と年末までの特別価格提供を発表した。",
-    "dedupe_decision": "follow_up",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "same_subject",
-      "same_event_type",
-      "similar_title",
-      "material_fact_changed"
     ]
   },
   {
@@ -2930,78 +3042,6 @@
     ]
   },
   {
-    "tool": "Gemini",
-    "title": "Geminiの月間アクティブユーザーが10億人突破、音声利用は63%に",
-    "source_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1Zb010a3FlZXM1SlRqLTRDQlNuSEx5SGdsTXI0YjBFWVZEUVhfS0M0WFVMN1hIcTRqbEMwUHRpeFVsN1ZMd2ZHcmE1b1ZFaTNSYjJ2MXFVV25UelhHa3JxZzlCeDE0Vlk?oc=5",
-    "source_name": "ケータイ Watch",
-    "is_official": false,
-    "published_at": "2026-08-12T04:36:16.000Z",
-    "source_published_at": "2026-08-12T04:36:16.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-12T05:03:29.583Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Google",
-      "Gemini",
-      "google",
-      "gemini",
-      "google-gemini"
-    ],
-    "primary_entity": "Google",
-    "story_subject": "Gemini",
-    "event_type": "other",
-    "event_stage": "announced",
-    "event_scope": "全世界",
-    "fact_slots": [
-      {
-        "type": "count",
-        "scope": "Geminiの月間アクティブユーザー数",
-        "value": "10億人",
-        "normalized_value": "1000000000"
-      },
-      {
-        "type": "other",
-        "scope": "音声機能の利用比率",
-        "value": "63%",
-        "normalized_value": "63%"
-      }
-    ],
-    "new_facts": [
-      "Geminiの月間アクティブユーザー数が10億人を突破した",
-      "Geminiの音声機能利用比率が63%に達した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "Googleは対話AI「Gemini」の月間アクティブユーザー数が10億人を突破し、音声機能の利用比率が63%に達したと発表した。",
-    "detail": "Googleは、対話型AIアシスタント「Gemini」の月間アクティブユーザー（MAU）数が10億人を超えたことを明らかにした。あわせて、テキスト入力だけでなく音声で指示や質問をするユーザーの割合が63%に達しているとも説明している。スマートフォンや専用アプリを通じて日常的にAIと会話する利用スタイルが広がっていることを示す数字であり、Googleは今後もGeminiの機能拡充を進める方針とみられる。",
-    "change_summary": "GeminiのMAUが10億人を突破し、音声利用比率63%という具体的な利用実態が公表された。",
-    "impact_summary": "日本でもスマホ経由でGeminiを使う人が増える中、音声操作を前提にしたAI活用の広がりが仕事や生活の場面で進む可能性がある。",
-    "action_suggestion": "Google公式のGemini関連発表やアプリの音声機能の対応状況を確認するとよい。",
-    "importance": "A",
-    "related_categories": [
-      "AIツール・モデル",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_724a89025e5955238c5b",
-    "story_id": "story_4101f7080fd451d396",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.6993750000000001,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "same_subject",
-      "same_scope"
-    ]
-  },
-  {
     "tool": "AI企業・関連株",
     "title": "NVIDIA、金融大手6社とAIインフラ整備で5000億ドル規模の資金調達提携",
     "source_url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5fZGRfWmx6cjhPYUFWbURQSTJ2LUpWUlhId3FmcjVITm16RjUtdzdBLWpGZVlrQjFacGQtcmk4R1hvejhBUzV2YllydFNvQWM?oc=5",
@@ -3056,78 +3096,6 @@
     "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
     "article_id": "article_b355ea87ec9768021fa4",
     "story_id": "story_204e466ca2c8136b8d",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "Grok / xAI",
-    "title": "xAI、コーディング向け新モデル「Grok 4.6」をAPIで提供開始",
-    "source_url": "https://docs.x.ai/docs/release-notes",
-    "source_name": "Grok / xAI 公式更新情報",
-    "is_official": true,
-    "published_at": "2026-08-12T00:00:00.000Z",
-    "source_published_at": "2026-08-12T00:00:00.000Z",
-    "source_updated_at": "2026-08-12T00:00:00.000Z",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-13T05:08:48.893Z",
-    "event_at": "2026-08-05",
-    "event_status": "発表済み",
-    "event_date_precision": "day",
-    "story_entities": [
-      "xAI",
-      "Grok 4.6",
-      "xai",
-      "grok4.6",
-      "grok"
-    ],
-    "primary_entity": "xAI",
-    "story_subject": "Grok 4.6",
-    "event_type": "release",
-    "event_stage": "launched",
-    "event_scope": "API",
-    "fact_slots": [
-      {
-        "type": "price",
-        "scope": "Grok 4.6 API料金(20万トークン未満)",
-        "value": "入力$2/百万トークン、キャッシュ入力$0.5/百万トークン、出力$6/百万トークン",
-        "normalized_value": "2USD"
-      },
-      {
-        "type": "version",
-        "scope": "文脈窓",
-        "value": "500,000トークン",
-        "normalized_value": "500000トークン"
-      }
-    ],
-    "new_facts": [
-      "xAIがGrok 4.6をAPIで提供開始した",
-      "文脈窓は50万トークンで画像入力にも対応する",
-      "料金は20万トークンを境に段階的に変わる",
-      "Grok Botや動画生成モデルgrok-imagine-video-1.5の更新も同時に発表された"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "xAIはコーディングやエージェント処理向けの新モデル「Grok 4.6」をAPIで公開し、50万トークンの文脈窓と新料金体系を導入した。",
-    "detail": "xAIは公式の更新履歴で、コーディングやエージェント作業、知識労働向けの新モデル「Grok 4.6」をxAI API上で提供開始したと発表した。文脈窓は50万トークンに達し、テキストと画像の入力に対応する一方、出力はテキストのみで文字数制限はない。料金は20万トークン未満のプロンプトで入力100万トークンあたり2ドル、キャッシュ入力0.5ドル、出力6ドルで、それを超えると入力4ドル、キャッシュ入力1ドル、出力12ドルとなる。推論の強度は低・中・高(既定)・超高から選択できる。同時期の更新では、常時稼働するクラウド上で作業する「Grok Bot」や、動画生成モデル「grok-imagine-video-1.5」のテキスト・画像・参照からの動画生成対応、音声対話モデル「grok-voice-think-fast-2.0」の提供開始なども公表されている。",
-    "change_summary": "xAIがGrok 4.6をAPIで公開し、50万トークンの文脈窓と段階的な新料金体系を設定したことが新しい。",
-    "impact_summary": "開発者や企業はコーディング・エージェント用途でGrok系列モデルの選択肢が広がり、料金体系の変更はAPI利用コストの見直しにつながる。",
-    "action_suggestion": "xAI APIの利用者は、Grok 4.6の料金体系(20万トークンを境に単価が変わる仕組み)と推論強度の設定を確認する必要がある。",
-    "importance": "A",
-    "related_categories": [
-      "AIツール・モデル",
-      "アプリ開発・自動化"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_798cc5879a3dbf4e6594",
-    "story_id": "story_2039ce09931d4dc36b",
     "story_sequence": 1,
     "relation_type": "new",
     "relation_confidence": 1,
