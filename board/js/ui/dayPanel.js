@@ -14,7 +14,6 @@ import { toPostView } from '../store/repo.js';
 import { syncStatus } from '../domain/invariants.js';
 import { stateTag, emptyState, guardedButton } from './states.js';
 import { openPostDetail } from './postDetail.js';
-import { openCreateDrawer } from './editDrawer.js';
 import { pauseDay, releaseDay } from '../services/api.js';
 
 /**
@@ -108,7 +107,7 @@ export function buildDayPanel(app, { dateKey, posts, dayPlan, upcoming, accounts
     panel.appendChild(
       emptyState({
         title: dayPlan?.paused ? 'この日は休止として記録されています' : 'この日は予定がありません',
-        description: dayPlan?.paused ? null : '投稿を追加するか、意図的な休止として記録してください。',
+        description: dayPlan?.paused ? null : 'AI／スキルが投稿予定を反映します。',
         actions: dayPlan?.paused
           ? [
               guardedButton(app, 'post.edit', '休止を解除する', {
@@ -116,10 +115,6 @@ export function buildDayPanel(app, { dateKey, posts, dayPlan, upcoming, accounts
               }),
             ]
           : [
-              guardedButton(app, 'post.create', '＋ 投稿を追加', {
-                class: 'btn btn-outline',
-                onClick: () => openCreateDrawer(app, { dateKey }),
-              }),
               guardedButton(app, 'post.edit', 'この日は休止', {
                 onClick: async () => {
                   const reason = await app.askReason({
@@ -135,14 +130,6 @@ export function buildDayPanel(app, { dateKey, posts, dayPlan, upcoming, accounts
               }),
             ],
       }),
-    );
-  } else {
-    panel.appendChild(
-      el('div', { class: 'day-actions' },
-        guardedButton(app, 'post.create', '＋ この日に投稿を追加', {
-          class: 'btn-link',
-          onClick: () => openCreateDrawer(app, { dateKey }),
-        })),
     );
   }
 
@@ -191,6 +178,7 @@ export function buildNextActionBar(app, { dateKey, posts, dayPlan, upcoming, acc
 
 function buildNextAction(app, next, dateKey) {
   const { item, headline, remaining } = next;
+  const canOpen = item.postId || item.action.route === 'connections' || item.action.route === 'approvals';
   return el(
     'div',
     { class: 'next-action' },
@@ -202,15 +190,14 @@ function buildNextAction(app, next, dateKey) {
       el('div', { class: 'next-action-why' },
         item.cause,
         remaining > 0 ? el('span', null, `　（ほかに${remaining}件）`) : null)),
-    el('div', { class: 'next-action-go' },
+    canOpen ? el('div', { class: 'next-action-go' },
       button(`${item.action.label} →`, {
         class: 'btn btn-sm',
         onClick: () => {
           if (item.postId) openPostDetail(app, item.postId);
           else if (item.action.route === 'connections') app.go('connections');
           else if (item.action.route === 'approvals') app.go('approvals');
-          else openCreateDrawer(app, { dateKey });
         },
-      })),
+      })) : null,
   );
 }

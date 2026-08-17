@@ -12,8 +12,6 @@ import { buildMonthView, buildWeekView, rollingWeekStartKey } from '../domain/ca
 import { toDayPlanView } from '../services/dayplans.js';
 import { buildDayPanel, buildNextActionBar } from './dayPanel.js';
 import { buildWeekGrid } from './weekView.js';
-import { openCreateDrawer } from './editDrawer.js';
-import { guardedButton } from './states.js';
 import { tierForWidth } from './responsive.js';
 import { platformBadges } from './platformBadge.js';
 import { buildProgressPanel } from './progressPanel.js';
@@ -189,10 +187,6 @@ function buildToolbar(app, o) {
       el('div', { class: 'month-title', id: o.titleId }, o.title),
       button('›', { class: 'month-step', 'aria-label': o.nextLabel, onClick: o.onNext })),
     button(o.todayLabel, { class: 'btn btn-quiet', onClick: () => goToday(app) }),
-    guardedButton(app, 'post.create', '＋ 投稿を登録', {
-      class: 'btn btn-outline',
-      onClick: () => openCreateDrawer(app, { dateKey: o.selected }),
-    }),
   );
 }
 
