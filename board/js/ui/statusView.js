@@ -210,8 +210,6 @@ export async function renderStatusScreen(app) {
   const response = await fetch(`data/status.json?t=${Date.now()}`, { cache: 'no-store' });
   if (!response.ok) throw new Error(`運用状況を取得できませんでした（HTTP ${response.status}）。`);
   const data = await response.json();
-  const blockers = data.blockers ?? [];
-  const channels = (data.channels ?? []).filter((channel) => channel.id !== 'radar');
   const [posts, postGroups, publicationPackages] = await Promise.all([
     app.ctx.repo.listPipelinePosts(),
     app.ctx.repo.listPostGroups(),
@@ -231,10 +229,5 @@ export async function renderStatusScreen(app) {
         el('p', { class: 'screen-desc' }, `${dayHeading(app.todayKey())}を基準｜媒体情報 ${dateTime(data.generated_at)} 更新`)),
       button('更新', { class: 'btn btn-outline status-refresh', onClick: () => app.refresh() })),
     reservationPanel(reservationPlan, app.timeZone, app),
-    productionCard(data.production),
-    otherIssues(blockers),
-    channelSection(channels),
-    el('p', { class: 'status-monitor-simple' },
-      `自動確認：1時間ごと・${data.monitoring?.report_policy ?? '変化がある時だけ通知'}`),
   );
 }

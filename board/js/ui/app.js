@@ -18,7 +18,7 @@ import { renderCalendarScreen } from './calendarView.js?v=7';
 import { renderApprovalsScreen } from './approvalsView.js';
 import { renderHistoryScreen } from './historyView.js';
 import { renderConnectionsScreen } from './connectionsView.js';
-import { renderStatusScreen } from './statusView.js?v=10';
+import { renderStatusScreen } from './statusView.js?v=11';
 import { hasIntentLink, consumeIntentLink } from './intentLink.js';
 
 const SCREENS = [
