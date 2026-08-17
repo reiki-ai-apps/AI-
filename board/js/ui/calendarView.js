@@ -9,14 +9,13 @@ import { el, button, onKeys, focus } from '../core/dom.js';
 import { WEEK_COLUMNS_JA, monthTitle } from '../core/fmt.js';
 import { shiftDateKey, daysInMonth } from '../core/tz.js';
 import { buildMonthView, buildWeekView, rollingWeekStartKey } from '../domain/calendar.js';
-import { displayState } from '../domain/state.js';
 import { toDayPlanView } from '../services/dayplans.js';
 import { buildDayPanel, buildNextActionBar } from './dayPanel.js';
 import { buildWeekGrid } from './weekView.js';
 import { openCreateDrawer } from './editDrawer.js';
 import { guardedButton } from './states.js';
 import { tierForWidth } from './responsive.js';
-import { platformBadges, badgeLegend, stateLegend } from './platformBadge.js';
+import { platformBadges } from './platformBadge.js';
 import { buildProgressPanel } from './progressPanel.js';
 import { buildBusinessPipelinePanel } from './businessPipelinePanel.js';
 
@@ -85,7 +84,6 @@ async function renderWeek(app) {
     buildNextActionBar(app, { dateKey: selected, posts: dayPosts, dayPlan, upcoming, accounts }),
   );
 
-  screen.appendChild(buildLegendBar());
   screen.appendChild(el('div', { class: 'wk-wrap' }, buildWeekGrid(app, view, selected)));
 
   return screen;
@@ -148,8 +146,6 @@ async function renderMonth(app) {
 
   screen.appendChild(buildBusinessPipelinePanel({ posts, postGroups, publicationPackages }));
   screen.appendChild(buildProgressPanel(app, { posts, todayKey: app.todayKey(), timeZone: tz }));
-  screen.appendChild(buildLegendBar());
-
   const board = el('div', { class: 'board' });
   board.append(
     el('div', { class: 'cal-month' }, buildMonthGrid(app, view, selected)),
@@ -219,15 +215,6 @@ function viewButton(app, mode, label) {
       app.update({ view: mode });
     },
   });
-}
-
-/** バッジの読み方。セルの中には凡例を置かない (§06) ので、グリッドの外に出す。 */
-function buildLegendBar() {
-  return el('div', { class: 'legend-bar' },
-    el('span', { class: 'legend-group' }, el('span', { class: 'legend-title' }, '投稿先'), badgeLegend()),
-    el('span', { class: 'legend-group' },
-      el('span', { class: 'legend-title' }, '進捗'),
-      stateLegend((id) => displayState(id).label)));
 }
 
 function step(app, delta) {
