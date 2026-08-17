@@ -2,6 +2,191 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_03b3344dcc9ff8bb0d7b",
+      "story_id": "story_992a26ebfd63e4d3ce",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "MoE言語モデルの深さ依存感度分析、後期層のエキスパート削減が有効と判明",
+      "source_published_at": "2026-08-17T04:00:00.000Z",
+      "published_at": "2026-08-17T04:00:00.000Z",
+      "fetched_at": "2026-08-17T04:04:25.761Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "研究者らがQwen3.6-35B-A3BのMoE構造を層ごとに分析し、後期層のエキスパートを大胆に削減しても性能を維持できることを示した。",
+      "source_name": "rss.arxiv.org",
+      "source_url": "https://arxiv.org/abs/2608.13565",
+      "story_entities": [
+        "Qwen3.6-35B-A3B",
+        "Mixture-of-Experts",
+        "XLCoST",
+        "qwen3.6-35b-a3b",
+        "mixture-of-experts"
+      ],
+      "primary_entity": "研究チーム(arXiv投稿者)",
+      "story_subject": "MoEモデルの深さ依存感度分析",
+      "event_type": "research",
+      "event_stage": "other",
+      "event_scope": "研究・学術",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "MoE層数",
+          "value": "40層",
+          "normalized_value": "40"
+        },
+        {
+          "type": "count",
+          "scope": "エキスパート数",
+          "value": "256/層",
+          "normalized_value": "256"
+        },
+        {
+          "type": "count",
+          "scope": "削減エキスパート数(最良policy)",
+          "value": "640/10,240",
+          "normalized_value": "640"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "MoEモデルの層別感度を体系的に分析し、後期層に絞ったエキスパート削減が全層一律削減より効率的であることを示した。",
+      "detail": "MoE(Mixture-of-Experts)は複数の専門家ネットワークをスパースに活性化して大規模言語モデルを効率化する手法。本研究はQwen3.6-35B-A3B(40層、各256エキスパート、top-8ルーティング)を対象に、層ごとの重要度をマグニチュードベースのマスキングで分析した。XLCoSTコード翻訳ベンチマークで100~500プロンプト規模の評価を行った結果、初期層(0-9)と中間層(10-29)はマスキングに脆弱な一方、後期層(30-39)特に35-39層は積極的なマスキングに耐性があることが判明した。全層一律30%マスキングでは300サンプル中150件しか良好な出力を維持できなかったが、後期層に絞った方針では249~255件を維持しつつ640~1,145のエキスパートを削減できた。500プロンプトの検証では35-39層を50%マスキングする方針が最良のバランスを示し、640/10,240エキスパートの削減で419/500件の良好出力を維持した。またtop-kルーティング幅を8から6に減らすと処理速度が大きく向上し品質低下も見られなかったが、積極的なマスキングとの併用はまだ課題があるとしている。",
+      "new_facts": [
+        "Qwen3.6-35B-A3Bの後期層(35-39)は積極的なエキスパートマスキングに耐性がある",
+        "640/10,240エキスパートを削減しつつ419/500件の良好出力を維持",
+        "top-kルーティングを8から6に削減すると処理速度が向上し品質低下なし"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_7cc582418b52d4f3bafc",
+      "story_id": "story_8e1b153433d894e829",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "OpenAI CEOサム・アルトマン氏「大学4年間は長すぎるかもしれない」と発言",
+      "source_published_at": "2026-08-17T03:17:36.000Z",
+      "published_at": "2026-08-17T03:17:36.000Z",
+      "fetched_at": "2026-08-17T04:03:46.091Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIのサム・アルトマンCEOが、大学教育の4年間という期間は長すぎる可能性があると述べた。",
+      "source_name": "Vietnam.vn",
+      "source_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBBWFM1cWFkLXkxNGNVRi0yLVk4Q0VuUHBlZzU4RkVaZVJHMGJPcWhQS3BxdVlVdWVqOWJ5LWJScFIyUjRZT0VBWjBMU01WS3U4Uk9DQUpVS2h0OUdHTzZiMGlzS1dLdXF4WmY2RmozUi1xNXZHbnhLT1ZnUW02QQ?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "サム・アルトマン",
+        "openai",
+        "サムアルトマン"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "サム・アルトマンCEOの大学教育に関する発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "OpenAI CEOが大学教育の期間の妥当性に疑問を呈する発言をした。",
+      "detail": "OpenAIのサム・アルトマンCEOは、伝統的な大学教育の在り方について疑問を呈し、4年間という修学期間が現代において長すぎるかもしれないとの見解を示した。記事は、AIの進化により学習や就労のあり方が変化する中で、教育制度そのものを見直す必要性を示唆する発言として伝えている。具体的な代替案や政策提言の詳細は記事からは確認できない。",
+      "new_facts": [
+        "サム・アルトマンCEOが大学4年間の教育期間は長すぎるかもしれないと発言した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_516f5ec3625cfb1b348e",
+      "story_id": "story_1c0037307344f42fc4",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "アンソロピックCEO、AIへの反発拡大には実績で信頼回復が必要と警鐘",
+      "source_published_at": "2026-08-17T02:10:00.000Z",
+      "published_at": "2026-08-17T02:10:00.000Z",
+      "fetched_at": "2026-08-17T04:04:19.594Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "アンソロピックのCEOが、AIに対する社会的反発が広がる中、信頼を取り戻すには実際の実績を示す必要があると述べた。",
+      "source_name": "ビジネス+IT",
+      "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFB4RkRwNWJwYnhZM2YxakFtRENsQWxIUDctVzA4WkhUR2ZlM1NUR1pWRzRETUM3aGFCSnJseDgtNFFEUVVlUWdSRU5hbGxWdVlJRy1z?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "anthropic"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "AIへの信頼回復に関するCEO発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "アンソロピックCEOが、AIへの反発拡大を踏まえ信頼回復には実績が必要との見解を示した。",
+      "detail": "アンソロピックCEOは、AI技術への反発が広がっている現状に懸念を示し、企業や業界が信頼を回復するためには言葉ではなく実際の成果・実績を積み重ねる必要があると強調した。記事では、AIの急速な普及に伴い社会的な不安や批判が高まっていることを背景に、CEOがこうした発言をしたと伝えている。具体的な数値や施策は明らかではないが、AI企業側が信頼構築のために行動で示す重要性を訴えた形だ。",
+      "new_facts": [
+        "アンソロピックCEOがAIへの反発拡大を踏まえ信頼回復には実績が必要と発言した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_eb0739f797d9c25c7bb7",
+      "story_id": "story_e51f8612faa746cffc",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "国産AI検索対策ツール「DolphinX AIO」がClaudeとPerplexityに対応、6種AIの日次計測が可能に",
+      "source_published_at": "2026-08-17T01:45:25.000Z",
+      "published_at": "2026-08-17T01:45:25.000Z",
+      "fetched_at": "2026-08-17T04:04:04.982Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "国産のAI検索対策ツール「DolphinX AIO」が日次計測機能でClaudeとPerplexityへの対応を追加し、6種類のAIを同時計測できるようになった。",
+      "source_name": "ニコニコニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE4wWG12TVc2RkVjaXJMUVdERTdYSERkZTRPd0hFZ1NGaDlkcjg0MExyU2UtczNXOHdNVlloWGFGeHlTYUVNOWJzRkZSY0xKeTd6TVVfcS1id1BYZjJ0ajYwLTIzSmcwVlZo?oc=5",
+      "story_entities": [
+        "DolphinX AIO",
+        "Claude",
+        "Perplexity",
+        "dolphinxaio",
+        "claude"
+      ],
+      "primary_entity": "DolphinX AIO",
+      "story_subject": "DolphinX AIO",
+      "event_type": "release",
+      "event_stage": "expanded",
+      "event_scope": "日本国内",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "対応AIモデル数",
+          "value": "6種類",
+          "normalized_value": "6"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "日次計測の対応AIにClaudeとPerplexityが新たに加わり、計6種類のAIを同時計測できるようになった。",
+      "detail": "国産のAI検索対策ツール「DolphinX AIO」が機能を拡張し、日次計測の対象としてClaudeとPerplexityへの対応を新たに追加した。これにより既存の対応モデルと合わせて、合計6種類のAIサービスでの自社ブランドや情報の表示状況を毎日同時に計測できるようになった。AI検索やチャットボットの回答に自社サイトがどう扱われているかを把握したい企業向けに対応範囲を広げた形で、具体的な計測開始日や料金体系については記事内で明記されていない。",
+      "new_facts": [
+        "DolphinX AIOがClaudeとPerplexityへの対応を追加した",
+        "6種類のAIモデルの日次同時計測が可能になった"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_c3041550b4a25cd80c3e",
       "story_id": "story_cdcc5a4e093b60281a",
       "story_sequence": 1,
