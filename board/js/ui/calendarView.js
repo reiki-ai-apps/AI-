@@ -20,7 +20,7 @@ import { buildProgressPanel } from './progressPanel.js';
 import { buildBusinessPipelinePanel } from './businessPipelinePanel.js?v=2';
 
 export async function renderCalendarScreen(app) {
-  return app.state.view === 'month' ? renderMonth(app) : renderWeek(app);
+  return renderWeek(app);
 }
 
 // ---------------------------------------------------------------------------
@@ -186,10 +186,7 @@ function buildToolbar(app, o) {
   return el(
     'div',
     { class: 'cal-toolbar' },
-    el('h1', { class: 'screen-title' }, 'SNS投稿カレンダー'),
-    el('div', { class: 'view-switch', role: 'group', 'aria-label': '表示の単位' },
-      viewButton(app, 'week', '3日'),
-      viewButton(app, 'month', '月')),
+    el('h1', { class: 'screen-title' }, 'SNS投稿の確認'),
     el('div', { class: 'month-nav' },
       button('‹', { class: 'month-step', 'aria-label': o.prevLabel, onClick: o.onPrev }),
       el('div', { class: 'month-title', id: o.titleId }, o.title),
@@ -200,19 +197,6 @@ function buildToolbar(app, o) {
       onClick: () => openCreateDrawer(app, { dateKey: o.selected }),
     }),
   );
-}
-
-function viewButton(app, mode, label) {
-  const active = app.state.view === mode;
-  return button(label, {
-    class: 'view-switch-btn',
-    'aria-pressed': active ? 'true' : 'false',
-    onClick: () => {
-      if (app.state.view === mode) return;
-      app.saveViewPref(mode);
-      app.update({ view: mode });
-    },
-  });
 }
 
 function step(app, delta) {

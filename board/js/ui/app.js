@@ -14,7 +14,7 @@ import { systemClock } from '../core/clock.js';
 import { dateKey, systemTimeZone } from '../core/tz.js';
 import { ROLES, ROLE_ORDER, roleLabel } from '../domain/rbac.js';
 import { seedSocialAccounts } from '../services/api.js';
-import { renderCalendarScreen } from './calendarView.js?v=5';
+import { renderCalendarScreen } from './calendarView.js?v=6';
 import { renderApprovalsScreen } from './approvalsView.js';
 import { renderHistoryScreen } from './historyView.js';
 import { renderConnectionsScreen } from './connectionsView.js';
@@ -42,7 +42,7 @@ const clock = systemClock(timeZone);
 
 const state = {
   route: 'status',
-  /** カレンダーの単位。既定は週（その週を管理する面）。月は切替で見る。 */
+  /** 投稿確認は常に今日から3日間だけを扱う。 */
   view: 'week',
   role: 'ADMIN',
   selectedDateKey: dateKey(clock.nowMs(), timeZone),
@@ -225,14 +225,8 @@ async function boot() {
     if (app.ctx.backend !== 'public' && (await app.ctx.repo.listSocialAccounts()).length === 0) {
       await seedSocialAccounts(app.ctx);
     }
-    // 前回選んだ表示単位を復元する（GitHubモードではコミットを増やさないよう端末に置く）
-    const savedView = app.ctx.backend === 'github' || app.ctx.backend === 'public'
-      ? loadLocalPref('calendar_view', 'week')
-      : await app.ctx.repo.getSetting('calendar_view', 'week');
-    // スマホで開く公開版は、端末に以前の「月」表示が残っていても
-    // 必ず「今日から7日間」から始める。月表示へは起動後に切り替えられる。
-    if (app.ctx.backend === 'public') state.view = 'week';
-    else if (savedView === 'week' || savedView === 'month') state.view = savedView;
+    // 月表示の古い設定が端末に残っていても、投稿確認は常に3日表示で始める。
+    state.view = 'week';
   } catch (error) {
     if (connection) {
       renderGithubSetup(error);
