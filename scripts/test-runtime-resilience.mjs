@@ -68,8 +68,20 @@ for(const [needle,label] of [
   [".operator-metrics-status.is-stale","stale values are visibly distinguished from live values"],
   ["const GROWTH_RPC_MISSING_BACKOFF_MS=6*60*60*1000","missing analytics RPC is circuit-broken instead of retried continuously"],
   ["VISITOR_REGISTRATION_MAX_ATTEMPTS=5","visitor registration retry count is bounded"],
+  ["UNIQUE_VISITOR_REGISTERED_KEY='ai_radar_unique_visitor_registered_v1'","app and public articles share the unique-visitor completion marker"],
+  ["if(hasRegisteredUniqueVisitor()){visitorRegistrationComplete=true;return;}","a previously registered browser avoids duplicate visitor writes"],
+  ["markUniqueVisitorRegistered();","successful visitor registration is persisted"],
   ["catch(()=>{setCloudSyncStatus('error');return false;})","cloud polling cannot reject without a handler"]
 ])expect(index.includes(needle),label);
+
+const publicVisitorTracker=fs.readFileSync(path.join(root,"assets","visitor-tracker.js"),"utf8");
+for(const [needle,label] of [
+  ["ai_radar_public_reviewer_v1","public article uses the same anonymous browser key"],
+  ["ai_radar_unique_visitor_registered_v1","public article persists completed registration"],
+  ["/rpc/register_unique_visitor","public article calls the unique visitor RPC"],
+  ["if(response.ok)saveValue(REGISTERED_KEY,\"1\");","public article marks completion only after a successful RPC"],
+  ["article URL","public article tracker does not send article URL"]
+])expect(publicVisitorTracker.includes(needle),label);
 
 const authInit=section("async function initMemberAuth\\(\\)\\{","async function loadPublishedReviews");
 expect(authInit.includes("if(event==='INITIAL_SESSION'&&nextUserId===lastAuthUserId)return"),"only the duplicate initial session is skipped");
