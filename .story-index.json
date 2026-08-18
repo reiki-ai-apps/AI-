@@ -2,6 +2,96 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_de69a91dbc8b8a640e65",
+      "story_id": "story_e3200bb4b7c4a5d12a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.82,
+      "title": "オロのクラウドERP「ZAC」がAIエージェント連携の新機能「ZAC MCPサーバー」を提供開始",
+      "source_published_at": "2026-08-18T09:43:14.000Z",
+      "published_at": "2026-08-18T09:43:14.000Z",
+      "fetched_at": "2026-08-18T09:49:17.944Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "オロのクラウド型ERP「ZAC」に、AIエージェントと連携する新機能「ZAC MCPサーバー」が追加され提供が始まった。",
+      "source_name": "voix.jp",
+      "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5MaWNCdkJDZGFRcmpPR0ZjSE9FdnBSaVpCbDAxR2RrTWVjVVlSM0NTVkRrLUVMRDNIMVhzNkRvY1RLS3hoMlhtUzhPcWpTdjFHMERjVVhNTlZINzBfblVPdS1qVQ?oc=5",
+      "story_entities": [
+        "ZAC",
+        "ZAC MCPサーバー",
+        "zac",
+        "zacmcpサーバー"
+      ],
+      "primary_entity": "オロ",
+      "story_subject": "ZAC MCPサーバー",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject",
+        "same_event_type",
+        "similar_title",
+        "low_confidence_follow_up_demoted"
+      ],
+      "change_summary": "クラウドERP「ZAC」にAIエージェント連携用の「ZAC MCPサーバー」が新たに追加された。",
+      "detail": "オロが提供するクラウド型ERP「ZAC」に、AIエージェントとの連携を可能にする新機能「ZAC MCPサーバー」が追加され、提供が始まった。MCP(Model Context Protocol)はAIエージェントが外部のデータやツールとやり取りするための標準規格で、これにより「ZAC」上の業務データをAIエージェントから直接参照・操作できるようになるとみられる。対応範囲や料金などの詳細は記事本文からは限定的にしか確認できない。",
+      "new_facts": [
+        "オロのクラウドERP「ZAC」にAIエージェント連携機能「ZAC MCPサーバー」が追加された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_b09fbce6ab4f6a99192d",
+      "story_id": "story_00e1c74ef8e67f5a1c",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "イスラエルで発覚、AIチャットボット操作目的の偽シンクタンクが100本超の記事を公開",
+      "source_published_at": "2026-08-18T08:28:00.000Z",
+      "published_at": "2026-08-18T08:28:00.000Z",
+      "fetched_at": "2026-08-18T09:49:13.582Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "イスラエルで、AIチャットボットの回答を操作する目的で設立されたとみられる偽のシンクタンクが、1週間強で少なくとも100本の記事を公開していたことが判明した。",
+      "source_name": "GIGAZINE",
+      "source_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPd0s0clJnaF81c05FSXVsWHhONkEyaE5JcmMwYlhxeVVvUWNZRHRDRW96MlpQZ1FqOXplMjZLekU4Nmw0OGk3NUpsbF9CNVg5NnhFUUhsRmJxdEx5NkJaUDR6UE5pYkxvYW0xOTVtZDViMmxlb3NUaFRsODhzVW5vck84aERySk5uQkFN?oc=5",
+      "story_entities": [
+        "偽シンクタンク",
+        "AIチャットボット",
+        "イスラエル",
+        "aiチャットボット"
+      ],
+      "primary_entity": "偽のシンクタンク",
+      "story_subject": "AIチャットボットを欺くための偽シンクタンク",
+      "event_type": "security",
+      "event_stage": "investigating",
+      "event_scope": "イスラエル",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "公開記事数",
+          "value": "100本以上",
+          "normalized_value": "100"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AIチャットボットの回答を操作するために設立された偽のシンクタンクが多数の記事を公開していたことが新たに判明した。",
+      "detail": "イスラエルで、AIチャットボットに影響を与える目的で設立されたとみられる偽のシンクタンクが発覚した。この団体は設立からわずか1週間あまりの間に、AIチャットボットの回答内容を誘導することを狙ったとみられる記事を少なくとも100本公開していた。生成AIが情報源としてウェブ上の記事を参照する仕組みを悪用し、特定の主張をAIの回答に反映させようとする手法とみられる。団体名や標的とされた具体的な主張、当局の対応状況については記事内では明らかにされていない。",
+      "new_facts": [
+        "イスラエルでAIチャットボットを欺く目的の偽シンクタンクが発覚した",
+        "設立から1週間強で少なくとも100本の記事を公開した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_8d482cdf28088832401c",
       "story_id": "story_fe3dd20fae2d2bf358",
       "story_sequence": 1,
@@ -41,6 +131,57 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_27c43130272037d767dd",
+      "story_id": "story_329695ff8ddaf75a78",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6261538461538461,
+      "title": "DeepSeek V4のAPI料金、時間帯別に変更 ピーク時は出力料金が最大371%上昇",
+      "source_published_at": "2026-08-18T06:28:00.000Z",
+      "published_at": "2026-08-18T06:28:00.000Z",
+      "fetched_at": "2026-08-18T09:48:59.670Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "DeepSeekがV4のAPI料金を時間帯別料金制に変更し、利用が集中するピーク時間帯の出力料金が最大371%上昇することが分かった。",
+      "source_name": "財経新聞",
+      "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBLVElnWnF3T3hKNjJ2MFhXUGE3S1BiSEdLMi1RRGw5V0g3am1TdDBQaU5ncVozeUMtOEZiU01waE1ieHdzdDZwb05oOUdGS2ZIV2FTVlZGb2YzM2Q2VkNZN2FGZmRpMVAw0gFoQVVfeXFMUEtUSWdacXdPeEo2MnYwWFdQYTdLUGJIR0syLVFEbDlXSDdqbVN0MFBpTmdxWjN5Qy04RmJTTXBoTWJ4d3N0NnBvTmg5R0ZLZkhXYVNWVkZvZjMzZDZWQ1k3YUZmZGkxUDA?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "DeepSeek V4",
+        "API",
+        "deepseek",
+        "deepseekv4"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek V4 APIの時間帯別料金制",
+      "event_type": "pricing",
+      "event_stage": "announced",
+      "event_scope": "API",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "ピーク時出力料金上昇率",
+          "value": "最大371%",
+          "normalized_value": "371%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type",
+        "same_scope"
+      ],
+      "change_summary": "DeepSeek V4のAPI料金が一律料金から時間帯別料金制に変更され、ピーク時の出力料金が最大371%上昇した。",
+      "detail": "中国のAI企業DeepSeekが、大規模言語モデル「DeepSeek V4」のAPI利用料金を時間帯によって変動させる料金体系に移行した。これまで一律だった料金が、利用が集中するピーク時間帯には出力トークンの料金が最大371%上昇するという。時間帯別料金は、サーバーの負荷が高い時間帯の利用者に高い料金を課すことで利用を分散させる狙いがあるとみられる。具体的な時間帯区分や割引時間帯の料金、適用開始日については記事内で明らかにされていない。",
+      "new_facts": [
+        "DeepSeek V4のAPI料金が時間帯別料金制に移行した",
+        "ピーク時間帯の出力料金は最大371%上昇する"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_11da7e5abadfa0fbfe9b",
       "story_id": "story_96d84351a82d3de80c",
       "story_sequence": 1,
@@ -75,6 +216,46 @@
       "detail": "AI半導体を巡る業界では、AIモデルの学習(トレーニング)向け需要から、実際にAIを動かす推論(インファレンス)向け需要への比重の移行が進んでいるとされる。日経クロステックは、こうした推論シフトによって半導体メーカーやクラウド事業者の勢力図に変化が生じつつある最新の動きをまとめて紹介している。学習には大規模な演算能力が必要とされる一方、推論には異なる特性の処理能力が求められるため、各社の戦略にも違いが出てくるとみられる。個別企業の具体的な業績数値や新製品の詳細については記事からは確認できない。",
       "new_facts": [
         "AI半導体業界で学習向けから推論向けへの需要シフトが進行中"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_61bc5c9868a339fdad33",
+      "story_id": "story_30a19a31fe4fdb6ff6",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "GPUから光接続まで、Gartnerが選んだAI基盤の「本命5社」",
+      "source_published_at": "2026-08-18T05:55:00.000Z",
+      "published_at": "2026-08-18T05:55:00.000Z",
+      "fetched_at": "2026-08-18T09:49:15.347Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "調査会社Gartnerが、生成AI利用を支えるAI基盤ベンダーとして、GPUから光接続技術まで手がける「本命5社」を選定した。",
+      "source_name": "atmarkit.itmedia.co.jp",
+      "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB5bEJpai1BVFZqWHl3V1NSTXNrMmZuSV9aM0h2RlVQOHd0RVBBbDVsV3FCTmpjNGFZTHh3NVJKT3pCZ1NDMXlSSUY4c3c2dVRGdXBxOHMzVUZXc01aMzZRUHRNQkRqRjJHNEc5R0JxQk5QQQ?oc=5",
+      "story_entities": [
+        "Gartner",
+        "GPU",
+        "AI基盤",
+        "gartner",
+        "gpu"
+      ],
+      "primary_entity": "Gartner",
+      "story_subject": "AI基盤ベンダー本命5社の選定",
+      "event_type": "research",
+      "event_stage": "announced",
+      "event_scope": "AI基盤インフラ市場",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Gartnerが生成AIの基盤インフラを支える有力ベンダー5社を新たに選定したと報じられた。",
+      "detail": "調査会社Gartnerが、生成AIの利用を支えるインフラ基盤を提供するベンダーとして5社を選定したと報じられた。選定対象には、AI処理に不可欠なGPU(画像処理装置)を手がける企業から、サーバー間の高速データ伝送を担う光接続技術を提供する企業までが含まれる。生成AIの普及に伴い計算資源や通信インフラの重要性が高まる中で、今後の基盤を支える存在になるベンダーを分析したものとみられる。具体的な5社の社名や選定理由の詳細は、抜粋内では明らかにされていない。",
+      "new_facts": [
+        "Gartnerが生成AI利用を支えるAI基盤ベンダーとして5社を選定した"
       ],
       "event_date_precision": "unknown"
     },
@@ -251,6 +432,50 @@
       "detail": "暗号資産取引所クラーケンの親会社であるペイワードが、自社ソフトウェアのセキュリティ強化を目的に、Anthropicが開発したAI技術を脆弱性検出プロセスに導入したことが明らかになった。脆弱性検出とは、システムやコードに潜む攻撃の糸口となる欠陥を発見する作業を指し、金融・暗号資産分野ではセキュリティ確保が事業継続の要となる。今回の導入により、AIを活用した自動的な脆弱性の洗い出しが進められるとみられるが、具体的な検出件数や導入規模などの詳細は記事からは確認できない。",
       "new_facts": [
         "ペイワードが脆弱性検出にAnthropicのAIを導入"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_b7871d78610ed6e6f72f_rev_843b03b4c2c8",
+      "story_id": "story_6dd77e98f3540f24c5",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.8430769230769232,
+      "title": "クラーケン親会社ペイワード、ソフトウェア脆弱性検出にAnthropicのAIを導入",
+      "source_published_at": "2026-08-18T03:05:00.000Z",
+      "published_at": "2026-08-18T03:05:00.000Z",
+      "fetched_at": "2026-08-18T09:48:40.458Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "暗号資産取引所クラーケンの親会社ペイワードが、ソフトウェアの脆弱性検出にAnthropicのAI技術を導入したことが明らかになった。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE92RXdkbXI0UlA5c3ZUcmp4bEdoVjVnZXNVb3V4bEZnQVUxbUhZdzN0ZFMzNFZJYndjVXBqNXl0NWpTZGhnZFl3Qjk4cWNuWHZ0WmZjdzUySGNLcDdVcnZNMmpZMkZvYVlOVDc4WWc1ZmQ0UUdE?oc=5",
+      "story_entities": [
+        "ペイワード",
+        "クラーケン",
+        "Anthropic",
+        "anthropic"
+      ],
+      "primary_entity": "ペイワード",
+      "story_subject": "脆弱性検出へのAnthropic AI導入",
+      "event_type": "security",
+      "event_stage": "announced",
+      "event_scope": "自社ソフトウェア",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type",
+        "similar_title",
+        "same_url_content_changed"
+      ],
+      "change_summary": "暗号資産取引所大手クラーケンの親会社が、脆弱性検出業務にAnthropicのAIを新たに導入した。",
+      "detail": "暗号資産取引所クラーケンを運営するペイワードが、自社ソフトウェアの脆弱性検出にAnthropicのAI技術を導入したことが分かった。脆弱性検出とは、システムやコードに存在するセキュリティ上の欠陥を事前に見つけ出す作業で、これまで人手による確認に頼る部分が多かった。AnthropicのAIを活用することで、脆弱性の発見作業を効率化する狙いがあるとみられる。具体的な導入規模や効果、運用開始時期については記事内で明らかにされていない。",
+      "new_facts": [
+        "クラーケンの親会社ペイワードがソフトウェア脆弱性検出にAnthropicのAIを導入した"
       ],
       "event_date_precision": "unknown"
     },
