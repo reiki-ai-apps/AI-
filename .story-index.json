@@ -2,6 +2,2179 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_de69a91dbc8b8a640e65",
+      "story_id": "story_e3200bb4b7c4a5d12a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.82,
+      "title": "オロのクラウドERP「ZAC」がAIエージェント連携の新機能「ZAC MCPサーバー」を提供開始",
+      "source_published_at": "2026-08-18T09:43:14.000Z",
+      "published_at": "2026-08-18T09:43:14.000Z",
+      "fetched_at": "2026-08-18T09:49:17.944Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "オロのクラウド型ERP「ZAC」に、AIエージェントと連携する新機能「ZAC MCPサーバー」が追加され提供が始まった。",
+      "source_name": "voix.jp",
+      "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5MaWNCdkJDZGFRcmpPR0ZjSE9FdnBSaVpCbDAxR2RrTWVjVVlSM0NTVkRrLUVMRDNIMVhzNkRvY1RLS3hoMlhtUzhPcWpTdjFHMERjVVhNTlZINzBfblVPdS1qVQ?oc=5",
+      "story_entities": [
+        "ZAC",
+        "ZAC MCPサーバー",
+        "zac",
+        "zacmcpサーバー"
+      ],
+      "primary_entity": "オロ",
+      "story_subject": "ZAC MCPサーバー",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject",
+        "same_event_type",
+        "similar_title",
+        "low_confidence_follow_up_demoted"
+      ],
+      "change_summary": "クラウドERP「ZAC」にAIエージェント連携用の「ZAC MCPサーバー」が新たに追加された。",
+      "detail": "オロが提供するクラウド型ERP「ZAC」に、AIエージェントとの連携を可能にする新機能「ZAC MCPサーバー」が追加され、提供が始まった。MCP(Model Context Protocol)はAIエージェントが外部のデータやツールとやり取りするための標準規格で、これにより「ZAC」上の業務データをAIエージェントから直接参照・操作できるようになるとみられる。対応範囲や料金などの詳細は記事本文からは限定的にしか確認できない。",
+      "new_facts": [
+        "オロのクラウドERP「ZAC」にAIエージェント連携機能「ZAC MCPサーバー」が追加された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_b09fbce6ab4f6a99192d",
+      "story_id": "story_00e1c74ef8e67f5a1c",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "イスラエルで発覚、AIチャットボット操作目的の偽シンクタンクが100本超の記事を公開",
+      "source_published_at": "2026-08-18T08:28:00.000Z",
+      "published_at": "2026-08-18T08:28:00.000Z",
+      "fetched_at": "2026-08-18T09:49:13.582Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "イスラエルで、AIチャットボットの回答を操作する目的で設立されたとみられる偽のシンクタンクが、1週間強で少なくとも100本の記事を公開していたことが判明した。",
+      "source_name": "GIGAZINE",
+      "source_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPd0s0clJnaF81c05FSXVsWHhONkEyaE5JcmMwYlhxeVVvUWNZRHRDRW96MlpQZ1FqOXplMjZLekU4Nmw0OGk3NUpsbF9CNVg5NnhFUUhsRmJxdEx5NkJaUDR6UE5pYkxvYW0xOTVtZDViMmxlb3NUaFRsODhzVW5vck84aERySk5uQkFN?oc=5",
+      "story_entities": [
+        "偽シンクタンク",
+        "AIチャットボット",
+        "イスラエル",
+        "aiチャットボット"
+      ],
+      "primary_entity": "偽のシンクタンク",
+      "story_subject": "AIチャットボットを欺くための偽シンクタンク",
+      "event_type": "security",
+      "event_stage": "investigating",
+      "event_scope": "イスラエル",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "公開記事数",
+          "value": "100本以上",
+          "normalized_value": "100"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AIチャットボットの回答を操作するために設立された偽のシンクタンクが多数の記事を公開していたことが新たに判明した。",
+      "detail": "イスラエルで、AIチャットボットに影響を与える目的で設立されたとみられる偽のシンクタンクが発覚した。この団体は設立からわずか1週間あまりの間に、AIチャットボットの回答内容を誘導することを狙ったとみられる記事を少なくとも100本公開していた。生成AIが情報源としてウェブ上の記事を参照する仕組みを悪用し、特定の主張をAIの回答に反映させようとする手法とみられる。団体名や標的とされた具体的な主張、当局の対応状況については記事内では明らかにされていない。",
+      "new_facts": [
+        "イスラエルでAIチャットボットを欺く目的の偽シンクタンクが発覚した",
+        "設立から1週間強で少なくとも100本の記事を公開した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_8d482cdf28088832401c",
+      "story_id": "story_fe3dd20fae2d2bf358",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "クラウドERP「ZAC」がAIエージェント連携の「ZAC MCPサーバー」を提供開始",
+      "source_published_at": "2026-08-18T06:51:19.000Z",
+      "published_at": "2026-08-18T06:51:19.000Z",
+      "fetched_at": "2026-08-18T07:06:01.711Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "クラウドERP「ZAC」が、AIエージェントとの連携を可能にする「ZAC MCPサーバー」の提供を新たに開始した。",
+      "source_name": "ニコニコニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5tNy02MjJmYmlOQzVGMmg2VVJUcUI4OEZOT0NzYUlXRHVadXJTRXExeUN0WGtpb3RWQ0ZqdE5xNGs1Uko0QmZCaHZvYWdIb3dnMDAwVlBLLWZtR0VvRWRINE5scjZueUItenFKbTBHQ1J1Q211NjZlVU0wdw?oc=5",
+      "story_entities": [
+        "ZAC",
+        "MCPサーバー",
+        "zac",
+        "mcpサーバー"
+      ],
+      "primary_entity": "ZAC",
+      "story_subject": "ZAC MCPサーバー",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "ZAC利用企業",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "ZACがAIエージェント連携用の「ZAC MCPサーバー」を新たに提供開始した。",
+      "detail": "クラウド型の統合基幹業務システム(ERP)「ZAC」が、AIエージェントとの連携を実現する「ZAC MCPサーバー」の提供を開始した。MCPとはAIエージェントが外部のシステムやデータに安全にアクセスするための標準的な接続方式で、これに対応することでZACのデータや機能をAIエージェント経由で操作できるようになるとみられる。企業の基幹業務システムにAIエージェントを組み込む動きが進む中、ZACもこの流れに対応した形で、業務効率化を目指す機能追加として位置づけられている。具体的な対応可能な操作範囲や利用料金については記事からは確認できない。",
+      "new_facts": [
+        "クラウドERP「ZAC」がAIエージェント連携用の「ZAC MCPサーバー」の提供を開始"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_27c43130272037d767dd",
+      "story_id": "story_329695ff8ddaf75a78",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6261538461538461,
+      "title": "DeepSeek V4のAPI料金、時間帯別に変更 ピーク時は出力料金が最大371%上昇",
+      "source_published_at": "2026-08-18T06:28:00.000Z",
+      "published_at": "2026-08-18T06:28:00.000Z",
+      "fetched_at": "2026-08-18T09:48:59.670Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "DeepSeekがV4のAPI料金を時間帯別料金制に変更し、利用が集中するピーク時間帯の出力料金が最大371%上昇することが分かった。",
+      "source_name": "財経新聞",
+      "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBLVElnWnF3T3hKNjJ2MFhXUGE3S1BiSEdLMi1RRGw5V0g3am1TdDBQaU5ncVozeUMtOEZiU01waE1ieHdzdDZwb05oOUdGS2ZIV2FTVlZGb2YzM2Q2VkNZN2FGZmRpMVAw0gFoQVVfeXFMUEtUSWdacXdPeEo2MnYwWFdQYTdLUGJIR0syLVFEbDlXSDdqbVN0MFBpTmdxWjN5Qy04RmJTTXBoTWJ4d3N0NnBvTmg5R0ZLZkhXYVNWVkZvZjMzZDZWQ1k3YUZmZGkxUDA?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "DeepSeek V4",
+        "API",
+        "deepseek",
+        "deepseekv4"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek V4 APIの時間帯別料金制",
+      "event_type": "pricing",
+      "event_stage": "announced",
+      "event_scope": "API",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "ピーク時出力料金上昇率",
+          "value": "最大371%",
+          "normalized_value": "371%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type",
+        "same_scope"
+      ],
+      "change_summary": "DeepSeek V4のAPI料金が一律料金から時間帯別料金制に変更され、ピーク時の出力料金が最大371%上昇した。",
+      "detail": "中国のAI企業DeepSeekが、大規模言語モデル「DeepSeek V4」のAPI利用料金を時間帯によって変動させる料金体系に移行した。これまで一律だった料金が、利用が集中するピーク時間帯には出力トークンの料金が最大371%上昇するという。時間帯別料金は、サーバーの負荷が高い時間帯の利用者に高い料金を課すことで利用を分散させる狙いがあるとみられる。具体的な時間帯区分や割引時間帯の料金、適用開始日については記事内で明らかにされていない。",
+      "new_facts": [
+        "DeepSeek V4のAPI料金が時間帯別料金制に移行した",
+        "ピーク時間帯の出力料金は最大371%上昇する"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_11da7e5abadfa0fbfe9b",
+      "story_id": "story_96d84351a82d3de80c",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AI半導体、推論需要シフトで業界地図に変化の動き",
+      "source_published_at": "2026-08-18T06:00:00.000Z",
+      "published_at": "2026-08-18T06:00:00.000Z",
+      "fetched_at": "2026-08-18T07:05:59.450Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "AI半導体業界で学習向けから推論向け需要へのシフトが進み、業界構造に変化の動きが出ていると日経クロステックが報じた。",
+      "source_name": "日経クロステック",
+      "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE4zamxsRkdFTlBCLWlZZGNoZWRRbDNYbkU1ZmZkd0xLUmtGR2JvTGQtbzRLOU8tQ2hVWlEtdUlJWUZOUkVOak0tZmxBVlN6cmE2MHFIWnJJcjI0ZmpDa0xIZl85MTFlTS1KQkE?oc=5",
+      "story_entities": [
+        "AI半導体",
+        "推論シフト",
+        "ai半導体"
+      ],
+      "primary_entity": "AI半導体業界",
+      "story_subject": "推論シフトによる業界地図の変化",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "世界のAI半導体業界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AI半導体業界で学習向けから推論向けへの需要シフトに伴う業界地図の変化が報じられた。",
+      "detail": "AI半導体を巡る業界では、AIモデルの学習(トレーニング)向け需要から、実際にAIを動かす推論(インファレンス)向け需要への比重の移行が進んでいるとされる。日経クロステックは、こうした推論シフトによって半導体メーカーやクラウド事業者の勢力図に変化が生じつつある最新の動きをまとめて紹介している。学習には大規模な演算能力が必要とされる一方、推論には異なる特性の処理能力が求められるため、各社の戦略にも違いが出てくるとみられる。個別企業の具体的な業績数値や新製品の詳細については記事からは確認できない。",
+      "new_facts": [
+        "AI半導体業界で学習向けから推論向けへの需要シフトが進行中"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_61bc5c9868a339fdad33",
+      "story_id": "story_30a19a31fe4fdb6ff6",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "GPUから光接続まで、Gartnerが選んだAI基盤の「本命5社」",
+      "source_published_at": "2026-08-18T05:55:00.000Z",
+      "published_at": "2026-08-18T05:55:00.000Z",
+      "fetched_at": "2026-08-18T09:49:15.347Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "調査会社Gartnerが、生成AI利用を支えるAI基盤ベンダーとして、GPUから光接続技術まで手がける「本命5社」を選定した。",
+      "source_name": "atmarkit.itmedia.co.jp",
+      "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB5bEJpai1BVFZqWHl3V1NSTXNrMmZuSV9aM0h2RlVQOHd0RVBBbDVsV3FCTmpjNGFZTHh3NVJKT3pCZ1NDMXlSSUY4c3c2dVRGdXBxOHMzVUZXc01aMzZRUHRNQkRqRjJHNEc5R0JxQk5QQQ?oc=5",
+      "story_entities": [
+        "Gartner",
+        "GPU",
+        "AI基盤",
+        "gartner",
+        "gpu"
+      ],
+      "primary_entity": "Gartner",
+      "story_subject": "AI基盤ベンダー本命5社の選定",
+      "event_type": "research",
+      "event_stage": "announced",
+      "event_scope": "AI基盤インフラ市場",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Gartnerが生成AIの基盤インフラを支える有力ベンダー5社を新たに選定したと報じられた。",
+      "detail": "調査会社Gartnerが、生成AIの利用を支えるインフラ基盤を提供するベンダーとして5社を選定したと報じられた。選定対象には、AI処理に不可欠なGPU(画像処理装置)を手がける企業から、サーバー間の高速データ伝送を担う光接続技術を提供する企業までが含まれる。生成AIの普及に伴い計算資源や通信インフラの重要性が高まる中で、今後の基盤を支える存在になるベンダーを分析したものとみられる。具体的な5社の社名や選定理由の詳細は、抜粋内では明らかにされていない。",
+      "new_facts": [
+        "Gartnerが生成AI利用を支えるAI基盤ベンダーとして5社を選定した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_da39427317aef2d29928",
+      "story_id": "story_fe121b5da3fdf2d32e",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "米CEOの8割「AIで人員削減せず」、雇用論調が転換",
+      "source_published_at": "2026-08-18T05:25:00.000Z",
+      "published_at": "2026-08-18T05:25:00.000Z",
+      "fetched_at": "2026-08-18T07:05:57.727Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "米企業CEOの8割がAI導入を理由とした人員削減を行わないと回答し、AIと雇用を巡る論調が転換しつつあると報じられた。",
+      "source_name": "finance.biggo.jp",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9LWUwyMGpPcWNWXzhXY255aTYzWUFVeThFcko4NzFCUmxtQ1ktenVQYXl1LWF0Y3FmZS1ab0xhaWJIRzZCaWNLZVR3Sk4xVXRCeXV1Rl9kOVRkbHU4UGNXX0YzMU5odHdCUTM5RU1aWS1QWEJI?oc=5",
+      "story_entities": [
+        "米CEO",
+        "AIと雇用",
+        "米ceo",
+        "aiと雇用"
+      ],
+      "primary_entity": "米企業CEO",
+      "story_subject": "AIと雇用に関するCEO調査",
+      "event_type": "research",
+      "event_stage": "other",
+      "event_scope": "米国企業",
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "AIによる人員削減をしないと回答したCEOの割合",
+          "value": "80%",
+          "normalized_value": "80%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "米CEOの8割が「AIによる人員削減はしない」と回答し、雇用論調の転換が示された。",
+      "detail": "米国企業のCEOを対象とした調査で、8割がAI導入を理由に人員削減を行わないと回答したことが明らかになった。AIの普及が進むにつれ、当初はAIによる大量失業への懸念が強く語られてきたが、今回の結果はこうした論調が転換しつつあることを示すものとされる。記事では、企業が人員削減ではなく、従業員がAIを活用しながら学び続ける「学習ループ」を重視する競争へと軸足を移しつつある様子が紹介されている。調査の実施主体や対象企業数など詳細な調査概要は記事からは確認できない。",
+      "new_facts": [
+        "米CEOの8割がAI導入を理由とした人員削減を行わないと回答"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_a24dfccecb2c12e09e58",
+      "story_id": "story_81e3056d97ed1fdab0",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.525,
+      "title": "決済大手シンクロニー、OpenAIと提携しChatGPT内でのカード決済に対応",
+      "source_published_at": "2026-08-18T03:25:00.000Z",
+      "published_at": "2026-08-18T03:25:00.000Z",
+      "fetched_at": "2026-08-18T03:58:58.337Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "金融サービス企業シンクロニーがOpenAIと提携し、ChatGPT内でストアカードによる決済ができるようにすると発表した。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBuMFNHQkFYaFBwZUtnMkdwZDF5TzdiRjlQQngzdW9UTXZYRnpoNW1iNlZtdy1IQ0V3VTRzOXl0SWxGaVpvWlJhWVJwR21PZ0xOV1JEWDAxSDU4LTcxVV9oVTBBTS1oMXhBMkNLUS1LZXA4WmtS?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT",
+        "Synchrony",
+        "openai",
+        "chatgpt"
+      ],
+      "primary_entity": "Synchrony",
+      "story_subject": "ChatGPT内でのストアカード決済提携",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "ChatGPT",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject"
+      ],
+      "change_summary": "ChatGPT上でストアカードによる決済が可能になる新たな提携が発表された。",
+      "detail": "米金融サービス企業シンクロニーは、OpenAIとの提携によりChatGPT内でストアカード（小売店発行のクレジットカード）を使った決済を可能にすると発表した。ユーザーはチャット上での買い物の流れの中で、対応する店舗のカードを使って直接支払いを完了できるようになる見込み。詳細な対応店舗や開始時期など具体的な条件は記事本文からは明らかになっていない。ChatGPTが単なる対話ツールから決済を伴う購買体験の窓口へと拡張する動きの一つとされる。",
+      "new_facts": [
+        "シンクロニーとOpenAIが提携し、ChatGPT内でストアカードによる決済を可能にすると発表した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_516cc6d523bb5e179e2b",
+      "story_id": "story_d1746bc95937da0da3",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6307317073170732,
+      "title": "Anthropicの年間売上換算レートが650億ドルに到達との報道",
+      "source_published_at": "2026-08-18T03:12:10.000Z",
+      "published_at": "2026-08-18T03:12:10.000Z",
+      "fetched_at": "2026-08-18T03:59:00.273Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "AI企業AnthropicのChatGPT対抗サービス「Claude」の年間売上換算レートが650億ドルに達したと報じられた。",
+      "source_name": "Moomoo",
+      "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5PN080TzJ0aGFjM3JHWWJ2cHMtQ3VaRXhjbW8wWUF3aGIyTHZkNFNhdnpOc3VOSjJSSE1ZZFB4TUhiUnJIOXNkUmRUSUR3OThzS0JUbnRrUGFkV0lSdklPMGZFNy02aFBm?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "anthropic",
+        "claude",
+        "openai"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claudeの年間売上換算レート",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "Anthropicの年間売上換算レート",
+          "value": "650億ドル",
+          "normalized_value": "65000000000USD"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Anthropicの年間売上換算レートが650億ドルに達したと報じられた。",
+      "detail": "AI開発企業Anthropicが手がける対話型AI「Claude」の事業について、年間売上換算レート（ARR、直近の月次売上を単純に12倍した推計値）が650億ドルに達したとする報道が伝えられた。記事は「Claudeが現金を印刷している」と表現し、急成長する収益規模を強調している。具体的な算出根拠や期間、内訳などの詳細は本文からは明らかになっていない。AI企業の収益急拡大が投資家や競合の注目を集めている状況を示す内容となっている。",
+      "new_facts": [
+        "Anthropicの年間売上換算レートが650億ドルに達したと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_b7871d78610ed6e6f72f",
+      "story_id": "story_01be91cdd4b3d0dfd4",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.8430769230769232,
+      "title": "クラーケン親会社ペイワード、脆弱性検出にAnthropicのAIを導入",
+      "source_published_at": "2026-08-18T03:05:00.000Z",
+      "published_at": "2026-08-18T03:05:00.000Z",
+      "fetched_at": "2026-08-18T07:05:27.700Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "暗号資産取引所クラーケンの親会社ペイワードが、ソフトウェアの脆弱性検出にAnthropicのAI技術を採用したと報じられた。",
+      "source_name": "finance.biggo.jp",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE92RXdkbXI0UlA5c3ZUcmp4bEdoVjVnZXNVb3V4bEZnQVUxbUhZdzN0ZFMzNFZJYndjVXBqNXl0NWpTZGhnZFl3Qjk4cWNuWHZ0WmZjdzUySGNLcDdVcnZNMmpZMkZvYVlOVDc4WWc1ZmQ0UUdE?oc=5",
+      "story_entities": [
+        "ペイワード",
+        "クラーケン",
+        "Anthropic",
+        "anthropic"
+      ],
+      "primary_entity": "ペイワード",
+      "story_subject": "Anthropic製AIによる脆弱性検出導入",
+      "event_type": "security",
+      "event_stage": "other",
+      "event_scope": "ペイワード社内システム",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type",
+        "similar_title",
+        "same_url_content_changed"
+      ],
+      "change_summary": "ペイワードがソフトウェアの脆弱性検出にAnthropicのAIを新たに導入した。",
+      "detail": "暗号資産取引所クラーケンの親会社であるペイワードが、自社ソフトウェアのセキュリティ強化を目的に、Anthropicが開発したAI技術を脆弱性検出プロセスに導入したことが明らかになった。脆弱性検出とは、システムやコードに潜む攻撃の糸口となる欠陥を発見する作業を指し、金融・暗号資産分野ではセキュリティ確保が事業継続の要となる。今回の導入により、AIを活用した自動的な脆弱性の洗い出しが進められるとみられるが、具体的な検出件数や導入規模などの詳細は記事からは確認できない。",
+      "new_facts": [
+        "ペイワードが脆弱性検出にAnthropicのAIを導入"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_b7871d78610ed6e6f72f_rev_843b03b4c2c8",
+      "story_id": "story_6dd77e98f3540f24c5",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.8430769230769232,
+      "title": "クラーケン親会社ペイワード、ソフトウェア脆弱性検出にAnthropicのAIを導入",
+      "source_published_at": "2026-08-18T03:05:00.000Z",
+      "published_at": "2026-08-18T03:05:00.000Z",
+      "fetched_at": "2026-08-18T09:48:40.458Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "暗号資産取引所クラーケンの親会社ペイワードが、ソフトウェアの脆弱性検出にAnthropicのAI技術を導入したことが明らかになった。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE92RXdkbXI0UlA5c3ZUcmp4bEdoVjVnZXNVb3V4bEZnQVUxbUhZdzN0ZFMzNFZJYndjVXBqNXl0NWpTZGhnZFl3Qjk4cWNuWHZ0WmZjdzUySGNLcDdVcnZNMmpZMkZvYVlOVDc4WWc1ZmQ0UUdE?oc=5",
+      "story_entities": [
+        "ペイワード",
+        "クラーケン",
+        "Anthropic",
+        "anthropic"
+      ],
+      "primary_entity": "ペイワード",
+      "story_subject": "脆弱性検出へのAnthropic AI導入",
+      "event_type": "security",
+      "event_stage": "announced",
+      "event_scope": "自社ソフトウェア",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type",
+        "similar_title",
+        "same_url_content_changed"
+      ],
+      "change_summary": "暗号資産取引所大手クラーケンの親会社が、脆弱性検出業務にAnthropicのAIを新たに導入した。",
+      "detail": "暗号資産取引所クラーケンを運営するペイワードが、自社ソフトウェアの脆弱性検出にAnthropicのAI技術を導入したことが分かった。脆弱性検出とは、システムやコードに存在するセキュリティ上の欠陥を事前に見つけ出す作業で、これまで人手による確認に頼る部分が多かった。AnthropicのAIを活用することで、脆弱性の発見作業を効率化する狙いがあるとみられる。具体的な導入規模や効果、運用開始時期については記事内で明らかにされていない。",
+      "new_facts": [
+        "クラーケンの親会社ペイワードがソフトウェア脆弱性検出にAnthropicのAIを導入した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_3e31acfa74bad6804d36",
+      "story_id": "story_da7126cef386985e6c",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6570731707317072,
+      "title": "Anthropic、Claudeの生成コンテンツにAI電子透かしを導入へ",
+      "source_published_at": "2026-08-18T03:00:03.000Z",
+      "published_at": "2026-08-18T03:00:03.000Z",
+      "fetched_at": "2026-08-18T07:05:27.700Z",
+      "event_at": "",
+      "event_status": "予定",
+      "raw_excerpt": "Anthropicが、Claudeが生成したコンテンツにAI由来と識別できる電子透かしを導入する方針を示した。具体的な仕組みは記事内で明らかになっていない。",
+      "source_name": "media-innovation.jp",
+      "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9pTXhGOW50MnQyRW5BNUtSaUtndDA4MUtBODRjSG04c2dlbHluelRlYk1VWjF5WG81anBIWHhIYjNRSjZPN2VYSmlCSWRKdU9IZDMyemdtQjhmZGh4UkhMT1lFaWpzOG91Smc?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "anthropic",
+        "claude"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude生成コンテンツへの電子透かし導入",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "Claude全体",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Claudeの生成コンテンツに、AI由来であることを示す電子透かしを付与する新方針が示された。",
+      "detail": "Anthropicは、Claudeが生成した文章や画像などのコンテンツにAI由来であることを示す電子透かしを導入する方針を示した。電子透かしとは、コンテンツの見た目を大きく変えずに、それがAIによって作られたものかどうかを後から判別できるようにする仕組みのこと。AI生成物の増加に伴い、真偽の判定や出所の追跡が課題となっており、Anthropicの取り組みはこの流れに対応するものとみられる。ただし透かしの具体的な技術方式や対象範囲、導入時期については記事内では明らかにされておらず、今後の詳細発表が待たれる。",
+      "new_facts": [
+        "Anthropicが、Claudeの生成コンテンツに電子透かしを導入する方針を示した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_4a92f5629debd2568081",
+      "story_id": "story_9518dd272f7f03649c",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5,
+      "title": "OpenAIで幹部退任が続く、ブロックマン氏『異例ではない』と説明",
+      "source_published_at": "2026-08-18T02:41:36.000Z",
+      "published_at": "2026-08-18T02:41:36.000Z",
+      "fetched_at": "2026-08-18T03:58:58.337Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "OpenAIで幹部の退任が相次いでいることについて、共同創業者グレッグ・ブロックマン氏が『異例ではない』との見解を示したと報じられた。",
+      "source_name": "디지털투데이",
+      "source_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNZTNXckVIaXgwWnVhcnRkcHlOYy1yMXJVVWlIdEt1Q2dwRXZzOEQ3cVN5VDJKR3dkWmkxMGloUlFlM2dISmRYRmVFbmMzUTFXMWh1bmRhR0NlaXRFX0NtRDh1bW9YSVZydjB5cEpYZkNxU2JJVlM3MFRDa1R0V1hkaW9ia1FteF9veDA5M1FnWWtfbEhQaXlBWFN6dGE4OGFO?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "グレッグ・ブロックマン",
+        "openai",
+        "グレッグブロックマン"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "OpenAI幹部の退任",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "OpenAI経営体制",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject"
+      ],
+      "change_summary": "OpenAIで幹部退任が相次いでいることに対し、ブロックマン氏が『異例ではない』とコメントしたことが新たに伝えられた。",
+      "detail": "OpenAIで幹部の退任が続いていることが報じられた。これに対し同社共同創業者のグレッグ・ブロックマン氏は、こうした幹部の入れ替わりは『異例なことではない』との見解を示したという。急成長を続けるAI企業では組織体制の見直しが頻繁に起こりうるが、OpenAIにおける一連の退任の背景や今後の経営体制への影響については記事内で詳細は明らかにされていない。",
+      "new_facts": [
+        "OpenAIで幹部の退任が続いていると報じられた",
+        "共同創業者グレッグ・ブロックマン氏が退任について異例ではないとの見解を示した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_dfac7183394ef557229b",
+      "story_id": "story_98e7c4ed05dfae8fc4",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "動画生成AIのHiggsfield、評価額54億ドルで4億ドルを調達し売上でRunwayを上回る",
+      "source_published_at": "2026-08-18T01:48:21.000Z",
+      "published_at": "2026-08-18T01:48:21.000Z",
+      "fetched_at": "2026-08-18T01:51:44.454Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "動画生成AIスタートアップのHiggsfieldは評価額54億ドルでシリーズBとして4億ドルを調達し、売上高で競合Runwayを上回ったとされる。",
+      "source_name": "Wowtale",
+      "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1CdXEtTEVwXzluelN4WW5LeFBOVUplZU5CRUZsZ1lNRkgyMEFGckhPeDZZaXNFb2NBT216NFh4cTE3MTdJU0VKTnFObjN6UnAxQkFV?oc=5",
+      "story_entities": [
+        "Higgsfield",
+        "Runway",
+        "higgsfield",
+        "runway"
+      ],
+      "primary_entity": "Higgsfield",
+      "story_subject": "HiggsfieldのシリーズB資金調達",
+      "event_type": "funding",
+      "event_stage": "announced",
+      "event_scope": "全世界",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "調達額",
+          "value": "4億ドル",
+          "normalized_value": "400000000USD"
+        },
+        {
+          "type": "amount",
+          "scope": "評価額",
+          "value": "54億ドル",
+          "normalized_value": "5400000000USD"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Higgsfieldが評価額54億ドルで4億ドルを調達し、売上高でRunwayを上回ったことが新たに判明した。",
+      "detail": "動画生成AIを手がけるスタートアップHiggsfieldが、評価額54億ドルでシリーズBラウンドとして4億ドルを調達したことが明らかになった。あわせて、同社の売上高が競合の動画生成AI企業Runwayを上回ったとされる。生成AIによる動画制作市場は競争が激化しており、今回の大型調達と評価額の規模から、Higgsfieldが有力なプレイヤーとして急速に台頭していることがうかがえる。調達資金の具体的な使途や出資者の詳細については記事内で明らかにされていない。",
+      "new_facts": [
+        "Higgsfieldは評価額54億ドルでシリーズBとして4億ドルを調達した。",
+        "Higgsfieldの売上高が競合Runwayを上回ったとされる。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_8ba2625e719ccea3ce8e",
+      "story_id": "story_0f154f15ebfe34943f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6482926829268293,
+      "title": "Claudeの文章に埋め込まれた「見えない透かし」、Anthropicが仕組みを解説",
+      "source_published_at": "2026-08-18T01:05:17.000Z",
+      "published_at": "2026-08-18T01:05:17.000Z",
+      "fetched_at": "2026-08-18T01:51:11.833Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Anthropicは、Claudeが生成する文章に埋め込む「見えない透かし」について、隠し文字ではなく単語選びのパターンで識別する仕組みだと説明した。",
+      "source_name": "Ledge.ai",
+      "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBNU0ZBMlVNNmpJOFlOQ0IydmcwaU43Y1dZeUdpVi0zX2pPNGJqQU1DaDFXUXlsdWItbzBiLV9ZaXBmV3Jfby1Ocy1BcVVod3hvTVhPa0hiSU5ybXgteVJPYUVXWm5GTzA1UUZnU2l6ZVVuZw?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "anthropic",
+        "claude"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claudeの見えない透かし技術",
+      "event_type": "research",
+      "event_stage": "announced",
+      "event_scope": "Claude全般",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Claudeの透かし技術が、隠し文字ではなく単語選択パターンによって実現されていることが新たに説明された。",
+      "detail": "Anthropicは、AIチャットボットClaudeが生成するテキストにAI生成であることを識別するための「見えない透かし」技術の仕組みを説明した。従来想定されるような特殊な隠し文字を挿入する方式ではなく、文章中の単語の選び方に統計的なパターンを持たせることで、後から機械的に生成物かどうかを判定できるようにしているという。この手法は人間が読んでも文章の見た目や自然さを損なわない点が特徴とされる。Anthropicは今回、透かしの仕組み自体を公開し、AI生成コンテンツの識別技術に関する理解を広げる狙いがあるとみられる。",
+      "new_facts": [
+        "Anthropicは、Claudeの生成テキストに見えない透かしを埋め込む仕組みを説明した。",
+        "透かしは隠し文字ではなく、単語の選び方のパターンによって実現されている。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_ce71733ab2634020efb3",
+      "story_id": "story_b280a3c0db0a1cf0b0",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "DeepSeekとUnitreeが資本業務提携、AIの頭脳とロボットの身体を融合",
+      "source_published_at": "2026-08-18T00:30:06.000Z",
+      "published_at": "2026-08-18T00:30:06.000Z",
+      "fetched_at": "2026-08-18T01:51:31.866Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "中国AI企業DeepSeekとロボットメーカーUnitreeが資本業務提携し、フィジカルAI分野でAIの頭脳とロボットの身体を融合させる取り組みを進める。",
+      "source_name": "Yahoo!ニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE03U00tcHlwU245LWhKUG0xY3NDcWc5Z2pDNlk0a2puUnlCaVRteVpOZzdNYUhVVjNBaER5TDdvODhRTFJsaW5WcndBZm5RVXBITFpmNFVQYlNIUURURHl4bmZnTzdxWVVBd1ZZaWZjblJwRk4xdmJlLTBvMmNrQms?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "Unitree",
+        "フィジカルAI",
+        "deepseek",
+        "unitree"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeekとUnitreeの資本業務提携",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "中国・フィジカルAI分野",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "DeepSeekとUnitreeが資本業務提携を結び、AIとロボットを融合するフィジカルAI開発で協力することが明らかになった。",
+      "detail": "中国の生成AI企業DeepSeekとヒューマノイドロボットなどを手がけるUnitreeが資本業務提携を結んだと報じられた。DeepSeekが持つ大規模言語モデルなどの「頭脳」に相当するAI技術と、Unitreeが開発するロボットの「身体」を組み合わせることで、現実世界で自律的に動作する「フィジカルAI」の実現を目指すという。生成AIとロボティクスを融合させる動きは世界的に注目されており、中国大手同士の提携としてフィジカルAI分野の競争に影響を与える可能性がある。",
+      "new_facts": [
+        "DeepSeekとUnitreeがフィジカルAI分野で資本業務提携を結んだ"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_ccfdbec5824fe5d372cc",
+      "story_id": "story_8f5bf3029c3bd8868c",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "PwCが分析、米欧中の生成AI規制動向と中国の擬人化AIサービス規制への対応",
+      "source_published_at": "2026-08-18T00:25:02.000Z",
+      "published_at": "2026-08-18T00:25:02.000Z",
+      "fetched_at": "2026-08-18T07:05:58.015Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "PwCが米欧中の生成AI規制の最新動向を整理し、中国の擬人化AIサービス規制における主要論点と日本企業の実務対応を解説した。",
+      "source_name": "PwC",
+      "source_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPbTJlQm5sblVjUHhlVTlEWmc0cDEwTk9ZcDhIbURXOGtwZVNIV1R5UVB4YTd6V093bkpsT3VsY2lPanZ0eDJmd1c0TzM5b2FhRjdBMnRTNkkzbVV2Y3NpS1FIZThYU0VwNHduRHRBWE93NU5JNkdBdkxlX2hxWHN4UUxMaDBpRnRlQTJyOWg4TTNSN0RyN0ljaWp2OVlJaVhz?oc=5",
+      "story_entities": [
+        "PwC",
+        "擬人化AI規制",
+        "pwc",
+        "擬人化ai規制"
+      ],
+      "primary_entity": "PwC",
+      "story_subject": "中国の擬人化AIサービス規制",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "中国・日本企業",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "中国の擬人化AIサービス規制について、主要論点と日本企業向けの実務対応の視点が示された。",
+      "detail": "PwCは生成AIを巡る米国・欧州・中国の規制動向を整理するレポートの中で、特に中国が導入した擬人化AIサービスに関する規制を取り上げた。擬人化AIサービスとは、人間のように会話・応答する対話型AIサービスを指し、中国当局はこうしたサービスの提供に際して一定の規律を求めているとみられる。レポートでは規制上の主要な論点を整理した上で、中国市場で事業を展開する日本企業がどのような実務対応を取るべきかについても言及している。具体的な規制の条文内容や施行時期など詳細は記事からは確認できない。",
+      "new_facts": [
+        "PwCが米欧中の生成AI規制動向をまとめたレポートを公表",
+        "中国の擬人化AIサービス規制の主要論点と日本企業の実務対応を解説"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_6bead2ea22e290b2a44b",
+      "story_id": "story_89233853cf04436bc7",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AI投資向け巨額社債が米国債と資金争奪、長期金利を押し上げ",
+      "source_published_at": "2026-08-17T22:37:00.000Z",
+      "published_at": "2026-08-17T22:37:00.000Z",
+      "fetched_at": "2026-08-18T01:51:46.773Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "AIデータセンター建設向けの巨額社債発行が米国債と投資資金を奪い合い、長期国債利回りを押し上げていると報じられた。",
+      "source_name": "TBS NEWS DIG",
+      "source_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBCN19LamF6UWlMQ1A4Uk1WUmNxOVNldkM0eUt6N1VPTjFzc2twblBPbFVpMktDNlhhNk5TSWtNQkpHMGFPNThYNEdrMzBCVThpYnRXUlFFWmJFRkl6NGhMMktzcmRWbVE?oc=5",
+      "story_entities": [
+        "AI投資",
+        "米国債",
+        "長期金利",
+        "ai投資"
+      ],
+      "primary_entity": "AI関連企業",
+      "story_subject": "AI投資向け社債と米国債の資金争奪",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "米国金融市場",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AI関連の巨額社債発行が米国債と資金を奪い合い、長期金利上昇の一因になっていると報じられた。",
+      "detail": "AI関連投資を賄うための巨額な社債発行が急増し、米国政府が発行する国債と投資マネーを奪い合う構図が生じていると報じられた。AI企業やデータセンター事業者が資金調達のために発行する社債が市場に大量に供給されることで、投資家の資金が分散し、米長期国債の利回りが押し上げられているという。AIブームを支えるインフラ投資の規模が金融市場全体に影響を及ぼし始めている実態が伝えられている。",
+      "new_facts": [
+        "AI投資向けの巨額社債発行が米国債と投資マネーを奪い合っている",
+        "この資金争奪が米長期国債利回りを押し上げているとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_1c7b6b4cb758ac34239c",
+      "story_id": "story_a8389c2bd25b43fbfe",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "クラーケン運営元Paywardがアンソロピックの『Project Glasswing』に参加",
+      "source_published_at": "2026-08-17T22:12:00.000Z",
+      "published_at": "2026-08-17T22:12:00.000Z",
+      "fetched_at": "2026-08-18T03:59:00.273Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "暗号資産取引所クラーケンの親会社Paywardが、AnthropicのAIセキュリティ推進の取り組み「Project Glasswing」に参加したと報じられた。",
+      "source_name": "CoinDesk",
+      "source_url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQTUdFakxMWi1DbjJGS2hUeUVObFNmWl9KNXNPaXZ1aXBlVkxlZHNxRWU5eUdQY1JiVU1KSXZZYmFxa29fYkNIWlAtWU9lSkhLVXZOZTUyZVN0MldlNlNKRUdSQ0tPNnBKb1RSR1RWNEZscTRFN1J3TGl4WFVXVDJJMHIwVGtTLXpnNEtoT0Q4d29wUWIyamZWRFlmSlIwdnhnOUFYOTdCSERkdzZTWVpWek5nWXBIb19YbEJoR1I4TQ?oc=5",
+      "story_entities": [
+        "Payward",
+        "Kraken",
+        "Anthropic",
+        "payward",
+        "kraken"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Project Glasswing",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "暗号資産・金融分野",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Paywardが新たにAnthropicのAIセキュリティ推進プロジェクトに参加したことが明らかになった。",
+      "detail": "暗号資産取引所クラーケンを運営するPaywardが、AI開発企業Anthropicが主導する「Project Glasswing」に参加したことが報じられた。Project GlasswingはAnthropicが進めるAIセキュリティに関する取り組みで、Paywardの参加により金融・暗号資産分野でのAIの安全な活用に向けた協力が進む見通しとされる。具体的な活動内容や参加条件、今後の展開については記事内で詳細が示されていない。",
+      "new_facts": [
+        "クラーケンの親会社PaywardがAnthropicのProject Glasswingに参加したと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_f5219e6af29501a99fb9",
+      "story_id": "story_e6d6b21e301ff829cf",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.62,
+      "title": "Google Meetの「Geminiによるメモ作成」機能、対面の会議でも利用可能に",
+      "source_published_at": "2026-08-17T21:45:00.000Z",
+      "published_at": "2026-08-17T21:45:00.000Z",
+      "fetched_at": "2026-08-18T01:51:13.061Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "Googleは、Google Meetの「Geminiを使用したメモの作成」機能を、オンライン会議に加えて対面のリアルな会議でも利用できるようにした。",
+      "source_name": "窓の杜",
+      "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5oR1BZc3ctSmYwU0g2TE51enJlNUQwSGlON2lEcE5wbF80TFA5dkdualc4SG0yeTVvR1ZxZXhCMkhsbWs5Q25lWWNMeEdPVkVQQ08wcl9jeURIVUxWVkxrcDZ6ZWJnZ0Ux?oc=5",
+      "story_entities": [
+        "Google Meet",
+        "Gemini",
+        "googlemeet",
+        "gemini",
+        "google-gemini"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "Google Meetの「Geminiを使用したメモの作成」機能の対面会議対応",
+      "event_type": "release",
+      "event_stage": "expanded",
+      "event_scope": "Google Meet全体",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Geminiによる会議メモ作成機能が、オンライン会議限定から対面会議にも利用対象を広げた。",
+      "detail": "Google Meetに搭載されているAI議事録機能「Geminiを使用したメモの作成」が、これまでのオンライン会議に加えて、対面で行うリアルな会議でも利用できるようになったことが明らかになった。この機能はGeminiが会議中の発言内容を自動で記録・要約するもので、従来はビデオ通話を前提としていたが、今回の対応拡大により、会議室などで直接顔を合わせて行う打ち合わせでも自動メモ作成が使えるようになる。対象プランや提供開始の詳細な日時については記事内で明示されていない。",
+      "new_facts": [
+        "Google Meetの「Geminiを使用したメモの作成」機能が、対面のリアル会議でも利用できるようになった。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_899f2bbbbf0c64ad05a4",
+      "story_id": "story_29862c53209656652a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AI半導体の競争軸、微細化から先進パッケージングへ",
+      "source_published_at": "2026-08-17T21:00:26.000Z",
+      "published_at": "2026-08-17T21:00:26.000Z",
+      "fetched_at": "2026-08-18T03:59:39.370Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "AI半導体開発の競争軸が2nm・3nmなど回路の微細化から、複数チップを組み合わせる先進パッケージング技術へと移りつつあると報じられた。",
+      "source_name": "iotnews.jp",
+      "source_url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE1SZVpNZ3pOSlJOTk11LU1uNjkxWVZRaVh2QXhBMWN4bUJ3Sm9mSmZxb2FsLVRZYTJNQlhCTU9ERk1hMjjSAUhBVV95cUxQaGJ2bko5bDc1TFFnWkd4ald0TE5saXpIcXNid0luS0VFRVZ0cjhfSUlVMC1lVlp1U2tJcDVuTDRGTkhZQ1Z1YkQ?oc=5",
+      "story_entities": [
+        "AI半導体",
+        "先進パッケージング",
+        "ai半導体"
+      ],
+      "primary_entity": "半導体業界",
+      "story_subject": "AI半導体のパッケージング技術競争",
+      "event_type": "research",
+      "event_stage": "other",
+      "event_scope": "半導体業界全体",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AI半導体の技術競争の焦点が微細化からパッケージング技術へ移行しているという分析が示された。",
+      "detail": "AI向け半導体の開発競争は、これまで2nmや3nmといった回路線幅の微細化が主戦場だったが、近年は複数のチップを一つのパッケージにまとめる先進パッケージング技術が重要な競争軸になりつつあると指摘されている。微細化には物理的・コスト的な限界が近づく中、半導体メーカー各社はパッケージング技術への投資を強めているとみられる。記事では各社の技術動向や業界の見通しが解説されている。",
+      "new_facts": [
+        "AI半導体の競争軸が微細化から先進パッケージング技術へ移行しつつあると分析された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_171b7fbfd3f2239c9c05",
+      "story_id": "story_edc4bf295fe1be5d46",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5378947368421052,
+      "title": "GM、400万台の車両にGoogle Gemini搭載へ",
+      "source_published_at": "2026-08-17T20:36:33.000Z",
+      "published_at": "2026-08-17T20:36:33.000Z",
+      "fetched_at": "2026-08-18T03:59:02.979Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "米ゼネラルモーターズがGoogleのAI「Gemini」を最大400万台の車両に搭載すると発表した。",
+      "source_name": "Mashable",
+      "source_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1laFRLUDk3b0ZzTXlEaDF1dkY1ZkY0dEdQNGx5RVd5Q3B5Q3hUd0JhZWFRMzBDVE82WUtqbldyamxFMEk4MnV2aTFBRXNidnhXZW8tRTRkS1VPelNDNGEwMUpSUV9ySWJXOGdfdWRjcEV1U1VIclF5VkJadlZLUQ?oc=5",
+      "story_entities": [
+        "General Motors",
+        "Google Gemini",
+        "generalmotors",
+        "googlegemini",
+        "google-gemini"
+      ],
+      "primary_entity": "General Motors",
+      "story_subject": "GM車両へのGoogle Gemini搭載",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "GM車両(最大400万台)",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "Gemini搭載対象車両数",
+          "value": "400万台",
+          "normalized_value": "4000000"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject"
+      ],
+      "change_summary": "GMが最大400万台の車両にGoogle Geminiを搭載すると発表した。",
+      "detail": "米自動車大手ゼネラルモーターズ（GM）は、GoogleのAIアシスタント「Gemini」を最大400万台の車両に搭載すると発表した。対象となる車種は記事内でリスト化されており、ユーザーは自身の車が対象かどうかを確認できる形になっている。車載AIとして音声対話やナビゲーション、車両操作の補助などの機能拡張が想定されるが、具体的な機能内容や搭載開始時期の詳細は本文からは明らかになっていない。自動車業界における生成AIの本格導入事例として位置づけられる。",
+      "new_facts": [
+        "GMが最大400万台の車両にGoogle Geminiを搭載すると発表した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_88a1395bde1dec94d50b",
+      "story_id": "story_9849be4cb44015aba4",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Google史上最高額の買収劇と評されるDeepMind獲得からGeminiへの15年史を振り返る長文コラム",
+      "source_published_at": "2026-08-17T19:54:27.000Z",
+      "published_at": "2026-08-17T19:54:27.000Z",
+      "fetched_at": "2026-08-18T01:51:13.061Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "GoogleによるDeepMind買収からGemini開発、ノーベル賞受賞に至る15年間の歩みを振り返る長文ブログ記事が公開された。",
+      "source_name": "オルタナティブ・ブログ",
+      "source_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1fNEROQmlKWGhsN3BCTHlTM0hsYVJyZGN1OVY5cldSTjZJSUVKdjYxbGtLZzl2X0Rac2JkNjBpN2lxT2pOQmlBV2J2ZWZSQ0ZqbDd1VmFzLVVHaVByeWV0TkdPYnNUTW95Q0lpZURON0NCdnJYRk0xOXlVRFZVUQ?oc=5",
+      "story_entities": [
+        "Google",
+        "DeepMind",
+        "Gemini",
+        "google",
+        "deepmind"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "DeepMind買収からGeminiまでの15年史コラム",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "Google・DeepMind",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "DeepMind買収からGeminiまでの15年間の経緯を整理した長文の産業史コラムが公開された。",
+      "detail": "ブログ「オルタナティブ・ブログ」に、GoogleがDeepMindを買収した経緯からGemini開発、関係者のノーベル賞受賞までを振り返る1万8000字に及ぶ長文コラムが掲載された。記事はこの買収を「Google史上最高の5億ドル」と評し、AI研究組織DeepMindがGoogle傘下でどのように発展し、最終的に対話型AIモデルGeminiや研究成果としてのノーベル賞につながったかを、経営者・産業史の視点から時系列でまとめている。具体的な新事実というよりも、既知の経緯を整理した解説記事となっている。",
+      "new_facts": [
+        "GoogleのDeepMind買収からGemini開発、ノーベル賞受賞に至る経緯を振り返る長文コラムが公開された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_0813f8a7cd65ef888bfa",
+      "story_id": "story_6f43a2417fad0ff7d9",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6257142857142857,
+      "title": "ChatGPTの企業向けワークスペースに偽従業員を仕込める脆弱性が発覚",
+      "source_published_at": "2026-08-17T18:51:00.000Z",
+      "published_at": "2026-08-17T18:51:00.000Z",
+      "fetched_at": "2026-08-18T01:51:10.108Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "ワンクリックで企業のChatGPTワークスペースに自律型の偽従業員アカウントを仕込める脆弱性が報告された。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE81MVh2Y2FnbkRpWG9LazFQTEtDckhjZUpRVmkxRkY5OWJqSFZyR3R2TER0eVEyYmlpSXJZdVl6aXVhQ0lkUmJROUlEMjlPSFZYQko1S2NpMzVrR0hocDZuR2tWUFBmUDlRaHNuWTY0ZmJNVVE0?oc=5",
+      "story_entities": [
+        "ChatGPT",
+        "OpenAI",
+        "企業ワークスペース",
+        "chatgpt",
+        "openai"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT企業ワークスペースの脆弱性",
+      "event_type": "security",
+      "event_stage": "investigating",
+      "event_scope": "企業向けChatGPTワークスペース",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "ChatGPTの企業向けワークスペースを狙う新たな脆弱性の存在が報告された。",
+      "detail": "企業向けChatGPTワークスペースを対象に、ユーザーが1回クリックするだけで自律的に動作する偽の「従業員」アカウントを仕込める脆弱性が発覚したと報じられた。攻撃者はこの手口を使って企業内部のワークスペースに不正なエージェントを潜り込ませ、正規の従業員になりすまして業務データやワークフローに関与できる恐れがあるという。生成AIを業務に組み込む企業が増える中、こうしたエージェント機能の悪用リスクが具体的に指摘された形で、対応状況や修正の有無は記事からは確認できない。",
+      "new_facts": [
+        "ワンクリックで企業のChatGPTワークスペースに自律型の偽従業員を仕込める脆弱性が報告された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_92ca995d4f641c0e95ce",
+      "story_id": "story_7d83cb76ef08f3b9bb",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "xAI、割安なOpus級AIモデル「Grok 4.5」を一般公開",
+      "source_published_at": "2026-08-17T16:58:03.000Z",
+      "published_at": "2026-08-17T16:58:03.000Z",
+      "fetched_at": "2026-08-18T07:05:45.057Z",
+      "event_at": "2026-07-09",
+      "event_status": "発表済み",
+      "raw_excerpt": "xAIが新モデル「Grok 4.5」を一般公開し、AnthropicのOpusクラスに匹敵する性能を低価格で提供するとしている。",
+      "source_name": "Mshale",
+      "source_url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1uQlpsaUs3aGc3M2ljNFl6TW1iOU5ySzFBT3ZDeTZZRG05bEFrbTIzdjUyWU55MjNxcUlkV1lDUjFoSGtEZnNBOWxtTm11YkgyaGF6RnF0dF9mcm8?oc=5",
+      "story_entities": [
+        "xAI",
+        "Grok 4.5",
+        "xai",
+        "grok4.5",
+        "anthropic"
+      ],
+      "primary_entity": "xAI",
+      "story_subject": "Grok 4.5の一般公開",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "全世界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "xAIが「Grok 4.5」を一般公開し、Opus級の性能を低価格で提供する新モデルとして投入した。",
+      "detail": "xAIは新たなAIモデル「Grok 4.5」を一般公開したと報じられている。Grok 4.5は、AnthropicのClaude Opusクラスに相当する高い性能を持ちながら、比較的低価格で利用できる点が特徴とされる。高性能モデルをより安価に提供することで、企業や開発者がコストを抑えつつ高度なAI機能を導入しやすくすることを狙っているとみられる。ただし具体的な料金体系や性能比較の詳細、対応言語や機能範囲については記事内では明らかにされていない。",
+      "new_facts": [
+        "xAIが新AIモデル「Grok 4.5」を一般公開した",
+        "Grok 4.5はAnthropicのOpus級モデルに匹敵する性能を低価格で提供するとされる"
+      ],
+      "event_date_precision": "day"
+    },
+    {
+      "article_id": "article_a285d0308fbe28d295c9",
+      "story_id": "story_160938d504f58a8383",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Canary DataがPerplexityと提携、投資研究データをワークフローに統合",
+      "source_published_at": "2026-08-17T12:30:00.000Z",
+      "published_at": "2026-08-17T12:30:00.000Z",
+      "fetched_at": "2026-08-18T07:05:44.522Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "投資研究データを提供するCanary DataとPerplexityが提携し、投資研究情報をPerplexityのワークフローに統合すると発表した。",
+      "source_name": "Yahoo Finance",
+      "source_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPajNiRTEyR1dQRFlVS1Fpc2pWUTBTSGlkNXJwdUR4enNkNkZqZ2Y4dUxFbFBhTDZtVUY2TjBFektWOG9xSkp2aENENXdIS3V3aWFiVTVlMGNobUVTalU4WUFwZVM0VDdwRXpjZnpwcGNYRUdxLWxURy1RTkFxcnJFUzBfRWthM25xS3dQYTdoNE9qSkFuRXZyZXFBNk5Xbmljenc?oc=5",
+      "story_entities": [
+        "Perplexity",
+        "Canary Data",
+        "perplexity",
+        "canarydata",
+        "canary"
+      ],
+      "primary_entity": "Perplexity",
+      "story_subject": "Canary DataとPerplexityの提携",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "Perplexity Workflows",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Canary DataとPerplexityが新たに提携し、投資研究データをPerplexityのワークフローに統合する取り組みが始まった。",
+      "detail": "投資研究データを扱うCanary Dataと、AI検索・回答サービスを提供するPerplexityが提携を発表した。この提携により、専門的な投資研究情報がPerplexityのワークフローに統合され、利用者が投資判断に必要な情報をPerplexity上でより直接的に得られるようにすることを目指すという。金融分野におけるAI活用の一例として、専門データとAIサービスを組み合わせる動きが進んでいることを示す発表となった。提供開始時期や対象となる利用者の範囲など、具体的な運用条件については記事内では明らかにされていない。",
+      "new_facts": [
+        "Canary DataとPerplexityが提携し、投資研究データをPerplexityのワークフローに統合すると発表した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_6a139e344cac8ca06aa7",
+      "story_id": "story_272423e9f496a14173",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "NTTドコモビジネスとエクサウィザーズ、「クローズドAIエージェント」提供開始",
+      "source_published_at": "2026-08-17T09:41:00.000Z",
+      "published_at": "2026-08-17T09:41:00.000Z",
+      "fetched_at": "2026-08-17T09:58:36.417Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "NTTドコモビジネスとエクサウィザーズが、外部ネットワークから隔離された「クローズドAIエージェント」の提供を開始したと発表した。",
+      "source_name": "ZDNET Japan",
+      "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1IZmoyMTFPRXcxM1MtRmJobUFDVmZBMDR3RmdqMl82eEdsdWhaa3BGal9yUGJfWDhrNk1PMU5nSnZYM2tvNFMxV3I0cnNKTUVEenVN?oc=5",
+      "story_entities": [
+        "NTTドコモビジネス",
+        "エクサウィザーズ",
+        "クローズドAIエージェント",
+        "nttドコモビジネス",
+        "クローズドaiエージェント"
+      ],
+      "primary_entity": "NTTドコモビジネス",
+      "story_subject": "クローズドAIエージェント",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "外部ネットワークから隔離された環境で動作するAIエージェントの提供が新たに開始された。",
+      "detail": "NTTドコモビジネスとエクサウィザーズは、企業内の機密情報を扱う業務向けに「クローズドAIエージェント」の提供を開始した。クローズドAIエージェントとは、インターネットなど外部ネットワークから遮断された環境で動作するAIエージェントを指し、情報漏えいリスクを抑えながら業務自動化を進めたい企業向けの選択肢として位置づけられている。記事では両社の連携による提供開始が伝えられており、具体的な料金や対象業種の詳細は記事内では明示されていない。",
+      "new_facts": [
+        "NTTドコモビジネスとエクサウィザーズがクローズドAIエージェントの提供を開始した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_6509bb4db90606711445",
+      "story_id": "story_33b349e9f1a97797ae",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "三井金属、AIデータセンター向け銅箔に追加投資し2033年度に増産2.4倍へ",
+      "source_published_at": "2026-08-17T09:40:29.000Z",
+      "published_at": "2026-08-17T09:40:29.000Z",
+      "fetched_at": "2026-08-17T09:58:32.466Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "三井金属がAIデータセンター向け銅箔の生産設備に追加投資し、2033年度までに生産量を現状の2.4倍に増やす計画を明らかにした。",
+      "source_name": "日本経済新聞",
+      "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBVeWlYZHdvZTJqVUVhb21jOHpzY0lxRUdyT3hnOEZmWTNmdzRvZFpaMVBPMVlMWmlUaThTVmMzeWpvcGJKajRhUGVKbnBmRnZXU1Y1R2Rqck1Uc3lxS3ZNdDQxek82WjhEUFpqNw?oc=5",
+      "story_entities": [
+        "三井金属",
+        "AIデータセンター",
+        "aiデータセンター"
+      ],
+      "primary_entity": "三井金属",
+      "story_subject": "AIデータセンター向け銅箔増産投資",
+      "event_type": "funding",
+      "event_stage": "announced",
+      "event_scope": "日本",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "2033年度の生産量増加倍率",
+          "value": "2.4倍",
+          "normalized_value": "2.4"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "三井金属がAIデータセンター向け銅箔生産への追加投資を発表し、2033年度に生産量を2.4倍に引き上げる計画を示した。",
+      "detail": "三井金属は、AIデータセンターで使われる銅箔の生産能力を強化するため追加投資を行うと発表した。銅箔はデータセンター内のサーバーや電源系統などに使われる基幹部材で、生成AIの普及に伴うデータセンター建設ラッシュを背景に需要拡大が見込まれている。同社はこの需要増に対応するため、2033年度までに生産量を現状の2.4倍に引き上げる計画としている。投資の具体的な金額や設備の場所については記事内で詳細が示されていないが、AI関連インフラ需要の拡大を見据えた増産方針が示された形だ。",
+      "new_facts": [
+        "三井金属がAIデータセンター向け銅箔に追加投資すると発表した",
+        "2033年度までに生産量を2.4倍に増やす計画としている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_a7c969b2b172c6153d52",
+      "story_id": "story_d7585957e69b241873",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "セールスフォース、AIエージェント運用向け新機能を日本市場に提供開始",
+      "source_published_at": "2026-08-17T09:25:28.000Z",
+      "published_at": "2026-08-17T09:25:28.000Z",
+      "fetched_at": "2026-08-17T09:58:36.417Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "セールスフォースが「MuleSoft Agent Fabric」と「Omni Gateway」を日本市場に提供開始し、AIエージェントの運用を支援する。",
+      "source_name": "ニュースメディアVOIX",
+      "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5NNlNFV2xzWWhHLVBuYkRMZkgtYjkzQjJTc3V2Z3BjXzhyM25xMDQ1U2gwMURBaHBWR2toTnZ3MFk4QkZrNXdla2lOZ2dmQVJhVjdtV1JuUnE0bTVNODJjT1Y0N1ZBWHZwMldfSVBDT3Q4dw?oc=5",
+      "story_entities": [
+        "Salesforce",
+        "MuleSoft Agent Fabric",
+        "Omni Gateway",
+        "salesforce",
+        "mulesoftagentfabric"
+      ],
+      "primary_entity": "Salesforce",
+      "story_subject": "MuleSoft Agent Fabric・Omni Gateway",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本",
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "MuleSoft Agent Fabric・Omni Gatewayの日本提供",
+          "value": "日本市場で提供開始",
+          "normalized_value": "japan市場で提供開始"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "「MuleSoft Agent Fabric」と「Omni Gateway」が日本市場向けに新たに提供開始された。",
+      "detail": "セールスフォースは、AIエージェントの運用基盤となる「MuleSoft Agent Fabric」と「Omni Gateway」を日本市場向けに提供開始した。これらは企業が複数のシステムやサービスをまたいでAIエージェントを連携・管理するための仕組みとされているが、具体的な料金体系や対応企業数、機能の詳細な内容については記事の抜粋からは確認できない。企業のAIエージェント活用が広がる中で、運用面を支える新たなツール群として位置づけられている。",
+      "new_facts": [
+        "セールスフォースがMuleSoft Agent FabricとOmni Gatewayを日本市場に提供開始した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_62b7628ea3e3bd69316d",
+      "story_id": "story_37a9706f6347dca1ee",
+      "story_sequence": 2,
+      "relation_type": "follow_up",
+      "relation_confidence": 0.855,
+      "title": "DeepSeek、V4 Pro公開でAPI料金を最大12倍に引き上げ",
+      "source_published_at": "2026-08-17T08:55:00.000Z",
+      "published_at": "2026-08-17T08:55:00.000Z",
+      "fetched_at": "2026-08-17T09:58:20.816Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "DeepSeekが新モデル「V4 Pro」を公開し、API利用料金を最大12倍に引き上げ、収益化路線へ転換した。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1IYTNIdnE5Y2ROVjBNM0F4cHEwSHV2emdiYkZoalZQTmtDWDhDZzdCcDFod0x3aDRnRW82WDdtcV8xVXR5a3I2NVpiX1VWVkRrMTQ5QnpSRjVCR3JOUVlxWWZsSS12a2NlVFhRdTgxc05feEtG?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "V4 Pro",
+        "deepseek",
+        "v4pro"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek V4 Pro",
+      "event_type": "pricing",
+      "event_stage": "announced",
+      "event_scope": "API",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "DeepSeek API料金引き上げ幅",
+          "value": "最大12倍",
+          "normalized_value": "12"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "follow_up",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type"
+      ],
+      "change_summary": "新モデルV4 Proの公開とあわせ、API料金を最大12倍に引き上げた。",
+      "detail": "DeepSeekは新モデル「V4 Pro」を公開すると同時に、API(外部開発者がモデル機能を呼び出す仕組み)の利用料金を最大12倍に引き上げた。これまで低価格路線で注目を集めてきた同社が、収益化を重視する方針へ転換したことを示す動きとみられる。詳細な料金体系や引き上げの背景については記事内で明確にされていないが、価格戦略の大幅な見直しが行われたことが伝えられている。",
+      "new_facts": [
+        "DeepSeekが新モデルV4 Proを公開した",
+        "API料金を最大12倍に引き上げた",
+        "収益化を重視する方針への転換とみられる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_462b4837e3792a5a4f7b",
+      "story_id": "story_2ea420778de79980a9",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.7135135135135136,
+      "title": "中国発のオープンウェイトAI「Kimi K3」が登場、DeepSeekを超えるとの報道",
+      "source_published_at": "2026-08-17T08:37:30.000Z",
+      "published_at": "2026-08-17T08:37:30.000Z",
+      "fetched_at": "2026-08-17T09:58:20.816Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "中国で新たなオープンウェイトAIモデル「Kimi K3」が登場し、DeepSeekを上回る性能とされるが、詳細な仕様や公開時期は記事からは不明。",
+      "source_name": "月刊FACTA",
+      "source_url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBGWGd4UmFQSjVlQjQzVHlOZjFpVGhyaVJtWEdWZUFkYWxKcHVwYjZZSzlnOHhaZlFYX2lLUFoyR3phbkg3cG5GNGZobV9KRGZxcEFLTg?oc=5",
+      "story_entities": [
+        "Kimi K3",
+        "DeepSeek",
+        "kimik3",
+        "deepseek",
+        "moonshot-ai"
+      ],
+      "primary_entity": "Kimi",
+      "story_subject": "Kimi K3",
+      "event_type": "release",
+      "event_stage": "other",
+      "event_scope": "不明",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject",
+        "same_event_type"
+      ],
+      "change_summary": "DeepSeekに続く中国発のオープンウェイトAIモデル「Kimi K3」が話題になっている。",
+      "detail": "中国発のオープンウェイトAI(誰でも改良・商用利用しやすい形で重みが公開されたモデル)をめぐる動きとして、「Kimi K3」という新モデルが取り上げられている。記事タイトルでは既に話題となったDeepSeekを超える性能を持つと紹介されているが、具体的な性能指標やパラメータ規模、開発元の詳細、公開日といった事実は記事の抜粋からは確認できない。中国のAI企業が相次いでオープンウェイトモデルを投入する流れの一つとして言及されており、業界内での競争が続いている状況がうかがえるが、詳細は不明。",
+      "new_facts": [
+        "中国発のオープンウェイトAIモデル「Kimi K3」がDeepSeekを超えるとして紹介されている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_910da0adf0a2910c0111",
+      "story_id": "story_2752aeb8bd183ef61a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.96,
+      "title": "OpenAI幹部ブラッド・ライトキャップ氏が退社、新プロジェクト立ち上げへ",
+      "source_published_at": "2026-08-17T07:45:26.000Z",
+      "published_at": "2026-08-17T07:45:26.000Z",
+      "fetched_at": "2026-08-17T09:58:01.153Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAI幹部のブラッド・ライトキャップ氏が退社し、新たなプロジェクトを立ち上げる意向であることが伝えられた。",
+      "source_name": "mezha.net",
+      "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1WSEtMdHpfWVp1cHVJODdFMW4xV0xFMWxvWVhjSU9MN1MxRHBNSVJqS3h0RHFjakY0WXNBR2xaWm5qaWR1Yl92ZTFZZng1RFhPbV90T0I4VW55NkIxSFFzaU03RTBtODI1OWc?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "ブラッド・ライトキャップ",
+        "openai",
+        "ブラッドライトキャップ"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "ブラッド・ライトキャップ氏の退社",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "OpenAI経営体制",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "similar_title",
+        "same_url_content_changed"
+      ],
+      "change_summary": "OpenAI幹部のブラッド・ライトキャップ氏の退社と、新プロジェクト立ち上げの意向が明らかになった。",
+      "detail": "OpenAIの幹部であるブラッド・ライトキャップ氏が同社を退社したことが報じられた。記事によれば、同氏は退社後に新しいプロジェクトを立ち上げる予定だという。OpenAIでは近年、経営体制や研究部門をめぐる人事の動きが相次いでおり、幹部の退社は組織運営や事業方針に影響を与える可能性がある。退社の具体的な理由や新プロジェクトの内容については、記事内で詳細は明らかにされていない。",
+      "new_facts": [
+        "OpenAI幹部のブラッド・ライトキャップ氏が退社した",
+        "同氏は退社後に新プロジェクトを立ち上げる意向とされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_910da0adf0a2910c0111_rev_bc041f8a1d07",
+      "story_id": "story_6065f2cdad69c9d854",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.96,
+      "title": "OpenAI幹部ブラッド・ライトキャップ氏が退社、新プロジェクト立ち上げへ",
+      "source_published_at": "2026-08-17T07:45:26.000Z",
+      "published_at": "2026-08-17T07:45:26.000Z",
+      "fetched_at": "2026-08-18T01:51:10.108Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIの幹部ブラッド・ライトキャップ氏が退社し、新たなプロジェクトを立ち上げる予定であることが明らかになった。",
+      "source_name": "Межа. Новини України.",
+      "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1WSEtMdHpfWVp1cHVJODdFMW4xV0xFMWxvWVhjSU9MN1MxRHBNSVJqS3h0RHFjakY0WXNBR2xaWm5qaWR1Yl92ZTFZZng1RFhPbV90T0I4VW55NkIxSFFzaU03RTBtODI1OWc?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "ブラッド・ライトキャップ",
+        "openai",
+        "ブラッドライトキャップ"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "ブラッド・ライトキャップ氏の退社と新プロジェクト",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "OpenAI社内",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "similar_title",
+        "same_url_content_changed"
+      ],
+      "change_summary": "OpenAIの幹部が退社し、新プロジェクトを立ち上げる計画があることが新たに判明した。",
+      "detail": "OpenAIで幹部を務めていたブラッド・ライトキャップ氏が退社することが明らかになった。同氏は退社後、新たなプロジェクトを立ち上げる意向とされるが、具体的な退社時期や新プロジェクトの内容、対象分野などについては記事中で明らかにされていない。OpenAIでは近年幹部の入れ替わりが続いており、今回の退社も同社の経営体制の変化として注目される動きとなっている。",
+      "new_facts": [
+        "OpenAIの幹部ブラッド・ライトキャップ氏が退社することが明らかになった。",
+        "退社後は新たなプロジェクトを立ち上げる予定とされる。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_94600eaf2d27eb61cbbc",
+      "story_id": "story_9c463c5b872b50cdb6",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6257142857142857,
+      "title": "OpenAI、ChatGPTを日常の相棒として描く日本初の広告を展開",
+      "source_published_at": "2026-08-17T05:45:44.000Z",
+      "published_at": "2026-08-17T05:45:44.000Z",
+      "fetched_at": "2026-08-17T07:17:07.922Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "OpenAIがChatGPTを日常生活に寄り添う存在として描く、日本市場向けとして初となる広告キャンペーンを開始した。",
+      "source_name": "Impress Watch",
+      "source_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE0ydjB2aU1QV0w1bnhZSko1aUEwdnR1RnE1N0dRQnhYaGhMeHRPT3BwSHpTUGxIZU53LVRUb0UyUEkyWWNRaVh1WEROaTlYNmo4NzRhQ0kxdmxqOWRwbkN2TE4zTXU?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT",
+        "openai",
+        "chatgpt"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT日本初の広告キャンペーン",
+      "event_type": "other",
+      "event_stage": "launched",
+      "event_scope": "日本",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "OpenAIがChatGPTを題材にした日本向けの広告キャンペーンを初めて実施した。",
+      "detail": "OpenAIは、対話型AI「ChatGPT」を日常の中で頼れる存在として印象づける広告を日本向けに初めて展開した。これまでOpenAIは日本市場向けに大規模な広告展開を行ってこなかったとみられ、今回の広告は一般消費者への浸透を狙った動きとみられる。記事では広告の内容がChatGPTを「日常の相棒」として描くコンセプトであることが紹介されているが、広告の具体的な媒体や放映期間、制作の狙いなどの詳細については本文の抜粋からは確認できない。OpenAIが日本での認知拡大に本格的に乗り出したことを示す事例として取り上げられている。",
+      "new_facts": [
+        "OpenAIがChatGPTを題材にした日本向け広告を初めて展開した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_106673dd5fabb8c39c74",
+      "story_id": "story_9169674c4caabc8988",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "法務省、生成AIの解釈指針を143ページから17ページに簡素化",
+      "source_published_at": "2026-08-17T05:16:51.000Z",
+      "published_at": "2026-08-17T05:16:51.000Z",
+      "fetched_at": "2026-08-17T07:17:40.322Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "法務省が公表していた生成AIに関する解釈指針を、従来の143ページから17ページへ大幅に簡素化したことが解説記事で紹介された。",
+      "source_name": "innovaTopia",
+      "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9oNVZONmppalJDaFJ0eXV3ZXlpcGlUQjl1dTFLSVpUcjJpWTBpcFdOdGFndTdiblZiRU1zR0lmbHY1UUtwbDlHTTE0NVZMSks2cmVZ?oc=5",
+      "story_entities": [
+        "法務省",
+        "生成AI解釈指針",
+        "生成ai解釈指針"
+      ],
+      "primary_entity": "法務省",
+      "story_subject": "生成AI解釈指針の簡素化",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "日本",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "指針のページ数変化",
+          "value": "143ページ→17ページ",
+          "normalized_value": "143"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "生成AIに関する法務省の解釈指針が143ページから17ページに簡素化された。",
+      "detail": "法務省が示していた生成AIに関する解釈指針について、これまで143ページに及んでいた内容が17ページにまで圧縮・整理されたことが今回の解説記事で取り上げられた。分厚い文書は実務担当者にとって参照しづらく、要点を把握しにくいという課題があったとみられる。記事ではこのボリューム削減の経緯やポイントが解説されているが、対象となる指針の具体的な適用範囲や改定の詳細な理由については、本文の抜粋からは確認できない。今後、企業や法律実務での参照のしやすさが変わる可能性がある。",
+      "new_facts": [
+        "法務省の生成AI解釈指針が143ページから17ページに簡素化された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_03b3344dcc9ff8bb0d7b",
+      "story_id": "story_992a26ebfd63e4d3ce",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "MoE言語モデルの深さ依存感度分析、後期層のエキスパート削減が有効と判明",
+      "source_published_at": "2026-08-17T04:00:00.000Z",
+      "published_at": "2026-08-17T04:00:00.000Z",
+      "fetched_at": "2026-08-17T04:04:25.761Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "研究者らがQwen3.6-35B-A3BのMoE構造を層ごとに分析し、後期層のエキスパートを大胆に削減しても性能を維持できることを示した。",
+      "source_name": "rss.arxiv.org",
+      "source_url": "https://arxiv.org/abs/2608.13565",
+      "story_entities": [
+        "Qwen3.6-35B-A3B",
+        "Mixture-of-Experts",
+        "XLCoST",
+        "qwen3.6-35b-a3b",
+        "mixture-of-experts"
+      ],
+      "primary_entity": "研究チーム(arXiv投稿者)",
+      "story_subject": "MoEモデルの深さ依存感度分析",
+      "event_type": "research",
+      "event_stage": "other",
+      "event_scope": "研究・学術",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "MoE層数",
+          "value": "40層",
+          "normalized_value": "40"
+        },
+        {
+          "type": "count",
+          "scope": "エキスパート数",
+          "value": "256/層",
+          "normalized_value": "256"
+        },
+        {
+          "type": "count",
+          "scope": "削減エキスパート数(最良policy)",
+          "value": "640/10,240",
+          "normalized_value": "640"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "MoEモデルの層別感度を体系的に分析し、後期層に絞ったエキスパート削減が全層一律削減より効率的であることを示した。",
+      "detail": "MoE(Mixture-of-Experts)は複数の専門家ネットワークをスパースに活性化して大規模言語モデルを効率化する手法。本研究はQwen3.6-35B-A3B(40層、各256エキスパート、top-8ルーティング)を対象に、層ごとの重要度をマグニチュードベースのマスキングで分析した。XLCoSTコード翻訳ベンチマークで100~500プロンプト規模の評価を行った結果、初期層(0-9)と中間層(10-29)はマスキングに脆弱な一方、後期層(30-39)特に35-39層は積極的なマスキングに耐性があることが判明した。全層一律30%マスキングでは300サンプル中150件しか良好な出力を維持できなかったが、後期層に絞った方針では249~255件を維持しつつ640~1,145のエキスパートを削減できた。500プロンプトの検証では35-39層を50%マスキングする方針が最良のバランスを示し、640/10,240エキスパートの削減で419/500件の良好出力を維持した。またtop-kルーティング幅を8から6に減らすと処理速度が大きく向上し品質低下も見られなかったが、積極的なマスキングとの併用はまだ課題があるとしている。",
+      "new_facts": [
+        "Qwen3.6-35B-A3Bの後期層(35-39)は積極的なエキスパートマスキングに耐性がある",
+        "640/10,240エキスパートを削減しつつ419/500件の良好出力を維持",
+        "top-kルーティングを8から6に削減すると処理速度が向上し品質低下なし"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_cd817705614b974da4f9",
+      "story_id": "story_405f86e3c66286b0f8",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "オンライン試験でのAI利用、約半数が「カンニングは容易」と回答",
+      "source_published_at": "2026-08-17T04:00:00.000Z",
+      "published_at": "2026-08-17T04:00:00.000Z",
+      "fetched_at": "2026-08-17T07:17:42.315Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "オンライン試験受験者への調査で約半数が「AIを使ったカンニングは容易」と認識し、禁止されていても6割が使いたいと回答した。",
+      "source_name": "ITmedia",
+      "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE52Ti1oRnE1MUdFeUFKTVllTkZTaHJmWXVfd0lkYjYzYlhlTFZzeGx1RmNRMlBPOWxfRUxxT3lBeHBfUFlBYzJNTXZzam9fbUlqbXNKcG1ENHBrZmhWb2hsT05Xay1mMWtCSU40RExOa3lQZw?oc=5",
+      "story_entities": [
+        "オンライン試験",
+        "AIカンニング",
+        "aiカンニング"
+      ],
+      "primary_entity": "調査実施元(不明)",
+      "story_subject": "オンライン試験でのAI利用実態調査",
+      "event_type": "research",
+      "event_stage": "other",
+      "event_scope": "日本",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "カンニングが容易と回答した割合",
+          "value": "約半数",
+          "normalized_value": "約半数"
+        },
+        {
+          "type": "count",
+          "scope": "禁止されてもAI利用を望む割合",
+          "value": "6割",
+          "normalized_value": "6"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "オンライン試験でのAI不正利用への懸念や利用意向の高さが調査で明らかになった。",
+      "detail": "オンライン試験におけるAI利用の実態を調べた調査で、回答者の約半数が「生成AIを使ったカンニングは容易にできる」と考えていることが分かった。さらに、AI利用が禁止されている試験であっても「受験中にAIを使いたい」と答えた人が6割に上ったという。これは、監督者の目が届きにくいオンライン試験特有の「性善説」に基づく運用が限界に近づいていることを示す結果とされる。記事では、こうした受験者の意識の高さから、従来型の不正防止策の実効性に疑問が投げかけられている。調査の実施主体や具体的な調査対象・時期については本文の抜粋からは確認できない。",
+      "new_facts": [
+        "約半数がオンライン試験でのAIカンニングを容易と認識している",
+        "AI利用禁止でも受験中にAIを使いたいと回答した人が6割に上った"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_7cc582418b52d4f3bafc",
+      "story_id": "story_8e1b153433d894e829",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "OpenAI CEOサム・アルトマン氏「大学4年間は長すぎるかもしれない」と発言",
+      "source_published_at": "2026-08-17T03:17:36.000Z",
+      "published_at": "2026-08-17T03:17:36.000Z",
+      "fetched_at": "2026-08-17T04:03:46.091Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIのサム・アルトマンCEOが、大学教育の4年間という期間は長すぎる可能性があると述べた。",
+      "source_name": "Vietnam.vn",
+      "source_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBBWFM1cWFkLXkxNGNVRi0yLVk4Q0VuUHBlZzU4RkVaZVJHMGJPcWhQS3BxdVlVdWVqOWJ5LWJScFIyUjRZT0VBWjBMU01WS3U4Uk9DQUpVS2h0OUdHTzZiMGlzS1dLdXF4WmY2RmozUi1xNXZHbnhLT1ZnUW02QQ?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "サム・アルトマン",
+        "openai",
+        "サムアルトマン"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "サム・アルトマンCEOの大学教育に関する発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "OpenAI CEOが大学教育の期間の妥当性に疑問を呈する発言をした。",
+      "detail": "OpenAIのサム・アルトマンCEOは、伝統的な大学教育の在り方について疑問を呈し、4年間という修学期間が現代において長すぎるかもしれないとの見解を示した。記事は、AIの進化により学習や就労のあり方が変化する中で、教育制度そのものを見直す必要性を示唆する発言として伝えている。具体的な代替案や政策提言の詳細は記事からは確認できない。",
+      "new_facts": [
+        "サム・アルトマンCEOが大学4年間の教育期間は長すぎるかもしれないと発言した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_516f5ec3625cfb1b348e",
+      "story_id": "story_1c0037307344f42fc4",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "アンソロピックCEO、AIへの反発拡大には実績で信頼回復が必要と警鐘",
+      "source_published_at": "2026-08-17T02:10:00.000Z",
+      "published_at": "2026-08-17T02:10:00.000Z",
+      "fetched_at": "2026-08-17T04:04:19.594Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "アンソロピックのCEOが、AIに対する社会的反発が広がる中、信頼を取り戻すには実際の実績を示す必要があると述べた。",
+      "source_name": "ビジネス+IT",
+      "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFB4RkRwNWJwYnhZM2YxakFtRENsQWxIUDctVzA4WkhUR2ZlM1NUR1pWRzRETUM3aGFCSnJseDgtNFFEUVVlUWdSRU5hbGxWdVlJRy1z?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "anthropic"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "AIへの信頼回復に関するCEO発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "アンソロピックCEOが、AIへの反発拡大を踏まえ信頼回復には実績が必要との見解を示した。",
+      "detail": "アンソロピックCEOは、AI技術への反発が広がっている現状に懸念を示し、企業や業界が信頼を回復するためには言葉ではなく実際の成果・実績を積み重ねる必要があると強調した。記事では、AIの急速な普及に伴い社会的な不安や批判が高まっていることを背景に、CEOがこうした発言をしたと伝えている。具体的な数値や施策は明らかではないが、AI企業側が信頼構築のために行動で示す重要性を訴えた形だ。",
+      "new_facts": [
+        "アンソロピックCEOがAIへの反発拡大を踏まえ信頼回復には実績が必要と発言した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_eed1ed4a2c22a57d3056",
+      "story_id": "story_5435e63b162311a53a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AIセキュリティに「万能なルール」はない Elithが語る防御の考え方",
+      "source_published_at": "2026-08-17T02:05:40.000Z",
+      "published_at": "2026-08-17T02:05:40.000Z",
+      "fetched_at": "2026-08-17T09:58:34.871Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "AIセキュリティ企業Elithが、AI活用が広がる中で画一的なルールでは対応できないとし、状況に応じた防御の考え方の必要性を語った。",
+      "source_name": "Ledge.ai",
+      "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBlSHFEcEFlemlvS1BnYjFHTXpHNUtYZXpoaFVjZWhSQkhwWVp0OFBrc1pPbzVYY2p6ZTRQLXd1TEVERk5sYUdmUjlVbXc5U1dCXy1N?oc=5",
+      "story_entities": [
+        "Elith",
+        "AIセキュリティ",
+        "elith",
+        "aiセキュリティ"
+      ],
+      "primary_entity": "Elith",
+      "story_subject": "AI時代の防御の考え方",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "日本",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AIセキュリティ対策について、画一的ルールではなく状況適応型の考え方を提示した点が論点として示された。",
+      "detail": "AIの業務活用が広がるにつれ、情報漏えいや誤用などのリスクへの対応が課題となっている。この記事ではAIセキュリティを手がけるElithが、あらゆる状況に通用する「万能なルール」は存在しないという立場から、AI時代に求められる防御のあり方を説明している。具体的な技術手法や導入事例までは記事内で詳述されておらず、企業がリスクの性質に応じて柔軟に対策を組み立てる必要性が論点として示されている。",
+      "new_facts": [
+        "Elithが「万能なルールはない」という立場からAIセキュリティの考え方を説明した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_eb0739f797d9c25c7bb7",
+      "story_id": "story_e51f8612faa746cffc",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "国産AI検索対策ツール「DolphinX AIO」がClaudeとPerplexityに対応、6種AIの日次計測が可能に",
+      "source_published_at": "2026-08-17T01:45:25.000Z",
+      "published_at": "2026-08-17T01:45:25.000Z",
+      "fetched_at": "2026-08-17T04:04:04.982Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "国産のAI検索対策ツール「DolphinX AIO」が日次計測機能でClaudeとPerplexityへの対応を追加し、6種類のAIを同時計測できるようになった。",
+      "source_name": "ニコニコニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE4wWG12TVc2RkVjaXJMUVdERTdYSERkZTRPd0hFZ1NGaDlkcjg0MExyU2UtczNXOHdNVlloWGFGeHlTYUVNOWJzRkZSY0xKeTd6TVVfcS1id1BYZjJ0ajYwLTIzSmcwVlZo?oc=5",
+      "story_entities": [
+        "DolphinX AIO",
+        "Claude",
+        "Perplexity",
+        "dolphinxaio",
+        "claude"
+      ],
+      "primary_entity": "DolphinX AIO",
+      "story_subject": "DolphinX AIO",
+      "event_type": "release",
+      "event_stage": "expanded",
+      "event_scope": "日本国内",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "対応AIモデル数",
+          "value": "6種類",
+          "normalized_value": "6"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "日次計測の対応AIにClaudeとPerplexityが新たに加わり、計6種類のAIを同時計測できるようになった。",
+      "detail": "国産のAI検索対策ツール「DolphinX AIO」が機能を拡張し、日次計測の対象としてClaudeとPerplexityへの対応を新たに追加した。これにより既存の対応モデルと合わせて、合計6種類のAIサービスでの自社ブランドや情報の表示状況を毎日同時に計測できるようになった。AI検索やチャットボットの回答に自社サイトがどう扱われているかを把握したい企業向けに対応範囲を広げた形で、具体的な計測開始日や料金体系については記事内で明記されていない。",
+      "new_facts": [
+        "DolphinX AIOがClaudeとPerplexityへの対応を追加した",
+        "6種類のAIモデルの日次同時計測が可能になった"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_c3041550b4a25cd80c3e",
+      "story_id": "story_cdcc5a4e093b60281a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6205714285714286,
+      "title": "Google、新型Geminiモデルを前回からわずか3週間で投入、価格は半額に",
+      "source_published_at": "2026-08-17T00:00:45.000Z",
+      "published_at": "2026-08-17T00:00:45.000Z",
+      "fetched_at": "2026-08-17T01:55:51.004Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Googleは前回のGeminiモデル公開からわずか3週間で新モデルを投入し、価格を従来の半額に設定したと報じられた。",
+      "source_name": "Times Tabloid",
+      "source_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPd3ZiUXpqWlMwMzhPZlhmRDNLXzFQamlESmhtSW54VUY1V0NxQXlzRjlMUUMzb0NXT1NpRGVCN0VwQ1ZNWmNzd05IYWNTN3VCTDVnZkFNV2RteWp0WmJtSHduQ2RTRjZsaG1MOEVwUEF5Mnd3NFJCSlduT2lqV3lXcnBhYUd6dDl3aFE?oc=5",
+      "story_entities": [
+        "Google",
+        "Gemini",
+        "google",
+        "gemini",
+        "google-gemini"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "新型Geminiモデルの投入と値下げ",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "API",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "新型Geminiモデルの価格",
+          "value": "前モデルの半額(具体的金額不明)",
+          "normalized_value": "前モデルの半額具体的金額不明"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "前モデルからわずか3週間というハイペースで新型Geminiモデルが投入され、価格が半額になった。",
+      "detail": "Googleは前のGeminiモデルを公開してからわずか3週間という短い間隔で、新しいGeminiモデルを投入したと報じられている。新モデルの価格は前モデルの半額に設定されており、AI企業間の開発競争のスピードとコスト競争の激しさを示す事例として取り上げられている。ただし記事の抜粋からは新モデルの具体的な名称や機能面での違いは確認できず、価格についても具体的な金額は明示されていない。",
+      "new_facts": [
+        "Googleが前回のGeminiモデル公開からわずか3週間で新モデルを投入した",
+        "新モデルの価格は前モデルの半額に設定された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_9c278ab23338b457f8a0",
+      "story_id": "story_d0ee2b40d79499043f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "OpenAI、個人アカウントでのGPTs作成ボタンを非表示に",
+      "source_published_at": "2026-08-16T22:17:14.000Z",
+      "published_at": "2026-08-16T22:17:14.000Z",
+      "fetched_at": "2026-08-17T01:55:48.212Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "個人向けChatGPTアカウントでカスタムGPTを作成するボタンが突然表示されなくなり、OpenAIが利用区分の線引きを行ったとみられる。",
+      "source_name": "shiritomo",
+      "source_url": "https://news.google.com/rss/articles/CBMiQEFVX3lxTE00Y25TZjBsZ2tHTE5HOGVCeHN2MVpzLUdLdFBqX1hySDJveVJvVlBJcmRHblhxdmNZbVY1YU5mVEE?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "GPTs",
+        "ChatGPT",
+        "openai",
+        "gpts"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "GPTs作成機能の個人アカウント制限",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "個人アカウント",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "個人アカウントでGPTs作成ボタンが表示されなくなったという変化が報告されている。",
+      "detail": "個人向けのChatGPTアカウントで、これまで使えていたカスタムGPT（GPTs）の作成ボタンが突然消えたとの報告がある。OpenAIが個人アカウントと法人・有料プラン向けアカウントの間でGPTs作成機能の利用可否に線引きを行った可能性が指摘されている。ただし具体的な対象範囲や基準、公式のアナウンス内容については記事本文からは詳細が確認できず、不明な点が残る。",
+      "new_facts": [
+        "個人向けChatGPTアカウントでGPTs作成ボタンが表示されなくなったと報告されている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_0264756e0de6867a5717",
+      "story_id": "story_1c280292bbd21ef1f7",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Anthropicの電子透かし発表直後、透かし除去OSSツールが登場",
+      "source_published_at": "2026-08-16T22:09:31.000Z",
+      "published_at": "2026-08-16T22:09:31.000Z",
+      "fetched_at": "2026-08-17T01:55:49.802Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Anthropicが生成物に電子透かしを付与する仕組みを発表した直後、Claude・Gemini・OpenAIの透かしを除去できるOSSツール「watermarks-remover」が公開された。",
+      "source_name": "テクノエッジ TechnoEdge",
+      "source_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9vaFByTUVhaDZFS2F5d3lydUhTdkxMRGp4MVJPR3FHblduYkJUQ0tJcWJHTVhMV1ZqUjBxZXB6RTBYUnJfb1BXMlBpWkdON2o1WDBwdFVVaXNMbDFQMklHaHktWDMzVnM?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "Gemini",
+        "anthropic",
+        "claude"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "電子透かし除去OSSツール「watermarks-remover」",
+      "event_type": "security",
+      "event_stage": "other",
+      "event_scope": "Claude・Gemini・OpenAI対応",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Anthropicの電子透かし導入発表に対し、Claude・Gemini・OpenAI対応の透かし除去OSSツールが新たに公開された。",
+      "detail": "Anthropicは生成AIの出力に電子透かしを埋め込み、AI生成コンテンツであることを識別できるようにする仕組みを発表した。ところがその発表の直後に、Claude・Gemini・OpenAIといった複数のAIサービスの透かしに対応し、それを除去できるとするオープンソースツール「watermarks-remover」がインターネット上に登場したことがテクノエッジの生成AIクローズアップで報じられた。電子透かしはAI生成物の真正性を担保する対策として期待されていたが、公開直後に対抗ツールが出たことで、その実効性に疑問が投げかけられている。",
+      "new_facts": [
+        "Anthropicが電子透かし導入を発表した直後にwatermarks-removerというOSSツールが公開された",
+        "このツールはClaude・Gemini・OpenAIの透かしに対応している"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_66496102ba52ebc8ba26",
+      "story_id": "story_cec5c2717506b160c7",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "JPモルガンCEO、巨額のAI投資に楽観的な見方を示す",
+      "source_published_at": "2026-08-16T21:35:00.000Z",
+      "published_at": "2026-08-16T21:35:00.000Z",
+      "fetched_at": "2026-08-17T01:56:22.078Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "JPモルガンのCEOが巨額のAI投資について楽観視し、最終的には成果をもたらすとの見解を示した。",
+      "source_name": "Business Insider Japan",
+      "source_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPSC1tQmFFRmtkSlk0OEV2SlQwbWU1cGFjOENlQlhGbVdkWHY2NFhrUHdwdURmVlRaUXIyUzBsUU1YT3laWC1teTF5RzRBWGZsVWRnbUNzQk5Pa0tpVVBqeDJhZ1JNNGh4SER4a1otMW5PXy1iengxT1dJbk5nckdPQ3dMeHFLZjJ3N2FxY0xWa2hFdno3NzBF?oc=5",
+      "story_entities": [
+        "JPモルガン",
+        "jpモルガン"
+      ],
+      "primary_entity": "JPモルガン",
+      "story_subject": "AI投資に対するCEOの見解",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "金融業界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "JPモルガンCEOが巨額のAI投資について、最終的には成果をもたらすとの楽観的な見解を新たに示した。",
+      "detail": "Business Insider Japanの報道によると、JPモルガンのCEOが業界で進む巨額のAI投資について楽観的な見方を示した。CEOは、現在企業各社が投じている巨額のAI関連投資について、最終的には成果をもたらすとの見解を述べたとされる。生成AIブームを背景に、テック企業や金融機関を含む幅広い業界でデータセンターやAIモデル開発への投資が急拡大しており、その投資対効果を疑問視する声も出ている中での発言となる。記事からは具体的な投資額や成果の時期についての言及は確認できないが、金融業界を代表する経営者がAI投資の将来性に前向きな姿勢を示した点が注目される。",
+      "new_facts": [
+        "JPモルガンCEOが巨額のAI投資について楽観的な見方を示した",
+        "最終的には成果をもたらすとの見解を述べた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_699fb1b45f21d3091a61",
+      "story_id": "story_fcb2ded6ac93b7e415",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "関西企業の設備投資、2026年度は5.7%増見込み AIデータセンター関連が牽引",
+      "source_published_at": "2026-08-16T20:00:00.000Z",
+      "published_at": "2026-08-16T20:00:00.000Z",
+      "fetched_at": "2026-08-17T01:56:22.078Z",
+      "event_at": "",
+      "event_status": "予定",
+      "raw_excerpt": "関西企業の2026年度設備投資が5.7%増となる見通しで、AIデータセンター関連の投資が全体を牽引している。",
+      "source_name": "nikkei.com",
+      "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9IemJXU29rTHVJb3ZpR0NsSnRLWDVhQVJHQXJUYVJmQjZQdnNhdEJhSlBuY2xEOXJvNDBhaVlTX1JEaG9uNDdBanphUnd1WHZEZ016TUZnNi1aYmV6ZTBTRDR5WVh0LTFiOFZtdQ?oc=5",
+      "story_entities": [
+        "関西企業",
+        "AIデータセンター",
+        "aiデータセンター"
+      ],
+      "primary_entity": "関西企業",
+      "story_subject": "2026年度設備投資計画",
+      "event_type": "other",
+      "event_stage": "planned",
+      "event_scope": "関西地域",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "2026年度設備投資増加率",
+          "value": "前年度比5.7%増",
+          "normalized_value": "5.7%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "関西企業の2026年度設備投資が前年度比5.7%増となる見通しで、AIデータセンター関連投資が牽引役であることが新たに示された。",
+      "detail": "日本経済新聞の報道によると、関西の企業による2026年度の設備投資は前年度比5.7%増となる見通しであることが分かった。この増加をけん引しているのがAIデータセンター関連の投資で、AI需要の拡大に対応するための計算資源やインフラ整備への投資が活発化していることがうかがえる。関西圏の企業においても、生成AIやクラウドサービスの利用拡大を背景に、データセンターや関連設備への投資意欲が高まっている状況が示された形となる。具体的な投資額や対象企業の内訳については記事からは明らかではないが、AI関連需要が地域経済の設備投資を押し上げる要因の一つとなっていることが確認できる。",
+      "new_facts": [
+        "関西企業の2026年度設備投資が前年度比5.7%増の見通しとなった",
+        "AIデータセンター関連投資が増加をけん引している"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_33ecc95944ad6a7832ef",
+      "story_id": "story_74a680a6c15d78c0de",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "レゾナック、1000W級発熱チップでAI半導体の実装状態を再現しimecと連携",
+      "source_published_at": "2026-08-16T20:00:00.000Z",
+      "published_at": "2026-08-16T20:00:00.000Z",
+      "fetched_at": "2026-08-17T07:17:41.722Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "レゾナックが1000W級の発熱を伴うチップを用いてAI半導体の実装環境を再現し、ベルギーの研究機関imecと連携する取り組みを進めている。",
+      "source_name": "日経クロステック",
+      "source_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQUVY3WUN6Ti1BVkQ5dS1PQVpuU3dZQmlDaVktTk95SkhLVnpFOHRKd19veHBpLVNwM1VMSTAtTm9xYTNPNUxRbHV4dmtBRnJQb2dtRWxSVjhIQy1yWjRpbWw2VkNIenVUZXpYSmMxRWFmWTBLWmVBUUhnNmhSZmE3WUYzQ0NHSVg5Z3RQaA?oc=5",
+      "story_entities": [
+        "レゾナック",
+        "imec",
+        "AI半導体",
+        "ai半導体"
+      ],
+      "primary_entity": "レゾナック",
+      "story_subject": "1000W級発熱チップによるAI半導体実装再現",
+      "event_type": "research",
+      "event_stage": "other",
+      "event_scope": "半導体実装評価",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "発熱チップの発熱量",
+          "value": "1000W級",
+          "normalized_value": "1000"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "レゾナックが1000W級発熱チップを使いAI半導体の実装状態を再現する検証にimecと連携して取り組んでいる。",
+      "detail": "AI向け半導体は演算性能の向上に伴い発熱量が増大しており、実装段階での放熱・信頼性評価が課題となっている。レゾナックはこの課題に対応するため、1000W級という高い発熱量を持つチップを用いて実際のAI半導体パッケージに近い実装状態を再現する取り組みを行っている。この評価にあたり、半導体研究で知られるベルギーの研究機関imecと連携していることが記事で紹介されている。具体的な再現手法や評価結果、今後の実用化時期などの詳細は本文の抜粋からは確認できないが、AI半導体の高発熱化に対応した実装技術の検証が進められていることが示されている。",
+      "new_facts": [
+        "レゾナックが1000W級の発熱チップを用いてAI半導体の実装状態を再現している",
+        "この取り組みでベルギーの研究機関imecと連携している"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_9b9328d8ea02e60925bf",
+      "story_id": "story_c1aef57d6da9ddf493",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5472727272727272,
+      "title": "MiniMax、音楽生成AI「MiniMax-Music3」を無償公開",
+      "source_published_at": "2026-08-16T07:51:12.000Z",
+      "published_at": "2026-08-16T07:51:12.000Z",
+      "fetched_at": "2026-08-16T09:43:42.934Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "MiniMaxが動画生成AIに続き音楽生成AI「MiniMax-Music3」を無償公開し、ローカル環境で最大5分の日本語ボーカル付き楽曲を生成できる。",
+      "source_name": "au Webポータル",
+      "source_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5rNHhiekh6dEFieVFLcmJ4OGNOQXJLUVdrUkJnc0otQW5QRHkzaF9JcVp6MXBCMGFhbG55WGRkaGEwZm05UFkxbHUyQ1E0MExLRjh1WENPRTl4ZXVrbmExemFqU3U1cm1idWtjX1BR?oc=5",
+      "story_entities": [
+        "MiniMax",
+        "MiniMax-Music3",
+        "minimax",
+        "minimax-music3"
+      ],
+      "primary_entity": "MiniMax",
+      "story_subject": "MiniMax-Music3",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "ローカル環境(無償公開)",
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "MiniMax-Music3の提供形態",
+          "value": "無償公開・ローカル動作",
+          "normalized_value": "無償公開ローカル動作"
+        },
+        {
+          "type": "other",
+          "scope": "生成可能な楽曲の長さ",
+          "value": "最大5分",
+          "normalized_value": "5"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type"
+      ],
+      "change_summary": "MiniMaxが音楽生成AIの新モデル「MiniMax-Music3」を無償公開した。",
+      "detail": "MiniMaxが新たに音楽生成AI「MiniMax-Music3」を無償で公開した。同社はこれまで動画生成AIを提供してきたが、今回音楽分野にも進出した形となる。MiniMax-Music3はローカル環境で動作させることができ、最大5分の楽曲を生成可能で、日本語のボーカル付き楽曲にも対応している点が特徴として挙げられている。",
+      "new_facts": [
+        "MiniMaxが音楽生成AI「MiniMax-Music3」を無償公開した",
+        "ローカル環境で最大5分の日本語ボーカル付き楽曲を生成できる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_1fd3be0f7dc4225958d3",
+      "story_id": "story_74dd3dd23de05c483b",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5636363636363636,
+      "title": "DeepSeekとAlibaba、AIモデルへのアクセスを拡大し競争激化",
+      "source_published_at": "2026-08-16T07:49:11.000Z",
+      "published_at": "2026-08-16T07:49:11.000Z",
+      "fetched_at": "2026-08-16T09:43:27.207Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "中国のDeepSeekとAlibabaが自社AIモデルへのアクセスを広げる動きを見せており、AI業界の競争が一段と激しくなっているとされる。",
+      "source_name": "VOI.ID",
+      "source_url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE1fYkc0RGp6YWczNzJqallDY3dCMWVGMlR6cWI5ZTRXMHF4RFpwR0UyaWJEQngzQnNRbVJicmZQWUpDczY0OVRrRXFB0gFCQVVfeXFMUGtoOXJiU3d6QUwyaDhxVUxjblRDV2hzWHFoVG5CUjIxNFd0aGVaaGRTZnBheU52Y2FUa2Q2bER2WDZB?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "Alibaba",
+        "deepseek",
+        "alibaba"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeekとAlibabaのAIモデル公開",
+      "event_type": "release",
+      "event_stage": "other",
+      "event_scope": "不明",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type"
+      ],
+      "change_summary": "DeepSeekとAlibabaがAIモデルへのアクセスをより開放的にする動きがあると報じられた。",
+      "detail": "中国のAI企業DeepSeekとAlibabaが、自社開発のAIモデルへのアクセスをより開かれた形にする動きを見せていると報じられている。具体的にどのモデルがどのように公開・提供されるのか、対象範囲や時期など詳細は本文からは確認できない。両社の動きにより、AIモデル開発をめぐる競争が一段と激化しているという論調が示されている。",
+      "new_facts": [
+        "DeepSeekとAlibabaがAIモデルへのアクセスを開く動きを見せていると報じられた。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_684803d45ef9a547d349",
+      "story_id": "story_5ee016905ad8031a30",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "新ベンチマークツール「Optima」、AIモデルを自社データで評価可能に",
+      "source_published_at": "2026-08-16T06:03:20.000Z",
+      "published_at": "2026-08-16T06:03:20.000Z",
+      "fetched_at": "2026-08-16T09:43:44.490Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "新興のベンチマークツール「Optima」は、企業が自社データを使って各種AIモデルの性能を検証できる仕組みを提供するとしている。",
+      "source_name": "the-decoder.com",
+      "source_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPX3hFRHJtQVk2VHY0YnJwa3o4eDdZX1RYSGVfdHRUeDJ0eFM3R2J3OGxwYlR1Z19vQ2ZLSmloRDNQa2FqdkUxbGNYV1NMRGRhM3duR1Y1WEJmUE82UGVIWGJ1M3BRYi1venRTbERKcU9BLTlzdnB3WHVXMXBMYXRFVFgtZHFHYXVmWEVVdzdMSDFiUkVfMmVuM2YtZmJSVFBucElCTGpWLUx2b3Q2cTA0dUREd2MtTjk5Rk5IbHNR?oc=5",
+      "story_entities": [
+        "Optima",
+        "optima"
+      ],
+      "primary_entity": "Optima",
+      "story_subject": "Optima(AIベンチマークツール)",
+      "event_type": "release",
+      "event_stage": "other",
+      "event_scope": "不明",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "自社データを使ってAIモデルの性能を比較できる新しいベンチマーク手法が紹介された。",
+      "detail": "AIベンチマークの大きな課題は、汎用的なテストデータセットでの評価が実際の業務データでの性能を必ずしも反映しないことにある。Optimaと呼ばれる新しい仕組みは、ユーザーが自社の実データをそのままモデル評価に使える点を特徴としているとされる。開発元の詳細や公開時期、対応モデルの範囲など具体的な情報は本文からは確認できず、不明な点が多い。今後の提供状況については続報が必要。",
+      "new_facts": [
+        "Optimaは、ユーザーが自社データを使ってAIモデルを評価できるベンチマーク手法を提供するとされている。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_b1a5867dcc0eebe61518",
       "story_id": "story_bc37f6bd4cabf7aed0",
       "story_sequence": 1,
@@ -441,6 +2614,45 @@
       "new_facts": [
         "サムスンがClaude Codeで半導体検証を数週間から数日に短縮した",
         "導入には課題も残るとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_515b4e717fe50b3b3434",
+      "story_id": "story_c1d4c363cd2ed0577e",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "世界の古書店で謎の大量買い付け相次ぐ、AIデータ争奪戦との見方",
+      "source_published_at": "2026-08-15T15:55:00.000Z",
+      "published_at": "2026-08-15T15:55:00.000Z",
+      "fetched_at": "2026-08-16T09:43:40.169Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "世界各地の古書店で身元不明の大量買い付けが相次ぎ、生成AIの学習データ確保が背景にあるとの見方が出ている。",
+      "source_name": "finance.biggo.jp",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1JUkhaNUdiUkZUSW53YzVxazFPQ1RET01zczRka0otRlBmbTBBSDJ3MnEtOEt2Z3c3XzlKeGxhVC16UWJRZDIwbUZTT1JJRXRCeUN4cmZ0azVzN3JDTDRJbm5nRWN1dzExQ3VvYkZNTjBnYnhW?oc=5",
+      "story_entities": [
+        "古書店",
+        "AI学習データ",
+        "ai学習データ"
+      ],
+      "primary_entity": "不明",
+      "story_subject": "古書店での大量買い付けとAIデータ収集疑惑",
+      "event_type": "other",
+      "event_stage": "rumor",
+      "event_scope": "世界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "世界の古書店で相次ぐ大量買い付けの背景に、AI学習データ確保の思惑があるとの見方が出た。",
+      "detail": "世界各地の古書店で、身元不明の買い手による大量の書籍買い付けが相次いで報告されている。詳細な買い付け主体や目的は明らかになっていないが、生成AIの学習データを確保するための動きではないかとの見方が示されている。書籍という紙媒体のテキストデータが、AIモデルの訓練材料として改めて注目されている可能性があるが、記事の時点では買い付けの正体や規模など多くの点が不明のままとなっている。",
+      "new_facts": [
+        "世界各地の古書店で身元不明の大量買い付けが相次いでいる",
+        "背景に生成AIの学習データ確保があるとの見方が出ている"
       ],
       "event_date_precision": "unknown"
     },
@@ -12287,6 +14499,43 @@
       "new_facts": [
         "Metaが新たなAIエージェントを公開した",
         "価格設定で他社との競争を図っているとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_1a0d4df555b03c446f88",
+      "story_id": "story_d9e060189eaff24e48",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Replit CEO、『自律的に回る会社』づくりについて語る",
+      "source_published_at": "2026-08-06T07:00:00.000Z",
+      "published_at": "2026-08-06T07:00:00.000Z",
+      "fetched_at": "2026-08-16T09:43:32.546Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "コーディング支援AI企業Replitのトップが、AIエージェントを活用して自律的に運営できる会社づくりについての考えを語った。",
+      "source_name": "Platformer",
+      "source_url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPYlpramxLdEQ0RlRZSDdodl9DeklqZmZ2QnJPQnYxQmZLUXFZU1pvbUdpTTZpU1djQW5PdHB6TDBjeXo4a240OUFULVIwemFqRUZOcU4tbWZBUFVPR2EyUXEyZG9mVUk3bjFKVFlPWlNCQmpSV0tfVk1OMDBSZzRqNzF4WQ?oc=5",
+      "story_entities": [
+        "Replit",
+        "replit"
+      ],
+      "primary_entity": "Replit",
+      "story_subject": "ReplitのCEOによる自律型企業運営構想",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "不明",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Replitのトップが自律運営型の会社づくりについての考えを公に語った。",
+      "detail": "米メディアPlatformerのインタビューで、AIコーディング支援サービスを手がけるReplitの最高経営責任者(CEO)が、AIエージェントを使って会社運営の多くを自動化し、自律的に機能する組織を目指す構想について語ったと報じられている。どの業務をどこまで自動化しているかなど具体的な内容は本文からは確認できない。ReplitはAIを使ったソフトウェア開発支援サービスを提供する企業として知られている。",
+      "new_facts": [
+        "ReplitのCEOがAIエージェントを活用した自律的な会社運営についての考えをインタビューで語ったと報じられた。"
       ],
       "event_date_precision": "unknown"
     },
