@@ -2,6 +2,302 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_dfac7183394ef557229b",
+      "story_id": "story_98e7c4ed05dfae8fc4",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "動画生成AIのHiggsfield、評価額54億ドルで4億ドルを調達し売上でRunwayを上回る",
+      "source_published_at": "2026-08-18T01:48:21.000Z",
+      "published_at": "2026-08-18T01:48:21.000Z",
+      "fetched_at": "2026-08-18T01:51:44.454Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "動画生成AIスタートアップのHiggsfieldは評価額54億ドルでシリーズBとして4億ドルを調達し、売上高で競合Runwayを上回ったとされる。",
+      "source_name": "Wowtale",
+      "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1CdXEtTEVwXzluelN4WW5LeFBOVUplZU5CRUZsZ1lNRkgyMEFGckhPeDZZaXNFb2NBT216NFh4cTE3MTdJU0VKTnFObjN6UnAxQkFV?oc=5",
+      "story_entities": [
+        "Higgsfield",
+        "Runway",
+        "higgsfield",
+        "runway"
+      ],
+      "primary_entity": "Higgsfield",
+      "story_subject": "HiggsfieldのシリーズB資金調達",
+      "event_type": "funding",
+      "event_stage": "announced",
+      "event_scope": "全世界",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "調達額",
+          "value": "4億ドル",
+          "normalized_value": "400000000USD"
+        },
+        {
+          "type": "amount",
+          "scope": "評価額",
+          "value": "54億ドル",
+          "normalized_value": "5400000000USD"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Higgsfieldが評価額54億ドルで4億ドルを調達し、売上高でRunwayを上回ったことが新たに判明した。",
+      "detail": "動画生成AIを手がけるスタートアップHiggsfieldが、評価額54億ドルでシリーズBラウンドとして4億ドルを調達したことが明らかになった。あわせて、同社の売上高が競合の動画生成AI企業Runwayを上回ったとされる。生成AIによる動画制作市場は競争が激化しており、今回の大型調達と評価額の規模から、Higgsfieldが有力なプレイヤーとして急速に台頭していることがうかがえる。調達資金の具体的な使途や出資者の詳細については記事内で明らかにされていない。",
+      "new_facts": [
+        "Higgsfieldは評価額54億ドルでシリーズBとして4億ドルを調達した。",
+        "Higgsfieldの売上高が競合Runwayを上回ったとされる。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_8ba2625e719ccea3ce8e",
+      "story_id": "story_0f154f15ebfe34943f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6482926829268293,
+      "title": "Claudeの文章に埋め込まれた「見えない透かし」、Anthropicが仕組みを解説",
+      "source_published_at": "2026-08-18T01:05:17.000Z",
+      "published_at": "2026-08-18T01:05:17.000Z",
+      "fetched_at": "2026-08-18T01:51:11.833Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Anthropicは、Claudeが生成する文章に埋め込む「見えない透かし」について、隠し文字ではなく単語選びのパターンで識別する仕組みだと説明した。",
+      "source_name": "Ledge.ai",
+      "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBNU0ZBMlVNNmpJOFlOQ0IydmcwaU43Y1dZeUdpVi0zX2pPNGJqQU1DaDFXUXlsdWItbzBiLV9ZaXBmV3Jfby1Ocy1BcVVod3hvTVhPa0hiSU5ybXgteVJPYUVXWm5GTzA1UUZnU2l6ZVVuZw?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "anthropic",
+        "claude"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claudeの見えない透かし技術",
+      "event_type": "research",
+      "event_stage": "announced",
+      "event_scope": "Claude全般",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Claudeの透かし技術が、隠し文字ではなく単語選択パターンによって実現されていることが新たに説明された。",
+      "detail": "Anthropicは、AIチャットボットClaudeが生成するテキストにAI生成であることを識別するための「見えない透かし」技術の仕組みを説明した。従来想定されるような特殊な隠し文字を挿入する方式ではなく、文章中の単語の選び方に統計的なパターンを持たせることで、後から機械的に生成物かどうかを判定できるようにしているという。この手法は人間が読んでも文章の見た目や自然さを損なわない点が特徴とされる。Anthropicは今回、透かしの仕組み自体を公開し、AI生成コンテンツの識別技術に関する理解を広げる狙いがあるとみられる。",
+      "new_facts": [
+        "Anthropicは、Claudeの生成テキストに見えない透かしを埋め込む仕組みを説明した。",
+        "透かしは隠し文字ではなく、単語の選び方のパターンによって実現されている。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_ce71733ab2634020efb3",
+      "story_id": "story_b280a3c0db0a1cf0b0",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "DeepSeekとUnitreeが資本業務提携、AIの頭脳とロボットの身体を融合",
+      "source_published_at": "2026-08-18T00:30:06.000Z",
+      "published_at": "2026-08-18T00:30:06.000Z",
+      "fetched_at": "2026-08-18T01:51:31.866Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "中国AI企業DeepSeekとロボットメーカーUnitreeが資本業務提携し、フィジカルAI分野でAIの頭脳とロボットの身体を融合させる取り組みを進める。",
+      "source_name": "Yahoo!ニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE03U00tcHlwU245LWhKUG0xY3NDcWc5Z2pDNlk0a2puUnlCaVRteVpOZzdNYUhVVjNBaER5TDdvODhRTFJsaW5WcndBZm5RVXBITFpmNFVQYlNIUURURHl4bmZnTzdxWVVBd1ZZaWZjblJwRk4xdmJlLTBvMmNrQms?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "Unitree",
+        "フィジカルAI",
+        "deepseek",
+        "unitree"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeekとUnitreeの資本業務提携",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "中国・フィジカルAI分野",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "DeepSeekとUnitreeが資本業務提携を結び、AIとロボットを融合するフィジカルAI開発で協力することが明らかになった。",
+      "detail": "中国の生成AI企業DeepSeekとヒューマノイドロボットなどを手がけるUnitreeが資本業務提携を結んだと報じられた。DeepSeekが持つ大規模言語モデルなどの「頭脳」に相当するAI技術と、Unitreeが開発するロボットの「身体」を組み合わせることで、現実世界で自律的に動作する「フィジカルAI」の実現を目指すという。生成AIとロボティクスを融合させる動きは世界的に注目されており、中国大手同士の提携としてフィジカルAI分野の競争に影響を与える可能性がある。",
+      "new_facts": [
+        "DeepSeekとUnitreeがフィジカルAI分野で資本業務提携を結んだ"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_6bead2ea22e290b2a44b",
+      "story_id": "story_89233853cf04436bc7",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AI投資向け巨額社債が米国債と資金争奪、長期金利を押し上げ",
+      "source_published_at": "2026-08-17T22:37:00.000Z",
+      "published_at": "2026-08-17T22:37:00.000Z",
+      "fetched_at": "2026-08-18T01:51:46.773Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "AIデータセンター建設向けの巨額社債発行が米国債と投資資金を奪い合い、長期国債利回りを押し上げていると報じられた。",
+      "source_name": "TBS NEWS DIG",
+      "source_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBCN19LamF6UWlMQ1A4Uk1WUmNxOVNldkM0eUt6N1VPTjFzc2twblBPbFVpMktDNlhhNk5TSWtNQkpHMGFPNThYNEdrMzBCVThpYnRXUlFFWmJFRkl6NGhMMktzcmRWbVE?oc=5",
+      "story_entities": [
+        "AI投資",
+        "米国債",
+        "長期金利",
+        "ai投資"
+      ],
+      "primary_entity": "AI関連企業",
+      "story_subject": "AI投資向け社債と米国債の資金争奪",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "米国金融市場",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AI関連の巨額社債発行が米国債と資金を奪い合い、長期金利上昇の一因になっていると報じられた。",
+      "detail": "AI関連投資を賄うための巨額な社債発行が急増し、米国政府が発行する国債と投資マネーを奪い合う構図が生じていると報じられた。AI企業やデータセンター事業者が資金調達のために発行する社債が市場に大量に供給されることで、投資家の資金が分散し、米長期国債の利回りが押し上げられているという。AIブームを支えるインフラ投資の規模が金融市場全体に影響を及ぼし始めている実態が伝えられている。",
+      "new_facts": [
+        "AI投資向けの巨額社債発行が米国債と投資マネーを奪い合っている",
+        "この資金争奪が米長期国債利回りを押し上げているとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_f5219e6af29501a99fb9",
+      "story_id": "story_e6d6b21e301ff829cf",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.62,
+      "title": "Google Meetの「Geminiによるメモ作成」機能、対面の会議でも利用可能に",
+      "source_published_at": "2026-08-17T21:45:00.000Z",
+      "published_at": "2026-08-17T21:45:00.000Z",
+      "fetched_at": "2026-08-18T01:51:13.061Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "Googleは、Google Meetの「Geminiを使用したメモの作成」機能を、オンライン会議に加えて対面のリアルな会議でも利用できるようにした。",
+      "source_name": "窓の杜",
+      "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5oR1BZc3ctSmYwU0g2TE51enJlNUQwSGlON2lEcE5wbF80TFA5dkdualc4SG0yeTVvR1ZxZXhCMkhsbWs5Q25lWWNMeEdPVkVQQ08wcl9jeURIVUxWVkxrcDZ6ZWJnZ0Ux?oc=5",
+      "story_entities": [
+        "Google Meet",
+        "Gemini",
+        "googlemeet",
+        "gemini",
+        "google-gemini"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "Google Meetの「Geminiを使用したメモの作成」機能の対面会議対応",
+      "event_type": "release",
+      "event_stage": "expanded",
+      "event_scope": "Google Meet全体",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Geminiによる会議メモ作成機能が、オンライン会議限定から対面会議にも利用対象を広げた。",
+      "detail": "Google Meetに搭載されているAI議事録機能「Geminiを使用したメモの作成」が、これまでのオンライン会議に加えて、対面で行うリアルな会議でも利用できるようになったことが明らかになった。この機能はGeminiが会議中の発言内容を自動で記録・要約するもので、従来はビデオ通話を前提としていたが、今回の対応拡大により、会議室などで直接顔を合わせて行う打ち合わせでも自動メモ作成が使えるようになる。対象プランや提供開始の詳細な日時については記事内で明示されていない。",
+      "new_facts": [
+        "Google Meetの「Geminiを使用したメモの作成」機能が、対面のリアル会議でも利用できるようになった。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_88a1395bde1dec94d50b",
+      "story_id": "story_9849be4cb44015aba4",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Google史上最高額の買収劇と評されるDeepMind獲得からGeminiへの15年史を振り返る長文コラム",
+      "source_published_at": "2026-08-17T19:54:27.000Z",
+      "published_at": "2026-08-17T19:54:27.000Z",
+      "fetched_at": "2026-08-18T01:51:13.061Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "GoogleによるDeepMind買収からGemini開発、ノーベル賞受賞に至る15年間の歩みを振り返る長文ブログ記事が公開された。",
+      "source_name": "オルタナティブ・ブログ",
+      "source_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1fNEROQmlKWGhsN3BCTHlTM0hsYVJyZGN1OVY5cldSTjZJSUVKdjYxbGtLZzl2X0Rac2JkNjBpN2lxT2pOQmlBV2J2ZWZSQ0ZqbDd1VmFzLVVHaVByeWV0TkdPYnNUTW95Q0lpZURON0NCdnJYRk0xOXlVRFZVUQ?oc=5",
+      "story_entities": [
+        "Google",
+        "DeepMind",
+        "Gemini",
+        "google",
+        "deepmind"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "DeepMind買収からGeminiまでの15年史コラム",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "Google・DeepMind",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "DeepMind買収からGeminiまでの15年間の経緯を整理した長文の産業史コラムが公開された。",
+      "detail": "ブログ「オルタナティブ・ブログ」に、GoogleがDeepMindを買収した経緯からGemini開発、関係者のノーベル賞受賞までを振り返る1万8000字に及ぶ長文コラムが掲載された。記事はこの買収を「Google史上最高の5億ドル」と評し、AI研究組織DeepMindがGoogle傘下でどのように発展し、最終的に対話型AIモデルGeminiや研究成果としてのノーベル賞につながったかを、経営者・産業史の視点から時系列でまとめている。具体的な新事実というよりも、既知の経緯を整理した解説記事となっている。",
+      "new_facts": [
+        "GoogleのDeepMind買収からGemini開発、ノーベル賞受賞に至る経緯を振り返る長文コラムが公開された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_0813f8a7cd65ef888bfa",
+      "story_id": "story_6f43a2417fad0ff7d9",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6257142857142857,
+      "title": "ChatGPTの企業向けワークスペースに偽従業員を仕込める脆弱性が発覚",
+      "source_published_at": "2026-08-17T18:51:00.000Z",
+      "published_at": "2026-08-17T18:51:00.000Z",
+      "fetched_at": "2026-08-18T01:51:10.108Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "ワンクリックで企業のChatGPTワークスペースに自律型の偽従業員アカウントを仕込める脆弱性が報告された。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE81MVh2Y2FnbkRpWG9LazFQTEtDckhjZUpRVmkxRkY5OWJqSFZyR3R2TER0eVEyYmlpSXJZdVl6aXVhQ0lkUmJROUlEMjlPSFZYQko1S2NpMzVrR0hocDZuR2tWUFBmUDlRaHNuWTY0ZmJNVVE0?oc=5",
+      "story_entities": [
+        "ChatGPT",
+        "OpenAI",
+        "企業ワークスペース",
+        "chatgpt",
+        "openai"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT企業ワークスペースの脆弱性",
+      "event_type": "security",
+      "event_stage": "investigating",
+      "event_scope": "企業向けChatGPTワークスペース",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "ChatGPTの企業向けワークスペースを狙う新たな脆弱性の存在が報告された。",
+      "detail": "企業向けChatGPTワークスペースを対象に、ユーザーが1回クリックするだけで自律的に動作する偽の「従業員」アカウントを仕込める脆弱性が発覚したと報じられた。攻撃者はこの手口を使って企業内部のワークスペースに不正なエージェントを潜り込ませ、正規の従業員になりすまして業務データやワークフローに関与できる恐れがあるという。生成AIを業務に組み込む企業が増える中、こうしたエージェント機能の悪用リスクが具体的に指摘された形で、対応状況や修正の有無は記事からは確認できない。",
+      "new_facts": [
+        "ワンクリックで企業のChatGPTワークスペースに自律型の偽従業員を仕込める脆弱性が報告された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_6a139e344cac8ca06aa7",
       "story_id": "story_272423e9f496a14173",
       "story_sequence": 1,
@@ -263,6 +559,50 @@
       "new_facts": [
         "OpenAI幹部のブラッド・ライトキャップ氏が退社した",
         "同氏は退社後に新プロジェクトを立ち上げる意向とされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_910da0adf0a2910c0111_rev_bc041f8a1d07",
+      "story_id": "story_6065f2cdad69c9d854",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.96,
+      "title": "OpenAI幹部ブラッド・ライトキャップ氏が退社、新プロジェクト立ち上げへ",
+      "source_published_at": "2026-08-17T07:45:26.000Z",
+      "published_at": "2026-08-17T07:45:26.000Z",
+      "fetched_at": "2026-08-18T01:51:10.108Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIの幹部ブラッド・ライトキャップ氏が退社し、新たなプロジェクトを立ち上げる予定であることが明らかになった。",
+      "source_name": "Межа. Новини України.",
+      "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1WSEtMdHpfWVp1cHVJODdFMW4xV0xFMWxvWVhjSU9MN1MxRHBNSVJqS3h0RHFjakY0WXNBR2xaWm5qaWR1Yl92ZTFZZng1RFhPbV90T0I4VW55NkIxSFFzaU03RTBtODI1OWc?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "ブラッド・ライトキャップ",
+        "openai",
+        "ブラッドライトキャップ"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "ブラッド・ライトキャップ氏の退社と新プロジェクト",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "OpenAI社内",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "similar_title",
+        "same_url_content_changed"
+      ],
+      "change_summary": "OpenAIの幹部が退社し、新プロジェクトを立ち上げる計画があることが新たに判明した。",
+      "detail": "OpenAIで幹部を務めていたブラッド・ライトキャップ氏が退社することが明らかになった。同氏は退社後、新たなプロジェクトを立ち上げる意向とされるが、具体的な退社時期や新プロジェクトの内容、対象分野などについては記事中で明らかにされていない。OpenAIでは近年幹部の入れ替わりが続いており、今回の退社も同社の経営体制の変化として注目される動きとなっている。",
+      "new_facts": [
+        "OpenAIの幹部ブラッド・ライトキャップ氏が退社することが明らかになった。",
+        "退社後は新たなプロジェクトを立ち上げる予定とされる。"
       ],
       "event_date_precision": "unknown"
     },
