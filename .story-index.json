@@ -399,7 +399,7 @@
       "story_id": "story_01be91cdd4b3d0dfd4",
       "story_sequence": 1,
       "relation_type": "new",
-      "relation_confidence": 0.66,
+      "relation_confidence": 0.8430769230769232,
       "title": "クラーケン親会社ペイワード、脆弱性検出にAnthropicのAIを導入",
       "source_published_at": "2026-08-18T03:05:00.000Z",
       "published_at": "2026-08-18T03:05:00.000Z",
@@ -424,9 +424,12 @@
       "structured_complete": true,
       "dedupe_decision": "uncertain",
       "dedupe_reasons": [
-        "shared_entity",
-        "same_subject",
-        "same_event_type"
+        "same_url",
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type",
+        "similar_title",
+        "same_url_content_changed"
       ],
       "change_summary": "ペイワードがソフトウェアの脆弱性検出にAnthropicのAIを新たに導入した。",
       "detail": "暗号資産取引所クラーケンの親会社であるペイワードが、自社ソフトウェアのセキュリティ強化を目的に、Anthropicが開発したAI技術を脆弱性検出プロセスに導入したことが明らかになった。脆弱性検出とは、システムやコードに潜む攻撃の糸口となる欠陥を発見する作業を指し、金融・暗号資産分野ではセキュリティ確保が事業継続の要となる。今回の導入により、AIを活用した自動的な脆弱性の洗い出しが進められるとみられるが、具体的な検出件数や導入規模などの詳細は記事からは確認できない。",
