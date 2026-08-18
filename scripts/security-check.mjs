@@ -132,8 +132,22 @@ if (!/rpc\('operator_metrics'\)/.test(html) || !/access_source==='operator_grant
 if (/\.operator-metrics\{display:none\}/.test(html)) {
   findings.push("index.html: operator metrics are hidden on a supported viewport");
 }
+if (!/id="operatorMetrics" class="operator-metrics" hidden/.test(html) ||
+    !/id="mobileOperatorMetrics" class="operator-metrics" hidden/.test(html) ||
+    /function renderOperatorMetrics\(\)[\s\S]{0,900}\.remove\(\)/.test(html)) {
+  findings.push("index.html: stable desktop and mobile operator metric mounts are missing");
+}
 if (!/setInterval\(refreshOperatorMetrics,60000\)/.test(html)) {
   findings.push("index.html: operator metrics are not refreshed persistently");
+}
+if (!/setInterval\(refreshMembershipAccess,90000\)/.test(html) ||
+    !/visibilitychange'[\s\S]{0,180}refreshMembershipAccess\(\)/.test(html) ||
+    !/window\.addEventListener\('focus',[\s\S]{0,120}refreshMembershipAccess\(\)/.test(html)) {
+  findings.push("index.html: mobile operator entitlement is not reverified after resume");
+}
+if (!/const preserveOperator=!verified&&previous\?\.access_source==='operator_grant'/.test(html) ||
+    !/if\(verified&&memberState\.user\)cacheMembershipForUser/.test(html)) {
+  findings.push("index.html: unverified membership fallback can erase operator access");
 }
 if (!/operatorMetricsStatus=memberState\.operatorMetrics\?'stale':'error'/.test(html) ||
     !/再取得待ち・最終/.test(html) ||

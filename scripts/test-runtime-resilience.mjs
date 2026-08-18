@@ -34,8 +34,22 @@ for(const [needle,label] of [
   ["const previousSubscription=sameUser?memberState.subscription:cachedMembershipForUser(nextUserId)","same-account operator grant survives auth refresh"],
   ["const previousMetrics=sameUser?memberState.operatorMetrics:null","same-account verified counts survive auth refresh"],
   ["await Promise.allSettled([","membership, cloud sync, and reviews are failure-isolated"],
-  ["cacheMembershipForUser(memberState.user.id,membership.value)","verified membership is cached per authenticated account"]
+  ["applyResolvedMembership(membership.value,previousSubscription)","membership result is applied through the verified entitlement guard"]
 ])expect(memberRefresh.includes(needle),label);
+
+const membershipGuard=section("const membershipResolution=","function cachedMembershipForUser").replace(/function cachedMembershipForUser[\s\S]*$/,'');
+expect(Boolean(membershipGuard),"verified membership guard exists");
+if(membershipGuard){
+  const guardState={user:{id:"operator"},subscription:{plan:"premium",status:"active",access_source:"operator_grant"}};
+  const cached=[];
+  const buildGuard=Function("memberState","cacheMembershipForUser",`${membershipGuard};return {membershipResolution,applyResolvedMembership};`);
+  const guard=buildGuard(guardState,(userId,membership)=>cached.push({userId,membership}));
+  guard.applyResolvedMembership(guard.membershipResolution({plan:"free",status:"inactive",access_source:"account"},false),guardState.subscription);
+  expect(guardState.subscription.access_source==="operator_grant","an unverified mobile fallback cannot remove operator access");
+  guard.applyResolvedMembership(guard.membershipResolution({plan:"free",status:"inactive",access_source:"account"},true),guardState.subscription);
+  expect(guardState.subscription.access_source==="account","a server-verified revocation still removes operator access");
+  expect(cached.length===1,"only a server-verified membership is cached");
+}
 
 const metricsRefresh=section("async function refreshOperatorMetrics\\(\\)\\{","function startOperatorMetricsRefresh");
 for(const [needle,label] of [
@@ -60,9 +74,15 @@ if(metricsRefresh){
 for(const [needle,label] of [
   ["data-operator-visitors","desktop and mobile operator badge keeps the visitor count"],
   ["data-operator-users","desktop and mobile operator badge keeps the registration count"],
-  ["id=\"mobileOperatorMetricsSlot\"","mobile has a dedicated operator metrics mount point"],
-  ["mobileBadge.id='mobileOperatorMetrics'","mobile receives its own rendered operator badge"],
+  ["id=\"operatorMetrics\" class=\"operator-metrics\" hidden","desktop operator badge has a permanent mount point"],
+  ["id=\"mobileOperatorMetricsSlot\" class=\"mobile-operator-metrics-slot\" hidden","mobile has a permanent operator metrics mount point"],
+  ["id=\"mobileOperatorMetrics\" class=\"operator-metrics\" hidden","mobile badge cannot be deleted by a route redraw"],
   [".mobile-operator-metrics-slot .operator-metrics","mobile badge has an explicit visible layout"],
+  [".mobile-operator-metrics-slot[hidden]{display:none!important}","mobile mount is hidden safely for ordinary accounts"],
+  ["if(!isOperator){desktopBadge.replaceChildren();mobileBadge.replaceChildren();return;}","ordinary accounts cannot retain operator counts in the DOM"],
+  ["membershipAccessRefreshTimer=window.setInterval(refreshMembershipAccess,90000)","account entitlement is rechecked while the app remains open"],
+  ["window.addEventListener('focus',()=>{if(memberState.user)refreshMembershipAccess();})","phone resume rechecks operator entitlement"],
+  ["effectivePlanKey(),memberState.subscription?.access_source||''","operator entitlement changes invalidate the account render signature"],
   ["data-operator-account-visitors","account page keeps the visitor count"],
   ["data-operator-account-users","account page keeps the registration count"],
   [".operator-metrics-status.is-stale","stale values are visibly distinguished from live values"],
@@ -73,6 +93,9 @@ for(const [needle,label] of [
   ["markUniqueVisitorRegistered();","successful visitor registration is persisted"],
   ["catch(()=>{setCloudSyncStatus('error');return false;})","cloud polling cannot reject without a handler"]
 ])expect(index.includes(needle),label);
+
+const metricRenderer=section("function renderOperatorMetrics\\(\\)\\{","function stopOperatorMetricsRefresh");
+expect(!metricRenderer.includes(".remove()"),"operator metric mount points are never deleted during redraws");
 
 const publicVisitorTracker=fs.readFileSync(path.join(root,"assets","visitor-tracker.js"),"utf8");
 for(const [needle,label] of [

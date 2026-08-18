@@ -258,6 +258,7 @@
   .operator-metrics-status.is-live{color:#71e5bf}.operator-metrics-status.is-live::before{background:#45e0aa;box-shadow:0 0 8px rgba(69,224,170,.65)}
   .operator-metrics-status.is-stale{color:#ffd27a}.operator-metrics-status.is-stale::before{background:#f0b94c;box-shadow:0 0 8px rgba(240,185,76,.65)}
   .operator-metrics-status.is-error{color:#ff9aab}.operator-metrics-status.is-error::before{background:#ff617c;box-shadow:0 0 8px rgba(255,97,124,.65)}
+  .operator-metrics[hidden],.mobile-operator-metrics-slot[hidden]{display:none!important}
   .operator-metric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
   .operator-metric-card{padding:14px 16px;border:1px solid rgba(69,216,229,.24);border-radius:13px;background:rgba(5,25,43,.55)}
   .operator-metric-card span{display:block;color:var(--text-mute);font-size:11px;font-weight:700;margin-bottom:4px}
@@ -2214,11 +2215,12 @@
         <div class="page-sub" id="pageSub"></div>
       </div>
       <span id="autoStatus" class="auto-status" style="display:none"></span>
+      <span id="operatorMetrics" class="operator-metrics" hidden aria-live="polite"></span>
       <div class="spacer"></div>
       <button class="mobile-media-shortcut" onclick="openOfficialMedia()" aria-label="KIZASHI公式SNSを表示">公式SNS</button>
       <div id="topActions"></div>
     </header>
-    <div id="mobileOperatorMetricsSlot" class="mobile-operator-metrics-slot" aria-live="polite"></div>
+    <div id="mobileOperatorMetricsSlot" class="mobile-operator-metrics-slot" hidden aria-live="polite"><span id="mobileOperatorMetrics" class="operator-metrics" hidden></span></div>
     <main class="content" id="view"></main>
   </div>
 </div>
@@ -2384,6 +2386,8 @@ const memberState={ready:false,user:null,subscription:null,operatorMetrics:null,
 let memberRefreshQueue=Promise.resolve();
 let operatorMetricsRefreshTimer=null;
 let operatorMetricsRefreshInFlight=null;
+let membershipAccessRefreshTimer=null;
+let membershipAccessRefreshInFlight=null;
 let memberCloudSyncTimer=null;
 let memberCloudSyncInFlight=null;
 let lastCloudStateUpdatedAt='';
@@ -2430,6 +2434,16 @@ function hasStripeContract(sub=memberState.subscription){
 const MEMBERSHIP_CACHE_KEY='ai_radar_verified_membership_v1';
 const defaultMembership=()=>({plan:'free',status:'inactive',current_period_end:null,access_source:'account',has_stripe_subscription:false});
 const waitMs=ms=>new Promise(resolve=>window.setTimeout(resolve,ms));
+const membershipResolution=(membership,verified)=>({...membership,__membership_verified:verified===true});
+function applyResolvedMembership(candidate,previous=memberState.subscription){
+  if(!candidate||typeof candidate!=='object')return {verified:false,preserved:false};
+  const verified=candidate.__membership_verified===true;
+  const next={...candidate};delete next.__membership_verified;
+  const preserveOperator=!verified&&previous?.access_source==='operator_grant'&&next.access_source!=='operator_grant';
+  if(!preserveOperator)memberState.subscription=next;
+  if(verified&&memberState.user)cacheMembershipForUser(memberState.user.id,next);
+  return {verified,preserved:preserveOperator};
+}
 function cachedMembershipForUser(userId){
   if(!userId)return null;
   try{
@@ -2449,25 +2463,25 @@ function cacheMembershipForUser(userId,membership){
 }
 async function loadMembership(){
   const safeFallback=memberState.subscription||cachedMembershipForUser(memberState.user?.id)||defaultMembership();
-  if(!memberClient||!memberState.user)return safeFallback;
+  if(!memberClient||!memberState.user)return membershipResolution(safeFallback,false);
   for(const delay of [0,500,1400]){
     if(delay)await waitMs(delay);
     try{
       const result=await memberClient.rpc('get_my_membership');
-      if(!result.error&&result.data)return result.data;
+      if(!result.error&&result.data)return membershipResolution(result.data,true);
     }catch(_error){}
   }
   // subscriptions alone cannot represent an operator grant. Keep a previously
   // verified operator grant until get_my_membership succeeds again.
-  if(safeFallback.access_source==='operator_grant')return safeFallback;
+  if(safeFallback.access_source==='operator_grant')return membershipResolution(safeFallback,false);
   // Keep existing members usable while a database migration is being deployed.
   try{
     const fallback=await memberClient.from('subscriptions').select('plan,status,current_period_end,stripe_customer_id,stripe_subscription_id').maybeSingle();
-    if(fallback.error)return safeFallback;
+    if(fallback.error)return membershipResolution(safeFallback,false);
     const sub=fallback.data||safeFallback;
     const hasStripe=!!(sub.stripe_customer_id&&sub.stripe_subscription_id);
-    return {...sub,access_source:hasStripe?'stripe':'account',has_stripe_subscription:hasStripe,stripe_plan:hasStripe?sub.plan:null,stripe_status:hasStripe?sub.status:null,stripe_current_period_end:hasStripe?sub.current_period_end:null};
-  }catch(_error){return safeFallback;}
+    return membershipResolution({...sub,access_source:hasStripe?'stripe':'account',has_stripe_subscription:hasStripe,stripe_plan:hasStripe?sub.plan:null,stripe_status:hasStripe?sub.status:null,stripe_current_period_end:hasStripe?sub.current_period_end:null},false);
+  }catch(_error){return membershipResolution(safeFallback,false);}
 }
 function validOperatorMetrics(data){
   const registeredUsers=Number(data?.registered_users);
@@ -2512,21 +2526,20 @@ function updateOperatorMetricsBadge(badge,metrics,status,statusLabel){
   badgeStatus.textContent=status==='live'?operatorMetricsTimeLabel(memberState.operatorMetricsUpdatedAt):status==='stale'?'再取得待ち':status==='error'?'エラー':'確認中';
 }
 function renderOperatorMetrics(){
-  const desktopExisting=document.getElementById('operatorMetrics');
-  const mobileExisting=document.getElementById('mobileOperatorMetrics');
+  const desktopBadge=document.getElementById('operatorMetrics');
+  const mobileBadge=document.getElementById('mobileOperatorMetrics');
+  const mobileSlot=document.getElementById('mobileOperatorMetricsSlot');
   const metrics=memberState.operatorMetrics;
   const isOperator=memberState.subscription?.access_source==='operator_grant';
-  if(!isOperator){desktopExisting?.remove();mobileExisting?.remove();return;}
+  if(!desktopBadge||!mobileBadge||!mobileSlot)return;
+  desktopBadge.hidden=!isOperator;
+  mobileBadge.hidden=!isOperator;
+  mobileSlot.hidden=!isOperator;
+  if(!isOperator){desktopBadge.replaceChildren();mobileBadge.replaceChildren();return;}
   const status=memberState.operatorMetricsStatus;
   const statusLabel=operatorMetricsStatusLabel();
-  const desktopBadge=desktopExisting||document.createElement('span');
-  desktopBadge.id='operatorMetrics';
   updateOperatorMetricsBadge(desktopBadge,metrics,status,statusLabel);
-  if(!desktopExisting)document.querySelector('.topbar .spacer')?.before(desktopBadge);
-  const mobileBadge=mobileExisting||document.createElement('span');
-  mobileBadge.id='mobileOperatorMetrics';
   updateOperatorMetricsBadge(mobileBadge,metrics,status,statusLabel);
-  if(!mobileExisting)document.getElementById('mobileOperatorMetricsSlot')?.append(mobileBadge);
   document.querySelectorAll('[data-operator-account-visitors]').forEach(el=>{el.textContent=metrics?`${metrics.uniqueVisitors.toLocaleString('ja-JP')}人`:'—';});
   document.querySelectorAll('[data-operator-account-users]').forEach(el=>{el.textContent=metrics?`${metrics.registeredUsers.toLocaleString('ja-JP')}人`:'—';});
   document.querySelectorAll('[data-funnel-key]').forEach(el=>{const key=el.dataset.funnelKey;el.textContent=metrics?.funnel7d?metrics.funnel7d[key].toLocaleString('ja-JP'):'—';});
@@ -2584,12 +2597,37 @@ function startOperatorMetricsRefresh(){
     operatorMetricsRefreshTimer=window.setInterval(refreshOperatorMetrics,60000);
   }
 }
+function stopMembershipAccessRefresh(){
+  if(membershipAccessRefreshTimer!==null){window.clearInterval(membershipAccessRefreshTimer);membershipAccessRefreshTimer=null;}
+}
+async function refreshMembershipAccess(){
+  if(!memberClient||!memberState.user)return false;
+  if(membershipAccessRefreshInFlight)return membershipAccessRefreshInFlight;
+  const userId=memberState.user.id;
+  membershipAccessRefreshInFlight=(async()=>{
+    const previous=memberState.subscription;
+    const candidate=await loadMembership();
+    if(memberState.user?.id!==userId)return false;
+    const resolution=applyResolvedMembership(candidate,previous);
+    const isOperator=memberState.subscription?.access_source==='operator_grant';
+    if(previous?.access_source!==memberState.subscription?.access_source)startOperatorMetricsRefresh();
+    if(isOperator)await refreshOperatorMetrics();
+    else renderOperatorMetrics();
+    renderIfChanged();
+    return resolution.verified;
+  })().catch(()=>false).finally(()=>{membershipAccessRefreshInFlight=null;});
+  return membershipAccessRefreshInFlight;
+}
+function startMembershipAccessRefresh(){
+  stopMembershipAccessRefresh();
+  if(memberState.user&&memberClient)membershipAccessRefreshTimer=window.setInterval(refreshMembershipAccess,90000);
+}
 document.addEventListener('visibilitychange',()=>{
   if(document.visibilityState!=='visible')return;
-  if(memberState.subscription?.access_source==='operator_grant')refreshOperatorMetrics();
+  if(memberState.user)refreshMembershipAccess();
   if(memberState.user)syncMemberAppStateFromCloud();
 });
-window.addEventListener('focus',()=>{if(memberState.subscription?.access_source==='operator_grant')refreshOperatorMetrics();});
+window.addEventListener('focus',()=>{if(memberState.user)refreshMembershipAccess();});
 function authErrorMessage(error){
   const msg=String(error?.message||error||'');
   if(/invalid login credentials/i.test(msg))return 'メールアドレスまたはパスワードが正しくありません。';
@@ -2627,10 +2665,7 @@ async function refreshMemberState(session){
       loadMemberAppState(),
       loadReviewStatus()
     ]);
-    if(membership.status==='fulfilled'){
-      memberState.subscription=membership.value;
-      cacheMembershipForUser(memberState.user.id,membership.value);
-    }
+    if(membership.status==='fulfilled')applyResolvedMembership(membership.value,previousSubscription);
     await refreshOperatorMetrics();
   }else if(memberClient){
     await Promise.allSettled([loadReviewStatus()]);
@@ -2639,6 +2674,7 @@ async function refreshMemberState(session){
   // 次回起動時の初期表示に使うため、確定したプランを保存する。
   try{localStorage.setItem('ai_radar_last_plan',effectivePlanKey());}catch(_e){}
   startOperatorMetricsRefresh();
+  startMembershipAccessRefresh();
   startMemberCloudSync();
   renderOperatorMetrics();
   // 表示内容が変わらない場合は再描画せず、起動時に画面が切り替わって見えるのを防ぐ。
@@ -2817,12 +2853,13 @@ async function confirmSubscriptionAfterPayment(){
   for(const wait of waits){
     if(wait)await new Promise(resolve=>window.setTimeout(resolve,wait));
     const data=await loadMembership();
-    if(data&&['standard','premium'].includes(data.plan)&&['active','trialing'].includes(data.status)){
-      memberState.subscription=data;
-      trackAppEvent('payment_confirmed',{route:'pricing',plan:data.plan});
+    applyResolvedMembership(data,memberState.subscription);
+    const activeMembership=memberState.subscription;
+    if(activeMembership&&['standard','premium'].includes(activeMembership.plan)&&['active','trialing'].includes(activeMembership.status)){
+      trackAppEvent('payment_confirmed',{route:'pricing',plan:activeMembership.plan});
       renderNav();
       go('tools');
-      toast(`${memberPlanLabel(data.plan)}が有効になりました。最初に情報テーマを設定しましょう`,'ok');
+      toast(`${memberPlanLabel(activeMembership.plan)}が有効になりました。最初に情報テーマを設定しましょう`,'ok');
       return true;
     }
   }
@@ -3279,7 +3316,7 @@ window.addEventListener('online',()=>{
   if(!visitorRegistrationComplete)visitorRegistrationAttempts=0;
   registerUniqueVisitor();
   flushAppEvents();
-  if(memberState.subscription?.access_source==='operator_grant')refreshOperatorMetrics();
+  if(memberState.user)refreshMembershipAccess();
 });
 function uid(){ return 'id-'+Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4); }
 function nowISO(){ return new Date().toISOString(); }
@@ -4025,7 +4062,7 @@ function renderSignature(){
     const planUpdates=getPlanUpdates();
     return [
       route.name,route.param||'',
-      effectivePlanKey(),memberState.user?.id||'',memberState.ready?1:0,
+      effectivePlanKey(),memberState.subscription?.access_source||'',memberState.user?.id||'',memberState.ready?1:0,
       planUpdates.length,
       planUpdates.filter(u=>u.status==='unread').length,
       planUpdates.filter(u=>u.status==='try_later').length
