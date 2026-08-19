@@ -1,31 +1,13 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-16T17:48:57+09:00",
+  "generated_at": "2026-08-19T17:37:00+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
-    "published_confirmed": 7,
+    "published_confirmed": 10,
     "scheduled": 0,
-    "attention": 3
-  },
-  "reservation_horizon": {
-    "horizon_days": 2,
-    "state": "DANGER",
-    "days": [
-      {
-        "date": "2026-08-16",
-        "state": "MISSING"
-      },
-      {
-        "date": "2026-08-17",
-        "state": "MISSING"
-      },
-      {
-        "date": "2026-08-18",
-        "state": "MISSING"
-      }
-    ]
+    "attention": 2
   },
   "channels": [
     {
@@ -33,15 +15,14 @@
       "label": "Instagram",
       "account": "@kizashi_jp",
       "url": "https://www.instagram.com/kizashi_jp/",
-      "state": "HEALTHY",
-      "reservation_state": "MISSING",
-      "last_verified_at": "2026-08-16T12:13:09+09:00",
+      "state": "ATTENTION",
+      "last_verified_at": "2026-08-19T17:37:00+09:00",
       "latest_published": {
         "title": "DeepSeek V4-Pro 修正版",
         "url": "https://www.instagram.com/p/DcEMK9JGctI/"
       },
       "next_scheduled": null,
-      "note": "修正版2件の公開証跡あり。8月16日の新規投稿は0件。"
+      "note": "8枚カルーセル、記事型キャプション、代替テキスト、SEO、3周ゲート、所有者承認、公開画像URLまで完了。正しいMeta開発者アカウントによるInstagram Graph API再認証だけが未完了。"
     },
     {
       "id": "x",
@@ -49,29 +30,27 @@
       "account": "@KIZASHI_jp",
       "url": "https://x.com/KIZASHI_jp",
       "state": "HEALTHY",
-      "reservation_state": "MISSING",
-      "last_verified_at": "2026-08-16T12:13:09+09:00",
+      "last_verified_at": "2026-08-19T17:36:20.849188+09:00",
       "latest_published": {
-        "title": "DeepSeek V4-Pro",
-        "url": "https://x.com/KIZASHI_jp/status/2088479199631933754"
+        "title": "AIに任せる前の3つの境界線｜4投稿スレッド",
+        "url": "https://x.com/KIZASHI_jp/status/2089994853954547871"
       },
       "next_scheduled": null,
-      "note": "公開URLを確認済み。次回予約はありません。"
+      "note": "公式X APIで4投稿スレッドを公開済み。外部ID4件をreceiptで確認。API費用実績0.615米ドル。"
     },
     {
       "id": "note",
       "label": "note",
       "account": "KIZASHI / natty_swan9072",
       "url": "https://note.com/natty_swan9072",
-      "state": "ATTENTION",
-      "reservation_state": "MISSING",
-      "last_verified_at": "2026-08-16T14:02:44+09:00",
+      "state": "HEALTHY",
+      "last_verified_at": "2026-08-19T17:24:00+09:00",
       "latest_published": {
-        "title": "DeepSeek V4-Pro",
-        "url": "https://note.com/natty_swan9072/n/nd076d4ef02df"
+        "title": "AIに任せる前に決める「3つの境界線」",
+        "url": "https://note.com/natty_swan9072/n/n8fe38d0f5cd8"
       },
       "next_scheduled": null,
-      "note": "プロフィールのInstagram・YouTubeリンクが保存後に消えるため要確認。"
+      "note": "100円有料noteとして公開済み。価格・有料境界・横長表紙・記事内画像4点を公開画面で確認。"
     },
     {
       "id": "youtube",
@@ -79,21 +58,44 @@
       "account": "KIZASHI / @kizashi_jp",
       "url": "https://www.youtube.com/@kizashi_jp",
       "state": "ATTENTION",
-      "reservation_state": "MISSING",
       "last_verified_at": "2026-08-16T12:13:09+09:00",
       "latest_published": {
         "title": "AIにどこまで実行させる？権限・業務・費用を3ニュースで判断",
         "url": "https://www.youtube.com/watch?v=QzJeOSPNR1s"
       },
       "next_scheduled": null,
-      "note": "8月15日19時予定Shortsは公開後の確認receiptがないため、公開済み件数には未算入。"
+      "note": "月・水・金の本編枠。8月19日分は台本1,373字と固有画像15枚まで完成。Aivis Cloud有料TTSは概算60.42円、再試行込み上限100円の明示承認待ち。"
+    },
+    {
+      "id": "radar",
+      "label": "AI進化レーダー",
+      "account": "KIZASHI公式アプリ",
+      "url": "https://reiki-ai-apps.github.io/AI-/",
+      "state": "HEALTHY",
+      "last_verified_at": "2026-08-16T12:13:09+09:00",
+      "latest_published": {
+        "title": "本番反映済み（記事60件）",
+        "url": "https://reiki-ai-apps.github.io/AI-/"
+      },
+      "next_scheduled": null,
+      "note": "本番commit 0ec2c4394f6e8e87470eedea3831a7db6dbbe9f1。未読57件は別表示。"
     }
   ],
   "blockers": [
     {
-      "id": "news-primary-source-quorum",
+      "id": "current-platform-authentication-required",
       "severity": "ATTENTION",
-      "message": "次回AIニュースは直近72時間の一次情報が3件そろわず制作保留"
+      "message": "noteとXは公開済み。Instagramは成果物・品質ゲート・承認まで完了しており、正しいMeta開発者アカウントでのInstagram Graph API再認証だけが必要。"
+    },
+    {
+      "id": "youtube-paid-tts-approval-required",
+      "severity": "ATTENTION",
+      "message": "8月19日YouTube本編は台本1,373字と固有画像15枚まで完成。Aivis Cloud有料TTS（概算60.42円、再試行込み上限100円）の明示承認待ち。承認後に音声・字幕・本編・サムネイル3案を生成する。"
+    },
+    {
+      "id": "note-premium-required-for-scheduling",
+      "severity": "ATTENTION",
+      "message": "noteの8月17日記事は保存済み下書き。予約投稿はnoteプレミアム契約が必要であり、課金・契約は実行していない"
     },
     {
       "id": "note-profile-links",
@@ -109,30 +111,158 @@
   "production": {
     "cadence": "PT6H",
     "last_run": {
-      "run_id": "ai-news-20260816-1615-jst",
-      "started_at": "2026-08-16T16:15:08+09:00",
-      "finished_at": "2026-08-16T16:15:08+09:00",
-      "state": "HOLD",
-      "stage": "一次情報確認",
-      "candidate_count": 3,
-      "verified_primary_count": 0,
-      "required_primary_count": 3,
-      "reason": "直近24時間から72時間へ範囲を広げて公式発表を確認しましたが、公開可能な新着3件を一次情報で裏づけられませんでした。二次記事や古い発表は新着として使用していません。",
-      "next_action": "制作保留runを16日の投稿カレンダーへ4媒体の下書きとして同期済み。6時間後に一次情報を差分確認します。"
+      "run_id": "ai-news-20260818-prepare-for-20260819-jst",
+      "started_at": "2026-08-18T10:30:00+09:00",
+      "finished_at": null,
+      "state": "AWAITING_PAID_TTS_APPROVAL",
+      "stage": "Aivis Cloud有料TTSの明示承認待ち",
+      "candidate_count": 2,
+      "verified_primary_count": 2,
+      "required_primary_count": 2,
+      "reason": "noteは100円有料記事、Xは4投稿スレッドを公開済み。InstagramはMeta公式API再認証待ち。YouTubeは別工程として有料TTS承認待ち。",
+      "next_action": "Instagramは正しいMeta開発者アカウントで再認証後すぐ公開。YouTubeはAivis Cloud有料TTS承認後に制作を再開。"
     },
-    "policy": "各実行をBoardへ記録。品質ゲート通過前は予約・公開しない。"
+    "policy": "予約成立を最優先。YouTube本編はAsia/Tokyoの月・水・金を固定投稿日とし、当日枠と次の2枠を予約済み／承認待ち／制作中／HOLDで必ず表示する。制作・修正・品質検査・Board同期は途中承認なしで連続実行し、同一revision/hashの完成物、投稿先、日時、価格・API費用を一画面へまとめた最終公開直前だけ所有者承認を求める。認証権限の新規付与、課金、外部公開は最終承認対象とし、成功は外部receipt取得後だけ表示する。",
+    "approval_policy": {
+      "mode": "FINAL_PUBLISH_ONLY",
+      "no_intermediate_approval": [
+        "制作",
+        "修正",
+        "三周品質検査",
+        "媒体別派生",
+        "Board同期",
+        "認証準備"
+      ],
+      "final_bundle": [
+        "完成本文",
+        "画像・サムネイル",
+        "投稿先アカウント",
+        "公開日時",
+        "販売価格",
+        "API費用上限",
+        "公開範囲"
+      ],
+      "external_action_requires_final_approval": true
+    },
+    "youtube_longform": {
+      "days": [
+        "MONDAY",
+        "WEDNESDAY",
+        "FRIDAY"
+      ],
+      "time_zone": "Asia/Tokyo",
+      "display": "当日枠と次の2枠のみ",
+      "slots": [
+        {
+          "date": "2026-08-19",
+          "state": "AWAITING_PAID_TTS_APPROVAL",
+          "reason": "台本1,373字・固有画像15枚は完成。Aivis Cloud有料TTS（概算60.42円、再試行込み上限100円）の明示承認後、動画完成と3周レビューへ進む。予約・公開は未実行。"
+        },
+        {
+          "date": "2026-08-21",
+          "state": "NOT_STARTED",
+          "reason": "次の本編枠。一次情報の確認は未開始。"
+        },
+        {
+          "date": "2026-08-24",
+          "state": "NOT_STARTED",
+          "reason": "次々回の本編枠。一次情報の確認は未開始。"
+        }
+      ]
+    }
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-16T17:48:57+09:00",
+    "last_checked_at": "2026-08-19T17:37:00+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
-    "description": "1時間ごとに公開証跡と停止理由を軽量確認し、前回制作から6時間以上経過した場合は次回AIニュース制作を低負荷で実行します。各実行結果はBoardへ同期します。"
+    "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
   "evidence": [
+    "outputs/kizashi-official-explainer-20260816/owner-approval-receipt-20260817.json",
+    "outputs/kizashi-official-explainer-20260816/schedule-proposal-20260817.json",
+    "outputs/kizashi-official-explainer-20260816/note-draft-receipt-20260817.json",
+    "outputs/kizashi-official-explainer-20260816/youtube-final-085/render-start-receipt.json",
+    "outputs/kizashi-official-explainer-20260816/reservation-monitor-receipt-20260817-0130.json",
+    "outputs/kizashi-official-explainer-20260816/youtube-final-085/quality-correction-receipt-20260817.json",
+    "outputs/kizashi-official-explainer-20260816/youtube-final-085/rerender-retry-receipt-20260817.json",
+    "outputs/kizashi-official-explainer-20260816/youtube-final-085/final-render-receipt-20260817.json",
+    "outputs/kizashi-official-explainer-20260816/board-sync-final-render-20260817.json",
+    "outputs/kizashi-official-explainer-20260816/reservation-monitor-receipt-20260817-0431.json",
+    "outputs/kizashi-official-explainer-20260816/reservation-monitor-receipt-20260817-0532.json",
+    "outputs/kizashi-ai-news-20260817-0635/run.json",
+    "outputs/kizashi-ai-news-20260817-0635/gate.json",
+    "outputs/kizashi-ai-news-20260817-0635/primary-source-recheck.json",
+    "outputs/kizashi-ai-news-20260817-0635/board-sync-receipt.json",
+    "outputs/kizashi-official-explainer-20260816/reservation-monitor-receipt-20260817-0736.json",
+    "outputs/kizashi-official-explainer-20260816/reservation-monitor-receipt-20260817-0840.json",
+    "outputs/kizashi-official-explainer-20260816/reservation-monitor-receipt-20260817-0941.json",
+    "outputs/kizashi-official-explainer-20260816/reservation-monitor-receipt-20260817-1042.json",
+    "outputs/kizashi-official-explainer-20260816/reservation-monitor-receipt-20260817-1144.json",
+    "outputs/kizashi-official-explainer-20260816/note-publish-receipt-20260817.json",
+    "outputs/kizashi-official-explainer-20260816/note-paid-update-receipt-20260817.json",
+    "outputs/kizashi-official-explainer-20260816/youtube-final/render/media.json",
+    "outputs/kizashi-reservation-priority-20260817/policy-change-receipt.json",
+    "outputs/kizashi-ai-news-20260817-0029/run.json",
+    "outputs/kizashi-ai-news-20260817-0029/gate.json",
+    "outputs/kizashi-ai-news-20260817-0029/primary-source-recheck.json",
+    "outputs/kizashi-ai-news-20260817-0029/board-sync-receipt.json",
     "outputs/kizashi-ai-news-20260816-1615/run.json",
     "outputs/kizashi-ai-news-20260816-1615/gate.json",
     "outputs/kizashi-ai-news-20260816-1615/board-calendar-sync-receipt.json",
+    "outputs/kizashi-ai-news-20260816-1615/primary-source-recheck-20260816-1756.json",
+    "outputs/kizashi-ai-news-20260816-1615/board-calendar-resync-20260816-1756.json",
+    "outputs/kizashi-official-explainer-20260816/run.json",
+    "outputs/kizashi-official-explainer-20260816/episode.json",
+    "outputs/kizashi-official-explainer-20260816/gate.json",
+    "outputs/kizashi-official-explainer-20260816/board-sync-receipt.json",
+    "outputs/kizashi-official-explainer-20260816/instagram-v2/gate.json",
+    "outputs/kizashi-official-explainer-20260816/x/gate.json",
+    "outputs/kizashi-official-explainer-20260816/x-pricing-check.json",
+    "outputs/kizashi-official-explainer-20260816/visual-shotlist.json",
+    "outputs/kizashi-official-explainer-20260816/youtube-preview/render/media.json",
+    "outputs/kizashi-official-explainer-20260816/schedule-revision-receipt.json",
     "outputs/instagram-repair-20260815/receipts/repost-without-delete-receipt.json",
-    "outputs/kizashi-growth-overhaul-20260816/production-release-receipt.json"
+    "outputs/kizashi-growth-overhaul-20260816/production-release-receipt.json",
+    "outputs/kizashi-ai-news-20260817-1245/run.json",
+    "outputs/kizashi-ai-news-20260817-1245/gate.json",
+    "outputs/kizashi-ai-news-20260817-1245/primary-source-recheck.json",
+    "outputs/kizashi-ai-news-20260817-1245/board-sync-receipt.json",
+    "outputs/kizashi-official-explainer-20260816/note-eyecatch-copy-update-receipt-20260817.json",
+    "outputs/kizashi-reservation-priority-20260817/youtube-longform-cadence-receipt-20260817.json",
+    "outputs/kizashi-reservation-priority-20260817/reservation-monitor-receipt-20260817-1555.json",
+    "outputs/kizashi-reservation-priority-20260817/reservation-monitor-receipt-20260817-1656.json",
+    "outputs/kizashi-ai-news-20260817-1755/run.json",
+    "outputs/kizashi-ai-news-20260817-1755/gate.json",
+    "outputs/kizashi-ai-news-20260817-1755/primary-source-recheck.json",
+    "outputs/kizashi-ai-news-20260817-1755/board-sync-receipt.json",
+    "outputs/kizashi-reservation-priority-20260817/reservation-monitor-receipt-20260817-1856.json",
+    "outputs/kizashi-reservation-priority-20260817/youtube-extended-narration-approval-request.json",
+    "outputs/kizashi-reservation-priority-20260817/automation-pause-and-process-guide-20260817.json",
+    "outputs/kizashi-ai-news-20260819-prep/run.json",
+    "outputs/kizashi-ai-news-20260819-prep/gate.json",
+    "outputs/kizashi-ai-news-20260819-prep/continuation.json",
+    "outputs/kizashi-ai-news-20260819-prep/demand-evidence.json",
+    "outputs/kizashi-ai-news-20260819-prep/youtube-production-spec.json",
+    "outputs/kizashi-paid-note-20260819-ai-boundaries/artifacts/article.md",
+    "outputs/kizashi-paid-note-20260819-ai-boundaries/artifacts/article-quality-report.json",
+    "outputs/kizashi-paid-note-20260819-ai-boundaries/article-completion-receipt.json",
+    "outputs/kizashi-ai-news-20260819-prep/aivis-paid-tts-approval-request.json",
+    "outputs/kizashi-ai-news-20260819-prep/auth-readiness.json",
+    "outputs/kizashi-ai-news-20260819-prep/instagram-final/gate.json",
+    "outputs/kizashi-ai-news-20260819-prep/x-final/gate.json",
+    "outputs/kizashi-paid-note-20260819-ai-boundaries/note-internal-gate.json",
+    "outputs/kizashi-paid-note-20260819-ai-boundaries/thumbnail-owner-approval-receipt-20260819.json",
+    "outputs/kizashi-paid-note-20260819-ai-boundaries/artifacts/visual-plan.json",
+    "outputs/kizashi-paid-note-20260819-ai-boundaries/artifacts/article-visual-manifest.json",
+    "outputs/kizashi-paid-note-20260819-ai-boundaries/artifacts/article-visual-review-loop.json",
+    "outputs/kizashi-paid-note-20260819-ai-boundaries/article-visual-completion-receipt-20260819.json",
+    "outputs/kizashi-paid-note-20260819-ai-boundaries/article-owner-approval-receipt-20260819.json",
+    "outputs/kizashi-paid-note-20260819-ai-boundaries/board-note-visual-sync-receipt.json",
+    "outputs/kizashi-paid-note-20260819-ai-boundaries/board-note-owner-approval-sync-receipt.json",
+    "outputs/kizashi-ai-news-20260819-prep/board-auth-wait-cost-sync-receipt.json",
+    "outputs/kizashi-paid-note-20260819-ai-boundaries/note-publish-receipt-20260819.json",
+    "outputs/kizashi-ai-news-20260819-prep/x-live/x-publish-receipt.json",
+    "outputs/kizashi-ai-news-20260819-prep/x-final/oauth-setup-receipt.json",
+    "outputs/kizashi-ai-news-20260819-prep/instagram-live/gate.json"
   ]
 }
