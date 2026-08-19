@@ -33,11 +33,13 @@ export function fullDayLabel(dateKey) {
 
 /** "18:30" */
 export function clockLabel(instantMs, timeZone) {
+  if (!Number.isFinite(instantMs)) return '時刻未定';
   return timeLabel(instantMs, timeZone);
 }
 
 /** "8月11日 18:30" — 履歴・通知で日付をまたぐときに使う。 */
 export function stampLabel(instantMs, timeZone) {
+  if (!Number.isFinite(instantMs)) return '日時未定';
   const p = zonedParts(instantMs, timeZone);
   return `${p.month}月${p.day}日 ${String(p.hour).padStart(2, '0')}:${String(p.minute).padStart(2, '0')}`;
 }

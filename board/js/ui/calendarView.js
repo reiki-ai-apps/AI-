@@ -46,7 +46,7 @@ async function renderWeek(app) {
     startDateKey: start,
     timeZone: tz,
     todayKey: app.todayKey(),
-    items: posts.map(toCalendarItem),
+    items: posts.map(toCalendarItem).filter(Boolean),
     dayPlans: dayPlanRows.map(toDayPlanView),
     dayCount,
   });
@@ -112,7 +112,7 @@ async function renderMonth(app) {
     month,
     timeZone: tz,
     todayKey: app.todayKey(),
-    items: posts.map(toCalendarItem),
+    items: posts.map(toCalendarItem).filter(Boolean),
     dayPlans,
   });
 
@@ -166,14 +166,17 @@ async function renderMonth(app) {
 // ---------------------------------------------------------------------------
 
 function toCalendarItem(p) {
+  const scheduledAtMs = Date.parse(p.scheduled_at);
+  const publishedAtMs = p.published_at ? Date.parse(p.published_at) : undefined;
+  if (!Number.isFinite(publishedAtMs ?? scheduledAtMs)) return null;
   return {
     id: p.channel_post_id,
     brandId: p.brand_id,
     platform: p.platform,
     displayState: p.display_state,
     title: p.title,
-    scheduledAtMs: Date.parse(p.scheduled_at),
-    publishedAtMs: p.published_at ? Date.parse(p.published_at) : undefined,
+    scheduledAtMs,
+    publishedAtMs,
   };
 }
 

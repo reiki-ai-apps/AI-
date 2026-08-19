@@ -132,8 +132,11 @@ function businessSummary(business) {
 }
 
 function dateLabel(dateKey) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(dateKey ?? ''))) return '投稿日未定';
   const [, month, day] = dateKey.split('-').map(Number);
+  const instant = Date.parse(`${dateKey}T00:00:00Z`);
+  if (!Number.isFinite(instant)) return '投稿日未定';
   const weekday = new Intl.DateTimeFormat('ja-JP', { weekday: 'short', timeZone: 'UTC' })
-    .format(new Date(`${dateKey}T00:00:00Z`));
+    .format(new Date(instant));
   return `${month}/${day}（${weekday}）`;
 }
