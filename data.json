@@ -1,6 +1,226 @@
 [
   {
     "tool": "世界の新モデル・速報",
+    "title": "グーグル、AIエージェントで脆弱性を検出する手順書（ブループリント）公開",
+    "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE8zVXBQbFNYRkRQYlFhc2NBTlVPVkdsNHE3Q2NRdUh2MEJneGNqNEQ4cmxFSnBPUmNIdFVFcXM3ZUFBUGY1RVA0MnNDNDdYcUkxVDRtcVpjcXRtWHFENVpXZzlTYlZQRy0yY0t2d192QjVjdVZxZUl1WlhURlFpdGc?oc=5",
+    "source_name": "Yahoo!ニュース",
+    "is_official": false,
+    "published_at": "2026-08-19T09:07:00.000Z",
+    "source_published_at": "2026-08-19T09:07:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-19T09:50:25.695Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Google",
+      "AIエージェント",
+      "google",
+      "aiエージェント"
+    ],
+    "primary_entity": "Google",
+    "story_subject": "AIエージェントによる脆弱性検出のブループリント",
+    "event_type": "security",
+    "event_stage": "announced",
+    "event_scope": "セキュリティ業界",
+    "fact_slots": [],
+    "new_facts": [
+      "グーグルがAIエージェントによる脆弱性検出のブループリントを公開した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "グーグルが、AIエージェントを使ってソフトウェアの脆弱性を検出するための手順書（ブループリント）を公開した。",
+    "detail": "グーグルが、AIエージェントを活用してソフトウェアの脆弱性を検出するための手順を体系化した文書「ブループリント」を公開した。AIエージェントとは自律的にタスクを遂行するAIプログラムのことで、これをセキュリティ診断に応用することで、人手に頼っていた脆弱性発見作業を効率化する狙いがあるとみられる。ブループリントの具体的な適用範囲や対象となる開発者・企業、公開の背景にある詳細な技術的手法については本文からは確認できないが、AIエージェントをセキュリティ業務に組み込む動きの一環といえる。",
+    "change_summary": "AIエージェントによる脆弱性検出手法を体系化した文書をグーグルが新たに公開した。",
+    "impact_summary": "セキュリティ担当者がAIエージェントを使った脆弱性診断の手法を参考にでき、業務効率化につながる可能性がある。",
+    "action_suggestion": "公開されたブループリントの詳細な内容や対象範囲は本文からは不明で、原文の確認が必要。",
+    "importance": "B",
+    "related_categories": [
+      "セキュリティ",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_9151107ff840d46d67ae",
+    "story_id": "story_9ca0ce6d95f57f9787",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "世界の新モデル・速報",
+    "title": "Snowflake、AIエージェントのモデル選択を自動化しコストを最適化する新機能を発表",
+    "source_url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBaQ2FhSEsxSGlZNVRIdzJMek1wdU1mdHJKY0x1NWc4MWVJUnVoellTZ0ZFTXlSbmtKZW1kTGRRWkVyM3Jra1YzTmY2SUlxenBWcWVPRVNNTzBpQQ?oc=5",
+    "source_name": "EnterpriseZine",
+    "is_official": false,
+    "published_at": "2026-08-19T08:40:04.000Z",
+    "source_published_at": "2026-08-19T08:40:04.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-19T09:50:25.695Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Snowflake",
+      "AIエージェント",
+      "snowflake",
+      "aiエージェント"
+    ],
+    "primary_entity": "Snowflake",
+    "story_subject": "AIエージェントのモデル選択自動化機能",
+    "event_type": "release",
+    "event_stage": "announced",
+    "event_scope": "Snowflakeプラットフォーム",
+    "fact_slots": [],
+    "new_facts": [
+      "Snowflakeがモデル選択自動化によりコストを最適化する新機能を発表した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Snowflakeが、AIエージェントが使用するモデルの選択を自動化し、利用コストを最適化する新機能を発表した。",
+    "detail": "データ分析基盤を提供するSnowflakeが、AIエージェントに使わせるAIモデルの選択を自動化し、利用コストを最適化する新機能を発表した。従来は用途ごとに手動でモデルを選ぶ必要があったが、この機能によりタスクに応じて最適なモデルが自動的に選ばれ、無駄なコストを抑えられるとみられる。機能の提供開始時期や対象となるプラン、具体的なコスト削減効果の数値については本文からは確認できないが、企業がAIエージェントを本格導入する際のコスト管理を後押しする動きの一つといえる。",
+    "change_summary": "AIエージェントのモデル選定を自動で行い、コストを抑える新機能が新たに追加された。",
+    "impact_summary": "企業がAIエージェントを導入する際のコスト管理が容易になり、AI活用のハードルが下がる可能性がある。",
+    "action_suggestion": "機能の提供時期や対象プランなど詳細は本文からは不明で、公式発表の確認が必要。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル",
+      "企業・株式"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_530e07d62a08805af77c",
+    "story_id": "story_3c1ca2e59d1f4b4084",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "AI政策・政府動向",
+    "title": "ハリウッドがAI活用へ舵、YouTubeなど動画勢とのスマホ戦略競争が激化",
+    "source_url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE92bU5VUk4zOTYyei1ZUjFlQkJtdkxvUG8zcWx1SGtDUi1UY09TMGRfbnFMZncxZVZpU01OWm9qZVBhN1FZNHR0OV9qdjRkUUYybkNzX3dVZTFVMFM2VmwyYlFn?oc=5",
+    "source_name": "日経ビジネス電子版",
+    "is_official": false,
+    "published_at": "2026-08-19T08:00:00.000Z",
+    "source_published_at": "2026-08-19T08:00:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-19T09:50:21.582Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "ハリウッド",
+      "YouTube",
+      "youtube"
+    ],
+    "primary_entity": "ハリウッド",
+    "story_subject": "ハリウッドとYouTubeのAI・スマホ戦略競争",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "エンタメ・動画業界",
+    "fact_slots": [],
+    "new_facts": [
+      "ハリウッドがAI技術の受け入れを進めている",
+      "YouTubeなど動画配信勢とスマートフォン戦略での競争が激化している"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "ハリウッドがAI技術の活用を本格化させ、YouTubeなど動画配信勢とスマートフォン向け戦略で競争が激しくなっている。",
+    "detail": "ハリウッドの映画・映像業界がAI技術の受け入れを進め始めており、YouTubeなどの動画配信勢とスマートフォンでの視聴を巡る戦略競争が激化しているとされる。具体的にどの企業がどのようなAI活用を行っているか、競争の中身がどのような形で表れているかは本文からは詳細不明だが、コンテンツ制作や視聴習慣の変化を背景に、既存のエンタメ大手が動画配信プラットフォームとの主導権争いに直面している状況がうかがえる。",
+    "change_summary": "ハリウッドがAI活用に前向きな姿勢を示し始めたことが新たな動き。",
+    "impact_summary": "動画・エンタメ業界のAI活用が進むことで、コンテンツ制作や視聴習慣に影響が及ぶ可能性がある。",
+    "action_suggestion": "具体的な各社の取り組み内容や時期は本文からは不明で、続報の確認が必要。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル",
+      "その他"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_8b0864ea9404c0fddd1c",
+    "story_id": "story_25fd974ae65680eb64",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "NVIDIA・AI半導体",
+    "title": "MangoBoost、AIフルスタック戦略でサーバーレス推論まで事業拡張",
+    "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE95TFJoSmlqNW1rRC1VVHotaWhvcHNmd1FiZm9xWWc2QVZKb1B3Ymc1UlFBWmJMSWtKNC1QR0tKVjRlQ2lCZHE4emxhVmMwNExibE9kYlRHeUVocFVkNVl5cGN4dTZTWGZ4Y1RZMzlRbFczakhn?oc=5",
+    "source_name": "BigGo ファイナンス",
+    "is_official": false,
+    "published_at": "2026-08-19T07:06:00.000Z",
+    "source_published_at": "2026-08-19T07:06:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-19T09:50:23.211Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "MangoBoost",
+      "サーバーレス推論",
+      "mangoboost"
+    ],
+    "primary_entity": "MangoBoost",
+    "story_subject": "MangoBoostのAIフルスタック戦略とサーバーレス推論事業拡張",
+    "event_type": "other",
+    "event_stage": "expanded",
+    "event_scope": "AI基盤・推論インフラ",
+    "fact_slots": [],
+    "new_facts": [
+      "MangoBoostがGPU増設ではないフルスタック戦略を採用している",
+      "サーバーレス推論分野へ事業を拡張している"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "半導体企業MangoBoostが、GPU増設に依存せずAI基盤全体を最適化する「フルスタック」戦略を掲げ、サーバーレス推論分野へ事業を拡張している。",
+    "detail": "MangoBoostは、AI処理の高速化においてGPUを単純に増やすのではなく、ソフトウェアからハードウェアまでを一体的に最適化する「AIフルスタック」戦略で勝負する方針を示している。同社はこの戦略のもと、需要に応じて自動的に計算資源が確保・解放されるサーバーレス推論の分野にも事業を拡張しているという。GPU不足やコスト増大が課題となる中、GPU台数を増やす従来型のアプローチとは異なる方向性を打ち出した点が記事の焦点となっている。今後の具体的な提供時期や対象顧客については記事内で明確にされていない。",
+    "change_summary": "MangoBoostがGPU増設に頼らないAIフルスタック戦略を掲げ、サーバーレス推論へ事業領域を広げた。",
+    "impact_summary": "GPU調達コストや供給不足に悩む企業にとって、ソフトウェア最適化によるAI基盤効率化という別の選択肢が示されたことになる。",
+    "action_suggestion": "MangoBoostの具体的なサービス内容や提供開始時期については、記事からは確認できず今後の発表を待つ状況。",
+    "importance": "B",
+    "related_categories": [
+      "半導体・インフラ",
+      "企業・株式"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_630704d13910c034130c",
+    "story_id": "story_67d0c0583ea69b492e",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "世界の新モデル・速報",
     "title": "BNBチェーン、AIエージェント向け「BNBエージェント・スタジオV2」を公開",
     "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1fb3JnU0cxYzlkWmRzZEctUkpMWXFUeXRWNjJGeTR5NG5oSDNWTEZSTWt1NWlxV2hJN010T0UtMDhlNWtnYzNPd3Y4dGxNTzFyT2V5UzVCdTRSM1JQUkNwQ3IxX0MtaW8zWkxLbGc4c3R6RmlRQlhLS2Fid0ZHX2M?oc=5",
     "source_name": "Yahoo!ニュース",
@@ -50,6 +270,60 @@
     "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
     "article_id": "article_9473a562d279a34ca17c",
     "story_id": "story_63f4133dd70f3c8dd1",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "DeepSeek",
+    "title": "DeepSeek、土木・空調分野の人材を募集 データセンター内製化に動き",
+    "source_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9CMy1BdEJWMGtBUFh1OGExT0xraWIyT3pDczBwOUdlRzJScTRWOVBWdkQ2TE5UeVNfcV80VWFxZUpoN3ZVa1lXYnpJUHhTaU9ZOXJ6bmFaamRYT1dY?oc=5",
+    "source_name": "Record China",
+    "is_official": false,
+    "published_at": "2026-08-19T06:45:56.000Z",
+    "source_published_at": "2026-08-19T06:45:56.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-19T09:50:07.740Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "DeepSeek",
+      "deepseek"
+    ],
+    "primary_entity": "DeepSeek",
+    "story_subject": "DeepSeekのデータセンター内製化のための人材募集",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "中国・データセンター業界",
+    "fact_slots": [],
+    "new_facts": [
+      "DeepSeekが土木・空調分野の人材を募集している",
+      "AI時代のデータセンター内製化の動きとして注目されている"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "中国AI企業DeepSeekが土木・空調分野の人材募集を進めており、AI時代のデータセンター内製化の動きが注目されている。",
+    "detail": "中国のAI企業DeepSeekが、土木や空調といった分野の人材募集を進めていることが伝えられた。AI開発の急速な拡大に伴い、計算基盤となるデータセンターの建設・運用を外部委託せず自社で担う「内製化」の動きが業界内で広がっているとされ、DeepSeekの今回の募集もこうした流れの一環とみられる。募集の具体的な規模や職種の詳細、データセンター建設計画の時期については本文からは確認できないが、AI企業が計算資源の確保に向けて物理インフラの整備まで自ら手掛けようとする傾向を示す事例といえる。",
+    "change_summary": "DeepSeekが土木・空調分野の人材募集を始めたことで、データセンターの内製化方針が明らかになった。",
+    "impact_summary": "AI企業がインフラ整備を自前で進める動きが広がれば、関連業界の雇用や設備投資のあり方に影響する可能性がある。",
+    "action_suggestion": "募集の具体的な規模や条件は本文からは不明で、続報の確認が必要。",
+    "importance": "B",
+    "related_categories": [
+      "半導体・インフラ",
+      "企業・株式"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_aabce34552863e731962",
+    "story_id": "story_d90caa7c96f1f601f3",
     "story_sequence": 1,
     "relation_type": "new",
     "relation_confidence": 1,
@@ -253,6 +527,70 @@
     ]
   },
   {
+    "tool": "Microsoft Copilot",
+    "title": "Microsoft Copilotに脆弱性、悪意あるリンクが確認をすり抜けメールや認証情報を自動窃取",
+    "source_url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFB0NFVKRWdDcGN0RGVwbURkYWU4aHZJVnloNGNXNE1wUlhzYVoxa1p2YXFBcW84NU0xNEE5QzFiTFhHbDVXVm9EdXZR?oc=5",
+    "source_name": "news.aibase.com",
+    "is_official": false,
+    "published_at": "2026-08-19T03:28:40.000Z",
+    "source_published_at": "2026-08-19T03:28:40.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-19T09:50:11.051Z",
+    "event_at": "",
+    "event_status": "不明",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Microsoft Copilot",
+      "microsoftcopilot",
+      "microsoft",
+      "copilot"
+    ],
+    "primary_entity": "Microsoft",
+    "story_subject": "Microsoft Copilotの脆弱性",
+    "event_type": "security",
+    "event_stage": "investigating",
+    "event_scope": "Microsoft Copilot利用環境全般",
+    "fact_slots": [
+      {
+        "type": "status",
+        "scope": "Microsoft Copilotの脆弱性",
+        "value": "悪意あるリンクが確認をすり抜けメール・認証情報を窃取",
+        "normalized_value": "悪意あるリンクが確認をすり抜けメール認証情報を窃取"
+      }
+    ],
+    "new_facts": [
+      "Microsoft Copilotで悪意あるリンクがユーザー確認をすり抜け、メール内容や認証情報を自動的に窃取する脆弱性が報告された。"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Microsoft Copilotに脆弱性が見つかり、悪意あるリンクを開くと確認画面をすり抜けてメール内容や認証情報が自動的に盗まれる恐れがあると報じられた。",
+    "detail": "Microsoft Copilotについて、悪意あるリンクが通常のユーザー確認プロセスをすり抜け、メールの内容や認証情報を自動的に外部へ送信してしまう脆弱性が報告された。Copilotは通常、外部リンクを開く際にユーザーへの確認を求める仕組みを持つが、この確認を回避する手法が存在するとされる。記事では具体的なCVE番号や修正状況、対象バージョンについては明記されておらず、企業がCopilotを業務メールや文書作成に利用している場合、情報漏えいのリスクにつながる可能性がある点が指摘されている。Microsoft側の対応状況は不明で、今後の修正パッチや公式声明の有無が注目される。",
+    "change_summary": "Copilotの確認プロセスを回避してメールや認証情報を自動窃取できる脆弱性が新たに報告された。",
+    "impact_summary": "業務でCopilotを使う企業にとって、メール内容や社内認証情報が漏えいするリスクがあり、情報管理部門は注意が必要になる。",
+    "action_suggestion": "Microsoftからの公式な脆弱性情報や修正パッチの発表を確認することが望まれるが、現時点で公式対応の有無は記事内で明らかにされていない。",
+    "importance": "A",
+    "related_categories": [
+      "セキュリティ",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_2b5ba0f1aa86decb4572",
+    "story_id": "story_1d09d535f43e4d0898",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.5826086956521739,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "uncertain_subject",
+      "same_event_type"
+    ]
+  },
+  {
     "tool": "AI政策・政府動向",
     "title": "アリババが音楽生成AIのベータ版を公開、指示だけで楽曲制作可能に",
     "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE85X2RoYmdBenBrZzIxUkNkTkhYWVh3VlcwRWU4MEVPTWt6SjFNa3NvSW5sc2ZMX1dzcGhrVEJyTWJNZkxQazd1ZlVFeDZsbFNnT0tYOTMyUVl6cjJzdDA2aW14VWoyMW4tSmpsckh1c1c4TnZt?oc=5",
@@ -369,63 +707,6 @@
     "story_sequence": 1,
     "relation_type": "new",
     "relation_confidence": 0.6194594594594595,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "same_subject"
-    ]
-  },
-  {
-    "tool": "ChatGPT / OpenAI",
-    "title": "OpenAIが13〜17歳向け「ChatGPT for Teens」を発表",
-    "source_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5TaGw3MnY0a1J5amFXZlBCSlp2eFZLR1VPZEd5Q21lblZRbnFYMUJTZ01BT1RQNU8wM1RRaTVLOFF6MFJodHNUNU92RGJwOW1fcmdNSGNXS2xFYlJ1VTRJMjhqZDZVUEHSAWxBVV95cUxQVjYwMEpFSjRuT3F6WFJPQXFGLWFISVJpSTdibGxUelJnWkR5c0E2emlRWURSdURCYlVrb0ttclJoaFNxMlUzZ1ZhR0pVMXBpbU9rM21Kajk3cHVvT3lkVWE5ZGIwN1pIc0dRdXA?oc=5",
-    "source_name": "corriente.jp",
-    "is_official": false,
-    "published_at": "2026-08-19T02:50:50.000Z",
-    "source_published_at": "2026-08-19T02:50:50.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-19T03:59:34.530Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "OpenAI",
-      "ChatGPT for Teens",
-      "openai",
-      "chatgptforteens",
-      "chatgpt"
-    ],
-    "primary_entity": "OpenAI",
-    "story_subject": "ChatGPT for Teens",
-    "event_type": "release",
-    "event_stage": "announced",
-    "event_scope": "13〜17歳向け",
-    "fact_slots": [],
-    "new_facts": [
-      "OpenAIが13〜17歳向けの新機能「ChatGPT for Teens」を発表した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "OpenAIが13〜17歳の未成年向けに学習支援機能と安全対策を強化した「ChatGPT for Teens」を発表した。",
-    "detail": "OpenAIは13歳から17歳までの利用者を対象とした新機能「ChatGPT for Teens」を発表した。学習を支援する機能とともに、未成年利用者向けの安全対策を強化した点が特徴とされる。具体的な機能内容や提供開始時期など詳細は記事からは確認できず、不明な点が多い。今後、対象年齢層向けの安全設計や保護者向け機能などの追加情報が公開されるか注目される。",
-    "change_summary": "13〜17歳向けに特化した学習支援・安全対策機能を新設した点が新しい。",
-    "impact_summary": "未成年の子どもを持つ家庭や教育現場で、AIチャットの利用ルールや安全性への関心が高まる可能性がある。",
-    "action_suggestion": "具体的な提供時期や機能詳細は記事からは確認できないため、OpenAIの正式発表を確認する必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "規制・法務"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_e6427ebfdf480d5a5361",
-    "story_id": "story_4ade87dbe431aa16af",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.6257142857142857,
     "previous_article_id": "",
     "previous_title": "",
     "previous_source_published_at": "",
@@ -808,60 +1089,6 @@
     ]
   },
   {
-    "tool": "NVIDIA・AI半導体",
-    "title": "半導体ウエハ大手SUMCO、AI半導体を支える『超高純度ウエハ』での存在感",
-    "source_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE0zeDZrU1VQQUFLYWJaNWJuMWRRUkNBekcyUjFyT1ZpR2dQWnFQVHBZYWp5YkhRQU10Ql83T21iZXJfSl90czdvZGhZWGZXRm9ZeHFxbWRoZXd3VkQzVGc?oc=5",
-    "source_name": "note",
-    "is_official": false,
-    "published_at": "2026-08-18T22:31:53.000Z",
-    "source_published_at": "2026-08-18T22:31:53.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-19T07:06:39.562Z",
-    "event_at": "",
-    "event_status": "不明",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "SUMCO",
-      "シリコンウエハ",
-      "sumco"
-    ],
-    "primary_entity": "SUMCO",
-    "story_subject": "AI半導体向け超高純度シリコンウエハ事業",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "半導体材料市場",
-    "fact_slots": [],
-    "new_facts": [
-      "SUMCOがAI半導体向け超高純度シリコンウエハの主要メーカーとされていることを解説する記事が公開された"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "AI半導体の基盤となる超高純度シリコンウエハ市場でSUMCOが強い存在感を持つと解説する記事が公開された。",
-    "detail": "記事は、AI半導体の製造に欠かせない超高純度シリコンウエハを手掛ける国内メーカーSUMCOを取り上げ、川上工程における事業基盤の強さを解説している。シリコンウエハはAI向け半導体チップの土台となる素材で、SUMCOはこの分野で主要な地位を占めているとされる。ただし具体的な業績数値やシェアの詳細は記事内で示されていない。",
-    "change_summary": "SUMCOのシリコンウエハ事業の位置づけを解説する記事が公開されたこと。",
-    "impact_summary": "AI半導体のサプライチェーンにおける日本企業の役割を知る手がかりとなり、投資家や業界関係者の参考情報となりうる。",
-    "action_suggestion": "記事内で具体的な業績数値やシェアは示されておらず、詳細はSUMCOの公式発表等で確認が必要。",
-    "importance": "C",
-    "related_categories": [
-      "半導体・インフラ",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_d8f881dee46510f5e47e",
-    "story_id": "story_408befe7f2b3f8d8ef",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
     "tool": "DeepSeek",
     "title": "DeepSeek、外部調達で1兆円規模の資金確保",
     "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9WaUZfdlFFTG9sNWstSUowZ3ZQQkNHekJLVUtFZzdWLVpIa1IySEVhVGhySEU2Vnl2Qkp6d3VxdWtBVWVsOVdmTG5JZnVDdnctUFZlbzFnbHNXRk5KajUyMkVjbkd5V0VfWHUzRC1PdE95UQ?oc=5",
@@ -921,120 +1148,6 @@
       "same_primary_entity",
       "uncertain_subject",
       "same_event_type"
-    ]
-  },
-  {
-    "tool": "Perplexity",
-    "title": "アマゾン、Perplexity AI訴訟で控訴裁に再審理を要請",
-    "source_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPaGQzb1oxRzRUTXRKckJZSkR5SzNXdHB2UXAwVFNsRU45a3lybzVqSkJjNm1vWEhPMHRtUEZ5eHpJV0NTMk1wQUlWdVZycFVVRWZoUVFNV3g0NkgxUjV0UHc0S0E0RTE3bjh1alo5VVMwNlJhTDFYV2w0OEhDV05rQ2NOVWRXZWdsMURxXy1JTnNlbmhIOHgzeDZFTDh2YzBvRzRTaWlIVdIBWkFVX3lxTE1BWm1KenpTWHBGRUVSazVwOXNuOEphTlRJUkMxOGJPNmxfSEVrbkF4UjAyMWMwandYMzdXRWxxUFNpT25TcXNzekx2RjhuS3lpMjMtSm5IRW5oQQ?oc=5",
-    "source_name": "MLex",
-    "is_official": false,
-    "published_at": "2026-08-18T20:10:00.000Z",
-    "source_published_at": "2026-08-18T20:10:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-19T01:53:59.063Z",
-    "event_at": "",
-    "event_status": "継続中",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Amazon",
-      "Perplexity AI",
-      "amazon",
-      "perplexityai",
-      "perplexity"
-    ],
-    "primary_entity": "Amazon",
-    "story_subject": "Perplexity AI訴訟の控訴審",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "米国",
-    "fact_slots": [],
-    "new_facts": [
-      "アマゾンが米連邦控訴裁判所にPerplexity AIとの訴訟の再審理を要請した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "アマゾンが、AI検索企業Perplexity AIを相手にした訴訟について、米連邦控訴裁判所に再審理を求めたと報じられた。",
-    "detail": "アマゾンが、対話型AI検索サービスを提供するPerplexity AIを相手とする訴訟に関して、米連邦控訴裁判所に判断の再審理を求めたことが分かった。両社の争いの詳細な経緯や争点は記事から確認できないが、大手ECプラットフォーム企業とAI検索企業との間で法的対立が続いていることを示す動きとなる。今後、控訴裁が再審理を認めるかどうかが注目される。",
-    "change_summary": "アマゾンがPerplexity AIとの訴訟について控訴裁に再審理を要請したことが新たに判明した。",
-    "impact_summary": "AI検索サービスとECプラットフォームの関係を巡る法的対立は、他のAI企業とプラットフォーム間の契約・利用条件の在り方にも影響する可能性がある。",
-    "action_suggestion": "控訴裁が再審理要請を受理するかどうかの判断が今後の焦点となる。",
-    "importance": "B",
-    "related_categories": [
-      "規制・法務",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_1c306662b32b8452c5d4",
-    "story_id": "story_efb1ceaf337287dc6b",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "DeepSeek",
-    "title": "DeepSeekがエージェント実行基盤「Harness」を公開、コーディング競争の焦点が移行",
-    "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBycjRNQTF2bk5PSGU1ZjlFTnFqYVBqQW5JU2xXZHlMeHRWcUEycmJ2b0R4VmpLY0l1RDVfUXFaU21XLUpZUnVRRE9TdkJObV9EdGZF?oc=5",
-    "source_name": "innovaTopia",
-    "is_official": false,
-    "published_at": "2026-08-18T19:46:29.000Z",
-    "source_published_at": "2026-08-18T19:46:29.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-19T01:54:01.228Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "DeepSeek",
-      "Harness",
-      "deepseek",
-      "harness"
-    ],
-    "primary_entity": "DeepSeek",
-    "story_subject": "DeepSeek Harness",
-    "event_type": "release",
-    "event_stage": "launched",
-    "event_scope": "不明",
-    "fact_slots": [],
-    "new_facts": [
-      "DeepSeekがコーディング用エージェント実行基盤「Harness」を公開した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "DeepSeekがAIコーディング向けのエージェント実行基盤「Harness」を公開し、競争の軸がモデル性能からエージェント基盤の整備へ移りつつあると指摘された。",
-    "detail": "innovaTopiaが、中国のAI企業DeepSeekがコーディング用エージェント実行基盤「Harness」を公開したと報じた。従来、AIコーディング分野の競争は各社の言語モデルの性能比較が中心だったが、今回の公開は、モデル自体に加えて、モデルを実際のソフトウェア開発作業で自律的に動かすための「エージェント基盤」の整備が新たな競争軸になりつつあることを示すものとされている。Harnessの具体的な機能や対応言語、公開範囲などの詳細は記事の抜粋からは確認できず不明。",
-    "change_summary": "DeepSeekがコーディング用エージェント基盤「Harness」を新たに公開した。",
-    "impact_summary": "AI開発ツールを利用するエンジニアや企業にとって、モデル単体の性能だけでなくエージェント基盤の選択が開発効率を左右する可能性がある。",
-    "action_suggestion": "Harnessの具体的な提供条件や利用方法について、DeepSeek側の公式発表や続報の確認が必要。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "アプリ開発・自動化"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_0cd4a042ef4038070153",
-    "story_id": "story_44f643f53eb12c93e3",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.8302439024390244,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "same_subject",
-      "same_event_type",
-      "low_confidence_follow_up_demoted"
     ]
   },
   {
@@ -2995,140 +3108,6 @@
     "dedupe_decision": "new",
     "dedupe_reasons": [
       "no_previous_story"
-    ]
-  },
-  {
-    "tool": "DeepSeek",
-    "title": "DeepSeekがV4 Pro API価格を最大12倍に引き上げ、ピーク料金も導入",
-    "source_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOY2xhdERKS0JOODRnZkRUYy00UUtqdTdSMWZ1X0E2S0V4dTVtVVlvZ2pHWWFpMW1TaEI5RVM1Z0pVemZSZVZ6Q3AwQi1jOFAtX09pbUdKNjlEaWFxU3N4S0ZWZzktTjhzODFZRFZ2RlNyUkI2cjhSZWhuT0hWVlZGaWlZdmtUR3dJ0gGcAUFVX3lxTE1mSDF0SXo5Szh0dE9JMXdWbFZrekxZRTllekVpZFFGMFlDdHRZdndPaUxCZi1SR1dkd3FMeUFSWm5QWmx2QUlSc2xZaklpcnk3SHZzbXdFdlJoNFhsakZxTU0ybkhSNEdPM2V0SzFBYm01UkNEMElSbUJnd0hkdjgwdzVvSTZ0OG9jbzlIY2FkTzd4QTNhY0hTX29GQw?oc=5",
-    "source_name": "Chosunbiz",
-    "is_official": false,
-    "published_at": "2026-08-14T01:48:00.000Z",
-    "source_published_at": "2026-08-14T01:48:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-14T02:46:57.876Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "DeepSeek",
-      "DeepSeek-V4 Pro",
-      "deepseek",
-      "deepseek-v4pro"
-    ],
-    "primary_entity": "DeepSeek",
-    "story_subject": "DeepSeek-V4 Pro API価格改定",
-    "event_type": "pricing",
-    "event_stage": "announced",
-    "event_scope": "API全体",
-    "fact_slots": [
-      {
-        "type": "price",
-        "scope": "API価格引き上げ倍率",
-        "value": "最大12倍",
-        "normalized_value": "12"
-      }
-    ],
-    "new_facts": [
-      "DeepSeek-V4 ProのAPI価格が最大12倍に引き上げられた",
-      "利用集中時間帯の料金を上げるピーク料金制度が導入された"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "中国DeepSeekが最新モデル「V4 Pro」のAPI価格を最大12倍に引き上げ、利用集中時間帯の料金を上げるピーク料金制度も導入した。",
-    "detail": "韓国メディアChosunbizによると、中国DeepSeekは最新モデル「DeepSeek-V4 Pro」のAPI価格を最大12倍に引き上げた。あわせて、利用が集中する時間帯に料金を上げる「ピーク料金」制度も新たに導入したという。これまで低価格を武器に急速にシェアを広げてきたDeepSeekだが、今回の値上げにより開発者や企業のコスト負担が増す可能性がある。値上げの背景や対象プランの詳細は記事からは明らかになっていない。",
-    "change_summary": "DeepSeekがV4 Pro APIの価格を最大12倍に引き上げ、需要に応じて料金が変動するピーク料金制度を新たに導入した。",
-    "impact_summary": "低価格を理由にDeepSeekを利用してきた国内の開発者や企業にとって、API利用コストが大幅に増加する可能性がある。",
-    "action_suggestion": "値上げの適用開始時期や対象プランの詳細を今後確認する必要がある。",
-    "importance": "A",
-    "related_categories": [
-      "AIツール・モデル",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_7163df5e8d8a864a793e",
-    "story_id": "story_37a9706f6347dca1ee",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.5700000000000001,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "uncertain_subject",
-      "same_event_type"
-    ]
-  },
-  {
-    "tool": "DeepSeek",
-    "title": "DeepSeek、1.7兆パラメータの新モデル「DeepSeek-V4-Pro」を正式公開",
-    "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFA2ZVQ4OUMtN05zc1NacExZMkZKcFhyT1VjN00xSm5VLXNLT0ZUNjRybndsTjF0ZU1mOHVtMUNhZ3Y0WjFfUEQwVldodVBkc3FBNXFNYXRWLTZlT0s4bTk1Q25Kbw?oc=5",
-    "source_name": "pc.watch.impress.co.jp",
-    "is_official": false,
-    "published_at": "2026-08-14T01:22:56.000Z",
-    "source_published_at": "2026-08-14T01:22:56.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-14T05:03:37.202Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "DeepSeek",
-      "DeepSeek-V4-Pro",
-      "deepseek",
-      "deepseek-v4-pro"
-    ],
-    "primary_entity": "DeepSeek",
-    "story_subject": "DeepSeek-V4-Pro",
-    "event_type": "release",
-    "event_stage": "launched",
-    "event_scope": "全世界",
-    "fact_slots": [
-      {
-        "type": "count",
-        "scope": "パラメータ数",
-        "value": "1.7兆",
-        "normalized_value": "1700000000000"
-      }
-    ],
-    "new_facts": [
-      "DeepSeekが1.7兆パラメータの新モデルDeepSeek-V4-Proを正式公開した",
-      "エージェント機能が強化されたとされる"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "中国DeepSeekが1.7兆パラメータ規模の新モデル「DeepSeek-V4-Pro」を正式公開し、エージェント機能を強化した。",
-    "detail": "中国のAI企業DeepSeekが、パラメータ数1.7兆規模の新モデル「DeepSeek-V4-Pro」を正式に公開した。エージェント機能、つまり複数の作業を自律的にこなす能力が強化されたとされ、記事は競合モデルとの性能競争における『下剋上』の解消、すなわちDeepSeekが再び優位に立ったことを示す内容として紹介している。DeepSeekはこれまでも低コストで高性能なモデルを公開し、米国の大手AI企業に対抗する存在として注目されてきた。今回のV4-Proの公開により、大規模言語モデル市場での競争がさらに激しくなる可能性がある。具体的な性能評価やベンチマーク結果、提供方法の詳細は記事からは確認できない。",
-    "change_summary": "1.7兆パラメータの新モデルDeepSeek-V4-Proが新たに公開され、エージェント機能が強化された。",
-    "impact_summary": "日本の開発者や企業にとって、大規模言語モデルの選択肢が広がり、AI開発コストの競争が進む可能性がある。",
-    "action_suggestion": "具体的な性能評価やAPI提供条件などの詳細は今後の続報を確認する必要がある。",
-    "importance": "A",
-    "related_categories": [
-      "AIツール・モデル",
-      "研究・技術"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_25511b6f973f1c57483c",
-    "story_id": "story_a3936c5fd904e6df32",
-    "story_sequence": 2,
-    "relation_type": "follow_up",
-    "relation_confidence": 1,
-    "previous_article_id": "article_25511b6f973f1c57483c_rev_239d32846d93",
-    "previous_title": "DeepSeek、1.7兆パラメータモデル「DeepSeek-V4-Pro」を正式公開",
-    "previous_source_published_at": "2026-08-14T01:22:56.000Z",
-    "continuation_lead": "この話題の続報です。前回は「DeepSeek、1.7兆パラメータモデル「DeepSeek-V4-Pro」を正式公開」まで進んでいましたが、今回は1.7兆パラメータの新モデルDeepSeek-V4-Proが新たに公開され、エージェント機能が強化された。",
-    "dedupe_decision": "follow_up",
-    "dedupe_reasons": [
-      "same_url",
-      "same_primary_entity",
-      "same_subject",
-      "same_event_type",
-      "similar_title",
-      "same_scope",
-      "material_fact_changed"
     ]
   },
   {
