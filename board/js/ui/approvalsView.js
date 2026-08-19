@@ -17,22 +17,6 @@ export async function renderApprovalsScreen(app) {
   const pending = await repo.listPendingApprovals();
 
   const screen = el('div', { class: 'screen' });
-  screen.appendChild(
-    el('div', { class: 'screen-head' },
-      el('h1', { class: 'screen-title' }, '承認待ち'),
-      el('p', { class: 'screen-desc' }, '上から一件ずつ確認して終わらせます。承認すると、その版・その日時・その投稿先が固定されます。')),
-  );
-
-  const notice = app.ctx.backend === 'public'
-    ? el('div', { class: 'notice' },
-        el('div', null,
-          el('div', { class: 'notice-title' }, '合鍵なしで承認できます'),
-          el('div', { class: 'notice-body' }, '承認ボタンを押し、GitHub画面で「Submit new issue」を押すと確定します。承認者・日時・Revision・Hash・確認URLが証拠として残ります。')),
-        el('div', { class: 'notice-actions' },
-          button('承認結果を更新', { class: 'btn btn-sm', onClick: () => app.refresh() })))
-    : permissionNotice(app.state.role, 'approval.approve');
-  if (notice) screen.appendChild(notice);
-
   const platforms = ['NOTE', 'X', 'INSTAGRAM', 'YOUTUBE'];
   const board = el('div', { class: 'approval-platform-board' });
   for (const platform of platforms) {
@@ -40,24 +24,31 @@ export async function renderApprovalsScreen(app) {
     const lane = el('section', { class: 'approval-platform-lane' },
       el('div', { class: 'approval-platform-head' },
         platformBadge(platform, { size: 32, decorative: true }),
-        el('h2', null, platformName(platform)),
-        el('span', null, `${items.length}件`)));
+        el('h2', null, platformName(platform))));
     if (!items.length) {
-      lane.appendChild(el('div', { class: 'approval-platform-empty' }, '承認待ちなし'));
+      lane.appendChild(el('div', { class: 'approval-simple-item' }, approvalMedia(null)));
     } else {
-      const groups = new Map();
       for (const post of items) {
-        if (!groups.has(post.post_group_id)) groups.set(post.post_group_id, []);
-        groups.get(post.post_group_id).push(post);
-      }
-      for (const [postGroupId, groupItems] of groups) {
-        lane.appendChild(await buildGroupCard(app, postGroupId, groupItems, tz));
+        lane.appendChild(await buildSimpleApprovalItem(app, post));
       }
     }
     board.appendChild(lane);
   }
   screen.appendChild(board);
   return screen;
+}
+
+async function buildSimpleApprovalItem(app, post) {
+  const group = await app.ctx.repo.getPostGroup(post.post_group_id);
+  const revision = await app.ctx.repo.getRevision(post.current_revision_id);
+  const card = el('div', { class: 'approval-simple-item' }, approvalMedia(revision));
+  if (revision) {
+    card.appendChild(el('a', {
+      class: 'btn btn-primary btn-sm',
+      href: await buildPublicApprovalRequest({ group, posts: [post], revisions: new Map([[revision.revision_id, revision]]) }),
+    }, '承認する'));
+  }
+  return card;
 }
 
 function articleUrl(revision) {
@@ -76,18 +67,24 @@ function thumbnailUrl(revision) {
 function approvalMedia(revision) {
   const link = articleUrl(revision);
   const thumbnail = thumbnailUrl(revision);
+  const pasteThumbnail = (event) => {
+    const file = [...(event.clipboardData?.files ?? [])].find((item) => item.type.startsWith('image/'));
+    if (!file) return;
+    event.preventDefault();
+    const target = event.currentTarget;
+    target.textContent = '';
+    target.appendChild(el('img', { src: URL.createObjectURL(file), alt: '貼り付けたサムネイル' }));
+  };
   return el('div', { class: 'approval-media-grid' },
     el('div', { class: 'approval-link-box' },
       el('strong', null, '記事リンク'),
-      link
-        ? el('a', { href: link, target: '_blank', rel: 'noopener noreferrer' }, link)
-        : el('span', { class: 'approval-media-empty' }, '未登録')),
+      el('input', { class: 'approval-url-input', type: 'url', value: link ?? '', placeholder: '記事URLを貼り付け' })),
     el('div', { class: 'approval-thumbnail-box' },
       el('strong', null, 'サムネイル'),
       thumbnail
         ? el('a', { href: thumbnail, target: '_blank', rel: 'noopener noreferrer' },
             el('img', { src: thumbnail, alt: revision?.assets?.[0]?.alt_text ?? '承認用サムネイル' }))
-        : el('div', { class: 'approval-thumbnail-empty' }, '画像未登録')));
+        : el('div', { class: 'approval-thumbnail-empty', tabindex: '0', onPaste: pasteThumbnail }, 'ここに画像を貼り付け')));
 }
 
 async function buildGroupCard(app, postGroupId, items, tz) {
