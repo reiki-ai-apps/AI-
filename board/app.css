@@ -859,6 +859,22 @@ input:invalid { border-color: var(--danger); }
 .status-service-details > summary { cursor: pointer; color: var(--ink-2); font-weight: 700; }
 .status-service-details[open] > summary { margin-bottom: 14px; }
 
+.approval-platform-board { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.approval-platform-lane { min-width: 0; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface-alt); }
+.approval-platform-head { display: flex; align-items: center; gap: 9px; margin-bottom: 13px; }
+.approval-platform-head h2 { margin: 0; font-size: 19px; }
+.approval-platform-head > span:last-child { margin-left: auto; color: var(--ink-3); font-size: 12px; font-weight: 700; }
+.approval-platform-lane > .card { margin-top: 10px; }
+.approval-platform-empty { display: grid; place-items: center; min-height: 120px; border: 1px dashed var(--line); border-radius: var(--radius-sm); color: var(--ink-3); font-weight: 700; }
+.approval-media-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(180px, .72fr); gap: 10px; margin-top: 12px; }
+.approval-link-box, .approval-thumbnail-box { min-width: 0; padding: 11px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); }
+.approval-link-box { display: grid; align-content: start; gap: 8px; }
+.approval-link-box a { overflow-wrap: anywhere; }
+.approval-thumbnail-box { display: grid; gap: 8px; }
+.approval-thumbnail-box img { display: block; width: 100%; max-height: 220px; border-radius: 8px; object-fit: contain; background: #eef1f4; }
+.approval-media-empty { color: var(--ink-3); }
+.approval-thumbnail-empty { display: grid; place-items: center; min-height: 130px; border: 1px dashed var(--line); border-radius: 8px; color: var(--ink-3); }
+
 .plain-list { list-style: none; margin: 6px 0 0; padding: 0; }
 .progress-row {
   display: flex; align-items: center; gap: 10px;
@@ -1062,5 +1078,7 @@ input:invalid { border-color: var(--danger); }
   .status-plan-days { grid-template-columns: 1fr; }
   .status-sns-grid { grid-template-columns: repeat(5, minmax(52px, 1fr)); gap: 5px; }
   .status-sns-badge { padding-inline: 2px; }
+  .approval-platform-board { grid-template-columns: 1fr; }
+  .approval-media-grid { grid-template-columns: 1fr; }
   .status-plan-actions .btn { flex: 1 1 140px; }
 }

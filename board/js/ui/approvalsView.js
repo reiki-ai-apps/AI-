@@ -5,8 +5,9 @@ import { el, button } from '../core/dom.js';
 import { fullDayLabel, clockLabel } from '../core/fmt.js';
 import { brandName } from '../domain/brands.js';
 import { platformName } from '../domain/platforms.js';
+import { platformBadge } from './platformBadge.js';
 import { approve, reject, describePendingChange, approveGroup } from '../services/api.js';
-import { emptyList, guardedButton, permissionNotice } from './states.js';
+import { guardedButton, permissionNotice } from './states.js';
 import { openPostDetail } from './postDetail.js';
 import { buildPublicApprovalRequest } from './publicApproval.js';
 
@@ -32,24 +33,61 @@ export async function renderApprovalsScreen(app) {
     : permissionNotice(app.state.role, 'approval.approve');
   if (notice) screen.appendChild(notice);
 
-  if (!pending.length) {
-    screen.appendChild(emptyList('承認待ちはありません。'));
-    return screen;
+  const platforms = ['NOTE', 'X', 'INSTAGRAM', 'YOUTUBE'];
+  const board = el('div', { class: 'approval-platform-board' });
+  for (const platform of platforms) {
+    const items = pending.filter((post) => post.platform === platform);
+    const lane = el('section', { class: 'approval-platform-lane' },
+      el('div', { class: 'approval-platform-head' },
+        platformBadge(platform, { size: 32, decorative: true }),
+        el('h2', null, platformName(platform)),
+        el('span', null, `${items.length}件`)));
+    if (!items.length) {
+      lane.appendChild(el('div', { class: 'approval-platform-empty' }, '承認待ちなし'));
+    } else {
+      const groups = new Map();
+      for (const post of items) {
+        if (!groups.has(post.post_group_id)) groups.set(post.post_group_id, []);
+        groups.get(post.post_group_id).push(post);
+      }
+      for (const [postGroupId, groupItems] of groups) {
+        lane.appendChild(await buildGroupCard(app, postGroupId, groupItems, tz));
+      }
+    }
+    board.appendChild(lane);
   }
-
-  // 同じ企画のSNSだけをまとめて承認できる (§17)
-  const groups = new Map();
-  for (const post of pending) {
-    if (!groups.has(post.post_group_id)) groups.set(post.post_group_id, []);
-    groups.get(post.post_group_id).push(post);
-  }
-
-  const cards = el('div', { class: 'cards' });
-  for (const [postGroupId, items] of groups) {
-    cards.appendChild(await buildGroupCard(app, postGroupId, items, tz));
-  }
-  screen.appendChild(cards);
+  screen.appendChild(board);
   return screen;
+}
+
+function articleUrl(revision) {
+  return revision?.article_url
+    ?? revision?.link_url
+    ?? revision?.rights?.sources?.find((source) => source.source_url)?.source_url
+    ?? null;
+}
+
+function thumbnailUrl(revision) {
+  const asset = (revision?.assets ?? []).find((item) =>
+    item.thumbnail_url || item.preview_url || item.public_url || item.source_url || item.url);
+  return asset?.thumbnail_url ?? asset?.preview_url ?? asset?.public_url ?? asset?.source_url ?? asset?.url ?? null;
+}
+
+function approvalMedia(revision) {
+  const link = articleUrl(revision);
+  const thumbnail = thumbnailUrl(revision);
+  return el('div', { class: 'approval-media-grid' },
+    el('div', { class: 'approval-link-box' },
+      el('strong', null, '記事リンク'),
+      link
+        ? el('a', { href: link, target: '_blank', rel: 'noopener noreferrer' }, link)
+        : el('span', { class: 'approval-media-empty' }, '未登録')),
+    el('div', { class: 'approval-thumbnail-box' },
+      el('strong', null, 'サムネイル'),
+      thumbnail
+        ? el('a', { href: thumbnail, target: '_blank', rel: 'noopener noreferrer' },
+            el('img', { src: thumbnail, alt: revision?.assets?.[0]?.alt_text ?? '承認用サムネイル' }))
+        : el('div', { class: 'approval-thumbnail-empty' }, '画像未登録')));
 }
 
 async function buildGroupCard(app, postGroupId, items, tz) {
@@ -87,6 +125,8 @@ async function buildGroupCard(app, postGroupId, items, tz) {
 
         el('div', { class: 'preview', style: { 'margin-top': '10px' } },
           [revision?.title, revision?.body, (revision?.hashtags ?? []).join(' '), revision?.cta].filter(Boolean).join('\n\n')),
+
+        approvalMedia(revision),
 
         el('dl', { class: 'kv', style: { 'margin-top': '10px' } },
           el('dt', null, '出典・権利'),
