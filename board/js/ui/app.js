@@ -1,6 +1,6 @@
 // アプリシェル。§04「常設画面は4つ、作業面は2つ。入口を増やさない」を守る。
 //
-// 常設画面 : 投稿カレンダー / 承認待ち / 投稿履歴 / 接続設定
+// 常設画面 : 状況 / 承認待ち / 投稿履歴 / 接続設定
 // 作業面   : 登録・編集ドロワー / 投稿詳細（どちらもドロワーとして開く）
 
 import { el, clear, replace, button, append, focus } from '../core/dom.js';
@@ -14,7 +14,6 @@ import { systemClock } from '../core/clock.js';
 import { dateKey, systemTimeZone } from '../core/tz.js';
 import { ROLES, ROLE_ORDER, roleLabel } from '../domain/rbac.js';
 import { seedSocialAccounts } from '../services/api.js';
-import { renderCalendarScreen } from './calendarView.js?v=8';
 import { renderApprovalsScreen } from './approvalsView.js';
 import { renderHistoryScreen } from './historyView.js';
 import { renderConnectionsScreen } from './connectionsView.js';
@@ -23,7 +22,6 @@ import { hasIntentLink, consumeIntentLink } from './intentLink.js';
 
 const SCREENS = [
   { id: 'status', label: '状況', render: renderStatusScreen },
-  { id: 'calendar', label: '予定', render: renderCalendarScreen },
   { id: 'approvals', label: '承認', render: renderApprovalsScreen },
   { id: 'history', label: '履歴', render: renderHistoryScreen },
   { id: 'connections', label: '接続', render: renderConnectionsScreen },

@@ -215,7 +215,7 @@ export async function renderConnectionsScreen(app) {
               app.toast('サンプルデータを作成しています…');
               await loadSampleMonth(app.ctx);
               app.toast('サンプルデータを読み込みました。');
-              app.go('calendar');
+              app.go('status');
             } catch (e) { app.fail(e); }
           },
         }),
@@ -248,7 +248,7 @@ export async function renderConnectionsScreen(app) {
             if (!reason) return;
             await app.ctx.repo.clearAll();
             app.toast('削除しました。');
-            app.go('calendar');
+            app.go('status');
           },
         })),
     ),
