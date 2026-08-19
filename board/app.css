@@ -808,6 +808,7 @@ input:invalid { border-color: var(--danger); }
 .status-reservation { margin-bottom: 16px; padding: 18px; border: 2px solid var(--line); border-radius: var(--radius); }
 .status-reservation.is-danger { border-color: #dc8d86; background: #fff7f6; }
 .status-reservation.is-safe { border-color: #9bc8ae; background: #f3faf6; }
+.status-reservation-simple { padding: 0; border: 0; background: transparent; }
 .status-reservation-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .status-reservation-title { margin: 0; color: #8f251b; font-size: 21px; line-height: 1.4; }
 .status-reservation.is-safe .status-reservation-title { color: #17613a; }

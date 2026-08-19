@@ -1,6 +1,5 @@
-import { el, button } from '../core/dom.js';
-import { clockLabel, dayHeading } from '../core/fmt.js';
-import { platformName } from '../domain/platforms.js';
+import { el } from '../core/dom.js';
+import { dayHeading } from '../core/fmt.js';
 import { platformBadge } from './platformBadge.js';
 import { buildReservationPlan } from '../domain/reservationPlan.js';
 
@@ -104,12 +103,6 @@ const PLAN_STAGES = Object.freeze({
   CREATING: { label: '作成中', mark: '×', tone: 'danger' },
 });
 
-function businessLabel(id) {
-  if (id === 'news') return 'KIZASHI';
-  if (id === 'creative') return 'REIKI';
-  return id;
-}
-
 function relativeDayLabel(index) {
   if (index === 0) return '今日';
   if (index === 1) return '明日';
@@ -156,24 +149,10 @@ function planDay(day) {
     el('div', { class: 'status-sns-grid' }, ...STATUS_BADGES.map((item) => statusBadge(item, day.items))));
 }
 
-function reservationPanel(plan, timeZone, app) {
-  const incomplete = !plan.complete;
-  return el('section', { class: `status-reservation${incomplete ? ' is-danger' : ' is-safe'}` },
-    el('div', { class: 'status-reservation-head' },
-      el('div', null,
-        el('p', { class: 'status-eyebrow' }, '最優先'),
-        el('h2', { class: 'status-reservation-title' }, incomplete ? '2日先までの予約が未完了です' : '2日先まで予約済みです')),
-      el('span', { class: `status-pill status-pill-${incomplete ? 'danger' : 'healthy'}` }, incomplete ? '危険' : '安全')),
-    el('p', { class: 'status-reservation-instruction' },
-      `承認待ち ${plan.totals.APPROVAL}件・承認準備済み ${plan.totals.READY}件・未予約 ${plan.totals.CREATING}件・投稿未登録 ${plan.totals.UNPLANNED_DAYS}日`),
+function reservationPanel(plan) {
+  return el('section', { class: 'status-reservation status-reservation-simple' },
     el('div', { class: 'status-plan-days', 'aria-label': '今日から2日先までの投稿別予約状況' },
-      ...plan.days.map((day) => planDay(day, timeZone))),
-    el('div', { class: 'status-plan-actions' },
-      button('3日予定を見る', { class: 'btn btn-outline', onClick: () => app.go('calendar', { selectedDateKey: plan.days[0].dateKey }) }),
-      plan.totals.APPROVAL > 0
-        ? button(`承認待ち ${plan.totals.APPROVAL}件を見る`, { class: 'btn btn-primary', onClick: () => app.go('approvals') })
-        : null),
-    el('p', { class: 'status-reservation-rule' }, '投稿ごとに「予約済み」になるまで危険表示を続けます。'));
+      ...plan.days.map((day) => planDay(day))));
 }
 
 function productionCard(production) {
@@ -217,9 +196,6 @@ function channelSection(channels) {
 }
 
 export async function renderStatusScreen(app) {
-  const response = await fetch(`data/status.json?t=${Date.now()}`, { cache: 'no-store' });
-  if (!response.ok) throw new Error(`運用状況を取得できませんでした（HTTP ${response.status}）。`);
-  const data = await response.json();
   const [posts, postGroups, publicationPackages] = await Promise.all([
     app.ctx.repo.listPipelinePosts(),
     app.ctx.repo.listPostGroups(),
@@ -232,12 +208,5 @@ export async function renderStatusScreen(app) {
     todayKey: app.todayKey(),
     horizonDays: 2,
   });
-  return el('div', { class: 'screen status-screen' },
-    el('div', { class: 'screen-head status-head' },
-      el('div', null,
-        el('h1', { class: 'screen-title' }, '2日先までの予約'),
-        el('p', { class: 'screen-desc' }, `${dayHeading(app.todayKey())}を基準｜媒体情報 ${dateTime(data.generated_at)} 更新`)),
-      button('更新', { class: 'btn btn-outline status-refresh', onClick: () => app.refresh() })),
-    reservationPanel(reservationPlan, app.timeZone, app),
-  );
+  return el('div', { class: 'screen status-screen' }, reservationPanel(reservationPlan));
 }
