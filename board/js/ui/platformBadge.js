@@ -28,6 +28,13 @@ export const BADGE_SPEC = Object.freeze({
     // 再生の三角
     glyph: Object.freeze([{ tag: 'path', attrs: { d: 'M6.4 4.7 11.5 8 6.4 11.3z', fill: '#fff' } }]),
   }),
+  YOUTUBE_SHORTS: Object.freeze({
+    fill: '#e8262a',
+    glyph: Object.freeze([
+      { tag: 'path', attrs: { d: 'M6.4 4.7 11.5 8 6.4 11.3z', fill: '#fff' } },
+      { tag: 'path', attrs: { d: 'M12.6 3.7v3.1M11 5.2h3.2', stroke: '#fff', 'stroke-width': 1.1, 'stroke-linecap': 'round' } },
+    ]),
+  }),
   INSTAGRAM: Object.freeze({
     fill: '#b8358b',
     // 角丸の四角＋レンズ

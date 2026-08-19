@@ -5,7 +5,7 @@ import { platformName } from '../domain/platforms.js';
 import { intendedDate, pipelineStage } from '../domain/reservationPlan.js';
 import { platformBadge } from './platformBadge.js';
 
-const ALL_PLATFORMS = Object.freeze(['X', 'INSTAGRAM', 'YOUTUBE', 'NOTE']);
+const ALL_PLATFORMS = Object.freeze(['X', 'INSTAGRAM', 'YOUTUBE', 'YOUTUBE_SHORTS', 'NOTE']);
 const PLATFORMS_BY_BUSINESS = Object.freeze({
   // REIKIは現在、XとInstagramだけを運用対象にする。
   creative: Object.freeze(['X', 'INSTAGRAM']),

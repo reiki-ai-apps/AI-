@@ -882,6 +882,7 @@ input:invalid { border-color: var(--danger); }
 .approval-media-gallery img, .approval-media-gallery video { display: block; width: 100%; max-height: 240px; border-radius: 8px; object-fit: contain; background: #eef1f4; }
 .approval-media-gallery video { grid-column: 1 / -1; }
 .approval-media-empty { color: var(--ink-3); }
+.approval-component-approved { display: inline-flex; align-items: center; min-height: 34px; padding: 7px 10px; border-radius: 8px; color: #12613f; background: #e9f7ef; font-size: 12px; font-weight: 800; }
 .approval-thumbnail-empty { display: grid; place-items: center; min-height: 104px; border: 1px dashed #bfc9d6; border-radius: 10px; color: var(--ink-3); background: #fafbfd; cursor: text; }
 .approval-thumbnail-empty:focus { border-color: var(--accent); outline: 2px solid color-mix(in srgb, var(--accent) 22%, transparent); }
 .approval-thumbnail-empty img { display: block; width: 100%; max-height: 220px; object-fit: contain; }

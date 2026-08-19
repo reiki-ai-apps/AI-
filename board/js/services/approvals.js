@@ -8,7 +8,14 @@ import { uuid } from '../core/ids.js';
 import { domainDigest } from '../core/digest.js';
 import { assertCan, checkSelfApproval, checkBulkApprovalScope } from '../domain/rbac.js';
 import { assertTransition } from '../domain/state.js';
-import { buildApprovalBasis, approvalBasisHash, diffApprovalBasis, checkApprovalValid } from '../domain/approval.js';
+import {
+  APPROVAL_COMPONENTS,
+  buildApprovalBasis,
+  approvalBasisHash,
+  computeApprovalComponentHash,
+  diffApprovalBasis,
+  checkApprovalValid,
+} from '../domain/approval.js';
 import { InvariantError } from '../domain/invariants.js';
 import { ValidationError } from './posts.js';
 
@@ -69,6 +76,23 @@ export async function approve(ctx, channelPostId, options = {}) {
 
   const { post, revision } = await loadForDecision(ctx, channelPostId);
   assertTransition(post.display_state, 'SCHEDULED');
+
+  // 最終承認や内部APIからの操作でも、記事・動画とサムネイルの
+  // Revision/Hash一致承認を回避できないようにサービス層で強制する。
+  if (post.requires_component_approvals) {
+    const componentVerdict = await verifyComponentApprovals(ctx, channelPostId, {
+      allowedRetryDelayMinutes: options.allowedRetryDelayMinutes ?? DEFAULT_RETRY_DELAY_MINUTES,
+    });
+    if (!componentVerdict.valid) {
+      const missing = Object.entries(componentVerdict.components ?? {})
+        .filter(([, result]) => !result.valid)
+        .map(([scope]) => scope === APPROVAL_COMPONENTS.CONTENT ? '記事・動画' : 'サムネイル');
+      throw new InvariantError(
+        'COMPONENT_APPROVAL_REQUIRED',
+        `${missing.join('・')}の現在Revision/Hashに対する承認が必要です。`,
+      );
+    }
+  }
 
   const group = await ctx.repo.getPostGroup(post.post_group_id);
   const selfCheck = checkSelfApproval({
@@ -167,6 +191,127 @@ export async function approve(ctx, channelPostId, options = {}) {
     selfApproval: selfCheck.selfApproval,
     note: selfCheck.note,
   };
+}
+
+/**
+ * 記事・動画(CONTENT)とサムネイル(THUMBNAIL)を別々に承認する。
+ * 承認日時・Revision・component Hashはapprovalsストアへ保存され、Boardの正本になる。
+ */
+export async function recordComponentApproval(ctx, channelPostId, options = {}) {
+  assertCan(ctx.actor.role, 'approval.approve');
+  const componentScope = String(options.componentScope ?? '').toUpperCase();
+  if (!APPROVAL_COMPONENTS.includes(componentScope)) {
+    throw new ValidationError('承認対象はCONTENTまたはTHUMBNAILです。', 'componentScope');
+  }
+  const { post, revision } = await loadForDecision(ctx, channelPostId);
+  if (post.display_state !== 'PENDING_APPROVAL') {
+    throw new InvariantError('NOT_PENDING_APPROVAL', '承認待ちの投稿だけを承認できます。');
+  }
+  const group = await ctx.repo.getPostGroup(post.post_group_id);
+  const selfCheck = checkSelfApproval({
+    mode: ctx.mode ?? 'SOLO',
+    authorUserId: group?.owner_user_id ?? revision.created_by,
+    approverUserId: ctx.actor.userId,
+  });
+  if (!selfCheck.allowed) throw new InvariantError('SELF_APPROVAL_FORBIDDEN', selfCheck.note);
+
+  const allowedRetryDelayMinutes = options.allowedRetryDelayMinutes ?? DEFAULT_RETRY_DELAY_MINUTES;
+  const currentHash = await computeApprovalComponentHash({
+    channelPost: post,
+    revision,
+    schedule: { scheduled_at: post.scheduled_at, time_zone: post.time_zone },
+    componentScope,
+    allowedRetryDelayMinutes,
+  });
+  if (options.expectedHash && options.expectedHash !== currentHash) {
+    throw new InvariantError('BASIS_MISMATCH', '承認対象Hashが現在の内容と一致しません。再確認してください。');
+  }
+
+  const existing = (await ctx.repo.listApprovalsFor(channelPostId)).find((item) =>
+    item.decision === 'COMPONENT_APPROVED'
+    && item.component_scope === componentScope
+    && item.revision_id === revision.revision_id
+    && item.approval_basis_hash === currentHash
+    && !item.revoked_at
+    && (!item.expires_at || Date.parse(item.expires_at) > ctx.clock.nowMs()));
+  if (existing) {
+    return { approvalId: existing.approval_id, approvalBasisHash: currentHash, componentScope, reused: true };
+  }
+
+  const now = ctx.clock.nowIso();
+  const approval = {
+    approval_id: uuid(),
+    channel_post_id: channelPostId,
+    post_group_id: post.post_group_id,
+    revision_id: revision.revision_id,
+    decision: 'COMPONENT_APPROVED',
+    component_scope: componentScope,
+    approver_user_id: ctx.actor.userId,
+    approval_basis_hash: currentHash,
+    allowed_retry_delay_minutes: allowedRetryDelayMinutes,
+    decided_at: now,
+    expires_at: new Date(Date.parse(post.scheduled_at) + allowedRetryDelayMinutes * 60_000).toISOString(),
+    revoked_at: null,
+    revoked_reason: null,
+    self_approval: selfCheck.selfApproval,
+    comment: options.comment ?? null,
+    evidence: options.evidence ?? null,
+  };
+  const updated = {
+    ...post,
+    component_approval_ids: { ...(post.component_approval_ids ?? {}), [componentScope]: approval.approval_id },
+    updated_at: now,
+  };
+  const beforeHash = await snapshotHash(post);
+  const afterHash = await snapshotHash(updated);
+  await ctx.repo.change(['channelPosts', 'approvals'], async (tx, audit) => {
+    const live = await tx.get('channelPosts', channelPostId);
+    if (!live || live.current_revision_id !== revision.revision_id) {
+      throw new InvariantError('STALE_REVISION', '承認しようとした版は最新ではありません。');
+    }
+    await tx.add('approvals', approval);
+    await tx.put('channelPosts', updated);
+    await audit({
+      actor: ctx.actor.userId,
+      target_id: channelPostId,
+      action: `approval.component.${componentScope.toLowerCase()}`,
+      before_hash: beforeHash,
+      after_hash: afterHash,
+      reason: options.comment ?? `${componentScope}を承認`,
+      revision_id: revision.revision_id,
+    });
+  });
+  return { approvalId: approval.approval_id, approvalBasisHash: currentHash, componentScope, reused: false };
+}
+
+/** 現在のRevision/Hashに一致する2つの承認証拠を検査する。 */
+export async function verifyComponentApprovals(ctx, channelPostId) {
+  const { post, revision } = await loadForDecision(ctx, channelPostId);
+  const approvals = await ctx.repo.listApprovalsFor(channelPostId);
+  const components = {};
+  for (const componentScope of APPROVAL_COMPONENTS) {
+    const currentHash = await computeApprovalComponentHash({
+      channelPost: post,
+      revision,
+      schedule: { scheduled_at: post.scheduled_at, time_zone: post.time_zone },
+      componentScope,
+      allowedRetryDelayMinutes: DEFAULT_RETRY_DELAY_MINUTES,
+    });
+    const approval = approvals.find((item) => item.decision === 'COMPONENT_APPROVED'
+      && item.component_scope === componentScope
+      && item.revision_id === revision.revision_id
+      && item.approval_basis_hash === currentHash
+      && !item.revoked_at
+      && (!item.expires_at || Date.parse(item.expires_at) > ctx.clock.nowMs()));
+    components[componentScope] = {
+      valid: Boolean(approval),
+      approval: approval ?? null,
+      currentHash,
+      revisionId: revision.revision_id,
+      reason: approval ? 'VALID' : 'MISSING_OR_STALE',
+    };
+  }
+  return { valid: APPROVAL_COMPONENTS.every((scope) => components[scope].valid), components };
 }
 
 /** 差し戻し。理由を必須にする (§08 承認／差し戻し／コメント)。 */
@@ -286,9 +431,22 @@ export async function verifyApprovalStillValid(ctx, channelPostId) {
     allowedRetryDelayMinutes: approval?.allowed_retry_delay_minutes ?? DEFAULT_RETRY_DELAY_MINUTES,
   });
   const currentHash = await approvalBasisHash(basis);
-  return {
+  const finalVerdict = {
     ...checkApprovalValid(approval, { approvalBasisHash: currentHash, revisionId: revision?.revision_id }, ctx.clock.nowMs()),
     approval,
     currentHash,
   };
+  const componentVerdict = post.requires_component_approvals
+    ? await verifyComponentApprovals(ctx, channelPostId)
+    : { valid: true, components: {} };
+  if (!componentVerdict.valid) {
+    return {
+      ...finalVerdict,
+      valid: false,
+      reason: 'COMPONENT_APPROVAL_MISSING',
+      message: '記事・動画とサムネイルの両方の承認が必要です。',
+      components: componentVerdict.components,
+    };
+  }
+  return { ...finalVerdict, components: componentVerdict.components };
 }

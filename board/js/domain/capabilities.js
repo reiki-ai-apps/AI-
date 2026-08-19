@@ -62,6 +62,23 @@ export const PLATFORM_CAPABILITIES = Object.freeze({
     max_media_size: 137_438_953_472, // 128 GiB (videos.insert の上限)
     allowed_media_types: Object.freeze(['video/mp4', 'video/quicktime', 'video/webm']),
   }),
+  YOUTUBE_SHORTS: Object.freeze({
+    platform: 'YOUTUBE_SHORTS',
+    verifiedAt: VERIFIED_AT,
+    primaryUrls: Object.freeze([
+      'https://developers.google.com/youtube/v3/guides/uploading_a_video',
+      'https://developers.google.com/youtube/v3/docs/videos',
+    ]),
+    confirmed: 'ShortsもYouTube videos.insertで動画として登録する。縦動画・長さは公開直前に再検査',
+    unknownNote: 'audit_status・公開可否・実Quotaは未確認',
+    capabilities: Object.freeze({
+      supports_direct_publish: 'UNKNOWN', supports_native_schedule: 'UNKNOWN',
+      supports_cancel: 'UNKNOWN', supports_status_lookup: 'UNKNOWN', supports_idempotency: 'UNKNOWN',
+    }),
+    reconciliation_strength: 'UNSUPPORTED',
+    max_media_size: 137_438_953_472,
+    allowed_media_types: Object.freeze(['video/mp4', 'video/quicktime', 'video/webm']),
+  }),
   INSTAGRAM: Object.freeze({
     platform: 'INSTAGRAM',
     verifiedAt: VERIFIED_AT,

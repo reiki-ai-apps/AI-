@@ -55,9 +55,19 @@ export async function verifyPublicationApproval({ syncReceipt, dataFile }) {
       approver: verdict.approval?.approver_user_id ?? null,
       approved_at: verdict.approval?.decided_at ?? null,
       evidence: verdict.approval?.evidence ?? null,
+      component_approvals: Object.fromEntries(Object.entries(verdict.components ?? {}).map(([scope, state]) => [scope, {
+        valid: state.valid,
+        approval_id: state.approval?.approval_id ?? null,
+        approved_at: state.approval?.decided_at ?? null,
+        revision_id: state.approval?.revision_id ?? null,
+        approval_basis_hash: state.approval?.approval_basis_hash ?? state.currentHash,
+        evidence: state.approval?.evidence ?? null,
+      }])),
     });
   }
-  const approved = items.every((item) => item.valid && item.evidence?.type === 'GITHUB_ISSUE');
+  const approved = items.every((item) => item.valid
+    && ['GITHUB_ISSUE', 'GITHUB_ISSUE_PAIR'].includes(item.evidence?.type)
+    && Object.values(item.component_approvals ?? {}).every((part) => part.valid));
   return {
     contract: 'REIKI_POST_BOARD_APPROVAL_CHECK_V1',
     status: approved ? 'APPROVED' : 'PENDING_APPROVAL',

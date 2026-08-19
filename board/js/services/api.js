@@ -30,6 +30,8 @@ const DIRECT = {
   approveGroup: approvals.approveGroup,
   describePendingChange: approvals.describePendingChange,
   verifyApprovalStillValid: approvals.verifyApprovalStillValid,
+  verifyComponentApprovals: approvals.verifyComponentApprovals,
+  recordComponentApproval: approvals.recordComponentApproval,
   reschedule: schedule.reschedule,
   cancelSchedule: schedule.cancelSchedule,
   claimManualExecution: manual.claimManualExecution,

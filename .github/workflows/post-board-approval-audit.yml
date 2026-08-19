@@ -1,0 +1,45 @@
+name: POST BOARD approval evidence audit
+
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: post-board-public-approval
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify approved time, Revision and Hash
+        run: |
+          node board/scripts/audit-component-approvals.mjs \
+            --data-file board/data/board.json \
+            --output board/data/component-approval-audit.json
+
+      - name: Persist changed audit evidence
+        run: |
+          if git diff --quiet -- board/data/component-approval-audit.json; then
+            echo "Approval evidence is unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- board/data/component-approval-audit.json
+          git commit -m "Audit POST BOARD component approvals"
+          git pull --rebase origin main
+          git push origin HEAD:main

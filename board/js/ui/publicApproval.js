@@ -4,7 +4,7 @@
 // 構造化されたIssueを作る。Issueを受けたActionsが現在のRevision/Hashを再検査し、
 // 一致した場合だけboard.jsonへ承認証跡を書き込む。
 
-import { approvalBasisHash, buildApprovalBasis } from '../domain/approval.js';
+import { approvalBasisHash, buildApprovalBasis, computeApprovalComponentHash } from '../domain/approval.js';
 import { DEFAULT_RETRY_DELAY_MINUTES } from '../services/approvals.js';
 
 export const PUBLIC_APPROVAL_REPOSITORY = 'reiki-ai-apps/AI-';
@@ -23,20 +23,28 @@ export async function buildPublicApprovalRequest({ group, posts, revisions, comp
   for (const post of posts) {
     const revision = revisions.get(post.current_revision_id);
     if (!revision) throw new Error(`対象版が見つかりません: ${post.current_revision_id}`);
-    const basis = buildApprovalBasis({
-      channelPost: post,
-      revision,
-      schedule: { scheduled_at: post.scheduled_at, time_zone: post.time_zone },
-      allowedRetryDelayMinutes: DEFAULT_RETRY_DELAY_MINUTES,
-    });
-    const basisHash = await approvalBasisHash(basis);
+    const basisHash = componentScope
+      ? await computeApprovalComponentHash({
+          channelPost: post,
+          revision,
+          schedule: { scheduled_at: post.scheduled_at, time_zone: post.time_zone },
+          componentScope,
+          allowedRetryDelayMinutes: DEFAULT_RETRY_DELAY_MINUTES,
+        })
+      : await approvalBasisHash(buildApprovalBasis({
+          channelPost: post,
+          revision,
+          schedule: { scheduled_at: post.scheduled_at, time_zone: post.time_zone },
+          allowedRetryDelayMinutes: DEFAULT_RETRY_DELAY_MINUTES,
+        }));
     targets.push({
       channel_post_id: post.channel_post_id,
       revision_id: revision.revision_id,
       approval_basis_hash: basisHash,
+      approval_component_hash: componentScope ? basisHash : null,
       allowed_retry_delay_minutes: DEFAULT_RETRY_DELAY_MINUTES,
     });
-    summary.push(`- ${post.platform} / 第${revision.revision_no}版 / ${post.scheduled_at}`);
+    summary.push(`- ${post.platform} / ${componentScope ?? '全体'} / 第${revision.revision_no}版 / ${post.scheduled_at}`);
   }
 
   const payload = {

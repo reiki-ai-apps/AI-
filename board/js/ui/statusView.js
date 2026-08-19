@@ -114,16 +114,11 @@ const STATUS_BADGES = Object.freeze([
   { platform: 'X', label: 'X' },
   { platform: 'INSTAGRAM', label: 'Instagram' },
   { platform: 'YOUTUBE', label: 'YouTube' },
-  { platform: 'YOUTUBE', label: 'Shorts', shorts: true },
+  { platform: 'YOUTUBE_SHORTS', label: 'Shorts' },
 ]);
 
-function isShorts(item) {
-  return /shorts?|ショート/i.test(item.title ?? '');
-}
-
 function badgeStage(items, badge) {
-  const matching = items.filter((item) => item.platform === badge.platform
-    && (badge.platform !== 'YOUTUBE' || isShorts(item) === Boolean(badge.shorts)));
+  const matching = items.filter((item) => item.platform === badge.platform);
   if (!matching.length || matching.some((item) => item.stage === 'CREATING')) return PLAN_STAGES.CREATING;
   if (matching.some((item) => item.stage === 'APPROVAL' || item.stage === 'READY')) return PLAN_STAGES.APPROVAL;
   return PLAN_STAGES.SCHEDULED;

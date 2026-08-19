@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { readFile, writeFile, mkdir, copyFile } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, copyFile, stat } from 'node:fs/promises';
 import { basename, dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
@@ -16,6 +16,7 @@ const DEFAULT_BRANCH = 'main';
 const DEFAULT_PATH = 'board.json';
 const DEFAULT_TIME_ZONE = 'Asia/Tokyo';
 const DEFAULT_PUBLIC_MEDIA_BASE_URL = 'https://reiki-ai-apps.github.io/AI-/board/media';
+const MAX_PUBLIC_MEDIA_BYTES = 95_000_000;
 
 function usage() {
   return `Usage:
@@ -115,6 +116,10 @@ async function publishAssets(pkg, assetDir, options) {
       continue;
     }
     const source = resolve(assetDir, asset.archive_member);
+    const sourceStat = await stat(source);
+    if (sourceStat.size > MAX_PUBLIC_MEDIA_BYTES) {
+      throw new Error(`公開確認用素材が95MBを超えています: ${asset.archive_member}。軽量プレビューを登録し、原本Hashはsource_sha256へ保存してください。`);
+    }
     const fileName = safeMediaName(asset, index);
     await copyFile(source, join(packageDir, fileName));
     assets.push({

@@ -3,6 +3,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test scripts/test-*.mjs",
-    "test:sync": "node --test scripts/test-sync-publication-package.mjs"
+    "test:sync": "node --test scripts/test-sync-publication-package.mjs",
+    "audit:approvals": "node scripts/audit-component-approvals.mjs --data-file data/board.json --output data/component-approval-audit.json"
   }
 }

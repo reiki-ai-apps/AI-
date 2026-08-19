@@ -33,6 +33,7 @@ export function kindForPlatform(platformId) {
   switch (platformId) {
     case 'NOTE': return PRODUCTION_KINDS.ARTICLE;
     case 'YOUTUBE': return PRODUCTION_KINDS.VIDEO;
+    case 'YOUTUBE_SHORTS': return PRODUCTION_KINDS.SHORT_VIDEO;
     case 'INSTAGRAM':
     case 'TIKTOK': return PRODUCTION_KINDS.SHORT_VIDEO;
     case 'X': return PRODUCTION_KINDS.SHORT_TEXT;

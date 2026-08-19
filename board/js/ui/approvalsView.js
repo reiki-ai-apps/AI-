@@ -6,7 +6,7 @@ import { fullDayLabel, clockLabel } from '../core/fmt.js';
 import { brandName } from '../domain/brands.js';
 import { platformName } from '../domain/platforms.js';
 import { platformBadge } from './platformBadge.js';
-import { approve, reject, describePendingChange, approveGroup } from '../services/api.js';
+import { approve, reject, describePendingChange, approveGroup, verifyComponentApprovals } from '../services/api.js';
 import { guardedButton, permissionNotice } from './states.js';
 import { openPostDetail } from './postDetail.js';
 import { buildPublicApprovalRequest } from './publicApproval.js';
@@ -18,16 +18,15 @@ export async function renderApprovalsScreen(app) {
 
   const screen = el('div', { class: 'screen' });
   const platforms = [
-    { platform: 'NOTE', label: 'note', mediaLabel: 'サムネイル' },
-    { platform: 'X', label: 'X', mediaLabel: '画像・動画' },
-    { platform: 'INSTAGRAM', label: 'Instagram', mediaLabel: 'カルーセル・動画' },
+    { platform: 'NOTE', label: 'note', linkLabel: '記事リンク', mediaLabel: 'サムネイル' },
+    { platform: 'X', label: 'X', linkLabel: '投稿本文リンク', mediaLabel: '画像・動画' },
+    { platform: 'INSTAGRAM', label: 'Instagram', linkLabel: 'キャプションリンク', mediaLabel: 'カルーセル・動画' },
     { platform: 'YOUTUBE', label: 'YouTube', linkLabel: '動画リンク', mediaLabel: 'サムネイル・動画' },
-    { platform: 'YOUTUBE', label: 'YouTube Shorts', linkLabel: '動画リンク', mediaLabel: 'サムネイル・動画', shorts: true },
+    { platform: 'YOUTUBE_SHORTS', label: 'YouTube Shorts', linkLabel: '動画リンク', mediaLabel: 'サムネイル' },
   ];
   const board = el('div', { class: 'approval-platform-board' });
   for (const spec of platforms) {
-    const items = pending.filter((post) => post.platform === spec.platform
-      && (spec.platform !== 'YOUTUBE' || /shorts?|ショート/i.test(post.title ?? '') === Boolean(spec.shorts)));
+    const items = pending.filter((post) => post.platform === spec.platform);
     const lane = el('section', { class: 'approval-platform-lane' },
       el('div', { class: 'approval-platform-head' },
         platformBadge(spec.platform, { size: 32, decorative: true }),
@@ -55,11 +54,19 @@ async function buildSimpleApprovalItem(app, post, linkLabel = '記事リンク',
     article: disabledApprovalButton(), thumbnail: disabledApprovalButton(),
   }));
   const revisions = new Map([[revision.revision_id, revision]]);
+  const verdict = await verifyComponentApprovals(app.ctx, post.channel_post_id);
+  const actionFor = async (scope) => {
+    const state = verdict.components?.[scope];
+    if (state?.valid) {
+      const when = state.approval?.decided_at ? new Date(state.approval.decided_at).toLocaleString('ja-JP') : '';
+      return el('span', { class: 'approval-component-approved', title: state.currentHash }, `承認済み ${when}`.trim());
+    }
+    return el('a', { class: 'btn btn-primary btn-sm',
+      href: await buildPublicApprovalRequest({ group, posts: [post], revisions, componentScope: scope }) }, '承認');
+  };
   return el('div', { class: 'approval-simple-item' }, approvalMedia(revision, post.calendar_date_key, linkLabel, mediaLabel, {
-    article: el('a', { class: 'btn btn-primary btn-sm',
-      href: await buildPublicApprovalRequest({ group, posts: [post], revisions, componentScope: 'CONTENT' }) }, '承認'),
-    thumbnail: el('a', { class: 'btn btn-primary btn-sm',
-      href: await buildPublicApprovalRequest({ group, posts: [post], revisions, componentScope: 'THUMBNAIL' }) }, '承認'),
+    article: await actionFor('CONTENT'),
+    thumbnail: await actionFor('THUMBNAIL'),
   }));
 }
 
@@ -78,8 +85,11 @@ function assetUrl(asset) {
   return asset?.thumbnail_url ?? asset?.preview_url ?? asset?.public_url ?? asset?.source_url ?? asset?.url ?? null;
 }
 
-function mediaPreview(revision) {
-  const assets = (revision?.assets ?? []).filter((asset) => assetUrl(asset));
+function mediaPreview(revision, componentScope) {
+  const assets = (revision?.assets ?? []).filter((asset) => assetUrl(asset))
+    .filter((asset) => componentScope === 'THUMBNAIL'
+      ? String(asset.asset_role ?? '').toUpperCase() === 'THUMBNAIL'
+      : String(asset.asset_role ?? '').toUpperCase() !== 'THUMBNAIL');
   if (!assets.length) return null;
   return el('div', { class: 'approval-media-gallery' }, ...assets.map((asset, index) => {
     const url = assetUrl(asset);
@@ -96,7 +106,8 @@ function mediaPreview(revision) {
 
 function approvalMedia(revision, publishDate = '', linkLabel = '記事リンク', mediaLabel = 'サムネイル', actions = {}) {
   const link = articleUrl(revision);
-  const preview = mediaPreview(revision);
+  const contentPreview = mediaPreview(revision, 'CONTENT');
+  const thumbnailPreview = mediaPreview(revision, 'THUMBNAIL');
   const [, month = '', day = ''] = String(publishDate ?? '').split('-');
   const dateLabel = month && day ? `${Number(month)}/${Number(day)}用` : '日付未定';
   const pasteThumbnail = (event) => {
@@ -111,11 +122,13 @@ function approvalMedia(revision, publishDate = '', linkLabel = '記事リンク'
     el('div', { class: 'approval-link-box' },
       el('div', { class: 'approval-media-label' },
         el('strong', null, linkLabel), el('small', null, dateLabel)),
-      el('input', { class: 'approval-url-input', type: 'url', value: link ?? '', placeholder: `${linkLabel.replace('リンク', '')}URLを貼り付け` }), actions.article),
+      el('input', { class: 'approval-url-input', type: 'url', value: link ?? '', readonly: true, placeholder: `${linkLabel.replace('リンク', '')}URL` }),
+      contentPreview,
+      actions.article),
     el('div', { class: 'approval-thumbnail-box' },
       el('div', { class: 'approval-media-label' },
         el('strong', null, mediaLabel), el('small', null, dateLabel)),
-      preview || el('div', { class: 'approval-thumbnail-empty', tabindex: '0', onPaste: pasteThumbnail }, 'ここに画像を貼り付け'),
+      thumbnailPreview || el('div', { class: 'approval-thumbnail-empty', tabindex: '0', onPaste: pasteThumbnail }, 'サムネイル未登録'),
       actions.thumbnail));
 }
 

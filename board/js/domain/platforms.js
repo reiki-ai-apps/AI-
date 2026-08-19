@@ -7,6 +7,7 @@
 export const PLATFORMS = Object.freeze([
   Object.freeze({ id: 'NOTE', name: 'note', tone: 'note' }),
   Object.freeze({ id: 'YOUTUBE', name: 'YouTube', tone: 'youtube' }),
+  Object.freeze({ id: 'YOUTUBE_SHORTS', name: 'YouTube Shorts', tone: 'youtube' }),
   Object.freeze({ id: 'INSTAGRAM', name: 'Instagram', tone: 'instagram' }),
   Object.freeze({ id: 'TIKTOK', name: 'TikTok', tone: 'tiktok' }),
   Object.freeze({ id: 'X', name: 'X', tone: 'x' }),

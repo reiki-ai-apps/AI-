@@ -49,10 +49,12 @@ function normalizeAssets(assets = []) {
     alt_text: a.alt_text ?? '',
     rights_status: a.rights_status ?? 'UNKNOWN',
     file_name: a.file_name ?? null,
-    asset_role: a.asset_role ?? null,
+    asset_role: a.asset_role ?? 'ATTACHMENT',
     public_url: a.public_url ?? null,
     thumbnail_url: a.thumbnail_url ?? null,
     preview_url: a.preview_url ?? null,
+    source_sha256: a.source_sha256 ?? null,
+    source_bytes: a.source_bytes ?? null,
   }));
 }
 
@@ -80,6 +82,7 @@ function makeRevision({ channelPostId, revisionNo, payload, assets, rights, crea
     hashtags: [...(payload.hashtags ?? [])],
     cta: payload.cta ?? '',
     visibility: payload.visibility ?? 'PUBLIC',
+    article_url: payload.article_url ?? payload.link_url ?? null,
     assets: normalizeAssets(assets),
     rights: normalizeRights(rights),
     created_at: createdAt,
@@ -106,11 +109,11 @@ export async function createPostGroup(ctx, input) {
     if (!isPlatformId(p)) throw new ValidationError(`未知のSNSです: ${p}`, 'platforms');
   }
 
-  const scheduledAt = input.scheduledAtIso;
-  if (!Number.isFinite(Date.parse(scheduledAt ?? ''))) {
+  const defaultScheduledAt = input.scheduledAtIso;
+  if (!Number.isFinite(Date.parse(defaultScheduledAt ?? ''))) {
     throw new ValidationError('公開予定日時を入力してください。', 'scheduledAt');
   }
-  const timeZone = input.timeZone ?? ctx.clock.timeZone;
+  const defaultTimeZone = input.timeZone ?? ctx.clock.timeZone;
   const now = ctx.clock.nowIso();
   const correlationId = uuid();
 
@@ -139,12 +142,18 @@ export async function createPostGroup(ctx, input) {
       channelPostId,
       revisionNo: 1,
       payload,
-      assets: input.assets ?? [],
+      assets: input.assetsByPlatform?.[platform] ?? input.assets ?? [],
       rights: input.rights,
       createdAt: now,
       createdBy: ctx.actor.userId,
     });
     const socialAccountId = input.socialAccountIds?.[platform] ?? `${platform.toLowerCase()}-default`;
+    const platformSchedule = input.schedulesByPlatform?.[platform] ?? {};
+    const scheduledAt = platformSchedule.scheduled_at ?? defaultScheduledAt;
+    const timeZone = platformSchedule.time_zone ?? defaultTimeZone;
+    if (!Number.isFinite(Date.parse(scheduledAt ?? ''))) {
+      throw new ValidationError(`${platform}の公開予定日時が不正です。`, 'scheduledAt');
+    }
     const channelPost = {
       channel_post_id: channelPostId,
       post_group_id: postGroupId,
@@ -155,6 +164,8 @@ export async function createPostGroup(ctx, input) {
       display_state: 'DRAFT',
       current_revision_id: revision.revision_id,
       approval_id: null,
+      component_approval_ids: {},
+      requires_component_approvals: input.requiresComponentApprovals === true,
       scheduled_at: scheduledAt,
       time_zone: timeZone,
       published_at: null,
@@ -163,7 +174,7 @@ export async function createPostGroup(ctx, input) {
       external_post_id: null,
       failure_kind: null,
       execution_id: null,
-      has_assets: (input.assets ?? []).length > 0,
+      has_assets: (input.assetsByPlatform?.[platform] ?? input.assets ?? []).length > 0,
       rights_confirmed: input.rights?.confirmed === true,
       credential_expired: false,
       internal: { memo: '', tags: [], audit_comment: '' },
@@ -181,7 +192,11 @@ export async function createPostGroup(ctx, input) {
     built.push({ channelPost, revision, afterHash: await snapshotHash(channelPost) });
   }
 
-  const assets = normalizeAssets(input.assets ?? []).map((a) => ({ ...a, post_group_id: postGroupId }));
+  const assetSource = input.assetsByPlatform
+    ? Object.values(input.assetsByPlatform).flat()
+    : (input.assets ?? []);
+  const uniqueAssets = [...new Map(assetSource.map((asset) => [asset.asset_id, asset])).values()];
+  const assets = normalizeAssets(uniqueAssets).map((a) => ({ ...a, post_group_id: postGroupId }));
 
   await ctx.repo.change(['postGroups', 'channelPosts', 'postRevisions', 'mediaAssets'], async (tx, audit) => {
     await tx.add('postGroups', group);
@@ -242,6 +257,7 @@ export async function reviseChannelPost(ctx, channelPostId, changes, { reason = 
       hashtags: changes.hashtags ?? current.hashtags,
       cta: changes.cta ?? current.cta,
       visibility: changes.visibility ?? current.visibility,
+      article_url: changes.articleUrl ?? changes.article_url ?? current.article_url,
     },
     assets: changes.assets ?? current.assets,
     rights: changes.rights ?? current.rights,
@@ -279,10 +295,12 @@ export async function reviseChannelPost(ctx, channelPostId, changes, { reason = 
 
   // 承認根拠が変わったなら、承認を失わせて承認待ちへ戻す (§14 変更時の扱い)。
   const hadApproval = Boolean(post.approval_id);
-  const invalidate = hadApproval && diff.invalidates;
+  const hadComponentApproval = Object.keys(post.component_approval_ids ?? {}).length > 0;
+  const invalidate = (hadApproval || hadComponentApproval) && diff.invalidates;
   if (invalidate) {
     updated.approval_id = null;
     updated.approval_expires_at = null;
+    updated.component_approval_ids = {};
     if (post.display_state === 'SCHEDULED') updated.display_state = 'PENDING_APPROVAL';
   }
 
@@ -303,6 +321,14 @@ export async function reviseChannelPost(ctx, channelPostId, changes, { reason = 
           ...approval,
           revoked_at: now,
           revoked_reason: `承認対象項目の変更: ${diff.changes.map((c) => c.label).join('・')}`,
+        });
+      }
+      const componentApprovals = await tx.getAllBy('approvals', 'channel_post_id', channelPostId);
+      for (const component of componentApprovals.filter((item) => item.component_scope && !item.revoked_at)) {
+        await tx.put('approvals', {
+          ...component,
+          revoked_at: now,
+          revoked_reason: `Revision更新により${component.component_scope}承認を無効化`,
         });
       }
     }

@@ -95,14 +95,14 @@ export function validatePackage(pkg) {
   }
 
   const payloads = pkg.platform_payloads;
-  if (!Array.isArray(payloads) || payloads.length < 1 || payloads.length > 4) {
-    errors.push(err('/platform_payloads', 'platform_payloads は1〜4件で指定してください。'));
+  if (!Array.isArray(payloads) || payloads.length < 1 || payloads.length > 5) {
+    errors.push(err('/platform_payloads', 'platform_payloads は1〜5件で指定してください。'));
   } else {
     const seen = new Set();
     payloads.forEach((p, i) => {
       const at = `/platform_payloads/${i}`;
       if (!isPlatformId(p?.platform)) {
-        errors.push(err(`${at}/platform`, 'platform は YOUTUBE / INSTAGRAM / TIKTOK / X のいずれかです。'));
+        errors.push(err(`${at}/platform`, '未対応の投稿先です。'));
       } else if (seen.has(p.platform)) {
         errors.push(err(`${at}/platform`, `同じSNSが重複しています: ${p.platform}`));
       } else {
@@ -123,8 +123,8 @@ export function validatePackage(pkg) {
   }
 
   const assets = pkg.assets ?? [];
-  if (!Array.isArray(assets) || assets.length > 20) {
-    errors.push(err('/assets', 'assets は0〜20件で指定してください。'));
+  if (!Array.isArray(assets) || assets.length > 40) {
+    errors.push(err('/assets', 'assets は0〜40件で指定してください。'));
   } else {
     assets.forEach((a, i) => {
       const at = `/assets/${i}`;
@@ -133,6 +133,12 @@ export function validatePackage(pkg) {
       if (!a?.mime) errors.push(err(`${at}/mime`, 'mime は必須です。'));
       if (!Number.isFinite(a?.bytes) || a.bytes < 1) errors.push(err(`${at}/bytes`, 'bytes は1以上で指定してください。'));
       if (!a?.rights_status) errors.push(err(`${at}/rights_status`, 'rights_status は必須です。'));
+      if (a?.platform != null && !isPlatformId(a.platform)) {
+        errors.push(err(`${at}/platform`, '素材の投稿先が不正です。'));
+      }
+      if (a?.asset_role != null && !['CONTENT', 'THUMBNAIL', 'CAROUSEL', 'VIDEO', 'ATTACHMENT'].includes(a.asset_role)) {
+        errors.push(err(`${at}/asset_role`, 'asset_role が不正です。'));
+      }
     });
   }
 
@@ -243,6 +249,30 @@ export async function ingestPackage(ctx, pkg, assetBytes = new Map()) {
   }
 
   const first = pkg.platform_payloads[0];
+  const allAssets = (pkg.assets ?? []).map((a) => ({
+    asset_id: a.asset_id,
+    sha256: a.sha256,
+    mime: a.mime,
+    bytes: a.bytes,
+    order: a.order,
+    alt_text: a.alt_text ?? '',
+    rights_status: a.rights_status,
+    file_name: a.archive_member ?? null,
+    asset_role: a.asset_role ?? null,
+    public_url: a.public_url ?? null,
+    thumbnail_url: a.thumbnail_url ?? null,
+    preview_url: a.preview_url ?? null,
+    source_sha256: a.source_sha256 ?? null,
+    source_bytes: a.source_bytes ?? null,
+  }));
+  const assetsByPlatform = Object.fromEntries(pkg.platform_payloads.map((payload) => [
+    payload.platform,
+    allAssets.filter((asset) => {
+      const source = (pkg.assets ?? []).find((candidate) => candidate.asset_id === asset.asset_id);
+      return !source?.platform || source.platform === payload.platform;
+    }),
+  ]));
+  const assetUrlById = new Map(allAssets.map((asset) => [asset.asset_id, asset.public_url]));
   const created = await createPostGroup(ctx, {
     brandId: pkg.brand_id,
     projectTitle: pkg.project_title,
@@ -258,23 +288,13 @@ export async function ingestPackage(ctx, pkg, assetBytes = new Map()) {
           hashtags: p.hashtags ?? [],
           cta: p.cta ?? '',
           visibility: p.visibility ?? 'PUBLIC',
+          article_url: p.article_url ?? p.link_url ?? assetUrlById.get(p.content_asset_id) ?? null,
         },
       ]),
     ),
-    assets: (pkg.assets ?? []).map((a) => ({
-      asset_id: a.asset_id,
-      sha256: a.sha256,
-      mime: a.mime,
-      bytes: a.bytes,
-      order: a.order,
-      alt_text: a.alt_text ?? '',
-      rights_status: a.rights_status,
-      file_name: a.archive_member ?? null,
-      asset_role: a.asset_role ?? null,
-      public_url: a.public_url ?? null,
-      thumbnail_url: a.thumbnail_url ?? null,
-      preview_url: a.preview_url ?? null,
-    })),
+    assetsByPlatform,
+    schedulesByPlatform: Object.fromEntries(pkg.platform_payloads.map((p) => [p.platform, p.suggested_schedule])),
+    requiresComponentApprovals: pkg.operations?.separate_content_thumbnail_approval !== false,
     rights: {
       // 上流の品質PASSは公開承認ではない。権利確認の事実だけを引き継ぐ (§22)。
       confirmed: (pkg.claims ?? []).length > 0,

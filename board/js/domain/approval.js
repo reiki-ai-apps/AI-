@@ -11,6 +11,8 @@ import { canonicalize } from '../core/jcs.js';
 import { domainDigest } from '../core/digest.js';
 
 export const APPROVAL_BASIS_DOMAIN = 'REIKI-APPROVAL-BASIS-V1';
+export const APPROVAL_COMPONENT_DOMAIN = 'REIKI-APPROVAL-COMPONENT-V1';
+export const APPROVAL_COMPONENTS = Object.freeze(['CONTENT', 'THUMBNAIL']);
 
 /**
  * 承認根拠に含まれる項目と、その日本語名。
@@ -22,6 +24,7 @@ export const BASIS_FIELDS = Object.freeze({
   hashtags: 'ハッシュタグ',
   cta: 'CTA',
   visibility: '公開範囲',
+  article_url: '記事・動画リンク',
   assets: '素材',
   platform: '投稿先SNS',
   social_account_id: '投稿先アカウント',
@@ -52,7 +55,12 @@ function normalizeAsset(asset) {
     thumbnail_sha256: asset.thumbnail_sha256 ?? null,
     subtitle_sha256: asset.subtitle_sha256 ?? null,
     alt_text: asset.alt_text ?? '',
+    asset_role: asset.asset_role ?? 'ATTACHMENT',
   };
+}
+
+function isThumbnailAsset(asset) {
+  return String(asset?.asset_role ?? '').toUpperCase() === 'THUMBNAIL';
 }
 
 function normalizeRights(rights) {
@@ -88,6 +96,7 @@ export function buildApprovalBasis({ channelPost, revision, schedule, allowedRet
     hashtags: [...(revision.hashtags ?? [])],
     cta: revision.cta ?? '',
     visibility: revision.visibility ?? 'PUBLIC',
+    article_url: revision.article_url ?? null,
     assets: [...(revision.assets ?? [])]
       .map(normalizeAsset)
       .sort((a, b) => a.order - b.order),
@@ -108,6 +117,55 @@ export function approvalBasisHash(basis) {
 /** 引数から直接ハッシュを求める便利版。 */
 export function computeApprovalBasisHash(input) {
   return approvalBasisHash(buildApprovalBasis(input));
+}
+
+/**
+ * 本文・動画とサムネイルを独立して承認するための根拠。
+ * CONTENTには本文とサムネイル以外の素材、THUMBNAILには採用サムネイルだけを含める。
+ */
+export function buildApprovalComponentBasis({
+  channelPost,
+  revision,
+  schedule,
+  componentScope,
+  allowedRetryDelayMinutes = 0,
+}) {
+  if (!APPROVAL_COMPONENTS.includes(componentScope)) {
+    throw new RangeError(`未知の承認区分です: ${componentScope}`);
+  }
+  const assets = [...(revision.assets ?? [])]
+    .filter((asset) => componentScope === 'THUMBNAIL' ? isThumbnailAsset(asset) : !isThumbnailAsset(asset))
+    .map(normalizeAsset)
+    .sort((a, b) => a.order - b.order);
+  const shared = {
+    component_scope: componentScope,
+    revision_id: revision.revision_id,
+    platform: channelPost.platform,
+    social_account_id: channelPost.social_account_id,
+    scheduled_at: schedule.scheduled_at,
+    time_zone: schedule.time_zone,
+    allowed_retry_delay_minutes: allowedRetryDelayMinutes,
+  };
+  if (componentScope === 'THUMBNAIL') return { ...shared, assets };
+  return {
+    ...shared,
+    body: revision.body ?? '',
+    title: revision.title ?? '',
+    hashtags: [...(revision.hashtags ?? [])],
+    cta: revision.cta ?? '',
+    visibility: revision.visibility ?? 'PUBLIC',
+    article_url: revision.article_url ?? null,
+    assets,
+    rights: normalizeRights(revision.rights),
+  };
+}
+
+export function approvalComponentHash(basis) {
+  return domainDigest(APPROVAL_COMPONENT_DOMAIN, basis);
+}
+
+export function computeApprovalComponentHash(input) {
+  return approvalComponentHash(buildApprovalComponentBasis(input));
 }
 
 function sameValue(a, b) {

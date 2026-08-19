@@ -5,9 +5,10 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 
 import { systemClock } from '../js/core/clock.js';
-import { buildApprovalBasis, approvalBasisHash } from '../js/domain/approval.js';
+import { buildApprovalBasis, approvalBasisHash, computeApprovalComponentHash } from '../js/domain/approval.js';
 import { openFileDatabase } from '../js/store/filedb.js';
 import { Repo } from '../js/store/repo.js';
+import { reviseChannelPost } from '../js/services/posts.js';
 import { processPublicApprovalIssue, PUBLIC_APPROVAL_CONTRACT } from './process-public-approval-issue.mjs';
 import { syncPublicationPackage } from './sync-publication-package.mjs';
 import { verifyPublicationApproval } from './verify-publication-approval.mjs';
@@ -40,7 +41,7 @@ function samplePackage() {
     assets: [],
     claims: [],
     reviews: [],
-    operations: { owner: 'skill-sync', approver_candidates: ['reiki'] },
+    operations: { owner: 'skill-sync', approver_candidates: ['reiki'], separate_content_thumbnail_approval: false },
   };
 }
 
@@ -134,7 +135,9 @@ test('記事とサムネイルを別々に承認し、両方そろった時だ�
   const packagePath = join(dir, 'package.json');
   const dataFile = join(dir, 'board.json');
   const receiptDir = join(dir, 'receipts');
-  await writeFile(packagePath, JSON.stringify(samplePackage()), 'utf8');
+  const packageValue = samplePackage();
+  packageValue.operations.separate_content_thumbnail_approval = true;
+  await writeFile(packagePath, JSON.stringify(packageValue), 'utf8');
 
   const syncReceipt = await syncPublicationPackage({
     package: packagePath,
@@ -146,14 +149,14 @@ test('記事とサムネイルを別々に承認し、両方そろった時だ�
   const repo = new Repo(db, systemClock('Asia/Tokyo'));
   const post = await repo.getPost(syncReceipt.channel_post_ids[0]);
   const revision = await repo.getRevision(post.current_revision_id);
-  const expectedHash = await approvalBasisHash(buildApprovalBasis({
-    channelPost: post,
-    revision,
-    schedule: { scheduled_at: post.scheduled_at, time_zone: post.time_zone },
-    allowedRetryDelayMinutes: 30,
-  }));
-
-  const eventFor = (componentScope, issueNumber) => {
+  const eventFor = async (componentScope, issueNumber) => {
+    const expectedHash = await computeApprovalComponentHash({
+      channelPost: post,
+      revision,
+      schedule: { scheduled_at: post.scheduled_at, time_zone: post.time_zone },
+      componentScope,
+      allowedRetryDelayMinutes: 30,
+    });
     const payload = {
       contract: PUBLIC_APPROVAL_CONTRACT,
       action: 'APPROVE',
@@ -162,6 +165,7 @@ test('記事とサムネイルを別々に承認し、両方そろった時だ�
         channel_post_id: post.channel_post_id,
         revision_id: revision.revision_id,
         approval_basis_hash: expectedHash,
+        approval_component_hash: expectedHash,
         allowed_retry_delay_minutes: 30,
       }],
     };
@@ -179,21 +183,37 @@ test('記事とサムネイルを別々に承認し、両方そろった時だ�
   };
 
   const contentReceipt = await processPublicApprovalIssue({
-    event: eventFor('CONTENT', 50),
+    event: await eventFor('CONTENT', 50),
     dataFile,
     receiptFile: join(receiptDir, 'content.json'),
   });
   assert.equal(contentReceipt.status, 'COMPONENT_APPROVED');
   assert.equal(contentReceipt.component_scope, 'CONTENT');
+  assert.ok(contentReceipt.approvals[0].component_approval_id);
   let refreshedRepo = new Repo(await openFileDatabase(dataFile), systemClock('Asia/Tokyo'));
   assert.equal((await refreshedRepo.getPost(post.channel_post_id)).display_state, 'PENDING_APPROVAL');
 
   const thumbnailReceipt = await processPublicApprovalIssue({
-    event: eventFor('THUMBNAIL', 51),
+    event: await eventFor('THUMBNAIL', 51),
     dataFile,
     receiptFile: join(receiptDir, 'thumbnail.json'),
   });
   assert.equal(thumbnailReceipt.status, 'APPROVED');
   refreshedRepo = new Repo(await openFileDatabase(dataFile), systemClock('Asia/Tokyo'));
   assert.equal((await refreshedRepo.getPost(post.channel_post_id)).display_state, 'SCHEDULED');
+  const approvals = await refreshedRepo.listApprovalsFor(post.channel_post_id);
+  assert.equal(approvals.filter((item) => item.decision === 'COMPONENT_APPROVED').length, 2);
+
+  const editDb = await openFileDatabase(dataFile);
+  const editClock = systemClock('Asia/Tokyo');
+  await reviseChannelPost({
+    repo: new Repo(editDb, editClock), db: editDb, clock: editClock, mode: 'SOLO', backend: 'file',
+    actor: { userId: 'editor', role: 'ADMIN' },
+  }, post.channel_post_id, { body: '修正版の本文' }, { reason: '本文修正テスト' });
+  refreshedRepo = new Repo(await openFileDatabase(dataFile), systemClock('Asia/Tokyo'));
+  const revisedPost = await refreshedRepo.getPost(post.channel_post_id);
+  assert.equal(revisedPost.display_state, 'PENDING_APPROVAL');
+  assert.deepEqual(revisedPost.component_approval_ids, {});
+  const revisedApprovals = await refreshedRepo.listApprovalsFor(post.channel_post_id);
+  assert.ok(revisedApprovals.filter((item) => item.decision === 'COMPONENT_APPROVED').every((item) => item.revoked_at));
 });

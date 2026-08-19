@@ -36,13 +36,19 @@ jobs:
             --data-file board/data/board.json \
             --receipt "board/data/approval-receipts/issue-${ISSUE_NUMBER}.json"
 
+      - name: Re-audit both approval components
+        run: |
+          node board/scripts/audit-component-approvals.mjs \
+            --data-file board/data/board.json \
+            --output board/data/component-approval-audit.json
+
       - name: Commit approval evidence
         env:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- board/data/board.json "board/data/approval-receipts/issue-${ISSUE_NUMBER}.json"
+          git add -- board/data/board.json board/data/component-approval-audit.json "board/data/approval-receipts/issue-${ISSUE_NUMBER}.json"
           git commit -m "Record POST BOARD approval #${ISSUE_NUMBER}"
           git push origin HEAD:main
 
