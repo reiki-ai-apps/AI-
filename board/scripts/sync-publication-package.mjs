@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
+import { readFile, writeFile, mkdir, copyFile } from 'node:fs/promises';
+import { basename, dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 import { systemClock } from '../js/core/clock.js';
@@ -15,6 +15,7 @@ const DEFAULT_REPO = 'reiki-post-board-data';
 const DEFAULT_BRANCH = 'main';
 const DEFAULT_PATH = 'board.json';
 const DEFAULT_TIME_ZONE = 'Asia/Tokyo';
+const DEFAULT_PUBLIC_MEDIA_BASE_URL = 'https://reiki-ai-apps.github.io/AI-/board/media';
 
 function usage() {
   return `Usage:
@@ -24,6 +25,8 @@ Options:
   --validate-only            Validate and seal without changing POST BOARD
   --queue-for-approval       Move newly imported drafts to 承認待ち
   --asset-dir <directory>    Base directory for assets.archive_member files
+  --public-media-dir <dir>   Copy assets into this public Board directory
+  --public-media-base-url <url> Public URL corresponding to that directory
   --receipt <file>           Write a JSON receipt (never contains credentials)
   --owner <github-owner>     Data-repository owner (or REIKI_POST_BOARD_OWNER)
   --repo <github-repo>       Data repository (default: ${DEFAULT_REPO})
@@ -80,6 +83,49 @@ async function loadAssets(pkg, assetDir) {
   return assets;
 }
 
+function safeMediaName(asset, index) {
+  const source = basename(asset.archive_member || `asset-${index + 1}`);
+  const clean = source.normalize('NFKC').replace(/[^a-zA-Z0-9._-]+/g, '-').replace(/^-+|-+$/g, '');
+  return `${String(asset.order ?? index + 1).padStart(2, '0')}-${clean || `asset-${index + 1}`}`;
+}
+
+function inferAssetRole(asset) {
+  if (asset.asset_role) return asset.asset_role;
+  const name = String(asset.archive_member ?? '').toLowerCase();
+  if (/thumb|thumbnail|cover|サムネ/.test(name)) return 'THUMBNAIL';
+  if (String(asset.mime ?? '').startsWith('video/')) return 'VIDEO';
+  if (String(asset.mime ?? '').startsWith('image/')) return 'CAROUSEL';
+  return 'ATTACHMENT';
+}
+
+async function publishAssets(pkg, assetDir, options) {
+  if (!(pkg.assets ?? []).length) return pkg;
+  const dataFile = options.dataFile ? resolve(options.dataFile) : null;
+  const defaultMediaDir = dataFile ? join(dirname(dirname(dataFile)), 'media') : null;
+  const mediaDir = resolve(options.publicMediaDir || defaultMediaDir || 'board/media');
+  const packageDir = join(mediaDir, pkg.package_id);
+  await mkdir(packageDir, { recursive: true });
+  const baseUrl = String(options.publicMediaBaseUrl || DEFAULT_PUBLIC_MEDIA_BASE_URL).replace(/\/$/, '');
+
+  const assets = [];
+  for (let index = 0; index < pkg.assets.length; index += 1) {
+    const asset = pkg.assets[index];
+    if (!asset.archive_member) {
+      assets.push(asset);
+      continue;
+    }
+    const source = resolve(assetDir, asset.archive_member);
+    const fileName = safeMediaName(asset, index);
+    await copyFile(source, join(packageDir, fileName));
+    assets.push({
+      ...asset,
+      asset_role: inferAssetRole(asset),
+      public_url: `${baseUrl}/${encodeURIComponent(pkg.package_id)}/${encodeURIComponent(fileName)}`,
+    });
+  }
+  return { ...pkg, assets };
+}
+
 async function writeReceipt(path, receipt) {
   if (!path) return;
   const fullPath = resolve(path);
@@ -130,7 +176,9 @@ export async function syncPublicationPackage(options) {
     ...raw,
     tenant_id: raw.tenant_id || process.env.REIKI_POST_BOARD_TENANT_ID,
   };
-  const sealed = await sealPackage(hydrated);
+  const assetDir = options.assetDir || dirname(sourcePath);
+  const published = options.validateOnly ? hydrated : await publishAssets(hydrated, assetDir, options);
+  const sealed = await sealPackage(published);
   const errors = validatePackage(sealed);
   if (errors.length) throw new Error(`PublicationPackage が不正です。\n${validationError(errors)}`);
 
@@ -150,7 +198,6 @@ export async function syncPublicationPackage(options) {
   }
 
   const ctx = await openContext(options);
-  const assetDir = options.assetDir || dirname(sourcePath);
   const assetBytes = await loadAssets(sealed, assetDir);
   const result = await ingestPackage(ctx, sealed, assetBytes);
   let queued = [];
@@ -171,6 +218,13 @@ export async function syncPublicationPackage(options) {
     channel_post_ids: result.channelPostIds ?? [],
     queued_for_approval: queued,
     warnings: result.warnings ?? [],
+    public_media: (sealed.assets ?? []).filter((asset) => asset.public_url).map((asset) => ({
+      asset_id: asset.asset_id,
+      asset_role: asset.asset_role,
+      mime: asset.mime,
+      sha256: asset.sha256,
+      public_url: asset.public_url,
+    })),
     synced_at: new Date().toISOString(),
   };
   await writeReceipt(options.receipt, receipt);

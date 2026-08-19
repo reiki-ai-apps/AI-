@@ -49,6 +49,10 @@ function normalizeAssets(assets = []) {
     alt_text: a.alt_text ?? '',
     rights_status: a.rights_status ?? 'UNKNOWN',
     file_name: a.file_name ?? null,
+    asset_role: a.asset_role ?? null,
+    public_url: a.public_url ?? null,
+    thumbnail_url: a.thumbnail_url ?? null,
+    preview_url: a.preview_url ?? null,
   }));
 }
 

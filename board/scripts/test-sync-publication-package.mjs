@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile } from 'node:fs/promises';
+import { mkdtemp, readFile, writeFile, stat } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
@@ -50,9 +50,34 @@ function publicationPackage({ sourceSkill, brandId, idempotencyKey, title, omitT
 }
 
 async function writeJson(path, value) {
-  const { writeFile } = await import('node:fs/promises');
   await writeFile(path, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
+
+test('素材を公開領域へコピーしURL・役割をBoardへ保存する', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'reiki-board-media-'));
+  const packagePath = join(dir, 'publication-package.json');
+  const dataPath = join(dir, 'data', 'board.json');
+  const mediaDir = join(dir, 'media');
+  const imagePath = join(dir, 'thumbnail.png');
+  const bytes = Buffer.from('test-image-bytes');
+  await writeFile(imagePath, bytes);
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  const sha256 = Buffer.from(digest).toString('hex');
+  const pkg = publicationPackage({ sourceSkill: 'ai_news_v1', brandId: 'news', idempotencyKey: 'ai_news_v1:media:2026-08-20', title: '素材同期テスト' });
+  pkg.assets = [{ asset_id: crypto.randomUUID(), sha256, mime: 'image/png', bytes: bytes.length,
+    rights_status: 'OWNED', archive_member: 'thumbnail.png', order: 1, alt_text: '確認用サムネイル' }];
+  await writeJson(packagePath, pkg);
+
+  const result = await syncPublicationPackage({ package: packagePath, dataFile: dataPath,
+    publicMediaDir: mediaDir, publicMediaBaseUrl: 'https://example.test/board/media', queueForApproval: true,
+    actor: 'skill-sync-test' });
+  assert.equal(result.status, 'IMPORTED');
+  const board = JSON.parse(await readFile(dataPath, 'utf8'));
+  const asset = board.stores.postRevisions[0].assets[0];
+  assert.equal(asset.asset_role, 'THUMBNAIL');
+  assert.match(asset.public_url, /^https:\/\/example\.test\/board\/media\//);
+  await stat(join(mediaDir, pkg.package_id, '01-thumbnail.png'));
+});
 
 for (const scenario of [
   { sourceSkill: 'ai_news_v1', brandId: 'news', title: 'KIZASHI AIニュース' },

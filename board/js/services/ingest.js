@@ -270,6 +270,10 @@ export async function ingestPackage(ctx, pkg, assetBytes = new Map()) {
       alt_text: a.alt_text ?? '',
       rights_status: a.rights_status,
       file_name: a.archive_member ?? null,
+      asset_role: a.asset_role ?? null,
+      public_url: a.public_url ?? null,
+      thumbnail_url: a.thumbnail_url ?? null,
+      preview_url: a.preview_url ?? null,
     })),
     rights: {
       // 上流の品質PASSは公開承認ではない。権利確認の事実だけを引き継ぐ (§22)。
