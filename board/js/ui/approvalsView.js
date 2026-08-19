@@ -33,7 +33,14 @@ export async function renderApprovalsScreen(app) {
         platformBadge(spec.platform, { size: 32, decorative: true }),
         el('h2', null, spec.label)));
     if (!items.length) {
-      lane.appendChild(el('div', { class: 'approval-simple-item' }, approvalMedia(null, '', spec.linkLabel)));
+      lane.appendChild(el('div', { class: 'approval-simple-item' },
+        approvalMedia(null, '', spec.linkLabel),
+        el('button', {
+          class: 'btn btn-primary btn-sm',
+          type: 'button',
+          disabled: true,
+          title: '承認する内容が登録されると押せます',
+        }, '承認する')));
     } else {
       for (const post of items) {
         lane.appendChild(await buildSimpleApprovalItem(app, post, spec.linkLabel));
