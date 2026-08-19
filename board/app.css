@@ -821,6 +821,13 @@ input:invalid { border-color: var(--danger); }
 .status-plan-day-result { flex: none; padding: 2px 7px; border-radius: 999px; font-size: 11px; font-weight: 700; }
 .status-plan-day-result.is-incomplete { color: #9f2d22; background: #fbe9e7; }
 .status-plan-day-result.is-complete { color: #17613a; background: #e8f5ed; }
+.status-sns-grid { display: grid; grid-template-columns: repeat(5, minmax(58px, 1fr)); gap: 8px; margin-top: 13px; }
+.status-sns-badge { display: grid; grid-template-rows: 38px auto 34px; justify-items: center; align-items: center; gap: 4px; min-width: 0; padding: 10px 4px 7px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-alt); }
+.status-sns-badge.is-scheduled { border-color: #8eb2f8; background: #f1f6ff; color: #174f98; }
+.status-sns-badge.is-attention { border-color: #e0b066; background: #fff7e7; color: #8a4d00; }
+.status-sns-badge.is-danger { border-color: #e1a39d; background: #fff3f2; color: #9f2d22; }
+.status-sns-name { max-width: 100%; overflow: hidden; font-size: 11px; font-weight: 800; line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
+.status-sns-mark { font-size: 31px; line-height: 1; }
 .status-plan-counts { margin-top: 7px; color: var(--ink-3); font-size: 11px; line-height: 1.45; }
 .status-plan-items { display: grid; gap: 8px; margin-top: 10px; }
 .status-plan-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; min-width: 0; padding: 12px; border-left: 5px solid var(--line); border-radius: var(--radius-sm); background: var(--surface-alt); }
@@ -1052,5 +1059,7 @@ input:invalid { border-color: var(--danger); }
   .app-header .nav-item { flex: 1 1 0; justify-content: center; padding: 0 8px; }
   .status-action-list li { grid-template-columns: 6.5em minmax(0, 1fr); }
   .status-plan-days { grid-template-columns: 1fr; }
+  .status-sns-grid { grid-template-columns: repeat(5, minmax(52px, 1fr)); gap: 5px; }
+  .status-sns-badge { padding-inline: 2px; }
   .status-plan-actions .btn { flex: 1 1 140px; }
 }

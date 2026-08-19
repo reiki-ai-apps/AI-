@@ -116,40 +116,44 @@ function relativeDayLabel(index) {
   return `${index}日後`;
 }
 
-function planItem(item, timeZone) {
-  const stage = PLAN_STAGES[item.stage] ?? PLAN_STAGES.CREATING;
-  const timeMs = Date.parse(item.scheduledAt ?? '');
-  const time = Number.isFinite(timeMs) ? clockLabel(timeMs, timeZone) : '時刻未定';
-  return el('li', { class: `status-plan-item is-${stage.tone}` },
-    el('div', { class: 'status-plan-item-main' },
-      el('span', { class: 'status-plan-platform' },
-        platformBadge(item.platform, { size: 34, decorative: true }),
-        el('span', null, platformName(item.platform))),
-      el('strong', { class: 'status-plan-item-title' }, item.title),
-      el('span', { class: 'status-plan-item-meta' },
-        `${businessLabel(item.brandId)}｜${item.stage === 'SCHEDULED' ? '予約' : '予定'} ${time}`)),
-    el('span', {
-      class: `status-plan-state is-${stage.tone}`,
-      'aria-label': stage.label,
-      title: stage.label,
-    },
-    el('strong', { class: 'status-plan-mark', 'aria-hidden': 'true' }, stage.mark),
-    el('span', null, stage.label)));
+const STATUS_BADGES = Object.freeze([
+  { platform: 'NOTE', label: 'note' },
+  { platform: 'X', label: 'X' },
+  { platform: 'INSTAGRAM', label: 'Instagram' },
+  { platform: 'YOUTUBE', label: 'YouTube' },
+  { platform: 'YOUTUBE', label: 'Shorts', shorts: true },
+]);
+
+function isShorts(item) {
+  return /shorts?|ショート/i.test(item.title ?? '');
 }
 
-function planDay(day, timeZone) {
-  const counts = day.counts;
+function badgeStage(items, badge) {
+  const matching = items.filter((item) => item.platform === badge.platform
+    && (badge.platform !== 'YOUTUBE' || isShorts(item) === Boolean(badge.shorts)));
+  if (!matching.length || matching.some((item) => item.stage === 'CREATING')) return PLAN_STAGES.CREATING;
+  if (matching.some((item) => item.stage === 'APPROVAL' || item.stage === 'READY')) return PLAN_STAGES.APPROVAL;
+  return PLAN_STAGES.SCHEDULED;
+}
+
+function statusBadge(item, items) {
+  const stage = badgeStage(items, item);
+  return el('div', {
+    class: `status-sns-badge is-${stage.tone}`,
+    'aria-label': `${item.label} ${stage.label}`,
+    title: `${item.label}：${stage.label}`,
+  },
+  platformBadge(item.platform, { size: 38, decorative: true }),
+  el('span', { class: 'status-sns-name' }, item.label),
+  el('strong', { class: 'status-sns-mark', 'aria-hidden': 'true' }, stage.mark));
+}
+
+function planDay(day) {
   return el('section', { class: `status-plan-day${day.complete ? ' is-complete' : ' is-incomplete'}` },
     el('div', { class: 'status-plan-day-head' },
       el('h3', { class: 'status-plan-day-title' }, `${relativeDayLabel(day.index)}｜${dayHeading(day.dateKey)}`),
       el('span', { class: `status-plan-day-result${day.complete ? ' is-complete' : ' is-incomplete'}` }, day.complete ? '予約完了' : '未完了')),
-    el('p', { class: 'status-plan-counts' },
-      `予約 ${counts.SCHEDULED}件　承認待ち ${counts.APPROVAL}件　承認準備 ${counts.READY}件　未予約 ${counts.CREATING}件`),
-    day.items.length
-      ? el('ul', { class: 'status-plan-items' }, ...day.items.map((item) => planItem(item, timeZone)))
-      : el('div', { class: 'status-plan-empty' },
-        el('strong', null, '投稿が登録されていません'),
-        el('span', null, '内容・媒体・時刻が未準備です。')));
+    el('div', { class: 'status-sns-grid' }, ...STATUS_BADGES.map((item) => statusBadge(item, day.items))));
 }
 
 function reservationPanel(plan, timeZone, app) {
