@@ -6,7 +6,7 @@ import { fullDayLabel, clockLabel } from '../core/fmt.js';
 import { brandName } from '../domain/brands.js';
 import { platformName } from '../domain/platforms.js';
 import { platformBadge } from './platformBadge.js';
-import { approve, reject, describePendingChange, approveGroup, verifyComponentApprovals } from '../services/api.js';
+import { approve, reject, describePendingChange, approveGroup, verifyComponentApprovals } from '../services/api.js?v=2';
 import { guardedButton, permissionNotice } from './states.js';
 import { openPostDetail } from './postDetail.js';
 import { buildPublicApprovalRequest } from './publicApproval.js';

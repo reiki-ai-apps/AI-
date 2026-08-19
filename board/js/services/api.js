@@ -9,7 +9,7 @@
 import { callService } from '../store/apiRepo.js';
 
 import * as posts from './posts.js';
-import * as approvals from './approvals.js';
+import * as approvals from './approvals.js?v=2';
 import * as schedule from './schedule.js';
 import * as manual from './manual.js';
 import * as emergency from './emergency.js';
@@ -61,6 +61,7 @@ const DIRECT = {
 const PUBLIC_READ_SERVICES = new Set([
   'describePendingChange',
   'verifyApprovalStillValid',
+  'verifyComponentApprovals',
   'describeProduction',
 ]);
 
@@ -81,6 +82,9 @@ export const reject = (ctx, id, options) => call(ctx, 'reject', id, options);
 export const approveGroup = (ctx, ids, options) => call(ctx, 'approveGroup', ids, options);
 export const describePendingChange = (ctx, id) => call(ctx, 'describePendingChange', id);
 export const verifyApprovalStillValid = (ctx, id) => call(ctx, 'verifyApprovalStillValid', id);
+export const verifyComponentApprovals = (ctx, id, options) => call(ctx, 'verifyComponentApprovals', id, options);
+export const recordComponentApproval = (ctx, id, componentScope, options) =>
+  call(ctx, 'recordComponentApproval', id, componentScope, options);
 
 // 予約 (§15/§16)
 export const reschedule = (ctx, id, options) => call(ctx, 'reschedule', id, options);
