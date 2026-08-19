@@ -41,7 +41,7 @@ export async function renderApprovalsScreen(app) {
 async function buildSimpleApprovalItem(app, post) {
   const group = await app.ctx.repo.getPostGroup(post.post_group_id);
   const revision = await app.ctx.repo.getRevision(post.current_revision_id);
-  const card = el('div', { class: 'approval-simple-item' }, approvalMedia(revision));
+  const card = el('div', { class: 'approval-simple-item' }, approvalMedia(revision, post.calendar_date_key));
   if (revision) {
     card.appendChild(el('a', {
       class: 'btn btn-primary btn-sm',
@@ -64,7 +64,7 @@ function thumbnailUrl(revision) {
   return asset?.thumbnail_url ?? asset?.preview_url ?? asset?.public_url ?? asset?.source_url ?? asset?.url ?? null;
 }
 
-function approvalMedia(revision) {
+function approvalMedia(revision, publishDate = '') {
   const link = articleUrl(revision);
   const thumbnail = thumbnailUrl(revision);
   const pasteThumbnail = (event) => {
@@ -76,6 +76,9 @@ function approvalMedia(revision) {
     target.appendChild(el('img', { src: URL.createObjectURL(file), alt: '貼り付けたサムネイル' }));
   };
   return el('div', { class: 'approval-media-grid' },
+    el('label', { class: 'approval-date-box' },
+      el('strong', null, '投稿日'),
+      el('input', { class: 'approval-date-input', type: 'date', value: publishDate ?? '' })),
     el('div', { class: 'approval-link-box' },
       el('strong', null, '記事リンク'),
       el('input', { class: 'approval-url-input', type: 'url', value: link ?? '', placeholder: '記事URLを貼り付け' })),

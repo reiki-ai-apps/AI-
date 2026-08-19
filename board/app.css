@@ -869,6 +869,8 @@ input:invalid { border-color: var(--danger); }
 .approval-simple-item > .btn { justify-self: end; }
 .approval-platform-empty { display: grid; place-items: center; min-height: 120px; border: 1px dashed var(--line); border-radius: var(--radius-sm); color: var(--ink-3); font-weight: 700; }
 .approval-media-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(180px, .72fr); gap: 10px; margin-top: 12px; }
+.approval-date-box { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; padding: 9px 11px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); }
+.approval-date-input { width: auto; min-width: 160px; font-weight: 800; }
 .approval-link-box, .approval-thumbnail-box { min-width: 0; padding: 11px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); }
 .approval-link-box { display: grid; align-content: start; gap: 8px; }
 .approval-link-box a { overflow-wrap: anywhere; }
