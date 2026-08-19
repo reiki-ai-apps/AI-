@@ -46,3 +46,28 @@ test('別事業を分離し、日付・媒体ごとに制作中、確認待ち�
   assert.equal(creative.days[1].platforms.INSTAGRAM.SCHEDULED, 1);
 });
 
+test('今日より前の進捗を予定画面から除外する', () => {
+  const posts = [
+    {
+      post_group_id: 'creative-group', brand_id: 'creative', platform: 'X', display_state: 'DRAFT',
+      calendar_date_key: '2026-08-18', internal: { tags: [] },
+    },
+    {
+      post_group_id: 'creative-group', brand_id: 'creative', platform: 'INSTAGRAM', display_state: 'DRAFT',
+      calendar_date_key: '2026-08-19', internal: { tags: [] },
+    },
+    {
+      post_group_id: 'creative-group', brand_id: 'creative', platform: 'X', display_state: 'DRAFT',
+      calendar_date_key: '2026-08-20', internal: { tags: [] },
+    },
+  ];
+
+  const summary = summarizeBusinessPipeline({
+    posts,
+    postGroups: [{ post_group_id: 'creative-group', brand_id: 'creative' }],
+    minDateKey: '2026-08-19',
+  });
+
+  assert.deepEqual(summary[0].days.map((day) => day.dateKey), ['2026-08-19', '2026-08-20']);
+});
+

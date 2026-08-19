@@ -27,7 +27,7 @@ function emptyCounts() {
 }
 
 /** 純粋集計。公開済みは投稿履歴へ分離し、これから公開する投稿だけを数える。 */
-export function summarizeBusinessPipeline({ posts = [], postGroups = [], publicationPackages = [] }) {
+export function summarizeBusinessPipeline({ posts = [], postGroups = [], publicationPackages = [], minDateKey = null }) {
   const groups = new Map(postGroups.map((group) => [group.post_group_id, group]));
   const packages = new Map(publicationPackages.map((pkg) => [pkg.post_group_id, pkg]));
   const businesses = new Map();
@@ -48,6 +48,8 @@ export function summarizeBusinessPipeline({ posts = [], postGroups = [], publica
     const isProductionRun = post.internal?.tags?.includes('production-run') ?? false;
     // KIZASHIの制作runは公開予約ではない。ただし、いつ確認した次回分かは残す。
     const dateKey = isProductionRun ? (post.calendar_date_key ?? 'UNSCHEDULED') : (intendedDate(post) ?? 'UNSCHEDULED');
+    // 予定画面は今日から先を見る面。過去日付の未完了データは履歴側で扱う。
+    if (minDateKey && dateKey !== 'UNSCHEDULED' && dateKey < minDateKey) continue;
     const day = business.days.get(dateKey) ?? {
       dateKey,
       isProductionRun,
