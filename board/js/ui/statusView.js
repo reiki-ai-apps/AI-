@@ -98,10 +98,10 @@ function channelCard(channel) {
 }
 
 const PLAN_STAGES = Object.freeze({
-  SCHEDULED: { label: '予約済み', tone: 'scheduled' },
-  APPROVAL: { label: '承認待ち', tone: 'attention' },
-  READY: { label: '承認準備済み', tone: 'ready' },
-  CREATING: { label: '未予約', tone: 'danger' },
+  SCHEDULED: { label: '予約済み', mark: '◎', tone: 'scheduled' },
+  APPROVAL: { label: '承認待ち', mark: '◷', tone: 'attention' },
+  READY: { label: '承認待ち', mark: '◷', tone: 'attention' },
+  CREATING: { label: '作成中', mark: '×', tone: 'danger' },
 });
 
 function businessLabel(id) {
@@ -123,12 +123,18 @@ function planItem(item, timeZone) {
   return el('li', { class: `status-plan-item is-${stage.tone}` },
     el('div', { class: 'status-plan-item-main' },
       el('span', { class: 'status-plan-platform' },
-        platformBadge(item.platform, { size: 22, decorative: true }),
+        platformBadge(item.platform, { size: 34, decorative: true }),
         el('span', null, platformName(item.platform))),
       el('strong', { class: 'status-plan-item-title' }, item.title),
       el('span', { class: 'status-plan-item-meta' },
         `${businessLabel(item.brandId)}｜${item.stage === 'SCHEDULED' ? '予約' : '予定'} ${time}`)),
-    el('span', { class: `status-plan-state is-${stage.tone}` }, stage.label));
+    el('span', {
+      class: `status-plan-state is-${stage.tone}`,
+      'aria-label': stage.label,
+      title: stage.label,
+    },
+    el('strong', { class: 'status-plan-mark', 'aria-hidden': 'true' }, stage.mark),
+    el('span', null, stage.label)));
 }
 
 function planDay(day, timeZone) {

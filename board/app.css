@@ -823,17 +823,18 @@ input:invalid { border-color: var(--danger); }
 .status-plan-day-result.is-complete { color: #17613a; background: #e8f5ed; }
 .status-plan-counts { margin-top: 7px; color: var(--ink-3); font-size: 11px; line-height: 1.45; }
 .status-plan-items { display: grid; gap: 8px; margin-top: 10px; }
-.status-plan-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center; min-width: 0; padding: 9px 9px 9px 11px; border-left: 4px solid var(--line); border-radius: var(--radius-sm); background: var(--surface-alt); }
+.status-plan-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; min-width: 0; padding: 12px; border-left: 5px solid var(--line); border-radius: var(--radius-sm); background: var(--surface-alt); }
 .status-plan-item.is-scheduled { border-left-color: var(--accent); }
 .status-plan-item.is-attention { border-left-color: var(--attention); background: var(--attention-soft); }
 .status-plan-item.is-ready { border-left-color: #7650c8; background: #f5f1ff; }
 .status-plan-item.is-danger { border-left-color: var(--danger); background: #fdf0ef; }
 .status-plan-item-main { display: grid; gap: 5px; min-width: 0; }
-.status-plan-platform { display: inline-flex; align-items: center; gap: 6px; width: max-content; max-width: 100%; color: var(--ink); font-size: 15px; font-weight: 800; line-height: 1.2; }
+.status-plan-platform { display: inline-flex; align-items: center; gap: 9px; width: max-content; max-width: 100%; color: var(--ink); font-size: 17px; font-weight: 800; line-height: 1.2; }
 .status-plan-platform .sns-badge { flex: none; }
 .status-plan-item-title { font-size: 13px; line-height: 1.45; overflow-wrap: anywhere; }
 .status-plan-item-meta { color: var(--ink-2); font-size: 11px; }
-.status-plan-state { flex: none; padding: 2px 7px; border-radius: 999px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+.status-plan-state { display: grid; justify-items: center; gap: 1px; min-width: 66px; padding: 6px 8px; border-radius: 12px; font-size: 11px; font-weight: 800; white-space: nowrap; }
+.status-plan-mark { font-size: 28px; line-height: 1; }
 .status-plan-state.is-scheduled { color: #174f98; background: #e9f1ff; }
 .status-plan-state.is-attention { color: var(--attention); background: #ffedc9; }
 .status-plan-state.is-ready { color: #583a9b; background: #eae1ff; }
