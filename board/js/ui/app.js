@@ -14,7 +14,7 @@ import { systemClock } from '../core/clock.js';
 import { dateKey, systemTimeZone } from '../core/tz.js';
 import { ROLES, ROLE_ORDER, roleLabel } from '../domain/rbac.js';
 import { seedSocialAccounts } from '../services/api.js';
-import { renderApprovalsScreen } from './approvalsView.js?v=5';
+import { renderApprovalsScreen } from './approvalsView.js?v=6';
 import { renderConnectionsScreen } from './connectionsView.js';
 import { renderStatusScreen } from './statusView.js?v=14';
 import { hasIntentLink, consumeIntentLink } from './intentLink.js';

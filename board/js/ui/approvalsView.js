@@ -17,19 +17,26 @@ export async function renderApprovalsScreen(app) {
   const pending = await repo.listPendingApprovals();
 
   const screen = el('div', { class: 'screen' });
-  const platforms = ['NOTE', 'X', 'INSTAGRAM', 'YOUTUBE'];
+  const platforms = [
+    { platform: 'NOTE', label: 'note' },
+    { platform: 'X', label: 'X' },
+    { platform: 'INSTAGRAM', label: 'Instagram' },
+    { platform: 'YOUTUBE', label: 'YouTube', linkLabel: '動画リンク' },
+    { platform: 'YOUTUBE', label: 'YouTube Shorts', linkLabel: '動画リンク', shorts: true },
+  ];
   const board = el('div', { class: 'approval-platform-board' });
-  for (const platform of platforms) {
-    const items = pending.filter((post) => post.platform === platform);
+  for (const spec of platforms) {
+    const items = pending.filter((post) => post.platform === spec.platform
+      && (spec.platform !== 'YOUTUBE' || /shorts?|ショート/i.test(post.title ?? '') === Boolean(spec.shorts)));
     const lane = el('section', { class: 'approval-platform-lane' },
       el('div', { class: 'approval-platform-head' },
-        platformBadge(platform, { size: 32, decorative: true }),
-        el('h2', null, platformName(platform))));
+        platformBadge(spec.platform, { size: 32, decorative: true }),
+        el('h2', null, spec.label)));
     if (!items.length) {
-      lane.appendChild(el('div', { class: 'approval-simple-item' }, approvalMedia(null)));
+      lane.appendChild(el('div', { class: 'approval-simple-item' }, approvalMedia(null, '', spec.linkLabel)));
     } else {
       for (const post of items) {
-        lane.appendChild(await buildSimpleApprovalItem(app, post));
+        lane.appendChild(await buildSimpleApprovalItem(app, post, spec.linkLabel));
       }
     }
     board.appendChild(lane);
@@ -38,10 +45,10 @@ export async function renderApprovalsScreen(app) {
   return screen;
 }
 
-async function buildSimpleApprovalItem(app, post) {
+async function buildSimpleApprovalItem(app, post, linkLabel) {
   const group = await app.ctx.repo.getPostGroup(post.post_group_id);
   const revision = await app.ctx.repo.getRevision(post.current_revision_id);
-  const card = el('div', { class: 'approval-simple-item' }, approvalMedia(revision, post.calendar_date_key));
+  const card = el('div', { class: 'approval-simple-item' }, approvalMedia(revision, post.calendar_date_key, linkLabel));
   if (revision) {
     card.appendChild(el('a', {
       class: 'btn btn-primary btn-sm',
@@ -64,7 +71,7 @@ function thumbnailUrl(revision) {
   return asset?.thumbnail_url ?? asset?.preview_url ?? asset?.public_url ?? asset?.source_url ?? asset?.url ?? null;
 }
 
-function approvalMedia(revision, publishDate = '') {
+function approvalMedia(revision, publishDate = '', linkLabel = '記事リンク') {
   const link = articleUrl(revision);
   const thumbnail = thumbnailUrl(revision);
   const [, month = '', day = ''] = String(publishDate ?? '').split('-');
@@ -80,8 +87,8 @@ function approvalMedia(revision, publishDate = '') {
   return el('div', { class: 'approval-media-grid' },
     el('div', { class: 'approval-link-box' },
       el('div', { class: 'approval-media-label' },
-        el('strong', null, '記事リンク'), el('small', null, dateLabel)),
-      el('input', { class: 'approval-url-input', type: 'url', value: link ?? '', placeholder: '記事URLを貼り付け' })),
+        el('strong', null, linkLabel), el('small', null, dateLabel)),
+      el('input', { class: 'approval-url-input', type: 'url', value: link ?? '', placeholder: `${linkLabel.replace('リンク', '')}URLを貼り付け` })),
     el('div', { class: 'approval-thumbnail-box' },
       el('div', { class: 'approval-media-label' },
         el('strong', null, 'サムネイル'), el('small', null, dateLabel)),
