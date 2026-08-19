@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
@@ -37,7 +37,32 @@ export function parseApprovalPayload(body) {
   if (!Array.isArray(payload.targets) || payload.targets.length < 1 || payload.targets.length > 4) {
     throw new Error('承認対象は1〜4件で指定してください。');
   }
+  if (payload.component_scope != null && !['CONTENT', 'THUMBNAIL'].includes(payload.component_scope)) {
+    throw new Error('承認対象の区分が不正です。');
+  }
   return payload;
+}
+
+async function priorComponentApprovals(receiptFile) {
+  if (!receiptFile) return [];
+  const folder = dirname(resolve(receiptFile));
+  let names = [];
+  try { names = await readdir(folder); } catch { return []; }
+  const receipts = [];
+  for (const name of names.filter((item) => item.endsWith('.json'))) {
+    try {
+      const value = JSON.parse(await readFile(resolve(folder, name), 'utf8'));
+      if (value?.contract === PUBLIC_APPROVAL_CONTRACT && value?.component_scope) receipts.push(value);
+    } catch { /* 壊れた別ファイルは承認証拠に使わない */ }
+  }
+  return receipts;
+}
+
+function hasMatchingComponent(receipts, scope, checked) {
+  return checked.every((item) => receipts.some((receipt) => receipt.component_scope === scope
+    && (receipt.approvals ?? []).some((approval) => approval.channel_post_id === item.post.channel_post_id
+      && approval.revision_id === item.revision.revision_id
+      && approval.approval_basis_hash === item.currentHash)));
 }
 
 async function validateTarget(ctx, target) {
@@ -105,8 +130,14 @@ export async function processPublicApprovalIssue({ event, dataFile, receiptFile 
     evidence,
     comment: `GitHub Issue #${issue.number} で承認`,
   };
-  let results;
-  if (checked.length === 1) {
+  const componentScope = payload.component_scope ?? null;
+  const otherScope = componentScope === 'CONTENT' ? 'THUMBNAIL' : 'CONTENT';
+  const priorReceipts = componentScope ? await priorComponentApprovals(receiptFile) : [];
+  const complete = !componentScope || hasMatchingComponent(priorReceipts, otherScope, checked);
+  let results = [];
+  if (!complete) {
+    results = [];
+  } else if (checked.length === 1) {
     const item = checked[0];
     results = [await approve(ctx, item.post.channel_post_id, {
       ...options,
@@ -124,7 +155,8 @@ export async function processPublicApprovalIssue({ event, dataFile, receiptFile 
 
   const receipt = {
     contract: PUBLIC_APPROVAL_CONTRACT,
-    status: 'APPROVED',
+    status: complete ? 'APPROVED' : 'COMPONENT_APPROVED',
+    component_scope: componentScope,
     project_title: payload.project_title ?? null,
     repository: repository.full_name,
     issue_number: issue.number,
@@ -134,8 +166,8 @@ export async function processPublicApprovalIssue({ event, dataFile, receiptFile 
     approvals: checked.map((item, index) => ({
       channel_post_id: item.post.channel_post_id,
       revision_id: item.revision.revision_id,
-      approval_id: results[index].approvalId,
-      approval_basis_hash: results[index].approvalBasisHash,
+      approval_id: results[index]?.approvalId ?? null,
+      approval_basis_hash: results[index]?.approvalBasisHash ?? item.currentHash,
     })),
   };
   if (receiptFile) {

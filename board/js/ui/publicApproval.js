@@ -15,7 +15,7 @@ function safeLabel(value, fallback = '（名称なし）') {
   return text || fallback;
 }
 
-export async function buildPublicApprovalRequest({ group, posts, revisions }) {
+export async function buildPublicApprovalRequest({ group, posts, revisions, componentScope = null }) {
   if (!Array.isArray(posts) || posts.length === 0) throw new Error('承認対象がありません。');
   const targets = [];
   const summary = [];
@@ -42,6 +42,7 @@ export async function buildPublicApprovalRequest({ group, posts, revisions }) {
   const payload = {
     contract: PUBLIC_APPROVAL_CONTRACT,
     action: 'APPROVE',
+    component_scope: componentScope,
     project_title: safeLabel(group?.project_title),
     targets,
   };

@@ -18,11 +18,11 @@ export async function renderApprovalsScreen(app) {
 
   const screen = el('div', { class: 'screen' });
   const platforms = [
-    { platform: 'NOTE', label: 'note' },
-    { platform: 'X', label: 'X' },
-    { platform: 'INSTAGRAM', label: 'Instagram' },
-    { platform: 'YOUTUBE', label: 'YouTube', linkLabel: '動画リンク' },
-    { platform: 'YOUTUBE', label: 'YouTube Shorts', linkLabel: '動画リンク', shorts: true },
+    { platform: 'NOTE', label: 'note', mediaLabel: 'サムネイル' },
+    { platform: 'X', label: 'X', mediaLabel: '画像・動画' },
+    { platform: 'INSTAGRAM', label: 'Instagram', mediaLabel: 'カルーセル・動画' },
+    { platform: 'YOUTUBE', label: 'YouTube', linkLabel: '動画リンク', mediaLabel: 'サムネイル・動画' },
+    { platform: 'YOUTUBE', label: 'YouTube Shorts', linkLabel: '動画リンク', mediaLabel: 'サムネイル・動画', shorts: true },
   ];
   const board = el('div', { class: 'approval-platform-board' });
   for (const spec of platforms) {
@@ -34,16 +34,12 @@ export async function renderApprovalsScreen(app) {
         el('h2', null, spec.label)));
     if (!items.length) {
       lane.appendChild(el('div', { class: 'approval-simple-item' },
-        approvalMedia(null, '', spec.linkLabel),
-        el('button', {
-          class: 'btn btn-primary btn-sm',
-          type: 'button',
-          disabled: true,
-          title: '承認する内容が登録されると押せます',
-        }, '承認する')));
+        approvalMedia(null, '', spec.linkLabel, spec.mediaLabel, {
+          article: disabledApprovalButton(), thumbnail: disabledApprovalButton(),
+        })));
     } else {
       for (const post of items) {
-        lane.appendChild(await buildSimpleApprovalItem(app, post, spec.linkLabel));
+        lane.appendChild(await buildSimpleApprovalItem(app, post, spec.linkLabel, spec.mediaLabel));
       }
     }
     board.appendChild(lane);
@@ -52,17 +48,23 @@ export async function renderApprovalsScreen(app) {
   return screen;
 }
 
-async function buildSimpleApprovalItem(app, post, linkLabel) {
+async function buildSimpleApprovalItem(app, post, linkLabel = '記事リンク', mediaLabel = 'サムネイル') {
   const group = await app.ctx.repo.getPostGroup(post.post_group_id);
   const revision = await app.ctx.repo.getRevision(post.current_revision_id);
-  const card = el('div', { class: 'approval-simple-item' }, approvalMedia(revision, post.calendar_date_key, linkLabel));
-  if (revision) {
-    card.appendChild(el('a', {
-      class: 'btn btn-primary btn-sm',
-      href: await buildPublicApprovalRequest({ group, posts: [post], revisions: new Map([[revision.revision_id, revision]]) }),
-    }, '承認する'));
-  }
-  return card;
+  if (!revision) return el('div', { class: 'approval-simple-item' }, approvalMedia(null, '', linkLabel, mediaLabel, {
+    article: disabledApprovalButton(), thumbnail: disabledApprovalButton(),
+  }));
+  const revisions = new Map([[revision.revision_id, revision]]);
+  return el('div', { class: 'approval-simple-item' }, approvalMedia(revision, post.calendar_date_key, linkLabel, mediaLabel, {
+    article: el('a', { class: 'btn btn-primary btn-sm',
+      href: await buildPublicApprovalRequest({ group, posts: [post], revisions, componentScope: 'CONTENT' }) }, '承認'),
+    thumbnail: el('a', { class: 'btn btn-primary btn-sm',
+      href: await buildPublicApprovalRequest({ group, posts: [post], revisions, componentScope: 'THUMBNAIL' }) }, '承認'),
+  }));
+}
+
+function disabledApprovalButton() {
+  return el('button', { class: 'btn btn-primary btn-sm', type: 'button', disabled: true }, '承認');
 }
 
 function articleUrl(revision) {
@@ -72,15 +74,29 @@ function articleUrl(revision) {
     ?? null;
 }
 
-function thumbnailUrl(revision) {
-  const asset = (revision?.assets ?? []).find((item) =>
-    item.thumbnail_url || item.preview_url || item.public_url || item.source_url || item.url);
+function assetUrl(asset) {
   return asset?.thumbnail_url ?? asset?.preview_url ?? asset?.public_url ?? asset?.source_url ?? asset?.url ?? null;
 }
 
-function approvalMedia(revision, publishDate = '', linkLabel = '記事リンク') {
+function mediaPreview(revision) {
+  const assets = (revision?.assets ?? []).filter((asset) => assetUrl(asset));
+  if (!assets.length) return null;
+  return el('div', { class: 'approval-media-gallery' }, ...assets.map((asset, index) => {
+    const url = assetUrl(asset);
+    const mime = String(asset.mime ?? '');
+    if (mime.startsWith('video/')) return el('video', { src: url, controls: true, preload: 'metadata', playsinline: true,
+      'aria-label': asset.alt_text || `確認用動画 ${index + 1}` });
+    if (mime.startsWith('image/') || /\.(png|jpe?g|webp|gif|avif)(\?|$)/i.test(url)) {
+      return el('a', { href: url, target: '_blank', rel: 'noopener noreferrer' },
+        el('img', { src: url, alt: asset.alt_text || `確認用画像 ${index + 1}`, loading: 'lazy' }));
+    }
+    return el('a', { href: url, target: '_blank', rel: 'noopener noreferrer' }, `素材${index + 1}を開く`);
+  }));
+}
+
+function approvalMedia(revision, publishDate = '', linkLabel = '記事リンク', mediaLabel = 'サムネイル', actions = {}) {
   const link = articleUrl(revision);
-  const thumbnail = thumbnailUrl(revision);
+  const preview = mediaPreview(revision);
   const [, month = '', day = ''] = String(publishDate ?? '').split('-');
   const dateLabel = month && day ? `${Number(month)}/${Number(day)}用` : '日付未定';
   const pasteThumbnail = (event) => {
@@ -95,14 +111,12 @@ function approvalMedia(revision, publishDate = '', linkLabel = '記事リンク'
     el('div', { class: 'approval-link-box' },
       el('div', { class: 'approval-media-label' },
         el('strong', null, linkLabel), el('small', null, dateLabel)),
-      el('input', { class: 'approval-url-input', type: 'url', value: link ?? '', placeholder: `${linkLabel.replace('リンク', '')}URLを貼り付け` })),
+      el('input', { class: 'approval-url-input', type: 'url', value: link ?? '', placeholder: `${linkLabel.replace('リンク', '')}URLを貼り付け` }), actions.article),
     el('div', { class: 'approval-thumbnail-box' },
       el('div', { class: 'approval-media-label' },
-        el('strong', null, 'サムネイル'), el('small', null, dateLabel)),
-      thumbnail
-        ? el('a', { href: thumbnail, target: '_blank', rel: 'noopener noreferrer' },
-            el('img', { src: thumbnail, alt: revision?.assets?.[0]?.alt_text ?? '承認用サムネイル' }))
-        : el('div', { class: 'approval-thumbnail-empty', tabindex: '0', onPaste: pasteThumbnail }, 'ここに画像を貼り付け')));
+        el('strong', null, mediaLabel), el('small', null, dateLabel)),
+      preview || el('div', { class: 'approval-thumbnail-empty', tabindex: '0', onPaste: pasteThumbnail }, 'ここに画像を貼り付け'),
+      actions.thumbnail));
 }
 
 async function buildGroupCard(app, postGroupId, items, tz) {

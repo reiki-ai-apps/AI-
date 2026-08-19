@@ -128,3 +128,72 @@ test('権限のないIssue作成者の承認を拒否する', async () => {
     /承認権限がありません/,
   );
 });
+
+test('記事とサムネイルを別々に承認し、両方そろった時だけ投稿を承認する', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'post-board-component-approval-'));
+  const packagePath = join(dir, 'package.json');
+  const dataFile = join(dir, 'board.json');
+  const receiptDir = join(dir, 'receipts');
+  await writeFile(packagePath, JSON.stringify(samplePackage()), 'utf8');
+
+  const syncReceipt = await syncPublicationPackage({
+    package: packagePath,
+    dataFile,
+    queueForApproval: true,
+    actor: 'skill-sync',
+  });
+  const db = await openFileDatabase(dataFile);
+  const repo = new Repo(db, systemClock('Asia/Tokyo'));
+  const post = await repo.getPost(syncReceipt.channel_post_ids[0]);
+  const revision = await repo.getRevision(post.current_revision_id);
+  const expectedHash = await approvalBasisHash(buildApprovalBasis({
+    channelPost: post,
+    revision,
+    schedule: { scheduled_at: post.scheduled_at, time_zone: post.time_zone },
+    allowedRetryDelayMinutes: 30,
+  }));
+
+  const eventFor = (componentScope, issueNumber) => {
+    const payload = {
+      contract: PUBLIC_APPROVAL_CONTRACT,
+      action: 'APPROVE',
+      component_scope: componentScope,
+      targets: [{
+        channel_post_id: post.channel_post_id,
+        revision_id: revision.revision_id,
+        approval_basis_hash: expectedHash,
+        allowed_retry_delay_minutes: 30,
+      }],
+    };
+    return {
+      repository: { full_name: 'reiki-ai-apps/AI-' },
+      issue: {
+        number: issueNumber,
+        html_url: `https://github.com/reiki-ai-apps/AI-/issues/${issueNumber}`,
+        body: `<!-- ${PUBLIC_APPROVAL_CONTRACT}\n${JSON.stringify(payload)}\n-->`,
+        author_association: 'OWNER',
+        created_at: '2026-08-16T01:00:00Z',
+        user: { login: 'hinata2462-eng' },
+      },
+    };
+  };
+
+  const contentReceipt = await processPublicApprovalIssue({
+    event: eventFor('CONTENT', 50),
+    dataFile,
+    receiptFile: join(receiptDir, 'content.json'),
+  });
+  assert.equal(contentReceipt.status, 'COMPONENT_APPROVED');
+  assert.equal(contentReceipt.component_scope, 'CONTENT');
+  let refreshedRepo = new Repo(await openFileDatabase(dataFile), systemClock('Asia/Tokyo'));
+  assert.equal((await refreshedRepo.getPost(post.channel_post_id)).display_state, 'PENDING_APPROVAL');
+
+  const thumbnailReceipt = await processPublicApprovalIssue({
+    event: eventFor('THUMBNAIL', 51),
+    dataFile,
+    receiptFile: join(receiptDir, 'thumbnail.json'),
+  });
+  assert.equal(thumbnailReceipt.status, 'APPROVED');
+  refreshedRepo = new Repo(await openFileDatabase(dataFile), systemClock('Asia/Tokyo'));
+  assert.equal((await refreshedRepo.getPost(post.channel_post_id)).display_state, 'SCHEDULED');
+});
