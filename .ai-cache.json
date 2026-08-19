@@ -24982,7 +24982,441 @@
       "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
       "lane": "emergency",
       "reason": "ai_skip: タイトルのみで実質的な事実情報が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmigwfbvv95cuxnri1xsefxsjltwvnmx2zrys1fa2frm0v5qwjhzgiwuknfd2lfwlvpwtgxefqtr01gawhiakxrnnnuofvhbuhruvdsqmlxcvvjuzvnmvl5tvrxruvlemytlwtdsgfrmgpvzwreeg1lthhqugwzvznoa0lfbwlqbdlzudd1qq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmigwfbvv95cuxnri1xsefxsjltwvnmx2zrys1fa2frm0v5qwjhzgiwuknfd2lfwlvpwtgxefqtr01gawhiakxrnnnuofvhbuhruvdsqmlxcvvjuzvnmvl5tvrxruvlemytlwtdsgfrmgpvzwreeg1lthhqugwzvznoa0lfbwlqbdlzudd1qq",
+      "content_hash": "791202e5d535306a06329caff3c7d3da0a881504f945ed91dfe507f5d0d1cd82",
+      "story_key": "be1204dccc549d576185861b91f09007edf2e56d9b9996e5b1b552c009351789",
+      "status": "enriched",
+      "processed_at": "2026-08-19T01:55:16.678Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Microsoft Copilot",
+        "title": "Microsoft Copilot Personalに脆弱性、1クリックで連携アプリのデータ流出の恐れ",
+        "source_url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNRi1xSEFXSjltWVNMX2ZRYS1fa2FRM0V5QWJHZGIwUkNfd2lfWlVpWTgxeFQtR01GaWhIakxRNnNuOFVhbUhrUVdSQmlxcVVjUzVNMVl5TVRXRUVlemYtLWtDSGFRMGpVZWREeG1LTHhQUGwzVzNoa0lfbWlQbDlZUDd1QQ?oc=5",
+        "source_name": "The Hacker News",
+        "is_official": false,
+        "published_at": "2026-08-18T17:47:00.000Z",
+        "source_published_at": "2026-08-18T17:47:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-19T01:54:04.582Z",
+        "event_at": "",
+        "event_status": "不明",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Microsoft Copilot",
+          "Microsoft"
+        ],
+        "primary_entity": "Microsoft",
+        "story_subject": "Microsoft Copilot Personal",
+        "event_type": "security",
+        "event_stage": "other",
+        "event_scope": "Copilot Personal(個人向け)",
+        "fact_slots": [],
+        "new_facts": [
+          "Microsoft Copilot Personalに、1クリックで連携アプリからデータが流出しうる脆弱性が報告された"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Microsoft Copilot Personalの脆弱性により、ユーザーが1回クリックするだけで連携アプリのデータが外部に流出する恐れがあると報告された。",
+        "detail": "The Hacker Newsが、Microsoftの個人向けAIアシスタント「Copilot Personal」に複数の脆弱性が存在すると報じた。報告によれば、悪意あるリンクなどを1回クリックしただけで、Copilotに連携された外部アプリからデータが外部へ抜き取られる可能性があるという。具体的にどのアプリが影響を受けるか、悪用の技術的手口、Microsoftの修正状況などの詳細は記事の抜粋からは確認できず、不明。AIアシスタントと外部サービスの連携が広がる中、こうした連携機能の安全性が改めて課題として浮上した形。",
+        "change_summary": "Copilot Personalの脆弱性により、ワンクリックで連携アプリのデータが流出しうることが指摘された。",
+        "impact_summary": "業務や個人でCopilotと外部アプリを連携させているユーザーは、情報漏洩リスクへの注意が必要になる可能性がある。",
+        "action_suggestion": "Microsoftからの正式な脆弱性情報や修正パッチの提供状況について、続報の確認が必要。",
+        "importance": "A",
+        "related_categories": [
+          "セキュリティ",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxtfbycjrnqtf2bk5psgu1zjlftnfqyvbqqw5ju2xxzhlmehrwcueycmj2b0r4vmply0l1rdvfuxfau21xlupzunvrre9tdkjobv9edgzf": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxtfbycjrnqtf2bk5psgu1zjlftnfqyvbqqw5ju2xxzhlmehrwcueycmj2b0r4vmply0l1rdvfuxfau21xlupzunvrre9tdkjobv9edgzf",
+      "content_hash": "fe1855fb7d0ae92be1f08d0939d4dede11af209df297ba7b89e1188bbad65a1e",
+      "story_key": "2d987e72a03d3427a7ef18a966bcb1aa3f6f3365231033f9687cf300089377a6",
+      "status": "enriched",
+      "processed_at": "2026-08-19T01:55:16.678Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "DeepSeek",
+        "title": "DeepSeekがエージェント実行基盤「Harness」を公開、コーディング競争の焦点が移行",
+        "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBycjRNQTF2bk5PSGU1ZjlFTnFqYVBqQW5JU2xXZHlMeHRWcUEycmJ2b0R4VmpLY0l1RDVfUXFaU21XLUpZUnVRRE9TdkJObV9EdGZF?oc=5",
+        "source_name": "innovaTopia",
+        "is_official": false,
+        "published_at": "2026-08-18T19:46:29.000Z",
+        "source_published_at": "2026-08-18T19:46:29.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-19T01:54:01.228Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "DeepSeek",
+          "Harness"
+        ],
+        "primary_entity": "DeepSeek",
+        "story_subject": "DeepSeek Harness",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "不明",
+        "fact_slots": [],
+        "new_facts": [
+          "DeepSeekがコーディング用エージェント実行基盤「Harness」を公開した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "DeepSeekがAIコーディング向けのエージェント実行基盤「Harness」を公開し、競争の軸がモデル性能からエージェント基盤の整備へ移りつつあると指摘された。",
+        "detail": "innovaTopiaが、中国のAI企業DeepSeekがコーディング用エージェント実行基盤「Harness」を公開したと報じた。従来、AIコーディング分野の競争は各社の言語モデルの性能比較が中心だったが、今回の公開は、モデル自体に加えて、モデルを実際のソフトウェア開発作業で自律的に動かすための「エージェント基盤」の整備が新たな競争軸になりつつあることを示すものとされている。Harnessの具体的な機能や対応言語、公開範囲などの詳細は記事の抜粋からは確認できず不明。",
+        "change_summary": "DeepSeekがコーディング用エージェント基盤「Harness」を新たに公開した。",
+        "impact_summary": "AI開発ツールを利用するエンジニアや企業にとって、モデル単体の性能だけでなくエージェント基盤の選択が開発効率を左右する可能性がある。",
+        "action_suggestion": "Harnessの具体的な提供条件や利用方法について、DeepSeek側の公式発表や続報の確認が必要。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "アプリ開発・自動化"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmijafbvv95cuxoqufizdnhc1czunqtzdixnjjkbwpdbvo4rfe0ruhtaxz1y3fqd093muvzd2vgywnyuljkbnhhsl82cdvxrzkyrfiwzwlcvezrz2jgmuhvujgtqlhlqzbdbhroyw9qdla5agheanbuuvfkovdlcgdpchvut3dmqxazq0hfbjb2q0rrv2vxtq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmijafbvv95cuxoqufizdnhc1czunqtzdixnjjkbwpdbvo4rfe0ruhtaxz1y3fqd093muvzd2vgywnyuljkbnhhsl82cdvxrzkyrfiwzwlcvezrz2jgmuhvujgtqlhlqzbdbhroyw9qdla5agheanbuuvfkovdlcgdpchvut3dmqxazq0hfbjb2q0rrv2vxtq",
+      "content_hash": "f47fd0210b2f1b6539fc3daad9771b1ee8c1f819182d5cf3bd660a3c06fa2630",
+      "story_key": "84e2c96f2a3fa168206596513181f2f725686cd05572148c707f1d864982b558",
+      "status": "enriched",
+      "processed_at": "2026-08-19T01:55:16.678Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "NVIDIA・AI半導体",
+        "title": "韓国FuriosaAI、欧州データセンター向けにAI半導体8800枚を供給",
+        "source_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOQUFIZDNHc1czUnQtZDIxNjJKbWpDbVo4RFE0RUhtaXZ1Y3Fqd093MUVzd2VGYWNYUlJKbnhhSl82cDVXRzkyRFIwZWlCVEZrZ2JGMUhVUjgtQlhLQzBDbHRoYW9QdlA5aGhEanBUUVFkOVdLcGdPcHVuT3dmQXAzQ0hFbjB2Q0RrV2VXTQ?oc=5",
+        "source_name": "korit.jp",
+        "is_official": false,
+        "published_at": "2026-08-19T00:08:08.000Z",
+        "source_published_at": "2026-08-19T00:08:08.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-19T01:54:18.664Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "FuriosaAI"
+        ],
+        "primary_entity": "FuriosaAI",
+        "story_subject": "FuriosaAI製AI半導体の欧州供給",
+        "event_type": "partnership",
+        "event_stage": "announced",
+        "event_scope": "欧州",
+        "fact_slots": [
+          {
+            "type": "count",
+            "scope": "供給するAI半導体の枚数",
+            "value": "8800枚",
+            "normalized_value": "8800"
+          }
+        ],
+        "new_facts": [
+          "FuriosaAIが欧州のデータセンター向けにAI半導体を8800枚供給する"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "韓国のAI半導体スタートアップFuriosaAIが、欧州のデータセンター向けに自社製AI半導体8800枚を供給することが明らかになった。",
+        "detail": "korit.jpが、韓国のAI半導体スタートアップFuriosaAIが欧州のデータセンターに自社製AI半導体8800枚を供給すると報じた。米国NVIDIAなどが主導してきたAI半導体市場に対し、韓国発のスタートアップが海外の大型データセンター向けに供給実績を作った形となる。供給先の具体的な企業名や導入時期、製品の型番など詳細は記事の抜粋からは確認できず不明。",
+        "change_summary": "FuriosaAIが欧州データセンター向けにAI半導体8800枚の供給を行うことが分かった。",
+        "impact_summary": "NVIDIA一強とされるAI半導体市場に韓国発の代替供給元が登場することで、今後の調達先の多様化に影響を与える可能性がある。",
+        "action_suggestion": "供給契約の詳細な条件や納入スケジュールについて、FuriosaAIや欧州側からの続報の確認が必要。",
+        "importance": "B",
+        "related_categories": [
+          "半導体・インフラ",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte00vfvyoddhx0v5t0lfedc2d2ntltnea2pyeedntmxmq3bhdtdmwedqsvznltjynuwxwmrauuhjrgjmru8tzm9fu0ribm5htvbfzkqxnldxumxpbum1qjm0tg1ebefdanzfdmc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte00vfvyoddhx0v5t0lfedc2d2ntltnea2pyeedntmxmq3bhdtdmwedqsvznltjynuwxwmrauuhjrgjmru8tzm9fu0ribm5htvbfzkqxnldxumxpbum1qjm0tg1ebefdanzfdmc",
+      "content_hash": "735477f7539ad36732ffbd5ef39d1037d3123f506161d8d7492866858155fa30",
+      "story_key": "b27187c70bd0d3c9bc424b6661e4d6323272b49e235e5ffabfbc2056d07fd97e",
+      "status": "enriched",
+      "processed_at": "2026-08-19T01:55:16.678Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "ChatGPT / OpenAI",
+        "title": "OpenAI、Linux版ChatGPTデスクトップアプリのプレビューを公開",
+        "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE00VFVyODdhX0V5T0lfeDc2d2NtLTNEa2pyeEdNTmxmQ3BhdTdMWEdQSVZNLTJYNUwxWmRaUUhJRGJmRU8tZm9fU0Ribm5hTVBfZkQxNldXUmxpbUM1QjM0TG1EbEFDanZFdmc?oc=5",
+        "source_name": "Ledge.ai",
+        "is_official": false,
+        "published_at": "2026-08-19T01:09:11.000Z",
+        "source_published_at": "2026-08-19T01:09:11.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-19T01:53:39.043Z",
+        "event_at": "",
+        "event_status": "開始済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "OpenAI",
+          "ChatGPT",
+          "Codex"
+        ],
+        "primary_entity": "OpenAI",
+        "story_subject": "ChatGPTデスクトップアプリ(Linux版)",
+        "event_type": "release",
+        "event_stage": "beta",
+        "event_scope": "Linuxデスクトップ",
+        "fact_slots": [
+          {
+            "type": "availability",
+            "scope": "Linux版ChatGPTデスクトップアプリ",
+            "value": "プレビュー公開",
+            "normalized_value": "プレビュー公開"
+          }
+        ],
+        "new_facts": [
+          "OpenAIがLinux版ChatGPTデスクトップアプリをプレビュー公開した",
+          "Linux版で「Work」「Codex」機能も利用可能になった"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "OpenAIがLinux版ChatGPTデスクトップアプリのプレビュー版を公開し、「Work」や「Codex」の機能も利用できるようにした。",
+        "detail": "Ledge.aiによると、OpenAIがLinux向けのChatGPTデスクトップアプリをプレビュー版として公開した。従来Windows版やMac版で提供されてきたデスクトップアプリがLinux環境でも利用可能になり、業務向け機能「Work」や、コーディング支援機能「Codex」もこのLinux版から利用できるという。プレビュー段階のため、正式版への移行時期や今後の機能追加予定など詳細は記事の抜粋からは確認できず不明。",
+        "change_summary": "ChatGPTデスクトップアプリがLinux版としてプレビュー公開され、「Work」「Codex」も利用可能になった。",
+        "impact_summary": "Linux環境で開発や業務を行うエンジニア・企業にとって、ChatGPTのデスクトップ機能を直接利用できるようになる。",
+        "action_suggestion": "プレビュー版の入手方法や対応ディストリビューション、正式版提供時期についてOpenAIの続報を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "アプリ開発・自動化"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmie0fvx3lxte9wshjosvhianc0m2c1anjxs1vxvhzzehzazny1dxhkx3ewnk5kttbonu5rdhhpnfpbwtrtmvn3c2jlsxczu054vfdfowr1r3hqa3bgeg8xsefmsgxynkfdwnzrtthisxdscdcwwva2ednms3njuw53nc0trq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmie0fvx3lxte9wshjosvhianc0m2c1anjxs1vxvhzzehzazny1dxhkx3ewnk5kttbonu5rdhhpnfpbwtrtmvn3c2jlsxczu054vfdfowr1r3hqa3bgeg8xsefmsgxynkfdwnzrtthisxdscdcwwva2ednms3njuw53nc0trq",
+      "content_hash": "a0010518fd876fa9237bd00321a8a63019a730aef024f99d14a3c41df952974c",
+      "story_key": "b1bb324bff6e7e6874dea757882fbe7db509ede17d42a89eb7ea479a213afa82",
+      "status": "rejected",
+      "processed_at": "2026-08-19T01:55:16.678Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 自社サービス開始を伝える宣伝的なプレスリリース"
+    },
+    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte5xwtnsdk5xm3dazu5mywq3rwtcreo4t1e5ukpnue41wni5cdmwdlfsywvqcguwxzjns2ntudayt3zuuzrsm3n1ac16ovzlofv0nzfgcxlqnf9snthlnw5mudlaenftq0lqanc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte5xwtnsdk5xm3dazu5mywq3rwtcreo4t1e5ukpnue41wni5cdmwdlfsywvqcguwxzjns2ntudayt3zuuzrsm3n1ac16ovzlofv0nzfgcxlqnf9snthlnw5mudlaenftq0lqanc",
+      "content_hash": "98928d64ca278cd91287af821ae9d112472518d1db439d459e04be39f5e13668",
+      "story_key": "7461245f40cbfec5ea1d63cba0d7aa372f186a309b1f21669024c236e7060a87",
+      "status": "rejected",
+      "processed_at": "2026-08-19T01:55:16.678Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 顧問就任を伝える自社宣伝的なプレスリリース"
+    },
+    "url:https://news.google.com/rss/articles/cbmipwfbvv95cuxpagqzb1oxrzrutxrkckjzskr5sznxdhb2uxawvfnsru45a3lybzvqskjjnm1vwehpmhrtuez5ehpjv0ntmk1wqulwdvzycfvvrwzouvfnv3g0nkgxujv0uhc0s0e0rte3bjh1alo5vvmwnljhtdfyv2w0oehdv05rq2novwrxzwdsmurxxy1jtnnlbmhiohgzedzftdh2yzbvrzrtawlivdibwkfvx3lxte1bwm1kenptwhbgruvsazvwoxnuoephtlrjukmxogjpnmxfsevrbkf4ujaymwmwandymzdxrwxxufnpt25tcxnzekx2rjhus3lpmjmtsm5irw5oqq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmipwfbvv95cuxpagqzb1oxrzrutxrkckjzskr5sznxdhb2uxawvfnsru45a3lybzvqskjjnm1vwehpmhrtuez5ehpjv0ntmk1wqulwdvzycfvvrwzouvfnv3g0nkgxujv0uhc0s0e0rte3bjh1alo5vvmwnljhtdfyv2w0oehdv05rq2novwrxzwdsmurxxy1jtnnlbmhiohgzedzftdh2yzbvrzrtawlivdibwkfvx3lxte1bwm1kenptwhbgruvsazvwoxnuoephtlrjukmxogjpnmxfsevrbkf4ujaymwmwandymzdxrwxxufnpt25tcxnzekx2rjhus3lpmjmtsm5irw5oqq",
+      "content_hash": "fe26c101045bd33592079cb5a33d49b35ba198a8d5678cd75780c19f62bdefd3",
+      "story_key": "97cde5822348528eca43412e0412a46628d6fa4d696859e7a5fee31639b5788a",
+      "status": "enriched",
+      "processed_at": "2026-08-19T01:55:57.839Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Perplexity",
+        "title": "アマゾン、Perplexity AI訴訟で控訴裁に再審理を要請",
+        "source_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPaGQzb1oxRzRUTXRKckJZSkR5SzNXdHB2UXAwVFNsRU45a3lybzVqSkJjNm1vWEhPMHRtUEZ5eHpJV0NTMk1wQUlWdVZycFVVRWZoUVFNV3g0NkgxUjV0UHc0S0E0RTE3bjh1alo5VVMwNlJhTDFYV2w0OEhDV05rQ2NOVWRXZWdsMURxXy1JTnNlbmhIOHgzeDZFTDh2YzBvRzRTaWlIVdIBWkFVX3lxTE1BWm1KenpTWHBGRUVSazVwOXNuOEphTlRJUkMxOGJPNmxfSEVrbkF4UjAyMWMwandYMzdXRWxxUFNpT25TcXNzekx2RjhuS3lpMjMtSm5IRW5oQQ?oc=5",
+        "source_name": "MLex",
+        "is_official": false,
+        "published_at": "2026-08-18T20:10:00.000Z",
+        "source_published_at": "2026-08-18T20:10:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-19T01:53:59.063Z",
+        "event_at": "",
+        "event_status": "継続中",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Amazon",
+          "Perplexity AI"
+        ],
+        "primary_entity": "Amazon",
+        "story_subject": "Perplexity AI訴訟の控訴審",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "米国",
+        "fact_slots": [],
+        "new_facts": [
+          "アマゾンが米連邦控訴裁判所にPerplexity AIとの訴訟の再審理を要請した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "アマゾンが、AI検索企業Perplexity AIを相手にした訴訟について、米連邦控訴裁判所に再審理を求めたと報じられた。",
+        "detail": "アマゾンが、対話型AI検索サービスを提供するPerplexity AIを相手とする訴訟に関して、米連邦控訴裁判所に判断の再審理を求めたことが分かった。両社の争いの詳細な経緯や争点は記事から確認できないが、大手ECプラットフォーム企業とAI検索企業との間で法的対立が続いていることを示す動きとなる。今後、控訴裁が再審理を認めるかどうかが注目される。",
+        "change_summary": "アマゾンがPerplexity AIとの訴訟について控訴裁に再審理を要請したことが新たに判明した。",
+        "impact_summary": "AI検索サービスとECプラットフォームの関係を巡る法的対立は、他のAI企業とプラットフォーム間の契約・利用条件の在り方にも影響する可能性がある。",
+        "action_suggestion": "控訴裁が再審理要請を受理するかどうかの判断が今後の焦点となる。",
+        "importance": "B",
+        "related_categories": [
+          "規制・法務",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmidefvx3lxtfbgsxdllxlzd2jxz0q0cxducutmu0tiu1bcsui5bujpaznxzwq2teriudv1q0zdmkjws1lwq05rnhpxqwxvyzbru1ziuzfubmjnoxvycdrhtjzplww5qxleeeqzn0jqqnh5u1zpu2dbnw91bwm3": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxtfbgsxdllxlzd2jxz0q0cxducutmu0tiu1bcsui5bujpaznxzwq2teriudv1q0zdmkjws1lwq05rnhpxqwxvyzbru1ziuzfubmjnoxvycdrhtjzplww5qxleeeqzn0jqqnh5u1zpu2dbnw91bwm3",
+      "content_hash": "87467331052caf9ae01c27adc40121a870531c50780094060f5e59dee4812403",
+      "story_key": "4d71cb4f766de4d8d43210c1760b43320658a22a4876f57d8fae58de8219bedb",
+      "status": "enriched",
+      "processed_at": "2026-08-19T01:55:57.839Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Grok / xAI",
+        "title": "ミネソタ州、AIヌード化禁止法をxAIの憲法訴訟から擁護",
+        "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBGSXdLLXlzd2JXZ0Q0cXdUcUtMU0tiU1BCSUI5bUJpazNxZWQ2TERIUDV1Q0ZDMkJwS1lwQ05rNHpXQWxVYzBrU1ZIUzFubmJnOXVycDRhTjZPLWw5QXlEeEQzN0JqQnh5U1ZpU2dBNW91bWM3?oc=5",
+        "source_name": "BigGo ファイナンス",
+        "is_official": false,
+        "published_at": "2026-08-18T19:10:00.000Z",
+        "source_published_at": "2026-08-18T19:10:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-19T01:53:59.922Z",
+        "event_at": "",
+        "event_status": "継続中",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "xAI",
+          "ミネソタ州",
+          "Grok"
+        ],
+        "primary_entity": "ミネソタ州",
+        "story_subject": "AIヌード化禁止法とxAIの憲法訴訟",
+        "event_type": "policy",
+        "event_stage": "other",
+        "event_scope": "米国ミネソタ州",
+        "fact_slots": [],
+        "new_facts": [
+          "ミネソタ州がAIヌード化禁止法についてxAIの憲法修正第1条に基づく異議申し立てに対抗している"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "米ミネソタ州が、AIで人物のヌード画像を生成する行為を禁じる州法について、xAIが憲法修正第1条を根拠に起こした異議申し立てに対し法廷で擁護する姿勢を示した。",
+        "detail": "米ミネソタ州が、AI技術を使って人物の裸の画像を無断で生成する「AIヌード化」を禁止する州法を巡り、イーロン・マスク氏が率いるxAIから起こされた法的異議申し立てに対抗している。xAIは同法が表現の自由を保障する憲法修正第1条に違反するとして異議を申し立てたが、州側はこの禁止法を「画期的」なものとして擁護する立場を取っている。訴訟の詳細な経緯や今後の審理日程は記事からは確認できないが、AI生成コンテンツを規制する州法の合憲性が争点となっている。",
+        "change_summary": "ミネソタ州がAIヌード化禁止法についてxAIの憲法上の異議申し立てに対抗する姿勢を明らかにした。",
+        "impact_summary": "AI生成画像を巡る州レベルの規制の合憲性が争われることで、他州や日本など海外のAI生成コンテンツ規制の議論にも参考事例となり得る。",
+        "action_suggestion": "訴訟の審理の進行や裁判所の判断が今後の焦点となる。",
+        "importance": "A",
+        "related_categories": [
+          "規制・法務",
+          "政策・行政"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmickfvx3lxte9wauzfdlfftg9snwstsuowz3zqqknhekjlvutfzzdwlvpia1iysevhvghyseu2vnl2qkp6d3vxdwtbvwvsovdmtg5jznvddnctufzlbzfnbhnxrk5kajuymkvjbkd5v0vfwhuzrc1pde95uq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmickfvx3lxte9wauzfdlfftg9snwstsuowz3zqqknhekjlvutfzzdwlvpia1iysevhvghyseu2vnl2qkp6d3vxdwtbvwvsovdmtg5jznvddnctufzlbzfnbhnxrk5kajuymkvjbkd5v0vfwhuzrc1pde95uq",
+      "content_hash": "3b2262060f9a08460ab763145ccdb2c600134291677f435afa8068936d81f4bd",
+      "story_key": "0a75c1511fe8e6b827f84a33bdc84b54e50983f6b06b6df454832a6e69a87bfc",
+      "status": "enriched",
+      "processed_at": "2026-08-19T01:55:57.839Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "DeepSeek",
+        "title": "DeepSeek、外部調達で1兆円規模の資金確保",
+        "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9WaUZfdlFFTG9sNWstSUowZ3ZQQkNHekJLVUtFZzdWLVpIa1IySEVhVGhySEU2Vnl2Qkp6d3VxdWtBVWVsOVdmTG5JZnVDdnctUFZlbzFnbHNXRk5KajUyMkVjbkd5V0VfWHUzRC1PdE95UQ?oc=5",
+        "source_name": "日経クロステック",
+        "is_official": false,
+        "published_at": "2026-08-18T22:00:00.000Z",
+        "source_published_at": "2026-08-18T22:00:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-19T01:54:01.228Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "DeepSeek"
+        ],
+        "primary_entity": "DeepSeek",
+        "story_subject": "DeepSeekの外部資金調達",
+        "event_type": "funding",
+        "event_stage": "announced",
+        "event_scope": "中国・世界",
+        "fact_slots": [
+          {
+            "type": "amount",
+            "scope": "DeepSeekの外部調達額",
+            "value": "約1兆円",
+            "normalized_value": "1000000000000JPY"
+          }
+        ],
+        "new_facts": [
+          "DeepSeekが外部調達で1兆円規模の資金を確保した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "中国のAI企業DeepSeekが外部からの資金調達で1兆円規模を確保したと報じられた。詳細な調達方法や用途は記事からは確認できない。",
+        "detail": "中国のAI企業DeepSeekが、外部からの資金調達によって1兆円規模の資金を確保したことが報じられた。DeepSeekは低コストで高性能な大規模言語モデルを開発し世界的に注目を集めた企業だが、今回の調達がどの投資家によるものか、資金の具体的な使途や調達の形態については記事本文から確認できない。今後、この資金がモデル開発や計算資源の拡充にどのように使われるかが注目される。",
+        "change_summary": "DeepSeekが外部調達により1兆円規模の資金を確保したことが新たに報じられた。",
+        "impact_summary": "中国AI企業の資金力強化は、生成AIの国際競争構図や日本企業を含む世界のAI開発競争に影響を与える可能性がある。",
+        "action_suggestion": "調達の詳細な内容や資金使途について今後の追加報道の確認が必要となる。",
+        "importance": "S",
+        "related_categories": [
+          "企業・株式",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmibefvx3lxte12muflzur6qmjmuhbkcwhqt1rqymxlzhqxofriymhgsgiwynliq3fwqmxbetzoeffmejfbykk5tmnpmgq1wkxtewg3zkhhzdj0oeruamo5tu0tnzvsbtrcqs1rt210c29vduvtwa": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmibefvx3lxte12muflzur6qmjmuhbkcwhqt1rqymxlzhqxofriymhgsgiwynliq3fwqmxbetzoeffmejfbykk5tmnpmgq1wkxtewg3zkhhzdj0oeruamo5tu0tnzvsbtrcqs1rt210c29vduvtwa",
+      "content_hash": "6be58fd3ff6072c18aefa06fc2854229f7eae9ff8d7e16199c092cc84b5013d0",
+      "story_key": "984c16417e6582db5ff8ae4a98c451c6faa415ba2bab01d260a1e511edcd096c",
+      "status": "rejected",
+      "processed_at": "2026-08-19T01:55:57.839Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 具体的な機能内容や条件が不明で実質的事実がない"
+    },
+    "url:https://blog.google/innovation-and-ai/products/gemini-app/four-new-interactive-bts-experiences": {
+      "canonical_url": "https://blog.google/innovation-and-ai/products/gemini-app/four-new-interactive-bts-experiences",
+      "content_hash": "ad85001cbf7b522477d081205e82dfb418ca591e8761ef63e971266aa012be88",
+      "story_key": "d254221d3bf35aa69fff8bb1867d046960018d49d4e016439acd8c20c5bf7e17",
+      "status": "rejected",
+      "processed_at": "2026-08-19T01:55:57.839Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: BTSとのコラボ企画で宣伝色の強いエンタメ機能"
+    },
+    "url:https://news.google.com/rss/articles/cbmihgfbvv95cuxpd0nkskhzck96rtmxsuu3v2vjbxjsrmz2anriowtjnnjvalvtuvvybwftyjhnwlpcbs1hynpdy0zvcedhrhpyqm9ny3otmljum2fzynr3rfbrv0rebnlys0rxnzvqujvsegqybxpzcxhgouvvsjz0s0g1uhfpmkmxwm5symdmqq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmihgfbvv95cuxpd0nkskhzck96rtmxsuu3v2vjbxjsrmz2anriowtjnnjvalvtuvvybwftyjhnwlpcbs1hynpdy0zvcedhrhpyqm9ny3otmljum2fzynr3rfbrv0rebnlys0rxnzvqujvsegqybxpzcxhgouvvsjz0s0g1uhfpmkmxwm5symdmqq",
+      "content_hash": "4879fbd6e6b221075713456fdaac36431f8a93e533cb92053c210d0e6c4b6c65",
+      "story_key": "6ac3e85aefd6993f8ca8049cd25f1cfb42dda720f5296161f502cae96fd9decd",
+      "status": "rejected",
+      "processed_at": "2026-08-19T01:55:57.839Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: AIツールRunwayと無関係な暗号資産企業CEOの発言"
     }
   },
-  "updated_at": "2026-08-18T21:39:29.012Z"
+  "updated_at": "2026-08-19T01:55:57.839Z"
 }
