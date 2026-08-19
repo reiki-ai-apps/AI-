@@ -67,6 +67,8 @@ function thumbnailUrl(revision) {
 function approvalMedia(revision, publishDate = '') {
   const link = articleUrl(revision);
   const thumbnail = thumbnailUrl(revision);
+  const [, month = '', day = ''] = String(publishDate ?? '').split('-');
+  const dateLabel = month && day ? `${Number(month)}/${Number(day)}用` : '日付未定';
   const pasteThumbnail = (event) => {
     const file = [...(event.clipboardData?.files ?? [])].find((item) => item.type.startsWith('image/'));
     if (!file) return;
@@ -76,14 +78,13 @@ function approvalMedia(revision, publishDate = '') {
     target.appendChild(el('img', { src: URL.createObjectURL(file), alt: '貼り付けたサムネイル' }));
   };
   return el('div', { class: 'approval-media-grid' },
-    el('label', { class: 'approval-date-box' },
-      el('strong', null, '投稿日'),
-      el('input', { class: 'approval-date-input', type: 'date', value: publishDate ?? '' })),
     el('div', { class: 'approval-link-box' },
-      el('strong', null, '記事リンク'),
+      el('div', { class: 'approval-media-label' },
+        el('strong', null, '記事リンク'), el('small', null, dateLabel)),
       el('input', { class: 'approval-url-input', type: 'url', value: link ?? '', placeholder: '記事URLを貼り付け' })),
     el('div', { class: 'approval-thumbnail-box' },
-      el('strong', null, 'サムネイル'),
+      el('div', { class: 'approval-media-label' },
+        el('strong', null, 'サムネイル'), el('small', null, dateLabel)),
       thumbnail
         ? el('a', { href: thumbnail, target: '_blank', rel: 'noopener noreferrer' },
             el('img', { src: thumbnail, alt: revision?.assets?.[0]?.alt_text ?? '承認用サムネイル' }))
