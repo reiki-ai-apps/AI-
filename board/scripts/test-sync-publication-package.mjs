@@ -5,6 +5,10 @@ import { join } from 'node:path';
 import test from 'node:test';
 
 import { syncPublicationPackage } from './sync-publication-package.mjs';
+import { systemClock } from '../js/core/clock.js';
+import { openFileDatabase } from '../js/store/filedb.js';
+import { Repo } from '../js/store/repo.js';
+import { approve, recordComponentApproval } from '../js/services/approvals.js';
 
 const ZERO_DIGEST = '0'.repeat(64);
 
@@ -134,3 +138,69 @@ for (const scenario of [
     }
   });
 }
+
+test('同一runの未承認修正を新Revisionとして即時同期し旧承認を無効化する', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'reiki-board-revision-sync-'));
+  const packagePath = join(dir, 'publication-package.json');
+  const dataPath = join(dir, 'board.json');
+  const initial = publicationPackage({
+    sourceSkill: 'ai_news_v1',
+    brandId: 'news',
+    idempotencyKey: 'ai_news_v1:revision-sync:1:2026-08-20',
+    title: '修正版同期テスト',
+  });
+  initial.source_run_id = 'ai-news-revision-sync-20260820';
+  initial.source_revision = 1;
+  initial.operations.separate_content_thumbnail_approval = true;
+  initial.platform_payloads[0].suggested_schedule.scheduled_at = '2099-08-20T03:00:00.000Z';
+  await writeJson(packagePath, initial);
+
+  const first = await syncPublicationPackage({
+    package: packagePath,
+    dataFile: dataPath,
+    queueForApproval: true,
+    actor: 'skill-sync-test',
+  });
+  const channelPostId = first.channel_post_ids[0];
+  const clock = systemClock('Asia/Tokyo');
+  const db = await openFileDatabase(dataPath);
+  const ctx = {
+    repo: new Repo(db, clock), db, clock, mode: 'SOLO',
+    actor: { userId: 'skill-sync-test', role: 'ADMIN' },
+  };
+  await recordComponentApproval(ctx, channelPostId, { componentScope: 'CONTENT' });
+  await recordComponentApproval(ctx, channelPostId, { componentScope: 'THUMBNAIL' });
+  await approve(ctx, channelPostId);
+
+  const revised = structuredClone(initial);
+  revised.package_id = crypto.randomUUID();
+  revised.idempotency_key = 'ai_news_v1:revision-sync:2:2026-08-20';
+  revised.source_revision = 2;
+  revised.platform_payloads[0].body = '修正版の本文。承認前でも最新内容をBoardへ反映する。';
+  revised.request_digest = ZERO_DIGEST;
+  await writeJson(packagePath, revised);
+
+  const second = await syncPublicationPackage({
+    package: packagePath,
+    dataFile: dataPath,
+    queueForApproval: true,
+    actor: 'skill-sync-test',
+  });
+  assert.equal(second.status, 'REVISED');
+  assert.equal(second.post_group_id, first.post_group_id);
+  assert.deepEqual(second.queued_for_approval, [channelPostId]);
+  assert.equal(second.revision_updates[0].changed, true);
+  assert.equal(second.revision_updates[0].invalidated_approval, true);
+
+  const board = JSON.parse(await readFile(dataPath, 'utf8'));
+  assert.equal(board.stores.postGroups.length, 1);
+  assert.equal(board.stores.channelPosts.length, 1);
+  assert.equal(board.stores.postRevisions.length, 2);
+  const post = board.stores.channelPosts[0];
+  assert.equal(post.display_state, 'PENDING_APPROVAL');
+  assert.deepEqual(post.component_approval_ids, {});
+  assert.equal(post.approval_id, null);
+  const oldApprovals = board.stores.approvals.filter((item) => item.channel_post_id === channelPostId);
+  assert.ok(oldApprovals.filter((item) => ['APPROVED', 'COMPONENT_APPROVED'].includes(item.decision))
+    .every((item) => item.revoked_at));
+});

@@ -5,11 +5,14 @@ import { basename, dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 import { systemClock } from '../js/core/clock.js';
+import { canonicalize } from '../js/core/jcs.js';
+import { sha256OfBytes } from '../js/core/digest.js';
 import { openFileDatabase } from '../js/store/filedb.js';
 import { openGithubDatabase } from '../js/store/githubdb.js';
 import { Repo } from '../js/store/repo.js';
-import { ingestPackage, sealPackage, validatePackage } from '../js/services/ingest.js';
+import { ContractError, ingestPackage, sealPackage, validatePackage } from '../js/services/ingest.js';
 import { submitForApproval } from '../js/services/approvals.js';
+import { reviseChannelPost } from '../js/services/posts.js';
 
 const DEFAULT_REPO = 'reiki-post-board-data';
 const DEFAULT_BRANCH = 'main';
@@ -40,6 +43,8 @@ Options:
 GitHub mode requires REIKI_POST_BOARD_GITHUB_TOKEN. The token is read only from
 the environment and is never written to the package, receipt, logs, or board data.
 REIKI_POST_BOARD_TENANT_ID may supply tenant_id when the package omits it.
+同じ source_skill + source_run_id の修正版は、source_revision と
+idempotency_key を更新すると同じ企画の新Revisionとして即時同期されます。
 `;
 }
 
@@ -173,6 +178,240 @@ async function openContext(options) {
   };
 }
 
+function normalizedAssets(pkg) {
+  return (pkg.assets ?? []).map((asset, index) => ({
+    asset_id: asset.asset_id,
+    sha256: asset.sha256,
+    mime: asset.mime,
+    bytes: asset.bytes,
+    order: Number.isFinite(asset.order) ? asset.order : index,
+    crop: asset.crop ?? null,
+    thumbnail_sha256: asset.thumbnail_sha256 ?? null,
+    subtitle_sha256: asset.subtitle_sha256 ?? null,
+    alt_text: asset.alt_text ?? '',
+    rights_status: asset.rights_status,
+    file_name: asset.archive_member ?? null,
+    asset_role: asset.asset_role ?? inferAssetRole(asset),
+    public_url: asset.public_url ?? null,
+    thumbnail_url: asset.thumbnail_url ?? null,
+    preview_url: asset.preview_url ?? null,
+    source_sha256: asset.source_sha256 ?? null,
+    source_bytes: asset.source_bytes ?? null,
+  }));
+}
+
+function assetsForPlatform(pkg, platform) {
+  const normalized = normalizedAssets(pkg);
+  return normalized.filter((asset) => {
+    const source = (pkg.assets ?? []).find((candidate) => candidate.asset_id === asset.asset_id);
+    return !source?.platform || source.platform === platform;
+  });
+}
+
+function rightsForPackage(pkg) {
+  return {
+    confirmed: (pkg.claims ?? []).length > 0,
+    rights_status: (pkg.assets ?? [])[0]?.rights_status ?? 'UNKNOWN',
+    sources: (pkg.claims ?? [])
+      .map((claim) => ({
+        claim_id: claim.claim_id,
+        source_url: claim.source_url,
+        verified_at: claim.verified_at ?? null,
+        epistemic_status: claim.epistemic_status ?? null,
+      }))
+      .sort((a, b) => String(a.claim_id).localeCompare(String(b.claim_id))),
+  };
+}
+
+function revisionProjection({ post, revision }) {
+  return {
+    body: revision.body ?? '',
+    title: revision.title ?? '',
+    hashtags: revision.hashtags ?? [],
+    cta: revision.cta ?? '',
+    visibility: revision.visibility ?? 'PUBLIC',
+    article_url: revision.article_url ?? null,
+    assets: revision.assets ?? [],
+    rights: revision.rights ?? {},
+    scheduled_at: post.scheduled_at,
+    time_zone: post.time_zone,
+  };
+}
+
+function desiredProjection(pkg, payload) {
+  const assetUrlById = new Map(normalizedAssets(pkg).map((asset) => [asset.asset_id, asset.public_url]));
+  return {
+    body: payload.body ?? '',
+    title: payload.title ?? pkg.project_title,
+    hashtags: payload.hashtags ?? [],
+    cta: payload.cta ?? '',
+    visibility: payload.visibility ?? 'PUBLIC',
+    article_url: payload.article_url ?? payload.link_url ?? assetUrlById.get(payload.content_asset_id) ?? null,
+    assets: assetsForPlatform(pkg, payload.platform),
+    rights: rightsForPackage(pkg),
+    scheduled_at: new Date(Date.parse(payload.suggested_schedule.scheduled_at)).toISOString(),
+    time_zone: payload.suggested_schedule.time_zone,
+  };
+}
+
+async function validateRevisionAssets(pkg, assetBytes) {
+  for (const asset of pkg.assets ?? []) {
+    if (!asset.archive_member) continue;
+    const bytes = assetBytes.get(asset.archive_member);
+    if (!bytes) throw new ContractError('ASSET_DIGEST_MISMATCH', 422, `素材ファイルが見つかりません: ${asset.archive_member}`);
+    const actual = await sha256OfBytes(bytes);
+    if (actual !== asset.sha256) {
+      throw new ContractError('ASSET_DIGEST_MISMATCH', 422, `素材Hashが一致しません: ${asset.archive_member}`);
+    }
+  }
+}
+
+async function findExistingRun(ctx, pkg) {
+  if (!pkg.source_run_id) return null;
+  const matches = (await ctx.repo.listPostGroups()).filter((group) =>
+    !group.deleted_at
+    && group.source_skill === pkg.source_skill
+    && group.source_run_id === pkg.source_run_id);
+  if (matches.length > 1) {
+    throw new Error(`同じsource_run_idの企画が複数あります: ${pkg.source_run_id}`);
+  }
+  return matches[0] ?? null;
+}
+
+async function replayForPackage(ctx, pkg) {
+  const existing = (await ctx.repo.listPublicationPackages()).find((record) =>
+    record.tenant_id === pkg.tenant_id
+    && record.source_skill === pkg.source_skill
+    && record.idempotency_key === pkg.idempotency_key);
+  if (!existing) return null;
+  if (existing.server_digest !== pkg.request_digest) {
+    throw new ContractError(
+      'IDEMPOTENCY_MISMATCH',
+      409,
+      '同じidempotency_keyで異なる修正版が送られました。source_revisionとidempotency_keyを更新してください。',
+    );
+  }
+  const posts = await ctx.repo.listChannelPostsOfGroup(existing.post_group_id);
+  return {
+    status: 200,
+    packageId: existing.package_id,
+    postGroupId: existing.post_group_id,
+    channelPostIds: posts.map((post) => post.channel_post_id),
+    replayed: true,
+    revised: false,
+    revisionUpdates: [],
+    warnings: [],
+  };
+}
+
+async function reviseExistingRun(ctx, pkg, group, assetBytes) {
+  await validateRevisionAssets(pkg, assetBytes);
+  const priorPackages = (await ctx.repo.listPublicationPackages())
+    .filter((record) => record.post_group_id === group.post_group_id);
+  const maxSourceRevision = Math.max(0, ...priorPackages.map((record) => Number(record.source_revision ?? 1)));
+  const sourceRevision = Number(pkg.source_revision ?? maxSourceRevision + 1);
+  if (!Number.isInteger(sourceRevision) || sourceRevision <= maxSourceRevision) {
+    throw new ContractError(
+      'STALE_SOURCE_REVISION',
+      409,
+      `修正版のsource_revisionは${maxSourceRevision + 1}以上にしてください。`,
+    );
+  }
+
+  const posts = await ctx.repo.listChannelPostsOfGroup(group.post_group_id);
+  const byPlatform = new Map(posts.map((post) => [post.platform, post]));
+  const revisionUpdates = [];
+  for (const payload of pkg.platform_payloads) {
+    const post = byPlatform.get(payload.platform);
+    if (!post) throw new Error(`既存企画に${payload.platform}の投稿がありません。`);
+    const current = await ctx.repo.getRevision(post.current_revision_id);
+    if (!current) throw new Error(`現在Revisionが見つかりません: ${post.current_revision_id}`);
+    const desired = desiredProjection(pkg, payload);
+    if (canonicalize(revisionProjection({ post, revision: current })) === canonicalize(desired)) {
+      revisionUpdates.push({
+        platform: payload.platform,
+        channel_post_id: post.channel_post_id,
+        changed: false,
+        revision_id: current.revision_id,
+        revision_no: current.revision_no,
+        approval_basis_hash: current.approval_basis_hash,
+      });
+      continue;
+    }
+    const result = await reviseChannelPost(ctx, post.channel_post_id, {
+      body: desired.body,
+      title: desired.title,
+      hashtags: desired.hashtags,
+      cta: desired.cta,
+      visibility: desired.visibility,
+      articleUrl: desired.article_url,
+      assets: desired.assets,
+      rights: desired.rights,
+      scheduledAtIso: desired.scheduled_at,
+      timeZone: desired.time_zone,
+    }, { reason: `${pkg.source_skill} の修正版 source_revision=${sourceRevision} を即時同期` });
+    const next = await ctx.repo.getRevision(result.revisionId);
+    revisionUpdates.push({
+      platform: payload.platform,
+      channel_post_id: post.channel_post_id,
+      changed: true,
+      revision_id: result.revisionId,
+      revision_no: result.revisionNo,
+      approval_basis_hash: next?.approval_basis_hash ?? null,
+      invalidated_approval: result.invalidatedApproval,
+      changes: result.changes,
+    });
+  }
+
+  const now = ctx.clock.nowIso();
+  const packageRecord = {
+    package_id: pkg.package_id,
+    tenant_id: pkg.tenant_id,
+    source_skill: pkg.source_skill,
+    idempotency_key: pkg.idempotency_key,
+    request_digest: pkg.request_digest,
+    server_digest: pkg.request_digest,
+    contract_version: pkg.contract_version,
+    source_revision: sourceRevision,
+    source_artifact_id: pkg.source_artifact_id ?? null,
+    received_at: now,
+    post_group_id: group.post_group_id,
+    status: 'ACCEPTED_REVISION',
+    quality_reviews: pkg.reviews ?? [],
+  };
+  await ctx.repo.change(['postGroups', 'publicationPackages'], async (tx, audit) => {
+    const liveGroup = await tx.get('postGroups', group.post_group_id);
+    await tx.put('postGroups', {
+      ...liveGroup,
+      project_title: pkg.project_title,
+      package_id: pkg.package_id,
+      updated_at: now,
+    });
+    await tx.add('publicationPackages', packageRecord);
+    await audit({
+      actor: ctx.actor.userId,
+      target_type: 'publicationPackage',
+      target_id: pkg.package_id,
+      action: 'package.revision.accepted',
+      before_hash: priorPackages.at(-1)?.server_digest ?? null,
+      after_hash: pkg.request_digest,
+      reason: `${pkg.source_skill} の修正版を同一runへ即時同期（source_revision=${sourceRevision}）`,
+      revision_id: revisionUpdates.find((item) => item.changed)?.revision_id ?? null,
+    });
+  });
+
+  return {
+    status: 200,
+    packageId: pkg.package_id,
+    postGroupId: group.post_group_id,
+    channelPostIds: revisionUpdates.map((item) => item.channel_post_id),
+    replayed: false,
+    revised: true,
+    revisionUpdates,
+    warnings: [],
+  };
+}
+
 export async function syncPublicationPackage(options) {
   if (!options.package) throw new Error('--package が必要です。');
   const sourcePath = resolve(options.package);
@@ -204,24 +443,35 @@ export async function syncPublicationPackage(options) {
 
   const ctx = await openContext(options);
   const assetBytes = await loadAssets(sealed, assetDir);
-  const result = await ingestPackage(ctx, sealed, assetBytes);
+  const replay = await replayForPackage(ctx, sealed);
+  const existingRun = replay ? null : await findExistingRun(ctx, sealed);
+  const result = replay
+    ?? (existingRun
+      ? await reviseExistingRun(ctx, sealed, existingRun, assetBytes)
+      : await ingestPackage(ctx, sealed, assetBytes));
   let queued = [];
   if (options.queueForApproval && !result.replayed) {
     queued = [];
     for (const channelPostId of result.channelPostIds ?? []) {
-      await submitForApproval(ctx, channelPostId, { reason: `${sealed.source_skill} の検査済み成果物を確認依頼` });
-      queued.push(channelPostId);
+      const post = await ctx.repo.getPost(channelPostId);
+      if (post?.display_state === 'PENDING_APPROVAL') {
+        queued.push(channelPostId);
+      } else if (['DRAFT', 'QUALITY_REVIEW', 'ACTION_REQUIRED'].includes(post?.display_state)) {
+        await submitForApproval(ctx, channelPostId, { reason: `${sealed.source_skill} の検査済み成果物を確認依頼` });
+        queued.push(channelPostId);
+      }
     }
   }
 
   const receipt = {
     ...baseReceipt,
-    status: result.replayed ? 'REPLAYED' : 'IMPORTED',
+    status: result.replayed ? 'REPLAYED' : result.revised ? 'REVISED' : 'IMPORTED',
     changed: !result.replayed,
     backend: ctx.backend,
     post_group_id: result.postGroupId,
     channel_post_ids: result.channelPostIds ?? [],
     queued_for_approval: queued,
+    revision_updates: result.revisionUpdates ?? [],
     warnings: result.warnings ?? [],
     public_media: (sealed.assets ?? []).filter((asset) => asset.public_url).map((asset) => ({
       asset_id: asset.asset_id,
