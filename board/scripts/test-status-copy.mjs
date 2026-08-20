@@ -6,6 +6,7 @@ import {
   blockerSummary,
   productionOverview,
   channelBrief,
+  badgeProgressSummary,
   planDayResultLabel,
 } from '../js/ui/statusView.js';
 
@@ -142,6 +143,28 @@ test('内部予定だけのSCHEDULEDは外部予約待ちで予約完了に数�
   assert.equal(plan.days[0].counts.EXTERNAL_PENDING, 1);
   assert.equal(plan.days[0].counts.SCHEDULED, 0);
   assert.equal(plan.days[0].complete, false);
+});
+
+test('媒体カードは完了数と未完了分の現在地を別々に示す', () => {
+  const note = { platform: 'NOTE', required: 2 };
+  const mixed = badgeProgressSummary([
+    { platform: 'NOTE', stage: 'PUBLISHED' },
+    { platform: 'NOTE', stage: 'APPROVAL' },
+  ], note);
+  assert.equal(mixed.mark, '1/2');
+  assert.equal(mixed.confirmed, 1);
+  assert.deepEqual(mixed.progress.map((part) => part.label), ['承認待ち 1']);
+
+  const empty = badgeProgressSummary([], note);
+  assert.equal(empty.mark, '0/2');
+  assert.deepEqual(empty.progress.map((part) => part.label), ['未登録 2']);
+
+  const split = badgeProgressSummary([
+    { platform: 'NOTE', stage: 'CREATING' },
+    { platform: 'NOTE', stage: 'EXTERNAL_PENDING' },
+  ], note);
+  assert.equal(split.mark, '0/2');
+  assert.deepEqual(split.progress.map((part) => part.label), ['制作中 1', '予約待ち 1']);
 });
 
 test('note・X・Instagramは各2件の外部確定で日次達成になる', () => {

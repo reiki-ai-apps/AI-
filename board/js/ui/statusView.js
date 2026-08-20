@@ -103,6 +103,7 @@ const PLAN_STAGES = Object.freeze({
   APPROVAL: { label: '承認待ち', mark: '◷', tone: 'attention' },
   READY: { label: '承認待ち', mark: '◷', tone: 'attention' },
   CREATING: { label: '作成中', mark: '×', tone: 'danger' },
+  MISSING: { label: '未登録', mark: '＋', tone: 'danger' },
 });
 
 function relativeDayLabel(index) {
@@ -125,33 +126,62 @@ function badgesForDay(day) {
     .filter((badge) => badge.required > 0);
 }
 
-function badgeState(items, badge) {
+export function badgeProgressSummary(items, badge) {
   const matching = items.filter((item) => item.platform === badge.platform);
   const registered = matching.length;
   const published = matching.filter((item) => item.stage === 'PUBLISHED').length;
   const scheduled = matching.filter((item) => item.stage === 'SCHEDULED').length;
   const confirmed = published + scheduled;
   const required = badge.required ?? 1;
+  const counts = matching.reduce((result, item) => {
+    result[item.stage] = (result[item.stage] ?? 0) + 1;
+    return result;
+  }, {});
   let stage = PLAN_STAGES.CREATING;
   if (confirmed >= required) stage = published >= required ? PLAN_STAGES.PUBLISHED : PLAN_STAGES.SCHEDULED;
   else if (matching.some((item) => item.stage === 'EXTERNAL_PENDING')) stage = PLAN_STAGES.EXTERNAL_PENDING;
   else if (matching.some((item) => item.stage === 'APPROVAL' || item.stage === 'READY')) stage = PLAN_STAGES.APPROVAL;
+  else if (registered === 0) stage = PLAN_STAGES.MISSING;
   const mark = confirmed >= required
     ? (published >= required ? `${required}済` : `${required}予約`)
-    : `${Math.min(registered, required)}/${required}`;
-  return { stage, mark, confirmed, registered, required };
+    : `${Math.min(confirmed, required)}/${required}`;
+
+  const progress = [];
+  if (confirmed >= required) {
+    progress.push({
+      tone: stage.tone,
+      mark: stage.mark,
+      label: published >= required ? '公開済' : '予約済',
+    });
+  } else {
+    const missing = Math.max(required - registered, 0);
+    if (missing > 0) progress.push({ tone: 'danger', mark: '＋', label: `未登録 ${missing}` });
+    if ((counts.CREATING ?? 0) > 0) progress.push({ tone: 'creating', mark: '●', label: `制作中 ${counts.CREATING}` });
+    const approval = (counts.APPROVAL ?? 0) + (counts.READY ?? 0);
+    if (approval > 0) progress.push({ tone: 'approval', mark: '!', label: `承認待ち ${approval}` });
+    if ((counts.EXTERNAL_PENDING ?? 0) > 0) {
+      progress.push({ tone: 'external', mark: '◷', label: `予約待ち ${counts.EXTERNAL_PENDING}` });
+    }
+    if (!progress.length) progress.push({ tone: 'danger', mark: '＋', label: `未登録 ${required}` });
+  }
+  return { stage, mark, confirmed, registered, required, progress };
 }
 
 function statusBadge(item, items) {
-  const { stage, mark, registered, required } = badgeState(items, item);
+  const { stage, mark, confirmed, registered, required, progress } = badgeProgressSummary(items, item);
+  const progressLabel = progress.map((part) => part.label).join('、');
   return el('div', {
     class: `status-sns-badge is-${stage.tone}`,
-    'aria-label': `${item.label} ${stage.label} ${registered}/${required}件`,
-    title: `${item.label}：${stage.label}（${registered}/${required}件登録）`,
+    'aria-label': `${item.label} ${confirmed}/${required}件完了、${progressLabel}`,
+    title: `${item.label}：${confirmed}/${required}件完了（${registered}件登録）、${progressLabel}`,
   },
   platformBadge(item.platform, { size: 38, decorative: true }),
   el('span', { class: 'status-sns-name' }, item.label),
-  el('strong', { class: 'status-sns-mark', 'aria-hidden': 'true' }, mark));
+  el('strong', { class: 'status-sns-mark', 'aria-hidden': 'true' }, mark),
+  el('span', { class: 'status-sns-progress', 'aria-hidden': 'true' },
+    ...progress.map((part) => el('span', { class: `status-sns-progress-badge is-${part.tone}` },
+      el('span', { class: 'status-sns-progress-symbol' }, part.mark),
+      part.label))));
 }
 
 export function planDayResultLabel(day) {
