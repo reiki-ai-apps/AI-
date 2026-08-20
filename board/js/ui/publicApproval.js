@@ -1,8 +1,5 @@
-// GitHub Pages版の承認導線。
-//
-// Pages自身は静的で書き込めないため、GitHubのログイン済み本人確認を使って
-// 構造化されたIssueを作る。Issueを受けたActionsが現在のRevision/Hashを再検査し、
-// 一致した場合だけboard.jsonへ承認証跡を書き込む。
+// 公開Boardの承認データを、現在のRevision/Hashから構造化する。
+// 送信と端末認証は publicApprovalGateway.js が担当する。
 
 import { approvalBasisHash, buildApprovalBasis, computeApprovalComponentHash } from '../domain/approval.js';
 import { DEFAULT_RETRY_DELAY_MINUTES } from '../services/approvals.js';
@@ -15,10 +12,9 @@ function safeLabel(value, fallback = '（名称なし）') {
   return text || fallback;
 }
 
-export async function buildPublicApprovalRequest({ group, posts, revisions, componentScope = null }) {
+export async function buildPublicApprovalPayload({ group, posts, revisions, componentScope = null }) {
   if (!Array.isArray(posts) || posts.length === 0) throw new Error('承認対象がありません。');
   const targets = [];
-  const summary = [];
 
   for (const post of posts) {
     const revision = revisions.get(post.current_revision_id);
@@ -44,16 +40,24 @@ export async function buildPublicApprovalRequest({ group, posts, revisions, comp
       approval_component_hash: componentScope ? basisHash : null,
       allowed_retry_delay_minutes: DEFAULT_RETRY_DELAY_MINUTES,
     });
-    summary.push(`- ${post.platform} / ${componentScope ?? '全体'} / 第${revision.revision_no}版 / ${post.scheduled_at}`);
   }
 
-  const payload = {
+  return {
     contract: PUBLIC_APPROVAL_CONTRACT,
     action: 'APPROVE',
     component_scope: componentScope,
     project_title: safeLabel(group?.project_title),
     targets,
   };
+}
+
+export async function buildPublicApprovalRequest({ group, posts, revisions, componentScope = null }) {
+  const payload = await buildPublicApprovalPayload({ group, posts, revisions, componentScope });
+  const summary = payload.targets.map((target, index) => {
+    const post = posts[index];
+    const revision = revisions.get(target.revision_id);
+    return `- ${post.platform} / ${componentScope ?? '全体'} / 第${revision.revision_no}版 / ${post.scheduled_at}`;
+  });
   const title = `[POST BOARD承認] ${safeLabel(group?.project_title)}`.slice(0, 220);
   const body = [
     'POST BOARDで内容を確認し、次のRevisionとHashを承認します。',

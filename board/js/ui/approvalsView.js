@@ -6,10 +6,11 @@ import { fullDayLabel, clockLabel } from '../core/fmt.js';
 import { brandName } from '../domain/brands.js';
 import { platformName } from '../domain/platforms.js';
 import { platformBadge } from './platformBadge.js';
-import { approve, reject, describePendingChange, approveGroup, verifyComponentApprovals } from '../services/api.js?v=2';
+import { approve, reject, describePendingChange, approveGroup, recordComponentApproval, verifyComponentApprovals } from '../services/api.js?v=2';
 import { guardedButton, permissionNotice } from './states.js';
 import { openPostDetail } from './postDetail.js';
 import { buildPublicApprovalRequest } from './publicApproval.js';
+import { submitGatewayComponentApproval } from './publicApprovalGateway.js';
 
 export async function renderApprovalsScreen(app) {
   const { repo } = app.ctx;
@@ -61,8 +62,33 @@ async function buildSimpleApprovalItem(app, post, linkLabel = '記事リンク',
       const when = state.approval?.decided_at ? new Date(state.approval.decided_at).toLocaleString('ja-JP') : '';
       return el('span', { class: 'approval-component-approved', title: state.currentHash }, `承認済み ${when}`.trim());
     }
-    return el('a', { class: 'btn btn-primary btn-sm',
-      href: await buildPublicApprovalRequest({ group, posts: [post], revisions, componentScope: scope }) }, '承認');
+    if (app.ctx.backend === 'public') {
+      return el('button', {
+        class: 'btn btn-primary btn-sm',
+        type: 'button',
+        onClick: async (event) => {
+          const target = event.currentTarget;
+          target.disabled = true;
+          target.textContent = '送信中…';
+          try {
+            await submitGatewayComponentApproval({ group, post, revision, componentScope: scope });
+            target.textContent = '承認を送信済み';
+            app.toast('承認を受け付けました。数分以内にBoardへ反映します。');
+          } catch (error) {
+            target.disabled = false;
+            target.textContent = '承認';
+            app.toast(error?.message ?? '承認を送信できませんでした。');
+          }
+        },
+      }, '承認');
+    }
+    return guardedButton(app, 'approval.approve', '承認', {
+      class: 'btn btn-primary btn-sm',
+      onClick: async () => {
+        await recordComponentApproval(app.ctx, post.channel_post_id, scope);
+        await app.refresh();
+      },
+    });
   };
   return el('div', { class: 'approval-simple-item' }, approvalMedia(revision, post.calendar_date_key, linkLabel, mediaLabel, {
     article: await actionFor('CONTENT'),

@@ -1,0 +1,63 @@
+name: POST BOARD approval gateway
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: post-board-public-approval
+  cancel-in-progress: false
+
+jobs:
+  approve:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Download signed device approvals
+        env:
+          QUEUE_TOKEN: ${{ secrets.REIKI_BOARD_QUEUE_TOKEN }}
+        run: curl --fail --silent --show-error --retry 3 --header "Authorization: Bearer ${QUEUE_TOKEN}" https://reiki-board-approval-gateway.hinata246246.workers.dev/v1/approvals --output "$RUNNER_TEMP/approval-queue.json"
+
+      - name: Validate Revision and Hash, then apply
+        run: |
+          node board/scripts/process-approval-gateway.mjs \
+            --queue "$RUNNER_TEMP/approval-queue.json" \
+            --data-file board/data/board.json \
+            --receipt-dir board/data/approval-receipts
+
+      - name: Stop when no new valid approval changed the Board
+        id: changed
+        run: |
+          if git diff --quiet -- board/data/board.json; then
+            echo "value=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Re-audit both approval components
+        if: steps.changed.outputs.value == 'true'
+        run: |
+          node board/scripts/audit-component-approvals.mjs \
+            --data-file board/data/board.json \
+            --output board/data/component-approval-audit.json
+
+      - name: Commit approval evidence
+        if: steps.changed.outputs.value == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- board/data/board.json board/data/component-approval-audit.json board/data/approval-receipts/gateway-*.json
+          git commit -m "Record POST BOARD device approval"
+          git push origin HEAD:main
