@@ -28,7 +28,11 @@ jobs:
       - name: Download signed device approvals
         env:
           QUEUE_TOKEN: ${{ secrets.REIKI_BOARD_QUEUE_TOKEN }}
-        run: curl --fail --silent --show-error --retry 3 --header "Authorization: Bearer ${QUEUE_TOKEN}" https://reiki-board-approval-gateway.hinata246246.workers.dev/v1/approvals --output "$RUNNER_TEMP/approval-queue.json"
+        run: >-
+          curl --fail --silent --show-error --retry 3
+          --header "Authorization: Bearer ${QUEUE_TOKEN}"
+          https://reiki-board-approval-gateway.hinata246246.workers.dev/v1/approvals
+          --output "$RUNNER_TEMP/approval-queue.json"
 
       - name: Validate Revision and Hash, then apply
         run: |
