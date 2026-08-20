@@ -51,17 +51,21 @@ export function buildReservationPlan({
     dateKey: shiftDateKey(todayKey, index),
     items: [],
     counts: emptyCounts(),
+    publishedCount: 0,
   }));
   const byDate = new Map(days.map((day) => [day.dateKey, day]));
 
   for (const post of posts) {
-    if (post.deleted_at || post.cancelled_at || post.display_state === 'PUBLISHED') continue;
+    if (post.deleted_at || post.cancelled_at) continue;
     const dateKey = intendedDate(post);
     const day = byDate.get(dateKey);
     if (!day) continue;
     const group = groups.get(post.post_group_id) ?? {};
-    const stage = reservationStage(post, packages.get(post.post_group_id));
-    day.counts[stage] += 1;
+    const stage = post.display_state === 'PUBLISHED'
+      ? 'PUBLISHED'
+      : reservationStage(post, packages.get(post.post_group_id));
+    if (stage === 'PUBLISHED') day.publishedCount += 1;
+    else day.counts[stage] += 1;
     day.items.push({
       id: post.channel_post_id,
       title: group.project_title || post.title || 'タイトル未設定',
@@ -74,14 +78,16 @@ export function buildReservationPlan({
 
   for (const day of days) {
     day.items.sort((a, b) => Date.parse(a.scheduledAt ?? '') - Date.parse(b.scheduledAt ?? ''));
-    day.complete = day.items.length > 0 && day.items.every((item) => item.stage === 'SCHEDULED');
+    day.complete = day.items.length > 0
+      && day.items.every((item) => item.stage === 'SCHEDULED' || item.stage === 'PUBLISHED');
   }
 
   const totals = days.reduce((sum, day) => {
     for (const stage of STAGES) sum[stage] += day.counts[stage];
+    sum.PUBLISHED += day.publishedCount;
     if (day.items.length === 0) sum.UNPLANNED_DAYS += 1;
     return sum;
-  }, { ...emptyCounts(), UNPLANNED_DAYS: 0 });
+  }, { ...emptyCounts(), PUBLISHED: 0, UNPLANNED_DAYS: 0 });
 
   return {
     complete: days.every((day) => day.complete),

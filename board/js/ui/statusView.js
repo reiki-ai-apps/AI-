@@ -97,6 +97,7 @@ function channelCard(channel) {
 }
 
 const PLAN_STAGES = Object.freeze({
+  PUBLISHED: { label: '投稿済み', mark: '✓', tone: 'published' },
   SCHEDULED: { label: '予約済み', mark: '◎', tone: 'scheduled' },
   APPROVAL: { label: '承認待ち', mark: '◷', tone: 'attention' },
   READY: { label: '承認待ち', mark: '◷', tone: 'attention' },
@@ -121,7 +122,8 @@ function badgeStage(items, badge) {
   const matching = items.filter((item) => item.platform === badge.platform);
   if (!matching.length || matching.some((item) => item.stage === 'CREATING')) return PLAN_STAGES.CREATING;
   if (matching.some((item) => item.stage === 'APPROVAL' || item.stage === 'READY')) return PLAN_STAGES.APPROVAL;
-  return PLAN_STAGES.SCHEDULED;
+  if (matching.some((item) => item.stage === 'SCHEDULED')) return PLAN_STAGES.SCHEDULED;
+  return PLAN_STAGES.PUBLISHED;
 }
 
 function statusBadge(item, items) {
@@ -136,11 +138,23 @@ function statusBadge(item, items) {
   el('strong', { class: 'status-sns-mark', 'aria-hidden': 'true' }, stage.mark));
 }
 
+export function planDayResultLabel(day) {
+  if ((day.publishedCount ?? 0) > 0) return `${day.publishedCount}済`;
+  return day.complete ? '予約完了' : '未完了';
+}
+
 function planDay(day) {
+  const resultLabel = planDayResultLabel(day);
+  const resultState = (day.publishedCount ?? 0) > 0
+    ? 'is-published'
+    : day.complete ? 'is-complete' : 'is-incomplete';
   return el('section', { class: `status-plan-day${day.complete ? ' is-complete' : ' is-incomplete'}` },
     el('div', { class: 'status-plan-day-head' },
       el('h3', { class: 'status-plan-day-title' }, `${relativeDayLabel(day.index)}｜${dayHeading(day.dateKey)}`),
-      el('span', { class: `status-plan-day-result${day.complete ? ' is-complete' : ' is-incomplete'}` }, day.complete ? '予約完了' : '未完了')),
+      el('span', {
+        class: `status-plan-day-result ${resultState}`,
+        'aria-label': (day.publishedCount ?? 0) > 0 ? `${day.publishedCount}件投稿済み` : resultLabel,
+      }, resultLabel)),
     el('div', { class: 'status-sns-grid' }, ...STATUS_BADGES.map((item) => statusBadge(item, day.items))));
 }
 

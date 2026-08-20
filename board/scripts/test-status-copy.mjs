@@ -2,7 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { buildReservationPlan } from '../js/domain/reservationPlan.js';
-import { blockerSummary, productionOverview, channelBrief } from '../js/ui/statusView.js';
+import {
+  blockerSummary,
+  productionOverview,
+  channelBrief,
+  planDayResultLabel,
+} from '../js/ui/statusView.js';
 
 test('長い運用メッセージを短い行動文へ変換する', () => {
   assert.deepEqual(blockerSummary({ id: 'news-primary-source-quorum' }), {
@@ -57,11 +62,22 @@ test('3日分を投稿名・媒体・予約・承認待ち・未準備へ分け�
         calendar_date_key: '2026-08-17',
         display_state: 'PENDING_APPROVAL',
       },
+      {
+        channel_post_id: 'post-published',
+        post_group_id: 'group-published',
+        brand_id: 'news',
+        platform: 'NOTE',
+        title: '公開済みの記事',
+        scheduled_at: '2026-08-17T02:00:00.000Z',
+        calendar_date_key: '2026-08-17',
+        display_state: 'PUBLISHED',
+      },
     ],
     postGroups: [
       { post_group_id: 'group-approval', brand_id: 'creative', project_title: '承認してほしい投稿' },
       { post_group_id: 'group-scheduled', brand_id: 'news', project_title: '予約済みニュース' },
       { post_group_id: 'group-approval-actual', brand_id: 'news', project_title: '本当に承認待ちの投稿' },
+      { post_group_id: 'group-published', brand_id: 'news', project_title: '公開済みの記事' },
     ],
     publicationPackages: [{
       post_group_id: 'group-approval',
@@ -76,9 +92,13 @@ test('3日分を投稿名・媒体・予約・承認待ち・未準備へ分け�
   assert.equal(plan.complete, false);
   assert.deepEqual(plan.days.map((day) => day.dateKey), ['2026-08-17', '2026-08-18', '2026-08-19']);
   assert.deepEqual(plan.days[0].counts, { CREATING: 0, READY: 1, APPROVAL: 1, SCHEDULED: 1 });
-  assert.equal(plan.days[0].items[0].title, '承認してほしい投稿');
-  assert.equal(plan.days[0].items[0].stage, 'READY');
-  assert.equal(plan.days[0].items[2].stage, 'APPROVAL');
+  assert.equal(plan.days[0].publishedCount, 1);
+  assert.equal(plan.days[0].items[0].stage, 'PUBLISHED');
+  assert.equal(plan.days[0].items[1].title, '承認してほしい投稿');
+  assert.equal(plan.days[0].items[1].stage, 'READY');
+  assert.equal(plan.days[0].items[3].stage, 'APPROVAL');
+  assert.equal(plan.totals.PUBLISHED, 1);
+  assert.equal(planDayResultLabel(plan.days[0]), '1済');
   assert.equal(plan.days[1].items.length, 0);
   assert.equal(plan.totals.UNPLANNED_DAYS, 2);
   assert.equal(channelBrief({ reservation_state: 'MISSING' }), '危険：2日先まで予約されていません');
