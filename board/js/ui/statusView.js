@@ -99,6 +99,7 @@ function channelCard(channel) {
 const PLAN_STAGES = Object.freeze({
   PUBLISHED: { label: '投稿済み', mark: '✓', tone: 'published' },
   SCHEDULED: { label: '予約済み', mark: '◎', tone: 'scheduled' },
+  EXTERNAL_PENDING: { label: '外部予約待ち', mark: '◷', tone: 'attention' },
   APPROVAL: { label: '承認待ち', mark: '◷', tone: 'attention' },
   READY: { label: '承認待ち', mark: '◷', tone: 'attention' },
   CREATING: { label: '作成中', mark: '×', tone: 'danger' },
@@ -118,24 +119,39 @@ const STATUS_BADGES = Object.freeze([
   { platform: 'YOUTUBE_SHORTS', label: 'Shorts' },
 ]);
 
-function badgeStage(items, badge) {
+function badgesForDay(day) {
+  return STATUS_BADGES
+    .map((badge) => ({ ...badge, required: day.requirements?.[badge.platform] ?? 0 }))
+    .filter((badge) => badge.required > 0);
+}
+
+function badgeState(items, badge) {
   const matching = items.filter((item) => item.platform === badge.platform);
-  if (!matching.length || matching.some((item) => item.stage === 'CREATING')) return PLAN_STAGES.CREATING;
-  if (matching.some((item) => item.stage === 'APPROVAL' || item.stage === 'READY')) return PLAN_STAGES.APPROVAL;
-  if (matching.some((item) => item.stage === 'SCHEDULED')) return PLAN_STAGES.SCHEDULED;
-  return PLAN_STAGES.PUBLISHED;
+  const registered = matching.length;
+  const published = matching.filter((item) => item.stage === 'PUBLISHED').length;
+  const scheduled = matching.filter((item) => item.stage === 'SCHEDULED').length;
+  const confirmed = published + scheduled;
+  const required = badge.required ?? 1;
+  let stage = PLAN_STAGES.CREATING;
+  if (confirmed >= required) stage = published >= required ? PLAN_STAGES.PUBLISHED : PLAN_STAGES.SCHEDULED;
+  else if (matching.some((item) => item.stage === 'EXTERNAL_PENDING')) stage = PLAN_STAGES.EXTERNAL_PENDING;
+  else if (matching.some((item) => item.stage === 'APPROVAL' || item.stage === 'READY')) stage = PLAN_STAGES.APPROVAL;
+  const mark = confirmed >= required
+    ? (published >= required ? `${required}済` : `${required}予約`)
+    : `${Math.min(registered, required)}/${required}`;
+  return { stage, mark, confirmed, registered, required };
 }
 
 function statusBadge(item, items) {
-  const stage = badgeStage(items, item);
+  const { stage, mark, registered, required } = badgeState(items, item);
   return el('div', {
     class: `status-sns-badge is-${stage.tone}`,
-    'aria-label': `${item.label} ${stage.label}`,
-    title: `${item.label}：${stage.label}`,
+    'aria-label': `${item.label} ${stage.label} ${registered}/${required}件`,
+    title: `${item.label}：${stage.label}（${registered}/${required}件登録）`,
   },
   platformBadge(item.platform, { size: 38, decorative: true }),
   el('span', { class: 'status-sns-name' }, item.label),
-  el('strong', { class: 'status-sns-mark', 'aria-hidden': 'true' }, stage.mark));
+  el('strong', { class: 'status-sns-mark', 'aria-hidden': 'true' }, mark));
 }
 
 export function planDayResultLabel(day) {
@@ -155,7 +171,7 @@ function planDay(day) {
         class: `status-plan-day-result ${resultState}`,
         'aria-label': (day.publishedCount ?? 0) > 0 ? `${day.publishedCount}件投稿済み` : resultLabel,
       }, resultLabel)),
-    el('div', { class: 'status-sns-grid' }, ...STATUS_BADGES.map((item) => statusBadge(item, day.items))));
+    el('div', { class: 'status-sns-grid' }, ...badgesForDay(day).map((item) => statusBadge(item, day.items))));
 }
 
 function reservationPanel(plan) {

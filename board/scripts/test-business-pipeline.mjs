@@ -6,7 +6,12 @@ import { summarizeBusinessPipeline } from '../js/ui/businessPipelinePanel.js';
 test('別事業を分離し、日付・媒体ごとに制作中、確認待ち、予約済みを数える', () => {
   const postGroups = [
     { post_group_id: 'news-group', brand_id: 'news', source_skill: 'ai_news_v1' },
-    { post_group_id: 'creative-group', brand_id: 'creative', source_skill: 'ai_creative_v1' },
+    {
+      post_group_id: 'creative-group',
+      brand_id: 'creative',
+      source_skill: 'ai_creative_v1',
+      internal: { tags: ['external-schedule-verified'] },
+    },
   ];
   const publicationPackages = [{
     post_group_id: 'creative-group',

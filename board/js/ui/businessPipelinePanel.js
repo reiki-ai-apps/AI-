@@ -14,6 +14,7 @@ const PLATFORMS_BY_BUSINESS = Object.freeze({
 const STAGES = Object.freeze([
   { id: 'CREATING', label: '制作中', tone: 'progress' },
   { id: 'APPROVAL', label: '承認待ち', tone: 'attention' },
+  { id: 'EXTERNAL_PENDING', label: '外部予約待ち', tone: 'attention' },
   { id: 'SCHEDULED', label: '予約済み', tone: 'scheduled' },
 ]);
 
@@ -58,7 +59,7 @@ export function summarizeBusinessPipeline({ posts = [], postGroups = [], publica
     business.days.set(dateKey, day);
 
     if (!day.platforms[post.platform]) day.platforms[post.platform] = emptyCounts();
-    const stage = pipelineStage(post, packages.get(post.post_group_id));
+    const stage = pipelineStage(post, packages.get(post.post_group_id), group);
     day.platforms[post.platform][stage] += 1;
     business.totals[stage] += 1;
   }
@@ -128,6 +129,7 @@ function metric(stage, count) {
 function businessSummary(business) {
   const { totals } = business;
   if (totals.APPROVAL > 0) return `最優先：${totals.APPROVAL}件の承認後、予約へ進めます。`;
+  if (totals.EXTERNAL_PENDING > 0) return `外部予約待ち：${totals.EXTERNAL_PENDING}件です。まだ予約済みではありません。`;
   if (totals.CREATING > 0) return `いま：${totals.CREATING}件を制作中です。公開日は未定です。`;
   if (totals.SCHEDULED > 0) return `予約済み：${totals.SCHEDULED}件です。`;
   return '予定はありません。';

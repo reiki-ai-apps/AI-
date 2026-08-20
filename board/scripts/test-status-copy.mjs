@@ -75,7 +75,12 @@ test('3日分を投稿名・媒体・予約・承認待ち・未準備へ分け�
     ],
     postGroups: [
       { post_group_id: 'group-approval', brand_id: 'creative', project_title: '承認してほしい投稿' },
-      { post_group_id: 'group-scheduled', brand_id: 'news', project_title: '予約済みニュース' },
+      {
+        post_group_id: 'group-scheduled',
+        brand_id: 'news',
+        project_title: '予約済みニュース',
+        internal: { tags: ['external-schedule-verified'] },
+      },
       { post_group_id: 'group-approval-actual', brand_id: 'news', project_title: '本当に承認待ちの投稿' },
       { post_group_id: 'group-published', brand_id: 'news', project_title: '公開済みの記事' },
     ],
@@ -91,7 +96,13 @@ test('3日分を投稿名・媒体・予約・承認待ち・未準備へ分け�
 
   assert.equal(plan.complete, false);
   assert.deepEqual(plan.days.map((day) => day.dateKey), ['2026-08-17', '2026-08-18', '2026-08-19']);
-  assert.deepEqual(plan.days[0].counts, { CREATING: 0, READY: 1, APPROVAL: 1, SCHEDULED: 1 });
+  assert.deepEqual(plan.days[0].counts, {
+    CREATING: 0,
+    READY: 1,
+    APPROVAL: 1,
+    EXTERNAL_PENDING: 0,
+    SCHEDULED: 1,
+  });
   assert.equal(plan.days[0].publishedCount, 1);
   assert.equal(plan.days[0].items[0].stage, 'PUBLISHED');
   assert.equal(plan.days[0].items[1].title, '承認してほしい投稿');
@@ -102,4 +113,68 @@ test('3日分を投稿名・媒体・予約・承認待ち・未準備へ分け�
   assert.equal(plan.days[1].items.length, 0);
   assert.equal(plan.totals.UNPLANNED_DAYS, 2);
   assert.equal(channelBrief({ reservation_state: 'MISSING' }), '危険：2日先まで予約されていません');
+});
+
+test('金曜日は本編を必要としShortsを要求しない', () => {
+  const plan = buildReservationPlan({ todayKey: '2026-08-21' });
+  assert.equal(plan.days[0].requirements.YOUTUBE, 1);
+  assert.equal(plan.days[0].requirements.YOUTUBE_SHORTS, 0);
+  assert.equal(plan.days[0].requirements.NOTE, 2);
+  assert.equal(plan.days[0].requirements.X, 2);
+  assert.equal(plan.days[0].requirements.INSTAGRAM, 2);
+});
+
+test('内部予定だけのSCHEDULEDは外部予約待ちで予約完了に数えない', () => {
+  const plan = buildReservationPlan({
+    todayKey: '2026-08-21',
+    posts: [{
+      channel_post_id: 'internal-only',
+      post_group_id: 'group-internal-only',
+      brand_id: 'news',
+      platform: 'YOUTUBE',
+      scheduled_at: '2026-08-21T10:00:00.000Z',
+      calendar_date_key: '2026-08-21',
+      display_state: 'SCHEDULED',
+    }],
+    postGroups: [{ post_group_id: 'group-internal-only', brand_id: 'news' }],
+  });
+  assert.equal(plan.days[0].items[0].stage, 'EXTERNAL_PENDING');
+  assert.equal(plan.days[0].counts.EXTERNAL_PENDING, 1);
+  assert.equal(plan.days[0].counts.SCHEDULED, 0);
+  assert.equal(plan.days[0].complete, false);
+});
+
+test('note・X・Instagramは各2件の外部確定で日次達成になる', () => {
+  const posts = [];
+  const groups = [];
+  for (const platform of ['NOTE', 'X', 'INSTAGRAM']) {
+    for (let index = 1; index <= 2; index += 1) {
+      const groupId = `${platform}-${index}`;
+      groups.push({ post_group_id: groupId, brand_id: 'news', internal: { tags: ['external-schedule-verified'] } });
+      posts.push({
+        channel_post_id: `post-${groupId}`,
+        post_group_id: groupId,
+        brand_id: 'news',
+        platform,
+        scheduled_at: `2026-08-21T0${index}:00:00.000Z`,
+        calendar_date_key: '2026-08-21',
+        display_state: 'SCHEDULED',
+      });
+    }
+  }
+  groups.push({ post_group_id: 'youtube-main', brand_id: 'news', internal: { tags: ['external-schedule-verified'] } });
+  posts.push({
+    channel_post_id: 'youtube-main',
+    post_group_id: 'youtube-main',
+    brand_id: 'news',
+    platform: 'YOUTUBE',
+    scheduled_at: '2026-08-21T10:00:00.000Z',
+    calendar_date_key: '2026-08-21',
+    display_state: 'SCHEDULED',
+  });
+  const plan = buildReservationPlan({ todayKey: '2026-08-21', posts, postGroups: groups });
+  assert.equal(plan.days[0].complete, true);
+  assert.equal(plan.days[0].coverage.NOTE.confirmed, 2);
+  assert.equal(plan.days[0].coverage.X.confirmed, 2);
+  assert.equal(plan.days[0].coverage.INSTAGRAM.confirmed, 2);
 });

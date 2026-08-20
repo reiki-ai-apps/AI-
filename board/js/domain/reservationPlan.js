@@ -1,7 +1,32 @@
 import { shiftDateKey } from '../core/tz.js';
 import { productionProgress } from './production.js';
 
-const STAGES = Object.freeze(['CREATING', 'READY', 'APPROVAL', 'SCHEDULED']);
+const STAGES = Object.freeze(['CREATING', 'READY', 'APPROVAL', 'EXTERNAL_PENDING', 'SCHEDULED']);
+
+const DAILY_MINIMUMS = Object.freeze({ NOTE: 2, X: 2, INSTAGRAM: 2 });
+
+function weekdayForDateKey(dateKey) {
+  return new Date(`${dateKey}T12:00:00+09:00`).getUTCDay();
+}
+
+export function platformRequirements(dateKey) {
+  const weekday = weekdayForDateKey(dateKey);
+  const mainVideoDay = weekday === 1 || weekday === 3 || weekday === 5;
+  return {
+    ...DAILY_MINIMUMS,
+    YOUTUBE: mainVideoDay ? 1 : 0,
+    YOUTUBE_SHORTS: mainVideoDay ? 0 : 1,
+  };
+}
+
+function hasExternalScheduleReceipt(post, group = {}) {
+  const tags = [...(post.internal?.tags ?? []), ...(group.internal?.tags ?? [])];
+  return Boolean(
+    post.external_schedule_receipt
+    || post.external_schedule_id
+    || tags.includes('external-schedule-verified')
+  );
+}
 
 function packageIsReady(pkg) {
   if (!pkg || pkg.status !== 'ACCEPTED') return false;
@@ -9,8 +34,10 @@ function packageIsReady(pkg) {
   return checks.length > 0 && checks.every((review) => review.verdict === 'PASS');
 }
 
-export function pipelineStage(post, pkg) {
-  if (post.display_state === 'SCHEDULED' || post.display_state === 'PUBLISHING') return 'SCHEDULED';
+export function pipelineStage(post, pkg, group = {}) {
+  if (post.display_state === 'SCHEDULED' || post.display_state === 'PUBLISHING') {
+    return hasExternalScheduleReceipt(post, group) ? 'SCHEDULED' : 'EXTERNAL_PENDING';
+  }
   if (post.display_state === 'PENDING_APPROVAL') return 'APPROVAL';
   if (post.display_state === 'ACTION_REQUIRED') return 'CREATING';
   if (productionProgress(post.production ?? null).complete || packageIsReady(pkg)) return 'APPROVAL';
@@ -18,8 +45,10 @@ export function pipelineStage(post, pkg) {
 }
 
 /** 予約確認では、承認画面に載った状態と、載せられる準備完了状態を分ける。 */
-export function reservationStage(post, pkg) {
-  if (post.display_state === 'SCHEDULED' || post.display_state === 'PUBLISHING') return 'SCHEDULED';
+export function reservationStage(post, pkg, group = {}) {
+  if (post.display_state === 'SCHEDULED' || post.display_state === 'PUBLISHING') {
+    return hasExternalScheduleReceipt(post, group) ? 'SCHEDULED' : 'EXTERNAL_PENDING';
+  }
   if (post.display_state === 'PENDING_APPROVAL') return 'APPROVAL';
   if (productionProgress(post.production ?? null).complete || packageIsReady(pkg)) return 'READY';
   return 'CREATING';
@@ -52,6 +81,7 @@ export function buildReservationPlan({
     items: [],
     counts: emptyCounts(),
     publishedCount: 0,
+    requirements: platformRequirements(shiftDateKey(todayKey, index)),
   }));
   const byDate = new Map(days.map((day) => [day.dateKey, day]));
 
@@ -63,7 +93,7 @@ export function buildReservationPlan({
     const group = groups.get(post.post_group_id) ?? {};
     const stage = post.display_state === 'PUBLISHED'
       ? 'PUBLISHED'
-      : reservationStage(post, packages.get(post.post_group_id));
+      : reservationStage(post, packages.get(post.post_group_id), group);
     if (stage === 'PUBLISHED') day.publishedCount += 1;
     else day.counts[stage] += 1;
     day.items.push({
@@ -78,8 +108,12 @@ export function buildReservationPlan({
 
   for (const day of days) {
     day.items.sort((a, b) => Date.parse(a.scheduledAt ?? '') - Date.parse(b.scheduledAt ?? ''));
-    day.complete = day.items.length > 0
-      && day.items.every((item) => item.stage === 'SCHEDULED' || item.stage === 'PUBLISHED');
+    day.coverage = Object.fromEntries(Object.entries(day.requirements).map(([platform, required]) => {
+      const matching = day.items.filter((item) => item.platform === platform);
+      const confirmed = matching.filter((item) => item.stage === 'SCHEDULED' || item.stage === 'PUBLISHED').length;
+      return [platform, { required, confirmed, total: matching.length }];
+    }));
+    day.complete = Object.values(day.coverage).every(({ required, confirmed }) => required === 0 || confirmed >= required);
   }
 
   const totals = days.reduce((sum, day) => {
