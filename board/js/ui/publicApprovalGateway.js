@@ -1,7 +1,10 @@
 import { buildPublicApprovalPayload } from './publicApproval.js';
 
 export const APPROVAL_GATEWAY_URL = 'https://reiki-board-approval-gateway.hinata246246.workers.dev';
-const DEVICE_TOKEN_KEY = 'reiki_board_approval_device_token_v1';
+const DEVICE_TOKEN_KEYS = [
+  'reiki_board_approval_device_v1',
+  'reiki_board_approval_device_token_v1',
+];
 
 async function request(path, options = {}) {
   const response = await fetch(`${APPROVAL_GATEWAY_URL}${path}`, options);
@@ -14,16 +17,38 @@ async function request(path, options = {}) {
   return payload;
 }
 
-async function pairDevice() {
-  const code = window.prompt('この端末を承認用に登録します。\n発行された登録コードを入力してください。');
-  if (!code) throw new Error('端末登録を中止しました。');
-  const result = await request('/v1/pair', {
+function storedDeviceToken() {
+  for (const key of DEVICE_TOKEN_KEYS) {
+    const token = localStorage.getItem(key);
+    if (token) return token;
+  }
+  return null;
+}
+
+function saveDeviceToken(token) {
+  for (const key of DEVICE_TOKEN_KEYS) localStorage.setItem(key, token);
+}
+
+function clearDeviceToken() {
+  for (const key of DEVICE_TOKEN_KEYS) localStorage.removeItem(key);
+}
+
+export function approvalDeviceReady() {
+  return Boolean(storedDeviceToken());
+}
+
+export async function claimApprovalDeviceFromHash(hash = location.hash) {
+  const match = String(hash).match(/^#pair:([A-Za-z0-9_-]{32,160})$/);
+  if (!match) return { claimed: false };
+  const result = await request('/v1/claim', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ pairing_code: code.trim() }),
+    body: JSON.stringify({ invite_token: match[1] }),
   });
-  localStorage.setItem(DEVICE_TOKEN_KEY, result.token);
-  return result.token;
+  if (!result.token) throw new Error('この端末を承認用として登録できませんでした。');
+  saveDeviceToken(result.token);
+  history.replaceState(null, '', `${location.pathname}${location.search}#approvals`);
+  return { claimed: true };
 }
 
 export async function submitGatewayComponentApproval({ group, post, revision, componentScope }) {
@@ -41,7 +66,10 @@ export async function submitGatewayComponentApproval({ group, post, revision, co
     target: payload.targets[0],
   };
 
-  let token = localStorage.getItem(DEVICE_TOKEN_KEY) || await pairDevice();
+  const token = storedDeviceToken();
+  if (!token) {
+    throw new Error('この端末はまだ承認用に登録されていません。初回設定リンクを一度開いてください。');
+  }
   try {
     return await request('/v1/approve', {
       method: 'POST',
@@ -50,12 +78,7 @@ export async function submitGatewayComponentApproval({ group, post, revision, co
     });
   } catch (error) {
     if (error.status !== 401) throw error;
-    localStorage.removeItem(DEVICE_TOKEN_KEY);
-    token = await pairDevice();
-    return request('/v1/approve', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify(gatewayPayload),
-    });
+    clearDeviceToken();
+    throw new Error('承認用の端末登録が切れました。新しい初回設定リンクを一度開いてください。');
   }
 }

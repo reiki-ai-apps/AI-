@@ -10,7 +10,7 @@ import { approve, reject, describePendingChange, approveGroup, recordComponentAp
 import { guardedButton, permissionNotice } from './states.js';
 import { openPostDetail } from './postDetail.js';
 import { buildPublicApprovalRequest } from './publicApproval.js';
-import { submitGatewayComponentApproval } from './publicApprovalGateway.js';
+import { submitGatewayComponentApproval } from './publicApprovalGateway.js?v=2';
 
 export async function renderApprovalsScreen(app) {
   const { repo } = app.ctx;

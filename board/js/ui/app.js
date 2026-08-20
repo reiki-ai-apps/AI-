@@ -18,6 +18,7 @@ import { renderApprovalsScreen } from './approvalsView.js?v=9';
 import { renderConnectionsScreen } from './connectionsView.js';
 import { renderStatusScreen } from './statusView.js?v=14';
 import { hasIntentLink, consumeIntentLink } from './intentLink.js';
+import { claimApprovalDeviceFromHash } from './publicApprovalGateway.js?v=2';
 
 const SCREENS = [
   { id: 'status', label: '状況', render: renderStatusScreen },
@@ -248,6 +249,15 @@ async function boot() {
 
   buildNav();
   buildRoleSelect();
+
+  if (app.ctx.backend === 'public' && location.hash.startsWith('#pair:')) {
+    try {
+      const result = await claimApprovalDeviceFromHash();
+      if (result.claimed) app.toast('この端末を承認用に登録しました。次回からコード入力は不要です。');
+    } catch (error) {
+      app.fail(error);
+    }
+  }
 
   const hash = location.hash.replace('#', '');
     if (visibleScreens().some((s) => s.id === hash)) state.route = hash;
