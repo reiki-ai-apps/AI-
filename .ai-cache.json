@@ -26811,7 +26811,419 @@
       "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
       "lane": "regular",
       "reason": "ai_skip: チュートリアル記事で具体的なニュース事実がない"
+    },
+    "url:https://arxiv.org/abs/2608.18079": {
+      "canonical_url": "https://arxiv.org/abs/2608.18079",
+      "content_hash": "c202243522d79484b81b2944991825b7947e69fbd12dc2020f516d13dfc6d189",
+      "story_key": "fdf073feee08ee53a919659ab684990abc25a8054d19a85422a8b0f77af3902f",
+      "status": "enriched",
+      "processed_at": "2026-08-20T04:00:51.935Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "AIベンチマーク・研究速報",
+        "title": "ゲーム世界モデリングの難易度を測る新指標「TCP」を研究者が提案",
+        "source_url": "https://arxiv.org/abs/2608.18079",
+        "source_name": "rss.arxiv.org",
+        "is_official": true,
+        "published_at": "2026-08-20T04:00:00.000Z",
+        "source_published_at": "2026-08-20T04:00:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-20T04:00:03.339Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Transition Complexity Profile",
+          "arXiv",
+          "強化学習"
+        ],
+        "primary_entity": "研究チーム",
+        "story_subject": "Transition Complexity Profile (TCP)",
+        "event_type": "research",
+        "event_stage": "proposed",
+        "event_scope": "研究論文",
+        "fact_slots": [
+          {
+            "type": "version",
+            "scope": "論文バージョン",
+            "value": "v1",
+            "normalized_value": "v1"
+          }
+        ],
+        "new_facts": [
+          "研究者らがゲーム世界モデリングと強化学習の難易度を測る指標「TCP」を提案した",
+          "TCPは一段階分岐・相互作用不確実性・時間空間依存の3要素で構成される"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "研究者らがゲーム世界モデリングと強化学習の難易度を統一的に測る指標「Transition Complexity Profile」を提案し、標準的な報告項目とするよう呼びかけた。",
+        "detail": "ゲーム世界モデリング(GWM)と強化学習(RL)の研究では、対象となる遷移予測問題がどれだけ難しいかを定量化せずに結果が比較されることが多く、研究間の比較が難しいという課題がある。この論文は、環境やゲームプレイデータが持つ遷移の複雑さを、一段階の分岐の大きさ、相互作用による不確実性や対戦相手の影響、時間・空間的な依存の範囲という3つの観点から測る指標「Transition Complexity Profile(TCP)」を提案した。TCPは基準分布や測定手順のばらつき、計算予算をバージョン管理して報告することで、異なるベンチマーク間の比較を可能にするとしている。著者らは、TCPをGWMやRLの論文で標準的に報告すべき統計量とするよう呼びかけている。",
+        "change_summary": "ゲーム世界モデリング・強化学習の難易度を統一的に測る新指標「TCP」が提案された。",
+        "impact_summary": "研究者にとってベンチマーク間の比較がしやすくなり、ゲームAIや強化学習の研究評価の質向上につながる可能性がある。一般利用者への直接的な影響は限定的。",
+        "action_suggestion": "論文はarXivに投稿された段階で、今後の査読や学界での採用状況が注目される。",
+        "importance": "C",
+        "related_categories": [
+          "研究・技術"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmit0fvx3lxte4xmffgwgpoouraztfrdepxd29jn0h4zkp5akfvm1bavhjaafbtweruynpnwkppdhjncm1ibenfqu80wlpvzzvqme45uhzrq2s": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmit0fvx3lxte4xmffgwgpoouraztfrdepxd29jn0h4zkp5akfvm1bavhjaafbtweruynpnwkppdhjncm1ibenfqu80wlpvzzvqme45uhzrq2s",
+      "content_hash": "4d202741cc73d48067f0458c451df73c52ddde8251854ba4743323d44317796c",
+      "story_key": "1ab1b0ca4162bb9654a4603b16b77ba00fe243f4beb3f5c042cf4abfe362ca45",
+      "status": "enriched",
+      "processed_at": "2026-08-20T04:00:51.935Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Kling AI",
+        "title": "快手のKling AI、成長率200%超も下半期は依然厳しい状況",
+        "source_url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE4xMFFGWGpOOURaZTFrdEpXd29JN0h4Zkp5akFvM1BaVHJaaFBTWERuYnpnWkppdHJNcm1IbENFQU80WlpVZzVqME45UHZrQ2s?oc=5",
+        "source_name": "Longbridge",
+        "is_official": false,
+        "published_at": "2026-08-19T13:39:22.000Z",
+        "source_published_at": "2026-08-19T13:39:22.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-20T03:59:27.206Z",
+        "event_at": "",
+        "event_status": "継続中",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Kuaishou",
+          "Kling AI"
+        ],
+        "primary_entity": "快手(Kuaishou)",
+        "story_subject": "Kling AI",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "中国・動画生成AI事業",
+        "fact_slots": [
+          {
+            "type": "amount",
+            "scope": "Kling成長率",
+            "value": "200%超",
+            "normalized_value": "200%"
+          }
+        ],
+        "new_facts": [
+          "快手のKling AIの成長率が200%を超えた",
+          "下半期(H2)も事業環境は厳しいとされる"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "快手(Kuaishou)の動画生成AI「Kling」の成長率が200%を超えたが、下半期も依然として厳しい状況が続くと報じられた。",
+        "detail": "中国のショート動画大手・快手(Kuaishou)が展開する動画生成AI「Kling」について、成長率が200%を超えたことが伝えられた。一方で、下半期(H2)についても依然として圧力がかかる状況が続くとされている。具体的な売上高やユーザー数などの数値は記事に明記されていない。快手の業績全体における動画生成AI事業の位置づけや今後の見通しについては、今後の決算発表などで詳細が明らかになる可能性がある。",
+        "change_summary": "Klingの成長率が200%を超えたことが報告されたが、下半期の事業環境は厳しいとされる。",
+        "impact_summary": "動画生成AI市場での快手の存在感を測る材料となり、競合する動画生成AIサービスの動向にも影響する可能性がある。",
+        "action_suggestion": "具体的な数値の詳細は記事に明記されておらず、今後の決算発表などでの追加情報が待たれる。",
+        "importance": "B",
+        "related_categories": [
+          "企業・株式",
+          "画像・動画生成"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxte5ctfdxm1m3d1izvjntdhhcu1u2vgd3yuxnnkj2mko4wnhlnjlvn20yy0jouwnlrvnlogkyrvbvsgpscmdaa0z2lxp5ukd5t3lzd0nr": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxte5ctfdxm1m3d1izvjntdhhcu1u2vgd3yuxnnkj2mko4wnhlnjlvn20yy0jouwnlrvnlogkyrvbvsgpscmdaa0z2lxp5ukd5t3lzd0nr",
+      "content_hash": "a112120cb3368d6d23729921d7c9e27e48cf307d16f292002d6553658e359767",
+      "story_key": "5ae6fb9a2ab9ac34f75df4154f5a5e543e913c7fadd5d1f02c82b540a82f2c9c",
+      "status": "rejected",
+      "processed_at": "2026-08-20T04:00:51.936Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 本文が見出しのみで具体的事実が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmijafbvv95cuxpsjhnte9xr2jrs3fjm3o5rxnootzzywnvrelouzmzmnnblu1fnetmclbqq0fkxzb1z1dsqk9oofpmmwhyb1nsbdbksjlft05prnhpzktbvs1rtljoegrrzunfdwf0djfptxdra3zga2n4zy1hx0m5ohqwtxvncfjhnur6am9nnmczog5tm9ibjafbvv95cuxpsjhnte9xr2jrs3fjm3o5rxnootzzywnvrelouzmzmnnblu1fnetmclbqq0fkxzb1z1dsqk9oofpmmwhyb1nsbdbksjlft05prnhpzktbvs1rtljoegrrzunfdwf0djfptxdra3zga2n4zy1hx0m5ohqwtxvncfjhnur6am9nnmczog5tmw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmijafbvv95cuxpsjhnte9xr2jrs3fjm3o5rxnootzzywnvrelouzmzmnnblu1fnetmclbqq0fkxzb1z1dsqk9oofpmmwhyb1nsbdbksjlft05prnhpzktbvs1rtljoegrrzunfdwf0djfptxdra3zga2n4zy1hx0m5ohqwtxvncfjhnur6am9nnmczog5tm9ibjafbvv95cuxpsjhnte9xr2jrs3fjm3o5rxnootzzywnvrelouzmzmnnblu1fnetmclbqq0fkxzb1z1dsqk9oofpmmwhyb1nsbdbksjlft05prnhpzktbvs1rtljoegrrzunfdwf0djfptxdra3zga2n4zy1hx0m5ohqwtxvncfjhnur6am9nnmczog5tmw",
+      "content_hash": "188e52f2eab9ba1face57c304d004b1a413b9190be8fca03335724d13bfd2cf0",
+      "story_key": "56cdd70c72b41b4cd53d2c549765fb3c710f51afbcfad99ff511da86846eb0db",
+      "status": "rejected",
+      "processed_at": "2026-08-20T04:00:51.936Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 本文が見出しのみで投資額等の詳細が不明"
+    },
+    "url:https://news.google.com/rss/articles/cbmidefvx3lxte1snc1ga193wl9oqk9mc2jzoey0shjwefd0zk9xoxnpduh4mfdlufj5snhcwuiztxjvqlgwm3jxaejjrvn3zu9su29fou9fbxy0x0xwq19cqmndbznhv05nrghdvzvavzjhagtgrutxzgyydwnn": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte1snc1ga193wl9oqk9mc2jzoey0shjwefd0zk9xoxnpduh4mfdlufj5snhcwuiztxjvqlgwm3jxaejjrvn3zu9su29fou9fbxy0x0xwq19cqmndbznhv05nrghdvzvavzjhagtgrutxzgyydwnn",
+      "content_hash": "6e618aed89e46db3d6bee7dd9a1526b070221a701b372c6f31328ea5646950c8",
+      "story_key": "67b6e129b3033d94e49b3ab2d5c9d11e57eb1200cf25a61d283a54c730762dca",
+      "status": "rejected",
+      "processed_at": "2026-08-20T04:00:51.936Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 本文が見出しのみで具体的事実が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmikgfbvv95cuxonmy3es1ya2hrzgpwbkizek5ytth5ujy0vzjmqjy3tjd1bzhuejb6y1lbcul1ogn0cefqcxnhzlfmn2poymjrrgpmrxawd2f3mlzqszk2euz2wc1uwmflnfazrlnfm0tpdkc1a3veovp5ahr0wwzemne4t1jwczq4ze1tz28tse1hrmnydmvpcxltzw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmikgfbvv95cuxonmy3es1ya2hrzgpwbkizek5ytth5ujy0vzjmqjy3tjd1bzhuejb6y1lbcul1ogn0cefqcxnhzlfmn2poymjrrgpmrxawd2f3mlzqszk2euz2wc1uwmflnfazrlnfm0tpdkc1a3veovp5ahr0wwzemne4t1jwczq4ze1tz28tse1hrmnydmvpcxltzw",
+      "content_hash": "2b5ac00ff676e57a7fce294691ffaed35b3fe40294fc2a72295b23d5a482e139",
+      "story_key": "0936048fa7988a24772f9b3d80372f85399b0fc89d301623058562ad31264ff9",
+      "status": "rejected",
+      "processed_at": "2026-08-20T04:00:51.936Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 米国の受賞発表で国内影響が限定的"
+    },
+    "url:https://news.google.com/rss/articles/cbmidefvx3lxte1madriwjvork0yqxvqsgxxn01fwujgekg3dmjtwefzb1lkanpmakrxx1b5lvjky1h3r3n5t3u3nlhimlzvmezhvnoylvzangh4emnwclnlu3fvslp6wullvhcznfl3d3rmngitzknrvdjnq01q": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte1madriwjvork0yqxvqsgxxn01fwujgekg3dmjtwefzb1lkanpmakrxx1b5lvjky1h3r3n5t3u3nlhimlzvmezhvnoylvzangh4emnwclnlu3fvslp6wullvhcznfl3d3rmngitzknrvdjnq01q",
+      "content_hash": "e2b496aba7ee034ca42be5f8dbe78e5a172e56589939968be5bfad3b6ba2f57c",
+      "story_key": "70a2dc191ca40127c12ae65ea2656414e57689959c8299f86d4ecd3d9d0109dd",
+      "status": "enriched",
+      "processed_at": "2026-08-20T04:01:50.600Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "ChatGPT / OpenAI",
+        "title": "ChatGPT、欧州31カ国で広告表示を拡大か",
+        "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1maDRIWjVoRk0yQXVqSGxxN01fWUJGekg3dmJtWEFZb1lkanpmakRxX1B5LVJKY1h3R3N5T3U3NlhiMlZvMEZhVnoyLVZaNGh4emNwclNlU3FvSlp6WUllVHczNFl3d3RmNGItZkNrVDJNQ01Q?oc=5",
+        "source_name": "BigGo ファイナンス",
+        "is_official": false,
+        "published_at": "2026-08-20T03:29:44.000Z",
+        "source_published_at": "2026-08-20T03:29:44.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-20T03:59:22.603Z",
+        "event_at": "",
+        "event_status": "不明",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "ChatGPT",
+          "OpenAI"
+        ],
+        "primary_entity": "OpenAI",
+        "story_subject": "ChatGPTの広告表示拡大",
+        "event_type": "other",
+        "event_stage": "rumor",
+        "event_scope": "欧州31カ国",
+        "fact_slots": [
+          {
+            "type": "region",
+            "scope": "広告拡大対象",
+            "value": "欧州31カ国",
+            "normalized_value": "31"
+          }
+        ],
+        "new_facts": [
+          "ChatGPTが欧州31カ国で広告表示機能を拡大したと報じられた"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "ChatGPTが欧州31カ国で広告表示機能を拡大したと報じられ、AI時代の広告経済再来が注目されている。",
+        "detail": "OpenAIのChatGPTが欧州31カ国で広告表示機能を拡大したと報じられている。広告収益をAIサービスに組み込む動きが強まれば、検索エンジン時代に築かれた「広告経済」がAIチャットの分野でも再現される可能性があるとの見方が伝えられている。具体的な広告の形式や対象国の詳細、開始時期など詳細は明らかになっていない。",
+        "change_summary": "ChatGPTの広告表示機能が欧州31カ国に拡大したと報じられた。",
+        "impact_summary": "無料版ChatGPTユーザーの利用体験に広告が入り込む可能性があり、企業のマーケティング活用にも影響しうる。",
+        "action_suggestion": "現時点で公式発表の詳細は不明であり、今後の続報を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "営業・マーケティング"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmibefvx3lxte9zdzfqc2rrtv9orgrysep3lxrcawpwne9zzhbsaffsn0nzqw54qk1xwfzrzflht0cwdhe5det5mfz3wde2ahrxuzkxyk5tenlzvvz3ttloekxhaklnv2fynwvgrkrrwgl4nlfdca": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmibefvx3lxte9zdzfqc2rrtv9orgrysep3lxrcawpwne9zzhbsaffsn0nzqw54qk1xwfzrzflht0cwdhe5det5mfz3wde2ahrxuzkxyk5tenlzvvz3ttloekxhaklnv2fynwvgrkrrwgl4nlfdca",
+      "content_hash": "de8a411aded04dc9c9d2cac100001267381925418ed61cbf0bfa0f68a7645e4f",
+      "story_key": "226b624527c7da52d31cd780248f867688d74250d4bb9ccdbe286e98f9ba7fff",
+      "status": "enriched",
+      "processed_at": "2026-08-20T04:01:50.600Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Claude / Claude Code",
+        "title": "Anthropic、新モデル「Claude Mythos 5」を100万トークン10ドルで提供と報道",
+        "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9zdzFqc2RrTV9oRGRySEp3LXRCaWpwNE9zZHBSaFFSN0NZQW54Qk1xWFZrZFlHT0cwdHE5dEt5MFZ3WDE2aHRXUzkxYk5tenlzVVZ3TTloekxhaklnV2FyNWVGRkRRWGl4NlFDcA?oc=5",
+        "source_name": "Yellow.com",
+        "is_official": false,
+        "published_at": "2026-08-19T16:09:02.000Z",
+        "source_published_at": "2026-08-19T16:09:02.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-20T03:59:23.986Z",
+        "event_at": "",
+        "event_status": "不明",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Anthropic",
+          "Claude Mythos 5"
+        ],
+        "primary_entity": "Anthropic",
+        "story_subject": "Claude Mythos 5",
+        "event_type": "pricing",
+        "event_stage": "announced",
+        "event_scope": "API",
+        "fact_slots": [
+          {
+            "type": "price",
+            "scope": "Claude Mythos 5 API料金",
+            "value": "10ドル/100万トークン",
+            "normalized_value": "10USD"
+          }
+        ],
+        "new_facts": [
+          "Claude Mythos 5の価格が100万トークンあたり10ドルと報じられた"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Anthropicが新モデル「Claude Mythos 5」を100万トークンあたり10ドルで提供し、史上最強モデルとうたっていると報じられた。",
+        "detail": "Anthropicが新たに「Claude Mythos 5」と呼ばれるモデルを発表し、価格を100万トークンあたり10ドルに設定したと報じられている。同社はこのモデルを「史上最も強力なモデル」と位置付けているとされるが、性能の具体的な指標や既存のClaudeシリーズとの位置付け、提供開始時期などの詳細は記事からは明らかになっていない。",
+        "change_summary": "新モデル「Claude Mythos 5」の価格が100万トークンあたり10ドルと設定されたと報じられた。",
+        "impact_summary": "API利用企業にとって価格体系の変化は開発コストに直結するため、今後の公式発表を確認する必要がある。",
+        "action_suggestion": "Anthropicからの公式な発表内容や提供条件の詳細は今後の確認が必要。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmickfvx3lxte1yzk1fzxf2n2tioxvfr3frbvbbsljirhrmzfc1neludjbsshdozfvgzmfyykxfqmvvltdws1nxb2pgwnd2durwatl5cghkawxdue5pq3pon3v3zwk0c2fzmgliykxorgztdthdcfviwxu4qdibd0fvx3lxte1juw9xq01cn0fur0dddnoyylnyvehnuzzbq1lob0jpms1zwnnurw5ad0pgmy1xsjdoyjk1odn0ykfmvxftrtfinnhxmnqzukticljmzg5mmmtiuna0utbvaedzbelmuwcxsgrgaufdrhnurmpzbuhj": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmickfvx3lxte1yzk1fzxf2n2tioxvfr3frbvbbsljirhrmzfc1neludjbsshdozfvgzmfyykxfqmvvltdws1nxb2pgwnd2durwatl5cghkawxdue5pq3pon3v3zwk0c2fzmgliykxorgztdthdcfviwxu4qdibd0fvx3lxte1juw9xq01cn0fur0dddnoyylnyvehnuzzbq1lob0jpms1zwnnurw5ad0pgmy1xsjdoyjk1odn0ykfmvxftrtfinnhxmnqzukticljmzg5mmmtiuna0utbvaedzbelmuwcxsgrgaufdrhnurmpzbuhj",
+      "content_hash": "62d2e233a8474652b2218561f41160bde6b96ce8d4a645ad57b87636260d0b3f",
+      "story_key": "dd8e9715716c0e46618008fad4aee390e0a8a7fe7d9f5263035c88ab8ecc4035",
+      "status": "enriched",
+      "processed_at": "2026-08-20T04:01:50.601Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Gemini",
+        "title": "Google、大学生向けに「Google AI Plus」を1年間無料提供",
+        "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1yZk1fZXF2N2tIOXVfR3FRbVBBSlJiRHRmZFc1NEludjBSSHdoZFVGZmFYYkxfQmVvLTdwS1Nxb2pGWnd2dURwaTl5cGhKaWxDUE5PQ3pON3V3ZWk0c2FZMGliYkxoRGZTdThDcFVIWXU4QdIBd0FVX3lxTE1jUW9XQ01CN0FuR0dDdnoyYlNyVEhnUzZBQ1lob0JPMS1zWnNURW5ad0pGMy1XSjdoYjk1ODN0YkFMVXFtRTFINnhxMnQzUktIclJmZG5MMmtiUnA0UTBvaEdzbElmUWcxSGRGaUFDRHNURmpZbUhJ?oc=5",
+        "source_name": "corriente.jp",
+        "is_official": false,
+        "published_at": "2026-08-20T02:44:43.000Z",
+        "source_published_at": "2026-08-20T02:44:43.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-20T03:59:25.028Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Google",
+          "Google AI Plus",
+          "Gemini"
+        ],
+        "primary_entity": "Google",
+        "story_subject": "Google AI Plus 学生向け無料提供",
+        "event_type": "pricing",
+        "event_stage": "announced",
+        "event_scope": "大学生向け",
+        "fact_slots": [
+          {
+            "type": "price",
+            "scope": "Google AI Plus 学生向け",
+            "value": "1年間無料",
+            "normalized_value": "1"
+          }
+        ],
+        "new_facts": [
+          "Googleが大学生向けにGoogle AI Plusを1年間無料提供すると発表した",
+          "Geminiに学生向け機能が追加される"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Googleが大学生を対象に有料プラン「Google AI Plus」を1年間無料で提供し、Geminiにも学生向け機能を追加すると発表した。",
+        "detail": "Googleが大学生向けに、通常有料の「Google AI Plus」プランを1年間無料で提供すると発表した。あわせてGeminiには学生の学習を支援する機能が追加されるとしている。対象となる学生の条件や提供開始時期、対象国などの詳細は記事からは明らかになっていないが、AIツールを学生に広く浸透させる狙いがあるとみられる。",
+        "change_summary": "大学生向けにGoogle AI Plusの1年間無料提供とGeminiの学生向け機能追加が発表された。",
+        "impact_summary": "学生が高度なAIツールを無料で利用できるようになれば、学習や研究の効率化につながる一方、教育現場でのAI活用ルール整備が課題となる。",
+        "action_suggestion": "対象となる学生の条件や申込方法など、Googleの公式案内を確認する必要がある。",
+        "importance": "A",
+        "related_categories": [
+          "AIツール・モデル",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiyafbvv95cuxpwexhrljwuve5ufrsnw43m0zunxvmy2pxs1oyu2ppthq5cklvamdhtgg4anbydnljnwtod3njdetnc05ldfe2atbfdzdpyvvdbdywxzytexvvb3huel8wutjzudb2dktuujvjadhhdktza0dka2pruexzm0rhrtqwr09ibu85nwjxt2jwm045nfvrmuoznkdsqzjoltjutw55ugu0a1btt0lhv1jvt1pjv0pimlg3bgphc1c5edlfcxlrcjqxqkduqw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiyafbvv95cuxpwexhrljwuve5ufrsnw43m0zunxvmy2pxs1oyu2ppthq5cklvamdhtgg4anbydnljnwtod3njdetnc05ldfe2atbfdzdpyvvdbdywxzytexvvb3huel8wutjzudb2dktuujvjadhhdktza0dka2pruexzm0rhrtqwr09ibu85nwjxt2jwm045nfvrmuoznkdsqzjoltjutw55ugu0a1btt0lhv1jvt1pjv0pimlg3bgphc1c5edlfcxlrcjqxqkduqw",
+      "content_hash": "0783eb8785a63a8aa021e186bef6dd7ebeb536ce5dcf685379c907ddf9d86b4f",
+      "story_key": "8febd2e2d7881952baa5e8a066841a09fc97dbb4c9aa72a225ecc73cffefe47b",
+      "status": "enriched",
+      "processed_at": "2026-08-20T04:01:50.601Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Adobe Firefly",
+        "title": "Adobe株価上昇、Firefly AIアシスタントのベータ版がクリエイティブワークフローを拡張",
+        "source_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPWExHRlJWUVE5UFRSNW43M0ZUNXVMY2pxS1oyU2pPTHQ5cklVamdHTGg4anBYdnljNWtod3NJdEtnc05LdFE2aTBfdzdPYVVDbDYwXzYteXVvb3hUel8wUTJzUDB2dktuUjVjaDhhdktza0dka2prUExZM0RHRTQwR09IbU85NWJXT2JWM045NFVRMUozNkdSQzJOLTJuTW55UGU0a1BTT0lhV1JVT1pJV0pIMlg3bGpHc1c5eDlfcXlRcjQxQkdUQw?oc=5",
+        "source_name": "Ad-hoc-news.de",
+        "is_official": false,
+        "published_at": "2026-08-19T15:00:02.000Z",
+        "source_published_at": "2026-08-19T15:00:02.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-20T03:59:40.847Z",
+        "event_at": "",
+        "event_status": "継続中",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Adobe",
+          "Firefly"
+        ],
+        "primary_entity": "Adobe",
+        "story_subject": "Firefly AIアシスタント ベータ版",
+        "event_type": "release",
+        "event_stage": "beta",
+        "event_scope": "Fireflyユーザー",
+        "fact_slots": [],
+        "new_facts": [
+          "Firefly AIアシスタントのベータ版がクリエイティブワークフローを拡張したと報じられた",
+          "この発表を受けAdobe株価が上昇した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "AdobeのFirefly AIアシスタントのベータ版がクリエイティブワークフローを拡張したことを受け、Adobe株が上昇したと報じられた。",
+        "detail": "Adobeの生成AIツール「Firefly」に搭載されたAIアシスタントのベータ版が、クリエイティブ制作のワークフローを拡張したと報じられている。この機能拡張を受けてAdobe株価が上昇したとされるが、具体的な新機能の内容や対象ユーザー、正式提供時期などの詳細は記事からは明らかになっていない。",
+        "change_summary": "Firefly AIアシスタントのベータ版がワークフローを拡張し、Adobe株価が上昇した。",
+        "impact_summary": "デザインや動画制作などクリエイティブ業務でのAI活用がさらに進む可能性があり、投資家の評価にも影響している。",
+        "action_suggestion": "Firefly AIアシスタントの正式提供時期や具体的な新機能は今後の公式発表を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "企業・株式",
+          "画像・動画生成"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiw0fvx3lxte1dx0vlq0n5ukw2cxhhv2xgsjzhdeg2vfgzqzdaytjvbghcqv9qswc3vdr1z2t0skxtywjrmzbprzlmmlhitufnnnngd3pgvw1ldennn2xvdnbndfe": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiw0fvx3lxte1dx0vlq0n5ukw2cxhhv2xgsjzhdeg2vfgzqzdaytjvbghcqv9qswc3vdr1z2t0skxtywjrmzbprzlmmlhitufnnnngd3pgvw1ldennn2xvdnbndfe",
+      "content_hash": "5dbe1b4d1690267255be280f48a6e8d2e1dffe73eec7c0c9173a697f3cb98534",
+      "story_key": "8d6c01204ebf899e3e04ac4029cb3c83e097c5a53510b00e12f710d99fb28ab3",
+      "status": "rejected",
+      "processed_at": "2026-08-20T04:01:50.601Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 広告コンテンツで実質的な事実がない"
+    },
+    "url:https://news.google.com/rss/articles/cbmiuefvx3lxtfb4unbmbva5vzj6y3u4a0lalw9qtuvja2d6y1dtofplbelmnlhjnjz3u3f0r3l4efhhx3hct0hfwunamuetqv9hoxltbf9jx2ty": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiuefvx3lxtfb4unbmbva5vzj6y3u4a0lalw9qtuvja2d6y1dtofplbelmnlhjnjz3u3f0r3l4efhhx3hct0hfwunamuetqv9hoxltbf9jx2ty",
+      "content_hash": "b3a3a1aa137a388af8e067ec6147e96922a15d66bf511ac45bff920ddd533615",
+      "story_key": "ab3ecc84418d7166b736447b6633889dbefdda54483bb9a6959907c88c3e7bb3",
+      "status": "rejected",
+      "processed_at": "2026-08-20T04:01:50.601Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: レビュー記事で具体的な新事実がない"
     }
   },
-  "updated_at": "2026-08-20T01:54:30.256Z"
+  "updated_at": "2026-08-20T04:01:50.601Z"
 }
