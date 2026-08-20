@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-19T17:37:00+09:00",
+  "generated_at": "2026-08-20T22:12:00+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
-    "published_confirmed": 10,
+    "published_confirmed": 13,
     "scheduled": 0,
-    "attention": 2
+    "attention": 1
   },
   "channels": [
     {
@@ -30,13 +30,13 @@
       "account": "@KIZASHI_jp",
       "url": "https://x.com/KIZASHI_jp",
       "state": "HEALTHY",
-      "last_verified_at": "2026-08-19T17:36:20.849188+09:00",
+      "last_verified_at": "2026-08-20T22:07:29+09:00",
       "latest_published": {
-        "title": "AIに任せる前の3つの境界線｜4投稿スレッド",
-        "url": "https://x.com/KIZASHI_jp/status/2089994853954547871"
+        "title": "AIに機密情報を入れる前の5条件｜3投稿スレッド",
+        "url": "https://x.com/KIZASHI_jp/status/2090425452922019997"
       },
       "next_scheduled": null,
-      "note": "公式X APIで4投稿スレッドを公開済み。外部ID4件をreceiptで確認。API費用実績0.615米ドル。"
+      "note": "公式X APIで3投稿スレッドを公開済み。外部ID3件をreceiptで確認。API費用実績0.415米ドル。"
     },
     {
       "id": "note",
@@ -44,27 +44,27 @@
       "account": "KIZASHI / natty_swan9072",
       "url": "https://note.com/natty_swan9072",
       "state": "HEALTHY",
-      "last_verified_at": "2026-08-19T17:24:00+09:00",
+      "last_verified_at": "2026-08-20T22:07:29+09:00",
       "latest_published": {
-        "title": "AIに任せる前に決める「3つの境界線」",
-        "url": "https://note.com/natty_swan9072/n/n8fe38d0f5cd8"
+        "title": "AIに機密情報を入れる前の判断表｜OpenAI ZDRで確認する5条件",
+        "url": "https://note.com/natty_swan9072/n/nce02756ab76e"
       },
       "next_scheduled": null,
-      "note": "100円有料noteとして公開済み。価格・有料境界・横長表紙・記事内画像4点を公開画面で確認。"
+      "note": "100円有料noteとして公開済み。価格・有料境界・横長表紙・記事内画像6点を公開画面で確認。"
     },
     {
       "id": "youtube",
       "label": "YouTube",
       "account": "KIZASHI / @kizashi_jp",
       "url": "https://www.youtube.com/@kizashi_jp",
-      "state": "ATTENTION",
-      "last_verified_at": "2026-08-16T12:13:09+09:00",
+      "state": "HEALTHY",
+      "last_verified_at": "2026-08-20T22:07:29+09:00",
       "latest_published": {
-        "title": "AIにどこまで実行させる？権限・業務・費用を3ニュースで判断",
-        "url": "https://www.youtube.com/watch?v=QzJeOSPNR1s"
+        "title": "AIに機密情報を入れる前の3確認｜OpenAI ZDR #Shorts",
+        "url": "https://youtube.com/shorts/hEZel3ZcYQM"
       },
       "next_scheduled": null,
-      "note": "月・水・金の本編枠。8月19日分は台本1,373字と固有画像15枚まで完成。Aivis Cloud有料TTSは概算60.42円、再試行込み上限100円の明示承認待ち。"
+      "note": "8月20日Shortsを公開済み。44秒、ナレーション・字幕・実写調背景、専用再生リストを確認。Shorts用カスタムサムネイルは設定していません。"
     },
     {
       "id": "radar",
@@ -85,42 +85,22 @@
     {
       "id": "current-platform-authentication-required",
       "severity": "ATTENTION",
-      "message": "noteとXは公開済み。Instagramは成果物・品質ゲート・承認まで完了しており、正しいMeta開発者アカウントでのInstagram Graph API再認証だけが必要。"
-    },
-    {
-      "id": "youtube-paid-tts-approval-required",
-      "severity": "ATTENTION",
-      "message": "8月19日YouTube本編は台本1,373字と固有画像15枚まで完成。Aivis Cloud有料TTS（概算60.42円、再試行込み上限100円）の明示承認待ち。承認後に音声・字幕・本編・サムネイル3案を生成する。"
-    },
-    {
-      "id": "note-premium-required-for-scheduling",
-      "severity": "ATTENTION",
-      "message": "noteの8月17日記事は保存済み下書き。予約投稿はnoteプレミアム契約が必要であり、課金・契約は実行していない"
-    },
-    {
-      "id": "note-profile-links",
-      "severity": "ATTENTION",
-      "message": "noteプロフィールのInstagram・YouTubeリンクが保存されない"
-    },
-    {
-      "id": "youtube-short-verification",
-      "severity": "ATTENTION",
-      "message": "YouTube Shortsの公開後確認receiptが未取得"
+      "message": "8月20日のnote・YouTube Shorts・Xは公開済み。Instagramは成果物と所有者承認まで完了していますが、Instagram Graph APIの再認証が必要です。"
     }
   ],
   "production": {
     "cadence": "PT6H",
     "last_run": {
-      "run_id": "ai-news-20260818-prepare-for-20260819-jst",
-      "started_at": "2026-08-18T10:30:00+09:00",
-      "finished_at": null,
-      "state": "AWAITING_PAID_TTS_APPROVAL",
-      "stage": "Aivis Cloud有料TTSの明示承認待ち",
-      "candidate_count": 2,
-      "verified_primary_count": 2,
-      "required_primary_count": 2,
-      "reason": "noteは100円有料記事、Xは4投稿スレッドを公開済み。InstagramはMeta公式API再認証待ち。YouTubeは別工程として有料TTS承認待ち。",
-      "next_action": "Instagramは正しいMeta開発者アカウントで再認証後すぐ公開。YouTubeはAivis Cloud有料TTS承認後に制作を再開。"
+      "run_id": "ai-news-20260820-recovery-jst",
+      "started_at": "2026-08-20T12:56:38+09:00",
+      "finished_at": "2026-08-20T22:07:29+09:00",
+      "state": "PARTIAL_PUBLISHED",
+      "stage": "note・YouTube Shorts・X公開済み／Instagram認証待ち",
+      "candidate_count": 1,
+      "verified_primary_count": 1,
+      "required_primary_count": 1,
+      "reason": "noteは100円有料記事、YouTube Shortsは44秒動画、Xは3投稿スレッドを公開済み。InstagramだけGraph API認証待ち。",
+      "next_action": "Instagram Graph APIを再認証し、同じrevisionの承認済みカルーセルを公開する。"
     },
     "policy": "予約成立を最優先。YouTube本編はAsia/Tokyoの月・水・金を固定投稿日とし、当日枠と次の2枠を予約済み／承認待ち／制作中／HOLDで必ず表示する。制作・修正・品質検査・Board同期は途中承認なしで連続実行し、同一revision/hashの完成物、投稿先、日時、価格・API費用を一画面へまとめた最終公開直前だけ所有者承認を求める。認証権限の新規付与、課金、外部公開は最終承認対象とし、成功は外部receipt取得後だけ表示する。",
     "approval_policy": {
@@ -173,7 +153,7 @@
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-19T17:37:00+09:00",
+    "last_checked_at": "2026-08-20T22:12:00+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
@@ -263,6 +243,12 @@
     "outputs/kizashi-paid-note-20260819-ai-boundaries/note-publish-receipt-20260819.json",
     "outputs/kizashi-ai-news-20260819-prep/x-live/x-publish-receipt.json",
     "outputs/kizashi-ai-news-20260819-prep/x-final/oauth-setup-receipt.json",
-    "outputs/kizashi-ai-news-20260819-prep/instagram-live/gate.json"
+    "outputs/kizashi-ai-news-20260819-prep/instagram-live/gate.json",
+    "outputs/kizashi-ai-news-20260820-recovery/receipts/note-publish-receipt.json",
+    "outputs/kizashi-ai-news-20260820-recovery/receipts/youtube-shorts-publish-receipt.json",
+    "outputs/kizashi-ai-news-20260820-recovery/x-live/x-publish-receipt.json",
+    "outputs/kizashi-ai-news-20260820-recovery/receipts/board-main-note-published-sync-receipt.json",
+    "outputs/kizashi-ai-news-20260820-recovery/receipts/board-main-youtube-shorts-published-sync-receipt.json",
+    "outputs/kizashi-ai-news-20260820-recovery/receipts/board-main-x-published-sync-receipt.json"
   ]
 }
