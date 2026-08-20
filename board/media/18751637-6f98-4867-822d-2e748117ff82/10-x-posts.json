@@ -1,0 +1,24 @@
+{
+  "revision_id": "kizashi-ai-news-20260820-recovery-r1",
+  "account": "KIZASHI_jp",
+  "primary_query": "AI 機密情報",
+  "target_reader": "生成AIへ社内情報を入力する管理者・経営者・情報システム担当者",
+  "posts": [
+    {
+      "order": 1,
+      "text": "OpenAIは対象API顧客向けZDRを説明。処理後にプロンプトと回答を保持せず、担当者は顧客コンテンツへアクセスしない設計です。一方、Private Safety Processingは早期顧客と試験中。公式情報：https://openai.com/index/offering-zero-data-retention-for-frontier-models/",
+      "media": "evidence-card.jpg"
+    },
+    {
+      "order": 2,
+      "text": "『ZDRだから何でも入力してよい』ではありません。確認するのは①対象契約 ②入力から出力までの経路 ③鍵と権限 ④本文を複製しない監査 ⑤入力禁止の例外。1つでも未確認なら、実データを入れず架空データで試験します。"
+    },
+    {
+      "order": 3,
+      "text": "AIへ機密情報を入れる前の5条件判断表と、30分の導入前手順をnoteにまとめました。対象・経路・鍵・監査・例外を『確認済み／未確認／対象外』で整理できます。公開後リンクをこの投稿へ追記します。"
+    }
+  ],
+  "state": "awaiting_owner_approval",
+  "estimated_api_cost_jpy": "unverified_before_execution",
+  "publish_receipt": null
+}
