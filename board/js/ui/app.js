@@ -28,6 +28,7 @@ const SCREENS = [
 ];
 
 const USER_ID = 'reiki';
+const PUBLIC_VIEW_REQUESTED = new URLSearchParams(location.search).get('public') === '1';
 
 const main = document.getElementById('main');
 const navHost = document.getElementById('nav');
@@ -201,7 +202,13 @@ async function boot() {
   renderSkeleton();
   const connection = loadConnection();
   try {
-    if (connection) {
+    // `?public=1` は端末に古いGitHub接続設定が残っていても、必ず
+    // 公開スナップショットを読む。これでPC・スマホ間の表示差を防ぐ。
+    if (PUBLIC_VIEW_REQUESTED && isStaticHost()) {
+      const db = await openPublicDatabase();
+      state.role = 'VIEWER';
+      app.ctx = { repo: new Repo(db, clock), clock, db, mode: 'SOLO', backend: 'public', actor: { userId: USER_ID, role: state.role } };
+    } else if (connection) {
       // GitHubモード：保存先は非公開リポジトリの board.json。services はこの場で動く。
       const db = await openGithubDatabase(connection);
       app.ctx = { repo: new Repo(db, clock), clock, db, mode: 'SOLO', backend: 'github', actor: { userId: USER_ID, role: state.role } };
