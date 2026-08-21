@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-19T17:37:00+09:00",
+  "generated_at": "2026-08-21T14:03:21+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
-    "published_confirmed": 10,
+    "published_confirmed": 11,
     "scheduled": 0,
     "attention": 2
   },
@@ -44,13 +44,13 @@
       "account": "KIZASHI / natty_swan9072",
       "url": "https://note.com/natty_swan9072",
       "state": "HEALTHY",
-      "last_verified_at": "2026-08-19T17:24:00+09:00",
+      "last_verified_at": "2026-08-21T14:03:21+09:00",
       "latest_published": {
-        "title": "AIに任せる前に決める「3つの境界線」",
-        "url": "https://note.com/natty_swan9072/n/n8fe38d0f5cd8"
+        "title": "個人版Copilotを仕事で使う前の確認表｜誤送信と機密入力を防ぐ5条件",
+        "url": "https://note.com/natty_swan9072/n/n3336e80479bc"
       },
       "next_scheduled": null,
-      "note": "100円有料noteとして公開済み。価格・有料境界・横長表紙・記事内画像4点を公開画面で確認。"
+      "note": "8月21日分の100円有料noteを即時公開。外部ID n3336e80479bc、公開URL、価格、有料境界、公開時刻を公開画面で確認済み。"
     },
     {
       "id": "youtube",
@@ -173,11 +173,13 @@
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-19T17:37:00+09:00",
+    "last_checked_at": "2026-08-21T14:03:21+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
   "evidence": [
+    "outputs/kizashi-copilot-safety-20260821-second/receipts/note-publication-receipt.json",
+    "outputs/kizashi-copilot-safety-20260821-second/receipts/board-note-publication-main-sync.json",
     "outputs/kizashi-official-explainer-20260816/owner-approval-receipt-20260817.json",
     "outputs/kizashi-official-explainer-20260816/schedule-proposal-20260817.json",
     "outputs/kizashi-official-explainer-20260816/note-draft-receipt-20260817.json",
