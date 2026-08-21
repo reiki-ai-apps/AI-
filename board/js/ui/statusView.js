@@ -177,11 +177,13 @@ function statusBadge(item, items) {
   },
   platformBadge(item.platform, { size: 38, decorative: true }),
   el('span', { class: 'status-sns-name' }, item.label),
-  el('strong', { class: 'status-sns-mark', 'aria-hidden': 'true' }, mark),
   el('span', { class: 'status-sns-progress', 'aria-hidden': 'true' },
     ...progress.map((part) => el('span', { class: `status-sns-progress-badge is-${part.tone}` },
       el('span', { class: 'status-sns-progress-symbol' }, part.mark),
-      part.label))));
+      part.label))),
+  el('span', { class: 'status-sns-count', 'aria-hidden': 'true' },
+    el('span', { class: 'status-sns-count-label' }, '完了'),
+    el('strong', { class: 'status-sns-mark' }, mark)));
 }
 
 export function planDayResultLabel(day) {
