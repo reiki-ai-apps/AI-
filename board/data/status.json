@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-22T00:10:10+09:00",
+  "generated_at": "2026-08-22T01:10:00+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
-    "published_confirmed": 12,
+    "published_confirmed": 13,
     "scheduled": 0,
     "attention": 3
   },
@@ -58,13 +58,13 @@
       "account": "KIZASHI / @kizashi_jp",
       "url": "https://www.youtube.com/@kizashi_jp",
       "state": "HEALTHY",
-      "last_verified_at": "2026-08-19T23:53:45+09:00",
+      "last_verified_at": "2026-08-22T01:09:11.7861596+09:00",
       "latest_published": {
-        "title": "AIに任せすぎ？家庭と職場で実践するAIの安全な使い方",
-        "url": "https://www.youtube.com/watch?v=6aSQc5yn0NQ"
+        "title": "OpenAI ZDRでも安全確定ではない｜機密情報を入れる前の3確認 #Shorts",
+        "url": "https://youtube.com/shorts/7U8O5YiEHoE"
       },
       "next_scheduled": null,
-      "note": "8月21日本編は完成済みだが外部receipt未取得。8月22日・23日のShorts各1本は、表示崩れを解消したRevision 4の動画本体を所有者承認済み。Shorts専用サムネイルは不要。外部予約receiptは未取得のため外部予約待ち。"
+      "note": "8月22日のShorts 1本は外部ID 7U8O5YiEHoE と公開receiptを確認して公開済み。8月23日のShortsは表示崩れを解消したRevision 4を所有者承認済みで、外部予約receipt待ち。Shorts専用サムネイルは不要。"
     },
     {
       "id": "radar",
@@ -85,7 +85,7 @@
     {
       "id": "20260822-23-external-reservation-required",
       "severity": "ATTENTION",
-      "message": "8月22日・23日分の14投稿は現行Revision/Hashで所有者承認済み。外部予約ID・外部予約receiptはまだないため、予約済みではなく外部予約待ちとして扱う。"
+      "message": "8月22日Shorts 1本は公開receipt確認済み。残る8月22日・23日分13投稿は現行Revision/Hashで所有者承認済みだが外部予約ID・外部予約receiptがないため、外部予約待ちとして扱う。"
     },
     {
       "id": "20260821-external-reservation-and-daily-minimum",
@@ -108,11 +108,6 @@
       "message": "noteプロフィールのInstagram・YouTubeリンクが保存されない"
     },
     {
-      "id": "youtube-short-verification",
-      "severity": "ATTENTION",
-      "message": "YouTube Shortsの公開後確認receiptが未取得"
-    },
-    {
       "id": "youtube-api-oauth-one-time",
       "severity": "ATTENTION",
       "message": "次回以降のYouTube完全自動反映には、対象チャンネル UCtJKnn7Lp2sp70eZd55E_Jw へのGoogle OAuth初回同意が1回だけ必要。制作・三周検査・最終承認パッケージ作成は止めずに進める。"
@@ -123,14 +118,14 @@
     "last_run": {
       "run_id": "kizashi-upcoming-20260822-23",
       "started_at": "2026-08-21T18:00:00+09:00",
-      "finished_at": "2026-08-22T00:10:10+09:00",
-      "state": "APPROVED_AWAITING_EXTERNAL_RESERVATION",
-      "stage": "8月22日・23日の全14投稿を現行Revision/Hashで所有者承認済み",
+      "finished_at": "2026-08-22T01:10:00+09:00",
+      "state": "PARTIAL_PUBLICATION_AWAITING_EXTERNAL_RESERVATION",
+      "stage": "8月22日Shortsを公開済み、残る13投稿は外部予約待ち",
       "candidate_count": 4,
       "verified_primary_count": 4,
       "required_primary_count": 4,
-      "reason": "所有者の一括承認指示に基づき、8月22日・23日のnote、X、Instagram各2件とShorts各1件、合計14投稿を現行Revision限定で承認した。記事・動画と画像はcomponent Hashを分けて記録した。期限切れの8月20日・21日分は誤公開防止のため除外した。",
-      "next_action": "媒体接続・費用条件を確認し、公式APIで外部予約を実行する。外部予約IDとreceipt取得後だけ予約済みへ更新する。"
+      "reason": "8月22日ShortsはYouTube Studioで公開し、外部ID 7U8O5YiEHoE、公開URL、公開時刻、公開receiptを確認してBoard正本へ同期した。残る13投稿は所有者承認済みだが外部receipt未取得。",
+      "next_action": "残る媒体の接続・費用条件を確認し、実行可能な媒体から外部予約または公開を続行する。外部IDとreceipt取得後だけ予約済み・公開済みへ更新する。"
     },
     "policy": "予約成立を最優先。YouTube本編はAsia/Tokyoの月・水・金を固定投稿日とし、当日枠と次の2枠を予約済み／承認待ち／制作中／HOLDで必ず表示する。制作・修正・品質検査・Board同期は途中承認なしで連続実行し、同一revision/hashの完成物、投稿先、日時、価格・API費用を一画面へまとめた最終公開直前だけ所有者承認を求める。認証権限の新規付与、課金、外部公開は最終承認対象とし、成功は外部receipt取得後だけ表示する。",
     "approval_policy": {
@@ -317,6 +312,8 @@
     "outputs/kizashi-upcoming-20260822-23/shorts-2026-08-23/shorts-visual-review-v4.json",
     "outputs/kizashi-upcoming-20260822-23/zdr-private-safety-20260822-a-shorts-r4-board-sync.json",
     "outputs/kizashi-upcoming-20260822-23/ai-literacy-20260823-a-shorts-r4-board-sync.json",
-    "outputs/receipts/board-owner-approvals-2026-08-22.json"
+    "outputs/receipts/board-owner-approvals-2026-08-22.json",
+    "outputs/receipts/youtube-shorts-published-2026-08-22-7U8O5YiEHoE.json",
+    "outputs/receipts/board-main-sync-youtube-shorts-published-2026-08-22-7U8O5YiEHoE.json"
   ]
 }
