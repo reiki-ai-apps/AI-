@@ -9,13 +9,23 @@ import { platformBadge } from './platformBadge.js';
 import { approve, reject, describePendingChange, approveGroup, recordComponentApproval, verifyComponentApprovals } from '../services/api.js?v=2';
 import { guardedButton, permissionNotice } from './states.js';
 import { openPostDetail } from './postDetail.js';
-import { buildPublicApprovalRequest } from './publicApproval.js';
-import { submitGatewayComponentApproval } from './publicApprovalGateway.js?v=3';
+import { buildPublicApprovalRequest, isPublicApprovalActionable } from './publicApproval.js';
+import { approvalDeviceReady, submitGatewayComponentApproval } from './publicApprovalGateway.js?v=3';
+
+const bulkSubmittedKeys = new Set();
+
+function componentKey(post, scope) {
+  return `${post.channel_post_id}:${post.current_revision_id}:${scope}`;
+}
 
 export async function renderApprovalsScreen(app) {
   const { repo } = app.ctx;
   const tz = app.timeZone;
-  const pending = await repo.listPendingApprovals();
+  const allPending = await repo.listPendingApprovals();
+  const pending = app.ctx.backend === 'public'
+    ? allPending.filter((post) => isPublicApprovalActionable(post, app.ctx.clock.nowMs()))
+    : allPending;
+  const expiredCount = allPending.length - pending.length;
 
   const screen = el('div', { class: 'screen' });
   const platforms = [
@@ -23,8 +33,46 @@ export async function renderApprovalsScreen(app) {
     { platform: 'X', label: 'X', linkLabel: '投稿本文リンク', mediaLabel: '画像・動画' },
     { platform: 'INSTAGRAM', label: 'Instagram', linkLabel: 'キャプションリンク', mediaLabel: 'カルーセル・動画' },
     { platform: 'YOUTUBE', label: 'YouTube', linkLabel: '動画リンク', mediaLabel: 'サムネイル・動画' },
-    { platform: 'YOUTUBE_SHORTS', label: 'YouTube Shorts', linkLabel: '動画リンク', mediaLabel: 'サムネイル' },
+    { platform: 'YOUTUBE_SHORTS', label: 'YouTube Shorts', linkLabel: '動画リンク', mediaLabel: '動画本体' },
   ];
+  if (app.ctx.backend === 'public') {
+    const tasks = await collectPublicApprovalTasks(app, pending);
+    const postCount = new Set(tasks.map((task) => task.post.channel_post_id)).size;
+    const bulkButton = el('button', {
+      class: 'btn btn-primary approval-all-button',
+      type: 'button',
+      disabled: tasks.length === 0,
+      onClick: async (event) => {
+        const target = event.currentTarget;
+        target.disabled = true;
+        try {
+          for (let index = 0; index < tasks.length; index += 1) {
+            const task = tasks[index];
+            target.textContent = `承認中 ${index + 1}/${tasks.length}`;
+            await submitGatewayComponentApproval(task);
+            bulkSubmittedKeys.add(componentKey(task.post, task.componentScope));
+          }
+          target.textContent = 'すべて承認を送信済み';
+          app.toast(`${postCount}投稿の承認を受け付けました。数分以内にBoardへ反映します。`);
+        } catch (error) {
+          target.disabled = false;
+          target.textContent = `すべて承認（${postCount}投稿）`;
+          app.toast(error?.message ?? '一括承認を送信できませんでした。');
+        }
+      },
+    }, tasks.length ? `すべて承認（${postCount}投稿）` : 'すべて承認済み');
+    screen.appendChild(el('section', { class: 'approval-all-bar' },
+      el('div', { class: 'approval-all-copy' },
+        el('strong', null, '現在のRevisionを一括承認'),
+        el('span', null, tasks.length
+          ? `未承認の本文・動画と画像をまとめて処理します。${approvalDeviceReady() ? '' : 'この端末は初回登録が必要です。'}`
+          : '現在、承認できる未処理項目はありません。')),
+      bulkButton));
+    if (expiredCount > 0) {
+      screen.appendChild(el('p', { class: 'approval-expired-note' },
+        `期限切れの${expiredCount}件は誤公開防止のため一括承認から除外しています。`));
+    }
+  }
   const board = el('div', { class: 'approval-platform-board' });
   for (const spec of platforms) {
     const items = pending.filter((post) => post.platform === spec.platform);
@@ -35,7 +83,9 @@ export async function renderApprovalsScreen(app) {
     if (!items.length) {
       lane.appendChild(el('div', { class: 'approval-simple-item' },
         approvalMedia(null, '', spec.linkLabel, spec.mediaLabel, {
-          article: disabledApprovalButton(), thumbnail: disabledApprovalButton(),
+          article: disabledApprovalButton(),
+          thumbnail: spec.platform === 'YOUTUBE_SHORTS' ? null : disabledApprovalButton(),
+          hideThumbnail: spec.platform === 'YOUTUBE_SHORTS',
         })));
     } else {
       for (const post of items) {
@@ -48,6 +98,25 @@ export async function renderApprovalsScreen(app) {
   return screen;
 }
 
+async function collectPublicApprovalTasks(app, posts) {
+  const tasks = [];
+  for (const post of posts) {
+    const [group, revision, verdict] = await Promise.all([
+      app.ctx.repo.getPostGroup(post.post_group_id),
+      app.ctx.repo.getRevision(post.current_revision_id),
+      verifyComponentApprovals(app.ctx, post.channel_post_id),
+    ]);
+    if (!revision) continue;
+    const scopes = post.platform === 'YOUTUBE_SHORTS' ? ['CONTENT'] : ['CONTENT', 'THUMBNAIL'];
+    for (const componentScope of scopes) {
+      if (verdict.components?.[componentScope]?.valid) continue;
+      if (bulkSubmittedKeys.has(componentKey(post, componentScope))) continue;
+      tasks.push({ group, post, revision, componentScope });
+    }
+  }
+  return tasks;
+}
+
 async function buildSimpleApprovalItem(app, post, linkLabel = '記事リンク', mediaLabel = 'サムネイル') {
   const group = await app.ctx.repo.getPostGroup(post.post_group_id);
   const revision = await app.ctx.repo.getRevision(post.current_revision_id);
@@ -56,7 +125,11 @@ async function buildSimpleApprovalItem(app, post, linkLabel = '記事リンク',
   }));
   const revisions = new Map([[revision.revision_id, revision]]);
   const verdict = await verifyComponentApprovals(app.ctx, post.channel_post_id);
+  const requiresThumbnail = post.platform !== 'YOUTUBE_SHORTS';
   const actionFor = async (scope) => {
+    if (bulkSubmittedKeys.has(componentKey(post, scope))) {
+      return el('span', { class: 'approval-component-approved' }, '承認送信済み');
+    }
     const state = verdict.components?.[scope];
     if (state?.valid) {
       const when = state.approval?.decided_at ? new Date(state.approval.decided_at).toLocaleString('ja-JP') : '';
@@ -92,7 +165,8 @@ async function buildSimpleApprovalItem(app, post, linkLabel = '記事リンク',
   };
   return el('div', { class: 'approval-simple-item' }, approvalMedia(revision, post.calendar_date_key, linkLabel, mediaLabel, {
     article: await actionFor('CONTENT'),
-    thumbnail: await actionFor('THUMBNAIL'),
+    thumbnail: requiresThumbnail ? await actionFor('THUMBNAIL') : null,
+    hideThumbnail: !requiresThumbnail,
   }));
 }
 
@@ -144,14 +218,14 @@ function approvalMedia(revision, publishDate = '', linkLabel = '記事リンク'
     target.textContent = '';
     target.appendChild(el('img', { src: URL.createObjectURL(file), alt: '貼り付けたサムネイル' }));
   };
-  return el('div', { class: 'approval-media-grid' },
+  return el('div', { class: `approval-media-grid${actions.hideThumbnail ? ' approval-media-grid-single' : ''}` },
     el('div', { class: 'approval-link-box' },
       el('div', { class: 'approval-media-label' },
         el('strong', null, linkLabel), el('small', null, dateLabel)),
       el('input', { class: 'approval-url-input', type: 'url', value: link ?? '', readonly: true, placeholder: `${linkLabel.replace('リンク', '')}URL` }),
       contentPreview,
       actions.article),
-    el('div', { class: 'approval-thumbnail-box' },
+    actions.hideThumbnail ? null : el('div', { class: 'approval-thumbnail-box' },
       el('div', { class: 'approval-media-label' },
         el('strong', null, mediaLabel), el('small', null, dateLabel)),
       thumbnailPreview || el('div', { class: 'approval-thumbnail-empty', tabindex: '0', onPaste: pasteThumbnail }, 'サムネイル未登録'),

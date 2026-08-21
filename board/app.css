@@ -872,6 +872,26 @@ input:invalid { border-color: var(--danger); }
 .status-service-details > summary { cursor: pointer; color: var(--ink-2); font-weight: 700; }
 .status-service-details[open] > summary { margin-bottom: 14px; }
 
+.approval-all-bar {
+  position: sticky;
+  top: 8px;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  padding: 14px 16px;
+  border: 1px solid #9bb8ff;
+  border-radius: 16px;
+  background: rgba(242, 247, 255, .97);
+  box-shadow: 0 8px 24px rgb(36 89 190 / 14%);
+  backdrop-filter: blur(8px);
+}
+.approval-all-copy { display: flex; flex-direction: column; gap: 3px; }
+.approval-all-copy span { color: var(--ink-3); font-size: 12px; }
+.approval-all-button { min-width: 210px; min-height: 50px; font-size: 16px; font-weight: 800; }
+.approval-expired-note { margin: -4px 2px 14px; color: var(--attention); font-size: 12px; }
 .approval-platform-board { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .approval-platform-lane { min-width: 0; padding: 18px; border: 1px solid #d5dce5; border-radius: 16px; background: var(--surface); box-shadow: 0 1px 2px rgb(20 35 55 / 4%); }
 .approval-platform-head { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line-soft); }
@@ -882,6 +902,7 @@ input:invalid { border-color: var(--danger); }
 .approval-simple-item > .btn { justify-self: end; }
 .approval-platform-empty { display: grid; place-items: center; min-height: 120px; border: 1px dashed var(--line); border-radius: var(--radius-sm); color: var(--ink-3); font-weight: 700; }
 .approval-media-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(190px, .85fr); gap: 14px; margin: 0; }
+.approval-media-grid-single { grid-template-columns: minmax(0, 1fr); }
 .approval-media-label { display: flex; align-items: baseline; gap: 7px; }
 .approval-media-label small { color: var(--ink-3); font-size: 11px; font-weight: 700; }
 .approval-link-box > .btn, .approval-thumbnail-box > .btn { justify-self: start; min-height: 26px; padding: 0 8px; border-radius: 7px; font-size: 11px; }
@@ -1080,6 +1101,8 @@ input:invalid { border-color: var(--danger); }
 .setup-step .btn { min-height: 44px; }
 
 @media (max-width: 767px) {
+  .approval-all-bar { align-items: stretch; flex-direction: column; }
+  .approval-all-button { width: 100%; min-width: 0; }
   .status-head { flex-direction: column; }
   .status-summary, .status-grid { grid-template-columns: 1fr; }
   .progress-stage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }

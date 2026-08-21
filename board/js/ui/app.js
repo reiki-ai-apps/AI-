@@ -19,6 +19,7 @@ import { renderConnectionsScreen } from './connectionsView.js';
 import { renderStatusScreen } from './statusView.js?v=15';
 import { hasIntentLink, consumeIntentLink } from './intentLink.js';
 import { claimApprovalDeviceFromHash, restoreApprovalDeviceToken } from './publicApprovalGateway.js?v=3';
+import { isPublicApprovalActionable } from './publicApproval.js';
 
 const SCREENS = [
   { id: 'status', label: '状況', render: renderStatusScreen },
@@ -378,7 +379,10 @@ async function render() {
   state.route = screen.id;
 
   try {
-    state.pendingCount = (await app.ctx.repo.listPendingApprovals()).length;
+    const pending = await app.ctx.repo.listPendingApprovals();
+    state.pendingCount = app.ctx.backend === 'public'
+      ? pending.filter((post) => isPublicApprovalActionable(post, app.ctx.clock.nowMs())).length
+      : pending.length;
   } catch {
     state.pendingCount = 0;
   }

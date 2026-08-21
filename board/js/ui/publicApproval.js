@@ -7,6 +7,13 @@ import { DEFAULT_RETRY_DELAY_MINUTES } from '../services/approvals.js';
 export const PUBLIC_APPROVAL_REPOSITORY = 'reiki-ai-apps/AI-';
 export const PUBLIC_APPROVAL_CONTRACT = 'REIKI_POST_BOARD_APPROVAL_V1';
 
+/** 予定時刻＋許可遅延を過ぎた投稿は、誤公開防止のため承認対象にしない。 */
+export function isPublicApprovalActionable(post, nowMs = Date.now()) {
+  const scheduledMs = Date.parse(post?.scheduled_at ?? '');
+  if (!Number.isFinite(scheduledMs)) return false;
+  return scheduledMs + DEFAULT_RETRY_DELAY_MINUTES * 60_000 >= nowMs;
+}
+
 function safeLabel(value, fallback = '（名称なし）') {
   const text = String(value ?? '').replace(/[\r\n]+/g, ' ').trim();
   return text || fallback;
