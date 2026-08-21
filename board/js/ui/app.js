@@ -18,7 +18,7 @@ import { renderApprovalsScreen } from './approvalsView.js?v=9';
 import { renderConnectionsScreen } from './connectionsView.js';
 import { renderStatusScreen } from './statusView.js?v=15';
 import { hasIntentLink, consumeIntentLink } from './intentLink.js';
-import { claimApprovalDeviceFromHash } from './publicApprovalGateway.js?v=2';
+import { claimApprovalDeviceFromHash, restoreApprovalDeviceToken } from './publicApprovalGateway.js?v=3';
 
 const SCREENS = [
   { id: 'status', label: '状況', render: renderStatusScreen },
@@ -249,6 +249,8 @@ async function boot() {
 
   buildNav();
   buildRoleSelect();
+
+  if (app.ctx.backend === 'public') await restoreApprovalDeviceToken();
 
   if (app.ctx.backend === 'public' && location.hash.startsWith('#pair:')) {
     try {

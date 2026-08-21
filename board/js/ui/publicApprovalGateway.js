@@ -5,6 +5,9 @@ const DEVICE_TOKEN_KEYS = [
   'reiki_board_approval_device_v1',
   'reiki_board_approval_device_token_v1',
 ];
+const DEVICE_DB_NAME = 'reiki_board_device_v1';
+const DEVICE_STORE_NAME = 'credentials';
+const DEVICE_RECORD_KEY = 'approval_device_token';
 
 async function request(path, options = {}) {
   const response = await fetch(`${APPROVAL_GATEWAY_URL}${path}`, options);
@@ -17,20 +20,91 @@ async function request(path, options = {}) {
   return payload;
 }
 
-function storedDeviceToken() {
+function storageValue(storage, key) {
+  try { return storage?.getItem(key) ?? null; } catch { return null; }
+}
+
+function deviceDatabase() {
+  if (!globalThis.indexedDB) return Promise.resolve(null);
+  return new Promise((resolve) => {
+    const request = globalThis.indexedDB.open(DEVICE_DB_NAME, 1);
+    request.onupgradeneeded = () => {
+      if (!request.result.objectStoreNames.contains(DEVICE_STORE_NAME)) {
+        request.result.createObjectStore(DEVICE_STORE_NAME);
+      }
+    };
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => resolve(null);
+  });
+}
+
+async function indexedDeviceToken() {
+  const db = await deviceDatabase();
+  if (!db) return null;
+  return new Promise((resolve) => {
+    const request = db.transaction(DEVICE_STORE_NAME, 'readonly').objectStore(DEVICE_STORE_NAME).get(DEVICE_RECORD_KEY);
+    request.onsuccess = () => resolve(typeof request.result === 'string' ? request.result : null);
+    request.onerror = () => resolve(null);
+  }).finally(() => db.close());
+}
+
+async function writeIndexedDeviceToken(token) {
+  const db = await deviceDatabase();
+  if (!db) return;
+  await new Promise((resolve) => {
+    const transaction = db.transaction(DEVICE_STORE_NAME, 'readwrite');
+    transaction.objectStore(DEVICE_STORE_NAME).put(token, DEVICE_RECORD_KEY);
+    transaction.oncomplete = resolve;
+    transaction.onerror = resolve;
+    transaction.onabort = resolve;
+  });
+  db.close();
+}
+
+async function clearIndexedDeviceToken() {
+  const db = await deviceDatabase();
+  if (!db) return;
+  await new Promise((resolve) => {
+    const transaction = db.transaction(DEVICE_STORE_NAME, 'readwrite');
+    transaction.objectStore(DEVICE_STORE_NAME).delete(DEVICE_RECORD_KEY);
+    transaction.oncomplete = resolve;
+    transaction.onerror = resolve;
+    transaction.onabort = resolve;
+  });
+  db.close();
+}
+
+export function storedDeviceToken() {
   for (const key of DEVICE_TOKEN_KEYS) {
-    const token = localStorage.getItem(key);
+    const token = storageValue(globalThis.localStorage, key);
     if (token) return token;
   }
   return null;
 }
 
-function saveDeviceToken(token) {
-  for (const key of DEVICE_TOKEN_KEYS) localStorage.setItem(key, token);
+async function saveDeviceToken(token) {
+  for (const key of DEVICE_TOKEN_KEYS) {
+    try { globalThis.localStorage?.setItem(key, token); } catch {}
+  }
+  await writeIndexedDeviceToken(token);
 }
 
-function clearDeviceToken() {
-  for (const key of DEVICE_TOKEN_KEYS) localStorage.removeItem(key);
+async function clearDeviceToken() {
+  for (const key of DEVICE_TOKEN_KEYS) {
+    try { globalThis.localStorage?.removeItem(key); } catch {}
+  }
+  await clearIndexedDeviceToken();
+}
+
+export async function restoreApprovalDeviceToken() {
+  const localToken = storedDeviceToken();
+  if (localToken) {
+    await writeIndexedDeviceToken(localToken);
+    return localToken;
+  }
+  const indexedToken = await indexedDeviceToken();
+  if (indexedToken) await saveDeviceToken(indexedToken);
+  return indexedToken;
 }
 
 export function approvalDeviceReady() {
@@ -46,7 +120,7 @@ export async function claimApprovalDeviceFromHash(hash = location.hash) {
     body: JSON.stringify({ invite_token: match[1] }),
   });
   if (!result.token) throw new Error('この端末を承認用として登録できませんでした。');
-  saveDeviceToken(result.token);
+  await saveDeviceToken(result.token);
   history.replaceState(null, '', `${location.pathname}${location.search}#approvals`);
   return { claimed: true };
 }
@@ -66,9 +140,9 @@ export async function submitGatewayComponentApproval({ group, post, revision, co
     target: payload.targets[0],
   };
 
-  const token = storedDeviceToken();
+  const token = await restoreApprovalDeviceToken();
   if (!token) {
-    throw new Error('この端末はまだ承認用に登録されていません。初回設定リンクを一度開いてください。');
+    throw new Error('このブラウザに承認鍵がありません。前回と同じブラウザで開くか、新しい端末登録リンクを一度開いてください。');
   }
   try {
     return await request('/v1/approve', {
@@ -78,7 +152,7 @@ export async function submitGatewayComponentApproval({ group, post, revision, co
     });
   } catch (error) {
     if (error.status !== 401) throw error;
-    clearDeviceToken();
+    await clearDeviceToken();
     throw new Error('承認用の端末登録が切れました。新しい初回設定リンクを一度開いてください。');
   }
 }
