@@ -2,6 +2,144 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_b35eaf5bbe7ccf127c91",
+      "story_id": "story_bbd74ebf4d64d3ca4e",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6211764705882352,
+      "title": "Claudeの文章への透かし追加、一部ユーザーが月額100ドルプランを解約",
+      "source_published_at": "2026-08-21T05:25:53.000Z",
+      "published_at": "2026-08-21T05:25:53.000Z",
+      "fetched_at": "2026-08-21T07:08:41.898Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "Anthropicが生成AI「Claude」の出力文に透かしを導入したことに反発し、一部の有料ユーザーが月額100ドルの購読を解約した。",
+      "source_name": "Vietnam.vn",
+      "source_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQb1JxbEgzS24tVnQxV3Y2bHhkOGR5bF9VU2UzU3E1SVE0eG56RXpuLXl0Nk9tMDUzeWtuZzBRT2JWaTkxaXdpb1hKWnQ0TllWTUxKWnM5c0hlMDU4UE9TN1BmNThXa2tnRG94MkpqY2lhajZ4OFpUWHZRQjQyalAyLVZUN0RyVzJqUjhvUEFRX3c0Rnk1VFRWRXpOMjBUVUdRTkNwLXBCT0RYYTZHdmszVURTR1NEdlNFTGpoYmFMNGhnNTZRZGtV?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "anthropic",
+        "claude"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claudeの出力文章への透かし機能",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "Claude有料プラン利用者",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "Claude有料プラン月額料金",
+          "value": "100ドル/月",
+          "normalized_value": "100USD"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Claudeの出力文章に透かし機能が追加され、一部の高額プラン利用者が解約する事態が起きた。",
+      "detail": "AnthropicがAIチャットボット「Claude」の生成する文章に透かし（ウォーターマーク）を追加したことについて、一部のユーザーが不満を示し、月額100ドルのサブスクリプションプランを解約する動きが出ていると報じられた。透かしはAIが生成した文章であることを識別するための技術とみられるが、記事では透かしの具体的な仕組みや導入の正式な発表時期には触れられていない。解約に至ったユーザーの反応から、生成文章の自然さや利用体験への影響が懸念されている様子がうかがえる。",
+      "new_facts": [
+        "Anthropicがクロードの生成文章に透かしを追加したことに反発し、一部ユーザーが月額100ドルのプランを解約した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_c7b44b20515dbf2ebca1",
+      "story_id": "story_53b451fe1f098ccc5f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6257142857142857,
+      "title": "ChatGPT、MacでiMessageを操作可能に OpenAIが新機能追加",
+      "source_published_at": "2026-08-21T05:02:14.000Z",
+      "published_at": "2026-08-21T05:02:14.000Z",
+      "fetched_at": "2026-08-21T07:08:40.414Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIがMac版ChatGPTに新機能を追加し、ChatGPTがApple社のメッセージアプリ「iMessage」を操作できるようになった。",
+      "source_name": "Yahoo!ニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE4wVC1lX1RZbzZZMG1xdkM0SElzaFFISWJvS0lrZE1CanhGMkJxZ3JzeVIzN0U2X19zQk5JcEJZRTdhbklkQzV4RDBjbjMtWFptei04MEViUXFaYTRiQVBTaElqMnRfV1pjXzhQOTRnSjBmcmVwYTcwZ3hTUVhCVEE?oc=5",
+      "story_entities": [
+        "ChatGPT",
+        "OpenAI",
+        "iMessage",
+        "chatgpt",
+        "openai"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPTのiMessage操作機能",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "Mac",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "ChatGPTがMac上でiMessageアプリを操作できる新機能が追加された。",
+      "detail": "OpenAIがMac向けのChatGPTアプリに新機能を追加し、AppleのメッセージアプリであるiMessageをChatGPT経由で操作できるようになったと報じられた。これによりユーザーはChatGPTに指示を出すことで、メッセージの確認や送信といったiMessage上の作業をAIに任せられるようになる可能性がある。報道はTBS CROSS DIG with Bloomberg経由で伝えられており、対象となるユーザー範囲や提供開始の具体的な時期など詳細は記事からは明らかになっていない。",
+      "new_facts": [
+        "OpenAIがMac版ChatGPTでiMessageを操作できる新機能を追加したと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_5987ea93389359d541a5",
+      "story_id": "story_ed22273252346a1e3b",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5490322580645162,
+      "title": "xAIの「Grok Build」、スマホアプリとウェブ版Grokでも利用可能に",
+      "source_published_at": "2026-08-21T04:28:00.000Z",
+      "published_at": "2026-08-21T04:28:00.000Z",
+      "fetched_at": "2026-08-21T07:09:01.652Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "xAIのAIエージェント「Grok Build」がスマホアプリとウェブ版Grokでも使えるようになり、作成したアプリを固有URLで公開する機能も追加された。",
+      "source_name": "GIGAZINE",
+      "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE10UG9uNy1YWEdsUHAyV2h2OHBDU2Q5M0YtS2FJNEJNN1JoT1h3WEZ6eGR4SVRGVk1zVUVGWm9KR3pPQkV1SmY3X21LQ2xNb25GdTdhb1l6YnpUSkxTLW04QUxONXlEUFk1?oc=5",
+      "story_entities": [
+        "xAI",
+        "Grok",
+        "Grok Build",
+        "xai",
+        "grok"
+      ],
+      "primary_entity": "xAI",
+      "story_subject": "Grok Build",
+      "event_type": "release",
+      "event_stage": "expanded",
+      "event_scope": "スマホアプリ・ウェブ版Grok",
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "Grok Build対応環境",
+          "value": "スマホアプリ・ウェブ版",
+          "normalized_value": "スマホアプリウェブ版"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type"
+      ],
+      "change_summary": "Grok Buildの利用環境がスマホアプリとウェブ版に拡大し、作成アプリの固有URL公開機能が追加された。",
+      "detail": "Grok BuildはxAIのAIチャット「Grok」に搭載されたアプリ生成エージェント機能。GIGAZINEによると、この機能がこれまでの提供範囲からスマートフォンアプリ版とウェブ版のGrokでも利用できるように拡大された。あわせて、Grok Buildで作成したアプリを固有のURLで公開できる新機能も追加されたという。プログラミングの知識がなくても、チャットでの指示からアプリを生成し、そのまま共有・公開できる流れが整った形となる。",
+      "new_facts": [
+        "Grok Buildがスマホアプリとウェブ版Grokでも利用可能になった",
+        "作成したアプリを固有URLで公開する機能が追加された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_62c83204be8f9ca029d3",
       "story_id": "story_2507c091de2edaeb3d",
       "story_sequence": 2,
@@ -434,6 +572,60 @@
       "detail": "契約書レビューを支援するサービス「LeCHECK」が、Microsoft Word上で契約書審査を効率化するAIエージェント機能の提供を開始した。従来は専用画面での作業が必要だった契約書チェックを、普段業務で使うWord文書上で直接行えるようにすることで、法務担当者の作業負担軽減を狙う。具体的な機能の詳細や対応プランなどはPR TIMESの発表から確認できる範囲に限られる。",
       "new_facts": [
         "LeCHECKがWord上で契約書審査を行えるAIエージェント機能の提供を開始した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_3780cd700f16ee52ceb9",
+      "story_id": "story_c74e2916213f0d264c",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "ネット通販利用者の12%がChatGPT等で商品調査、楽天AIへの質問は9.7%",
+      "source_published_at": "2026-08-20T23:30:00.000Z",
+      "published_at": "2026-08-20T23:30:00.000Z",
+      "fetched_at": "2026-08-21T07:09:01.005Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "ネットショップ担当者フォーラムの調査で、ChatGPTやGemini、Perplexityで商品を調べてからEC購入した人が12%、楽天のRakuten AIに質問した人が9.7%だったと分かった。",
+      "source_name": "ｄメニューニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxPWlN1dG16Q0lVLTRBUWRVaFEyM2ZiU2Y5SW40RDdacUY3VTJXWGxoT01qU0tuLWVLYzJwSlRjV3JOdEJ6N1NLdXhvekF6dkllVEthOWJ1ek9rV1RUbUdYa3lMMzcxeTRNODdOaEtFbEZRekFHMFFpdEx2T1d0UWlvbVk4X1l5N3dCc05uOTVsU3B6MjlISmZtQkQ2cDF0MGJ5NnR0bzVmMWJWS0ViY21NMnFONTRfNWJOQ3JpT0s1NElPbEJ0Xy11TUcxak90OUpaWnhaWnZxdUwxRTZ3ZndFdlFwWHliMUQxSFJ3eVdabG9tQV9CVjRIdWxGT1pUb0xYUnJwS3Vn?oc=5",
+      "story_entities": [
+        "ChatGPT",
+        "Gemini",
+        "Perplexity",
+        "chatgpt",
+        "gemini"
+      ],
+      "primary_entity": "ネットショップ担当者フォーラム",
+      "story_subject": "生成AIとEC購買行動に関する調査",
+      "event_type": "research",
+      "event_stage": "other",
+      "event_scope": "日本",
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "ChatGPT等で商品調査後にEC購入した割合",
+          "value": "12%",
+          "normalized_value": "12%"
+        },
+        {
+          "type": "other",
+          "scope": "Rakuten AIに商品について質問した割合",
+          "value": "9.7%",
+          "normalized_value": "9.7%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "生成AIを使った商品調査・購入行動の実態が調査データとして示された。",
+      "detail": "ネットショップ担当者フォーラムによる調査結果がｄメニューニュースで伝えられた。それによると、ChatGPT・Gemini・Perplexityなどの生成AIやAI検索サービスで商品や購入先を調べてからEC（ネット通販）で購入したという人が12%に上った。また、楽天が提供する「Rakuten AI」に商品について質問したという人は9.7%だった。生成AIチャットを商品比較や購入判断の入口として使う消費者行動が、一定の割合で定着しつつある実態が示された形となる。",
+      "new_facts": [
+        "ChatGPT・Gemini・Perplexityなどで商品や購入先を調べてからECで購入した人は12%",
+        "楽天のRakuten AIに商品について質問した人は9.7%"
       ],
       "event_date_precision": "unknown"
     },
