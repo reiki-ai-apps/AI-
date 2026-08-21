@@ -254,7 +254,7 @@ function channelSection(channels) {
 
 export async function renderStatusScreen(app) {
   const [posts, postGroups, publicationPackages] = await Promise.all([
-    app.ctx.repo.listPipelinePosts(),
+    app.ctx.repo.listPostsForReservationPlan(),
     app.ctx.repo.listPostGroups(),
     app.ctx.repo.listPublicationPackages(),
   ]);

@@ -201,6 +201,14 @@ export class Repo {
       .sort((a, b) => String(a.calendar_date_key ?? '').localeCompare(String(b.calendar_date_key ?? '')));
   }
 
+  /** 状況画面の日別達成数には、制作中だけでなく公開済みも含める。 */
+  async listPostsForReservationPlan() {
+    const rows = await this.db.read(['channelPosts'], (tx) => tx.getAll('channelPosts'));
+    return rows
+      .filter((p) => !p.deleted_at && !p.cancelled_at)
+      .sort((a, b) => String(a.calendar_date_key ?? '').localeCompare(String(b.calendar_date_key ?? '')));
+  }
+
   async listPostGroups() {
     return this.db.read(['postGroups'], (tx) => tx.getAll('postGroups'));
   }
