@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-21T23:18:54+09:00",
+  "generated_at": "2026-08-21T23:56:15+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -64,7 +64,7 @@
         "url": "https://www.youtube.com/watch?v=6aSQc5yn0NQ"
       },
       "next_scheduled": null,
-      "note": "8月21日本編は完成済みだが外部receipt未取得。8月22日・23日のShorts各1本は、明るい写実画像・字幕安全域・無料日本語音声を持つRevision 3へ再レンダリングし、動画本体を承認待ちへ同期。"
+      "note": "8月21日本編は完成済みだが外部receipt未取得。8月22日・23日のShorts各1本は、表示崩れを解消した1080×1920・字幕・無料日本語音声付きRevision 4へ再レンダリングし、9地点の最終MP4検査合格後に動画本体だけを承認待ちへ同期。Shorts専用サムネイルは不要。"
     },
     {
       "id": "radar",
@@ -85,7 +85,7 @@
     {
       "id": "20260822-23-owner-approval-required",
       "severity": "ATTENTION",
-      "message": "8月22日・23日分のnote、X、Instagram各2件とShorts各1本、合計14投稿は、明るく華やかなRevision 3への再制作・3周品質検査・Board同期まで完了。Revision 2の承認は現在の素材には適用せず、現Revision/Hashの承認receipt待ち。"
+      "message": "8月22日・23日分のnote、X、Instagram各2件はRevision 3、Shorts各1本は表示崩れを修正したRevision 4としてBoard同期済み。Shortsだけ旧Revision承認を適用せず、現Revision/Hashの動画承認receipt待ち。"
     },
     {
       "id": "20260821-external-reservation-and-daily-minimum",
@@ -123,14 +123,14 @@
     "last_run": {
       "run_id": "kizashi-upcoming-20260822-23",
       "started_at": "2026-08-21T18:00:00+09:00",
-      "finished_at": "2026-08-21T23:18:54+09:00",
+      "finished_at": "2026-08-21T23:56:15+09:00",
       "state": "PENDING_APPROVAL",
-      "stage": "華やかなRevision 3完成・3周品質検査合格・Board同期済み",
+      "stage": "Shorts Revision 4修正・最終MP4検査合格・Board同期済み",
       "candidate_count": 4,
       "verified_primary_count": 4,
       "required_primary_count": 4,
-      "reason": "8月22日・23日分の4テーマを全面改訂。自然光、2〜4色の制御アクセント、具体的な人物動作、ビジネス誌水準の画面構成を適用し、Shortsも安全な字幕位置で再レンダリング。合計14投稿をRevision 3のHashで承認待ちへ同期した。",
-      "next_action": "Boardで現Revisionの記事・動画とサムネイルを承認後、媒体ごとの公式接続と費用条件を確認して外部予約する。"
+      "reason": "8月22日・23日のShortsで発生した格子状の表示崩れを、PNG素材からのFFmpeg再構成で解消。1080×1920、30fps、H.264/AAC、字幕・ナレーションありを確認し、冒頭・中盤・終盤を含む9地点の最終MP4検査を通過したRevision 4だけをBoardへ同期した。note・X・Instagramは変更していない。",
+      "next_action": "BoardでShorts Revision 4の動画本体を再確認し、note・X・Instagramは既存Revisionを承認する。現Revision/Hashの承認後に外部予約へ進む。"
     },
     "policy": "予約成立を最優先。YouTube本編はAsia/Tokyoの月・水・金を固定投稿日とし、当日枠と次の2枠を予約済み／承認待ち／制作中／HOLDで必ず表示する。制作・修正・品質検査・Board同期は途中承認なしで連続実行し、同一revision/hashの完成物、投稿先、日時、価格・API費用を一画面へまとめた最終公開直前だけ所有者承認を求める。認証権限の新規付与、課金、外部公開は最終承認対象とし、成功は外部receipt取得後だけ表示する。",
     "approval_policy": {
@@ -186,7 +186,7 @@
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-21T23:18:54+09:00",
+    "last_checked_at": "2026-08-21T23:56:15+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
@@ -312,6 +312,10 @@
     "outputs/kizashi-upcoming-20260822-23/ai-literacy-20260823-a-r3-canonical-board-sync.json",
     "outputs/kizashi-upcoming-20260822-23/ai-oversight-20260823-b-r3-canonical-board-sync.json",
     "outputs/kizashi-upcoming-20260822-23/shorts-2026-08-22/shorts-visual-review-v3.json",
-    "outputs/kizashi-upcoming-20260822-23/shorts-2026-08-23/shorts-visual-review-v3.json"
+    "outputs/kizashi-upcoming-20260822-23/shorts-2026-08-23/shorts-visual-review-v3.json",
+    "outputs/kizashi-upcoming-20260822-23/shorts-2026-08-22/shorts-visual-review-v4.json",
+    "outputs/kizashi-upcoming-20260822-23/shorts-2026-08-23/shorts-visual-review-v4.json",
+    "outputs/kizashi-upcoming-20260822-23/zdr-private-safety-20260822-a-shorts-r4-board-sync.json",
+    "outputs/kizashi-upcoming-20260822-23/ai-literacy-20260823-a-shorts-r4-board-sync.json"
   ]
 }
