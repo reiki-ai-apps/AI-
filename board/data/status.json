@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-21T19:16:45+09:00",
+  "generated_at": "2026-08-21T22:32:02+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
-    "published_confirmed": 11,
+    "published_confirmed": 12,
     "scheduled": 0,
-    "attention": 15
+    "attention": 3
   },
   "channels": [
     {
@@ -22,7 +22,7 @@
         "url": "https://www.instagram.com/p/DcEMK9JGctI/"
       },
       "next_scheduled": "2026-08-22T09:30:00+09:00",
-      "note": "8月22日・23日分を各日2件、合計4件制作し、画像・本文・3周品質ゲートをそろえてBoardの承認待ちへ同期。外部予約receiptは未取得。"
+      "note": "8月21日分に加え、8月22日・23日分を各日2件、合計4件制作し、画像・本文・3周品質ゲートをBoardの承認待ちへ同期。外部予約receiptは未取得。"
     },
     {
       "id": "x",
@@ -36,7 +36,7 @@
         "url": "https://x.com/KIZASHI_jp/status/2089994853954547871"
       },
       "next_scheduled": "2026-08-22T09:15:00+09:00",
-      "note": "8月22日・23日分を各日2件、合計4件制作し、一次情報URL・本文・画像・3周品質ゲートをそろえてBoardの承認待ちへ同期。X API費用の明示承認と外部receiptは未取得。"
+      "note": "8月21日分に加え、8月22日・23日分を各日2件、合計4件制作し、一次情報URL・本文・画像・3周品質ゲートをBoardの承認待ちへ同期。API費用確認と外部receiptは未取得。"
     },
     {
       "id": "note",
@@ -44,27 +44,27 @@
       "account": "KIZASHI / natty_swan9072",
       "url": "https://note.com/natty_swan9072",
       "state": "HEALTHY",
-      "last_verified_at": "2026-08-21T14:03:21+09:00",
+      "last_verified_at": "2026-08-21T14:00:41+09:00",
       "latest_published": {
         "title": "個人版Copilotを仕事で使う前の確認表｜誤送信と機密入力を防ぐ5条件",
         "url": "https://note.com/natty_swan9072/n/n3336e80479bc"
       },
       "next_scheduled": "2026-08-22T09:00:00+09:00",
-      "note": "8月22日・23日分を各日2件、合計4件制作し、記事・横長サムネイル・記事内画像・3周品質ゲートをそろえてBoardの承認待ちへ同期。外部予約receiptは未取得。"
+      "note": "8月21日分の100円有料記事は公開済み。8月22日・23日分を各日2件、合計4件制作し、記事・横長サムネイル・記事内画像を承認待ちへ同期。外部予約receiptは未取得。"
     },
     {
       "id": "youtube",
       "label": "YouTube",
       "account": "KIZASHI / @kizashi_jp",
       "url": "https://www.youtube.com/@kizashi_jp",
-      "state": "ATTENTION",
-      "last_verified_at": "2026-08-16T12:13:09+09:00",
+      "state": "HEALTHY",
+      "last_verified_at": "2026-08-19T23:53:45+09:00",
       "latest_published": {
-        "title": "AIにどこまで実行させる？権限・業務・費用を3ニュースで判断",
-        "url": "https://www.youtube.com/watch?v=QzJeOSPNR1s"
+        "title": "AIに任せすぎ？家庭と職場で実践するAIの安全な使い方",
+        "url": "https://www.youtube.com/watch?v=6aSQc5yn0NQ"
       },
       "next_scheduled": null,
-      "note": "8月21日本編は動画本体と承認対象サムネイルがそろっているが、外部アップロードreceiptは未取得。8月22日・23日は曜日ルールに従いShorts各1本を承認待ちへ同期。"
+      "note": "8月21日本編は1920×1080、約4分21秒、無料日本語音声、字幕、サムネイル3案、SEO情報まで完成。外部予約・公開receiptは未取得。8月22日・23日はShorts各1本を承認待ちへ同期。"
     },
     {
       "id": "radar",
@@ -83,14 +83,39 @@
   ],
   "blockers": [
     {
-      "id": "upcoming-owner-approval-required",
+      "id": "20260822-23-owner-approval-required",
       "severity": "ATTENTION",
       "message": "8月22日・23日分のnote、X、Instagram各2件とShorts各1本、合計14投稿は制作・3周品質検査・Board同期まで完了。現Revision/Hashの承認receipt待ち。"
     },
     {
-      "id": "youtube-20260821-external-upload-pending",
+      "id": "20260821-external-reservation-and-daily-minimum",
+      "severity": "DANGER",
+      "message": "8月21日22:32時点で、noteは公開receipt 1件のみ。note残り1件、X 2件、Instagram 2件、YouTube本編1件は承認待ちのまま候補時刻を経過し、外部予約・公開receiptがない。予約済み・公開済みとは扱わない。金曜Shortsは対象外。"
+    },
+    {
+      "id": "current-platform-authentication-required",
       "severity": "ATTENTION",
-      "message": "8月21日YouTube本編は動画と承認対象サムネイルが完成済み。YouTube側の外部公開receiptが未取得のため、公開済みとは表示しない。"
+      "message": "noteとXは公開済み。Instagramは成果物・品質ゲート・承認まで完了しており、正しいMeta開発者アカウントでのInstagram Graph API再認証だけが必要。"
+    },
+    {
+      "id": "note-premium-required-for-scheduling",
+      "severity": "ATTENTION",
+      "message": "noteの8月17日記事は保存済み下書き。予約投稿はnoteプレミアム契約が必要であり、課金・契約は実行していない"
+    },
+    {
+      "id": "note-profile-links",
+      "severity": "ATTENTION",
+      "message": "noteプロフィールのInstagram・YouTubeリンクが保存されない"
+    },
+    {
+      "id": "youtube-short-verification",
+      "severity": "ATTENTION",
+      "message": "YouTube Shortsの公開後確認receiptが未取得"
+    },
+    {
+      "id": "youtube-api-oauth-one-time",
+      "severity": "ATTENTION",
+      "message": "次回以降のYouTube完全自動反映には、対象チャンネル UCtJKnn7Lp2sp70eZd55E_Jw へのGoogle OAuth初回同意が1回だけ必要。制作・三周検査・最終承認パッケージ作成は止めずに進める。"
     }
   ],
   "production": {
@@ -98,7 +123,7 @@
     "last_run": {
       "run_id": "kizashi-upcoming-20260822-23",
       "started_at": "2026-08-21T18:00:00+09:00",
-      "finished_at": "2026-08-21T19:16:45+09:00",
+      "finished_at": "2026-08-21T19:44:40+09:00",
       "state": "PENDING_APPROVAL",
       "stage": "成果物完成・3周品質検査合格・Board同期済み",
       "candidate_count": 4,
@@ -141,7 +166,7 @@
         {
           "date": "2026-08-21",
           "state": "AWAITING_EXTERNAL_UPLOAD",
-          "reason": "動画本体と承認対象サムネイルは完成済み。外部アップロードreceiptが未取得のため公開済みとは表示しない。"
+          "reason": "本編動画、サムネイル3案、タイトル、説明文、タグ、再生リスト指定、3周検査が完成。外部予約・公開receiptは未取得。"
         },
         {
           "date": "2026-08-24",
@@ -154,17 +179,21 @@
           "reason": "次々回の水曜本編枠。一次情報の確認は未開始。"
         }
       ]
-    }
+    },
+    "stage": "8月21日分｜note即時公開済み／他媒体は外部公開未確認",
+    "reason": "noteは100円記事を即時公開し、外部ID・URL・価格・公開時刻を照合済み。X・Instagram・YouTubeは外部receiptがないため公開済みとは表示しない。",
+    "next_action": "X・Instagram・YouTubeは接続状態と費用条件を確認し、実行可能な媒体から公開して外部receiptをBoardへ同期する。"
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-21T19:16:45+09:00",
+    "last_checked_at": "2026-08-21T19:44:40+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
   "evidence": [
     "outputs/kizashi-copilot-safety-20260821-second/receipts/note-publication-receipt.json",
-    "outputs/kizashi-copilot-safety-20260821-second/receipts/board-note-publication-main-sync.json",
+    "outputs/kizashi-copilot-safety-20260821-second/receipts/board-note-publication-sync.json",
+    "outputs/kizashi-reservation-priority-20260821/reservation-monitor-receipt-20260821-0725.json",
     "outputs/kizashi-official-explainer-20260816/owner-approval-receipt-20260817.json",
     "outputs/kizashi-official-explainer-20260816/schedule-proposal-20260817.json",
     "outputs/kizashi-official-explainer-20260816/note-draft-receipt-20260817.json",
@@ -251,12 +280,32 @@
     "outputs/kizashi-ai-news-20260819-prep/x-live/x-publish-receipt.json",
     "outputs/kizashi-ai-news-20260819-prep/x-final/oauth-setup-receipt.json",
     "outputs/kizashi-ai-news-20260819-prep/instagram-live/gate.json",
+    "outputs/kizashi-ai-news-20260819-prep/youtube-final/final-quality-review.json",
+    "outputs/kizashi-ai-news-20260819-prep/youtube-final/media.json",
+    "outputs/kizashi-ai-news-20260819-prep/youtube-final/thumbnail-review-loop.json",
+    "outputs/kizashi-ai-news-20260819-prep/board-youtube-owner-wait-receipt.json",
+    "outputs/kizashi-ai-news-20260819-prep/owner-publication-approval-receipt.json",
+    "outputs/kizashi-ai-news-20260819-prep/youtube-seo-final-loop.json",
+    "outputs/kizashi-ai-news-20260819-prep/board-youtube-auth-wait-receipt.json",
+    "outputs/kizashi-ai-news-20260819-prep/board-youtube-browser-control-wait-receipt.json",
+    "outputs/kizashi-ai-news-20260819-prep/board-youtube-manual-upload-ready-receipt.json",
+    "outputs/kizashi-ai-news-20260819-prep/youtube-publish-receipt-20260819.json",
+    "outputs/kizashi-ai-news-20260819-prep/board-youtube-published-sync-receipt.json",
+    "outputs/kizashi-reservation-priority-20260820/reservation-monitor-receipt-20260820-0109.json",
+    "outputs/kizashi-ai-news-20260821-prep/run.json",
+    "outputs/kizashi-ai-news-20260821-prep/gate.json",
+    "outputs/kizashi-ai-news-20260821-prep/artifacts/review-loop.json",
+    "outputs/kizashi-ai-news-20260821-prep/approval-bundle.json",
+    "outputs/kizashi-ai-news-20260821-prep/receipts/preflight.json",
+    "outputs/kizashi-ai-news-20260821-prep/receipts/package-validation.json",
+    "outputs/kizashi-ai-news-20260821-prep/receipts/board-approval-sync.json",
     "outputs/kizashi-upcoming-20260822-23/run.json",
     "outputs/kizashi-upcoming-20260822-23/gate.json",
     "outputs/kizashi-upcoming-20260822-23/asset-manifest.json",
-    "outputs/kizashi-upcoming-20260822-23/zdr-private-safety-20260822-a-publication-package-board-sync.json",
-    "outputs/kizashi-upcoming-20260822-23/cyber-monitoring-20260822-b-publication-package-board-sync.json",
-    "outputs/kizashi-upcoming-20260822-23/ai-literacy-20260823-a-publication-package-board-sync.json",
-    "outputs/kizashi-upcoming-20260822-23/ai-oversight-20260823-b-publication-package-board-sync.json"
+    "outputs/kizashi-upcoming-20260822-23/zdr-private-safety-20260822-a-canonical-board-sync.json",
+    "outputs/kizashi-upcoming-20260822-23/cyber-monitoring-20260822-b-canonical-board-sync.json",
+    "outputs/kizashi-upcoming-20260822-23/ai-literacy-20260823-a-canonical-board-sync.json",
+    "outputs/kizashi-upcoming-20260822-23/ai-oversight-20260823-b-canonical-board-sync.json",
+    "outputs/kizashi-upcoming-20260822-23/receipts/board-monitor-20260821-2232.json"
   ]
 }
