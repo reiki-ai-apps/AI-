@@ -175,7 +175,13 @@ function disabledApprovalButton() {
 }
 
 function articleUrl(revision) {
-  return revision?.article_url
+  const articleAsset = (revision?.assets ?? []).find((asset) => {
+    const role = String(asset.asset_role ?? '').toUpperCase();
+    const mime = String(asset.mime ?? '');
+    return (role === 'CONTENT' || mime.startsWith('text/')) && assetUrl(asset);
+  });
+  return assetUrl(articleAsset)
+    ?? revision?.article_url
     ?? revision?.link_url
     ?? revision?.rights?.sources?.find((source) => source.source_url)?.source_url
     ?? null;
@@ -186,11 +192,15 @@ function assetUrl(asset) {
 }
 
 function mediaPreview(revision, componentScope) {
-  const assets = (revision?.assets ?? []).filter((asset) => assetUrl(asset))
+  const scopedAssets = (revision?.assets ?? [])
     .filter((asset) => componentScope === 'THUMBNAIL'
       ? String(asset.asset_role ?? '').toUpperCase() === 'THUMBNAIL'
       : String(asset.asset_role ?? '').toUpperCase() !== 'THUMBNAIL');
-  if (!assets.length) return null;
+  const assets = scopedAssets.filter((asset) => assetUrl(asset));
+  if (!assets.length) {
+    return el('div', { class: 'approval-artifact-missing', role: 'alert' },
+      '成果物の表示リンクが未登録です。この状態では承認しないでください。');
+  }
   return el('div', { class: 'approval-media-gallery' }, ...assets.map((asset, index) => {
     const url = assetUrl(asset);
     const mime = String(asset.mime ?? '');
@@ -200,7 +210,10 @@ function mediaPreview(revision, componentScope) {
       return el('a', { href: url, target: '_blank', rel: 'noopener noreferrer' },
         el('img', { src: url, alt: asset.alt_text || `確認用画像 ${index + 1}`, loading: 'lazy' }));
     }
-    return el('a', { href: url, target: '_blank', rel: 'noopener noreferrer' }, `素材${index + 1}を開く`);
+    const label = mime.startsWith('text/') || String(asset.asset_role ?? '').toUpperCase() === 'CONTENT'
+      ? '記事全文を開く'
+      : `素材${index + 1}を開く`;
+    return el('a', { class: 'approval-artifact-link', href: url, target: '_blank', rel: 'noopener noreferrer' }, label);
   }));
 }
 

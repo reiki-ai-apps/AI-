@@ -916,6 +916,8 @@ input:invalid { border-color: var(--danger); }
 .approval-media-gallery img, .approval-media-gallery video { display: block; width: 100%; max-height: 240px; border-radius: 8px; object-fit: contain; background: #eef1f4; }
 .approval-media-gallery video { grid-column: 1 / -1; }
 .approval-media-empty { color: var(--ink-3); }
+.approval-artifact-link { display: inline-flex; align-items: center; min-height: 42px; padding: 8px 12px; border: 1px solid #8fb0ff; border-radius: 9px; color: #174bad; background: #eef4ff; font-weight: 800; }
+.approval-artifact-missing { padding: 11px 12px; border: 1px solid #d9363e; border-radius: 9px; color: #9c1c24; background: #fff2f3; font-size: 12px; font-weight: 800; }
 .approval-component-approved { display: inline-flex; align-items: center; min-height: 34px; padding: 7px 10px; border-radius: 8px; color: #12613f; background: #e9f7ef; font-size: 12px; font-weight: 800; }
 .approval-thumbnail-empty { display: grid; place-items: center; min-height: 104px; border: 1px dashed #bfc9d6; border-radius: 10px; color: var(--ink-3); background: #fafbfd; cursor: text; }
 .approval-thumbnail-empty:focus { border-color: var(--accent); outline: 2px solid color-mix(in srgb, var(--accent) 22%, transparent); }
