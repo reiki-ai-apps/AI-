@@ -100,6 +100,7 @@ const PLAN_STAGES = Object.freeze({
   PUBLISHED: { label: '投稿済み', mark: '✓', tone: 'published' },
   SCHEDULED: { label: '予約済み', mark: '◎', tone: 'scheduled' },
   EXTERNAL_PENDING: { label: '外部予約待ち', mark: '◷', tone: 'attention' },
+  CONNECTION_REQUIRED: { label: '初回接続が必要', mark: '↗', tone: 'attention' },
   APPROVAL: { label: '承認待ち', mark: '◷', tone: 'attention' },
   READY: { label: '承認待ち', mark: '◷', tone: 'attention' },
   CREATING: { label: '作成中', mark: '×', tone: 'danger' },
@@ -140,6 +141,7 @@ export function badgeProgressSummary(items, badge) {
   let stage = PLAN_STAGES.CREATING;
   if (confirmed >= required) stage = published >= required ? PLAN_STAGES.PUBLISHED : PLAN_STAGES.SCHEDULED;
   else if (matching.some((item) => item.stage === 'EXTERNAL_PENDING')) stage = PLAN_STAGES.EXTERNAL_PENDING;
+  else if (matching.some((item) => item.stage === 'CONNECTION_REQUIRED')) stage = PLAN_STAGES.CONNECTION_REQUIRED;
   else if (matching.some((item) => item.stage === 'APPROVAL' || item.stage === 'READY')) stage = PLAN_STAGES.APPROVAL;
   else if (registered === 0) stage = PLAN_STAGES.MISSING;
   const mark = confirmed >= required
@@ -159,6 +161,9 @@ export function badgeProgressSummary(items, badge) {
     if ((counts.CREATING ?? 0) > 0) progress.push({ tone: 'creating', mark: '●', label: `制作中 ${counts.CREATING}` });
     const approval = (counts.APPROVAL ?? 0) + (counts.READY ?? 0);
     if (approval > 0) progress.push({ tone: 'approval', mark: '!', label: `承認待ち ${approval}` });
+    if ((counts.CONNECTION_REQUIRED ?? 0) > 0) {
+      progress.push({ tone: 'external', mark: '↗', label: `接続のみ ${counts.CONNECTION_REQUIRED}` });
+    }
     if ((counts.EXTERNAL_PENDING ?? 0) > 0) {
       progress.push({ tone: 'external', mark: '◷', label: `予約待ち ${counts.EXTERNAL_PENDING}` });
     }

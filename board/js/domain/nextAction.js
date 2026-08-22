@@ -93,7 +93,7 @@ function shortWhat(item) {
     case CONDITIONS.PUBLISH_FAILED:
       return platform ? `${platform}の失敗に対応` : '失敗に対応';
     case CONDITIONS.CREDENTIAL_EXPIRED:
-      return platform ? `${platform}の再接続` : '再接続';
+      return platform ? `${platform}を1回接続` : 'SNSを1回接続';
     case CONDITIONS.PRODUCTION_HOLD:
       return platform ? `${platform}の一次情報を確認` : '一次情報を確認';
     case CONDITIONS.MISSING_ASSET_1H:

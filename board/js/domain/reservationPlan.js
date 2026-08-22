@@ -1,7 +1,7 @@
 import { shiftDateKey } from '../core/tz.js';
 import { productionProgress } from './production.js';
 
-const STAGES = Object.freeze(['CREATING', 'READY', 'APPROVAL', 'EXTERNAL_PENDING', 'SCHEDULED']);
+const STAGES = Object.freeze(['CREATING', 'READY', 'APPROVAL', 'CONNECTION_REQUIRED', 'EXTERNAL_PENDING', 'SCHEDULED']);
 
 const DAILY_MINIMUMS = Object.freeze({ NOTE: 2, X: 2, INSTAGRAM: 2 });
 
@@ -34,11 +34,19 @@ function packageIsReady(pkg) {
   return checks.length > 0 && checks.every((review) => review.verdict === 'PASS');
 }
 
+/** 投稿内容は承認済みだが、外部SNSとの接続だけが残っている状態。 */
+function approvedConnectionRequired(post) {
+  return post.display_state === 'ACTION_REQUIRED'
+    && post.failure_kind === 'CREDENTIAL_EXPIRED'
+    && Boolean(post.approval_id);
+}
+
 export function pipelineStage(post, pkg, group = {}) {
   if (post.display_state === 'SCHEDULED' || post.display_state === 'PUBLISHING') {
     return hasExternalScheduleReceipt(post, group) ? 'SCHEDULED' : 'EXTERNAL_PENDING';
   }
   if (post.display_state === 'PENDING_APPROVAL') return 'APPROVAL';
+  if (approvedConnectionRequired(post)) return 'CONNECTION_REQUIRED';
   if (post.display_state === 'ACTION_REQUIRED') return 'CREATING';
   if (productionProgress(post.production ?? null).complete || packageIsReady(pkg)) return 'APPROVAL';
   return 'CREATING';
@@ -50,6 +58,7 @@ export function reservationStage(post, pkg, group = {}) {
     return hasExternalScheduleReceipt(post, group) ? 'SCHEDULED' : 'EXTERNAL_PENDING';
   }
   if (post.display_state === 'PENDING_APPROVAL') return 'APPROVAL';
+  if (approvedConnectionRequired(post)) return 'CONNECTION_REQUIRED';
   if (productionProgress(post.production ?? null).complete || packageIsReady(pkg)) return 'READY';
   return 'CREATING';
 }

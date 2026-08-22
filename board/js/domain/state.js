@@ -223,9 +223,9 @@ export const FAILURE_KINDS = Object.freeze({
   },
   CREDENTIAL_EXPIRED: {
     id: 'CREDENTIAL_EXPIRED',
-    label: '認証切れ',
-    cause: 'SNSアカウントの認証が切れています',
-    recommend: '接続設定から再接続してください',
+    label: '外部接続が必要',
+    cause: '投稿内容は承認済みです。SNSアカウントの初回接続または接続更新だけが残っています',
+    recommend: '接続設定から1回接続してください。内容の再承認は不要です',
     autoRetry: false,
   },
   PERMISSION_DENIED: {

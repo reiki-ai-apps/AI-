@@ -101,6 +101,7 @@ test('3日分を投稿名・媒体・予約・承認待ち・未準備へ分け�
     CREATING: 0,
     READY: 1,
     APPROVAL: 1,
+    CONNECTION_REQUIRED: 0,
     EXTERNAL_PENDING: 0,
     SCHEDULED: 1,
   });
@@ -165,6 +166,30 @@ test('媒体カードは完了数と未完了分の現在地を別々に示す',
   ], note);
   assert.equal(split.mark, '0/2');
   assert.deepEqual(split.progress.map((part) => part.label), ['制作中 1', '予約待ち 1']);
+});
+
+test('承認済みでSNS接続だけがない投稿は承認待ちに戻さない', () => {
+  const plan = buildReservationPlan({
+    todayKey: '2026-08-22',
+    posts: [{
+      channel_post_id: 'x-approved-needs-connection',
+      post_group_id: 'x-approved-needs-connection-group',
+      brand_id: 'news',
+      platform: 'X',
+      scheduled_at: '2026-08-22T00:15:00.000Z',
+      calendar_date_key: '2026-08-22',
+      display_state: 'ACTION_REQUIRED',
+      failure_kind: 'CREDENTIAL_EXPIRED',
+      approval_id: 'approval-current-revision',
+    }],
+    postGroups: [{ post_group_id: 'x-approved-needs-connection-group', brand_id: 'news' }],
+  });
+  assert.equal(plan.days[0].counts.CONNECTION_REQUIRED, 1);
+  assert.equal(plan.days[0].counts.APPROVAL, 0);
+  assert.equal(plan.days[0].items[0].stage, 'CONNECTION_REQUIRED');
+
+  const summary = badgeProgressSummary(plan.days[0].items, { platform: 'X', required: 2 });
+  assert.deepEqual(summary.progress.map((part) => part.label), ['未登録 1', '接続のみ 1']);
 });
 
 test('note・X・Instagramは各2件の外部確定で日次達成になる', () => {
