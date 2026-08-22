@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-22T14:06:43+09:00",
+  "generated_at": "2026-08-22T17:55:17+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
     "published_confirmed": 15,
-    "scheduled": 1,
-    "attention": 4
+    "scheduled": 0,
+    "attention": 5
   },
   "channels": [
     {
@@ -57,18 +57,14 @@
       "label": "YouTube",
       "account": "KIZASHI / @kizashi_jp",
       "url": "https://www.youtube.com/@kizashi_jp",
-      "state": "HEALTHY",
-      "last_verified_at": "2026-08-22T14:06:43+09:00",
+      "state": "ATTENTION",
+      "last_verified_at": "2026-08-22T17:55:17+09:00",
       "latest_published": {
         "title": "OpenAI ZDRでも安全確定ではない｜機密情報を入れる前の3確認 #Shorts",
         "url": "https://youtube.com/shorts/7U8O5YiEHoE"
       },
-      "next_scheduled": {
-        "title": "AIの答えを 疑う4つの問い #Shorts",
-        "url": "https://youtube.com/shorts/NaPQN9yFWco",
-        "scheduled_at": "2026-08-23T12:00:00+09:00"
-      },
-      "note": "8月22日のShorts 1本は公開済み。8月23日のShortsは外部ID NaPQN9yFWco、公開予約2026年8月23日12:00（JST）、初期チェック問題なしをYouTube Studioで照合し、外部予約receiptを保存済み。Shorts専用サムネイルは設定していない。"
+      "next_scheduled": null,
+      "note": "8月22日のShorts 1本は公開済み。8月23日の外部予約ID NaPQN9yFWcoには旧Revisionが残っている。その後BGM修正版Revision 6（動画hash 252e029e...）へ更新したため、現行版は承認待ち。現行Revision/Hashに一致する外部差替えreceipt取得までは予約済みと表示しない。旧予約は二重投稿防止のため自動削除・再送していない。"
     },
     {
       "id": "radar",
@@ -87,6 +83,11 @@
   ],
   "blockers": [
     {
+      "id": "20260823-shorts-r6-reapproval-and-replacement",
+      "severity": "DANGER",
+      "message": "8月23日ShortsはBGM修正版Revision 6へ更新済み。YouTube外部ID NaPQN9yFWcoには旧Revisionが残るため、現行動画とBGMの所有者承認後に差し替え、現行hashに一致する外部receiptを再取得する必要がある。"
+    },
+    {
       "id": "20260823-note-quality-remediation-r4",
       "severity": "DANGER",
       "message": "8月23日のnote 2本で同文反復と品質ゲート誤判定を検出。本文をRevision 4へ修正し監査PASS。記事hashと08:00・12:00枠が変わったため旧承認を無効化し、再承認待ちへ戻した。"
@@ -99,7 +100,7 @@
     {
       "id": "20260822-23-external-reservation-required",
       "severity": "ATTENTION",
-      "message": "8月22日Shorts 1本とnote 2件は公開receipt確認済み。8月23日Shorts 1本はYouTube外部予約ID・receipt取得済み。X 2件とInstagram 2件は公式API接続を確認できず、外部ID・公開receiptは未取得。予約済み・公開済みとは扱わない。"
+      "message": "8月22日Shorts 1本とnote 2件は公開receipt確認済み。8月23日Shortsの外部予約は旧Revisionで、現行Revision 6の予約receiptは未取得。X 2件とInstagram 2件も公式API接続を確認できず、外部ID・公開receiptは未取得。いずれも現行版を予約済み・公開済みとは扱わない。"
     },
     {
       "id": "20260821-external-reservation-and-daily-minimum",
@@ -133,13 +134,13 @@
       "run_id": "kizashi-upcoming-20260822-23",
       "started_at": "2026-08-21T18:00:00+09:00",
       "finished_at": "2026-08-22T01:55:00+09:00",
-      "state": "QUALITY_REMEDIATION_COMPLETE_AWAITING_REAPPROVAL_AND_EXTERNAL_RECEIPTS",
-      "stage": "8月23日note 2件をRevision 4へ修正、全媒体の外部予約receiptを再照合",
+      "state": "CURRENT_REVISIONS_AWAITING_APPROVAL_AND_EXTERNAL_RECEIPTS",
+      "stage": "8月23日note 2件Revision 4とShorts Revision 6を承認待ちへ同期、外部receiptを再照合",
       "candidate_count": 4,
       "verified_primary_count": 4,
       "required_primary_count": 4,
-      "reason": "8月23日のnote 2本に大量の同文反復があり、旧品質ゲートは誤判定だった。本文を実務内容へ置換し、公式一次情報3件、有料境界、対象外読者、テンプレートを追加して監査PASS。外部receiptのない8月22日・23日の予約済み表示も解除した。",
-      "next_action": "8月23日のnote Revision 4を所有者が再承認後、08:00と12:00の順で外部予約または遅延時は最低4時間空けて公開する。並行してInstagram・X・YouTube Shortsの接続と外部予約receiptを取得する。"
+      "reason": "8月23日のnote 2本はRevision 4へ品質修正済み。Shortsはナレーション改善後、暗いBGMを明るい集中系BGMへ差し替えたRevision 6へ更新した。YouTube外部ID NaPQN9yFWcoは旧Revisionの予約のため、現行版の予約済み表示を解除した。",
+      "next_action": "8月23日のnote Revision 4とShorts Revision 6を所有者が承認後、noteは08:00と12:00、Shortsは12:00の外部枠へ進める。Shortsは既存予約を現行動画へ差し替え、現行hashに一致する外部receiptを取得する。"
     },
     "policy": "予約成立を最優先。noteはAsia/Tokyoの8:00・12:00を基本枠とし、遅れた場合も同時公開せず、1本目を次の実行可能時刻、2本目を最低4時間後へ移す。YouTube本編はAsia/Tokyoの月・水・金を固定投稿日とし、当日枠と次の2枠を予約済み／承認待ち／制作中／HOLDで必ず表示する。制作・修正・品質検査・Board同期は途中承認なしで連続実行し、同一revision/hashの完成物、投稿先、日時、価格・API費用を一画面へまとめた最終公開直前だけ所有者承認を求める。認証権限の新規付与、課金、外部公開は最終承認対象とし、成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -199,17 +200,20 @@
         }
       ]
     },
-    "stage": "8月23日分｜Shorts予約済み／note Revision 4再承認待ち",
-    "reason": "8月23日ShortsはYouTube外部予約ID NaPQN9yFWcoを取得し、12:00 JSTの予約receiptを同期。note 2本はRevision 4の再承認待ち、X・Instagramは外部接続待ち。",
-    "next_action": "note Revision 4の再承認後に08:00・12:00枠へ進め、X・Instagramは接続回復後に外部予約ID・receiptを取得してBoardへ同期する。"
+    "stage": "8月23日分｜Shorts Revision 6・note Revision 4承認待ち",
+    "reason": "8月23日ShortsはBGM変更後の現行Revision 6が未承認で、外部ID NaPQN9yFWcoには旧Revisionが残る。note 2本はRevision 4の再承認待ち、X・Instagramは外部接続待ち。",
+    "next_action": "Shorts Revision 6承認後に既存予約を差し替えて外部receiptを再取得する。note Revision 4は承認後に08:00・12:00枠へ進め、X・Instagramは接続回復後に外部予約ID・receiptを取得する。"
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-22T14:06:43+09:00",
+    "last_checked_at": "2026-08-22T17:55:17+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
   "evidence": [
+    "outputs/kizashi-upcoming-20260822-23/receipts/monitor-20260822-1755-shorts-r6.json",
+    "outputs/kizashi-upcoming-20260822-23/shorts-2026-08-23/shorts-review-r6.json",
+    "outputs/kizashi-upcoming-20260822-23/ai-literacy-20260823-a-shorts-r6-board-sync.json",
     "outputs/kizashi-upcoming-20260822-23/zdr-private-safety-20260822-a/note/publish-receipt.json",
     "outputs/kizashi-upcoming-20260822-23/cyber-monitoring-20260822-b/note/publish-receipt.json",
     "outputs/kizashi-upcoming-20260822-23/receipts/remediation-20260822-note-r5.json",
