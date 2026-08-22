@@ -2,6 +2,389 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_c11da3b3107d4974483d_rev_a6cb3e856dc5",
+      "story_id": "story_97548d46b0002522c7",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5441379310344828,
+      "title": "Midjourney、バージョン8.2公開と初の企業買収を発表",
+      "source_published_at": "2026-08-22T01:51:11.287Z",
+      "published_at": "2026-08-22T01:51:11.287Z",
+      "fetched_at": "2026-08-22T01:51:11.287Z",
+      "event_at": "2026-08-20",
+      "event_status": "発表済み",
+      "raw_excerpt": "Midjourneyが公式更新履歴で、バージョン8.2のリリース、初の企業買収、ドラフトモードへのランダムスタイル追加、ハードウェア発表ライブ配信を明らかにした。",
+      "source_name": "Midjourney 公式更新情報",
+      "source_url": "https://updates.midjourney.com/",
+      "story_entities": [
+        "Midjourney",
+        "Version 8.2",
+        "midjourney",
+        "version8.2"
+      ],
+      "primary_entity": "Midjourney",
+      "story_subject": "Midjourneyバージョン8.2および初の企業買収",
+      "event_type": "acquisition",
+      "event_stage": "announced",
+      "event_scope": "Midjourney全体",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "Midjourneyのバージョン",
+          "value": "8.2",
+          "normalized_value": "8.2"
+        },
+        {
+          "type": "date",
+          "scope": "更新履歴公開日",
+          "value": "2026-08-20",
+          "normalized_value": "2026-08-20"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "uncertain_subject",
+        "similar_title"
+      ],
+      "change_summary": "Midjourneyがバージョン8.2の公開に加え、初の企業買収とハードウェア発表ライブ配信を予告した。",
+      "detail": "Midjourneyの公式更新情報として8月20日付のChangelogが公開され、バージョン8.2のリリース、同社にとって初となる企業買収、ドラフトモードにおけるランダムスタイル機能の追加、そしてハードウェアに関する発表を行うライブ配信の予定という複数の項目がまとめて示されている。買収の対象企業名や金額、バージョン8.2の具体的な変更点、ハードウェアの詳細については記事からは確認できないが、画像・動画生成ツールとして知られるMidjourneyが事業や製品ラインを拡大している動きがうかがえる。",
+      "new_facts": [
+        "Midjourneyがバージョン8.2をリリースした",
+        "Midjourneyが初めての企業買収を発表した",
+        "ドラフトモードにランダムスタイル機能が追加された",
+        "ハードウェア発表のライブ配信が予告された"
+      ],
+      "event_date_precision": "day"
+    },
+    {
+      "article_id": "article_e3ede1f2d576b86cd2d6",
+      "story_id": "story_65eb9f21b6374781e7",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6127272727272728,
+      "title": "DeepSeekが視覚モデルを公開、画像1000枚の処理コストは1元でOpus 4.8に迫る性能",
+      "source_published_at": "2026-08-22T01:25:00.000Z",
+      "published_at": "2026-08-22T01:25:00.000Z",
+      "fetched_at": "2026-08-22T01:51:26.273Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "DeepSeekが新しい視覚（マルチモーダル）モデルを公開し、画像1000枚の処理コストを約1元に抑えつつOpus 4.8に迫る性能を示した。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1zc2hDbTZJbVczUzFLTHV0VDFEbXI0QnJiZGxhSEZIelBGTDRCcGxCUFZVbGRXWW9CQS0xUmN5OURGcWZ1a2dGT3JqeVFwR3diSERwcHhjNHV0aFQtTFdpWWdCbEhWdVFEdGlKZE9Pbk10UnRy?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "Opus 4.8",
+        "deepseek",
+        "opus4.8",
+        "opus"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek視覚モデル",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "全世界",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "画像1000枚処理コスト",
+          "value": "1元",
+          "normalized_value": "1"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type",
+        "same_scope"
+      ],
+      "change_summary": "DeepSeekが低コストの視覚モデルを新たに公開し、画像処理コストと性能面で競合に迫る水準を示した。",
+      "detail": "DeepSeekが新たな視覚モデル（マルチモーダルAI）を公開した。発表によれば、画像1000枚を処理する際のコストはわずか1元（人民元）程度に抑えられており、低コストでの画像認識・理解が可能という。また、このモデルを用いたマルチモーダルAgent（複数の情報形式を扱うAIエージェント）の性能は、Anthropicの「Opus 4.8」に迫る水準に達しているとされる。具体的なモデル名やベンチマークの詳細、提供開始時期などは本文からは確認できない。",
+      "new_facts": [
+        "DeepSeekが視覚(マルチモーダル)モデルを公開した",
+        "画像1000枚の処理コストは約1元",
+        "マルチモーダルAgentの性能がOpus 4.8に迫るとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_9eff63584f0597a9588b",
+      "story_id": "story_90d15f489a5fa2876a",
+      "story_sequence": 2,
+      "relation_type": "follow_up",
+      "relation_confidence": 0.8800000000000001,
+      "title": "OpenAI、「GPT-5.6 Sol」の開発者向け価格を2割超引き下げ",
+      "source_published_at": "2026-08-22T00:25:00.000Z",
+      "published_at": "2026-08-22T00:25:00.000Z",
+      "fetched_at": "2026-08-22T01:51:05.903Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIは開発者向けAPIとして提供する「GPT-5.6 Sol」の価格を2割超引き下げ、競合他社との価格競争に対応した。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBqT2FtYlhnNWI0SVU4ZEdaaE1xcHZFMTVTel95aFpSczZ3ZFpmTzFkOVkyNC1rcTI2eXFpeUhFX0gyZGhrMF95ZGpGOEFKUzRvWmJDSEVLTjRSNUR0aXdCUC1wNW5uZlNVV0xqM1RiOTlVUUdm?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "GPT-5.6 Sol",
+        "openai",
+        "gpt-5.6sol",
+        "gpt-5.6"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "GPT-5.6 Sol",
+      "event_type": "pricing",
+      "event_stage": "announced",
+      "event_scope": "API",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "GPT-5.6 Sol開発者向けAPI価格引き下げ幅",
+          "value": "20%超",
+          "normalized_value": "20%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "follow_up",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "same_scope",
+        "material_fact_changed"
+      ],
+      "change_summary": "GPT-5.6 Solの開発者向けAPI価格が2割超引き下げられた。",
+      "detail": "OpenAIは開発者向けに提供するモデル「GPT-5.6 Sol」のAPI価格を20%を超える幅で引き下げた。背景には他社AIモデルとの価格競争があるとみられ、開発者がより低コストでモデルを利用できるようにする狙いがある。具体的な引き下げ後の単価や対象となる利用区分、実施時期の詳細は本文からは確認できないが、AI企業間の価格競争が激化している状況を示す動きとなっている。",
+      "new_facts": [
+        "OpenAIがGPT-5.6 Solの開発者向けAPI価格を2割超引き下げた",
+        "競合対応が理由とされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_da6e941ea436403d1b2c",
+      "story_id": "story_a29f15691020b9c500",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AIチップ1個がエアコン1台分の熱を発する時代、半導体業界の放熱対策とは",
+      "source_published_at": "2026-08-22T00:08:54.000Z",
+      "published_at": "2026-08-22T00:08:54.000Z",
+      "fetched_at": "2026-08-22T01:51:41.286Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "AIチップ1個から出る熱がエアコン1台分に匹敵する状況が生まれており、半導体業界は放熱・冷却技術の見直しを迫られている。",
+      "source_name": "XenoSpectrum",
+      "source_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBHa3BqUWxibjE5eS14VHFhMTFfaFBuZER3T3dTUk5PUmhwcS1YVDVKdHFxS2xYMERqY0Zlb1hESktQdEZaSlZWSWZrQV9IdWYwdDZaeWF5SHA5cFYxWmJOUDJJRUVRdXl2MDBBZ3NWV1dqUGd4UVBrTEs4NA?oc=5",
+      "story_entities": [
+        "AIチップ",
+        "半導体業界",
+        "aiチップ"
+      ],
+      "primary_entity": "半導体業界",
+      "story_subject": "AIチップの発熱・冷却問題",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AIチップの発熱量増加が半導体業界の冷却設計の見直しを促している点が指摘された。",
+      "detail": "AI向け半導体の高性能化に伴い、チップ1個が発する熱量がエアコン1台分に匹敵するケースが出てきているという。従来の空冷方式では対応が難しくなりつつあり、半導体業界はデータセンターの冷却設計や液冷技術など、放熱対策の見直しを迫られている。具体的な対象チップの型番や数値データ、各社の対応策の詳細は本文からは確認できないが、AIチップの発熱問題がデータセンター設計全体に影響を与えつつある実情が示されている。",
+      "new_facts": [
+        "AIチップ1個の発熱量がエアコン1台分に匹敵するとされる",
+        "半導体業界が冷却技術の見直しを迫られている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_0a1713ea65ccc4bb0a04",
+      "story_id": "story_1a0e54e1d9bb1befc9",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.82,
+      "title": "Anthropic、脆弱性スキャン向けにMythos 5をClaude Security経由で提供開始",
+      "source_published_at": "2026-08-21T22:11:06.000Z",
+      "published_at": "2026-08-21T22:11:06.000Z",
+      "fetched_at": "2026-08-22T01:51:07.257Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "AnthropicはClaude Security経由でMythos 5モデルによる脆弱性スキャン機能をEnterprise顧客向けに開放した。",
+      "source_name": "Yahoo!ニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE56UWI5a282TG1RN3hhZlV4ODJ5YWFxOXJ3Y3V5YWdKY2h1cnBfRWNrT3JyN1Rtb0lvbnVrc0NOSGpfcF9idmxGcGVnNlhyeUw0WllDcjRaSmQtQlhwano1ck5ZYUF0aV80NEpjZVpiWTVqNjFmMWJjeEExVEpnbVU?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude Security",
+        "Mythos 5",
+        "anthropic",
+        "claudesecurity"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude Security(Mythos 5)",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Enterprise顧客",
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "Claude Securityの対象顧客",
+          "value": "Enterprise顧客向け",
+          "normalized_value": "enterprise顧客向け"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "material_fact_changed",
+        "low_confidence_follow_up_demoted"
+      ],
+      "change_summary": "Claude Security経由でMythos 5モデルによる脆弱性スキャン機能がEnterprise顧客向けに新たに提供された。",
+      "detail": "Anthropicは脆弱性スキャン向けの新機能を発表し、同社のセキュリティ製品「Claude Security」を通じてMythos 5と呼ばれるモデルをEnterprise顧客に開放した。これによりエンタープライズ契約企業はClaude Securityを使ってソフトウェアの脆弱性を診断できるようになる。具体的な料金体系や対象範囲、提供開始日など詳細な情報は本文からは確認できず、今後の追加発表が待たれる。",
+      "new_facts": [
+        "AnthropicはMythos 5モデルをClaude Security経由で脆弱性スキャンに利用できるようにした",
+        "対象はEnterprise顧客"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_6ba15fa65f6811fbcc8d",
+      "story_id": "story_bcf1f2ffc422fe3bef",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6145945945945945,
+      "title": "Adobe Firefly、AI生成の音楽・音声・効果音を扱うオーディオスタジオに拡張",
+      "source_published_at": "2026-08-21T16:35:00.000Z",
+      "published_at": "2026-08-21T16:35:00.000Z",
+      "fetched_at": "2026-08-22T01:51:23.833Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Adobe Fireflyが新たにAI生成による音楽・音声・効果音の制作機能を備え、オーディオスタジオとして機能拡張されたと報じられた。",
+      "source_name": "Notebookcheck",
+      "source_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxObEdzSWt0Q0p0NU5MZ2swWUdiX0VweW9SWEhRUFhYdEM2NEZKMlpLTDdGMURhc3hlbE5MMkc2SnJLQTQ5X1ZmZlJPRzg3N25vQkpJeWJjWlF0LXU4QmszS2cxNC1RNmFDc0hBWmd5RVhTa3M0UEpYWVlqQWlZVFBybTZJX3pZS09TMzViRU9maEc3X1hLVlF2amJSY0l6cHRfMFZPVVBhOTVFMHpGOWhZZGl2LXpCWG5xeE9fWXNqQzlVM1U3eWc?oc=5",
+      "story_entities": [
+        "Adobe Firefly",
+        "adobefirefly",
+        "adobe",
+        "firefly"
+      ],
+      "primary_entity": "Adobe",
+      "story_subject": "Adobe Fireflyのオーディオ生成機能",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Adobe Firefly全体",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Adobe Fireflyに音楽・音声・効果音のAI生成機能が加わり、オーディオ制作にも対応するようになった。",
+      "detail": "画像・動画生成ツールとして知られるAdobe Fireflyが、AIによる音楽、音声、効果音の生成に対応するオーディオスタジオへと拡張されたとNotebookcheckが伝えている。これまで画像や動画の生成が中心だったFireflyの機能が音声領域にも広がることで、クリエイターが1つのツール内で映像と音の両方を制作できるようになる可能性がある。具体的な料金プランや対応言語、提供開始のタイミングなど詳細な仕様は記事からは確認できない。",
+      "new_facts": [
+        "Adobe FireflyがAI生成の音楽・音声・効果音に対応するオーディオスタジオになった"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_fd4caa640eadf5a58d45",
+      "story_id": "story_152f24ec11ae8b474d",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Google DeepMind、AIの「フルスタック」開発を5つの層で解説",
+      "source_published_at": "2026-08-21T16:00:00.000Z",
+      "published_at": "2026-08-21T16:00:00.000Z",
+      "fetched_at": "2026-08-22T01:51:08.436Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Google DeepMindのエンジニアが、AI開発を支える5つの層(インフラ・セキュリティ・研究・モデルとツール・製品)を動画で解説した。",
+      "source_name": "blog.google",
+      "source_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/what-full-stack-development-means/",
+      "story_entities": [
+        "Google DeepMind",
+        "Paige Bailey",
+        "googledeepmind",
+        "paigebailey",
+        "google-gemini"
+      ],
+      "primary_entity": "Google DeepMind",
+      "story_subject": "フルスタックAI開発の5層構造解説",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "Google公式ブログ・動画",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Google DeepMindのエンジニアが「フルスタックAI」の概念を5層構成で体系的に解説した動画を公開した。",
+      "detail": "Google公式ブログで、Google DeepMindのエンジニアリングリーダーであるPaige Bailey氏が「フルスタック」という言葉の意味を、インフラ、セキュリティ、研究、モデルとツール、製品という5つの層に分けて説明している。バイブコーディングやWeb開発の文脈でよく耳にする「フルスタック」が、実際にはGoogleの日常的なAI製品にどう関わっているかを紹介する内容で、5つの層が組み合わさることでGoogleのAI製品がより速く、安全で、利用者や開発者にとって役立つものになっていると述べられている。詳細な解説は動画で視聴できるとされている。",
+      "new_facts": [
+        "Google DeepMindのPaige Bailey氏がフルスタックAI開発を5層に分けて解説する動画を公開した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_58bdc85a311024b8dd3f",
+      "story_id": "story_c0ad426ca899994e1d",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6805714285714286,
+      "title": "Claude Academy、初心者からAPI活用まで学べる無料コース26本を公開",
+      "source_published_at": "2026-08-21T10:52:33.000Z",
+      "published_at": "2026-08-21T10:52:33.000Z",
+      "fetched_at": "2026-08-22T01:51:07.257Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Claude Academyが、Claudeの基本操作からAPI活用までを学べる無料コース26本を公開したと伝えられている。",
+      "source_name": "Pasquale Pillitteri",
+      "source_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOcVl6ZHlQRnVDMmNaX2lNbnM3UFZWV0toVFVvM1NyVkF2RzJjWlRBLXdubUpQZjlvUFFrTk5wWTh2clJNNGF5SzhGMUJ4ME1DWEIxMGpLeVBBYnZ5c2ZON3UxdDhwN2tTUGVjRXZETTZqZVUwUGlsQUNPRlBGRVhJMFBWaE0?oc=5",
+      "story_entities": [
+        "Claude Academy",
+        "Claude",
+        "Anthropic",
+        "claudeacademy",
+        "claude"
+      ],
+      "primary_entity": "Claude Academy",
+      "story_subject": "Claude学習用無料コース26本",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "無料オンライン学習コンテンツ",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "公開コース数",
+          "value": "26本",
+          "normalized_value": "26"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject",
+        "same_event_type"
+      ],
+      "change_summary": "Claudeの使い方を学べる無料コースが26本まとめて公開された。",
+      "detail": "Claude Academyという学習コンテンツが公開され、Claudeをゼロから学びAPIまで使いこなせるようになることを目的とした無料コースが26本用意されたと紹介されている。対象は初心者から実務でAPIを使う開発者まで幅広く想定されているとみられるが、各コースの具体的な内容や提供元がAnthropic公式かどうかなど詳細は記事からは確認できない。学習リソースとしてClaude活用のハードルを下げる狙いがあるとみられる。",
+      "new_facts": [
+        "Claude Academyが無料コース26本を公開した",
+        "内容は初心者向けからAPI活用までを網羅しているとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_ff2456323ecb65d0f569",
       "story_id": "story_7bf18e1683ee2be52c",
       "story_sequence": 1,
@@ -173,6 +556,60 @@
       "new_facts": [
         "OKIが生成AIでコンタクトセンター業務を標準化するサービスを発表した",
         "提供開始は2027年1月を予定している"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_595bff5531b473acfd68",
+      "story_id": "story_42be64a303ea528357",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "ECでの購入前にAIで検索する消費者は12%、楽天のRakuten AI利用は9.7%",
+      "source_published_at": "2026-08-21T07:31:31.000Z",
+      "published_at": "2026-08-21T07:31:31.000Z",
+      "fetched_at": "2026-08-22T01:51:24.505Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "ネットショップ担当者フォーラムの調査で、ChatGPTやGemini、Perplexityで商品を調べてからEC購入した人が12%、楽天のRakuten AIに質問した人が9.7%だったことが分かった。",
+      "source_name": "Yahoo!ニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNemdGbUR4YlRtajljT0JkZXA3cmlIN3FZTTRwYU9qTThTZ1FWVTJFMzY0LXBjNjNZSHNFY3BvS2NtLVJNYlJZTnZJRE9OLTlJMGJPZjlmSm9pWGIwbVljQVoxYnpEeHpZUEpKemJ3X1gwcURPZnFweUZoeDMzOWF6TU5Bc19nYjBCZWJwTUVn?oc=5",
+      "story_entities": [
+        "ChatGPT",
+        "Gemini",
+        "Perplexity",
+        "chatgpt",
+        "gemini"
+      ],
+      "primary_entity": "ネットショップ担当者フォーラム",
+      "story_subject": "AI活用によるEC購買行動調査",
+      "event_type": "research",
+      "event_stage": "completed",
+      "event_scope": "EC消費者の購買行動",
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "AIで商品検索後にEC購入した割合",
+          "value": "12%",
+          "normalized_value": "12%"
+        },
+        {
+          "type": "other",
+          "scope": "Rakuten AIに商品質問した割合",
+          "value": "9.7%",
+          "normalized_value": "9.7%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AIツールを使って商品を調べてからEC購入する消費者の割合や、楽天のAIサービス利用率が調査で具体的な数値として示された。",
+      "detail": "ネットショップ担当者フォーラムが実施した調査により、ChatGPT・Gemini・Perplexityなどの生成AIやAI検索ツールを使って商品や購入先を調べたうえでECサイトで購入したという回答が12%、楽天が提供するRakuten AIに商品について質問したという回答が9.7%だったことが明らかになった。消費者の購買行動において、AIチャットボットや検索ツールが商品検索や比較検討の場として一定の割合で使われ始めている実態がうかがえる調査結果となっている。",
+      "new_facts": [
+        "ChatGPT・Gemini・Perplexityなどで商品や購入先を調べてからEC購入した人が12%だった",
+        "楽天のRakuten AIに商品について質問した人が9.7%だった"
       ],
       "event_date_precision": "unknown"
     },

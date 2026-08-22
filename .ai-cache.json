@@ -10393,57 +10393,64 @@
     },
     "url:https://updates.midjourney.com": {
       "canonical_url": "https://updates.midjourney.com",
-      "content_hash": "99234e2c34937aa22f4378debbd19664fe755b4b352646251ba424dda340fb61",
-      "story_key": "407d81a5639db4e8828ce35adfaa9d1206ef7ac98e6a12aa2220303c9d788420",
+      "content_hash": "e180965c8d075d90ebe0162906cad8094f10b5091ed846b5d5aa885a7795b99c",
+      "story_key": "c12bfdf5acc311fa560d91e84da49789d77adafb248b2f2de7690b6cfbbee9a1",
       "status": "enriched",
-      "processed_at": "2026-08-09T04:39:37.652Z",
+      "processed_at": "2026-08-22T01:54:24.430Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
       "lane": "regular",
       "reason": "",
       "result": {
         "tool": "Midjourney",
-        "title": "Midjourney、バージョン8.2を公開しMidjourney初の企業買収も発表",
+        "title": "Midjourney、バージョン8.2公開と初の企業買収を発表",
         "source_url": "https://updates.midjourney.com/",
         "source_name": "Midjourney 公式更新情報",
         "is_official": true,
-        "published_at": "2026-08-09T04:37:27.935Z",
+        "published_at": "2026-08-22T01:51:11.287Z",
         "source_published_at": "",
         "source_updated_at": "",
         "source_date_status": "unknown",
-        "fetched_at": "2026-08-09T04:37:27.935Z",
-        "event_at": "",
+        "fetched_at": "2026-08-22T01:51:11.287Z",
+        "event_at": "2026-08-20",
         "event_status": "発表済み",
-        "event_date_precision": "unknown",
+        "event_date_precision": "day",
         "story_entities": [
           "Midjourney",
           "Version 8.2"
         ],
         "primary_entity": "Midjourney",
-        "story_subject": "Midjourney Version 8.2および企業買収発表",
-        "event_type": "release",
+        "story_subject": "Midjourneyバージョン8.2および初の企業買収",
+        "event_type": "acquisition",
         "event_stage": "announced",
-        "event_scope": "Midjourneyサービス全体",
+        "event_scope": "Midjourney全体",
         "fact_slots": [
           {
             "type": "version",
             "scope": "Midjourneyのバージョン",
-            "value": "Version 8.2",
-            "normalized_value": "v8.2"
+            "value": "8.2",
+            "normalized_value": "8.2"
+          },
+          {
+            "type": "date",
+            "scope": "更新履歴公開日",
+            "value": "2026-08-20",
+            "normalized_value": "2026-08-20"
           }
         ],
         "new_facts": [
-          "MidjourneyがVersion 8.2の更新内容を公開した",
-          "Midjourneyが初めての企業買収を実施したと発表した",
-          "Midjourneyがハードウェア発表の生配信を予定していると告知した"
+          "Midjourneyがバージョン8.2をリリースした",
+          "Midjourneyが初めての企業買収を発表した",
+          "ドラフトモードにランダムスタイル機能が追加された",
+          "ハードウェア発表のライブ配信が予告された"
         ],
         "structured_complete": true,
-        "raw_excerpt": "画像生成AI「Midjourney」が公式ブログでバージョン8.2の更新内容を公表し、同社初の企業買収やハードウェア発表の生配信予定も明らかにした。",
-        "detail": "Midjourneyは公式ブログで、画像生成AIサービスの最新版「Version 8.2」に関する更新情報を公開した。更新内容には、ドラフトモードでのランダムスタイル機能の追加や、V8.1向けのドラフトモード機能、新機能のプレビューなどが含まれる。あわせて、Midjourneyとして初めてとなる企業買収を実施したことも公表された。さらに、ハードウェアに関する発表を行うライブ配信の予定も告知されている。詳細な買収先企業名やハードウェアの内容については記事本文からは確認できない。",
-        "change_summary": "Midjourneyがバージョン8.2の更新内容と、同社初の企業買収、ハードウェア発表の生配信予定を公表した。",
-        "impact_summary": "画像生成AIを業務やクリエイティブ制作で使う利用者にとって、新機能追加やハードウェア展開の動向が今後の活用範囲に影響する可能性がある。",
-        "action_suggestion": "買収先企業名やハードウェアの詳細、ライブ配信の日時については、Midjourney公式の続報を確認する必要がある。",
-        "importance": "B",
+        "raw_excerpt": "Midjourneyが公式更新履歴で、バージョン8.2のリリース、初の企業買収、ドラフトモードへのランダムスタイル追加、ハードウェア発表ライブ配信を明らかにした。",
+        "detail": "Midjourneyの公式更新情報として8月20日付のChangelogが公開され、バージョン8.2のリリース、同社にとって初となる企業買収、ドラフトモードにおけるランダムスタイル機能の追加、そしてハードウェアに関する発表を行うライブ配信の予定という複数の項目がまとめて示されている。買収の対象企業名や金額、バージョン8.2の具体的な変更点、ハードウェアの詳細については記事からは確認できないが、画像・動画生成ツールとして知られるMidjourneyが事業や製品ラインを拡大している動きがうかがえる。",
+        "change_summary": "Midjourneyがバージョン8.2の公開に加え、初の企業買収とハードウェア発表ライブ配信を予告した。",
+        "impact_summary": "画像生成AIを手がけるMidjourneyが買収や独自ハードウェアに動くことで、業界の競争構図や今後の製品展開に影響を与える可能性がある。",
+        "action_suggestion": "買収先企業名やハードウェア発表ライブ配信の具体的な日時は記事から確認できず、続報の確認が必要。",
+        "importance": "A",
         "related_categories": [
           "画像・動画生成",
           "企業・株式"
@@ -29631,7 +29638,497 @@
         ],
         "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
       }
+    },
+    "url:https://news.google.com/rss/articles/cbmif0fvx3lxte56uwi5a282tg1rn3hhzlv4odj5ywfxoxj3y3v5ywdky2h1cnbfrwnrt3jyn1rtb0lvbnvrc0nosgpfcf9idmxgcgvnnlhyeuw0wlldcjrasmqtqlhwano1ck5zyuf0av80nepjzvpiwtvqnjfmmwjjeeexvepnbvu": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmif0fvx3lxte56uwi5a282tg1rn3hhzlv4odj5ywfxoxj3y3v5ywdky2h1cnbfrwnrt3jyn1rtb0lvbnvrc0nosgpfcf9idmxgcgvnnlhyeuw0wlldcjrasmqtqlhwano1ck5zyuf0av80nepjzvpiwtvqnjfmmwjjeeexvepnbvu",
+      "content_hash": "f55abc72626cc3eb87208611b4d5018b19033e77b57e52330f5e5e1c85a637ec",
+      "story_key": "47c351b24df156c173cd3a25b6b0d7d41c2b35a90fb6db8da5502184617072ff",
+      "status": "enriched",
+      "processed_at": "2026-08-22T01:53:06.803Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Claude / Claude Code",
+        "title": "Anthropic、脆弱性スキャン向けにMythos 5をClaude Security経由で提供開始",
+        "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE56UWI5a282TG1RN3hhZlV4ODJ5YWFxOXJ3Y3V5YWdKY2h1cnBfRWNrT3JyN1Rtb0lvbnVrc0NOSGpfcF9idmxGcGVnNlhyeUw0WllDcjRaSmQtQlhwano1ck5ZYUF0aV80NEpjZVpiWTVqNjFmMWJjeEExVEpnbVU?oc=5",
+        "source_name": "Yahoo!ニュース",
+        "is_official": false,
+        "published_at": "2026-08-21T22:11:06.000Z",
+        "source_published_at": "2026-08-21T22:11:06.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-22T01:51:07.257Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Anthropic",
+          "Claude Security",
+          "Mythos 5"
+        ],
+        "primary_entity": "Anthropic",
+        "story_subject": "Claude Security(Mythos 5)",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "Enterprise顧客",
+        "fact_slots": [
+          {
+            "type": "availability",
+            "scope": "Claude Securityの対象顧客",
+            "value": "Enterprise顧客向け",
+            "normalized_value": "enterprise顧客向け"
+          }
+        ],
+        "new_facts": [
+          "AnthropicはMythos 5モデルをClaude Security経由で脆弱性スキャンに利用できるようにした",
+          "対象はEnterprise顧客"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "AnthropicはClaude Security経由でMythos 5モデルによる脆弱性スキャン機能をEnterprise顧客向けに開放した。",
+        "detail": "Anthropicは脆弱性スキャン向けの新機能を発表し、同社のセキュリティ製品「Claude Security」を通じてMythos 5と呼ばれるモデルをEnterprise顧客に開放した。これによりエンタープライズ契約企業はClaude Securityを使ってソフトウェアの脆弱性を診断できるようになる。具体的な料金体系や対象範囲、提供開始日など詳細な情報は本文からは確認できず、今後の追加発表が待たれる。",
+        "change_summary": "Claude Security経由でMythos 5モデルによる脆弱性スキャン機能がEnterprise顧客向けに新たに提供された。",
+        "impact_summary": "企業のセキュリティ担当者はAIを活用した脆弱性診断をClaudeのエンタープライズ契約内で利用できるようになる可能性がある。",
+        "action_suggestion": "提供条件や料金、対象顧客の詳細はAnthropicの公式発表を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "セキュリティ",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmidefvx3lxte1zc2hdbtzjbvczuzflthv0vdfebxi0qnjizgxhsezielbgtdrccgxcufzvbgrxww9cqs0xumn5ourgcwz1a2dgt3jqevfwr3diserwchhjnhv0afqttfdpwwdcbehwdvfedglkze9pbk10unry": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte1zc2hdbtzjbvczuzflthv0vdfebxi0qnjizgxhsezielbgtdrccgxcufzvbgrxww9cqs0xumn5ourgcwz1a2dgt3jqevfwr3diserwchhjnhv0afqttfdpwwdcbehwdvfedglkze9pbk10unry",
+      "content_hash": "f519e033b53ba09bda205d2145aa0bb3affbd35c4029ac2ad07429e3390f76e2",
+      "story_key": "4af0d3cf739edbc1611e87f5f98bb248fba5b00190dd9dd8988ae41c1f1c3f98",
+      "status": "enriched",
+      "processed_at": "2026-08-22T01:53:06.803Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "DeepSeek",
+        "title": "DeepSeekが視覚モデルを公開、画像1000枚の処理コストは1元でOpus 4.8に迫る性能",
+        "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1zc2hDbTZJbVczUzFLTHV0VDFEbXI0QnJiZGxhSEZIelBGTDRCcGxCUFZVbGRXWW9CQS0xUmN5OURGcWZ1a2dGT3JqeVFwR3diSERwcHhjNHV0aFQtTFdpWWdCbEhWdVFEdGlKZE9Pbk10UnRy?oc=5",
+        "source_name": "BigGo ファイナンス",
+        "is_official": false,
+        "published_at": "2026-08-22T01:25:00.000Z",
+        "source_published_at": "2026-08-22T01:25:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-22T01:51:26.273Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "DeepSeek",
+          "Opus 4.8"
+        ],
+        "primary_entity": "DeepSeek",
+        "story_subject": "DeepSeek視覚モデル",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "全世界",
+        "fact_slots": [
+          {
+            "type": "price",
+            "scope": "画像1000枚処理コスト",
+            "value": "1元",
+            "normalized_value": "1"
+          }
+        ],
+        "new_facts": [
+          "DeepSeekが視覚(マルチモーダル)モデルを公開した",
+          "画像1000枚の処理コストは約1元",
+          "マルチモーダルAgentの性能がOpus 4.8に迫るとされる"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "DeepSeekが新しい視覚（マルチモーダル）モデルを公開し、画像1000枚の処理コストを約1元に抑えつつOpus 4.8に迫る性能を示した。",
+        "detail": "DeepSeekが新たな視覚モデル（マルチモーダルAI）を公開した。発表によれば、画像1000枚を処理する際のコストはわずか1元（人民元）程度に抑えられており、低コストでの画像認識・理解が可能という。また、このモデルを用いたマルチモーダルAgent（複数の情報形式を扱うAIエージェント）の性能は、Anthropicの「Opus 4.8」に迫る水準に達しているとされる。具体的なモデル名やベンチマークの詳細、提供開始時期などは本文からは確認できない。",
+        "change_summary": "DeepSeekが低コストの視覚モデルを新たに公開し、画像処理コストと性能面で競合に迫る水準を示した。",
+        "impact_summary": "画像認識AIのコストが下がることで、企業が画像解析や自動化にAIを導入しやすくなる可能性がある。",
+        "action_suggestion": "モデルの正式名称や提供条件、料金体系の詳細は今後の公式発表を確認する必要がある。",
+        "importance": "A",
+        "related_categories": [
+          "AIツール・モデル",
+          "画像・動画生成"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmie0fvx3lxtfbha3bquwxibje5es14vhfhmtffafbuzer3t3dtuk5pumhwcs1yvdvkdhfxs2xymerqy0zlb1hesktqdezaslzwswzrqv9idwywddzaewf5sha5cfyxwmjoudjjruvrdxl2mdbbz3nwv1dqugd4uvbrtes4na": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmie0fvx3lxtfbha3bquwxibje5es14vhfhmtffafbuzer3t3dtuk5pumhwcs1yvdvkdhfxs2xymerqy0zlb1hesktqdezaslzwswzrqv9idwywddzaewf5sha5cfyxwmjoudjjruvrdxl2mdbbz3nwv1dqugd4uvbrtes4na",
+      "content_hash": "a8ba0994b16ad54d00a5d067119e7ab03d67ff71148b8fccec0d9a46c98e6497",
+      "story_key": "c526055e8f6e76b2a2fb6d77b842bcfd14fb0b13147224914cc77e60d4033aea",
+      "status": "enriched",
+      "processed_at": "2026-08-22T01:53:06.803Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "NVIDIA・AI半導体",
+        "title": "AIチップ1個がエアコン1台分の熱を発する時代、半導体業界の放熱対策とは",
+        "source_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBHa3BqUWxibjE5eS14VHFhMTFfaFBuZER3T3dTUk5PUmhwcS1YVDVKdHFxS2xYMERqY0Zlb1hESktQdEZaSlZWSWZrQV9IdWYwdDZaeWF5SHA5cFYxWmJOUDJJRUVRdXl2MDBBZ3NWV1dqUGd4UVBrTEs4NA?oc=5",
+        "source_name": "XenoSpectrum",
+        "is_official": false,
+        "published_at": "2026-08-22T00:08:54.000Z",
+        "source_published_at": "2026-08-22T00:08:54.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-22T01:51:41.286Z",
+        "event_at": "",
+        "event_status": "継続中",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "AIチップ",
+          "半導体業界"
+        ],
+        "primary_entity": "半導体業界",
+        "story_subject": "AIチップの発熱・冷却問題",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "全世界",
+        "fact_slots": [],
+        "new_facts": [
+          "AIチップ1個の発熱量がエアコン1台分に匹敵するとされる",
+          "半導体業界が冷却技術の見直しを迫られている"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "AIチップ1個から出る熱がエアコン1台分に匹敵する状況が生まれており、半導体業界は放熱・冷却技術の見直しを迫られている。",
+        "detail": "AI向け半導体の高性能化に伴い、チップ1個が発する熱量がエアコン1台分に匹敵するケースが出てきているという。従来の空冷方式では対応が難しくなりつつあり、半導体業界はデータセンターの冷却設計や液冷技術など、放熱対策の見直しを迫られている。具体的な対象チップの型番や数値データ、各社の対応策の詳細は本文からは確認できないが、AIチップの発熱問題がデータセンター設計全体に影響を与えつつある実情が示されている。",
+        "change_summary": "AIチップの発熱量増加が半導体業界の冷却設計の見直しを促している点が指摘された。",
+        "impact_summary": "データセンター運用コストや設計方針に影響し、AIサービスの提供コストにも波及しうる。",
+        "action_suggestion": "具体的な対策や導入企業の詳細は今後の業界動向を注視する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "半導体・インフラ",
+          "研究・技術"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmidefvx3lxtfbqt2ftylhnnwi0svu4zedaae1xchzfmtvtel95afpsczz3zfpmtzfkovkync1rcti2exfpeuhfx0gyzghrmf95zgpgoefkuzrvwmjdsevltjrsnur0axdcuc1wnw5uzlnvv0xqm1riotlvuudm": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxtfbqt2ftylhnnwi0svu4zedaae1xchzfmtvtel95afpsczz3zfpmtzfkovkync1rcti2exfpeuhfx0gyzghrmf95zgpgoefkuzrvwmjdsevltjrsnur0axdcuc1wnw5uzlnvv0xqm1riotlvuudm",
+      "content_hash": "d7c44cad00cedc88dc858e1223e741d9355315834d7c6cdaa9a8e633cdbbeda5",
+      "story_key": "bdcfd95beed81b2e300bec03967f7785977e24551356d7eab180ac22fdf3daae",
+      "status": "enriched",
+      "processed_at": "2026-08-22T01:53:06.803Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "ChatGPT / OpenAI",
+        "title": "OpenAI、「GPT-5.6 Sol」の開発者向け価格を2割超引き下げ",
+        "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBqT2FtYlhnNWI0SVU4ZEdaaE1xcHZFMTVTel95aFpSczZ3ZFpmTzFkOVkyNC1rcTI2eXFpeUhFX0gyZGhrMF95ZGpGOEFKUzRvWmJDSEVLTjRSNUR0aXdCUC1wNW5uZlNVV0xqM1RiOTlVUUdm?oc=5",
+        "source_name": "BigGo ファイナンス",
+        "is_official": false,
+        "published_at": "2026-08-22T00:25:00.000Z",
+        "source_published_at": "2026-08-22T00:25:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-22T01:51:05.903Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "OpenAI",
+          "GPT-5.6 Sol"
+        ],
+        "primary_entity": "OpenAI",
+        "story_subject": "GPT-5.6 Sol",
+        "event_type": "pricing",
+        "event_stage": "announced",
+        "event_scope": "API",
+        "fact_slots": [
+          {
+            "type": "price",
+            "scope": "GPT-5.6 Sol開発者向けAPI価格引き下げ幅",
+            "value": "20%超",
+            "normalized_value": "20%"
+          }
+        ],
+        "new_facts": [
+          "OpenAIがGPT-5.6 Solの開発者向けAPI価格を2割超引き下げた",
+          "競合対応が理由とされる"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "OpenAIは開発者向けAPIとして提供する「GPT-5.6 Sol」の価格を2割超引き下げ、競合他社との価格競争に対応した。",
+        "detail": "OpenAIは開発者向けに提供するモデル「GPT-5.6 Sol」のAPI価格を20%を超える幅で引き下げた。背景には他社AIモデルとの価格競争があるとみられ、開発者がより低コストでモデルを利用できるようにする狙いがある。具体的な引き下げ後の単価や対象となる利用区分、実施時期の詳細は本文からは確認できないが、AI企業間の価格競争が激化している状況を示す動きとなっている。",
+        "change_summary": "GPT-5.6 Solの開発者向けAPI価格が2割超引き下げられた。",
+        "impact_summary": "AIアプリを開発する日本の企業や個人開発者にとって、API利用コストの低下につながる可能性がある。",
+        "action_suggestion": "新価格の適用時期や具体的な料金体系はOpenAIの公式発表・料金ページで確認する必要がある。",
+        "importance": "A",
+        "related_categories": [
+          "AIツール・モデル",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiskfvx3lxtfa1cfr3ww1nal95rgzwb3ywdkzbylvaeufudnzomg93lue5d0lnsln3uuozakfsdutgegjjmerhnfjuwe1audfxd01n0gfcqvvfexfmtwdjqui1evznunvmsf9rdkznugznedfddulum1yxuxetz0pfz1rcdv9fdhlgt3htzel2qmsyvmlowutn": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiskfvx3lxtfa1cfr3ww1nal95rgzwb3ywdkzbylvaeufudnzomg93lue5d0lnsln3uuozakfsdutgegjjmerhnfjuwe1audfxd01n0gfcqvvfexfmtwdjqui1evznunvmsf9rdkznugznedfddulum1yxuxetz0pfz1rcdv9fdhlgt3htzel2qmsyvmlowutn",
+      "content_hash": "30ac0b34df6f904bf520a483100995fdb187fc158f7f849b9401aa535714f53f",
+      "story_key": "40e8cac185157a68fa079c870a934f078fe38afd607705ac0bbe4e5bf0a11f52",
+      "status": "rejected",
+      "processed_at": "2026-08-22T01:53:06.803Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 具体的事実のない抽象的な政策比較論説のため"
+    },
+    "url:https://news.google.com/rss/articles/cbmisafbvv95cuxqtf85ugw5uxd2eknwcl9pwjderxnnmfbnehhmmznievpvwjdzyjk4n1rstezftm1ivujzluu2am11y3mtdkpwnzhkzfnjs2ffnkr3u25uewy0vgpqnlbqbhnbbutndupdvgr5v3dfbll6q1z1qkt5der5ntbvzmtsvu12xzgzwmfzbl93oglvy0g1wnfxcvvfsdfqzwcwq3hpcmxqatzwzjrlnmnonjlqwa": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmisafbvv95cuxqtf85ugw5uxd2eknwcl9pwjderxnnmfbnehhmmznievpvwjdzyjk4n1rstezftm1ivujzluu2am11y3mtdkpwnzhkzfnjs2ffnkr3u25uewy0vgpqnlbqbhnbbutndupdvgr5v3dfbll6q1z1qkt5der5ntbvzmtsvu12xzgzwmfzbl93oglvy0g1wnfxcvvfsdfqzwcwq3hpcmxqatzwzjrlnmnonjlqwa",
+      "content_hash": "30d81302a0b10a6f8b77ef6196a17edba74d682c85cdbef9bd144198253735e7",
+      "story_key": "3e06657e3d80e3a4fc9bb51b4c123cc14e65fe2a0acebead9aed94fd666e7f60",
+      "status": "rejected",
+      "processed_at": "2026-08-22T01:53:06.804Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 人物名や数値のない推測・観測記事のため"
+    },
+    "url:https://news.google.com/rss/articles/cbmihafbvv95cuxocvl6zhlqrnvdmmnax2lnbnm3ufzwv0tovfvvm1nyvkf2rzjjwlrblxdubupqzjlvuffrtk5wwth2cljnngf5szhgmuj4me1dweixmgplevbbynz5c2zon3uxddhwn2ttugvjrxzettzqzvuwuglsqunprlbgrvhjmfbwae0": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmihafbvv95cuxocvl6zhlqrnvdmmnax2lnbnm3ufzwv0tovfvvm1nyvkf2rzjjwlrblxdubupqzjlvuffrtk5wwth2cljnngf5szhgmuj4me1dweixmgplevbbynz5c2zon3uxddhwn2ttugvjrxzettzqzvuwuglsqunprlbgrvhjmfbwae0",
+      "content_hash": "316f951fec1d7dfbc969c606d2d1fccb5f378913ee493779846cc05086f7ae28",
+      "story_key": "ff75c222db0a3848bb331eec6c3c8aaceddac3566a1b08968fa38ef5e96ab7b6",
+      "status": "enriched",
+      "processed_at": "2026-08-22T01:54:24.430Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Claude / Claude Code",
+        "title": "Claude Academy、初心者からAPI活用まで学べる無料コース26本を公開",
+        "source_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOcVl6ZHlQRnVDMmNaX2lNbnM3UFZWV0toVFVvM1NyVkF2RzJjWlRBLXdubUpQZjlvUFFrTk5wWTh2clJNNGF5SzhGMUJ4ME1DWEIxMGpLeVBBYnZ5c2ZON3UxdDhwN2tTUGVjRXZETTZqZVUwUGlsQUNPRlBGRVhJMFBWaE0?oc=5",
+        "source_name": "Pasquale Pillitteri",
+        "is_official": false,
+        "published_at": "2026-08-21T10:52:33.000Z",
+        "source_published_at": "2026-08-21T10:52:33.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-22T01:51:07.257Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Claude Academy",
+          "Claude",
+          "Anthropic"
+        ],
+        "primary_entity": "Claude Academy",
+        "story_subject": "Claude学習用無料コース26本",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "無料オンライン学習コンテンツ",
+        "fact_slots": [
+          {
+            "type": "count",
+            "scope": "公開コース数",
+            "value": "26本",
+            "normalized_value": "26"
+          }
+        ],
+        "new_facts": [
+          "Claude Academyが無料コース26本を公開した",
+          "内容は初心者向けからAPI活用までを網羅しているとされる"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Claude Academyが、Claudeの基本操作からAPI活用までを学べる無料コース26本を公開したと伝えられている。",
+        "detail": "Claude Academyという学習コンテンツが公開され、Claudeをゼロから学びAPIまで使いこなせるようになることを目的とした無料コースが26本用意されたと紹介されている。対象は初心者から実務でAPIを使う開発者まで幅広く想定されているとみられるが、各コースの具体的な内容や提供元がAnthropic公式かどうかなど詳細は記事からは確認できない。学習リソースとしてClaude活用のハードルを下げる狙いがあるとみられる。",
+        "change_summary": "Claudeの使い方を学べる無料コースが26本まとめて公開された。",
+        "impact_summary": "ビジネスやAPI開発でClaudeを使い始めたい人が、体系的に学べる無料教材を利用できるようになる可能性がある。",
+        "action_suggestion": "コースの提供元や具体的な内容、公開場所は記事に明記されていないため、利用を検討する場合は詳細情報の確認が必要。",
+        "importance": "C",
+        "related_categories": [
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://blog.google/innovation-and-ai/models-and-research/gemini-models/what-full-stack-development-means": {
+      "canonical_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/what-full-stack-development-means",
+      "content_hash": "6573f0b781e2685bb77196f980a8f61e39a898e1b837f9ba36dedb5620aca52a",
+      "story_key": "f830e89af3d2c5d89a66a0ef6156c88aef8b48ddb78074b29b82439c0af2566b",
+      "status": "enriched",
+      "processed_at": "2026-08-22T01:54:24.430Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Gemini",
+        "title": "Google DeepMind、AIの「フルスタック」開発を5つの層で解説",
+        "source_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/what-full-stack-development-means/",
+        "source_name": "blog.google",
+        "is_official": true,
+        "published_at": "2026-08-21T16:00:00.000Z",
+        "source_published_at": "2026-08-21T16:00:00.000Z",
+        "source_updated_at": "2026-08-21T16:00:00.618Z",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-22T01:51:08.436Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Google DeepMind",
+          "Paige Bailey"
+        ],
+        "primary_entity": "Google DeepMind",
+        "story_subject": "フルスタックAI開発の5層構造解説",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "Google公式ブログ・動画",
+        "fact_slots": [],
+        "new_facts": [
+          "Google DeepMindのPaige Bailey氏がフルスタックAI開発を5層に分けて解説する動画を公開した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Google DeepMindのエンジニアが、AI開発を支える5つの層(インフラ・セキュリティ・研究・モデルとツール・製品)を動画で解説した。",
+        "detail": "Google公式ブログで、Google DeepMindのエンジニアリングリーダーであるPaige Bailey氏が「フルスタック」という言葉の意味を、インフラ、セキュリティ、研究、モデルとツール、製品という5つの層に分けて説明している。バイブコーディングやWeb開発の文脈でよく耳にする「フルスタック」が、実際にはGoogleの日常的なAI製品にどう関わっているかを紹介する内容で、5つの層が組み合わさることでGoogleのAI製品がより速く、安全で、利用者や開発者にとって役立つものになっていると述べられている。詳細な解説は動画で視聴できるとされている。",
+        "change_summary": "Google DeepMindのエンジニアが「フルスタックAI」の概念を5層構成で体系的に解説した動画を公開した。",
+        "impact_summary": "AI製品がどのような技術層の組み合わせで成り立っているかを理解することで、開発者や利用者がGoogleのAI製品への理解を深める助けになる。",
+        "action_suggestion": "詳しい内容はGoogle公式ブログに掲載された動画で確認できるとされている。",
+        "importance": "C",
+        "related_categories": [
+          "研究・技術",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmixgfbvv95cuxobedzswt0q0p0nu5mz2swwudix0vwew9swehrufhydem2nezkmlpltddgmurhc3hlbe5mmkc2snjlqtq5x1zmzljprzg3n25vqkpjewjjwlf0lxu4qmszs2cxnc1rnmfdc0hbwmd5rvhta3m0uepywvlqqwlzvfbybtzjx3pzs09tmzviru9maec3x1hlvlf2amjsy0l6chrfmfzpvvbhotvfmhpgowhzzgl2lxpcwg5xee9fwxnqqzlvm1u3ewc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmixgfbvv95cuxobedzswt0q0p0nu5mz2swwudix0vwew9swehrufhydem2nezkmlpltddgmurhc3hlbe5mmkc2snjlqtq5x1zmzljprzg3n25vqkpjewjjwlf0lxu4qmszs2cxnc1rnmfdc0hbwmd5rvhta3m0uepywvlqqwlzvfbybtzjx3pzs09tmzviru9maec3x1hlvlf2amjsy0l6chrfmfzpvvbhotvfmhpgowhzzgl2lxpcwg5xee9fwxnqqzlvm1u3ewc",
+      "content_hash": "f3e3630a51438b95d8324a0c3459d3f515db4733c9f71bf7e5bd671ed2cb7235",
+      "story_key": "be7625da1a534edff6052952d378ed94cf6dd551543b6e298359f29cea5dd543",
+      "status": "enriched",
+      "processed_at": "2026-08-22T01:54:24.430Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Adobe Firefly",
+        "title": "Adobe Firefly、AI生成の音楽・音声・効果音を扱うオーディオスタジオに拡張",
+        "source_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxObEdzSWt0Q0p0NU5MZ2swWUdiX0VweW9SWEhRUFhYdEM2NEZKMlpLTDdGMURhc3hlbE5MMkc2SnJLQTQ5X1ZmZlJPRzg3N25vQkpJeWJjWlF0LXU4QmszS2cxNC1RNmFDc0hBWmd5RVhTa3M0UEpYWVlqQWlZVFBybTZJX3pZS09TMzViRU9maEc3X1hLVlF2amJSY0l6cHRfMFZPVVBhOTVFMHpGOWhZZGl2LXpCWG5xeE9fWXNqQzlVM1U3eWc?oc=5",
+        "source_name": "Notebookcheck",
+        "is_official": false,
+        "published_at": "2026-08-21T16:35:00.000Z",
+        "source_published_at": "2026-08-21T16:35:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-22T01:51:23.833Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Adobe Firefly"
+        ],
+        "primary_entity": "Adobe",
+        "story_subject": "Adobe Fireflyのオーディオ生成機能",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "Adobe Firefly全体",
+        "fact_slots": [],
+        "new_facts": [
+          "Adobe FireflyがAI生成の音楽・音声・効果音に対応するオーディオスタジオになった"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Adobe Fireflyが新たにAI生成による音楽・音声・効果音の制作機能を備え、オーディオスタジオとして機能拡張されたと報じられた。",
+        "detail": "画像・動画生成ツールとして知られるAdobe Fireflyが、AIによる音楽、音声、効果音の生成に対応するオーディオスタジオへと拡張されたとNotebookcheckが伝えている。これまで画像や動画の生成が中心だったFireflyの機能が音声領域にも広がることで、クリエイターが1つのツール内で映像と音の両方を制作できるようになる可能性がある。具体的な料金プランや対応言語、提供開始のタイミングなど詳細な仕様は記事からは確認できない。",
+        "change_summary": "Adobe Fireflyに音楽・音声・効果音のAI生成機能が加わり、オーディオ制作にも対応するようになった。",
+        "impact_summary": "動画制作者やクリエイターが映像編集と音声制作を1つのツールで完結できるようになり、制作フローの効率化につながる可能性がある。",
+        "action_suggestion": "料金や対応機能の詳細は記事に明記されていないため、Adobe公式の発表を確認する必要がある。",
+        "importance": "A",
+        "related_categories": [
+          "音楽・クリエイティブ",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmijgfbvv95cuxnemdgbur4ylrtajljt0jkzxa3cmlin3fzttrwyu9qtthtz1fwvtjfmzy0lxbjnjnzshnfy3bvs2ntlvjnyljztnzjre9oltljmgjpzjlmsm9pwgiwbvljqvoxynpeehpzuepkemj3x1gwcurpznfweuzoedmzowf6tu5bc19nyjbczwjwtuvn": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmijgfbvv95cuxnemdgbur4ylrtajljt0jkzxa3cmlin3fzttrwyu9qtthtz1fwvtjfmzy0lxbjnjnzshnfy3bvs2ntlvjnyljztnzjre9oltljmgjpzjlmsm9pwgiwbvljqvoxynpeehpzuepkemj3x1gwcurpznfweuzoedmzowf6tu5bc19nyjbczwjwtuvn",
+      "content_hash": "5563178e277136d28c7176fc32ad753f5cc54dbe5e6c2efff270d769c50a6630",
+      "story_key": "84ee8ac3bf9546db45eacf3bf950f4ecb782ff57875d0bbb0c7d1ec4e8bd25bc",
+      "status": "enriched",
+      "processed_at": "2026-08-22T01:54:24.431Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Perplexity",
+        "title": "ECでの購入前にAIで検索する消費者は12%、楽天のRakuten AI利用は9.7%",
+        "source_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNemdGbUR4YlRtajljT0JkZXA3cmlIN3FZTTRwYU9qTThTZ1FWVTJFMzY0LXBjNjNZSHNFY3BvS2NtLVJNYlJZTnZJRE9OLTlJMGJPZjlmSm9pWGIwbVljQVoxYnpEeHpZUEpKemJ3X1gwcURPZnFweUZoeDMzOWF6TU5Bc19nYjBCZWJwTUVn?oc=5",
+        "source_name": "Yahoo!ニュース",
+        "is_official": false,
+        "published_at": "2026-08-21T07:31:31.000Z",
+        "source_published_at": "2026-08-21T07:31:31.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-22T01:51:24.505Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "ChatGPT",
+          "Gemini",
+          "Perplexity"
+        ],
+        "primary_entity": "ネットショップ担当者フォーラム",
+        "story_subject": "AI活用によるEC購買行動調査",
+        "event_type": "research",
+        "event_stage": "completed",
+        "event_scope": "EC消費者の購買行動",
+        "fact_slots": [
+          {
+            "type": "other",
+            "scope": "AIで商品検索後にEC購入した割合",
+            "value": "12%",
+            "normalized_value": "12%"
+          },
+          {
+            "type": "other",
+            "scope": "Rakuten AIに商品質問した割合",
+            "value": "9.7%",
+            "normalized_value": "9.7%"
+          }
+        ],
+        "new_facts": [
+          "ChatGPT・Gemini・Perplexityなどで商品や購入先を調べてからEC購入した人が12%だった",
+          "楽天のRakuten AIに商品について質問した人が9.7%だった"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "ネットショップ担当者フォーラムの調査で、ChatGPTやGemini、Perplexityで商品を調べてからEC購入した人が12%、楽天のRakuten AIに質問した人が9.7%だったことが分かった。",
+        "detail": "ネットショップ担当者フォーラムが実施した調査により、ChatGPT・Gemini・Perplexityなどの生成AIやAI検索ツールを使って商品や購入先を調べたうえでECサイトで購入したという回答が12%、楽天が提供するRakuten AIに商品について質問したという回答が9.7%だったことが明らかになった。消費者の購買行動において、AIチャットボットや検索ツールが商品検索や比較検討の場として一定の割合で使われ始めている実態がうかがえる調査結果となっている。",
+        "change_summary": "AIツールを使って商品を調べてからEC購入する消費者の割合や、楽天のAIサービス利用率が調査で具体的な数値として示された。",
+        "impact_summary": "EC事業者にとって、生成AIやAI検索経由での商品発見・比較検討への対応が、今後のマーケティング戦略で重要性を増す可能性がある。",
+        "action_suggestion": "調査の詳細な対象者数や実施時期など追加情報はネットショップ担当者フォーラムの元記事で確認できる。",
+        "importance": "B",
+        "related_categories": [
+          "EC・業務活用",
+          "営業・マーケティング"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiwwfbvv95cuxqa3rpcghjzkdqeu5qtvday29vb0pmenb4mxdoyuxyulhusmzfv1dhcfo3nnexqllfdwxnnzjaavn5qu1qmffpdenfsnnranc0dtfndi05cw1udm9xrw50devtukixdtbjrgswutc3vvhoqtbsngvidkf0mgpzrtrsqw4wvzrkt3rvmvvns09fz3rcegmxr1vbturyx0lfswp0ukvkbfruzgdhm2fwdhkymvjpmkxfrjjoxy1awdfnt3hxmmc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiwwfbvv95cuxqa3rpcghjzkdqeu5qtvday29vb0pmenb4mxdoyuxyulhusmzfv1dhcfo3nnexqllfdwxnnzjaavn5qu1qmffpdenfsnnranc0dtfndi05cw1udm9xrw50devtukixdtbjrgswutc3vvhoqtbsngvidkf0mgpzrtrsqw4wvzrkt3rvmvvns09fz3rcegmxr1vbturyx0lfswp0ukvkbfruzgdhm2fwdhkymvjpmkxfrjjoxy1awdfnt3hxmmc",
+      "content_hash": "2855078c06ce261ead8678bf0566cdabf9a1eeb18495d98d735ce2b7e153e7b0",
+      "story_key": "dce2601c5446f9dadf428c7f38803888fa6300e485f329cbf642d2c296171d83",
+      "status": "rejected",
+      "processed_at": "2026-08-22T01:54:24.431Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 航空機の滑走路逸脱事故で、AIと無関係な誤ヒット"
     }
   },
-  "updated_at": "2026-08-21T21:40:59.488Z"
+  "updated_at": "2026-08-22T01:54:24.431Z"
 }
