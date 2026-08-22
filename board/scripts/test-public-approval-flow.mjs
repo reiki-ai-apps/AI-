@@ -217,3 +217,76 @@ test('記事とサムネイルを別々に承認し、両方そろった時だ�
   const revisedApprovals = await refreshedRepo.listApprovalsFor(post.channel_post_id);
   assert.ok(revisedApprovals.filter((item) => item.decision === 'COMPONENT_APPROVED').every((item) => item.revoked_at));
 });
+
+test('Shortsは専用サムネイルがなければ動画承認だけで成立する', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'post-board-shorts-approval-'));
+  const packagePath = join(dir, 'package.json');
+  const dataFile = join(dir, 'board.json');
+  const packageValue = samplePackage();
+  packageValue.platform_payloads[0].platform = 'YOUTUBE_SHORTS';
+  packageValue.operations.separate_content_thumbnail_approval = true;
+  packageValue.assets = [{
+    asset_id: '30000000-0000-4000-8000-000000000003',
+    archive_member: 'short.mp4',
+    sha256: '5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef',
+    mime: 'video/mp4',
+    bytes: 1024,
+    order: 1,
+    alt_text: '字幕付きShorts動画',
+    rights_status: 'CONFIRMED',
+    platform: 'YOUTUBE_SHORTS',
+    asset_role: 'VIDEO',
+  }];
+  await writeFile(join(dir, 'short.mp4'), Buffer.alloc(1024));
+  await writeFile(packagePath, JSON.stringify(packageValue), 'utf8');
+
+  const syncReceipt = await syncPublicationPackage({
+    package: packagePath,
+    dataFile,
+    queueForApproval: true,
+    actor: 'skill-sync',
+  });
+  const repo = new Repo(await openFileDatabase(dataFile), systemClock('Asia/Tokyo'));
+  const post = await repo.getPost(syncReceipt.channel_post_ids[0]);
+  const revision = await repo.getRevision(post.current_revision_id);
+  const expectedHash = await computeApprovalComponentHash({
+    channelPost: post,
+    revision,
+    schedule: { scheduled_at: post.scheduled_at, time_zone: post.time_zone },
+    componentScope: 'CONTENT',
+    allowedRetryDelayMinutes: 30,
+  });
+  const payload = {
+    contract: PUBLIC_APPROVAL_CONTRACT,
+    action: 'APPROVE',
+    component_scope: 'CONTENT',
+    targets: [{
+      channel_post_id: post.channel_post_id,
+      revision_id: revision.revision_id,
+      approval_basis_hash: expectedHash,
+      approval_component_hash: expectedHash,
+      allowed_retry_delay_minutes: 30,
+    }],
+  };
+  const receipt = await processPublicApprovalIssue({
+    dataFile,
+    event: {
+      repository: { full_name: 'reiki-ai-apps/AI-' },
+      issue: {
+        number: 52,
+        html_url: 'https://github.com/reiki-ai-apps/AI-/issues/52',
+        body: `<!-- ${PUBLIC_APPROVAL_CONTRACT}\n${JSON.stringify(payload)}\n-->`,
+        author_association: 'OWNER',
+        created_at: '2026-08-16T01:00:00Z',
+        user: { login: 'hinata2462-eng' },
+      },
+    },
+  });
+
+  assert.equal(receipt.status, 'APPROVED');
+  const refreshed = new Repo(await openFileDatabase(dataFile), systemClock('Asia/Tokyo'));
+  assert.equal((await refreshed.getPost(post.channel_post_id)).display_state, 'SCHEDULED');
+  const approvals = await refreshed.listApprovalsFor(post.channel_post_id);
+  assert.equal(approvals.filter((item) => item.decision === 'COMPONENT_APPROVED').length, 1);
+  assert.equal(approvals.find((item) => item.decision === 'COMPONENT_APPROVED').component_scope, 'CONTENT');
+});

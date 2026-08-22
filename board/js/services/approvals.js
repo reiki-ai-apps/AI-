@@ -37,6 +37,21 @@ async function loadForDecision(ctx, channelPostId) {
   return { post, revision };
 }
 
+/**
+ * Shortsは専用サムネイルを必須にしない。画面側と同じく、現在Revisionに
+ * THUMBNAIL素材がないShortsは動画・本文(CONTENT)だけを承認対象にする。
+ */
+export function requiredApprovalComponents(channelPost, revision) {
+  if (!channelPost?.requires_component_approvals) return [];
+  const hasThumbnail = (revision?.assets ?? []).some(
+    (asset) => String(asset?.asset_role ?? '').toUpperCase() === APPROVAL_COMPONENTS.THUMBNAIL,
+  );
+  if (channelPost.platform === 'YOUTUBE_SHORTS' && !hasThumbnail) {
+    return ['CONTENT'];
+  }
+  return [...APPROVAL_COMPONENTS];
+}
+
 /** 確認依頼 — 下書き／品質確認中 から承認待ちへ。 */
 export async function submitForApproval(ctx, channelPostId, { reason = '確認を依頼' } = {}) {
   assertCan(ctx.actor.role, 'approval.submit');
@@ -86,7 +101,7 @@ export async function approve(ctx, channelPostId, options = {}) {
     if (!componentVerdict.valid) {
       const missing = Object.entries(componentVerdict.components ?? {})
         .filter(([, result]) => !result.valid)
-        .map(([scope]) => scope === APPROVAL_COMPONENTS.CONTENT ? '記事・動画' : 'サムネイル');
+        .map(([scope]) => scope === 'CONTENT' ? '記事・動画' : 'サムネイル');
       throw new InvariantError(
         'COMPONENT_APPROVAL_REQUIRED',
         `${missing.join('・')}の現在Revision/Hashに対する承認が必要です。`,
@@ -289,7 +304,8 @@ export async function verifyComponentApprovals(ctx, channelPostId) {
   const { post, revision } = await loadForDecision(ctx, channelPostId);
   const approvals = await ctx.repo.listApprovalsFor(channelPostId);
   const components = {};
-  for (const componentScope of APPROVAL_COMPONENTS) {
+  const requiredComponents = requiredApprovalComponents(post, revision);
+  for (const componentScope of requiredComponents) {
     const currentHash = await computeApprovalComponentHash({
       channelPost: post,
       revision,
@@ -311,7 +327,7 @@ export async function verifyComponentApprovals(ctx, channelPostId) {
       reason: approval ? 'VALID' : 'MISSING_OR_STALE',
     };
   }
-  return { valid: APPROVAL_COMPONENTS.every((scope) => components[scope].valid), components };
+  return { valid: requiredComponents.every((scope) => components[scope].valid), components };
 }
 
 /** 差し戻し。理由を必須にする (§08 承認／差し戻し／コメント)。 */

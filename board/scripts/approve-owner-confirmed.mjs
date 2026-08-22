@@ -8,6 +8,7 @@ import { systemClock } from '../js/core/clock.js';
 import {
   approve,
   recordComponentApproval,
+  requiredApprovalComponents,
   verifyComponentApprovals,
 } from '../js/services/approvals.js';
 import { openFileDatabase } from '../js/store/filedb.js';
@@ -79,7 +80,7 @@ export async function approveOwnerConfirmed({ dataFile, receiptFile, date, state
     if (!revision) throw new Error(`Revisionが見つかりません: ${before.current_revision_id}`);
 
     const componentResults = {};
-    for (const componentScope of ['CONTENT', 'THUMBNAIL']) {
+    for (const componentScope of requiredApprovalComponents(before, revision)) {
       componentResults[componentScope] = await recordComponentApproval(ctx, before.channel_post_id, {
         componentScope,
         evidence: { ...evidenceBase, component_scope: componentScope },
@@ -111,10 +112,10 @@ export async function approveOwnerConfirmed({ dataFile, receiptFile, date, state
         approval_id: componentResults.CONTENT.approvalId,
         hash: verdict.components.CONTENT.currentHash,
       },
-      thumbnail: {
+      thumbnail: componentResults.THUMBNAIL ? {
         approval_id: componentResults.THUMBNAIL.approvalId,
         hash: verdict.components.THUMBNAIL.currentHash,
-      },
+      } : null,
       final_approval_id: final.approvalId,
       final_approval_hash: final.approvalBasisHash,
       schedule_id: final.scheduleId,
