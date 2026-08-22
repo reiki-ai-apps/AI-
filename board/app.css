@@ -905,12 +905,12 @@ input:invalid { border-color: var(--danger); }
 .approval-media-grid-single { grid-template-columns: minmax(0, 1fr); }
 .approval-media-label { display: flex; align-items: baseline; gap: 7px; }
 .approval-media-label small { color: var(--ink-3); font-size: 11px; font-weight: 700; }
-.approval-link-box > .btn, .approval-thumbnail-box > .btn { justify-self: start; min-height: 26px; padding: 0 8px; border-radius: 7px; font-size: 11px; }
+.approval-link-box > .btn, .approval-thumbnail-box > .btn { align-self: start; justify-self: start; height: auto; min-height: 26px; padding: 0 8px; border-radius: 7px; font-size: 11px; }
 .approval-link-box, .approval-thumbnail-box { min-width: 0; padding: 0; border: 0; background: transparent; }
 .approval-link-box { display: grid; align-content: start; gap: 8px; }
 .approval-link-box a { overflow-wrap: anywhere; }
 .approval-url-input { width: 100%; min-width: 0; }
-.approval-thumbnail-box { display: grid; gap: 8px; }
+.approval-thumbnail-box { display: grid; align-content: start; gap: 8px; }
 .approval-thumbnail-box img { display: block; width: 100%; max-height: 220px; border-radius: 8px; object-fit: contain; background: #eef1f4; }
 .approval-media-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .approval-media-gallery img, .approval-media-gallery video { display: block; width: 100%; max-height: 240px; border-radius: 8px; object-fit: contain; background: #eef1f4; }
