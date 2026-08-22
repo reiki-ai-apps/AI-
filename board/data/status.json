@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-22T01:55:00+09:00",
+  "generated_at": "2026-08-22T12:28:13+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
-    "published_confirmed": 13,
+    "published_confirmed": 15,
     "scheduled": 0,
-    "attention": 3
+    "attention": 4
   },
   "channels": [
     {
@@ -21,8 +21,8 @@
         "title": "DeepSeek V4-Pro 修正版",
         "url": "https://www.instagram.com/p/DcEMK9JGctI/"
       },
-      "next_scheduled": "2026-08-22T09:30:00+09:00",
-      "note": "8月22日分2件は所有者承認済みだが、Instagram Graph APIのアクセストークンを現在の実行環境で確認できない。外部ID・公開receiptは未取得のため接続・認証待ち。"
+      "next_scheduled": null,
+      "note": "8月22日・23日分はInstagram Graph APIのアクセストークンを現在の実行環境で確認できない。外部予約ID・receiptは未取得のため接続・認証待ち。"
     },
     {
       "id": "x",
@@ -35,8 +35,8 @@
         "title": "AIに任せる前の3つの境界線｜4投稿スレッド",
         "url": "https://x.com/KIZASHI_jp/status/2089994853954547871"
       },
-      "next_scheduled": "2026-08-22T09:15:00+09:00",
-      "note": "8月22日分2件は所有者承認済みだが、X公式APIの利用者トークンを現在の実行環境で確認できない。当日料金確認と有料実行承認、外部receiptが必要。"
+      "next_scheduled": null,
+      "note": "8月22日・23日分はX公式APIの利用者トークンと有料実行承認を確認できない。外部予約ID・receiptは未取得のため予約済みではない。"
     },
     {
       "id": "note",
@@ -44,13 +44,13 @@
       "account": "KIZASHI / natty_swan9072",
       "url": "https://note.com/natty_swan9072",
       "state": "ATTENTION",
-      "last_verified_at": "2026-08-21T14:00:41+09:00",
+      "last_verified_at": "2026-08-22T11:38:00+09:00",
       "latest_published": {
-        "title": "個人版Copilotを仕事で使う前の確認表｜誤送信と機密入力を防ぐ5条件",
-        "url": "https://note.com/natty_swan9072/n/n3336e80479bc"
+        "title": "AIに機密を渡す前に確認｜ZDRでも残る3つの設計責任",
+        "url": "https://note.com/natty_swan9072/n/n5a69b1a99aa0"
       },
-      "next_scheduled": "2026-08-22T09:00:00+09:00",
-      "note": "8月22日分2件の重複文と有料境界欠落を修正。Revision 5は約4,000字、無料31%、有料境界1か所、公式URL3件、重複なしで品質PASS。本文Hash変更により旧承認は無効となり、再承認待ち。"
+      "next_scheduled": null,
+      "note": "8月22日分2件は11:36と11:37に公開済み。8月23日分2件は同文反復を除去したRevision 4へ更新し、08:00・12:00枠に修正。旧承認を無効化して再承認待ち。"
     },
     {
       "id": "youtube",
@@ -64,7 +64,7 @@
         "url": "https://youtube.com/shorts/7U8O5YiEHoE"
       },
       "next_scheduled": null,
-      "note": "8月22日のShorts 1本は外部ID 7U8O5YiEHoE と公開receiptを確認して公開済み。8月23日のShortsは表示崩れを解消したRevision 4を所有者承認済みで、外部予約receipt待ち。Shorts専用サムネイルは不要。"
+      "note": "8月22日のShorts 1本は外部ID 7U8O5YiEHoE と公開receiptを確認して公開済み。8月23日のShortsはRevision 4承認済みだが、YouTube側の予約ID・外部予約receiptは未取得。Shorts専用サムネイルは不要。"
     },
     {
       "id": "radar",
@@ -83,9 +83,19 @@
   ],
   "blockers": [
     {
+      "id": "20260823-note-quality-remediation-r4",
+      "severity": "DANGER",
+      "message": "8月23日のnote 2本で同文反復と品質ゲート誤判定を検出。本文をRevision 4へ修正し監査PASS。記事hashと08:00・12:00枠が変わったため旧承認を無効化し、再承認待ちへ戻した。"
+    },
+    {
+      "id": "20260824-youtube-longform-deadline-risk",
+      "severity": "DANGER",
+      "message": "8月24日（月）のYouTube本編は未制作。一次情報確認、動画、字幕、サムネイル3案、三周検査、承認、外部予約receipt取得までの期限リスクがある。"
+    },
+    {
       "id": "20260822-23-external-reservation-required",
       "severity": "ATTENTION",
-      "message": "8月22日Shorts 1本だけ公開receipt確認済み。note 2件は品質修正後のRevision 5が再承認待ち。X 2件とInstagram 2件は承認済みだが公式API接続を確認できず、外部ID・公開receiptは未取得。予約済み・公開済みとは扱わない。"
+      "message": "8月22日Shorts 1本とnote 2件は公開receipt確認済み。X 2件とInstagram 2件は承認済みだが公式API接続を確認できず、外部ID・公開receiptは未取得。予約済み・公開済みとは扱わない。"
     },
     {
       "id": "20260821-external-reservation-and-daily-minimum",
@@ -95,7 +105,7 @@
     {
       "id": "current-platform-authentication-required",
       "severity": "ATTENTION",
-      "message": "8月22日分はShorts以外未公開。InstagramはGraph APIトークン、Xは公式API利用者トークンの接続が必要。noteはRevision 5の再承認後にログイン済みブラウザで公開する。"
+      "message": "8月22日分はShortsとnote 2件を公開済み。InstagramはGraph APIトークン、Xは公式API利用者トークンの接続が必要。"
     },
     {
       "id": "note-premium-required-for-scheduling",
@@ -119,15 +129,25 @@
       "run_id": "kizashi-upcoming-20260822-23",
       "started_at": "2026-08-21T18:00:00+09:00",
       "finished_at": "2026-08-22T01:55:00+09:00",
-      "state": "PARTIAL_PUBLICATION_REMEDIATED_AWAITING_APPROVAL_AND_CONNECTION",
-      "stage": "8月22日Shortsを公開済み、note 2件を品質修正、X・Instagramは接続待ち",
+      "state": "QUALITY_REMEDIATION_COMPLETE_AWAITING_REAPPROVAL_AND_EXTERNAL_RECEIPTS",
+      "stage": "8月23日note 2件をRevision 4へ修正、全媒体の外部予約receiptを再照合",
       "candidate_count": 4,
       "verified_primary_count": 4,
       "required_primary_count": 4,
-      "reason": "Shortsは外部ID 7U8O5YiEHoEと公開receiptを確認済み。note 2件は重複文を除去し、有料境界・公式根拠・実務テンプレートを追加して品質PASS。本文Hash変更により旧承認を無効化した。X・Instagramは現行承認済みだが公式API接続がない。",
-      "next_action": "Boardでnote Revision 5を再承認後、2記事を公開する。Instagram Graph APIとX公式APIの接続を回復し、外部ID・URL・receipt取得後だけ各2件を公開済みへ更新する。"
+      "reason": "8月23日のnote 2本に大量の同文反復があり、旧品質ゲートは誤判定だった。本文を実務内容へ置換し、公式一次情報3件、有料境界、対象外読者、テンプレートを追加して監査PASS。外部receiptのない8月22日・23日の予約済み表示も解除した。",
+      "next_action": "8月23日のnote Revision 4を所有者が再承認後、08:00と12:00の順で外部予約または遅延時は最低4時間空けて公開する。並行してInstagram・X・YouTube Shortsの接続と外部予約receiptを取得する。"
     },
-    "policy": "予約成立を最優先。YouTube本編はAsia/Tokyoの月・水・金を固定投稿日とし、当日枠と次の2枠を予約済み／承認待ち／制作中／HOLDで必ず表示する。制作・修正・品質検査・Board同期は途中承認なしで連続実行し、同一revision/hashの完成物、投稿先、日時、価格・API費用を一画面へまとめた最終公開直前だけ所有者承認を求める。認証権限の新規付与、課金、外部公開は最終承認対象とし、成功は外部receipt取得後だけ表示する。",
+    "policy": "予約成立を最優先。noteはAsia/Tokyoの8:00・12:00を基本枠とし、遅れた場合も同時公開せず、1本目を次の実行可能時刻、2本目を最低4時間後へ移す。YouTube本編はAsia/Tokyoの月・水・金を固定投稿日とし、当日枠と次の2枠を予約済み／承認待ち／制作中／HOLDで必ず表示する。制作・修正・品質検査・Board同期は途中承認なしで連続実行し、同一revision/hashの完成物、投稿先、日時、価格・API費用を一画面へまとめた最終公開直前だけ所有者承認を求める。認証権限の新規付与、課金、外部公開は最終承認対象とし、成功は外部receipt取得後だけ表示する。",
+    "note_daily": {
+      "time_zone": "Asia/Tokyo",
+      "target_slots": [
+        "08:00",
+        "12:00"
+      ],
+      "minimum_gap_minutes": 240,
+      "missed_slot_policy": "1本目を準備完了後の次の15分境界へ移し、2本目は1本目の実公開・予約時刻から最低4時間後へ移す。同時公開と60分以内の連投を禁止する。",
+      "prepublish_guard": "planDailyNoteSlots"
+    },
     "approval_policy": {
       "mode": "FINAL_PUBLISH_ONLY",
       "no_intermediate_approval": [
@@ -175,17 +195,19 @@
         }
       ]
     },
-    "stage": "8月21日分｜note即時公開済み／他媒体は外部公開未確認",
-    "reason": "noteは100円記事を即時公開し、外部ID・URL・価格・公開時刻を照合済み。X・Instagram・YouTubeは外部receiptがないため公開済みとは表示しない。",
-    "next_action": "X・Instagram・YouTubeは接続状態と費用条件を確認し、実行可能な媒体から公開して外部receiptをBoardへ同期する。"
+    "stage": "8月23日分｜note Revision 4再承認待ち／各媒体は外部予約receipt未取得",
+    "reason": "8月23日のnote 2本を品質修正し、旧承認と内部予約を無効化。X・Instagram・Shortsは外部予約receiptがないため予約済み表示を解除した。",
+    "next_action": "note Revision 4の再承認後に08:00・12:00枠へ進め、その他媒体は接続回復後に外部予約ID・receiptを取得してBoardへ同期する。"
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-22T01:55:00+09:00",
+    "last_checked_at": "2026-08-22T12:28:13+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
-    "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
+    "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
   "evidence": [
+    "outputs/kizashi-upcoming-20260822-23/zdr-private-safety-20260822-a/note/publish-receipt.json",
+    "outputs/kizashi-upcoming-20260822-23/cyber-monitoring-20260822-b/note/publish-receipt.json",
     "outputs/kizashi-upcoming-20260822-23/receipts/remediation-20260822-note-r5.json",
     "outputs/kizashi-upcoming-20260822-23/zdr-private-safety-20260822-a/note/article-audit.json",
     "outputs/kizashi-upcoming-20260822-23/cyber-monitoring-20260822-b/note/article-audit.json",
@@ -309,6 +331,11 @@
     "outputs/kizashi-upcoming-20260822-23/cyber-monitoring-20260822-b-r3-canonical-board-sync.json",
     "outputs/kizashi-upcoming-20260822-23/ai-literacy-20260823-a-r3-canonical-board-sync.json",
     "outputs/kizashi-upcoming-20260822-23/ai-oversight-20260823-b-r3-canonical-board-sync.json",
+    "outputs/kizashi-upcoming-20260822-23/ai-literacy-20260823-a/note/article-quality-report-r4.json",
+    "outputs/kizashi-upcoming-20260822-23/ai-literacy-20260823-a/note/review-loop-r4.json",
+    "outputs/kizashi-upcoming-20260822-23/ai-oversight-20260823-b/note/article-quality-report-r4.json",
+    "outputs/kizashi-upcoming-20260822-23/ai-oversight-20260823-b/note/review-loop-r4.json",
+    "outputs/kizashi-upcoming-20260822-23/receipts/board-remediation-20260823-r4.json",
     "outputs/kizashi-upcoming-20260822-23/shorts-2026-08-22/shorts-visual-review-v3.json",
     "outputs/kizashi-upcoming-20260822-23/shorts-2026-08-23/shorts-visual-review-v3.json",
     "outputs/kizashi-upcoming-20260822-23/shorts-2026-08-22/shorts-visual-review-v4.json",
