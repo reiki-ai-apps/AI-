@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-22T17:55:17+09:00",
+  "generated_at": "2026-08-22T18:55:18+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -95,7 +95,7 @@
     {
       "id": "20260824-youtube-longform-deadline-risk",
       "severity": "DANGER",
-      "message": "8月24日（月）のYouTube本編は未制作。一次情報確認、動画、字幕、サムネイル3案、三周検査、承認、外部予約receipt取得までの期限リスクがある。"
+      "message": "8月24日（月）のYouTube本編は72時間枠で公式一次情報1件を検証し、1件深掘りの構成制作を開始した。動画、字幕、サムネイル3案、三周検査、承認、外部予約receipt取得は未完了のため期限リスクがある。"
     },
     {
       "id": "20260822-23-external-reservation-required",
@@ -131,16 +131,16 @@
   "production": {
     "cadence": "PT6H",
     "last_run": {
-      "run_id": "kizashi-upcoming-20260822-23",
-      "started_at": "2026-08-21T18:00:00+09:00",
-      "finished_at": "2026-08-22T01:55:00+09:00",
-      "state": "CURRENT_REVISIONS_AWAITING_APPROVAL_AND_EXTERNAL_RECEIPTS",
-      "stage": "8月23日note 2件Revision 4とShorts Revision 6を承認待ちへ同期、外部receiptを再照合",
-      "candidate_count": 4,
-      "verified_primary_count": 4,
-      "required_primary_count": 4,
-      "reason": "8月23日のnote 2本はRevision 4へ品質修正済み。Shortsはナレーション改善後、暗いBGMを明るい集中系BGMへ差し替えたRevision 6へ更新した。YouTube外部ID NaPQN9yFWcoは旧Revisionの予約のため、現行版の予約済み表示を解除した。",
-      "next_action": "8月23日のnote Revision 4とShorts Revision 6を所有者が承認後、noteは08:00と12:00、Shortsは12:00の外部枠へ進める。Shortsは既存予約を現行動画へ差し替え、現行hashに一致する外部receiptを取得する。"
+      "run_id": "kizashi-ai-news-20260824-prep",
+      "started_at": "2026-08-22T18:55:18+09:00",
+      "finished_at": null,
+      "state": "EXECUTING",
+      "stage": "8月24日（月）本編｜公式一次情報確認済み・1件深掘り構成制作中",
+      "candidate_count": 1,
+      "verified_primary_count": 1,
+      "required_primary_count": 1,
+      "reason": "24時間、48時間、72時間の順で確認し、72時間枠からOpenAIの公式一次情報『Introducing AI Futures』を1件採用した。本文は著者の見解でありOpenAI全体の公式方針ではない点を明示して制作する。",
+      "next_action": "価値・危険・企業での使い道を深掘りした台本、動画、字幕、写実的で華やかな画像、YouTubeサムネイル3案を同じrun_idで制作し、第1周から三周検査する。"
     },
     "policy": "予約成立を最優先。noteはAsia/Tokyoの8:00・12:00を基本枠とし、遅れた場合も同時公開せず、1本目を次の実行可能時刻、2本目を最低4時間後へ移す。YouTube本編はAsia/Tokyoの月・水・金を固定投稿日とし、当日枠と次の2枠を予約済み／承認待ち／制作中／HOLDで必ず表示する。制作・修正・品質検査・Board同期は途中承認なしで連続実行し、同一revision/hashの完成物、投稿先、日時、価格・API費用を一画面へまとめた最終公開直前だけ所有者承認を求める。認証権限の新規付与、課金、外部公開は最終承認対象とし、成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -190,8 +190,8 @@
         },
         {
           "date": "2026-08-24",
-          "state": "NOT_STARTED",
-          "reason": "次回の月曜本編枠。一次情報の確認は未開始。"
+          "state": "IN_PRODUCTION",
+          "reason": "72時間枠で公式一次情報1件を検証済み。1件深掘りの構成制作中で、外部予約・公開receiptは未取得。"
         },
         {
           "date": "2026-08-26",
@@ -200,17 +200,19 @@
         }
       ]
     },
-    "stage": "8月23日分｜Shorts Revision 6・note Revision 4承認待ち",
-    "reason": "8月23日ShortsはBGM変更後の現行Revision 6が未承認で、外部ID NaPQN9yFWcoには旧Revisionが残る。note 2本はRevision 4の再承認待ち、X・Instagramは外部接続待ち。",
-    "next_action": "Shorts Revision 6承認後に既存予約を差し替えて外部receiptを再取得する。note Revision 4は承認後に08:00・12:00枠へ進め、X・Instagramは接続回復後に外部予約ID・receiptを取得する。"
+    "stage": "8月24日（月）本編｜一次情報確認済み・構成制作中",
+    "reason": "8月23日分の現行承認・外部receiptに変化はない。次の期限リスクである8月24日本編は72時間枠の一次情報1件を採用し、Boardへ制作進捗を登録した。",
+    "next_action": "8月23日の承認・外部receiptを監視しつつ、8月24日本編の台本、動画、字幕、画像、サムネイル3案、三周検査を同じrun_idで継続する。"
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-22T17:55:17+09:00",
+    "last_checked_at": "2026-08-22T18:55:18+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
   "evidence": [
+    "outputs/kizashi-ai-news-20260824-prep/primary-source-scan.json",
+    "outputs/kizashi-ai-news-20260824-prep/board-sync-receipt.json",
     "outputs/kizashi-upcoming-20260822-23/receipts/monitor-20260822-1755-shorts-r6.json",
     "outputs/kizashi-upcoming-20260822-23/shorts-2026-08-23/shorts-review-r6.json",
     "outputs/kizashi-upcoming-20260822-23/ai-literacy-20260823-a-shorts-r6-board-sync.json",
