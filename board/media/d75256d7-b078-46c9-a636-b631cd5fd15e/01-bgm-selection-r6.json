@@ -1,0 +1,109 @@
+{
+  "revision": 6,
+  "problem_class": "SONIC",
+  "user_feedback": "BGMが重く暗く、聞いていて沈む。もっと集中しやすい方向へ。",
+  "assumption": "集中力向上の効果を保証せず、明るい長調・軽い一定パルス・整理した低域で集中を妨げにくい設計にする。",
+  "candidates": [
+    {
+      "id": "A",
+      "name": "Bright Focus",
+      "file": "bgm-r6/candidate-a-bright-focus.wav",
+      "preview": "preview-r6/candidate-a-mixed-20s.mp4",
+      "sha256": "9d5b5531b3709169e147be268b5e78d8303054ab8241c1e7ee6e4d43652e2990",
+      "bpm": 104,
+      "key": "D major",
+      "design_intent": "明るい長調、軽い一定パルス、低域を整理。声の下で思考のテンポを支える。",
+      "metrics": {
+        "voice_mean_db": -27.2,
+        "bgm_mean_db": -15.5,
+        "base_relative_db": -20.5,
+        "speech_duck_db": -4.0,
+        "base_gain_db": -32.2,
+        "final_mix_mean_db": -26.0,
+        "final_mix_peak_db": -8.2
+      }
+    },
+    {
+      "id": "B",
+      "name": "Clean Motion",
+      "file": "bgm-r6/candidate-b-clean-motion.wav",
+      "preview": "preview-r6/candidate-b-mixed-20s.mp4",
+      "sha256": "8cfa8a545f869173bcf66f03349994fdbcaba24decef8a4333a1ae860f10e80b",
+      "bpm": 100,
+      "key": "C major",
+      "design_intent": "透明で整然。動きは控えめで、企業説明寄りの落ち着き。",
+      "metrics": {
+        "voice_mean_db": -27.2,
+        "bgm_mean_db": -15.3,
+        "base_relative_db": -20.5,
+        "speech_duck_db": -4.0,
+        "base_gain_db": -32.4,
+        "final_mix_mean_db": -26.0,
+        "final_mix_peak_db": -8.1
+      }
+    },
+    {
+      "id": "C",
+      "name": "Airy Study",
+      "file": "bgm-r6/candidate-c-airy-study.wav",
+      "preview": "preview-r6/candidate-c-mixed-20s.mp4",
+      "sha256": "66119c307da59f93c2bf21698053aa41a17e6f83c435b269b09735ca21f477a1",
+      "bpm": 96,
+      "key": "G major",
+      "design_intent": "空気感と余白を優先。軽いが、集中の拍感は最も弱い。",
+      "metrics": {
+        "voice_mean_db": -27.2,
+        "bgm_mean_db": -15.7,
+        "base_relative_db": -20.5,
+        "speech_duck_db": -4.0,
+        "base_gain_db": -32.0,
+        "final_mix_mean_db": -26.0,
+        "final_mix_peak_db": -8.1
+      }
+    }
+  ],
+  "selected": "A",
+  "selection_reason": "3案のうち、長調の明るさ、104 BPMの軽い前進感、150Hz以下を使わない低域設計がユーザー修正点へ最も直接対応する。",
+  "objective_comparison": {
+    "old_bgm": {
+      "spectral_centroid_hz": 144.0,
+      "energy_below_150hz_ratio": 0.7156,
+      "energy_500_to_4000hz_ratio": 0.007
+    },
+    "new_bgm": {
+      "spectral_centroid_hz": 646.2,
+      "energy_below_150hz_ratio": 0.0,
+      "energy_500_to_4000hz_ratio": 0.7321
+    },
+    "interpretation": "旧BGMの重さにつながった低域偏重を除き、声の明瞭さを保てる軽い中高域中心へ変更。",
+    "effect_claim": "集中力の向上を保証するものではなく、集中を妨げにくい音響設計を目的とする。"
+  },
+  "rights": {
+    "source": "local-original-deterministic-synthesis",
+    "vocals": false,
+    "external_material": false,
+    "paid_service": false
+  },
+  "final_video": {
+    "file": "kizashi-short-2026-08-23-r6.mp4",
+    "sha256": "252e029e44030154b60ac47c2bea2ec6378f9e8e23099b96818c74a7eb207217",
+    "bytes": 3369679,
+    "metrics": {
+      "voice_mean_db": -27.2,
+      "bgm_mean_db": -15.5,
+      "base_relative_db": -20.5,
+      "speech_duck_db": -4.0,
+      "base_gain_db": -32.2,
+      "final_mix_mean_db": -26.2,
+      "final_mix_peak_db": -8.2
+    }
+  },
+  "integrity_check": {
+    "decode": "PASS",
+    "revision_5_video_stream_md5": "936cdfce95152c61aafc72040e4ffd49",
+    "revision_6_video_stream_md5": "936cdfce95152c61aafc72040e4ffd49",
+    "video_stream_identical": true,
+    "changed_component": "BGM_ONLY"
+  },
+  "owner_audio_review_required": true
+}
