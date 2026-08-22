@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-22T19:56:48+09:00",
+  "generated_at": "2026-08-22T21:58:47+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
     "published_confirmed": 15,
-    "scheduled": 0,
-    "attention": 5
+    "scheduled": 1,
+    "attention": 4
   },
   "channels": [
     {
@@ -57,14 +57,18 @@
       "label": "YouTube",
       "account": "KIZASHI / @kizashi_jp",
       "url": "https://www.youtube.com/@kizashi_jp",
-      "state": "ATTENTION",
-      "last_verified_at": "2026-08-22T17:55:17+09:00",
+      "state": "HEALTHY",
+      "last_verified_at": "2026-08-22T21:58:47+09:00",
       "latest_published": {
         "title": "OpenAI ZDRでも安全確定ではない｜機密情報を入れる前の3確認 #Shorts",
         "url": "https://youtube.com/shorts/7U8O5YiEHoE"
       },
-      "next_scheduled": null,
-      "note": "8月22日のShorts 1本は公開済み。8月23日の外部予約ID NaPQN9yFWcoには旧Revisionが残っている。その後BGM修正版Revision 6（動画hash 252e029e...）へ更新したため、現行版は承認待ち。現行Revision/Hashに一致する外部差替えreceipt取得までは予約済みと表示しない。旧予約は二重投稿防止のため自動削除・再送していない。"
+      "next_scheduled": {
+        "title": "AIを困らせる4問｜答えを信じる前に #Shorts",
+        "url": "https://youtube.com/shorts/_AlOYKCsoVY",
+        "scheduled_at": "2026-08-23T12:00:00+09:00"
+      },
+      "note": "8月22日のShorts 1本は公開済み。8月23日のShortsはBGM修正版Revision 6を外部ID _AlOYKCsoVY、公開予約2026年8月23日12:00（JST）としてYouTube Studioで照合し、外部予約receiptを保存済み。旧Revisionの外部ID NaPQN9yFWcoは予約を解除して非公開に変更済み。"
     },
     {
       "id": "radar",
@@ -83,11 +87,6 @@
   ],
   "blockers": [
     {
-      "id": "20260823-shorts-r6-reapproval-and-replacement",
-      "severity": "DANGER",
-      "message": "8月23日ShortsはBGM修正版Revision 6へ更新済み。YouTube外部ID NaPQN9yFWcoには旧Revisionが残るため、現行動画とBGMの所有者承認後に差し替え、現行hashに一致する外部receiptを再取得する必要がある。"
-    },
-    {
       "id": "20260823-note-quality-remediation-r4",
       "severity": "DANGER",
       "message": "8月23日のnote 2本で同文反復と品質ゲート誤判定を検出。本文をRevision 4へ修正し監査PASS。記事hashと08:00・12:00枠が変わったため旧承認を無効化し、再承認待ちへ戻した。"
@@ -100,7 +99,7 @@
     {
       "id": "20260822-23-external-reservation-required",
       "severity": "ATTENTION",
-      "message": "8月22日Shorts 1本とnote 2件は公開receipt確認済み。8月23日Shortsの外部予約は旧Revisionで、現行Revision 6の予約receiptは未取得。X 2件とInstagram 2件も公式API接続を確認できず、外部ID・公開receiptは未取得。いずれも現行版を予約済み・公開済みとは扱わない。"
+      "message": "8月22日Shorts 1本とnote 2件は公開receipt確認済み。8月23日Shorts Revision 6は外部予約receipt取得済み。X 2件とInstagram 2件は公式API接続を確認できず、外部ID・公開receiptは未取得のため予約済み・公開済みとは扱わない。"
     },
     {
       "id": "20260821-external-reservation-and-daily-minimum",
@@ -362,6 +361,9 @@
     "outputs/receipts/board-sync-youtube-shorts-published-2026-08-22-7U8O5YiEHoE.json",
     "outputs/kizashi-upcoming-20260822-23/receipts/youtube-shorts-owner-approval-2026-08-23-r4.json",
     "outputs/receipts/youtube-shorts-scheduled-2026-08-23-NaPQN9yFWco.json",
-    "outputs/receipts/board-sync-youtube-shorts-scheduled-2026-08-23-NaPQN9yFWco.json"
+    "outputs/receipts/board-sync-youtube-shorts-scheduled-2026-08-23-NaPQN9yFWco.json",
+    "outputs/receipts/youtube-shorts-cancelled-2026-08-23-NaPQN9yFWco.json",
+    "outputs/receipts/youtube-shorts-scheduled-2026-08-23-_AlOYKCsoVY.json",
+    "outputs/receipts/board-sync-youtube-shorts-scheduled-2026-08-23-_AlOYKCsoVY.json"
   ]
 }
