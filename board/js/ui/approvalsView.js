@@ -18,6 +18,23 @@ function componentKey(post, scope) {
   return `${post.channel_post_id}:${post.current_revision_id}:${scope}`;
 }
 
+/**
+ * ブラウザ固有の承認鍵が見つからない場合も、公開Boardで操作を行き止まりにしない。
+ * GitHub Issue承認は現在のRevision/Hashを含むため、認証を省略せず安全に代替できる。
+ */
+export async function publicApprovalRoute({ group, post, revision, componentScope, deviceReady = approvalDeviceReady() }) {
+  if (deviceReady) return { kind: 'gateway', href: null };
+  return {
+    kind: 'github',
+    href: await buildPublicApprovalRequest({
+      group,
+      posts: [post],
+      revisions: new Map([[revision.revision_id, revision]]),
+      componentScope,
+    }),
+  };
+}
+
 export async function renderApprovalsScreen(app) {
   const { repo } = app.ctx;
   const tz = app.timeZone;
@@ -38,10 +55,11 @@ export async function renderApprovalsScreen(app) {
   if (app.ctx.backend === 'public') {
     const tasks = await collectPublicApprovalTasks(app, pending);
     const postCount = new Set(tasks.map((task) => task.post.channel_post_id)).size;
+    const deviceReady = approvalDeviceReady();
     const bulkButton = el('button', {
       class: 'btn btn-primary approval-all-button',
       type: 'button',
-      disabled: tasks.length === 0,
+      disabled: tasks.length === 0 || !deviceReady,
       onClick: async (event) => {
         const target = event.currentTarget;
         target.disabled = true;
@@ -60,12 +78,16 @@ export async function renderApprovalsScreen(app) {
           app.toast(error?.message ?? '一括承認を送信できませんでした。');
         }
       },
-    }, tasks.length ? `すべて承認（${postCount}投稿）` : 'すべて承認済み');
+    }, tasks.length
+      ? (deviceReady ? `すべて承認（${postCount}投稿）` : '一括承認は登録済み端末のみ')
+      : 'すべて承認済み');
     screen.appendChild(el('section', { class: 'approval-all-bar' },
       el('div', { class: 'approval-all-copy' },
         el('strong', null, '現在のRevisionを一括承認'),
         el('span', null, tasks.length
-          ? `未承認の本文・動画と画像をまとめて処理します。${approvalDeviceReady() ? '' : 'この端末は初回登録が必要です。'}`
+          ? (deviceReady
+              ? '未承認の本文・動画と画像をまとめて処理します。'
+              : 'このブラウザに承認鍵がなくても、下の「GitHubで承認」から安全に進められます。')
           : '現在、承認できる未処理項目はありません。')),
       bulkButton));
     if (expiredCount > 0) {
@@ -136,6 +158,15 @@ async function buildSimpleApprovalItem(app, post, linkLabel = '記事リンク',
       return el('span', { class: 'approval-component-approved', title: state.currentHash }, `承認済み ${when}`.trim());
     }
     if (app.ctx.backend === 'public') {
+      const route = await publicApprovalRoute({ group, post, revision, componentScope: scope });
+      if (route.kind === 'github') {
+        return el('a', {
+          class: 'btn btn-primary btn-sm',
+          href: route.href,
+          target: '_blank',
+          rel: 'noopener noreferrer',
+        }, 'GitHubで承認');
+      }
       return el('button', {
         class: 'btn btn-primary btn-sm',
         type: 'button',
