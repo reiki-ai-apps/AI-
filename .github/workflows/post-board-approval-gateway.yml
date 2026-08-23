@@ -1,8 +1,6 @@
-name: POST BOARD approval gateway
+name: POST BOARD approval gateway (manual fallback)
 
 on:
-  schedule:
-    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 permissions:
