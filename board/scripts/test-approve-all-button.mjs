@@ -18,3 +18,10 @@ test('承認ページは全件ボタン・Revision固定・Shortsサムネイル
   assert.match(source, /post\.platform === 'YOUTUBE_SHORTS' \? \['CONTENT'\]/);
   assert.match(source, /期限切れの\$\{expiredCount\}件/);
 });
+
+test('公開承認画面はGitHub Issueへ遷移しない', async () => {
+  const source = await readFile(new URL('../js/ui/approvalsView.js', import.meta.url), 'utf8');
+  assert.doesNotMatch(source, /GitHubで承認/);
+  assert.doesNotMatch(source, /buildPublicApprovalRequest/);
+  assert.match(source, /submitGatewayComponentApproval/);
+});

@@ -9,30 +9,13 @@ import { platformBadge } from './platformBadge.js';
 import { approve, reject, describePendingChange, approveGroup, recordComponentApproval, verifyComponentApprovals } from '../services/api.js?v=2';
 import { guardedButton, permissionNotice } from './states.js';
 import { openPostDetail } from './postDetail.js';
-import { buildPublicApprovalRequest, isPublicApprovalActionable } from './publicApproval.js';
+import { isPublicApprovalActionable } from './publicApproval.js';
 import { approvalDeviceReady, submitGatewayComponentApproval } from './publicApprovalGateway.js?v=3';
 
 const bulkSubmittedKeys = new Set();
 
 function componentKey(post, scope) {
   return `${post.channel_post_id}:${post.current_revision_id}:${scope}`;
-}
-
-/**
- * ブラウザ固有の承認鍵が見つからない場合も、公開Boardで操作を行き止まりにしない。
- * GitHub Issue承認は現在のRevision/Hashを含むため、認証を省略せず安全に代替できる。
- */
-export async function publicApprovalRoute({ group, post, revision, componentScope, deviceReady = approvalDeviceReady() }) {
-  if (deviceReady) return { kind: 'gateway', href: null };
-  return {
-    kind: 'github',
-    href: await buildPublicApprovalRequest({
-      group,
-      posts: [post],
-      revisions: new Map([[revision.revision_id, revision]]),
-      componentScope,
-    }),
-  };
 }
 
 export async function renderApprovalsScreen(app) {
@@ -86,8 +69,8 @@ export async function renderApprovalsScreen(app) {
         el('strong', null, '現在のRevisionを一括承認'),
         el('span', null, tasks.length
           ? (deviceReady
-              ? '未承認の本文・動画と画像をまとめて処理します。'
-              : 'このブラウザに承認鍵がなくても、下の「GitHubで承認」から安全に進められます。')
+              ? '未承認の本文・動画と画像をまとめて処理します。GitHub画面は開きません。'
+              : '初回設定リンクを一度開くと、このブラウザの承認ボタンだけで処理できます。')
           : '現在、承認できる未処理項目はありません。')),
       bulkButton));
     if (expiredCount > 0) {
@@ -158,15 +141,6 @@ async function buildSimpleApprovalItem(app, post, linkLabel = '記事リンク',
       return el('span', { class: 'approval-component-approved', title: state.currentHash }, `承認済み ${when}`.trim());
     }
     if (app.ctx.backend === 'public') {
-      const route = await publicApprovalRoute({ group, post, revision, componentScope: scope });
-      if (route.kind === 'github') {
-        return el('a', {
-          class: 'btn btn-primary btn-sm',
-          href: route.href,
-          target: '_blank',
-          rel: 'noopener noreferrer',
-        }, 'GitHubで承認');
-      }
       return el('button', {
         class: 'btn btn-primary btn-sm',
         type: 'button',
@@ -326,10 +300,14 @@ async function buildGroupCard(app, postGroupId, items, tz) {
 
         el('div', { class: 'card-actions' },
           app.ctx.backend === 'public'
-            ? el('a', {
+            ? el('button', {
                 class: 'btn btn-primary btn-sm',
-                href: await buildPublicApprovalRequest({ group, posts: [post], revisions: new Map([[revision.revision_id, revision]]) }),
-              }, 'GitHubでこのSNSを承認')
+                type: 'button',
+                onClick: async () => {
+                  await submitGatewayComponentApproval({ group, post, revision, componentScope: 'CONTENT' });
+                  app.toast('承認を受け付けました。数分以内にBoardへ反映します。');
+                },
+              }, '承認')
             : guardedButton(app, 'approval.approve', 'このSNSを承認', {
             class: 'btn btn-primary btn-sm',
             onClick: async () => {
@@ -357,10 +335,15 @@ async function buildGroupCard(app, postGroupId, items, tz) {
     card.appendChild(
       el('div', { class: 'card-actions' },
         app.ctx.backend === 'public'
-          ? el('a', {
+          ? el('button', {
               class: 'btn btn-primary',
-              href: await buildPublicApprovalRequest({ group, posts: items, revisions }),
-            }, `GitHubで${items.length}件をまとめて承認`)
+              type: 'button',
+              onClick: async () => {
+                const tasks = await collectPublicApprovalTasks(app, items);
+                for (const task of tasks) await submitGatewayComponentApproval(task);
+                app.toast(`${items.length}件の承認を受け付けました。`);
+              },
+            }, `${items.length}件をまとめて承認`)
           : guardedButton(app, 'approval.approve', `この企画の${items.length}件をまとめて承認`, {
           class: 'btn btn-primary',
           onClick: async () => {
