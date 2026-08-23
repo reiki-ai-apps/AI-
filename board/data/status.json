@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-23T21:12:06+09:00",
+  "generated_at": "2026-08-24T01:35:00+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -89,7 +89,7 @@
     {
       "id": "20260824-youtube-longform-deadline-risk",
       "severity": "DANGER",
-      "message": "8月24日（月）のYouTube本編は公式一次情報1件、台本Revision 1、用語定義、タイトル3案、16カット設計まで完成した。需要の定量根拠、画像、TTS、字幕、BGM、動画、サムネイル実画像、三周検査、承認、外部予約receipt取得は未完了のため期限リスクがある。"
+      "message": "8月24日（月）のYouTube本編Revision 2は、公式一次情報1件、4分02秒動画、字幕49件、BGM、サムネイル3案、説明文、三周検査まで完成。動画と推奨サムネイルAをBoardで表示できる承認待ちへ同期済み。現Revision/Hash承認とYouTube OAuth接続、外部予約receipt取得が残る。"
     },
     {
       "id": "20260822-23-external-reservation-required",
@@ -119,7 +119,7 @@
     {
       "id": "youtube-api-oauth-one-time",
       "severity": "ATTENTION",
-      "message": "次回以降のYouTube完全自動反映には、対象チャンネル UCtJKnn7Lp2sp70eZd55E_Jw へのGoogle OAuth初回同意が1回だけ必要。制作・三周検査・最終承認パッケージ作成は止めずに進める。"
+      "message": "YouTube OAuth client secretが現在の実行環境に未配置。現Revision/Hash承認後、client secret配置と対象チャンネル UCtJKnn7Lp2sp70eZd55E_Jw へのGoogle OAuth初回同意が完了すれば、外部側の重複照合後に予約を実行できる。"
     }
   ],
   "production": {
@@ -127,14 +127,14 @@
     "last_run": {
       "run_id": "kizashi-ai-news-20260824-prep",
       "started_at": "2026-08-22T18:55:18+09:00",
-      "finished_at": null,
-      "state": "EXECUTING",
-      "stage": "8月24日（月）本編｜台本Revision 1・用語定義・16カット設計まで完成、予備ゲート補修中",
+      "finished_at": "2026-08-24T01:00:00+09:00",
+      "state": "WAITING_OWNER_APPROVAL",
+      "stage": "8月24日（月）本編｜Revision 2の動画・字幕・BGM・サムネイル3案・説明文・三周検査が完成",
       "candidate_count": 1,
       "verified_primary_count": 1,
       "required_primary_count": 1,
-      "reason": "OpenAIの公式一次情報『Introducing AI Futures』を1件深掘りし、著者の見解とOpenAI全体の公式方針を混同しない台本Revision 1を作成した。約1209文字、16字幕区間、16の固有visual beat、タイトル3案、サムネイル3コンセプトを記録した。",
-      "next_action": "需要根拠を補修し、画像生成の費用許可なしでは外部生成せず、Aivis Cloudの字幕別TTS、字幕、BGM比較、動画、サムネイル3案、三周検査を同じrun_idで続ける。"
+      "reason": "OpenAI公式一次情報1件を深掘りし、著者見解の明示、4分02秒動画、字幕49件、17の映像区間、Aivis Cloud音声、承認済みBGM、サムネイル3案、説明文を完成。音量ピーク-1.5dBFS、字幕同期差0ms、9フレーム表示検査を確認し、Boardへ第2版を同期した。",
+      "next_action": "Boardで完成動画と推奨サムネイルAを一度に承認し、YouTube OAuth client secret配置後に外部側の重複を照合して12:00予約を実行する。"
     },
     "policy": "予約成立を最優先。noteはAsia/Tokyoの8:00・12:00を基本枠とし、遅れた場合も同時公開せず、1本目を次の実行可能時刻、2本目を最低4時間後へ移す。YouTube本編はAsia/Tokyoの月・水・金を固定投稿日とし、当日枠と次の2枠を予約済み／承認待ち／制作中／HOLDで必ず表示する。制作・修正・品質検査・Board同期は途中承認なしで連続実行し、同一revision/hashの完成物、投稿先、日時、価格・API費用を一画面へまとめた最終公開直前だけ所有者承認を求める。認証権限の新規付与、課金、外部公開は最終承認対象とし、成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -184,8 +184,8 @@
         },
         {
           "date": "2026-08-24",
-          "state": "IN_PRODUCTION",
-          "reason": "公式一次情報1件、台本Revision 1、用語定義、タイトル3案、16カット設計まで完成。メディア制作と三周検査は未完了で、外部予約・公開receiptは未取得。"
+          "state": "PENDING_APPROVAL",
+          "reason": "Revision 2の動画・字幕・BGM・サムネイル3案・説明文・三周検査が完成。Boardで動画と推奨サムネイルAを表示可能。現Revision/Hash承認、OAuth接続、外部予約receipt取得が残る。"
         },
         {
           "date": "2026-08-26",
@@ -194,13 +194,13 @@
         }
       ]
     },
-    "stage": "8月24日（月）本編｜台本Revision 1・用語定義・16カット設計まで完成",
-    "reason": "8月23日noteは1本目を15:03、2本目を21:11に各100円で公開し、最低4時間を超える6時間8分の間隔を確保した。両記事の外部URL・価格・有料境界・公開receiptを照合してBoardへ同期済み。",
-    "next_action": "8月24日（月）YouTube本編の画像、TTS、字幕、BGM、動画、サムネイル3案、三周検査を同じrun_idで継続する。"
+    "stage": "8月24日（月）本編｜Revision 2完成・Board承認待ち",
+    "reason": "YouTube本編4分02秒、字幕49件、BGM、サムネイル3案、説明文、三周検査を完成し、動画と推奨サムネイルAの表示URL・Hash・12:00予定・費用・接続状態をBoardへ同期した。外部予約receiptはまだない。",
+    "next_action": "Boardで動画と推奨サムネイルAを一度に承認し、OAuth接続後に外部照合して予約する。"
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-23T21:12:06+09:00",
+    "last_checked_at": "2026-08-24T01:35:00+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
@@ -212,6 +212,9 @@
     "outputs/kizashi-ai-news-20260824-prep/distribution-plan.json",
     "outputs/kizashi-ai-news-20260824-prep/primary-source-scan.json",
     "outputs/kizashi-ai-news-20260824-prep/board-sync-receipt.json",
+    "outputs/kizashi-ai-news-20260824-prep/youtube-final/board-final-sync-receipt.json",
+    "outputs/kizashi-ai-news-20260824-prep/youtube-final/approval-package.json",
+    "outputs/kizashi-ai-news-20260824-prep/youtube-final/three-pass-review.json",
     "outputs/kizashi-upcoming-20260822-23/receipts/monitor-20260822-1755-shorts-r6.json",
     "outputs/kizashi-upcoming-20260822-23/shorts-2026-08-23/shorts-review-r6.json",
     "outputs/kizashi-upcoming-20260822-23/ai-literacy-20260823-a-shorts-r6-board-sync.json",

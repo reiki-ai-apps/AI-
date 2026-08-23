@@ -1,0 +1,31 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "reiki-board-approval-gateway",
+  "main": "approval-gateway.js",
+  "compatibility_date": "2026-08-23",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "kv_namespaces": [
+    {
+      "binding": "APPROVALS",
+      "id": "1d856b7ff10647c4a138e3d5ee576900"
+    }
+  ],
+  "vars": {
+    "GITHUB_OWNER": "reiki-ai-apps",
+    "GITHUB_REPO": "AI-"
+  },
+  "secrets": {
+    "required": [
+      "TOKEN_SIGNING_SECRET",
+      "ADMIN_INVITE_SECRET",
+      "QUEUE_READ_SECRET",
+      "GITHUB_DISPATCH_TOKEN"
+    ]
+  }
+}
