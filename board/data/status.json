@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-23T15:05:28+09:00",
+  "generated_at": "2026-08-23T21:12:06+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
-    "published_confirmed": 16,
+    "published_confirmed": 17,
     "scheduled": 1,
-    "attention": 4
+    "attention": 3
   },
   "channels": [
     {
@@ -43,14 +43,14 @@
       "label": "note",
       "account": "KIZASHI / natty_swan9072",
       "url": "https://note.com/natty_swan9072",
-      "state": "ATTENTION",
-      "last_verified_at": "2026-08-23T15:03:00+09:00",
+      "state": "HEALTHY",
+      "last_verified_at": "2026-08-23T21:11:00+09:00",
       "latest_published": {
-        "title": "AIの答えを信じる前に｜親子と学校で使える4つの問い",
-        "url": "https://note.com/natty_swan9072/n/n21114167564b"
+        "title": "AI判断を監査できる形にする｜小さな組織の証拠5点セット",
+        "url": "https://note.com/natty_swan9072/n/n4f2a5e28d779"
       },
       "next_scheduled": null,
-      "note": "8月23日分1件目は15:03に100円で公開し、公開URL・価格・有料境界を照合済み。2件目は同時公開を避けるため、1件目から最低4時間後の19:03以降に公開する。noteプレミアム未契約のため外部予約はできず、外部receipt未取得。"
+      "note": "8月23日分は1件目を15:03、2件目を21:11に各100円で公開。6時間8分の間隔を確保し、両記事の公開URL・価格・有料境界・公開receiptを照合してBoard同期済み。"
     },
     {
       "id": "youtube",
@@ -86,11 +86,6 @@
     }
   ],
   "blockers": [
-    {
-      "id": "20260823-note-quality-remediation-r4",
-      "severity": "DANGER",
-      "message": "8月23日のnote 2本はRevision 4で監査PASS。1本目は15:03に公開receiptを取得済み。2本目は同時公開を避けるため19:03以降の公開待ち。"
-    },
     {
       "id": "20260824-youtube-longform-deadline-risk",
       "severity": "DANGER",
@@ -200,12 +195,12 @@
       ]
     },
     "stage": "8月24日（月）本編｜台本Revision 1・用語定義・16カット設計まで完成",
-    "reason": "8月23日note 1本目は15:03に100円で公開し、外部URL・価格・有料境界を照合してBoardへ同期した。2本目は同時公開防止の最低4時間間隔を適用する。",
-    "next_action": "8月23日note 2本目を19:03以降に最終確認して公開し、外部receipt取得直後にBoardへ同期する。並行して8月24日本編の制作を継続する。"
+    "reason": "8月23日noteは1本目を15:03、2本目を21:11に各100円で公開し、最低4時間を超える6時間8分の間隔を確保した。両記事の外部URL・価格・有料境界・公開receiptを照合してBoardへ同期済み。",
+    "next_action": "8月24日（月）YouTube本編の画像、TTS、字幕、BGM、動画、サムネイル3案、三周検査を同じrun_idで継続する。"
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-23T15:05:28+09:00",
+    "last_checked_at": "2026-08-23T21:12:06+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
@@ -366,6 +361,8 @@
     "outputs/receipts/youtube-shorts-scheduled-2026-08-23-_AlOYKCsoVY.json",
     "outputs/receipts/board-sync-youtube-shorts-scheduled-2026-08-23-_AlOYKCsoVY.json",
     "outputs/kizashi-upcoming-20260822-23/ai-literacy-20260823-a/note/publish-receipt.json",
-    "outputs/kizashi-upcoming-20260822-23/ai-literacy-20260823-a/note/board-sync-receipt.json"
+    "outputs/kizashi-upcoming-20260822-23/ai-literacy-20260823-a/note/board-sync-receipt.json",
+    "outputs/kizashi-upcoming-20260822-23/ai-oversight-20260823-b/note/publish-receipt.json",
+    "outputs/kizashi-upcoming-20260822-23/ai-oversight-20260823-b/note/board-sync-receipt.json"
   ]
 }
