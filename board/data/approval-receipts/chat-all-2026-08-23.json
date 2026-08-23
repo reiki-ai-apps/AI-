@@ -1,0 +1,54 @@
+{
+  "schema_version": "reiki-board-owner-approval-batch.v1",
+  "decision": "APPROVED_CURRENT_REVISIONS",
+  "from_date": "2026-08-22",
+  "through_date": "2026-08-23",
+  "time_zone": "Asia/Tokyo",
+  "approved_at": "2026-08-23T00:10:00.385Z",
+  "approved_count": 2,
+  "external_reservation_executed": false,
+  "external_publication_executed": false,
+  "stale_past_items_excluded": true,
+  "approvals": [
+    {
+      "channel_post_id": "aab9abd7-cf8b-4631-a352-2c7ddd038c11",
+      "platform": "NOTE",
+      "scheduled_at": "2026-08-22T23:00:00.000Z",
+      "revision_id": "d8e9fc64-5b86-4fbc-befa-71aeaca28bc2",
+      "revision_no": 4,
+      "approval_id": "edc923a6-4a46-4a78-b965-ec50e5b4338b",
+      "approval_basis_hash": "2c5b5f69524c3f7d68e7784658c84620c4a96a172d7bbd20138c1e76435b1ea4",
+      "schedule_id": "b346e3cc-7c4c-410a-8f52-b8c35b2eca15",
+      "component_approvals": [
+        {
+          "scope": "CONTENT",
+          "approval_component_hash": "591d7cdf678ae66a39734ea122a6e4f6c464933608702facf471ccc1977985da"
+        },
+        {
+          "scope": "THUMBNAIL",
+          "approval_component_hash": "de63d4752d666afecf2db08d966a4cd579698db344fd8d23fd2e03c1a29a65b3"
+        }
+      ]
+    },
+    {
+      "channel_post_id": "32dd201b-d41e-4848-ae76-6bc3ad9e3052",
+      "platform": "NOTE",
+      "scheduled_at": "2026-08-23T03:00:00.000Z",
+      "revision_id": "a8198d5e-56c9-4a08-b1a9-aa2f08c7e919",
+      "revision_no": 4,
+      "approval_id": "e2cd915b-d63a-4d54-998c-8e426090bc6f",
+      "approval_basis_hash": "19c308493a6f19479c7cb56cd4239b558dc3ec2663e0329e65b6f909f971215e",
+      "schedule_id": "3fd623e3-859b-48c0-9286-1cabc2a6fb15",
+      "component_approvals": [
+        {
+          "scope": "CONTENT",
+          "approval_component_hash": "fa12297a85c2cab70db1bfcff46f0fb9f5d04e96b3b353d38080c4d193d7e6eb"
+        },
+        {
+          "scope": "THUMBNAIL",
+          "approval_component_hash": "b8106e46746665a2acda78cca886d2dedbb180ecdb5ac30c0b4a12caad60995d"
+        }
+      ]
+    }
+  ]
+}
