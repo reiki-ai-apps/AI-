@@ -2,6 +2,101 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_88bf3a82dcc04688985b",
+      "story_id": "story_0518257938ba094b76",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "政府がAI事業者向け知財保護基本指針案を発表、学習データ開示求める",
+      "source_published_at": "2026-08-23T02:00:00.000Z",
+      "published_at": "2026-08-23T02:00:00.000Z",
+      "fetched_at": "2026-08-23T04:02:39.171Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "政府がAI事業者に学習データ開示を求める知財保護基本指針案を発表し、法的拘束力のないコンプライ・オア・エクスプレイン方式を採用した。",
+      "source_name": "ビジネス+IT",
+      "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE13eVRJNzBHU1QxV2pIRExPb2ZnUThvNzNvZk9HbERrb0M5cFJkdTBDYzVacG5pZVRRWmpNaEhrY2J5ZFBqNTBsbnl5RDFETXdzSEdZ?oc=5",
+      "story_entities": [
+        "AI事業者",
+        "知的財産保護基本指針",
+        "ai事業者"
+      ],
+      "primary_entity": "日本政府",
+      "story_subject": "AI事業者向け知財保護基本指針案",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "日本",
+      "fact_slots": [
+        {
+          "type": "status",
+          "scope": "学習データ開示義務の方式",
+          "value": "コンプライ・オア・エクスプレイン方式(法的拘束力なし)",
+          "normalized_value": "コンプライオアエクスプレイン方式法的拘束力なし"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "政府がAI事業者に学習データ開示を求める基本指針案を新たに発表した。",
+      "detail": "政府が発表したAI事業者向けの知的財産保護に関する基本指針案は、AI開発事業者に学習データの開示を求める内容となっている。ただし指針には法的拘束力を持たせず、「コンプライ・オア・エクスプレイン」方式（原則を守るか、守らない場合はその理由を説明する)を採用した。著作権者の権利保護とAI技術の発展の両立を狙ったものとみられる。指針案の詳細な運用方法や今後の施行スケジュールなどは本抜粋からは確認できず、不明な点として扱う。",
+      "new_facts": [
+        "政府がAI事業者に学習データ開示を求める知財保護基本指針案を発表した",
+        "指針は法的拘束力を持たないコンプライ・オア・エクスプレイン方式を採用している"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_cb27b18678361e7dccf7",
+      "story_id": "story_8864f84770447cae5a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6052631578947368,
+      "title": "DeepSeekが画像理解対応の新モデル「V4-Flash-Vision-Exp」を公開",
+      "source_published_at": "2026-08-23T01:24:34.000Z",
+      "published_at": "2026-08-23T01:24:34.000Z",
+      "fetched_at": "2026-08-23T04:02:26.601Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "中国DeepSeekが画像を理解できる新モデル「V4-Flash-Vision-Exp」を公開し、Anthropicの「Opus 4.8」に対抗する性能を狙う。",
+      "source_name": "Pasquale Pillitteri",
+      "source_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOUFpvTzNPOXhXbWVFejktVjc1YnFFY0p5V1NTc09SbkcxWnhTcWhnYmh0NTNVaW95bXctcmp1ZzluckRwSG1Ucks0T1N2S3EzRGc1U3oySXVBTldTMEQ2OThPX1JoRVBqemEtY2xuNVFYUjVZMlZtWHJHMmZ2dU12Q2JlZUpFZw?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "V4-Flash-Vision-Exp",
+        "Opus 4.8",
+        "deepseek",
+        "v4-flash-vision-exp"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "V4-Flash-Vision-Exp",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "不明",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "DeepSeekモデル名称",
+          "value": "V4-Flash-Vision-Exp",
+          "normalized_value": "v4flashvisionexp"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type"
+      ],
+      "change_summary": "DeepSeekが画像理解機能を持つ新モデル「V4-Flash-Vision-Exp」を新たに公開した。",
+      "detail": "DeepSeekは新モデル「V4-Flash-Vision-Exp」を公開した。画像を理解できるマルチモーダル機能を備え、Anthropicの「Claude Opus 4.8」に匹敵する性能を目指しているとされる。記事本文の抜粋からは具体的なベンチマーク結果や提供方法、対象ユーザーなどの詳細は確認できず、不明な点として扱う。DeepSeekは中国のAI開発企業で、これまでも低コストで高性能なモデルを相次いで公開してきた経緯がある。",
+      "new_facts": [
+        "DeepSeekが画像理解機能を備えた新モデルV4-Flash-Vision-Expを公開した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_47546436e2e38dca14b9",
       "story_id": "story_60a68b1b162c7ea7c3",
       "story_sequence": 1,
@@ -226,6 +321,48 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_c89c26ecdbc3c6048690",
+      "story_id": "story_0cd55fa15f27a21c64",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6459574468085106,
+      "title": "Gemini 3.6 Flashが「Antigravity」で発見、数日前からテスト中と報道",
+      "source_published_at": "2026-08-22T10:09:18.000Z",
+      "published_at": "2026-08-22T10:09:18.000Z",
+      "fetched_at": "2026-08-23T04:02:08.087Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "Googleの次期モデルとみられる「Gemini 3.6 Flash」が開発ツール「Antigravity」内で見つかり、数日前からテストされていると報じられた。",
+      "source_name": "nokiapoweruser.com",
+      "source_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNQWZnZUQwdUk2NlVsSXV2Sk5TZ0VGZ1ZSUElUdjhISjI5Q0M0U3hHQWJXdDVfR2JHMXQ2NkYtdGltU2NEU1VRWGVYX3J2WmJvaGY2Sl81ODNpQ0gwUnhEa0gwS3hwS1JZNDFxNFVrZklpTTdkdnMzZ3dGRzBudGIzRmhvamVuNlZUQmsxN0dneUF1QQ?oc=5",
+      "story_entities": [
+        "Gemini 3.6 Flash",
+        "Google Antigravity",
+        "gemini3.6flash",
+        "googleantigravity",
+        "google-gemini"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "Gemini 3.6 Flash",
+      "event_type": "release",
+      "event_stage": "rumor",
+      "event_scope": "Antigravity(開発者向けツール)",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "未発表とみられる「Gemini 3.6 Flash」がAntigravity内で確認されたと報じられた。",
+      "detail": "海外メディアnokiapoweruser.comは、Googleの新モデルとみられる「Gemini 3.6 Flash」が、Googleのエージェント型コーディングツール「Antigravity」内で確認されたと報じた。同モデルは数日前から内部でテストされている形跡があるという。Googleからの正式発表はなく、性能や公開時期などの詳細は明らかになっていない。",
+      "new_facts": [
+        "Gemini 3.6 Flashとみられるモデルが「Antigravity」内で確認されたと報じられた",
+        "同モデルは数日前からテストされている形跡があるという"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_3b642a6919a3041915cc",
       "story_id": "story_f10673c932421d7a9f",
       "story_sequence": 1,
@@ -303,6 +440,44 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_bf7150d0b8c6caa3bb94",
+      "story_id": "story_eca4c0aa1761078474",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "次世代AIサーバー、日本のデータセンターに設置できない問題が浮上",
+      "source_published_at": "2026-08-22T07:33:46.000Z",
+      "published_at": "2026-08-22T07:33:46.000Z",
+      "fetched_at": "2026-08-23T04:02:39.719Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "次世代AIサーバーの電力・冷却要件の高まりに、既存の日本のデータセンター設備が対応できていない実態が報じられた。",
+      "source_name": "日経クロステック",
+      "source_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9abXZ0eEJnN0lrRkVwVXdsTWVNR05yYWJPd3pyaHN3YXZ0YmlldTM5RkVJWEJiaUNXVVlOV1BkLXFJYnlRdk9PYlhpRlE2amFtbXJkNlYwaDdJa0JxRUdj?oc=5",
+      "story_entities": [
+        "データセンター",
+        "AIサーバー",
+        "aiサーバー"
+      ],
+      "primary_entity": "日本のデータセンター事業者",
+      "story_subject": "次世代AIサーバー設置課題",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "日本",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "次世代AIサーバーの要件に既存データセンターが対応できていない課題が報じられた。",
+      "detail": "日経クロステックの記事は、次世代のAIサーバーが日本国内のデータセンターに設置できないという課題を取り上げている。AIサーバーの高性能化に伴い消費電力や発熱量が増大し、既存の電源容量や冷却設備では対応しきれないケースが生じているとみられる。記事本文の詳細な数値や具体的な事業者名、対応策は本抜粋からは確認できず、不明な点として扱う。データセンター事業者やAI半導体を導入する企業にとって、設備更新や新設の検討が課題となる可能性がある。",
+      "new_facts": [
+        "次世代AIサーバーが日本のデータセンターに設置できないという課題が報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_905b1ae7853e4a85eb19",
       "story_id": "story_45eb50be6b318198e0",
       "story_sequence": 1,
@@ -350,6 +525,48 @@
       "detail": "元記事はタイ政府が有料の生成AIサービスを国民500万人に1年間無料で提供し、各分野でどのように役立つかを検証する取り組みを伝えている。具体的な対象AIサービス名や予算規模、提供開始時期などの詳細は記事内で明示されていない。政府は実際の利用データを基に生成AIの効果を分野ごとに把握する狙いがあるとみられる。",
       "new_facts": [
         "タイ政府が国民500万人に有料の生成AIサービスを1年間無料提供したと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_bcf83db2b662753dd3ea",
+      "story_id": "story_ac2f5438c13526103a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5978378378378378,
+      "title": "OpenAI、Mac用ChatGPTに「メッセージ」連携プラグインを公開",
+      "source_published_at": "2026-08-22T04:00:00.000Z",
+      "published_at": "2026-08-22T04:00:00.000Z",
+      "fetched_at": "2026-08-23T04:02:05.269Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIがMac向けにApple「メッセージ」アプリと連携するChatGPTプラグインを公開し、アップルのプライバシー方針との緊張が指摘されている。",
+      "source_name": "Yahoo!ニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1fa1lsVi1SdWdyLVV2N1hOaFVnRVl2TTFlQU42ZW9SQ3pzSlJrYUZUbTdJZkdfeEM2T1N4NkkzSUtXNXNqcW9qMXNZdTdYQ1Mtd09WdTVnaEMyR0FMN19GQkFvckxWTGFVcDVnZnpXRmRsRHdnd0FIeUJYbHYyWTg?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT",
+        "Apple",
+        "openai",
+        "chatgpt"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "Mac用メッセージ連携プラグイン",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Mac",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type"
+      ],
+      "change_summary": "OpenAIがMac用ChatGPTに「メッセージ」アプリ連携プラグインを新たに公開した。",
+      "detail": "OpenAIは、Mac向けにApple標準の「メッセージ」アプリと連携できるChatGPT用プラグインを公開した。これによりChatGPTからメッセージの送受信などの操作に関わる連携が可能になるとみられる。記事は、この動きがアップルがこれまで重視してきた「プライバシー」というブランドイメージに揺さぶりをかけるものだと指摘している。連携機能の具体的な範囲や提供対象、データ取り扱いの詳細は本抜粋からは確認できず、不明な点として扱う。",
+      "new_facts": [
+        "OpenAIがMac用ChatGPTにApple「メッセージ」アプリと連携するプラグインを公開した"
       ],
       "event_date_precision": "unknown"
     },
