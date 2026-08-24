@@ -1,6 +1,6 @@
 // アプリシェル。§04「常設画面は4つ、作業面は2つ。入口を増やさない」を守る。
 //
-// 常設画面 : 状況 / 承認 / 接続設定
+// 常設画面 : 投稿カレンダー / 承認待ち / 投稿履歴 / 接続設定
 // 作業面   : 登録・編集ドロワー / 投稿詳細（どちらもドロワーとして開く）
 
 import { el, clear, replace, button, append, focus } from '../core/dom.js';
@@ -14,21 +14,23 @@ import { systemClock } from '../core/clock.js';
 import { dateKey, systemTimeZone } from '../core/tz.js';
 import { ROLES, ROLE_ORDER, roleLabel } from '../domain/rbac.js';
 import { seedSocialAccounts } from '../services/api.js';
-import { renderApprovalsScreen } from './approvalsView.js?v=10';
+import { renderCalendarScreen } from './calendarView.js';
+import { renderApprovalsScreen } from './approvalsView.js';
+import { renderHistoryScreen } from './historyView.js';
 import { renderConnectionsScreen } from './connectionsView.js';
-import { renderStatusScreen } from './statusView.js?v=16';
+import { renderStatusScreen } from './statusView.js?v=2';
 import { hasIntentLink, consumeIntentLink } from './intentLink.js';
-import { claimApprovalDeviceFromHash, restoreApprovalDeviceToken } from './publicApprovalGateway.js?v=3';
-import { isPublicApprovalActionable } from './publicApproval.js';
+import { claimPublicApprovalDeviceFromLocation, isPublicApprovalActionable } from './publicApproval.js';
 
 const SCREENS = [
-  { id: 'status', label: '状況', render: renderStatusScreen },
-  { id: 'approvals', label: '承認', render: renderApprovalsScreen },
-  { id: 'connections', label: '接続', render: renderConnectionsScreen },
+  { id: 'status', label: '運用状況', render: renderStatusScreen },
+  { id: 'calendar', label: '投稿カレンダー', render: renderCalendarScreen },
+  { id: 'approvals', label: '承認待ち', render: renderApprovalsScreen },
+  { id: 'history', label: '投稿履歴', render: renderHistoryScreen },
+  { id: 'connections', label: '接続設定', render: renderConnectionsScreen },
 ];
 
 const USER_ID = 'reiki';
-const PUBLIC_VIEW_REQUESTED = new URLSearchParams(location.search).get('public') === '1';
 
 const main = document.getElementById('main');
 const navHost = document.getElementById('nav');
@@ -41,13 +43,14 @@ const clock = systemClock(timeZone);
 
 const state = {
   route: 'status',
-  /** 投稿確認は常に今日から3日間だけを扱う。 */
+  /** カレンダーの単位。既定は週（その週を管理する面）。月は切替で見る。 */
   view: 'week',
   role: 'ADMIN',
   selectedDateKey: dateKey(clock.nowMs(), timeZone),
   year: Number(dateKey(clock.nowMs(), timeZone).slice(0, 4)),
   month: Number(dateKey(clock.nowMs(), timeZone).slice(5, 7)),
   pendingCount: 0,
+  statusNotificationFingerprint: null,
 };
 
 let overlayStack = [];
@@ -89,6 +92,65 @@ const app = {
     const node = el('div', { class: kind === 'error' ? 'toast toast-error' : 'toast' }, message);
     toastRoot.appendChild(node);
     setTimeout(() => node.remove(), kind === 'error' ? 7000 : 4000);
+  },
+
+  notificationPermission() {
+    return typeof window !== 'undefined' && 'Notification' in window ? Notification.permission : 'unsupported';
+  },
+
+  async enableBrowserNotifications() {
+    if (typeof window === 'undefined' || !('Notification' in window)) {
+      app.toast('このブラウザは通知に対応していません。Board内通知は使えます。', 'error');
+      return 'unsupported';
+    }
+    const permission = Notification.permission === 'default'
+      ? await Notification.requestPermission()
+      : Notification.permission;
+    if (permission === 'granted') app.toast('ブラウザ通知を有効にしました。', 'info');
+    else app.toast('ブラウザ通知は許可されませんでした。Board内通知は使えます。', 'error');
+    return permission;
+  },
+
+  announceStatus(data) {
+    const messages = [
+      ...(data.blockers ?? []).map((item) => String(item.message ?? item)),
+      ...(data.channels ?? [])
+        .filter((channel) => ['ATTENTION', 'BLOCKED'].includes(channel.state))
+        .map((channel) => `${channel.label}: ${channel.note ?? channel.state}`),
+      ...(data.production?.last_run?.state === 'HOLD'
+        ? [`制作run: ${data.production.last_run.next_action ?? data.production.last_run.reason ?? '品質ゲートで停止中'}`]
+        : []),
+      ...(data.production?.youtube_longform?.slots ?? [])
+        .filter((slot) => ['AWAITING_APPROVAL', 'HOLD'].includes(slot.state))
+        .map((slot) => `${slot.date}: ${slot.reason ?? slot.state}`),
+    ].filter(Boolean);
+    const fingerprint = JSON.stringify([...new Set(messages)].sort());
+    const previous = loadLocalPref('status_notification_fingerprint', '');
+    if (!messages.length) {
+      saveLocalPref('status_notification_fingerprint', '');
+      state.statusNotificationFingerprint = '';
+      return;
+    }
+    if (fingerprint === previous || fingerprint === state.statusNotificationFingerprint) return;
+    state.statusNotificationFingerprint = fingerprint;
+    saveLocalPref('status_notification_fingerprint', fingerprint);
+    const summary = messages.slice(0, 3).join('／');
+    app.toast(`要確認: ${summary}`, 'error');
+    if (app.notificationPermission() === 'granted') {
+      new Notification('KIZASHI Board｜要確認', {
+        body: summary,
+        tag: 'reiki-board-attention',
+      });
+    }
+  },
+
+  async refreshStatusNotifications() {
+    try {
+      const response = await fetch(`data/status.json?t=${Date.now()}`, { cache: 'no-store' });
+      if (response.ok) app.announceStatus(await response.json());
+    } catch {
+      // 状態取得失敗自体は、既存画面のエラー表示へ任せる。
+    }
   },
 
   /** エラーを人が読める日本語で伝える。原因が分からない例外も握りつぶさない。 */
@@ -202,13 +264,7 @@ async function boot() {
   renderSkeleton();
   const connection = loadConnection();
   try {
-    // `?public=1` は端末に古いGitHub接続設定が残っていても、必ず
-    // 公開スナップショットを読む。これでPC・スマホ間の表示差を防ぐ。
-    if (PUBLIC_VIEW_REQUESTED && isStaticHost()) {
-      const db = await openPublicDatabase();
-      state.role = 'VIEWER';
-      app.ctx = { repo: new Repo(db, clock), clock, db, mode: 'SOLO', backend: 'public', actor: { userId: USER_ID, role: state.role } };
-    } else if (connection) {
+    if (connection) {
       // GitHubモード：保存先は非公開リポジトリの board.json。services はこの場で動く。
       const db = await openGithubDatabase(connection);
       app.ctx = { repo: new Repo(db, clock), clock, db, mode: 'SOLO', backend: 'github', actor: { userId: USER_ID, role: state.role } };
@@ -230,8 +286,14 @@ async function boot() {
     if (app.ctx.backend !== 'public' && (await app.ctx.repo.listSocialAccounts()).length === 0) {
       await seedSocialAccounts(app.ctx);
     }
-    // 月表示の古い設定が端末に残っていても、投稿確認は常に3日表示で始める。
-    state.view = 'week';
+    // 前回選んだ表示単位を復元する（GitHubモードではコミットを増やさないよう端末に置く）
+    const savedView = app.ctx.backend === 'github' || app.ctx.backend === 'public'
+      ? loadLocalPref('calendar_view', 'week')
+      : await app.ctx.repo.getSetting('calendar_view', 'week');
+    // スマホで開く公開版は、端末に以前の「月」表示が残っていても
+    // 必ず「今日から7日間」から始める。月表示へは起動後に切り替えられる。
+    if (app.ctx.backend === 'public') state.view = 'week';
+    else if (savedView === 'week' || savedView === 'month') state.view = savedView;
   } catch (error) {
     if (connection) {
       renderGithubSetup(error);
@@ -258,12 +320,10 @@ async function boot() {
   buildNav();
   buildRoleSelect();
 
-  if (app.ctx.backend === 'public') await restoreApprovalDeviceToken();
-
-  if (app.ctx.backend === 'public' && location.hash.startsWith('#pair:')) {
+  if (app.ctx.backend === 'public' && (new URL(location.href).searchParams.has('pair') || location.hash.startsWith('#pair:'))) {
     try {
-      const result = await claimApprovalDeviceFromHash();
-      if (result.claimed) app.toast('この端末を承認用に登録しました。次回からコード入力は不要です。');
+      const pairing = await claimPublicApprovalDeviceFromLocation();
+      if (pairing.claimed) app.toast('この端末を承認用として登録しました。次回から認証コードは不要です。');
     } catch (error) {
       app.fail(error);
     }
@@ -292,6 +352,8 @@ async function boot() {
   }
 
   await render();
+  await app.refreshStatusNotifications();
+  window.setInterval(() => app.refreshStatusNotifications(), 5 * 60 * 1000);
 }
 
 /** GitHub接続の初期設定画面（Pagesで開いた初回、または接続に失敗したとき）。 */
@@ -343,7 +405,6 @@ function buildNav() {
 
 function buildRoleSelect() {
   clear(roleSelect);
-  roleSelect.parentElement.hidden = app.ctx.backend === 'public';
   const roles = app.ctx.backend === 'public' ? ['VIEWER'] : ROLE_ORDER;
   for (const id of roles) {
     roleSelect.appendChild(el('option', { value: id }, `役割：${roleLabel(id)}`));
