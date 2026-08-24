@@ -25,6 +25,7 @@ export async function renderApprovalsScreen(app) {
   const pending = app.ctx.backend === 'public'
     ? allPending.filter((post) => isPublicApprovalActionable(post, app.ctx.clock.nowMs()))
     : allPending;
+  pending.sort((left, right) => Date.parse(right.scheduled_at) - Date.parse(left.scheduled_at));
   const overdueCount = pending.filter((post) => Date.parse(post.scheduled_at) < app.ctx.clock.nowMs()).length;
 
   const screen = el('div', { class: 'screen' });
@@ -64,15 +65,17 @@ export async function renderApprovalsScreen(app) {
     }, tasks.length
       ? (deviceReady ? `すべて承認（${postCount}投稿）` : '一括承認は登録済み端末のみ')
       : 'すべて承認済み');
-    screen.appendChild(el('section', { class: 'approval-all-bar' },
-      el('div', { class: 'approval-all-copy' },
-        el('strong', null, '現在のRevisionを一括承認'),
-        el('span', null, tasks.length
-          ? (deviceReady
-              ? '未承認の本文・動画と画像をまとめて処理します。GitHub画面は開きません。'
-              : '初回設定リンクを一度開くと、このブラウザの承認ボタンだけで処理できます。')
-          : '現在、承認できる未処理項目はありません。')),
-      bulkButton));
+    screen.appendChild(el('details', { class: 'approval-all-bar' },
+      el('summary', { class: 'approval-all-summary' }, `一括承認（${postCount}投稿）`),
+      el('div', { class: 'approval-all-body' },
+        el('div', { class: 'approval-all-copy' },
+          el('strong', null, '現在のRevisionを一括承認'),
+          el('span', null, tasks.length
+            ? (deviceReady
+                ? '未承認の本文・動画と画像をまとめて処理します。GitHub画面は開きません。'
+                : '初回設定リンクを一度開くと、このブラウザの承認ボタンだけで処理できます。')
+            : '現在、承認できる未処理項目はありません。')),
+        bulkButton)));
     if (overdueCount > 0) {
       screen.appendChild(el('p', { class: 'approval-expired-note' },
         `予定時刻を過ぎた${overdueCount}件も表示しています。承認後は重複を確認し、安全な次の時刻へ繰り下げます。`));
@@ -206,11 +209,27 @@ function mediaPreview(revision, componentScope) {
     return el('div', { class: 'approval-artifact-missing', role: 'alert' },
       '成果物の表示リンクが未登録です。この状態では承認しないでください。');
   }
-  return el('div', { class: 'approval-media-gallery' }, ...assets.map((asset, index) => {
+  const poster = assetUrl((revision?.assets ?? []).find((asset) =>
+    String(asset.asset_role ?? '').toUpperCase() === 'THUMBNAIL'));
+  const uniqueAssets = assets.filter((asset, index, rows) => {
+    const key = asset.sha256 || assetUrl(asset);
+    return rows.findIndex((row) => (row.sha256 || assetUrl(row)) === key) === index;
+  });
+  const visibleAssets = uniqueAssets.slice(0, 2);
+  const remaining = Math.max(0, uniqueAssets.length - visibleAssets.length);
+  const previews = visibleAssets.map((asset, index) => {
     const url = assetUrl(asset);
     const mime = String(asset.mime ?? '');
-    if (mime.startsWith('video/')) return el('video', { src: url, controls: true, preload: 'metadata', playsinline: true,
-      'aria-label': asset.alt_text || `確認用動画 ${index + 1}` });
+    if (mime.startsWith('video/')) {
+      const holder = el('div', { class: 'approval-video-placeholder' },
+        poster ? el('img', { src: poster, alt: '', loading: 'lazy' }) : null,
+        el('span', null, '▶ 動画を読み込んで再生'));
+      holder.addEventListener('click', () => {
+        holder.replaceWith(el('video', { src: url, controls: true, autoplay: true, preload: 'metadata', playsinline: true,
+          'aria-label': asset.alt_text || `確認用動画 ${index + 1}` }));
+      }, { once: true });
+      return holder;
+    }
     if (mime.startsWith('image/') || /\.(png|jpe?g|webp|gif|avif)(\?|$)/i.test(url)) {
       return el('a', { href: url, target: '_blank', rel: 'noopener noreferrer' },
         el('img', { src: url, alt: asset.alt_text || `確認用画像 ${index + 1}`, loading: 'lazy' }));
@@ -219,7 +238,9 @@ function mediaPreview(revision, componentScope) {
       ? '記事全文を開く'
       : `素材${index + 1}を開く`;
     return el('a', { class: 'approval-artifact-link', href: url, target: '_blank', rel: 'noopener noreferrer' }, label);
-  }));
+  });
+  if (remaining) previews.push(el('div', { class: 'approval-media-remaining' }, `ほか${remaining}点は「記事全文を開く」で確認`));
+  return el('div', { class: 'approval-media-gallery' }, ...previews);
 }
 
 function approvalMedia(revision, publishDate = '', linkLabel = '記事リンク', mediaLabel = 'サムネイル', actions = {}) {

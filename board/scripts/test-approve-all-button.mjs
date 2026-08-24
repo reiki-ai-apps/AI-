@@ -18,6 +18,9 @@ test('承認ページは全件ボタン・Revision固定・Shortsサムネイル
   assert.match(source, /componentKey\(post, componentScope\)/);
   assert.match(source, /post\.platform === 'YOUTUBE_SHORTS' \? \['CONTENT'\]/);
   assert.match(source, /予定時刻を過ぎた\$\{overdueCount\}件も表示しています/);
+  assert.match(source, /approval-video-placeholder/);
+  assert.match(source, /uniqueAssets\.slice\(0, 2\)/);
+  assert.doesNotMatch(source, /el\('video', \{ src: url, controls: true, preload/);
 });
 
 test('公開承認画面はGitHub Issueへ遷移しない', async () => {
