@@ -1,6 +1,366 @@
 [
   {
     "tool": "NVIDIA・AI半導体",
+    "title": "AIスタートアップがGPUインフラの自前化を進める動き",
+    "source_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9OWW1ZVFlYT3dmN2d3RXNQbWZQM3hqUVcyVHNuaERXZ2dOWF9yNHUtOHQwcTF2ZHJLaHZIQ29vMFVyaUFpV2hxWkx3MUhZTl9SREhBaWVMZXBkdEk3Q2MtZXZTRm4?oc=5",
+    "source_name": "株式会社エクサウィザーズ",
+    "is_official": false,
+    "published_at": "2026-08-24T01:37:12.000Z",
+    "source_published_at": "2026-08-24T01:37:12.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-24T01:58:41.701Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "GPU",
+      "AIスタートアップ",
+      "gpu",
+      "aiスタートアップ"
+    ],
+    "primary_entity": "AIスタートアップ",
+    "story_subject": "GPUインフラの自前化",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "全世界",
+    "fact_slots": [],
+    "new_facts": [
+      "AIスタートアップの間でGPUインフラを自前で保有・運用する動きが広がっていると指摘された"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "AIスタートアップの間で、外部委託していたGPUインフラを自社で保有・運用する動きが広がっていることが指摘されている。",
+    "detail": "AI関連スタートアップの間で、これまでクラウド事業者などに依存していたGPU（画像処理半導体）インフラを自ら構築・保有する動きが進んでいるという。記事では、チップ単体やソフトウエア単体の強化だけでは競争力確保に不十分であり、インフラ全体を自前で最適化する必要性が指摘されている。具体的な企業名や投資規模は記事からは確認できないが、AI開発競争が計算資源の確保・最適化という段階に移りつつある実態がうかがえる。",
+    "change_summary": "AIスタートアップがGPUインフラの自前化を進める傾向が新たに指摘された。",
+    "impact_summary": "AI開発に必要な計算資源の確保競争が激しくなる中、日本のAI関連企業もインフラ戦略の見直しを迫られる可能性がある。",
+    "action_suggestion": "具体的な企業事例や投資規模については記事本文の詳細確認が必要。",
+    "importance": "B",
+    "related_categories": [
+      "半導体・インフラ",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_ea590f789a58f2c39cb9",
+    "story_id": "story_3828bcb7a3a37f0e65",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "世界の新モデル・速報",
+    "title": "Stripe、AIモデルゲートウェイOpenRouterを買収へ",
+    "source_url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9pellhY3VEYVlKMTBPOW1mcWpjeDEtckotcGxfXzd4TWFQVU1RS092RjMzUXdVVWNha08yWDNvWlVLa0ZrSkdXRlMtVFlSWVE4Qkl3X3RlclZMTGZRNGVmV3ZKY2lydw?oc=5",
+    "source_name": "Ledge.ai",
+    "is_official": false,
+    "published_at": "2026-08-24T00:57:13.000Z",
+    "source_published_at": "2026-08-24T00:57:13.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-24T01:58:44.178Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Stripe",
+      "OpenRouter",
+      "stripe",
+      "openrouter"
+    ],
+    "primary_entity": "Stripe",
+    "story_subject": "OpenRouter買収",
+    "event_type": "acquisition",
+    "event_stage": "announced",
+    "event_scope": "全世界",
+    "fact_slots": [
+      {
+        "type": "count",
+        "scope": "OpenRouterが扱うAIモデル数",
+        "value": "400以上",
+        "normalized_value": "400"
+      }
+    ],
+    "new_facts": [
+      "StripeがAIモデルゲートウェイのOpenRouterを買収すると発表した",
+      "OpenRouterは400以上のAIモデルを横断的に扱うサービスである"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "決済大手Stripeが、400以上のAIモデルを横断利用できるサービス「OpenRouter」を買収する計画を明らかにした。",
+    "detail": "決済プラットフォームを運営する米Stripeは、複数のAIモデルへのアクセスを一元化するゲートウェイサービス「OpenRouter」を買収すると発表した。OpenRouterは400以上のAIモデルを横断的に扱い、利用者がトークン消費や料金を最適化しながら適切なモデルを選べる仕組みを提供してきた。買収により、Stripeは決済インフラとAIモデル利用の橋渡しを担う立場を強化するとみられるが、買収額や完了時期など詳細は記事からは確認できない。",
+    "change_summary": "StripeがAIモデルゲートウェイのOpenRouterを買収する計画が新たに明らかになった。",
+    "impact_summary": "決済事業者がAIモデル利用の基盤にも進出することで、企業がAIサービスを組み込んだ決済・業務システムを構築しやすくなる可能性がある。",
+    "action_suggestion": "買収の完了時期や金額など詳細は今後の発表を確認する必要がある。",
+    "importance": "A",
+    "related_categories": [
+      "企業・株式",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_1ef9886554d95c812a0d",
+    "story_id": "story_0f394810210e98fe1d",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "Claude / Claude Code",
+    "title": "Anthropic、無料学習プログラム「Claude Academy」を開始",
+    "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1YTVRkTjdYUlVoNkJHMkh6eWdJbE5KSktHamtYUlVyZF9Za2E5dDdyQXhTSjU1ODd0T19neE0yV3JvTkF1dEY5Y3NFTlEyZ2ZzYmFWOGZzeWRxUDhoR3NDTENGbw?oc=5",
+    "source_name": "株式会社インプレス",
+    "is_official": false,
+    "published_at": "2026-08-24T00:36:36.000Z",
+    "source_published_at": "2026-08-24T00:36:36.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-24T01:58:05.153Z",
+    "event_at": "",
+    "event_status": "開始済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Anthropic",
+      "Claude Academy",
+      "Claude",
+      "anthropic",
+      "claudeacademy"
+    ],
+    "primary_entity": "Anthropic",
+    "story_subject": "Claude Academy",
+    "event_type": "release",
+    "event_stage": "launched",
+    "event_scope": "全世界",
+    "fact_slots": [],
+    "new_facts": [
+      "AnthropicがClaudeの使い方を無料で学べる「Claude Academy」を提供開始した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Anthropicが、AIチャットボットClaudeの使い方を無料で学べる教育プログラム「Claude Academy」を提供開始した。",
+    "detail": "AI開発企業Anthropicは、自社のAIモデルClaudeの活用方法を学べる無料の教育プログラム「Claude Academy」を提供すると発表した。対象者や具体的なカリキュラム内容、提供期間などの詳細は記事からは確認できないが、Claudeを業務や学習に使いたい利用者向けに、基礎から使い方を学べる場を用意した形となる。",
+    "change_summary": "AnthropicがClaudeの使い方を無料で学べる「Claude Academy」を新たに提供開始した。",
+    "impact_summary": "AIツールを使いこなしたいビジネスパーソンや学習者にとって、無料で体系的にClaudeの使い方を学べる選択肢が増える。",
+    "action_suggestion": "具体的な受講方法や対象範囲については、Anthropicの公式発表を確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル",
+      "その他"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_f2b7f0c0f73739820732",
+    "story_id": "story_459a08c728742b6933",
+    "story_sequence": 2,
+    "relation_type": "follow_up",
+    "relation_confidence": 0.8668750000000001,
+    "previous_article_id": "article_7546e9d5e993a2ac5bab",
+    "previous_title": "Anthropicが無料AI学習サイト「Claude Academy」を公開",
+    "previous_source_published_at": "2026-08-21T02:38:47.000Z",
+    "continuation_lead": "この話題の続報です。前回は「Anthropicが無料AI学習サイト「Claude Academy」を公開」まで進んでいましたが、今回はAnthropicがClaudeの使い方を無料で学べる「Claude Academy」を新たに提供開始した。",
+    "dedupe_decision": "follow_up",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject",
+      "same_event_type"
+    ]
+  },
+  {
+    "tool": "Gemini",
+    "title": "首都高、Gemini活用でAI高利用者数が1年で10倍に",
+    "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5LbHIwRWJGOWtibHlSYkVYcXZQaXpXd0hXQWJGQktDdEpmLWlNemNtSHBOSDl0NGxITUJGZmlxblFvQU1HQWg1WXpkTW5jMnZadHllbnM2X01QVFN5MlB1UGdZR3h4RGVaZXFkNl95WXJvY2ZYTEgzckY5dklINTQ?oc=5",
+    "source_name": "Yahoo!ニュース",
+    "is_official": false,
+    "published_at": "2026-08-24T00:00:00.000Z",
+    "source_published_at": "2026-08-24T00:00:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-24T01:58:06.571Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "首都高速道路",
+      "Gemini",
+      "Gemini Notebook",
+      "gemini",
+      "gemininotebook"
+    ],
+    "primary_entity": "首都高速道路",
+    "story_subject": "Gemini Notebook",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "首都高速道路社内",
+    "fact_slots": [
+      {
+        "type": "count",
+        "scope": "AI高利用者数の増加倍率",
+        "value": "1年間で10倍",
+        "normalized_value": "1"
+      }
+    ],
+    "new_facts": [
+      "首都高がAIの高利用者数を1年間で10倍に増やした",
+      "非IT人材へのGemini Notebook浸透策が紹介された"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "首都高速道路会社が生成AI「Gemini」のノートブック機能を業務に取り入れ、AIの高利用者数を1年間で10倍に増やしたと報じられた。",
+    "detail": "首都高速道路会社が、Googleの生成AI「Gemini」のノートブック機能を社内に導入し、非IT系の社員にも浸透させる取り組みを進めている。記事では、専門知識のない現場社員でもAIを使いこなせるよう、地道な普及活動を続けた結果、AIを高頻度で使う利用者数が1年間で10倍に増加したと紹介されている。IT専門部署だけでなく現場レベルでの活用が広がった点が特徴とされ、企業が生成AI導入を進める際の事例として取り上げられている。",
+    "change_summary": "首都高がGeminiのノートブック機能を活用し、AI高利用者数を1年で10倍に増やした事例が公表された。",
+    "impact_summary": "IT専門人材が少ない企業でも、地道な社内浸透策次第で生成AIの活用が大きく広がる可能性を示す事例といえる。",
+    "action_suggestion": "記事では首都高の具体的な浸透策の詳細が紹介されており、自社での生成AI導入を検討する企業の参考情報となる。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル",
+      "EC・業務活用"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_21d0e33781c8669647f6",
+    "story_id": "story_524a4ee216b3d8375e",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.6476470588235294,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject"
+    ]
+  },
+  {
+    "tool": "Adobe Firefly",
+    "title": "Adobe Firefly、音楽・音声・効果音の生成機能を正式提供",
+    "source_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNQkJXV3NMejFhWmlVaHRyeVJDazZobElWOW82anpjWGRQcXlmU2RVS1p4WUdiYmQ1VGNDMGkyNGlWWDNEc3F3RFNDakRKaC0yNDQ3Y1RVc01UU2NTdXJNSDRZeDdEaTQtSzdjY05Cd1hjcThBVEoyNjdVeHo1Z2xaTW9kQXlmWklpMVVXU0JQUHczSVpHS2pfaV9zQ1BMbXVNeGtRdndud1htNHdyZk5iMQ?oc=5",
+    "source_name": "ｄメニューニュース",
+    "is_official": false,
+    "published_at": "2026-08-23T22:01:00.000Z",
+    "source_published_at": "2026-08-23T22:01:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-24T01:58:22.312Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Adobe",
+      "Firefly",
+      "adobe",
+      "firefly"
+    ],
+    "primary_entity": "Adobe",
+    "story_subject": "Adobe Firefly",
+    "event_type": "release",
+    "event_stage": "launched",
+    "event_scope": "Adobe Firefly",
+    "fact_slots": [
+      {
+        "type": "availability",
+        "scope": "音楽・音声・効果音生成機能",
+        "value": "正式提供開始",
+        "normalized_value": "正式提供開始"
+      }
+    ],
+    "new_facts": [
+      "Adobe Fireflyが音楽・音声・効果音の生成機能を正式提供開始した",
+      "AdobeがFireflyのAIアシスタント機能を強化した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "AdobeがFireflyに音楽・音声・効果音を生成する機能を正式提供開始し、あわせてAIアシスタント機能も強化したと発表した。",
+    "detail": "AdobeはクリエイティブAIツール「Firefly」において、これまでベータ的な位置づけだった音楽・音声・効果音の生成機能を正式に提供開始した。あわせて、Firefly内のAIアシスタント機能も強化されたと伝えられている。画像や動画生成に加えて音まわりの生成機能を正式版として揃えることで、動画制作や広告制作などクリエイティブワークフロー全体をFirefly上で完結させやすくする狙いがあるとみられる。今後、実際の利用シーンでの活用が広がるかが注目される。",
+    "change_summary": "Fireflyの音楽・音声・効果音生成機能がベータから正式提供に移行し、AIアシスタントも強化された。",
+    "impact_summary": "動画・広告制作の現場で、BGMや効果音まで含めた素材制作を一つのツールで完結できるようになり、制作コストや時間の削減につながる可能性がある。",
+    "action_suggestion": "Adobe Fireflyの提供ページで、音楽・音声・効果音生成機能とAIアシスタントの新機能の詳細を確認できる。",
+    "importance": "A",
+    "related_categories": [
+      "音楽・クリエイティブ",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_ae922b869cd1884c2d54",
+    "story_id": "story_2507c091de2edaeb3d",
+    "story_sequence": 3,
+    "relation_type": "follow_up",
+    "relation_confidence": 0.8666666666666667,
+    "previous_article_id": "article_62c83204be8f9ca029d3",
+    "previous_title": "Adobe Fireflyが音楽・音声・効果音生成ツールを正式提供開始",
+    "previous_source_published_at": "2026-08-21T03:34:00.000Z",
+    "continuation_lead": "この話題の続報です。前回は「Adobe Fireflyが音楽・音声・効果音生成ツールを正式提供開始」まで進んでいましたが、今回はFireflyの音楽・音声・効果音生成機能がベータから正式提供に移行し、AIアシスタントも強化された。",
+    "dedupe_decision": "follow_up",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject",
+      "same_event_type",
+      "material_fact_changed"
+    ]
+  },
+  {
+    "tool": "AI政策・政府動向",
+    "title": "サムスン電子、対米ロビー活動を半導体補助金以外にもAI・電力・6Gへ拡大",
+    "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5QejRqaExlZlBDdlJRRVVhU3V4bk91NDk1RW14c0otM0p5RTlaS1pFUVUzcVY1Y0NBeDJCb3F6blFsNXZEUW9vZ1Z6YmRydkg4NVRnX25vRFFmUUk5Y3NhaXloN3BBMTR0T1ZCLTlPYVNpbVk5?oc=5",
+    "source_name": "BigGo ファイナンス",
+    "is_official": false,
+    "published_at": "2026-08-23T18:20:38.000Z",
+    "source_published_at": "2026-08-23T18:20:38.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-24T01:58:39.953Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Samsung Electronics",
+      "samsungelectronics"
+    ],
+    "primary_entity": "Samsung Electronics",
+    "story_subject": "対米ロビー活動の拡大",
+    "event_type": "policy",
+    "event_stage": "other",
+    "event_scope": "米国",
+    "fact_slots": [],
+    "new_facts": [
+      "サムスン電子の対米ロビー活動が半導体補助金以外にAI・電力・6G分野に拡大していることが判明"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "サムスン電子が米国でのロビー活動の対象を半導体補助金だけでなく、AIや電力、6G分野へと広げていることが分かった。",
+    "detail": "サムスン電子は米国政府への働きかけの範囲をこれまでの半導体関連補助金の獲得から、AI、電力インフラ、次世代通信規格である6Gの分野へと拡大している。具体的な予算規模や交渉相手、成果については記事から確認できないが、同社が半導体事業にとどまらず、AIやエネルギー政策に関わる分野でも米国内での影響力拡大を図っている実態が示されている。今後の詳細な動きは不明。",
+    "change_summary": "サムスン電子の対米ロビー活動の対象が半導体補助金からAI・電力・6Gへ拡大したことが明らかになった。",
+    "impact_summary": "半導体大手の政策関与範囲が広がることで、日本企業も米国のAI・エネルギー政策動向を注視する必要が出てくる可能性がある。",
+    "action_suggestion": "具体的なロビー活動の内容や金額については続報を確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "政策・行政",
+      "半導体・インフラ"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_262b7501ca3c6edbeb39",
+    "story_id": "story_3fe99a7041fa2cd53c",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "NVIDIA・AI半導体",
     "title": "NVIDIAの新型「Vera Rubin」、Microsoftに初納入し価格15%引き上げを通告",
     "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE44d1VTOHBXNmtxUGZkV2NRQzBURnduY0VhbzhEdEp0d0JqOUhsVUp0Vk9UMENGRl91VXRDZEJVVWVoQTc5SzM3NjlkanBxMmFJMEFfaVRlZmxENm5NRlNoSmM4enpWV09uVHVMVmEzZFZQMUt0?oc=5",
     "source_name": "BigGo ファイナンス",
@@ -588,6 +948,75 @@
     ]
   },
   {
+    "tool": "Grok / xAI",
+    "title": "Grok Build、スマホアプリとウェブ版でも利用可能に",
+    "source_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBIU205VHEzbE1VNDZONFg0Vlp5dXVIa0pHOFQtdmFkQ3pNc0Vrc3QwZ19RRmR5bGZDYnptX2QtZ0dBb3k1LVItd3RvZFlmTUZneXJrM1hTalA5alk2Mzk4U21keHY5MGs0OHc0RjB1YjFOWVBWRlo4Vg?oc=5",
+    "source_name": "au Webポータル",
+    "is_official": false,
+    "published_at": "2026-08-22T23:58:03.000Z",
+    "source_published_at": "2026-08-22T23:58:03.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-24T01:58:23.521Z",
+    "event_at": "",
+    "event_status": "開始済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "xAI",
+      "Grok",
+      "Grok Build",
+      "xai",
+      "grok"
+    ],
+    "primary_entity": "xAI",
+    "story_subject": "Grok Build",
+    "event_type": "release",
+    "event_stage": "expanded",
+    "event_scope": "スマホアプリ・ウェブ版Grok",
+    "fact_slots": [
+      {
+        "type": "availability",
+        "scope": "Grok Buildの提供範囲",
+        "value": "スマホアプリ・ウェブ版Grokで利用可能",
+        "normalized_value": "スマホアプリウェブ版grokで利用可能"
+      }
+    ],
+    "new_facts": [
+      "Grok Buildがスマートフォンアプリとウェブ版Grokでも利用可能になった",
+      "作成したアプリを固有URLで公開できる機能が追加された"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "xAIのAIエージェント「Grok Build」がスマートフォンアプリとウェブ版Grokでも使えるようになり、作成したアプリを固有URLで公開できる機能も追加された。",
+    "detail": "xAIが提供するAIエージェント機能「Grok Build」が、これまでの提供範囲から広がり、スマートフォンアプリとウェブ版のGrokでも利用できるようになった。この機能を使うと、ユーザーがアプリを作成し、それぞれ固有のURLで公開することが可能になるという。利用できるプラットフォームが拡大したことで、より多くのユーザーがアプリ開発機能を試しやすくなったとみられる。",
+    "change_summary": "Grok Buildの提供範囲がスマホアプリとウェブ版Grokに拡大し、アプリを固有URLで公開する機能が使えるようになった。",
+    "impact_summary": "非エンジニアでも手軽にアプリを作って公開できる手段が広がり、個人や小規模事業者の業務効率化・サービス開発のハードルが下がる可能性がある。",
+    "action_suggestion": "Grok Buildはスマホアプリまたはウェブ版のGrokから利用でき、作成したアプリは固有URLで公開できる。",
+    "importance": "B",
+    "related_categories": [
+      "アプリ開発・自動化",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_4f07d5b53606195868d6",
+    "story_id": "story_ed22273252346a1e3b",
+    "story_sequence": 2,
+    "relation_type": "follow_up",
+    "relation_confidence": 0.9535483870967743,
+    "previous_article_id": "article_5987ea93389359d541a5",
+    "previous_title": "xAIの「Grok Build」、スマホアプリとウェブ版Grokでも利用可能に",
+    "previous_source_published_at": "2026-08-21T04:28:00.000Z",
+    "continuation_lead": "この話題の続報です。前回は「xAIの「Grok Build」、スマホアプリとウェブ版Grokでも利用可能に」まで進んでいましたが、今回はGrok Buildの提供範囲がスマホアプリとウェブ版Grokに拡大し、アプリを固有URLで公開する機能が使えるようになった。",
+    "dedupe_decision": "follow_up",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject",
+      "same_event_type",
+      "similar_title",
+      "same_scope",
+      "material_fact_changed"
+    ]
+  },
+  {
     "tool": "AIスタートアップ・資金調達",
     "title": "NVIDIA、2027年からAIチップ価格を15%以上値上げへ",
     "source_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOamgxQ1R5VkRHQ1FUd0N3ak81YjZVd2pXLWxFeTJfaFRmeXdWZEVfLS1PZHctd25PS09nSEtPNFo5TU9objFtZnlpazI5c3ZxOW53OGc3TjJPX1kxV3o1dkhNeWZoRXBVMmpjU1NBNWg2WUZNcV9xdF84UkdqMFVZc3dIMmlQTl84bXZUVWZXTFg5WS1BYjI1UHdZZjBXRm1zbXNobXU1NnA1bHM4YWFEVw?oc=5",
@@ -775,176 +1204,83 @@
     ]
   },
   {
-    "tool": "AI政策・政府動向",
-    "title": "韓国大統領室のAI政策トップ、4カ月空席のまま後任人事に注目",
-    "source_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOcmJZanFaREpMVFlIWm12LWwzLWRSbnptM2ZmbEo5V093Y3A3LVJIQzczOFUyQkZpVDRUWmw5RVJEeEdwclFNTk04TjdRcjhYLTlkdm5kZVhrcHlRRFNhdGk2cE01YkNkRmVaajlTT2VKdXgyaU5lZm43TzVfbkxjNkt6Q3F5aEo1VkZyR25FaFhObzNQUTF0ZUlTWDctRTNwUTB2LVpRbi1kdjBUaVVmUU5zTHRXNlpOR05tNFZPT1lhd09SWjBlSW9Ta0Z0d2s?oc=5",
-    "source_name": "디지털투데이",
+    "tool": "ChatGPT / OpenAI",
+    "title": "OpenAI、「GPT-5.6 Sol」のAPI料金を値下げ",
+    "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE00Q0M2TC1IeU1GUUh4TV91NzZYR3M5Tkg5Z1FNeFRoVUJBX0hEYk56dlZCQmV1YlRpOEhYOGVlWmQ5dTcyblpDOThHTzAtR2JQN0Y3Zzc2NHRpVm56TUthVWtBcWVOWkJ4OG96elIzbnlKRThoRlNzYkVfU1lzcTA?oc=5",
+    "source_name": "Yahoo!ニュース",
     "is_official": false,
-    "published_at": "2026-08-22T22:54:08.000Z",
-    "source_published_at": "2026-08-22T22:54:08.000Z",
+    "published_at": "2026-08-22T22:38:30.000Z",
+    "source_published_at": "2026-08-22T22:38:30.000Z",
     "source_updated_at": "",
     "source_date_status": "published",
-    "fetched_at": "2026-08-23T02:01:08.908Z",
+    "fetched_at": "2026-08-24T01:58:03.793Z",
     "event_at": "",
-    "event_status": "継続中",
+    "event_status": "発表済み",
     "event_date_precision": "unknown",
     "story_entities": [
-      "大統領室",
-      "AI政策",
-      "ai政策"
+      "OpenAI",
+      "GPT-5.6 Sol",
+      "openai",
+      "gpt-5.6sol",
+      "gpt-5.6"
     ],
-    "primary_entity": "大統領室(韓国)",
-    "story_subject": "AI政策トップ人事",
-    "event_type": "policy",
-    "event_stage": "other",
-    "event_scope": "韓国",
+    "primary_entity": "OpenAI",
+    "story_subject": "GPT-5.6 SolのAPI料金値下げ",
+    "event_type": "pricing",
+    "event_stage": "announced",
+    "event_scope": "API",
     "fact_slots": [
       {
+        "type": "price",
+        "scope": "GPT-5.6 Sol 入力料金値下げ率",
+        "value": "20%",
+        "normalized_value": "20%"
+      },
+      {
+        "type": "price",
+        "scope": "GPT-5.6 Sol 出力料金値下げ率",
+        "value": "33%",
+        "normalized_value": "33%"
+      },
+      {
         "type": "date",
-        "scope": "AI政策トップ空席期間",
-        "value": "4カ月",
-        "normalized_value": "4カ月"
+        "scope": "値下げ適用期限",
+        "value": "2026-11-21",
+        "normalized_value": "2026-11-21"
       }
     ],
     "new_facts": [
-      "韓国大統領室のAI政策トップ職が4カ月間空席となっている",
-      "後任人事への関心が再び高まっている"
+      "OpenAIがGPT-5.6 SolのAPI入力料金を20%、出力料金を33%値下げすると発表した",
+      "値下げは11月21日まで適用される"
     ],
     "structured_complete": true,
-    "raw_excerpt": "韓国大統領室でAI政策を統括するポストが4カ月にわたり空席となっており、後任人事への関心が改めて高まっている。",
-    "detail": "韓国の大統領室でAI政策を担当するトップの職が4カ月間空席となっている。具体的な空席理由や後任候補は記事からは明らかにされていないが、政策運営への影響を懸念する声が出ており、後任人事への関心が再び高まっているという。今後の人事決定時期は示されておらず、動向が注視されている。",
-    "change_summary": "AI政策トップの空席が4カ月続いていることが改めて注目されている。",
-    "impact_summary": "韓国のAI政策の停滞が長引けば、産業界の規制対応や政策決定に遅れが生じる可能性がある。",
-    "action_suggestion": "後任人事の発表時期は不明で、今後の動向を確認する必要がある。",
-    "importance": "C",
-    "related_categories": [
-      "政策・行政"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_1e02ebb2a9786fc83501",
-    "story_id": "story_b32cb770a5adf0c8a0",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "Claude / Claude Code",
-    "title": "Anthropic製品責任者、AIプロダクト開発では評価(eval)が仕様書に代わる中核ツールになると指摘",
-    "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5iM3pqN2NMaDhwUXUzelVwZklkSmpPdlVNV0ZnSGVOZGg5cWZqSk9xVklVdjB1Q1BCSDRKMmpnM1k1QXBGVTNIS3U5N0NTRFRDUUdHZm1QWHRrenE3Ykd0RERYc3M1YUJSNlE2LXMtR3FObTdr?oc=5",
-    "source_name": "BigGo ファイナンス",
-    "is_official": false,
-    "published_at": "2026-08-22T18:19:00.000Z",
-    "source_published_at": "2026-08-22T18:19:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-23T02:00:36.257Z",
-    "event_at": "",
-    "event_status": "継続中",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Anthropic",
-      "anthropic",
-      "eval"
-    ],
-    "primary_entity": "Anthropic",
-    "story_subject": "AIプロダクト開発における評価(eval)の役割",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "AIプロダクト開発全般",
-    "fact_slots": [],
-    "new_facts": [
-      "Anthropic製品責任者がevalがPRDに代わる中核ツールになりつつあると述べた"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "Anthropicの製品責任者が、AIプロダクト開発では評価(eval)が従来の要件定義書(PRD)に代わる中核的な武器になっていると述べた。",
-    "detail": "Anthropicの製品責任者が、AIプロダクトマネージャーの仕事の進め方が変化していると指摘した。従来はPRD(プロダクト要件定義書)を作成してから開発を進める手法が一般的だったが、AI製品開発では、モデルやシステムの挙動を検証する「eval(評価)」を作り込むことが中核的な作業になりつつあるという。evalとは、AIの出力の質や安全性を体系的にテスト・採点する仕組みを指す。記事では、この変化がAIプロダクトマネージャーに求められるスキルセットの転換を意味すると論じられているが、具体的な事例や導入時期などの詳細は記事内で明らかにされていない。",
-    "change_summary": "AIプロダクト開発の現場でPRDに代わりevalが中心的なツールになりつつあるという見解が示された。",
-    "impact_summary": "AI製品を企画・開発する日本企業のプロダクトマネージャーにとって、評価設計のスキルが今後より重要になる可能性がある。",
-    "action_suggestion": "具体的な導入事例や実践方法については記事内で詳細が示されておらず、今後の関連情報を確認する必要がある。",
-    "importance": "C",
+    "raw_excerpt": "OpenAIがAPIモデル「GPT-5.6 Sol」の料金を入力20％、出力33％値下げし、11月21日まで適用する。",
+    "detail": "OpenAIは、APIで提供するモデル「GPT-5.6 Sol」の利用料金を引き下げると発表した。入力トークンの料金は20％、出力トークンの料金は33％それぞれ安くなり、この値下げは11月21日まで適用される。値下げの理由や恒久化の可能性については記事からは確認できないが、開発者がAPI経由でこのモデルを利用する際のコストが期間限定で下がることになる。",
+    "change_summary": "OpenAIがGPT-5.6 SolのAPI料金を入力20％、出力33％値下げすることが新たに発表された。",
+    "impact_summary": "APIを使ってGPT-5.6 Solを利用する開発者や企業は、期間中のコスト削減が見込める。",
+    "action_suggestion": "値下げは11月21日までの適用のため、利用を検討する開発者は期限内の利用計画を確認する必要がある。",
+    "importance": "A",
     "related_categories": [
       "AIツール・モデル",
-      "研究・技術"
+      "企業・株式"
     ],
     "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_28309a5bb0320959e6ab",
-    "story_id": "story_2600c8351068dfd350",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "Gemini",
-    "title": "Gemini 3.6 Flashが「Antigravity」で発見、数日前からテスト中と報道",
-    "source_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNQWZnZUQwdUk2NlVsSXV2Sk5TZ0VGZ1ZSUElUdjhISjI5Q0M0U3hHQWJXdDVfR2JHMXQ2NkYtdGltU2NEU1VRWGVYX3J2WmJvaGY2Sl81ODNpQ0gwUnhEa0gwS3hwS1JZNDFxNFVrZklpTTdkdnMzZ3dGRzBudGIzRmhvamVuNlZUQmsxN0dneUF1QQ?oc=5",
-    "source_name": "nokiapoweruser.com",
-    "is_official": false,
-    "published_at": "2026-08-22T10:09:18.000Z",
-    "source_published_at": "2026-08-22T10:09:18.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-23T04:02:08.087Z",
-    "event_at": "",
-    "event_status": "不明",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Gemini 3.6 Flash",
-      "Google Antigravity",
-      "gemini3.6flash",
-      "googleantigravity",
-      "google-gemini"
-    ],
-    "primary_entity": "Google",
-    "story_subject": "Gemini 3.6 Flash",
-    "event_type": "release",
-    "event_stage": "rumor",
-    "event_scope": "Antigravity(開発者向けツール)",
-    "fact_slots": [],
-    "new_facts": [
-      "Gemini 3.6 Flashとみられるモデルが「Antigravity」内で確認されたと報じられた",
-      "同モデルは数日前からテストされている形跡があるという"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "Googleの次期モデルとみられる「Gemini 3.6 Flash」が開発ツール「Antigravity」内で見つかり、数日前からテストされていると報じられた。",
-    "detail": "海外メディアnokiapoweruser.comは、Googleの新モデルとみられる「Gemini 3.6 Flash」が、Googleのエージェント型コーディングツール「Antigravity」内で確認されたと報じた。同モデルは数日前から内部でテストされている形跡があるという。Googleからの正式発表はなく、性能や公開時期などの詳細は明らかになっていない。",
-    "change_summary": "未発表とみられる「Gemini 3.6 Flash」がAntigravity内で確認されたと報じられた。",
-    "impact_summary": "実際に正式リリースされればGoogleの開発者向けツールを使う日本の開発者にも影響し得るが、現時点では未確認の情報にとどまる。",
-    "action_suggestion": "Googleからの正式発表はまだなく、今後の続報を確認する必要がある。",
-    "importance": "C",
-    "related_categories": [
-      "AIツール・モデル",
-      "研究・技術"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_c89c26ecdbc3c6048690",
-    "story_id": "story_0cd55fa15f27a21c64",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.6459574468085106,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
+    "article_id": "article_cb92415092ff3dc1a237",
+    "story_id": "story_90d15f489a5fa2876a",
+    "story_sequence": 3,
+    "relation_type": "follow_up",
+    "relation_confidence": 0.9068965517241379,
+    "previous_article_id": "article_9eff63584f0597a9588b",
+    "previous_title": "OpenAI、「GPT-5.6 Sol」の開発者向け価格を2割超引き下げ",
+    "previous_source_published_at": "2026-08-22T00:25:00.000Z",
+    "continuation_lead": "この話題の続報です。前回は「OpenAI、「GPT-5.6 Sol」の開発者向け価格を2割超引き下げ」まで進んでいましたが、今回はOpenAIがGPT-5.6 SolのAPI料金を入力20％、出力33％値下げすることが新たに発表された。",
+    "dedupe_decision": "follow_up",
     "dedupe_reasons": [
       "same_primary_entity",
-      "same_subject"
+      "same_subject",
+      "same_event_type",
+      "same_scope",
+      "material_fact_changed"
     ]
   },
   {
@@ -1682,72 +2018,6 @@
     "dedupe_decision": "new",
     "dedupe_reasons": [
       "no_previous_story"
-    ]
-  },
-  {
-    "tool": "Grok / xAI",
-    "title": "xAIの「Grok Build」、スマホアプリとウェブ版Grokでも利用可能に",
-    "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE10UG9uNy1YWEdsUHAyV2h2OHBDU2Q5M0YtS2FJNEJNN1JoT1h3WEZ6eGR4SVRGVk1zVUVGWm9KR3pPQkV1SmY3X21LQ2xNb25GdTdhb1l6YnpUSkxTLW04QUxONXlEUFk1?oc=5",
-    "source_name": "GIGAZINE",
-    "is_official": false,
-    "published_at": "2026-08-21T04:28:00.000Z",
-    "source_published_at": "2026-08-21T04:28:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-21T07:09:01.652Z",
-    "event_at": "",
-    "event_status": "開始済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "xAI",
-      "Grok",
-      "Grok Build",
-      "xai",
-      "grok"
-    ],
-    "primary_entity": "xAI",
-    "story_subject": "Grok Build",
-    "event_type": "release",
-    "event_stage": "expanded",
-    "event_scope": "スマホアプリ・ウェブ版Grok",
-    "fact_slots": [
-      {
-        "type": "availability",
-        "scope": "Grok Build対応環境",
-        "value": "スマホアプリ・ウェブ版",
-        "normalized_value": "スマホアプリウェブ版"
-      }
-    ],
-    "new_facts": [
-      "Grok Buildがスマホアプリとウェブ版Grokでも利用可能になった",
-      "作成したアプリを固有URLで公開する機能が追加された"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "xAIのAIエージェント「Grok Build」がスマホアプリとウェブ版Grokでも使えるようになり、作成したアプリを固有URLで公開する機能も追加された。",
-    "detail": "Grok BuildはxAIのAIチャット「Grok」に搭載されたアプリ生成エージェント機能。GIGAZINEによると、この機能がこれまでの提供範囲からスマートフォンアプリ版とウェブ版のGrokでも利用できるように拡大された。あわせて、Grok Buildで作成したアプリを固有のURLで公開できる新機能も追加されたという。プログラミングの知識がなくても、チャットでの指示からアプリを生成し、そのまま共有・公開できる流れが整った形となる。",
-    "change_summary": "Grok Buildの利用環境がスマホアプリとウェブ版に拡大し、作成アプリの固有URL公開機能が追加された。",
-    "impact_summary": "プログラミング知識がない人でもスマホやウェブから簡単にアプリを作成・公開できるようになる。",
-    "action_suggestion": "利用条件や対応プラットフォームの詳細は各Grokアプリ・ウェブ版で確認できる。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "アプリ開発・自動化"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_5987ea93389359d541a5",
-    "story_id": "story_ed22273252346a1e3b",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.5490322580645162,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "uncertain_subject",
-      "same_event_type"
     ]
   },
   {
@@ -2878,201 +3148,6 @@
     ]
   },
   {
-    "tool": "Gemini",
-    "title": "米国のAndroid版ChromeにGeminiを統合、AIがブラウザを自動操作",
-    "source_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1lcUtrVDVoc1I3WUR0VkxhQXBGMWlJLXZfd3FsekNVVkR3cTRuOWRNdDFkMFVQeXlLNUdyT0xkOC1IVzR6WE81NzVkTWRBOXNxWkpBYXpWcTVYa3VaZENoQ01CcWtLbGs?oc=5",
-    "source_name": "ケータイ Watch",
-    "is_official": false,
-    "published_at": "2026-08-19T02:58:46.000Z",
-    "source_published_at": "2026-08-19T02:58:46.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-19T03:59:37.101Z",
-    "event_at": "",
-    "event_status": "開始済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Google",
-      "Chrome",
-      "Gemini",
-      "google",
-      "chrome"
-    ],
-    "primary_entity": "Google",
-    "story_subject": "Android版ChromeへのGemini統合",
-    "event_type": "release",
-    "event_stage": "launched",
-    "event_scope": "米国のAndroid向けChrome",
-    "fact_slots": [
-      {
-        "type": "region",
-        "scope": "提供地域",
-        "value": "米国",
-        "normalized_value": "米国"
-      }
-    ],
-    "new_facts": [
-      "グーグルが米国のAndroid版ChromeにGeminiを統合した",
-      "AIによるブラウザの自動操作機能が追加された"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "グーグルが米国のAndroid向けChromeブラウザにGeminiを統合し、AIによるブラウザの自動操作を可能にした。",
-    "detail": "グーグルは米国向けのAndroid版Chromeブラウザに対話型AI「Gemini」を統合したと伝えられている。これにより、AIがブラウザ操作を自動で行う機能が加わったとされる。具体的にどのような操作が自動化されるのか、対応するAndroid端末の範囲や提供開始の詳細な条件までは記事からは確認できない。米国での提供が先行しており、他地域への展開時期は不明。",
-    "change_summary": "AndroidのChromeにGeminiが組み込まれ、AIによるブラウザ自動操作機能が新たに加わった。",
-    "impact_summary": "スマートフォンでのウェブ閲覧や情報収集の作業がAIによって自動化され、日常のネット利用の手間が減る可能性がある。",
-    "action_suggestion": "現時点では米国向けの提供とされており、日本を含む他地域への展開時期は記事からは確認できない。",
-    "importance": "A",
-    "related_categories": [
-      "AIツール・モデル",
-      "アプリ開発・自動化"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_0970664f912bd641dc4b",
-    "story_id": "story_8d0602705120ac8195",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.6194594594594595,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "same_subject"
-    ]
-  },
-  {
-    "tool": "Perplexity",
-    "title": "Perplexity、インドでの無料提供実験でダウンロード9割減も収益は増加",
-    "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE4tRTRjSkkwN3pIeTZBYlB3VHdDT1VxdnVXek5fZDhrSkxneEpoTDAtT2dzbFdoUlVoeUlPRURsaXBaR3F0NzJ5OUp6bXRHbHNGQjhpU3FCcXZybldKY1hRaUFSbHE1ZHYxa19hbGk1Y0RqQ3hQ?oc=5",
-    "source_name": "BigGo ファイナンス",
-    "is_official": false,
-    "published_at": "2026-08-19T02:35:00.000Z",
-    "source_published_at": "2026-08-19T02:35:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-19T07:06:21.537Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Perplexity",
-      "インド",
-      "perplexity"
-    ],
-    "primary_entity": "Perplexity",
-    "story_subject": "Perplexityのインド無料提供実験",
-    "event_type": "pricing",
-    "event_stage": "other",
-    "event_scope": "インド市場",
-    "fact_slots": [
-      {
-        "type": "count",
-        "scope": "ダウンロード数の変化",
-        "value": "約90%減少",
-        "normalized_value": "90%"
-      }
-    ],
-    "new_facts": [
-      "Perplexityがインドで無料提供の実験を実施した",
-      "ダウンロード数が約9割減少した",
-      "収益は増加した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "AI検索サービスPerplexityがインドで実施した無料提供の実験で、ダウンロード数が約9割減少した一方、収益は増加したと報じられた。",
-    "detail": "PerplexityがインドでAI検索アプリの提供方法を変える実験を行い、その結果ダウンロード数が約9割減少したものの、収益はむしろ増加したことが報じられた。無料での大量獲得よりも収益性を重視する方向への戦略転換を示す事例として取り上げられている。人口の多いインド市場でのユーザー獲得競争が激しい中、量より質を優先する動きとして注目される。今後この戦略が他地域にも展開されるかどうかは、記事内では明らかにされていない。",
-    "change_summary": "Perplexityがインド市場で無料提供の見直しを行い、ダウンロード減少と引き換えに収益増を得た結果が明らかになった。",
-    "impact_summary": "新興国市場での成長戦略を検討するAI企業や投資家にとって、量より収益を優先する戦略の効果を示す参考事例となる。",
-    "action_suggestion": "他地域への同様の戦略展開があるかどうか、Perplexityの今後の発表を確認する必要がある。",
-    "importance": "A",
-    "related_categories": [
-      "企業・株式",
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_b2b10414f401cb5951aa_rev_9349461c065a",
-    "story_id": "story_5009bb2a534c2c66c6",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.5737142857142856,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_url",
-      "same_primary_entity",
-      "different_subject",
-      "same_event_type",
-      "similar_title",
-      "same_scope"
-    ]
-  },
-  {
-    "tool": "NVIDIA・AI半導体",
-    "title": "米セレブラス、AI回答を最大30倍高速化する新サーバーでNVIDIAに対抗",
-    "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBqR3dPQzYxSjIwY25XeDRkZVl6Q18wMWo4a2lscGd6VHZyWEVPcmg0aVFjVjF5NzdQMWhBb1lkR3lQeHZaX1F0Vzc1b3U3WlM4YmRpenpRcExyRjhKVjBGQlVidWtIbnctcmRVeg?oc=5",
-    "source_name": "日本経済新聞",
-    "is_official": false,
-    "published_at": "2026-08-19T00:00:00.000Z",
-    "source_published_at": "2026-08-19T00:00:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-19T04:00:09.144Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "セレブラス",
-      "NVIDIA",
-      "nvidia"
-    ],
-    "primary_entity": "セレブラス",
-    "story_subject": "AI高速サーバー",
-    "event_type": "release",
-    "event_stage": "announced",
-    "event_scope": "米国・AI半導体市場全般",
-    "fact_slots": [
-      {
-        "type": "other",
-        "scope": "AI回答速度",
-        "value": "最大30倍",
-        "normalized_value": "30"
-      }
-    ],
-    "new_facts": [
-      "セレブラスがAI回答生成を最大30倍高速化する新サーバーを発表した",
-      "同社はこの製品でNVIDIAに対抗する姿勢を示している"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "米半導体企業セレブラスが、AIの回答生成を最大30倍高速化するとする新型サーバーを投入し、NVIDIAに対抗する構えを見せている。",
-    "detail": "米半導体企業セレブラスシステムズが、AIの回答生成速度を最大30倍まで高速化するとされる新しいサーバーを発表した。AI処理の高速化競争が激しさを増す中、同社はこの新サーバーによってAI半導体市場で圧倒的なシェアを持つNVIDIAへの対抗姿勢を鮮明にしている。日本経済新聞の報道によれば、セレブラスは独自のチップ設計を武器に、大規模言語モデルの推論処理を高速化する分野で存在感を高めようとしている。具体的な製品名や価格、提供開始時期などの詳細は記事内では明らかにされていない。",
-    "change_summary": "セレブラスがAI回答生成を最大30倍高速化するとする新型サーバーを投入した。",
-    "impact_summary": "AI処理の高速化競争が進むことで、企業のAI活用コストや応答速度が今後改善する可能性がある。",
-    "action_suggestion": "具体的な性能検証結果や提供時期など、続報でセレブラスの正式発表を確認する必要がある。",
-    "importance": "A",
-    "related_categories": [
-      "半導体・インフラ",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_abdd43ba89d12774185d",
-    "story_id": "story_1bc816bef6860c4548",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
     "tool": "DeepSeek",
     "title": "DeepSeek、外部調達で1兆円規模の資金確保",
     "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9WaUZfdlFFTG9sNWstSUowZ3ZQQkNHekJLVUtFZzdWLVpIa1IySEVhVGhySEU2Vnl2Qkp6d3VxdWtBVWVsOVdmTG5JZnVDdnctUFZlbzFnbHNXRk5KajUyMkVjbkd5V0VfWHUzRC1PdE95UQ?oc=5",
@@ -3132,62 +3207,6 @@
       "same_primary_entity",
       "uncertain_subject",
       "same_event_type"
-    ]
-  },
-  {
-    "tool": "Grok / xAI",
-    "title": "ミネソタ州、AIヌード化禁止法をxAIの憲法訴訟から擁護",
-    "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBGSXdLLXlzd2JXZ0Q0cXdUcUtMU0tiU1BCSUI5bUJpazNxZWQ2TERIUDV1Q0ZDMkJwS1lwQ05rNHpXQWxVYzBrU1ZIUzFubmJnOXVycDRhTjZPLWw5QXlEeEQzN0JqQnh5U1ZpU2dBNW91bWM3?oc=5",
-    "source_name": "BigGo ファイナンス",
-    "is_official": false,
-    "published_at": "2026-08-18T19:10:00.000Z",
-    "source_published_at": "2026-08-18T19:10:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-19T01:53:59.922Z",
-    "event_at": "",
-    "event_status": "継続中",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "xAI",
-      "ミネソタ州",
-      "Grok",
-      "xai",
-      "grok"
-    ],
-    "primary_entity": "ミネソタ州",
-    "story_subject": "AIヌード化禁止法とxAIの憲法訴訟",
-    "event_type": "policy",
-    "event_stage": "other",
-    "event_scope": "米国ミネソタ州",
-    "fact_slots": [],
-    "new_facts": [
-      "ミネソタ州がAIヌード化禁止法についてxAIの憲法修正第1条に基づく異議申し立てに対抗している"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "米ミネソタ州が、AIで人物のヌード画像を生成する行為を禁じる州法について、xAIが憲法修正第1条を根拠に起こした異議申し立てに対し法廷で擁護する姿勢を示した。",
-    "detail": "米ミネソタ州が、AI技術を使って人物の裸の画像を無断で生成する「AIヌード化」を禁止する州法を巡り、イーロン・マスク氏が率いるxAIから起こされた法的異議申し立てに対抗している。xAIは同法が表現の自由を保障する憲法修正第1条に違反するとして異議を申し立てたが、州側はこの禁止法を「画期的」なものとして擁護する立場を取っている。訴訟の詳細な経緯や今後の審理日程は記事からは確認できないが、AI生成コンテンツを規制する州法の合憲性が争点となっている。",
-    "change_summary": "ミネソタ州がAIヌード化禁止法についてxAIの憲法上の異議申し立てに対抗する姿勢を明らかにした。",
-    "impact_summary": "AI生成画像を巡る州レベルの規制の合憲性が争われることで、他州や日本など海外のAI生成コンテンツ規制の議論にも参考事例となり得る。",
-    "action_suggestion": "訴訟の審理の進行や裁判所の判断が今後の焦点となる。",
-    "importance": "A",
-    "related_categories": [
-      "規制・法務",
-      "政策・行政"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_db89f54885684deed36e",
-    "story_id": "story_d741e30e6064b9b0ff",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
     ]
   },
   {
