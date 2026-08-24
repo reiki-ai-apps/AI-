@@ -7,10 +7,6 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: post-board-public-approval
-  cancel-in-progress: false
-
 jobs:
   approve:
     runs-on: ubuntu-latest
@@ -24,23 +20,25 @@ jobs:
         with:
           node-version: 22
 
-      - name: Apply revision-bound direct approval
+      - name: Apply and commit revision-bound direct approval with conflict retry
         env:
           EVENT_PATH: ${{ github.event_path }}
           REQUEST_ID: ${{ github.event.client_payload.approval.request_id }}
         run: |
-          node board/scripts/process-gateway-approval.mjs \
-            --event "$EVENT_PATH" \
-            --data-file board/data/board.json \
-            --receipt "board/data/approval-receipts/gateway-${REQUEST_ID}.json"
-
-      - name: Commit approval evidence
-        env:
-          REQUEST_ID: ${{ github.event.client_payload.approval.request_id }}
-        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- board/data/board.json "board/data/approval-receipts/gateway-${REQUEST_ID}.json"
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Record direct POST BOARD approval"
-          git push origin HEAD:main
+          for attempt in $(seq 1 16); do
+            git fetch origin main
+            git reset --hard origin/main
+            node board/scripts/process-gateway-approval.mjs \
+              --event "$EVENT_PATH" \
+              --data-file board/data/board.json \
+              --receipt "board/data/approval-receipts/gateway-${REQUEST_ID}.json"
+            git add -- board/data/board.json "board/data/approval-receipts/gateway-${REQUEST_ID}.json"
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "Record direct POST BOARD approval"
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          echo "Approval could not be committed after retries." >&2
+          exit 1
