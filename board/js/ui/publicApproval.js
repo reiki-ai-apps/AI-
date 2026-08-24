@@ -7,11 +7,14 @@ import { DEFAULT_RETRY_DELAY_MINUTES } from '../services/approvals.js';
 export const PUBLIC_APPROVAL_REPOSITORY = 'reiki-ai-apps/AI-';
 export const PUBLIC_APPROVAL_CONTRACT = 'REIKI_POST_BOARD_APPROVAL_V1';
 
-/** 予定時刻＋許可遅延を過ぎた投稿は、誤公開防止のため承認対象にしない。 */
+/**
+ * 承認待ちは予定時刻を過ぎても画面から消さない。
+ * 実投稿時刻の繰り下げと重複確認は外部実行側で行う。
+ */
 export function isPublicApprovalActionable(post, nowMs = Date.now()) {
   const scheduledMs = Date.parse(post?.scheduled_at ?? '');
   if (!Number.isFinite(scheduledMs)) return false;
-  return scheduledMs + DEFAULT_RETRY_DELAY_MINUTES * 60_000 >= nowMs;
+  return Boolean(post && !post.deleted_at && !post.cancelled_at);
 }
 
 function safeLabel(value, fallback = '（名称なし）') {

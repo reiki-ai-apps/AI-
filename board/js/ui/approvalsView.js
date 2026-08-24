@@ -25,7 +25,7 @@ export async function renderApprovalsScreen(app) {
   const pending = app.ctx.backend === 'public'
     ? allPending.filter((post) => isPublicApprovalActionable(post, app.ctx.clock.nowMs()))
     : allPending;
-  const expiredCount = allPending.length - pending.length;
+  const overdueCount = pending.filter((post) => Date.parse(post.scheduled_at) < app.ctx.clock.nowMs()).length;
 
   const screen = el('div', { class: 'screen' });
   const platforms = [
@@ -73,9 +73,9 @@ export async function renderApprovalsScreen(app) {
               : '初回設定リンクを一度開くと、このブラウザの承認ボタンだけで処理できます。')
           : '現在、承認できる未処理項目はありません。')),
       bulkButton));
-    if (expiredCount > 0) {
+    if (overdueCount > 0) {
       screen.appendChild(el('p', { class: 'approval-expired-note' },
-        `期限切れの${expiredCount}件は誤公開防止のため一括承認から除外しています。`));
+        `予定時刻を過ぎた${overdueCount}件も表示しています。承認後は重複を確認し、安全な次の時刻へ繰り下げます。`));
     }
   }
   const board = el('div', { class: 'approval-platform-board' });
