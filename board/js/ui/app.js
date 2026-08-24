@@ -18,7 +18,7 @@ import { renderApprovalsScreen } from './approvalsView.js?v=10';
 import { renderConnectionsScreen } from './connectionsView.js';
 import { renderStatusScreen } from './statusView.js?v=16';
 import { hasIntentLink, consumeIntentLink } from './intentLink.js';
-import { claimApprovalDeviceFromHash, restoreApprovalDeviceToken } from './publicApprovalGateway.js?v=3';
+import { claimApprovalDeviceFromLocation, restoreApprovalDeviceToken } from './publicApprovalGateway.js?v=4';
 import { isPublicApprovalActionable } from './publicApproval.js';
 
 const SCREENS = [
@@ -260,9 +260,9 @@ async function boot() {
 
   if (app.ctx.backend === 'public') await restoreApprovalDeviceToken();
 
-  if (app.ctx.backend === 'public' && location.hash.startsWith('#pair:')) {
+  if (app.ctx.backend === 'public' && (new URL(location.href).searchParams.has('pair') || location.hash.startsWith('#pair:'))) {
     try {
-      const result = await claimApprovalDeviceFromHash();
+      const result = await claimApprovalDeviceFromLocation();
       if (result.claimed) app.toast('この端末を承認用に登録しました。次回からコード入力は不要です。');
     } catch (error) {
       app.fail(error);

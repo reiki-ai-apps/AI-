@@ -111,17 +111,22 @@ export function approvalDeviceReady() {
   return Boolean(storedDeviceToken());
 }
 
-export async function claimApprovalDeviceFromHash(hash = location.hash) {
-  const match = String(hash).match(/^#pair:([A-Za-z0-9_-]{32,160})$/);
-  if (!match) return { claimed: false };
+export async function claimApprovalDeviceFromLocation(url = new URL(location.href)) {
+  const queryToken = url.searchParams.get('pair');
+  const hashMatch = String(url.hash).match(/^#pair:([A-Za-z0-9_-]{32,160})$/);
+  const inviteToken = queryToken ?? hashMatch?.[1] ?? null;
+  if (!inviteToken || !/^[A-Za-z0-9_-]{32,160}$/.test(inviteToken)) return { claimed: false };
   const result = await request('/v1/claim', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ invite_token: match[1] }),
+    body: JSON.stringify({ invite_token: inviteToken }),
   });
   if (!result.token) throw new Error('この端末を承認用として登録できませんでした。');
   await saveDeviceToken(result.token);
-  history.replaceState(null, '', `${location.pathname}${location.search}#approvals`);
+  const clean = new URL(location.href);
+  clean.searchParams.delete('pair');
+  clean.hash = '#approvals';
+  history.replaceState(null, '', `${clean.pathname}${clean.search}${clean.hash}`);
   return { claimed: true };
 }
 

@@ -12,11 +12,7 @@ test('one-time link registers the browser without asking for a code', async () =
     setItem: (key, value) => values.set(key, value),
     removeItem: (key) => values.delete(key),
   };
-  globalThis.location = {
-    hash: `#pair:${inviteToken}`,
-    pathname: '/AI-/board/',
-    search: '?public=1',
-  };
+  globalThis.location = new URL(`https://reiki-ai-apps.github.io/AI-/board/?public=1&pair=${inviteToken}#approvals`);
   globalThis.history = {
     replaceState: (_state, _title, url) => { replacedUrl = url; },
   };
@@ -32,7 +28,7 @@ test('one-time link registers the browser without asking for a code', async () =
 
   const moduleUrl = new URL('../js/ui/publicApprovalGateway.js', import.meta.url);
   const approvalGateway = await import(`${moduleUrl.href}?test=${Date.now()}`);
-  const result = await approvalGateway.claimApprovalDeviceFromHash();
+  const result = await approvalGateway.claimApprovalDeviceFromLocation();
 
   assert.deepEqual(result, { claimed: true });
   assert.equal(requestBody.invite_token, inviteToken);
