@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-25T23:52:04+09:00",
+  "generated_at": "2026-08-25T23:56:11+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -13,21 +13,21 @@
     "date": "2026-08-25",
     "completed": 2,
     "target": 7,
-    "headline": "公開2/7件。YouTube Shortsとnote 1本目は公開済み。残りは、note 2本目の有料設定修正、Xの接続、Instagram画像制作です。",
-    "next_action": "最優先：note 2本目を100円に設定し、有料部分の開始位置を正しく入れて公開。並行してInstagram画像を制作します",
+    "headline": "公開2/7件。note 2本目は100円と有料部分の開始位置を修正し、公開ボタンを押す直前まで完了しました。",
+    "next_action": "note 2本目を公開後、Instagram実画像の制作を継続。Xは接続条件が揃い次第投稿します",
     "next_deadline": null,
-    "owner_action_required": false,
-    "owner_action": null,
+    "owner_action_required": true,
+    "owner_action": "note 2本目を100円で今すぐ公開してよいか、このチャットで1回だけ確認",
     "channels": [
       {
         "id": "note",
         "label": "note",
         "done": 1,
         "target": 2,
-        "state": "EXTERNAL_WAIT",
-        "status": "1/2公開済み／2本目は本文・サムネイル完成",
-        "next": "2本目を100円へ変更し、有料部分の開始位置を設定して公開",
-        "blocker": "公開画面が無料設定。有料境界も未反映のため、このままでは公開不可",
+        "state": "APPROVAL_WAIT",
+        "status": "1/2公開済み／2本目は100円・有料境界・本文・サムネイル設定済み",
+        "next": "公開直前の確認1回で投稿",
+        "blocker": "公開ボタンの最終確認のみ",
         "url": "https://note.com/natty_swan9072/n/n2a1bfc666f7e"
       },
       {
@@ -70,7 +70,7 @@
       "account": "@kizashi_jp",
       "url": "https://www.instagram.com/kizashi_jp/",
       "state": "ATTENTION",
-      "last_verified_at": "2026-08-25T23:52:04+09:00",
+      "last_verified_at": "2026-08-25T23:56:11+09:00",
       "latest_published": {
         "title": "DeepSeek V4-Pro 修正版",
         "url": "https://www.instagram.com/p/DcEMK9JGctI/"
@@ -104,7 +104,7 @@
         "url": "https://note.com/natty_swan9072/n/n2a1bfc666f7e"
       },
       "next_scheduled": null,
-      "note": "8月25日1件目を14:55に100円で公開し、公開URL・価格・有料境界・公開receiptを確認済み。2件目は本文とサムネイルが完成しているが、note外部画面では無料設定で、有料部分の開始位置も未反映。この2点を修正するまで公開しない。"
+      "note": "8月25日1件目は100円で公開済み。2件目は外部画面で100円へ変更し、『【ここから有料部分】』の直後を実際の有料境界へ設定済み。タイトル・本文・サムネイル・価格・有料境界を揃え、公開ボタン直前で待機中。"
     },
     {
       "id": "youtube",
@@ -139,9 +139,9 @@
     {
       "id": "20260825-note-paid-setting-required",
       "severity": "ATTENTION",
-      "title": "note 2本目は有料設定の修正が必要",
-      "message": "本文とサムネイルは完成していますが、note外部画面が無料設定で、有料部分の開始位置も未反映です。",
-      "required_action": "100円と有料部分の開始位置を設定後、公開直前に1回だけ確認"
+      "title": "note 2本目は公開直前の確認待ち",
+      "message": "100円と有料部分の開始位置は修正済みです。投稿ボタンを押す直前で待機しています。",
+      "required_action": "このチャットで『note 2本目を100円で公開してよい』と1回だけ確認"
     },
     {
       "id": "20260825-x-auth-required",
@@ -165,12 +165,12 @@
       "started_at": "2026-08-25T01:05:51+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "8月25日（火）Revision 6｜残り3媒体の外部条件を再照合",
+      "stage": "8月25日（火）Revision 6｜note 2本目の有料設定修正・公開直前",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 1,
       "reason": "初回検査で記事文字数不足を検出し、同一run_idで具体例・FAQを追加。4,141字と4,613字、各有料境界1か所、異なる場面・人物・配色のサムネイル2枚、独立SNS原稿をRevision 2へ固定しBoard再同期した。",
-      "next_action": "note 2本目の100円・有料境界を修正。Instagram実画像を制作。Xはトークンと料金の再確認後に投稿。"
+      "next_action": "note 2本目は最終確認後に公開。Instagram実画像を制作。Xはトークンと料金の再確認後に投稿。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -237,9 +237,9 @@
         }
       ]
     },
-    "stage": "8月25日（火）Revision 6｜残り3媒体の外部条件を再照合",
-    "reason": "YouTube Shortsは公開済み。note 2本目は外部画面で無料設定と有料境界未反映を検出。Xは本文2件完成だがトークンと料金確認が未完。Instagramは構成2件完成だが実画像16枚が未完。",
-    "next_action": "note 2本目の有料設定を修正し、Instagram画像制作を継続する。Xは接続条件が揃い次第、重複照合して投稿する。"
+    "stage": "8月25日（火）Revision 6｜note 2本目の有料設定修正・公開直前",
+    "reason": "YouTube Shortsは公開済み。note 2本目は100円と実際の有料境界へ修正済み。Xは本文2件完成だがトークンと料金確認が未完。Instagramは構成2件完成だが実画像16枚が未完。",
+    "next_action": "note 2本目は公開直前の確認1回で投稿する。続いてInstagram画像制作を進め、Xは接続条件が揃い次第投稿する。"
   },
   "monitoring": {
     "cadence": "PT1H",
