@@ -143,9 +143,9 @@
     {
       "id": "20260825-youtube-shorts-deadline-risk",
       "severity": "ATTENTION",
-      "title": "YouTube Shortsは承認済み・外部投稿待ち",
-      "message": "完成動画の承認は反映済みです。重複投稿を確認し、未投稿の場合だけYouTubeへ投稿します。外部投稿receiptはまだありません。",
-      "required_action": "利用者の操作はありません。投稿結果の反映をお待ちください"
+      "title": "YouTube Shortsは非公開アップロード済み・最終公開待ち",
+      "message": "外部動画ID Xs2BjsPO75kを取得済みです。タイトル・説明・再生リスト・AI使用表示・日本語・著作権・ガイドライン検査まで完了し、現在は非公開です。",
+      "required_action": "このチャットで「公開して」と返信してください"
     },
     {
       "id": "20260825-x-auth-required",
@@ -169,12 +169,12 @@
       "started_at": "2026-08-25T01:05:51+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "8月25日（火）Revision 5｜YouTube Shorts承認済み・外部投稿receipt待ち",
+      "stage": "8月25日（火）Revision 5｜YouTube Shorts非公開アップロード済み・最終公開待ち",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 1,
       "reason": "初回検査で記事文字数不足を検出し、同一run_idで具体例・FAQを追加。4,141字と4,613字、各有料境界1か所、異なる場面・人物・配色のサムネイル2枚、独立SNS原稿をRevision 2へ固定しBoard再同期した。",
-      "next_action": "YouTube側の重複を照合し、未投稿なら1回だけ投稿して外部receiptを保存する。"
+      "next_action": "公開確定後に今すぐ公開し、公開URL・公開時刻・処理状態を検証して外部receiptを保存する。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -241,7 +241,7 @@
         }
       ]
     },
-    "stage": "8月25日（火）Revision 5｜YouTube Shorts承認済み・外部投稿待ち",
+    "stage": "8月25日（火）Revision 5｜YouTube Shorts非公開アップロード済み・最終公開待ち",
     "reason": "33.9秒の縦型動画、実音声、字幕、別人物・別場所・別行動の4場面を完成し、三周検査とiPhone・Android相当UIの9場面ずつ計18検査をPASSした。",
     "next_action": "外部重複照合後、未投稿なら1回だけYouTubeへ投稿し、外部receipt取得直後にBoardへ反映する。"
   },
