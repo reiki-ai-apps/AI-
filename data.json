@@ -1,5 +1,519 @@
 [
   {
+    "tool": "Claude / Claude Code",
+    "title": "Anthropic、Claudeのストリーミング描画を改良 低速PCでの停止9分の1に",
+    "source_url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQTE5hWmpDR3laNTlHTUJZbDc5WDhtYmdDQlNRLTFQdF9iR1kyQlJkcmdvZ0szSnZBaXFyU3dDa3ltbk9ZMXpHMXl6OE1TRzROcWFhX2VGZ1NBakZhMlBfT25Jd05LNjBfWGlSclRwcy1SUEpkYmRtSGVFb3JFZ05WclFn?oc=5",
+    "source_name": "Crypto Briefing",
+    "is_official": false,
+    "published_at": "2026-08-25T00:44:17.000Z",
+    "source_published_at": "2026-08-25T00:44:17.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T01:53:12.325Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Anthropic",
+      "Claude",
+      "anthropic",
+      "claude"
+    ],
+    "primary_entity": "Anthropic",
+    "story_subject": "Claudeのストリーミングレンダラー",
+    "event_type": "release",
+    "event_stage": "launched",
+    "event_scope": "デスクトップ",
+    "fact_slots": [
+      {
+        "type": "amount",
+        "scope": "低速PCでの表示停止減少率",
+        "value": "9分の1",
+        "normalized_value": "9"
+      }
+    ],
+    "new_facts": [
+      "Anthropicがクロードの描画処理を改良し、低速PCでの表示停止が9分の1になったと主張している"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Anthropicは、Claudeの画面描画処理を改良し、低速なノートパソコンでの表示停止を9分の1に減らしたと発表した。",
+    "detail": "Anthropicは、AIアシスタント「Claude」がテキストを逐次表示する際の描画処理（ストリーミングレンダラー）をアップグレードしたと報じられた。この改良により、性能の低いノートパソコンでの表示の停止（スタール）が従来の9分の1に減少したとされる。具体的な改良内容や対象環境の詳細については報道内で明らかにされていない。",
+    "change_summary": "Claudeの描画処理が改良され、低速端末での表示停止が大幅に減ったと発表された。",
+    "impact_summary": "性能の低いパソコンを使う利用者でもClaudeの応答表示がスムーズになる可能性がある。",
+    "action_suggestion": "現時点で対象範囲や適用時期の詳細は不明なため、今後のAnthropicの公式発表を確認する必要がある。",
+    "importance": "C",
+    "related_categories": [
+      "AIツール・モデル",
+      "研究・技術"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_0d5ce4c314b17df88ec2",
+    "story_id": "story_aa292731213900f0c1",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.82,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject",
+      "same_event_type",
+      "material_fact_changed",
+      "low_confidence_follow_up_demoted"
+    ]
+  },
+  {
+    "tool": "AI規制・著作権",
+    "title": "写真1枚で性的動画を生成する無料AIサービスが拡散、法規制の空白が浮き彫りに",
+    "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBwcWJRMTdQQU5xajE2N3FTQjZUeHVrTzFVMWNHZF9UWjdKdTBfVDUtVk9SU2F0RFA2aEh3SmlfWVhramV3M3dEY0hERGNqMXJuQkVrZUNHRzZWcWpNYVozU1pFVk9NeDBHT0d5UEgxcjBXVjBQZktaT0t6VXBWem8?oc=5",
+    "source_name": "Yahoo!ニュース",
+    "is_official": false,
+    "published_at": "2026-08-24T23:05:00.000Z",
+    "source_published_at": "2026-08-24T23:05:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T01:53:46.341Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "AV生成AI",
+      "ディープフェイク",
+      "av生成ai"
+    ],
+    "primary_entity": "不明",
+    "story_subject": "写真1枚から性的動画を生成する無料AIサービス",
+    "event_type": "policy",
+    "event_stage": "other",
+    "event_scope": "日本",
+    "fact_slots": [],
+    "new_facts": [
+      "写真1枚で性的動画を生成できる無料AIサービスが拡散している",
+      "弁護士は現状これを取り締まる法律がないとの見解を示した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "1枚の写真から性的な動画を作れる無料AIサービスが拡散し、弁護士が『現状取り締まる法律がない』と指摘している。",
+    "detail": "特定の人物の顔写真1枚をもとに性的な動画を生成できる無料のAIサービスがネット上で拡散していると報じられた。SNSなどで『好きな子をAVに』といった形で悪用される事例が確認されており、被害者の同意なく性的なディープフェイク映像が作られている実態が指摘されている。取材を受けた弁護士は、こうした行為を直接取り締まる法律が現状存在しないとの見解を示しており、被害者救済や規制の枠組み整備が課題として残されている。今後の法整備の動きは不明。",
+    "change_summary": "写真1枚から性的動画を生成できる無料AIサービスの拡散と、それを取り締まる法律が現状ないという弁護士の見解が明らかになった。",
+    "impact_summary": "顔写真を持つ誰もが同意なく性的ディープフェイクの被害者になり得る状況が広がっており、法整備の遅れが個人の尊厳やプライバシーを脅かしている。",
+    "action_suggestion": "現時点で該当行為を直接規制する法律はなく、被害者は名誉毀損やプライバシー侵害など既存の枠組みでの対応を検討する必要がある。",
+    "importance": "A",
+    "related_categories": [
+      "規制・法務",
+      "セキュリティ"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_c4b510abb4a88b4ba08b",
+    "story_id": "story_d20daf6821d79d2b78",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "AI業界・経営重要速報",
+    "title": "デルタ航空CEO、AIが収益向上につながるとの見方を示す",
+    "source_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQUWtibF9aNkZzOVZYUDZhSGRQeTg1VC1NVXJsNjFLRXlUc0JobmcxczNnd19aZWswQmhYQVFENjdISUppSlcxVUo5eTM1U0VzanJpTXhHVjMwX25HSjJ6ZUd2RE9qdFRRUU5ZNlJ5NXRySV9nZ1Z5ejl6VWp5SVh1MExGZXNUVGlsRE1kbUZibHkwLVJtVHRzVzVIbUVSalZYZndPOTJEZEZIR1otZmM0ckNyR0NtN3pFSmZlNERVcU9rVjTSAdcBQVVfeXFMTzhPVmtNU3hjNjVvUURadUFWMHJWblhCSG16TkpaaWIwMHpTbTdBZ0lRdzQ3YzU4SDB1N29wM0wzN2ZmSjlMdTAweDZ6M1pNNE1aSnVCeEhuUlJoMFV6RzItcVpVTFU3U2Fva0tJc3loWGhLMklLLWdTWGNkRVZ6UVFwRWdvd3JqNjhVVi10N1JZM1Y1a0tSSTl5Y2ZnX1BJajhUOUMwYkR5clRmX2JSMlY5MFlzekpyZy1kR3hMcG5uVUJRSEo0X3BXUjEtWHRmSEVtdjkzc2s?oc=5",
+    "source_name": "WSB-TV",
+    "is_official": false,
+    "published_at": "2026-08-24T23:03:10.000Z",
+    "source_published_at": "2026-08-24T23:03:10.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T01:53:45.128Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "デルタ航空"
+    ],
+    "primary_entity": "デルタ航空",
+    "story_subject": "デルタ航空のAI活用による収益向上",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "米国",
+    "fact_slots": [],
+    "new_facts": [
+      "デルタ航空CEOがAI活用で収益が向上し得るとの見方を示した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "デルタ航空のCEOが、AI活用によって同社の収益が向上する可能性があるとの見方を示した。",
+    "detail": "デルタ航空の最高経営責任者(CEO)が、AIの活用が同社の利益率向上につながり得るとの見解を示したと報じられた。航空会社がAIを使って価格設定や運航の効率化を進める動きは業界内で広がりつつあるが、記事ではこうしたAI活用が旅行者にとって実際に良い結果をもたらすのかという疑問も併せて提起されている。具体的な導入分野や効果の数値は記事からは確認できない。",
+    "change_summary": "デルタ航空のCEOがAI活用による収益向上の可能性に言及したことが新たに報じられた。",
+    "impact_summary": "航空会社によるAI活用の拡大は運賃設定やサービス内容に影響し得るため、旅行者にとって価格やサービスの変化につながる可能性がある。",
+    "action_suggestion": "記事では具体的な施策や導入時期は示されておらず、今後デルタ航空がどのようにAIを活用するかの続報が注目される。",
+    "importance": "C",
+    "related_categories": [
+      "企業・株式"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_bec1ead8456f6179d92c",
+    "story_id": "story_b88445285489c367b2",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "Kling AI",
+    "title": "AI動画生成サービス「Kling」の第2四半期収益が業界水準を押し上げる",
+    "source_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBzSkJYTmtCdlJlOURhbmFNYmhYWHFINnVhWE5QLWNpWEJQZk1LYVZoNGVfdnNEcE1ZdEV6UGltN19DaTFMaVN4MFNjY2NJWk1jelEtQWIwZzZJY2lwWDRhSw?oc=5",
+    "source_name": "ContentGrip",
+    "is_official": false,
+    "published_at": "2026-08-24T21:14:39.000Z",
+    "source_published_at": "2026-08-24T21:14:39.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T01:53:16.030Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Kling",
+      "kling"
+    ],
+    "primary_entity": "Kling",
+    "story_subject": "Klingの第2四半期収益",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "全世界",
+    "fact_slots": [],
+    "new_facts": [
+      "Klingの第2四半期収益がAI動画生成業界の収益ベンチマークを押し上げたと報じられた"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "AI動画生成サービス『Kling』の第2四半期の収益が発表され、AI動画生成業界の収益基準を押し上げたと報じられた。",
+    "detail": "AI動画生成サービス『Kling』の2026年第2四半期の収益実績が報じられ、AI動画生成分野における収益のベンチマークを引き上げる結果となったとされている。Klingはテキストや画像から動画を生成するサービスとして知られており、記事ではその収益成長がAI動画生成市場全体の競争環境や評価基準に影響を与えている可能性が指摘されている。ただし具体的な収益額や成長率などの数値は記事本文からは確認できない。",
+    "change_summary": "AI動画生成サービス『Kling』の第2四半期収益が、AI動画生成業界の収益ベンチマークを押し上げたと報じられた。",
+    "impact_summary": "AI動画生成市場の収益拡大は、日本国内でも同分野への投資やサービス競争の活発化につながる可能性がある。",
+    "action_suggestion": "記事から具体的な収益額や成長率は確認できず、詳細な業績データの続報が待たれる状況。",
+    "importance": "B",
+    "related_categories": [
+      "画像・動画生成",
+      "企業・株式"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_fa12f77b9de1792c426c",
+    "story_id": "story_31e8ef3fe498fdbdb8",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "Gemini",
+    "title": "ベライゾン、グーグル・クラウドとの提携を深化しGeminiを全社展開へ",
+    "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5aLThrMjZDbWdrMzdiSnRPdTZuQVNyT3FxMjlDT3lvRjhUcGZSQ1BiTlI5TTQyT2NGNlhDQVF1Nlg1bGhUd19wbmgxSDlmTVVRVkZWNUJRWFA5TlliQ05aOVZOVWw0cmZtMFF2a0F4RVg0bEpi?oc=5",
+    "source_name": "BigGo ファイナンス",
+    "is_official": false,
+    "published_at": "2026-08-24T20:55:00.000Z",
+    "source_published_at": "2026-08-24T20:55:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T01:53:13.662Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Verizon",
+      "Google Cloud",
+      "Gemini",
+      "verizon",
+      "googlecloud"
+    ],
+    "primary_entity": "Verizon",
+    "story_subject": "Gemini全社導入",
+    "event_type": "partnership",
+    "event_stage": "expanded",
+    "event_scope": "法人全体",
+    "fact_slots": [],
+    "new_facts": [
+      "ベライゾンがグーグル・クラウドとの提携を深化させ、Geminiを法人全体に展開する方針を示した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "ベライゾンはグーグル・クラウドとの提携を拡大し、Google AIの「Gemini」を法人全体に導入する方針を明らかにした。",
+    "detail": "米通信大手ベライゾンは、グーグル・クラウドとの提携をさらに深化させ、GoogleのAIモデル「Gemini」を自社の法人全体に展開する方針を明らかにした。これにより、ベライゾンは業務のさまざまな場面でGeminiを活用し、AI導入を加速させる狙いがあるとみられる。具体的な導入時期や適用範囲などの詳細については報道内で明示されていない。",
+    "change_summary": "ベライゾンがGoogle CloudとGeminiの全社導入で提携を拡大したことが新たに明らかになった。",
+    "impact_summary": "通信大手による大規模なAI導入は、企業向けAIサービス市場の競争や日本の通信・IT業界の動向にも影響を与える可能性がある。",
+    "action_suggestion": "導入の具体的な範囲や時期については、両社の今後の公式発表を確認する必要がある。",
+    "importance": "A",
+    "related_categories": [
+      "企業・株式",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_967e07b005885f8bb37b",
+    "story_id": "story_00856a4ce42b510aba",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.53375,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "shared_entity",
+      "same_subject"
+    ]
+  },
+  {
+    "tool": "AI業界・経営重要速報",
+    "title": "AI投資でパワー半導体業界に光明、国内大型再編に自動車メーカーが関与か",
+    "source_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9Gc1RxbkRXWlk0OVEyUVhKaGcyNnJrbFd4ajNaN2ZQUEJHQUVlNDdZZnVHUllCTWZOaF83cU1FdWJrTERsdlhxY2xqb3g5TV9xVVBheGp1cC1BYllHbmJ3?oc=5",
+    "source_name": "東洋経済オンライン",
+    "is_official": false,
+    "published_at": "2026-08-24T20:50:00.000Z",
+    "source_published_at": "2026-08-24T20:50:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T01:53:45.128Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "パワー半導体",
+      "大手自動車メーカー"
+    ],
+    "primary_entity": "パワー半導体業界",
+    "story_subject": "国内パワー半導体業界の大型再編",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "日本",
+    "fact_slots": [],
+    "new_facts": [
+      "EVシフト失速で不振だったパワー半導体業界にAI投資による需要増の兆しがある",
+      "国内パワー半導体業界で大型再編の動きがあり大手自動車メーカーの関与が取り沙汰されている"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "EVシフト失速で不振に陥ったパワー半導体業界に、AI関連投資という新たな需要が生まれ、国内大型再編の動きが浮上している。",
+    "detail": "電気自動車(EV)向け需要の失速で不振が続いていた国内のパワー半導体業界に、AI関連の投資拡大という新たな追い風が吹いていると報じられた。パワー半導体はデータセンターや電源管理など多くの分野で使われる基幹部品で、AIブームによるデータセンター投資の拡大がこの分野の需要を押し上げる可能性があるとされる。記事では国内のパワー半導体業界で大型再編の動きがあり、大手自動車メーカーの関与も取り沙汰されていると指摘されている。具体的な再編の当事者や時期は不明。",
+    "change_summary": "AI関連投資の拡大がEVシフト失速で不振だった国内パワー半導体業界の需要を下支えし、大型再編の動きが浮上していることが明らかになった。",
+    "impact_summary": "半導体産業の再編は日本の製造業のサプライチェーンや雇用に影響し、AI需要が国内基幹産業の構造転換を後押しする可能性がある。",
+    "action_suggestion": "記事では再編の具体的な企業名や時期は明示されておらず、今後の業界動向の続報が注目される。",
+    "importance": "A",
+    "related_categories": [
+      "半導体・インフラ",
+      "企業・株式"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_7541d91bf2385e3561c8",
+    "story_id": "story_ecf3da97b3b0375b95",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "DeepSeek",
+    "title": "中国のハッカーがDeepSeekのAIを悪用しサイバー攻撃を強化と報道",
+    "source_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5PejRfRkh3MlFZQVFLRGwzVUh5TktIcnJsektiazVKYVVNNnBDcnpQTmtidWhSNEZFUTdYNHRLQ0NFMkVpTkR5WTRfZmIyQ1JUTWVTak9RSklHWm5QZ2gtZC1oWnJBY3lZRk1oWDJIVDM?oc=5",
+    "source_name": "Investing.com - FX | 株式市場 | ファイナンス | 金融ニュース",
+    "is_official": false,
+    "published_at": "2026-08-24T18:18:00.000Z",
+    "source_published_at": "2026-08-24T18:18:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T01:53:32.597Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "DeepSeek",
+      "中国のハッカー",
+      "deepseek"
+    ],
+    "primary_entity": "DeepSeek",
+    "story_subject": "DeepSeekを悪用したサイバー攻撃",
+    "event_type": "security",
+    "event_stage": "other",
+    "event_scope": "全世界",
+    "fact_slots": [],
+    "new_facts": [
+      "中国のハッカーがDeepSeekのAIを攻撃強化に活用しているとの報道が出た"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "中国のハッカー集団が中国製AI『DeepSeek』を活用してサイバー攻撃の能力を高めているとの報道があった。",
+    "detail": "中国のハッカーが中国発の生成AI『DeepSeek』を利用し、サイバー攻撃の手口を高度化させているとの報道が出された。DeepSeekは低コストで高性能とされる大規模言語モデルとして知られるが、攻撃コードの生成や標的への働きかけなど攻撃活動の補助にAIが使われている可能性が指摘されている。記事では具体的な被害事例や攻撃対象についての詳細は示されておらず、AI技術がサイバー犯罪の効率化に転用されるリスクが改めて浮上した形となっている。",
+    "change_summary": "中国のハッカーがDeepSeekのAIをサイバー攻撃の強化に活用しているとの報道が新たに出た。",
+    "impact_summary": "生成AIが攻撃側にも利用されることで、企業や組織が直面するサイバー攻撃の脅威がより巧妙化・効率化する懸念がある。",
+    "action_suggestion": "記事からは具体的な被害範囲や対象は不明であり、企業側はAIを悪用した攻撃への警戒と既存のセキュリティ対策の見直しが求められる状況。",
+    "importance": "B",
+    "related_categories": [
+      "セキュリティ",
+      "規制・法務"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_0ff8905883856c54ae58",
+    "story_id": "story_b938cc342c5f0bb280",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "Google Veo",
+    "title": "アリババ、AI動画生成モデル「Wan3.0」を発表 Google Veoに対抗",
+    "source_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPcVh6QmIwRm9jVHVCN1V3Z2J0czNBOE1fU2xDdThNR0tMczQ5SW1zYkpiNWZSZk1uRmpaeG9LRTc4eFZTYmtuZWJwVlBiVG1pYm5ORUEzTFk2SkdhZ3dEQmNUa29oTkk1SVdqam1mYkttNDhGUUFTc3NLbmZMZWFHSEtwei1TdXRhaXhZcWJtd3ExZTFyM1FScFlpcWJLdUJP0gGuAUFVX3lxTE5NWTVQdXg5NXdLd21zd0hUUUlzMjhlVm5CcjBaM2lYLTJYWE5mMzJvN08tcGlaeVdfX0JxMW1PcGx6a18wQmtzVXJnN3BqR1M1YlE5VTRrQVRRbXQwMjZ5a1JWMDQ2MUZqTFU1WndWZUdUM2NyU01HLXMtaXNkaURqNjdhaTFTQVFNNS0zaE1IUEhSSzBRVWR5VUdTcU9RUHVwRGVfRU8teEh1QjJDQQ?oc=5",
+    "source_name": "Analytics Insight",
+    "is_official": false,
+    "published_at": "2026-08-24T13:15:00.000Z",
+    "source_published_at": "2026-08-24T13:15:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T01:53:16.826Z",
+    "event_at": "",
+    "event_status": "不明",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Alibaba",
+      "Wan3.0",
+      "Google Veo",
+      "alibaba",
+      "wan3.0"
+    ],
+    "primary_entity": "Alibaba",
+    "story_subject": "Wan3.0",
+    "event_type": "release",
+    "event_stage": "announced",
+    "event_scope": "全世界",
+    "fact_slots": [],
+    "new_facts": [
+      "アリババがAI動画生成モデル「Wan3.0」を発表したと報じられた"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "アリババがAI動画生成モデル「Wan3.0」を発表し、GoogleのVeoに対抗する姿勢を示したと報じられた。",
+    "detail": "アリババが新しいAI動画生成モデル「Wan3.0」を発表したと報じられた。同社はこれをGoogleの動画生成AI「Veo」に対抗する製品と位置付けているとされる。ただし具体的な性能や公開時期、価格などの詳細は現時点の報道では明らかにされておらず、続報が待たれる状況にある。",
+    "change_summary": "アリババが動画生成AI新モデルWan3.0を発表し、Google Veoとの競合を明確にした。",
+    "impact_summary": "動画生成AI分野の競争が激化すれば、日本企業も選択肢が広がり価格・性能面での恩恵を受ける可能性がある。",
+    "action_suggestion": "現時点で公式な詳細発表はなく、今後の公式情報を確認する必要がある。",
+    "importance": "C",
+    "related_categories": [
+      "画像・動画生成",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_029188fd947f722e6ee7",
+    "story_id": "story_f43b3139e8c1d727c7",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "ChatGPT / OpenAI",
+    "title": "OpenAI、開発ツール「Kiro」でGPT-5.6の提供を開始",
+    "source_url": "https://openai.com/index/gpt-5-6-in-kiro",
+    "source_name": "openai.com",
+    "is_official": true,
+    "published_at": "2026-08-24T12:00:00.000Z",
+    "source_published_at": "2026-08-24T12:00:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T01:53:10.689Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "OpenAI",
+      "GPT-5.6",
+      "Kiro",
+      "openai",
+      "gpt-5.6"
+    ],
+    "primary_entity": "OpenAI",
+    "story_subject": "GPT-5.6",
+    "event_type": "release",
+    "event_stage": "launched",
+    "event_scope": "Kiro",
+    "fact_slots": [
+      {
+        "type": "availability",
+        "scope": "GPT-5.6のKiroでの提供",
+        "value": "提供開始",
+        "normalized_value": "提供開始"
+      }
+    ],
+    "new_facts": [
+      "OpenAIの開発ツールKiroでGPT-5.6が利用可能になった",
+      "GPT-5.6は価格性能比の向上を目的としている"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "OpenAIは開発支援ツール「Kiro」でGPT-5.6を利用可能にし、開発者向けの価格性能比を高めたと発表した。",
+    "detail": "OpenAIは、コード生成や設計支援などを行う開発者向けツール「Kiro」において、新モデル「GPT-5.6」の提供を開始したと発表した。GPT-5.6は開発者がソフトウェアの計画・構築・レビュー・テストを行う際の価格性能比を高めることを目的としているという。具体的な料金体系や性能向上の数値については公式発表内で明示されていない。",
+    "change_summary": "Kiro上でGPT-5.6が新たに利用可能になった。",
+    "impact_summary": "開発者はKiroでの開発作業においてコストと性能のバランスが改善する可能性がある。",
+    "action_suggestion": "Kiroの利用者は公式発表を確認し、GPT-5.6への切り替えによる料金・性能の変化を確かめる必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル",
+      "アプリ開発・自動化"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_abd52c9f1dde403ea312",
+    "story_id": "story_0190ac7f0c244c1999",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.82,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject",
+      "same_event_type",
+      "material_fact_changed",
+      "low_confidence_follow_up_demoted"
+    ]
+  },
+  {
     "tool": "AI業界・経営重要速報",
     "title": "NVIDIA、韓国のAI半導体スタートアップRebellionsと提携協議を開始",
     "source_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPQ0lQMDNqSkFpak5WaE5ZRzZpUnZJenktX1J5WFhfWEpBUnpEUkQ3cm03eGlESWsyXy1JYVdTVTI3UGItREpmMm42VUhIS2dFdzEtU2tKb3ViYXdYYkVtUE1fWDhyZlV6RXJZTnoxV3B0NkpraENuTzI2dUtnaklGUDc2akFFcHNvTmNPLTEzNzYxRks0bWxkckR1RGcwa3kzUUYycV9R?oc=5",
@@ -647,124 +1161,6 @@
     ]
   },
   {
-    "tool": "AI政策・政府動向",
-    "title": "韓国科学技術情報通信部、生成AIによるICT規制検索支援を300社に提供",
-    "source_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPbW5aVVpJOENmMUl3UEctVmJ5NWZ3LVJpa0FwODc1SUJsODhvZE0waFhuS2lTRUNDNkYtTV9XSDRiWm8tNjVKWjltSlhJaW4tQXowMlpRY29nRDJtdHJqZnBCczhOUXJjVTE5WTJzTUFsVEJ0QVI3ZnBZdE05dWxfRGJGaUV4Q1FNR2lnbXd0VWlFUm5ZdHlVamxLTkFza0lRVExFY3pnbDk?oc=5",
-    "source_name": "디지털투데이",
-    "is_official": false,
-    "published_at": "2026-08-24T03:00:00.000Z",
-    "source_published_at": "2026-08-24T03:00:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-24T04:07:10.937Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "科学技術情報通信部",
-      "ICT規制検索",
-      "生成AI",
-      "ict規制検索",
-      "生成ai"
-    ],
-    "primary_entity": "科学技術情報通信部",
-    "story_subject": "ICT規制検索支援サービス",
-    "event_type": "policy",
-    "event_stage": "announced",
-    "event_scope": "韓国国内の企業300社",
-    "fact_slots": [
-      {
-        "type": "count",
-        "scope": "対象企業数",
-        "value": "300社",
-        "normalized_value": "300"
-      }
-    ],
-    "new_facts": [
-      "科学技術情報通信部が生成AIによるICT規制検索支援サービスを計300社に提供すると発表した。"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "韓国の科学技術情報通信部が、生成AIを使ってICT関連規制を検索できる支援サービスを計300社向けに提供すると発表した。",
-    "detail": "韓国の科学技術情報通信部は、生成AIを活用してICT分野の規制情報を検索できる支援サービスを企業向けに提供すると明らかにした。対象は計300社で、複雑な規制情報を生成AIで整理・検索しやすくすることで、企業の規制対応の負担軽減を狙う取り組みとみられる。具体的な提供開始時期やサービスの詳細な仕組み、利用条件などは記事から確認できず、今後の続報が待たれる内容となっている。",
-    "change_summary": "生成AIを活用したICT規制検索支援サービスが計300社向けに新たに提供される。",
-    "impact_summary": "日本でも同様に規制情報の検索・理解にAIを活用する動きが広がれば、中小企業を含めた規制対応コストの軽減につながる可能性がある。",
-    "action_suggestion": "提供開始時期や対象企業の選定方法、具体的な利用手順など詳細情報は現時点で不明であり、続報の確認が必要。",
-    "importance": "C",
-    "related_categories": [
-      "政策・行政",
-      "その他"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_b6a57f7564a67c8e0689",
-    "story_id": "story_aece341f7d004187b8",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "NVIDIA・AI半導体",
-    "title": "AIスタートアップがGPUインフラの自前化を進める動き",
-    "source_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9OWW1ZVFlYT3dmN2d3RXNQbWZQM3hqUVcyVHNuaERXZ2dOWF9yNHUtOHQwcTF2ZHJLaHZIQ29vMFVyaUFpV2hxWkx3MUhZTl9SREhBaWVMZXBkdEk3Q2MtZXZTRm4?oc=5",
-    "source_name": "株式会社エクサウィザーズ",
-    "is_official": false,
-    "published_at": "2026-08-24T01:37:12.000Z",
-    "source_published_at": "2026-08-24T01:37:12.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-24T01:58:41.701Z",
-    "event_at": "",
-    "event_status": "継続中",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "GPU",
-      "AIスタートアップ",
-      "gpu",
-      "aiスタートアップ"
-    ],
-    "primary_entity": "AIスタートアップ",
-    "story_subject": "GPUインフラの自前化",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "全世界",
-    "fact_slots": [],
-    "new_facts": [
-      "AIスタートアップの間でGPUインフラを自前で保有・運用する動きが広がっていると指摘された"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "AIスタートアップの間で、外部委託していたGPUインフラを自社で保有・運用する動きが広がっていることが指摘されている。",
-    "detail": "AI関連スタートアップの間で、これまでクラウド事業者などに依存していたGPU（画像処理半導体）インフラを自ら構築・保有する動きが進んでいるという。記事では、チップ単体やソフトウエア単体の強化だけでは競争力確保に不十分であり、インフラ全体を自前で最適化する必要性が指摘されている。具体的な企業名や投資規模は記事からは確認できないが、AI開発競争が計算資源の確保・最適化という段階に移りつつある実態がうかがえる。",
-    "change_summary": "AIスタートアップがGPUインフラの自前化を進める傾向が新たに指摘された。",
-    "impact_summary": "AI開発に必要な計算資源の確保競争が激しくなる中、日本のAI関連企業もインフラ戦略の見直しを迫られる可能性がある。",
-    "action_suggestion": "具体的な企業事例や投資規模については記事本文の詳細確認が必要。",
-    "importance": "B",
-    "related_categories": [
-      "半導体・インフラ",
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_ea590f789a58f2c39cb9",
-    "story_id": "story_3828bcb7a3a37f0e65",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
     "tool": "世界の新モデル・速報",
     "title": "Stripe、AIモデルゲートウェイOpenRouterを買収へ",
     "source_url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9pellhY3VEYVlKMTBPOW1mcWpjeDEtckotcGxfXzd4TWFQVU1RS092RjMzUXdVVWNha08yWDNvWlVLa0ZrSkdXRlMtVFlSWVE4Qkl3X3RlclZMTGZRNGVmV3ZKY2lydw?oc=5",
@@ -825,194 +1221,6 @@
     "dedupe_decision": "new",
     "dedupe_reasons": [
       "no_previous_story"
-    ]
-  },
-  {
-    "tool": "Claude / Claude Code",
-    "title": "Anthropic、無料学習プログラム「Claude Academy」を開始",
-    "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1YTVRkTjdYUlVoNkJHMkh6eWdJbE5KSktHamtYUlVyZF9Za2E5dDdyQXhTSjU1ODd0T19neE0yV3JvTkF1dEY5Y3NFTlEyZ2ZzYmFWOGZzeWRxUDhoR3NDTENGbw?oc=5",
-    "source_name": "株式会社インプレス",
-    "is_official": false,
-    "published_at": "2026-08-24T00:36:36.000Z",
-    "source_published_at": "2026-08-24T00:36:36.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-24T01:58:05.153Z",
-    "event_at": "",
-    "event_status": "開始済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Anthropic",
-      "Claude Academy",
-      "Claude",
-      "anthropic",
-      "claudeacademy"
-    ],
-    "primary_entity": "Anthropic",
-    "story_subject": "Claude Academy",
-    "event_type": "release",
-    "event_stage": "launched",
-    "event_scope": "全世界",
-    "fact_slots": [],
-    "new_facts": [
-      "AnthropicがClaudeの使い方を無料で学べる「Claude Academy」を提供開始した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "Anthropicが、AIチャットボットClaudeの使い方を無料で学べる教育プログラム「Claude Academy」を提供開始した。",
-    "detail": "AI開発企業Anthropicは、自社のAIモデルClaudeの活用方法を学べる無料の教育プログラム「Claude Academy」を提供すると発表した。対象者や具体的なカリキュラム内容、提供期間などの詳細は記事からは確認できないが、Claudeを業務や学習に使いたい利用者向けに、基礎から使い方を学べる場を用意した形となる。",
-    "change_summary": "AnthropicがClaudeの使い方を無料で学べる「Claude Academy」を新たに提供開始した。",
-    "impact_summary": "AIツールを使いこなしたいビジネスパーソンや学習者にとって、無料で体系的にClaudeの使い方を学べる選択肢が増える。",
-    "action_suggestion": "具体的な受講方法や対象範囲については、Anthropicの公式発表を確認する必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "その他"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_f2b7f0c0f73739820732",
-    "story_id": "story_459a08c728742b6933",
-    "story_sequence": 2,
-    "relation_type": "follow_up",
-    "relation_confidence": 0.8668750000000001,
-    "previous_article_id": "article_7546e9d5e993a2ac5bab",
-    "previous_title": "Anthropicが無料AI学習サイト「Claude Academy」を公開",
-    "previous_source_published_at": "2026-08-21T02:38:47.000Z",
-    "continuation_lead": "この話題の続報です。前回は「Anthropicが無料AI学習サイト「Claude Academy」を公開」まで進んでいましたが、今回はAnthropicがClaudeの使い方を無料で学べる「Claude Academy」を新たに提供開始した。",
-    "dedupe_decision": "follow_up",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "same_subject",
-      "same_event_type"
-    ]
-  },
-  {
-    "tool": "Gemini",
-    "title": "首都高、Gemini活用でAI高利用者数が1年で10倍に",
-    "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5LbHIwRWJGOWtibHlSYkVYcXZQaXpXd0hXQWJGQktDdEpmLWlNemNtSHBOSDl0NGxITUJGZmlxblFvQU1HQWg1WXpkTW5jMnZadHllbnM2X01QVFN5MlB1UGdZR3h4RGVaZXFkNl95WXJvY2ZYTEgzckY5dklINTQ?oc=5",
-    "source_name": "Yahoo!ニュース",
-    "is_official": false,
-    "published_at": "2026-08-24T00:00:00.000Z",
-    "source_published_at": "2026-08-24T00:00:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-24T01:58:06.571Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "首都高速道路",
-      "Gemini",
-      "Gemini Notebook",
-      "gemini",
-      "gemininotebook"
-    ],
-    "primary_entity": "首都高速道路",
-    "story_subject": "Gemini Notebook",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "首都高速道路社内",
-    "fact_slots": [
-      {
-        "type": "count",
-        "scope": "AI高利用者数の増加倍率",
-        "value": "1年間で10倍",
-        "normalized_value": "1"
-      }
-    ],
-    "new_facts": [
-      "首都高がAIの高利用者数を1年間で10倍に増やした",
-      "非IT人材へのGemini Notebook浸透策が紹介された"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "首都高速道路会社が生成AI「Gemini」のノートブック機能を業務に取り入れ、AIの高利用者数を1年間で10倍に増やしたと報じられた。",
-    "detail": "首都高速道路会社が、Googleの生成AI「Gemini」のノートブック機能を社内に導入し、非IT系の社員にも浸透させる取り組みを進めている。記事では、専門知識のない現場社員でもAIを使いこなせるよう、地道な普及活動を続けた結果、AIを高頻度で使う利用者数が1年間で10倍に増加したと紹介されている。IT専門部署だけでなく現場レベルでの活用が広がった点が特徴とされ、企業が生成AI導入を進める際の事例として取り上げられている。",
-    "change_summary": "首都高がGeminiのノートブック機能を活用し、AI高利用者数を1年で10倍に増やした事例が公表された。",
-    "impact_summary": "IT専門人材が少ない企業でも、地道な社内浸透策次第で生成AIの活用が大きく広がる可能性を示す事例といえる。",
-    "action_suggestion": "記事では首都高の具体的な浸透策の詳細が紹介されており、自社での生成AI導入を検討する企業の参考情報となる。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "EC・業務活用"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_21d0e33781c8669647f6",
-    "story_id": "story_524a4ee216b3d8375e",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.6476470588235294,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "same_subject"
-    ]
-  },
-  {
-    "tool": "Gemini",
-    "title": "首都高、生成AIの社内高利用者数を1年で10倍に拡大",
-    "source_url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE54SGNUSVdHY3VYTFRPU3FSX0tIVGRabXkxM2tWcS0wVy1KTTVsVGVESGFYR3hLU3psc0FJLUFHaUtWYXdOZGJtMVZxNTF0aHJ6TjFhREpzTQ?oc=5",
-    "source_name": "ASCII.jp",
-    "is_official": false,
-    "published_at": "2026-08-24T00:00:00.000Z",
-    "source_published_at": "2026-08-24T00:00:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-24T04:06:39.890Z",
-    "event_at": "",
-    "event_status": "継続中",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "首都高速道路",
-      "Gemini",
-      "NotebookLM",
-      "gemini",
-      "notebooklm"
-    ],
-    "primary_entity": "首都高速道路株式会社",
-    "story_subject": "Gemini Notebookの社内活用による高利用者数拡大",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "首都高速道路社内(日本)",
-    "fact_slots": [
-      {
-        "type": "count",
-        "scope": "AI高利用者数の増加倍率",
-        "value": "1年で10倍",
-        "normalized_value": "1"
-      }
-    ],
-    "new_facts": [
-      "首都高速道路が社内のAI高利用者数を1年で10倍に増やした",
-      "非IT人材にもGemini Notebookなどの生成AIツールが浸透した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "首都高速道路会社が、非IT人材にも浸透したGemini Notebookなどの活用を進め、社内のAI高利用者数を1年で10倍に増やした。",
-    "detail": "首都高速道路会社が社内での生成AI活用状況を明らかにした。同社はGoogleのGemini Notebook(NotebookLM)などのツールを使い、専門的なIT知識を持たない社員にも使いやすい形でAI導入を進めてきたという。記事によると、社内の「AIの高利用者」数は1年間で10倍に増加した。地道な普及施策、いわゆる“泥臭い”浸透策を積み重ねることで、非IT人材への浸透に成功したとしている。導入の具体的な経緯や施策内容は記事本文(全3ページ構成)でさらに詳しく紹介されている。",
-    "change_summary": "首都高がGemini Notebookなど生成AIツールの社内活用を進め、AI高利用者数を1年で10倍に増やしたことが明らかになった。",
-    "impact_summary": "非IT部門でも生成AI活用が進む事例として、他の日本企業がAI導入を検討する際の参考になり得る。",
-    "action_suggestion": "具体的な導入時期や対象人数、施策の詳細は記事本文(2/3ページ以降)で確認できる。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "EC・業務活用"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_1438b99a98da7b9e6fec",
-    "story_id": "story_db1d360bf8184ed124",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.5648,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "shared_entity",
-      "same_subject"
     ]
   },
   {
@@ -1078,80 +1286,6 @@
       "same_primary_entity",
       "same_subject",
       "same_event_type",
-      "material_fact_changed"
-    ]
-  },
-  {
-    "tool": "ChatGPT / OpenAI",
-    "title": "OpenAI、GPT-5.6 Solのトークン単価を3カ月限定で2割超値下げ",
-    "source_url": "https://news.google.com/rss/articles/CBMihgNBVV95cUxQNVZNVGt3ZFBSeFRYVWF2eU1Mb0hhYnRiSVY5RUFIUENoRmt5MVp3UXk0MG13QUx2Ui1WR3RObTRGQko5RVR4d2s3SHprYlA5VXdfejdnblRiMXVJY0NaZXFYb0lkWUNzaFlyakhVVVBTbnRYY3p4NlE5Yk1FVWJiOUZRQ2lfcDJhOHhGLWN5bXpUS3E4alZocVhMU25zMVZnaUJtLVVrS0FaTmhHdjZhNUc5V3dqZUREdmNUb3dIU3d3bmhDaG10T3BaV0F4N2lNTHg5NGRTR2t3UTZremVZWld1WlpYbVZXUl85eXpFSk5YMEpkTlhvOFEtTWczTjJLV1RINXg3M0MzYWJNVlFpVm1aZDh6MzQ3R1lMT2dvbnY1bUVjMVFMVC1FOUUtc2gtSVgyOTRlc1hCX2ZseGFXYVhOM1hqbER3NEJnRnIzUHRJU2swYWp6a1VneDdmNnVtWmdTZlpvaGZXYl9zR3Fvb0o0MlBrOWJ1Uk9uX3N5S0djMjVjamc?oc=5",
-    "source_name": "Yellow.com",
-    "is_official": false,
-    "published_at": "2026-08-23T09:47:37.000Z",
-    "source_published_at": "2026-08-23T09:47:37.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-24T04:06:37.236Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "OpenAI",
-      "GPT-5.6 Sol",
-      "openai",
-      "gpt-5.6sol",
-      "gpt-5.6"
-    ],
-    "primary_entity": "OpenAI",
-    "story_subject": "GPT-5.6 Sol価格改定",
-    "event_type": "pricing",
-    "event_stage": "launched",
-    "event_scope": "API",
-    "fact_slots": [
-      {
-        "type": "price",
-        "scope": "トークン単価引き下げ率",
-        "value": "2割超引き下げ",
-        "normalized_value": "2"
-      },
-      {
-        "type": "date",
-        "scope": "値下げ期間",
-        "value": "3カ月限定",
-        "normalized_value": "3カ月限定"
-      }
-    ],
-    "new_facts": [
-      "OpenAIがGPT-5.6 Solのトークン単価を2割超、3カ月限定で引き下げると発表した。"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "OpenAIがGPT-5.6 Solの利用料金を一時的に値下げし、トークン単価を2割超引き下げると発表した。値下げ期間は3カ月限定。",
-    "detail": "OpenAIは、同社が提供するモデル「GPT-5.6 Sol」について、トークン単価を2割超引き下げる一時的な値下げを実施すると発表した。この値下げは3カ月間の期間限定措置とされている。トークン単価はAIモデルを利用する際の課金基準となるもので、今回の引き下げにより同モデルを利用する開発者や企業のコスト負担が一時的に軽減される見込みだ。値下げ終了後の価格が元の水準に戻るのかどうかなど、期間終了後の扱いについては記事からは確認できない。",
-    "change_summary": "GPT-5.6 Solのトークン単価が3カ月限定で2割超引き下げられる新たな価格施策が発表された。",
-    "impact_summary": "同モデルを業務で利用している日本企業や開発者にとって、期間中のAI利用コストが一時的に下がる可能性がある。",
-    "action_suggestion": "値下げ期間は3カ月限定とされており、利用者は適用期間や終了後の価格変更について公式発表を確認する必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_57002bed51d3f5f9c378",
-    "story_id": "story_90d15f489a5fa2876a",
-    "story_sequence": 4,
-    "relation_type": "follow_up",
-    "relation_confidence": 0.9018181818181819,
-    "previous_article_id": "article_cb92415092ff3dc1a237",
-    "previous_title": "OpenAI、「GPT-5.6 Sol」のAPI料金を値下げ",
-    "previous_source_published_at": "2026-08-22T22:38:30.000Z",
-    "continuation_lead": "この話題の続報です。前回は「OpenAI、「GPT-5.6 Sol」のAPI料金を値下げ」まで進んでいましたが、今回はGPT-5.6 Solのトークン単価が3カ月限定で2割超引き下げられる新たな価格施策が発表された。",
-    "dedupe_decision": "follow_up",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "same_subject",
-      "same_event_type",
-      "same_scope",
-      "stage_changed",
       "material_fact_changed"
     ]
   },
@@ -2762,77 +2896,6 @@
     ]
   },
   {
-    "tool": "Kling AI",
-    "title": "快手のKling AI、第2四半期売上高が前年比200%超増の8.5億元超",
-    "source_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQUGlvRkdVS3hsUExKS1dBM1U5aGFwYVp3ZmxxU0tGMHpvMU11a0E3c1hpa2VkLTcxdmc4S1M1djkyeGhDTnE0dS1uMF9sNXJNVDZZTFhXU1ZYcU5JekRWWlJKOTd5a090MVRzbDVpVHFFZW50dDQ3c3g0cXVqZHRTNVRlVGNoQmhTbXloZHRVeGM3LTZaMlV1VEp5ZjBOcGM2SktVLQ?oc=5",
-    "source_name": "TechNode",
-    "is_official": false,
-    "published_at": "2026-08-20T05:58:20.000Z",
-    "source_published_at": "2026-08-20T05:58:20.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-20T07:07:14.675Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Kuaishou",
-      "Kling AI",
-      "kuaishou",
-      "klingai",
-      "kling"
-    ],
-    "primary_entity": "Kuaishou",
-    "story_subject": "Kling AI",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "世界",
-    "fact_slots": [
-      {
-        "type": "amount",
-        "scope": "Kling AI第2四半期売上高",
-        "value": "約8.5億人民元",
-        "normalized_value": "850000000"
-      },
-      {
-        "type": "other",
-        "scope": "前年比増加率",
-        "value": "200%超",
-        "normalized_value": "200%"
-      }
-    ],
-    "new_facts": [
-      "Kling AIの第2四半期売上高が8.5億元を超えた",
-      "前年同期比で200%以上増加した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "快手（Kuaishou）の動画生成AI「Kling AI」の売上高が第2四半期に8億5000万元を超え、前年比200%以上増加した。",
-    "detail": "中国の快手（Kuaishou）が展開する動画生成AI「Kling AI」の売上高が、第2四半期に8億5000万元（人民元）を突破し、前年同期比で200%以上の伸びを記録した。動画生成AI市場が世界的に競争を強めるなか、Kling AIは中国国内外で利用が拡大しており、快手の業績を牽引する主力事業の一つに成長していることが今回の決算関連の報道で明らかになった。今後も同社は動画生成AI分野への投資を継続するとみられる。",
-    "change_summary": "Kling AIの第2四半期売上高が8.5億元を超え、前年比200%以上の増収となったことが明らかになった。",
-    "impact_summary": "動画生成AI市場の急拡大を示す指標となり、日本国内の動画制作・マーケティング分野でも競合サービスとしての存在感が増す可能性がある。",
-    "action_suggestion": "詳細な財務内訳や今後の事業計画は記事からは確認できず、快手の正式決算発表を確認する必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "企業・株式",
-      "画像・動画生成"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_87ae362bd985bd169dde",
-    "story_id": "story_07b91d7362fb5aae15",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.56,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "shared_entity",
-      "same_subject"
-    ]
-  },
-  {
     "tool": "AI業界・経営重要速報",
     "title": "NVIDIA・OpenAI・ソフトバンクが提携、オハイオ州に大規模AIインフラと雇用創出",
     "source_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9lMU1CRWtTNXV6aG5aNHlORlh2eEhLSjdXUHVuektqTU9SeXJHeHBxNF91RjFaeHVCOGF6OXAwUDdFU1FGcVA2S2hqYnNOcUVnUkd3Z2tkOGNLVzZqQWhtM1kwcGI?oc=5",
@@ -2951,76 +3014,6 @@
     "dedupe_reasons": [
       "shared_entity",
       "same_subject"
-    ]
-  },
-  {
-    "tool": "ChatGPT / OpenAI",
-    "title": "OpenAI、フロンティアモデル向けにゼロデータ保持を再確認",
-    "source_url": "https://openai.com/index/offering-zero-data-retention-for-frontier-models",
-    "source_name": "openai.com",
-    "is_official": true,
-    "published_at": "2026-08-19T19:00:00.000Z",
-    "source_published_at": "2026-08-19T19:00:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-20T01:52:10.488Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "OpenAI",
-      "Zero Data Retention",
-      "Private Safety Processing",
-      "openai",
-      "zerodataretention"
-    ],
-    "primary_entity": "OpenAI",
-    "story_subject": "Zero Data RetentionとPrivate Safety Processing",
-    "event_type": "policy",
-    "event_stage": "announced",
-    "event_scope": "API",
-    "fact_slots": [
-      {
-        "type": "status",
-        "scope": "Zero Data Retentionの提供状況",
-        "value": "対象APIユーザー向けに提供中",
-        "normalized_value": "対象apiユーザー向けに提供中"
-      },
-      {
-        "type": "status",
-        "scope": "Private Safety Processingの状況",
-        "value": "予告段階",
-        "normalized_value": "予告段階"
-      }
-    ],
-    "new_facts": [
-      "OpenAIが対象API顧客向けにゼロデータ保持を再確認した",
-      "プライバシーを守りつつ安全性処理を行う新機能Private Safety Processingを予告した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "OpenAIが対象APIユーザー向けにゼロデータ保持方針を改めて示し、プライバシーを守りつつ安全性を高める新機能「Private Safety Processing」を予告した。",
-    "detail": "OpenAIは、対象となるAPI利用企業に対してゼロデータ保持(Zero Data Retention)を提供していることを改めて表明した。ゼロデータ保持とは、APIを通じてやり取りされたデータをOpenAI側に保存しない仕組みで、機密性の高いデータを扱う企業にとって重要な要件となっている。あわせて同社は「Private Safety Processing」という新機能を予告した。これはプライバシーを損なうことなく、高度なAI安全性チェックを実施できる仕組みとされている。具体的な提供開始時期や対象範囲については記事内で明記されておらず不明。",
-    "change_summary": "OpenAIがゼロデータ保持方針を再確認し、プライバシーを守りながら安全性処理を行う新機能「Private Safety Processing」を予告した。",
-    "impact_summary": "機密情報を扱う企業がOpenAIのAPIをより安心して利用できる環境が整いつつあり、日本企業の導入判断にも影響する可能性がある。",
-    "action_suggestion": "Private Safety Processingの提供開始時期や対象条件について、OpenAIの続報を確認する必要がある。",
-    "importance": "A",
-    "related_categories": [
-      "AIツール・モデル",
-      "セキュリティ"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_df8f12302a5b421ac186",
-    "story_id": "story_52204d35ce22519939",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
     ]
   },
   {
@@ -3447,70 +3440,6 @@
       "same_event_type",
       "same_scope",
       "material_fact_changed"
-    ]
-  },
-  {
-    "tool": "Google Veo",
-    "title": "Google、動画生成AI「Veo 3.1」で音声とリアリズムを強化",
-    "source_url": "https://deepmind.google/models/veo/",
-    "source_name": "Google Veo 公式更新情報",
-    "is_official": true,
-    "published_at": "2026-08-11T04:40:52.575Z",
-    "source_published_at": "2026-08-11T04:40:52.575Z",
-    "source_updated_at": "",
-    "source_date_status": "unknown",
-    "fetched_at": "2026-08-11T04:40:52.575Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Google",
-      "Veo 3.1",
-      "google",
-      "veo3.1",
-      "google-gemini"
-    ],
-    "primary_entity": "Google",
-    "story_subject": "Veo 3.1",
-    "event_type": "release",
-    "event_stage": "launched",
-    "event_scope": "全世界",
-    "fact_slots": [
-      {
-        "type": "version",
-        "scope": "動画生成モデルのバージョン",
-        "value": "Veo 3.1",
-        "normalized_value": "veo3.1"
-      }
-    ],
-    "new_facts": [
-      "Googleの動画生成モデル最新版Veo 3.1がネイティブ音声対応を追加した",
-      "動画の長時間生成や実写に近いリアリズム、プロンプト追従性の向上が図られた"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "Googleが動画生成モデルVeo 3.1を提供し、ネイティブ音声対応や実写に近いリアリズム、プロンプト追従性の向上を実現した。",
-    "detail": "Googleは動画生成AI「Veo」の最新版Veo 3.1について、映像制作者やストーリーテラー向けにネイティブ音声機能と動画の長時間生成を含む拡張されたクリエイティブ制御を導入したと紹介している。現実世界の物理法則や音響表現の再現度を高めたことで、よりリアルな映像生成が可能になったとし、指示への追従精度(プロンプトアドヒアランス)も改善されたと説明している。従来よりも高い制御性・一貫性・創造性を音声面も含めて実現したモデルと位置づけている。",
-    "change_summary": "Veo 3.1でネイティブ音声対応、動画の長時間生成、リアリズムとプロンプト追従性の向上が新たに加わった。",
-    "impact_summary": "動画制作の表現力と効率が高まり、映像・広告・エンターテインメント業界でのAI活用がさらに進む可能性がある。",
-    "action_suggestion": "Googleの公式ページでVeo 3.1の新機能詳細や利用方法を確認できる。",
-    "importance": "A",
-    "related_categories": [
-      "画像・動画生成",
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_5bebc23d204d9e0b4d5d",
-    "story_id": "story_ea45135b57310f414f",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
     ]
   },
   {
