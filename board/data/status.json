@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-25T16:22:45.871+00:00",
+  "generated_at": "2026-08-25T23:16:26.512+00:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -13,21 +13,21 @@
     "date": "2026-08-26",
     "completed": 1,
     "target": 7,
-    "headline": "8月26日は1/7件。新規note 1本は公開済みです。サムネイルのコピー欠落を文字入りRevision 9で修正し、本文・価格を変えず外部反映前の確認待ちです。",
-    "next_action": "Instagram残り14枚と水曜YouTube本編を制作し、完成した媒体から外部投稿へ進みます",
-    "next_deadline": null,
-    "owner_action_required": true,
-    "owner_action": "文字入りサムネイルRevision 9を、公開中のnoteへ反映する最終確認（1回）",
+    "headline": "8月26日は1/7件。公開中noteの文字入りサムネイルRevision 9は本文・サムネイルとも承認済みです。",
+    "next_action": "9:30に同じnoteへ文字入りサムネイルを反映し、並行してInstagram残り14枚と水曜YouTube本編を制作します",
+    "next_deadline": "2026-08-26T09:30:00+09:00",
+    "owner_action_required": false,
+    "owner_action": null,
     "channels": [
       {
         "id": "note",
         "label": "note",
         "done": 1,
         "target": 2,
-        "state": "APPROVAL_WAIT",
-        "status": "1/2公開済み／公開中の1本は、文字入りサムネイルRevision 9へ修正完了。本文・価格・有料境界・公開URLは変更なし",
-        "next": "文字入りサムネイル1点を確認後、同じ外部note IDへ反映して公開画面を再検査",
-        "blocker": "サムネイルRevision 9の外部反映確認待ち",
+        "state": "EXTERNAL_WAIT",
+        "status": "1/2公開済み／文字入りサムネイルRevision 9は本文・サムネイルとも承認済み。外部noteへの反映待ち",
+        "next": "9:30に同じ外部note IDへ文字入りサムネイルを反映し、公開画面を再検査",
+        "blocker": null,
         "url": "https://reiki-ai-apps.github.io/AI-/board/media/6cfe96b1-6bd1-4c69-b3bb-8aa5f64c8f21/02-note-thumbnail-v3.png"
       },
       {
@@ -157,12 +157,12 @@
       "started_at": "2026-08-25T01:05:51+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "Revision 8｜note 2/2公開・Shorts導線反映・Instagramプロフィール確認・Board再同期",
+      "stage": "Revision 9｜note文字入りサムネイル承認済み・9:30外部反映待ち",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 1,
       "reason": "初回検査で記事文字数不足を検出し、同一run_idで具体例・FAQを追加。4,141字と4,613字、各有料境界1か所、異なる場面・人物・配色のサムネイル2枚、独立SNS原稿をRevision 2へ固定しBoard再同期した。",
-      "next_action": "Instagram残り14枚と水曜YouTube本編を制作。Xは接続条件が揃い次第、重複照合して投稿。"
+      "next_action": "9:30にnote文字入りサムネイルを反映。並行してInstagram残り14枚と水曜YouTube本編を制作。Xは接続条件が揃い次第、重複照合して投稿。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -229,13 +229,13 @@
         }
       ]
     },
-    "stage": "Revision 8｜note 2/2公開・Shorts導線反映・Instagramプロフィール確認・Board再同期",
-    "reason": "note既存記事を更新し、2本目を100円公開。Shorts説明欄と固定コメント、InstagramプロフィールのAI進化レーダー導線を外部画面で確認した。",
-    "next_action": "Instagram残り14枚と水曜YouTube本編を制作し、Xは接続条件が揃い次第投稿する。"
+    "stage": "Revision 9｜note文字入りサムネイル承認済み・9:30外部反映待ち",
+    "reason": "所有者の『すべて承認』を現Revisionの本文・サムネイルHashへ固定し、外部反映時刻を9:30へ繰り下げた。外部更新receiptはまだ未取得。",
+    "next_action": "9:30にnoteサムネイルを反映し、Instagram残り14枚と水曜YouTube本編の制作を続ける。"
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-24T01:35:00+09:00",
+    "last_checked_at": "2026-08-26T08:16:26+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
