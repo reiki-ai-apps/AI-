@@ -1,34 +1,34 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-26T00:16:44+09:00",
+  "generated_at": "2026-08-26T00:53:00+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
-    "published_confirmed": 19,
+    "published_confirmed": 20,
     "scheduled": 1,
     "attention": 2
   },
   "today": {
     "date": "2026-08-26",
-    "completed": 0,
+    "completed": 2,
     "target": 7,
-    "headline": "8月26日は0/7件。note・X・Instagram・YouTubeの全原稿に、媒体別のAI進化レーダー導線と計測URLを反映しました。",
-    "next_action": "公開済みnote・Shortsとnote下書きへ導線を外部反映し、Instagram残り14枚と水曜YouTube本編を制作します",
+    "headline": "8月26日は2/7件。note 2/2を公開確認し、公開済みShortsの説明欄・固定コメントとInstagramプロフィールにAI進化レーダー導線を反映・確認しました。",
+    "next_action": "Instagram残り14枚と水曜YouTube本編を制作し、完成した媒体から外部投稿へ進みます",
     "next_deadline": null,
-    "owner_action_required": true,
-    "owner_action": "外部反映の直前に、既存note・Shorts更新、note 2本目公開、Instagramプロフィールリンク設定を1回だけまとめて確認",
+    "owner_action_required": false,
+    "owner_action": "なし。新規課金・本人操作必須の認証・外部結果不明が発生した場合だけ表示します",
     "channels": [
       {
         "id": "note",
         "label": "note",
-        "done": 0,
+        "done": 2,
         "target": 2,
-        "state": "APPROVAL_WAIT",
-        "status": "0/2公開／2本ともAI進化レーダー導線を無料部分前半と末尾へ追加済み",
-        "next": "既存記事の導線更新と100円記事の下書き反映・公開をまとめて実行",
-        "blocker": "外部画面への反映前。公開・更新receiptなし",
-        "url": "https://note.com/natty_swan9072/n/n2a1bfc666f7e"
+        "state": "PUBLISHED",
+        "status": "2/2公開確認済み／2本とも無料範囲にAI進化レーダー導線を表示。2本目は100円で公開",
+        "next": "公開URLと計測導線を維持し、次の2企画制作へ進む",
+        "blocker": null,
+        "url": "https://note.com/natty_swan9072/n/n325bb6a4859a"
       },
       {
         "id": "x",
@@ -45,10 +45,10 @@
         "label": "Instagram",
         "done": 0,
         "target": 2,
-        "state": "AUTH_WAIT",
-        "status": "0/2公開／最終スライドと本文にAI進化レーダー導線を追加。異なる写真2/16枚完成",
-        "next": "残り14枚を制作・実機検査し、プロフィールリンク確認後に投稿",
-        "blocker": "残り14枚が未完成。プロフィールリンクとGraph API接続も未確認"
+        "state": "PRODUCING",
+        "status": "0/2公開／AI進化レーダーのプロフィールリンクは実機確認済み。異なる写真2/16枚完成",
+        "next": "残り14枚を制作・実機検査し、Graph API接続を投稿直前に確認",
+        "blocker": "残り14枚が未完成。外部投稿receiptなし"
       },
       {
         "id": "youtube",
@@ -56,8 +56,8 @@
         "done": 0,
         "target": 1,
         "state": "PRODUCING",
-        "status": "0/1公開／水曜の本編枠。公開済みShortsの説明欄・固定コメント用AI進化レーダー導線は完成",
-        "next": "水曜本編を制作し、公開済みShortsの導線も外部反映",
+        "status": "0/1公開／水曜の本編枠を制作中。公開済みShortsは説明欄更新・AI進化レーダー固定コメントを反映確認済み",
+        "next": "水曜本編を制作・検査し、完成後に公開準備へ進む",
         "blocker": null
       }
     ]
@@ -69,13 +69,13 @@
       "account": "@kizashi_jp",
       "url": "https://www.instagram.com/kizashi_jp/",
       "state": "ATTENTION",
-      "last_verified_at": "2026-08-25T23:56:11+09:00",
+      "last_verified_at": "2026-08-26T00:45:00+09:00",
       "latest_published": {
         "title": "DeepSeek V4-Pro 修正版",
         "url": "https://www.instagram.com/p/DcEMK9JGctI/"
       },
       "next_scheduled": null,
-      "note": "2件の最終スライドとキャプションへ、プロフィールのAI進化レーダーから次の行動へ進む導線を追加。計測URLは企画別に分離。異なるカバー写真2枚は完成、残り14枚と端末表示検査、プロフィールリンク、Graph API接続は未完。"
+      "note": "プロフィール先頭の『AI進化レーダー』リンク（utm_source=ig）を実機確認済み。2件の最終スライドとキャプションにも導線を追加。異なるカバー写真2枚は完成、残り14枚と端末表示検査、投稿前のGraph API接続確認が残る。"
     },
     {
       "id": "x",
@@ -83,7 +83,7 @@
       "account": "@KIZASHI_jp",
       "url": "https://x.com/KIZASHI_jp",
       "state": "ATTENTION",
-      "last_verified_at": "2026-08-25T23:52:04+09:00",
+      "last_verified_at": "2026-08-26T00:38:00+09:00",
       "latest_published": {
         "title": "AIに任せる前の3つの境界線｜4投稿スレッド",
         "url": "https://x.com/KIZASHI_jp/status/2089994853954547871"
@@ -99,11 +99,11 @@
       "state": "HEALTHY",
       "last_verified_at": "2026-08-25T23:52:04+09:00",
       "latest_published": {
-        "title": "AIに任せる権限、残す権限｜小さな組織の3段階判断表",
-        "url": "https://note.com/natty_swan9072/n/n2a1bfc666f7e"
+        "title": "子どもにAIを使わせる前に｜禁止より先に教える4つの質問",
+        "url": "https://note.com/natty_swan9072/n/n325bb6a4859a"
       },
       "next_scheduled": null,
-      "note": "2記事のローカル正本へAI進化レーダー導線を無料部分前半と末尾に追加。既存公開記事と100円下書きの外部画面にはまだ反映していないため、公開・更新receipt取得後に状態を更新する。"
+      "note": "既存記事 n2a1bfc666f7e はAI進化レーダー案内カードまでを無料範囲にして更新済み。2本目 n325bb6a4859a は無料範囲に導線を置き、100円で公開済み。外部URL・価格・有料境界を確認した。"
     },
     {
       "id": "youtube",
@@ -111,13 +111,13 @@
       "account": "KIZASHI / @kizashi_jp",
       "url": "https://www.youtube.com/@kizashi_jp",
       "state": "HEALTHY",
-      "last_verified_at": "2026-08-25T23:38:25+09:00",
+      "last_verified_at": "2026-08-26T00:44:00+09:00",
       "latest_published": {
         "title": "AIに任せていい仕事、ダメな仕事｜3段階で判断 #Shorts",
         "url": "https://www.youtube.com/shorts/Xs2BjsPO75k"
       },
       "next_scheduled": null,
-      "note": "公開済みShorts Xs2BjsPO75kの説明欄冒頭と固定コメント用に、AI進化レーダー計測URLと媒体専用CTAを完成。外部YouTubeへの更新は未実行で、更新receiptは未取得。"
+      "note": "公開済みShorts Xs2BjsPO75kの説明欄へAI進化レーダー計測URLを反映し、コメント Ugw3oSSO3KH9QG16Tkd4AaABAg を投稿・固定済み。説明欄保存と固定表示を外部画面で確認した。"
     },
     {
       "id": "radar",
@@ -125,23 +125,16 @@
       "account": "KIZASHI公式アプリ",
       "url": "https://reiki-ai-apps.github.io/AI-/",
       "state": "HEALTHY",
-      "last_verified_at": "2026-08-16T12:13:09+09:00",
+      "last_verified_at": "2026-08-26T00:46:00+09:00",
       "latest_published": {
         "title": "本番反映済み（記事60件）",
         "url": "https://reiki-ai-apps.github.io/AI-/"
       },
       "next_scheduled": null,
-      "note": "本番commit 0ec2c4394f6e8e87470eedea3831a7db6dbbe9f1。未読57件は別表示。"
+      "note": "AI進化レーダー本番URLとPOST BOARD公開表示を確認。Board導線更新commit d5f5dbb をmainへ反映済み。"
     }
   ],
   "blockers": [
-    {
-      "id": "20260825-note-paid-setting-required",
-      "severity": "ATTENTION",
-      "title": "note・ShortsのAI進化レーダー導線は外部反映待ち",
-      "message": "媒体別CTAと計測URLは完成しています。既存記事・公開済みShorts・note下書きの外部画面はまだ変更していません。",
-      "required_action": "外部反映の直前に、既存note・Shorts更新とnote 2本目公開を1回だけまとめて確認"
-    },
     {
       "id": "20260825-x-auth-required",
       "severity": "ATTENTION",
@@ -152,9 +145,9 @@
     {
       "id": "20260825-instagram-auth-required",
       "severity": "ATTENTION",
-      "title": "Instagramは接続・認証待ち",
-      "message": "2件の構成・AI進化レーダー導線・異なる写真2枚は完成。残り14枚、実機検査、プロフィールリンク確認、Graph API接続が残っています。",
-      "required_action": "OAuthの本人操作が必要になった時だけBoardに1件表示"
+      "title": "Instagramは素材制作中",
+      "message": "AI進化レーダーのプロフィールリンクは確認済み。2件の構成・導線・異なる写真2枚は完成し、残り14枚と実機検査が残っています。",
+      "required_action": "素材完成後、投稿直前にGraph API接続を確認。本人操作が必要な場合だけ1件表示"
     }
   ],
   "production": {
@@ -164,12 +157,12 @@
       "started_at": "2026-08-25T01:05:51+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "8月25日（火）Revision 7｜全媒体のAI進化レーダー導線を原稿へ反映",
+      "stage": "Revision 8｜note 2/2公開・Shorts導線反映・Instagramプロフィール確認・Board再同期",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 1,
       "reason": "初回検査で記事文字数不足を検出し、同一run_idで具体例・FAQを追加。4,141字と4,613字、各有料境界1か所、異なる場面・人物・配色のサムネイル2枚、独立SNS原稿をRevision 2へ固定しBoard再同期した。",
-      "next_action": "公開済みnote・Shortsとnote下書きへ導線を外部反映。Instagram実画像を制作し、Xは接続条件が揃い次第投稿。"
+      "next_action": "Instagram残り14枚と水曜YouTube本編を制作。Xは接続条件が揃い次第、重複照合して投稿。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -236,9 +229,9 @@
         }
       ]
     },
-    "stage": "8月25日（火）Revision 7｜全媒体のAI進化レーダー導線を原稿へ反映",
-    "reason": "媒体別CTAとUTMを完成。YouTubeは説明欄・固定コメント、noteは無料部分前半・末尾、Xは本文、Instagramは最終スライド・本文・プロフィール導線へ分けた。外部反映は未実行。",
-    "next_action": "既存note・Shortsとnote下書きへ導線を外部反映し、Instagram画像と水曜YouTube本編を制作する。"
+    "stage": "Revision 8｜note 2/2公開・Shorts導線反映・Instagramプロフィール確認・Board再同期",
+    "reason": "note既存記事を更新し、2本目を100円公開。Shorts説明欄と固定コメント、InstagramプロフィールのAI進化レーダー導線を外部画面で確認した。",
+    "next_action": "Instagram残り14枚と水曜YouTube本編を制作し、Xは接続条件が揃い次第投稿する。"
   },
   "monitoring": {
     "cadence": "PT1H",
@@ -247,6 +240,14 @@
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
   "evidence": [
+    "runs/kizashi-20260825/receipts/ai-radar-external-execution-20260826.json",
+    "runs/kizashi-20260825/authority/note-radar-update-receipt-20260826.json",
+    "runs/kizashi-20260825/literacy/note-publish-receipt-20260826.json",
+    "runs/kizashi-20260825/literacy/post-board-package-validation.json",
+    "runs/kizashi-20260825/literacy/post-board-import-receipt.json",
+    "runs/kizashi-20260825/literacy/board-publication-sync-receipt-20260826.json",
+    "runs/kizashi-20260825/authority/youtube-shorts-r1/radar-update-receipt-20260826.json",
+    "runs/kizashi-20260825/receipts/instagram-profile-radar-verification-20260826.json",
     "runs/kizashi-20260825/receipts/board-ai-radar-funnel-r1.json",
     "runs/kizashi-20260825/receipts/ai-radar-funnel-r1.json",
     "runs/kizashi-20260825/ai-radar-funnel-r1.json",
