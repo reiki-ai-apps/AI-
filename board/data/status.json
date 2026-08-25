@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-25T23:38:25+09:00",
+  "generated_at": "2026-08-25T23:52:04+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -13,8 +13,8 @@
     "date": "2026-08-25",
     "completed": 2,
     "target": 7,
-    "headline": "YouTube Shortsを23:36に公開しました。公開URL・チャンネル・タイトル・再生画面まで確認済みです。",
-    "next_action": "YouTube Shortsは完了。次はnote 2本目の公開と、X・Instagramの接続再確認を進めます",
+    "headline": "公開2/7件。YouTube Shortsとnote 1本目は公開済み。残りは、note 2本目の有料設定修正、Xの接続、Instagram画像制作です。",
+    "next_action": "最優先：note 2本目を100円に設定し、有料部分の開始位置を正しく入れて公開。並行してInstagram画像を制作します",
     "next_deadline": null,
     "owner_action_required": false,
     "owner_action": null,
@@ -25,9 +25,9 @@
         "done": 1,
         "target": 2,
         "state": "EXTERNAL_WAIT",
-        "status": "1本目公開済み／2本目完成済み",
-        "next": "19:00以降に2本目を公開",
-        "blocker": "予約投稿は有料契約が必要。新規課金せず時刻待ち",
+        "status": "1/2公開済み／2本目は本文・サムネイル完成",
+        "next": "2本目を100円へ変更し、有料部分の開始位置を設定して公開",
+        "blocker": "公開画面が無料設定。有料境界も未反映のため、このままでは公開不可",
         "url": "https://note.com/natty_swan9072/n/n2a1bfc666f7e"
       },
       {
@@ -36,9 +36,9 @@
         "done": 0,
         "target": 2,
         "state": "AUTH_WAIT",
-        "status": "本文2件完成／外部投稿なし",
-        "next": "公式API接続後に重複照合して投稿",
-        "blocker": "利用者トークン未接続"
+        "status": "0/2公開／本文2件・根拠URLは完成",
+        "next": "利用者トークン接続と最新料金確認後、重複照合して投稿",
+        "blocker": "X利用者トークン未接続。外部投稿receiptなし"
       },
       {
         "id": "instagram",
@@ -46,9 +46,9 @@
         "done": 0,
         "target": 2,
         "state": "AUTH_WAIT",
-        "status": "構成2件完成／実画像制作中",
-        "next": "画像検査後、Graph API接続を確認",
-        "blocker": "アクセストークン未接続"
+        "status": "0/2公開／8枚構成・本文・代替テキストは2件完成",
+        "next": "実画像16枚を制作・実機検査し、Graph API接続後に投稿",
+        "blocker": "実画像が未完成。Instagramアクセストークンも未接続"
       },
       {
         "id": "youtube",
@@ -70,13 +70,13 @@
       "account": "@kizashi_jp",
       "url": "https://www.instagram.com/kizashi_jp/",
       "state": "ATTENTION",
-      "last_verified_at": "2026-08-19T17:37:00+09:00",
+      "last_verified_at": "2026-08-25T23:52:04+09:00",
       "latest_published": {
         "title": "DeepSeek V4-Pro 修正版",
         "url": "https://www.instagram.com/p/DcEMK9JGctI/"
       },
       "next_scheduled": null,
-      "note": "8月22日・23日分はInstagram Graph APIのアクセストークンを現在の実行環境で確認できない。外部予約ID・receiptは未取得のため接続・認証待ち。"
+      "note": "8月25日分は、異なる読者課題と根拠を持つ2件の8枚構成・キャプション・代替テキストまで完成。実画像16枚と端末表示検査は未完了。Graph APIアクセストークンも確認できないため、外部投稿receiptは未取得。"
     },
     {
       "id": "x",
@@ -84,13 +84,13 @@
       "account": "@KIZASHI_jp",
       "url": "https://x.com/KIZASHI_jp",
       "state": "ATTENTION",
-      "last_verified_at": "2026-08-19T17:36:20.849188+09:00",
+      "last_verified_at": "2026-08-25T23:52:04+09:00",
       "latest_published": {
         "title": "AIに任せる前の3つの境界線｜4投稿スレッド",
         "url": "https://x.com/KIZASHI_jp/status/2089994853954547871"
       },
       "next_scheduled": null,
-      "note": "8月22日・23日分はX公式APIの利用者トークンと有料実行承認を確認できない。外部予約ID・receiptは未取得のため予約済みではない。"
+      "note": "8月25日分は、異なる読者課題と根拠を持つ本文2件が完成。X公式APIの利用者トークンを確認できず、料金情報の再確認も必要。外部投稿ID・receiptは未取得。"
     },
     {
       "id": "note",
@@ -98,13 +98,13 @@
       "account": "KIZASHI / natty_swan9072",
       "url": "https://note.com/natty_swan9072",
       "state": "HEALTHY",
-      "last_verified_at": "2026-08-25T14:55:50+09:00",
+      "last_verified_at": "2026-08-25T23:52:04+09:00",
       "latest_published": {
         "title": "AIに任せる権限、残す権限｜小さな組織の3段階判断表",
         "url": "https://note.com/natty_swan9072/n/n2a1bfc666f7e"
       },
       "next_scheduled": null,
-      "note": "8月25日1件目を14:55に100円で公開し、公開URL・価格・有料境界・公開receiptを照合してBoard同期済み。2件目は完成・100円・有料境界確認済み。予約投稿はnoteプレミアムの新規課金が必要なため課金せず、最低4時間間隔を守って19:00以降の外部公開待ち。"
+      "note": "8月25日1件目を14:55に100円で公開し、公開URL・価格・有料境界・公開receiptを確認済み。2件目は本文とサムネイルが完成しているが、note外部画面では無料設定で、有料部分の開始位置も未反映。この2点を修正するまで公開しない。"
     },
     {
       "id": "youtube",
@@ -137,6 +137,13 @@
   ],
   "blockers": [
     {
+      "id": "20260825-note-paid-setting-required",
+      "severity": "ATTENTION",
+      "title": "note 2本目は有料設定の修正が必要",
+      "message": "本文とサムネイルは完成していますが、note外部画面が無料設定で、有料部分の開始位置も未反映です。",
+      "required_action": "100円と有料部分の開始位置を設定後、公開直前に1回だけ確認"
+    },
+    {
       "id": "20260825-x-auth-required",
       "severity": "ATTENTION",
       "title": "Xは接続・認証待ち",
@@ -158,12 +165,12 @@
       "started_at": "2026-08-25T01:05:51+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "8月25日（火）Revision 5｜YouTube Shorts公開・外部receipt同期済み",
+      "stage": "8月25日（火）Revision 6｜残り3媒体の外部条件を再照合",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 1,
       "reason": "初回検査で記事文字数不足を検出し、同一run_idで具体例・FAQを追加。4,141字と4,613字、各有料境界1か所、異なる場面・人物・配色のサムネイル2枚、独立SNS原稿をRevision 2へ固定しBoard再同期した。",
-      "next_action": "note 2本目の公開と、X・Instagramの接続再確認を進める。"
+      "next_action": "note 2本目の100円・有料境界を修正。Instagram実画像を制作。Xはトークンと料金の再確認後に投稿。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -230,9 +237,9 @@
         }
       ]
     },
-    "stage": "8月25日（火）Revision 5｜YouTube Shorts公開・外部receipt同期済み",
-    "reason": "33.9秒の縦型動画、実音声、字幕、別人物・別場所・別行動の4場面を完成し、三周検査とiPhone・Android相当UIの9場面ずつ計18検査をPASSした。",
-    "next_action": "YouTube Shortsは完了。note 2本目とX・Instagramの安全な外部処理を継続する。"
+    "stage": "8月25日（火）Revision 6｜残り3媒体の外部条件を再照合",
+    "reason": "YouTube Shortsは公開済み。note 2本目は外部画面で無料設定と有料境界未反映を検出。Xは本文2件完成だがトークンと料金確認が未完。Instagramは構成2件完成だが実画像16枚が未完。",
+    "next_action": "note 2本目の有料設定を修正し、Instagram画像制作を継続する。Xは接続条件が揃い次第、重複照合して投稿する。"
   },
   "monitoring": {
     "cadence": "PT1H",
