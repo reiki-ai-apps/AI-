@@ -12,6 +12,7 @@ const STATE_LABELS = {
   UNKNOWN: '未確認',
   EXECUTING: '進行中',
   PRODUCTION: '制作中',
+  APPROVAL_WAIT: '確認待ち',
   EXTERNAL_WAIT: '外部予約待ち',
   AUTH_WAIT: '接続・認証待ち',
 };
@@ -39,7 +40,6 @@ function dateTime(value) {
     minute: '2-digit',
   }).format(parsed);
 }
-
 function externalLink(label, url) {
   if (!url) return null;
   return el('a', { href: url, target: '_blank', rel: 'noopener noreferrer' }, label);
@@ -48,7 +48,7 @@ function externalLink(label, url) {
 function todayStatePill(state) {
   const tone = ({
     PUBLISHED: 'healthy', SCHEDULED: 'healthy', PRODUCTION: 'progress',
-    EXECUTING: 'progress', EXTERNAL_WAIT: 'attention', AUTH_WAIT: 'blocked',
+    EXECUTING: 'progress', APPROVAL_WAIT: 'attention', EXTERNAL_WAIT: 'attention', AUTH_WAIT: 'blocked',
   })[state] ?? 'unknown';
   return el('span', { class: `status-pill status-pill-${tone}` }, STATE_LABELS[state] ?? state ?? '未確認');
 }
@@ -81,7 +81,7 @@ function todaySummary(today) {
         el('p', { class: 'today-command-status' }, channel.status ?? '確認中'),
         el('p', { class: 'today-command-action' }, `次：${channel.next ?? '未設定'}`),
         el('p', { class: 'today-command-blocker' }, `停止理由：${channel.blocker ?? 'なし'}`),
-        channel.url ? externalLink('公開物を開く', channel.url) : null);
+        channel.url ? externalLink(channel.state === 'APPROVAL_WAIT' ? '完成物を確認する' : '公開物を開く', channel.url) : null);
     })));
 }
 

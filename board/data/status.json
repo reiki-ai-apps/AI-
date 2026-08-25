@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-25T15:27:23+09:00",
+  "generated_at": "2026-08-25T21:33:19+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -13,11 +13,11 @@
     "date": "2026-08-25",
     "completed": 1,
     "target": 7,
-    "headline": "note 1本目は公開済み。2本目は投稿間隔を守って19:00以降に公開します。X・Instagramは接続待ち、YouTube Shortsは制作中です。",
-    "next_action": "19:00にnote 2本目が未公開であることを照合し、そのまま公開する",
-    "next_deadline": "2026-08-25T19:00:00+09:00",
-    "owner_action_required": false,
-    "owner_action": "今はありません。OAuth操作が必要になった時だけ1件に絞って表示します",
+    "headline": "YouTube Shortsは完成・品質PASS・Board確認待ちです。外部投稿はまだ行っていません。noteは1本公開済み、X・Instagramは接続待ちです。",
+    "next_action": "YouTubeの33.9秒完成動画を確認後、同内容の外部重複を照合して投稿へ進む",
+    "next_deadline": "2026-08-25T22:30:00+09:00",
+    "owner_action_required": true,
+    "owner_action": "YouTube完成動画を1回再生し、問題なければこのチャットで「OK」と返信",
     "channels": [
       {
         "id": "note",
@@ -55,10 +55,11 @@
         "label": "YouTube Shorts",
         "done": 0,
         "target": 1,
-        "state": "PRODUCTION",
-        "status": "火曜Shortsの台本完成／動画制作中",
-        "next": "動画・字幕・9フレームUI検査",
-        "blocker": "公開時はOAuth接続が必要"
+        "state": "APPROVAL_WAIT",
+        "status": "33.9秒動画完成／三周品質PASS／外部投稿なし",
+        "next": "完成動画を再生確認後、重複照合してYouTube投稿",
+        "blocker": "完成動画の確認待ち。確認後にOAuth接続を診断",
+        "url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-short-2026-08-25-r2.mp4"
       }
     ]
   },
@@ -103,7 +104,7 @@
         "url": "https://note.com/natty_swan9072/n/n2a1bfc666f7e"
       },
       "next_scheduled": null,
-      "note": "8月25日1件目を14:55に100円で公開し、公開URL・価格・有料境界・公開receiptを照合済み。2件目は完成・100円・有料境界確認済みで、最低4時間間隔を守って19:00以降の外部公開待ち。"
+      "note": "8月25日1件目を14:55に100円で公開し、公開URL・価格・有料境界・公開receiptを照合してBoard同期済み。2件目は完成・100円・有料境界確認済み。予約投稿はnoteプレミアムの新規課金が必要なため課金せず、最低4時間間隔を守って19:00以降の外部公開待ち。"
     },
     {
       "id": "youtube",
@@ -141,10 +142,10 @@
   "blockers": [
     {
       "id": "20260825-youtube-shorts-deadline-risk",
-      "severity": "DANGER",
-      "title": "今日のYouTube Shortsが未完成",
-      "message": "台本は完成していますが、動画・字幕・9フレームUI検査・外部公開receiptが未完了です。",
-      "required_action": "制作と検査を継続。公開時にYouTube OAuth接続を確認"
+      "severity": "ATTENTION",
+      "title": "YouTube Shortsは完成・確認待ち",
+      "message": "33.9秒動画、字幕、実音声、別場面画像4枚、iPhone・Android相当UIの18検査が完成しました。外部投稿は未実施です。",
+      "required_action": "Boardで完成動画を再生し、このチャットで「OK」と返信"
     },
     {
       "id": "20260825-x-auth-required",
@@ -168,14 +169,14 @@
       "started_at": "2026-08-25T01:05:51+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "8月25日（火）Revision 4｜note 1本目公開済み、2本目は19:00以降の外部公開待ち。X・Instagram・YouTube Shortsを継続中",
+      "stage": "8月25日（火）Revision 5｜YouTube Shorts完成・Board確認待ち。外部投稿は未実施",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 1,
-      "reason": "別content_id・別読者課題・別根拠で2企画を作成。note 1本目は公開receipt確認済み。2本目は100円・有料境界・画像を確認済みで、投稿間隔を守って待機中。",
-      "next_action": "19:00以降にnote 2本目の未公開を照合して公開し、並行してInstagram実画像とShorts動画を制作する。"
+      "reason": "初回検査で記事文字数不足を検出し、同一run_idで具体例・FAQを追加。4,141字と4,613字、各有料境界1か所、異なる場面・人物・配色のサムネイル2枚、独立SNS原稿をRevision 2へ固定しBoard再同期した。",
+      "next_action": "完成Shortsの確認後、YouTube側の重複を照合し、OAuth接続を診断して1回だけ投稿する。"
     },
-    "policy": "予約成立を最優先。noteはAsia/Tokyoの8:00・12:00を基本枠とし、遅れた場合も同時公開せず、1本目を次の実行可能時刻、2本目を最低4時間後へ移す。YouTube本編はAsia/Tokyoの月・水・金を固定投稿日とし、当日枠と次の2枠を予約済み／承認待ち／制作中／HOLDで必ず表示する。制作・修正・品質検査・Board同期は途中承認なしで連続実行し、同一revision/hashの完成物、投稿先、日時、価格・API費用を一画面へまとめた最終公開直前だけ所有者承認を求める。認証権限の新規付与、課金、外部公開は最終承認対象とし、成功は外部receipt取得後だけ表示する。",
+    "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
       "time_zone": "Asia/Tokyo",
       "target_slots": [
@@ -187,7 +188,7 @@
       "prepublish_guard": "planDailyNoteSlots"
     },
     "approval_policy": {
-      "mode": "FINAL_PUBLISH_ONLY",
+      "mode": "STANDING_AUTHORIZATION_LOW_RISK_ZERO_ADDITIONAL_COST",
       "no_intermediate_approval": [
         "制作",
         "修正",
@@ -205,7 +206,14 @@
         "API費用上限",
         "公開範囲"
       ],
-      "external_action_requires_final_approval": true
+      "external_action_requires_final_approval": false,
+      "individual_approval_only_for": [
+        "新規課金または費用上限超過",
+        "投稿先アカウント変更",
+        "本人操作必須のOAuth・CAPTCHA",
+        "権利・安全上の重大判断",
+        "外部結果不明による二重投稿リスク"
+      ]
     },
     "youtube_longform": {
       "days": [
@@ -233,9 +241,9 @@
         }
       ]
     },
-    "stage": "8月24日（月）本編｜Revision 2完成・Board承認待ち",
-    "reason": "YouTube本編4分02秒、字幕49件、BGM、サムネイル3案、説明文、三周検査を完成し、動画と推奨サムネイルAの表示URL・Hash・12:00予定・費用・接続状態をBoardへ同期した。外部予約receiptはまだない。",
-    "next_action": "Boardで動画と推奨サムネイルAを一度に承認し、OAuth接続後に外部照合して予約する。"
+    "stage": "8月25日（火）Revision 5｜YouTube Shorts完成・確認待ち",
+    "reason": "33.9秒の縦型動画、実音声、字幕、別人物・別場所・別行動の4場面を完成し、三周検査とiPhone・Android相当UIの9場面ずつ計18検査をPASSした。",
+    "next_action": "完成Shortsの確認後、外部重複照合とOAuth接続診断を行い、未投稿なら1回だけYouTubeへ投稿する。"
   },
   "monitoring": {
     "cadence": "PT1H",
