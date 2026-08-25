@@ -895,6 +895,7 @@ input:invalid { border-color: var(--danger); }
 .today-command-next > span { color: #a9c3ff; font-size: 12px; font-weight: 800; }
 .today-command-next > strong { font-size: 16px; line-height: 1.45; }
 .today-command-next > small { color: #dce7ff; }
+.today-command-next > small.today-command-after { padding: 8px 10px; border-radius: 8px; color: #dff7e9; background: rgb(41 169 123 / 18%); font-weight: 750; line-height: 1.45; }
 .today-command-next > em { margin-top: 6px; padding-top: 10px; border-top: 1px solid rgb(255 255 255 / 18%); color: #b9f0d4; font-size: 12px; font-style: normal; font-weight: 800; }
 .today-command-next > em.is-required { color: #ffd083; }
 .today-command-channels { display: grid; grid-column: 1 / -1; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }

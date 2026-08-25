@@ -14,9 +14,9 @@ import { systemClock } from '../core/clock.js';
 import { dateKey, systemTimeZone } from '../core/tz.js';
 import { ROLES, ROLE_ORDER, roleLabel } from '../domain/rbac.js';
 import { seedSocialAccounts } from '../services/api.js';
-import { renderApprovalsScreen } from './approvalsView.js?v=10';
+import { renderApprovalsScreen } from './approvalsView.js?v=11';
 import { renderConnectionsScreen } from './connectionsView.js';
-import { renderStatusScreen } from './statusView.js?v=17';
+import { renderStatusScreen } from './statusView.js?v=18';
 import { hasIntentLink, consumeIntentLink } from './intentLink.js';
 import { claimApprovalDeviceFromLocation, restoreApprovalDeviceToken } from './publicApprovalGateway.js?v=4';
 import { isPublicApprovalActionable } from './publicApproval.js';
@@ -48,6 +48,8 @@ const state = {
   year: Number(dateKey(clock.nowMs(), timeZone).slice(0, 4)),
   month: Number(dateKey(clock.nowMs(), timeZone).slice(5, 7)),
   pendingCount: 0,
+  // 公開承認を送信してから正本へ反映されるまで、画面上は「反映確認中」と示す。
+  approvalSyncKeys: new Set(),
 };
 
 let overlayStack = [];

@@ -13,9 +13,25 @@ import { isPublicApprovalActionable } from './publicApproval.js';
 import { approvalDeviceReady, submitGatewayComponentApproval } from './publicApprovalGateway.js?v=3';
 
 const bulkSubmittedKeys = new Set();
+const refreshScheduledPosts = new Set();
 
 function componentKey(post, scope) {
   return `${post.channel_post_id}:${post.current_revision_id}:${scope}`;
+}
+
+function approvalSyncKey(post) {
+  return `${post.channel_post_id}:${post.current_revision_id}`;
+}
+
+function trackGatewaySubmission(app, post) {
+  const key = approvalSyncKey(post);
+  app.state.approvalSyncKeys?.add(key);
+  if (refreshScheduledPosts.has(key)) return;
+  refreshScheduledPosts.add(key);
+  for (const delay of [7_000, 20_000, 45_000]) {
+    setTimeout(() => app.refresh().catch(() => {}), delay);
+  }
+  setTimeout(() => refreshScheduledPosts.delete(key), 50_000);
 }
 
 export async function renderApprovalsScreen(app) {
@@ -53,6 +69,7 @@ export async function renderApprovalsScreen(app) {
             target.textContent = `承認中 ${index + 1}/${tasks.length}`;
             await submitGatewayComponentApproval(task);
             bulkSubmittedKeys.add(componentKey(task.post, task.componentScope));
+            trackGatewaySubmission(app, task.post);
           }
           target.textContent = 'すべて承認を送信済み';
           app.toast(`${postCount}投稿の承認を受け付けました。数分以内にBoardへ反映します。`);
@@ -153,6 +170,7 @@ async function buildSimpleApprovalItem(app, post, linkLabel = '記事リンク',
           target.textContent = '送信中…';
           try {
             await submitGatewayComponentApproval({ group, post, revision, componentScope: scope });
+            trackGatewaySubmission(app, post);
             target.textContent = '承認を送信済み';
             app.toast('承認を受け付けました。数分以内にBoardへ反映します。');
           } catch (error) {
@@ -332,6 +350,7 @@ async function buildGroupCard(app, postGroupId, items, tz) {
                 type: 'button',
                 onClick: async () => {
                   await submitGatewayComponentApproval({ group, post, revision, componentScope: 'CONTENT' });
+                  trackGatewaySubmission(app, post);
                   app.toast('承認を受け付けました。数分以内にBoardへ反映します。');
                 },
               }, '承認')
@@ -368,6 +387,7 @@ async function buildGroupCard(app, postGroupId, items, tz) {
               onClick: async () => {
                 const tasks = await collectPublicApprovalTasks(app, items);
                 for (const task of tasks) await submitGatewayComponentApproval(task);
+                for (const task of tasks) trackGatewaySubmission(app, task.post);
                 app.toast(`${items.length}件の承認を受け付けました。`);
               },
             }, `${items.length}件をまとめて承認`)

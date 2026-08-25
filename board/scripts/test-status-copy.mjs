@@ -8,7 +8,54 @@ import {
   channelBrief,
   badgeProgressSummary,
   planDayResultLabel,
+  resolveTodayCommand,
 } from '../js/ui/statusView.js';
+
+const youtubeToday = {
+  date: '2026-08-25',
+  next_action: '古い案内',
+  owner_action_required: true,
+  owner_action: '古い操作',
+  channels: [{ id: 'youtube', state: 'APPROVAL_WAIT' }],
+};
+
+function youtubePost(patch = {}) {
+  return {
+    channel_post_id: 'short-1',
+    current_revision_id: 'revision-2',
+    calendar_date_key: '2026-08-25',
+    platform: 'YOUTUBE_SHORTS',
+    display_state: 'PENDING_APPROVAL',
+    updated_at: '2026-08-25T13:30:00.000Z',
+    ...patch,
+  };
+}
+
+test('Shorts承認前は再生と青い承認ボタンだけを案内する', () => {
+  const result = resolveTodayCommand(youtubeToday, [youtubePost()], '2026-08-25');
+  assert.match(result.next_action, /内容・字幕・音声/);
+  assert.match(result.owner_action, /青い「承認」ボタンを1回/);
+  assert.equal(result.owner_action_required, true);
+  assert.match(result.after_approval, /未投稿ならYouTubeへ投稿/);
+});
+
+test('Shorts承認送信直後は反映確認中へ切り替える', () => {
+  const result = resolveTodayCommand(youtubeToday, [youtubePost()], '2026-08-25', new Set(['short-1:revision-2']));
+  assert.match(result.next_action, /反映を確認/);
+  assert.equal(result.owner_action_required, false);
+  assert.match(result.owner_action, /自動で更新/);
+});
+
+test('Shorts承認成立後は所有者操作なしと外部投稿待ちを表示する', () => {
+  const result = resolveTodayCommand(youtubeToday, [youtubePost({
+    display_state: 'SCHEDULED',
+    approval_id: 'approval-1',
+  })], '2026-08-25');
+  assert.match(result.next_action, /承認済み/);
+  assert.equal(result.owner_action_required, false);
+  assert.equal(result.channels[0].state, 'EXTERNAL_WAIT');
+  assert.match(result.channels[0].status, /外部投稿receipt待ち/);
+});
 
 test('長い運用メッセージを短い行動文へ変換する', () => {
   assert.deepEqual(blockerSummary({ id: 'news-primary-source-quorum' }), {

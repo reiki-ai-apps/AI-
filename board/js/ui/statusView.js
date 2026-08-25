@@ -53,6 +53,97 @@ function todayStatePill(state) {
   return el('span', { class: `status-pill status-pill-${tone}` }, STATE_LABELS[state] ?? state ?? '未確認');
 }
 
+function replaceYoutubeChannel(today, patch) {
+  return (today.channels ?? []).map((channel) => channel.id === 'youtube' ? { ...channel, ...patch } : channel);
+}
+
+export function resolveTodayCommand(today, posts = [], todayKey = '', approvalSyncKeys = new Set()) {
+  if (!today) return null;
+  const target = posts
+    .filter((post) => post.calendar_date_key === todayKey)
+    .filter((post) => ['YOUTUBE', 'YOUTUBE_SHORTS'].includes(post.platform))
+    .filter((post) => !post.deleted_at && !post.cancelled_at)
+    .filter((post) => !post.internal?.tags?.includes('production-run'))
+    .sort((left, right) => Date.parse(right.updated_at ?? right.created_at ?? right.scheduled_at)
+      - Date.parse(left.updated_at ?? left.created_at ?? left.scheduled_at))[0];
+  if (!target) return today;
+
+  const syncKey = `${target.channel_post_id}:${target.current_revision_id}`;
+  if (target.display_state === 'PENDING_APPROVAL' && approvalSyncKeys.has(syncKey)) {
+    return {
+      ...today,
+      next_action: '承認を受け付けました。Boardへの反映を確認しています',
+      after_approval: '反映後、自動で重複確認とYouTube投稿処理へ進みます',
+      next_deadline: null,
+      owner_action_required: false,
+      owner_action: 'ありません。画面は自動で更新されます',
+      channels: replaceYoutubeChannel(today, {
+        state: 'APPROVAL_WAIT',
+        status: '承認送信済み／Board反映確認中',
+        next: '承認成立後、重複確認とYouTube投稿処理',
+        blocker: 'なし。現在は反映待ちです',
+      }),
+    };
+  }
+
+  if (target.display_state === 'PENDING_APPROVAL') {
+    return {
+      ...today,
+      next_action: '完成した33.9秒のYouTube Shortsを再生し、内容・字幕・音声を確認してください',
+      after_approval: '重複投稿を確認し、未投稿ならYouTubeへ投稿します',
+      next_deadline: null,
+      owner_action_required: true,
+      owner_action: '「承認」画面で、YouTube Shortsの青い「承認」ボタンを1回押してください',
+    };
+  }
+
+  if (target.display_state === 'PUBLISHED' && (target.public_url || target.external_post_id)) {
+    return {
+      ...today,
+      next_action: 'YouTube Shortsの投稿と公開確認が完了しました',
+      after_approval: null,
+      next_deadline: null,
+      owner_action_required: false,
+      owner_action: 'ありません',
+      channels: replaceYoutubeChannel(today, {
+        done: 1,
+        state: 'PUBLISHED',
+        status: '公開済み／公開receipt確認済み',
+        next: '次回投稿の準備',
+        blocker: 'なし',
+        url: target.public_url,
+      }),
+    };
+  }
+
+  if (target.approval_id) {
+    const connectionRequired = target.display_state === 'ACTION_REQUIRED'
+      && (target.failure_kind === 'CREDENTIAL_EXPIRED' || target.credential_expired === true);
+    return {
+      ...today,
+      next_action: connectionRequired
+        ? '承認済みです。YouTubeの接続を確認すると投稿処理を再開できます'
+        : '承認済みです。重複投稿を確認し、未投稿ならYouTubeへの投稿処理を進めます',
+      after_approval: null,
+      next_deadline: null,
+      owner_action_required: connectionRequired,
+      owner_action: connectionRequired ? '「接続」画面でYouTubeを再接続してください' : 'ありません。投稿結果の反映をお待ちください',
+      channels: replaceYoutubeChannel(today, connectionRequired ? {
+        state: 'AUTH_WAIT',
+        status: '承認済み／YouTube接続の確認が必要',
+        next: '接続後、重複確認して投稿',
+        blocker: 'YouTube接続が無効です',
+      } : {
+        state: 'EXTERNAL_WAIT',
+        status: '承認済み／外部投稿receipt待ち',
+        next: '重複確認後、未投稿ならYouTubeへ投稿',
+        blocker: '外部投稿receiptはまだありません',
+      }),
+    };
+  }
+  return today;
+}
+
 function todaySummary(today) {
   if (!today) return null;
   const done = Number(today.completed ?? 0);
@@ -66,8 +157,9 @@ function todaySummary(today) {
         el('span', { style: `width:${percent}%` })),
       el('p', { class: 'today-command-headline' }, today.headline ?? '状態を確認中です。')),
     el('div', { class: 'today-command-next' },
-      el('span', null, '次にやること'),
+      el('span', null, today.owner_action_required ? '今やること' : '現在の処理'),
       el('strong', null, today.next_action ?? '未設定'),
+      today.after_approval ? el('small', { class: 'today-command-after' }, `承認後：${today.after_approval}`) : null,
       today.next_deadline ? el('small', null, `次回確認 ${dateTime(today.next_deadline)}`) : null,
       el('em', { class: today.owner_action_required ? 'is-required' : '' }, `あなたの操作：${today.owner_action ?? '今はありません'}`)),
     el('div', { class: 'today-command-channels' }, ...(today.channels ?? []).map((channel) => {
@@ -316,12 +408,13 @@ export async function renderStatusScreen(app) {
     todayKey: app.todayKey(),
     horizonDays: 2,
   });
+  const today = resolveTodayCommand(status.today, posts, app.todayKey(), app.state.approvalSyncKeys);
   return el('div', { class: 'screen status-screen' },
     el('div', { class: 'screen-head' },
       el('div', null,
         el('h1', { class: 'screen-title' }, '今日の投稿状況'),
         el('p', { class: 'screen-desc' }, `正本同期 ${dateTime(status.generated_at)}｜公開・予約は外部receipt確認分のみ`))),
-    todaySummary(status.today),
+    todaySummary(today),
     el('h2', { class: 'status-channels-title' }, '今日・明日・2日後の枠'),
     reservationPanel(reservationPlan),
     productionCard(status.production),
