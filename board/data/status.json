@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-25T21:33:19+09:00",
+  "generated_at": "2026-08-25T22:46:40+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -13,12 +13,11 @@
     "date": "2026-08-25",
     "completed": 1,
     "target": 7,
-    "headline": "YouTube Shortsは完成・品質PASS・Board確認待ちです。外部投稿はまだ行っていません。noteは1本公開済み、X・Instagramは接続待ちです。",
-    "next_action": "完成した33.9秒のYouTube Shortsを再生し、内容・字幕・音声を確認してください",
-    "after_approval": "重複投稿を確認し、未投稿ならYouTubeへ投稿します",
-    "next_deadline": "2026-08-25T22:30:00+09:00",
-    "owner_action_required": true,
-    "owner_action": "「承認」画面で、YouTube Shortsの青い「承認」ボタンを1回押してください",
+    "headline": "YouTube Shortsは承認済みです。重複投稿を確認し、未投稿ならYouTubeへの投稿処理を進めます。外部投稿receiptはまだありません。",
+    "next_action": "承認済みです。重複投稿を確認し、未投稿ならYouTubeへの投稿処理を進めます",
+    "next_deadline": null,
+    "owner_action_required": false,
+    "owner_action": "ありません。投稿結果の反映をお待ちください",
     "channels": [
       {
         "id": "note",
@@ -56,10 +55,10 @@
         "label": "YouTube Shorts",
         "done": 0,
         "target": 1,
-        "state": "APPROVAL_WAIT",
-        "status": "33.9秒動画完成／三周品質PASS／外部投稿なし",
-        "next": "承認後、重複確認して未投稿ならYouTubeへ投稿",
-        "blocker": "完成動画の承認待ち",
+        "state": "EXTERNAL_WAIT",
+        "status": "承認済み／外部投稿receipt待ち",
+        "next": "重複確認後、未投稿ならYouTubeへ投稿",
+        "blocker": "外部投稿receiptはまだありません",
         "url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-short-2026-08-25-r2.mp4"
       }
     ]
@@ -144,9 +143,9 @@
     {
       "id": "20260825-youtube-shorts-deadline-risk",
       "severity": "ATTENTION",
-      "title": "YouTube Shortsは完成・確認待ち",
-      "message": "33.9秒動画、字幕、実音声、別場面画像4枚、iPhone・Android相当UIの18検査が完成しました。外部投稿は未実施です。",
-      "required_action": "Boardで完成動画を再生し、このチャットで「OK」と返信"
+      "title": "YouTube Shortsは承認済み・外部投稿待ち",
+      "message": "完成動画の承認は反映済みです。重複投稿を確認し、未投稿の場合だけYouTubeへ投稿します。外部投稿receiptはまだありません。",
+      "required_action": "利用者の操作はありません。投稿結果の反映をお待ちください"
     },
     {
       "id": "20260825-x-auth-required",
@@ -170,12 +169,12 @@
       "started_at": "2026-08-25T01:05:51+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "8月25日（火）Revision 5｜YouTube Shorts完成・Board確認待ち。外部投稿は未実施",
+      "stage": "8月25日（火）Revision 5｜YouTube Shorts承認済み・外部投稿receipt待ち",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 1,
       "reason": "初回検査で記事文字数不足を検出し、同一run_idで具体例・FAQを追加。4,141字と4,613字、各有料境界1か所、異なる場面・人物・配色のサムネイル2枚、独立SNS原稿をRevision 2へ固定しBoard再同期した。",
-      "next_action": "完成Shortsの確認後、YouTube側の重複を照合し、OAuth接続を診断して1回だけ投稿する。"
+      "next_action": "YouTube側の重複を照合し、未投稿なら1回だけ投稿して外部receiptを保存する。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -242,9 +241,9 @@
         }
       ]
     },
-    "stage": "8月25日（火）Revision 5｜YouTube Shorts完成・確認待ち",
+    "stage": "8月25日（火）Revision 5｜YouTube Shorts承認済み・外部投稿待ち",
     "reason": "33.9秒の縦型動画、実音声、字幕、別人物・別場所・別行動の4場面を完成し、三周検査とiPhone・Android相当UIの9場面ずつ計18検査をPASSした。",
-    "next_action": "完成Shortsの確認後、外部重複照合とOAuth接続診断を行い、未投稿なら1回だけYouTubeへ投稿する。"
+    "next_action": "外部重複照合後、未投稿なら1回だけYouTubeへ投稿し、外部receipt取得直後にBoardへ反映する。"
   },
   "monitoring": {
     "cadence": "PT1H",
@@ -253,6 +252,7 @@
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
   "evidence": [
+    "board/data/approval-receipts/gateway-d230b087-75d1-43ee-80f0-032d3bdb4155.json",
     "outputs/kizashi-ai-news-20260824-prep/episode.json",
     "outputs/kizashi-ai-news-20260824-prep/benchmark-insights.json",
     "outputs/kizashi-ai-news-20260824-prep/term-definition-manifest.json",
