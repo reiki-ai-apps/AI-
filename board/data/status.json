@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-25T22:46:40+09:00",
+  "generated_at": "2026-08-25T23:21:41+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -13,11 +13,11 @@
     "date": "2026-08-25",
     "completed": 1,
     "target": 7,
-    "headline": "YouTube Shortsは承認済みです。重複投稿を確認し、未投稿ならYouTubeへの投稿処理を進めます。外部投稿receiptはまだありません。",
-    "next_action": "承認済みです。重複投稿を確認し、未投稿ならYouTubeへの投稿処理を進めます",
+    "headline": "YouTube ShortsはYouTubeへアップロード済みです。現在は非公開で、タイトル・説明・再生リスト・AI使用表示・検査まで完了しています。",
+    "next_action": "公開確定後、今すぐ公開してURLと公開時刻を検証し、Boardへ反映します",
     "next_deadline": null,
-    "owner_action_required": false,
-    "owner_action": "ありません。投稿結果の反映をお待ちください",
+    "owner_action_required": true,
+    "owner_action": "このチャットで「公開して」と返信してください",
     "channels": [
       {
         "id": "note",
@@ -56,9 +56,9 @@
         "done": 0,
         "target": 1,
         "state": "EXTERNAL_WAIT",
-        "status": "承認済み／外部投稿receipt待ち",
-        "next": "重複確認後、未投稿ならYouTubeへ投稿",
-        "blocker": "外部投稿receiptはまだありません",
+        "status": "YouTubeへアップロード済み（非公開）／公開設定まで完了",
+        "next": "公開確定後、今すぐ公開して外部公開receiptを保存",
+        "blocker": "YouTubeの最終公開確定のみ",
         "url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-short-2026-08-25-r2.mp4"
       }
     ]
