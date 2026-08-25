@@ -781,6 +781,7 @@ input:invalid { border-color: var(--danger); }
 .status-account { margin: 3px 0 0; color: var(--ink-3); font-size: 13px; }
 .status-pill { display: inline-flex; align-items: center; min-height: 26px; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; }
 .status-pill-healthy { color: #17613a; background: #e8f5ed; }
+.status-pill-progress { color: #174f98; background: #e9f1ff; }
 .status-pill-attention { color: var(--attention); background: var(--attention-soft); }
 .status-pill-hold { color: var(--attention); background: var(--attention-soft); }
 .status-pill-danger { color: #9f2d22; background: #fbe9e7; }
@@ -871,6 +872,52 @@ input:invalid { border-color: var(--danger); }
 .status-service-details { margin-top: 16px; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
 .status-service-details > summary { cursor: pointer; color: var(--ink-2); font-weight: 700; }
 .status-service-details[open] > summary { margin-bottom: 14px; }
+
+.today-command {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #9ab8ff;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f2f6ff, #fff 68%);
+  box-shadow: 0 12px 32px rgb(31 82 180 / 10%);
+}
+.today-command-kicker { margin: 0 0 5px; color: #2f66df; font-size: 12px; font-weight: 850; letter-spacing: .08em; }
+.today-command-count { display: flex; align-items: flex-end; gap: 9px; }
+.today-command-count strong { font-size: clamp(38px, 7vw, 56px); line-height: .95; letter-spacing: -.05em; }
+.today-command-count span { padding-bottom: 5px; color: var(--ink-3); font-size: 12px; }
+.today-command-progress { height: 9px; margin-top: 13px; overflow: hidden; border-radius: 999px; background: #dfe7f7; }
+.today-command-progress span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #2f66df, #28a97b); }
+.today-command-headline { margin: 11px 0 0; color: var(--ink-2); line-height: 1.55; }
+.today-command-next { display: grid; align-content: start; gap: 7px; padding: 16px 17px; border-radius: 14px; color: #fff; background: #0f2344; }
+.today-command-next > span { color: #a9c3ff; font-size: 12px; font-weight: 800; }
+.today-command-next > strong { font-size: 16px; line-height: 1.45; }
+.today-command-next > small { color: #dce7ff; }
+.today-command-next > em { margin-top: 6px; padding-top: 10px; border-top: 1px solid rgb(255 255 255 / 18%); color: #b9f0d4; font-size: 12px; font-style: normal; font-weight: 800; }
+.today-command-next > em.is-required { color: #ffd083; }
+.today-command-channels { display: grid; grid-column: 1 / -1; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.today-command-channel { min-width: 0; padding: 13px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.today-command-channel-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 8px; align-items: center; }
+.today-command-channel-head h2 { margin: 0; font-size: 15px; }
+.today-command-channel-head > strong { font-size: 21px; }
+.today-command-channel-head .status-pill { grid-column: 1 / -1; justify-self: start; }
+.today-command-status { margin: 10px 0 0; font-size: 13px; font-weight: 800; line-height: 1.4; }
+.today-command-action, .today-command-blocker { margin: 7px 0 0; color: var(--ink-2); font-size: 11px; line-height: 1.45; }
+.today-command-blocker { padding-top: 7px; border-top: 1px solid var(--line-soft); }
+.today-command-channel > a { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 700; }
+
+@media (max-width: 900px) {
+  .today-command-channels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .today-command { grid-template-columns: 1fr; padding: 15px; }
+  .today-command-channels { grid-template-columns: 1fr; }
+  .today-command-channel-head { grid-template-columns: minmax(0, 1fr) auto auto; }
+  .today-command-channel-head .status-pill { grid-column: auto; justify-self: end; }
+}
 
 .approval-all-bar {
   position: sticky;

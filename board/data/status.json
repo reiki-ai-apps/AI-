@@ -1,13 +1,66 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-24T01:35:00+09:00",
+  "generated_at": "2026-08-25T15:27:23+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
-    "published_confirmed": 17,
+    "published_confirmed": 18,
     "scheduled": 1,
     "attention": 3
+  },
+  "today": {
+    "date": "2026-08-25",
+    "completed": 1,
+    "target": 7,
+    "headline": "note 1本目は公開済み。2本目は投稿間隔を守って19:00以降に公開します。X・Instagramは接続待ち、YouTube Shortsは制作中です。",
+    "next_action": "19:00にnote 2本目が未公開であることを照合し、そのまま公開する",
+    "next_deadline": "2026-08-25T19:00:00+09:00",
+    "owner_action_required": false,
+    "owner_action": "今はありません。OAuth操作が必要になった時だけ1件に絞って表示します",
+    "channels": [
+      {
+        "id": "note",
+        "label": "note",
+        "done": 1,
+        "target": 2,
+        "state": "EXTERNAL_WAIT",
+        "status": "1本目公開済み／2本目完成済み",
+        "next": "19:00以降に2本目を公開",
+        "blocker": "予約投稿は有料契約が必要。新規課金せず時刻待ち",
+        "url": "https://note.com/natty_swan9072/n/n2a1bfc666f7e"
+      },
+      {
+        "id": "x",
+        "label": "X",
+        "done": 0,
+        "target": 2,
+        "state": "AUTH_WAIT",
+        "status": "本文2件完成／外部投稿なし",
+        "next": "公式API接続後に重複照合して投稿",
+        "blocker": "利用者トークン未接続"
+      },
+      {
+        "id": "instagram",
+        "label": "Instagram",
+        "done": 0,
+        "target": 2,
+        "state": "AUTH_WAIT",
+        "status": "構成2件完成／実画像制作中",
+        "next": "画像検査後、Graph API接続を確認",
+        "blocker": "アクセストークン未接続"
+      },
+      {
+        "id": "youtube",
+        "label": "YouTube Shorts",
+        "done": 0,
+        "target": 1,
+        "state": "PRODUCTION",
+        "status": "火曜Shortsの台本完成／動画制作中",
+        "next": "動画・字幕・9フレームUI検査",
+        "blocker": "公開時はOAuth接続が必要"
+      }
+    ]
   },
   "channels": [
     {
@@ -44,13 +97,13 @@
       "account": "KIZASHI / natty_swan9072",
       "url": "https://note.com/natty_swan9072",
       "state": "HEALTHY",
-      "last_verified_at": "2026-08-23T21:11:00+09:00",
+      "last_verified_at": "2026-08-25T14:55:50+09:00",
       "latest_published": {
-        "title": "AI判断を監査できる形にする｜小さな組織の証拠5点セット",
-        "url": "https://note.com/natty_swan9072/n/n4f2a5e28d779"
+        "title": "AIに任せる権限、残す権限｜小さな組織の3段階判断表",
+        "url": "https://note.com/natty_swan9072/n/n2a1bfc666f7e"
       },
       "next_scheduled": null,
-      "note": "8月23日分は1件目を15:03、2件目を21:11に各100円で公開。6時間8分の間隔を確保し、両記事の公開URL・価格・有料境界・公開receiptを照合してBoard同期済み。"
+      "note": "8月25日1件目を14:55に100円で公開し、公開URL・価格・有料境界・公開receiptを照合済み。2件目は完成・100円・有料境界確認済みで、最低4時間間隔を守って19:00以降の外部公開待ち。"
     },
     {
       "id": "youtube",
@@ -87,54 +140,40 @@
   ],
   "blockers": [
     {
-      "id": "20260824-youtube-longform-deadline-risk",
+      "id": "20260825-youtube-shorts-deadline-risk",
       "severity": "DANGER",
-      "message": "8月24日（月）のYouTube本編Revision 2は、公式一次情報1件、4分02秒動画、字幕49件、BGM、サムネイル3案、説明文、三周検査まで完成。動画と推奨サムネイルAをBoardで表示できる承認待ちへ同期済み。現Revision/Hash承認とYouTube OAuth接続、外部予約receipt取得が残る。"
+      "title": "今日のYouTube Shortsが未完成",
+      "message": "台本は完成していますが、動画・字幕・9フレームUI検査・外部公開receiptが未完了です。",
+      "required_action": "制作と検査を継続。公開時にYouTube OAuth接続を確認"
     },
     {
-      "id": "20260822-23-external-reservation-required",
+      "id": "20260825-x-auth-required",
       "severity": "ATTENTION",
-      "message": "8月22日Shorts 1本とnote 2件は公開receipt確認済み。8月23日Shorts Revision 6は外部予約receipt取得済み。X 2件とInstagram 2件は公式API接続を確認できず、外部ID・公開receiptは未取得のため予約済み・公開済みとは扱わない。"
+      "title": "Xは接続・認証待ち",
+      "message": "本文2件は完成していますが、利用者トークンを確認できず外部投稿receiptがありません。",
+      "required_action": "OAuthの本人操作が必要になった時だけBoardに1件表示"
     },
     {
-      "id": "20260821-external-reservation-and-daily-minimum",
-      "severity": "DANGER",
-      "message": "8月21日22:32時点で、noteは公開receipt 1件のみ。note残り1件、X 2件、Instagram 2件、YouTube本編1件は承認待ちのまま候補時刻を経過し、外部予約・公開receiptがない。予約済み・公開済みとは扱わない。金曜Shortsは対象外。"
-    },
-    {
-      "id": "current-platform-authentication-required",
+      "id": "20260825-instagram-auth-required",
       "severity": "ATTENTION",
-      "message": "8月22日分はShortsとnote 2件を公開済み。InstagramはGraph APIトークン、Xは公式API利用者トークンの接続が必要。"
-    },
-    {
-      "id": "note-premium-required-for-scheduling",
-      "severity": "ATTENTION",
-      "message": "noteの8月17日記事は保存済み下書き。予約投稿はnoteプレミアム契約が必要であり、課金・契約は実行していない"
-    },
-    {
-      "id": "note-profile-links",
-      "severity": "ATTENTION",
-      "message": "noteプロフィールのInstagram・YouTubeリンクが保存されない"
-    },
-    {
-      "id": "youtube-api-oauth-one-time",
-      "severity": "ATTENTION",
-      "message": "YouTube OAuth client secretが現在の実行環境に未配置。現Revision/Hash承認後、client secret配置と対象チャンネル UCtJKnn7Lp2sp70eZd55E_Jw へのGoogle OAuth初回同意が完了すれば、外部側の重複照合後に予約を実行できる。"
+      "title": "Instagramは接続・認証待ち",
+      "message": "2件の構成は完成しています。実画像検査後の投稿に必要なGraph APIトークンを確認できません。",
+      "required_action": "OAuthの本人操作が必要になった時だけBoardに1件表示"
     }
   ],
   "production": {
     "cadence": "PT6H",
     "last_run": {
-      "run_id": "kizashi-ai-news-20260824-prep",
-      "started_at": "2026-08-22T18:55:18+09:00",
-      "finished_at": "2026-08-24T01:00:00+09:00",
-      "state": "WAITING_OWNER_APPROVAL",
-      "stage": "8月24日（月）本編｜Revision 2の動画・字幕・BGM・サムネイル3案・説明文・三周検査が完成",
-      "candidate_count": 1,
-      "verified_primary_count": 1,
+      "run_id": "kizashi-20260825",
+      "started_at": "2026-08-25T01:05:51+09:00",
+      "finished_at": null,
+      "state": "EXECUTING",
+      "stage": "8月25日（火）Revision 4｜note 1本目公開済み、2本目は19:00以降の外部公開待ち。X・Instagram・YouTube Shortsを継続中",
+      "candidate_count": 2,
+      "verified_primary_count": 2,
       "required_primary_count": 1,
-      "reason": "OpenAI公式一次情報1件を深掘りし、著者見解の明示、4分02秒動画、字幕49件、17の映像区間、Aivis Cloud音声、承認済みBGM、サムネイル3案、説明文を完成。音量ピーク-1.5dBFS、字幕同期差0ms、9フレーム表示検査を確認し、Boardへ第2版を同期した。",
-      "next_action": "Boardで完成動画と推奨サムネイルAを一度に承認し、YouTube OAuth client secret配置後に外部側の重複を照合して12:00予約を実行する。"
+      "reason": "別content_id・別読者課題・別根拠で2企画を作成。note 1本目は公開receipt確認済み。2本目は100円・有料境界・画像を確認済みで、投稿間隔を守って待機中。",
+      "next_action": "19:00以降にnote 2本目の未公開を照合して公開し、並行してInstagram実画像とShorts動画を制作する。"
     },
     "policy": "予約成立を最優先。noteはAsia/Tokyoの8:00・12:00を基本枠とし、遅れた場合も同時公開せず、1本目を次の実行可能時刻、2本目を最低4時間後へ移す。YouTube本編はAsia/Tokyoの月・水・金を固定投稿日とし、当日枠と次の2枠を予約済み／承認待ち／制作中／HOLDで必ず表示する。制作・修正・品質検査・Board同期は途中承認なしで連続実行し、同一revision/hashの完成物、投稿先、日時、価格・API費用を一画面へまとめた最終公開直前だけ所有者承認を求める。認証権限の新規付与、課金、外部公開は最終承認対象とし、成功は外部receipt取得後だけ表示する。",
     "note_daily": {

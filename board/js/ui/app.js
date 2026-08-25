@@ -16,7 +16,7 @@ import { ROLES, ROLE_ORDER, roleLabel } from '../domain/rbac.js';
 import { seedSocialAccounts } from '../services/api.js';
 import { renderApprovalsScreen } from './approvalsView.js?v=10';
 import { renderConnectionsScreen } from './connectionsView.js';
-import { renderStatusScreen } from './statusView.js?v=16';
+import { renderStatusScreen } from './statusView.js?v=17';
 import { hasIntentLink, consumeIntentLink } from './intentLink.js';
 import { claimApprovalDeviceFromLocation, restoreApprovalDeviceToken } from './publicApprovalGateway.js?v=4';
 import { isPublicApprovalActionable } from './publicApproval.js';

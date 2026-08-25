@@ -10,6 +10,10 @@ const STATE_LABELS = {
   HOLD: '待機中',
   DANGER: '予約不足',
   UNKNOWN: '未確認',
+  EXECUTING: '進行中',
+  PRODUCTION: '制作中',
+  EXTERNAL_WAIT: '外部予約待ち',
+  AUTH_WAIT: '接続・認証待ち',
 };
 
 const BLOCKER_COPY = {
@@ -39,6 +43,46 @@ function dateTime(value) {
 function externalLink(label, url) {
   if (!url) return null;
   return el('a', { href: url, target: '_blank', rel: 'noopener noreferrer' }, label);
+}
+
+function todayStatePill(state) {
+  const tone = ({
+    PUBLISHED: 'healthy', SCHEDULED: 'healthy', PRODUCTION: 'progress',
+    EXECUTING: 'progress', EXTERNAL_WAIT: 'attention', AUTH_WAIT: 'blocked',
+  })[state] ?? 'unknown';
+  return el('span', { class: `status-pill status-pill-${tone}` }, STATE_LABELS[state] ?? state ?? '未確認');
+}
+
+function todaySummary(today) {
+  if (!today) return null;
+  const done = Number(today.completed ?? 0);
+  const target = Number(today.target ?? 0);
+  const percent = target > 0 ? Math.min(100, Math.round((done / target) * 100)) : 0;
+  return el('section', { class: 'today-command', 'aria-label': '今日の投稿状況' },
+    el('div', { class: 'today-command-main' },
+      el('p', { class: 'today-command-kicker' }, `${today.date ?? '今日'}の投稿`),
+      el('div', { class: 'today-command-count' }, el('strong', null, `${done}/${target}`), el('span', null, '公開・予約receipt確認済み')),
+      el('div', { class: 'today-command-progress', role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': String(target), 'aria-valuenow': String(done) },
+        el('span', { style: `width:${percent}%` })),
+      el('p', { class: 'today-command-headline' }, today.headline ?? '状態を確認中です。')),
+    el('div', { class: 'today-command-next' },
+      el('span', null, '次にやること'),
+      el('strong', null, today.next_action ?? '未設定'),
+      today.next_deadline ? el('small', null, `次回確認 ${dateTime(today.next_deadline)}`) : null,
+      el('em', { class: today.owner_action_required ? 'is-required' : '' }, `あなたの操作：${today.owner_action ?? '今はありません'}`)),
+    el('div', { class: 'today-command-channels' }, ...(today.channels ?? []).map((channel) => {
+      const channelDone = Number(channel.done ?? 0);
+      const channelTarget = Number(channel.target ?? 0);
+      return el('article', { class: 'today-command-channel' },
+        el('div', { class: 'today-command-channel-head' },
+          el('h2', null, channel.label ?? channel.id),
+          el('strong', null, `${channelDone}/${channelTarget}`),
+          todayStatePill(channel.state)),
+        el('p', { class: 'today-command-status' }, channel.status ?? '確認中'),
+        el('p', { class: 'today-command-action' }, `次：${channel.next ?? '未設定'}`),
+        el('p', { class: 'today-command-blocker' }, `停止理由：${channel.blocker ?? 'なし'}`),
+        channel.url ? externalLink('公開物を開く', channel.url) : null);
+    })));
 }
 
 export function blockerSummary(item = {}) {
@@ -258,11 +302,13 @@ function channelSection(channels) {
 }
 
 export async function renderStatusScreen(app) {
-  const [posts, postGroups, publicationPackages] = await Promise.all([
+  const [posts, postGroups, publicationPackages, statusResponse] = await Promise.all([
     app.ctx.repo.listPostsForReservationPlan(),
     app.ctx.repo.listPostGroups(),
     app.ctx.repo.listPublicationPackages(),
+    fetch(`data/status.json?t=${Date.now()}`, { cache: 'no-store' }),
   ]);
+  const status = statusResponse.ok ? await statusResponse.json() : {};
   const reservationPlan = buildReservationPlan({
     posts,
     postGroups,
@@ -270,5 +316,15 @@ export async function renderStatusScreen(app) {
     todayKey: app.todayKey(),
     horizonDays: 2,
   });
-  return el('div', { class: 'screen status-screen' }, reservationPanel(reservationPlan));
+  return el('div', { class: 'screen status-screen' },
+    el('div', { class: 'screen-head' },
+      el('div', null,
+        el('h1', { class: 'screen-title' }, '今日の投稿状況'),
+        el('p', { class: 'screen-desc' }, `正本同期 ${dateTime(status.generated_at)}｜公開・予約は外部receipt確認分のみ`))),
+    todaySummary(status.today),
+    el('h2', { class: 'status-channels-title' }, '今日・明日・2日後の枠'),
+    reservationPanel(reservationPlan),
+    productionCard(status.production),
+    otherIssues(status.blockers ?? []),
+    channelSection((status.channels ?? []).filter((channel) => channel.id !== 'radar')));
 }
