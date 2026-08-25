@@ -1,23 +1,23 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-25T23:21:41+09:00",
+  "generated_at": "2026-08-25T23:38:25+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
-    "published_confirmed": 18,
+    "published_confirmed": 19,
     "scheduled": 1,
-    "attention": 3
+    "attention": 2
   },
   "today": {
     "date": "2026-08-25",
-    "completed": 1,
+    "completed": 2,
     "target": 7,
-    "headline": "YouTube ShortsはYouTubeへアップロード済みです。現在は非公開で、タイトル・説明・再生リスト・AI使用表示・検査まで完了しています。",
-    "next_action": "公開確定後、今すぐ公開してURLと公開時刻を検証し、Boardへ反映します",
+    "headline": "YouTube Shortsを23:36に公開しました。公開URL・チャンネル・タイトル・再生画面まで確認済みです。",
+    "next_action": "YouTube Shortsは完了。次はnote 2本目の公開と、X・Instagramの接続再確認を進めます",
     "next_deadline": null,
-    "owner_action_required": true,
-    "owner_action": "このチャットで「公開して」と返信してください",
+    "owner_action_required": false,
+    "owner_action": null,
     "channels": [
       {
         "id": "note",
@@ -53,13 +53,13 @@
       {
         "id": "youtube",
         "label": "YouTube Shorts",
-        "done": 0,
+        "done": 1,
         "target": 1,
-        "state": "EXTERNAL_WAIT",
-        "status": "YouTubeへアップロード済み（非公開）／公開設定まで完了",
-        "next": "公開確定後、今すぐ公開して外部公開receiptを保存",
-        "blocker": "YouTubeの最終公開確定のみ",
-        "url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-short-2026-08-25-r2.mp4"
+        "state": "PUBLISHED",
+        "status": "公開済み（23:36）／外部公開receipt確認済み",
+        "next": "本日のYouTube Shortsは完了",
+        "blocker": null,
+        "url": "https://www.youtube.com/shorts/Xs2BjsPO75k"
       }
     ]
   },
@@ -112,17 +112,13 @@
       "account": "KIZASHI / @kizashi_jp",
       "url": "https://www.youtube.com/@kizashi_jp",
       "state": "HEALTHY",
-      "last_verified_at": "2026-08-22T21:58:47+09:00",
+      "last_verified_at": "2026-08-25T23:38:25+09:00",
       "latest_published": {
-        "title": "OpenAI ZDRでも安全確定ではない｜機密情報を入れる前の3確認 #Shorts",
-        "url": "https://youtube.com/shorts/7U8O5YiEHoE"
+        "title": "AIに任せていい仕事、ダメな仕事｜3段階で判断 #Shorts",
+        "url": "https://www.youtube.com/shorts/Xs2BjsPO75k"
       },
-      "next_scheduled": {
-        "title": "AIを困らせる4問｜答えを信じる前に #Shorts",
-        "url": "https://youtube.com/shorts/_AlOYKCsoVY",
-        "scheduled_at": "2026-08-23T12:00:00+09:00"
-      },
-      "note": "8月22日のShorts 1本は公開済み。8月23日のShortsはBGM修正版Revision 6を外部ID _AlOYKCsoVY、公開予約2026年8月23日12:00（JST）としてYouTube Studioで照合し、外部予約receiptを保存済み。旧Revisionの外部ID NaPQN9yFWcoは予約を解除して非公開に変更済み。"
+      "next_scheduled": null,
+      "note": "8月25日のShortsを外部ID Xs2BjsPO75kで23:36（JST）に公開。公開URL、KIZASHIチャンネル、タイトル、再生画面、著作権・コミュニティガイドラインPASSを照合し、公開receiptを保存してBoard同期済み。"
     },
     {
       "id": "radar",
@@ -140,13 +136,6 @@
     }
   ],
   "blockers": [
-    {
-      "id": "20260825-youtube-shorts-deadline-risk",
-      "severity": "ATTENTION",
-      "title": "YouTube Shortsは非公開アップロード済み・最終公開待ち",
-      "message": "外部動画ID Xs2BjsPO75kを取得済みです。タイトル・説明・再生リスト・AI使用表示・日本語・著作権・ガイドライン検査まで完了し、現在は非公開です。",
-      "required_action": "このチャットで「公開して」と返信してください"
-    },
     {
       "id": "20260825-x-auth-required",
       "severity": "ATTENTION",
@@ -169,12 +158,12 @@
       "started_at": "2026-08-25T01:05:51+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "8月25日（火）Revision 5｜YouTube Shorts非公開アップロード済み・最終公開待ち",
+      "stage": "8月25日（火）Revision 5｜YouTube Shorts公開・外部receipt同期済み",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 1,
       "reason": "初回検査で記事文字数不足を検出し、同一run_idで具体例・FAQを追加。4,141字と4,613字、各有料境界1か所、異なる場面・人物・配色のサムネイル2枚、独立SNS原稿をRevision 2へ固定しBoard再同期した。",
-      "next_action": "公開確定後に今すぐ公開し、公開URL・公開時刻・処理状態を検証して外部receiptを保存する。"
+      "next_action": "note 2本目の公開と、X・Instagramの接続再確認を進める。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -241,9 +230,9 @@
         }
       ]
     },
-    "stage": "8月25日（火）Revision 5｜YouTube Shorts非公開アップロード済み・最終公開待ち",
+    "stage": "8月25日（火）Revision 5｜YouTube Shorts公開・外部receipt同期済み",
     "reason": "33.9秒の縦型動画、実音声、字幕、別人物・別場所・別行動の4場面を完成し、三周検査とiPhone・Android相当UIの9場面ずつ計18検査をPASSした。",
-    "next_action": "外部重複照合後、未投稿なら1回だけYouTubeへ投稿し、外部receipt取得直後にBoardへ反映する。"
+    "next_action": "YouTube Shortsは完了。note 2本目とX・Instagramの安全な外部処理を継続する。"
   },
   "monitoring": {
     "cadence": "PT1H",
@@ -252,6 +241,8 @@
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
   "evidence": [
+    "runs/kizashi-20260825/authority/youtube-shorts-r1/publication.json",
+    "runs/kizashi-20260825/authority/youtube-shorts-r1/board-publication-sync.json",
     "board/data/approval-receipts/gateway-d230b087-75d1-43ee-80f0-032d3bdb4155.json",
     "outputs/kizashi-ai-news-20260824-prep/episode.json",
     "outputs/kizashi-ai-news-20260824-prep/benchmark-insights.json",
