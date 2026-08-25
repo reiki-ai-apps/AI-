@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-26T01:00:06+09:00",
+  "generated_at": "2026-08-25T16:22:45.871+00:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -13,22 +13,22 @@
     "date": "2026-08-26",
     "completed": 1,
     "target": 7,
-    "headline": "8月26日は1/7件。新規note 1本を100円で公開し、既存note・公開済みShorts・InstagramプロフィールのAI進化レーダー導線も反映確認しました。既存記事の更新は当日2投稿に数えていません。",
+    "headline": "8月26日は1/7件。新規note 1本は公開済みです。サムネイルのコピー欠落を文字入りRevision 9で修正し、本文・価格を変えず外部反映前の確認待ちです。",
     "next_action": "Instagram残り14枚と水曜YouTube本編を制作し、完成した媒体から外部投稿へ進みます",
     "next_deadline": null,
-    "owner_action_required": false,
-    "owner_action": "なし。新規課金・本人操作必須の認証・外部結果不明が発生した場合だけ表示します",
+    "owner_action_required": true,
+    "owner_action": "文字入りサムネイルRevision 9を、公開中のnoteへ反映する最終確認（1回）",
     "channels": [
       {
         "id": "note",
         "label": "note",
         "done": 1,
         "target": 2,
-        "state": "PRODUCING",
-        "status": "1/2公開確認済み／新規note 1本を100円で公開。既存noteの導線更新は当日投稿数に重複計上していません",
-        "next": "別content_id・別の読者課題・別の根拠を持つ2本目を制作して公開準備へ進む",
-        "blocker": null,
-        "url": "https://note.com/natty_swan9072/n/n325bb6a4859a"
+        "state": "APPROVAL_WAIT",
+        "status": "1/2公開済み／公開中の1本は、文字入りサムネイルRevision 9へ修正完了。本文・価格・有料境界・公開URLは変更なし",
+        "next": "文字入りサムネイル1点を確認後、同じ外部note IDへ反映して公開画面を再検査",
+        "blocker": "サムネイルRevision 9の外部反映確認待ち",
+        "url": "https://reiki-ai-apps.github.io/AI-/board/media/6cfe96b1-6bd1-4c69-b3bb-8aa5f64c8f21/02-note-thumbnail-v3.png"
       },
       {
         "id": "x",
