@@ -29,3 +29,11 @@ test('公開承認画面はGitHub Issueへ遷移しない', async () => {
   assert.doesNotMatch(source, /buildPublicApprovalRequest/);
   assert.match(source, /submitGatewayComponentApproval/);
 });
+
+test('スマホ・PCの追加登録と役割未設定画像のサムネイル救済を備える', async () => {
+  const source = await readFile(new URL('../js/ui/approvalsView.js', import.meta.url), 'utf8');
+  assert.match(source, /createApprovalDevicePairingLink/);
+  assert.match(source, /別の端末も登録/);
+  assert.match(source, /approvalAssetScope/);
+  assert.match(source, /mime\.startsWith\('image\/'\)/);
+});

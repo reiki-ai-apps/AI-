@@ -29,10 +29,12 @@ async function addInvite(kv, inviteToken) {
   await kv.put(`invite:${base64url(new Uint8Array(digest))}`, JSON.stringify({
     purpose: 'OWNER_DEVICE_PAIRING',
     expires_at: new Date(Date.now() + 60_000).toISOString(),
+    max_claims: 5,
+    claimed_count: 0,
   }));
 }
 
-test('一度だけの招待リンクで端末登録し、Revision/Hash承認を送れる', async () => {
+test('同じ招待リンクでスマホとPCを登録し、Revision/Hash承認を送れる', async () => {
   const env = {
     APPROVALS: new KvMock(), TOKEN_SIGNING_SECRET: 'sign-secret', QUEUE_READ_SECRET: 'queue-secret',
     GITHUB_OWNER: 'reiki-ai-apps', GITHUB_REPO: 'AI-', GITHUB_DISPATCH_TOKEN: 'test-token',
@@ -47,6 +49,22 @@ test('一度だけの招待リンクで端末登録し、Revision/Hash承認を�
   assert.equal(pair.status, 200);
   const { token } = await pair.json();
   assert.ok(token);
+
+  const secondPair = await worker.fetch(new Request('https://example.test/v1/claim', {
+    method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ invite_token: inviteToken }),
+  }), env);
+  assert.equal(secondPair.status, 200);
+  assert.ok((await secondPair.json()).token);
+
+  const deviceInvite = await worker.fetch(new Request('https://example.test/v1/device/invite', {
+    method: 'POST', headers: { Origin: origin, Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: '{}',
+  }), env);
+  assert.equal(deviceInvite.status, 201);
+  const deviceInviteBody = await deviceInvite.json();
+  assert.equal(deviceInviteBody.max_claims, 5);
+  assert.ok(deviceInviteBody.invite_token);
 
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async () => new Response(null, { status: 204 });
@@ -85,4 +103,14 @@ test('秘密鍵なしでは承認キューを読めない', async () => {
   const response = await worker.fetch(new Request('https://example.test/v1/approvals'), env);
   assert.equal(response.status, 401);
   assert.equal((await response.json()).error, 'QUEUE_TOKEN_INVALID');
+});
+
+test('未登録端末は別端末用リンクを発行できない', async () => {
+  const env = { APPROVALS: new KvMock(), TOKEN_SIGNING_SECRET: 'sign-secret' };
+  const response = await worker.fetch(new Request('https://example.test/v1/device/invite', {
+    method: 'POST',
+    headers: { Origin: 'https://reiki-ai-apps.github.io', Authorization: 'Bearer invalid' },
+  }), env);
+  assert.equal(response.status, 401);
+  assert.equal((await response.json()).error, 'DEVICE_TOKEN_INVALID');
 });

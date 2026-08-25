@@ -14,11 +14,11 @@ import { systemClock } from '../core/clock.js';
 import { dateKey, systemTimeZone } from '../core/tz.js';
 import { ROLES, ROLE_ORDER, roleLabel } from '../domain/rbac.js';
 import { seedSocialAccounts } from '../services/api.js';
-import { renderApprovalsScreen } from './approvalsView.js?v=11';
+import { renderApprovalsScreen } from './approvalsView.js?v=12';
 import { renderConnectionsScreen } from './connectionsView.js';
 import { renderStatusScreen } from './statusView.js?v=18';
 import { hasIntentLink, consumeIntentLink } from './intentLink.js';
-import { claimApprovalDeviceFromLocation, restoreApprovalDeviceToken } from './publicApprovalGateway.js?v=4';
+import { claimApprovalDeviceFromLocation, restoreApprovalDeviceToken } from './publicApprovalGateway.js?v=5';
 import { isPublicApprovalActionable } from './publicApproval.js';
 
 const SCREENS = [
@@ -265,7 +265,7 @@ async function boot() {
   if (app.ctx.backend === 'public' && (new URL(location.href).searchParams.has('pair') || location.hash.startsWith('#pair:'))) {
     try {
       const result = await claimApprovalDeviceFromLocation();
-      if (result.claimed) app.toast('この端末を承認用に登録しました。次回からコード入力は不要です。');
+      if (result.claimed) app.toast('この端末を承認用に登録しました。スマホ・PCは各端末を一度登録すれば、どちらからでも承認できます。');
     } catch (error) {
       app.fail(error);
     }

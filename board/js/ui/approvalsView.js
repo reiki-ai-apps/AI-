@@ -10,7 +10,11 @@ import { approve, reject, describePendingChange, approveGroup, recordComponentAp
 import { guardedButton, permissionNotice } from './states.js';
 import { openPostDetail } from './postDetail.js';
 import { isPublicApprovalActionable } from './publicApproval.js';
-import { approvalDeviceReady, submitGatewayComponentApproval } from './publicApprovalGateway.js?v=3';
+import {
+  approvalDeviceReady,
+  createApprovalDevicePairingLink,
+  submitGatewayComponentApproval,
+} from './publicApprovalGateway.js?v=5';
 
 const bulkSubmittedKeys = new Set();
 const refreshScheduledPosts = new Set();
@@ -32,6 +36,52 @@ function trackGatewaySubmission(app, post) {
     setTimeout(() => app.refresh().catch(() => {}), delay);
   }
   setTimeout(() => refreshScheduledPosts.delete(key), 50_000);
+}
+
+async function openDevicePairingDrawer(app, trigger) {
+  trigger.disabled = true;
+  trigger.textContent = '登録リンクを作成中…';
+  try {
+    const pairing = await createApprovalDevicePairingLink();
+    const urlInput = el('input', {
+      class: 'approval-url-input',
+      type: 'url',
+      value: pairing.url,
+      readonly: true,
+      'aria-label': '別の端末を登録するリンク',
+    });
+    const copyButton = el('button', {
+      class: 'btn btn-primary',
+      type: 'button',
+      onClick: async () => {
+        await navigator.clipboard.writeText(pairing.url);
+        copyButton.textContent = 'コピーしました';
+        app.toast('端末登録リンクをコピーしました。もう一方の端末で一度開いてください。');
+      },
+    }, 'リンクをコピー');
+    const shareButton = typeof navigator.share === 'function'
+      ? el('button', {
+          class: 'btn',
+          type: 'button',
+          onClick: () => navigator.share({ title: 'REIKI POST BOARD 端末登録', url: pairing.url }),
+        }, 'スマホへ送る')
+      : null;
+    const expiry = pairing.expiresAt ? new Date(pairing.expiresAt).toLocaleString('ja-JP') : '7日以内';
+    app.openDrawer({
+      title: 'スマホ・PCを承認端末に登録',
+      body: el('div', { class: 'approval-pairing-panel' },
+        el('strong', null, 'もう一方の端末で、このリンクを1回だけ開いてください。'),
+        el('p', null, 'スマホとPCをそれぞれ一度登録すれば、その後はどちらからでも承認できます。'),
+        urlInput,
+        el('div', { class: 'card-actions' }, copyButton, shareButton),
+        el('small', { class: 'field-hint' }, `有効期限：${expiry}／最大${pairing.maxDevices ?? 5}台`)),
+    });
+  } catch (error) {
+    app.fail(error);
+  } finally {
+    trigger.disabled = false;
+    trigger.textContent = '別の端末も登録';
+  }
 }
 
 export async function renderApprovalsScreen(app) {
@@ -56,6 +106,17 @@ export async function renderApprovalsScreen(app) {
     const tasks = await collectPublicApprovalTasks(app, pending);
     const postCount = new Set(tasks.map((task) => task.post.channel_post_id)).size;
     const deviceReady = approvalDeviceReady();
+    screen.appendChild(el('section', { class: `approval-device-banner ${deviceReady ? 'is-ready' : 'is-missing'}` },
+      el('div', { class: 'approval-device-copy' },
+        el('strong', null, deviceReady ? 'この端末から承認できます' : 'この端末はまだ承認用に登録されていません'),
+        el('span', null, deviceReady
+          ? 'スマホ・PCの両方を使う場合は、もう一方の端末を一度だけ登録してください。'
+          : '登録済みのスマホまたはPCで「別の端末も登録」を押し、表示されたリンクをこの端末で一度開いてください。')),
+      deviceReady ? el('button', {
+        class: 'btn btn-sm',
+        type: 'button',
+        onClick: (event) => openDevicePairingDrawer(app, event.currentTarget),
+      }, '別の端末も登録') : null));
     const bulkButton = el('button', {
       class: 'btn btn-primary approval-all-button',
       type: 'button',
@@ -193,6 +254,7 @@ async function buildSimpleApprovalItem(app, post, linkLabel = '記事リンク',
     article: await actionFor('CONTENT'),
     thumbnail: requiresThumbnail ? await actionFor('THUMBNAIL') : null,
     hideThumbnail: !requiresThumbnail,
+    artifactUrl: post.public_url ?? post.external_url ?? post.canonical_url ?? null,
   }));
 }
 
@@ -200,7 +262,7 @@ function disabledApprovalButton() {
   return el('button', { class: 'btn btn-primary btn-sm', type: 'button', disabled: true }, '承認');
 }
 
-export function approvalArtifactUrl(revision) {
+export function approvalArtifactUrl(revision, fallbackUrl = null) {
   const articleAsset = (revision?.assets ?? []).find((asset) => {
     const role = String(asset.asset_role ?? '').toUpperCase();
     const mime = String(asset.mime ?? '');
@@ -215,6 +277,7 @@ export function approvalArtifactUrl(revision) {
     ?? assetUrl(videoAsset)
     ?? revision?.article_url
     ?? revision?.link_url
+    ?? fallbackUrl
     ?? revision?.rights?.sources?.find((source) => source.source_url)?.source_url
     ?? null;
 }
@@ -223,18 +286,26 @@ function assetUrl(asset) {
   return asset?.thumbnail_url ?? asset?.preview_url ?? asset?.public_url ?? asset?.source_url ?? asset?.url ?? null;
 }
 
+export function approvalAssetScope(asset) {
+  const role = String(asset?.asset_role ?? '').toUpperCase();
+  if (role === 'THUMBNAIL') return 'THUMBNAIL';
+  if (role === 'CONTENT' || role === 'VIDEO') return 'CONTENT';
+  const mime = String(asset?.mime ?? '').toLowerCase();
+  const url = assetUrl(asset) ?? '';
+  if (mime.startsWith('image/') || /\.(png|jpe?g|webp|gif|avif)(\?|$)/i.test(url)) return 'THUMBNAIL';
+  return 'CONTENT';
+}
+
 function mediaPreview(revision, componentScope) {
   const scopedAssets = (revision?.assets ?? [])
-    .filter((asset) => componentScope === 'THUMBNAIL'
-      ? String(asset.asset_role ?? '').toUpperCase() === 'THUMBNAIL'
-      : String(asset.asset_role ?? '').toUpperCase() !== 'THUMBNAIL');
+    .filter((asset) => approvalAssetScope(asset) === componentScope);
   const assets = scopedAssets.filter((asset) => assetUrl(asset));
   if (!assets.length) {
     return el('div', { class: 'approval-artifact-missing', role: 'alert' },
       '成果物の表示リンクが未登録です。この状態では承認しないでください。');
   }
   const poster = assetUrl((revision?.assets ?? []).find((asset) =>
-    String(asset.asset_role ?? '').toUpperCase() === 'THUMBNAIL'));
+    approvalAssetScope(asset) === 'THUMBNAIL'));
   const uniqueAssets = assets.filter((asset, index, rows) => {
     const key = asset.sha256 || assetUrl(asset);
     return rows.findIndex((row) => (row.sha256 || assetUrl(row)) === key) === index;
@@ -268,7 +339,7 @@ function mediaPreview(revision, componentScope) {
 }
 
 function approvalMedia(revision, publishDate = '', linkLabel = '記事リンク', mediaLabel = 'サムネイル', actions = {}) {
-  const link = approvalArtifactUrl(revision);
+  const link = approvalArtifactUrl(revision, actions.artifactUrl);
   const contentPreview = mediaPreview(revision, 'CONTENT');
   const thumbnailPreview = mediaPreview(revision, 'THUMBNAIL');
   const [, month = '', day = ''] = String(publishDate ?? '').split('-');

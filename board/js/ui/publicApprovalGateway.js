@@ -111,16 +111,55 @@ export function approvalDeviceReady() {
   return Boolean(storedDeviceToken());
 }
 
+function pairingErrorMessage(error) {
+  if (error?.message === 'INVITE_EXPIRED') return '端末登録リンクの期限が切れました。登録済み端末でもう一度作り直してください。';
+  if (error?.message === 'INVITE_DEVICE_LIMIT_REACHED') return 'この端末登録リンクは利用上限に達しました。登録済み端末でもう一度作り直してください。';
+  if (error?.message === 'INVITE_INVALID') return '端末登録リンクを確認できませんでした。登録済み端末でもう一度作り直してください。';
+  return 'この端末を承認用として登録できませんでした。';
+}
+
+export async function createApprovalDevicePairingLink() {
+  const token = await restoreApprovalDeviceToken();
+  if (!token) {
+    throw new Error('この端末は未登録です。登録済みのスマホまたはPCで「別の端末も登録」を押してください。');
+  }
+  try {
+    const result = await request('/v1/device/invite', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: '{}',
+    });
+    const pairingUrl = new URL(globalThis.location.href);
+    pairingUrl.search = '';
+    pairingUrl.searchParams.set('public', '1');
+    pairingUrl.hash = `pair:${result.invite_token}`;
+    return {
+      url: pairingUrl.href,
+      expiresAt: result.expires_at,
+      maxDevices: result.max_claims,
+    };
+  } catch (error) {
+    if (error.status !== 401) throw error;
+    await clearDeviceToken();
+    throw new Error('この端末の登録期限が切れました。現在承認できる別の端末から登録し直してください。');
+  }
+}
+
 export async function claimApprovalDeviceFromLocation(url = new URL(location.href)) {
   const queryToken = url.searchParams.get('pair');
   const hashMatch = String(url.hash).match(/^#pair:([A-Za-z0-9_-]{32,160})$/);
   const inviteToken = queryToken ?? hashMatch?.[1] ?? null;
   if (!inviteToken || !/^[A-Za-z0-9_-]{32,160}$/.test(inviteToken)) return { claimed: false };
-  const result = await request('/v1/claim', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ invite_token: inviteToken }),
-  });
+  let result;
+  try {
+    result = await request('/v1/claim', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ invite_token: inviteToken }),
+    });
+  } catch (error) {
+    throw new Error(pairingErrorMessage(error));
+  }
   if (!result.token) throw new Error('この端末を承認用として登録できませんでした。');
   await saveDeviceToken(result.token);
   const clean = new URL(location.href);
@@ -147,7 +186,7 @@ export async function submitGatewayComponentApproval({ group, post, revision, co
 
   const token = await restoreApprovalDeviceToken();
   if (!token) {
-    throw new Error('このブラウザに承認鍵がありません。前回と同じブラウザで開くか、新しい端末登録リンクを一度開いてください。');
+    throw new Error('この端末は未登録です。登録済みのスマホまたはPCで「別の端末も登録」を押し、そのリンクをこの端末で一度開いてください。');
   }
   try {
     return await request('/v1/approve', {
@@ -158,6 +197,6 @@ export async function submitGatewayComponentApproval({ group, post, revision, co
   } catch (error) {
     if (error.status !== 401) throw error;
     await clearDeviceToken();
-    throw new Error('承認用の端末登録が切れました。新しい初回設定リンクを一度開いてください。');
+    throw new Error('この端末の登録期限が切れました。現在承認できる別の端末から登録し直してください。');
   }
 }

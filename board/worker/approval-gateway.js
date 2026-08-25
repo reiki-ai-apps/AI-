@@ -2,7 +2,8 @@ const ALLOWED_ORIGIN = 'https://reiki-ai-apps.github.io';
 const APPROVAL_CONTRACT = 'REIKI_BOARD_GATEWAY_APPROVAL_V1';
 const TOKEN_TTL_SECONDS = 31_536_000;
 const RECORD_TTL_SECONDS = 10_368_000;
-const INVITE_TTL_SECONDS = 900;
+const INVITE_TTL_SECONDS = 604_800;
+const MAX_INVITE_CLAIMS = 5;
 const MAX_BODY_BYTES = 16_384;
 
 function cors(origin) {
@@ -138,21 +139,41 @@ async function claimInvite(request, env, origin) {
   const inviteKey = `invite:${base64url(await sha256(inviteToken))}`;
   const invitation = await env.APPROVALS.get(inviteKey, 'json');
   if (!invitation || invitation.purpose !== 'OWNER_DEVICE_PAIRING') {
-    return json({ error: 'INVITE_INVALID_OR_USED' }, 401, origin);
+    return json({ error: 'INVITE_INVALID' }, 401, origin);
   }
   if (Date.parse(invitation.expires_at) <= Date.now()) {
     await env.APPROVALS.delete(inviteKey);
     return json({ error: 'INVITE_EXPIRED' }, 401, origin);
   }
-  await env.APPROVALS.delete(inviteKey);
+  const maxClaims = Number.isInteger(invitation.max_claims) ? invitation.max_claims : 1;
+  const claimedCount = Number.isInteger(invitation.claimed_count) ? invitation.claimed_count : 0;
+  if (claimedCount >= maxClaims) {
+    await env.APPROVALS.delete(inviteKey);
+    return json({ error: 'INVITE_DEVICE_LIMIT_REACHED' }, 401, origin);
+  }
+  const nextClaimedCount = claimedCount + 1;
+  if (nextClaimedCount >= maxClaims) {
+    await env.APPROVALS.delete(inviteKey);
+  } else {
+    const remainingTtl = Math.max(60, Math.ceil((Date.parse(invitation.expires_at) - Date.now()) / 1000));
+    await env.APPROVALS.put(inviteKey, JSON.stringify({
+      ...invitation,
+      max_claims: maxClaims,
+      claimed_count: nextClaimedCount,
+    }), { expirationTtl: remainingTtl });
+  }
   const token = await issueDeviceToken(env.TOKEN_SIGNING_SECRET);
   const pairedAt = new Date().toISOString();
   await env.APPROVALS.put(`pairing:${pairedAt}:${crypto.randomUUID()}`, JSON.stringify({
     paired_at: pairedAt,
-    method: 'ONE_TIME_INVITE',
+    method: 'REUSABLE_OWNER_INVITE',
   }), { expirationTtl: RECORD_TTL_SECONDS });
   console.log(JSON.stringify({ event: 'owner_device_paired', at: pairedAt }));
-  return json({ token, expires_in: TOKEN_TTL_SECONDS }, 200, origin);
+  return json({
+    token,
+    expires_in: TOKEN_TTL_SECONDS,
+    claims_remaining: Math.max(0, maxClaims - nextClaimedCount),
+  }, 200, origin);
 }
 
 async function submitApproval(request, env, origin) {
@@ -223,11 +244,7 @@ async function submitApproval(request, env, origin) {
   return json({ status: 'ACCEPTED', request_id: requestId, received_at: receivedAt }, 202, origin);
 }
 
-async function createInvite(request, env) {
-  const bearer = request.headers.get('Authorization')?.match(/^Bearer\s+(.+)$/i)?.[1];
-  if (!bearer || !await constantTimeTextEqual(bearer, env.ADMIN_INVITE_SECRET)) {
-    return json({ error: 'ADMIN_TOKEN_INVALID' }, 401);
-  }
+async function issuePairingInvite(env, createdBy = 'ADMIN') {
   const bytes = new Uint8Array(32);
   crypto.getRandomValues(bytes);
   const inviteToken = base64url(bytes);
@@ -237,8 +254,28 @@ async function createInvite(request, env) {
     purpose: 'OWNER_DEVICE_PAIRING',
     created_at: new Date().toISOString(),
     expires_at: expiresAt,
+    max_claims: MAX_INVITE_CLAIMS,
+    claimed_count: 0,
+    created_by: createdBy,
   }), { expirationTtl: INVITE_TTL_SECONDS });
-  return json({ invite_token: inviteToken, expires_at: expiresAt }, 201);
+  return { invite_token: inviteToken, expires_at: expiresAt, max_claims: MAX_INVITE_CLAIMS };
+}
+
+async function createAdminInvite(request, env) {
+  const bearer = request.headers.get('Authorization')?.match(/^Bearer\s+(.+)$/i)?.[1];
+  if (!bearer || !await constantTimeTextEqual(bearer, env.ADMIN_INVITE_SECRET)) {
+    return json({ error: 'ADMIN_TOKEN_INVALID' }, 401);
+  }
+  return json(await issuePairingInvite(env, 'ADMIN'), 201);
+}
+
+async function createDeviceInvite(request, env, origin) {
+  if (origin !== ALLOWED_ORIGIN) return json({ error: 'ORIGIN_NOT_ALLOWED' }, 403, origin);
+  const bearer = request.headers.get('Authorization')?.match(/^Bearer\s+(.+)$/i)?.[1];
+  const device = await verifyDeviceToken(env.TOKEN_SIGNING_SECRET, bearer);
+  if (!device) return json({ error: 'DEVICE_TOKEN_INVALID' }, 401, origin);
+  const fingerprint = base64url(await sha256(device.device_id)).slice(0, 16);
+  return json(await issuePairingInvite(env, `DEVICE:${fingerprint}`), 201, origin);
 }
 
 async function listApprovals(request, env) {
@@ -273,7 +310,8 @@ export default {
       if (request.method === 'GET' && url.pathname === '/health') return json({ status: 'ok' }, 200, origin);
       if (request.method === 'POST' && url.pathname === '/v1/claim') return await claimInvite(request, env, origin);
       if (request.method === 'POST' && url.pathname === '/v1/approve') return await submitApproval(request, env, origin);
-      if (request.method === 'POST' && url.pathname === '/v1/admin/invite') return await createInvite(request, env);
+      if (request.method === 'POST' && url.pathname === '/v1/device/invite') return await createDeviceInvite(request, env, origin);
+      if (request.method === 'POST' && url.pathname === '/v1/admin/invite') return await createAdminInvite(request, env);
       if (request.method === 'GET' && url.pathname === '/v1/approvals') return await listApprovals(request, env);
       return json({ error: 'NOT_FOUND' }, 404, origin);
     } catch (error) {
