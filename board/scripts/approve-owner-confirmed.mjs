@@ -11,10 +11,12 @@ import {
   requiredApprovalComponents,
   verifyComponentApprovals,
 } from '../js/services/approvals.js';
+import { reschedule } from '../js/services/schedule.js';
 import { openFileDatabase } from '../js/store/filedb.js';
 import { Repo } from '../js/store/repo.js';
 
 const EXPECTED_PLATFORMS = Object.freeze(['INSTAGRAM', 'NOTE', 'X', 'YOUTUBE', 'YOUTUBE_SHORTS']);
+const TIME_ZONE = 'Asia/Tokyo';
 
 function parseArgs(argv) {
   const result = {};
@@ -27,7 +29,7 @@ function parseArgs(argv) {
   return result;
 }
 
-export async function approveOwnerConfirmed({ dataFile, receiptFile, date, statement, expectedCount = 5 }) {
+export async function approveOwnerConfirmed({ dataFile, receiptFile, date, statement, expectedCount = 5, scheduledAt = null }) {
   if (!dataFile || !receiptFile || !date || !statement) {
     throw new Error('--data-file、--receipt、--date、--statement が必要です。');
   }
@@ -35,7 +37,7 @@ export async function approveOwnerConfirmed({ dataFile, receiptFile, date, state
   if (!Number.isInteger(count) || count < 1 || count > 10) throw new Error('--expected-count が不正です。');
 
   const target = resolve(dataFile);
-  const clock = systemClock('Asia/Tokyo');
+  const clock = systemClock(TIME_ZONE);
   const db = await openFileDatabase(target);
   const repo = new Repo(db, clock);
   const ctx = {
@@ -51,8 +53,7 @@ export async function approveOwnerConfirmed({ dataFile, receiptFile, date, state
   const posts = (snapshot.stores?.channelPosts ?? [])
     .filter((post) => !post.deleted_at
       && post.calendar_date_key === date
-      && post.display_state === 'PENDING_APPROVAL'
-      && post.requires_component_approvals)
+      && post.display_state === 'PENDING_APPROVAL')
     .sort((left, right) => left.platform.localeCompare(right.platform));
 
   if (posts.length !== count) {
@@ -75,7 +76,27 @@ export async function approveOwnerConfirmed({ dataFile, receiptFile, date, state
   const approvals = [];
 
   for (const selected of posts) {
-    const before = await repo.getPost(selected.channel_post_id);
+    let before = await repo.getPost(selected.channel_post_id);
+    if (scheduledAt) {
+      if (!Number.isFinite(Date.parse(scheduledAt))) throw new Error('--scheduled-at が不正です。');
+      await reschedule(ctx, before.channel_post_id, { scheduledAtIso: scheduledAt, timeZone: TIME_ZONE });
+      before = await repo.getPost(before.channel_post_id);
+    }
+    if (!before.requires_component_approvals) {
+      const updatedAt = clock.nowIso();
+      await repo.change(['channelPosts'], async (tx, audit) => {
+        const live = await tx.get('channelPosts', before.channel_post_id);
+        await tx.put('channelPosts', { ...live, requires_component_approvals: true, updated_at: updatedAt });
+        await audit({
+          actor: ctx.actor.userId,
+          target_id: before.channel_post_id,
+          action: 'approval.component.require',
+          reason: '現行Revisionの本文・動画とサムネイルを別々に承認する',
+          revision_id: before.current_revision_id,
+        });
+      });
+      before = await repo.getPost(before.channel_post_id);
+    }
     const revision = await repo.getRevision(before.current_revision_id);
     if (!revision) throw new Error(`Revisionが見つかりません: ${before.current_revision_id}`);
 
@@ -146,6 +167,7 @@ async function main() {
       date: options.date,
       statement: options.statement,
       expectedCount: options.expectedCount ?? '5',
+      scheduledAt: options.scheduledAt ?? null,
     });
     process.stdout.write(`${JSON.stringify(receipt, null, 2)}\n`);
   } catch (error) {
