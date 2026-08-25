@@ -49,8 +49,29 @@ export async function syncYoutubeShortsPreview(options) {
     actor: { userId: 'youtube-shorts-preview-sync', role: 'ADMIN' },
   };
 
-  const post = await repo.getPost(options.channelPostId);
+  let post = await repo.getPost(options.channelPostId);
   if (!post || post.deleted_at || post.cancelled_at) throw new Error('対象のYouTube Shorts投稿がありません。');
+  const desiredPlatform = options.platform ?? post.platform;
+  if (!['YOUTUBE', 'YOUTUBE_SHORTS'].includes(desiredPlatform)) {
+    throw new Error('--platform は YOUTUBE または YOUTUBE_SHORTS を指定してください。');
+  }
+  const platformChanged = post.platform !== desiredPlatform;
+  if (platformChanged) {
+    const now = clock.nowIso();
+    await repo.change(['channelPosts'], async (tx, audit) => {
+      const live = await tx.get('channelPosts', post.channel_post_id);
+      if (!live) throw new Error('対象のYouTube Shorts投稿がありません。');
+      await tx.put('channelPosts', { ...live, platform: desiredPlatform, updated_at: now });
+      await audit({
+        actor: ctx.actor.userId,
+        target_id: post.channel_post_id,
+        action: 'post.platform.corrected',
+        reason: `完成動画の媒体枠を${live.platform}から${desiredPlatform}へ訂正`,
+        revision_id: live.current_revision_id,
+      });
+    });
+    post = await repo.getPost(post.channel_post_id);
+  }
   const current = await repo.getRevision(post.current_revision_id);
   const videoAsset = (current.assets ?? []).find((asset) => asset.mime === 'video/mp4');
   if (!videoAsset) throw new Error('完成動画アセットがありません。');
@@ -101,9 +122,10 @@ export async function syncYoutubeShortsPreview(options) {
   const savedRevision = await repo.getRevision(savedPost.current_revision_id);
   const receipt = {
     schema_version: 'reiki-youtube-shorts-preview-sync.v1',
-    status: alreadyLinked ? 'REPLAYED' : 'SYNCED_NEW_REVISION',
-    changed: !alreadyLinked,
+    status: !alreadyLinked ? 'SYNCED_NEW_REVISION' : platformChanged ? 'SYNCED_PLATFORM_CORRECTION' : 'REPLAYED',
+    changed: !alreadyLinked || platformChanged,
     channel_post_id: savedPost.channel_post_id,
+    platform: savedPost.platform,
     revision_id: savedRevision.revision_id,
     revision_no: savedRevision.revision_no,
     video_sha256: videoAsset.sha256,

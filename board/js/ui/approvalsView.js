@@ -182,13 +182,19 @@ function disabledApprovalButton() {
   return el('button', { class: 'btn btn-primary btn-sm', type: 'button', disabled: true }, '承認');
 }
 
-function articleUrl(revision) {
+export function approvalArtifactUrl(revision) {
   const articleAsset = (revision?.assets ?? []).find((asset) => {
     const role = String(asset.asset_role ?? '').toUpperCase();
     const mime = String(asset.mime ?? '');
     return (role === 'CONTENT' || mime.startsWith('text/')) && assetUrl(asset);
   });
+  const videoAsset = (revision?.assets ?? []).find((asset) => {
+    const role = String(asset.asset_role ?? '').toUpperCase();
+    const mime = String(asset.mime ?? '');
+    return (role === 'VIDEO' || mime.startsWith('video/')) && assetUrl(asset);
+  });
   return assetUrl(articleAsset)
+    ?? assetUrl(videoAsset)
     ?? revision?.article_url
     ?? revision?.link_url
     ?? revision?.rights?.sources?.find((source) => source.source_url)?.source_url
@@ -244,7 +250,7 @@ function mediaPreview(revision, componentScope) {
 }
 
 function approvalMedia(revision, publishDate = '', linkLabel = '記事リンク', mediaLabel = 'サムネイル', actions = {}) {
-  const link = articleUrl(revision);
+  const link = approvalArtifactUrl(revision);
   const contentPreview = mediaPreview(revision, 'CONTENT');
   const thumbnailPreview = mediaPreview(revision, 'THUMBNAIL');
   const [, month = '', day = ''] = String(publishDate ?? '').split('-');

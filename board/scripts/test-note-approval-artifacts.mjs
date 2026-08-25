@@ -3,6 +3,7 @@ import { access, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
+import { approvalArtifactUrl } from '../js/ui/approvalsView.js';
 
 const boardRoot = fileURLToPath(new URL('..', import.meta.url));
 
@@ -43,4 +44,20 @@ test('承認画面は記事全文リンクとリンク欠落警告を表示す�
   const source = await readFile(resolve(boardRoot, 'js/ui/approvalsView.js'), 'utf8');
   assert.match(source, /記事全文を開く/);
   assert.match(source, /成果物の表示リンクが未登録/);
+});
+
+test('動画投稿の確認リンクは一次情報ではなく完成動画を優先する', () => {
+  const videoUrl = 'https://reiki-ai-apps.github.io/AI-/board/media/short.mp4';
+  assert.equal(approvalArtifactUrl({
+    assets: [{ asset_role: 'VIDEO', mime: 'video/mp4', preview_url: videoUrl }],
+    rights: { sources: [{ source_url: 'https://openai.com/source/' }] },
+  }), videoUrl);
+});
+
+test('記事投稿の確認リンクは記事全文を動画より優先する', () => {
+  const articleUrl = 'https://reiki-ai-apps.github.io/AI-/board/media/article.html';
+  assert.equal(approvalArtifactUrl({ assets: [
+    { asset_role: 'VIDEO', mime: 'video/mp4', preview_url: 'https://example.com/video.mp4' },
+    { asset_role: 'CONTENT', mime: 'text/html', preview_url: articleUrl },
+  ] }), articleUrl);
 });
