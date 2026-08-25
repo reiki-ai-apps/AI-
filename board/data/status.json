@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-25T23:56:11+09:00",
+  "generated_at": "2026-08-26T00:00:21+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -10,11 +10,11 @@
     "attention": 2
   },
   "today": {
-    "date": "2026-08-25",
-    "completed": 2,
+    "date": "2026-08-26",
+    "completed": 0,
     "target": 7,
-    "headline": "公開2/7件。note 2本目は100円と有料部分の開始位置を修正し、公開ボタンを押す直前まで完了しました。",
-    "next_action": "note 2本目を公開後、Instagram実画像の制作を継続。Xは接続条件が揃い次第投稿します",
+    "headline": "8月26日は0/7件。前日からのnote完成稿は100円・有料境界設定済みで公開直前、Instagramは異なる写真2枚の制作を開始済みです。",
+    "next_action": "最優先：note完成稿を本日1本目として公開。次にInstagram残り14枚と水曜YouTube本編を制作します",
     "next_deadline": null,
     "owner_action_required": true,
     "owner_action": "note 2本目を100円で今すぐ公開してよいか、このチャットで1回だけ確認",
@@ -22,11 +22,11 @@
       {
         "id": "note",
         "label": "note",
-        "done": 1,
+        "done": 0,
         "target": 2,
         "state": "APPROVAL_WAIT",
-        "status": "1/2公開済み／2本目は100円・有料境界・本文・サムネイル設定済み",
-        "next": "公開直前の確認1回で投稿",
+        "status": "0/2公開／本日1本目は100円・有料境界・本文・サムネイル設定済み",
+        "next": "公開直前の確認1回で本日1本目を投稿",
         "blocker": "公開ボタンの最終確認のみ",
         "url": "https://note.com/natty_swan9072/n/n2a1bfc666f7e"
       },
@@ -46,20 +46,19 @@
         "done": 0,
         "target": 2,
         "state": "AUTH_WAIT",
-        "status": "0/2公開／8枚構成・本文・代替テキストは2件完成",
-        "next": "実画像16枚を制作・実機検査し、Graph API接続後に投稿",
-        "blocker": "実画像が未完成。Instagramアクセストークンも未接続"
+        "status": "0/2公開／8枚構成・本文・代替テキスト2件＋異なる写真2枚完成",
+        "next": "残り14枚を制作・実機検査し、Graph API接続後に投稿",
+        "blocker": "残り14枚が未完成。Instagramアクセストークンも未接続"
       },
       {
         "id": "youtube",
-        "label": "YouTube Shorts",
-        "done": 1,
+        "label": "YouTube本編",
+        "done": 0,
         "target": 1,
-        "state": "PUBLISHED",
-        "status": "公開済み（23:36）／外部公開receipt確認済み",
-        "next": "本日のYouTube Shortsは完了",
-        "blocker": null,
-        "url": "https://www.youtube.com/shorts/Xs2BjsPO75k"
+        "state": "PRODUCING",
+        "status": "0/1公開／水曜の本編枠",
+        "next": "一次情報確認後、本編・字幕・サムネイル3案を制作",
+        "blocker": null
       }
     ]
   },
@@ -76,7 +75,7 @@
         "url": "https://www.instagram.com/p/DcEMK9JGctI/"
       },
       "next_scheduled": null,
-      "note": "8月25日分は、異なる読者課題と根拠を持つ2件の8枚構成・キャプション・代替テキストまで完成。実画像16枚と端末表示検査は未完了。Graph APIアクセストークンも確認できないため、外部投稿receiptは未取得。"
+      "note": "異なる読者課題と根拠を持つ2件の8枚構成・キャプション・代替テキストが完成。人物・場所・行動・配色が異なるカバー写真2枚を新規制作してrunへ保存済み。残り14枚と端末表示検査が未完で、Graph APIアクセストークンも未接続。"
     },
     {
       "id": "x",
@@ -154,7 +153,7 @@
       "id": "20260825-instagram-auth-required",
       "severity": "ATTENTION",
       "title": "Instagramは接続・認証待ち",
-      "message": "2件の構成は完成しています。実画像検査後の投稿に必要なGraph APIトークンを確認できません。",
+      "message": "2件の構成と異なる写真2枚は完成。残り14枚と実機検査、Graph APIトークン接続が残っています。",
       "required_action": "OAuthの本人操作が必要になった時だけBoardに1件表示"
     }
   ],
