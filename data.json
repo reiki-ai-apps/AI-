@@ -1,5 +1,406 @@
 [
   {
+    "tool": "AIベンチマーク・研究速報",
+    "title": "AIエージェントの判断を検証可能にする記録プロトコル「AIREP」提案",
+    "source_url": "https://arxiv.org/abs/2608.21363",
+    "source_name": "rss.arxiv.org",
+    "is_official": true,
+    "published_at": "2026-08-25T04:00:00.000Z",
+    "source_published_at": "2026-08-25T04:00:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T04:01:40.375Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "AIREP",
+      "arXiv",
+      "airep",
+      "arxiv"
+    ],
+    "primary_entity": "arXiv研究チーム",
+    "story_subject": "AIREPプロトコル",
+    "event_type": "research",
+    "event_stage": "announced",
+    "event_scope": "研究論文",
+    "fact_slots": [
+      {
+        "type": "other",
+        "scope": "arXiv識別番号",
+        "value": "2608.21363",
+        "normalized_value": "2608.21363"
+      }
+    ],
+    "new_facts": [
+      "AIREPは判断内容をSHA-256ハッシュチェーンで記録し改ざん検知を可能にする",
+      "参照実装と2言語対応の適合性キットが公開されている"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "研究者らが、AIランタイムの許可・遮断・保留などの判断を改ざん検知可能な形で記録するプロトコル「AIREP」を提案した。",
+    "detail": "論文はAIREPというプロトコルを提示している。AIランタイムが個々の出力を許可・遮断・保留・редакト・エスカレーションした際、その判断を単一の署名済みレコードとして記録し、そのランタイムに依存せず第三者がオフラインで検証できるようにする。レコードは入力・出力・証拠をハッシュ値で参照し、証拠が何を保証し何を保証しないかを明示する。全レコードはSHA-256ハッシュチェーンで連結され、改ざんや欠落を検出できる。ベンダーやモデル固有の情報は任意の名前空間に限定し、共有フォーマットの中立性を保つ仕組みも備える。参照実装と2言語対応の適合性キットが示され、実装間の正規形の整合性や新鮮性証明、複数ランタイム間のチェーン化などの課題も議論されている。",
+    "change_summary": "AIランタイムの個別判断を改ざん検知可能な署名付きレコードとして記録する新しいプロトコルが提案された。",
+    "impact_summary": "AIエージェントの判断過程を第三者が検証できる仕組みが整えば、企業の内部統制や監査における信頼性向上につながる可能性がある。",
+    "action_suggestion": "参照実装と適合性キットが公開されており、今後の採用状況や標準化の進展を確認する必要がある。",
+    "importance": "C",
+    "related_categories": [
+      "研究・技術",
+      "セキュリティ"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_b749ed6ae3aff6159a71",
+    "story_id": "story_c983c2e85a3c5f60ac",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "Grok / xAI",
+    "title": "マスク氏、600億ドル規模買収後初のCursor社員向け全体会議でGrokの遅れを認める",
+    "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFAzRjc2dnhYQ2o4VVZqQ0QxMGdHa1RwNlZHVEE0c3BrNFBTRUo0aFl0akE5b0htM25kQzZOVnlNX0QtYUxOU0lUSEpvNGRpWEFqTzJSX0tQeXk4a0dyNzV6QVBTNHhPZTFDVVlnY2FGenpPU0c3?oc=5",
+    "source_name": "BigGo ファイナンス",
+    "is_official": false,
+    "published_at": "2026-08-25T03:39:43.000Z",
+    "source_published_at": "2026-08-25T03:39:43.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T04:01:18.631Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "xAI",
+      "Grok",
+      "Cursor",
+      "xai",
+      "grok"
+    ],
+    "primary_entity": "xAI",
+    "story_subject": "Grokの開発遅延とCursor買収後の社内会議",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "xAI・Cursor",
+    "fact_slots": [],
+    "new_facts": [
+      "マスク氏が600億ドル規模の買収後初のCursor社員向け全体会議でGrokの開発遅延を認めた"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "イーロン・マスク氏が600億ドル規模の買収後初めて開かれたCursor社員向け全体会議で、AIモデル「Grok」の開発遅延を認めた。",
+    "detail": "xAIのイーロン・マスク氏は、600億ドル規模の買収を経て初めて開催されたコーディング支援ツール「Cursor」の社員向け全体会議に出席し、自社のAIモデル「Grok」の開発が遅れていることを認めた。買収の詳細な時期や対象企業との関係、遅延の具体的な要因については記事からは明らかになっていない。今後のGrok開発の立て直し方針についても言及内容は不明。",
+    "change_summary": "マスク氏が買収後初の社内会議でGrokの開発遅延を公に認めた点が新しい動きである。",
+    "impact_summary": "xAIの経営体制や開発体制の変化は、Grokを利用する企業や開発者の製品ロードマップにも影響する可能性がある。",
+    "action_suggestion": "xAIやCursor運営元からの公式発表、Grokの今後のリリース計画を確認する必要がある。",
+    "importance": "A",
+    "related_categories": [
+      "企業・株式",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_2fcc9f4e728727ed1209",
+    "story_id": "story_20f1d33657d1062721",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "Perplexity",
+    "title": "Perplexity、CNNの著作権侵害訴訟の一部却下を裁判所に申し立て",
+    "source_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPODRCQVd6ekVqcUxvRXNCZkx0YXdMZVd0eDlEQVJGbjhvSWg1SFc3ZGo0UWx3Vm13TG5mMWVraGVuV3ZaclFaUVg4dWl5eEVxLU1NbHBnc0JvbTNUT1d3cjRyMXBIekdmWGt2WWdXWFg2MGF4VGxUWmlwbjNtTTVDNHBQSU4zeEtZQ3F0T1ZrbU4tcXo1Z1FZ0gFWQVVfeXFMT25EUFh0WWNIVUJtWVR4YUpFZG1QVlgwMzRGYTg0X0ZnZ3RvM2pXUUMwcDU1RV90UXFGaDhJdGRfY19ZVEdNZ3JZbjdaMUdPUmNKRzEyMHc?oc=5",
+    "source_name": "Law360",
+    "is_official": false,
+    "published_at": "2026-08-25T03:20:00.000Z",
+    "source_published_at": "2026-08-25T03:20:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T04:01:17.730Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Perplexity",
+      "CNN",
+      "perplexity",
+      "cnn"
+    ],
+    "primary_entity": "Perplexity",
+    "story_subject": "CNNによる著作権侵害訴訟",
+    "event_type": "policy",
+    "event_stage": "other",
+    "event_scope": "米国の訴訟",
+    "fact_slots": [],
+    "new_facts": [
+      "Perplexityが CNN の著作権侵害訴訟の一部請求却下を裁判所に申し立てた"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "AI検索企業Perplexityが、CNNから提起された著作権侵害訴訟の一部請求を却下するよう裁判所に申し立てた。",
+    "detail": "AI検索サービスを提供するPerplexityは、米CNNから提起された著作権侵害訴訟について、請求の一部を却下するよう裁判所に申し立てた。CNNは自社記事がPerplexityの検索・要約機能で無断利用されているとして提訴していた。今回の申し立てにより訴訟の争点が絞られる可能性があるが、却下理由の詳細や裁判所の判断時期は記事からは明らかになっていない。",
+    "change_summary": "Perplexityが訴訟の一部請求を却下するよう新たに裁判所へ申し立てた点が動きとして新しい。",
+    "impact_summary": "AI企業とメディア企業間の著作権を巡る訴訟の行方は、日本を含む各国のAI企業とコンテンツ事業者の関係にも影響しうる。",
+    "action_suggestion": "裁判所の判断や今後の訴訟の進行状況を注視する必要がある。",
+    "importance": "A",
+    "related_categories": [
+      "規制・法務",
+      "企業・株式"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_dec416333259321fc4ea",
+    "story_id": "story_51fc3ccf31a967f902",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "Claude / Claude Code",
+    "title": "Claudeの「不可視の透かし」に利用者反発、解約表明も相次ぐ",
+    "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1MVmZDTXVzMDJiM3VGMi1vRmVYajNkaWpXZFpBdm9QVm1BVHZfTVQzT0ZtWEpGbWE1V01ycEo0OVBXMWh3ZDQ5T3JxLTZoR0s5STZtUFpORnRtRWpVM1hYNUlFSDZ0dHhW?oc=5",
+    "source_name": "マイナビニュース",
+    "is_official": false,
+    "published_at": "2026-08-25T02:31:12.000Z",
+    "source_published_at": "2026-08-25T02:31:12.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T04:00:59.252Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Claude",
+      "Anthropic",
+      "claude",
+      "anthropic"
+    ],
+    "primary_entity": "Anthropic",
+    "story_subject": "Claudeの不可視ウォーターマーク機能への反発",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "Claude利用者全体",
+    "fact_slots": [],
+    "new_facts": [
+      "Claudeの不可視ウォーターマーク機能に利用者が反発し解約報告が出ている",
+      "Anthropicは機能による影響を否定している"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Anthropicの生成AI「Claude」に導入された不可視のウォーターマーク機能に利用者が反発し、解約を報告する投稿も出ている。",
+    "detail": "Claude利用者の間で、生成文章に埋め込まれる「不可視のウォーターマーク」機能への反発が広がっている。ウォーターマークとは、人の目には見えない形で生成物に識別情報を埋め込む技術で、AI生成コンテンツの判別などに使われる。SNS上では機能への不満から解約を報告する投稿が見られたが、開発元のAnthropicはサービスへの影響を否定している。導入時期や具体的な仕様、今後の対応方針は明らかになっていない。",
+    "change_summary": "Claudeに導入された不可視の透かし機能に利用者から批判が集まり、解約表明が相次いでいる点が新しい。",
+    "impact_summary": "生成AIの透かし技術は著作権やコンテンツ真正性の議論に関わり、日本の利用者にも仕様変更などの形で影響しうる。",
+    "action_suggestion": "Anthropicの公式発表や今後の仕様変更の有無を確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル",
+      "規制・法務"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_33a2e94a76276d77c114",
+    "story_id": "story_cee39b30e6048ded8e",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.6263414634146341,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject"
+    ]
+  },
+  {
+    "tool": "Gemini",
+    "title": "セキュリティ企業Adversa AI、暗号化命令でGrokとGeminiの安全対策回避を実証",
+    "source_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQSHlsX285cV9acU9qd0stNkNzMnRRVURIaHVxeGs1bm5iR05jY2h3dGpfUkpnbGxCMFZVcFdzTHF3Q2xmcVJIa1RrNjV6eWN5REdJYnBpc29iNWM5MGlVU0NmdVIxaTZtdVFBcm83dElTZXZiZ1lFa3FHR1hMN3ZrWGJRNmdDdHFheUZTY0RLU2Jra2FPaWNXZ1B1bmxEUTFpUmM0?oc=5",
+    "source_name": "合同会社ロケットボーイズ",
+    "is_official": false,
+    "published_at": "2026-08-25T02:00:58.000Z",
+    "source_published_at": "2026-08-25T02:00:58.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T04:01:00.560Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Adversa AI",
+      "Grok",
+      "Gemini",
+      "adversaai",
+      "grok"
+    ],
+    "primary_entity": "Adversa AI",
+    "story_subject": "暗号化命令によるGrok・Geminiの安全対策回避実証",
+    "event_type": "security",
+    "event_stage": "investigating",
+    "event_scope": "Grok・Gemini全般",
+    "fact_slots": [],
+    "new_facts": [
+      "Adversa AIが暗号化命令でGrokのデータ外部送信を実証した",
+      "同様の手法でGeminiの安全ガードレールも回避可能と確認された"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Adversa AIが暗号化した命令を使い、Grokのデータ外部送信やGeminiの安全ガードレール回避が可能なことを実証した。",
+    "detail": "Adversa AIは、AIチャットボットに暗号化した指示を与えることでxAIの「Grok」からデータを外部へ送信させる手法を実証したと発表した。同様の手法でGoogleの「Gemini」に組み込まれた、不適切な出力を防ぐ安全性のためのガードレールも回避できることが確認されたという。通常のフィルタリングでは検知しにくい暗号化プロンプトを用いる点が攻撃手法の特徴とされる。各社の具体的な対応状況や修正の有無は明らかになっていない。",
+    "change_summary": "暗号化命令によってGrokのデータ外部送信とGeminiの安全ガードレール回避が可能であることが新たに実証された。",
+    "impact_summary": "企業がGrokやGeminiを業務利用する際に想定外のデータ漏えいリスクがあることを示しており、セキュリティ対策の見直しが必要になる可能性がある。",
+    "action_suggestion": "各社の脆弱性対応状況や修正パッチの有無を今後確認する必要がある。",
+    "importance": "A",
+    "related_categories": [
+      "セキュリティ",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_974d571226c496865076",
+    "story_id": "story_90bdf8c225570f9eb4",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.5214285714285715,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "shared_entity",
+      "same_subject"
+    ]
+  },
+  {
+    "tool": "世界の新モデル・速報",
+    "title": "Salesforce、人とAIエージェントが協働開発する「Slack Code」を発表",
+    "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE03MXFXY240NUtyYl9pSmlOUWp2Q0RiTHdkdjdtY2lKd2UyZTlMOGNPejFWcDdkYjBOb1NjOEZDQ3NqM3Z4M3ZJd2ljcFZpUTdqWkpWQ0lVb1JBbVZCQTl2Ym1yUXJacm5tTHc?oc=5",
+    "source_name": "PR TIMES",
+    "is_official": false,
+    "published_at": "2026-08-25T02:00:02.000Z",
+    "source_published_at": "2026-08-25T02:00:02.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T04:01:38.340Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Salesforce",
+      "Slack Code",
+      "salesforce",
+      "slackcode",
+      "slack"
+    ],
+    "primary_entity": "Salesforce",
+    "story_subject": "Slack Code",
+    "event_type": "release",
+    "event_stage": "announced",
+    "event_scope": "Slack",
+    "fact_slots": [],
+    "new_facts": [
+      "SalesforceがSlack上でAIエージェントと人間が協働してソフトウェア開発を行う新機能「Slack Code」を発表した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Salesforceが、Slack上で人とAIエージェントが協働してソフトウェア開発を行う新機能「Slack Code」を発表した。",
+    "detail": "SalesforceはSlack上でAIエージェントと人間が共同でソフトウェア開発を進められる新機能「Slack Code」を発表した。記事では機能の詳細な仕組みや提供時期、対応プランについては明らかにされていないが、Slackのワークフローの中でAIエージェントとの協働開発を実現する狙いがあるとみられる。今後、具体的な提供範囲や利用条件など詳細情報の発表が待たれる。",
+    "change_summary": "SlackにAIエージェントと人間が共同でコードを書ける新機能「Slack Code」が加わった。",
+    "impact_summary": "日本企業でもSlackを使う開発現場でAIエージェントとの協働作業が進む可能性がある。",
+    "action_suggestion": "提供開始時期や対応プラン、料金など詳細情報は今後のSalesforceの公式発表を確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル",
+      "アプリ開発・自動化"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_0c06b884e716727a8cc8",
+    "story_id": "story_0205ef04a2a8868e51",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "ChatGPT / OpenAI",
+    "title": "ChatGPTが代わりにメッセージ返信する新機能、OpenAIが発表 利用者から反発も",
+    "source_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOX0FGbVVwdUVKUzBtenI1clhXMER2N3pHaTE3bXZwSDlmRkFmQXJjSFpCRGFPMTY3ckNCUmNVZnJVS0poYjZfWjRzdDVTTWx1VDZEZUxGV0haLWpPUVZ3b2x1c1hmSjIzSWJCZ3ZUVTY0Z1hBaElwVVM5SFNCX3VhX01faDFNcW5fdzhiWXI1aEZPcEt5YnJ1ckoyV2tKdVNZR09USA?oc=5",
+    "source_name": "Business Insider Japan",
+    "is_official": false,
+    "published_at": "2026-08-25T02:00:00.000Z",
+    "source_published_at": "2026-08-25T02:00:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T04:00:57.085Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "ChatGPT",
+      "OpenAI",
+      "chatgpt",
+      "openai"
+    ],
+    "primary_entity": "OpenAI",
+    "story_subject": "ChatGPTのメッセージ自動返信機能",
+    "event_type": "release",
+    "event_stage": "announced",
+    "event_scope": "ChatGPT",
+    "fact_slots": [],
+    "new_facts": [
+      "OpenAIがChatGPTに利用者の代わりにメッセージへ返信させる新機能を発表した",
+      "一部利用者から機能に対する強い反発の声が上がっている"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "OpenAIがChatGPTに利用者に代わってメッセージを自動返信させる新機能を発表し、一部利用者から反発の声が上がっている。",
+    "detail": "OpenAIはChatGPTが利用者本人に代わってメッセージへ返信する新機能を発表した。この機能に対して一部利用者から「二度と話さない」といった強い反発の声が上がっているという。記事では機能の具体的な仕組みや対象範囲、提供開始時期についての詳細は明らかにされていないが、AIが人間同士のコミュニケーションを代行することへの懸念が背景にあるとみられる。",
+    "change_summary": "ChatGPTがユーザーに代わってメッセージへ返信を行う新機能が発表された。",
+    "impact_summary": "AIによるコミュニケーション代行への抵抗感が示されており、企業や個人がAI活用時のプライバシーや信頼性を検討する材料となる。",
+    "action_suggestion": "機能の提供範囲や設定方法など詳細は今後のOpenAIの公式発表を確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_7319750c37af5b1e6ce3",
+    "story_id": "story_6a9f565292028d6363",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.6230769230769231,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject"
+    ]
+  },
+  {
     "tool": "Claude / Claude Code",
     "title": "Anthropic、Claudeのストリーミング描画を改良 低速PCでの停止9分の1に",
     "source_url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQTE5hWmpDR3laNTlHTUJZbDc5WDhtYmdDQlNRLTFQdF9iR1kyQlJkcmdvZ0szSnZBaXFyU3dDa3ltbk9ZMXpHMXl6OE1TRzROcWFhX2VGZ1NBakZhMlBfT25Jd05LNjBfWGlSclRwcy1SUEpkYmRtSGVFb3JFZ05WclFn?oc=5",
@@ -336,6 +737,74 @@
     ]
   },
   {
+    "tool": "Perplexity",
+    "title": "Perplexity、売上高が3倍の7億5000万ドルに急増 Nvidiaによる買収交渉も浮上",
+    "source_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNNnZJSk05SDZXcTg3NW9uU1JHdGVJeDdNS29BaHNuVEdiSDJFZE5nMWw3Um9JYzVCZFJpcTdyWmF5QVFkbFRLWENvWXdFanZxU0V0d2xhYjZreWlXTDc5VUtqbFJncWFzT2lZU3Jma1AyNUNNMDhuUlFaVGs5NzRMN0c0dWI?oc=5",
+    "source_name": "Cryptopolitan",
+    "is_official": false,
+    "published_at": "2026-08-24T18:55:57.000Z",
+    "source_published_at": "2026-08-24T18:55:57.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T04:01:17.730Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Perplexity",
+      "Nvidia",
+      "perplexity",
+      "nvidia"
+    ],
+    "primary_entity": "Perplexity",
+    "story_subject": "Perplexityの売上高急増とNvidiaによる買収交渉",
+    "event_type": "acquisition",
+    "event_stage": "rumor",
+    "event_scope": "全世界",
+    "fact_slots": [
+      {
+        "type": "amount",
+        "scope": "Perplexityの売上高",
+        "value": "7億5000万ドル",
+        "normalized_value": "700000000USD"
+      },
+      {
+        "type": "amount",
+        "scope": "Nvidiaによる買収交渉規模",
+        "value": "300億ドル",
+        "normalized_value": "30000000000USD"
+      }
+    ],
+    "new_facts": [
+      "Perplexityの売上高が3倍の7億5000万ドルに急増したと報じられた",
+      "NvidiaがPerplexityを300億ドル規模で買収する交渉を行っているとされる"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "AI検索企業Perplexityの売上高が3倍の7億5000万ドルに急増し、Nvidiaとの300億ドル規模の買収交渉が報じられている。",
+    "detail": "Perplexityの売上高が急増し、3倍の7億5000万ドルに達したと報じられた。この急成長が明らかになったのは、Nvidiaが同社を300億ドル規模で買収する交渉を進めているとされる時期にあたる。記事は交渉の具体的な進捗や合意条件には触れていないが、AI検索スタートアップの評価額急上昇と、大手半導体企業による業界再編の動きとして注目されている。今後、正式な買収合意の有無が焦点となる。",
+    "change_summary": "Perplexityの売上高急増と、Nvidiaによる巨額買収交渉の観測が同時に報じられた。",
+    "impact_summary": "AI検索・エージェント市場での大型M&Aが実現すれば、検索エンジン業界や関連スタートアップの競争構図に影響が及ぶ可能性がある。",
+    "action_suggestion": "買収交渉の正式発表や条件の詳細は、今後の両社の公式発表を確認する必要がある。",
+    "importance": "A",
+    "related_categories": [
+      "企業・株式"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_a5cd5ff0063a4ddac70f",
+    "story_id": "story_5b91946aaaa8ea014f",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
     "tool": "DeepSeek",
     "title": "中国のハッカーがDeepSeekのAIを悪用しサイバー攻撃を強化と報道",
     "source_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5PejRfRkh3MlFZQVFLRGwzVUh5TktIcnJsektiazVKYVVNNnBDcnpQTmtidWhSNEZFUTdYNHRLQ0NFMkVpTkR5WTRfZmIyQ1JUTWVTak9RSklHWm5QZ2gtZC1oWnJBY3lZRk1oWDJIVDM?oc=5",
@@ -511,6 +980,65 @@
       "same_event_type",
       "material_fact_changed",
       "low_confidence_follow_up_demoted"
+    ]
+  },
+  {
+    "tool": "Adobe Firefly",
+    "title": "Adobe、「Firefly AIアシスタント」の無料体験プログラムを開始し日本語対応",
+    "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE42eFByaGVBSG5Nd1BHeW90T1RFMjR5dG9RUHRCUFNIdmdKSERzcHNnbGxRR0hfeWRRYV84cGdzTDJTSVJ1blpmOFVhNHFnU3dQZ2pVU3k1SzMwQzhQSlRUaW1ScGZCOEVnaTVTUlI3MUNDRWh2NnBwTHhoMDg4SjA?oc=5",
+    "source_name": "Yahoo!ニュース",
+    "is_official": false,
+    "published_at": "2026-08-24T11:52:00.000Z",
+    "source_published_at": "2026-08-24T11:52:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-25T04:01:16.871Z",
+    "event_at": "",
+    "event_status": "開始済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Adobe Firefly",
+      "Firefly AIアシスタント",
+      "adobefirefly",
+      "fireflyaiアシスタント",
+      "adobe"
+    ],
+    "primary_entity": "Adobe",
+    "story_subject": "Firefly AIアシスタント無料体験プログラム",
+    "event_type": "release",
+    "event_stage": "launched",
+    "event_scope": "日本語含む",
+    "fact_slots": [],
+    "new_facts": [
+      "Adobe Firefly AIアシスタントの無料体験プログラムが開始された",
+      "日本語での利用に対応している"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Adobeがクリエイティブ向けAI「Firefly」の「AIアシスタント」無料体験プログラムを開始し、日本語での利用にも対応した。",
+    "detail": "Adobeは、クリエイティブ向けAIサービス「Adobe Firefly」に搭載する「Firefly AIアシスタント」の無料体験プログラムを開始した。同アシスタントは対話形式で画像生成や編集作業を支援する機能とみられ、今回のプログラムでは日本語での操作にも対応する。提供期間や機能範囲など詳細は記事からは明らかになっていない。",
+    "change_summary": "Firefly AIアシスタントの無料体験プログラムが新たに始まり、日本語対応も加わった点が新しい。",
+    "impact_summary": "日本語対応により国内のクリエイターやマーケティング担当者がFireflyのAI機能を試しやすくなる。",
+    "action_suggestion": "Adobe公式サイトで無料体験プログラムの参加条件や期間を確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "画像・動画生成",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
+    "article_id": "article_639e788a6b387c3c5449",
+    "story_id": "story_e05817093bdbd44d88",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.5895454545454546,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "uncertain_subject",
+      "same_event_type"
     ]
   },
   {
@@ -741,178 +1269,6 @@
     ]
   },
   {
-    "tool": "Claude / Claude Code",
-    "title": "AnthropicがClaudeの障害発生を認める",
-    "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9SOUdOMmRBN2NMNlhHWWJOczhiMDhwRzFwQlZuaUt0dWJ6aUdYWnA4Y0xKM3JrdnRTVU1DeHZ6N0szUmNnczF2VlBDVExxWlV1QldzcFE1MUF3Yl9RdGhTRTlOQ3pzWEhCamM1T0RfV0RIUQ?oc=5",
-    "source_name": "adigitalboom.com",
-    "is_official": false,
-    "published_at": "2026-08-24T07:18:54.000Z",
-    "source_published_at": "2026-08-24T07:18:54.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-24T07:29:27.798Z",
-    "event_at": "",
-    "event_status": "継続中",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Anthropic",
-      "Claude",
-      "anthropic",
-      "claude"
-    ],
-    "primary_entity": "Anthropic",
-    "story_subject": "Claudeの障害",
-    "event_type": "other",
-    "event_stage": "investigating",
-    "event_scope": "Claudeサービス全体",
-    "fact_slots": [
-      {
-        "type": "status",
-        "scope": "Claudeの稼働状況",
-        "value": "障害発生中",
-        "normalized_value": "障害発生中"
-      }
-    ],
-    "new_facts": [
-      "AnthropicがClaudeのサービス障害を公式に確認した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "AnthropicはAIチャット「Claude」が利用できなくなる障害が発生していることを認め、対応を進めていると説明した。",
-    "detail": "AI開発企業Anthropicが提供するチャットAI「Claude」で障害が発生し、同社はサービスがダウンしていることを公式に認めた。記事では障害の原因や復旧見込みについて具体的な情報は確認できず、詳細は不明のままとなっている。業務でClaudeを利用しているユーザーにとっては一時的に作業が滞る可能性がある。",
-    "change_summary": "Claudeの障害発生をAnthropicが公式に確認した。",
-    "impact_summary": "業務でClaudeを利用している企業・個人は一時的に作業が中断する可能性がある。",
-    "action_suggestion": "現時点では復旧時期など詳細情報は確認できておらず、Anthropicからの続報を待つ状況。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "その他"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_ed980476ee148f08575d",
-    "story_id": "story_9329afe7fdb90cee8d",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.6482926829268293,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "same_subject"
-    ]
-  },
-  {
-    "tool": "Grok / xAI",
-    "title": "AI「Grok」が一時的に意味不明な回答を連発する不具合",
-    "source_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOaWtHOTlmeXN3a2IwRVc2bDh6ZjlmZl9icEVsbF9NTzctS0hkRDltQWRGdFVvMV9rVUxlSmVRckVKMXp0VTdvRFNBSWxhSk5UdHZld0RNeHBrTlFZNFZtX3A4eUpIZnE0VnJwMTVmdXlyZ0ZIMkxmUnQyV1c1MVlTTXpUZUsxLV81VmtfSXNR?oc=5",
-    "source_name": "Yahoo!ニュース",
-    "is_official": false,
-    "published_at": "2026-08-24T06:11:28.000Z",
-    "source_published_at": "2026-08-24T06:11:28.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-24T07:29:44.834Z",
-    "event_at": "",
-    "event_status": "不明",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Grok",
-      "xAI",
-      "grok",
-      "xai"
-    ],
-    "primary_entity": "xAI",
-    "story_subject": "Grokの不具合",
-    "event_type": "other",
-    "event_stage": "investigating",
-    "event_scope": "Grokサービス",
-    "fact_slots": [],
-    "new_facts": [
-      "Grokが一時的に意味不明な回答を連発する不具合を起こした"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "xAIのAI「Grok」が一時的に意味不明な回答を繰り返す不具合を起こしたと報じられた。",
-    "detail": "イーロン・マスク氏率いるxAIが提供する対話AI「Grok」が一時的に不具合を起こし、ユーザーの質問に対して意味不明な回答を連発する状態になったと報じられた。記事からは不具合の原因や発生時間帯、復旧の有無について具体的な情報は確認できず、詳細は不明となっている。生成AIが実運用で予期せぬ誤作動を起こす事例として注目される。",
-    "change_summary": "Grokが一時的に意味不明な回答を繰り返す不具合が発生したことが報じられた。",
-    "impact_summary": "業務や日常でGrokを利用しているユーザーは、回答の信頼性が一時的に損なわれる影響を受けた可能性がある。",
-    "action_suggestion": "不具合の原因や復旧状況についてxAIからの正式な説明は記事からは確認できておらず、続報が待たれる。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "セキュリティ"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_c33e87daad86a6d4e5bb",
-    "story_id": "story_0bb2806b3c2d59fed1",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "世界の新モデル・速報",
-    "title": "生成AIで課題設定や発表を支援、探究学習の1Day講座を提供",
-    "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9oUzhmM0lkSVRfaXZ6YXBhRUhpMHgtM0ptMTgwQnVEdVdRemNSS1FuOUV5a2lvYUxjX2c1emVGdXFhLTJaR1dNbmstSy1Kclh6Rk1QdlpzZXE3YjNtdHFLdVd4ay13d2J4aFN0VjNzcGV3OUpYdXhybk1Dc0ltTlE?oc=5",
-    "source_name": "Yahoo!ニュース",
-    "is_official": false,
-    "published_at": "2026-08-24T06:00:00.000Z",
-    "source_published_at": "2026-08-24T06:00:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-24T07:30:01.204Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "こどもとIT",
-      "探究学習",
-      "こどもとit"
-    ],
-    "primary_entity": "不明",
-    "story_subject": "探究学習向け1Day講座",
-    "event_type": "other",
-    "event_stage": "announced",
-    "event_scope": "教育・日本",
-    "fact_slots": [],
-    "new_facts": [
-      "生成AIで課題設定や発表準備を支援する探究学習の1Day講座が提供される"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "子ども向けに探究学習の課題設定や発表準備を生成AIで支援する1日完結型の講座が提供されることが紹介された。",
-    "detail": "「こどもとIT」の記事では、子どもたちが取り組む探究学習において、テーマとなる課題の設定や成果発表の準備を生成AIを使って支援する1Day講座が提供されると紹介されている。探究学習は生徒自身が問いを立てて調べ、発表する学習形態で、課題設定や発表資料作成でつまずく子どもも多いとされる。今回の講座では生成AIを活用してこの過程を支援するとしているが、提供元の企業名や具体的な開催日、対象年齢、料金などの詳細は記事本文からは確認できない。",
-    "change_summary": "探究学習の課題設定や発表準備を生成AIで支援する1日講座が新たに提供される。",
-    "impact_summary": "学校教育や家庭学習の場で生成AIを使った学習支援が広がる可能性があり、教育関係者や保護者にとって参考になる動きといえる。",
-    "action_suggestion": "講座の主催者や開催日程、参加条件などの詳細は記事からは確認できず、今後の続報が待たれる。",
-    "importance": "C",
-    "related_categories": [
-      "AIツール・モデル",
-      "その他"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_3c0a27b2e061ff3fc805",
-    "story_id": "story_9e25196bdbec9cebab",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
     "tool": "Perplexity",
     "title": "Perplexity、売上高7億5000万ドル超えでNvidiaが300億ドル超の評価額での出資を検討",
     "source_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOSHlDN21VbzBReG94Vk90b3dnaHJoZkROZTh5TThIYTgydTA1SGplWW1UNkd0RHlWQVNJQ24wQTBJQlVwN0xFLU1NN29rTFRjamdxd3dyYXBmd0tFeG9UdGtEWWZiR29OZ2M0aGxmNVdHNEVneW9KMW9zWVB5SkVGYUNxcjQxaldRWGgzdUozeDV1dXdiWTVkZy1wVC1rc21GTFl1aDUzYzdSWTh6R1k2R2JieXQzUFZKUmc?oc=5",
@@ -1027,61 +1383,6 @@
     "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
     "article_id": "article_7e0d271eb697eaf70a29",
     "story_id": "story_7ef22f7713c6b1e37b",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "AI業界・経営重要速報",
-    "title": "AIとバッテリー貯蔵がリチウム需要の新たな柱に、PLS CEOが指摘",
-    "source_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOQ25hU3lPMFZLZVZLWUN4bzV1Smhwc0FtQXBidW14VG16NDFiRjJicWQ0TUxVODRVWXdSNFMtYUdLMUdHUkZ4QWpXZ0xWbkdjOGp2RmlndWFPSlI1OHJOOTBEU1U2dng2ekt3THI5c19kSmdYMVYtQy1nZXVRdDFPUmFSTjBieU9ReGpCUVdwblluWHo2U1UtMW9tb2hiMVdwMTY3VE55M3c5RjFaVG11ZUlWYw?oc=5",
-    "source_name": "CNBC",
-    "is_official": false,
-    "published_at": "2026-08-24T04:49:18.000Z",
-    "source_published_at": "2026-08-24T04:49:18.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-24T07:29:57.173Z",
-    "event_at": "",
-    "event_status": "不明",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "PLS",
-      "リチウム市場",
-      "pls",
-      "cnbc"
-    ],
-    "primary_entity": "PLS",
-    "story_subject": "AIと蓄電池によるリチウム需要拡大",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "リチウム市場・世界",
-    "fact_slots": [],
-    "new_facts": [
-      "PLSのCEOがAIと蓄電池向け需要をリチウム市場の新たな成長分野だと述べた"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "リチウム生産会社PLSのCEOが、AI関連需要と蓄電池向け需要がリチウム市場で新たに拡大している分野だとCNBCで述べた。",
-    "detail": "CNBCの報道によると、リチウム生産を手がける企業PLSの最高経営責任者(CEO)が、AI関連のデータセンター拡大とバッテリーストレージ(蓄電池)向けの需要が、リチウム市場における新たな成長分野として浮上していると述べた。これまでリチウム需要は主に電気自動車(EV)向けバッテリー用途が中心とされてきたが、AIの計算処理拡大に伴う電力インフラや大規模蓄電システムの整備が新たな需要源になりつつあるという。具体的な需要量の見通しや今後のスケジュールなど詳細な数値は記事内では明らかにされていない。",
-    "change_summary": "AIデータセンターと蓄電池向け需要が、リチウム市場の新たな成長分野として言及された。",
-    "impact_summary": "AI産業の拡大が資源市場にも波及し始めていることを示す事例であり、素材・資源関連企業やエネルギー政策の議論に影響を与える可能性がある。",
-    "action_suggestion": "具体的な需要見通しや数値は記事からは確認できず、PLSや業界団体の今後の発表を確認する必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "半導体・インフラ",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_4face27490548fbcff85",
-    "story_id": "story_ebb57a2c695df6a0c4",
     "story_sequence": 1,
     "relation_type": "new",
     "relation_confidence": 1,
@@ -2720,300 +3021,6 @@
       "same_event_type",
       "same_scope",
       "non_forward_stage_change"
-    ]
-  },
-  {
-    "tool": "Adobe Firefly",
-    "title": "Adobe、Fireflyで音楽・音声・効果音の生成機能を提供開始",
-    "source_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQT1FTeDgxZFljUUFkbEh2bG5GOFFRTWYtSWpsX2xUYUtOcFpvSmpxdTFFalhUYmlNMjNaeW1SdkYta1VXcGtvY09Fb1UtV2VlSS1RRXRqT0J6XzlNTExaSXZrRXFZVlZjdEdTYmRnOEJCNUZocVZmelVzZ1A4b2FjTG1WWFhBSkZ3Mk1yNHExS0RWVFFTLWlJejlPS1RvVFA4cW0tZGVEQUhzZndsNUdIbGE5YTY2el8wcDJsZw?oc=5",
-    "source_name": "디지털투데이",
-    "is_official": false,
-    "published_at": "2026-08-21T00:35:00.000Z",
-    "source_published_at": "2026-08-21T00:35:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-21T01:58:24.006Z",
-    "event_at": "",
-    "event_status": "開始済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Adobe",
-      "Firefly",
-      "adobe",
-      "firefly"
-    ],
-    "primary_entity": "Adobe",
-    "story_subject": "Firefly 音楽・音声・効果音生成機能",
-    "event_type": "release",
-    "event_stage": "launched",
-    "event_scope": "Firefly全体",
-    "fact_slots": [],
-    "new_facts": [
-      "AdobeがFireflyに音楽・音声・効果音の生成機能を追加し提供を開始した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "Adobeが生成AIツール「Firefly」に音楽・音声・効果音を生成する新機能を追加し、提供を開始した。",
-    "detail": "Adobeは画像・動画生成AIサービス「Firefly」に、音楽や音声、効果音を生成できる新機能を追加し提供を開始した。これまでFireflyは主に画像や動画の生成に使われてきたが、今回の拡張により音のクリエイティブ制作もカバーする総合的なAIツールへと進化する形になる。記事本文では機能の詳細な操作方法や料金プランへの反映状況までは明記されていないが、動画制作やコンテンツ制作の現場で音周りの作業までAIで完結できるようになる点が特徴とみられる。今後、対応プランや具体的な利用方法の続報が見込まれる。",
-    "change_summary": "Fireflyに音楽・音声・効果音を生成する新機能が追加され、提供が始まった。",
-    "impact_summary": "動画制作者やクリエイターは、画像・動画に加えて音の制作までAdobeの単一ツール内で完結できるようになる可能性がある。",
-    "action_suggestion": "具体的な対応プランや料金への影響は、Adobeの公式発表で確認する必要がある。",
-    "importance": "A",
-    "related_categories": [
-      "音楽・クリエイティブ",
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_75661bb69ab42d4a1d31",
-    "story_id": "story_2507c091de2edaeb3d",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "NVIDIA・AI半導体",
-    "title": "NVIDIA、米SBエナジーに15億ドル出資",
-    "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1jbF9yRWZUUHQ3Sy1ocFZFZVBuanZfZWFWYUx1SGxZbTZNdmRMS1RqSnRZSnV1Vjl2cExIVlJfaWtuT01wQ0lRdnpZeTRFUGFHMkxEUkdpRF9ES1pZNm04a1RnNUZjQmpwZE43M25iay04TmdvU2dTazJWU1g5bXPSAX9BVV95cUxNY2xfckVmVFB0N0staHBWRWVQbmp2X2VhVmFMdUhsWW02TXZkTEtUakp0WUp1dVY5dnBMSFZSX2lrbk9NcENJUXZ6WXk0RVBhRzJMRFJHaURfREtaWTZtOGtUZzVGY0JqcGRONzNuYmstOE5nb1NnU2syVlNYOW1z?oc=5",
-    "source_name": "Sustainable Japan",
-    "is_official": false,
-    "published_at": "2026-08-20T22:40:42.000Z",
-    "source_published_at": "2026-08-20T22:40:42.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-21T09:53:22.896Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "NVIDIA",
-      "SBエナジー",
-      "nvidia",
-      "sbエナジー"
-    ],
-    "primary_entity": "NVIDIA",
-    "story_subject": "NVIDIAによるSBエナジーへの出資",
-    "event_type": "funding",
-    "event_stage": "announced",
-    "event_scope": "アメリカ",
-    "fact_slots": [
-      {
-        "type": "amount",
-        "scope": "NVIDIAの出資額",
-        "value": "15億ドル",
-        "normalized_value": "1500000000USD"
-      }
-    ],
-    "new_facts": [
-      "NVIDIAが米SBエナジーに15億ドルを出資した。",
-      "電力会社等も出資や信用保証の対象に加わった。"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "NVIDIAが米国のSBエナジーに15億ドルを出資し、電力会社なども出資や信用保証の対象に加わった。",
-    "detail": "NVIDIAは米国の電力事業会社SBエナジーに対し15億ドルを出資した。今回の枠組みでは電力会社なども出資や信用保証の対象に含まれるとされる。AI向けデータセンターの拡大に伴い電力需要が急増する中、半導体大手のNVIDIAがエネルギー分野への投資を強化する動きの一環とみられる。出資の具体的な使途や今後の事業計画の詳細は記事からは確認できていない。",
-    "change_summary": "NVIDIAがSBエナジーに15億ドルを出資し、電力会社等も出資・信用保証の対象に加わったことが新たに明らかになった。",
-    "impact_summary": "AIデータセンターの電力需要を支えるインフラ投資が進むことで、日本企業のエネルギー・半導体関連事業にも影響が及ぶ可能性がある。",
-    "action_suggestion": "出資の具体的な条件や今後の事業展開については追加の発表を確認する必要がある。",
-    "importance": "A",
-    "related_categories": [
-      "半導体・インフラ",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_e5d9c271bd233f138ece",
-    "story_id": "story_1980ae8772fe3d3192",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.66,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "shared_entity",
-      "same_subject",
-      "same_event_type"
-    ]
-  },
-  {
-    "tool": "AI規制・著作権",
-    "title": "EU AI法の新たな規制段階が発効",
-    "source_url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFB4OEozY3VfYmgyc3F6ZHI3LXlYN0x5bUpNNjYwZG9ES1BoUEJuWmltREk3eU1LTm0xLVFITURRbEhKM2Zod3FLekNxLUpIVUNr?oc=5",
-    "source_name": "london3.jp",
-    "is_official": false,
-    "published_at": "2026-08-20T22:00:00.000Z",
-    "source_published_at": "2026-08-20T22:00:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-21T04:03:17.369Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "EU AI法",
-      "euai法"
-    ],
-    "primary_entity": "EU",
-    "story_subject": "EU AI法",
-    "event_type": "policy",
-    "event_stage": "enacted",
-    "event_scope": "EU",
-    "fact_slots": [],
-    "new_facts": [
-      "EU AI法の新たな規制段階が発効したと報じられた"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "EUの人工知能規制法(EU AI法)が新たな段階に入り、AIへの規制強化が進んでいると報じられた。具体的な適用範囲は記事からは確認できない。",
-    "detail": "EU(欧州連合)の人工知能を包括的に規律する「EU AI法(EU AI Act)」について、新たな規制段階が発効したと報じられている。EU AI法は段階的に施行される仕組みになっており、高リスクAIシステムへの義務などが時期を分けて適用されていく。今回の記事ではどの条項が発効したか、対象となる事業者の範囲といった具体的な内容は明らかにされておらず、規制がどこへ向かうのかを含め、今後の続報が待たれる。",
-    "change_summary": "EU AI法の新たな規制段階が発効したと報じられた。",
-    "impact_summary": "EUで事業を展開する日本企業もAI関連の規制対応を迫られる可能性がある。",
-    "action_suggestion": "記事からは適用範囲や対象事業者などの詳細は確認できず、今後の公式情報の確認が必要。",
-    "importance": "A",
-    "related_categories": [
-      "政策・行政",
-      "規制・法務"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_c86a6eba1bb74a3a1fca",
-    "story_id": "story_e455e786c669ca407e",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "AI業界・経営重要速報",
-    "title": "NVIDIA・OpenAI・ソフトバンクが提携、オハイオ州に大規模AIインフラと雇用創出",
-    "source_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9lMU1CRWtTNXV6aG5aNHlORlh2eEhLSjdXUHVuektqTU9SeXJHeHBxNF91RjFaeHVCOGF6OXAwUDdFU1FGcVA2S2hqYnNOcUVnUkd3Z2tkOGNLVzZqQWhtM1kwcGI?oc=5",
-    "source_name": "ロボスタ",
-    "is_official": false,
-    "published_at": "2026-08-20T03:15:03.000Z",
-    "source_published_at": "2026-08-20T03:15:03.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-20T09:51:25.068Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "NVIDIA",
-      "OpenAI",
-      "ソフトバンク",
-      "nvidia",
-      "openai"
-    ],
-    "primary_entity": "NVIDIA",
-    "story_subject": "オハイオ州AIインフラ提携",
-    "event_type": "partnership",
-    "event_stage": "announced",
-    "event_scope": "米国オハイオ州",
-    "fact_slots": [],
-    "new_facts": [
-      "NVIDIA・OpenAI・ソフトバンクの提携によりオハイオ州で数万人規模の雇用創出とAIインフラ構築が計画されている"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "NVIDIA、OpenAI、ソフトバンクの3社が提携し、米オハイオ州で数万人規模の雇用創出とAIインフラ構築を進める計画が明らかになった。",
-    "detail": "NVIDIA、OpenAI、ソフトバンクの3社による提携により、米オハイオ州で大規模なAIインフラ構築が進められることが、ロボスタの報道で明らかになった。この提携では数万人規模の雇用創出も見込まれているとされる。具体的な投資額や施設の稼働開始時期、雇用の内訳などの詳細は記事本文からは確認できず、不明な点が残る。",
-    "change_summary": "NVIDIA・OpenAI・ソフトバンクの3社提携により、オハイオ州での大規模AIインフラ整備計画が明らかになった。",
-    "impact_summary": "米国での大規模AI投資は世界的な半導体・データセンター需要や関連産業に影響を与え、日本企業の関連ビジネス機会にも波及しうる。",
-    "action_suggestion": "投資規模や稼働時期など詳細については、今後の公式発表を確認する必要がある。",
-    "importance": "A",
-    "related_categories": [
-      "企業・株式",
-      "半導体・インフラ"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_290fecb75889ef2056ee",
-    "story_id": "story_fa04f1df331fe7589f",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "Gemini",
-    "title": "Google、大学生向けに「Google AI Plus」を1年間無料提供",
-    "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1yZk1fZXF2N2tIOXVfR3FRbVBBSlJiRHRmZFc1NEludjBSSHdoZFVGZmFYYkxfQmVvLTdwS1Nxb2pGWnd2dURwaTl5cGhKaWxDUE5PQ3pON3V3ZWk0c2FZMGliYkxoRGZTdThDcFVIWXU4QdIBd0FVX3lxTE1jUW9XQ01CN0FuR0dDdnoyYlNyVEhnUzZBQ1lob0JPMS1zWnNURW5ad0pGMy1XSjdoYjk1ODN0YkFMVXFtRTFINnhxMnQzUktIclJmZG5MMmtiUnA0UTBvaEdzbElmUWcxSGRGaUFDRHNURmpZbUhJ?oc=5",
-    "source_name": "corriente.jp",
-    "is_official": false,
-    "published_at": "2026-08-20T02:44:43.000Z",
-    "source_published_at": "2026-08-20T02:44:43.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-08-20T03:59:25.028Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Google",
-      "Google AI Plus",
-      "Gemini",
-      "google",
-      "googleaiplus"
-    ],
-    "primary_entity": "Google",
-    "story_subject": "Google AI Plus 学生向け無料提供",
-    "event_type": "pricing",
-    "event_stage": "announced",
-    "event_scope": "大学生向け",
-    "fact_slots": [
-      {
-        "type": "price",
-        "scope": "Google AI Plus 学生向け",
-        "value": "1年間無料",
-        "normalized_value": "1"
-      }
-    ],
-    "new_facts": [
-      "Googleが大学生向けにGoogle AI Plusを1年間無料提供すると発表した",
-      "Geminiに学生向け機能が追加される"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "Googleが大学生を対象に有料プラン「Google AI Plus」を1年間無料で提供し、Geminiにも学生向け機能を追加すると発表した。",
-    "detail": "Googleが大学生向けに、通常有料の「Google AI Plus」プランを1年間無料で提供すると発表した。あわせてGeminiには学生の学習を支援する機能が追加されるとしている。対象となる学生の条件や提供開始時期、対象国などの詳細は記事からは明らかになっていないが、AIツールを学生に広く浸透させる狙いがあるとみられる。",
-    "change_summary": "大学生向けにGoogle AI Plusの1年間無料提供とGeminiの学生向け機能追加が発表された。",
-    "impact_summary": "学生が高度なAIツールを無料で利用できるようになれば、学習や研究の効率化につながる一方、教育現場でのAI活用ルール整備が課題となる。",
-    "action_suggestion": "対象となる学生の条件や申込方法など、Googleの公式案内を確認する必要がある。",
-    "importance": "A",
-    "related_categories": [
-      "AIツール・モデル",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep",
-    "article_id": "article_7948625aa2b34a0a25e5",
-    "story_id": "story_4da7b7ac3c872708d2",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.5189473684210526,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "shared_entity",
-      "same_subject"
     ]
   },
   {
