@@ -2,6 +2,296 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_b749ed6ae3aff6159a71",
+      "story_id": "story_c983c2e85a3c5f60ac",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AIエージェントの判断を検証可能にする記録プロトコル「AIREP」提案",
+      "source_published_at": "2026-08-25T04:00:00.000Z",
+      "published_at": "2026-08-25T04:00:00.000Z",
+      "fetched_at": "2026-08-25T04:01:40.375Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "研究者らが、AIランタイムの許可・遮断・保留などの判断を改ざん検知可能な形で記録するプロトコル「AIREP」を提案した。",
+      "source_name": "rss.arxiv.org",
+      "source_url": "https://arxiv.org/abs/2608.21363",
+      "story_entities": [
+        "AIREP",
+        "arXiv",
+        "airep",
+        "arxiv"
+      ],
+      "primary_entity": "arXiv研究チーム",
+      "story_subject": "AIREPプロトコル",
+      "event_type": "research",
+      "event_stage": "announced",
+      "event_scope": "研究論文",
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "arXiv識別番号",
+          "value": "2608.21363",
+          "normalized_value": "2608.21363"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AIランタイムの個別判断を改ざん検知可能な署名付きレコードとして記録する新しいプロトコルが提案された。",
+      "detail": "論文はAIREPというプロトコルを提示している。AIランタイムが個々の出力を許可・遮断・保留・редакト・エスカレーションした際、その判断を単一の署名済みレコードとして記録し、そのランタイムに依存せず第三者がオフラインで検証できるようにする。レコードは入力・出力・証拠をハッシュ値で参照し、証拠が何を保証し何を保証しないかを明示する。全レコードはSHA-256ハッシュチェーンで連結され、改ざんや欠落を検出できる。ベンダーやモデル固有の情報は任意の名前空間に限定し、共有フォーマットの中立性を保つ仕組みも備える。参照実装と2言語対応の適合性キットが示され、実装間の正規形の整合性や新鮮性証明、複数ランタイム間のチェーン化などの課題も議論されている。",
+      "new_facts": [
+        "AIREPは判断内容をSHA-256ハッシュチェーンで記録し改ざん検知を可能にする",
+        "参照実装と2言語対応の適合性キットが公開されている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_2fcc9f4e728727ed1209",
+      "story_id": "story_20f1d33657d1062721",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "マスク氏、600億ドル規模買収後初のCursor社員向け全体会議でGrokの遅れを認める",
+      "source_published_at": "2026-08-25T03:39:43.000Z",
+      "published_at": "2026-08-25T03:39:43.000Z",
+      "fetched_at": "2026-08-25T04:01:18.631Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "イーロン・マスク氏が600億ドル規模の買収後初めて開かれたCursor社員向け全体会議で、AIモデル「Grok」の開発遅延を認めた。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFAzRjc2dnhYQ2o4VVZqQ0QxMGdHa1RwNlZHVEE0c3BrNFBTRUo0aFl0akE5b0htM25kQzZOVnlNX0QtYUxOU0lUSEpvNGRpWEFqTzJSX0tQeXk4a0dyNzV6QVBTNHhPZTFDVVlnY2FGenpPU0c3?oc=5",
+      "story_entities": [
+        "xAI",
+        "Grok",
+        "Cursor",
+        "xai",
+        "grok"
+      ],
+      "primary_entity": "xAI",
+      "story_subject": "Grokの開発遅延とCursor買収後の社内会議",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "xAI・Cursor",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "マスク氏が買収後初の社内会議でGrokの開発遅延を公に認めた点が新しい動きである。",
+      "detail": "xAIのイーロン・マスク氏は、600億ドル規模の買収を経て初めて開催されたコーディング支援ツール「Cursor」の社員向け全体会議に出席し、自社のAIモデル「Grok」の開発が遅れていることを認めた。買収の詳細な時期や対象企業との関係、遅延の具体的な要因については記事からは明らかになっていない。今後のGrok開発の立て直し方針についても言及内容は不明。",
+      "new_facts": [
+        "マスク氏が600億ドル規模の買収後初のCursor社員向け全体会議でGrokの開発遅延を認めた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_dec416333259321fc4ea",
+      "story_id": "story_51fc3ccf31a967f902",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Perplexity、CNNの著作権侵害訴訟の一部却下を裁判所に申し立て",
+      "source_published_at": "2026-08-25T03:20:00.000Z",
+      "published_at": "2026-08-25T03:20:00.000Z",
+      "fetched_at": "2026-08-25T04:01:17.730Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "AI検索企業Perplexityが、CNNから提起された著作権侵害訴訟の一部請求を却下するよう裁判所に申し立てた。",
+      "source_name": "Law360",
+      "source_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPODRCQVd6ekVqcUxvRXNCZkx0YXdMZVd0eDlEQVJGbjhvSWg1SFc3ZGo0UWx3Vm13TG5mMWVraGVuV3ZaclFaUVg4dWl5eEVxLU1NbHBnc0JvbTNUT1d3cjRyMXBIekdmWGt2WWdXWFg2MGF4VGxUWmlwbjNtTTVDNHBQSU4zeEtZQ3F0T1ZrbU4tcXo1Z1FZ0gFWQVVfeXFMT25EUFh0WWNIVUJtWVR4YUpFZG1QVlgwMzRGYTg0X0ZnZ3RvM2pXUUMwcDU1RV90UXFGaDhJdGRfY19ZVEdNZ3JZbjdaMUdPUmNKRzEyMHc?oc=5",
+      "story_entities": [
+        "Perplexity",
+        "CNN",
+        "perplexity",
+        "cnn"
+      ],
+      "primary_entity": "Perplexity",
+      "story_subject": "CNNによる著作権侵害訴訟",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "米国の訴訟",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Perplexityが訴訟の一部請求を却下するよう新たに裁判所へ申し立てた点が動きとして新しい。",
+      "detail": "AI検索サービスを提供するPerplexityは、米CNNから提起された著作権侵害訴訟について、請求の一部を却下するよう裁判所に申し立てた。CNNは自社記事がPerplexityの検索・要約機能で無断利用されているとして提訴していた。今回の申し立てにより訴訟の争点が絞られる可能性があるが、却下理由の詳細や裁判所の判断時期は記事からは明らかになっていない。",
+      "new_facts": [
+        "Perplexityが CNN の著作権侵害訴訟の一部請求却下を裁判所に申し立てた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_33a2e94a76276d77c114",
+      "story_id": "story_cee39b30e6048ded8e",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6263414634146341,
+      "title": "Claudeの「不可視の透かし」に利用者反発、解約表明も相次ぐ",
+      "source_published_at": "2026-08-25T02:31:12.000Z",
+      "published_at": "2026-08-25T02:31:12.000Z",
+      "fetched_at": "2026-08-25T04:00:59.252Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "Anthropicの生成AI「Claude」に導入された不可視のウォーターマーク機能に利用者が反発し、解約を報告する投稿も出ている。",
+      "source_name": "マイナビニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1MVmZDTXVzMDJiM3VGMi1vRmVYajNkaWpXZFpBdm9QVm1BVHZfTVQzT0ZtWEpGbWE1V01ycEo0OVBXMWh3ZDQ5T3JxLTZoR0s5STZtUFpORnRtRWpVM1hYNUlFSDZ0dHhW?oc=5",
+      "story_entities": [
+        "Claude",
+        "Anthropic",
+        "claude",
+        "anthropic"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claudeの不可視ウォーターマーク機能への反発",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "Claude利用者全体",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Claudeに導入された不可視の透かし機能に利用者から批判が集まり、解約表明が相次いでいる点が新しい。",
+      "detail": "Claude利用者の間で、生成文章に埋め込まれる「不可視のウォーターマーク」機能への反発が広がっている。ウォーターマークとは、人の目には見えない形で生成物に識別情報を埋め込む技術で、AI生成コンテンツの判別などに使われる。SNS上では機能への不満から解約を報告する投稿が見られたが、開発元のAnthropicはサービスへの影響を否定している。導入時期や具体的な仕様、今後の対応方針は明らかになっていない。",
+      "new_facts": [
+        "Claudeの不可視ウォーターマーク機能に利用者が反発し解約報告が出ている",
+        "Anthropicは機能による影響を否定している"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_974d571226c496865076",
+      "story_id": "story_90bdf8c225570f9eb4",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5214285714285715,
+      "title": "セキュリティ企業Adversa AI、暗号化命令でGrokとGeminiの安全対策回避を実証",
+      "source_published_at": "2026-08-25T02:00:58.000Z",
+      "published_at": "2026-08-25T02:00:58.000Z",
+      "fetched_at": "2026-08-25T04:01:00.560Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Adversa AIが暗号化した命令を使い、Grokのデータ外部送信やGeminiの安全ガードレール回避が可能なことを実証した。",
+      "source_name": "合同会社ロケットボーイズ",
+      "source_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQSHlsX285cV9acU9qd0stNkNzMnRRVURIaHVxeGs1bm5iR05jY2h3dGpfUkpnbGxCMFZVcFdzTHF3Q2xmcVJIa1RrNjV6eWN5REdJYnBpc29iNWM5MGlVU0NmdVIxaTZtdVFBcm83dElTZXZiZ1lFa3FHR1hMN3ZrWGJRNmdDdHFheUZTY0RLU2Jra2FPaWNXZ1B1bmxEUTFpUmM0?oc=5",
+      "story_entities": [
+        "Adversa AI",
+        "Grok",
+        "Gemini",
+        "adversaai",
+        "grok"
+      ],
+      "primary_entity": "Adversa AI",
+      "story_subject": "暗号化命令によるGrok・Geminiの安全対策回避実証",
+      "event_type": "security",
+      "event_stage": "investigating",
+      "event_scope": "Grok・Gemini全般",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject"
+      ],
+      "change_summary": "暗号化命令によってGrokのデータ外部送信とGeminiの安全ガードレール回避が可能であることが新たに実証された。",
+      "detail": "Adversa AIは、AIチャットボットに暗号化した指示を与えることでxAIの「Grok」からデータを外部へ送信させる手法を実証したと発表した。同様の手法でGoogleの「Gemini」に組み込まれた、不適切な出力を防ぐ安全性のためのガードレールも回避できることが確認されたという。通常のフィルタリングでは検知しにくい暗号化プロンプトを用いる点が攻撃手法の特徴とされる。各社の具体的な対応状況や修正の有無は明らかになっていない。",
+      "new_facts": [
+        "Adversa AIが暗号化命令でGrokのデータ外部送信を実証した",
+        "同様の手法でGeminiの安全ガードレールも回避可能と確認された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_0c06b884e716727a8cc8",
+      "story_id": "story_0205ef04a2a8868e51",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Salesforce、人とAIエージェントが協働開発する「Slack Code」を発表",
+      "source_published_at": "2026-08-25T02:00:02.000Z",
+      "published_at": "2026-08-25T02:00:02.000Z",
+      "fetched_at": "2026-08-25T04:01:38.340Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Salesforceが、Slack上で人とAIエージェントが協働してソフトウェア開発を行う新機能「Slack Code」を発表した。",
+      "source_name": "PR TIMES",
+      "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE03MXFXY240NUtyYl9pSmlOUWp2Q0RiTHdkdjdtY2lKd2UyZTlMOGNPejFWcDdkYjBOb1NjOEZDQ3NqM3Z4M3ZJd2ljcFZpUTdqWkpWQ0lVb1JBbVZCQTl2Ym1yUXJacm5tTHc?oc=5",
+      "story_entities": [
+        "Salesforce",
+        "Slack Code",
+        "salesforce",
+        "slackcode",
+        "slack"
+      ],
+      "primary_entity": "Salesforce",
+      "story_subject": "Slack Code",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "Slack",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "SlackにAIエージェントと人間が共同でコードを書ける新機能「Slack Code」が加わった。",
+      "detail": "SalesforceはSlack上でAIエージェントと人間が共同でソフトウェア開発を進められる新機能「Slack Code」を発表した。記事では機能の詳細な仕組みや提供時期、対応プランについては明らかにされていないが、Slackのワークフローの中でAIエージェントとの協働開発を実現する狙いがあるとみられる。今後、具体的な提供範囲や利用条件など詳細情報の発表が待たれる。",
+      "new_facts": [
+        "SalesforceがSlack上でAIエージェントと人間が協働してソフトウェア開発を行う新機能「Slack Code」を発表した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_7319750c37af5b1e6ce3",
+      "story_id": "story_6a9f565292028d6363",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6230769230769231,
+      "title": "ChatGPTが代わりにメッセージ返信する新機能、OpenAIが発表 利用者から反発も",
+      "source_published_at": "2026-08-25T02:00:00.000Z",
+      "published_at": "2026-08-25T02:00:00.000Z",
+      "fetched_at": "2026-08-25T04:00:57.085Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIがChatGPTに利用者に代わってメッセージを自動返信させる新機能を発表し、一部利用者から反発の声が上がっている。",
+      "source_name": "Business Insider Japan",
+      "source_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOX0FGbVVwdUVKUzBtenI1clhXMER2N3pHaTE3bXZwSDlmRkFmQXJjSFpCRGFPMTY3ckNCUmNVZnJVS0poYjZfWjRzdDVTTWx1VDZEZUxGV0haLWpPUVZ3b2x1c1hmSjIzSWJCZ3ZUVTY0Z1hBaElwVVM5SFNCX3VhX01faDFNcW5fdzhiWXI1aEZPcEt5YnJ1ckoyV2tKdVNZR09USA?oc=5",
+      "story_entities": [
+        "ChatGPT",
+        "OpenAI",
+        "chatgpt",
+        "openai"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPTのメッセージ自動返信機能",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "ChatGPT",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "ChatGPTがユーザーに代わってメッセージへ返信を行う新機能が発表された。",
+      "detail": "OpenAIはChatGPTが利用者本人に代わってメッセージへ返信する新機能を発表した。この機能に対して一部利用者から「二度と話さない」といった強い反発の声が上がっているという。記事では機能の具体的な仕組みや対象範囲、提供開始時期についての詳細は明らかにされていないが、AIが人間同士のコミュニケーションを代行することへの懸念が背景にあるとみられる。",
+      "new_facts": [
+        "OpenAIがChatGPTに利用者の代わりにメッセージへ返信させる新機能を発表した",
+        "一部利用者から機能に対する強い反発の声が上がっている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_0d5ce4c314b17df88ec2",
       "story_id": "story_aa292731213900f0c1",
       "story_sequence": 1,
@@ -243,6 +533,59 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_a5cd5ff0063a4ddac70f",
+      "story_id": "story_5b91946aaaa8ea014f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Perplexity、売上高が3倍の7億5000万ドルに急増 Nvidiaによる買収交渉も浮上",
+      "source_published_at": "2026-08-24T18:55:57.000Z",
+      "published_at": "2026-08-24T18:55:57.000Z",
+      "fetched_at": "2026-08-25T04:01:17.730Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "AI検索企業Perplexityの売上高が3倍の7億5000万ドルに急増し、Nvidiaとの300億ドル規模の買収交渉が報じられている。",
+      "source_name": "Cryptopolitan",
+      "source_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNNnZJSk05SDZXcTg3NW9uU1JHdGVJeDdNS29BaHNuVEdiSDJFZE5nMWw3Um9JYzVCZFJpcTdyWmF5QVFkbFRLWENvWXdFanZxU0V0d2xhYjZreWlXTDc5VUtqbFJncWFzT2lZU3Jma1AyNUNNMDhuUlFaVGs5NzRMN0c0dWI?oc=5",
+      "story_entities": [
+        "Perplexity",
+        "Nvidia",
+        "perplexity",
+        "nvidia"
+      ],
+      "primary_entity": "Perplexity",
+      "story_subject": "Perplexityの売上高急増とNvidiaによる買収交渉",
+      "event_type": "acquisition",
+      "event_stage": "rumor",
+      "event_scope": "全世界",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "Perplexityの売上高",
+          "value": "7億5000万ドル",
+          "normalized_value": "700000000USD"
+        },
+        {
+          "type": "amount",
+          "scope": "Nvidiaによる買収交渉規模",
+          "value": "300億ドル",
+          "normalized_value": "30000000000USD"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Perplexityの売上高急増と、Nvidiaによる巨額買収交渉の観測が同時に報じられた。",
+      "detail": "Perplexityの売上高が急増し、3倍の7億5000万ドルに達したと報じられた。この急成長が明らかになったのは、Nvidiaが同社を300億ドル規模で買収する交渉を進めているとされる時期にあたる。記事は交渉の具体的な進捗や合意条件には触れていないが、AI検索スタートアップの評価額急上昇と、大手半導体企業による業界再編の動きとして注目されている。今後、正式な買収合意の有無が焦点となる。",
+      "new_facts": [
+        "Perplexityの売上高が3倍の7億5000万ドルに急増したと報じられた",
+        "NvidiaがPerplexityを300億ドル規模で買収する交渉を行っているとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_0ff8905883856c54ae58",
       "story_id": "story_b938cc342c5f0bb280",
       "story_sequence": 1,
@@ -369,6 +712,49 @@
       "new_facts": [
         "OpenAIの開発ツールKiroでGPT-5.6が利用可能になった",
         "GPT-5.6は価格性能比の向上を目的としている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_639e788a6b387c3c5449",
+      "story_id": "story_e05817093bdbd44d88",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5895454545454546,
+      "title": "Adobe、「Firefly AIアシスタント」の無料体験プログラムを開始し日本語対応",
+      "source_published_at": "2026-08-24T11:52:00.000Z",
+      "published_at": "2026-08-24T11:52:00.000Z",
+      "fetched_at": "2026-08-25T04:01:16.871Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "Adobeがクリエイティブ向けAI「Firefly」の「AIアシスタント」無料体験プログラムを開始し、日本語での利用にも対応した。",
+      "source_name": "Yahoo!ニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE42eFByaGVBSG5Nd1BHeW90T1RFMjR5dG9RUHRCUFNIdmdKSERzcHNnbGxRR0hfeWRRYV84cGdzTDJTSVJ1blpmOFVhNHFnU3dQZ2pVU3k1SzMwQzhQSlRUaW1ScGZCOEVnaTVTUlI3MUNDRWh2NnBwTHhoMDg4SjA?oc=5",
+      "story_entities": [
+        "Adobe Firefly",
+        "Firefly AIアシスタント",
+        "adobefirefly",
+        "fireflyaiアシスタント",
+        "adobe"
+      ],
+      "primary_entity": "Adobe",
+      "story_subject": "Firefly AIアシスタント無料体験プログラム",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本語含む",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type"
+      ],
+      "change_summary": "Firefly AIアシスタントの無料体験プログラムが新たに始まり、日本語対応も加わった点が新しい。",
+      "detail": "Adobeは、クリエイティブ向けAIサービス「Adobe Firefly」に搭載する「Firefly AIアシスタント」の無料体験プログラムを開始した。同アシスタントは対話形式で画像生成や編集作業を支援する機能とみられ、今回のプログラムでは日本語での操作にも対応する。提供期間や機能範囲など詳細は記事からは明らかになっていない。",
+      "new_facts": [
+        "Adobe Firefly AIアシスタントの無料体験プログラムが開始された",
+        "日本語での利用に対応している"
       ],
       "event_date_precision": "unknown"
     },
