@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-26T16:17:21+09:00",
+  "generated_at": "2026-08-26T16:43:00+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -45,10 +45,10 @@
         "label": "Instagram",
         "done": 0,
         "target": 2,
-        "state": "PRODUCING",
-        "status": "0/2公開／AI進化レーダーのプロフィールリンクは実機確認済み。異なる写真3/16枚完成",
-        "next": "残り13枚を1件ずつ制作・実機検査し、Graph API接続を投稿直前に確認",
-        "blocker": "残り13枚が未完成。外部投稿receiptなし"
+        "state": "APPROVAL_PENDING",
+        "status": "0/2公開／別内容の8枚カルーセル2件、計16/16枚完成。三周検査PASS・追加費用0円",
+        "next": "Boardの2件を一括確認後、同じRevisionとHashでGraph API接続確認から外部予約へ進む",
+        "blocker": "現Revision 8の完成画像16枚を所有者が最終確認する1回だけ。外部投稿receiptなし"
       },
       {
         "id": "youtube",
@@ -75,7 +75,7 @@
         "url": "https://www.instagram.com/p/DcEMK9JGctI/"
       },
       "next_scheduled": null,
-      "note": "プロフィール先頭の『AI進化レーダー』リンク（utm_source=ig）を実機確認済み。2件の最終スライドとキャプションにも導線を追加。権限設計の外部送信前レビュー写真を追加し、異なる写真3/16枚が完成。残り13枚と端末表示検査、投稿前のGraph API接続確認が残る。"
+      "note": "プロフィール先頭の『AI進化レーダー』リンクを確認済み。権限設計8枚とAIリテラシー8枚は全16枚完成し、全Hash固有・1080×1350・縮小・中央クロップ・三周検査PASS。現Revision 8の最終確認後にGraph API接続確認へ進む。"
     },
     {
       "id": "x",
@@ -149,9 +149,9 @@
     {
       "id": "20260825-instagram-auth-required",
       "severity": "ATTENTION",
-      "title": "Instagramは素材制作中",
-      "message": "AI進化レーダーのプロフィールリンクは確認済み。2件の構成・導線・異なる写真2枚は完成し、残り14枚と実機検査が残っています。",
-      "required_action": "素材完成後、投稿直前にGraph API接続を確認。本人操作が必要な場合だけ1件表示"
+      "title": "Instagramは完成・最終確認待ち",
+      "message": "異なる読者課題と根拠の8枚カルーセル2件、計16枚が完成。三周検査PASS、追加費用0円、外部投稿receiptはまだありません。",
+      "required_action": "Boardで現Revision 8を一括確認。確認後はGraph API接続確認から予約まで自動継続"
     }
   ],
   "production": {
@@ -161,12 +161,12 @@
       "started_at": "2026-08-25T01:05:51+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "Revision 32｜Instagram素材3/16枚・新RevisionとHashを同期",
+      "stage": "Revision 33｜Instagram 16/16枚完成・三周検査PASS・Board承認待ち同期",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 1,
       "reason": "初回検査で記事文字数不足を検出し、同一run_idで具体例・FAQを追加。4,141字と4,613字、各有料境界1か所、異なる場面・人物・配色のサムネイル2枚、独立SNS原稿をRevision 2へ固定しBoard再同期した。",
-      "next_action": "Instagram残り13枚を1件ずつ制作。21:00のYouTube公開を照合して公開receiptを保存し、Xは接続条件が揃い次第、重複照合して投稿。"
+      "next_action": "Instagram現Revision 8の最終確認成立後、Graph API接続診断と外部予約へ直行。21:00のYouTube公開は照合してreceipt保存。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -233,13 +233,13 @@
         }
       ]
     },
-    "stage": "Revision 32｜Instagram素材3/16枚・YouTube本編予約保持",
-    "reason": "権限設計カルーセルの『B 人が承認』用写真を新規制作し、人体・物理・記事一致・4:5表示の三周検査をPASS。3つの画像Hashと公開素材URLを新RevisionでBoardへ同期した。",
-    "next_action": "Instagram残り13枚を1件ずつ制作し、21:00のYouTube公開後は外部公開URL・時刻・状態を照合してBoardを公開済みへ更新する。"
+    "stage": "Revision 33｜Instagram 16/16枚完成・承認待ち／YouTube本編予約保持",
+    "reason": "権限設計8枚とAIリテラシー8枚を完成し、全16枚のHash固有・1080×1350・縮小表示・中央クロップ・三周検査をPASS。完成RevisionをBoard承認待ちへ同期した。",
+    "next_action": "Instagram現Revision 8の最終確認成立後、Graph API接続確認から外部予約へ進む。21:00のYouTube公開後は公開receiptを照合してBoard更新。"
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-26T16:17:21+09:00",
+    "last_checked_at": "2026-08-26T16:43:00+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
