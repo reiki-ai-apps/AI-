@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-26T00:14:17.603+00:00",
+  "generated_at": "2026-08-26T01:33:48.247+00:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -13,9 +13,9 @@
     "date": "2026-08-26",
     "completed": 1,
     "target": 7,
-    "headline": "8月26日は1/7件。公開中noteの文字入りサムネイルRevision 9は本文・サムネイルとも承認済みです。",
-    "next_action": "note編集画面で文字入りサムネイルへの差し替え準備が完了。実行直前確認後に外部反映します",
-    "next_deadline": "2026-08-26T09:30:00+09:00",
+    "headline": "8月26日は1/7件。水曜YouTube本編は新着一次情報、4分台本、15枚の画像設計まで完成しました。",
+    "next_action": "YouTube本編の15枚画像を1枚ずつ制作し、発音・音声・動画・三周検査へ進みます。note画像差し替えだけは実行直前確認待ちです",
+    "next_deadline": "2026-08-26T21:00:00+09:00",
     "owner_action_required": true,
     "owner_action": "このチャットで『noteサムネイル差し替えを実行』と返信",
     "channels": [
@@ -56,8 +56,8 @@
         "done": 0,
         "target": 1,
         "state": "PRODUCING",
-        "status": "0/1公開／水曜の本編枠を制作中。公開済みShortsは説明欄更新・AI進化レーダー固定コメントを反映確認済み",
-        "next": "水曜本編を制作・検査し、完成後に公開準備へ進む",
+        "status": "0/1公開／OpenAI初の推論チップJalapeñoを新着採用。一次情報・4分台本・TTS読み・15枚画像設計・タイトル3案・サムネイル3案・AI進化レーダー導線が完成",
+        "next": "15枚の固有画像を1枚ずつ制作し、発音preview・本編音声・字幕・1920×1080動画・三周検査へ進む",
         "blocker": null
       }
     ]
@@ -224,22 +224,32 @@
         },
         {
           "date": "2026-08-26",
-          "state": "NOT_STARTED",
-          "reason": "次々回の水曜本編枠。一次情報の確認は未開始。"
+          "state": "PRODUCING",
+          "reason": "OpenAIの8月25日公式発表を48時間枠で採用。一次情報、数字・注意点、4分台本、TTS読み、15枚の固有画像設計、タイトル3案、サムネイル3案、AI進化レーダー導線が完成。画像・音声・動画・三周検査・外部receiptは未完了。"
         }
       ]
     },
-    "stage": "Revision 9｜note文字入りサムネイル承認済み・9:30外部反映待ち",
-    "reason": "所有者の『すべて承認』を現Revisionの本文・サムネイルHashへ固定し、外部反映時刻を9:30へ繰り下げた。外部更新receiptはまだ未取得。",
-    "next_action": "9:30にnoteサムネイルを反映し、Instagram残り14枚と水曜YouTube本編の制作を続ける。"
+    "stage": "Revision 10｜水曜YouTube本編の一次情報・台本・15枚画像設計が完成",
+    "reason": "8月25日のOpenAI公式発表を48時間枠で採用し、発表時刻や未発表の価格・提供時期を推測せず台本と映像設計へ反映した。note画像差し替えは実行直前確認待ちのまま、YouTube制作を継続する。",
+    "next_action": "15枚の画像を1枚ずつ制作し、発音preview、音声、動画、三周検査、外部照合へ進む。"
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-26T09:14:17+09:00",
+    "last_checked_at": "2026-08-26T10:33:48+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
   "evidence": [
+    "runs/kizashi-20260825/youtube-longform-20260826-r1/post-board-live-validation-receipt.json",
+    "runs/kizashi-20260825/youtube-longform-20260826-r1/post-board-live-import-receipt.json",
+    "runs/kizashi-20260825/youtube-longform-20260826-r1/board-live-production-sync-receipt.json",
+    "runs/kizashi-20260825/youtube-longform-20260826-r1/post-board-validation-receipt.json",
+    "runs/kizashi-20260825/youtube-longform-20260826-r1/post-board-import-receipt.json",
+    "runs/kizashi-20260825/youtube-longform-20260826-r1/board-production-sync-receipt.json",
+    "runs/kizashi-20260825/youtube-longform-20260826-r1/primary-source-scan.json",
+    "runs/kizashi-20260825/youtube-longform-20260826-r1/episode.json",
+    "runs/kizashi-20260825/youtube-longform-20260826-r1/visual-shotlist.json",
+    "runs/kizashi-20260825/youtube-longform-20260826-r1/preliminary-gate.json",
     "runs/kizashi-20260825/receipts/ai-radar-external-execution-20260826.json",
     "runs/kizashi-20260825/authority/note-radar-update-receipt-20260826.json",
     "runs/kizashi-20260825/literacy/note-publish-receipt-20260826.json",

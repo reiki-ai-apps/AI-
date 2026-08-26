@@ -1,0 +1,244 @@
+{
+  "schema_version": "1.0",
+  "run_id": "kizashi-20260825",
+  "subrun_id": "youtube-longform-20260826-r1",
+  "revision": 1,
+  "revision_id": "kizashi-20260825-youtube-longform-20260826-r1",
+  "format": "verified-one-story-deep-dive",
+  "episode_date": "2026-08-26",
+  "content_mode": "new_one_story_deep_dive",
+  "freshness_window_hours": 48,
+  "editorial_theme": "OpenAI初の推論チップから、AIサービスの速さ・電力・供給能力を見る",
+  "stories": [
+    {
+      "rank": 1,
+      "title": "Jalapeño’s first results show industry-leading speed and efficiency in AI inference",
+      "source": "OpenAI",
+      "url": "https://openai.com/index/jalapeno-first-results/",
+      "published_at": "2026-08-25",
+      "age_hours": null,
+      "score": 82,
+      "confidence": 0.97,
+      "verified": true,
+      "what_happened": "OpenAIは、同社初の推論向け自社チップJalapeñoの初回測定結果を公開した。",
+      "impact": "AIサービスを選ぶ時に、モデル名だけでなく応答待ち時間、同じ電力で処理できる仕事量、供給能力を見る必要性が増す。",
+      "capability": "OpenAIの試験では三つの公開モデルで、比較対象に対しピーク時の電力当たり処理量とエンドツーエンド遅延の両方を改善した。",
+      "caution": "数値はOpenAIがInferenceX条件で行った比較結果で、すべてのモデル・環境・利用料金を保証するものではない。一般利用者向けの販売、料金改定、提供開始は発表されていない。",
+      "uncertainties": [
+        "公式ページに発表時刻がなく正確な経過時間は取得不能",
+        "一般利用者向け製品への具体的な反映時期は未発表",
+        "価格への反映は未発表"
+      ],
+      "evidence": [
+        {
+          "claim": "JalapeñoはOpenAI初の推論向け自社チップである",
+          "support": "公式ページはJalapeñoをOpenAI’s first custom inference chipと説明している。",
+          "url": "https://openai.com/index/jalapeno-first-results/"
+        },
+        {
+          "claim": "三つの公開モデルでピーク時に電力当たり1.5〜1.9倍、エンドツーエンド遅延1.7〜3.6倍低下を報告した",
+          "support": "GPT-OSS 120B、DeepSeek R1 670B、Kimi K2.5 1Tを使ったOpenAIの比較結果。",
+          "url": "https://openai.com/index/jalapeno-first-results/"
+        },
+        {
+          "claim": "OpenAIは年末までに自社計算基盤へ導入開始を予定している",
+          "support": "公式ページはbegin deploying ... by the end of the yearと記載している。",
+          "url": "https://openai.com/index/jalapeno-first-results/"
+        },
+        {
+          "claim": "選択したブロックではAI生成実装が既存の人間専門家実装より1.5〜1.8倍高速だった",
+          "support": "公式ページはselected GPT-OSS blocksに限定した数値で、モデル全体ではないと明記している。",
+          "url": "https://openai.com/index/jalapeno-first-results/"
+        }
+      ]
+    }
+  ],
+  "visual_bible": {
+    "style": "超写実的な日本の報道ドキュメンタリー写真。実在感のある半導体開発、データセンター、業務利用場面。",
+    "subject_continuity": "30代の日本人女性テクノロジー担当者。濃紺ジャケット、白いインナー。場面ごとに同一人物へ依存せず、必要箇所だけ連続性を保つ。",
+    "camera": "35mmまたは50mm、自然な遠近、浅すぎない被写界深度、人物と機器の両方が読める構図。",
+    "lighting": "昼の自然光と実務施設の白色照明。明るく華やかだがネオン表現は使わない。",
+    "palette": "濃紺、白、シアンを番組色として文字レンダラーだけに使用。",
+    "negative_prompt": "ロゴ、生成文字、架空UI、ホログラム、ロボット、ネオン、余分な指、崩れた顔、プラスチック肌、読めない基板文字を除外。"
+  },
+  "youtube": {
+    "title": "OpenAI初の推論チップ「Jalapeño」発表｜AIの速さと電力効率はどう変わる？",
+    "title_candidates": [
+      "OpenAI初の推論チップ「Jalapeño」発表｜AIの速さと電力効率はどう変わる？",
+      "AIはモデルだけで決まらない｜OpenAI初の自社チップを1件深掘り",
+      "OpenAIのAIチップ実測公開｜応答速度と電力効率をどう読む？"
+    ],
+    "title_selection_reason": "固有名詞、何が新しいか、視聴後に分かることを過度な性能断定なしで示せる。",
+    "primary_query": "OpenAI AIチップ Jalapeño",
+    "title_subject": "OpenAI初の推論チップJalapeño",
+    "thumbnail_text": "初の自社AIチップ",
+    "thumbnail_subtext": "速さと電力を両立？",
+    "thumbnail_candidates": [
+      {"id": "A", "copy": "初の自社AIチップ", "subcopy": "OpenAIが実測公開", "click_reason": "発表そのものの新規性", "visual": "半導体ラボで無地の推論チップを確認する日本人技術者。背景に明るいサーバーラック。"},
+      {"id": "B", "copy": "AIの待ち時間を削る", "subcopy": "電力効率も改善", "click_reason": "利用者が感じる変化", "visual": "業務用AIの応答を待つ担当者と、稼働中のデータセンターを左右分割。"},
+      {"id": "C", "copy": "速さと電力を両立？", "subcopy": "数字の読み方", "click_reason": "性能数値を誤解しない解説価値", "visual": "電力計と応答時間計を比較する現実的な検証室。数値文字は後付け。"}
+    ],
+    "selected_thumbnail_candidate": "A",
+    "tags": ["OpenAI", "Jalapeño", "AIチップ", "推論", "生成AI", "データセンター", "AIニュース", "AI進化レーダー"],
+    "playlist": "AI進化レーダー｜AI重要ニュース",
+    "contains_synthetic_media": true,
+    "description_draft": "OpenAIが2026年8月25日に公表した、初の推論向け自社チップ『Jalapeño』の初回測定結果を1件深掘りします。速さ、電力効率、利用者への意味、まだ発表されていない点を分けて整理します。\n\nAI進化レーダー：仕事に影響するAI更新を一次情報つきで確認\nhttps://reiki-ai-apps.github.io/AI-/?utm_source=youtube&utm_medium=description&utm_campaign=jalapeno_20260826\n\n情報元の記事（OpenAI・2026年8月25日）\nhttps://openai.com/index/jalapeno-first-results/\n補助解説（OpenAI・2026年8月25日）\nhttps://openai.com/index/the-full-stack-behind-abundant-intelligence/\n\nチャプターは完成音声の実時間を計測後に反映します。\n\nこの動画ではAI音声と生成画像を使用しています。性能数値はOpenAIが公開した特定の比較条件によるもので、すべての利用環境や料金を保証するものではありません。",
+    "comment": "あなたがAIサービスを選ぶ時、モデル名以外に重視したいのは速度、料金、安定性のどれですか？\nAI進化レーダー：https://reiki-ai-apps.github.io/AI-/?utm_source=youtube&utm_medium=comment&utm_campaign=jalapeno_20260826"
+  },
+  "segments": [
+    {
+      "caption_id": "c01",
+      "kind": "hook",
+      "headline": "AIの差はモデルだけではない",
+      "narration": "AIの返事が速くなるか、料金を抑えられるか、混雑しても使えるか。その差は、モデルだけでは決まりません。今回、OpenAIが初めて自社設計の推論チップで測定結果を公開しました。数字の意味と、私たちにまだ約束されていないことまで整理します。",
+      "tts_text": "エーアイの返事が速くなるか、料金を抑えられるか、混雑しても使えるか。その差は、モデルだけでは決まりません。今回、オープンエーアイが初めて自社設計の推論チップで測定結果を公開しました。数字の意味と、私たちにまだ約束されていないことまで整理します。",
+      "source_url": "https://openai.com/index/jalapeno-first-results/"
+    },
+    {
+      "caption_id": "c02",
+      "kind": "overview",
+      "headline": "8月25日 Jalapeño",
+      "narration": "OpenAIは八月二十五日、同社初の推論向け自社チップ、Jalapeñoの初回測定結果を発表しました。推論とは、学習済みのAIが私たちの入力を受け、回答を作る実行段階です。",
+      "tts_text": "オープンエーアイは八月二十五日、同社初の推論向け自社チップ、ハラペーニョの初回測定結果を発表しました。推論とは、学習済みのエーアイが私たちの入力を受け、回答を作る実行段階です。",
+      "source_url": "https://openai.com/index/jalapeno-first-results/"
+    },
+    {
+      "caption_id": "c03",
+      "kind": "definition",
+      "headline": "見るのは処理量・遅延・電力",
+      "narration": "推論チップを見る時は、三つを分けます。同じ時間にどれだけ処理できるか。利用者がどれだけ待つか。そして、その仕事にどれだけ電力を使うかです。速さだけ、または処理量だけでは、実際の使いやすさを判断できません。",
+      "tts_text": "推論チップを見る時は、三つを分けます。同じ時間にどれだけ処理できるか。利用者がどれだけ待つか。そして、その仕事にどれだけ電力を使うかです。速さだけ、または処理量だけでは、実際の使いやすさを判断できません。",
+      "source_url": ""
+    },
+    {
+      "caption_id": "c04",
+      "kind": "fact",
+      "headline": "三つの公開モデルで検証",
+      "narration": "OpenAIは、GPT-OSS百二十B、DeepSeek R1六百七十B、Kimi K2.5一Tの三つの公開モデルで比較しました。OpenAI製だけに限定せず、異なるモデル群で動かした点が今回の特徴です。",
+      "tts_text": "オープンエーアイは、ジーピーティー・オーエスエス、ひゃくにじゅうビー。ディープシーク・アールワン、ろっぴゃくななじゅうビー。キミ・ケーツーテンゴ、いちティーの三つの公開モデルで比較しました。オープンエーアイ製だけに限定せず、異なるモデル群で動かした点が今回の特徴です。",
+      "source_url": "https://openai.com/index/jalapeno-first-results/"
+    },
+    {
+      "caption_id": "c05",
+      "kind": "fact",
+      "headline": "電力当たり1.5〜1.9倍",
+      "narration": "OpenAIの試験では、ピーク時の電力当たり処理量が、比較対象より一・五倍から一・九倍でした。同じ電力で、より多くのAI処理を進められるという結果です。",
+      "tts_text": "オープンエーアイの試験では、ピーク時の電力当たり処理量が、比較対象より、いってんごばいから、いってんきゅうばいでした。同じ電力で、より多くのエーアイ処理を進められるという結果です。",
+      "source_url": "https://openai.com/index/jalapeno-first-results/"
+    },
+    {
+      "caption_id": "c06",
+      "kind": "fact",
+      "headline": "応答全体の遅延も低下",
+      "narration": "エンドツーエンド、つまり入力から回答完了までの遅延は、一・七倍から三・六倍低いと報告されました。対話型の条件では、性能が二・一倍から四・一倍高いという結果も示されています。",
+      "tts_text": "エンドツーエンド、つまり入力から回答完了までの遅延は、いってんななばいから、さんてんろくばい低いと報告されました。対話型の条件では、性能が、にてんいちばいから、よんてんいちばい高いという結果も示されています。",
+      "source_url": "https://openai.com/index/jalapeno-first-results/"
+    },
+    {
+      "caption_id": "c07",
+      "kind": "caution",
+      "headline": "すべてのAIが4.1倍ではない",
+      "narration": "ただし、ここを『すべてのAIが四・一倍速くなる』と読むのは誤りです。数値は、OpenAIが特定のモデル、入力長、比較機器、運転条件で測った範囲です。結果は条件ごとに分けて扱う必要があります。",
+      "tts_text": "ただし、ここを、すべてのエーアイが、よんてんいちばい速くなる、と読むのは誤りです。数値は、オープンエーアイが特定のモデル、入力長、比較機器、運転条件で測った範囲です。結果は条件ごとに分けて扱う必要があります。",
+      "source_url": "https://openai.com/index/jalapeno-first-results/"
+    },
+    {
+      "caption_id": "c08",
+      "kind": "method",
+      "headline": "公開ベンチマークInferenceX",
+      "narration": "測定にはInferenceXという公開ベンチマークが使われました。OpenAIは利用者の体験をそろえた状態で、電力当たりの仕事量と待ち時間を比較したと説明しています。とはいえ、測定と発表の主体はOpenAIです。",
+      "tts_text": "測定には、インファレンスエックスという公開ベンチマークが使われました。オープンエーアイは利用者の体験をそろえた状態で、電力当たりの仕事量と待ち時間を比較したと説明しています。とはいえ、測定と発表の主体はオープンエーアイです。",
+      "source_url": "https://openai.com/index/jalapeno-first-results/"
+    },
+    {
+      "caption_id": "c09",
+      "kind": "architecture",
+      "headline": "計算・メモリ・通信を一体設計",
+      "narration": "強みの理由として、チップだけでなく、メモリ、ネットワーク、実行ソフトを一体で設計した点が説明されています。AIは入力を読む段階と、答えを一語ずつ作る段階で、計算とメモリへの負荷が変わります。",
+      "tts_text": "強みの理由として、チップだけでなく、メモリ、ネットワーク、実行ソフトを一体で設計した点が説明されています。エーアイは入力を読む段階と、答えを一語ずつ作る段階で、計算とメモリへの負荷が変わります。",
+      "source_url": "https://openai.com/index/jalapeno-first-results/"
+    },
+    {
+      "caption_id": "c10",
+      "kind": "architecture",
+      "headline": "データ移動の待ちを減らす",
+      "narration": "Jalapeñoは、処理中のデータを必要な場所へ置き、チップ同士の通信待ちを減らす設計です。AIエージェントのように多くの手順を連続実行する仕事では、小さな待ち時間が積み重なるため、全体の遅延が重要になります。",
+      "tts_text": "ハラペーニョは、処理中のデータを必要な場所へ置き、チップ同士の通信待ちを減らす設計です。エーアイ・エージェントのように多くの手順を連続実行する仕事では、小さな待ち時間が積み重なるため、全体の遅延が重要になります。",
+      "source_url": "https://openai.com/index/jalapeno-first-results/"
+    },
+    {
+      "caption_id": "c11",
+      "kind": "fact",
+      "headline": "AIがチップ開発を補助",
+      "narration": "もう一つの注目点は、AIがチップ開発そのものを補助したことです。OpenAIは、設計から製造用データを確定するテープアウトまで九か月で進め、設計、測定、検証の反復へAIを使ったと説明しています。",
+      "tts_text": "もう一つの注目点は、エーアイがチップ開発そのものを補助したことです。オープンエーアイは、設計から製造用データを確定するテープアウトまで九か月で進め、設計、測定、検証の反復へエーアイを使ったと説明しています。",
+      "source_url": "https://openai.com/index/jalapeno-first-results/"
+    },
+    {
+      "caption_id": "c12",
+      "kind": "caution",
+      "headline": "1.5〜1.8倍は選択ブロック",
+      "narration": "選択した一部の処理ブロックでは、AIが作った実装が、既存の人間専門家による実装より一・五倍から一・八倍高速だったとしています。ただし、これは選ばれたブロックの数値で、モデル全体の性能ではありません。",
+      "tts_text": "選択した一部の処理ブロックでは、エーアイが作った実装が、既存の人間専門家による実装より、いってんごばいから、いってんはちばい高速だったとしています。ただし、これは選ばれたブロックの数値で、モデル全体の性能ではありません。",
+      "source_url": "https://openai.com/index/jalapeno-first-results/"
+    },
+    {
+      "caption_id": "c13",
+      "kind": "impact",
+      "headline": "利用者への価値は三つ",
+      "narration": "利用者に関係する価値は、返事が速くなること、混雑時にも処理できる余地が増えること、運営コストを抑えられる可能性の三つです。ただし、料金が下がる、すぐ製品が変わるとは発表されていません。",
+      "tts_text": "利用者に関係する価値は、返事が速くなること、混雑時にも処理できる余地が増えること、運営コストを抑えられる可能性の三つです。ただし、料金が下がる、すぐ製品が変わるとは発表されていません。",
+      "source_url": "https://openai.com/index/jalapeno-first-results/"
+    },
+    {
+      "caption_id": "c14",
+      "kind": "target",
+      "headline": "誰が注目すべきか",
+      "narration": "特に注目したいのは、AIエージェントを長い手順で動かす開発者、問い合わせを大量処理する企業、AIサービスの安定性と費用を管理する責任者です。一般利用者は、今すぐ設定を変える必要はありません。",
+      "tts_text": "特に注目したいのは、エーアイ・エージェントを長い手順で動かす開発者、問い合わせを大量処理する企業、エーアイサービスの安定性と費用を管理する責任者です。一般利用者は、今すぐ設定を変える必要はありません。",
+      "source_url": ""
+    },
+    {
+      "caption_id": "c15",
+      "kind": "timeline",
+      "headline": "年末までに自社基盤へ",
+      "narration": "OpenAIは、Jalapeñoを年末までに自社の計算基盤へ導入し始める計画です。これは一般向けにチップを販売する発表ではありません。具体的な製品名、提供地域、料金への反映時期も未発表です。",
+      "tts_text": "オープンエーアイは、ハラペーニョを年末までに自社の計算基盤へ導入し始める計画です。これは一般向けにチップを販売する発表ではありません。具体的な製品名、提供地域、料金への反映時期も未発表です。",
+      "source_url": "https://openai.com/index/jalapeno-first-results/"
+    },
+    {
+      "caption_id": "c16",
+      "kind": "framework",
+      "headline": "AIサービスを見る四つの軸",
+      "narration": "AIサービスを比較する時は、モデル名だけでなく四つを記録してください。回答完了までの時間、成功までのやり直し回数、一件を終える費用、混雑時の失敗率です。取得できない値は、ゼロとみなさず未取得と残します。",
+      "tts_text": "エーアイサービスを比較する時は、モデル名だけでなく四つを記録してください。回答完了までの時間、成功までのやり直し回数、一件を終える費用、混雑時の失敗率です。取得できない値は、ゼロとみなさず未取得と残します。",
+      "source_url": ""
+    },
+    {
+      "caption_id": "c17",
+      "kind": "closing",
+      "headline": "今日の一歩",
+      "narration": "今日できることは、よく使うAI作業を一つ選び、開始から完了までの時間と、やり直し回数を五件だけ記録することです。次のモデル更新や料金変更が来た時、名前の印象ではなく、仕事が本当に速くなったかを比較できます。",
+      "tts_text": "今日できることは、よく使うエーアイ作業を一つ選び、開始から完了までの時間と、やり直し回数を五件だけ記録することです。次のモデル更新や料金変更が来た時、名前の印象ではなく、仕事が本当に速くなったかを比較できます。",
+      "source_url": ""
+    },
+    {
+      "caption_id": "c18",
+      "kind": "promotion",
+      "headline": "AI進化レーダー",
+      "narration": "AI進化レーダーでは、仕事に影響する更新だけを、一次情報と注意点つきで整理しています。概要欄のリンクから、今日の更新と公式ページを続けて確認してください。",
+      "tts_text": "エーアイ進化レーダーでは、仕事に影響する更新だけを、一次情報と注意点つきで整理しています。概要欄のリンクから、今日の更新と公式ページを続けて確認してください。",
+      "source_url": "https://reiki-ai-apps.github.io/AI-/"
+    }
+  ],
+  "pronunciation_map": {
+    "OpenAI": "オープンエーアイ",
+    "Jalapeño": "ハラペーニョ",
+    "InferenceX": "インファレンスエックス",
+    "GPT-OSS": "ジーピーティー・オーエスエス",
+    "DeepSeek R1": "ディープシーク・アールワン",
+    "Kimi K2.5": "キミ・ケーツーテンゴ"
+  },
+  "approval_state": "PRODUCTION_IN_PROGRESS_STANDING_AUTHORIZATION",
+  "external_receipts": []
+}

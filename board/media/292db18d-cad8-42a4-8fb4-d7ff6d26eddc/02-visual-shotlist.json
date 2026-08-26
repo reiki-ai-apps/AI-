@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "run_id": "kizashi-20260825",
+  "subrun_id": "youtube-longform-20260826-r1",
+  "required_unique_images": 15,
+  "planned_unique_images": 15,
+  "image_changes_per_caption_ratio_target_max": 0.5,
+  "text_generation_in_image": false,
+  "shots": [
+    {"id": "s01", "captions": ["c01"], "scene_goal": "モデルの裏側にある推論基盤を示す", "subject": "AI業務画面を待つ日本人担当者", "place": "明るい小規模オフィス", "action": "応答完了までの時間を腕時計ではなく机上タイマーで確認", "composition": "担当者前景、サーバー施設の実写風写真を別画面に小さく後付け", "negative_prompt": "ロゴ、生成文字、ホログラム、暗い未来都市"},
+    {"id": "s02", "captions": ["c02"], "scene_goal": "初の推論チップ発表を視覚化", "subject": "無地の大型推論チップを検査する日本人半導体技術者", "place": "白色照明の半導体ラボ", "action": "保護手袋で検査治具へ固定", "composition": "50mm斜め俯瞰、チップと手元が明瞭", "negative_prompt": "読めない印字、企業ロゴ、余分な指"},
+    {"id": "s03", "captions": ["c03"], "scene_goal": "処理量・遅延・電力の三軸を説明", "subject": "データセンター運用担当者", "place": "実在感のある検証室", "action": "電力計、応答計、処理ログの三台を順に確認", "composition": "三つの実物計器、数値は後付け", "negative_prompt": "架空UI、巨大グラフ、ネオン"},
+    {"id": "s04", "captions": ["c04"], "scene_goal": "異なる公開モデルでの検証を示す", "subject": "三つの無地サーバーノードを比較する研究チーム", "place": "大学風の計算機室", "action": "三条件の実験カードを整理", "composition": "三グループの機器、文字は後付け", "negative_prompt": "製品ロゴ、同じ人物の複製"},
+    {"id": "s05", "captions": ["c05"], "scene_goal": "同じ電力で処理量が増える意味を示す", "subject": "二列のサーバーラックと電力計", "place": "昼のデータセンター", "action": "同じ電源系統で一方の処理完了ランプが多く点灯", "composition": "左右比較、過度な発光なし", "negative_prompt": "偽数字、火花、SF表現"},
+    {"id": "s06", "captions": ["c06"], "scene_goal": "応答遅延の差を利用場面で示す", "subject": "顧客対応AIを使う日本人オペレーター", "place": "自然光のサポートセンター", "action": "複数手順の回答が完了し次の顧客へ移る", "composition": "人物と業務モニター、画面文字はぼかし", "negative_prompt": "ロゴ、読めない文字、過剰な笑顔"},
+    {"id": "s07", "captions": ["c07"], "scene_goal": "特定条件の数値である注意を示す", "subject": "比較条件を確認する監査担当者", "place": "会議室", "action": "入力長、機器、電力条件の紙資料を照合", "composition": "手元資料と真剣な表情、文字は後付け", "negative_prompt": "警告マークの乱用、赤いネオン"},
+    {"id": "s08", "captions": ["c08"], "scene_goal": "公開ベンチマークを用いた検証を示す", "subject": "中立的な性能試験を再現する技術者", "place": "測定ベンチのある研究室", "action": "同じ入力を二つの計算機へ送る", "composition": "対称構図、実物ケーブルと測定器", "negative_prompt": "架空ロゴ、読めないUI、ホログラム"},
+    {"id": "s09", "captions": ["c09"], "scene_goal": "チップ・メモリ・ネットワークの一体設計を示す", "subject": "基板上のチップ、メモリ、光ネットワーク部品", "place": "電子機器組立ラボ", "action": "技術者が信号経路を指示棒で確認", "composition": "マクロと人物手元、回路文字なし", "negative_prompt": "架空の空中線、発光回路、余分な手"},
+    {"id": "s10", "captions": ["c10"], "scene_goal": "データ移動と通信待ちを減らす設計を示す", "subject": "複数チップを短い配線で結ぶ実機ラック", "place": "サーバー開発室", "action": "エンジニア二人がケーブル長と接続を確認", "composition": "斜め広角、人物と接続部が両方読める", "negative_prompt": "ロゴ、光の軌跡、抽象未来都市"},
+    {"id": "s11", "captions": ["c11"], "scene_goal": "AIがチップ設計反復を補助した流れを示す", "subject": "設計レビュー中の半導体チーム", "place": "明るい設計スタジオ", "action": "回路の試作品と検証結果を比較", "composition": "ホワイトボードは空白、文字は後付け", "negative_prompt": "生成文字、企業ロゴ、CG肌"},
+    {"id": "s12", "captions": ["c12"], "scene_goal": "一部ブロック限定の性能値を誤解なく示す", "subject": "チップ上の一部領域を顕微鏡で確認する研究者", "place": "顕微鏡ラボ", "action": "全体ではなく選択領域だけをマーキング", "composition": "顕微鏡、実物チップ、研究者横顔", "negative_prompt": "全体が光る演出、架空数字"},
+    {"id": "s13", "captions": ["c13", "c14"], "scene_goal": "利用者価値と対象者を仕事の現場で示す", "subject": "開発者、サポート責任者、経理責任者の三人", "place": "日本の中小企業会議室", "action": "速度、安定性、費用の観点を付箋で整理", "composition": "三者の役割が表情と道具で分かる", "negative_prompt": "読めない付箋文字、ロゴ、過剰な指"},
+    {"id": "s14", "captions": ["c15", "c16"], "scene_goal": "年末導入予定と比較軸を示す", "subject": "段階導入計画を確認するインフラ責任者", "place": "データセンター管制室", "action": "未確定項目を空欄のまま残す", "composition": "明るい管制室、日付や指標は後付け", "negative_prompt": "確定していない価格、販売箱、ロゴ"},
+    {"id": "s15", "captions": ["c17", "c18"], "scene_goal": "今日の計測とAI進化レーダー導線を示す", "subject": "五件のAI作業を記録する日本人担当者", "place": "窓辺の机", "action": "完了時間とやり直し回数をノートへ記録", "composition": "ノート、スマホ、穏やかな昼光。AI進化レーダー画面はレンダラーで後付け", "negative_prompt": "生成文字、ロゴ、暗幕、ホログラム"}
+  ]
+}
