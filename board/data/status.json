@@ -1,23 +1,23 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-26T05:03:28.000+00:00",
+  "generated_at": "2026-08-26T14:31:43+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
     "published_confirmed": 20,
-    "scheduled": 1,
+    "scheduled": 2,
     "attention": 2
   },
   "today": {
     "date": "2026-08-26",
     "completed": 1,
     "target": 7,
-    "headline": "8月26日は1/7件。水曜YouTube本編は制作・検査を完了し、YouTubeへ非公開で登録済みです。公開設定だけが残っています。",
-    "next_action": "YouTube動画7xbmIlNB-_sへタイトル・説明・サムネイルA・字幕・公開日時を設定し、21:00の予約receiptを取得します。note画像差し替えは別工程です",
+    "headline": "8月26日は1/7件公開済み。水曜YouTube本編はYouTubeで21:00の公開予約が確定し、タイトル・説明・サムネイル・再生リスト・日本語字幕も反映済みです。",
+    "next_action": "21:00の公開後に外部公開URL・公開時刻・公開状態を照合し、公開receiptを保存してBoardを自動更新します。ほかの媒体制作は並行して継続します",
     "next_deadline": "2026-08-26T21:00:00+09:00",
-    "owner_action_required": true,
-    "owner_action": "このチャットで『noteサムネイル差し替えを実行』と返信",
+    "owner_action_required": false,
+    "owner_action": null,
     "channels": [
       {
         "id": "note",
@@ -55,9 +55,9 @@
         "label": "YouTube本編",
         "done": 0,
         "target": 1,
-        "state": "EXTERNAL_WAIT",
-        "status": "0/1公開／動画はYouTubeへ登録済み（現在は非公開）。外部動画ID 7xbmIlNB-_s を取得。制作・検査はすべて完了",
-        "next": "タイトル・説明・サムネイルA・字幕・子ども向け設定・再生リストを入力し、8/26 21:00の公開予約を確定",
+        "state": "SCHEDULED",
+        "status": "0/1公開／8月26日21:00に予約済み。外部動画ID 7xbmIlNB-_s、タイトル・説明・サムネイルA・再生リスト・日本語字幕を確認済み",
+        "next": "21:00の公開後に公開URL・時刻・状態を照合し、公開receipt取得後に公開済みへ更新",
         "blocker": null
       }
     ]
@@ -111,13 +111,17 @@
       "account": "KIZASHI / @kizashi_jp",
       "url": "https://www.youtube.com/@kizashi_jp",
       "state": "HEALTHY",
-      "last_verified_at": "2026-08-26T00:44:00+09:00",
+      "last_verified_at": "2026-08-26T14:31:43+09:00",
       "latest_published": {
         "title": "AIに任せていい仕事、ダメな仕事｜3段階で判断 #Shorts",
         "url": "https://www.youtube.com/shorts/Xs2BjsPO75k"
       },
-      "next_scheduled": null,
-      "note": "公開済みShorts Xs2BjsPO75kの説明欄へAI進化レーダー計測URLを反映し、コメント Ugw3oSSO3KH9QG16Tkd4AaABAg を投稿・固定済み。説明欄保存と固定表示を外部画面で確認した。"
+      "next_scheduled": {
+        "title": "OpenAI初の推論チップ『Jalapeño』発表｜AIの速さと電力効率はどう変わる？",
+        "url": "https://youtu.be/7xbmIlNB-_s",
+        "scheduled_at": "2026-08-26T21:00:00+09:00"
+      },
+      "note": "水曜本編を8月26日21:00に外部予約済み。タイトル・説明・サムネイルA・再生リスト・日本語手動字幕を保存し、HD処理完了、著作権・コミュニティガイドラインとも問題なしを確認した。"
     },
     {
       "id": "radar",
@@ -157,12 +161,12 @@
       "started_at": "2026-08-25T01:05:51+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "Revision 9｜note文字入りサムネイル承認済み・9:30外部反映待ち",
+      "stage": "Revision 31｜YouTube本編21:00予約確定・日本語字幕公開済み",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 1,
       "reason": "初回検査で記事文字数不足を検出し、同一run_idで具体例・FAQを追加。4,141字と4,613字、各有料境界1か所、異なる場面・人物・配色のサムネイル2枚、独立SNS原稿をRevision 2へ固定しBoard再同期した。",
-      "next_action": "9:30にnote文字入りサムネイルを反映。並行してInstagram残り14枚と水曜YouTube本編を制作。Xは接続条件が揃い次第、重複照合して投稿。"
+      "next_action": "21:00のYouTube公開を照合して公開receiptを保存。並行してInstagram残り14枚を制作し、Xは接続条件が揃い次第、重複照合して投稿。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -224,18 +228,18 @@
         },
         {
           "date": "2026-08-26",
-          "state": "PRIVATE_UPLOADED",
-          "reason": "4分17秒本編をYouTubeへ非公開アップロード済み。外部動画ID 7xbmIlNB-_s と動画Hash一致を確認。タイトル・説明・サムネイル・字幕・21:00公開設定は未入力。"
+          "state": "SCHEDULED",
+          "reason": "8月26日21:00の外部予約receiptを取得。外部動画ID 7xbmIlNB-_s、動画Hash、タイトル、説明、サムネイルA、再生リスト、日本語字幕、HD処理・権利検査を確認済み。"
         }
       ]
     },
-    "stage": "Revision 30｜YouTube非公開アップロード完了・外部動画ID取得・公開設定入力前",
-    "reason": "重複がないことを確認して完成動画をKIZASHIチャンネルへ1回アップロード。外部動画ID 7xbmIlNB-_s、非公開状態、動画Hash一致を確認。予約・公開receiptはまだありません。",
-    "next_action": "同じ外部動画へタイトル・説明・サムネイルA・字幕・公開設定を入力し、8/26 21:00の予約receiptを取得してBoardへ即時同期する。"
+    "stage": "Revision 31｜YouTube本編8月26日21:00予約確定・字幕公開済み",
+    "reason": "YouTube Studioで8月26日21:00の予約を確定し、外部動画ID・URL・時刻・タイトル・説明・サムネイルA・再生リスト・日本語字幕・検査結果を照合した。",
+    "next_action": "21:00の公開後に外部公開URL・公開時刻・公開状態を照合し、公開receipt保存直後にBoardを公開済みへ更新する。"
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-26T14:03:28+09:00",
+    "last_checked_at": "2026-08-26T14:31:43+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
@@ -252,6 +256,7 @@
     "runs/kizashi-20260825/youtube-longform-20260826-r1/youtube-final/three-pass-review.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/youtube-final/approval-package.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/youtube-final/youtube-private-upload-receipt.json",
+    "runs/kizashi-20260825/youtube-longform-20260826-r1/youtube-final/youtube-schedule-receipt.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/canonical-public-media-sync-receipt.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/post-board-live-validation-receipt.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/post-board-live-import-receipt.json",
