@@ -18,6 +18,8 @@ function parseArgs(argv) {
     if (key === '--target') result.targets.push(value);
     else if (key === '--data-file') result.dataFile = value;
     else if (key === '--receipt') result.receipt = value;
+    else if (key === '--instruction') result.instruction = value;
+    else if (key === '--approved-message-at') result.approvedMessageAt = value;
     else throw new Error(`不明な引数です: ${key}`);
     index += 1;
   }
@@ -58,8 +60,8 @@ for (const target of args.targets) {
     comment: '所有者がCodexチャット内で現行Revisionを承認。期限切れ予定は媒体曜日規則に従って安全な次回時刻へ変更。',
     evidence: {
       kind: 'CODEX_CHAT_OWNER_APPROVAL',
-      instruction: 'ここで承認する！',
-      approved_message_at: '2026-08-24T13:20:19.914Z',
+      instruction: args.instruction ?? 'Codexチャット内で承認',
+      approved_message_at: args.approvedMessageAt ?? clock.nowIso(),
       prior_revision_id: before.current_revision_id,
       target_revision_id: revision.revision_id,
       scheduled_at: post.scheduled_at,

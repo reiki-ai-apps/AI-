@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-26T16:43:00+09:00",
+  "generated_at": "2026-08-26T18:38:23+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -13,11 +13,11 @@
     "date": "2026-08-26",
     "completed": 1,
     "target": 7,
-    "headline": "8月26日は1/7件公開済み。水曜YouTube本編はYouTubeで21:00の公開予約が確定し、タイトル・説明・サムネイル・再生リスト・日本語字幕も反映済みです。",
-    "next_action": "21:00の公開後に外部公開URL・公開時刻・公開状態を照合し、公開receiptを保存してBoardを自動更新します。ほかの媒体制作は並行して継続します",
-    "next_deadline": "2026-08-26T21:00:00+09:00",
-    "owner_action_required": false,
-    "owner_action": null,
+    "headline": "8月26日は1/7件公開済み。Instagram 2投稿・全16枚は現Revision承認済み、YouTube本編は21:00の外部予約が確定しています。",
+    "next_action": "InstagramはGraph API接続後に重複照合して外部投稿へ進みます。YouTubeは21:00公開後に公開receiptを保存してBoardを自動更新します。",
+    "next_deadline": "2026-08-26T19:30:00+09:00",
+    "owner_action_required": true,
+    "owner_action": "Instagram @kizashi_jp をMetaのプロアカウントとして接続し、公式Graph APIアクセストークンを1回だけ登録",
     "channels": [
       {
         "id": "note",
@@ -45,10 +45,10 @@
         "label": "Instagram",
         "done": 0,
         "target": 2,
-        "state": "APPROVAL_PENDING",
-        "status": "0/2公開／別内容の8枚カルーセル2件、計16/16枚完成。三周検査PASS・追加費用0円",
-        "next": "Boardの2件を一括確認後、同じRevisionとHashでGraph API接続確認から外部予約へ進む",
-        "blocker": "現Revision 8の完成画像16枚を所有者が最終確認する1回だけ。外部投稿receiptなし"
+        "state": "AUTH_WAIT",
+        "status": "0/2公開／別内容の8枚カルーセル2件・全16枚完成、三周検査PASS、現Revision承認済み",
+        "next": "Graph API接続後、同じRevisionとHashで重複照合して外部投稿へ進む",
+        "blocker": "公式Graph APIトークンとInstagramユーザーIDが未接続。外部送信・外部receiptともなし"
       },
       {
         "id": "youtube",
@@ -69,13 +69,13 @@
       "account": "@kizashi_jp",
       "url": "https://www.instagram.com/kizashi_jp/",
       "state": "ATTENTION",
-      "last_verified_at": "2026-08-26T00:45:00+09:00",
+      "last_verified_at": "2026-08-26T18:38:23+09:00",
       "latest_published": {
         "title": "DeepSeek V4-Pro 修正版",
         "url": "https://www.instagram.com/p/DcEMK9JGctI/"
       },
       "next_scheduled": null,
-      "note": "プロフィール先頭の『AI進化レーダー』リンクを確認済み。権限設計8枚とAIリテラシー8枚は全16枚完成し、全Hash固有・1080×1350・縮小・中央クロップ・三周検査PASS。現Revision 8の最終確認後にGraph API接続確認へ進む。"
+      "note": "プロフィール先頭の『AI進化レーダー』リンクを確認済み。権限設計8枚とAIリテラシー8枚は全16枚完成・三周検査PASS・現Revision承認済み。Graph APIの接続情報未登録のため外部送信は未実行。"
     },
     {
       "id": "x",
@@ -149,9 +149,9 @@
     {
       "id": "20260825-instagram-auth-required",
       "severity": "ATTENTION",
-      "title": "Instagramは完成・最終確認待ち",
-      "message": "異なる読者課題と根拠の8枚カルーセル2件、計16枚が完成。三周検査PASS、追加費用0円、外部投稿receiptはまだありません。",
-      "required_action": "Boardで現Revision 8を一括確認。確認後はGraph API接続確認から予約まで自動継続"
+      "title": "Instagramは接続・認証待ち",
+      "message": "8枚カルーセル2件・全16枚は完成、三周検査PASS、現Revision承認済みです。Graph API接続情報がなく外部送信・receiptはありません。",
+      "required_action": "Instagram @kizashi_jp をMetaのプロアカウントとして接続し、公式Graph APIアクセストークンを1回だけ登録"
     }
   ],
   "production": {
@@ -161,12 +161,12 @@
       "started_at": "2026-08-25T01:05:51+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "Revision 33｜Instagram 16/16枚完成・三周検査PASS・Board承認待ち同期",
+      "stage": "Revision 34｜Instagram承認済み・Graph API接続認証待ち／YouTube本編予約保持",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 1,
       "reason": "初回検査で記事文字数不足を検出し、同一run_idで具体例・FAQを追加。4,141字と4,613字、各有料境界1か所、異なる場面・人物・配色のサムネイル2枚、独立SNS原稿をRevision 2へ固定しBoard再同期した。",
-      "next_action": "Instagram現Revision 8の最終確認成立後、Graph API接続診断と外部予約へ直行。21:00のYouTube公開は照合してreceipt保存。"
+      "next_action": "InstagramのGraph API接続情報確認後、重複照合して外部投稿へ直行。21:00のYouTube公開は照合してreceipt保存。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -233,13 +233,13 @@
         }
       ]
     },
-    "stage": "Revision 33｜Instagram 16/16枚完成・承認待ち／YouTube本編予約保持",
-    "reason": "権限設計8枚とAIリテラシー8枚を完成し、全16枚のHash固有・1080×1350・縮小表示・中央クロップ・三周検査をPASS。完成RevisionをBoard承認待ちへ同期した。",
-    "next_action": "Instagram現Revision 8の最終確認成立後、Graph API接続確認から外部予約へ進む。21:00のYouTube公開後は公開receiptを照合してBoard更新。"
+    "stage": "Revision 34｜Instagram承認済み・接続認証待ち／YouTube本編予約保持",
+    "reason": "Instagram 2投稿・全16枚の現Revisionを承認済みとして固定。Graph APIトークンとInstagramユーザーIDが未接続のため、外部送信は行わず接続・認証待ちへ同期した。",
+    "next_action": "InstagramのGraph API接続確認後、同じRevisionとHashで重複照合して外部投稿へ進む。21:00のYouTube公開後は公開receiptを照合してBoard更新。"
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-26T16:43:00+09:00",
+    "last_checked_at": "2026-08-26T18:38:23+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
@@ -258,6 +258,9 @@
     "runs/kizashi-20260825/youtube-longform-20260826-r1/youtube-final/youtube-private-upload-receipt.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/youtube-final/youtube-schedule-receipt.json",
     "runs/kizashi-20260825/instagram-media-progress-r1.json",
+    "runs/kizashi-20260825/instagram-owner-approval-receipt-r8-chat-20260826.json",
+    "runs/kizashi-20260825/instagram-connection-doctor-r9.json",
+    "runs/kizashi-20260825/instagram-connection-board-sync-r9.json",
     "runs/kizashi-20260825/authority/instagram-r1/visual-forensics-slide-04-r1.json",
     "runs/kizashi-20260825/instagram-media-progress-board-sync-r7.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/canonical-public-media-sync-receipt.json",
