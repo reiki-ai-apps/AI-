@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-27T00:20:09+09:00",
+  "generated_at": "2026-08-27T01:05:58+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -13,8 +13,8 @@
     "date": "2026-08-27",
     "completed": 0,
     "target": 7,
-    "headline": "8月27日は0/7件公開。note本文2本、X本文2件、Instagram構成16枚分、Shorts台本・字幕設計は完成し、画像・動画制作を継続しています。",
-    "next_action": "8:00のnote用図解・文字入りサムネイルを最優先で完成し、続いて12:30のShortsをレンダリング・9フレーム検査します。",
+    "headline": "8月27日は0/7件公開。8:00のJalapeño noteは本文・コピー入りサムネイル・記事内4画像・300円設計・三周検査まで完成しました。",
+    "next_action": "Jalapeño noteを外部投稿準備へ進めながら、20:00のWatermark noteと12:30のShortsを制作します。",
     "next_deadline": "2026-08-27T08:00:00+09:00",
     "owner_action_required": true,
     "owner_action": "Instagram @kizashi_jp をMetaのプロアカウントとして接続し、公式Graph APIアクセストークンを1回だけ登録",
@@ -24,9 +24,9 @@
         "label": "note",
         "done": 0,
         "target": 2,
-        "state": "IN_PROGRESS",
-        "status": "0/2公開／別課題・別根拠の本文2本、有料境界、300円設計、読者価値ゲートPASS",
-        "next": "8:00枠へ向け、図解と主コピー入り横長サムネイルを制作・検査",
+        "state": "AWAITING_EXTERNAL_POST",
+        "status": "0/2公開／Jalapeño稿は本文・主コピー入り横長サムネイル・記事内4画像・300円設計・三周検査PASS",
+        "next": "既存noteアカウントへ投稿可能か照合し、外部URL・価格・公開状態のreceipt取得後に1/2へ更新",
         "blocker": null
       },
       {
@@ -156,12 +156,12 @@
       "started_at": "2026-08-26T19:22:45+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "Production｜note本文2本PASS／X本文2件PASS／Instagram画像・Shorts動画制作中",
+      "stage": "Production｜Jalapeño note視覚完成／Watermark note・Instagram画像・Shorts動画制作中",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 2,
-      "reason": "OpenAIの独自推論チップとAnthropicのテキストウォーターマークを別課題として採用。note本文2本、X本文2件、Instagram構成16枚分、Shorts台本・字幕設計を同一run_idへ固定しBoard再同期した。",
-      "next_action": "8:00 noteの図解・文字入りサムネイル、12:30 Shortsのレンダリング・UI安全域検査を期限順に完了する。"
+      "reason": "Jalapeño noteへ主コピー『AI料金の盲点』入り横長サムネイルと、全体像・場面・比較・手順の4画像を追加。本文・視覚ゲートを再検査しPASS、同一run_idへ即時同期した。",
+      "next_action": "Jalapeño noteの外部投稿可否を照合し、並行してWatermark noteの視覚制作と12:30 Shortsのレンダリング・UI安全域検査を進める。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -242,6 +242,9 @@
     "runs/kizashi-20260827/today-priority.json",
     "runs/kizashi-20260827/gate.json",
     "runs/kizashi-20260827/board-sync-receipt.json",
+    "runs/kizashi-20260827/board-sync-note-jalapeno-visuals-receipt.json",
+    "runs/kizashi-20260827/note-jalapeno/artifacts/article-visual-manifest.json",
+    "runs/kizashi-20260827/note-jalapeno/artifacts/article-visual-review-loop.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/image-generation-cache.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/image-set-quality-gate.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/script-duration-repair.json",
