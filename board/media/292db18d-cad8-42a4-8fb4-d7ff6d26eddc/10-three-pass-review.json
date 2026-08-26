@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "run_id": "kizashi-20260825",
+  "subrun_id": "youtube-longform-20260826-r1",
+  "revision_id": "kizashi-20260825-youtube-longform-20260826-r2",
+  "reviewed_at": "2026-08-26T13:53:36+09:00",
+  "status": "PASS",
+  "rounds": [
+    {
+      "round": 1,
+      "focus": "事実・根拠・権利・数値",
+      "status": "PASS",
+      "checks": [
+        "OpenAI 2026-08-25公式一次情報を根拠に固定",
+        "1.5〜1.9倍、3.7〜4.1倍、1.5〜1.8倍の条件と対象範囲を本文内で限定",
+        "料金低下・一般販売・製品反映時期を未発表として分離",
+        "生成画像15枚のHash・権利記録・ロゴ文字なしを確認",
+        "字幕48区間と音声48区間の入力対応を全件照合"
+      ]
+    },
+    {
+      "round": 2,
+      "focus": "初見理解・需要・検索意図・価値・誤解",
+      "status": "PASS",
+      "checks": [
+        "冒頭でモデルだけでは決まらない結論を提示",
+        "速度・電力・安定性・費用への意味を利用者目線で説明",
+        "検索語OpenAI AIチップ Jalapeñoをタイトルへ自然に含有",
+        "すべてのAIが同じ倍率で速くなるとの誤解を明示的に防止",
+        "今日測る完了時間・やり直し回数へ行動を接続"
+      ]
+    },
+    {
+      "round": 3,
+      "focus": "端末表示・公開運用・接続認証・費用・重複・復旧",
+      "status": "PASS_INTERNAL_EXTERNAL_RECEIPT_PENDING",
+      "checks": [
+        "1920×1080・30fps・H.264 High・yuv420p・AAC 48kHz stereoを検証",
+        "257.32秒、字幕48件、音声差0ms、2秒超無音なし、黒画面なしを検証",
+        "冒頭・中盤・終盤と12字幕チェックポイントの表示を検査",
+        "AI進化レーダー案内を人物・字幕と重ならない左余白へ修正",
+        "サムネイルA/B/Cを1280×720で作成し、Cの誤った3選表記を修正",
+        "外部予約ID・公開IDは未取得のため予約済み／公開済みとは表示しない",
+        "新規契約なし。実請求額は取得不能であり0円とは推測しない"
+      ]
+    }
+  ],
+  "media_checks": {
+    "video_sha256": "ab07189cf8f9e7d1a5760c2fcc9ab68a192e64374d9cbb82dd20dd9780bcf77e",
+    "duration_seconds": 257.32,
+    "mixed_mean_volume_db": -23.1,
+    "mixed_max_volume_db": -4.5,
+    "black_frames_over_1_second": false,
+    "silence_over_2_seconds": false,
+    "caption_count": 48,
+    "caption_sync_checkpoints": 12,
+    "unique_source_images": 15
+  },
+  "external_receipt": null
+}
