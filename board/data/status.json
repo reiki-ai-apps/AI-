@@ -1,21 +1,21 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-26T18:38:23+09:00",
+  "generated_at": "2026-08-26T21:23:28+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
-    "published_confirmed": 20,
-    "scheduled": 2,
+    "published_confirmed": 21,
+    "scheduled": 1,
     "attention": 2
   },
   "today": {
     "date": "2026-08-26",
-    "completed": 1,
+    "completed": 2,
     "target": 7,
-    "headline": "8月26日は1/7件公開済み。Instagram 2投稿・全16枚は現Revision承認済み、YouTube本編は21:00の外部予約が確定しています。",
-    "next_action": "InstagramはGraph API接続後に重複照合して外部投稿へ進みます。YouTubeは21:00公開後に公開receiptを保存してBoardを自動更新します。",
-    "next_deadline": "2026-08-26T19:30:00+09:00",
+    "headline": "8月26日は2/7件公開済み。YouTube本編は21:00に公開され、外部動画ID・公開URL・時刻を照合済みです。",
+    "next_action": "InstagramとXは接続後に重複照合して外部投稿へ進みます。他媒体の8月27日分制作と検査は継続しています。",
+    "next_deadline": "2026-08-27T08:00:00+09:00",
     "owner_action_required": true,
     "owner_action": "Instagram @kizashi_jp をMetaのプロアカウントとして接続し、公式Graph APIアクセストークンを1回だけ登録",
     "channels": [
@@ -53,11 +53,11 @@
       {
         "id": "youtube",
         "label": "YouTube本編",
-        "done": 0,
+        "done": 1,
         "target": 1,
-        "state": "SCHEDULED",
-        "status": "0/1公開／8月26日21:00に予約済み。外部動画ID 7xbmIlNB-_s、タイトル・説明・サムネイルA・再生リスト・日本語字幕を確認済み",
-        "next": "21:00の公開後に公開URL・時刻・状態を照合し、公開receipt取得後に公開済みへ更新",
+        "state": "PUBLISHED",
+        "status": "1/1公開済み／8月26日21:00公開。外部動画ID 7xbmIlNB-_s、公開URL、タイトル、チャンネル、時刻を照合済み",
+        "next": "公開後の反応を確認し、次回のタイトル・冒頭・導線改善へ反映",
         "blocker": null
       }
     ]
@@ -111,17 +111,13 @@
       "account": "KIZASHI / @kizashi_jp",
       "url": "https://www.youtube.com/@kizashi_jp",
       "state": "HEALTHY",
-      "last_verified_at": "2026-08-26T14:31:43+09:00",
+      "last_verified_at": "2026-08-26T21:22:50+09:00",
       "latest_published": {
-        "title": "AIに任せていい仕事、ダメな仕事｜3段階で判断 #Shorts",
-        "url": "https://www.youtube.com/shorts/Xs2BjsPO75k"
-      },
-      "next_scheduled": {
         "title": "OpenAI初の推論チップ『Jalapeño』発表｜AIの速さと電力効率はどう変わる？",
-        "url": "https://youtu.be/7xbmIlNB-_s",
-        "scheduled_at": "2026-08-26T21:00:00+09:00"
+        "url": "https://youtu.be/7xbmIlNB-_s"
       },
-      "note": "水曜本編を8月26日21:00に外部予約済み。タイトル・説明・サムネイルA・再生リスト・日本語手動字幕を保存し、HD処理完了、著作権・コミュニティガイドラインとも問題なしを確認した。"
+      "next_scheduled": null,
+      "note": "水曜本編は8月26日21:00に公開済み。外部動画ID・公開URL・タイトル・チャンネル・公開設定を照合し、公開receiptを保存した。"
     },
     {
       "id": "radar",
@@ -161,12 +157,12 @@
       "started_at": "2026-08-25T01:05:51+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "Revision 34｜Instagram承認済み・Graph API接続認証待ち／YouTube本編予約保持",
+      "stage": "Revision 35｜YouTube本編公開済み／Instagram承認済み・Graph API接続認証待ち",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 1,
       "reason": "初回検査で記事文字数不足を検出し、同一run_idで具体例・FAQを追加。4,141字と4,613字、各有料境界1か所、異なる場面・人物・配色のサムネイル2枚、独立SNS原稿をRevision 2へ固定しBoard再同期した。",
-      "next_action": "InstagramのGraph API接続情報確認後、重複照合して外部投稿へ直行。21:00のYouTube公開は照合してreceipt保存。"
+      "next_action": "InstagramとXは接続情報確認後、重複照合して外部投稿へ直行。8月27日分のnote・Shorts・SNS制作と検査を継続。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -257,6 +253,8 @@
     "runs/kizashi-20260825/youtube-longform-20260826-r1/youtube-final/approval-package.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/youtube-final/youtube-private-upload-receipt.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/youtube-final/youtube-schedule-receipt.json",
+    "runs/kizashi-20260825/youtube-longform-20260826-r1/youtube-final/youtube-publication-receipt.json",
+    "runs/kizashi-20260825/youtube-longform-20260826-r1/youtube-final/board-youtube-publication-sync-receipt.json",
     "runs/kizashi-20260825/instagram-media-progress-r1.json",
     "runs/kizashi-20260825/instagram-owner-approval-receipt-r8-chat-20260826.json",
     "runs/kizashi-20260825/instagram-connection-doctor-r9.json",
