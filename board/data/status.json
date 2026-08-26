@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-27T01:05:58+09:00",
+  "generated_at": "2026-08-27T01:36:00+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -13,20 +13,20 @@
     "date": "2026-08-27",
     "completed": 0,
     "target": 7,
-    "headline": "8月27日は0/7件公開。8:00のJalapeño noteは本文・コピー入りサムネイル・記事内4画像・300円設計・三周検査まで完成しました。",
-    "next_action": "Jalapeño noteを外部投稿準備へ進めながら、20:00のWatermark noteと12:30のShortsを制作します。",
+    "headline": "8月27日は0/7件公開。note 2稿は完成・現Revision承認済みで外部予約待ち。12:30 Shortsは37.241秒の完成動画と9フレーム検査までPASSし、現Revision確認待ちです。",
+    "next_action": "8:00/20:00 noteを外部予約し、12:30 Shortsは完成動画の承認後に公式YouTube予約へ進みます。Instagram画像制作は並行継続します。",
     "next_deadline": "2026-08-27T08:00:00+09:00",
     "owner_action_required": true,
-    "owner_action": "Instagram @kizashi_jp をMetaのプロアカウントとして接続し、公式Graph APIアクセストークンを1回だけ登録",
+    "owner_action": "note.comのKIZASHIアカウントへ2稿の本文・画像を入力し、8:00/20:00の予約を確定する操作を許可",
     "channels": [
       {
         "id": "note",
         "label": "note",
         "done": 0,
         "target": 2,
-        "state": "AWAITING_EXTERNAL_POST",
-        "status": "0/2公開／Jalapeño稿は本文・主コピー入り横長サムネイル・記事内4画像・300円設計・三周検査PASS",
-        "next": "既存noteアカウントへ投稿可能か照合し、外部URL・価格・公開状態のreceipt取得後に1/2へ更新",
+        "state": "EXTERNAL_RESERVATION_PENDING",
+        "status": "0/2公開／Jalapeño稿・Watermark稿とも本文、主コピー入り横長サムネイル、記事内各4画像、300円設計、三周検査、現Revision承認receiptまで完成",
+        "next": "KIZASHI / natty_swan9072へ2稿を入力し、8:00/20:00の外部予約IDまたはreceipt取得後に予約済みへ更新",
         "blocker": null
       },
       {
@@ -54,9 +54,9 @@
         "label": "YouTube Shorts",
         "done": 0,
         "target": 1,
-        "state": "IN_PROGRESS",
-        "status": "0/1公開／Jalapeño解説の台本・字幕設計完成。縦動画レンダリング待ち",
-        "next": "12:30枠へ向け、1080×1920でレンダリングしUI安全域9フレーム検査",
+        "state": "AWAITING_CURRENT_REVISION_APPROVAL",
+        "status": "0/1公開／Jalapeño解説Shortsは37.241秒の1080×1920完成動画、実音声、字幕、別構図4画像、タイトル、説明文、AI進化レーダー導線、三周検査までPASS",
+        "next": "完成動画の現Revisionを一画面確認後、承認receiptを保存して12:30のYouTube外部予約へ進む",
         "blocker": null
       }
     ]
@@ -156,12 +156,12 @@
       "started_at": "2026-08-26T19:22:45+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "Production｜Jalapeño note視覚完成／Watermark note・Instagram画像・Shorts動画制作中",
+      "stage": "Production｜note 2稿完成・承認済み／Shorts完成・確認待ち／Instagram画像制作中",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 2,
-      "reason": "Jalapeño noteへ主コピー『AI料金の盲点』入り横長サムネイルと、全体像・場面・比較・手順の4画像を追加。本文・視覚ゲートを再検査しPASS、同一run_idへ即時同期した。",
-      "next_action": "Jalapeño noteの外部投稿可否を照合し、並行してWatermark noteの視覚制作と12:30 Shortsのレンダリング・UI安全域検査を進める。"
+      "reason": "note 2稿は現Revisionの本文・サムネイル承認receiptまで保存。Shortsは動画Hash 9cf2f91c859afb5d3251a1babe2ccf5b9a68cdc406552a1586d55cc879a15410、9フレームUI重なり0px、4場面重複なしを確認し、同一run_idへ同期する。",
+      "next_action": "note 2稿の外部予約receiptを取得し、Shortsは完成動画確認後に12:30予約へ進む。Instagram画像制作とX接続待ちの安全な工程は継続する。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -245,6 +245,11 @@
     "runs/kizashi-20260827/board-sync-note-jalapeno-visuals-receipt.json",
     "runs/kizashi-20260827/note-jalapeno/artifacts/article-visual-manifest.json",
     "runs/kizashi-20260827/note-jalapeno/artifacts/article-visual-review-loop.json",
+    "runs/kizashi-20260827/note-watermark/artifacts/article-visual-review-loop.json",
+    "runs/kizashi-20260827/youtube-shorts-r1/approval-package.md",
+    "runs/kizashi-20260827/youtube-shorts-r1/review-loop.json",
+    "runs/kizashi-20260827/youtube-shorts-r1/media.json",
+    "runs/kizashi-20260827/youtube-shorts-r1/shorts-ui-safe-area-manifest.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/image-generation-cache.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/image-set-quality-gate.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/script-duration-repair.json",
