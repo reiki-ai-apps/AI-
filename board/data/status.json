@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-25T23:16:26.512+00:00",
+  "generated_at": "2026-08-26T00:14:17.603+00:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -14,10 +14,10 @@
     "completed": 1,
     "target": 7,
     "headline": "8月26日は1/7件。公開中noteの文字入りサムネイルRevision 9は本文・サムネイルとも承認済みです。",
-    "next_action": "9:30に同じnoteへ文字入りサムネイルを反映し、並行してInstagram残り14枚と水曜YouTube本編を制作します",
+    "next_action": "note編集画面で文字入りサムネイルへの差し替え準備が完了。実行直前確認後に外部反映します",
     "next_deadline": "2026-08-26T09:30:00+09:00",
-    "owner_action_required": false,
-    "owner_action": null,
+    "owner_action_required": true,
+    "owner_action": "このチャットで『noteサムネイル差し替えを実行』と返信",
     "channels": [
       {
         "id": "note",
@@ -26,8 +26,8 @@
         "target": 2,
         "state": "EXTERNAL_WAIT",
         "status": "1/2公開済み／文字入りサムネイルRevision 9は本文・サムネイルとも承認済み。外部noteへの反映待ち",
-        "next": "9:30に同じ外部note IDへ文字入りサムネイルを反映し、公開画面を再検査",
-        "blocker": null,
+        "next": "実行直前確認後、同じ外部note IDへ文字入りサムネイルを反映し、公開画面を再検査",
+        "blocker": "公開記事の見出し画像を削除・差し替えて保存する直前確認が必要",
         "url": "https://reiki-ai-apps.github.io/AI-/board/media/6cfe96b1-6bd1-4c69-b3bb-8aa5f64c8f21/02-note-thumbnail-v3.png"
       },
       {
@@ -235,7 +235,7 @@
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-26T08:16:26+09:00",
+    "last_checked_at": "2026-08-26T09:14:17+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
