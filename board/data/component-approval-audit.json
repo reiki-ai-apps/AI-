@@ -1,9 +1,9 @@
 {
   "contract": "REIKI_COMPONENT_APPROVAL_AUDIT_V1",
-  "checked_at": "2026-08-25T23:37:24.112Z",
-  "total": 20,
-  "fully_approved": 1,
-  "pending": 19,
+  "checked_at": "2026-08-26T01:58:02.789Z",
+  "total": 21,
+  "fully_approved": 0,
+  "pending": 21,
   "items": [
     {
       "channel_post_id": "90ddfff1-6d98-4000-8699-bb74e28bc851",
@@ -453,22 +453,47 @@
       "platform": "NOTE",
       "scheduled_at": "2026-08-26T00:30:00Z",
       "revision_id": "23614277-3191-4d36-888b-21070ad437ed",
-      "valid": true,
+      "valid": false,
       "components": {
         "CONTENT": {
-          "valid": true,
-          "approval_id": "010d7fdc-11b4-447c-8087-61606ae27db2",
-          "approved_at": "2026-08-25T22:53:08.432Z",
-          "revision_id": "23614277-3191-4d36-888b-21070ad437ed",
+          "valid": false,
+          "approval_id": null,
+          "approved_at": null,
+          "revision_id": null,
           "hash": "d8aad45995c524bb39d8f585ad22dc0c4265dcd81171f5876cb45f2811b649c9",
           "evidence_url": null
         },
         "THUMBNAIL": {
-          "valid": true,
-          "approval_id": "15ec42fc-6e37-4099-9c2f-ead3394bc5ca",
-          "approved_at": "2026-08-25T22:53:08.441Z",
-          "revision_id": "23614277-3191-4d36-888b-21070ad437ed",
+          "valid": false,
+          "approval_id": null,
+          "approved_at": null,
+          "revision_id": null,
           "hash": "3c9f9c993f905fd15cccec3f467e3cccfbe5acb8a6e3b23ecb04b8eef1d6c52a",
+          "evidence_url": null
+        }
+      }
+    },
+    {
+      "channel_post_id": "8b1a4f6a-12a0-4ca6-b873-e489478b2481",
+      "platform": "YOUTUBE",
+      "scheduled_at": "2026-08-26T12:00:00Z",
+      "revision_id": "49869cb2-9e76-45a1-8810-a89dad078502",
+      "valid": false,
+      "components": {
+        "CONTENT": {
+          "valid": false,
+          "approval_id": null,
+          "approved_at": null,
+          "revision_id": null,
+          "hash": "18527b2db945573254d1bca304091bc1ad0e237ec699e16c6e64ad461bcdf71d",
+          "evidence_url": null
+        },
+        "THUMBNAIL": {
+          "valid": false,
+          "approval_id": null,
+          "approved_at": null,
+          "revision_id": null,
+          "hash": "f49c136da475f1035a92684bb773f81955b257345d19035c1a1cd236f36b5483",
           "evidence_url": null
         }
       }
