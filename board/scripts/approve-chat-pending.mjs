@@ -8,7 +8,7 @@ import { openFileDatabase } from '../js/store/filedb.js';
 import { Repo } from '../js/store/repo.js';
 import { approve } from '../js/services/approvals.js';
 import { reschedule } from '../js/services/schedule.js';
-import { buildPublicComponentApproval } from '../js/ui/publicApproval.js';
+import { buildPublicApprovalPayload } from '../js/ui/publicApproval.js';
 
 function parseArgs(argv) {
   const result = { targets: [] };
@@ -42,19 +42,43 @@ for (const target of args.targets) {
   const [channelPostId, scheduledAtIso] = String(target).split('|');
   if (!channelPostId || !Number.isFinite(Date.parse(scheduledAtIso))) throw new Error(`不正なtargetです: ${target}`);
   const before = await ctx.repo.getPost(channelPostId);
-  if (!before || before.display_state !== 'PENDING_APPROVAL') throw new Error(`承認待ちではありません: ${channelPostId}`);
+  if (!before || !['PENDING_APPROVAL', 'SCHEDULED'].includes(before.display_state)) {
+    throw new Error(`承認または安全な予定変更の対象ではありません: ${channelPostId}`);
+  }
+  if (before.external_post_id || before.public_url) throw new Error(`外部結果があるため自動で予定変更しません: ${channelPostId}`);
   await reschedule(ctx, channelPostId, { scheduledAtIso, timeZone: 'Asia/Tokyo' });
+  await ctx.repo.change(['schedules'], async (tx, audit) => {
+    const schedules = await tx.getAllBy('schedules', 'channel_post_id', channelPostId);
+    let replaced = 0;
+    for (const schedule of schedules) {
+      if (!schedule.active_key) continue;
+      const { active_key: _drop, ...rest } = schedule;
+      await tx.put('schedules', {
+        ...rest,
+        cancelled_at: ctx.clock.nowIso(),
+        cancel_reason: '外部receipt未取得の内部予定を安全な次回時刻へ変更',
+      });
+      replaced += 1;
+    }
+    await audit({
+      actor: ctx.actor.userId,
+      target_id: channelPostId,
+      action: 'schedule.replace.internal',
+      reason: `外部receiptのない内部予定${replaced}件を無効化し、${scheduledAtIso}へ変更`,
+    });
+  });
   const post = await ctx.repo.getPost(channelPostId);
   const revision = await ctx.repo.getRevision(post.current_revision_id);
   const group = await ctx.repo.getPostGroup(post.post_group_id);
-  const content = await buildPublicComponentApproval({ group, post, revision, scope: 'CONTENT' });
+  const revisions = new Map([[revision.revision_id, revision]]);
+  const content = await buildPublicApprovalPayload({ group, posts: [post], revisions, componentScope: 'CONTENT' });
   const hasImage = (revision.assets ?? []).some((asset) => String(asset.mime ?? '').startsWith('image/'));
   const thumbnail = hasImage
-    ? await buildPublicComponentApproval({ group, post, revision, scope: 'THUMBNAIL' })
+    ? await buildPublicApprovalPayload({ group, posts: [post], revisions, componentScope: 'THUMBNAIL' })
     : null;
   const componentApprovals = [
-    { scope: 'CONTENT', approval_component_hash: content.target.approval_component_hash },
-    ...(thumbnail ? [{ scope: 'THUMBNAIL', approval_component_hash: thumbnail.target.approval_component_hash }] : []),
+    { scope: 'CONTENT', approval_component_hash: content.targets[0].approval_component_hash },
+    ...(thumbnail ? [{ scope: 'THUMBNAIL', approval_component_hash: thumbnail.targets[0].approval_component_hash }] : []),
   ];
   const result = await approve(ctx, channelPostId, {
     comment: '所有者がCodexチャット内で現行Revisionを承認。期限切れ予定は媒体曜日規則に従って安全な次回時刻へ変更。',
