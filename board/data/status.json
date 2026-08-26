@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-26T04:57:53.000+00:00",
+  "generated_at": "2026-08-26T05:03:28.000+00:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -13,8 +13,8 @@
     "date": "2026-08-26",
     "completed": 1,
     "target": 7,
-    "headline": "8月26日は1/7件。水曜YouTube本編は4分17秒動画・字幕・サムネイル3案・三周検査まで完成し、外部予約待ちです。",
-    "next_action": "YouTube外部側の重複と接続を照合し、未作成を確認できた場合だけ21:00公開として1回予約します。note画像差し替えだけは実行直前確認待ちです",
+    "headline": "8月26日は1/7件。水曜YouTube本編は制作・検査を完了し、YouTubeへ非公開で登録済みです。公開設定だけが残っています。",
+    "next_action": "YouTube動画7xbmIlNB-_sへタイトル・説明・サムネイルA・字幕・公開日時を設定し、21:00の予約receiptを取得します。note画像差し替えは別工程です",
     "next_deadline": "2026-08-26T21:00:00+09:00",
     "owner_action_required": true,
     "owner_action": "このチャットで『noteサムネイル差し替えを実行』と返信",
@@ -56,8 +56,8 @@
         "done": 0,
         "target": 1,
         "state": "EXTERNAL_WAIT",
-        "status": "0/1公開／4分17秒本編・字幕48区間・固有画像15枚・サムネイル3案・三周検査が完成。現Revisionは継続承認対象",
-        "next": "外部YouTubeを重複照合し、未作成かつ接続有効なら21:00公開として1回予約してreceiptを保存",
+        "status": "0/1公開／動画はYouTubeへ登録済み（現在は非公開）。外部動画ID 7xbmIlNB-_s を取得。制作・検査はすべて完了",
+        "next": "タイトル・説明・サムネイルA・字幕・子ども向け設定・再生リストを入力し、8/26 21:00の公開予約を確定",
         "blocker": null
       }
     ]
@@ -224,18 +224,18 @@
         },
         {
           "date": "2026-08-26",
-          "state": "PRODUCING",
-          "reason": "OpenAIの8月25日公式発表を48時間枠で採用。4分17秒本編、字幕48区間、生成画像15枚、サムネイル3案、説明文、AI進化レーダー導線、三周検査が完成。外部予約ID・公開IDは未取得。"
+          "state": "PRIVATE_UPLOADED",
+          "reason": "4分17秒本編をYouTubeへ非公開アップロード済み。外部動画ID 7xbmIlNB-_s と動画Hash一致を確認。タイトル・説明・サムネイル・字幕・21:00公開設定は未入力。"
         }
       ]
     },
-    "stage": "Revision 29｜水曜YouTube本編完成・三周検査PASS・外部予約待ち",
-    "reason": "1920×1080・30fps・H.264 High・AAC 48kHz stereoで257.32秒の本編を完成。字幕48区間、15画像、サムネイル3案、音量、無音、黒画面、AI進化レーダー導線を検査してPASS。",
-    "next_action": "YouTube外部側の重複・接続・投稿先を照合し、未作成なら21:00公開として1回だけ予約する。receipt取得後に即時同期する。"
+    "stage": "Revision 30｜YouTube非公開アップロード完了・外部動画ID取得・公開設定入力前",
+    "reason": "重複がないことを確認して完成動画をKIZASHIチャンネルへ1回アップロード。外部動画ID 7xbmIlNB-_s、非公開状態、動画Hash一致を確認。予約・公開receiptはまだありません。",
+    "next_action": "同じ外部動画へタイトル・説明・サムネイルA・字幕・公開設定を入力し、8/26 21:00の予約receiptを取得してBoardへ即時同期する。"
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-26T13:57:53+09:00",
+    "last_checked_at": "2026-08-26T14:03:28+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
@@ -251,6 +251,7 @@
     "runs/kizashi-20260825/youtube-longform-20260826-r1/youtube-final/media.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/youtube-final/three-pass-review.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/youtube-final/approval-package.json",
+    "runs/kizashi-20260825/youtube-longform-20260826-r1/youtube-final/youtube-private-upload-receipt.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/canonical-public-media-sync-receipt.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/post-board-live-validation-receipt.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/post-board-live-import-receipt.json",
