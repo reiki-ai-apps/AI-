@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-26T21:23:28+09:00",
+  "generated_at": "2026-08-27T00:20:09+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -10,11 +10,11 @@
     "attention": 2
   },
   "today": {
-    "date": "2026-08-26",
-    "completed": 2,
+    "date": "2026-08-27",
+    "completed": 0,
     "target": 7,
-    "headline": "8月26日は2/7件公開済み。YouTube本編は21:00に公開され、外部動画ID・公開URL・時刻を照合済みです。",
-    "next_action": "InstagramとXは接続後に重複照合して外部投稿へ進みます。他媒体の8月27日分制作と検査は継続しています。",
+    "headline": "8月27日は0/7件公開。note本文2本、X本文2件、Instagram構成16枚分、Shorts台本・字幕設計は完成し、画像・動画制作を継続しています。",
+    "next_action": "8:00のnote用図解・文字入りサムネイルを最優先で完成し、続いて12:30のShortsをレンダリング・9フレーム検査します。",
     "next_deadline": "2026-08-27T08:00:00+09:00",
     "owner_action_required": true,
     "owner_action": "Instagram @kizashi_jp をMetaのプロアカウントとして接続し、公式Graph APIアクセストークンを1回だけ登録",
@@ -22,13 +22,12 @@
       {
         "id": "note",
         "label": "note",
-        "done": 1,
+        "done": 0,
         "target": 2,
-        "state": "EXTERNAL_WAIT",
-        "status": "1/2公開済み／文字入りサムネイルRevision 9は本文・サムネイルとも承認済み。外部noteへの反映待ち",
-        "next": "実行直前確認後、同じ外部note IDへ文字入りサムネイルを反映し、公開画面を再検査",
-        "blocker": "公開記事の見出し画像を削除・差し替えて保存する直前確認が必要",
-        "url": "https://reiki-ai-apps.github.io/AI-/board/media/6cfe96b1-6bd1-4c69-b3bb-8aa5f64c8f21/02-note-thumbnail-v3.png"
+        "state": "IN_PROGRESS",
+        "status": "0/2公開／別課題・別根拠の本文2本、有料境界、300円設計、読者価値ゲートPASS",
+        "next": "8:00枠へ向け、図解と主コピー入り横長サムネイルを制作・検査",
+        "blocker": null
       },
       {
         "id": "x",
@@ -36,7 +35,7 @@
         "done": 0,
         "target": 2,
         "state": "AUTH_WAIT",
-        "status": "0/2公開／本文2件・根拠URL・媒体別AI進化レーダー計測URLは完成",
+        "status": "0/2公開／8月27日用の別内容2件・根拠URL・AI進化レーダー導線・文字数検査は完成",
         "next": "利用者トークン接続と最新料金確認後、重複照合して投稿",
         "blocker": "X利用者トークン未接続。外部投稿receiptなし"
       },
@@ -45,19 +44,19 @@
         "label": "Instagram",
         "done": 0,
         "target": 2,
-        "state": "AUTH_WAIT",
-        "status": "0/2公開／別内容の8枚カルーセル2件・全16枚完成、三周検査PASS、現Revision承認済み",
-        "next": "Graph API接続後、同じRevisionとHashで重複照合して外部投稿へ進む",
-        "blocker": "公式Graph APIトークンとInstagramユーザーIDが未接続。外部送信・外部receiptともなし"
+        "state": "IN_PROGRESS",
+        "status": "0/2公開／8月27日用の別内容8枚構成2件・表紙コピー完成。新規画像16枚を制作中",
+        "next": "画像・代替テキスト・三周検査を完了後、Graph API接続を確認して外部投稿へ進む",
+        "blocker": "公式Graph APIトークンとInstagramユーザーIDが未接続。制作は継続し、外部送信だけ保留"
       },
       {
         "id": "youtube",
-        "label": "YouTube本編",
-        "done": 1,
+        "label": "YouTube Shorts",
+        "done": 0,
         "target": 1,
-        "state": "PUBLISHED",
-        "status": "1/1公開済み／8月26日21:00公開。外部動画ID 7xbmIlNB-_s、公開URL、タイトル、チャンネル、時刻を照合済み",
-        "next": "公開後の反応を確認し、次回のタイトル・冒頭・導線改善へ反映",
+        "state": "IN_PROGRESS",
+        "status": "0/1公開／Jalapeño解説の台本・字幕設計完成。縦動画レンダリング待ち",
+        "next": "12:30枠へ向け、1080×1920でレンダリングしUI安全域9フレーム検査",
         "blocker": null
       }
     ]
@@ -153,16 +152,16 @@
   "production": {
     "cadence": "PT6H",
     "last_run": {
-      "run_id": "kizashi-20260825",
-      "started_at": "2026-08-25T01:05:51+09:00",
+      "run_id": "kizashi-20260827",
+      "started_at": "2026-08-26T19:22:45+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "Revision 35｜YouTube本編公開済み／Instagram承認済み・Graph API接続認証待ち",
+      "stage": "Production｜note本文2本PASS／X本文2件PASS／Instagram画像・Shorts動画制作中",
       "candidate_count": 2,
       "verified_primary_count": 2,
-      "required_primary_count": 1,
-      "reason": "初回検査で記事文字数不足を検出し、同一run_idで具体例・FAQを追加。4,141字と4,613字、各有料境界1か所、異なる場面・人物・配色のサムネイル2枚、独立SNS原稿をRevision 2へ固定しBoard再同期した。",
-      "next_action": "InstagramとXは接続情報確認後、重複照合して外部投稿へ直行。8月27日分のnote・Shorts・SNS制作と検査を継続。"
+      "required_primary_count": 2,
+      "reason": "OpenAIの独自推論チップとAnthropicのテキストウォーターマークを別課題として採用。note本文2本、X本文2件、Instagram構成16枚分、Shorts台本・字幕設計を同一run_idへ固定しBoard再同期した。",
+      "next_action": "8:00 noteの図解・文字入りサムネイル、12:30 Shortsのレンダリング・UI安全域検査を期限順に完了する。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -240,6 +239,9 @@
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
   "evidence": [
+    "runs/kizashi-20260827/today-priority.json",
+    "runs/kizashi-20260827/gate.json",
+    "runs/kizashi-20260827/board-sync-receipt.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/image-generation-cache.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/image-set-quality-gate.json",
     "runs/kizashi-20260825/youtube-longform-20260826-r1/script-duration-repair.json",
