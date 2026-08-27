@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-27T14:30:00+09:00",
+  "generated_at": "2026-08-27T15:56:41+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -13,8 +13,8 @@
     "date": "2026-08-27",
     "completed": 3,
     "target": 7,
-    "headline": "8月27日は3/7件公開。noteは別内容2本を各300円で公開済み、YouTube Shorts InAEpx7ZoAM も12:30:29に公開されました。",
-    "next_action": "Instagram画像制作と三周検査を継続し、X・Instagramは接続条件を満たした媒体から外部投稿へ進みます。",
+    "headline": "8月27日は3/7件公開。note 2本とYouTube Shortsは公開済み。Instagramは新規画像1/16枚をコピー入りで完成しました。",
+    "next_action": "Instagram残り15枚を1枚ずつ制作・検査し、投稿単位の三周検査後に接続条件を満たした媒体から外部投稿へ進みます。",
     "next_deadline": "2026-08-27T20:00:00+09:00",
     "owner_action_required": false,
     "owner_action": null,
@@ -45,8 +45,8 @@
         "done": 0,
         "target": 2,
         "state": "IN_PROGRESS",
-        "status": "0/2公開／8月27日用の別内容8枚構成2件・表紙コピー完成。新規画像16枚を制作中",
-        "next": "画像・代替テキスト・三周検査を完了後、Graph API接続を確認して外部投稿へ進む",
+        "status": "0/2公開／別内容8枚構成2件を設計済み。Jalapeño表紙1/16枚はコピー・代替テキスト・スライド単位検査まで完成",
+        "next": "残り15枚の画像・代替テキスト・投稿単位の三周検査を完了後、Graph API接続を確認して外部投稿へ進む",
         "blocker": "公式Graph APIトークンとInstagramユーザーIDが未接続。制作は継続し、外部送信だけ保留"
       },
       {
@@ -156,12 +156,12 @@
       "started_at": "2026-08-26T19:22:45+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "External execution｜note 2/2公開済み／Shorts公開済み",
+      "stage": "Instagram制作｜新規画像1/16枚完成",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 2,
       "reason": "Shorts InAEpx7ZoAM は12:30:29公開済み。Jalapeño noteとWatermark noteは各300円で公開済みで、Watermark稿の公開URL・価格・有料境界・画像・リンクを照合した。",
-      "next_action": "Instagram画像制作と三周検査を継続し、接続可能な媒体から外部投稿へ進む。"
+      "next_action": "Instagram残り15枚を1件ずつ制作・検査し、接続可能な媒体から外部投稿へ進む。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -228,13 +228,13 @@
         }
       ]
     },
-    "stage": "Revision 34｜Instagram承認済み・接続認証待ち／YouTube本編予約保持",
-    "reason": "Instagram 2投稿・全16枚の現Revisionを承認済みとして固定。Graph APIトークンとInstagramユーザーIDが未接続のため、外部送信は行わず接続・認証待ちへ同期した。",
-    "next_action": "InstagramのGraph API接続確認後、同じRevisionとHashで重複照合して外部投稿へ進む。21:00のYouTube公開後は公開receiptを照合してBoard更新。"
+    "stage": "Revision 35｜Instagram新規画像1/16枚完成／外部送信は接続待ち",
+    "reason": "Jalapeño投稿の表紙を1080×1350・コピー入りで新規制作し、Hash・代替テキスト・スライド単位検査を登録した。全16枚と投稿単位の三周検査は未完了。",
+    "next_action": "Instagram残り15枚を重い処理1件ずつ制作・検査する。完成後、Graph API接続確認と重複照合を行って外部投稿へ進む。"
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-27T14:30:00+09:00",
+    "last_checked_at": "2026-08-27T15:56:41+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
