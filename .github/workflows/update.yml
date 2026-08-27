@@ -212,6 +212,7 @@ jobs:
           node scripts/build-public-articles.mjs
           node scripts/test-growth-readiness.mjs
           node scripts/test-runtime-resilience.mjs
+          node scripts/test-free-access-daily-metrics.mjs
           node scripts/test-dark-theme.mjs
 
       - name: persist validated public data

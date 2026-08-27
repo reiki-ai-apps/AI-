@@ -25,8 +25,10 @@ if(metricsValidator){
   const source=metricsValidator.replace(/async function loadOperatorMetrics[\s\S]*$/,'');
   const validOperatorMetrics=Function(`${source}; return validOperatorMetrics;`)();
   expect(validOperatorMetrics({registered_users:12,unique_visitors:34})?.registeredUsers===12,"legacy production metrics response remains supported");
-  expect(validOperatorMetrics({registered_users:12,unique_visitors:34})?.funnel7d===null,"missing optional funnel does not hide counts");
+  expect(validOperatorMetrics({registered_users:12,unique_visitors:34})?.dailyOpens===null,"missing daily count does not hide legacy counts");
+  expect(validOperatorMetrics({registered_users:12,unique_visitors:34,daily_opens:56})?.dailyOpens===56,"daily open count is accepted");
   expect(validOperatorMetrics({registered_users:"bad",unique_visitors:34})===null,"invalid metrics are rejected");
+  expect(validOperatorMetrics({registered_users:12,unique_visitors:34,daily_opens:"bad"})===null,"invalid daily count is rejected");
 }
 
 const memberRefresh=section("async function refreshMemberState\\(session\\)\\{","function queueMemberRefresh");
@@ -61,7 +63,7 @@ expect(!/catch\(error\)\{[\s\S]*?memberState\.operatorMetrics=null/.test(metrics
 if(metricsRefresh){
   const source=metricsRefresh.replace(/function startOperatorMetricsRefresh[\s\S]*$/,'');
   const buildRefresh=Function("memberState","memberClient","loadOperatorMetrics","waitMs","renderOperatorMetrics","stopOperatorMetricsRefresh",`let operatorMetricsRefreshInFlight=null;${source};return refreshOperatorMetrics;`);
-  const verified={registeredUsers:12,uniqueVisitors:34,funnel7d:null};
+  const verified={registeredUsers:12,uniqueVisitors:34,dailyOpens:56};
   const verifiedAt="2026-08-15T00:00:00.000Z";
   const state={user:{id:"operator"},subscription:{access_source:"operator_grant"},operatorMetrics:verified,operatorMetricsStatus:"live",operatorMetricsUpdatedAt:verifiedAt,operatorMetricsError:""};
   const refresh=buildRefresh(state,{},async()=>{throw new Error("temporary network failure");},async()=>{},()=>{},()=>{});
@@ -73,6 +75,7 @@ if(metricsRefresh){
 
 for(const [needle,label] of [
   ["data-operator-visitors","desktop and mobile operator badge keeps the visitor count"],
+  ["data-operator-daily-opens","desktop and mobile operator badge keeps today's open count"],
   ["data-operator-users","desktop and mobile operator badge keeps the registration count"],
   ["id=\"operatorMetrics\" class=\"operator-metrics\" hidden","desktop operator badge has a permanent mount point"],
   ["id=\"mobileOperatorMetricsSlot\" class=\"mobile-operator-metrics-slot\" hidden","mobile has a permanent operator metrics mount point"],
@@ -84,13 +87,16 @@ for(const [needle,label] of [
   ["window.addEventListener('focus',()=>{if(memberState.user)refreshMembershipAccess();})","phone resume rechecks operator entitlement"],
   ["effectivePlanKey(),memberState.subscription?.access_source||''","operator entitlement changes invalidate the account render signature"],
   ["data-operator-account-visitors","account page keeps the visitor count"],
+  ["data-operator-account-daily-opens","account page keeps today's open count"],
   ["data-operator-account-users","account page keeps the registration count"],
   [".operator-metrics-status.is-stale","stale values are visibly distinguished from live values"],
-  ["const GROWTH_RPC_MISSING_BACKOFF_MS=6*60*60*1000","missing analytics RPC is circuit-broken instead of retried continuously"],
+  ["function trackAppEvent(){return Promise.resolve(false);}","retired funnel analytics cannot call the missing production RPC"],
   ["VISITOR_REGISTRATION_MAX_ATTEMPTS=5","visitor registration retry count is bounded"],
   ["UNIQUE_VISITOR_REGISTERED_KEY='ai_radar_unique_visitor_registered_v1'","app and public articles share the unique-visitor completion marker"],
   ["if(hasRegisteredUniqueVisitor()){visitorRegistrationComplete=true;return;}","a previously registered browser avoids duplicate visitor writes"],
   ["markUniqueVisitorRegistered();","successful visitor registration is persisted"],
+  ["recordAppOpen();","initial app opens are recorded"],
+  ["p_event_id:APP_OPEN_EVENT_ID","open retries use one idempotent event id"],
   ["catch(()=>{setCloudSyncStatus('error');return false;})","cloud polling cannot reject without a handler"]
 ])expect(index.includes(needle),label);
 
@@ -102,6 +108,8 @@ for(const [needle,label] of [
   ["ai_radar_public_reviewer_v1","public article uses the same anonymous browser key"],
   ["ai_radar_unique_visitor_registered_v1","public article persists completed registration"],
   ["/rpc/register_unique_visitor","public article calls the unique visitor RPC"],
+  ["/rpc/record_app_open","public article records a daily open"],
+  ["p_event_id:OPEN_EVENT_ID","public article sends an idempotent per-load event id"],
   ["if(response.ok)saveValue(REGISTERED_KEY,\"1\");","public article marks completion only after a successful RPC"],
   ["article URL","public article tracker does not send article URL"]
 ])expect(publicVisitorTracker.includes(needle),label);

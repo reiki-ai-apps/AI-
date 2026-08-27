@@ -259,7 +259,7 @@
   .operator-metrics-status.is-stale{color:#ffd27a}.operator-metrics-status.is-stale::before{background:#f0b94c;box-shadow:0 0 8px rgba(240,185,76,.65)}
   .operator-metrics-status.is-error{color:#ff9aab}.operator-metrics-status.is-error::before{background:#ff617c;box-shadow:0 0 8px rgba(255,97,124,.65)}
   .operator-metrics[hidden],.mobile-operator-metrics-slot[hidden]{display:none!important}
-  .operator-metric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+  .operator-metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
   .operator-metric-card{padding:14px 16px;border:1px solid rgba(69,216,229,.24);border-radius:13px;background:rgba(5,25,43,.55)}
   .operator-metric-card span{display:block;color:var(--text-mute);font-size:11px;font-weight:700;margin-bottom:4px}
   .operator-metric-card strong{color:#e9fdff;font-size:22px;font-weight:900}
@@ -911,10 +911,11 @@
     .topbar>.operator-metrics{display:none!important}
     .mobile-operator-metrics-slot{display:block;position:sticky;top:70px;z-index:64;padding:6px 10px 0;background:rgba(3,6,17,.97);pointer-events:none}
     .mobile-operator-metrics-slot:empty{display:none}
-    .mobile-operator-metrics-slot .operator-metrics{display:flex;position:static;width:100%;min-height:34px;justify-content:center;gap:8px;padding:6px 9px;font-size:10px;box-shadow:0 8px 24px rgba(35,53,80,.16),0 0 18px rgba(35,205,220,.12);pointer-events:auto}
+    .mobile-operator-metrics-slot .operator-metrics{display:grid;grid-template-columns:repeat(3,auto) minmax(62px,1fr);position:static;width:100%;min-height:34px;align-items:center;justify-content:center;gap:6px;padding:6px 8px;font-size:9px;box-shadow:0 8px 24px rgba(35,53,80,.16),0 0 18px rgba(35,205,220,.12);pointer-events:auto}
     .operator-metrics::before{display:none}.operator-funnel-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .operator-metrics strong{font-size:10.5px}
-    .operator-metrics-status{padding-left:5px;font-size:8px}
+    .operator-metrics strong{font-size:10px}
+    .operator-metrics-status{justify-self:end;padding-left:5px;font-size:7.5px}
+    .operator-metric-grid{grid-template-columns:1fr}
     .content{padding:16px 14px calc(92px + env(safe-area-inset-bottom))}
     .radar-overview{display:block;min-height:214px;padding:25px 23px;margin-bottom:17px;border-radius:18px}
     .radar-overview::before{width:340px;height:340px;right:-190px;top:-120px}
@@ -1708,6 +1709,7 @@
   .pricing-hero h2{position:relative;z-index:1;margin:0 0 8px;font-size:29px;line-height:1.4;letter-spacing:-.025em;color:#f4f8ff}
   .pricing-hero p{position:relative;z-index:1;margin:0;max-width:690px;color:#9eacc2;font-size:13.5px;line-height:1.8}
   .pricing-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch}
+  .pricing-grid.single{grid-template-columns:minmax(0,680px);justify-content:center}
   .plan-card{
     position:relative;display:flex;flex-direction:column;min-width:0;padding:24px 22px 21px;
     border:1px solid rgba(118,151,194,.22);border-radius:17px;
@@ -2398,35 +2400,13 @@ let toolFormDirty=false;
 const freeTopicPreview=new Set();
 const SOCIAL_PROOF_MIN_USERS=100;
 const SOCIAL_PROOF_MIN_REVIEWS=3;
-const PLAN_RULES={
-  free:{topics:0,sourceViews:1,retention:3,csv:false,customSources:false},
-  standard:{topics:5,sourceViews:3,retention:30,csv:false,customSources:false},
-  premium:{topics:Infinity,sourceViews:Infinity,retention:30,csv:true,customSources:false}
-};
-function effectivePlanKey(){
-  const sub=memberState.subscription;
-  if(!sub&&!memberState.ready){
-    // 会員確認が終わるまでは前回確定したプランで表示する。
-    // 起動直後に全記事が一瞬表示されてからテーマ絞り込みされるのを防ぐ。
-    try{
-      const cached=localStorage.getItem('ai_radar_last_plan');
-      if(cached==='standard'||cached==='premium')return cached;
-    }catch(_e){}
-  }
-  if(!sub||!['standard','premium'].includes(sub.plan))return 'free';
-  if(['active','trialing'].includes(sub.status))return sub.plan;
-  if(sub.status==='canceled'&&sub.current_period_end&&new Date(sub.current_period_end)>new Date())return sub.plan;
-  return 'free';
-}
-function currentRules(){return PLAN_RULES[effectivePlanKey()]||PLAN_RULES.free;}
-function requirePlan(minPlan,message){
-  const order={free:0,standard:1,premium:2};
-  if(order[effectivePlanKey()]>=order[minPlan])return true;
-  modal('プランのアップグレードが必要です',message,()=>go('pricing'),'料金プランを見る');
-  return false;
-}
+// 2026-08-27: サブスクを廃止し、従来の最上位機能を全員へ開放する。
+const FREE_ACCESS_RULES={topics:Infinity,sourceViews:Infinity,retention:30,csv:true,customSources:false};
+function effectivePlanKey(){return 'free';}
+function currentRules(){return FREE_ACCESS_RULES;}
+function requirePlan(){return true;}
 
-function memberPlanLabel(plan){return ({free:'無料',standard:'スタンダード',premium:'プレミアム'})[plan]||'無料';}
+function memberPlanLabel(){return '無料・全機能';}
 function memberStatusLabel(status){return ({active:'契約中',trialing:'トライアル中',past_due:'支払い確認中',canceled:'解約済み',unpaid:'未払い',incomplete:'手続き未完了',inactive:'無料利用中'})[status]||'確認中';}
 function hasStripeContract(sub=memberState.subscription){
   return !!sub&&(sub.has_stripe_subscription===true||sub.access_source==='stripe');
@@ -2487,12 +2467,10 @@ function validOperatorMetrics(data){
   const registeredUsers=Number(data?.registered_users);
   const uniqueVisitors=Number(data?.unique_visitors);
   if(!Number.isFinite(registeredUsers)||registeredUsers<0||!Number.isFinite(uniqueVisitors)||uniqueVisitors<0)return null;
-  const raw=data?.funnel_7d;
-  const value=key=>Math.max(0,Number.isFinite(Number(raw[key]))?Number(raw[key]):0);
-  return {registeredUsers,uniqueVisitors,funnel7d:raw&&typeof raw==='object'?{
-    landingSessions:value('landing_sessions'),articleSessions:value('article_sessions'),pricingSessions:value('pricing_sessions'),
-    signupStarts:value('signup_starts'),signupSuccesses:value('signup_successes'),checkoutStarts:value('checkout_starts'),paymentsConfirmed:value('payments_confirmed')
-  }:null};
+  const rawDailyOpens=data?.daily_opens;
+  const dailyOpens=rawDailyOpens==null?null:Number(rawDailyOpens);
+  if(dailyOpens!==null&&(!Number.isFinite(dailyOpens)||dailyOpens<0))return null;
+  return {registeredUsers,uniqueVisitors,dailyOpens};
 }
 async function loadOperatorMetrics(){
   if(!memberClient||!memberState.user||memberState.subscription?.access_source!=='operator_grant')return null;
@@ -2516,10 +2494,11 @@ function operatorMetricsStatusLabel(){
 }
 function updateOperatorMetricsBadge(badge,metrics,status,statusLabel){
   badge.className='operator-metrics';
-  badge.setAttribute('aria-label',metrics?`管理者統計。累計閲覧者${metrics.uniqueVisitors}人、登録者${metrics.registeredUsers}人。${statusLabel}`:`管理者統計。${statusLabel}`);
+  badge.setAttribute('aria-label',metrics?`管理者統計。累計ユニーク閲覧者${metrics.uniqueVisitors}人、今日の総表示${metrics.dailyOpens==null?'未取得':`${metrics.dailyOpens}回`}、登録者${metrics.registeredUsers}人。${statusLabel}`:`管理者統計。${statusLabel}`);
   badge.title=memberState.operatorMetricsError||statusLabel;
-  badge.innerHTML='<span>閲覧 <strong data-operator-visitors></strong>人</span><span>登録 <strong data-operator-users></strong>人</span><span class="operator-metrics-status" data-operator-metrics-status></span>';
+  badge.innerHTML='<span>ユニーク <strong data-operator-visitors></strong>人</span><span>今日 <strong data-operator-daily-opens></strong>回</span><span>登録 <strong data-operator-users></strong>人</span><span class="operator-metrics-status" data-operator-metrics-status></span>';
   badge.querySelector('[data-operator-visitors]').textContent=metrics?metrics.uniqueVisitors.toLocaleString('ja-JP'):'—';
+  badge.querySelector('[data-operator-daily-opens]').textContent=metrics&&metrics.dailyOpens!==null?metrics.dailyOpens.toLocaleString('ja-JP'):'—';
   badge.querySelector('[data-operator-users]').textContent=metrics?metrics.registeredUsers.toLocaleString('ja-JP'):'—';
   const badgeStatus=badge.querySelector('[data-operator-metrics-status]');
   badgeStatus.className=`operator-metrics-status ${status==='live'?'is-live':status==='stale'?'is-stale':status==='error'?'is-error':''}`;
@@ -2541,8 +2520,8 @@ function renderOperatorMetrics(){
   updateOperatorMetricsBadge(desktopBadge,metrics,status,statusLabel);
   updateOperatorMetricsBadge(mobileBadge,metrics,status,statusLabel);
   document.querySelectorAll('[data-operator-account-visitors]').forEach(el=>{el.textContent=metrics?`${metrics.uniqueVisitors.toLocaleString('ja-JP')}人`:'—';});
+  document.querySelectorAll('[data-operator-account-daily-opens]').forEach(el=>{el.textContent=metrics&&metrics.dailyOpens!==null?`${metrics.dailyOpens.toLocaleString('ja-JP')}回`:'—';});
   document.querySelectorAll('[data-operator-account-users]').forEach(el=>{el.textContent=metrics?`${metrics.registeredUsers.toLocaleString('ja-JP')}人`:'—';});
-  document.querySelectorAll('[data-funnel-key]').forEach(el=>{const key=el.dataset.funnelKey;el.textContent=metrics?.funnel7d?metrics.funnel7d[key].toLocaleString('ja-JP'):'—';});
   document.querySelectorAll('[data-operator-metrics-state]').forEach(el=>{el.className=`operator-metric-state ${status==='live'?'is-live':status==='stale'?'is-stale':status==='error'?'is-error':''}`;el.querySelector('span').textContent=statusLabel;});
 }
 function stopOperatorMetricsRefresh(){
@@ -2824,14 +2803,9 @@ function safeExternalUrl(value,allowedHosts){
   }
 }
 function beginCheckout(plan,baseUrl){
-  if(!memberState.user){memberState.message='決済前にログインまたは無料登録をしてください。';memberState.error=false;go('account');return;}
-  const safeCheckout=safeExternalUrl(baseUrl,['buy.stripe.com']);
-  if(!safeCheckout){toast('安全な決済ページを確認できませんでした。','err');return;}
-  const checkout=new URL(safeCheckout);
-  checkout.searchParams.set('client_reference_id',memberState.user.id);
-  if(memberState.user.email)checkout.searchParams.set('prefilled_email',memberState.user.email);
-  trackAppEvent('checkout_start',{route:'pricing',plan});
-  window.open(checkout.toString(),'_blank','noopener,noreferrer');
+  // 既存ブックマークや古い画面から呼ばれても、新規決済は開始しない。
+  go('pricing');
+  toast('サブスクは廃止され、すべての機能を無料で利用できます。','ok');
 }
 function isPaymentReturn(){return new URL(location.href).searchParams.get('payment')==='success';}
 function clearPaymentReturnFlag(){
@@ -2870,7 +2844,7 @@ async function confirmSubscriptionAfterPayment(){
 async function openBillingManagement(){
   if(!memberState.user){go('account');toast('契約を管理するにはログインしてください。','err');return;}
   if(memberState.subscription?.access_source==='operator_grant'&&!hasStripeContract()){
-    modal('このアカウントに請求はありません','運営者向けプレミアム特典はStripe契約ではないため、解約や請求はありません。',closeModal,'閉じる');
+    modal('このアカウントに請求はありません','全機能は無料です。管理者権限はStripe契約ではないため、解約や請求はありません。',closeModal,'閉じる');
     return;
   }
   toast('Stripeの契約管理画面を準備しています。','ok');
@@ -2888,11 +2862,11 @@ async function openBillingManagement(){
 async function deleteMemberAccount(){
   if(!memberState.user)return;
   if(memberState.subscription?.access_source==='operator_grant'){
-    modal('運営者特典の解除が必要です','このアカウントには請求のない運営者向けプレミアム特典が設定されています。誤削除を防ぐため、先にSupabaseで運営者特典を解除してください。',closeModal,'閉じる');
+    modal('管理者権限の解除が必要です','誤削除を防ぐため、先にSupabaseでこのアカウントの管理者権限を解除してください。',closeModal,'閉じる');
     return;
   }
-  if(effectivePlanKey()!=='free'){
-    modal('先に有料プランを解約してください','有料契約が残ったままアカウントを削除すると請求だけが継続するおそれがあります。「契約・お支払い管理」から解約し、無料プランへ切り替わった後に削除してください。',()=>{closeModal();openBillingManagement();},'契約を管理する');
+  if(hasStripeContract()&&memberState.subscription?.stripe_status!=='canceled'&&memberState.subscription?.status!=='canceled'){
+    modal('先に旧サブスクを解約してください','旧Stripe契約が残ったままアカウントを削除すると請求だけが継続するおそれがあります。「旧サブスクの解約」から解約してください。',()=>{closeModal();openBillingManagement();},'契約を管理する');
     return;
   }
   modal('無料アカウントを削除しますか？','ログイン情報、保存した記事、テーマ設定など、このアカウントに紐づくデータを削除します。この操作は元に戻せません。',async()=>{
@@ -2914,7 +2888,7 @@ function showCancellationGuide(){
         <div class="cancel-step"><b>1</b><span>「Stripeの契約管理画面を開く」を押します。</span></div>
         <div class="cancel-step"><b>2</b><span>表示された契約を選び、「プランをキャンセル」を押します。</span></div>
         <div class="cancel-step"><b>3</b><span>解約日と内容を確認して、キャンセルを確定します。</span></div>
-        <div class="cancel-note">解約しても、表示されている利用期間の終了日までは有料機能を利用できます。ログアウトやアプリのアカウント削除だけでは、サブスクは解約されません。</div>
+        <div class="cancel-note">解約後もすべての機能を無料で利用できます。ログアウトやアプリのアカウント削除だけでは、旧サブスクは解約されません。</div>
       </div>
       <div class="modal-actions"><button class="btn" onclick="closeModal()">閉じる</button><button class="btn btn-primary" onclick="closeModal();openBillingManagement()">Stripeの契約管理画面を開く</button></div>
     </div></div>`;
@@ -3213,108 +3187,53 @@ async function registerUniqueVisitor(){
   }
 }
 
-/* ---------- AWE conversion measurement ----------
-   A random session key is hashed before transmission. No email, IP address,
-   full referrer URL or article text is sent as an analytics event. */
-const GROWTH_EVENT_QUEUE_KEY='ai_radar_growth_event_queue_v1';
-const GROWTH_SESSION_KEY='ai_radar_growth_session_v1';
-const GROWTH_RPC_BACKOFF_KEY='ai_radar_growth_rpc_backoff_v1';
-const GROWTH_RPC_MISSING_BACKOFF_MS=6*60*60*1000;
-const GROWTH_EVENT_NAMES=new Set(['landing_view','route_view','article_view','pricing_view','signup_start','signup_success','checkout_start','payment_confirmed','share_click','source_open']);
-let growthFlushInFlight=null;
-let growthRpcRetryAfter=0;
-let transientGrowthSession='';
-try{
-  const storedRetryAfter=Number(localStorage.getItem(GROWTH_RPC_BACKOFF_KEY)||0);
-  if(Number.isFinite(storedRetryAfter)&&storedRetryAfter>Date.now())growthRpcRetryAfter=storedRetryAfter;
-  else localStorage.removeItem(GROWTH_RPC_BACKOFF_KEY);
-}catch(_error){}
+/* ---------- 匿名の日次表示回数 ---------- */
 function randomUuid(){
   if(crypto.randomUUID)return crypto.randomUUID();
   const bytes=crypto.getRandomValues(new Uint8Array(16));bytes[6]=(bytes[6]&15)|64;bytes[8]=(bytes[8]&63)|128;
   const hex=Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
   return `${hex.slice(0,8)}-${hex.slice(8,12)}-${hex.slice(12,16)}-${hex.slice(16,20)}-${hex.slice(20)}`;
 }
-function growthSessionId(){
+/* 1回のページ起動・再読み込みを1表示として記録する。同じ起動内の再試行は
+   同じUUIDを使うため、通信結果が不明でも二重加算されない。 */
+const APP_OPEN_EVENT_ID=randomUuid();
+const APP_OPEN_MAX_ATTEMPTS=5;
+let appOpenStarted=false;
+let appOpenComplete=false;
+let appOpenAttempts=0;
+let appOpenRetryTimer=null;
+function scheduleAppOpenRetry(){
+  if(appOpenComplete||appOpenRetryTimer!==null||appOpenAttempts>=APP_OPEN_MAX_ATTEMPTS)return;
+  const delay=Math.min(60000,4000*Math.pow(2,Math.min(appOpenAttempts,3)));
+  appOpenRetryTimer=window.setTimeout(()=>{appOpenRetryTimer=null;recordAppOpen();},delay);
+}
+async function recordAppOpen(){
+  if(appOpenComplete||appOpenStarted)return;
+  if(!ensureMemberClient()){appOpenAttempts++;scheduleAppOpenRetry();return;}
+  appOpenStarted=true;
   try{
-    let key=sessionStorage.getItem(GROWTH_SESSION_KEY)||'';
-    if(!/^[0-9a-f-]{36}$/i.test(key)){key=randomUuid();sessionStorage.setItem(GROWTH_SESSION_KEY,key);}
-    return key;
-  }catch(_error){if(!transientGrowthSession)transientGrowthSession=randomUuid();return transientGrowthSession;}
+    const {error}=await memberClient.rpc('record_app_open',{p_event_id:APP_OPEN_EVENT_ID});
+    if(error)throw error;
+    appOpenComplete=true;
+    appOpenAttempts=0;
+    if(appOpenRetryTimer!==null){window.clearTimeout(appOpenRetryTimer);appOpenRetryTimer=null;}
+  }catch(error){
+    appOpenStarted=false;
+    if(isMissingSupabaseRpc(error,'record_app_open')){appOpenComplete=true;return;}
+    appOpenAttempts++;
+    scheduleAppOpenRetry();
+  }
 }
-async function hashAnonymousValue(value){
-  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(String(value||'')));
-  return Array.from(new Uint8Array(digest),byte=>byte.toString(16).padStart(2,'0')).join('');
-}
-function growthAttribution(){
-  const storageKey='ai_radar_growth_attribution_v1';
-  try{
-    const cached=JSON.parse(sessionStorage.getItem(storageKey)||'null');
-    if(cached&&typeof cached==='object')return cached;
-  }catch(_error){}
-  const params=new URL(location.href).searchParams;
-  let referrerHost='';
-  try{if(document.referrer)referrerHost=new URL(document.referrer).hostname.toLowerCase();}catch(_error){}
-  const value={
-    utmSource:(params.get('utm_source')||'').slice(0,100),utmMedium:(params.get('utm_medium')||'').slice(0,100),
-    utmCampaign:(params.get('utm_campaign')||'').slice(0,160),referrerHost:referrerHost.slice(0,160)
-  };
-  try{sessionStorage.setItem(storageKey,JSON.stringify(value));}catch(_error){}
-  return value;
-}
-function growthEventQueue(){
-  try{const value=JSON.parse(localStorage.getItem(GROWTH_EVENT_QUEUE_KEY)||'[]');return Array.isArray(value)?value.slice(-50):[];}catch(_error){return [];}
-}
-function saveGrowthEventQueue(queue){try{localStorage.setItem(GROWTH_EVENT_QUEUE_KEY,JSON.stringify(queue.slice(-50)));}catch(_error){}}
-async function trackAppEvent(eventName,details={}){
-  if(!GROWTH_EVENT_NAMES.has(eventName)||Date.now()<growthRpcRetryAfter)return;
-  const attribution=growthAttribution();
-  const event={
-    eventId:randomUuid(),eventName,sessionKeyHash:await hashAnonymousValue(growthSessionId()),
-    route:String(details.route||route.name||'home').slice(0,80),articleId:String(details.articleId||'').slice(0,100),
-    plan:['standard','premium'].includes(details.plan||effectivePlanKey())?(details.plan||effectivePlanKey()):'free',
-    ...attribution,occurredAt:new Date().toISOString()
-  };
-  const queue=growthEventQueue();queue.push(event);saveGrowthEventQueue(queue);
-  void flushAppEvents();
-}
-async function flushAppEvents(){
-  if(growthFlushInFlight)return growthFlushInFlight;
-  if(Date.now()<growthRpcRetryAfter||!ensureMemberClient())return false;
-  growthFlushInFlight=(async()=>{
-    const queue=growthEventQueue();
-    while(queue.length){
-      const event=queue[0];
-      try{
-        const {error}=await memberClient.rpc('record_app_event',{
-          p_event_id:event.eventId,p_event_name:event.eventName,p_session_key_hash:event.sessionKeyHash,
-          p_route:event.route,p_article_id:event.articleId,p_plan:event.plan,p_utm_source:event.utmSource,
-          p_utm_medium:event.utmMedium,p_utm_campaign:event.utmCampaign,p_referrer_host:event.referrerHost,p_occurred_at:event.occurredAt
-        });
-        if(error)throw error;
-      }catch(error){
-        if(isMissingSupabaseRpc(error,'record_app_event')){
-          growthRpcRetryAfter=Date.now()+GROWTH_RPC_MISSING_BACKOFF_MS;
-          try{localStorage.setItem(GROWTH_RPC_BACKOFF_KEY,String(growthRpcRetryAfter));}catch(_error){}
-          queue.length=0;
-          saveGrowthEventQueue(queue);
-        }else growthRpcRetryAfter=Date.now()+60000;
-        break;
-      }
-      queue.shift();saveGrowthEventQueue(queue);
-    }
-    return queue.length===0;
-  })().finally(()=>{growthFlushInFlight=null;});
-  return growthFlushInFlight;
-}
-function trackRouteView(){
-  trackAppEvent('route_view',{route:route.name});
-  if(route.name==='update-detail')trackAppEvent('article_view',{route:route.name,articleId:String(updateById(route.param)?.article_id||route.param||'').slice(0,100)});
-  if(route.name==='pricing')trackAppEvent('pricing_view',{route:route.name});
-}
+// 旧ファネルRPCは本番未導入のまま廃止した。呼び出し元との互換だけ残し、
+// 存在しないrecord_app_eventへ404を発生させない。
+function trackAppEvent(){return Promise.resolve(false);}
+function flushAppEvents(){return Promise.resolve(true);}
+function trackRouteView(){}
 window.addEventListener('online',()=>{
   if(!visitorRegistrationComplete)visitorRegistrationAttempts=0;
+  if(!appOpenComplete)appOpenAttempts=0;
   registerUniqueVisitor();
+  recordAppOpen();
   flushAppEvents();
   if(memberState.user)refreshMembershipAccess();
 });
@@ -3568,7 +3487,6 @@ function getTools(){ return DB.load().tools; }
 function getUpdates(){ return DB.load().updates; }
 function getPlanUpdates(){
   const all=getUpdates();
-  if(effectivePlanKey()==='free')return all;
   const settings=getSettings();
   if(settings.themeSelectionConfigured!==true)return all;
   const limit=currentRules().topics;
@@ -3934,7 +3852,7 @@ const NAV = [
   ]},
   {group:'アカウント',items:[
     {id:'account',label:'ログイン・会員情報',icon:'user'},
-    {id:'pricing',label:'料金プラン',icon:'star'},
+    {id:'pricing',label:'無料で使える機能',icon:'star'},
     {id:'reviews',label:'利用者レビュー',icon:'eye'},
     {id:'support',label:'お問い合わせ',icon:'inbox'},
   ]},
@@ -3960,15 +3878,6 @@ function go(name, param){
   if(route.name==='tool-form'&&toolFormDirty&&!(name==='tool-form'&&route.param===param)){
     modal('入力内容が保存されていません','入力内容を破棄して、この画面から移動しますか？',()=>{toolFormDirty=false;go(name,param);},'破棄して移動',true);
     return;
-  }
-  if(name==='tool-form'&&effectivePlanKey()==='free'){
-    requirePlan('standard','無料プランは運営が選んだ総合フィードを利用します。情報テーマの選択・編集はスタンダード以上で利用できます。');return;
-  }
-  if(name==='tool-form'&&param==='new'){
-    const rules=currentRules();
-    if(rules.topics===0){requirePlan('standard','無料プランは運営が選んだ総合フィードを利用します。好きな情報テーマの追加はスタンダード以上で利用できます。');return;}
-    const customCount=getTools().filter(t=>t.is_custom).length;
-    if(Number.isFinite(rules.topics)&&customCount>=rules.topics){requirePlan('premium',`スタンダードでは情報テーマを${rules.topics}件まで追加できます。無制限で追加するにはプレミアムをご利用ください。`);return;}
   }
   if(route.name && !(route.name===name && route.param===param)){
     navHistory.push({name:route.name, param:route.param});
@@ -4043,8 +3952,8 @@ const PAGE_META = {
   tools:['フィード設定','興味のあるAI情報を選び、自分専用のレーダーを設定'],
   'tool-form':['情報テーマを編集',''],
   fetch:['取得実行','登録した情報テーマの最新ニュースを取得'],
-  account:['ログイン・会員情報','アカウントと契約プランを確認'],
-  pricing:['料金プラン','利用スタイルに合わせて選べる3つのプラン'],
+  account:['ログイン・会員情報','設定をPC・スマホで同期'],
+  pricing:['無料で使える機能','すべての機能を回数制限なく利用できます'],
   reviews:['利用者レビュー','AI進化レーダーを利用した方の感想'],
   support:['お問い合わせ','困ったこと・記事の誤りを運営へ連絡'],
   terms:['利用規約','サービス利用時の大切なルール'],
@@ -4194,49 +4103,11 @@ function updateCard(u){
     </div>
   </article>`;
 }
-async function openSourceArticle(id){
+function openSourceArticle(id){
   const u=updateById(id);if(!u?.source_url)return;
   const sourceUrl=safeExternalUrl(u.source_url);
   if(!sourceUrl){toast('安全な情報元URLを確認できませんでした。','err');return;}
-
-  if(!memberState.user||!memberClient){
-    modal(
-      '無料登録・ログインが必要です',
-      '情報元の記事は、無料プランでは毎月1記事まで確認できます。登録済みの方はログインしてください。',
-      ()=>go('account'),
-      'ログイン・無料登録へ'
-    );
-    return;
-  }
-
-  const sourceWindow=window.open('about:blank','_blank');
-  if(sourceWindow)sourceWindow.opener=null;
-  const articleKey=String(u.source_url||u.id||'').slice(0,160);
-  const {data,error}=await memberClient.rpc('record_article_view',{p_article_key:articleKey});
-  if(error){
-    if(sourceWindow)sourceWindow.close();
-    console.error('record_article_view failed',error);
-    toast('閲覧可能回数を確認できませんでした。少し待ってからもう一度お試しください。','err');
-    return;
-  }
-
-  const result=Array.isArray(data)?data[0]:data;
-  if(!result?.allowed){
-    if(sourceWindow)sourceWindow.close();
-    const plan=effectivePlanKey();
-    const limit=Number(result?.limit ?? currentRules().sourceViews);
-    const message=plan==='free'
-      ?`無料プランで情報元の記事を確認できる回数は毎月${limit}記事です。スタンダードでは毎月3記事まで確認できます。`
-      :`スタンダードで情報元の記事を確認できる回数は毎月${limit}記事です。プレミアムでは無制限に確認できます。`;
-    modal('今月の閲覧上限に達しました',message,()=>go('pricing'),'料金プランを見る');
-    return;
-  }
-
-  if(sourceWindow){
-    sourceWindow.location.replace(sourceUrl);
-  }else{
-    window.open(sourceUrl,'_blank','noopener,noreferrer');
-  }
+  window.open(sourceUrl,'_blank','noopener,noreferrer');
   trackAppEvent('source_open',{articleId:String(u.article_id||u.id||'').slice(0,100)});
 }
 function publicArticleUrl(u){
@@ -4690,10 +4561,6 @@ function openUpdateForm(){
 function toggleTopicAttention(id){
   const tool=toolById(id);
   if(!tool)return;
-  if(effectivePlanKey()==='free'){
-    requirePlan('standard','スタンダードでは好きな情報テーマを5件まで選び、自分専用のフィードを作れます。');
-    return;
-  }
   const next=!tool.is_using;
   const limit=currentRules().topics;
   const selected=getTools().filter(item=>item.is_using&&item.id!==id).length;
@@ -4789,55 +4656,42 @@ function renderTools(v){
     if(bi>=0)return 1;
     return 0;
   });
-  const plan=effectivePlanKey();
   const rules=currentRules();
-  const isPaid=plan!=='free';
   const selectedCount=tools.filter(tool=>tool.is_using).length;
   const topicLimit=settingLimitLabel(rules.topics,'件');
   const sourceLimit=settingLimitLabel(rules.sourceViews,'記事／月');
-  document.getElementById('topActions').innerHTML=isPaid
-    ?`<button class="btn btn-primary" onclick="go('tool-form','new')">${icon('plus')}新しいテーマを追加</button>`
-    :`<button class="btn btn-primary" onclick="go('pricing')">${icon('star')}有料プランを見る</button>`;
+  document.getElementById('topActions').innerHTML=`<button class="btn btn-primary" onclick="go('tool-form','new')">${icon('plus')}新しいテーマを追加</button>`;
 
-  let html=`<div class="settings-hub ${isPaid?'is-paid':'is-free'}">
+  let html=`<div class="settings-hub is-paid">
     <section class="settings-hero" aria-labelledby="feedSettingsTitle">
       <div class="settings-hero-main"><div>
         <div class="pricing-eyebrow">PERSONAL FEED SETTINGS</div>
-        <h2 id="feedSettingsTitle">${isPaid?'自分専用のAIレーダーを設定':'有料プランで、必要なAI情報だけを見やすく'}</h2>
-        <p>${isPaid?'最初に興味のある情報テーマを選んでください。選んだテーマを中心にホームのニュースが整理されます。':'無料プランは運営のおまかせフィードです。スタンダード以上では、興味のあるテーマを選び、自分専用のニュース画面を作れます。'}</p>
-      </div><span class="current-plan-pill">現在：${memberPlanLabel(plan)}</span></div>
+        <h2 id="feedSettingsTitle">自分専用のAIレーダーを自由に設定</h2>
+        <p>興味のある情報テーマを好きなだけ選んでください。選んだテーマを中心にホームのニュースが整理されます。</p>
+      </div><span class="current-plan-pill">全機能無料</span></div>
       <div class="settings-steps" aria-label="設定の流れ">
         <div class="settings-step"><b>1</b><span>興味のある<br>情報テーマを選ぶ</span></div>
         <div class="settings-step"><b>2</b><span>ホームで専用フィードを<br>確認する</span></div>
         <div class="settings-step"><b>3</b><span>不要になったテーマは<br>いつでも外す</span></div>
       </div>
       <div class="settings-actions">
-        ${isPaid?`<button class="btn btn-primary" onclick="document.getElementById('topicSettingsList')?.scrollIntoView({behavior:'smooth',block:'start'})">${icon('category')}テーマを選ぶ</button><button class="btn" onclick="go('home')">${icon('home')}専用フィードを見る</button>`:`<button class="btn btn-primary" onclick="go('pricing')">${icon('star')}5テーマを選べるプランを見る</button>${memberState.user?'':`<button class="btn" onclick="go('account')">${icon('user')}まず無料登録</button>`}`}
+        <button class="btn btn-primary" onclick="document.getElementById('topicSettingsList')?.scrollIntoView({behavior:'smooth',block:'start'})">${icon('category')}テーマを選ぶ</button><button class="btn" onclick="go('home')">${icon('home')}専用フィードを見る</button>
       </div>
     </section>
     <div class="settings-grid">
-      <article class="setting-card"><div class="setting-card-head"><h3>${icon('category')}情報テーマ</h3><span class="setting-state ${isPaid?'':'locked'}">${isPaid?'設定できます':'有料で解放'}</span></div>
+      <article class="setting-card"><div class="setting-card-head"><h3>${icon('category')}情報テーマ</h3><span class="setting-state">自由に設定</span></div>
         <p>ホームに優先表示したいAI分野や企業・政策を選びます。</p>
-        <strong class="setting-value">${isPaid?`${selectedCount} / ${topicLimit}`:'選択なし'}</strong><span class="setting-note">${isPaid?'あとから何度でも変更できます。':'スタンダードは5件、プレミアムは無制限です。'}</span>
+        <strong class="setting-value">${selectedCount} / ${topicLimit}</strong><span class="setting-note">好きなだけ選び、あとから何度でも変更できます。</span>
       </article>
-      <article class="setting-card"><div class="setting-card-head"><h3>${icon('ext')}情報元の記事</h3><span class="setting-state">現在の上限</span></div>
-        <p>AI要約の根拠になった元の記事を開ける回数です。</p>
-        <strong class="setting-value">${sourceLimit}</strong><span class="setting-note">無料1記事、スタンダード3記事、プレミアム無制限。</span>
+      <article class="setting-card"><div class="setting-card-head"><h3>${icon('ext')}情報元の記事</h3><span class="setting-state">自由に閲覧</span></div>
+        <p>AI要約の根拠になった元の記事を、登録なしで確認できます。</p>
+        <strong class="setting-value">${sourceLimit}</strong><span class="setting-note">回数制限はありません。</span>
       </article>
-      <article class="setting-card"><div class="setting-card-head"><h3>${icon('updates')}保存と書き出し</h3><span class="setting-state ${rules.csv?'':'locked'}">${rules.csv?'CSV対応':'プラン特典'}</span></div>
+      <article class="setting-card"><div class="setting-card-head"><h3>${icon('updates')}保存と書き出し</h3><span class="setting-state">CSV対応</span></div>
         <p>過去の記事を残せる期間と、データ書き出しの設定です。</p>
-        <strong class="setting-value">${rules.retention}日保存</strong><span class="setting-note">CSV書き出しはプレミアムで利用できます。</span>
+        <strong class="setting-value">${rules.retention}日保存</strong><span class="setting-note">CSV書き出しも無料で利用できます。</span>
       </article>
     </div>`;
-
-  if(!isPaid){
-    const previewTopics=['中国AI・基盤モデル','補助金・助成金','AI関連企業・株式','画像・動画生成','AI政策・規制'];
-    html+=`<section class="settings-benefit"><div style="width:100%"><h3>3つ選んで、専用フィードを体験</h3><p>気になるテーマを押すと、有料登録後の設定イメージをその場で確認できます。</p>
-      <div class="free-topic-demo"><div class="free-topic-demo-grid">${previewTopics.map((name,index)=>`<button type="button" class="free-topic-demo-button ${freeTopicPreview.has(String(index))?'is-selected':''}" aria-pressed="${freeTopicPreview.has(String(index))}" onclick="toggleFreeTopicPreview('${index}')"><span>${icon('star')}${esc(name)}</span><span>${freeTopicPreview.has(String(index))?'選択中・解除':'選ぶ'}</span></button>`).join('')}</div><div class="free-topic-demo-result" aria-live="polite">${freeTopicPreview.size?`選択中：${[...freeTopicPreview].map(key=>previewTopics[Number(key)]).filter(Boolean).map(esc).join('、')}<br>有料登録後は、この内容をホームに反映できます。`:'まだ選択していません。最大3つまで試せます。'}</div></div></div>
-      <button class="btn btn-primary" onclick="go('pricing')">この設定が使えるプランを見る</button></section></div>`;
-    v.innerHTML=html;
-    return;
-  }
 
   html+=`<section class="settings-benefit"><div><h3>${selectedCount?'選択内容はホームへ反映されています':'まず1つ、興味のあるテーマを選びましょう'}</h3><p>${selectedCount?'選択を変更すると、次回の表示から専用フィードへ反映されます。':'下の一覧から「ホームに表示する」を押すだけで設定できます。'}</p></div><div class="topic-count"><strong>${selectedCount}</strong><span>テーマ選択中</span></div></section></div>`;
 
@@ -4944,7 +4798,7 @@ function renderToolForm(v){
       <details class="manual-details">
         <summary>${icon('edit')} 情報源の個別指定（準備中）</summary>
         <div class="manual-fields">
-          <div class="notice-card"><b>現在は自動取得に連携されません</b><span>公式サイト・RSS・Xを個別指定する機能は準備中です。現時点では、上の検索キーワードと収集ジャンルからサーバーが情報源を選びます。利用できるようになるまで料金プランの特典には含めません。</span></div>
+          <div class="notice-card"><b>現在は自動取得に連携されません</b><span>公式サイト・RSS・Xを個別指定する機能は準備中です。現時点では、上の検索キーワードと収集ジャンルからサーバーが情報源を選びます。</span></div>
           <input type="hidden" id="tf_official" value="${esc(t.official_url||'')}">
           <input type="hidden" id="tf_release" value="${esc(t.release_notes_url||'')}">
           <input type="hidden" id="tf_rss" value="${esc(t.rss_url||googleNewsRss(t.search_query||''))}">
@@ -5489,6 +5343,7 @@ async function finishBootInBackground(){
   renderIfChanged();
   // 匿名の利用状況を登録する。通信やSDK到着が遅い場合は成功するまで間隔を空けて再試行する。
   registerUniqueVisitor();
+  recordAppOpen();
   flushAppEvents();
 }
 function bootApp(){
@@ -5499,6 +5354,7 @@ function bootApp(){
     // クラウド状態とのマージ基準になる「セッション開始時点」を記録する。
     DB.captureBootBaseline();
     render();
+    recordAppOpen();
     try{
       if(!sessionStorage.getItem('ai_radar_landing_tracked_v1')){
         sessionStorage.setItem('ai_radar_landing_tracked_v1','1');
@@ -5559,81 +5415,60 @@ function renderAccount(v){
     return;
   }
   const sub=memberState.subscription||{plan:'free',status:'inactive'};
-  const isPaid=effectivePlanKey()!=='free';
   const isOperatorGrant=sub.access_source==='operator_grant';
   const hasStripeSubscription=hasStripeContract(sub);
-  const stripePlan=sub.stripe_plan||(sub.access_source==='stripe'?sub.plan:'free');
   const stripeStatus=sub.stripe_status||(sub.access_source==='stripe'?sub.status:'inactive');
   const stripeCurrentPeriodEnd=sub.stripe_current_period_end||(sub.access_source==='stripe'?sub.current_period_end:null);
   const isCanceled=stripeStatus==='canceled';
   const periodLabel=isCanceled?'利用終了日':'次回更新日';
   v.innerHTML=`<div class="account-page"><section class="account-panel">
-    <div class="account-head"><div class="pricing-eyebrow">MEMBER STATUS</div><h2>会員情報</h2><p>ログイン中のアカウントと現在の契約状態です。</p></div>
+    <div class="account-head"><div class="pricing-eyebrow">ACCOUNT SYNC</div><h2>会員情報</h2><p>全機能は誰でも無料です。ログインすると、設定・保存・既読状態をPCとスマホで同期できます。</p></div>
     <div class="member-summary">
       <div class="member-row"><span>メールアドレス</span><strong>${esc(memberState.user.email||'—')}</strong></div>
       <div class="member-row"><span>PC・スマホ同期</span><strong data-account-sync-status>${cloudSyncLabel()}</strong></div>
-      <div class="member-row"><span>現在のプラン</span><strong class="member-plan">${memberPlanLabel(sub.plan)}</strong></div>
-      <div class="member-row"><span>${isOperatorGrant?'利用資格':'契約状態'}</span><strong>${isOperatorGrant?'運営者特典（請求なし）':memberStatusLabel(sub.status)}</strong></div>
-      ${hasStripeSubscription?`<div class="member-row"><span>Stripe契約</span><strong>${memberPlanLabel(stripePlan)}・${memberStatusLabel(stripeStatus)}</strong></div>`:''}
+      <div class="member-row"><span>利用プラン</span><strong class="member-plan">無料・全機能</strong></div>
+      ${isOperatorGrant?'<div class="member-row"><span>管理者権限</span><strong>運営者本人・統計を表示</strong></div>':''}
+      ${hasStripeSubscription?`<div class="member-row"><span>旧Stripe契約</span><strong>${memberStatusLabel(stripeStatus)}</strong></div>`:''}
       ${stripeCurrentPeriodEnd?`<div class="member-row"><span>${periodLabel}</span><strong>${fmtDate(stripeCurrentPeriodEnd)}まで</strong></div>`:''}
-      <div class="auth-actions"><button class="btn btn-primary" onclick="syncMemberAppStateFromCloud({showToast:true})">${icon('shuffle')}今すぐ同期</button><button class="btn" onclick="go('pricing')">${icon('star')}料金プランを見る</button>${currentRules().csv?`<button class="btn" onclick="exportUpdatesCsv()">${icon('updates')}CSVを書き出す</button>`:''}<button class="btn" onclick="sendPasswordReset()">${icon('edit')}パスワード再設定</button><button class="btn" onclick="signOutMember()">${icon('arrowLeft')}ログアウト</button></div>
+      <div class="auth-actions"><button class="btn btn-primary" onclick="syncMemberAppStateFromCloud({showToast:true})">${icon('shuffle')}今すぐ同期</button><button class="btn" onclick="go('tools')">${icon('tools')}設定を開く</button><button class="btn" onclick="exportUpdatesCsv()">${icon('updates')}CSVを書き出す</button><button class="btn" onclick="sendPasswordReset()">${icon('edit')}パスワード再設定</button><button class="btn" onclick="signOutMember()">${icon('arrowLeft')}ログアウト</button></div>
     </div>
     <section class="member-feature-guide" aria-labelledby="memberFeaturesTitle">
-      <h3 id="memberFeaturesTitle">${isPaid?`${memberPlanLabel(sub.plan)}で使える設定`:'有料プランで解放される設定'}</h3>
-      <p>${isPaid?'最初に「フィード設定」で興味のあるテーマを選んでください。ここが有料機能のスタート地点です。':'無料のまま設定画面を見て、スタンダード・プレミアムで何が変わるか確認できます。'}</p>
+      <h3 id="memberFeaturesTitle">すべて無料で使えます</h3>
+      <p>情報テーマの設定、情報元の記事、履歴、CSV書き出しにサブスク制限はありません。</p>
       <div class="member-feature-list">
-        <span class="member-feature-item">${icon('category')}${isPaid?`情報テーマを${Number.isFinite(currentRules().topics)?`${currentRules().topics}件まで`:'無制限に'}選択`:'好きな情報テーマを5件から選択'}</span>
-        <span class="member-feature-item">${icon('ext')}${isPaid?`情報元の記事を${Number.isFinite(currentRules().sourceViews)?`月${currentRules().sourceViews}記事まで`:'無制限に'}確認`:'情報元の記事を月3記事から確認'}</span>
-        <span class="member-feature-item">${icon('updates')}${isPaid?`${currentRules().retention}日間の閲覧履歴${currentRules().csv?'・CSV書き出し':''}`:'閲覧履歴を30日保存・上位はCSV対応'}</span>
+        <span class="member-feature-item">${icon('category')}好きな情報テーマを無制限に設定</span>
+        <span class="member-feature-item">${icon('ext')}情報元の記事を回数制限なく確認</span>
+        <span class="member-feature-item">${icon('updates')}30日間の閲覧履歴・CSV書き出し</span>
       </div>
-      <div class="billing-actions"><button class="btn btn-primary" onclick="go('tools')">${icon('tools')}${isPaid?'フィード設定を始める':'設定画面を見てみる'}</button>${isPaid?`<button class="btn" onclick="go('home')">${icon('home')}ホームで確認</button>`:`<button class="btn" onclick="go('pricing')">${icon('star')}プランを比較</button>`}</div>
+      <div class="billing-actions"><button class="btn btn-primary" onclick="go('tools')">${icon('tools')}フィード設定を始める</button><button class="btn" onclick="go('home')">${icon('home')}ホームで確認</button></div>
     </section>
     ${isOperatorGrant?`<section class="billing-panel" aria-labelledby="operatorBenefitTitle">
       <div class="billing-panel-head">
-        <div><h3 id="operatorBenefitTitle">運営者向けプレミアム特典</h3><p>この管理者アカウントに紐づく特典です。同じアカウントでログインすれば、PCでもスマホでも閲覧者数・登録者数を確認できます。</p></div>
-        <span class="billing-badge">請求なし・期限なし</span>
+        <div><h3 id="operatorBenefitTitle">運営者向け利用状況</h3><p>管理者本人のアカウントだけに、PC・スマホ共通で現在の実数を表示します。</p></div>
+        <span class="billing-badge">管理者のみ表示</span>
       </div>
       <div class="operator-metric-grid" aria-label="管理者だけに表示される現在の実数">
-        <div class="operator-metric-card"><span>累計ユニーク閲覧（端末・ブラウザー）</span><strong data-operator-account-visitors>${memberState.operatorMetrics?`${memberState.operatorMetrics.uniqueVisitors.toLocaleString('ja-JP')}人`:'—'}</strong></div>
-        <div class="operator-metric-card"><span>作成済み登録アカウント</span><strong data-operator-account-users>${memberState.operatorMetrics?`${memberState.operatorMetrics.registeredUsers.toLocaleString('ja-JP')}人`:'—'}</strong></div>
-      </div>
-      <h4 class="operator-funnel-title">直近7日間の流れ（管理者のみ）</h4>
-      <div class="operator-metric-grid operator-funnel-grid" aria-label="直近7日間の匿名ファネル">
-        <div class="operator-metric-card"><span>訪問セッション</span><strong data-funnel-key="landingSessions">${memberState.operatorMetrics?.funnel7d?.landingSessions??'—'}</strong></div>
-        <div class="operator-metric-card"><span>記事を確認</span><strong data-funnel-key="articleSessions">${memberState.operatorMetrics?.funnel7d?.articleSessions??'—'}</strong></div>
-        <div class="operator-metric-card"><span>料金を確認</span><strong data-funnel-key="pricingSessions">${memberState.operatorMetrics?.funnel7d?.pricingSessions??'—'}</strong></div>
-        <div class="operator-metric-card"><span>無料登録を開始</span><strong data-funnel-key="signupStarts">${memberState.operatorMetrics?.funnel7d?.signupStarts??'—'}</strong></div>
-        <div class="operator-metric-card"><span>無料登録が成立</span><strong data-funnel-key="signupSuccesses">${memberState.operatorMetrics?.funnel7d?.signupSuccesses??'—'}</strong></div>
-        <div class="operator-metric-card"><span>決済を開始</span><strong data-funnel-key="checkoutStarts">${memberState.operatorMetrics?.funnel7d?.checkoutStarts??'—'}</strong></div>
-        <div class="operator-metric-card"><span>契約反映を確認</span><strong data-funnel-key="paymentsConfirmed">${memberState.operatorMetrics?.funnel7d?.paymentsConfirmed??'—'}</strong></div>
+        <div class="operator-metric-card"><span>累計ユニーク閲覧者</span><strong data-operator-account-visitors>${memberState.operatorMetrics?`${memberState.operatorMetrics.uniqueVisitors.toLocaleString('ja-JP')}人`:'—'}</strong></div>
+        <div class="operator-metric-card"><span>今日の総表示回数</span><strong data-operator-account-daily-opens>${memberState.operatorMetrics&&memberState.operatorMetrics.dailyOpens!==null?`${memberState.operatorMetrics.dailyOpens.toLocaleString('ja-JP')}回`:'—'}</strong></div>
+        <div class="operator-metric-card"><span>登録アカウント数</span><strong data-operator-account-users>${memberState.operatorMetrics?`${memberState.operatorMetrics.registeredUsers.toLocaleString('ja-JP')}人`:'—'}</strong></div>
       </div>
       <div class="operator-metric-state ${memberState.operatorMetricsStatus==='live'?'is-live':memberState.operatorMetricsStatus==='stale'?'is-stale':memberState.operatorMetricsStatus==='error'?'is-error':''}" data-operator-metrics-state><span>${esc(operatorMetricsStatusLabel())}</span><button class="btn operator-metric-refresh" type="button" onclick="refreshOperatorMetrics()">今すぐ再取得</button></div>
-      <p class="billing-help">表示値はSupabaseへ記録された現在の実数です。匿名閲覧はログイン情報がないため、同じ端末・ブラウザーの重複を除いた累計であり、異なる端末を使う同一人物を完全には統合できません。</p>
-      <p class="billing-help">${hasStripeSubscription?'下の「契約・お支払い管理」から、別に契約中のStripeサブスクを確認・解約できます。':'料金の請求や自動更新はありません。特典はSupabaseの運営者設定でのみ変更できます。'}</p>
+      <p class="billing-help">累計ユニーク閲覧者は同じ端末・ブラウザーの重複を除いた概算です。今日の総表示回数は日本時間0時からの、アプリまたは公開記事が開かれた回数です。</p>
     </section>`:''}
     ${hasStripeSubscription?`<section class="billing-panel" aria-labelledby="billingTitle">
       <div class="billing-panel-head">
-        <div><h3 id="billingTitle">契約・お支払い管理</h3><p>Stripeで契約中の${memberPlanLabel(stripePlan)}プランのお支払い確認・解約はこちらです。</p></div>
-        <span class="billing-badge">${isCanceled?'解約手続き済み':'いつでも解約できます'}</span>
+        <div><h3 id="billingTitle">旧サブスクの解約</h3><p>新規サブスクは廃止しました。既存のStripe契約は自動では止まらないため、こちらから解約してください。</p></div>
+        <span class="billing-badge">${isCanceled?'解約手続き済み':'要確認'}</span>
       </div>
-      <div class="billing-actions">
-        ${isCanceled?'':`<button class="btn btn-primary" onclick="openBillingManagement()">${icon('ext')}Stripeで契約を管理</button>
-        <button class="btn" onclick="showCancellationGuide()">${icon('x')}解約手続きを始める</button>`}
-      </div>
-      <p class="billing-help">${isCanceled?'解約手続きは完了しています。上記の利用終了日までは有料機能を利用できます。':'解約後も現在の利用期間が終了するまでは有料機能を利用できます。アカウント削除とサブスク解約は別の手続きです。'}</p>
-    </section>`:!isOperatorGrant?`<section class="billing-panel" aria-labelledby="billingTitle">
-      <div class="billing-panel-head">
-        <div><h3 id="billingTitle">契約・お支払い管理</h3><p>現在は無料プランのため、解約手続きや請求はありません。</p></div>
-        <span class="billing-badge">請求なし</span>
-      </div>
+      <div class="billing-actions">${isCanceled?'':`<button class="btn btn-primary" onclick="openBillingManagement()">${icon('ext')}Stripeで契約を管理</button><button class="btn" onclick="showCancellationGuide()">${icon('x')}解約手続きを始める</button>`}</div>
+      <p class="billing-help">${isCanceled?'解約手続きは完了しています。全機能は引き続き無料で利用できます。':'サブスクを解約しても、全機能をそのまま無料で利用できます。アカウント削除とサブスク解約は別の手続きです。'}</p>
     </section>`:''}
-    <div class="account-security">${isOperatorGrant?(hasStripeSubscription?'運営者特典とStripe契約は別々に管理されます。Stripe契約を解約しても、運営者プレミアム特典は維持されます。':'運営者特典はStripeの請求とは連動せず、サーバー側で安全に管理されます。'):'契約プランはStripeの決済結果から更新されます。ログアウトだけでは有料サブスクは解約されません。'}</div>
-    <section class="account-danger"><div><b>アカウントの削除</b><span>${isOperatorGrant?'誤削除を防ぐため、先に運営者特典の解除が必要です。':effectivePlanKey()==='free'?'無料アカウントと保存設定を完全に削除します。':'先に有料プランを解約し、無料プランへ切り替わってから削除できます。'}</span></div><button class="btn btn-danger btn-sm" onclick="deleteMemberAccount()">${icon('trash')}削除する</button></section>
+    <div class="account-security">全機能は無料です。アカウントは端末間の同期と、管理者本人の統計表示にだけ使用します。${hasStripeSubscription?'旧Stripe契約がある場合は、ログアウトだけでは解約されません。':''}</div>
+    <section class="account-danger"><div><b>アカウントの削除</b><span>${isOperatorGrant?'誤削除を防ぐため、先に管理者権限の解除が必要です。':hasStripeSubscription&&!isCanceled?'先に旧サブスクを解約してから削除してください。':'アカウントと保存設定を完全に削除します。'}</span></div><button class="btn btn-danger btn-sm" onclick="deleteMemberAccount()">${icon('trash')}削除する</button></section>
   </section></div>`;
 }
 
 function exportUpdatesCsv(){
-  if(!requirePlan('premium','CSV書き出しはプレミアムプランで利用できます。'))return;
   const rows=[['公開日','情報テーマ','タイトル','AI要約','ステータス','情報元URL']];
   getUpdates().slice().sort(byPub).forEach(u=>rows.push([fmtDate(u.published_at),toolById(u.tool_id)?.name||'',u.title,u.manual_summary||u.ai_summary||u.raw_excerpt||'',STATUS_LABELS[u.status]||u.status,u.source_url||'']));
   const csvCell=v=>{
@@ -5726,10 +5561,10 @@ function renderSupport(v){
   }
   v.innerHTML=`<div class="legal-page"><section class="legal-section">
     <div class="pricing-eyebrow">CUSTOMER SUPPORT</div><h2>お問い合わせ</h2>
-    <p>操作方法、契約・解約、記事の誤り、個人情報に関するご依頼を受け付けます。通常は登録メールアドレスへ返信します。</p>
+    <p>操作方法、旧サブスクの解約、記事の誤り、個人情報に関するご依頼を受け付けます。通常は登録メールアドレスへ返信します。</p>
     ${article?`<div class="notice-card"><b>報告する記事</b><span>${esc(article.title)}</span></div>`:''}
     <div class="support-form">
-      <label>お問い合わせの種類<select id="supportCategory"><option ${article?'selected':''}>記事の誤り・内容について</option><option>操作方法について</option><option>契約・請求・解約について</option><option>アカウント・個人情報について</option><option>その他</option></select></label>
+      <label>お問い合わせの種類<select id="supportCategory"><option ${article?'selected':''}>記事の誤り・内容について</option><option>操作方法について</option><option>旧サブスク・請求・解約について</option><option>アカウント・個人情報について</option><option>その他</option></select></label>
       <label>内容<textarea id="supportMessage" rows="7" placeholder="困っていること、表示された画面、希望する対応をできるだけ詳しくお書きください。">${article?`記事「${esc(article.title)}」について：`:''}</textarea></label>
       <div id="supportMessageBox" class="auth-message"></div>
       <button class="btn btn-primary" onclick="submitSupport()">${icon('inbox')}送信する</button>
@@ -5750,99 +5585,77 @@ function legalShell(title,updated,body){
   return `<div class="legal-page"><section class="legal-section"><div class="pricing-eyebrow">AI UPDATE RADAR</div><h2>${title}</h2><p class="legal-updated">制定・最終更新：${updated}</p>${body}<div class="legal-contact"><b>ご不明点はこちら</b><button class="btn btn-sm" onclick="go('support')">${icon('inbox')}お問い合わせ</button></div></section></div>`;
 }
 function renderTerms(v){
-  v.innerHTML=legalShell('利用規約','2026年7月25日',`
+  v.innerHTML=legalShell('利用規約','2026年8月27日',`
     <h3>1. サービスの内容</h3><p>AI進化レーダーは、AIに関するニュースや公開情報を収集し、AIによる要約・分類・保存機能を提供する情報サービスです。</p>
     <h3>2. 情報の正確性</h3><p>要約は自動生成を含み、誤り、遅延、欠落が生じることがあります。重要な判断は必ず情報元、公式発表、専門家の助言をご確認ください。本サービスは投資、法律、税務、医療その他の専門的助言を行うものではありません。</p>
     <h3>3. アカウント</h3><p>利用者は正確な情報を登録し、パスワードを適切に管理してください。不正利用が疑われる場合は速やかにお問い合わせください。</p>
-    <h3>4. 有料プラン・解約</h3><p>有料プランは月額の自動更新です。次回更新前に会員情報の「契約・お支払い管理」から解約できます。解約後も当該利用期間の終了までは利用できます。法令上必要な場合、二重請求、当社の重大な不具合を除き、利用開始後の日割り返金は行いません。</p>
+    <h3>4. 無料提供</h3><p>本サービスの機能は無料で提供します。新規の有料サブスクリプション申込は受け付けません。廃止前に契約された旧サブスクリプションが残っている場合は、会員情報の「旧サブスクの解約」から停止できます。</p>
     <h3>5. 禁止事項</h3><p>不正アクセス、第三者へのなりすまし、サービスの妨害、法令違反、権利侵害、過度な自動取得、アカウントの不正共有を禁止します。</p>
     <h3>6. サービスの変更・停止</h3><p>保守、障害、外部サービスの停止、法令対応等により、内容の変更や一時停止を行うことがあります。重要な変更はアプリ内等でお知らせします。</p>
     <h3>7. 準拠法</h3><p>本規約は日本法に準拠します。紛争が生じた場合は、法令で認められる範囲で当社所在地を管轄する裁判所を第一審の専属的合意管轄とします。</p>`);
 }
 function renderPrivacy(v){
-  v.innerHTML=legalShell('プライバシーポリシー','2026年8月14日',`
-    <h3>収集する情報</h3><p>メールアドレス、認証用ID、契約プラン・決済状態、アプリ内の情報テーマ・保存・閲覧履歴・設定、お問い合わせ内容、セキュリティや障害調査に必要なログを取り扱います。また、レビューの重複投稿防止、累計閲覧数、画面・記事・登録・決済導線の匿名集計のため、ブラウザ内のランダムな識別子を一方向ハッシュ化した値、画面名、記事ID、参照元のホスト名、UTM項目を保存します。メールアドレス、IPアドレス、参照元の完全なURL、記事本文は分析イベントの項目として保存しません。カード番号は当社では保持せずStripeが処理します。</p>
-    <h3>利用目的</h3><p>本人認証、サービス提供、設定同期、プラン判定、料金請求、問い合わせ対応、不正利用防止、個人を表示しない利用状況・導線の集計、品質改善、法令対応のために利用します。</p>
-    <h3>外部サービス</h3><p>認証・データ保存にSupabase、決済にStripe、公開配信にGitHub Pagesを利用します。各事業者は業務に必要な範囲でデータを処理する場合があります。</p>
+  v.innerHTML=legalShell('プライバシーポリシー','2026年8月27日',`
+    <h3>収集する情報</h3><p>登録した場合のメールアドレス・認証用ID、アプリ内の情報テーマ・保存・閲覧履歴・設定、お問い合わせ内容、セキュリティや障害調査に必要なログを取り扱います。また、レビューの重複投稿防止と累計ユニーク閲覧者の集計には、ブラウザー内のランダムな識別子を一方向ハッシュ化した値を使用します。1日の総表示回数には、ページを開くたびに生成するランダムなイベントIDと記録時刻だけを保存します。メールアドレス、IPアドレス、閲覧URL、記事本文はこれらの匿名集計項目として保存しません。</p>
+    <h3>利用目的</h3><p>本人認証、サービス提供、端末間の設定同期、問い合わせ対応、不正利用防止、個人を表示しない利用状況の集計、品質改善、法令対応のために利用します。</p>
+    <h3>外部サービス</h3><p>認証・データ保存にSupabase、公開配信にGitHub Pagesを利用します。廃止前の旧サブスクリプション契約が残る利用者の解約管理に限りStripeを利用します。各事業者は業務に必要な範囲でデータを処理する場合があります。</p>
     <h3>第三者提供</h3><p>本人の同意がある場合、業務委託に必要な場合、法令に基づく場合を除き、個人データを第三者へ提供しません。</p>
     <h3>保存期間と安全管理</h3><p>利用目的に必要な期間、法令上必要な期間、契約・問い合わせ対応に必要な期間保存し、アクセス制御、通信の暗号化、権限分離など合理的な安全管理を行います。</p>
     <h3>確認・訂正・削除</h3><p>会員画面からアカウント削除を申請できます。個人情報の開示、訂正、利用停止等はお問い合わせからご連絡ください。本人確認後、法令に従って対応します。</p>
     <h3>改定</h3><p>重要な変更を行う場合はアプリ内等でお知らせします。</p>`);
 }
 function renderCommerce(v){
-  v.innerHTML=legalShell('特定商取引法に基づく表記','2026年7月25日',`
+  v.innerHTML=legalShell('特定商取引法に基づく表記','2026年8月27日',`
     <table class="legal-table">
       <tr><th>販売事業者</th><td>株式会社REIKI</td></tr>
       <tr><th>サービス名</th><td>AI進化レーダー</td></tr>
       <tr><th>運営責任者・所在地・電話番号</th><td>請求があった場合、遅滞なく開示します。アプリ内のお問い合わせからご請求ください。</td></tr>
-      <tr><th>販売価格</th><td>スタンダード 月額980円（税込）、プレミアム 月額2,980円（税込）。無料プランは0円です。決済画面にも表示します。</td></tr>
+      <tr><th>販売価格</th><td>0円。すべての機能を無料で提供し、新規の有料申込は受け付けません。</td></tr>
       <tr><th>販売価格以外の負担</th><td>インターネット接続に必要な通信料金等は利用者の負担です。</td></tr>
-      <tr><th>支払方法・時期</th><td>Stripeによるクレジットカード決済。申込時に決済し、以後1か月ごとに自動更新します。</td></tr>
-      <tr><th>提供時期</th><td>決済完了後、契約プランが反映され次第利用できます。</td></tr>
-      <tr><th>解約</th><td>会員情報の「契約・お支払い管理」から次回更新前にいつでも解約できます。解約後も現在の利用期間の終了まで利用できます。</td></tr>
-      <tr><th>返品・返金</th><td>デジタルサービスの性質上、提供開始後の返品・日割り返金は原則行いません。ただし法令上必要な場合、二重請求、当社の重大な不具合は個別に対応します。</td></tr>
+      <tr><th>支払方法・時期</th><td>新規の支払いはありません。</td></tr>
+      <tr><th>提供時期</th><td>サイトを開いた時点から利用できます。端末間同期には無料登録が必要です。</td></tr>
+      <tr><th>旧サブスクの解約</th><td>廃止前のStripe契約が残っている場合は、会員情報の「旧サブスクの解約」から停止できます。解約後も全機能を無料で利用できます。</td></tr>
+      <tr><th>返品・返金</th><td>現在は料金を受け取りません。旧契約の請求に問題がある場合はお問い合わせからご連絡ください。</td></tr>
       <tr><th>動作環境</th><td>最新版のChrome、Edge、Safari等の主要ブラウザ。通信環境や外部サービスの状態により利用できない場合があります。</td></tr>
     </table>`);
 }
 
 /* ============================================================
-   PRICING (/pricing)
+   FREE ACCESS (/pricing - 古いブックマークとの互換用)
    ============================================================ */
-function pricingPlanAction(p,currentPlan){
-  const isCurrent=!!memberState.user&&currentPlan===p.key;
-  if(isCurrent)return `<button class="btn plan-cta" disabled aria-disabled="true">${icon('check')}現在のプラン</button>`;
-  if(p.key==='free'){
-    if(memberState.user)return `<button class="btn plan-cta" disabled aria-disabled="true">無料プラン</button>`;
-    return `<button class="btn plan-cta" onclick="go('account')">${icon('user')}無料で登録</button>`;
-  }
-  if(!p.checkoutUrl)return `<button class="btn plan-cta" disabled aria-disabled="true">${icon('updates')}本番提供の準備中</button>`;
-  const label=memberState.user?p.cta:'無料登録して申し込む';
-  return `<button class="btn ${p.recommended?'btn-primary':''} plan-cta" onclick="beginCheckout('${p.key}','${p.checkoutUrl}')" aria-label="${p.name}の決済へ進む">${icon(memberState.user?'ext':'user')}${label}</button>`;
-}
 function renderPricing(v){
   document.getElementById('topActions').innerHTML='';
-  const currentPlan=effectivePlanKey();
-  const plans=[
-    {
-      key:'standard',kicker:'毎日の情報収集を自分専用に',name:'スタンダード',price:'¥980',unit:'税込／月',desc:'毎日、自分に必要なAI変化だけを短時間で確認したい個人向け。',result:'テーマを選ぶだけで、重要情報の確認と振り返りを1か所に。',
-      features:['好きな情報テーマを5件まで選択','重要トップニュースはテーマ外でも表示','PC・スマホで設定と保存を同期','情報元の記事は毎月3記事まで','閲覧履歴を30日間保存'],
-      cta:'スタンダードに登録',checkoutUrl:'https://buy.stripe.com/14AbJ16PCdQl40b81s4ZG02',recommended:true
-    },
-    {
-      key:'free',kicker:'まずは重要ニュースを確認',name:'無料',price:'¥0',unit:'ずっと無料',desc:'運営が厳選した重要AIニュースを、おまかせで気軽に確認したい方へ。',result:'カード登録なしで、今日の重要な変化をすぐ確認。',
-      features:['今日の重要AIニュースを表示','重要トップニュースはテーマ外でも表示','情報元の記事は毎月1記事まで','やさしいAI要約を利用可能','閲覧履歴を3日間保存'],
-      cta:'無料で登録'
-    },
-    {
-      key:'premium',kicker:'横断調査と記録を効率化',name:'プレミアム',price:'¥2,980',unit:'税込／月',desc:'複数の事業・調査テーマを横断して、AIの変化を深く管理したい方向け。',result:'テーマ数や元記事枠を気にせず、調査記録をCSVでも活用。',
-      features:['好きな情報テーマを無制限に選択','選んだテーマ中心の専用フィード','情報元の記事を回数制限なく確認','テーマ・キーワードで絞り込み','閲覧履歴を30日間保存','CSVデータ書き出し'],
-      cta:'プレミアムに登録',checkoutUrl:'https://buy.stripe.com/28E9AT3DqeUp1S33Lc4ZG03'
-    }
-  ];
   v.innerHTML=`<div class="pricing-page">
     <section class="pricing-hero">
-      <div class="pricing-eyebrow">AI UPDATE RADAR MEMBERSHIP</div>
-      <h2>重要ニュースの確認を、<br>自分専用に。</h2>
-      <p>無料は重要ニュースをおまかせで確認。スタンダード以上では興味のあるテーマを選び、PCとスマホで同じ保存・設定を使えます。</p>
+      <div class="pricing-eyebrow">FREE ACCESS</div>
+      <h2>サブスクなし。<br>すべての機能を無料で。</h2>
+      <p>テーマ設定も、情報元の記事も、保存やCSV書き出しも、誰でも自由に利用できます。カード登録は不要です。</p>
     </section>
-    <div class="pricing-grid">
-      ${plans.map(p=>`<article class="plan-card ${p.recommended?'recommended':''}" aria-labelledby="plan-${p.key}">
-        ${p.recommended?'<span class="plan-ribbon">おすすめ</span>':''}
-        <div class="plan-kicker">${p.kicker}</div>
-        <h3 id="plan-${p.key}">${p.name}</h3>
-        <div class="plan-price"><strong>${p.price}</strong><span>${p.unit}</span></div>
-        <p class="plan-desc">${p.desc}</p>
-        <div class="plan-result">${p.result}</div>
+    <div class="pricing-grid single">
+      <article class="plan-card recommended" aria-labelledby="plan-free-access">
+        <span class="plan-ribbon">全機能</span>
+        <div class="plan-kicker">登録なしでもすぐ使える</div>
+        <h3 id="plan-free-access">無料</h3>
+        <div class="plan-price"><strong>¥0</strong><span>ずっと無料</span></div>
+        <p class="plan-desc">興味のあるテーマに合わせて、自分専用のAIニュースフィードを作れます。</p>
+        <div class="plan-result">ログインはPC・スマホの同期にだけ必要です。</div>
         <div class="plan-divider"></div>
-        <ul class="plan-features">${p.features.map(f=>`<li>${icon('check')}<span>${f}</span></li>`).join('')}</ul>
-        ${pricingPlanAction(p,currentPlan)}
-      </article>`).join('')}
+        <ul class="plan-features">
+          <li>${icon('check')}<span>好きな情報テーマを無制限に設定</span></li>
+          <li>${icon('check')}<span>重要トップニュースはテーマ外でも表示</span></li>
+          <li>${icon('check')}<span>情報元の記事を回数制限なく確認</span></li>
+          <li>${icon('check')}<span>やさしい要約と仕事への影響を確認</span></li>
+          <li>${icon('check')}<span>30日間の閲覧履歴・CSV書き出し</span></li>
+          <li>${icon('check')}<span>無料登録でPC・スマホを同期</span></li>
+        </ul>
+        <button class="btn btn-primary plan-cta" onclick="go('tools')">${icon('tools')}フィード設定を開く</button>
+      </article>
     </div>
-    <div class="pricing-common">${icon('bolt')}<span><b>すべてのプランに共通：</b>配信件数はAIニュースの発生状況に応じて変わります。スマホ対応、読みやすいAI要約、情報元へのリンクを利用できます。</span></div>
+    <div class="pricing-common">${icon('bolt')}<span><b>サブスクは廃止しました。</b>新規の決済や自動更新はありません。配信件数はAIニュースの発生状況に応じて変わります。</span></div>
     <section class="settings-benefit" style="margin-top:14px" aria-labelledby="settingsPreviewTitle"><div>
-      <h3 id="settingsPreviewTitle">登録後の設定場所も、先に確認できます</h3>
-      <p>「フィード設定」では、情報テーマの選択数・元記事の閲覧上限・保存期間をまとめて確認できます。無料プランでも設定画面のプレビューを見られます。</p>
-    </div><button class="btn ${currentPlan==='free'?'':'btn-primary'}" onclick="go('tools')">${icon('tools')}${currentPlan==='free'?'設定画面を見てみる':'契約中プランを設定する'}</button></section>
+      <h3 id="settingsPreviewTitle">設定は今すぐ変更できます</h3>
+      <p>情報テーマ、収集ジャンル、キーワードを自由に設定できます。重要度の高いトップ記事は設定に関係なく表示します。</p>
+    </div><button class="btn btn-primary" onclick="go('tools')">${icon('tools')}設定する</button></section>
     ${memberState.reviews.length>=SOCIAL_PROOF_MIN_REVIEWS?`<section class="reviews-preview" aria-labelledby="pricingReviewTitle">
       <div class="reviews-preview-head"><h3 id="pricingReviewTitle">利用者レビュー</h3><button class="btn btn-sm" onclick="go('reviews')">すべて見る</button></div>
       ${reviewCardsHtml(memberState.reviews,2)}
@@ -5859,9 +5672,10 @@ function renderPricing(v){
         <a class="official-media-link" href="https://www.youtube.com/@kizashi_jp" target="_blank" rel="noopener noreferrer"><span class="official-media-mark">YT</span><span>YouTubeで見る</span></a>
         <a class="official-media-link" href="https://x.com/KIZASHI_jp" target="_blank" rel="noopener noreferrer"><span class="official-media-mark">X</span><span>Xで最新情報を見る</span></a>
         <a class="official-media-link" href="https://www.instagram.com/kizashi_jp/" target="_blank" rel="noopener noreferrer"><span class="official-media-mark">IG</span><span>Instagramで見る</span></a>
+        <a class="official-media-link" href="https://note.com/natty_swan9072" target="_blank" rel="noopener noreferrer"><span class="official-media-mark">note</span><span>noteで読む</span></a>
       </div>
     </section>
-    <p class="pricing-note">有料プランは月額の自動更新です。決済前にログインすると、ご契約がこのアカウントへ自動で反映されます。会員情報の「契約・お支払い管理」から、次回更新前にいつでも解約できます。</p>
+    <p class="pricing-note">廃止前の旧サブスクが残っている方は、ログイン後の会員情報からStripe契約を解約できます。解約後も全機能を無料で利用できます。</p>
     <div class="footer-links"><button onclick="go('terms')">利用規約</button><button onclick="go('privacy')">プライバシーポリシー</button><button onclick="go('commerce')">特定商取引法に基づく表記</button><button onclick="go('support')">お問い合わせ</button></div>
   </div>`;
 }

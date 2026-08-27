@@ -74,7 +74,7 @@ for (const [index, { source }] of inlineScripts.entries()) {
 }
 
 const schema = fs.readFileSync(path.join(root, "supabase", "schema.sql"), "utf8");
-for (const table of ["profiles", "subscriptions", "stripe_events", "user_states", "article_views", "support_requests", "reviews", "unique_visitors"]) {
+for (const table of ["profiles", "subscriptions", "stripe_events", "user_states", "article_views", "support_requests", "reviews", "unique_visitors", "app_open_events"]) {
   const pattern = new RegExp(`alter table public\\.${table} enable row level security`, "i");
   if (!pattern.test(schema)) findings.push(`supabase/schema.sql: RLS missing for ${table}`);
 }
@@ -117,6 +117,14 @@ if (!/grant execute on function public\.register_unique_visitor\(text\) to anon,
 if (!/revoke all on table public\.unique_visitors from anon, authenticated/i.test(schema)) {
   findings.push("supabase/schema.sql: raw unique visitor hashes are exposed");
 }
+if (!/function public\.record_app_open\(p_event_id uuid\)\s*returns boolean/i.test(schema) ||
+    !/grant execute on function public\.record_app_open\(uuid\) to anon, authenticated/i.test(schema) ||
+    !/revoke all on table public\.app_open_events from anon, authenticated/i.test(schema)) {
+  findings.push("supabase/schema.sql: daily open counter RPC or table protection is incomplete");
+}
+if (!/rpc\('record_app_open',\{p_event_id:APP_OPEN_EVENT_ID\}\)/.test(html)) {
+  findings.push("index.html: idempotent daily open registration is missing");
+}
 if (/data-registered-count|rpc\('registered_user_count'\)|id=["']onlineNow["']|これまでに\s*<b>[\s\S]*?人が閲覧/.test(html)) {
   findings.push("index.html: user-visible audience or registration count remains");
 }
@@ -136,6 +144,9 @@ if (!/id="operatorMetrics" class="operator-metrics" hidden/.test(html) ||
     !/id="mobileOperatorMetrics" class="operator-metrics" hidden/.test(html) ||
     /function renderOperatorMetrics\(\)[\s\S]{0,900}\.remove\(\)/.test(html)) {
   findings.push("index.html: stable desktop and mobile operator metric mounts are missing");
+}
+if (!/data-operator-visitors/.test(html) || !/data-operator-daily-opens/.test(html) || !/data-operator-users/.test(html)) {
+  findings.push("index.html: one or more operator metric fields are missing");
 }
 if (!/setInterval\(refreshOperatorMetrics,60000\)/.test(html)) {
   findings.push("index.html: operator metrics are not refreshed persistently");

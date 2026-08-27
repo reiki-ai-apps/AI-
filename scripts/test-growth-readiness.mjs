@@ -15,13 +15,14 @@ for(const text of [
   '<link rel="canonical" href="https://reiki-ai-apps.github.io/AI-/"',
   'property="og:title"','name="twitter:card"','"@type":"WebSite"','function shareArticle','無料登録はカード情報不要',
   '変化と仕事への影響を見る','重要トップニュースはテーマ外でも表示','function trackAppEvent',
-  "trackAppEvent('signup_start'","trackAppEvent('checkout_start'","data-funnel-key=\"paymentsConfirmed\"",
+  'サブスクなし。','好きな情報テーマを無制限に設定','情報元の記事を回数制限なく確認',
+  "trackAppEvent('signup_start'","p_event_id:APP_OPEN_EVENT_ID","data-operator-account-daily-opens",
   "String(u.article_id||'')===key",'href="${esc(publicArticleUrl(u))}"'
 ])requireText(index,text);
 if(index.includes('重要ニュース通知（提供予定）'))failures.push('未提供機能を料金プランに表示しています');
 if(index.includes('複数事業やチームで'))failures.push('未提供のチーム機能を料金説明に含めています');
 
-for(const text of ['create table if not exists public.app_events','function public.record_app_event','funnel_7d','alter table public.app_events enable row level security','revoke all on table public.app_events from anon, authenticated'])requireText(schema,text);
+for(const text of ['create table if not exists public.app_open_events','function public.record_app_open','daily_opens','Asia/Tokyo','alter table public.app_open_events enable row level security','revoke all on table public.app_open_events from anon, authenticated'])requireText(schema,text);
 for(const text of ['node scripts/build-public-articles.mjs','articles sitemap.xml robots.txt'])requireText(workflow,text);
 
 const ids=data.map(item=>String(item.article_id||item.id||'')).filter(id=>/^[A-Za-z0-9_-]{8,100}$/.test(id));
@@ -41,4 +42,4 @@ requireText(read("robots.txt"),'Sitemap: https://reiki-ai-apps.github.io/AI-/sit
 requireText(read("sitemap.xml"),'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 
 if(failures.length){console.error(failures.join("\n"));process.exit(1);}
-console.log(`Growth readiness OK: ${ids.length} public article pages, SEO/share/funnel/privacy checks passed.`);
+console.log(`Growth readiness OK: ${ids.length} public article pages, SEO/share/free-access/privacy checks passed.`);

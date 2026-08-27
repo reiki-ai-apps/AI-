@@ -77,6 +77,16 @@ create table if not exists public.unique_visitors (
   first_seen_at timestamptz not null default now()
 );
 
+-- One row per page load. The browser generates a fresh UUID for each initial
+-- app/article open and reuses it only for network retries, making the counter
+-- idempotent without storing an account, URL or browser identifier.
+create table if not exists public.app_open_events (
+  event_id uuid primary key,
+  opened_at timestamptz not null default now()
+);
+create index if not exists app_open_events_opened_at_idx
+  on public.app_open_events (opened_at desc);
+
 -- Privacy-safe conversion events. Raw email addresses, IP addresses and full
 -- referrer URLs are never stored; the random session key is one-way hashed.
 create table if not exists public.app_events (
@@ -529,6 +539,25 @@ begin
 end;
 $$;
 
+create or replace function public.record_app_open(p_event_id uuid)
+returns boolean
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  if p_event_id is null then
+    raise exception 'invalid open event id';
+  end if;
+
+  insert into public.app_open_events (event_id)
+  values (p_event_id)
+  on conflict (event_id) do nothing;
+
+  return true;
+end;
+$$;
+
 create or replace function public.record_app_event(
   p_event_id uuid,
   p_event_name text,
@@ -608,19 +637,13 @@ begin
   return jsonb_build_object(
     'registered_users', (select count(*) from public.profiles),
     'unique_visitors', (select count(*) from public.unique_visitors),
-    'funnel_7d', (
-      select jsonb_build_object(
-        'landing_sessions', count(distinct session_key_hash) filter (where event_name = 'landing_view'),
-        'article_sessions', count(distinct session_key_hash) filter (where event_name = 'article_view'),
-        'pricing_sessions', count(distinct session_key_hash) filter (where event_name = 'pricing_view'),
-        'signup_starts', count(*) filter (where event_name = 'signup_start'),
-        'signup_successes', count(*) filter (where event_name = 'signup_success'),
-        'checkout_starts', count(*) filter (where event_name = 'checkout_start'),
-        'payments_confirmed', count(*) filter (where event_name = 'payment_confirmed')
-      )
-      from public.app_events
-      where received_at >= now() - interval '7 days'
-    )
+    'daily_opens', (
+      select count(*)
+      from public.app_open_events
+      where opened_at >= (date_trunc('day', now() at time zone 'Asia/Tokyo') at time zone 'Asia/Tokyo')
+        and opened_at < ((date_trunc('day', now() at time zone 'Asia/Tokyo') + interval '1 day') at time zone 'Asia/Tokyo')
+    ),
+    'daily_opens_date', to_char(now() at time zone 'Asia/Tokyo', 'YYYY-MM-DD')
   );
 end;
 $$;
@@ -668,6 +691,7 @@ alter table public.article_views enable row level security;
 alter table public.support_requests enable row level security;
 alter table public.reviews enable row level security;
 alter table public.unique_visitors enable row level security;
+alter table public.app_open_events enable row level security;
 alter table public.app_events enable row level security;
 
 drop policy if exists "Users can read their own profile" on public.profiles;
@@ -723,6 +747,7 @@ revoke all on table public.article_views from anon, authenticated;
 revoke all on table public.support_requests from anon, authenticated;
 revoke all on table public.reviews from anon, authenticated;
 revoke all on table public.unique_visitors from anon, authenticated;
+revoke all on table public.app_open_events from anon, authenticated;
 revoke all on table public.app_events from anon, authenticated;
 
 grant select on table public.profiles to authenticated;
@@ -746,6 +771,8 @@ revoke all on function public.registered_user_count() from public;
 revoke all on function public.registered_user_count() from anon, authenticated;
 revoke all on function public.register_unique_visitor(text) from public;
 grant execute on function public.register_unique_visitor(text) to anon, authenticated;
+revoke all on function public.record_app_open(uuid) from public;
+grant execute on function public.record_app_open(uuid) to anon, authenticated;
 revoke all on function public.record_app_event(uuid, text, text, text, text, text, text, text, text, text, timestamptz) from public;
 grant execute on function public.record_app_event(uuid, text, text, text, text, text, text, text, text, text, timestamptz) to anon, authenticated;
 revoke all on function public.operator_metrics() from public;
@@ -764,4 +791,5 @@ grant all on table public.article_views to service_role;
 grant all on table public.support_requests to service_role;
 grant all on table public.reviews to service_role;
 grant all on table public.unique_visitors to service_role;
+grant all on table public.app_open_events to service_role;
 grant all on table public.app_events to service_role;
