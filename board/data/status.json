@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-27T20:10:00+09:00",
+  "generated_at": "2026-08-27T20:23:02+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -13,11 +13,11 @@
     "date": "2026-08-27",
     "completed": 3,
     "target": 7,
-    "headline": "8月27日は3/7件公開。Instagram 2投稿・全16枚は承認済みで、外部接続診断へ進みました。",
-    "next_action": "Instagramの公開HTTPS URLを確定し、Graph API接続と重複を確認して外部投稿へ進みます。他媒体の安全な工程は継続します。",
-    "next_deadline": "2026-08-27T20:00:00+09:00",
-    "owner_action_required": false,
-    "owner_action": null,
+    "headline": "8月27日は3/7件公開。Instagram 2投稿は承認・公開URL準備まで完了しましたが、投稿先 @kizashi_jp がMeta未接続です。",
+    "next_action": "Meta Business Suiteで @kizashi_jp を1回接続後、重複照合して外部投稿へ進みます。他媒体の安全な工程は継続します。",
+    "next_deadline": "2026-08-27T21:00:00+09:00",
+    "owner_action_required": true,
+    "owner_action": "Meta Business SuiteのInstagram accountsで投稿先 @kizashi_jp をAddから1回接続",
     "channels": [
       {
         "id": "note",
@@ -45,9 +45,9 @@
         "done": 0,
         "target": 2,
         "state": "AUTH_WAIT",
-        "status": "0/2公開／2/2制作・検査・現Revision承認完了。外部投稿receiptは未取得",
-        "next": "公開HTTPS URLを確定し、Graph API接続と重複を確認して外部投稿へ進む",
-        "blocker": "公式Graph APIトークン、InstagramユーザーID、APIバージョンの実行環境設定が未接続",
+        "status": "0/2公開／2/2制作・検査・承認・公開URL16件完了。外部投稿receiptは未取得",
+        "next": "Meta Business Suiteで @kizashi_jp を1回接続後、重複照合して外部投稿へ進む",
+        "blocker": "Meta Business Suiteには別アカウントだけが登録され、投稿先 @kizashi_jp と公式APIトークンが未接続",
         "url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260827/instagram/approval.html"
       },
       {
@@ -75,7 +75,7 @@
         "url": "https://www.instagram.com/p/DcEMK9JGctI/"
       },
       "next_scheduled": null,
-      "note": "8月27日用のJalapeñoとWatermarkは別内容2投稿・全16枚完成、三周検査PASS、現Revision/Hash承認済み。Graph API接続情報が未登録のため外部送信は未実行。"
+      "note": "8月27日用の別内容2投稿・全16枚、三周検査、現Revision承認、公開HTTPS URL 16件は完了。Meta Business Suiteに @kizashi_jp が未接続のため外部送信は未実行。"
     },
     {
       "id": "x",
@@ -146,8 +146,8 @@
       "id": "20260825-instagram-auth-required",
       "severity": "ATTENTION",
       "title": "Instagramは接続・認証待ち",
-      "message": "8月27日用カルーセル2件・全16枚は完成、三周検査PASS、現Revision承認済み。Graph API接続情報がなく、外部送信・receiptはありません。",
-      "required_action": "Instagram @kizashi_jp の公式Graph API接続を確認"
+      "message": "カルーセル2件・全16枚、三周検査、現Revision承認、公開HTTPS URLは完了。Meta Business Suiteには別アカウントだけが登録され、投稿先 @kizashi_jp は未接続です。",
+      "required_action": "Meta Business SuiteのInstagram accountsで @kizashi_jp をAddから1回接続"
     }
   ],
   "production": {
@@ -157,12 +157,12 @@
       "started_at": "2026-08-26T19:22:45+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "Instagram接続診断｜2投稿・全16枚承認済み",
+      "stage": "Instagram接続待ち｜@kizashi_jp 未接続を確認",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 2,
       "reason": "Shorts InAEpx7ZoAM は12:30:29公開済み。Jalapeño noteとWatermark noteは各300円で公開済みで、Watermark稿の公開URL・価格・有料境界・画像・リンクを照合した。",
-      "next_action": "Instagramの公開HTTPS URLを確定し、Graph API接続と重複を確認して外部投稿へ進む。"
+      "next_action": "Meta Business Suiteで @kizashi_jp を1回接続後、重複照合して外部投稿へ進む。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -229,13 +229,13 @@
         }
       ]
     },
-    "stage": "Revision 38｜Instagram 2投稿・全16枚承認済み／接続診断中",
-    "reason": "Jalapeño投稿とWatermark投稿のmanifest/caption Hashを固定した所有者承認receiptが2026-08-27 20:10 JSTに成立した。",
-    "next_action": "Instagramの公開HTTPS URLを確定し、Graph API接続確認と重複照合を行って外部投稿へ進む。"
+    "stage": "Revision 39｜Instagram公開URL16件完了／@kizashi_jp 接続待ち",
+    "reason": "承認済み全16枚の公開HTTPS URLは200/JPEGを確認。Meta Business Suiteには別アカウントだけが登録され、投稿先 @kizashi_jp は未接続だったため誤投稿防止で外部送信しなかった。",
+    "next_action": "Meta Business SuiteのInstagram accountsで @kizashi_jp をAddから1回接続後、重複照合して外部投稿へ進む。"
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-27T20:10:00+09:00",
+    "last_checked_at": "2026-08-27T20:23:02+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
