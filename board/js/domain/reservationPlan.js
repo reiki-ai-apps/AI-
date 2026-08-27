@@ -138,3 +138,66 @@ export function buildReservationPlan({
     totals,
   };
 }
+
+function statusPlatform(channel, requirements) {
+  if (channel.id === 'note') return 'NOTE';
+  if (channel.id === 'x') return 'X';
+  if (channel.id === 'instagram') return 'INSTAGRAM';
+  if (channel.id === 'youtube') {
+    return requirements.YOUTUBE_SHORTS > 0 || /Shorts/i.test(channel.label ?? '')
+      ? 'YOUTUBE_SHORTS'
+      : 'YOUTUBE';
+  }
+  return String(channel.id ?? '').toUpperCase();
+}
+
+function statusPendingStage(state) {
+  if (['AUTH_WAIT', 'AUTH_REQUIRED', 'CONNECTION_REQUIRED'].includes(state)) return 'CONNECTION_REQUIRED';
+  if (['APPROVAL_WAIT', 'AWAITING_APPROVAL', 'PENDING_APPROVAL', 'READY'].includes(state)) return 'APPROVAL';
+  if (['EXTERNAL_WAIT', 'EXTERNAL_PENDING'].includes(state)) return 'EXTERNAL_PENDING';
+  return 'CREATING';
+}
+
+/**
+ * status.json は公開receiptを集約した正本である。今日の媒体カードは、制作run由来の
+ * 仮channelPostよりこの集約値を優先し、上段と3日枠の件数・状態を一致させる。
+ */
+export function reconcileTodayFromStatus(plan, today = {}) {
+  const day = plan.days?.[0];
+  if (!day || !Array.isArray(today.channels) || today.channels.length === 0) return plan;
+
+  const items = [];
+  for (const channel of today.channels) {
+    const platform = statusPlatform(channel, day.requirements);
+    const target = Math.max(0, Number(channel.target ?? day.requirements[platform] ?? 0));
+    const done = Math.min(target, Math.max(0, Number(channel.done ?? 0)));
+    const completedStage = channel.state === 'SCHEDULED' ? 'SCHEDULED' : 'PUBLISHED';
+    const pendingStage = statusPendingStage(channel.state);
+    for (let index = 0; index < target; index += 1) {
+      items.push({
+        id: `status:${today.date ?? day.dateKey}:${channel.id}:${index + 1}`,
+        title: channel.status ?? channel.label ?? channel.id,
+        brandId: 'news',
+        platform,
+        scheduledAt: null,
+        stage: index < done ? completedStage : pendingStage,
+      });
+    }
+  }
+
+  day.items = items;
+  day.counts = emptyCounts();
+  day.publishedCount = 0;
+  for (const item of items) {
+    if (item.stage === 'PUBLISHED') day.publishedCount += 1;
+    else day.counts[item.stage] += 1;
+  }
+  day.coverage = Object.fromEntries(Object.entries(day.requirements).map(([platform, required]) => {
+    const matching = items.filter((item) => item.platform === platform);
+    const confirmed = matching.filter((item) => item.stage === 'SCHEDULED' || item.stage === 'PUBLISHED').length;
+    return [platform, { required, confirmed, total: matching.length }];
+  }));
+  day.complete = Object.values(day.coverage).every(({ required, confirmed }) => required === 0 || confirmed >= required);
+  plan.complete = plan.days.every((candidate) => candidate.complete);
+  return plan;
+}

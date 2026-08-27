@@ -1,7 +1,7 @@
 import { el } from '../core/dom.js';
 import { dayHeading } from '../core/fmt.js';
 import { platformBadge } from './platformBadge.js';
-import { buildReservationPlan } from '../domain/reservationPlan.js';
+import { buildReservationPlan, reconcileTodayFromStatus } from '../domain/reservationPlan.js';
 
 const STATE_LABELS = {
   HEALTHY: '問題なし',
@@ -401,13 +401,13 @@ export async function renderStatusScreen(app) {
     fetch(`data/status.json?t=${Date.now()}`, { cache: 'no-store' }),
   ]);
   const status = statusResponse.ok ? await statusResponse.json() : {};
-  const reservationPlan = buildReservationPlan({
+  const reservationPlan = reconcileTodayFromStatus(buildReservationPlan({
     posts,
     postGroups,
     publicationPackages,
     todayKey: app.todayKey(),
     horizonDays: 2,
-  });
+  }), status.today);
   const today = resolveTodayCommand(status.today, posts, app.todayKey(), app.state.approvalSyncKeys);
   return el('div', { class: 'screen status-screen' },
     el('div', { class: 'screen-head' },

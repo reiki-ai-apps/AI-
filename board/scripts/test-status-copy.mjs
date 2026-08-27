@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { buildReservationPlan } from '../js/domain/reservationPlan.js';
+import { buildReservationPlan, reconcileTodayFromStatus } from '../js/domain/reservationPlan.js';
 import {
   blockerSummary,
   productionOverview,
@@ -272,4 +272,23 @@ test('note・X・Instagramは各2件の外部確定で日次達成になる', ()
   assert.equal(plan.days[0].coverage.NOTE.confirmed, 2);
   assert.equal(plan.days[0].coverage.X.confirmed, 2);
   assert.equal(plan.days[0].coverage.INSTAGRAM.confirmed, 2);
+});
+
+test('今日の3日枠はstatus正本と同じ完了数・進行状態を表示する', () => {
+  const plan = reconcileTodayFromStatus(buildReservationPlan({ todayKey: '2026-08-27' }), {
+    date: '2026-08-27',
+    channels: [
+      { id: 'note', label: 'note', done: 2, target: 2, state: 'PUBLISHED', status: '2/2公開' },
+      { id: 'x', label: 'X', done: 0, target: 2, state: 'AUTH_WAIT', status: '原稿2件完成' },
+      { id: 'instagram', label: 'Instagram', done: 0, target: 2, state: 'IN_PROGRESS', status: '画像制作中' },
+      { id: 'youtube', label: 'YouTube Shorts', done: 1, target: 1, state: 'PUBLISHED', status: '1/1公開' },
+    ],
+  });
+  const today = plan.days[0];
+  assert.equal(today.publishedCount, 3);
+  assert.equal(today.items.filter((item) => item.platform === 'NOTE' && item.stage === 'PUBLISHED').length, 2);
+  assert.equal(today.items.filter((item) => item.platform === 'YOUTUBE_SHORTS' && item.stage === 'PUBLISHED').length, 1);
+  assert.equal(today.items.filter((item) => item.platform === 'X' && item.stage === 'CONNECTION_REQUIRED').length, 2);
+  assert.equal(today.items.filter((item) => item.platform === 'INSTAGRAM' && item.stage === 'CREATING').length, 2);
+  assert.equal(planDayResultLabel(today), '3済');
 });
