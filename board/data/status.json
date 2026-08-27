@@ -1,32 +1,32 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-27T01:36:00+09:00",
+  "generated_at": "2026-08-27T10:03:00+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
-    "published_confirmed": 21,
-    "scheduled": 1,
+    "published_confirmed": 22,
+    "scheduled": 2,
     "attention": 2
   },
   "today": {
     "date": "2026-08-27",
-    "completed": 0,
+    "completed": 1,
     "target": 7,
-    "headline": "8月27日は0/7件公開。note 2稿は完成・現Revision承認済みで外部予約待ち。12:30 Shortsは37.241秒の完成動画と9フレーム検査までPASSし、現Revision確認待ちです。",
-    "next_action": "8:00/20:00 noteを外部予約し、12:30 Shortsは完成動画の承認後に公式YouTube予約へ進みます。Instagram画像制作は並行継続します。",
-    "next_deadline": "2026-08-27T08:00:00+09:00",
-    "owner_action_required": true,
-    "owner_action": "note.comのKIZASHIアカウントへ2稿の本文・画像を入力し、8:00/20:00の予約を確定する操作を許可",
+    "headline": "8月27日は1/7件公開。Jalapeño noteを300円で公開し、YouTube Shortsは動画ID InAEpx7ZoAM で12:30の公開予約が成立しました。",
+    "next_action": "Watermark noteの外部処理とInstagram制作を継続します。12:30以降にShortsの公開状態も照合します。",
+    "next_deadline": "2026-08-27T12:30:00+09:00",
+    "owner_action_required": false,
+    "owner_action": null,
     "channels": [
       {
         "id": "note",
         "label": "note",
-        "done": 0,
+        "done": 1,
         "target": 2,
-        "state": "EXTERNAL_RESERVATION_PENDING",
-        "status": "0/2公開／Jalapeño稿・Watermark稿とも本文、主コピー入り横長サムネイル、記事内各4画像、300円設計、三周検査、現Revision承認receiptまで完成",
-        "next": "KIZASHI / natty_swan9072へ2稿を入力し、8:00/20:00の外部予約IDまたはreceipt取得後に予約済みへ更新",
+        "state": "IN_PROGRESS",
+        "status": "1/2公開／Jalapeño稿を300円で公開。内部マーカーを削除し、無料解説とAI進化レーダー導線の直後に有料境界を置いて再検証PASS。Watermark稿はローカル完成・承認済み",
+        "next": "Watermark稿の外部処理を進め、2本目の公開receiptを取得する",
         "blocker": null
       },
       {
@@ -54,9 +54,9 @@
         "label": "YouTube Shorts",
         "done": 0,
         "target": 1,
-        "state": "AWAITING_CURRENT_REVISION_APPROVAL",
-        "status": "0/1公開／Jalapeño解説Shortsは37.241秒の1080×1920完成動画、実音声、字幕、別構図4画像、タイトル、説明文、AI進化レーダー導線、三周検査までPASS",
-        "next": "完成動画の現Revisionを一画面確認後、承認receiptを保存して12:30のYouTube外部予約へ進む",
+        "state": "SCHEDULED",
+        "status": "0/1公開／Jalapeño解説ShortsはYouTube動画ID InAEpx7ZoAM で8月27日12:30の公開予約が成立。外部予約receipt保存済み",
+        "next": "12:30公開後に動画ID InAEpx7ZoAM の公開状態とURLを照合し、公開receipt取得後に公開済みへ更新",
         "blocker": null
       }
     ]
@@ -96,13 +96,13 @@
       "account": "KIZASHI / natty_swan9072",
       "url": "https://note.com/natty_swan9072",
       "state": "HEALTHY",
-      "last_verified_at": "2026-08-25T23:52:04+09:00",
+      "last_verified_at": "2026-08-27T10:03:00+09:00",
       "latest_published": {
-        "title": "子どもにAIを使わせる前に｜禁止より先に教える4つの質問",
-        "url": "https://note.com/natty_swan9072/n/n325bb6a4859a"
+        "title": "AIの料金表だけ見ても本当のコストは分からない｜独自チップJalapeñoから読む3つの比較軸",
+        "url": "https://note.com/natty_swan9072/n/n175bc3c14ea5"
       },
       "next_scheduled": null,
-      "note": "既存記事 n2a1bfc666f7e はAI進化レーダー案内カードまでを無料範囲にして更新済み。2本目 n325bb6a4859a は無料範囲に導線を置き、100円で公開済み。外部URL・価格・有料境界を確認した。"
+      "note": "Jalapeño稿を300円で公開。内部マーカーを削除し、無料解説とAI進化レーダー導線の直後へ有料境界を修正。公開URL・価格・画像・境界を再確認した。"
     },
     {
       "id": "youtube",
@@ -115,8 +115,12 @@
         "title": "OpenAI初の推論チップ『Jalapeño』発表｜AIの速さと電力効率はどう変わる？",
         "url": "https://youtu.be/7xbmIlNB-_s"
       },
-      "next_scheduled": null,
-      "note": "水曜本編は8月26日21:00に公開済み。外部動画ID・公開URL・タイトル・チャンネル・公開設定を照合し、公開receiptを保存した。"
+      "next_scheduled": {
+        "title": "AI料金は月額より『成功1回』で比べる｜OpenAI独自チップの意味 #Shorts",
+        "url": "https://youtube.com/shorts/InAEpx7ZoAM",
+        "scheduled_at": "2026-08-27T12:30:00+09:00"
+      },
+      "note": "水曜本編は8月26日21:00に公開済み。木曜Shorts InAEpx7ZoAM は8月27日12:30の外部公開予約が成立し、予約receiptを保存した。"
     },
     {
       "id": "radar",
