@@ -40,14 +40,34 @@ function requireIso(value, label) {
 }
 
 function desiredProduction(post, gate) {
-  const required = gate.required?.verified_primary_sources ?? 3;
+  const observedCount = gate.observed?.verified_primary_sources ?? gate.verified_primary_count ?? gate.checks?.story_count ?? null;
+  const required = gate.required?.verified_primary_sources ?? gate.required_primary_count ?? observedCount ?? 3;
+  const platformSteps = gate.platform_steps?.[post.platform];
+  const selectedSteps = Array.isArray(platformSteps) && platformSteps.length > 0
+    ? platformSteps
+    : gate.production_steps;
+  if (Array.isArray(selectedSteps) && selectedSteps.length > 0) {
+    return {
+      kind: kindForPlatform(post.platform),
+      steps: selectedSteps.map((step) => ({
+        id: String(step.id),
+        label: String(step.label),
+        done: Boolean(step.done),
+        note: step.note == null ? null : String(step.note),
+      })),
+    };
+  }
+  const observed = gate.observed?.verified_primary_sources ?? gate.checks?.story_count ?? 0;
+  const remediationNote = Array.isArray(gate.remediation?.next_actions)
+    ? gate.remediation.next_actions.join('／')
+    : null;
   return {
     kind: kindForPlatform(post.platform),
     steps: [{
       id: 'primary_sources',
       label: `一次情報${required}件の確認`,
-      done: false,
-      note: gate.reason ?? null,
+      done: gate.status !== 'HOLD' && observed >= required,
+      note: remediationNote ?? gate.reason ?? null,
     }],
   };
 }
@@ -81,6 +101,45 @@ async function syncTrackingMarker(ctx, posts) {
     updated += 1;
   }
   return updated;
+}
+
+async function supersedePriorRun(ctx, run) {
+  const priorRunId = String(run.supersedes_run_id ?? '').trim();
+  if (!priorRunId || priorRunId === run.run_id) return { run_id: null, cancelled_posts: 0 };
+  const priorGroup = await ctx.repo.read(['postGroups'], async (tx) =>
+    (await tx.getAll('postGroups')).find((row) => row.source_run_id === priorRunId && !row.deleted_at),
+  );
+  if (!priorGroup) return { run_id: priorRunId, cancelled_posts: 0 };
+  const posts = await ctx.repo.listChannelPostsOfGroup(priorGroup.post_group_id);
+  const active = posts.filter((post) => !post.cancelled_at && !post.deleted_at && post.display_state !== 'PUBLISHED');
+  if (active.length === 0) return { run_id: priorRunId, cancelled_posts: 0 };
+  const now = ctx.clock.nowIso();
+  await ctx.repo.change(['postGroups', 'channelPosts'], async (tx, audit) => {
+    await tx.put('postGroups', {
+      ...priorGroup,
+      internal: {
+        ...(priorGroup.internal ?? {}),
+        tags: [...new Set([...(priorGroup.internal?.tags ?? []), 'superseded'])],
+      },
+      updated_at: now,
+    });
+    for (const post of active) {
+      await tx.put('channelPosts', {
+        ...post,
+        cancelled_at: now,
+        updated_at: now,
+      });
+      await audit({
+        actor: ctx.actor.userId,
+        target_type: 'channelPost',
+        target_id: post.channel_post_id,
+        action: 'production.superseded',
+        reason: `制作run ${run.run_id} へ引き継ぎ`,
+        revision_id: post.current_revision_id,
+      });
+    }
+  });
+  return { run_id: priorRunId, cancelled_posts: active.length };
 }
 
 export async function syncProductionRun({ runFile, gateFile, dataFile, receipt }) {
@@ -126,19 +185,27 @@ export async function syncProductionRun({ runFile, gateFile, dataFile, receipt }
     return result;
   }
 
+  const superseded = await supersedePriorRun(ctx, run);
+
   const scheduledAtIso = requireIso(run.started_at ?? run.finished_at, 'run.started_at');
   const isHold = gate.status === 'HOLD';
+  const remediation = gate.remediation ?? {};
   const title = isHold
-    ? '次回AIニュース｜一次情報確認中（品質保留）'
+    ? '次回AIニュース｜原因改善・再確認中（HOLD）'
     : '次回AIニュース｜制作進行中';
-  const verified = gate.observed?.verified_primary_sources ?? run.verified_primary_count ?? '未確認';
-  const required = gate.required?.verified_primary_sources ?? run.required_primary_count ?? '未確認';
+  const verified = gate.observed?.verified_primary_sources ?? run.verified_primary_count ?? gate.checks?.story_count ?? '未確認';
+  const required = gate.required?.verified_primary_sources ?? run.required_primary_count ?? verified ?? '未確認';
+  const contentMode = gate.checks?.content_mode ?? run.content_mode ?? 'new';
   const body = [
     `制作run: ${run.run_id}`,
     `現在工程: ${run.stage ?? '未確認'}`,
     `一次情報: ${verified}/${required}件`,
+    `形式: ${contentMode === 'verified_revisit' ? '検証済み情報の再解説' : '新着ニュース'}`,
     `状態: ${isHold ? '品質保留' : gate.status ?? run.result ?? '進行中'}`,
     gate.reason ?? '',
+    ...(Array.isArray(remediation.next_actions) && remediation.next_actions.length > 0
+      ? [`次の改善: ${remediation.next_actions.join('／')}`, `再開: ${remediation.resume_command ?? '同じrun_idで再検査'}`]
+      : []),
     '公開予約・外部投稿はまだ実行していません。',
   ].filter(Boolean).join('\n');
 
@@ -179,6 +246,7 @@ export async function syncProductionRun({ runFile, gateFile, dataFile, receipt }
     calendar_at: scheduledAtIso,
     reservation_created: false,
     public_actions: [],
+    superseded,
     synced_at: clock.nowIso(),
   };
   await writeJson(receipt, result);
