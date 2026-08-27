@@ -1,23 +1,23 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-27T11:55:00+09:00",
+  "generated_at": "2026-08-27T12:46:53+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
   "summary": {
-    "published_confirmed": 22,
-    "scheduled": 2,
+    "published_confirmed": 23,
+    "scheduled": 1,
     "attention": 2
   },
   "today": {
     "date": "2026-08-27",
-    "completed": 1,
+    "completed": 2,
     "target": 7,
-    "headline": "8月27日は1/7件公開。Jalapeño noteを300円で公開し、YouTube Shortsは動画ID InAEpx7ZoAM で12:30の公開予約が成立しました。",
-    "next_action": "Watermark noteは外部下書きへ本文4,977文字、コピー入り見出し画像、記事内4画像を保存済み。画像配置、有料境界、300円設定を仕上げます。12:30以降にShorts公開を照合します。",
-    "next_deadline": "2026-08-27T12:30:00+09:00",
-    "owner_action_required": false,
-    "owner_action": null,
+    "headline": "8月27日は2/7件公開。Jalapeño noteは300円で公開済み、YouTube Shorts InAEpx7ZoAM も12:30:29に公開されました。",
+    "next_action": "Watermark noteは外部下書きへ本文4,977文字、コピー入り見出し画像、記事内4画像を保存済み。画像配置、有料境界、300円設定を仕上げ、Instagram画像制作を継続します。",
+    "next_deadline": "2026-08-27T20:00:00+09:00",
+    "owner_action_required": true,
+    "owner_action": "公開Boardへ最新の進捗データを送るmain pushを、このチャットで明示承認してください。承認後はローカルの最新commitを送信し、公開表示を確認します。",
     "channels": [
       {
         "id": "note",
@@ -52,11 +52,11 @@
       {
         "id": "youtube",
         "label": "YouTube Shorts",
-        "done": 0,
+        "done": 1,
         "target": 1,
-        "state": "SCHEDULED",
-        "status": "0/1公開／Jalapeño解説ShortsはYouTube動画ID InAEpx7ZoAM で8月27日12:30の公開予約が成立。外部予約receipt保存済み",
-        "next": "12:30公開後に動画ID InAEpx7ZoAM の公開状態とURLを照合し、公開receipt取得後に公開済みへ更新",
+        "state": "PUBLISHED",
+        "status": "1/1公開／Jalapeño解説ShortsはYouTube動画ID InAEpx7ZoAM で8月27日12:30:29に公開。公開URL、タイトル、KIZASHIチャンネル、公開プレーヤーを照合済み",
+        "next": "金曜YouTube本編の現Revision・品質ゲート・承認・外部receiptを優先確認",
         "blocker": null
       }
     ]
@@ -110,17 +110,13 @@
       "account": "KIZASHI / @kizashi_jp",
       "url": "https://www.youtube.com/@kizashi_jp",
       "state": "HEALTHY",
-      "last_verified_at": "2026-08-26T21:22:50+09:00",
+      "last_verified_at": "2026-08-27T12:46:53+09:00",
       "latest_published": {
-        "title": "OpenAI初の推論チップ『Jalapeño』発表｜AIの速さと電力効率はどう変わる？",
-        "url": "https://youtu.be/7xbmIlNB-_s"
-      },
-      "next_scheduled": {
         "title": "AI料金は月額より『成功1回』で比べる｜OpenAI独自チップの意味 #Shorts",
-        "url": "https://youtube.com/shorts/InAEpx7ZoAM",
-        "scheduled_at": "2026-08-27T12:30:00+09:00"
+        "url": "https://www.youtube.com/shorts/InAEpx7ZoAM"
       },
-      "note": "水曜本編は8月26日21:00に公開済み。木曜Shorts InAEpx7ZoAM は8月27日12:30の外部公開予約が成立し、予約receiptを保存した。"
+      "next_scheduled": null,
+      "note": "水曜本編は8月26日21:00に公開済み。木曜Shorts InAEpx7ZoAM は8月27日12:30:29に公開され、公開URL・タイトル・チャンネル・プレーヤーを照合して公開receiptを保存した。"
     },
     {
       "id": "radar",
@@ -160,12 +156,12 @@
       "started_at": "2026-08-26T19:22:45+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "External execution｜Jalapeño note公開済み／Shorts 12:30予約済み／Watermark note記事内4画像保存済み",
+      "stage": "External execution｜Jalapeño note公開済み／Shorts公開済み／Watermark note記事内4画像保存済み",
       "candidate_count": 2,
       "verified_primary_count": 2,
       "required_primary_count": 2,
-      "reason": "Shortsは12:30予約済み。Jalapeño noteは300円で公開済み。Watermark noteは外部下書きへ記事内4画像まで保存した。",
-      "next_action": "Watermark noteの画像配置・有料境界・300円設定、Instagram制作、12:30 Shortsの公開receiptを順に取得する。"
+      "reason": "Shorts InAEpx7ZoAM は12:30:29公開済み。Jalapeño noteは300円で公開済み。Watermark noteは外部下書きへ記事内4画像まで保存した。",
+      "next_action": "Watermark noteの画像配置・有料境界・300円設定とInstagram画像制作を継続する。"
     },
     "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -238,7 +234,7 @@
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-27T11:55:00+09:00",
+    "last_checked_at": "2026-08-27T12:46:53+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
@@ -247,6 +243,7 @@
     "runs/kizashi-20260827/gate.json",
     "runs/kizashi-20260827/board-sync-receipt.json",
     "runs/kizashi-20260827/board-public-main-push-receipt.json",
+    "runs/kizashi-20260827/board-public-watermark-draft-push-receipt.json",
     "runs/kizashi-20260827/board-sync-post-push-receipt.json",
     "runs/kizashi-20260827/board-sync-watermark-draft-receipt.json",
     "runs/kizashi-20260827/board-sync-note-jalapeno-visuals-receipt.json",
@@ -262,6 +259,8 @@
     "runs/kizashi-20260827/youtube-shorts-r1/owner-approval-receipt.json",
     "runs/kizashi-20260827/youtube-shorts-r1/youtube-private-upload-receipt.json",
     "runs/kizashi-20260827/youtube-shorts-r1/youtube-schedule-receipt.json",
+    "runs/kizashi-20260827/youtube-shorts-r1/youtube-publication-receipt.json",
+    "runs/kizashi-20260827/youtube-shorts-r1/board-sync-publication-receipt.json",
     "runs/kizashi-20260827/board-sync-shorts-owner-approval-receipt.json",
     "runs/kizashi-20260827/youtube-shorts-r1/review-loop.json",
     "runs/kizashi-20260827/youtube-shorts-r1/media.json",
