@@ -42,7 +42,6 @@ const requiredHtmlControls = [
   ["pinned Supabase client", /@supabase\/supabase-js@\d+\.\d+\.\d+/],
   ["external URL validation", /function safeExternalUrl\(/],
   ["safe source article navigation", /window\.open\(sourceUrl,'_blank','noopener,noreferrer'\)/],
-  ["safe billing portal navigation", /safeExternalUrl\(data\?\.url,\['billing\.stripe\.com'\]\)/],
 ];
 for (const [label, pattern] of requiredHtmlControls) {
   if (!pattern.test(html)) findings.push(`index.html: missing ${label}`);
@@ -140,25 +139,31 @@ if (!/rpc\('operator_metrics'\)/.test(html) || !/access_source==='operator_grant
 if (/\.operator-metrics\{display:none\}/.test(html)) {
   findings.push("index.html: operator metrics are hidden on a supported viewport");
 }
+if (!/\.operator-metrics\[hidden\],\.mobile-operator-metrics-slot\[hidden\]\{display:none!important\}/.test(html)) {
+  findings.push("index.html: hidden operator metrics can leak to ordinary visitors");
+}
 if (!/id="operatorMetrics" class="operator-metrics" hidden/.test(html) ||
     !/id="mobileOperatorMetrics" class="operator-metrics" hidden/.test(html) ||
     /function renderOperatorMetrics\(\)[\s\S]{0,900}\.remove\(\)/.test(html)) {
   findings.push("index.html: stable desktop and mobile operator metric mounts are missing");
 }
-if (!/data-operator-visitors/.test(html) || !/data-operator-daily-opens/.test(html) || !/data-operator-users/.test(html)) {
+if (!/data-operator-visitors/.test(html) || !/data-operator-daily-opens/.test(html)) {
   findings.push("index.html: one or more operator metric fields are missing");
+}
+if (/data-operator-users|data-operator-account-users|registeredUsers/.test(html)) {
+  findings.push("index.html: retired registration totals remain in the operator UI");
 }
 if (!/setInterval\(refreshOperatorMetrics,60000\)/.test(html)) {
   findings.push("index.html: operator metrics are not refreshed persistently");
 }
-if (!/setInterval\(refreshMembershipAccess,90000\)/.test(html) ||
-    !/visibilitychange'[\s\S]{0,180}refreshMembershipAccess\(\)/.test(html) ||
-    !/window\.addEventListener\('focus',[\s\S]{0,120}refreshMembershipAccess\(\)/.test(html)) {
-  findings.push("index.html: mobile operator entitlement is not reverified after resume");
+if (!/setInterval\(refreshOperatorAccess,90000\)/.test(html) ||
+    !/visibilitychange'[\s\S]{0,180}refreshOperatorAccess\(\)/.test(html) ||
+    !/window\.addEventListener\('focus',[\s\S]{0,120}refreshOperatorAccess\(\)/.test(html)) {
+  findings.push("index.html: mobile operator access is not reverified after resume");
 }
-if (!/const preserveOperator=!verified&&previous\?\.access_source==='operator_grant'/.test(html) ||
-    !/if\(verified&&memberState\.user\)cacheMembershipForUser/.test(html)) {
-  findings.push("index.html: unverified membership fallback can erase operator access");
+if (!/cachedOperatorAccessForUser\(memberState\.user\?\.id\)/.test(html) ||
+    !/cacheOperatorAccess\(memberState\.user\.id,isOperator\)/.test(html)) {
+  findings.push("index.html: verified operator access lacks a resilient cache");
 }
 if (!/operatorMetricsStatus=memberState\.operatorMetrics\?'stale':'error'/.test(html) ||
     !/再取得待ち・最終/.test(html) ||
@@ -169,8 +174,8 @@ if (!/operatorMetricsStatus=memberState\.operatorMetrics\?'stale':'error'/.test(
 if (!/scheduleUniqueVisitorRetry/.test(html) || !/window\.addEventListener\('online',[\s\S]{0,180}registerUniqueVisitor\(\)/.test(html)) {
   findings.push("index.html: failed unique visitor registrations are not retried reliably");
 }
-if (!/select\('state,updated_at'\)/.test(html) || !/setInterval\(\(\)=>syncMemberAppStateFromCloud\(\),60000\)/.test(html)) {
-  findings.push("index.html: account state is not synchronized across devices");
+if (/syncMemberAppStateFromCloud|loadMemberAppState|saveMemberAppState|from\('user_states'\)/.test(html)) {
+  findings.push("index.html: retired public account synchronization remains active");
 }
 if (!/id="mobileOfficialMedia"/.test(html) || !/class="mobile-media-shortcut"/.test(html) || !/mobileOfficialMedia[\s\S]{0,1800}note\.com\/natty_swan9072/.test(html)) {
   findings.push("index.html: KIZASHI official media is not easy to find on mobile");
@@ -183,9 +188,6 @@ if (!/fetch\(request,\{cache:"no-store"\}\)/.test(serviceWorker) || !/client\.na
 }
 if (/toastAction\('アプリが新しくなりました'/.test(html) || !/controllerchange'[\s\S]{0,260}window\.location\.reload\(\)/.test(html)) {
   findings.push("index.html: app updates still require manual reload");
-}
-if (!/auth\.uid\(\)\)\s*=\s*user_id/.test(schema) || !/on public\.user_states for (?:select|insert|update) to authenticated/i.test(schema)) {
-  findings.push("supabase/schema.sql: account state is not protected by account RLS");
 }
 if (!/function public\.operator_metrics\(\)\s*returns jsonb[\s\S]{0,900}operator_grant/i.test(schema)) {
   findings.push("supabase/schema.sql: server-side operator metrics authorization is missing");

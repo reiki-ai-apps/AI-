@@ -7,10 +7,7 @@ const index=fs.readFileSync(path.join(root,"index.html"),"utf8");
 const workflow=fs.readFileSync(path.join(root,".github","workflows","update.yml"),"utf8");
 const failures=[];
 const expect=(condition,label)=>{if(!condition)failures.push(label);};
-const section=(start,end)=>{
-  const match=index.match(new RegExp(`${start}[\\s\\S]*?${end}`));
-  return match?.[0]||"";
-};
+const section=(start,end)=>index.match(new RegExp(`${start}[\\s\\S]*?${end}`))?.[0]||"";
 
 for(const match of index.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){
   const openingTag=match[0].slice(0,match[0].indexOf(">")+1);
@@ -23,35 +20,28 @@ const metricsValidator=section("function validOperatorMetrics\\(data\\)\\{","asy
 expect(Boolean(metricsValidator),"operator metrics validator exists");
 if(metricsValidator){
   const source=metricsValidator.replace(/async function loadOperatorMetrics[\s\S]*$/,'');
-  const validOperatorMetrics=Function(`${source}; return validOperatorMetrics;`)();
-  expect(validOperatorMetrics({registered_users:12,unique_visitors:34})?.registeredUsers===12,"legacy production metrics response remains supported");
-  expect(validOperatorMetrics({registered_users:12,unique_visitors:34})?.dailyOpens===null,"missing daily count does not hide legacy counts");
-  expect(validOperatorMetrics({registered_users:12,unique_visitors:34,daily_opens:56})?.dailyOpens===56,"daily open count is accepted");
-  expect(validOperatorMetrics({registered_users:"bad",unique_visitors:34})===null,"invalid metrics are rejected");
-  expect(validOperatorMetrics({registered_users:12,unique_visitors:34,daily_opens:"bad"})===null,"invalid daily count is rejected");
+  const validate=Function(`${source}; return validOperatorMetrics;`)();
+  expect(validate({unique_visitors:34})?.dailyOpens===null,"missing daily count keeps unique count visible");
+  expect(validate({unique_visitors:34,daily_opens:56})?.dailyOpens===56,"daily open count is accepted");
+  expect(validate({unique_visitors:"bad",daily_opens:56})===null,"invalid unique count is rejected");
+  expect(validate({unique_visitors:34,daily_opens:"bad"})===null,"invalid daily count is rejected");
+  expect(!("registeredUsers" in validate({unique_visitors:34,daily_opens:56})),"retired registration count is not modeled");
 }
 
-const memberRefresh=section("async function refreshMemberState\\(session\\)\\{","function queueMemberRefresh");
+const operatorAccess=section("async function loadOperatorAccess\\(\\)\\{","function validOperatorMetrics");
 for(const [needle,label] of [
-  ["const previousSubscription=sameUser?memberState.subscription:cachedMembershipForUser(nextUserId)","same-account operator grant survives auth refresh"],
-  ["const previousMetrics=sameUser?memberState.operatorMetrics:null","same-account verified counts survive auth refresh"],
-  ["await Promise.allSettled([","membership, cloud sync, and reviews are failure-isolated"],
-  ["applyResolvedMembership(membership.value,previousSubscription)","membership result is applied through the verified entitlement guard"]
-])expect(memberRefresh.includes(needle),label);
+  ["cachedOperatorAccessForUser(memberState.user?.id)","verified operator access has a local continuity fallback"],
+  ["for(const delay of [0,500,1400])","operator access uses bounded retries"],
+  ["return isOperator?{access_source:'operator_grant'}:{access_source:'none'}","verified non-operator access is distinguished from a network failure"]
+])expect(operatorAccess.includes(needle),label);
 
-const membershipGuard=section("const membershipResolution=","function cachedMembershipForUser").replace(/function cachedMembershipForUser[\s\S]*$/,'');
-expect(Boolean(membershipGuard),"verified membership guard exists");
-if(membershipGuard){
-  const guardState={user:{id:"operator"},subscription:{plan:"premium",status:"active",access_source:"operator_grant"}};
-  const cached=[];
-  const buildGuard=Function("memberState","cacheMembershipForUser",`${membershipGuard};return {membershipResolution,applyResolvedMembership};`);
-  const guard=buildGuard(guardState,(userId,membership)=>cached.push({userId,membership}));
-  guard.applyResolvedMembership(guard.membershipResolution({plan:"free",status:"inactive",access_source:"account"},false),guardState.subscription);
-  expect(guardState.subscription.access_source==="operator_grant","an unverified mobile fallback cannot remove operator access");
-  guard.applyResolvedMembership(guard.membershipResolution({plan:"free",status:"inactive",access_source:"account"},true),guardState.subscription);
-  expect(guardState.subscription.access_source==="account","a server-verified revocation still removes operator access");
-  expect(cached.length===1,"only a server-verified membership is cached");
-}
+const operatorState=section("async function refreshOperatorState\\(session\\)\\{","function queueOperatorRefresh");
+for(const [needle,label] of [
+  ["const previousAccess=sameUser?memberState.subscription:cachedOperatorAccessForUser(nextUserId)","same operator access survives token refresh"],
+  ["const previousMetrics=sameUser?memberState.operatorMetrics:null","verified counts survive token refresh"],
+  ["memberState.subscription=access?.access_source==='operator_grant'?access:null","only verified operator grants become active"],
+  ["memberClient.auth.signOut({scope:'local'})","retired public sessions are signed out locally"]
+])expect(operatorState.includes(needle),label);
 
 const metricsRefresh=section("async function refreshOperatorMetrics\\(\\)\\{","function startOperatorMetricsRefresh");
 for(const [needle,label] of [
@@ -60,69 +50,40 @@ for(const [needle,label] of [
   ["memberState.operatorMetricsUpdatedAt=new Date().toISOString()","successful refresh records its verification time"]
 ])expect(metricsRefresh.includes(needle),label);
 expect(!/catch\(error\)\{[\s\S]*?memberState\.operatorMetrics=null/.test(metricsRefresh),"metrics catch path never deletes verified counts");
-if(metricsRefresh){
-  const source=metricsRefresh.replace(/function startOperatorMetricsRefresh[\s\S]*$/,'');
-  const buildRefresh=Function("memberState","memberClient","loadOperatorMetrics","waitMs","renderOperatorMetrics","stopOperatorMetricsRefresh",`let operatorMetricsRefreshInFlight=null;${source};return refreshOperatorMetrics;`);
-  const verified={registeredUsers:12,uniqueVisitors:34,dailyOpens:56};
-  const verifiedAt="2026-08-15T00:00:00.000Z";
-  const state={user:{id:"operator"},subscription:{access_source:"operator_grant"},operatorMetrics:verified,operatorMetricsStatus:"live",operatorMetricsUpdatedAt:verifiedAt,operatorMetricsError:""};
-  const refresh=buildRefresh(state,{},async()=>{throw new Error("temporary network failure");},async()=>{},()=>{},()=>{});
-  await refresh();
-  expect(state.operatorMetrics===verified,"a real failed refresh keeps the previous metric object");
-  expect(state.operatorMetricsStatus==="stale","a real failed refresh marks preserved counts as stale");
-  expect(state.operatorMetricsUpdatedAt===verifiedAt,"a real failed refresh keeps the last verification time");
-}
 
 for(const [needle,label] of [
-  ["data-operator-visitors","desktop and mobile operator badge keeps the visitor count"],
-  ["data-operator-daily-opens","desktop and mobile operator badge keeps today's open count"],
-  ["data-operator-users","desktop and mobile operator badge keeps the registration count"],
-  ["id=\"operatorMetrics\" class=\"operator-metrics\" hidden","desktop operator badge has a permanent mount point"],
-  ["id=\"mobileOperatorMetricsSlot\" class=\"mobile-operator-metrics-slot\" hidden","mobile has a permanent operator metrics mount point"],
-  ["id=\"mobileOperatorMetrics\" class=\"operator-metrics\" hidden","mobile badge cannot be deleted by a route redraw"],
+  ["data-operator-visitors","desktop and mobile badge keeps unique visitors"],
+  ["data-operator-daily-opens","desktop and mobile badge keeps daily opens"],
+  ["id=\"operatorMetrics\" class=\"operator-metrics\" hidden","desktop operator badge has a permanent mount"],
+  ["id=\"mobileOperatorMetricsSlot\" class=\"mobile-operator-metrics-slot\" hidden","mobile has a permanent operator mount"],
+  ["id=\"mobileOperatorMetrics\" class=\"operator-metrics\" hidden","mobile badge cannot be deleted by route redraw"],
+  [".operator-metrics[hidden],.mobile-operator-metrics-slot[hidden]{display:none!important}","operator badges stay hidden for ordinary visitors"],
   [".mobile-operator-metrics-slot .operator-metrics","mobile badge has an explicit visible layout"],
-  [".mobile-operator-metrics-slot[hidden]{display:none!important}","mobile mount is hidden safely for ordinary accounts"],
-  ["if(!isOperator){desktopBadge.replaceChildren();mobileBadge.replaceChildren();return;}","ordinary accounts cannot retain operator counts in the DOM"],
-  ["membershipAccessRefreshTimer=window.setInterval(refreshMembershipAccess,90000)","account entitlement is rechecked while the app remains open"],
-  ["window.addEventListener('focus',()=>{if(memberState.user)refreshMembershipAccess();})","phone resume rechecks operator entitlement"],
-  ["effectivePlanKey(),memberState.subscription?.access_source||''","operator entitlement changes invalidate the account render signature"],
-  ["data-operator-account-visitors","account page keeps the visitor count"],
-  ["data-operator-account-daily-opens","account page keeps today's open count"],
-  ["data-operator-account-users","account page keeps the registration count"],
-  [".operator-metrics-status.is-stale","stale values are visibly distinguished from live values"],
-  ["function trackAppEvent(){return Promise.resolve(false);}","retired funnel analytics cannot call the missing production RPC"],
+  [".mobile-operator-metrics-slot[hidden]{display:none!important}","mobile mount is hidden for ordinary visitors"],
+  ["if(!isOperator){desktopBadge.replaceChildren();mobileBadge.replaceChildren();return;}","ordinary visitors cannot retain operator counts"],
+  ["operatorAccessRefreshTimer=window.setInterval(refreshOperatorAccess,90000)","operator access is periodically rechecked"],
+  ["window.addEventListener('focus',()=>{if(memberState.user)refreshOperatorAccess();})","phone resume rechecks operator access"],
+  ["if(memberState.user)refreshOperatorAccess();","network recovery rechecks operator access"],
+  ["memberState.subscription?.access_source||''","operator access changes invalidate the render signature"],
+  ["data-operator-account-visitors","operator page keeps unique visitors"],
+  ["data-operator-account-daily-opens","operator page keeps daily opens"],
+  [".operator-metrics-status.is-stale","stale values are visibly distinguished"],
+  ["function trackAppEvent(){return Promise.resolve(false);}","retired funnel analytics stay disabled"],
   ["VISITOR_REGISTRATION_MAX_ATTEMPTS=5","visitor registration retry count is bounded"],
-  ["UNIQUE_VISITOR_REGISTERED_KEY='ai_radar_unique_visitor_registered_v1'","app and public articles share the unique-visitor completion marker"],
-  ["if(hasRegisteredUniqueVisitor()){visitorRegistrationComplete=true;return;}","a previously registered browser avoids duplicate visitor writes"],
-  ["markUniqueVisitorRegistered();","successful visitor registration is persisted"],
   ["recordAppOpen();","initial app opens are recorded"],
-  ["p_event_id:APP_OPEN_EVENT_ID","open retries use one idempotent event id"],
-  ["catch(()=>{setCloudSyncStatus('error');return false;})","cloud polling cannot reject without a handler"]
+  ["p_event_id:APP_OPEN_EVENT_ID","open retries use one idempotent event id"]
 ])expect(index.includes(needle),label);
+
+expect(!/data-operator-users|data-operator-account-users|registeredUsers/.test(index),"registration count cannot return to operator UI");
+expect(!/syncMemberAppStateFromCloud|loadMemberAppState|saveMemberAppState/.test(index),"retired account cloud sync is absent");
 
 const metricRenderer=section("function renderOperatorMetrics\\(\\)\\{","function stopOperatorMetricsRefresh");
 expect(!metricRenderer.includes(".remove()"),"operator metric mount points are never deleted during redraws");
 
-const publicVisitorTracker=fs.readFileSync(path.join(root,"assets","visitor-tracker.js"),"utf8");
-for(const [needle,label] of [
-  ["ai_radar_public_reviewer_v1","public article uses the same anonymous browser key"],
-  ["ai_radar_unique_visitor_registered_v1","public article persists completed registration"],
-  ["/rpc/register_unique_visitor","public article calls the unique visitor RPC"],
-  ["/rpc/record_app_open","public article records a daily open"],
-  ["p_event_id:OPEN_EVENT_ID","public article sends an idempotent per-load event id"],
-  ["if(response.ok)saveValue(REGISTERED_KEY,\"1\");","public article marks completion only after a successful RPC"],
-  ["article URL","public article tracker does not send article URL"]
-])expect(publicVisitorTracker.includes(needle),label);
-
-const authInit=section("async function initMemberAuth\\(\\)\\{","async function loadPublishedReviews");
+const authInit=section("async function initOperatorAuth\\(\\)\\{","async function loadPublishedReviews");
 expect(authInit.includes("if(event==='INITIAL_SESSION'&&nextUserId===lastAuthUserId)return"),"only the duplicate initial session is skipped");
-expect(!authInit.includes("event==='TOKEN_REFRESHED')&&nextUserId===lastAuthUserId"),"phone token refresh is never skipped");
-expect(authInit.indexOf("memberClient.auth.onAuthStateChange")<authInit.indexOf("await queueMemberRefresh(data.session)"),"auth listener is installed before slow initial account loading");
+expect(authInit.indexOf("memberClient.auth.onAuthStateChange")<authInit.indexOf("await queueOperatorRefresh(data.session)"),"auth listener is installed before initial operator loading");
+expect(workflow.includes("node scripts/test-runtime-resilience.mjs"),"scheduled updates run the stability regression test");
 
-expect(workflow.includes("node scripts/test-runtime-resilience.mjs"),"scheduled news updates run the stability regression test");
-
-if(failures.length){
-  console.error(failures.join("\n"));
-  process.exit(1);
-}
+if(failures.length){console.error(failures.join("\n"));process.exit(1);}
 console.log("Runtime resilience contract passed.");

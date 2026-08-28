@@ -13,10 +13,10 @@ const requireText=(body,text,label)=>{if(!body.includes(text))failures.push(labe
 
 for(const text of [
   '<link rel="canonical" href="https://reiki-ai-apps.github.io/AI-/"',
-  'property="og:title"','name="twitter:card"','"@type":"WebSite"','function shareArticle','無料登録はカード情報不要',
-  '変化と仕事への影響を見る','重要トップニュースはテーマ外でも表示','function trackAppEvent',
-  'サブスクなし。','好きな情報テーマを無制限に設定','情報元の記事を回数制限なく確認',
-  "trackAppEvent('signup_start'","p_event_id:APP_OPEN_EVENT_ID","data-operator-account-daily-opens",
+  'property="og:title"','name="twitter:card"','"@type":"WebSite"','function shareArticle','一般利用者向けの登録・ログイン機能はありません',
+  '変化と仕事への影響を見る','テーマ設定に関係なく重要度で選定','function trackAppEvent',
+  '興味のある情報テーマを好きなだけ選んでください','AI要約の根拠になった元の記事を、登録なしで確認できます','function renderOperator',
+  "p_event_id:APP_OPEN_EVENT_ID","data-operator-account-daily-opens",
   "String(u.article_id||'')===key",'href="${esc(publicArticleUrl(u))}"'
 ])requireText(index,text);
 for(const text of [
@@ -27,6 +27,7 @@ for(const text of [
 ])requireText(index,text);
 if(index.includes('重要ニュース通知（提供予定）'))failures.push('未提供機能を料金プランに表示しています');
 if(index.includes('複数事業やチームで'))failures.push('未提供のチーム機能を料金説明に含めています');
+if(/signUpMember|renderAccount|go\('account'\)|data-operator-users|syncMemberAppStateFromCloud/.test(index))failures.push('廃止した会員制度の画面または処理が残っています');
 
 for(const text of ['create table if not exists public.app_open_events','function public.record_app_open','daily_opens','Asia/Tokyo','alter table public.app_open_events enable row level security','revoke all on table public.app_open_events from anon, authenticated'])requireText(schema,text);
 for(const text of ['node scripts/build-public-articles.mjs','articles sitemap.xml robots.txt'])requireText(workflow,text);

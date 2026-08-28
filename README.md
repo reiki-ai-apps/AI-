@@ -53,7 +53,7 @@ AIに関する重要ニュースを **3時間ごとに自動で確認して表�
 
 - `index.html`、画像、マニフェストなどアプリシェルを変更したときは、`sw.js` の `CACHE_NAME` も更新します。
 - 公開前に `node scripts/test-ai-operations.mjs`、`node scripts/test-dedupe.mjs`、`node scripts/security-check.mjs` を実行します。
-- 本番Supabaseでは、`subscriptions`を本人だけが参照でき、クライアントが追加・更新できないことを確認します。
+- 一般利用者向けの登録・ログインはありません。Supabase認証は、運営者本人が匿名の利用状況を確認する場合にだけ使用します。
 - 情報元記事の月間上限は、ブラウザから送る数字ではなく、Supabase内の契約プランからRPCが決定します。
 
 ## 販売版V2のUI

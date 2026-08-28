@@ -1734,7 +1734,7 @@
   .pricing-common{display:flex;align-items:center;gap:12px;margin-top:18px;padding:15px 17px;border:1px solid rgba(112,148,190,.17);border-radius:13px;background:rgba(8,19,37,.58);color:#95a5ba;font-size:11.5px;line-height:1.6}
   .pricing-common svg{width:18px;height:18px;flex:0 0 18px;color:#54dce5}
   .pricing-note{margin:13px 2px 0;color:#718097;font-size:10.5px;line-height:1.65;text-align:center}
-  /* 会員プランから迷わず使える「フィード設定」ハブ */
+  /* 登録不要で迷わず使える「フィード設定」ハブ */
   .settings-hub{display:grid;gap:17px;margin-bottom:18px}
   .settings-hero{position:relative;overflow:hidden;padding:24px;border:1px solid rgba(74,214,228,.27);border-radius:17px;background:linear-gradient(145deg,rgba(7,28,48,.96),rgba(10,15,39,.97));box-shadow:0 22px 48px rgba(0,0,0,.24)}
   .settings-hero::after{content:"";position:absolute;right:-70px;top:-95px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(55,218,229,.16),rgba(82,68,218,.09) 45%,transparent 72%);pointer-events:none}
@@ -2362,7 +2362,7 @@ const STATUS_LABELS = {unread:'未読',read:'既読',try_later:'後で見る',tr
 const STATUS_ORDER = ['unread','read','try_later','tried','adopted','ignored'];
 const TOOL_COLORS = ['#4f46e5','#0ea5e9','#16a34a','#db2777','#ea580c','#7c3aed','#0891b2','#ca8a04','#dc2626','#059669'];
 
-/* ---------- Member authentication (Supabase public browser connection) ---------- */
+/* ---------- Public data connection + operator-only authentication ---------- */
 const SUPABASE_URL='https://ncosmmesecpqhzfikpmn.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_9nyRtwzYeaArcNKiZtVVVA_2ji4eK6G';
 const AUTH_RETURN_URL='https://reiki-ai-apps.github.io/AI-/';
@@ -2384,93 +2384,59 @@ function waitForSupabaseSdk(timeoutMs=6000){
     window.setTimeout(done,timeoutMs);
   });
 }
-const memberState={ready:false,user:null,subscription:null,operatorMetrics:null,operatorMetricsStatus:'idle',operatorMetricsUpdatedAt:null,operatorMetricsError:'',reviews:[],reviewStatus:null,message:'',error:false,recovery:false,cloudSyncStatus:'idle',cloudSyncedAt:null};
+const memberState={ready:false,user:null,subscription:null,operatorMetrics:null,operatorMetricsStatus:'idle',operatorMetricsUpdatedAt:null,operatorMetricsError:'',reviews:[],reviewStatus:null,message:'',error:false,recovery:false};
 let memberRefreshQueue=Promise.resolve();
 let operatorMetricsRefreshTimer=null;
 let operatorMetricsRefreshInFlight=null;
-let membershipAccessRefreshTimer=null;
-let membershipAccessRefreshInFlight=null;
-let memberCloudSyncTimer=null;
-let memberCloudSyncInFlight=null;
-let lastCloudStateUpdatedAt='';
-let loadedMemberStateFor='';
-let memberStateDirty=false;
+let operatorAccessRefreshTimer=null;
+let operatorAccessRefreshInFlight=null;
 let lastAuthUserId='';
 let toolFormDirty=false;
 const freeTopicPreview=new Set();
-const SOCIAL_PROOF_MIN_USERS=100;
 const SOCIAL_PROOF_MIN_REVIEWS=3;
-// 2026-08-27: サブスクを廃止し、従来の最上位機能を全員へ開放する。
+// 2026-08-29: 全機能を登録不要で開放する。
 const FREE_ACCESS_RULES={topics:Infinity,sourceViews:Infinity,retention:30,csv:true,customSources:false};
 function effectivePlanKey(){return 'free';}
 function currentRules(){return FREE_ACCESS_RULES;}
 function requirePlan(){return true;}
 
-function memberPlanLabel(){return '無料・全機能';}
-function memberStatusLabel(status){return ({active:'契約中',trialing:'トライアル中',past_due:'支払い確認中',canceled:'解約済み',unpaid:'未払い',incomplete:'手続き未完了',inactive:'無料利用中'})[status]||'確認中';}
-function hasStripeContract(sub=memberState.subscription){
-  return !!sub&&(sub.has_stripe_subscription===true||sub.access_source==='stripe');
-}
-const MEMBERSHIP_CACHE_KEY='ai_radar_verified_membership_v1';
-const defaultMembership=()=>({plan:'free',status:'inactive',current_period_end:null,access_source:'account',has_stripe_subscription:false});
 const waitMs=ms=>new Promise(resolve=>window.setTimeout(resolve,ms));
-const membershipResolution=(membership,verified)=>({...membership,__membership_verified:verified===true});
-function applyResolvedMembership(candidate,previous=memberState.subscription){
-  if(!candidate||typeof candidate!=='object')return {verified:false,preserved:false};
-  const verified=candidate.__membership_verified===true;
-  const next={...candidate};delete next.__membership_verified;
-  const preserveOperator=!verified&&previous?.access_source==='operator_grant'&&next.access_source!=='operator_grant';
-  if(!preserveOperator)memberState.subscription=next;
-  if(verified&&memberState.user)cacheMembershipForUser(memberState.user.id,next);
-  return {verified,preserved:preserveOperator};
-}
-function cachedMembershipForUser(userId){
+const OPERATOR_ACCESS_CACHE_KEY='ai_radar_verified_operator_v1';
+function cachedOperatorAccessForUser(userId){
   if(!userId)return null;
   try{
-    const cached=JSON.parse(localStorage.getItem(MEMBERSHIP_CACHE_KEY)||'null');
-    return cached?.userId===userId&&cached?.membership&&typeof cached.membership==='object'?cached.membership:null;
+    const cached=JSON.parse(localStorage.getItem(OPERATOR_ACCESS_CACHE_KEY)||'null');
+    return cached?.userId===userId&&cached?.isOperator===true?{access_source:'operator_grant'}:null;
   }catch(_error){return null;}
 }
-function cacheMembershipForUser(userId,membership){
-  if(!userId||!membership)return;
-  const cachedMembership={
-    plan:membership.plan,status:membership.status,current_period_end:membership.current_period_end||null,
-    access_source:membership.access_source,has_stripe_subscription:membership.has_stripe_subscription===true,
-    stripe_plan:membership.stripe_plan||null,stripe_status:membership.stripe_status||null,
-    stripe_current_period_end:membership.stripe_current_period_end||null
-  };
-  try{localStorage.setItem(MEMBERSHIP_CACHE_KEY,JSON.stringify({userId,membership:cachedMembership}));}catch(_error){}
+function cacheOperatorAccess(userId,isOperator){
+  if(!userId)return;
+  try{localStorage.setItem(OPERATOR_ACCESS_CACHE_KEY,JSON.stringify({userId,isOperator:isOperator===true}));}catch(_error){}
 }
-async function loadMembership(){
-  const safeFallback=memberState.subscription||cachedMembershipForUser(memberState.user?.id)||defaultMembership();
-  if(!memberClient||!memberState.user)return membershipResolution(safeFallback,false);
+async function loadOperatorAccess(){
+  const safeFallback=memberState.subscription?.access_source==='operator_grant'
+    ?memberState.subscription:cachedOperatorAccessForUser(memberState.user?.id);
+  if(!memberClient||!memberState.user)return safeFallback;
   for(const delay of [0,500,1400]){
     if(delay)await waitMs(delay);
     try{
       const result=await memberClient.rpc('get_my_membership');
-      if(!result.error&&result.data)return membershipResolution(result.data,true);
+      if(!result.error&&result.data){
+        const isOperator=result.data.access_source==='operator_grant';
+        cacheOperatorAccess(memberState.user.id,isOperator);
+        return isOperator?{access_source:'operator_grant'}:{access_source:'none'};
+      }
     }catch(_error){}
   }
-  // subscriptions alone cannot represent an operator grant. Keep a previously
-  // verified operator grant until get_my_membership succeeds again.
-  if(safeFallback.access_source==='operator_grant')return membershipResolution(safeFallback,false);
-  // Keep existing members usable while a database migration is being deployed.
-  try{
-    const fallback=await memberClient.from('subscriptions').select('plan,status,current_period_end,stripe_customer_id,stripe_subscription_id').maybeSingle();
-    if(fallback.error)return membershipResolution(safeFallback,false);
-    const sub=fallback.data||safeFallback;
-    const hasStripe=!!(sub.stripe_customer_id&&sub.stripe_subscription_id);
-    return membershipResolution({...sub,access_source:hasStripe?'stripe':'account',has_stripe_subscription:hasStripe,stripe_plan:hasStripe?sub.plan:null,stripe_status:hasStripe?sub.status:null,stripe_current_period_end:hasStripe?sub.current_period_end:null},false);
-  }catch(_error){return membershipResolution(safeFallback,false);}
+  return safeFallback;
 }
 function validOperatorMetrics(data){
-  const registeredUsers=Number(data?.registered_users);
   const uniqueVisitors=Number(data?.unique_visitors);
-  if(!Number.isFinite(registeredUsers)||registeredUsers<0||!Number.isFinite(uniqueVisitors)||uniqueVisitors<0)return null;
+  if(!Number.isFinite(uniqueVisitors)||uniqueVisitors<0)return null;
   const rawDailyOpens=data?.daily_opens;
   const dailyOpens=rawDailyOpens==null?null:Number(rawDailyOpens);
   if(dailyOpens!==null&&(!Number.isFinite(dailyOpens)||dailyOpens<0))return null;
-  return {registeredUsers,uniqueVisitors,dailyOpens};
+  return {uniqueVisitors,dailyOpens};
 }
 async function loadOperatorMetrics(){
   if(!memberClient||!memberState.user||memberState.subscription?.access_source!=='operator_grant')return null;
@@ -2494,12 +2460,11 @@ function operatorMetricsStatusLabel(){
 }
 function updateOperatorMetricsBadge(badge,metrics,status,statusLabel){
   badge.className='operator-metrics';
-  badge.setAttribute('aria-label',metrics?`管理者統計。累計ユニーク閲覧者${metrics.uniqueVisitors}人、今日の総表示${metrics.dailyOpens==null?'未取得':`${metrics.dailyOpens}回`}、登録者${metrics.registeredUsers}人。${statusLabel}`:`管理者統計。${statusLabel}`);
+  badge.setAttribute('aria-label',metrics?`管理者統計。累計ユニーク閲覧者${metrics.uniqueVisitors}人、今日の総表示${metrics.dailyOpens==null?'未取得':`${metrics.dailyOpens}回`}。${statusLabel}`:`管理者統計。${statusLabel}`);
   badge.title=memberState.operatorMetricsError||statusLabel;
-  badge.innerHTML='<span>ユニーク <strong data-operator-visitors></strong>人</span><span>今日 <strong data-operator-daily-opens></strong>回</span><span>登録 <strong data-operator-users></strong>人</span><span class="operator-metrics-status" data-operator-metrics-status></span>';
+  badge.innerHTML='<span>ユニーク <strong data-operator-visitors></strong>人</span><span>今日 <strong data-operator-daily-opens></strong>回</span><span class="operator-metrics-status" data-operator-metrics-status></span>';
   badge.querySelector('[data-operator-visitors]').textContent=metrics?metrics.uniqueVisitors.toLocaleString('ja-JP'):'—';
   badge.querySelector('[data-operator-daily-opens]').textContent=metrics&&metrics.dailyOpens!==null?metrics.dailyOpens.toLocaleString('ja-JP'):'—';
-  badge.querySelector('[data-operator-users]').textContent=metrics?metrics.registeredUsers.toLocaleString('ja-JP'):'—';
   const badgeStatus=badge.querySelector('[data-operator-metrics-status]');
   badgeStatus.className=`operator-metrics-status ${status==='live'?'is-live':status==='stale'?'is-stale':status==='error'?'is-error':''}`;
   badgeStatus.textContent=status==='live'?operatorMetricsTimeLabel(memberState.operatorMetricsUpdatedAt):status==='stale'?'再取得待ち':status==='error'?'エラー':'確認中';
@@ -2521,7 +2486,6 @@ function renderOperatorMetrics(){
   updateOperatorMetricsBadge(mobileBadge,metrics,status,statusLabel);
   document.querySelectorAll('[data-operator-account-visitors]').forEach(el=>{el.textContent=metrics?`${metrics.uniqueVisitors.toLocaleString('ja-JP')}人`:'—';});
   document.querySelectorAll('[data-operator-account-daily-opens]').forEach(el=>{el.textContent=metrics&&metrics.dailyOpens!==null?`${metrics.dailyOpens.toLocaleString('ja-JP')}回`:'—';});
-  document.querySelectorAll('[data-operator-account-users]').forEach(el=>{el.textContent=metrics?`${metrics.registeredUsers.toLocaleString('ja-JP')}人`:'—';});
   document.querySelectorAll('[data-operator-metrics-state]').forEach(el=>{el.className=`operator-metric-state ${status==='live'?'is-live':status==='stale'?'is-stale':status==='error'?'is-error':''}`;el.querySelector('span').textContent=statusLabel;});
 }
 function stopOperatorMetricsRefresh(){
@@ -2576,37 +2540,34 @@ function startOperatorMetricsRefresh(){
     operatorMetricsRefreshTimer=window.setInterval(refreshOperatorMetrics,60000);
   }
 }
-function stopMembershipAccessRefresh(){
-  if(membershipAccessRefreshTimer!==null){window.clearInterval(membershipAccessRefreshTimer);membershipAccessRefreshTimer=null;}
+function stopOperatorAccessRefresh(){
+  if(operatorAccessRefreshTimer!==null){window.clearInterval(operatorAccessRefreshTimer);operatorAccessRefreshTimer=null;}
 }
-async function refreshMembershipAccess(){
+async function refreshOperatorAccess(){
   if(!memberClient||!memberState.user)return false;
-  if(membershipAccessRefreshInFlight)return membershipAccessRefreshInFlight;
+  if(operatorAccessRefreshInFlight)return operatorAccessRefreshInFlight;
   const userId=memberState.user.id;
-  membershipAccessRefreshInFlight=(async()=>{
-    const previous=memberState.subscription;
-    const candidate=await loadMembership();
+  operatorAccessRefreshInFlight=(async()=>{
+    const candidate=await loadOperatorAccess();
     if(memberState.user?.id!==userId)return false;
-    const resolution=applyResolvedMembership(candidate,previous);
+    memberState.subscription=candidate?.access_source==='operator_grant'?candidate:null;
     const isOperator=memberState.subscription?.access_source==='operator_grant';
-    if(previous?.access_source!==memberState.subscription?.access_source)startOperatorMetricsRefresh();
-    if(isOperator)await refreshOperatorMetrics();
-    else renderOperatorMetrics();
+    if(isOperator){startOperatorMetricsRefresh();await refreshOperatorMetrics();}
+    else{stopOperatorMetricsRefresh();memberState.operatorMetrics=null;renderOperatorMetrics();}
     renderIfChanged();
-    return resolution.verified;
-  })().catch(()=>false).finally(()=>{membershipAccessRefreshInFlight=null;});
-  return membershipAccessRefreshInFlight;
+    return isOperator;
+  })().catch(()=>false).finally(()=>{operatorAccessRefreshInFlight=null;});
+  return operatorAccessRefreshInFlight;
 }
-function startMembershipAccessRefresh(){
-  stopMembershipAccessRefresh();
-  if(memberState.user&&memberClient)membershipAccessRefreshTimer=window.setInterval(refreshMembershipAccess,90000);
+function startOperatorAccessRefresh(){
+  stopOperatorAccessRefresh();
+  if(memberState.user&&memberClient)operatorAccessRefreshTimer=window.setInterval(refreshOperatorAccess,90000);
 }
 document.addEventListener('visibilitychange',()=>{
   if(document.visibilityState!=='visible')return;
-  if(memberState.user)refreshMembershipAccess();
-  if(memberState.user)syncMemberAppStateFromCloud();
+  if(memberState.user)refreshOperatorAccess();
 });
-window.addEventListener('focus',()=>{if(memberState.user)refreshMembershipAccess();});
+window.addEventListener('focus',()=>{if(memberState.user)refreshOperatorAccess();});
 function authErrorMessage(error){
   const msg=String(error?.message||error||'');
   if(/invalid login credentials/i.test(msg))return 'メールアドレスまたはパスワードが正しくありません。';
@@ -2615,64 +2576,50 @@ function authErrorMessage(error){
   if(/email/i.test(msg))return 'メールアドレスを確認してください。';
   return '処理を完了できませんでした。少し待ってからもう一度お試しください。';
 }
-async function refreshMemberState(session){
+async function refreshOperatorState(session){
   const previousUserId=memberState.user?.id||'';
   const nextUserId=session?.user?.id||'';
   const sameUser=!!nextUserId&&previousUserId===nextUserId;
-  const previousSubscription=sameUser?memberState.subscription:cachedMembershipForUser(nextUserId);
+  const previousAccess=sameUser?memberState.subscription:cachedOperatorAccessForUser(nextUserId);
   const previousMetrics=sameUser?memberState.operatorMetrics:null;
   const previousMetricsStatus=sameUser?memberState.operatorMetricsStatus:'idle';
   const previousMetricsUpdatedAt=sameUser?memberState.operatorMetricsUpdatedAt:null;
-  if(previousUserId!==nextUserId){
-    loadedMemberStateFor='';
-    lastCloudStateUpdatedAt='';
-    memberState.cloudSyncStatus=nextUserId?'syncing':'idle';
-    memberState.cloudSyncedAt=null;
-  }
   memberState.user=session?.user||null;
-  memberState.subscription=previousSubscription;
+  memberState.subscription=previousAccess;
   memberState.operatorMetrics=previousMetrics;
   memberState.operatorMetricsStatus=previousMetricsStatus;
   memberState.operatorMetricsUpdatedAt=previousMetricsUpdatedAt;
   memberState.operatorMetricsError='';
-  memberState.reviewStatus=null;
   if(memberState.user&&memberClient){
-    // 契約・クラウド設定・レビュー状態は互いに独立しているため並列取得する。
-    // 起動時の3回分の通信待ちを1回分に短縮する。
-    const [membership]=await Promise.allSettled([
-      loadMembership(),
-      loadMemberAppState(),
-      loadReviewStatus()
-    ]);
-    if(membership.status==='fulfilled')applyResolvedMembership(membership.value,previousSubscription);
-    await refreshOperatorMetrics();
-  }else if(memberClient){
-    await Promise.allSettled([loadReviewStatus()]);
+    const access=await loadOperatorAccess();
+    memberState.subscription=access?.access_source==='operator_grant'?access:null;
+    if(memberState.subscription)await refreshOperatorMetrics();
+    else if(access?.access_source==='none'){
+      memberState.message='この画面は運営者専用です。一般利用者向けの登録・ログイン機能はありません。';
+      memberState.error=true;
+      try{await memberClient.auth.signOut({scope:'local'});}catch(_error){}
+      memberState.user=null;
+    }
   }
   memberState.ready=true;
-  // 次回起動時の初期表示に使うため、確定したプランを保存する。
-  try{localStorage.setItem('ai_radar_last_plan',effectivePlanKey());}catch(_e){}
   startOperatorMetricsRefresh();
-  startMembershipAccessRefresh();
-  startMemberCloudSync();
+  startOperatorAccessRefresh();
   renderOperatorMetrics();
-  // 表示内容が変わらない場合は再描画せず、起動時に画面が切り替わって見えるのを防ぐ。
   renderIfChanged();
 }
-function queueMemberRefresh(session){
-  memberRefreshQueue=memberRefreshQueue.then(()=>refreshMemberState(session)).catch(error=>{
-    console.warn('member refresh failed',error);
+function queueOperatorRefresh(session){
+  memberRefreshQueue=memberRefreshQueue.then(()=>refreshOperatorState(session)).catch(error=>{
+    console.warn('operator refresh failed',error);
     memberState.ready=true;
     render();
   });
   return memberRefreshQueue;
 }
-async function initMemberAuth(){
+async function initOperatorAuth(){
   await waitForSupabaseSdk();
   ensureMemberClient();
   if(!memberClient){memberState.ready=true;return;}
-  // 公開レビューは初期画面に必須ではないため、描画を妨げない時間に取得する。
-  // 登録者数は運営者の会員判定が確定した後にだけ取得する。
+  // 公開レビューは運営者認証とは独立して取得する。
   const loadNonCritical=()=>Promise.allSettled([loadPublishedReviews(),loadReviewStatus()]);
   if('requestIdleCallback' in window)requestIdleCallback(loadNonCritical,{timeout:1800});
   else window.setTimeout(loadNonCritical,650);
@@ -2684,19 +2631,19 @@ async function initMemberAuth(){
     if(event==='PASSWORD_RECOVERY')memberState.recovery=true;
     const nextUserId=session?.user?.id||'';
     // INITIAL_SESSIONだけはgetSession直後の重複なので省く。TOKEN_REFRESHEDは
-    // スマホのスリープ復帰後に失敗した会員・管理者判定を回復するため必ず再取得する。
+    // スマホのスリープ復帰後に失敗した運営者判定を回復するため必ず再取得する。
     if(event==='INITIAL_SESSION'&&nextUserId===lastAuthUserId)return;
     lastAuthUserId=nextUserId;
-    window.setTimeout(async()=>{await queueMemberRefresh(session);if(memberState.recovery)go('account');},0);
+    window.setTimeout(async()=>{await queueOperatorRefresh(session);if(memberState.recovery)go('operator');},0);
   });
-  await queueMemberRefresh(data.session);
+  await queueOperatorRefresh(data.session);
 }
 async function loadPublishedReviews(){
   if(!memberClient)return;
   const {data,error}=await memberClient.rpc('get_published_reviews',{p_limit:100});
   if(!error){
     memberState.reviews=Array.isArray(data)?data:[];
-    if(route.name==='reviews'||route.name==='pricing')render();
+    if(route.name==='reviews')render();
   }
 }
 const PUBLIC_REVIEWER_KEY='ai_radar_public_reviewer_v1';
@@ -2743,34 +2690,19 @@ function togglePasswordVisibility(inputId,button){
   const end=input.value.length;
   if(typeof input.setSelectionRange==='function')input.setSelectionRange(end,end);
 }
-async function signUpMember(){
-  const email=(document.getElementById('authEmail')?.value||'').trim();
-  const password=document.getElementById('authPassword')?.value||'';
-  const consent=document.getElementById('authConsent')?.checked;
-  if(!email||password.length<8){setAuthMessage('メールアドレスと8文字以上のパスワードを入力してください。',true);return;}
-  if(!consent){setAuthMessage('利用規約とプライバシーポリシーへの同意が必要です。',true);return;}
-  setAuthMessage('登録しています…',false);
-  trackAppEvent('signup_start',{route:'account'});
-  const {data,error}=await memberClient.auth.signUp({email,password,options:{emailRedirectTo:AUTH_RETURN_URL}});
-  if(error){setAuthMessage(authErrorMessage(error),true);return;}
-  if(data.user)trackAppEvent('signup_success',{route:'account'});
-  if(data.session){setAuthMessage('登録が完了しました。',false);await refreshMemberState(data.session);}
-  else setAuthMessage('確認メールを送りました。メール内のリンクを押して登録を完了してください。',false);
-}
-async function signInMember(){
+async function signInOperator(){
   const email=(document.getElementById('authEmail')?.value||'').trim();
   const password=document.getElementById('authPassword')?.value||'';
   if(!email||!password){setAuthMessage('メールアドレスとパスワードを入力してください。',true);return;}
-  setAuthMessage('ログインしています…',false);
+  setAuthMessage('運営者権限を確認しています…',false);
   const {data,error}=await memberClient.auth.signInWithPassword({email,password});
   if(error){setAuthMessage(authErrorMessage(error),true);return;}
-  memberState.message='';await refreshMemberState(data.session);
+  memberState.message='';await refreshOperatorState(data.session);
 }
-async function signOutMember(){
+async function signOutOperator(){
   if(!memberClient)return;
   await memberClient.auth.signOut();memberState.message='';memberState.error=false;
-  DB._data=null;localStorage.removeItem(DB.KEY);
-  await refreshMemberState(null);
+  await refreshOperatorState(null);
 }
 async function sendPasswordReset(){
   const email=(document.getElementById('authEmail')?.value||memberState.user?.email||'').trim();
@@ -2802,98 +2734,6 @@ function safeExternalUrl(value,allowedHosts){
     return '';
   }
 }
-function beginCheckout(plan,baseUrl){
-  // 既存ブックマークや古い画面から呼ばれても、新規決済は開始しない。
-  go('pricing');
-  toast('サブスクは廃止され、すべての機能を無料で利用できます。','ok');
-}
-function isPaymentReturn(){return new URL(location.href).searchParams.get('payment')==='success';}
-function clearPaymentReturnFlag(){
-  const url=new URL(location.href);
-  url.searchParams.delete('payment');
-  history.replaceState({aiRadar:true,name:route.name,param:route.param},'',url.pathname+url.search+url.hash);
-}
-async function confirmSubscriptionAfterPayment(){
-  if(!isPaymentReturn())return false;
-  clearPaymentReturnFlag();
-  if(!memberState.user){
-    memberState.message='決済内容を反映するため、決済時に使用したアカウントでログインしてください。';
-    memberState.error=false;
-    go('account');
-    return false;
-  }
-  toast('お支払いを確認しています。画面はそのままでお待ちください','ok');
-  const waits=[0,900,1600,2600];
-  for(const wait of waits){
-    if(wait)await new Promise(resolve=>window.setTimeout(resolve,wait));
-    const data=await loadMembership();
-    applyResolvedMembership(data,memberState.subscription);
-    const activeMembership=memberState.subscription;
-    if(activeMembership&&['standard','premium'].includes(activeMembership.plan)&&['active','trialing'].includes(activeMembership.status)){
-      trackAppEvent('payment_confirmed',{route:'pricing',plan:activeMembership.plan});
-      renderNav();
-      go('tools');
-      toast(`${memberPlanLabel(activeMembership.plan)}が有効になりました。最初に情報テーマを設定しましょう`,'ok');
-      return true;
-    }
-  }
-  go('account');
-  toast('決済は完了しています。プラン反映に少し時間がかかっています','ok');
-  return false;
-}
-async function openBillingManagement(){
-  if(!memberState.user){go('account');toast('契約を管理するにはログインしてください。','err');return;}
-  if(memberState.subscription?.access_source==='operator_grant'&&!hasStripeContract()){
-    modal('このアカウントに請求はありません','全機能は無料です。管理者権限はStripe契約ではないため、解約や請求はありません。',closeModal,'閉じる');
-    return;
-  }
-  toast('Stripeの契約管理画面を準備しています。','ok');
-  const {data,error}=await memberClient.functions.invoke('create-portal-session');
-  const portalUrl=safeExternalUrl(data?.url,['billing.stripe.com']);
-  if(!error&&portalUrl){window.location.assign(portalUrl);return;}
-  const reason=String(data?.error||error?.message||'').trim();
-  modal(
-    '契約管理画面を開けませんでした',
-    `${reason?`${esc(reason)}<br><br>`:''}ログインし直しても開けない場合は、お問い合わせから登録メールアドレスをお知らせください。契約状況を確認します。`,
-    ()=>{closeModal();go('support');},
-    'お問い合わせへ'
-  );
-}
-async function deleteMemberAccount(){
-  if(!memberState.user)return;
-  if(memberState.subscription?.access_source==='operator_grant'){
-    modal('管理者権限の解除が必要です','誤削除を防ぐため、先にSupabaseでこのアカウントの管理者権限を解除してください。',closeModal,'閉じる');
-    return;
-  }
-  if(hasStripeContract()&&memberState.subscription?.stripe_status!=='canceled'&&memberState.subscription?.status!=='canceled'){
-    modal('先に旧サブスクを解約してください','旧Stripe契約が残ったままアカウントを削除すると請求だけが継続するおそれがあります。「旧サブスクの解約」から解約してください。',()=>{closeModal();openBillingManagement();},'契約を管理する');
-    return;
-  }
-  modal('無料アカウントを削除しますか？','ログイン情報、保存した記事、テーマ設定など、このアカウントに紐づくデータを削除します。この操作は元に戻せません。',async()=>{
-    const {data,error}=await memberClient.rpc('delete_own_free_account');
-    if(error||data!==true){toast('削除処理を完了できませんでした。再ログインしてもう一度お試しください。','err');return;}
-    DB._data=null;localStorage.removeItem(DB.KEY);
-    await memberClient.auth.signOut();
-    await refreshMemberState(null);
-    toast('無料アカウントと保存データを削除しました','ok');
-  },'削除する',true);
-}
-function showCancellationGuide(){
-  const root=document.getElementById('modalRoot');
-  root.innerHTML=`<div class="modal-bg" onclick="if(event.target===this)closeModal()">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="cancelGuideTitle">
-      <h3 id="cancelGuideTitle">サブスクの解約方法</h3>
-      <p>メールは必要ありません。下のボタンからStripeの契約管理画面を開き、安全に解約できます。</p>
-      <div class="cancel-guide">
-        <div class="cancel-step"><b>1</b><span>「Stripeの契約管理画面を開く」を押します。</span></div>
-        <div class="cancel-step"><b>2</b><span>表示された契約を選び、「プランをキャンセル」を押します。</span></div>
-        <div class="cancel-step"><b>3</b><span>解約日と内容を確認して、キャンセルを確定します。</span></div>
-        <div class="cancel-note">解約後もすべての機能を無料で利用できます。ログアウトやアプリのアカウント削除だけでは、旧サブスクは解約されません。</div>
-      </div>
-      <div class="modal-actions"><button class="btn" onclick="closeModal()">閉じる</button><button class="btn btn-primary" onclick="closeModal();openBillingManagement()">Stripeの契約管理画面を開く</button></div>
-    </div></div>`;
-}
-
 /* ---------- Storage layer (lib/supabase.ts 相当の差し替えポイント) ---------- */
 const DB = {
   KEY:'ai_radar_v1',
@@ -2906,19 +2746,7 @@ const DB = {
     return this._data;
   },
   _quotaWarned:false,
-  // セッション開始時点の記事・ツールID集合と時刻。クラウド状態とのマージで
-  // 「この端末でセッション後に変わったレコード」を判定する基準になる。
-  _bootAt:'',
-  _bootIds:null,
-  captureBootBaseline(){
-    const d=this._data||{};
-    this._bootAt=nowISO();
-    this._bootIds=new Set([
-      ...(Array.isArray(d.updates)?d.updates:[]).map(u=>u&&u.id),
-      ...(Array.isArray(d.tools)?d.tools:[]).map(t=>t&&t.id)
-    ].filter(Boolean));
-  },
-  save(sync=true){
+  save(){
     try{
       localStorage.setItem(this.KEY, JSON.stringify(this._data));
     }catch(e){
@@ -2932,219 +2760,9 @@ const DB = {
         if(!this._quotaWarned&&typeof toast==='function'){this._quotaWarned=true;toast('端末の保存領域が不足し、変更を保存できませんでした','error');}
       }
     }
-    if(sync&&memberState.user){memberStateDirty=true;scheduleMemberAppStateSync();}
   },
   reset(){ this._data = seedData(); this.save(); },
 };
-let appStateSyncTimer=null;
-function cloudSyncLabel(){
-  if(!memberState.user)return '未ログイン';
-  if(memberState.cloudSyncStatus==='syncing')return '同期中…';
-  if(memberState.cloudSyncStatus==='error')return '同期を再試行します';
-  if(memberState.cloudSyncStatus==='synced')return memberState.cloudSyncedAt?`同期済み ${new Date(memberState.cloudSyncedAt).toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})}`:'同期済み';
-  return '同期待ち';
-}
-function setCloudSyncStatus(status,syncedAt=null){
-  memberState.cloudSyncStatus=status;
-  if(syncedAt)memberState.cloudSyncedAt=syncedAt;
-  document.querySelectorAll('[data-account-sync-status]').forEach(el=>{el.textContent=cloudSyncLabel();});
-}
-function stopMemberCloudSync(){
-  if(memberCloudSyncTimer!==null){window.clearInterval(memberCloudSyncTimer);memberCloudSyncTimer=null;}
-}
-function startMemberCloudSync(){
-  stopMemberCloudSync();
-  if(memberState.user&&memberClient)memberCloudSyncTimer=window.setInterval(()=>syncMemberAppStateFromCloud(),60000);
-}
-/* クラウド状態を土台に、この端末でセッション開始後に生じた変更だけを接ぎ木する。
-   起動直後の数秒間に行った既読化・テーマ選択・新着取込が、後から届く
-   クラウドのスナップショットで丸ごと巻き戻らないようにするためのマージ。
-   新規端末(ローカル=シードデータ)では全レコードが「未変更」判定になるため、
-   クラウドの会員データを一切壊さない。 */
-function mergeMemberState(cloud,local){
-  const merged={...cloud};
-  merged.tools=Array.isArray(cloud.tools)?[...cloud.tools]:[];
-  merged.updates=Array.isArray(cloud.updates)?[...cloud.updates]:[];
-  merged.seen_articles=Array.isArray(cloud.seen_articles)?[...cloud.seen_articles]:[];
-  if(!Array.isArray(merged.fetch_logs))merged.fetch_logs=Array.isArray(local?.fetch_logs)?[...local.fetch_logs]:[];
-  let grafts=0;
-  const bootAt=DB._bootAt||'';
-  const bootIds=DB._bootIds||new Set();
-  const touchedLocally=record=>Boolean(record&&record.id&&(!bootIds.has(record.id)||(record.updated_at||'')>bootAt));
-  if(!local)return {state:merged,grafts};
-
-  /* ツール: id→slug→名前の順で照合。既存ツールにはユーザー設定だけ反映し、
-     クラウドに無いツールだけ追加する(ID差し替えによる参照切れを起こさない)。 */
-  const toolBySlug=new Map(),toolByName=new Map(),toolByIdMap=new Map();
-  merged.tools.forEach(t=>{if(!t)return;toolByIdMap.set(t.id,t);if(t.slug)toolBySlug.set(t.slug,t);if(t.name)toolByName.set(t.name,t);});
-  const toolRemap=new Map();
-  (Array.isArray(local.tools)?local.tools:[]).forEach(t=>{
-    if(!t)return;
-    const counterpart=toolByIdMap.get(t.id)||toolBySlug.get(t.slug)||toolByName.get(t.name);
-    if(counterpart){
-      if(counterpart.id!==t.id)toolRemap.set(t.id,counterpart.id);
-      // 起動時から存在したツールへの設定変更だけ反映する。
-      // この端末で自動生成された同名ツール(新ID)でクラウドの設定を潰さない。
-      if(bootIds.has(t.id)&&(t.updated_at||'')>bootAt&&(t.updated_at||'')>(counterpart.updated_at||'')){
-        counterpart.is_using=t.is_using;
-        counterpart.priority=t.priority;
-        counterpart.is_active=t.is_active;
-        counterpart.memo=t.memo;
-        counterpart.updated_at=t.updated_at;
-        grafts++;
-      }
-    }else if(touchedLocally(t)){
-      merged.tools.push(t);
-      toolByIdMap.set(t.id,t);if(t.slug)toolBySlug.set(t.slug,t);if(t.name)toolByName.set(t.name,t);
-      grafts++;
-    }
-  });
-
-  /* 記事: セッション中に追加・変更したものだけ、記事ID→URL→タイトルで照合して反映。 */
-  const upById=new Map(),upByArticleId=new Map(),upByKey=new Map();
-  merged.updates.forEach(u=>{
-    if(!u)return;
-    upById.set(u.id,u);
-    if(u.article_id)upByArticleId.set(String(u.article_id),u);
-    const k=articleKeys(u);
-    if(k.u)upByKey.set('u:'+k.u,u);
-    if(k.t)upByKey.set('t:'+k.t,u);
-  });
-  (Array.isArray(local.updates)?local.updates:[]).forEach(u=>{
-    if(!u||!touchedLocally(u))return;
-    const k=articleKeys(u);
-    const counterpart=upById.get(u.id)
-      ||(u.article_id?upByArticleId.get(String(u.article_id)):null)
-      ||(k.u?upByKey.get('u:'+k.u):null)
-      ||(k.t?upByKey.get('t:'+k.t):null);
-    if(counterpart){
-      if((u.updated_at||'')>(counterpart.updated_at||'')){
-        const index=merged.updates.indexOf(counterpart);
-        if(index>=0){
-          // クラウド側のID・ツール参照を保ち、内容とステータスを新しい方に更新する。
-          merged.updates[index]={...u,id:counterpart.id,tool_id:toolRemap.get(u.tool_id)||counterpart.tool_id};
-          grafts++;
-        }
-      }
-    }else{
-      merged.updates.push({...u,tool_id:toolRemap.get(u.tool_id)||u.tool_id});
-      grafts++;
-    }
-  });
-
-  /* 閲覧履歴: キー単位で統合し、取込済み・削除フラグは両方を尊重する。 */
-  const seenByU=new Map(),seenByT=new Map();
-  merged.seen_articles.forEach(s=>{if(!s)return;if(s.u)seenByU.set(s.u,s);if(s.t)seenByT.set(s.t,s);});
-  (Array.isArray(local.seen_articles)?local.seen_articles:[]).forEach(s=>{
-    if(!s)return;
-    const hit=(s.u&&seenByU.get(s.u))||(s.t&&seenByT.get(s.t));
-    if(hit){
-      if(s.complete)hit.complete=true;
-      if(s.deleted){hit.deleted=true;if(s.deleted_at&&!hit.deleted_at)hit.deleted_at=s.deleted_at;}
-      if(s.u&&!hit.u){hit.u=s.u;seenByU.set(s.u,hit);}
-      if(s.t&&!hit.t){hit.t=s.t;seenByT.set(s.t,hit);}
-    }else{
-      merged.seen_articles.push(s);
-      if(s.u)seenByU.set(s.u,s);
-      if(s.t)seenByT.set(s.t,s);
-    }
-  });
-  if(merged.seen_articles.length>12000)merged.seen_articles.splice(0,merged.seen_articles.length-12000);
-
-  /* この端末でセッション中に削除した記事は、クラウド側の複製も取り除く。 */
-  const deletedNow=merged.seen_articles.filter(s=>s&&s.deleted&&(s.deleted_at||'')>bootAt);
-  if(deletedNow.length){
-    const delU=new Set(deletedNow.map(s=>s.u).filter(Boolean));
-    const delT=new Set(deletedNow.map(s=>s.t).filter(Boolean));
-    const before=merged.updates.length;
-    merged.updates=merged.updates.filter(u=>{
-      const k=articleKeys(u);
-      return !((k.u&&delU.has(k.u))||(k.t&&delT.has(k.t)));
-    });
-    if(merged.updates.length!==before)grafts++;
-  }
-
-  /* 設定: テーマ選択済みフラグはどちらかが真なら維持する。 */
-  if(local.settings?.themeSelectionConfigured===true){
-    if(!merged.settings)merged.settings={...local.settings};
-    else if(merged.settings.themeSelectionConfigured!==true){merged.settings.themeSelectionConfigured=true;grafts++;}
-  }
-  return {state:merged,grafts};
-}
-async function loadMemberAppState(force=false){
-  if(!memberClient||!memberState.user)return;
-  if(loadedMemberStateFor===memberState.user.id&&!force)return;
-  clearTimeout(appStateSyncTimer);
-  setCloudSyncStatus('syncing');
-  try{
-  if(force&&lastCloudStateUpdatedAt){
-    const latest=await memberClient.from('user_states').select('updated_at').maybeSingle();
-    if(latest.error){setCloudSyncStatus('error');return false;}
-    if(latest.data?.updated_at===lastCloudStateUpdatedAt){
-      setCloudSyncStatus('synced',new Date().toISOString());
-      return false;
-    }
-  }
-  const {data,error}=await memberClient.from('user_states').select('state,updated_at').maybeSingle();
-  if(!error&&data?.state&&Array.isArray(data.state.tools)&&Array.isArray(data.state.updates)){
-    const {state:mergedState,grafts}=mergeMemberState(data.state,DB._data);
-    DB._data=mergedState;
-    const migrated=runMigrations(DB._data);
-    try{localStorage.setItem(DB.KEY,JSON.stringify(DB._data));}catch(e){console.warn('storage save failed',e);}
-    // 接ぎ木した変更や移行結果はクラウドへ書き戻し、次回起動後も残す。
-    if((migrated||grafts>0)&&!await saveMemberAppState())return false;
-  }else if(!error){
-    if(!await saveMemberAppState())return false;
-  }
-  if(!error){
-    loadedMemberStateFor=memberState.user.id;
-    lastCloudStateUpdatedAt=data?.updated_at||lastCloudStateUpdatedAt;
-    memberStateDirty=false;
-    setCloudSyncStatus('synced',new Date().toISOString());
-    if(force)renderIfChanged();
-    return true;
-  }
-  }catch(_error){}
-  setCloudSyncStatus('error');
-  return false;
-}
-async function saveMemberAppState(){
-  if(!memberClient||!memberState.user||!DB._data)return false;
-  setCloudSyncStatus('syncing');
-  try{
-  const remote=await memberClient.from('user_states').select('state,updated_at').maybeSingle();
-  if(!remote.error&&remote.data?.state&&Array.isArray(remote.data.state.tools)&&Array.isArray(remote.data.state.updates)){
-    const {state}=mergeMemberState(remote.data.state,DB._data);
-    DB._data=state;
-    try{localStorage.setItem(DB.KEY,JSON.stringify(DB._data));}catch(e){console.warn('storage save failed',e);}
-  }
-  const snapshot=DB._data;
-  const {data,error}=await memberClient.from('user_states').upsert({user_id:memberState.user.id,state:snapshot},{onConflict:'user_id'}).select('updated_at').single();
-  if(error)throw error;
-  lastCloudStateUpdatedAt=data?.updated_at||lastCloudStateUpdatedAt;
-  if(snapshot===DB._data)memberStateDirty=false;
-  setCloudSyncStatus('synced',new Date().toISOString());
-  return true;
-  }catch(_error){
-    setCloudSyncStatus('error');
-    return false;
-  }
-}
-function scheduleMemberAppStateSync(){
-  if(!memberState.user||!memberClient)return;
-  clearTimeout(appStateSyncTimer);
-  appStateSyncTimer=setTimeout(saveMemberAppState,700);
-}
-async function syncMemberAppStateFromCloud(options={}){
-  if(!memberState.user||!memberClient)return false;
-  if(memberCloudSyncInFlight)return memberCloudSyncInFlight;
-  memberCloudSyncInFlight=loadMemberAppState(true).then(changed=>{
-    if(options.showToast)toast(changed?'PC・スマホのアカウント情報を同期しました':'最新の状態です','ok');
-    return changed;
-  }).catch(()=>{setCloudSyncStatus('error');return false;}).finally(()=>{memberCloudSyncInFlight=null;});
-  return memberCloudSyncInFlight;
-}
-
 /* ---------- 匿名の利用状況集計 ----------
    レビュー重複防止と同じ匿名ブラウザキーをSHA-256化し、初回だけ登録する。人数はブラウザへ返さない。 */
 let visitorRegistrationStarted=false;
@@ -3235,7 +2853,7 @@ window.addEventListener('online',()=>{
   registerUniqueVisitor();
   recordAppOpen();
   flushAppEvents();
-  if(memberState.user)refreshMembershipAccess();
+  if(memberState.user)refreshOperatorAccess();
 });
 function uid(){ return 'id-'+Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4); }
 function nowISO(){ return new Date().toISOString(); }
@@ -3774,7 +3392,7 @@ const MIGRATIONS = [
     });
   } },
   { id:'2026-08-01-major-ai-tool-presets-v2', apply(d){
-    // 初回版の移行IDだけが保存され、テーマ本体が未反映の会員データを修復する。
+    // 初回版の移行IDだけが保存され、テーマ本体が未反映の端末データを修復する。
     d.tools=d.tools||[];
     const aliases={
       'OpenAI / ChatGPT':'ChatGPT / OpenAI',
@@ -3850,9 +3468,7 @@ const NAV = [
     {id:'tools',label:'フィード設定',icon:'tools'},
     {id:'fetch',label:'取得実行',icon:'fetch'},
   ]},
-  {group:'アカウント',items:[
-    {id:'account',label:'ログイン・会員情報',icon:'user'},
-    {id:'pricing',label:'無料で使える機能',icon:'star'},
+  {group:'その他',items:[
     {id:'reviews',label:'利用者レビュー',icon:'eye'},
     {id:'support',label:'お問い合わせ',icon:'inbox'},
   ]},
@@ -3927,7 +3543,7 @@ function renderNav(){
       html+=`<button class="nav-item ${active?'active':''}" onclick="go('${it.id}')">${icon(it.icon)}<span>${it.label}</span>${badge}</button>`;
     });
   });
-  html+=`<div class="nav-legal"><button onclick="go('terms')">利用規約</button><button onclick="go('privacy')">プライバシー</button><button onclick="go('commerce')">特商法表記</button></div>`;
+  html+=`<div class="nav-legal"><button onclick="go('terms')">利用規約</button><button onclick="go('privacy')">プライバシー</button><button onclick="go('commerce')">特商法表記</button><button onclick="go('operator')">運営者</button></div>`;
   document.getElementById('nav').innerHTML=html;
 
   const mobileItems=[
@@ -3935,7 +3551,7 @@ function renderNav(){
     {id:'updates',label:'記事',icon:'updates',badge:total},
     {id:'try-list',label:'保存',icon:'flask',badge:tryN},
     {id:'tools',label:'設定',icon:'tools'},
-    {id:'account',label:memberState.user?'会員':'ログイン',icon:'user'},
+    {id:'categories',label:'分類',icon:'category'},
   ];
   const bottom=document.getElementById('bottomNav');
   if(bottom) bottom.innerHTML=mobileItems.map(it=>{
@@ -3952,8 +3568,7 @@ const PAGE_META = {
   tools:['フィード設定','興味のあるAI情報を選び、自分専用のレーダーを設定'],
   'tool-form':['情報テーマを編集',''],
   fetch:['取得実行','登録した情報テーマの最新ニュースを取得'],
-  account:['ログイン・会員情報','設定をPC・スマホで同期'],
-  pricing:['無料で使える機能','すべての機能を回数制限なく利用できます'],
+  operator:['運営者','運営者専用の利用状況確認'],
   reviews:['利用者レビュー','AI進化レーダーを利用した方の感想'],
   support:['お問い合わせ','困ったこと・記事の誤りを運営へ連絡'],
   terms:['利用規約','サービス利用時の大切なルール'],
@@ -3964,14 +3579,14 @@ const PAGE_META = {
 
 let _lastRenderedRoute=null;
 let _lastRenderSig='';
-/* 画面に影響する状態の要約。起動時の会員確認・新着同期の完了後に、
-   見た目が変わらないのに全再描画して画面が切り替わって見えるのを防ぐ。 */
+/* 画面に影響する状態の要約。新着同期や運営者確認で見た目が変わらない場合は
+   全再描画を避け、操作中の画面を安定させる。 */
 function renderSignature(){
   try{
     const planUpdates=getPlanUpdates();
     return [
       route.name,route.param||'',
-      effectivePlanKey(),memberState.subscription?.access_source||'',memberState.user?.id||'',memberState.ready?1:0,
+      memberState.subscription?.access_source||'',memberState.user?.email||'',memberState.ready?1:0,
       planUpdates.length,
       planUpdates.filter(u=>u.status==='unread').length,
       planUpdates.filter(u=>u.status==='try_later').length
@@ -3998,7 +3613,7 @@ function render(){
   ({
     home:renderHome, updates:renderUpdates, categories:renderCategories,
     'try-list':renderTryList, tools:renderTools, 'tool-form':renderToolForm,
-    fetch:renderFetch, account:renderAccount, pricing:renderPricing, reviews:renderReviews, support:renderSupport,
+    fetch:renderFetch, operator:renderOperator, reviews:renderReviews, support:renderSupport,
     terms:renderTerms, privacy:renderPrivacy, commerce:renderCommerce, 'update-detail':renderDetail,
   }[route.name]||renderHome)(v);
 }
@@ -5228,7 +4843,7 @@ async function syncFromDataJson(force=false,renderChanges=true,allowPrune=true){
     });
     // 取り込んだ件数分の全体保存を繰り返さず、最後に1回だけ保存する（起動時のカクつき防止）。
     if(added>0||patched>0)DB.save();
-    // 会員プランが確定する前に無料プランの保存期間で削除しない。
+    // 保存期間内の記事だけを端末内に維持する。
     if(memberState.ready&&allowPrune)pruneOld();
     if(added>0||patched>0){
       recomputeAll();
@@ -5344,29 +4959,17 @@ function dismissBootScreen(){
   window.setTimeout(finish,2000);
 }
 async function finishBootInBackground(){
-  const returnedFromPayment=isPaymentReturn();
-  let paymentConfirmed=false;
-  // 新着取込(同一オリジンで確実に取れる)は会員確認と並列に始める。
-  // allowPrune=false なので、プラン確定前に記事が削除されることはない。
-  const syncPromise=returnedFromPayment?null:syncFromDataJson(false,false,false).catch(()=>0);
+  // 新着取込と運営者確認を並列に行い、一般利用の表示を待たせない。
+  const syncPromise=syncFromDataJson(false,false,false).catch(()=>0);
   try{
-    if(returnedFromPayment){
-      await initMemberAuth();
-      paymentConfirmed=await confirmSubscriptionAfterPayment();
-    }else{
-      // Supabase接続が不調でも、アプリ表示と新着取込を無期限に待たせない。
-      await Promise.race([initMemberAuth(),new Promise(resolve=>window.setTimeout(resolve,8000))]);
-    }
-    // 決済直後にWebhook反映待ちなら無料プラン扱いで履歴を削除しない。
-    // プラン未確定(タイムアウト)時も削除しない。
-    if(memberState.ready&&(!returnedFromPayment||paymentConfirmed))pruneOld();
+    await Promise.race([initOperatorAuth(),new Promise(resolve=>window.setTimeout(resolve,8000))]);
+    if(memberState.ready)pruneOld();
   }catch(error){
-    console.warn('background member initialization failed',error);
+    console.warn('background operator initialization failed',error);
     memberState.ready=true;
   }
-  if(syncPromise)await syncPromise;
-  else await syncFromDataJson(false,false,!returnedFromPayment||paymentConfirmed);
-  // 新着取込や会員確認で表示が変わったときだけ再描画する。
+  await syncPromise;
+  // 新着取込や運営者確認で表示が変わったときだけ再描画する。
   renderIfChanged();
   // 匿名の利用状況を登録する。通信やSDK到着が遅い場合は成功するまで間隔を空けて再試行する。
   registerUniqueVisitor();
@@ -5378,8 +4981,6 @@ function bootApp(){
     route=routeFromHash();
     history.replaceState({aiRadar:true,name:route.name,param:route.param},'',routeHref(route.name,route.param));
     DB.load();
-    // クラウド状態とのマージ基準になる「セッション開始時点」を記録する。
-    DB.captureBootBaseline();
     render();
     recordAppOpen();
     try{
@@ -5394,7 +4995,7 @@ function bootApp(){
     dismissBootScreen();
   }
   setupPWA();
-  // 初期画面は即表示し、会員確認と新着取込は裏で進める。
+  // 初期画面は即表示し、運営者確認と新着取込は裏で進める。
   void finishBootInBackground();
 }
 // 別タブ・常駐PWAでの変更を取り込む(読み取り専用: ここでは保存しない)。
@@ -5406,12 +5007,12 @@ window.addEventListener('storage',e=>{
 bootApp();
 
 /* ============================================================
-   ACCOUNT (/account)
+   OPERATOR (/operator) — 一般利用者向けの登録画面ではない
    ============================================================ */
-function renderAccount(v){
+function renderOperator(v){
   document.getElementById('topActions').innerHTML='';
   if(!memberState.ready){
-    v.innerHTML='<div class="account-page"><section class="account-panel"><div class="account-head"><h2>会員情報を確認しています</h2><p>安全な接続を準備しています。</p></div></section></div>';
+    v.innerHTML='<div class="account-page"><section class="account-panel"><div class="account-head"><h2>運営者権限を確認しています</h2><p>安全な接続を準備しています。</p></div></section></div>';
     return;
   }
   if(memberState.recovery&&memberState.user){
@@ -5423,75 +5024,39 @@ function renderAccount(v){
   }
   if(!memberState.user){
     v.innerHTML=`<div class="account-page"><section class="account-panel">
-      <div class="account-head"><div class="pricing-eyebrow">SECURE MEMBER ACCESS</div><h2>無料登録で、続きをどの端末でも。</h2><p>PCとスマホを連動するには、両方で同じメールアドレスの既存アカウントへログインしてください。無料登録にカード情報は不要です。</p></div>
-      <ul class="account-value-list" aria-label="無料登録でできること">
-        <li>${icon('shuffle')}設定・保存・既読状態をPCとスマホで同期</li>
-        <li>${icon('updates')}重要AIニュースをあとから見返せる</li>
-        <li>${icon('check')}無料登録はカード情報不要</li>
-      </ul>
+      <div class="account-head"><div class="pricing-eyebrow">OPERATOR ONLY</div><h2>運営者ログイン</h2><p>この画面は運営者本人が利用状況を確認するための専用入口です。一般利用者向けの登録・ログイン機能はありません。</p></div>
       <div class="auth-form">
         <div class="auth-field"><label for="authEmail">メールアドレス</label><input id="authEmail" type="email" autocomplete="email" inputmode="email" placeholder="name@example.com"></div>
         <div class="auth-field"><label for="authPassword">パスワード（8文字以上）</label><div class="password-input-wrap"><input id="authPassword" type="password" autocomplete="current-password" minlength="8" placeholder="8文字以上"><button type="button" class="password-toggle" aria-label="パスワードを表示する" aria-pressed="false" onclick="togglePasswordVisibility('authPassword',this)">${icon('eye')}<span>表示</span></button></div></div>
-        <label class="auth-consent"><input type="checkbox" id="authConsent"><span><button type="button" onclick="go('terms')">利用規約</button>と<button type="button" onclick="go('privacy')">プライバシーポリシー</button>に同意して無料登録します。</span></label>
-        <div class="auth-actions"><button class="btn btn-primary" onclick="signInMember()">${icon('user')}ログイン</button><button class="btn" onclick="signUpMember()">${icon('plus')}無料登録</button></div>
+        <div class="auth-actions"><button class="btn btn-primary" onclick="signInOperator()">${icon('user')}運営者としてログイン</button></div>
         <button class="link-button" onclick="sendPasswordReset()">パスワードを忘れた方・再設定する方はこちら</button>
       </div>
       <div id="authMessage" class="auth-message ${memberState.message?'show':''} ${memberState.error?'error':''}">${esc(memberState.message)}</div>
-      <div class="account-security">パスワードはSupabaseの認証基盤で安全に管理され、このアプリやGitHubには保存されません。</div>
+      <div class="account-security">一般利用者はログイン不要です。設定・保存・閲覧履歴は、この端末のブラウザー内に保存されます。</div>
     </section></div>`;
     return;
   }
-  const sub=memberState.subscription||{plan:'free',status:'inactive'};
-  const isOperatorGrant=sub.access_source==='operator_grant';
-  const hasStripeSubscription=hasStripeContract(sub);
-  const stripeStatus=sub.stripe_status||(sub.access_source==='stripe'?sub.status:'inactive');
-  const stripeCurrentPeriodEnd=sub.stripe_current_period_end||(sub.access_source==='stripe'?sub.current_period_end:null);
-  const isCanceled=stripeStatus==='canceled';
-  const periodLabel=isCanceled?'利用終了日':'次回更新日';
+  const isOperatorGrant=memberState.subscription?.access_source==='operator_grant';
   v.innerHTML=`<div class="account-page"><section class="account-panel">
-    <div class="account-head"><div class="pricing-eyebrow">ACCOUNT SYNC</div><h2>会員情報</h2><p>全機能は誰でも無料です。ログインすると、設定・保存・既読状態をPCとスマホで同期できます。</p></div>
+    <div class="account-head"><div class="pricing-eyebrow">OPERATOR DASHBOARD</div><h2>運営者ダッシュボード</h2><p>運営者本人だけが匿名の利用状況を確認できます。</p></div>
     <div class="member-summary">
       <div class="member-row"><span>メールアドレス</span><strong>${esc(memberState.user.email||'—')}</strong></div>
-      <div class="member-row"><span>PC・スマホ同期</span><strong data-account-sync-status>${cloudSyncLabel()}</strong></div>
-      <div class="member-row"><span>利用プラン</span><strong class="member-plan">無料・全機能</strong></div>
-      ${isOperatorGrant?'<div class="member-row"><span>管理者権限</span><strong>運営者本人・統計を表示</strong></div>':''}
-      ${hasStripeSubscription?`<div class="member-row"><span>旧Stripe契約</span><strong>${memberStatusLabel(stripeStatus)}</strong></div>`:''}
-      ${stripeCurrentPeriodEnd?`<div class="member-row"><span>${periodLabel}</span><strong>${fmtDate(stripeCurrentPeriodEnd)}まで</strong></div>`:''}
-      <div class="auth-actions"><button class="btn btn-primary" onclick="syncMemberAppStateFromCloud({showToast:true})">${icon('shuffle')}今すぐ同期</button><button class="btn" onclick="go('tools')">${icon('tools')}設定を開く</button><button class="btn" onclick="exportUpdatesCsv()">${icon('updates')}CSVを書き出す</button><button class="btn" onclick="sendPasswordReset()">${icon('edit')}パスワード再設定</button><button class="btn" onclick="signOutMember()">${icon('arrowLeft')}ログアウト</button></div>
+      <div class="member-row"><span>運営者権限</span><strong>${isOperatorGrant?'確認済み':'確認できません'}</strong></div>
+      <div class="auth-actions"><button class="btn btn-primary" onclick="refreshOperatorMetrics()">${icon('shuffle')}利用状況を更新</button><button class="btn" onclick="sendPasswordReset()">${icon('edit')}パスワード再設定</button><button class="btn" onclick="signOutOperator()">${icon('arrowLeft')}ログアウト</button></div>
     </div>
-    <section class="member-feature-guide" aria-labelledby="memberFeaturesTitle">
-      <h3 id="memberFeaturesTitle">すべて無料で使えます</h3>
-      <p>情報テーマの設定、情報元の記事、履歴、CSV書き出しにサブスク制限はありません。</p>
-      <div class="member-feature-list">
-        <span class="member-feature-item">${icon('category')}好きな情報テーマを無制限に設定</span>
-        <span class="member-feature-item">${icon('ext')}情報元の記事を回数制限なく確認</span>
-        <span class="member-feature-item">${icon('updates')}30日間の閲覧履歴・CSV書き出し</span>
-      </div>
-      <div class="billing-actions"><button class="btn btn-primary" onclick="go('tools')">${icon('tools')}フィード設定を始める</button><button class="btn" onclick="go('home')">${icon('home')}ホームで確認</button></div>
-    </section>
     ${isOperatorGrant?`<section class="billing-panel" aria-labelledby="operatorBenefitTitle">
       <div class="billing-panel-head">
-        <div><h3 id="operatorBenefitTitle">運営者向け利用状況</h3><p>管理者本人のアカウントだけに、PC・スマホ共通で現在の実数を表示します。</p></div>
+        <div><h3 id="operatorBenefitTitle">運営者向け利用状況</h3><p>運営者本人の認証が確認できた場合だけ、PC・スマホ共通で現在の実数を表示します。</p></div>
         <span class="billing-badge">管理者のみ表示</span>
       </div>
       <div class="operator-metric-grid" aria-label="管理者だけに表示される現在の実数">
         <div class="operator-metric-card"><span>累計ユニーク閲覧者</span><strong data-operator-account-visitors>${memberState.operatorMetrics?`${memberState.operatorMetrics.uniqueVisitors.toLocaleString('ja-JP')}人`:'—'}</strong></div>
         <div class="operator-metric-card"><span>今日の総表示回数</span><strong data-operator-account-daily-opens>${memberState.operatorMetrics&&memberState.operatorMetrics.dailyOpens!==null?`${memberState.operatorMetrics.dailyOpens.toLocaleString('ja-JP')}回`:'—'}</strong></div>
-        <div class="operator-metric-card"><span>登録アカウント数</span><strong data-operator-account-users>${memberState.operatorMetrics?`${memberState.operatorMetrics.registeredUsers.toLocaleString('ja-JP')}人`:'—'}</strong></div>
       </div>
       <div class="operator-metric-state ${memberState.operatorMetricsStatus==='live'?'is-live':memberState.operatorMetricsStatus==='stale'?'is-stale':memberState.operatorMetricsStatus==='error'?'is-error':''}" data-operator-metrics-state><span>${esc(operatorMetricsStatusLabel())}</span><button class="btn operator-metric-refresh" type="button" onclick="refreshOperatorMetrics()">今すぐ再取得</button></div>
       <p class="billing-help">累計ユニーク閲覧者は同じ端末・ブラウザーの重複を除いた概算です。今日の総表示回数は日本時間0時からの、アプリまたは公開記事が開かれた回数です。</p>
     </section>`:''}
-    ${hasStripeSubscription?`<section class="billing-panel" aria-labelledby="billingTitle">
-      <div class="billing-panel-head">
-        <div><h3 id="billingTitle">旧サブスクの解約</h3><p>新規サブスクは廃止しました。既存のStripe契約は自動では止まらないため、こちらから解約してください。</p></div>
-        <span class="billing-badge">${isCanceled?'解約手続き済み':'要確認'}</span>
-      </div>
-      <div class="billing-actions">${isCanceled?'':`<button class="btn btn-primary" onclick="openBillingManagement()">${icon('ext')}Stripeで契約を管理</button><button class="btn" onclick="showCancellationGuide()">${icon('x')}解約手続きを始める</button>`}</div>
-      <p class="billing-help">${isCanceled?'解約手続きは完了しています。全機能は引き続き無料で利用できます。':'サブスクを解約しても、全機能をそのまま無料で利用できます。アカウント削除とサブスク解約は別の手続きです。'}</p>
-    </section>`:''}
-    <div class="account-security">全機能は無料です。アカウントは端末間の同期と、管理者本人の統計表示にだけ使用します。${hasStripeSubscription?'旧Stripe契約がある場合は、ログアウトだけでは解約されません。':''}</div>
-    <section class="account-danger"><div><b>アカウントの削除</b><span>${isOperatorGrant?'誤削除を防ぐため、先に管理者権限の解除が必要です。':hasStripeSubscription&&!isCanceled?'先に旧サブスクを解約してから削除してください。':'アカウントと保存設定を完全に削除します。'}</span></div><button class="btn btn-danger btn-sm" onclick="deleteMemberAccount()">${icon('trash')}削除する</button></section>
+    <div class="account-security">表示されるのは匿名集計だけです。一般利用者の設定・保存内容や個人情報は表示しません。</div>
   </section></div>`;
 }
 
@@ -5516,7 +5081,6 @@ function reviewCardsHtml(reviews,limit){
     <div class="review-card-head"><span class="review-author">${esc(r.display_name)}</span><time class="review-date">${fmtDate(r.created_at)}</time></div>
     <div class="review-stars" aria-label="5点満点中${Number(r.rating)}点">${'★'.repeat(Number(r.rating))}${'☆'.repeat(5-Number(r.rating))}</div>
     <p class="review-body">${esc(r.body)}</p>
-    <span class="review-plan">${memberPlanLabel(r.plan)}</span>
   </article>`).join('')}</div>`;
 }
 function renderReviews(v){
@@ -5582,130 +5146,55 @@ async function submitPublicReview(){
 function renderSupport(v){
   document.getElementById('topActions').innerHTML='';
   const article=route.param?updateById(route.param):null;
-  if(!memberState.user){
-    v.innerHTML=`<div class="legal-page"><section class="legal-section"><h2>お問い合わせ</h2><p>問い合わせ内容と返信先を安全に管理するため、先にログインしてください。</p><button class="btn btn-primary" onclick="go('account')">${icon('user')}ログイン・無料登録へ</button></section></div>`;
-    return;
-  }
   v.innerHTML=`<div class="legal-page"><section class="legal-section">
     <div class="pricing-eyebrow">CUSTOMER SUPPORT</div><h2>お問い合わせ</h2>
-    <p>操作方法、旧サブスクの解約、記事の誤り、個人情報に関するご依頼を受け付けます。通常は登録メールアドレスへ返信します。</p>
+    <p>登録やログインは不要です。操作方法や記事の誤りは、KIZASHI公式XまたはInstagramのメッセージからお知らせください。</p>
     ${article?`<div class="notice-card"><b>報告する記事</b><span>${esc(article.title)}</span></div>`:''}
-    <div class="support-form">
-      <label>お問い合わせの種類<select id="supportCategory"><option ${article?'selected':''}>記事の誤り・内容について</option><option>操作方法について</option><option>旧サブスク・請求・解約について</option><option>アカウント・個人情報について</option><option>その他</option></select></label>
-      <label>内容<textarea id="supportMessage" rows="7" placeholder="困っていること、表示された画面、希望する対応をできるだけ詳しくお書きください。">${article?`記事「${esc(article.title)}」について：`:''}</textarea></label>
-      <div id="supportMessageBox" class="auth-message"></div>
-      <button class="btn btn-primary" onclick="submitSupport()">${icon('inbox')}送信する</button>
+    <div class="official-media-links" aria-label="お問い合わせ先">
+      <a class="official-media-link" href="https://x.com/KIZASHI_jp" target="_blank" rel="noopener noreferrer"><span class="official-media-mark">X</span><span>Xで連絡する</span></a>
+      <a class="official-media-link" href="https://www.instagram.com/kizashi_jp/" target="_blank" rel="noopener noreferrer"><span class="official-media-mark">IG</span><span>Instagramで連絡する</span></a>
     </div>
+    <p class="review-privacy">公開投稿にはメールアドレスなどの個人情報を書かず、必要な場合は各SNSの非公開メッセージをご利用ください。</p>
   </section></div>`;
-}
-async function submitSupport(){
-  const message=(document.getElementById('supportMessage')?.value||'').trim();
-  const category=document.getElementById('supportCategory')?.value||'その他';
-  const box=document.getElementById('supportMessageBox');
-  if(message.length<10){box.textContent='内容を10文字以上で入力してください。';box.className='auth-message show error';return;}
-  const {error}=await memberClient.from('support_requests').insert({user_id:memberState.user.id,email:memberState.user.email,category,message});
-  if(error){box.textContent='送信できませんでした。少し待ってからもう一度お試しください。';box.className='auth-message show error';return;}
-  box.textContent='送信しました。登録メールアドレスへの返信をお待ちください。';box.className='auth-message show';
-  document.getElementById('supportMessage').value='';
 }
 function legalShell(title,updated,body){
   return `<div class="legal-page"><section class="legal-section"><div class="pricing-eyebrow">AI UPDATE RADAR</div><h2>${title}</h2><p class="legal-updated">制定・最終更新：${updated}</p>${body}<div class="legal-contact"><b>ご不明点はこちら</b><button class="btn btn-sm" onclick="go('support')">${icon('inbox')}お問い合わせ</button></div></section></div>`;
 }
 function renderTerms(v){
-  v.innerHTML=legalShell('利用規約','2026年8月27日',`
+  v.innerHTML=legalShell('利用規約','2026年8月29日',`
     <h3>1. サービスの内容</h3><p>AI進化レーダーは、AIに関するニュースや公開情報を収集し、AIによる要約・分類・保存機能を提供する情報サービスです。</p>
     <h3>2. 情報の正確性</h3><p>要約は自動生成を含み、誤り、遅延、欠落が生じることがあります。重要な判断は必ず情報元、公式発表、専門家の助言をご確認ください。本サービスは投資、法律、税務、医療その他の専門的助言を行うものではありません。</p>
-    <h3>3. アカウント</h3><p>利用者は正確な情報を登録し、パスワードを適切に管理してください。不正利用が疑われる場合は速やかにお問い合わせください。</p>
-    <h3>4. 無料提供</h3><p>本サービスの機能は無料で提供します。新規の有料サブスクリプション申込は受け付けません。廃止前に契約された旧サブスクリプションが残っている場合は、会員情報の「旧サブスクの解約」から停止できます。</p>
-    <h3>5. 禁止事項</h3><p>不正アクセス、第三者へのなりすまし、サービスの妨害、法令違反、権利侵害、過度な自動取得、アカウントの不正共有を禁止します。</p>
+    <h3>3. 登録不要の利用</h3><p>一般利用者向けのアカウントはありません。情報テーマ、保存、既読状態などは利用中のブラウザー内に保存され、別の端末へ自動同期されません。</p>
+    <h3>4. 無料提供</h3><p>すべての機能を無料で提供し、利用料金や自動更新はありません。</p>
+    <h3>5. 禁止事項</h3><p>不正アクセス、第三者へのなりすまし、サービスの妨害、法令違反、権利侵害、過度な自動取得を禁止します。</p>
     <h3>6. サービスの変更・停止</h3><p>保守、障害、外部サービスの停止、法令対応等により、内容の変更や一時停止を行うことがあります。重要な変更はアプリ内等でお知らせします。</p>
     <h3>7. 準拠法</h3><p>本規約は日本法に準拠します。紛争が生じた場合は、法令で認められる範囲で当社所在地を管轄する裁判所を第一審の専属的合意管轄とします。</p>`);
 }
 function renderPrivacy(v){
-  v.innerHTML=legalShell('プライバシーポリシー','2026年8月27日',`
-    <h3>収集する情報</h3><p>登録した場合のメールアドレス・認証用ID、アプリ内の情報テーマ・保存・閲覧履歴・設定、お問い合わせ内容、セキュリティや障害調査に必要なログを取り扱います。また、レビューの重複投稿防止と累計ユニーク閲覧者の集計には、ブラウザー内のランダムな識別子を一方向ハッシュ化した値を使用します。1日の総表示回数には、ページを開くたびに生成するランダムなイベントIDと記録時刻だけを保存します。メールアドレス、IPアドレス、閲覧URL、記事本文はこれらの匿名集計項目として保存しません。</p>
-    <h3>利用目的</h3><p>本人認証、サービス提供、端末間の設定同期、問い合わせ対応、不正利用防止、個人を表示しない利用状況の集計、品質改善、法令対応のために利用します。</p>
-    <h3>外部サービス</h3><p>認証・データ保存にSupabase、公開配信にGitHub Pagesを利用します。廃止前の旧サブスクリプション契約が残る利用者の解約管理に限りStripeを利用します。各事業者は業務に必要な範囲でデータを処理する場合があります。</p>
+  v.innerHTML=legalShell('プライバシーポリシー','2026年8月29日',`
+    <h3>取り扱う情報</h3><p>一般利用者の情報テーマ、保存、既読状態、閲覧履歴などは利用中のブラウザー内に保存され、運営者の利用状況画面には送信しません。レビューの重複投稿防止と累計ユニーク閲覧者の集計には、ブラウザー内のランダムな識別子を一方向ハッシュ化した値を使用します。1日の総表示回数には、ページを開くたびに生成するランダムなイベントIDと記録時刻だけを保存します。</p>
+    <h3>利用目的</h3><p>サービス提供、不正利用防止、個人を表示しない利用状況の集計、品質改善、法令対応のために利用します。</p>
+    <h3>外部サービス</h3><p>匿名集計と公開レビューの保存、運営者本人の認証にSupabase、公開配信にGitHub Pagesを利用します。各事業者は業務に必要な範囲でデータを処理する場合があります。</p>
     <h3>第三者提供</h3><p>本人の同意がある場合、業務委託に必要な場合、法令に基づく場合を除き、個人データを第三者へ提供しません。</p>
-    <h3>保存期間と安全管理</h3><p>利用目的に必要な期間、法令上必要な期間、契約・問い合わせ対応に必要な期間保存し、アクセス制御、通信の暗号化、権限分離など合理的な安全管理を行います。</p>
-    <h3>確認・訂正・削除</h3><p>会員画面からアカウント削除を申請できます。個人情報の開示、訂正、利用停止等はお問い合わせからご連絡ください。本人確認後、法令に従って対応します。</p>
+    <h3>保存期間と安全管理</h3><p>利用目的または法令上必要な期間だけ保存し、アクセス制御、通信の暗号化、権限分離など合理的な安全管理を行います。</p>
+    <h3>確認・削除</h3><p>端末内の設定や履歴はブラウザーのサイトデータを削除すると消去できます。公開レビューや匿名集計に関するご依頼はお問い合わせ先からご連絡ください。</p>
     <h3>改定</h3><p>重要な変更を行う場合はアプリ内等でお知らせします。</p>`);
 }
 function renderCommerce(v){
-  v.innerHTML=legalShell('特定商取引法に基づく表記','2026年8月27日',`
+  v.innerHTML=legalShell('特定商取引法に基づく表記','2026年8月29日',`
     <table class="legal-table">
       <tr><th>販売事業者</th><td>株式会社REIKI</td></tr>
       <tr><th>サービス名</th><td>AI進化レーダー</td></tr>
-      <tr><th>運営責任者・所在地・電話番号</th><td>請求があった場合、遅滞なく開示します。アプリ内のお問い合わせからご請求ください。</td></tr>
-      <tr><th>販売価格</th><td>0円。すべての機能を無料で提供し、新規の有料申込は受け付けません。</td></tr>
+      <tr><th>運営責任者・所在地・電話番号</th><td>請求があった場合、遅滞なく開示します。お問い合わせ先からご請求ください。</td></tr>
+      <tr><th>販売価格</th><td>0円。すべての機能を無料で提供します。</td></tr>
       <tr><th>販売価格以外の負担</th><td>インターネット接続に必要な通信料金等は利用者の負担です。</td></tr>
-      <tr><th>支払方法・時期</th><td>新規の支払いはありません。</td></tr>
-      <tr><th>提供時期</th><td>サイトを開いた時点から利用できます。端末間同期には無料登録が必要です。</td></tr>
-      <tr><th>旧サブスクの解約</th><td>廃止前のStripe契約が残っている場合は、会員情報の「旧サブスクの解約」から停止できます。解約後も全機能を無料で利用できます。</td></tr>
-      <tr><th>返品・返金</th><td>現在は料金を受け取りません。旧契約の請求に問題がある場合はお問い合わせからご連絡ください。</td></tr>
+      <tr><th>支払方法・時期</th><td>支払いはありません。</td></tr>
+      <tr><th>提供時期</th><td>登録不要で、サイトを開いた時点から利用できます。</td></tr>
+      <tr><th>返品・返金</th><td>料金を受け取らないため、返品・返金はありません。</td></tr>
       <tr><th>動作環境</th><td>最新版のChrome、Edge、Safari等の主要ブラウザ。通信環境や外部サービスの状態により利用できない場合があります。</td></tr>
     </table>`);
 }
 
-/* ============================================================
-   FREE ACCESS (/pricing - 古いブックマークとの互換用)
-   ============================================================ */
-function renderPricing(v){
-  document.getElementById('topActions').innerHTML='';
-  v.innerHTML=`<div class="pricing-page">
-    <section class="pricing-hero">
-      <div class="pricing-eyebrow">FREE ACCESS</div>
-      <h2>サブスクなし。<br>すべての機能を無料で。</h2>
-      <p>テーマ設定も、情報元の記事も、保存やCSV書き出しも、誰でも自由に利用できます。カード登録は不要です。</p>
-    </section>
-    <div class="pricing-grid single">
-      <article class="plan-card recommended" aria-labelledby="plan-free-access">
-        <span class="plan-ribbon">全機能</span>
-        <div class="plan-kicker">登録なしでもすぐ使える</div>
-        <h3 id="plan-free-access">無料</h3>
-        <div class="plan-price"><strong>¥0</strong><span>ずっと無料</span></div>
-        <p class="plan-desc">興味のあるテーマに合わせて、自分専用のAIニュースフィードを作れます。</p>
-        <div class="plan-result">ログインはPC・スマホの同期にだけ必要です。</div>
-        <div class="plan-divider"></div>
-        <ul class="plan-features">
-          <li>${icon('check')}<span>好きな情報テーマを無制限に設定</span></li>
-          <li>${icon('check')}<span>重要トップニュースはテーマ外でも表示</span></li>
-          <li>${icon('check')}<span>情報元の記事を回数制限なく確認</span></li>
-          <li>${icon('check')}<span>やさしい要約と仕事への影響を確認</span></li>
-          <li>${icon('check')}<span>30日間の閲覧履歴・CSV書き出し</span></li>
-          <li>${icon('check')}<span>無料登録でPC・スマホを同期</span></li>
-        </ul>
-        <button class="btn btn-primary plan-cta" onclick="go('tools')">${icon('tools')}フィード設定を開く</button>
-      </article>
-    </div>
-    <div class="pricing-common">${icon('bolt')}<span><b>サブスクは廃止しました。</b>新規の決済や自動更新はありません。配信件数はAIニュースの発生状況に応じて変わります。</span></div>
-    <section class="settings-benefit" style="margin-top:14px" aria-labelledby="settingsPreviewTitle"><div>
-      <h3 id="settingsPreviewTitle">設定は今すぐ変更できます</h3>
-      <p>情報テーマ、収集ジャンル、キーワードを自由に設定できます。重要度の高いトップ記事は設定に関係なく表示します。</p>
-    </div><button class="btn btn-primary" onclick="go('tools')">${icon('tools')}設定する</button></section>
-    ${memberState.reviews.length>=SOCIAL_PROOF_MIN_REVIEWS?`<section class="reviews-preview" aria-labelledby="pricingReviewTitle">
-      <div class="reviews-preview-head"><h3 id="pricingReviewTitle">利用者レビュー</h3><button class="btn btn-sm" onclick="go('reviews')">すべて見る</button></div>
-      ${reviewCardsHtml(memberState.reviews,2)}
-    </section>`:''}
-    <section class="media-promo" aria-labelledby="media-promo-title">
-      <div class="media-promo-head">
-        <div>
-          <span class="official-media-kicker">KIZASHI OFFICIAL MEDIA</span>
-          <h3 id="media-promo-title">AIニュースを、動画とSNSでも。</h3>
-          <p>AI進化レーダーと一貫した視点で、最新情報や活用のヒントを発信しています。使いやすいチャンネルからご覧ください。</p>
-        </div>
-      </div>
-      <div class="official-media-links">
-        <a class="official-media-link" href="https://www.youtube.com/@kizashi_jp" target="_blank" rel="noopener noreferrer"><span class="official-media-mark">YT</span><span>YouTubeで見る</span></a>
-        <a class="official-media-link" href="https://x.com/KIZASHI_jp" target="_blank" rel="noopener noreferrer"><span class="official-media-mark">X</span><span>Xで最新情報を見る</span></a>
-        <a class="official-media-link" href="https://www.instagram.com/kizashi_jp/" target="_blank" rel="noopener noreferrer"><span class="official-media-mark">IG</span><span>Instagramで見る</span></a>
-        <a class="official-media-link" href="https://note.com/natty_swan9072" target="_blank" rel="noopener noreferrer"><span class="official-media-mark">note</span><span>noteで読む</span></a>
-      </div>
-    </section>
-    <p class="pricing-note">廃止前の旧サブスクが残っている方は、ログイン後の会員情報からStripe契約を解約できます。解約後も全機能を無料で利用できます。</p>
-    <div class="footer-links"><button onclick="go('terms')">利用規約</button><button onclick="go('privacy')">プライバシーポリシー</button><button onclick="go('commerce')">特定商取引法に基づく表記</button><button onclick="go('support')">お問い合わせ</button></div>
-  </div>`;
-}
 window.addEventListener('keydown',e=>{ if(e.key==='Escape')closeModal(); });
 
 // 画面幅がスマホ/PCの境界をまたいだら再描画（カード⇔表の切替）

@@ -1944,17 +1944,4 @@ function bootstrapCacheResult(cache,source,result) {
   writeJsonFile(STORY_INDEX_PATH,updateStoryIndex(storyIndex,publicationReadyFinal));
   console.error("WROTE data.json with",publicationReadyFinal.length,"complete items; candidates",uniqueOut.length,"after recent-story filter",filteredOut.length,"new",newlyEnriched.length,"reused",reused.length,"cache",cachedEnriched.length,"retained",recentPrevious.length,"safe-expanded",safelyExpanded);
 
-  // GitHub Pages へ配置する直前に、同意欄をログイン・無料登録ボタンより上へ整える。
-  // すでに正しい順序なら何も変更しないため、毎日の自動実行でも安全。
-  const indexPath = "index.html";
-  if (fs.existsSync(indexPath)) {
-    const lines = fs.readFileSync(indexPath, "utf8").split(/(?<=\n)/);
-    const actionIndex = lines.findIndex(line => line.includes('class="auth-actions"') && line.includes("signInMember()"));
-    const consentIndex = lines.findIndex(line => line.includes('id="authConsent"'));
-    if (actionIndex >= 0 && consentIndex >= 0 && actionIndex < consentIndex) {
-      [lines[actionIndex], lines[consentIndex]] = [lines[consentIndex], lines[actionIndex]];
-      fs.writeFileSync(indexPath, lines.join(""));
-      console.error("UPDATED login consent layout");
-    }
-  }
 })();
