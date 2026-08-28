@@ -2,7 +2,7 @@ import fs from "node:fs";
 import vm from "node:vm";
 import { createRequire } from "node:module";
 
-const require = createRequire(import.meta.url);
+const require = createRequire(new URL("../update.js",import.meta.url));
 const source = fs.readFileSync(new URL("../update.js", import.meta.url), "utf8");
 const mainStart = source.indexOf("(async () => {");
 if (mainStart < 0) throw new Error("update.js main entry was not found");

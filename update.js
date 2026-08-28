@@ -7,6 +7,7 @@
  * ===================================================================== */
 const fs = require("fs");
 const crypto = require("crypto");
+const {upgradeFriendlyExplanationItem}=require("./scripts/friendly-explanation.cjs");
 
 // ホームの「主要AIアプリ・ツール」と収集対象を同じ一覧で監査する。
 // 公式更新ページを毎回確認し、日本語ニュースだけでは拾いにくい製品更新も補う。
@@ -178,8 +179,9 @@ function keep(item, tool) {
 const AI_MODEL = process.env.ANTHROPIC_MODEL || "claude-sonnet-5";
 const AI_MAX = 60;
 const AI_BATCH_SIZE = 6;
+const AI_MIGRATION_BATCH_SIZE = 2;
 const AI_NEW_LIMIT = 16;
-const AI_DEEP_BACKFILL_LIMIT = 8;
+const AI_DEEP_BACKFILL_LIMIT = 24;
 const AI_DAILY_UNIQUE_LIMIT = 40;
 const AI_DAILY_EMERGENCY_LIMIT = 8;
 const ARTICLE_CONTEXT_LIMIT = 3600;
@@ -192,7 +194,7 @@ const STORY_TIMELINE_WINDOW_MS = 365 * 86400000;
 const DUPLICATE_SUPPRESS_WINDOW_MS = 45 * 86400000;
 const PROMPT_VERSION = "ai-radar-2026-08-28-v10-contextual-depth";
 const REJECTED_TTL_MS = 2 * 86400000;
-const RETRY_TTL_MS = 6 * 3600000;
+const RETRY_TTL_MS = 90 * 60000;
 const ENRICHED_TTL_MS = 31 * 86400000;
 const ALLOWED_CATEGORIES = [
   "AIツール・モデル","政策・行政","補助金・助成金","企業・株式",
@@ -445,6 +447,14 @@ function hasDeepFriendlyExplanation(value) {
 }
 function needsDeepFriendlyMigration(item) {
   return Boolean(item)&&(item.enrichment_version!==PROMPT_VERSION||!hasDeepFriendlyExplanation(item.detail));
+}
+function bindLegacyMigrationIdentity(item,previousItems=[]) {
+  if(!item||item.enrichment_version!==PROMPT_VERSION||item.migration_replacement_of)return item;
+  const url=normalizedUrl(item.source_url);
+  if(!url)return item;
+  const legacy=previousItems.find(previous=>normalizedUrl(previous&&previous.source_url)===url&&
+    previous.article_id&&needsDeepFriendlyMigration(previous));
+  return legacy?{...item,migration_replacement_of:legacy.article_id}:item;
 }
 function preferCurrentEnrichment(items) {
   return items.map((item,index)=>({item,index,current:item&&item.enrichment_version===PROMPT_VERSION?1:0}))
@@ -727,19 +737,19 @@ async function aiEnrichBatch(items) {
   return {ok:true,charged:true,items:out,rejected,rejectedReasons,incomplete,usage:response.usage||{},attempts};
 }
 
-async function enrichNewItems(items,cache,ledger,lane="regular") {
+async function enrichNewItems(items,cache,ledger,lane="regular",batchSize=AI_BATCH_SIZE) {
   if(!items.length)return {items:[],processed:0,rejected:0};
   if(!process.env.ANTHROPIC_API_KEY)throw new Error("ANTHROPIC_API_KEY 未設定");
   const enriched=[];
   let processed=0;
   let rejectedCount=0;
-  for(let start=0;start<items.length;start+=AI_BATCH_SIZE){
+  for(let start=0;start<items.length;start+=batchSize){
     const dailyBudget=Number(process.env.AI_DAILY_BUDGET_USD||0);
     if(dailyBudget>0&&usageDay(ledger).estimated_usd>=dailyBudget){
       console.error("AI DAILY BUDGET REACHED: batch skipped");
       break;
     }
-    const batch=items.slice(start,start+AI_BATCH_SIZE);
+    const batch=items.slice(start,start+batchSize);
     const withContext=await Promise.all(batch.map(async item=>{
       const context=await fetchArticleContext(item);
       return {
@@ -768,11 +778,13 @@ async function enrichNewItems(items,cache,ledger,lane="regular") {
       continue;
     }
     processed+=batch.length;
-    enriched.push(...result.items);
     for(const item of result.items){
       const source=batch.find(candidate=>normalizedUrl(candidate.source_url)===normalizedUrl(item.source_url))
         || batch.find(candidate=>normalizedStoryTitle(candidate.title)===normalizedStoryTitle(item.title));
-      if(source)rememberCacheResult(cache,source,"enriched",item,lane);
+      const ready=source&&source.article_id&&needsDeepFriendlyMigration(source)
+        ?{...item,migration_replacement_of:source.article_id}:item;
+      enriched.push(ready);
+      if(source)rememberCacheResult(cache,source,"enriched",ready,lane);
     }
     result.rejected.forEach((source,index)=>{
       rememberCacheResult(cache,source,"rejected",null,lane,
@@ -1602,9 +1614,14 @@ function connectStoryTimeline(items,historyItems=[],publishedIds=null) {
     const sourceUrl=normalizedUrl(source.source_url);
     const sourceHash=articleContentHash(source);
     if(sourceUrl){
+      const migrationReplacement=source.migration_replacement_of&&versionHistory.find(candidate=>
+        candidate.article_id===source.migration_replacement_of&&normalizedUrl(candidate.source_url)===sourceUrl);
       const exactVersion=versionHistory.find(candidate=>normalizedUrl(candidate&&candidate.source_url)===sourceUrl&&
         articleContentHash(candidate)===sourceHash);
-      if(exactVersion&&exactVersion.article_id){
+      if(migrationReplacement){
+        // 要約の品質移行はニュースの訂正ではない。同じ公開URLと記事IDを保ったまま本文だけ置換する。
+        source.article_id=migrationReplacement.article_id;
+      }else if(exactVersion&&exactVersion.article_id){
         // Preserve the identity of a version already present in the story index.
         source.article_id=exactVersion.article_id;
       }else if(versionHistory.some(candidate=>normalizedUrl(candidate&&candidate.source_url)===sourceUrl)){
@@ -1654,6 +1671,7 @@ function connectStoryTimeline(items,historyItems=[],publishedIds=null) {
       source.story_id="story_"+sha256(`${profile.type}|${profile.primary}|${profile.subject||source.article_id}`).slice(0,18);
       if(relation.decision==="uncertain")source.relation_confidence=relation.confidence;
     }
+    delete source.migration_replacement_of;
     result.push(source);
   }
   return result.sort((a,b)=>articleTime(b)-articleTime(a));
@@ -1819,16 +1837,16 @@ function bootstrapCacheResult(cache,source,result) {
   const dailyBudget=Number(process.env.AI_DAILY_BUDGET_USD||0);
   const budgetExhausted=dailyBudget>0&&today.estimated_usd>=dailyBudget;
   const regularRemaining=budgetExhausted?0:Math.max(0,AI_DAILY_UNIQUE_LIMIT-today.regular_processed);
-  // プロンプト更新だけでは既存記事が「処理済み」のまま残るため、毎回8件を上限に
+  // プロンプト更新だけでは既存記事が「処理済み」のまま残るため、毎日24件を上限に
   // 旧要約へ再度一次情報の文脈を付け、記事固有の深い3段落へ安全に移行する。
   const migrationFresh=previous.filter(needsDeepFriendlyMigration)
     .filter(item=>!cacheEntryFor(item,cache));
   const migrationCandidates=selectProtectedCandidates(migrationFresh,
-    Math.min(AI_DEEP_BACKFILL_LIMIT,AI_NEW_LIMIT,regularRemaining));
+    Math.min(AI_DEEP_BACKFILL_LIMIT,regularRemaining));
   const migrationKeys=new Set(migrationCandidates.map(articleCacheKey));
   const regularNewCandidates=selectProtectedCandidates(
     fresh.filter(item=>!migrationKeys.has(articleCacheKey(item))),
-    Math.min(AI_NEW_LIMIT-migrationCandidates.length,regularRemaining-migrationCandidates.length));
+    Math.min(AI_NEW_LIMIT,Math.max(0,regularRemaining-migrationCandidates.length)));
   const regularCandidates=[...migrationCandidates,...regularNewCandidates];
   const regularKeys=new Set(regularCandidates.map(articleCacheKey));
   const emergencyRemaining=Math.max(0,AI_DAILY_EMERGENCY_LIMIT-today.emergency_processed);
@@ -1837,15 +1855,17 @@ function bootstrapCacheResult(cache,source,result) {
     ?selectProtectedCandidates(fresh.filter(item=>criticalBucket(item)&&!regularKeys.has(articleCacheKey(item))),emergencySlots)
     :[];
 
+  let migrationResult={items:[],processed:0,rejected:0};
   let regularResult={items:[],processed:0,rejected:0};
   let emergencyResult={items:[],processed:0,rejected:0};
   try {
-    regularResult=await enrichNewItems(regularCandidates,cache,ledger,"regular");
+    migrationResult=await enrichNewItems(migrationCandidates,cache,ledger,"regular",AI_MIGRATION_BATCH_SIZE);
+    regularResult=await enrichNewItems(regularNewCandidates,cache,ledger,"regular",AI_BATCH_SIZE);
     emergencyResult=await enrichNewItems(emergencyCandidates,cache,ledger,"emergency");
   } catch (e) {
     console.error("AI要約に失敗:",String(e.message||e).slice(0,300));
   }
-  const newlyEnriched=[...regularResult.items,...emergencyResult.items];
+  const newlyEnriched=[...migrationResult.items,...regularResult.items,...emergencyResult.items];
   const selectedCount=regularCandidates.length+emergencyCandidates.length;
   if(dailyBudget>0&&usageDay(ledger).estimated_usd>=dailyBudget*0.8){
     console.error("AI DAILY BUDGET WARNING:",usageDay(ledger).estimated_usd,"/",dailyBudget,"USD");
@@ -1865,7 +1885,7 @@ function bootstrapCacheResult(cache,source,result) {
   });
   const cachedEnriched=Object.values(cache.items)
     .filter(entry=>entry&&entry.status==="enriched"&&isCompleteEnrichedItem(entry.result))
-    .map(entry=>entry.result);
+    .map(entry=>bindLegacyMigrationIdentity(entry.result,previous));
   const importanceOrder={S:4,A:3,B:2,C:1};
   // 既存の正本を先に残す。新しい転載を先に残してから履歴照合すると、
   // 「既存原記事を消す → 転載も履歴重複で消す」という二重除外が起きる。
@@ -1907,7 +1927,7 @@ function bootstrapCacheResult(cache,source,result) {
   }
   const final=[...finalByArticleId.values()].sort((a,b)=>articleTime(b)-articleTime(a));
 
-  if(selectedCount&&regularResult.processed+emergencyResult.processed===0){
+  if(selectedCount&&migrationResult.processed+regularResult.processed+emergencyResult.processed===0){
     console.error("NO NEW ENRICHED ARTICLES: keeping the existing complete data.json");
     process.exitCode = 1;
     return;
@@ -1918,9 +1938,11 @@ function bootstrapCacheResult(cache,source,result) {
     return;
   }
 
-  writeJsonFile("data.json",final);
-  writeJsonFile(STORY_INDEX_PATH,updateStoryIndex(storyIndex,final));
-  console.error("WROTE data.json with",final.length,"complete items; candidates",uniqueOut.length,"after recent-story filter",filteredOut.length,"new",newlyEnriched.length,"reused",reused.length,"cache",cachedEnriched.length,"retained",recentPrevious.length);
+  const publicationReadyFinal=final.map(upgradeFriendlyExplanationItem);
+  const safelyExpanded=publicationReadyFinal.filter((item,index)=>item!==final[index]).length;
+  writeJsonFile("data.json",publicationReadyFinal);
+  writeJsonFile(STORY_INDEX_PATH,updateStoryIndex(storyIndex,publicationReadyFinal));
+  console.error("WROTE data.json with",publicationReadyFinal.length,"complete items; candidates",uniqueOut.length,"after recent-story filter",filteredOut.length,"new",newlyEnriched.length,"reused",reused.length,"cache",cachedEnriched.length,"retained",recentPrevious.length,"safe-expanded",safelyExpanded);
 
   // GitHub Pages へ配置する直前に、同意欄をログイン・無料登録ボタンより上へ整える。
   // すでに正しい順序なら何も変更しないため、毎日の自動実行でも安全。

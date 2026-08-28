@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { createRequire } from "node:module";
 
-const require=createRequire(import.meta.url);
+const require=createRequire(new URL("../update.js",import.meta.url));
 const source=fs.readFileSync(new URL("../update.js",import.meta.url),"utf8");
 const mainStart=source.indexOf("(async () => {");
 if(mainStart<0)throw new Error("update.js main entry was not found");
@@ -18,7 +18,9 @@ if(promptVersion!=="ai-radar-2026-08-28-v10-contextual-depth"){
   throw new Error("deep friendly explanation prompt version was not activated");
 }
 const backfillLimit=vm.runInContext("AI_DEEP_BACKFILL_LIMIT",context);
-if(backfillLimit!==8)throw new Error("legacy friendly explanation backfill limit changed unexpectedly");
+if(backfillLimit!==24)throw new Error("legacy friendly explanation backfill limit changed unexpectedly");
+const migrationBatchSize=vm.runInContext("AI_MIGRATION_BATCH_SIZE",context);
+if(migrationBatchSize!==2)throw new Error("legacy migration batch size changed unexpectedly");
 const deepExplanation=[
   "Anthropicの「Claude in Chrome」は、Claudeが閲覧中のページを読み、クリック、入力、画面遷移まで行える公式Chrome拡張機能です。通常のチャットが回答や手順の提案で止まるのに対し、ブラウザエージェントは許可されたページ上で実際に操作できます。公式案内では有料プランが対象で、利用する場所によって一般提供とベータの状態が異なります。",
   "Claudeは開いているタブの画面情報を読み取り、ページ比較、フォーム入力、情報転記などを一連の作業として実行できます。AIの役割が「次の手順を答える」段階から「ブラウザ内の作業を代行する」段階へ進むため、クリックやコピーを減らせる可能性があります。ただし機能は起動方法や契約プランで異なり、提供範囲も段階的です。",
@@ -37,6 +39,13 @@ if(!context.needsDeepFriendlyMigration(legacyExplanation)){
 }
 if(context.needsDeepFriendlyMigration(currentExplanation)){
   throw new Error("a current deep explanation was selected for migration again");
+}
+const identityBound=context.bindLegacyMigrationIdentity(
+  {...currentExplanation,source_url:"https://example.com/migration"},
+  [{...legacyExplanation,article_id:"article_existing",source_url:"https://example.com/migration"}]
+);
+if(identityBound.migration_replacement_of!=="article_existing"){
+  throw new Error("a cached deep migration was not rebound to the published article identity");
 }
 const preferred=context.preferCurrentEnrichment([legacyExplanation,currentExplanation]);
 if(preferred[0]!==currentExplanation){
@@ -240,6 +249,18 @@ if(sameUrlCorrectionTimeline.length!==1||sameUrlCorrectionTimeline[0].relation_t
   sameUrlCorrectionTimeline[0].previous_article_id!==originalSameUrlTimeline.article_id||
   sameUrlCorrectionTimeline[0].article_id===originalSameUrlTimeline.article_id){
   throw new Error("a same-URL correction was not linked through the production timeline path");
+}
+const migrationReplacement=context.connectStoryTimeline([{
+  ...structuredBase,
+  title:"OpenAI launches GPT-5 API with a deeper explanation",
+  raw_excerpt:"OpenAI released GPT-5 through its API with the same verified announcement.",
+  detail:deepExplanation,
+  enrichment_version:promptVersion,
+  migration_replacement_of:originalSameUrlTimeline.article_id
+}],[originalSameUrlTimeline],new Set([originalSameUrlTimeline.article_id]));
+if(migrationReplacement.length!==1||migrationReplacement[0].article_id!==originalSameUrlTimeline.article_id||
+  migrationReplacement[0].migration_replacement_of){
+  throw new Error("a friendly explanation migration changed or leaked the public article identity");
 }
 const retainedCorrection=context.connectStoryTimeline(
   [sameUrlCorrectionTimeline[0]],

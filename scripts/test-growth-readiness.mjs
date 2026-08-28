@@ -33,6 +33,15 @@ for(const text of ['node scripts/build-public-articles.mjs','articles sitemap.xm
 
 const ids=data.map(item=>String(item.article_id||item.id||'')).filter(id=>/^[A-Za-z0-9_-]{8,100}$/.test(id));
 const itemsById=new Map(data.map(item=>[String(item.article_id||item.id||''),item]));
+for(const [index,item] of data.entries()){
+  const detail=String(item.detail||"").trim();
+  const compactLength=detail.replace(/\s+/g,"").length;
+  const paragraphs=detail.split(/\n+/).map(value=>value.trim()).filter(Boolean);
+  const sentences=(detail.match(/[。！？!?]/g)||[]).length;
+  if(compactLength<420||compactLength>720||paragraphs.length<3||sentences<7){
+    failures.push(`${index+1}件目のやさしい解説が深掘り基準未達です: ${item.article_id||item.title}`);
+  }
+}
 for(const id of ids){
   const item=itemsById.get(id)||{};
   const file=path.join(root,"articles",id,"index.html");
@@ -42,7 +51,7 @@ for(const id of ids){
   if(!page.includes('assets/visitor-tracker.js'))failures.push(`記事閲覧が累計ユニーク閲覧者に反映されません: ${id}`);
   if(!page.includes(`href="https://reiki-ai-apps.github.io/AI-/">AI最新ニュースをやさしい要約で確認</a>`))failures.push(`記事から最新ニュースへの導線がありません: ${id}`);
   if(!page.includes("<h2>やさしい解説</h2>"))failures.push(`記事にやさしい解説がありません: ${id}`);
-  if(/\n\s*\n/.test(String(item.detail||""))&&!page.includes("</p><p>"))failures.push(`やさしい解説の段落が保持されていません: ${id}`);
+  if(!page.includes("</p><p>"))failures.push(`やさしい解説の3段落が保持されていません: ${id}`);
   if(!page.includes('class="article-image"')||!page.includes('class="related"'))failures.push(`記事画像または内部リンクがありません: ${id}`);
   if(page.includes('#update-detail/'))failures.push(`保存期間後に切れる記事詳細リンクがあります: ${id}`);
 }
