@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-29T01:33:13+09:00",
+  "generated_at": "2026-08-29T02:15:00+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -10,14 +10,14 @@
     "attention": 2
   },
   "today": {
-    "date": "2026-08-28",
+    "date": "2026-08-29",
     "completed": 0,
     "target": 7,
-    "headline": "8月28日（金曜）は0/7件。YouTube本編1件、note・X・Instagram各2件を制作開始。8月27日Instagram 2件は承認済みですが外部receiptなしで期限超過しています。",
-    "next_action": "YouTube本編は2026-08-31 19:00 JSTへ予約済み。Instagram前日2件の期限超過救出と当日分の制作・検査を継続します。",
-    "next_deadline": "2026-08-28T10:00:00+09:00",
-    "owner_action_required": false,
-    "owner_action": null,
+    "headline": "8月29日（土曜）は0/7件。YouTube Shorts 1件、note・X・Instagram各2件を、別content_id・別読者課題・別一次根拠で制作中です。",
+    "next_action": "48時間枠の公式一次情報2件を確定。Instagram前日2件の接続復旧を待ちながら、Shortsと当日分6投稿の本文・実写＋図解・コピー入りサムネイル・三周検査を継続します。",
+    "next_deadline": "2026-08-29T08:00:00+09:00",
+    "owner_action_required": true,
+    "owner_action": "Meta Business Suiteを@kizashi_jpで利用できるアカウントへログインし、このタスクに「ログインできた」と返信",
     "channels": [
       {
         "id": "note",
@@ -25,8 +25,8 @@
         "done": 0,
         "target": 2,
         "state": "PRODUCTION",
-        "status": "0/2公開／別content_id・別課題・別根拠の記事2件を制作開始",
-        "next": "本文・記事内画像・コピー入り横長サムネイル・三周検査を完成",
+        "status": "0/2公開／別content_id・別読者課題・別一次根拠の有料記事2件を制作中",
+        "next": "4000〜8000字本文、実写＋図解4〜8点、コピー入り横長サムネイル、PC／375px三周検査を完成",
         "blocker": null
       },
       {
@@ -35,8 +35,8 @@
         "done": 0,
         "target": 2,
         "state": "AUTH_WAIT",
-        "status": "0/2公開／別content_id・別課題・別根拠の本文2件を制作開始",
-        "next": "制作と検査を継続し、利用者トークン確認後に外部投稿",
+        "status": "0/2公開／別content_idの本文2件を制作中",
+        "next": "本文と三周検査を完成し、当日料金と利用者トークン確認後に公式API投稿",
         "blocker": "X利用者トークン未確認。外部投稿receiptなし"
       },
       {
@@ -45,22 +45,20 @@
         "done": 0,
         "target": 2,
         "state": "AUTH_WAIT",
-        "status": "0/2公開／8月27日承認済み2件を期限超過救出キューへ移動。8月28日用2件は制作開始",
-        "next": "Meta Business Suiteで前日2件を重複確認して投稿後、当日2件を制作・検査",
-        "blocker": "@kizashi_jpのBusiness Suite画面接続は成功。公式APIトークンとInstagramユーザーIDは未設定",
+        "status": "0/2公開／前日承認済み2件は接続待ち。当日用の別content_idカルーセル2件を制作中",
+        "next": "@kizashi_jpでログイン済みのBusiness Suite接続復旧後、前日2件を重複確認して投稿。当日2件の制作・検査は継続",
+        "blocker": "現在このタスクから開けるMeta Business Suiteセッションは対象プロフィールの管理権限なし。公式APIトークンも未設定",
         "url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260827/instagram/approval.html"
       },
       {
         "id": "youtube",
-        "label": "YouTube本編",
+        "label": "YouTube Shorts",
         "done": 0,
         "target": 1,
-        "state": "SCHEDULED",
-        "status": "0/1公開／外部予約ID k7J6ouH0sec・URL・receipt取得済み。2026-08-31 19:00 JST予約済み",
-        "next": "公開後に公開時刻・公開URL・公開状態を照合し、公開receiptへ更新",
-        "blocker": null,
-        "url": "https://youtu.be/k7J6ouH0sec",
-        "review_url": "media/kizashi-20260828-youtube-r4-final-review/final-review.html"
+        "state": "PRODUCTION",
+        "status": "0/1公開／AIエージェント事故から学ぶ5つの境界線を制作中",
+        "next": "権利確認済み実写＋要点カード、1080×1920字幕、iPhone／Android UI 9フレーム重なり0pxまで完成",
+        "blocker": null
       }
     ]
   },
@@ -77,7 +75,7 @@
         "url": "https://www.instagram.com/p/DcEMK9JGctI/"
       },
       "next_scheduled": null,
-      "note": "8月27日用の別内容2投稿・全16枚、三周検査、現Revision承認、公開HTTPS URL 16件は完了。Meta Business Settingsの追加ダイアログは復旧し、最終の @kizashi_jp ログイン・接続だけ本人操作待ち。外部送信は未実行。"
+      "note": "8月27日用2投稿・全16枚、三周検査、現Revision承認、公開HTTPS URL 16件は完了。現在このタスクから開けるMeta Business Suiteセッションは対象プロフィール管理権限なし。外部送信は未実行。"
     },
     {
       "id": "x",
@@ -113,7 +111,7 @@
       "account": "KIZASHI / @kizashi_jp",
       "url": "https://www.youtube.com/@kizashi_jp",
       "state": "HEALTHY",
-      "last_verified_at": "2026-08-29T01:33:13+09:00",
+      "last_verified_at": "2026-08-29T01:25:46+09:00",
       "latest_published": {
         "title": "AI料金は月額より『成功1回』で比べる｜OpenAI独自チップの意味 #Shorts",
         "url": "https://www.youtube.com/shorts/InAEpx7ZoAM"
@@ -153,23 +151,23 @@
       "id": "20260825-instagram-auth-required",
       "severity": "ATTENTION",
       "title": "Instagramは接続・認証待ち",
-      "message": "カルーセル2件・全16枚、三周検査、現Revision承認、公開HTTPS URLは完了。Meta Business Settingsの追加ダイアログは復旧し、最終のアカウント接続だけ本人操作待ちです。",
-      "required_action": "開いているMeta Business Suiteで「Add Instagram account」を押し、@kizashi_jpでログインして接続を完了"
+      "message": "前日カルーセル2件・全16枚は承認済みですが、現在このタスクから開けるMeta Business Suiteセッションは対象プロフィールを管理できません。外部送信receiptはありません。",
+      "required_action": "Meta Business Suiteを@kizashi_jpで利用できるアカウントへログインし、このタスクに「ログインできた」と返信"
     }
   ],
   "production": {
     "cadence": "PT6H",
     "last_run": {
-      "run_id": "kizashi-20260828",
-      "started_at": "2026-08-28T00:58:53+09:00",
+      "run_id": "kizashi-20260829",
+      "started_at": "2026-08-29T02:05:00+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "YouTube Revision 4外部予約済み・receipt照合完了",
-      "candidate_count": 2,
-      "verified_primary_count": 1,
-      "required_primary_count": 1,
-      "reason": "発音プレビュー承認後、Aivis Cloud本編音声59素材を上限70円内で生成し、実音声の無音境界で全文字幕62枚へ同期。権利確認済み実写13点と出典明記図解を融合し、生成写真0点、全22カットで字幕重なり0pxの4分17秒最終動画とコピー入りサムネイル3案を完成。機械検査PASS。",
-      "next_action": "Instagram前日2件の期限超過救出と当日分の制作・検査を継続。YouTubeは8月31日19:00の公開後に公開receiptへ更新する。"
+      "stage": "土曜Shorts・note・X・Instagramの一次情報確定と媒体別制作",
+      "candidate_count": 3,
+      "verified_primary_count": 2,
+      "required_primary_count": 2,
+      "reason": "24→48時間の順で公式一次情報を確認し、別読者課題へ展開できる2件を採用。実写写真を主役、正確な図解とコピー入りサムネイルを組み合わせる制作仕様を確定。",
+      "next_action": "Shorts 1本、note・X・Instagram各2件の成果物と三周検査を進め、外部receipt取得直後にBoardへ同期する。"
     },
     "policy": "予約成立を最優先。制作・修正・検査・Board同期は止めずに進める。外部予約・公開は、現Revision/Hashの記事・動画とサムネイル両方の所有者承認receipt成立後だけ実行する。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明は停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -251,13 +249,17 @@
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
   "evidence": [
-    "board/data/approval-receipts/kizashi-20260828-youtube-r4-asset-reconciled-approval.json",
-    "board/data/receipts/kizashi-20260828-youtube-r4-youtube-schedule-receipt.json",
-    "board/data/approval-receipts/kizashi-20260828-youtube-r4-chat-approval.json",
-    "board/data/receipts/kizashi-20260828-youtube-r4-external-schedule.json",
-    "board/media/kizashi-20260828-youtube-r4-final-review/video.mp4",
-    "board/media/kizashi-20260828-youtube-r4-final-review/final-review.html",
-    "board/media/kizashi-20260828-youtube-r4-final-review/thumbnail-a.jpg",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/github-main-schedule-sync-receipt-r4.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/youtube-final/youtube-schedule-receipt.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/youtube-final/youtube-private-upload-receipt.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/board-final-review-local-sync-receipt-r4.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/real-photo-rights-manifest-r4.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/slide-caption-overlap-manifest-r4.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/thumbnail-manifest-r4.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/youtube-final/final-review.html",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/youtube-final/video.mp4",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/youtube-final/final-machine-qc.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/review-loop.json",
     "runs/kizashi-20260828/board-sync-youtube-pronunciation-preview-r3-receipt.json",
     "runs/kizashi-20260828/youtube-longform-20260828-r1/aivis-cost-approval-receipt-r3.json",
     "runs/kizashi-20260828/youtube-longform-20260828-r1/pronunciation-preview-generation-receipt-r3.json",
