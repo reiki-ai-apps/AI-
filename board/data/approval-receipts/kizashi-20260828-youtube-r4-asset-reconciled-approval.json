@@ -1,0 +1,106 @@
+{
+  "schema_version": "reiki-board-youtube-r4-asset-reconciliation-approval.v1",
+  "decision": "APPROVED_CURRENT_VIDEO_AND_THUMBNAIL",
+  "approved_at": "2026-08-28T16:41:49.431Z",
+  "channel_post_id": "79b924a8-c89e-40cf-aa9a-4576aac4f518",
+  "replaced_revision_id": "96601c27-ae38-431e-a41d-72c8c5ea7a39",
+  "approved_revision_id": "505123c8-0a7c-4136-9d97-13784f3814fd",
+  "approved_revision_no": 5,
+  "revision_change": {
+    "revisionId": "505123c8-0a7c-4136-9d97-13784f3814fd",
+    "revisionNo": 5,
+    "invalidatedApproval": true,
+    "changes": [
+      "assets"
+    ],
+    "resumedAfterRevisionWrite": true
+  },
+  "approval_id": "5aa27ec8-5df4-408f-b158-1f52bb011b28",
+  "approval_basis_hash": "7d2508c75ee572ec55b9189f0ed501f98e98ddb822ec8019bd0ead14452a61d4",
+  "component_approvals": [
+    {
+      "scope": "CONTENT",
+      "approval_component_hash": "c2606c5150822c73ae5adaacdc9b34650c4e88608bc6c8f07def40d18dc76546"
+    },
+    {
+      "scope": "THUMBNAIL",
+      "approval_component_hash": "f0d089371c55a19b9498f99212b8fcac059ef90de1ee088dd208d5e7f6cfac54"
+    }
+  ],
+  "reconciled_assets": [
+    {
+      "file_name": "final-review.html",
+      "previous_sha256": "4af63083d0dfc49beb56d3ef218fdd64103f04837147a48310458b3c06fae64f",
+      "current_sha256": "c97494d5b4331a5463ddecd5df98b72c5fcb851d27ab4d4b9320d36651c53f1c",
+      "previous_bytes": 6745,
+      "current_bytes": 6784
+    },
+    {
+      "file_name": "youtube-metadata.json",
+      "previous_sha256": "638bae55de88ff8dce90f992dc20c42c2351c7a7fc3ce6dc19ae3908427ac356",
+      "current_sha256": "69246676f2ff2439470ebf73423791443f762b32b2161e674f29814fb1158df3",
+      "previous_bytes": 3759,
+      "current_bytes": 3850
+    },
+    {
+      "file_name": "description.txt",
+      "previous_sha256": "c983f97898be5dc220718b3be0d5d6295f6443979a4dff90d02a3fc7b38763f4",
+      "current_sha256": "763c4d146eedba2faa2cdc0ef3e571130812f41c1fd15f6f0916a85181ce714c",
+      "previous_bytes": 1695,
+      "current_bytes": 1722
+    }
+  ],
+  "approved_asset_hashes": [
+    {
+      "file_name": "video.mp4",
+      "sha256": "0d98e4b1dbfd69fac3950788c0c8e5ad72b35c88803529432530904fd1b5fcce",
+      "bytes": 20689438
+    },
+    {
+      "file_name": "final-review.html",
+      "sha256": "c97494d5b4331a5463ddecd5df98b72c5fcb851d27ab4d4b9320d36651c53f1c",
+      "bytes": 6784
+    },
+    {
+      "file_name": "final-qc-contact-sheet-960.png",
+      "sha256": "9c83cec192e8bf3b69f94913eb9668a2e65dcd84db4481e9968e577f0e9d8453",
+      "bytes": 1538669
+    },
+    {
+      "file_name": "thumbnail-a.jpg",
+      "sha256": "78d1a1ae34ea45955cdc58643a53c7f24cb3667f3abc050fc5d5e8bc8e6a4952",
+      "bytes": 254878
+    },
+    {
+      "file_name": "thumbnail-b.jpg",
+      "sha256": "fc83dcfc9eec73d58cfd6a1c21e24b0e7a7de055b5792614c569e05c12047f24",
+      "bytes": 339700
+    },
+    {
+      "file_name": "thumbnail-c.jpg",
+      "sha256": "87b4a8b3a8956121eecb0884d412047066dd14de939d21f841cc442281faaaef",
+      "bytes": 209866
+    },
+    {
+      "file_name": "youtube-metadata.json",
+      "sha256": "69246676f2ff2439470ebf73423791443f762b32b2161e674f29814fb1158df3",
+      "bytes": 3850
+    },
+    {
+      "file_name": "subtitles-ja.srt",
+      "sha256": "83d35223f7950e43139d2fd424f7848bb12b1a9854b52d4619162eb2c1ba276b",
+      "bytes": 6608
+    },
+    {
+      "file_name": "description.txt",
+      "sha256": "763c4d146eedba2faa2cdc0ef3e571130812f41c1fd15f6f0916a85181ce714c",
+      "bytes": 1722
+    }
+  ],
+  "external": {
+    "status": "SCHEDULED",
+    "external_id": "k7J6ouH0sec",
+    "public_url": "https://youtu.be/k7J6ouH0sec",
+    "scheduled_at": "2026-08-31T19:00:00+09:00"
+  }
+}
