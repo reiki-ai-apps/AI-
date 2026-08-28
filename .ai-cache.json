@@ -10393,67 +10393,69 @@
     },
     "url:https://updates.midjourney.com": {
       "canonical_url": "https://updates.midjourney.com",
-      "content_hash": "e180965c8d075d90ebe0162906cad8094f10b5091ed846b5d5aa885a7795b99c",
-      "story_key": "c12bfdf5acc311fa560d91e84da49789d77adafb248b2f2de7690b6cfbbee9a1",
+      "content_hash": "0db32dcb473c68f09ffdec484226843af49ece0f2f1475593156c08a684808a5",
+      "story_key": "efe1b3c2ccac1429eca410a57c173a7901d00392a02789915d9b2b2c5528c7cc",
       "status": "enriched",
-      "processed_at": "2026-08-22T01:54:24.430Z",
+      "processed_at": "2026-08-28T00:28:39.610Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
       "lane": "regular",
       "reason": "",
       "result": {
         "tool": "Midjourney",
-        "title": "Midjourney、バージョン8.2公開と初の企業買収を発表",
+        "title": "Midjourney、V8向け編集モデルやバージョン8.2など複数アップデートを公開",
         "source_url": "https://updates.midjourney.com/",
         "source_name": "Midjourney 公式更新情報",
         "is_official": true,
-        "published_at": "2026-08-22T01:51:11.287Z",
+        "published_at": "2026-08-28T00:25:37.018Z",
         "source_published_at": "",
         "source_updated_at": "",
         "source_date_status": "unknown",
-        "fetched_at": "2026-08-22T01:51:11.287Z",
+        "fetched_at": "2026-08-28T00:25:37.018Z",
         "event_at": "2026-08-20",
         "event_status": "発表済み",
         "event_date_precision": "day",
         "story_entities": [
           "Midjourney",
+          "V8",
           "Version 8.2"
         ],
         "primary_entity": "Midjourney",
-        "story_subject": "Midjourneyバージョン8.2および初の企業買収",
-        "event_type": "acquisition",
-        "event_stage": "announced",
-        "event_scope": "Midjourney全体",
+        "story_subject": "V8 Edit Model / Version 8.2",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "Midjourneyプラットフォーム全体",
         "fact_slots": [
           {
             "type": "version",
-            "scope": "Midjourneyのバージョン",
-            "value": "8.2",
-            "normalized_value": "8.2"
+            "scope": "モデルバージョン",
+            "value": "Version 8.2",
+            "normalized_value": "v8.2"
           },
           {
             "type": "date",
-            "scope": "更新履歴公開日",
+            "scope": "チェンジログ公開日",
             "value": "2026-08-20",
             "normalized_value": "2026-08-20"
           }
         ],
         "new_facts": [
-          "Midjourneyがバージョン8.2をリリースした",
-          "Midjourneyが初めての企業買収を発表した",
-          "ドラフトモードにランダムスタイル機能が追加された",
-          "ハードウェア発表のライブ配信が予告された"
+          "MidjourneyがV8向け編集モデル「Edit Model for V8」を公開",
+          "バージョン8.2がリリースされた",
+          "Midjourneyが初めて企業買収を行ったと発表した",
+          "ドラフトモードにランダムスタイル生成機能が追加された"
         ],
         "structured_complete": true,
-        "raw_excerpt": "Midjourneyが公式更新履歴で、バージョン8.2のリリース、初の企業買収、ドラフトモードへのランダムスタイル追加、ハードウェア発表ライブ配信を明らかにした。",
-        "detail": "Midjourneyの公式更新情報として8月20日付のChangelogが公開され、バージョン8.2のリリース、同社にとって初となる企業買収、ドラフトモードにおけるランダムスタイル機能の追加、そしてハードウェアに関する発表を行うライブ配信の予定という複数の項目がまとめて示されている。買収の対象企業名や金額、バージョン8.2の具体的な変更点、ハードウェアの詳細については記事からは確認できないが、画像・動画生成ツールとして知られるMidjourneyが事業や製品ラインを拡大している動きがうかがえる。",
-        "change_summary": "Midjourneyがバージョン8.2の公開に加え、初の企業買収とハードウェア発表ライブ配信を予告した。",
-        "impact_summary": "画像生成AIを手がけるMidjourneyが買収や独自ハードウェアに動くことで、業界の競争構図や今後の製品展開に影響を与える可能性がある。",
-        "action_suggestion": "買収先企業名やハードウェア発表ライブ配信の具体的な日時は記事から確認できず、続報の確認が必要。",
-        "importance": "A",
+        "raw_excerpt": "MidjourneyがV8向け編集モデルやバージョン8.2、初の企業買収などをまとめた更新情報を公開した。",
+        "detail": "Midjourneyの公式チェンジログでは、V8向けの編集モデル「Edit Model for V8」、バージョン8.2、ドラフトモードでのランダムスタイル生成機能など複数の更新が示されている。あわせて同社にとって初となる企業買収を実施したことも記載されている。チェンジログの日付は8/20/26と記されており、各項目の詳しい仕様や買収先企業名などは記事内では明らかにされていない。",
+        "change_summary": "V8向け編集モデル、バージョン8.2、ドラフトモードのランダムスタイル機能、そして初の企業買収が新たに公開された。",
+        "impact_summary": "画像生成AIを利用するクリエイターやツール開発者にとって、編集機能や生成の多様性が広がる可能性がある。",
+        "action_suggestion": "詳細は8/20/26付のMidjourney公式チェンジログで確認できる。",
+        "importance": "B",
         "related_categories": [
           "画像・動画生成",
-          "企業・株式"
+          "企業・株式",
+          "AIツール・モデル"
         ],
         "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
       }
@@ -38456,17 +38458,17 @@
     },
     "url:https://news.google.com/rss/articles/cbmingfbvv95cuxqafcxqzjuexq0rxdbykfmzlr1vjn6qthamfvjsexpv1n3czbuothiwhhydlvkovf6zveyqwzfajdknexqbupgwfplus1sv3vru2pva3mwwglxx3zvafb2ywjmb2dtr2dycu5mznuyzmm4tmnawvnhbwnktc05uk1md3e4c1frug1wls1isy03cw9xam50otztdvp4vtzszw": {
       "canonical_url": "https://news.google.com/rss/articles/cbmingfbvv95cuxqafcxqzjuexq0rxdbykfmzlr1vjn6qthamfvjsexpv1n3czbuothiwhhydlvkovf6zveyqwzfajdknexqbupgwfplus1sv3vru2pva3mwwglxx3zvafb2ywjmb2dtr2dycu5mznuyzmm4tmnawvnhbwnktc05uk1md3e4c1frug1wls1isy03cw9xam50otztdvp4vtzszw",
-      "content_hash": "01d39c5cecb2326f9c2661de9538b66dfafd572bbeaa4d91d1617c2f5b4faec2",
-      "story_key": "dc2c05e50be0ea4f1dbecb977a0c704666913e7ecd8d5a80c9afcbc6ecf7342f",
+      "content_hash": "8140a70eba3ddb414619bd9e6eb4b1ec52da828f8f57c9c37156f7e0b281e564",
+      "story_key": "3b566de27616d7ec9d4b3eeb3dff27abd95b457a8ea7b98d554b160844ba1643",
       "status": "enriched",
-      "processed_at": "2026-08-27T14:16:01.786Z",
+      "processed_at": "2026-08-28T00:28:39.610Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
       "lane": "regular",
       "reason": "",
       "result": {
         "tool": "Adobe Firefly",
-        "title": "Adobe Firefly Audioが一般提供開始、生成にはクレジットが必要",
+        "title": "Adobe、音声生成機能「Firefly Audio」を一般公開",
         "source_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQaFcxQzJUeXQ0RXdBYkFMZlR1VjN6QThaMFVjSExpV1N3czBuOThiWHhYdlVkOVF6ZVEyQWZfajdKNExQbUpGWFpLUS1SV3VrU2pva3MwWGlXX3ZVaFB2YWJmb2dtR2dycU5MZnUyZmM4TmNaWVNHbWNkTC05Uk1md3E4c1FrUG1wLS1iSy03cW9Xam50OTZTdVp4VTZSZw?oc=5",
         "source_name": "quasa.io",
         "is_official": false,
@@ -38474,9 +38476,9 @@
         "source_published_at": "2026-08-27T08:00:00.000Z",
         "source_updated_at": "",
         "source_date_status": "published",
-        "fetched_at": "2026-08-27T14:14:12.973Z",
+        "fetched_at": "2026-08-28T00:25:49.597Z",
         "event_at": "",
-        "event_status": "開始済み",
+        "event_status": "発表済み",
         "event_date_precision": "unknown",
         "story_entities": [
           "Adobe",
@@ -38484,27 +38486,27 @@
         ],
         "primary_entity": "Adobe",
         "story_subject": "Firefly Audio",
-        "event_type": "release",
+        "event_type": "pricing",
         "event_stage": "launched",
-        "event_scope": "Adobe Firefly",
+        "event_scope": "一般公開",
         "fact_slots": [
           {
-            "type": "status",
-            "scope": "Firefly Audioの提供状況",
-            "value": "一般提供開始",
-            "normalized_value": "一般提供開始"
+            "type": "price",
+            "scope": "課金方式",
+            "value": "クレジット制(生成ごとに消費)",
+            "normalized_value": "クレジット制生成ごとに消費"
           }
         ],
         "new_facts": [
-          "Firefly Audioが一般提供を開始したこと",
-          "生成のたびにクレジットが消費される課金方式であること"
+          "Adobe Firefly Audioが一般公開された",
+          "生成のたびにクレジットを消費する課金方式が継続されている"
         ],
         "structured_complete": true,
-        "raw_excerpt": "AdobeのAI音声・音楽生成機能「Firefly Audio」が一般提供を開始し、生成のたびにクレジットが消費される仕組みになっている。",
-        "detail": "Adobeの生成AIツール群「Firefly」の音声・音楽生成機能「Firefly Audio」が一般提供を開始したと報じられている。従来は限定的な提供だったとみられるが、一般提供にあたり、音声を生成するたびにクレジットが消費される課金方式が採用されている。具体的なクレジットの消費量や料金プランの詳細は記事内で明らかにされていない。クリエイティブ制作にAI音声生成を組み込みたいユーザー向けの選択肢が広がった形。",
-        "change_summary": "Firefly Audioが限定提供から一般提供へと切り替わり、生成ごとにクレジットを消費する課金方式が明らかになった点が新しい。",
-        "impact_summary": "動画・音楽制作に携わる個人やクリエイターにとって、AI音声生成のコストを意識した利用計画が必要になる。",
-        "action_suggestion": "クレジットの消費量や具体的な料金プランについては公式サイトでの確認が必要。",
+        "raw_excerpt": "Adobeが音声生成AI機能「Firefly Audio」を一般公開したが、生成のたびにクレジットを消費する課金方式はそのまま継続される。",
+        "detail": "Adobeは音声生成AI機能「Firefly Audio」を一般公開した。これまで限定提供だった同機能が広くユーザーに開放された形だが、生成を行うたびにAdobeのクレジットを消費する課金方式は変わっていない。記事は、機能が一般公開された一方で利用コストの仕組みには変化がない点を指摘している。",
+        "change_summary": "Firefly Audioが限定提供から一般公開へと移行した。",
+        "impact_summary": "音声コンテンツ制作者にとって選択肢が広がる一方、生成のたびにクレジットを消費するため継続的な利用コストが発生する。",
+        "action_suggestion": "利用にはAdobeのクレジット制課金が引き続き必要な点を確認しておく必要がある。",
         "importance": "B",
         "related_categories": [
           "音楽・クリエイティブ",
@@ -38523,7 +38525,464 @@
       "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
       "lane": "regular",
       "reason": "ai_skip: 初心者向け使い方ガイドで、ニュース性のある事実がない"
+    },
+    "url:https://news.google.com/rss/articles/cbmiakfvx3lxtfa5cwpmdg1nauziwfp3m1hbqnjbr3a4evzmlus4mhzprk1zoulezelmdnlpdedfn0lts2d5ufppv09vrkh3ec1lmm44exv0nwjrt1rxreh1zm4tedg1q0tzzwzhcmdlbgdqvlhsawpbvv95cuxqoxfqthrttwlgylhadznyqujyqudwohlwzi1lodb2auznwtljrgrjthz5t3rhrtdju0tnevbaavdpb0zid3gtztjuohl1ddviuu9uv0ridwzulxg4nunlwwvmyxjnzwxnalzr": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxtfa5cwpmdg1nauziwfp3m1hbqnjbr3a4evzmlus4mhzprk1zoulezelmdnlpdedfn0lts2d5ufppv09vrkh3ec1lmm44exv0nwjrt1rxreh1zm4tedg1q0tzzwzhcmdlbgdqvlhsawpbvv95cuxqoxfqthrttwlgylhadznyqujyqudwohlwzi1lodb2auznwtljrgrjthz5t3rhrtdju0tnevbaavdpb0zid3gtztjuohl1ddviuu9uv0ridwzulxg4nunlwwvmyxjnzwxnalzr",
+      "content_hash": "7f76cdd8d177dadf69b5dabf9d0ec24cc46cf41579fbcd2a76affddd6c2b9920",
+      "story_key": "e83a3c4f834213868e5c42025c4aac4a811c5258ad32dab0610ea9daf7fbc00f",
+      "status": "enriched",
+      "processed_at": "2026-08-28T00:27:24.220Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "AI政策・政府動向",
+        "title": "韓国政府がAI倫理原則を確定、企業の実践基準が次の課題に",
+        "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFA5cWpMdG1NaUZiWFp3M1hBQnJBR3A4eVZmLUs4MHZpRk1ZOUlEZElMdnlPdEdFN0lTS2d5UFppV09vRkh3eC1lMm44eXV0NWJRT1RXREh1Zm4teDg1Q0tZZWZhcmdlbGdqVlHSAWpBVV95cUxQOXFqTHRtTWlGYlhadzNYQUJyQUdwOHlWZi1LODB2aUZNWTlJRGRJTHZ5T3RHRTdJU0tneVBaaVdPb0ZId3gtZTJuOHl1dDViUU9UV0RIdWZuLXg4NUNLWWVmYXJnZWxnalZR?oc=5",
+        "source_name": "Infoseek",
+        "is_official": false,
+        "published_at": "2026-08-27T22:20:49.000Z",
+        "source_published_at": "2026-08-27T22:20:49.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-28T00:26:09.564Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "韓国政府",
+          "AI倫理原則"
+        ],
+        "primary_entity": "韓国政府",
+        "story_subject": "AI倫理原則",
+        "event_type": "policy",
+        "event_stage": "announced",
+        "event_scope": "韓国",
+        "fact_slots": [],
+        "new_facts": [
+          "韓国政府はAI倫理原則を確定させた",
+          "原則は規制ではなく企業の自主的指針と位置付けられている"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "韓国政府がAI倫理原則を正式に確定させ、規制ではなく企業の自主的な実践基準づくりが今後の課題となっている。",
+        "detail": "韓国政府はAI倫理原則を正式に確定させた。この原則は法的な「規制」ではなく、企業や開発者が自主的に順守すべき指針としての性格を持つとされる。政府は原則の策定を通じてAI技術への社会的信頼向上を目指しており、今後は企業がこの原則をどのように実務に落とし込み、具体的な実践基準を作るかが次の課題として残されている。運用方法や罰則の有無など詳細は本文からは明らかではない。",
+        "change_summary": "韓国政府がAI倫理原則を確定させたことが新しい進展であり、次の焦点は企業側の実践基準づくりに移った。",
+        "impact_summary": "韓国でAI事業を行う企業に対する倫理的な期待水準が明確になり、同様の枠組みが他国の政策議論にも参考にされる可能性がある。",
+        "action_suggestion": "企業側は今後、この原則を踏まえた実務レベルの実践基準づくりを求められることになる。",
+        "importance": "B",
+        "related_categories": [
+          "政策・行政",
+          "規制・法務"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmipwfbvv95cuxottvbn01twuhkbwtrq1nhsjdkcmzrc1huvxhkdtjrc0tqadvuakuxx09tmm41uhhdlvdzyuq4t2k2nmvlsefdtkjiujvdswnsm1jgsfnxuduyd1lbnefcxzdtwfn3txj0r0jsow5cx3rmbfdfbvbjdv96alpfm3zeelbqnkw1whblrty2yvplam93cfloa1jxrm5zczgxadzvovrxr1lwyw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmipwfbvv95cuxottvbn01twuhkbwtrq1nhsjdkcmzrc1huvxhkdtjrc0tqadvuakuxx09tmm41uhhdlvdzyuq4t2k2nmvlsefdtkjiujvdswnsm1jgsfnxuduyd1lbnefcxzdtwfn3txj0r0jsow5cx3rmbfdfbvbjdv96alpfm3zeelbqnkw1whblrty2yvplam93cfloa1jxrm5zczgxadzvovrxr1lwyw",
+      "content_hash": "dd200ad4ddd29989892b38e0e6ad457fed988bd0d2f0d4aa35114c86ef705e0a",
+      "story_key": "e793deb9c276a18a30ff9220ce46d6af392f7379708d544d572a238da59d74a4",
+      "status": "enriched",
+      "processed_at": "2026-08-28T00:27:24.220Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "中国AI・基盤モデル",
+        "title": "MiniMaxのCEO、モデル発表サイクルが大幅に短縮すると発言",
+        "source_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOTTVBN01TWUhKbWtrQ1NhSjdKcmZrc1hUVXhkdTJrc0tqaDVUakUxX09tMm41UHhDLVdzYUQ4T2k2NmVLSEFDTkJiUjVDSWNsM1JGSFNXUDUyd1lBNEFCXzdtWFN3TXJ0R0JsOW5CX3RMbFdfbVBjdV96alpFM3ZEelBqNkw1WHBlRTY2YVpLam93cFloa1JXRm5zczgxaDZVOVRXR1lwYw?oc=5",
+        "source_name": "新浪财经",
+        "is_official": false,
+        "published_at": "2026-08-27T19:07:30.000Z",
+        "source_published_at": "2026-08-27T19:07:30.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-28T00:26:13.652Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "MiniMax",
+          "闫俊杰",
+          "海螺AI"
+        ],
+        "primary_entity": "MiniMax",
+        "story_subject": "モデル発表サイクルの短縮方針",
+        "event_type": "other",
+        "event_stage": "announced",
+        "event_scope": "中国",
+        "fact_slots": [],
+        "new_facts": [
+          "MiniMaxのCEO闫俊杰氏がモデル発表サイクルの大幅短縮を示唆した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "中国AI企業MiniMaxの闫俊杰CEOが、今後モデルの発表サイクルが大幅に短縮するとの見通しを示した。",
+        "detail": "中国のAI企業MiniMaxの闫俊杰CEOは、大規模言語モデル(大模型)の発表サイクルが今後大幅に短縮していくとの見方を示した。MiniMaxはオープンソースモデルや音声・動画生成サービス「海螺AI(Hailuo AI)」などを展開する企業で、同社の収益状況についても言及があったとされる。具体的な短縮幅や新モデルの投入時期など詳細は本文からは明らかではない。",
+        "change_summary": "MiniMaxのCEOがモデル発表の高速化という方針を公にした点が新しい情報。",
+        "impact_summary": "中国AI企業間のモデル開発競争が加速し、日本企業にとっても中国発AIサービスの進化速度への注視が必要になる。",
+        "action_suggestion": "MiniMaxの今後のモデル発表スケジュールや新製品情報の続報を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "企業・株式",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiw0fvx3lxtfboetbtni15ckzrawj1y0pdqndzunljdeu1u1dltzvzuersoe4ttwxhovlmzwjfz0xfavd5q24zq1nqbxi4c1dttu1kmnrjtdrhueyyqwf6mvz1wke": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiw0fvx3lxtfboetbtni15ckzrawj1y0pdqndzunljdeu1u1dltzvzuersoe4ttwxhovlmzwjfz0xfavd5q24zq1nqbxi4c1dttu1kmnrjtdrhueyyqwf6mvz1wke",
+      "content_hash": "42275b42bad8351d62e70d0b1dbdc4cb56805c5b3d3ad7956a8bd5405443ddad",
+      "story_key": "b9a0bd476162c75ae72300c6b1ee72931e46326376e720eed893412b584158e0",
+      "status": "enriched",
+      "processed_at": "2026-08-28T00:27:24.220Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "AI業界・経営重要速報",
+        "title": "NVIDIA、AI投資拡大を背景に好調な第2四半期決算を発表",
+        "source_url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBoeTBtNi15ckZraWJ1Y0pDQndZUnlJdEU1U1dLTzVZUERsOE4tTWxHOVlmZWJFZ0xFaVd5Q24zQ1NqbXI4c1dTTU1KMnRJTDRHUEYyQWF6MVZ1WkE?oc=5",
+        "source_name": "Fox Business",
+        "is_official": false,
+        "published_at": "2026-08-27T21:11:28.000Z",
+        "source_published_at": "2026-08-27T21:11:28.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-28T00:26:09.054Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "NVIDIA"
+        ],
+        "primary_entity": "NVIDIA",
+        "story_subject": "第2四半期決算",
+        "event_type": "other",
+        "event_stage": "announced",
+        "event_scope": "全世界",
+        "fact_slots": [],
+        "new_facts": [
+          "NVIDIAが好調な第2四半期決算を発表した",
+          "AI関連投資の拡大が業績を押し上げているとされる"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "NVIDIAがAI関連投資の拡大を追い風に好調な第2四半期決算を発表したと報じられた。",
+        "detail": "NVIDIAは第2四半期の決算を発表し、AI関連投資の拡大を背景に好調な業績を示したと報じられている。同社のGPUなど半導体製品はAIモデルの学習・推論に広く用いられており、生成AIブームの継続が業績を押し上げている構図が続いているとみられる。具体的な売上高や利益の数値、市場の反応など詳細は本文からは確認できない。",
+        "change_summary": "NVIDIAの好調な四半期決算が改めて確認されたこと。",
+        "impact_summary": "NVIDIAの業績はAI関連半導体需要の強さを示す指標であり、日本の半導体・AIインフラ関連企業の投資判断にも影響する可能性がある。",
+        "action_suggestion": "NVIDIAが公表する詳細な決算資料や決算説明会の内容を確認することが望ましい。",
+        "importance": "A",
+        "related_categories": [
+          "企業・株式",
+          "半導体・インフラ"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmipgfbvv95cuxnz04wn0pkwknnovbredbirwz2ruvpcuvlc3rxbvbmrhltwg1kajbmdwhtumzrsgfmuldiyuhpy2zmetlzcwq3z2zdeerxtddxnvloexrwngxst1hyavzpaenhuelot2m1uexnvzfjwepwtuzxeehoqvfurfbtmm5iylhpafuzserimzdodf9mcghpvfk4dti1dxfxwudxnzq1mvllumnn": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmipgfbvv95cuxnz04wn0pkwknnovbredbirwz2ruvpcuvlc3rxbvbmrhltwg1kajbmdwhtumzrsgfmuldiyuhpy2zmetlzcwq3z2zdeerxtddxnvloexrwngxst1hyavzpaenhuelot2m1uexnvzfjwepwtuzxeehoqvfurfbtmm5iylhpafuzserimzdodf9mcghpvfk4dti1dxfxwudxnzq1mvllumnn",
+      "content_hash": "301ad8dcc80b34020fd03449a50dcbfa503c64220a0ec2d6324f8e60ff1fe01f",
+      "story_key": "c01726c60d27d71b7060446ff8d4dc81d344445aa46d949cdca05b3c2465bb5b",
+      "status": "enriched",
+      "processed_at": "2026-08-28T00:27:24.220Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "AI業界・経営重要速報",
+        "title": "AI会計スタートアップRilletのCEO、AIがコンサル業界の採用を変えつつあると指摘",
+        "source_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNZ04wN0pKWkNNOVBReDBIRWZ2RUVPcUVLc3RxbVBmRHltWG1KajBMdWhtUmZrSGFmUldIYUhpY2ZmeTlzcWQ3Z2ZDeERxTDdXNVloeXRwNGxST1hyaVZPaENHUElOT2M1UExnVzFjWEpwTUZXeEhOQVFURFBTMm5IYlhPaFUzSERiMzdodF9mcGhPVFk4dTI1dXFXWUdxNzQ1MVlLUmNn?oc=5",
+        "source_name": "Business Insider Japan",
+        "is_official": false,
+        "published_at": "2026-08-27T21:15:00.000Z",
+        "source_published_at": "2026-08-27T21:15:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-28T00:26:09.054Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Rillet"
+        ],
+        "primary_entity": "Rillet",
+        "story_subject": "AIによるコンサル業界の採用変化",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "不明",
+        "fact_slots": [],
+        "new_facts": [
+          "RilletはAI会計分野のユニコーン企業である",
+          "同社CEOがAIによるコンサル業界の採用変化について言及した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "AI会計分野のユニコーン企業RilletのCEOが、AIの普及によりコンサルティング会社の採用する人材像が変化していると語った。",
+        "detail": "AI会計スタートアップとして評価額が高いユニコーン企業となったRilletのCEOは、AIの普及がコンサルティング会社の人材採用のあり方を変えつつあると述べた。AIが定型的な業務を代替することで、企業が求める人材のスキルセットや採用基準が従来と異なってきているとの見方を示している。具体的にどのような人材像が求められるようになったかなど詳細な内容は本文からは明らかではない。",
+        "change_summary": "RilletのCEOがAIによるコンサル業界の採用変化について言及した点が新しい情報。",
+        "impact_summary": "AIの普及によりコンサルティング業界を含む知識労働の採用基準が変わりつつあることは、日本企業の人材戦略にも参考になる可能性がある。",
+        "action_suggestion": "Rilletや同様のAI会計スタートアップの動向、コンサル業界の採用方針の変化を今後も注視する必要がある。",
+        "importance": "C",
+        "related_categories": [
+          "企業・株式",
+          "その他"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxte8tuxn3dgj1twhyb090dwhnyw1ieflrrzfquxhum0jksermetvfu1vkmdlpqwh4adrzmxo3afnondniunyxuwo3vwn2ohpzatnwujfb": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxte8tuxn3dgj1twhyb090dwhnyw1ieflrrzfquxhum0jksermetvfu1vkmdlpqwh4adrzmxo3afnondniunyxuwo3vwn2ohpzatnwujfb",
+      "content_hash": "6dc0553fddf7e1d16fc2b5f79372604baed4dfa867eb573607efd6bdfcb9c841",
+      "story_key": "2d91c0c2ede179521f88c56d3a43cdf8d5b937cbac62b802d27afb41f0c5a84f",
+      "status": "enriched",
+      "processed_at": "2026-08-28T00:27:24.220Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "ChatGPT / OpenAI",
+        "title": "OpenAI、教員・学生向けにChatGPTの授業準備機能を強化",
+        "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE8tUXN3dGJ1TWhYb090dWhnYW1ieFlrRzFQUXhUM0JkSERmeTVFU1VkMDlpQWh4aDRzMXo3aFNONDNiUnYxUWo3VWN2OHpzaTNWUjFB?oc=5",
+        "source_name": "DXマガジン",
+        "is_official": false,
+        "published_at": "2026-08-27T14:11:53.000Z",
+        "source_published_at": "2026-08-27T14:11:53.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-28T00:25:30.144Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "OpenAI",
+          "ChatGPT"
+        ],
+        "primary_entity": "OpenAI",
+        "story_subject": "ChatGPTの教員・学生向け新機能",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "教育機関",
+        "fact_slots": [],
+        "new_facts": [
+          "OpenAIが教員・学生向けにChatGPTの授業準備を支援する新機能を発表した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "OpenAIが教員・学生向けに授業準備をより簡単にする新機能をChatGPTに追加したと発表した。",
+        "detail": "OpenAIは教員や学生がChatGPTを使って授業準備を行いやすくする新機能を発表した。これまで教員が授業計画や教材作成のためにChatGPTを活用する際には個別にプロンプトを工夫する必要があったが、新機能によりこうした作業がより簡単に行えるようになるとされている。具体的な機能名や対応地域、料金プランへの反映などの詳細は本文からは明らかではない。",
+        "change_summary": "OpenAIが教育現場向けにChatGPTの新機能を追加したことが新しい進展。",
+        "impact_summary": "教員や学生がAIを授業準備や学習支援に活用しやすくなり、教育現場でのAI活用が一段と広がる可能性がある。",
+        "action_suggestion": "新機能の利用条件や対応地域について、OpenAIの公式発表を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "その他"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmijafbvv95cuxonkpkrdlwogq5sws4rgq1t2g3tmvuwm1yeefytl9nrhr6vhncuv9xedq5wwfmew90zfhlu3vxm2nuykhzyklrn2pidvfusnuyqk1nruvzcs0xdtz3mkgzwgjsqm9yoffrym1gnensedjasfh2nzbnvxi1ufzrv0j1elf6dxbzbvd6skdrcdibkgfbvv95cuxnwlpengqzrtzmnv9vrxc3zuvvbnjmv3borwc0v2o1ndu3cuzeehg4x0fnvdfqz2u4zhb6q3loexl2uvnvsxrmoxhfogi5snjynxhrrtrmqu5qqvrptefymhpfzwnpejvumjlhn2rsaf83revamentywo3uhv5quj4x2hgund1zvlvve5untjlthdidw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmijafbvv95cuxonkpkrdlwogq5sws4rgq1t2g3tmvuwm1yeefytl9nrhr6vhncuv9xedq5wwfmew90zfhlu3vxm2nuykhzyklrn2pidvfusnuyqk1nruvzcs0xdtz3mkgzwgjsqm9yoffrym1gnensedjasfh2nzbnvxi1ufzrv0j1elf6dxbzbvd6skdrcdibkgfbvv95cuxnwlpengqzrtzmnv9vrxc3zuvvbnjmv3borwc0v2o1ndu3cuzeehg4x0fnvdfqz2u4zhb6q3loexl2uvnvsxrmoxhfogi5snjynxhrrtrmqu5qqvrptefymhpfzwnpejvumjlhn2rsaf83revamentywo3uhv5quj4x2hgund1zvlvve5untjlthdidw",
+      "content_hash": "cb30882337f8b072cbf68f0716d3f1bc7cc5d467d8e8a933a547110d873cbe25",
+      "story_key": "0348acef443ca278663eed93424b81fd2b1f722848958cb46ecdd629c4b9b3f8",
+      "status": "rejected",
+      "processed_at": "2026-08-28T00:27:24.220Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: CEO発言の詳細不明で実質的事実が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmitgfbvv95cuxqlwlhuvroedvorefobv90q1dkullhundhehhlutdzuklqu1v5v2g2nhg1a1prrxzfug82oudmywvhbejpmv9yr1r2nmmtsvrvsmp4smxjt0jwegthrdu1a3k1y2noee1yvl9qcwxadm5quflsdnjldmjiylgwytrlrwz0uzk0y0pavnlrc2nvtkznrw5mrzfvngrlrelyt1ltxzrmu2ntaznemfrxajrmczqztmfjdw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmitgfbvv95cuxqlwlhuvroedvorefobv90q1dkullhundhehhlutdzuklqu1v5v2g2nhg1a1prrxzfug82oudmywvhbejpmv9yr1r2nmmtsvrvsmp4smxjt0jwegthrdu1a3k1y2noee1yvl9qcwxadm5quflsdnjldmjiylgwytrlrwz0uzk0y0pavnlrc2nvtkznrw5mrzfvngrlrelyt1ltxzrmu2ntaznemfrxajrmczqztmfjdw",
+      "content_hash": "60a7d248cb202d56445ebafebdf7ee2d2868477cd3164ead272e50bb46b7b2dd",
+      "story_key": "bc5ec2d52e1e904df7a6e0585b728a5039bde2a9a7e01ce40fa13ac86ca93306",
+      "status": "enriched",
+      "processed_at": "2026-08-28T00:28:39.609Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Claude / Claude Code",
+        "title": "Anthropic、AI機器連携の新標準「MHS」を発表",
+        "source_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQLWlHUVROeDVoREFobV90Q1dkUllhUndHeHhLUTdZUklqU1V5V2g2NHg1a1pRRXZFUG82OUdMYWVhbEJPMV9YR1R2NmMtSVRvSmp4SmxjT0JweGtHRDU1a3k1Y2NOeE1YVl9QcWxadm5qUFlSdnJldmJIYlgwYTRlRWZ0Uzk0Y0paVnlrc2NVTkZNRW5mRzFVNGRLRElyT1ltXzRMU2NTazNEMFRxajRmczQzTmFJdw?oc=5",
+        "source_name": "디지털투데이",
+        "is_official": false,
+        "published_at": "2026-08-27T20:50:39.000Z",
+        "source_published_at": "2026-08-27T20:50:39.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-28T00:25:31.996Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Anthropic",
+          "MHS"
+        ],
+        "primary_entity": "Anthropic",
+        "story_subject": "MHS(AI機器連携標準)",
+        "event_type": "release",
+        "event_stage": "announced",
+        "event_scope": "不明",
+        "fact_slots": [
+          {
+            "type": "other",
+            "scope": "標準規格名",
+            "value": "MHS",
+            "normalized_value": "mhs"
+          }
+        ],
+        "new_facts": [
+          "Anthropicが「MHS」というAI機器連携の新標準を発表した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Anthropicが、AI機器同士を連携させる新しい標準規格「MHS」を発表した。仕様の詳細や対応時期は明らかになっていない。",
+        "detail": "AnthropicがAI機器同士の連携を目的とした新標準「MHS」を発表したことが伝えられている。ただし配信された情報はタイトルのみで、規格の技術的な仕様、対応する機器やソフトウェア、導入時期などの具体的な内容は明らかにされていない。Anthropicはこれまでもツール連携の標準化に取り組んできた経緯があり、今回の発表もその延長線上にあるとみられるが、詳細は続報を待つ必要がある。",
+        "change_summary": "AnthropicがAI機器連携のための新標準「MHS」を新たに発表した。",
+        "impact_summary": "規格の詳細が不明なため現時点での具体的な影響は判断できないが、対応が進めばAI機器間の相互運用性向上につながる可能性がある。",
+        "action_suggestion": "MHSの仕様や対応スケジュールについては、Anthropicからの続報を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "研究・技術",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-omni-1-1-flash": {
+      "canonical_url": "https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-omni-1-1-flash",
+      "content_hash": "deca1e23307f8741d91c5950bb6de9ae364c340fc3248a9f2f6159dc47879b8a",
+      "story_key": "d8d24fc0b2d9d4e63627e6ac553248a4b96ec08f28f9a7443b7e73c11dc47bec",
+      "status": "enriched",
+      "processed_at": "2026-08-28T00:28:39.610Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Gemini",
+        "title": "Google、動画生成モデル「Gemini Omni 1.1 Flash」を発表",
+        "source_url": "https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-omni-1-1-flash/",
+        "source_name": "blog.google",
+        "is_official": true,
+        "published_at": "2026-08-27T16:00:00.000Z",
+        "source_published_at": "2026-08-27T16:00:00.000Z",
+        "source_updated_at": "2026-08-27T17:26:53.182Z",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-28T00:25:33.299Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Google",
+          "Gemini Omni 1.1 Flash",
+          "Google AI Studio"
+        ],
+        "primary_entity": "Google",
+        "story_subject": "Gemini Omni 1.1 Flash",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "Google AI Studio、Gemini Enterprise Agent Platform経由の開発者向け提供",
+        "fact_slots": [
+          {
+            "type": "version",
+            "scope": "モデルバージョン",
+            "value": "Gemini Omni 1.1 Flash",
+            "normalized_value": "geminiomni1.1flash"
+          },
+          {
+            "type": "availability",
+            "scope": "提供チャネル",
+            "value": "Google AI Studio, Gemini Enterprise Agent Platform",
+            "normalized_value": "googleaistudiogeminienterpriseagentplatform"
+          }
+        ],
+        "new_facts": [
+          "Gemini Omni 1.1 Flashはシーン延長、開始・終了フレーム補間、4Kアップスケーリングに対応",
+          "Google AI StudioとGemini Enterprise Agent Platformで利用可能になった"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Googleが開発者向け動画生成モデル「Gemini Omni 1.1 Flash」を発表し、シーン延長や4Kアップスケーリングなどの制御機能を追加した。",
+        "detail": "Googleは開発者向けにGemini Omni 1.1 Flashを発表した。既存の映像を途切れなく延長できるシーン拡張、開始・終了フレームを指定して滑らかな遷移を生成する機能、鮮明な4Kアップスケーリングなどを新たに搭載し、生成動画の制御性を高めた。低解像度で素早く試作できる機能も加わり、開発コストを抑えながらアイデアを検証しやすくした。Googleは動画生成ワークフローや編集ソフトなど実運用向けに設計したとしており、Google AI StudioやGemini Enterprise Agent PlatformのGemini API経由で提供が始まっている。",
+        "change_summary": "シーン延長、開始・終了フレーム補間、4Kアップスケーリングといった新しい映像制御機能が追加された。",
+        "impact_summary": "動画制作ツールや編集ソフトを開発する企業・エンジニアにとって、AI動画生成の精度と実用性が向上する。",
+        "action_suggestion": "Google AI StudioまたはGemini Enterprise Agent Platform経由でGemini APIから利用を開始できる。",
+        "importance": "A",
+        "related_categories": [
+          "画像・動画生成",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmifefvx3lxte9iwny1nefpoue1c2vjtvy4rtllum5ar3rxuufuruvfzfhqm2zqalhpdly5a0zpnhjdt1lvs0g4zghmajjaq0lkvevuddhiyknsaetwzgrvy0fmazviajqtdkztekhgb3posekxs0g0avp1ltzzm2vnzhhbces": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmifefvx3lxte9iwny1nefpoue1c2vjtvy4rtllum5ar3rxuufuruvfzfhqm2zqalhpdly5a0zpnhjdt1lvs0g4zghmajjaq0lkvevuddhiyknsaetwzgrvy0fmazviajqtdkztekhgb3posekxs0g0avp1ltzzm2vnzhhbces",
+      "content_hash": "44e6222034fefb27d237625081d4715dce3b9e0db9dc16c7b47a08f24eee0696",
+      "story_key": "ad416611f63aa1034e3c9ab0519f1018354d66c49e22bc9209e26ebbe2b3601b",
+      "status": "enriched",
+      "processed_at": "2026-08-28T00:28:39.610Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Perplexity",
+        "title": "PerplexityとNVIDIA、トークン課金不要のローカル動作AIエージェント「Portable Computer」を発表",
+        "source_url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9IWnY1NEFPOUE1c2VJTVY4RTlLUm5aR3RxUUFURUVFZFhqM2ZQalhpdlY5a0ZPNHJDT1lvS0g4ZGhmajJaQ0lKVEVUdDhiYkNsaEtwZGRVY0FmazViajQtdkZTekhGb3pOSEkxS0g0aVp1LTZZM2VNZHhBcEs?oc=5",
+        "source_name": "Korben",
+        "is_official": false,
+        "published_at": "2026-08-27T19:17:31.000Z",
+        "source_published_at": "2026-08-27T19:17:31.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-28T00:25:50.517Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Perplexity",
+          "NVIDIA",
+          "Portable Computer"
+        ],
+        "primary_entity": "Perplexity",
+        "story_subject": "Portable Computer",
+        "event_type": "partnership",
+        "event_stage": "announced",
+        "event_scope": "全世界",
+        "fact_slots": [],
+        "new_facts": [
+          "PerplexityとNVIDIAが「Portable Computer」という名称のローカル動作AIエージェントを発表した",
+          "この製品はトークン課金が発生しない仕組みとされている"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "PerplexityとNVIDIAが完全にローカルで動作し、トークン課金が発生しないAIエージェント端末「Portable Computer」を発表した。",
+        "detail": "PerplexityとNVIDIAは、クラウド接続やAPIのトークン課金を必要とせず、完全にローカルで動作するAIエージェント端末「Portable Computer」を発表した。従来のAIエージェントは利用のたびにトークン課金が発生する仕組みが一般的だったが、この新製品はローカル処理によってその負担をなくすことを狙いとしている。発売時期や価格、具体的なハードウェア仕様などの詳細は記事内では明らかにされていない。",
+        "change_summary": "クラウド経由のトークン課金なしに動作するローカル型AIエージェント端末が新たに発表された。",
+        "impact_summary": "企業や個人がAI利用コストを気にせず継続的に活用できる可能性があり、データをローカルに留めたいユーザーにも影響する。",
+        "action_suggestion": "発売時期や価格など詳細については今後のPerplexityとNVIDIAの発表を確認する必要がある。",
+        "importance": "A",
+        "related_categories": [
+          "半導体・インフラ",
+          "AIツール・モデル",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmitefvx3lxte1pbv85exbndhpjtm5wvgu3u1zotflsnw1wb3g5rm9fce56cgf0bnvuslhrudjxdtb0ovdvq0phdlo0v09yr1vpmvhbvm8": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmitefvx3lxte1pbv85exbndhpjtm5wvgu3u1zotflsnw1wb3g5rm9fce56cgf0bnvuslhrudjxdtb0ovdvq0phdlo0v09yr1vpmvhbvm8",
+      "content_hash": "c3f2e62777a06d3cb853660bfcab46515054deb2e04c0af57760b0caf8e81668",
+      "story_key": "d67f358f74d9e3e2b4dd98d979337bb2113153880633781e864c95e8d74dbbfc",
+      "status": "rejected",
+      "processed_at": "2026-08-28T00:28:39.610Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "lane": "regular",
+      "reason": "ai_skip: 空港滑走路の事故報道でAIと無関係の誤ヒット"
     }
   },
-  "updated_at": "2026-08-27T14:16:01.786Z"
+  "updated_at": "2026-08-28T00:28:39.610Z"
 }
