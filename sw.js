@@ -1,6 +1,6 @@
 // アプリシェルの構成を変えたときは日付を更新する。
 // 画像などの静的アセットも network-first なので、同名差し替えは次回通信時に反映される。
-const CACHE_NAME = "ai-radar-v5-20260827-free-access-daily-opens-v12";
+const CACHE_NAME = "ai-radar-v5-20260828-friendly-backfill-v14";
 const APP_SHELL = [
   "./",
   "./index.html",

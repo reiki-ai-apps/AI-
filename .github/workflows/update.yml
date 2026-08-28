@@ -178,6 +178,15 @@ jobs:
             if (!/[ぁ-んァ-ヶ一-龠々]/.test(explanation)) {
               errors.push(itemError(index, "日本語の解説がありません"));
             }
+            if (item.enrichment_version === "ai-radar-2026-08-28-v9-deeper-friendly") {
+              const detail = String(item.detail || "").trim();
+              const compactLength = detail.replace(/\s+/g, "").length;
+              const paragraphs = detail.split(/\n+/).map(value => value.trim()).filter(Boolean);
+              const sentences = (detail.match(/[。！？!?]/g) || []).length;
+              if (compactLength < 260 || compactLength > 620 || paragraphs.length < 2 || sentences < 4) {
+                errors.push(itemError(index, "やさしい深掘り解説の長さ・段落・文数が基準未達です"));
+              }
+            }
             const unnatural = `${item.detail || ""}\n${item.action_suggestion || ""}`;
             if (/^(?:まず[、,]\s*)?このニュースを(?:ひと|一)言で(?:いう|言う)と|^かんたんに言うと|すぐに全部のやり方を変える必要はありません|小さな作業から試すと安心です/.test(unnatural.trim())) {
               errors.push(itemError(index, "定型的で不自然な書き出し・結びがあります"));

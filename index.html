@@ -4485,7 +4485,7 @@ function renderDetailEdit(v,u,tool){
       <div class="detail-title" style="font-size:20px">${esc(u.title)}</div>
       <div class="form-card">
         <div class="field"><label>かんたん要約</label>${ta('d_manual',u.manual_summary,'このアップデートを一言で。')}</div>
-        <div class="field"><label>やさしい解説</label>${ta('d_easy',u.easy_summary,'専門用語を使わず、初めて読む人にも分かるように説明。',6)}</div>
+        <div class="field"><label>やさしい解説</label>${ta('d_easy',u.easy_summary,'背景、具体的な変更や仕組み、重要性、未確定点を2段落で説明。',8)}</div>
         <div class="field"><label>何が変わったか</label>${ta('d_simple',u.simple_explanation,'専門用語を避けて、何が新しくなったか。')}</div>
         <div class="field"><label>仕事への影響</label>${ta('d_impact',u.impact_summary,'自分の仕事にどう役立つか。')}</div>
         <div class="field"><label>次にやること</label>${ta('d_action',u.action_suggestion,'具体的な次のアクション。')}</div>
@@ -5151,6 +5151,32 @@ function patchTimelineFields(target,it){
   if(it?.fetched_at&&target.fetched_at!==it.fetched_at){target.fetched_at=it.fetched_at;changed=true;}
   return changed;
 }
+function patchPublishedArticleFields(target,it,tool){
+  const publishedAt=it.published_at||it.source_published_at||it.fetched_at||target.published_at||nowISO();
+  const categories=(Array.isArray(it.related_categories)&&it.related_categories.length)
+    ?it.related_categories:(tool.related_businesses?[...tool.related_businesses]:[]);
+  const fields={
+    tool_id:tool.id,
+    title:String(it.title||''),
+    source_url:safeExternalUrl(it.source_url),
+    published_at:publishedAt,
+    fetched_at:it.fetched_at||target.fetched_at||nowISO(),
+    ai_summary:String(it.raw_excerpt||it.summary||''),
+    easy_summary:String(it.detail||''),
+    simple_explanation:String(it.change_summary||''),
+    impact_summary:String(it.impact_summary||''),
+    action_suggestion:String(it.action_suggestion||''),
+    source_name:String(it.source_name||''),
+    is_official:!!it.is_official,
+    importance:String(it.importance||''),
+    related_categories:[...categories]
+  };
+  let changed=patchTimelineFields(target,it);
+  Object.entries(fields).forEach(([key,value])=>{
+    if(JSON.stringify(target[key])!==JSON.stringify(value)){target[key]=value;changed=true;}
+  });
+  return changed;
+}
 async function syncFromDataJson(force=false,renderChanges=true,allowPrune=true){
   if(_syncDone&&!force)return 0; _syncDone=true;
   if(!force&&!getSettings().autoFetch)return 0;
@@ -5175,7 +5201,8 @@ async function syncFromDataJson(force=false,renderChanges=true,allowPrune=true){
       const candidate={...it,tool_id:tool.id,title:it.title,source_url:it.source_url||''};
       const data=DB.load();
       const current=findCurrentArticle(candidate,data);
-      if(current){if(patchTimelineFields(current,it)){current.updated_at=nowISO();patched++;}return;}
+      // 既読・保存・メモなど利用者の状態は残し、配信側の本文・要約だけを最新版へ更新する。
+      if(current){if(patchPublishedArticleFields(current,it,tool)){current.updated_at=nowISO();patched++;}return;}
       const seen=findSeenArticle(candidate,data);
       // ユーザーが自分で削除した記事だけ再取込を止める。過去の過剰な重複整理で
       // 誤って消えた記事(削除フラグなし)は、保存期間内なら再取込して復元する。
@@ -5205,7 +5232,7 @@ async function syncFromDataJson(force=false,renderChanges=true,allowPrune=true){
     if(memberState.ready&&allowPrune)pruneOld();
     if(added>0||patched>0){
       recomputeAll();
-      toast(added>0?`最新ニュースを${added}件取り込みました`:'記事の日付と続報情報を更新しました','ok');
+      toast(added>0?`最新ニュースを${added}件取り込みました`:'記事の解説と更新情報を更新しました','ok');
       if(renderChanges){renderNav();render();}
     }
     return added;

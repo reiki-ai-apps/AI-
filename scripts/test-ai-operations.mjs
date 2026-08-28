@@ -13,6 +13,35 @@ const context={require,console,process,setTimeout,clearTimeout,URL,AbortControll
 vm.createContext(context);
 vm.runInContext(source.slice(0,mainStart),context);
 
+const promptVersion=vm.runInContext("PROMPT_VERSION",context);
+if(promptVersion!=="ai-radar-2026-08-28-v9-deeper-friendly"){
+  throw new Error("deep friendly explanation prompt version was not activated");
+}
+const backfillLimit=vm.runInContext("AI_DEEP_BACKFILL_LIMIT",context);
+if(backfillLimit!==4)throw new Error("legacy friendly explanation backfill limit changed unexpectedly");
+const deepExplanation=[
+  "OpenAIは新モデルをAPIで公開し、開発者が既存サービスへ組み込めるようにしました。APIは外部のソフトウェアからモデルを呼び出す仕組みで、今回は利用できるモデルの選択肢が増えたことになります。従来モデルを直ちに置き換える発表ではなく、用途に応じて選べる新しい選択肢として提供されます。提供条件と対象地域は公式文書で案内され、利用には対応するアカウントと開発環境が必要です。",
+  "重要なのは、単なる画面追加ではなく、企業が自社の業務システムへ新モデルを組み込める点です。文章作成だけでなく、問い合わせ対応や社内検索など、APIを使う既存の処理へ接続できる可能性があります。ただし、料金、速度、既存モデルとの差、すべての地域での利用可否は同じとは限りません。品質や費用対効果まで改善するかは発表だけでは判断できず、現時点で確認できる範囲と未確定の条件を分けて見る必要があります。"
+].join("\n");
+if(!context.hasDeepFriendlyExplanation(deepExplanation)){
+  throw new Error("a two-paragraph deep friendly explanation was rejected");
+}
+if(context.hasDeepFriendlyExplanation("OpenAIが新モデルを公開しました。詳しい条件は不明です。")){
+  throw new Error("a thin friendly explanation was accepted");
+}
+const legacyExplanation={detail:"OpenAIが新機能を公開しました。詳細は不明です。",enrichment_version:"legacy"};
+const currentExplanation={detail:deepExplanation,enrichment_version:promptVersion};
+if(!context.needsDeepFriendlyMigration(legacyExplanation)){
+  throw new Error("a legacy thin explanation was not selected for migration");
+}
+if(context.needsDeepFriendlyMigration(currentExplanation)){
+  throw new Error("a current deep explanation was selected for migration again");
+}
+const preferred=context.preferCurrentEnrichment([legacyExplanation,currentExplanation]);
+if(preferred[0]!==currentExplanation){
+  throw new Error("the current explanation did not win over a legacy duplicate");
+}
+
 const iso="2026-07-31T00:00:00Z";
 const candidates=[
   {tool:"AI政策・政府動向",title:"Japan publishes a new AI regulation policy",raw_excerpt:"Government policy",published_at:iso,source_url:"https://example.com/policy"},
