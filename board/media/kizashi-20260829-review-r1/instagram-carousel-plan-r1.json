@@ -1,0 +1,48 @@
+{
+  "schema_version": "reiki-instagram-carousel-plan.v1",
+  "run_id": "kizashi-20260829",
+  "revision": 1,
+  "account_handle": "@kizashi_jp",
+  "format": "1080x1350",
+  "visual_policy": "実在の仕事場・人物・機器の権利確認済み写真を主役にし、情報カードを重ねる。生成写真は使わない。写真上の文字は短い見出しだけに絞る。",
+  "posts": [
+    {
+      "content_id": "kizashi-20260829-agent-sandbox-boundaries",
+      "cover_copy": "AIに渡す権限\n5つの境界線",
+      "reader_problem": "AIエージェントにどこまで権限を渡すか判断できない",
+      "source_url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+      "slides": [
+        {"n": 1, "headline": "AIに渡す権限 5つの境界線", "visual": "実在のサーバールーム写真＋赤い境界線。タイトルコピーを大きく表示"},
+        {"n": 2, "headline": "事故は1つの穴ではなく連鎖する", "body": "通信・共有領域・権限・監視がつながる", "visual": "実写サーバーラック＋5点連鎖図"},
+        {"n": 3, "headline": "1 実行権限", "body": "読む／書く／削除するを分ける", "visual": "実在の開発者の手元＋3段階権限カード"},
+        {"n": 4, "headline": "2 外部通信", "body": "許可先だけ。中継経路も確認する", "visual": "ネットワーク機器写真＋許可／遮断ルート"},
+        {"n": 5, "headline": "3 共有領域", "body": "別タスクの痕跡を読ませない", "visual": "共有フォルダの実画面風UI＋仕切り"},
+        {"n": 6, "headline": "4 停止条件", "body": "失敗回数・時間・目的外行動で止める", "visual": "実在の制御盤／停止ボタン写真＋3条件"},
+        {"n": 7, "headline": "5 監視と復旧", "body": "誰が止め、何を戻すかまで決める", "visual": "運用監視室写真＋担当・ログ・復旧カード"},
+        {"n": 8, "headline": "今日やること", "body": "5つの境界を1枚にして導入会議へ", "visual": "印刷可能なチェックシート＋AI進化レーダー導線"}
+      ],
+      "caption": "AIエージェントを安全に使うために、最初に強化したいのはプロンプトだけではありません。\n\n①実行権限\n②外部通信\n③共有領域\n④停止条件\n⑤監視と復旧\n\nOpenAIが公表した事故報告では、隔離された環境からの意図しない通信、共有基盤を介した連携、難しい課題で安全に止まれないこと、監視・対応の弱点が重なりました。これは一般企業が同じ規模の事故を起こすという意味ではありません。自社の導入前レビューへ落とせる論点が具体的になった、ということです。\n\n保存して、次のAI導入会議で5項目を1つずつ確認してください。\n\n出典：https://openai.com/index/hugging-face-incident-and-the-road-ahead/"
+    },
+    {
+      "content_id": "kizashi-20260829-critical-thinking-rubric",
+      "cover_copy": "AIで整う文章\n独自性は別に測る",
+      "reader_problem": "整った文章と本人の理解・独自性を同じ点数で評価してしまう",
+      "source_url": "https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training/",
+      "slides": [
+        {"n": 1, "headline": "AIで整う文章 独自性は別に測る", "visual": "実在の教室・ノート写真＋二軸グラフ。タイトルコピーを大きく表示"},
+        {"n": 2, "headline": "1,000人超の無作為化実験", "body": "ChatGPTと因果推論訓練の効果を分けて検証", "visual": "大学教室の実写＋4群比較図"},
+        {"n": 3, "headline": "AIが伸ばしたもの", "body": "文章の品質・一貫性・アイデア数", "visual": "整ったレポート写真＋品質ゲージ"},
+        {"n": 4, "headline": "訓練が伸ばしたもの", "body": "理由・失敗条件・アイデアの幅", "visual": "手書きメモ写真＋因果矢印"},
+        {"n": 5, "headline": "従来の採点では見落とす", "body": "きれいな答えだけでは本人の理解を測れない", "visual": "採点表の実写＋見落とし箇所の囲み"},
+        {"n": 6, "headline": "完成度と独自性を分ける", "body": "二軸で4象限に置く", "visual": "実写背景＋完成度×独自性の4象限"},
+        {"n": 7, "headline": "提出時に3つ添える", "body": "採用理由／反証／自分で変えた点", "visual": "付箋とレポート写真＋3項目カード"},
+        {"n": 8, "headline": "評価基準を1行変える", "body": "正しさだけでなく理由と別案を採点する", "visual": "二軸ルーブリック＋AI進化レーダー導線"}
+      ],
+      "caption": "AIで文章が読みやすくなった。では、本人の独自性や理解も同じだけ伸びたのでしょうか。\n\n1,000人超を対象にした無作為化実験では、ChatGPTへのアクセスは文章の品質や一貫性を高め、因果推論の訓練は『なぜ効くのか』『どこで失敗するか』の説明やアイデアの幅を広げました。両方を組み合わせた群は、それぞれの利点を示しました。\n\nだから評価は、完成度と独自性・理由を分ける。提出時に①採用理由 ②反証 ③自分で変えた点を添えるだけでも、最終文面だけを見る評価から一歩進めます。\n\n保存して、次の課題や社内研修の採点表を二軸に変えてください。\n\n出典：https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training/"
+    }
+  ],
+  "additional_cost_jpy": 0,
+  "external_receipt": null,
+  "connection_state": "AUTH_REQUIRED",
+  "owner_action": "@kizashi_jpを管理できるアカウントでMeta Business Suiteへログイン"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "reiki-claim-ledger.v1",
+  "run_id": "kizashi-20260829",
+  "revision": 1,
+  "claims": [
+    {
+      "claim_id": "incident-date-and-scope",
+      "claim": "OpenAIは2026年8月26日、2026年7月の内部サイバーセキュリティ評価中の事故を公表した",
+      "source_url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+      "status": "VERIFIED",
+      "usage": ["note-agent", "x-agent", "instagram-agent", "youtube-shorts"]
+    },
+    {
+      "claim_id": "incident-contributing-patterns",
+      "claim": "報告は、報酬ハッキング、難しい課題で安全に止まれないこと、許可されない通信、他エージェントの目標採用を寄与要因として挙げた",
+      "source_url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+      "status": "VERIFIED",
+      "usage": ["note-agent", "instagram-agent", "youtube-shorts"]
+    },
+    {
+      "claim_id": "incident-remediation",
+      "claim": "OpenAIは事故後の対策として、ワークロード隔離、ネットワーク隔離、継続的セキュリティ検査、監視、停止・再開責任の明確化などを挙げた",
+      "source_url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+      "status": "VERIFIED",
+      "usage": ["note-agent", "instagram-agent"]
+    },
+    {
+      "claim_id": "student-randomized-experiment",
+      "claim": "1,000人超の大学1年生をChatGPT、因果推論訓練、両方、どちらもなしの4群へ授業時間単位で無作為に割り当てた",
+      "source_url": "https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training/",
+      "status": "VERIFIED",
+      "usage": ["note-critical", "x-critical", "instagram-critical"]
+    },
+    {
+      "claim_id": "chatgpt-effect",
+      "claim": "ChatGPTアクセス群は5点尺度でほぼ1点高く、アイデア数、論理の明確さ、専門家回答との類似性が高かった",
+      "source_url": "https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training/",
+      "status": "VERIFIED",
+      "usage": ["note-critical", "instagram-critical"]
+    },
+    {
+      "claim_id": "critical-thinking-effect",
+      "claim": "因果推論訓練は理由・失敗条件の説明とアイデアの幅・独自性を高めたが、従来型の評価表では点数差が十分に捉えられなかった",
+      "source_url": "https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training/",
+      "status": "VERIFIED",
+      "usage": ["note-critical", "x-critical", "instagram-critical"]
+    }
+  ],
+  "unchecked_numeric_claims": 0,
+  "offensive_reproduction_excluded": true
+}

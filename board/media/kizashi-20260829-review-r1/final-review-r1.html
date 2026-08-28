@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KIZASHI 8/29 制作確認｜Revision 1</title>
+  <style>
+    :root{--ink:#112031;--muted:#5f6f80;--paper:#f6f3ec;--card:#fff;--blue:#155eef;--cyan:#08a8c8;--orange:#ff6b35;--green:#12805c;--line:#dbe2e8}
+    *{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#0b1630 0,#173f74 28%,#edf4f8 28.1%,#f7f3ea 100%);font-family:"Yu Gothic UI","Noto Sans JP",sans-serif;color:var(--ink);line-height:1.72}
+    .wrap{width:min(1120px,calc(100% - 28px));margin:auto;padding:44px 0 80px}.hero{position:relative;overflow:hidden;border-radius:28px;padding:48px;background:linear-gradient(125deg,#081e3c,#155eef 62%,#08a8c8);color:#fff;box-shadow:0 24px 70px #0b214733}.hero:after{content:"";position:absolute;right:-70px;top:-100px;width:350px;height:350px;border:64px solid #ffffff1f;border-radius:50%}.eyebrow{font-size:13px;letter-spacing:.12em;font-weight:800;color:#9ceeff}.hero h1{max-width:790px;margin:12px 0 16px;font-size:clamp(32px,5vw,62px);line-height:1.08}.hero p{max-width:760px;margin:0;font-size:18px;color:#e5f4ff}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.chip{padding:7px 12px;border:1px solid #ffffff55;border-radius:999px;background:#ffffff16;font-weight:700;font-size:13px}
+    .notice{margin:24px 0;background:#fff9d9;border-left:6px solid #e3a900;padding:18px 22px;border-radius:14px}.notice strong{color:#7b5600}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 12px 30px #1d345116}.card h2{margin:0 0 10px;font-size:27px;line-height:1.25}.card h3{margin:24px 0 8px;font-size:18px}.kicker{font-size:12px;font-weight:900;letter-spacing:.12em;color:var(--blue)}.copy{display:inline-block;margin:7px 0 14px;padding:8px 12px;background:#101d31;color:#fff;border-radius:9px;font-size:19px;font-weight:900}.status{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.pill{font-size:12px;font-weight:800;padding:5px 9px;border-radius:999px;background:#e9f7f2;color:var(--green)}.pill.wait{background:#fff0e8;color:#a83d13}.pill.make{background:#eaf1ff;color:#154fbd}.visual{margin:16px 0;padding:18px;border-radius:16px;background:linear-gradient(135deg,#e9f4ff,#fff1e7);border:1px solid #d8e7f4}.visual b{display:block;font-size:17px}.list{padding-left:1.2em;margin:8px 0}.list li{margin:5px 0}.btns{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}.btn{display:inline-block;text-decoration:none;color:white;background:var(--blue);padding:10px 14px;border-radius:10px;font-weight:800}.btn.secondary{background:#e8eef7;color:#173a68}.btn.orange{background:var(--orange)}
+    .wide{grid-column:1/-1}.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}.step{padding:14px;background:#f5f8fb;border-radius:13px;border-top:4px solid var(--cyan)}.step b{display:block}.check{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.check div{background:#f7fafc;border:1px solid var(--line);padding:14px;border-radius:12px}.check strong{display:block;color:var(--green)}
+    table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line)}th{background:#f0f5fa}.footer{margin-top:26px;padding:22px;border-radius:18px;background:#101d31;color:#dce9f7}.footer a{color:#9ceeff}@media(max-width:780px){.hero{padding:30px 24px}.grid{grid-template-columns:1fr}.wide{grid-column:auto}.timeline,.check{grid-template-columns:1fr}.wrap{width:min(100% - 18px,1120px)}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">KIZASHI DAILY PRODUCTION / 2026-08-29</div>
+      <h1>確認できる成果物を<br>Boardへ出す</h1>
+      <p>土曜枠のShorts 1本、note 2本、X 2本、Instagram 2本。一次情報・本文・コピー・実写融合設計を同じ画面へまとめたRevision 1です。</p>
+      <div class="chips"><span class="chip">別content_id 2件</span><span class="chip">一次情報2件</span><span class="chip">サムネ／カバーコピー必須</span><span class="chip">生成写真不使用</span><span class="chip">追加費用0円</span></div>
+    </section>
+
+    <div class="notice"><strong>外部送信はまだ未実行です。</strong> 新しい本文・構成を登録したため、現Revisionの品質検査後に承認対象になります。Metaは <b>@kizashi_jpを管理できるアカウントでBusiness Suiteへログイン</b> が必要です。他媒体の制作は継続します。</div>
+
+    <section class="grid">
+      <article class="card">
+        <div class="kicker">CONTENT A / AI GOVERNANCE</div>
+        <h2>AIに渡す権限はどこまで？</h2>
+        <div class="copy">AIに渡す権限 5つの境界線</div>
+        <p>事故の攻撃手順ではなく、企業が今日決められる実行権限・外部通信・共有領域・停止条件・監視と復旧へ翻訳しました。</p>
+        <div class="visual"><b>画づくり</b>実在のサーバールーム、開発者、ネットワーク機器、制御室の写真を主役にし、短い要点カードを融合。生成写真は使いません。</div>
+        <div class="status"><span class="pill make">note本文 Revision 1</span><span class="pill make">X本文完成</span><span class="pill make">Instagram 8枚設計</span><span class="pill make">Shorts台本完成</span></div>
+        <div class="btns"><a class="btn" href="note-agent-sandbox-boundaries-r1.md">note全文</a><a class="btn secondary" href="youtube-shorts-script-r1.md">Shorts台本</a><a class="btn secondary" href="claim-ledger-r1.json">根拠台帳</a></div>
+      </article>
+
+      <article class="card">
+        <div class="kicker">CONTENT B / TRAINING DESIGN</div>
+        <h2>整った文章と独自性を分ける</h2>
+        <div class="copy">AIで整う文章 独自性は別に測る</div>
+        <p>1,000人超の無作為化実験をもとに、完成度と本人の理由・反証・独自性を分ける二軸評価表へ落としました。</p>
+        <div class="visual"><b>画づくり</b>実在の教室、ノート、レポート、議論の写真に二軸グラフと因果カードを重ね、AI生成感を抑えます。</div>
+        <div class="status"><span class="pill make">note本文 Revision 1</span><span class="pill make">X本文完成</span><span class="pill make">Instagram 8枚設計</span></div>
+        <div class="btns"><a class="btn" href="note-critical-thinking-rubric-r1.md">note全文</a><a class="btn secondary" href="instagram-carousel-plan-r1.json">カルーセル設計</a><a class="btn secondary" href="x-posts-r1.json">X本文2件</a></div>
+      </article>
+
+      <article class="card wide">
+        <div class="kicker">YOUTUBE SHORTS / REAL PHOTO × INFORMATION CARD</div>
+        <h2>スライド文字と字幕を、最初から別の領域に置く</h2>
+        <div class="timeline">
+          <div class="step"><b>1 実行権限</b>読む・書く・削除を分離</div><div class="step"><b>2 外部通信</b>中継経路まで制限</div><div class="step"><b>3 共有領域</b>別タスクを分離</div><div class="step"><b>4 停止条件</b>回数・時間・目的外</div><div class="step"><b>5 監視と復旧</b>担当・ログ・戻し方</div>
+        </div>
+        <table><tr><th>領域</th><th>配置</th><th>検査</th></tr><tr><td>上部要点カード</td><td>y=210〜480 / 1カット最大2行</td><td>字幕と重なり0px</td></tr><tr><td>字幕専用帯</td><td>y=980〜1280</td><td>下端1380px以下・右端920px以下</td></tr><tr><td>YouTube UI</td><td>下420px・右160pxを空白</td><td>iPhone／Android×9フレーム</td></tr></table>
+        <div class="status"><span class="pill make">台本・実写構成 完成</span><span class="pill wait">写真取得／権利Hash 未完了</span><span class="pill wait">編集／9フレーム検査 未完了</span></div>
+      </article>
+
+      <article class="card wide">
+        <div class="kicker">QUALITY GATE / THREE PASSES</div>
+        <h2>三周検査の現在地</h2>
+        <div class="check"><div><strong>第1周 進行中</strong>事実、一次情報、数値、権利。主張6件を一次情報へ固定済み。</div><div><strong>第2周 未実行</strong>初見理解、需要、検索意図、読者価値、誤解防止。</div><div><strong>第3周 未実行</strong>スマホ表示、字幕UI、接続、費用、重複、復旧。</div></div>
+        <p>品質NGが出た場合は同じrun_idで修正し、新RevisionをBoardへ即時同期して第1周からやり直します。</p>
+      </article>
+    </section>
+
+    <section class="footer">
+      <b>一次情報</b><br>
+      <a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/">OpenAI: The Hugging Face incident and the road ahead</a><br>
+      <a href="https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training/">OpenAI: What students gain from ChatGPT and critical-thinking training</a><br><br>
+      run_id: kizashi-20260829 / Revision 1 / 外部予約receipt: なし / 公開receipt: なし
+    </section>
+  </main>
+</body>
+</html>
