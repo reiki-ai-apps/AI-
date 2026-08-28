@@ -8,6 +8,7 @@ import { resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '..');
 const data = JSON.parse(await readFile(resolve(root, 'data/board.json'), 'utf8'));
 const uiSource = await readFile(resolve(root, 'js/ui/approvalsView.js'), 'utf8');
+const statusUiSource = await readFile(resolve(root, 'js/ui/statusView.js'), 'utf8');
 
 const group = data.stores.postGroups.find((row) => row.source_run_id === 'kizashi-20260828' && !row.deleted_at);
 assert.ok(group, 'kizashi-20260828 のPostGroupが必要です');
@@ -47,4 +48,5 @@ for (const asset of revision.assets) {
 
 assert.match(uiSource, /mime\.startsWith\('audio\/'\)/, 'Boardは音声プレイヤーを描画する必要があります');
 assert.match(uiSource, /el\('audio'/, 'Boardはaudio controls要素を生成する必要があります');
+assert.match(statusUiSource, /SCHEDULED:\s*'予約済み'/, '今日の媒体状態はSCHEDULEDではなく予約済みと表示する必要があります');
 console.log('YouTube Revision 4確認成果物9点・現Revision承認・外部予約receiptを検証しました。');

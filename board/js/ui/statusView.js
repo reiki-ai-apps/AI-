@@ -11,6 +11,8 @@ const STATE_LABELS = {
   DANGER: '予約不足',
   UNKNOWN: '未確認',
   EXECUTING: '進行中',
+  PUBLISHED: '公開済み',
+  SCHEDULED: '予約済み',
   PRODUCTION: '制作中',
   APPROVAL_WAIT: '確認待ち',
   EXTERNAL_WAIT: '外部予約待ち',
