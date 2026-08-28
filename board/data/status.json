@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-28T09:29:00.851Z",
+  "generated_at": "2026-08-29T01:33:13+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -14,10 +14,10 @@
     "completed": 0,
     "target": 7,
     "headline": "8月28日（金曜）は0/7件。YouTube本編1件、note・X・Instagram各2件を制作開始。8月27日Instagram 2件は承認済みですが外部receiptなしで期限超過しています。",
-    "next_action": "前日Instagram 2件の救出を最優先にし、その後8月28日の制作・検査・Board同期を進めます。",
+    "next_action": "YouTube本編は2026-08-31 19:00 JSTへ予約済み。Instagram前日2件の期限超過救出と当日分の制作・検査を継続します。",
     "next_deadline": "2026-08-28T10:00:00+09:00",
-    "owner_action_required": true,
-    "owner_action": "Meta Business Suiteの@kizashi_jp画面でCreate postを開く",
+    "owner_action_required": false,
+    "owner_action": null,
     "channels": [
       {
         "id": "note",
@@ -55,11 +55,12 @@
         "label": "YouTube本編",
         "done": 0,
         "target": 1,
-        "state": "APPROVAL_WAIT",
-        "status": "0/1公開／Revision 4：実写13点・生成写真0点、下端360pxを字幕専用領域に固定し全22カット・62字幕カードで重なり0px。4分17秒の最終動画、字幕、実写コピー入りサムネイル3案をBoardへ登録。機械検査PASS",
-        "next": "Revision 4の最終動画を全編再生し、動画とサムネイルAを確認",
-        "blocker": "所有者によるRevision 4最終動画の全編確認待ち。YouTube外部予約receiptなし",
-        "url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260828-youtube-r4-final-review/final-review.html"
+        "state": "SCHEDULED",
+        "status": "0/1公開／外部予約ID k7J6ouH0sec・URL・receipt取得済み。2026-08-31 19:00 JST予約済み",
+        "next": "公開後に公開時刻・公開URL・公開状態を照合し、公開receiptへ更新",
+        "blocker": null,
+        "url": "https://youtu.be/k7J6ouH0sec",
+        "review_url": "media/kizashi-20260828-youtube-r4-final-review/final-review.html"
       }
     ]
   },
@@ -112,13 +113,18 @@
       "account": "KIZASHI / @kizashi_jp",
       "url": "https://www.youtube.com/@kizashi_jp",
       "state": "HEALTHY",
-      "last_verified_at": "2026-08-27T12:46:53+09:00",
+      "last_verified_at": "2026-08-29T01:33:13+09:00",
       "latest_published": {
         "title": "AI料金は月額より『成功1回』で比べる｜OpenAI独自チップの意味 #Shorts",
         "url": "https://www.youtube.com/shorts/InAEpx7ZoAM"
       },
-      "next_scheduled": null,
-      "note": "水曜本編は8月26日21:00に公開済み。木曜Shorts InAEpx7ZoAM は8月27日12:30:29に公開され、公開URL・タイトル・チャンネル・プレーヤーを照合して公開receiptを保存した。"
+      "next_scheduled": {
+        "title": "ChatGPTだけでは独自性は伸びない？1,053人の実験から学ぶAI仕事術",
+        "url": "https://youtu.be/k7J6ouH0sec",
+        "scheduled_at": "2026-08-31T19:00:00+09:00",
+        "external_id": "k7J6ouH0sec"
+      },
+      "note": "Revision 4の動画・サムネイルA・日本語字幕をYouTube Studioへ登録。著作権・コミュニティガイドラインは問題なし。動画ID k7J6ouH0secを取得し、8月31日19:00 JSTの公開予約表示を照合した。"
     },
     {
       "id": "radar",
@@ -158,12 +164,12 @@
       "started_at": "2026-08-28T00:58:53+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "金曜YouTube本編・Revision 4実写融合版の所有者全編確認待ち",
+      "stage": "YouTube Revision 4外部予約済み・receipt照合完了",
       "candidate_count": 2,
       "verified_primary_count": 1,
       "required_primary_count": 1,
-      "reason": "実写13点、生成写真0点、全22カット・62字幕カードの重なり0pxでRevision 4を完成。公開Boardへ確認用9ファイルを同期。YouTube外部予約receiptは未取得。",
-      "next_action": "Revision 4最終動画を全編確認後、既存投稿先と承認済み費用上限内でYouTube外部予約へ進む。"
+      "reason": "発音プレビュー承認後、Aivis Cloud本編音声59素材を上限70円内で生成し、実音声の無音境界で全文字幕62枚へ同期。権利確認済み実写13点と出典明記図解を融合し、生成写真0点、全22カットで字幕重なり0pxの4分17秒最終動画とコピー入りサムネイル3案を完成。機械検査PASS。",
+      "next_action": "Instagram前日2件の期限超過救出と当日分の制作・検査を継続。YouTubeは8月31日19:00の公開後に公開receiptへ更新する。"
     },
     "policy": "予約成立を最優先。制作・修正・検査・Board同期は止めずに進める。外部予約・公開は、現Revision/Hashの記事・動画とサムネイル両方の所有者承認receipt成立後だけ実行する。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明は停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
@@ -218,25 +224,25 @@
       "display": "当日枠と次の2枠のみ",
       "slots": [
         {
-          "date": "2026-08-28",
-          "state": "APPROVAL_WAIT",
-          "reason": "Revision 4最終動画・サムネイルを公開Boardへ同期。外部予約・公開receiptは未取得。"
-        },
-        {
           "date": "2026-08-31",
-          "state": "PRODUCTION",
-          "reason": "月曜本編の次枠。一次情報候補確認前。"
+          "state": "SCHEDULED",
+          "reason": "動画ID k7J6ouH0sec、URL https://youtu.be/k7J6ouH0sec、2026-08-31 19:00 JSTの外部予約receiptを取得し、Studio一覧の公開予約表示を照合。"
         },
         {
           "date": "2026-09-02",
           "state": "PRODUCTION",
-          "reason": "水曜本編の次々枠。一次情報候補確認前。"
+          "reason": "水曜本編の次枠。一次情報候補確認前。"
+        },
+        {
+          "date": "2026-09-04",
+          "state": "PRODUCTION",
+          "reason": "金曜本編の次々枠。一次情報候補確認前。"
         }
       ]
     },
-    "stage": "kizashi-20260828｜YouTube Revision 4実写融合版の所有者全編確認待ち",
-    "reason": "権利確認済み実写13点と根拠図解を融合し、生成写真を0点へ変更。下端360pxを字幕専用領域として全62字幕カードの重なり0pxを確認。",
-    "next_action": "BoardのRevision 4確認ページで動画とサムネイルAを確認する。"
+    "stage": "kizashi-20260828｜YouTube Revision 4外部予約済み",
+    "reason": "Revision 4は機械検査PASS・所有者承認済み。YouTube動画ID k7J6ouH0sec、URL、2026-08-31 19:00 JSTの外部予約receiptを取得し、Studio一覧の公開予約表示を照合した。",
+    "next_action": "他媒体の制作・検査・接続を継続し、YouTubeは8月31日19:00の公開後に公開URL・公開時刻・公開状態を照合する。"
   },
   "monitoring": {
     "cadence": "PT1H",
@@ -245,6 +251,10 @@
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
   "evidence": [
+    "board/data/approval-receipts/kizashi-20260828-youtube-r4-asset-reconciled-approval.json",
+    "board/data/receipts/kizashi-20260828-youtube-r4-youtube-schedule-receipt.json",
+    "board/data/approval-receipts/kizashi-20260828-youtube-r4-chat-approval.json",
+    "board/data/receipts/kizashi-20260828-youtube-r4-external-schedule.json",
     "board/media/kizashi-20260828-youtube-r4-final-review/video.mp4",
     "board/media/kizashi-20260828-youtube-r4-final-review/final-review.html",
     "board/media/kizashi-20260828-youtube-r4-final-review/thumbnail-a.jpg",
