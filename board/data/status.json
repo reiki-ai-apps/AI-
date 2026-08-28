@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-08-27T21:21:59+09:00",
+  "generated_at": "2026-08-28T09:47:48+09:00",
   "time_zone": "Asia/Tokyo",
   "brand_id": "news",
   "source_skill": "ai_news_v1",
@@ -10,56 +10,19 @@
     "attention": 2
   },
   "today": {
-    "date": "2026-08-27",
-    "completed": 3,
+    "date": "2026-08-28",
+    "completed": 0,
     "target": 7,
-    "headline": "8月27日は3/7件公開。Instagram 2投稿は承認・公開URL準備まで完了しましたが、Metaの追加処理が未認証エラーで停止しています。",
-    "next_action": "通常のSafariまたはChromeでMeta Business Suiteを開き、ポップアップを許可して @kizashi_jp を1回追加後、重複照合して外部投稿へ進みます。",
-    "next_deadline": "2026-08-27T22:00:00+09:00",
+    "headline": "8月28日（金曜）は0/7件。YouTube本編1件、note・X・Instagram各2件を制作開始。8月27日Instagram 2件は承認済みですが外部receiptなしで期限超過しています。",
+    "next_action": "前日Instagram 2件の救出を最優先にし、その後8月28日の制作・検査・Board同期を進めます。",
+    "next_deadline": "2026-08-28T10:00:00+09:00",
     "owner_action_required": true,
-    "owner_action": "通常のSafariまたはChromeでMeta Business Suiteを開き、ポップアップを許可して @kizashi_jp をInstagram accountsへ1回追加",
+    "owner_action": "Meta Business Suiteの@kizashi_jp画面でCreate postを開く",
     "channels": [
-      {
-        "id": "note",
-        "label": "note",
-        "done": 2,
-        "target": 2,
-        "state": "PUBLISHED",
-        "status": "2/2公開／Jalapeño稿とWatermark稿を各300円で公開。Watermark稿は公開ID ne7d4e6b9175b、見出し画像、記事内4画像、有料境界、一次情報リンク、AI進化レーダー導線を照合済み",
-        "next": "公開URL・価格・有料境界・画像・リンクをreceiptに基づき監視する",
-        "blocker": null
-      },
-      {
-        "id": "x",
-        "label": "X",
-        "done": 0,
-        "target": 2,
-        "state": "AUTH_WAIT",
-        "status": "0/2公開／8月27日用の別内容2件・根拠URL・AI進化レーダー導線・文字数検査は完成",
-        "next": "利用者トークン接続と最新料金確認後、重複照合して投稿",
-        "blocker": "X利用者トークン未接続。外部投稿receiptなし"
-      },
-      {
-        "id": "instagram",
-        "label": "Instagram",
-        "done": 0,
-        "target": 2,
-        "state": "AUTH_WAIT",
-        "status": "0/2公開／2/2制作・検査・承認・公開URL16件完了。外部投稿receiptは未取得",
-        "next": "通常のSafariまたはChromeでMeta Business Suiteを開き、ポップアップを許可して @kizashi_jp を1回追加後、重複照合して外部投稿へ進む",
-        "blocker": "Facebookログインは有効だが、Meta Business Settingsの追加処理がUNAUTHENTICATEDで停止。投稿先 @kizashi_jp と公式APIトークンは未接続",
-        "url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260827/instagram/approval.html"
-      },
-      {
-        "id": "youtube",
-        "label": "YouTube Shorts",
-        "done": 1,
-        "target": 1,
-        "state": "PUBLISHED",
-        "status": "1/1公開／Jalapeño解説ShortsはYouTube動画ID InAEpx7ZoAM で8月27日12:30:29に公開。公開URL、タイトル、KIZASHIチャンネル、公開プレーヤーを照合済み",
-        "next": "金曜YouTube本編の現Revision・品質ゲート・承認・外部receiptを優先確認",
-        "blocker": null
-      }
+      {"id": "note", "label": "note", "done": 0, "target": 2, "state": "PRODUCTION", "status": "0/2公開／別content_id・別課題・別根拠の記事2件を制作開始", "next": "本文・記事内画像・コピー入り横長サムネイル・三周検査を完成", "blocker": null},
+      {"id": "x", "label": "X", "done": 0, "target": 2, "state": "AUTH_WAIT", "status": "0/2公開／別content_id・別課題・別根拠の本文2件を制作開始", "next": "制作と検査を継続し、利用者トークン確認後に外部投稿", "blocker": "X利用者トークン未確認。外部投稿receiptなし"},
+      {"id": "instagram", "label": "Instagram", "done": 0, "target": 2, "state": "AUTH_WAIT", "status": "0/2公開／8月27日承認済み2件を期限超過救出キューへ移動。8月28日用2件は制作開始", "next": "Meta Business Suiteで前日2件を重複確認して投稿後、当日2件を制作・検査", "blocker": "@kizashi_jpのBusiness Suite画面接続は成功。公式APIトークンとInstagramユーザーIDは未設定", "url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260827/instagram/approval.html"},
+      {"id": "youtube", "label": "YouTube本編", "done": 0, "target": 1, "state": "APPROVAL_WAIT", "status": "0/1公開／Revision 3：発音プレビュー18.29秒、読み上げ原稿ページ、コピー入りサムネイル3案、比較一覧の確認成果物6点をBoardへ登録済み", "next": "Boardで音声・発音・アクセント・抑揚とサムネイル3案を確認し、合格後に59字幕の本編音声・字幕同期・最終動画・三周検査へ進む", "blocker": "発音プレビューの人による聞き取り確認待ち", "url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260828-youtube-r3-review/pronunciation-preview-review.html"}
     ]
   },
   "channels": [
@@ -75,7 +38,7 @@
         "url": "https://www.instagram.com/p/DcEMK9JGctI/"
       },
       "next_scheduled": null,
-      "note": "8月27日用の別内容2投稿・全16枚、三周検査、現Revision承認、公開HTTPS URL 16件は完了。Facebookログインは有効だがMeta Business Settingsの追加処理がUNAUTHENTICATEDで停止し、@kizashi_jp は未接続。外部送信は未実行。"
+      "note": "8月27日用の別内容2投稿・全16枚、三周検査、現Revision承認、公開HTTPS URL 16件は完了。Meta Business Settingsの追加ダイアログは復旧し、最終の @kizashi_jp ログイン・接続だけ本人操作待ち。外部送信は未実行。"
     },
     {
       "id": "x",
@@ -146,25 +109,25 @@
       "id": "20260825-instagram-auth-required",
       "severity": "ATTENTION",
       "title": "Instagramは接続・認証待ち",
-      "message": "カルーセル2件・全16枚、三周検査、現Revision承認、公開HTTPS URLは完了。Facebookログインは有効ですが、Meta Business Settingsの追加処理がUNAUTHENTICATEDで停止しています。",
-      "required_action": "通常のSafariまたはChromeでMeta Business Suiteを開き、ポップアップを許可して @kizashi_jp をInstagram accountsへ1回追加"
+      "message": "カルーセル2件・全16枚、三周検査、現Revision承認、公開HTTPS URLは完了。Meta Business Settingsの追加ダイアログは復旧し、最終のアカウント接続だけ本人操作待ちです。",
+      "required_action": "開いているMeta Business Suiteで「Add Instagram account」を押し、@kizashi_jpでログインして接続を完了"
     }
   ],
   "production": {
     "cadence": "PT6H",
     "last_run": {
-      "run_id": "kizashi-20260827",
-      "started_at": "2026-08-26T19:22:45+09:00",
+      "run_id": "kizashi-20260828",
+      "started_at": "2026-08-28T00:58:53+09:00",
       "finished_at": null,
       "state": "EXECUTING",
-      "stage": "Instagram接続待ち｜Meta追加処理UNAUTHENTICATEDを確認",
+      "stage": "金曜YouTube本編・Revision 3発音プレビュー聞き取り待ち",
       "candidate_count": 2,
-      "verified_primary_count": 2,
-      "required_primary_count": 2,
-      "reason": "Shorts InAEpx7ZoAM は12:30:29公開済み。Jalapeño noteとWatermark noteは各300円で公開済みで、Watermark稿の公開URL・価格・有料境界・画像・リンクを照合した。",
-      "next_action": "通常のSafariまたはChromeでMeta Business Suiteを開き、ポップアップを許可して @kizashi_jp を1回追加後、重複照合して外部投稿へ進む。"
+      "verified_primary_count": 1,
+      "required_primary_count": 1,
+      "reason": "Revision 3で公式研究図1点と日本語図解5点を主役にし、生成写真15点は補助映像へ限定。全文字幕59枚・重複なし21カット・コピー入りサムネイル3案を完成し、1920px・390px・160pxでPASS。上限70円の承認後、発音プレビュー18.29秒を生成PASS。",
+      "next_action": "発音プレビューを人が聞き取り、合格後に59字幕の本編音声・字幕同期・動画・三周検査へ進む。前日Instagram 2件は重複確認後に投稿する。"
     },
-    "policy": "予約成立を最優先。低リスク・追加費用0円・既存投稿先・品質権利安全PASSは常時許可として個別承認なしで進める。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明だけを停止条件とする。成功は外部receipt取得後だけ表示する。",
+    "policy": "予約成立を最優先。制作・修正・検査・Board同期は止めずに進める。外部予約・公開は、現Revision/Hashの記事・動画とサムネイル両方の所有者承認receipt成立後だけ実行する。新規課金、費用上限超過、投稿先変更、本人操作必須のOAuth/CAPTCHA、権利安全上の重大判断、外部結果不明は停止条件とする。成功は外部receipt取得後だけ表示する。",
     "note_daily": {
       "time_zone": "Asia/Tokyo",
       "target_slots": [
@@ -176,7 +139,7 @@
       "prepublish_guard": "planDailyNoteSlots"
     },
     "approval_policy": {
-      "mode": "STANDING_AUTHORIZATION_LOW_RISK_ZERO_ADDITIONAL_COST",
+      "mode": "CURRENT_REVISION_HASH_RECEIPTS_REQUIRED_FOR_EXTERNAL_ACTION",
       "no_intermediate_approval": [
         "制作",
         "修正",
@@ -194,7 +157,11 @@
         "API費用上限",
         "公開範囲"
       ],
-      "external_action_requires_final_approval": false,
+      "external_action_requires_final_approval": true,
+      "required_receipts": [
+        "現Revision/Hashの記事または動画承認receipt",
+        "現Revision/Hashのサムネイル承認receipt"
+      ],
       "individual_approval_only_for": [
         "新規課金または費用上限超過",
         "投稿先アカウント変更",
@@ -212,34 +179,50 @@
       "time_zone": "Asia/Tokyo",
       "display": "当日枠と次の2枠のみ",
       "slots": [
-        {
-          "date": "2026-08-21",
-          "state": "AWAITING_EXTERNAL_UPLOAD",
-          "reason": "本編動画、サムネイル3案、タイトル、説明文、タグ、再生リスト指定、3周検査が完成。外部予約・公開receiptは未取得。"
-        },
-        {
-          "date": "2026-08-24",
-          "state": "PENDING_APPROVAL",
-          "reason": "Revision 2の動画・字幕・BGM・サムネイル3案・説明文・三周検査が完成。Boardで動画と推奨サムネイルAを表示可能。現Revision/Hash承認、OAuth接続、外部予約receipt取得が残る。"
-        },
-        {
-          "date": "2026-08-26",
-          "state": "SCHEDULED",
-          "reason": "8月26日21:00の外部予約receiptを取得。外部動画ID 7xbmIlNB-_s、動画Hash、タイトル、説明、サムネイルA、再生リスト、日本語字幕、HD処理・権利検査を確認済み。"
-        }
+        {"date": "2026-08-28", "state": "PRODUCTION", "reason": "金曜本編。一次情報確認から制作開始。外部予約・公開receiptは未取得。"},
+        {"date": "2026-08-31", "state": "PRODUCTION", "reason": "月曜本編の次枠。一次情報候補確認前。"},
+        {"date": "2026-09-02", "state": "PRODUCTION", "reason": "水曜本編の次々枠。一次情報候補確認前。"}
       ]
     },
-    "stage": "Revision 39｜Instagram公開URL16件完了／Meta追加処理UNAUTHENTICATED",
-    "reason": "承認済み全16枚の公開HTTPS URLは200/JPEGを確認。Facebookログインは有効だが、Meta Business Settingsの追加処理がUNAUTHENTICATEDで停止し、@kizashi_jp は未接続。誤投稿防止で外部送信しなかった。",
-    "next_action": "通常のSafariまたはChromeでMeta Business Suiteを開き、ポップアップを許可して @kizashi_jp を1回追加後、重複照合して外部投稿へ進む。"
+    "stage": "kizashi-20260828｜YouTube Revision 3発音プレビュー聞き取り待ち",
+    "reason": "公式研究図1点・日本語図解5点を主役にし、生成写真15点は補助映像に限定。全文字幕59枚・重複なし21カット・コピー入りサムネイル3案を完成し、1920/390/160pxでPASS。上限70円の承認後、発音プレビュー18.29秒を生成PASS。",
+    "next_action": "発音プレビューを人が聞き取り、合格後に59字幕本編音声・字幕同期・最終動画・三周検査へ進む。"
   },
   "monitoring": {
     "cadence": "PT1H",
-    "last_checked_at": "2026-08-27T21:21:59+09:00",
+    "last_checked_at": "2026-08-28T09:02:58+09:00",
     "report_policy": "変化・障害・停止理由のみ。変化なしは通知しない",
     "description": "1時間ごとに当日・翌日の完成物、承認、外部予約receipt、期限を先に確認します。noteは8:00・12:00を基本枠とし、遅延時も最低4時間空けます。YouTube本編は月・水・金の当日枠と次の2枠を必ず確認します。予約優先処理後、前回制作から6時間以上経過した場合だけ次回AIニュース制作を低負荷で実行し、結果をBoardへ同期します。"
   },
   "evidence": [
+    "runs/kizashi-20260828/board-sync-youtube-pronunciation-preview-r3-receipt.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/aivis-cost-approval-receipt-r3.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/pronunciation-preview-generation-receipt-r3.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/pronunciation-preview-review.html",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/pronunciation-preview.aivis.mp3",
+    "runs/kizashi-20260828/board-sync-youtube-r3-light-assets-receipt.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/youtube-final/thumbnail-review-r3.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/youtube-final/thumbnail-contact-sheet-r3.png",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/visual-strategy-r3.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/visual-cadence-plan-r3.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/caption-plan.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/aivis-cost-approval-request-r3.json",
+    "runs/kizashi-20260828/monitor-20260828-0903.json",
+    "runs/kizashi-20260828/board-sync-youtube-pronunciation-prep-r2-receipt.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/pronunciation-review.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/evidence-assets-manifest-r2.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/visual-strategy-r2.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/image-quality-gate-s11-s13.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/image-quality-gate-s08-s10.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/image-quality-gate-s05-s07.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/image-quality-gate-s02-s04.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/image-quality-gate-s01.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/image-generation-cache.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/component-hashes.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/preliminary-gate.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/visual-shotlist.json",
+    "runs/kizashi-20260828/youtube-longform-20260828-r1/episode.json",
+    "runs/kizashi-20260828/primary-source-scan.json",
     "runs/kizashi-20260827/today-priority.json",
     "runs/kizashi-20260827/gate.json",
     "runs/kizashi-20260827/board-sync-receipt.json",

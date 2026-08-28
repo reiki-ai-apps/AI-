@@ -310,7 +310,8 @@ function mediaPreview(revision, componentScope) {
     const key = asset.sha256 || assetUrl(asset);
     return rows.findIndex((row) => (row.sha256 || assetUrl(row)) === key) === index;
   });
-  const visibleAssets = uniqueAssets.slice(0, 2);
+  const visibleLimit = componentScope === 'THUMBNAIL' ? 4 : 3;
+  const visibleAssets = uniqueAssets.slice(0, visibleLimit);
   const remaining = Math.max(0, uniqueAssets.length - visibleAssets.length);
   const previews = visibleAssets.map((asset, index) => {
     const url = assetUrl(asset);
@@ -325,6 +326,16 @@ function mediaPreview(revision, componentScope) {
       }, { once: true });
       return holder;
     }
+    if (mime.startsWith('audio/')) {
+      return el('div', { class: 'approval-audio-preview' },
+        el('strong', null, asset.alt_text || `確認用音声 ${index + 1}`),
+        el('audio', {
+          src: url,
+          controls: true,
+          preload: 'metadata',
+          'aria-label': asset.alt_text || `確認用音声 ${index + 1}`,
+        }));
+    }
     if (mime.startsWith('image/') || /\.(png|jpe?g|webp|gif|avif)(\?|$)/i.test(url)) {
       return el('a', { href: url, target: '_blank', rel: 'noopener noreferrer' },
         el('img', { src: url, alt: asset.alt_text || `確認用画像 ${index + 1}`, loading: 'lazy' }));
@@ -334,7 +345,7 @@ function mediaPreview(revision, componentScope) {
       : `素材${index + 1}を開く`;
     return el('a', { class: 'approval-artifact-link', href: url, target: '_blank', rel: 'noopener noreferrer' }, label);
   });
-  if (remaining) previews.push(el('div', { class: 'approval-media-remaining' }, `ほか${remaining}点は「記事全文を開く」で確認`));
+  if (remaining) previews.push(el('div', { class: 'approval-media-remaining' }, `ほか${remaining}点の確認用素材があります`));
   return el('div', { class: 'approval-media-gallery' }, ...previews);
 }
 

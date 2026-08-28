@@ -19,7 +19,8 @@ test('承認ページは全件ボタン・Revision固定・Shortsサムネイル
   assert.match(source, /post\.platform === 'YOUTUBE_SHORTS' \? \['CONTENT'\]/);
   assert.match(source, /予定時刻を過ぎた\$\{overdueCount\}件も表示しています/);
   assert.match(source, /approval-video-placeholder/);
-  assert.match(source, /uniqueAssets\.slice\(0, 2\)/);
+  assert.match(source, /componentScope === 'THUMBNAIL' \? 4 : 3/);
+  assert.match(source, /mime\.startsWith\('audio\/'\)/);
   assert.doesNotMatch(source, /el\('video', \{ src: url, controls: true, preload/);
 });
 

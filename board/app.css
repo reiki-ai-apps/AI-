@@ -978,6 +978,8 @@ input:invalid { border-color: var(--danger); }
 .approval-media-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .approval-media-gallery img, .approval-media-gallery video { display: block; width: 100%; max-height: 240px; border-radius: 8px; object-fit: contain; background: #eef1f4; }
 .approval-media-gallery video { grid-column: 1 / -1; }
+.approval-audio-preview { display: grid; grid-column: 1 / -1; gap: 8px; padding: 12px; border: 1px solid #cfd8e6; border-radius: 10px; background: #f7f9fc; }
+.approval-audio-preview audio { width: 100%; }
 .approval-video-placeholder { position: relative; display: grid; grid-column: 1 / -1; place-items: center; min-height: 150px; overflow: hidden; border-radius: 8px; color: #fff; background: #162033; cursor: pointer; font-weight: 800; }
 .approval-video-placeholder img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .55; }
 .approval-video-placeholder span { position: relative; padding: 10px 14px; border-radius: 999px; background: rgb(0 0 0 / 65%); }
