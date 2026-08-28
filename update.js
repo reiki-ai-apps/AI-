@@ -178,8 +178,8 @@ function keep(item, tool) {
 const AI_MODEL = process.env.ANTHROPIC_MODEL || "claude-sonnet-5";
 const AI_MAX = 60;
 const AI_BATCH_SIZE = 6;
-const AI_NEW_LIMIT = 12;
-const AI_DEEP_BACKFILL_LIMIT = 4;
+const AI_NEW_LIMIT = 16;
+const AI_DEEP_BACKFILL_LIMIT = 8;
 const AI_DAILY_UNIQUE_LIMIT = 40;
 const AI_DAILY_EMERGENCY_LIMIT = 8;
 const ARTICLE_CONTEXT_LIMIT = 3600;
@@ -190,7 +190,7 @@ const STORY_REPOST_WINDOW_MS = 31 * 86400000;
 const STORY_TIMELINE_WINDOW_MS = 365 * 86400000;
 // 完全一致の再掲載を公開から外す期間。表示保持(31日)より長く、365日の全面抑制はしない。
 const DUPLICATE_SUPPRESS_WINDOW_MS = 45 * 86400000;
-const PROMPT_VERSION = "ai-radar-2026-08-28-v9-deeper-friendly";
+const PROMPT_VERSION = "ai-radar-2026-08-28-v10-contextual-depth";
 const REJECTED_TTL_MS = 2 * 86400000;
 const RETRY_TTL_MS = 6 * 3600000;
 const ENRICHED_TTL_MS = 31 * 86400000;
@@ -441,7 +441,7 @@ function hasDeepFriendlyExplanation(value) {
   const compact=raw.replace(/\s+/g,"");
   const paragraphs=raw.split(/\n+/).map(part=>part.trim()).filter(Boolean);
   const sentences=(raw.match(/[。！？!?]/g)||[]).length;
-  return compact.length>=260&&compact.length<=620&&paragraphs.length>=2&&sentences>=4;
+  return compact.length>=420&&compact.length<=720&&paragraphs.length>=3&&sentences>=7;
 }
 function needsDeepFriendlyMigration(item) {
   return Boolean(item)&&(item.enrichment_version!==PROMPT_VERSION||!hasDeepFriendlyExplanation(item.detail));
@@ -614,14 +614,14 @@ async function aiEnrichBatch(items) {
     "主要AI企業・研究所のCEO交代、著名研究者の退社、経営・研究体制の再編、大型買収・投資・提携は、製品名がタイトルになくても業界全体への波及を評価し、重要度SまたはAを積極的に検討してください。" +
     "記事本文の抜粋にない数字・人物・効果は作らず、不明な点は不明と明記してください。除外するのは広告・宣伝と、AIと無関係な別テーマの誤ヒットだけです。それ以外の記事は、確認できる事実の範囲で伝えることを優先してください。" +
     "要約文は元記事の論点と叙述順序を尊重し、主語と出来事から直接書き始め、元記事で確認できる事実・今後の予定・発表者の見解などで自然に結んでください。" +
-    "やさしい解説は短い言い換えで終わらせず、背景、具体的な変更内容や仕組み、なぜ重要なのか、確認済みの範囲と未確定点までを順に説明してください。専門用語は初出で短く意味を添え、原因と結果を飛躍させないでください。" +
+    "やさしい解説は短い言い換えで終わらせず、用語の意味、従来との違い、具体的な仕組みと対象範囲、なぜ重要なのか、制約やリスク、確認済みの範囲と未確定点までを順に説明してください。専門用語は初出で短く意味を添え、原因と結果を飛躍させないでください。" +
     "『まず、このニュースをひと言でいうと』『かんたんに言うと』『この記事では』などのメタな前置きや、元記事にない一般論・注意喚起・安心を促す定型文は使わないでください。";
   const user =
     "次のAI関連ニュース候補(JSON)を確認し、候補ごとに採用または除外を判定してください。すべての候補番号iについて必ず1件ずつ出力します。採用する場合は下記の全項目、除外する場合は {\"i\":元番号,\"skip\":true,\"reason_ja\":\"10〜40字の除外理由\"} だけを出力してください。\n" +
     "出力は次の形式のJSON配列だけ（前置き・説明・コードフェンスは一切不要）:\n" +
-    '[{"i":元番号,"title_ja":"媒体名を除いた自然な日本語タイトル","summary_ja":"60〜100字で主語と結論が分かる要約","detail_ja":"300〜460字、5〜7文、改行1回で2段落。第1段落は主体と出来事から始め、背景・前提、具体的な変更内容・仕組み・対象範囲を説明する。第2段落はその出来事がなぜ重要かを記事の文脈で掘り下げ、確認済みの事実と報道段階・未確定点・今後の焦点を区別して終える。専門用語は初出で短く説明し、impact_jaやaction_jaと同じ文を繰り返さない","change_ja":"何が新しいかを1〜2文","impact_ja":"日本の仕事・経営・生活への影響を1〜2文","action_ja":"元記事から具体的に確認できる次の確認事項・期限・利用条件を1〜2文。根拠がなければ行動を作らず、現時点の状況を簡潔に書く","event_date":"記事本文に出来事の年月日が明記されている場合だけYYYY-MM-DD、不明なら空文字","event_status":"発表済み|開始済み|予定|継続中|不明","story_entities":["企業名・製品名など話題を識別する固有名詞を1〜3件"],"importance":"S|A|B|C","categories":["指定カテゴリから1〜3件"],"primary_entity":"主体となる企業・組織名","story_subject":"具体的な製品・モデル・法律・事案・取引・計画の名前","event_type":"release|pricing|funding|security|policy|partnership|acquisition|research|other","event_stage":"rumor|announced|planned|beta|launched|expanded|paused|delayed|cancelled|investigating|cause_identified|fixed|restored|proposed|approved|enacted|completed|denied|corrected|other","event_scope":"API・デスクトップ・日本・全世界・影響範囲など","fact_slots":[{"type":"amount|price|region|date|availability|status|count|version|other","scope":"何についての事実か","value":"通貨・単位を含めて正規化した値"}],"new_facts_ja":["この記事で確認できる重要な事実。記事にない事実は書かない"]}]\n' +
+    '[{"i":元番号,"title_ja":"媒体名を除いた自然な日本語タイトル","summary_ja":"60〜100字で主語と結論が分かる要約","detail_ja":"460〜640字、8〜10文、空行2回で3段落。第1段落は主体と出来事から始め、専門用語の意味と従来との違いを説明する。第2段落は具体的な仕組み・対象範囲・利用場面と、なぜ重要かを因果関係が分かるように説明する。第3段落は確認済みの事実、制約・リスク、報道段階・未確定点・今後の焦点を区別して終える。用語の意味、従来との差、仕組み、対象範囲、制約・リスクのうち最低4項目を記事固有の内容で満たし、impact_jaやaction_jaと同じ文を繰り返さない","change_ja":"何が新しいかを1〜2文","impact_ja":"日本の仕事・経営・生活への影響を1〜2文","action_ja":"元記事から具体的に確認できる次の確認事項・期限・利用条件を1〜2文。根拠がなければ行動を作らず、現時点の状況を簡潔に書く","event_date":"記事本文に出来事の年月日が明記されている場合だけYYYY-MM-DD、不明なら空文字","event_status":"発表済み|開始済み|予定|継続中|不明","story_entities":["企業名・製品名など話題を識別する固有名詞を1〜3件"],"importance":"S|A|B|C","categories":["指定カテゴリから1〜3件"],"primary_entity":"主体となる企業・組織名","story_subject":"具体的な製品・モデル・法律・事案・取引・計画の名前","event_type":"release|pricing|funding|security|policy|partnership|acquisition|research|other","event_stage":"rumor|announced|planned|beta|launched|expanded|paused|delayed|cancelled|investigating|cause_identified|fixed|restored|proposed|approved|enacted|completed|denied|corrected|other","event_scope":"API・デスクトップ・日本・全世界・影響範囲など","fact_slots":[{"type":"amount|price|region|date|availability|status|count|version|other","scope":"何についての事実か","value":"通貨・単位を含めて正規化した値"}],"new_facts_ja":["この記事で確認できる重要な事実。記事にない事実は書かない"]}]\n' +
     "指定カテゴリ:"+JSON.stringify(ALLOWED_CATEGORIES)+"\n"+
-    "英語・中国語は自然な日本語に翻訳してください。article_contextを最優先の根拠にし、情報不足でもタイトルを言い換えただけの要約は作らないでください。detail_jaは元記事の冒頭の問題提起・発表内容から入り、背景→具体的な変更・仕組み→重要性→確度と未確定点の順で、読者が一段深く理解できる2段落にしてください。固有名詞、数値、条件、対象範囲が確認できる場合は具体的に残し、元記事にない理由・効果・将来予測で深さを装わないでください。impact_jaは仕事への影響、action_jaは次の確認事項に役割を分け、detail_jaとの文面重複を避けてください。説明のための定型的な導入や、どの記事にも当てはまる助言で文字数を埋めてはいけません。event_date_candidatesは本文中で出来事を表す文の近くに明記された日付候補です。候補の文脈を確認し、発表日・施行日・発生日・提供開始日・予定日として明確なものだけevent_dateへ入れてください。記事の掲載日や更新日は出来事の日にしないでください。候補がない、または意味が曖昧なら空文字にしてください。skipにするのは、広告・宣伝、AIと無関係な誤ヒット、実質的な事実がひとつも確認できない記事だけです。article_contextが短い・取得できていない場合でも、タイトルと抜粋から確認できる事実の範囲で要約を作成し、不明な点は不明と書いて採用してください。primary_entity以下の構造化項目は話題の同一判定に使うため、採用する記事では必ず出力してください(fact_slotsは確認できる事実だけ。なければ空配列)。モデル・製品名は正確に区別し(例: Gemini 3 FlashとGemini 3 Proは別物)、掲載日・閲覧数・四捨五入した換算金額・『5』と『5.0』の表記差を新しい進展として扱わないでください。地域や提供チャネルの違いは、同じ製品・制度が実際にそこへ拡大した場合だけ進展です。\n候補:\n" +
+    "英語・中国語は自然な日本語に翻訳してください。article_contextを最優先の根拠にし、情報不足でもタイトルを言い換えただけの要約は作らないでください。detail_jaは元記事の冒頭の問題提起・発表内容から入り、何が起きたかと用語・従来との差→具体的な仕組み・対象範囲・重要性→確度・制約・リスク・未確定点の順で、読者が一段深く理解できる3段落にしてください。固有名詞、数値、条件、対象範囲が確認できる場合は具体的に残し、元記事にない理由・効果・将来予測で深さを装わないでください。impact_jaは仕事への影響、action_jaは次の確認事項に役割を分け、detail_jaとの文面重複を避けてください。説明のための定型的な導入や、どの記事にも当てはまる助言、同じ事実の言い換えで文字数を埋めてはいけません。event_date_candidatesは本文中で出来事を表す文の近くに明記された日付候補です。候補の文脈を確認し、発表日・施行日・発生日・提供開始日・予定日として明確なものだけevent_dateへ入れてください。記事の掲載日や更新日は出来事の日にしないでください。候補がない、または意味が曖昧なら空文字にしてください。skipにするのは、広告・宣伝、AIと無関係な誤ヒット、実質的な事実がひとつも確認できない記事だけです。article_contextが短い・取得できていない場合でも、タイトルと抜粋から確認できる事実の範囲で要約を作成し、不明な点は不明と書いて採用してください。primary_entity以下の構造化項目は話題の同一判定に使うため、採用する記事では必ず出力してください(fact_slotsは確認できる事実だけ。なければ空配列)。モデル・製品名は正確に区別し(例: Gemini 3 FlashとGemini 3 Proは別物)、掲載日・閲覧数・四捨五入した換算金額・『5』と『5.0』の表記差を新しい進展として扱わないでください。地域や提供チャネルの違いは、同じ製品・制度が実際にそこへ拡大した場合だけ進展です。\n候補:\n" +
     JSON.stringify(list);
 
   let response;
@@ -1819,8 +1819,8 @@ function bootstrapCacheResult(cache,source,result) {
   const dailyBudget=Number(process.env.AI_DAILY_BUDGET_USD||0);
   const budgetExhausted=dailyBudget>0&&today.estimated_usd>=dailyBudget;
   const regularRemaining=budgetExhausted?0:Math.max(0,AI_DAILY_UNIQUE_LIMIT-today.regular_processed);
-  // プロンプト更新だけでは既存記事が「処理済み」のまま残るため、毎回4件を上限に
-  // 旧要約へ再度一次情報の文脈を付け、深い2段落の解説へ安全に移行する。
+  // プロンプト更新だけでは既存記事が「処理済み」のまま残るため、毎回8件を上限に
+  // 旧要約へ再度一次情報の文脈を付け、記事固有の深い3段落へ安全に移行する。
   const migrationFresh=previous.filter(needsDeepFriendlyMigration)
     .filter(item=>!cacheEntryFor(item,cache));
   const migrationCandidates=selectProtectedCandidates(migrationFresh,

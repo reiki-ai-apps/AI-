@@ -14,17 +14,18 @@ vm.createContext(context);
 vm.runInContext(source.slice(0,mainStart),context);
 
 const promptVersion=vm.runInContext("PROMPT_VERSION",context);
-if(promptVersion!=="ai-radar-2026-08-28-v9-deeper-friendly"){
+if(promptVersion!=="ai-radar-2026-08-28-v10-contextual-depth"){
   throw new Error("deep friendly explanation prompt version was not activated");
 }
 const backfillLimit=vm.runInContext("AI_DEEP_BACKFILL_LIMIT",context);
-if(backfillLimit!==4)throw new Error("legacy friendly explanation backfill limit changed unexpectedly");
+if(backfillLimit!==8)throw new Error("legacy friendly explanation backfill limit changed unexpectedly");
 const deepExplanation=[
-  "OpenAIは新モデルをAPIで公開し、開発者が既存サービスへ組み込めるようにしました。APIは外部のソフトウェアからモデルを呼び出す仕組みで、今回は利用できるモデルの選択肢が増えたことになります。従来モデルを直ちに置き換える発表ではなく、用途に応じて選べる新しい選択肢として提供されます。提供条件と対象地域は公式文書で案内され、利用には対応するアカウントと開発環境が必要です。",
-  "重要なのは、単なる画面追加ではなく、企業が自社の業務システムへ新モデルを組み込める点です。文章作成だけでなく、問い合わせ対応や社内検索など、APIを使う既存の処理へ接続できる可能性があります。ただし、料金、速度、既存モデルとの差、すべての地域での利用可否は同じとは限りません。品質や費用対効果まで改善するかは発表だけでは判断できず、現時点で確認できる範囲と未確定の条件を分けて見る必要があります。"
-].join("\n");
+  "Anthropicの「Claude in Chrome」は、Claudeが閲覧中のページを読み、クリック、入力、画面遷移まで行える公式Chrome拡張機能です。通常のチャットが回答や手順の提案で止まるのに対し、ブラウザエージェントは許可されたページ上で実際に操作できます。公式案内では有料プランが対象で、利用する場所によって一般提供とベータの状態が異なります。",
+  "Claudeは開いているタブの画面情報を読み取り、ページ比較、フォーム入力、情報転記などを一連の作業として実行できます。AIの役割が「次の手順を答える」段階から「ブラウザ内の作業を代行する」段階へ進むため、クリックやコピーを減らせる可能性があります。ただし機能は起動方法や契約プランで異なり、提供範囲も段階的です。",
+  "注意点は、ページを理解するため対象タブのスクリーンショットが会話へ取り込まれ、画面上の個人情報や機密情報も見える可能性があることです。安全機能があっても、悪意あるページの指示をAIが拾うプロンプトインジェクションの危険はゼロではありません。対象プラン、サイト権限、データの扱いを公式情報で確認する必要があります。"
+].join("\n\n");
 if(!context.hasDeepFriendlyExplanation(deepExplanation)){
-  throw new Error("a two-paragraph deep friendly explanation was rejected");
+  throw new Error("a three-paragraph deep friendly explanation was rejected");
 }
 if(context.hasDeepFriendlyExplanation("OpenAIが新モデルを公開しました。詳しい条件は不明です。")){
   throw new Error("a thin friendly explanation was accepted");

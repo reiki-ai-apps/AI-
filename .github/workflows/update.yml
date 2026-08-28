@@ -178,12 +178,12 @@ jobs:
             if (!/[ぁ-んァ-ヶ一-龠々]/.test(explanation)) {
               errors.push(itemError(index, "日本語の解説がありません"));
             }
-            if (item.enrichment_version === "ai-radar-2026-08-28-v9-deeper-friendly") {
+            if (item.enrichment_version === "ai-radar-2026-08-28-v10-contextual-depth") {
               const detail = String(item.detail || "").trim();
               const compactLength = detail.replace(/\s+/g, "").length;
               const paragraphs = detail.split(/\n+/).map(value => value.trim()).filter(Boolean);
               const sentences = (detail.match(/[。！？!?]/g) || []).length;
-              if (compactLength < 260 || compactLength > 620 || paragraphs.length < 2 || sentences < 4) {
+              if (compactLength < 420 || compactLength > 720 || paragraphs.length < 3 || sentences < 7) {
                 errors.push(itemError(index, "やさしい深掘り解説の長さ・段落・文数が基準未達です"));
               }
             }
