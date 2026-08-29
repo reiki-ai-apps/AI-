@@ -1,0 +1,51 @@
+{
+  "schema_version": "kizashi.youtube-short-quality-gate.v2",
+  "run_id": "kizashi-20260830",
+  "revision_id": "kizashi-20260830-youtube-shorts-r3",
+  "status": "PASS_AWAITING_HUMAN_PLAYBACK_REVIEW",
+  "rounds": [
+    {
+      "round": 1,
+      "scope": "事実・根拠・権利・数値",
+      "status": "PASS",
+      "evidence": [
+        "OpenAI公式一次情報URLを説明欄へ記載",
+        "実在写真の既存権利台帳と9場面Hashを継承",
+        "Aivis Cloud 196文字・料金計算8.62円・承認上限9円",
+        "外部投稿receiptなしを維持"
+      ]
+    },
+    {
+      "round": 2,
+      "scope": "初見理解・需要・検索意図・価値・誤解",
+      "status": "PASS",
+      "evidence": [
+        "冒頭でAI停止前に行う5項目を明示",
+        "9場面35.24秒で一場面一要点",
+        "実在写真と要点スライドを融合",
+        "タイトルと説明欄はAIモデル切替・リスク管理の検索意図に一致"
+      ]
+    },
+    {
+      "round": 3,
+      "scope": "端末表示・公開運用・接続認証・費用・重複・復旧",
+      "status": "PASS_WITH_HUMAN_PLAYBACK_PENDING",
+      "evidence": [
+        "1080x1920・29.97fps・H.264 High・AAC 48kHz stereo",
+        "iPhone／Android相当UIの9フレーム重なり0px",
+        "字幕とスライド文字の重なり0px",
+        "字幕9件・音声9件・動画35.24秒",
+        "統合音量-16.2 LUFS・True Peak -1.8 dBFS",
+        "Aivis APIは直列1接続、FFmpeg 2スレッド、重い処理1件",
+        "YouTube外部アップロードは人の全編発音確認まで未実行"
+      ]
+    }
+  ],
+  "human_review": {
+    "required": true,
+    "scope": "全編の発音・読み飛ばし・不自然な間・音量",
+    "status": "PENDING"
+  },
+  "external_upload_receipt": null,
+  "external_publish_receipt": null
+}
