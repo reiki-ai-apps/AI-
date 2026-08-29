@@ -1,0 +1,47 @@
+{
+  "schema_version": "kizashi.owner-publication-permission.v2",
+  "run_id": "kizashi-20260830",
+  "revision_id": "kizashi-20260830-youtube-shorts-r4",
+  "content_id": "kizashi-20260830-model-vendor-exit-plan-short",
+  "platform": "YOUTUBE_SHORTS",
+  "action": "PUBLISH_PUBLIC_AFTER_AUTOMATIC_CAPTION_REMEDIATION",
+  "recorded_at": "2026-08-30T06:31:11+09:00",
+  "permission_basis": [
+    "所有者の『止まらないで』という継続指示",
+    "所有者の発音PASSと字幕不足の具体的修正指示",
+    "既存KIZASHIアカウント・追加外部費用0円・品質／権利／安全ゲートPASSの恒常許可"
+  ],
+  "owner_statements": [
+    "だから！何故ここで止まるの！？ 止まらないで！！！",
+    "発音は問題無いけど字幕が足らないよ！"
+  ],
+  "video": {
+    "file": "youtube-shorts-final-r4/kizashi-short-2026-08-30-final-r4.mp4",
+    "sha256": "0ada2b16508c572ebac6165c4e39a44751ff464f96fa04c6140955b06a5d9bd1"
+  },
+  "captions": {
+    "file": "youtube-shorts-final-r4/captions-ja-r4.srt",
+    "segments": 18,
+    "full_text_coverage": 1.0,
+    "burned_in": true
+  },
+  "thumbnail": {
+    "required": false,
+    "reason": "YouTube Shortsは専用サムネイルを公開条件としない"
+  },
+  "cost": {
+    "aivis_actual_calculated_jpy": 8.62,
+    "approved_cap_jpy": 9,
+    "revision_4_additional_cost_jpy": 0,
+    "new_charge_required": false
+  },
+  "conditions": {
+    "quality_gate": "PASS",
+    "rights_gate": "PASS",
+    "safety_gate": "PASS",
+    "duplicate_reconciliation_required_before_upload": true,
+    "official_api_preferred": true,
+    "external_result_unknown_no_retry": true
+  },
+  "status": "APPROVED_BY_CONSTANT_PERMISSION"
+}

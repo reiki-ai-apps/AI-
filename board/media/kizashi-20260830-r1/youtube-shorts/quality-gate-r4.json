@@ -1,0 +1,46 @@
+{
+  "schema_version": "kizashi.youtube-short-quality-gate.v3",
+  "run_id": "kizashi-20260830",
+  "revision_id": "kizashi-20260830-youtube-shorts-r4",
+  "status": "PASS",
+  "rounds": [
+    {
+      "round": 1,
+      "scope": "事実・根拠・権利・数値",
+      "status": "PASS",
+      "evidence": [
+        "Revision 3の検証済み映像・音声・一次情報・権利台帳を継承",
+        "音声再生成なし、追加費用0円",
+        "字幕連結文字列が表示用ナレーション全文と完全一致"
+      ]
+    },
+    {
+      "round": 2,
+      "scope": "初見理解・需要・検索意図・価値・誤解",
+      "status": "PASS",
+      "evidence": [
+        "短縮表示9件を音声追従字幕18件へ置換",
+        "一字幕一要点で自然な語句境界へ分割",
+        "旧短縮字幕を不透明背景で完全に置換"
+      ]
+    },
+    {
+      "round": 3,
+      "scope": "端末表示・公開運用・接続認証・費用・重複・復旧",
+      "status": "PASS",
+      "evidence": [
+        "字幕領域 x=64..920 / y=960..1270",
+        "Shorts UI安全領域（右160px・下420px）との重なり0px",
+        "スライド文字領域との重なり0px",
+        "外部投稿未実行、Revision 3承認無効化、二重投稿なし"
+      ]
+    }
+  ],
+  "owner_feedback": {
+    "pronunciation": "PASS",
+    "revision_3_captions": "NG_INCOMPLETE",
+    "revision_4_remediation": "COMPLETE"
+  },
+  "external_upload_receipt": null,
+  "external_publish_receipt": null
+}
