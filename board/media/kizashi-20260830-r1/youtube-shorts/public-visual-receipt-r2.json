@@ -1,0 +1,43 @@
+{
+  "schema_version": "kizashi-review-asset-publication-receipt.v1",
+  "run_id": "kizashi-20260830",
+  "platform": "YOUTUBE_SHORTS",
+  "revision": 2,
+  "repository": "reiki-ai-apps/AI-",
+  "destination": "main",
+  "commit": "894be5a72d9bcfd8b49565b6d09850396f95a7b1",
+  "published_at": "2026-08-30T00:35:00+09:00",
+  "pages_workflow": {
+    "run_id": 33260536245,
+    "conclusion": "success"
+  },
+  "security_workflow": {
+    "run_id": 33260536499,
+    "conclusion": "success"
+  },
+  "board_tests": "PASS 48/48",
+  "secret_and_local_path_scan": "PASS",
+  "verified_urls": [
+    {
+      "url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260830-r1/youtube-shorts/video-review.html",
+      "status": 200,
+      "bytes": 1872,
+      "sha256": "e4f360fa6167f616dd08805bd9d38d5310296dcd4fdf794ba55a95f8cbce9701"
+    },
+    {
+      "url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260830-r1/youtube-shorts/kizashi-2026-08-30-visual-r1.mp4",
+      "status": 200,
+      "bytes": 2995449,
+      "sha256": "34a2ee4d569b18991e827163af60518d8e17b5b6ef89c22856c8adf4a9b746bb"
+    },
+    {
+      "url": "https://reiki-ai-apps.github.io/AI-/board/data/status.json",
+      "status": 200,
+      "bytes": 33800,
+      "contains_revision_2": true
+    }
+  ],
+  "external_reservation_receipts": 0,
+  "external_publication_receipts": 0,
+  "state": "REVIEW_VIDEO_PUBLISHED_AND_VERIFIED"
+}
