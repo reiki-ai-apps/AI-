@@ -36,7 +36,7 @@
     "ass_sha256": "9dff8f59b7a221128735d18560dd4320dc0eb19a66c514b67c5ee68b1f997710",
     "segments": 18,
     "narration_scene_count": 9,
-    "full_text_coverage": 1.0,
+    "full_text_coverage": 1,
     "burned_in": true,
     "old_abbreviated_caption_box_replaced": true,
     "box": {
@@ -58,14 +58,14 @@
       "frame_sha256": "61e3aaee5c190a347e402192a5ec6e7e118a2936d14af16d84b51a7502b8ca0b",
       "audio": "youtube-shorts-final-r3/audio/clean/scene-01.wav",
       "audio_sha256": "12594e81a64783ba9ee2246c9e22d895517236382973efcbd3792a72c18f0aa5",
-      "start_seconds": 0.0,
+      "start_seconds": 0,
       "end_seconds": 5.541229,
       "audio_duration_seconds": 5.381229,
       "caption_chunks": [
         {
           "index": 1,
           "scene": 1,
-          "start_seconds": 0.0,
+          "start_seconds": 0,
           "end_seconds": 2.323741,
           "text": "使っているAIが止まる前に、"
         },
@@ -311,6 +311,17 @@
       ]
     }
   ],
-  "external_upload_receipt": null,
-  "external_publish_receipt": null
+  "external_upload_receipt": {
+    "status": "UPLOAD_CONFIRMED_THEN_PUBLISHED",
+    "external_post_id": "cYcqRkIL8mQ",
+    "public_url": "https://www.youtube.com/shorts/cYcqRkIL8mQ",
+    "receipt_file": "youtube-shorts-final-r4/youtube-upload-receipt-r4.json"
+  },
+  "external_publish_receipt": {
+    "status": "PUBLISHED_AND_EXTERNALLY_VERIFIED",
+    "external_post_id": "cYcqRkIL8mQ",
+    "public_url": "https://www.youtube.com/shorts/cYcqRkIL8mQ",
+    "published_at": "2026-08-30T06:50:26.069+09:00",
+    "receipt_file": "youtube-shorts-final-r4/youtube-publication-receipt-r4.json"
+  }
 }
