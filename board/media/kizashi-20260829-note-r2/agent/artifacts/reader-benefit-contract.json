@@ -1,0 +1,163 @@
+{
+  "schema_version": "reader-benefit-contract/v1",
+  "status": "PASS",
+  "source_hash": "94f252b913bd6479263221e9bca8ea7950e34bf91716b108c1133e07badd6fcb",
+  "article_hash": "94f252b913bd6479263221e9bca8ea7950e34bf91716b108c1133e07badd6fcb",
+  "primary_reader": {
+    "role": "社内AIエージェントへ本番権限を渡す可否を決める情報システム責任者",
+    "responsibility": "本番導入または研修評価の基準を決裁し、事故・誤評価時の説明責任を持つ",
+    "context": "ファイル操作・外部API・投稿を含む実証実験が終わり、本番アカウントと認証情報の付与を決裁する会議",
+    "knowledge_level": "AIの基本を理解するが、専門的な安全設計または教育測定は担当外でも読める",
+    "exclusions": [
+      "攻撃手順だけを求める人",
+      "一次情報の要約だけで足りる人"
+    ]
+  },
+  "situation_trigger": "ファイル操作・外部API・投稿を含む実証実験が終わり、本番アカウントと認証情報の付与を決裁する会議",
+  "before_state": {
+    "blocked_decision": "現在の草案だけでは本番可否または評価基準を決裁できない",
+    "current_workaround": "担当者の経験と総合的な印象で個別判断している",
+    "inaction_cost": "確認漏れ、判断のばらつき、事故または誤評価後の説明負荷が残る"
+  },
+  "after_state": {
+    "enabled_decision": "本番権限を決裁する情報システム責任者が、5つの境界表と停止・復旧手順で許可範囲を決め、目的外通信と復旧不能な操作のリスクを減らす記事。",
+    "first_action": "記事内の完全版成果物を一つ選び、次回会議または研修の対象一件へ記入する",
+    "deliverable": "比較表、判断表、手順、チェックリストをコピーして使える",
+    "time_to_value": "最初の会議または次の10件の評価から確認できる"
+  },
+  "one_sentence_benefit": "本番権限を決裁する情報システム責任者が、5つの境界表と停止・復旧手順で許可範囲を決め、目的外通信と復旧不能な操作のリスクを減らす記事。",
+  "benefit_units": [
+    {
+      "benefit_id": "B01",
+      "benefit_type": "risk",
+      "gain": "5つの境界線で確認漏れを減らす",
+      "mechanism": "権限・通信・共有・停止・復旧を分離する",
+      "deliverable": "5つの境界線",
+      "section_anchor": "## 全体像：5つの境界線",
+      "evidence_basis": "一次情報の事故要因と対策",
+      "metric_or_proxy": "空欄の境界数",
+      "access": "free"
+    },
+    {
+      "benefit_id": "B02",
+      "benefit_type": "quality",
+      "gain": "権限追加を影響範囲と復旧可能性で決める",
+      "mechanism": "操作別の初期値と停止条件を並べる",
+      "deliverable": "実行権限の境界表",
+      "section_anchor": "## 成果物1：実行権限の境界表",
+      "evidence_basis": "OpenAI事故報告と防御設計",
+      "metric_or_proxy": "未定義の高影響操作数",
+      "access": "paid"
+    },
+    {
+      "benefit_id": "B03",
+      "benefit_type": "risk",
+      "gain": "目的外行動の継続と二重送信を防ぐ",
+      "mechanism": "失敗回数・費用・外部結果不明で停止段階を変える",
+      "deliverable": "5段階の停止条件",
+      "section_anchor": "## 成果物3：5段階の停止条件",
+      "evidence_basis": "報告された停止失敗と運用対策",
+      "metric_or_proxy": "自動停止条件の設定数",
+      "access": "paid"
+    },
+    {
+      "benefit_id": "B04",
+      "benefit_type": "effort",
+      "gain": "本番会議の確認を一枚で終える",
+      "mechanism": "12項目へ担当者と期限を付ける",
+      "deliverable": "本番前12項目チェックリスト",
+      "section_anchor": "## 成果物4：本番前12項目チェックリスト",
+      "evidence_basis": "5境界の実装項目",
+      "metric_or_proxy": "未確認項目と担当未設定数",
+      "access": "paid"
+    }
+  ],
+  "free_contract": {
+    "reader_self_identification": "冒頭で役職、発生場面、向かない人を明示する",
+    "news_meaning": "一次情報が自社の判断へどう関係するかを図で先出しする",
+    "promised_outcome": "本番権限を決裁する情報システム責任者が、5つの境界表と停止・復旧手順で許可範囲を決め、目的外通信と復旧不能な操作のリスクを減らす記事。",
+    "non_target_warning": "同等の台帳または評価表を運用済みなら購入不要と明示する",
+    "sample_value": "無料部分で全体像と一次情報の意味を確認できる"
+  },
+  "paid_contract": {
+    "deliverables": [
+      {
+        "name": "実行権限の境界表",
+        "decision_enabled": "読む・書く・削除・資格情報利用の初期値を決める",
+        "action_enabled": "読む・書く・削除・資格情報利用の初期値を決める",
+        "section_anchor": "## 成果物1：実行権限の境界表"
+      },
+      {
+        "name": "外部通信と共有領域の経路図",
+        "decision_enabled": "直接通信と内部中継を分けて許可する",
+        "action_enabled": "直接通信と内部中継を分けて許可する",
+        "section_anchor": "## 成果物2：外部通信と共有領域の経路図"
+      },
+      {
+        "name": "5段階の停止条件",
+        "decision_enabled": "再試行・停止・隔離・事故対応を分ける",
+        "action_enabled": "再試行・停止・隔離・事故対応を分ける",
+        "section_anchor": "## 成果物3：5段階の停止条件"
+      },
+      {
+        "name": "本番前12項目チェックリスト",
+        "decision_enabled": "担当者と期限を付けて本番可否を決める",
+        "action_enabled": "担当者と期限を付けて本番可否を決める",
+        "section_anchor": "## 成果物4：本番前12項目チェックリスト"
+      }
+    ],
+    "price_justification": "一次情報を実務用の判断表・テンプレート・完全版チェックへ変換し、そのまま会議または研修へ使えるため500円とする。",
+    "free_alternative_gap": "一次情報は無料だが、自社の判断へ翻訳する表、記入例、停止条件、採点手順は含まれない。"
+  },
+  "proof_map": [
+    {
+      "benefit_id": "B01",
+      "claim_ids": [
+        "incident-date-and-scope",
+        "incident-contributing-patterns",
+        "incident-remediation"
+      ],
+      "section_anchor": "## 全体像：5つの境界線"
+    },
+    {
+      "benefit_id": "B02",
+      "claim_ids": [
+        "incident-date-and-scope",
+        "incident-contributing-patterns",
+        "incident-remediation"
+      ],
+      "section_anchor": "## 成果物1：実行権限の境界表"
+    },
+    {
+      "benefit_id": "B03",
+      "claim_ids": [
+        "incident-date-and-scope",
+        "incident-contributing-patterns",
+        "incident-remediation"
+      ],
+      "section_anchor": "## 成果物3：5段階の停止条件"
+    },
+    {
+      "benefit_id": "B04",
+      "claim_ids": [
+        "incident-date-and-scope",
+        "incident-contributing-patterns",
+        "incident-remediation"
+      ],
+      "section_anchor": "## 成果物4：本番前12項目チェックリスト"
+    }
+  ],
+  "five_second_test": {
+    "who_is_it_for": "社内AIエージェントへ本番権限を渡す可否を決める情報システム責任者",
+    "what_do_they_get": "比較表、判断表、手順、チェックリスト",
+    "what_can_they_do_next": "次の会議または研修対象一件へ記入して基準を検証する"
+  },
+  "scorecard": {
+    "reader_specificity": 19,
+    "problem_stakes": 18,
+    "outcome_specificity": 19,
+    "delivery_strength": 19,
+    "paid_necessity": 18
+  },
+  "fatal_issues": []
+}

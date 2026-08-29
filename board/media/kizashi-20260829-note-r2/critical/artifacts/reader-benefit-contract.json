@@ -1,0 +1,169 @@
+{
+  "schema_version": "reader-benefit-contract/v1",
+  "status": "PASS",
+  "source_hash": "511eeaf6922d8a7d381ed382a0b49e61139db7c149dcbe9faa743084a874b21b",
+  "article_hash": "511eeaf6922d8a7d381ed382a0b49e61139db7c149dcbe9faa743084a874b21b",
+  "primary_reader": {
+    "role": "生成AI利用を許可した研修・採用課題の評価基準を改定する人材開発責任者",
+    "responsibility": "本番導入または研修評価の基準を決裁し、事故・誤評価時の説明責任を持つ",
+    "context": "AI利用後の提出物が整う一方、本人の理解と独自性を採点表で確認できず、次回研修の基準を改定する時",
+    "knowledge_level": "AIの基本を理解するが、専門的な安全設計または教育測定は担当外でも読める",
+    "exclusions": [
+      "攻撃手順だけを求める人",
+      "一次情報の要約だけで足りる人"
+    ]
+  },
+  "situation_trigger": "AI利用後の提出物が整う一方、本人の理解と独自性を採点表で確認できず、次回研修の基準を改定する時",
+  "before_state": {
+    "blocked_decision": "現在の草案だけでは本番可否または評価基準を決裁できない",
+    "current_workaround": "担当者の経験と総合的な印象で個別判断している",
+    "inaction_cost": "確認漏れ、判断のばらつき、事故または誤評価後の説明負荷が残る"
+  },
+  "after_state": {
+    "enabled_decision": "AI利用研修の評価基準を改定する人材開発責任者が、完成度と思考の証拠を分ける二軸評価表で本人の判断を確認し、採点の印象差と平均的な答えへの収束を減らす記事。",
+    "first_action": "記事内の完全版成果物を一つ選び、次回会議または研修の対象一件へ記入する",
+    "deliverable": "比較表、判断表、手順、チェックリストをコピーして使える",
+    "time_to_value": "最初の会議または次の10件の評価から確認できる"
+  },
+  "one_sentence_benefit": "AI利用研修の評価基準を改定する人材開発責任者が、完成度と思考の証拠を分ける二軸評価表で本人の判断を確認し、採点の印象差と平均的な答えへの収束を減らす記事。",
+  "benefit_units": [
+    {
+      "benefit_id": "B01",
+      "benefit_type": "quality",
+      "gain": "完成度と独自性を同じ点数へ混ぜない",
+      "mechanism": "AI支援と思考訓練が伸ばしたものを分ける",
+      "deliverable": "二軸評価表",
+      "section_anchor": "## まず見る図：完成度と独自性は同じではない",
+      "evidence_basis": "無作為化実験の比較結果",
+      "metric_or_proxy": "軸ごとの採点差",
+      "access": "free"
+    },
+    {
+      "benefit_id": "B02",
+      "benefit_type": "quality",
+      "gain": "自社研修で比較する支援と観察項目を固定する",
+      "mechanism": "4条件の実験設計を小規模検証へ翻訳する",
+      "deliverable": "4つの条件を研修へ翻訳する比較図",
+      "section_anchor": "## 成果物1：4つの条件を研修へ翻訳する比較図",
+      "evidence_basis": "1,000人超の無作為化実験",
+      "metric_or_proxy": "比較条件と観察項目の欠落数",
+      "access": "paid"
+    },
+    {
+      "benefit_id": "B03",
+      "benefit_type": "effort",
+      "gain": "採点者が本人の判断証拠を短時間で確認する",
+      "mechanism": "完成度と思考の証拠を別表で採点する",
+      "deliverable": "完成度と思考の証拠を分ける二軸評価表",
+      "section_anchor": "## 成果物2：完成度と思考の証拠を分ける二軸評価表",
+      "evidence_basis": "研究結果と自社評価設計",
+      "metric_or_proxy": "採点者間の点差",
+      "access": "paid"
+    },
+    {
+      "benefit_id": "B04",
+      "benefit_type": "quality",
+      "gain": "AI利用後も因果・前提・失敗・検証を確認する",
+      "mechanism": "5行の因果説明へ判断を圧縮する",
+      "deliverable": "因果説明テンプレート",
+      "section_anchor": "## 成果物3：因果説明テンプレート",
+      "evidence_basis": "因果推論訓練の効果",
+      "metric_or_proxy": "必要項目の記入率",
+      "access": "paid"
+    }
+  ],
+  "free_contract": {
+    "reader_self_identification": "冒頭で役職、発生場面、向かない人を明示する",
+    "news_meaning": "一次情報が自社の判断へどう関係するかを図で先出しする",
+    "promised_outcome": "AI利用研修の評価基準を改定する人材開発責任者が、完成度と思考の証拠を分ける二軸評価表で本人の判断を確認し、採点の印象差と平均的な答えへの収束を減らす記事。",
+    "non_target_warning": "同等の台帳または評価表を運用済みなら購入不要と明示する",
+    "sample_value": "無料部分で全体像と一次情報の意味を確認できる"
+  },
+  "paid_contract": {
+    "deliverables": [
+      {
+        "name": "研修条件の比較図",
+        "decision_enabled": "支援の種類と観察項目を分ける",
+        "action_enabled": "支援の種類と観察項目を分ける",
+        "section_anchor": "## 成果物1：4つの条件を研修へ翻訳する比較図"
+      },
+      {
+        "name": "完成度と思考の証拠を分ける二軸評価表",
+        "decision_enabled": "四象限から次の支援を決める",
+        "action_enabled": "四象限から次の支援を決める",
+        "section_anchor": "## 成果物2：完成度と思考の証拠を分ける二軸評価表"
+      },
+      {
+        "name": "因果説明テンプレート",
+        "decision_enabled": "本人の判断を5行で確認する",
+        "action_enabled": "本人の判断を5行で確認する",
+        "section_anchor": "## 成果物3：因果説明テンプレート"
+      },
+      {
+        "name": "AI利用前後の提出チェック",
+        "decision_enabled": "AI利用前後の判断差分を残す",
+        "action_enabled": "AI利用前後の判断差分を残す",
+        "section_anchor": "## 成果物4：AI利用前後の提出チェック"
+      },
+      {
+        "name": "研修設計を変える3つの方法",
+        "decision_enabled": "提出・課題・反証採点を改定する",
+        "action_enabled": "提出・課題・反証採点を改定する",
+        "section_anchor": "## 成果物5：研修設計を変える3つの方法"
+      }
+    ],
+    "price_justification": "一次情報を実務用の判断表・テンプレート・完全版チェックへ変換し、そのまま会議または研修へ使えるため500円とする。",
+    "free_alternative_gap": "一次情報は無料だが、自社の判断へ翻訳する表、記入例、停止条件、採点手順は含まれない。"
+  },
+  "proof_map": [
+    {
+      "benefit_id": "B01",
+      "claim_ids": [
+        "student-randomized-experiment",
+        "chatgpt-effect",
+        "critical-thinking-effect"
+      ],
+      "section_anchor": "## まず見る図：完成度と独自性は同じではない"
+    },
+    {
+      "benefit_id": "B02",
+      "claim_ids": [
+        "student-randomized-experiment",
+        "chatgpt-effect",
+        "critical-thinking-effect"
+      ],
+      "section_anchor": "## 成果物1：4つの条件を研修へ翻訳する比較図"
+    },
+    {
+      "benefit_id": "B03",
+      "claim_ids": [
+        "student-randomized-experiment",
+        "chatgpt-effect",
+        "critical-thinking-effect"
+      ],
+      "section_anchor": "## 成果物2：完成度と思考の証拠を分ける二軸評価表"
+    },
+    {
+      "benefit_id": "B04",
+      "claim_ids": [
+        "student-randomized-experiment",
+        "chatgpt-effect",
+        "critical-thinking-effect"
+      ],
+      "section_anchor": "## 成果物3：因果説明テンプレート"
+    }
+  ],
+  "five_second_test": {
+    "who_is_it_for": "生成AI利用を許可した研修・採用課題の評価基準を改定する人材開発責任者",
+    "what_do_they_get": "比較表、判断表、手順、チェックリスト",
+    "what_can_they_do_next": "次の会議または研修対象一件へ記入して基準を検証する"
+  },
+  "scorecard": {
+    "reader_specificity": 19,
+    "problem_stakes": 18,
+    "outcome_specificity": 19,
+    "delivery_strength": 19,
+    "paid_necessity": 18
+  },
+  "fatal_issues": []
+}

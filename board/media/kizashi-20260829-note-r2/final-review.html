@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>KIZASHI note Revision 2｜確認用成果物</title>
+  <style>
+    :root{--ink:#10233f;--muted:#52647a;--line:#dbe5f1;--blue:#1769e0;--aqua:#13a6a0;--amber:#f2a51f;--bg:#f4f7fb}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",system-ui,sans-serif;line-height:1.8}
+    .top{height:8px;background:linear-gradient(90deg,var(--blue),var(--aqua),var(--amber))}
+    header,main,footer{width:min(1180px,calc(100% - 32px));margin:auto}header{padding:42px 0 26px}
+    .eyebrow{font-weight:800;color:var(--blue);letter-spacing:.08em}.lead{max-width:830px;font-size:18px;color:var(--muted)}
+    h1{margin:.2em 0 .35em;font-size:clamp(32px,5vw,58px);line-height:1.18}h2{font-size:clamp(25px,3vw,35px);line-height:1.35;margin:.2em 0}
+    .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}.pill{background:white;border:1px solid var(--line);border-radius:16px;padding:14px 16px;font-weight:800}
+    .pill small{display:block;color:var(--muted);font-weight:600}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;padding:20px 0 42px}
+    article{background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 16px 36px rgba(16,35,63,.08)}
+    .thumb{display:block;width:100%;aspect-ratio:1280/670;object-fit:cover;background:#e8eef7}.body{padding:26px}
+    .status{display:inline-block;border-radius:999px;padding:6px 12px;background:#fff2cc;color:#7a4b00;font-weight:800}.checks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:20px 0}
+    .check{border:1px solid var(--line);border-radius:13px;padding:12px}.check b{display:block;color:#0b7d66}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+    a.btn{display:inline-block;text-decoration:none;border-radius:12px;padding:11px 15px;font-weight:800;background:var(--blue);color:#fff}a.btn.alt{background:#fff;color:var(--blue);border:1px solid var(--blue)}
+    .sheet{display:block;width:100%;margin-top:22px;border-radius:14px;border:1px solid var(--line)}
+    .notice{margin:0 0 36px;background:#fff;border-left:6px solid var(--amber);padding:18px 20px;border-radius:10px}.notice b{color:#8b5200}
+    footer{padding:24px 0 46px;color:var(--muted);font-size:14px}
+    @media(max-width:760px){header,main,footer{width:min(100% - 22px,1180px)}.summary,.grid{grid-template-columns:1fr}.checks{grid-template-columns:1fr}.lead{font-size:16px}.body{padding:20px}}
+  </style>
+</head>
+<body>
+  <div class="top"></div>
+  <header>
+    <div class="eyebrow">KIZASHI NOTE / REVISION 2 / 2026.08.29</div>
+    <h1>実写と判断図で読む、<br>有料note 2記事</h1>
+    <p class="lead">添付された施設園芸2記事を最低ラインとして、実写の主役、先出し要約、見出し階層、図解、表、チェックリスト、価格理由、一次情報を一画面で追える誌面へ再設計しました。サムネイルは全案にタイトル／コピーを焼き込んでいます。</p>
+    <div class="summary">
+      <div class="pill">2記事<small>別content_id・別読者課題</small></div>
+      <div class="pill">12点<small>記事内ビジュアル各6点</small></div>
+      <div class="pill">6案<small>コピー入りサムネイル各3案</small></div>
+      <div class="pill">0件<small>外部予約・公開receipt</small></div>
+    </div>
+  </header>
+  <main>
+    <div class="notice"><b>状態：制作中。</b> 本文・誌面・権利・PC／375px表示は合格済みです。外部60件サムネイル比較が未完のため、サムネイルは内部候補のまま公開候補へ昇格していません。外部予約・公開は実行していません。</div>
+    <section class="grid">
+      <article>
+        <img class="thumb" src="agent/visuals/thumbnail-1.jpg" alt="AI権限 5つの境界というコピー入りサムネイル">
+        <div class="body">
+          <span class="status">制作中／本文・誌面PASS</span>
+          <h2>AIエージェントを本番へ出す前に決める「5つの境界線」</h2>
+          <p>情報システム責任者向け。実行権限、外部通信、共有領域、停止条件、監視と復旧を、境界表・停止判断表・12項目チェックへ変換します。</p>
+          <div class="checks">
+            <div class="check"><b>本文監査 PASS</b>4,446字／一次URL 4本</div>
+            <div class="check"><b>表示検査 PASS</b>PC 17px／375px 16px</div>
+            <div class="check"><b>画像検査 PASS</b>実写＋判断図6点</div>
+            <div class="check"><b>権利検査 PASS</b>生成写真0点／出典表示</div>
+          </div>
+          <div class="actions">
+            <a class="btn" href="agent/article-preview.html">記事を読む</a>
+            <a class="btn alt" href="agent/article.md">本文Markdown</a>
+            <a class="btn alt" href="agent/artifacts/audit-report.json">監査結果</a>
+          </div>
+          <img class="sheet" src="agent/screenshots/article-visual-contact-sheet.jpg" alt="5つの境界線記事の実写と図解6点の一覧">
+          <img class="sheet" src="agent/screenshots/thumbnail-contact-sheet.jpg" alt="5つの境界線記事のコピー入りサムネイル3案">
+        </div>
+      </article>
+      <article>
+        <img class="thumb" src="critical/visuals/thumbnail-1.jpg" alt="AIで整う。独自性は別というコピー入りサムネイル">
+        <div class="body">
+          <span class="status">制作中／本文・誌面PASS</span>
+          <h2>AIで文章が整っても、独自性は別に測る</h2>
+          <p>人材開発責任者向け。完成度と思考の証拠を分ける二軸評価表、因果説明テンプレート、提出チェック、採点者の揃え方を提供します。</p>
+          <div class="checks">
+            <div class="check"><b>本文監査 PASS</b>4,331字／一次URL 3本</div>
+            <div class="check"><b>表示検査 PASS</b>PC 17px／375px 16px</div>
+            <div class="check"><b>画像検査 PASS</b>実写＋判断図6点</div>
+            <div class="check"><b>権利検査 PASS</b>生成写真0点／出典表示</div>
+          </div>
+          <div class="actions">
+            <a class="btn" href="critical/article-preview.html">記事を読む</a>
+            <a class="btn alt" href="critical/article.md">本文Markdown</a>
+            <a class="btn alt" href="critical/artifacts/audit-report.json">監査結果</a>
+          </div>
+          <img class="sheet" src="critical/screenshots/article-visual-contact-sheet.jpg" alt="二軸評価記事の実写と図解6点の一覧">
+          <img class="sheet" src="critical/screenshots/thumbnail-contact-sheet.jpg" alt="二軸評価記事のコピー入りサムネイル3案">
+        </div>
+      </article>
+    </section>
+  </main>
+  <footer>確認用成果物。価格は各500円。投稿先はnote。外部予約ID・公開ID・公開URL・receiptはいずれも未取得です。</footer>
+</body>
+</html>

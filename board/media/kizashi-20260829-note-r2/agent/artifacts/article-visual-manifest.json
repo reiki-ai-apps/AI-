@@ -1,0 +1,181 @@
+{
+  "schema_version": "article-visual-manifest/v1",
+  "article_hash": "94f252b913bd6479263221e9bca8ea7950e34bf91716b108c1133e07badd6fcb",
+  "visuals": [
+    {
+      "visual_id": "visual-01-context",
+      "category": "contextual_illustration_or_photo",
+      "type": "photo",
+      "file": "visuals/visual-01-context.jpg",
+      "sha256": "afef6fbddad9aad80bbe1265d92f400dd59ba9a8d9028c61d0f58ada1b7775f8",
+      "alt_text": "実際のサーバー設備と運用担当の作業場に、権限・通信・共有・停止・復旧の5領域を重ねた図",
+      "caption": "Photo: Brett Sayles / Pexels",
+      "purpose": "実在設備を見せて、AIの仕事が画面内だけでないことを理解する",
+      "reader_question": "まず見る図：本番前の作業場で何を判断するか",
+      "decision_or_action": "実在設備を見せて、AIの仕事が画面内だけでないことを理解する",
+      "placement_anchor": "まず見る図：本番前の作業場",
+      "section": "まず見る図：本番前の作業場",
+      "paid_or_free": "free",
+      "benefit_unit_ids": [
+        "B01"
+      ],
+      "claim_ids": [
+        "incident-date-and-scope"
+      ],
+      "rights": "licensed",
+      "source_urls": [
+        "https://openai.com/index/hugging-face-incident-and-the-road-ahead/"
+      ],
+      "content_match_reason": "実在設備を見せて、AIの仕事が画面内だけでないことを理解する",
+      "width": 1280,
+      "height": 670,
+      "external_claims": "verified_claim_ids"
+    },
+    {
+      "visual_id": "visual-02-overview",
+      "category": "overview_diagram",
+      "type": "diagram",
+      "file": "visuals/visual-02-overview.jpg",
+      "sha256": "21ada0d813524c651f2441e1fb25e8ea8cc5662126545d254e059ca06e66407f",
+      "alt_text": "AIエージェントを囲む実行権限、外部通信、共有領域、停止条件、監視と復旧の5つの境界線",
+      "caption": "自社作成図解",
+      "purpose": "5領域の連鎖と確認順を一目で把握する",
+      "reader_question": "全体像：5つの境界線で何を判断するか",
+      "decision_or_action": "5領域の連鎖と確認順を一目で把握する",
+      "placement_anchor": "全体像：5つの境界線",
+      "section": "全体像：5つの境界線",
+      "paid_or_free": "free",
+      "benefit_unit_ids": [
+        "B01"
+      ],
+      "claim_ids": [
+        "incident-contributing-patterns"
+      ],
+      "rights": "owned",
+      "source_urls": [
+        "https://openai.com/index/hugging-face-incident-and-the-road-ahead/"
+      ],
+      "content_match_reason": "5領域の連鎖と確認順を一目で把握する",
+      "width": 1280,
+      "height": 670,
+      "external_claims": "verified_claim_ids"
+    },
+    {
+      "visual_id": "visual-03-permission-matrix",
+      "category": "comparison_or_decision_diagram",
+      "type": "chart",
+      "file": "visuals/visual-03-permission-matrix.jpg",
+      "sha256": "2a0eea461dbd180b92983860fda95d9b54a89ad6608b2b75e5352d297f11108c",
+      "alt_text": "読む、書く、削除、資格情報利用を影響範囲と復旧可能性で判定する実行権限表",
+      "caption": "自社作成図解",
+      "purpose": "操作別の初期値と停止条件を比較する",
+      "reader_question": "実行権限の境界表で何を判断するか",
+      "decision_or_action": "操作別の初期値と停止条件を比較する",
+      "placement_anchor": "実行権限の境界表",
+      "section": "実行権限の境界表",
+      "paid_or_free": "paid",
+      "benefit_unit_ids": [
+        "B02"
+      ],
+      "claim_ids": [
+        "incident-remediation"
+      ],
+      "rights": "owned",
+      "source_urls": [
+        "https://openai.com/index/hugging-face-incident-and-the-road-ahead/"
+      ],
+      "content_match_reason": "操作別の初期値と停止条件を比較する",
+      "width": 1280,
+      "height": 670,
+      "external_claims": "verified_claim_ids"
+    },
+    {
+      "visual_id": "visual-04-network-route",
+      "category": "comparison_or_decision_diagram",
+      "type": "diagram",
+      "file": "visuals/visual-04-network-route.jpg",
+      "sha256": "203e99f6201562f4fd0bcc1169f886123b245078a6236319a00e4687fc130525",
+      "alt_text": "実在する開発者の作業写真と、直接通信・内部中継・サービス間移動を区別した経路図",
+      "caption": "Photo: cottonbro studio / Pexels",
+      "purpose": "直接経路だけでなく内部中継を確認する",
+      "reader_question": "外部通信と共有領域の経路図で何を判断するか",
+      "decision_or_action": "直接経路だけでなく内部中継を確認する",
+      "placement_anchor": "外部通信と共有領域の経路図",
+      "section": "外部通信と共有領域の経路図",
+      "paid_or_free": "paid",
+      "benefit_unit_ids": [
+        "B02"
+      ],
+      "claim_ids": [
+        "incident-contributing-patterns"
+      ],
+      "rights": "licensed",
+      "source_urls": [
+        "https://openai.com/index/hugging-face-incident-and-the-road-ahead/"
+      ],
+      "content_match_reason": "直接経路だけでなく内部中継を確認する",
+      "width": 1280,
+      "height": 670,
+      "external_claims": "verified_claim_ids"
+    },
+    {
+      "visual_id": "visual-05-stop-ladder",
+      "category": "procedure_or_checklist_diagram",
+      "type": "timeline",
+      "file": "visuals/visual-05-stop-ladder.jpg",
+      "sha256": "8ab32e0206a723c71648d0a0fc44485453732ca24795d5784d109ea7a981a784",
+      "alt_text": "注意、一時停止、強制停止、隔離、事故対応へ進む5段階の停止ラダー",
+      "caption": "自社作成図解",
+      "purpose": "失敗状態ごとの自動処理と人判断を分ける",
+      "reader_question": "5段階の停止条件で何を判断するか",
+      "decision_or_action": "失敗状態ごとの自動処理と人判断を分ける",
+      "placement_anchor": "5段階の停止条件",
+      "section": "5段階の停止条件",
+      "paid_or_free": "paid",
+      "benefit_unit_ids": [
+        "B03"
+      ],
+      "claim_ids": [
+        "incident-contributing-patterns",
+        "incident-remediation"
+      ],
+      "rights": "owned",
+      "source_urls": [
+        "https://openai.com/index/hugging-face-incident-and-the-road-ahead/"
+      ],
+      "content_match_reason": "失敗状態ごとの自動処理と人判断を分ける",
+      "width": 1280,
+      "height": 670,
+      "external_claims": "verified_claim_ids"
+    },
+    {
+      "visual_id": "visual-06-recovery-check",
+      "category": "procedure_or_checklist_diagram",
+      "type": "checklist",
+      "file": "visuals/visual-06-recovery-check.jpg",
+      "sha256": "32f5d1824897a6fc5b882c39e36c556e0886e5e5f7b30a6d8611c021d189c8da",
+      "alt_text": "実在する運用担当者の写真と、検知・停止・隔離・照合・復旧のチェック順序",
+      "caption": "Photo: Christina Morillo / Pexels",
+      "purpose": "事故時の担当・証拠・照合・再開条件を決める",
+      "reader_question": "本番前12項目チェックリストで何を判断するか",
+      "decision_or_action": "事故時の担当・証拠・照合・再開条件を決める",
+      "placement_anchor": "本番前12項目チェックリスト",
+      "section": "本番前12項目チェックリスト",
+      "paid_or_free": "paid",
+      "benefit_unit_ids": [
+        "B04"
+      ],
+      "claim_ids": [
+        "incident-remediation"
+      ],
+      "rights": "licensed",
+      "source_urls": [
+        "https://openai.com/index/hugging-face-incident-and-the-road-ahead/"
+      ],
+      "content_match_reason": "事故時の担当・証拠・照合・再開条件を決める",
+      "width": 1280,
+      "height": 670,
+      "external_claims": "verified_claim_ids"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "article-layout-review/v1",
+  "baseline_id": "sanko-facility-horticulture-editorial-v1",
+  "article_hash": "511eeaf6922d8a7d381ed382a0b49e61139db7c149dcbe9faa743084a874b21b",
+  "pc_render_file": "screenshots/article-pc.png",
+  "pc_render_sha256": "34533dc1eaba69b434ebc338898026707263b1338367583eeaf09cb739554aad",
+  "mobile_render_file": "screenshots/article-mobile-375.png",
+  "mobile_render_sha256": "bd3612a470d62443a33512874927cb4b58af00058e68eca51fcd03fb371a2048",
+  "checks": {
+    "hero_title_hierarchy": "PASS",
+    "summary_block": "PASS",
+    "section_rhythm": "PASS",
+    "text_size_line_height": "PASS",
+    "controlled_palette": "PASS",
+    "visual_variety": "PASS",
+    "captions_alt": "PASS",
+    "pc_mobile_readability": "PASS",
+    "conclusion_cta": "PASS"
+  },
+  "reference_comparison": "施設園芸の参考2記事と同じく、最初の画面でタイトル・価値・主役を示し、先出し要約、章見出し、写真、判断図、表、チェックリストを交互に配置した。本文はPCで820px、スマートフォンで16px以上を守り、色は主色・注意色・補助色へ役割を限定。固有表現や画像は模倣せず、AIニュースの判断課題へ再設計した。",
+  "findings": [
+    "文字だけの長い連続を排除",
+    "全画像に意味とキャプションあり",
+    "有料境界前後の価値差が視覚で分かる"
+  ],
+  "fixes": [
+    "サムネイル主コピーを画像へ焼込み",
+    "実写と図解を融合",
+    "375pxで表を横スクロール化"
+  ],
+  "reviewed_at": "2026-08-29T02:45:00+09:00",
+  "status": "PASS"
+}
