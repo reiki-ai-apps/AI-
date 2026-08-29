@@ -14,20 +14,19 @@ vm.createContext(context);
 vm.runInContext(source.slice(0,mainStart),context);
 
 const promptVersion=vm.runInContext("PROMPT_VERSION",context);
-if(promptVersion!=="ai-radar-2026-08-28-v10-contextual-depth"){
-  throw new Error("deep friendly explanation prompt version was not activated");
+if(promptVersion!=="ai-radar-2026-08-29-v12-student-clear"){
+  throw new Error("student-friendly explanation prompt version was not activated");
 }
 const backfillLimit=vm.runInContext("AI_DEEP_BACKFILL_LIMIT",context);
 if(backfillLimit!==24)throw new Error("legacy friendly explanation backfill limit changed unexpectedly");
 const migrationBatchSize=vm.runInContext("AI_MIGRATION_BATCH_SIZE",context);
 if(migrationBatchSize!==2)throw new Error("legacy migration batch size changed unexpectedly");
 const deepExplanation=[
-  "Anthropicの「Claude in Chrome」は、Claudeが閲覧中のページを読み、クリック、入力、画面遷移まで行える公式Chrome拡張機能です。通常のチャットが回答や手順の提案で止まるのに対し、ブラウザエージェントは許可されたページ上で実際に操作できます。公式案内では有料プランが対象で、利用する場所によって一般提供とベータの状態が異なります。",
-  "Claudeは開いているタブの画面情報を読み取り、ページ比較、フォーム入力、情報転記などを一連の作業として実行できます。AIの役割が「次の手順を答える」段階から「ブラウザ内の作業を代行する」段階へ進むため、クリックやコピーを減らせる可能性があります。ただし機能は起動方法や契約プランで異なり、提供範囲も段階的です。",
-  "注意点は、ページを理解するため対象タブのスクリーンショットが会話へ取り込まれ、画面上の個人情報や機密情報も見える可能性があることです。安全機能があっても、悪意あるページの指示をAIが拾うプロンプトインジェクションの危険はゼロではありません。対象プラン、サイト権限、データの扱いを公式情報で確認する必要があります。"
+  "Anthropicは、Chrome上でClaudeにページ操作を任せられる公式機能「Claude in Chrome」を公開しました。これは、AIが質問に答えるだけでなく、開いているページを読み、クリックや入力まで進める仕組みです。たとえば、複数のページを比べたり、フォームへ情報を写したりする作業を助けます。",
+  "ただし、Claudeは作業のために画面の内容を読み取るので、個人情報や会社の秘密が見える場合があります。Webページに隠された悪い命令をAIが本物だと勘違いする攻撃にも注意が必要です。使える料金プランや地域は同じではないため、自分の環境で利用できるか公式案内を確認してください。"
 ].join("\n\n");
 if(!context.hasDeepFriendlyExplanation(deepExplanation)){
-  throw new Error("a three-paragraph deep friendly explanation was rejected");
+  throw new Error("a two-paragraph student-friendly explanation was rejected");
 }
 if(context.hasDeepFriendlyExplanation("OpenAIが新モデルを公開しました。詳しい条件は不明です。")){
   throw new Error("a thin friendly explanation was accepted");
@@ -38,7 +37,7 @@ if(!context.needsDeepFriendlyMigration(legacyExplanation)){
   throw new Error("a legacy thin explanation was not selected for migration");
 }
 if(context.needsDeepFriendlyMigration(currentExplanation)){
-  throw new Error("a current deep explanation was selected for migration again");
+  throw new Error("a current student-friendly explanation was selected for migration again");
 }
 const identityBound=context.bindLegacyMigrationIdentity(
   {...currentExplanation,source_url:"https://example.com/migration"},

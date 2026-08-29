@@ -11,8 +11,8 @@ let upgraded=0;
 const output=items.map(item=>{
   const next=upgradeFriendlyExplanationItem(item);
   if(next!==item)upgraded++;
-  if(!hasDeepFriendlyExplanation(next.detail))throw new Error(`friendly explanation remains incomplete: ${next.article_id||next.title}`);
+  if(!hasDeepFriendlyExplanation(next.detail))throw new Error(`student-friendly explanation remains incomplete: ${next.article_id||next.title}`);
   return next;
 });
 fs.writeFileSync(file,JSON.stringify(output,null,2)+"\n","utf8");
-console.log(`Friendly explanations ready: ${output.length} articles (${upgraded} safely expanded)`);
+console.log(`Student-friendly explanations ready: ${output.length} articles (${upgraded} safely simplified)`);

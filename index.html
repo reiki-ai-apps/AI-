@@ -4100,7 +4100,7 @@ function renderDetailEdit(v,u,tool){
       <div class="detail-title" style="font-size:20px">${esc(u.title)}</div>
       <div class="form-card">
         <div class="field"><label>かんたん要約</label>${ta('d_manual',u.manual_summary,'このアップデートを一言で。')}</div>
-        <div class="field"><label>やさしい解説</label>${ta('d_easy',u.easy_summary,'用語と従来との差、仕組みと重要性、制約・未確定点を3段落で説明。',12)}</div>
+        <div class="field"><label>やさしい解説</label>${ta('d_easy',u.easy_summary,'高校生にも分かる言葉で、出来事・変化・注意点を短い2段落で説明。',8)}</div>
         <div class="field"><label>何が変わったか</label>${ta('d_simple',u.simple_explanation,'専門用語を避けて、何が新しくなったか。')}</div>
         <div class="field"><label>仕事への影響</label>${ta('d_impact',u.impact_summary,'自分の仕事にどう役立つか。')}</div>
         <div class="field"><label>次にやること</label>${ta('d_action',u.action_suggestion,'具体的な次のアクション。')}</div>
