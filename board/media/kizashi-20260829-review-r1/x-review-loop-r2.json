@@ -1,0 +1,32 @@
+{
+  "schema_version": "reiki-x-review-loop.v1",
+  "run_id": "kizashi-20260829",
+  "revision": 2,
+  "account_handle": "@kizashi_jp",
+  "passes": [
+    {
+      "round": 1,
+      "status": "PASS",
+      "checks": ["一次情報URL", "数値", "断定範囲", "独自要約", "権利"]
+    },
+    {
+      "round": 2,
+      "status": "PASS",
+      "checks": ["初見理解", "別content_id", "別読者課題", "保存価値", "誤解防止"]
+    },
+    {
+      "round": 3,
+      "status": "PASS_WITH_CONNECTION_AND_COST_HOLD",
+      "checks": ["X加重文字数266/277", "公式URL", "投稿先", "当日料金", "重複防止"],
+      "hold": "X API利用者トークン未登録、URL付き2件のAPI費用0.40米ドルの明示承認なし"
+    }
+  ],
+  "pricing": {
+    "verified_at": "2026-08-29",
+    "official_url": "https://docs.x.com/x-api/getting-started/pricing",
+    "content_create_with_url_usd": 0.2,
+    "post_count": 2,
+    "estimated_total_usd": 0.4
+  },
+  "external_receipt_present": false
+}

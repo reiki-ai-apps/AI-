@@ -1,0 +1,46 @@
+{
+  "schema_version": "reiki-instagram-review-loop.v1",
+  "run_id": "kizashi-20260829",
+  "revision": 2,
+  "component_hash": "8fbba4d2f039769ab1d3df2a81afd15b3408bb219e4f22439eeeeff937392585",
+  "passes": [
+    {
+      "round": 1,
+      "status": "PASS",
+      "checks": [
+        "一次情報URL",
+        "数値と断定範囲",
+        "実写素材の権利台帳",
+        "日本語組版"
+      ]
+    },
+    {
+      "round": 2,
+      "status": "PASS",
+      "checks": [
+        "初見理解",
+        "別content_id・別読者課題",
+        "保存価値",
+        "各8枚の流れ",
+        "写真と内容の一致"
+      ]
+    },
+    {
+      "round": 3,
+      "status": "PASS_WITH_CONNECTION_HOLD",
+      "checks": [
+        "1080x1350",
+        "320px相当コンタクトシート",
+        "表紙コピー",
+        "クロップ",
+        "公開HTTPS URL設計",
+        "重複防止"
+      ],
+      "hold": "公式Graph API認証情報なし"
+    }
+  ],
+  "generated_photo_count": 0,
+  "real_photo_count": 16,
+  "cover_copy_in_image": true,
+  "external_receipt_present": false
+}

@@ -1,0 +1,26 @@
+{
+  "run_id": "kizashi-20260829",
+  "revision": 3,
+  "status": "PRODUCTION_VISUAL_QC_PASS_AUDIO_PENDING",
+  "rounds": [
+    {
+      "round": 1,
+      "focus": "一次根拠・権利・数字",
+      "status": "PASS",
+      "notes": "OpenAI公式一次情報、Pexels素材ページ、作者、素材Hashを固定"
+    },
+    {
+      "round": 2,
+      "focus": "初見理解・画像一致・AI生成感",
+      "status": "PASS",
+      "notes": "生成写真0点。実写4点を4つの連続区間で使用し、写真へ戻らない"
+    },
+    {
+      "round": 3,
+      "focus": "1080×1920・字幕・UI・費用・公開運用",
+      "status": "PASS_VISUAL_ONLY",
+      "notes": "9フレーム×iPhone/Android相当UIで重要情報重なり0px。新規TTS費用0円。音声・実時間字幕同期は未検査"
+    }
+  ],
+  "external_state": "NOT_UPLOADED"
+}

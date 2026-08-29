@@ -1,0 +1,224 @@
+{
+  "schema_version": "reiki-instagram-carousel-public-r2.v1",
+  "run_id": "kizashi-20260829",
+  "revision": 2,
+  "account_handle": "@kizashi_jp",
+  "format": "1080x1350",
+  "additional_cost_jpy": 0,
+  "posts": [
+    {
+      "content_id": "kizashi-20260829-agent-sandbox-boundaries",
+      "reader_problem": "AIエージェントにどこまで権限を渡すか判断できない",
+      "source_url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+      "cover_copy": "AIに渡す権限\n5つの境界線",
+      "caption": "AIエージェントを安全に使うために、最初に強化したいのはプロンプトだけではありません。\n\n①実行権限\n②外部通信\n③共有領域\n④停止条件\n⑤監視と復旧\n\nOpenAIが公表した事故報告では、隔離された環境からの意図しない通信、共有基盤を介した連携、難しい課題で安全に止まれないこと、監視・対応の弱点が重なりました。これは一般企業が同じ規模の事故を起こすという意味ではありません。自社の導入前レビューへ落とせる論点が具体的になった、ということです。\n\n保存して、次のAI導入会議で5項目を1つずつ確認してください。\n\n出典：https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+      "slides": [
+        {
+          "position": 1,
+          "sha256": "7750976ed62e10d0ffc1b22389f16703181054468d8d92e53a2da041dadcf2d3",
+          "headline": "AIに渡す権限\n5つの境界線",
+          "alt_text": "AIに渡す権限\n5つの境界線。実写写真と短い情報パネルで要点を示す表紙。",
+          "width": 1080,
+          "height": 1350,
+          "public_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-agent-sandbox-boundaries/slide-01.jpg",
+          "title_copy_in_image": true,
+          "full_width_dark_overlay": false
+        },
+        {
+          "position": 2,
+          "sha256": "e667a77130bb2c070eb896c1e14207411c02d546a60d99669d26e49e71f7d08a",
+          "headline": "事故は1つの穴ではなく連鎖する",
+          "alt_text": "事故は1つの穴ではなく連鎖する。通信・共有領域・権限・監視がつながる",
+          "width": 1080,
+          "height": 1350,
+          "public_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-agent-sandbox-boundaries/slide-02.jpg",
+          "title_copy_in_image": true,
+          "full_width_dark_overlay": false
+        },
+        {
+          "position": 3,
+          "sha256": "151cfc5924dbb77fd65e809cc3a64bb455ae13b8794ca7a0e2e95f5b2abd6ab9",
+          "headline": "1 実行権限",
+          "alt_text": "1 実行権限。読む／書く／削除するを分ける",
+          "width": 1080,
+          "height": 1350,
+          "public_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-agent-sandbox-boundaries/slide-03.jpg",
+          "title_copy_in_image": true,
+          "full_width_dark_overlay": false
+        },
+        {
+          "position": 4,
+          "sha256": "552b0f4ad9ba4bb873ed7c2cceb45aed2b78df4ff5e3c71eb9f57c1d8c8f4643",
+          "headline": "2 外部通信",
+          "alt_text": "2 外部通信。許可先だけ。中継経路も確認する",
+          "width": 1080,
+          "height": 1350,
+          "public_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-agent-sandbox-boundaries/slide-04.jpg",
+          "title_copy_in_image": true,
+          "full_width_dark_overlay": false
+        },
+        {
+          "position": 5,
+          "sha256": "c017a6c81d3a0e0fb1f4748d50ef08df6c04a5f9717661c0b535345ae0a2cbd6",
+          "headline": "3 共有領域",
+          "alt_text": "3 共有領域。別タスクの痕跡を読ませない",
+          "width": 1080,
+          "height": 1350,
+          "public_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-agent-sandbox-boundaries/slide-05.jpg",
+          "title_copy_in_image": true,
+          "full_width_dark_overlay": false
+        },
+        {
+          "position": 6,
+          "sha256": "0362a5f853d6d0db08d7413d2eb179e36d2a4f81715ecc34c0a81efc2c61bc54",
+          "headline": "4 停止条件",
+          "alt_text": "4 停止条件。失敗回数・時間・目的外行動で止める",
+          "width": 1080,
+          "height": 1350,
+          "public_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-agent-sandbox-boundaries/slide-06.jpg",
+          "title_copy_in_image": true,
+          "full_width_dark_overlay": false
+        },
+        {
+          "position": 7,
+          "sha256": "62cb0b0ccdf23cb5c9a41b0b17ca4e3c9a6c62e47b7c17dba9a67766dc884e91",
+          "headline": "5 監視と復旧",
+          "alt_text": "5 監視と復旧。誰が止め、何を戻すかまで決める",
+          "width": 1080,
+          "height": 1350,
+          "public_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-agent-sandbox-boundaries/slide-07.jpg",
+          "title_copy_in_image": true,
+          "full_width_dark_overlay": false
+        },
+        {
+          "position": 8,
+          "sha256": "e09e8ec35aa38fcdaa3f2c88532171977ad746d5af13a6984e58c1a65bb302e9",
+          "headline": "今日やること",
+          "alt_text": "今日やること。5つの境界を1枚にして導入会議へ",
+          "width": 1080,
+          "height": 1350,
+          "public_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-agent-sandbox-boundaries/slide-08.jpg",
+          "title_copy_in_image": true,
+          "full_width_dark_overlay": false
+        }
+      ],
+      "contact_sheet_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-agent-sandbox-boundaries/contact-sheet.jpg",
+      "contact_sheet_sha256": "de5a579d38e410a9af767f33e4d84b910c7955fe16f5b970fa845aedb03a3167",
+      "gate": {
+        "content_ready": true,
+        "image_count": 8,
+        "all_photos_real_and_rights_verified": true,
+        "cover_copy_in_image": true,
+        "publish_allowed": false,
+        "reason": "公開HTTPS URLと公式Graph API接続receipt待ち"
+      }
+    },
+    {
+      "content_id": "kizashi-20260829-critical-thinking-rubric",
+      "reader_problem": "整った文章と本人の理解・独自性を同じ点数で評価してしまう",
+      "source_url": "https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training/",
+      "cover_copy": "AIで整う文章\n独自性は別に測る",
+      "caption": "AIで文章が読みやすくなった。では、本人の独自性や理解も同じだけ伸びたのでしょうか。\n\n1,000人超を対象にした無作為化実験では、ChatGPTへのアクセスは文章の品質や一貫性を高め、因果推論の訓練は『なぜ効くのか』『どこで失敗するか』の説明やアイデアの幅を広げました。両方を組み合わせた群は、それぞれの利点を示しました。\n\nだから評価は、完成度と独自性・理由を分ける。提出時に①採用理由 ②反証 ③自分で変えた点を添えるだけでも、最終文面だけを見る評価から一歩進めます。\n\n保存して、次の課題や社内研修の採点表を二軸に変えてください。\n\n出典：https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training/",
+      "slides": [
+        {
+          "position": 1,
+          "sha256": "28f09896f7b72272785b3e4a252f360f215a136bda86974bde4501746e236731",
+          "headline": "AIで整う文章\n独自性は別に測る",
+          "alt_text": "AIで整う文章\n独自性は別に測る。実写写真と短い情報パネルで要点を示す表紙。",
+          "width": 1080,
+          "height": 1350,
+          "public_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-critical-thinking-rubric/slide-01.jpg",
+          "title_copy_in_image": true,
+          "full_width_dark_overlay": false
+        },
+        {
+          "position": 2,
+          "sha256": "406f6e54a7e0749d4dbcff1d81577a9b91b197eada367de3359caba255fd4fac",
+          "headline": "1,000人超の無作為化実験",
+          "alt_text": "1,000人超の無作為化実験。ChatGPTと因果推論訓練の効果を分けて検証",
+          "width": 1080,
+          "height": 1350,
+          "public_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-critical-thinking-rubric/slide-02.jpg",
+          "title_copy_in_image": true,
+          "full_width_dark_overlay": false
+        },
+        {
+          "position": 3,
+          "sha256": "9085e34c08c8b18c02eab7513d1bda3a6152548fea70af305252521651903fae",
+          "headline": "AIが伸ばしたもの",
+          "alt_text": "AIが伸ばしたもの。文章の品質・一貫性・アイデア数",
+          "width": 1080,
+          "height": 1350,
+          "public_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-critical-thinking-rubric/slide-03.jpg",
+          "title_copy_in_image": true,
+          "full_width_dark_overlay": false
+        },
+        {
+          "position": 4,
+          "sha256": "fb3c870a57e5b730d5b22bb5d115516ae2345a5c741fa85ee6300f11564ab0b6",
+          "headline": "訓練が伸ばしたもの",
+          "alt_text": "訓練が伸ばしたもの。理由・失敗条件・アイデアの幅",
+          "width": 1080,
+          "height": 1350,
+          "public_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-critical-thinking-rubric/slide-04.jpg",
+          "title_copy_in_image": true,
+          "full_width_dark_overlay": false
+        },
+        {
+          "position": 5,
+          "sha256": "3af7595ed34ea7e5bece302554dcb7dff2c47215ebd8fe32b8ceb9df14019b4b",
+          "headline": "従来の採点では見落とす",
+          "alt_text": "従来の採点では見落とす。きれいな答えだけでは本人の理解を測れない",
+          "width": 1080,
+          "height": 1350,
+          "public_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-critical-thinking-rubric/slide-05.jpg",
+          "title_copy_in_image": true,
+          "full_width_dark_overlay": false
+        },
+        {
+          "position": 6,
+          "sha256": "a88400a3cf8af4380a6122afb7842acf5ebc34e5d9b7950d43d416ae3f3ff723",
+          "headline": "完成度と独自性を分ける",
+          "alt_text": "完成度と独自性を分ける。二軸で4象限に置く",
+          "width": 1080,
+          "height": 1350,
+          "public_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-critical-thinking-rubric/slide-06.jpg",
+          "title_copy_in_image": true,
+          "full_width_dark_overlay": false
+        },
+        {
+          "position": 7,
+          "sha256": "58e8c6e333d1ed0d18bd053f893159f6c359a030ec5ab1c26baf826bd7351278",
+          "headline": "提出時に3つ添える",
+          "alt_text": "提出時に3つ添える。採用理由／反証／自分で変えた点",
+          "width": 1080,
+          "height": 1350,
+          "public_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-critical-thinking-rubric/slide-07.jpg",
+          "title_copy_in_image": true,
+          "full_width_dark_overlay": false
+        },
+        {
+          "position": 8,
+          "sha256": "6214bf6f919ae23f21aa772be7e24a5e356c908f854bc4859002e1ca8a938c0a",
+          "headline": "評価基準を1行変える",
+          "alt_text": "評価基準を1行変える。正しさだけでなく理由と別案を採点する",
+          "width": 1080,
+          "height": 1350,
+          "public_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-critical-thinking-rubric/slide-08.jpg",
+          "title_copy_in_image": true,
+          "full_width_dark_overlay": false
+        }
+      ],
+      "contact_sheet_url": "https://reiki-ai-apps.github.io/AI-/board/media/kizashi-20260829-review-r1/instagram-r2/kizashi-20260829-critical-thinking-rubric/contact-sheet.jpg",
+      "contact_sheet_sha256": "e16745cea15e28393cd6b52c8b68ac59a8533340c77aa3a10fc5629e379d2b40",
+      "gate": {
+        "content_ready": true,
+        "image_count": 8,
+        "all_photos_real_and_rights_verified": true,
+        "cover_copy_in_image": true,
+        "publish_allowed": false,
+        "reason": "公開HTTPS URLと公式Graph API接続receipt待ち"
+      }
+    }
+  ]
+}
