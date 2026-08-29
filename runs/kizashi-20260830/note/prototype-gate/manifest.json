@@ -4,7 +4,7 @@
   "revision": 1,
   "content_id": "kizashi-20260830-prototype-to-production-gate",
   "title": "AIの試作品を本番へ運ぶ 『8週間ゲート』",
-  "price_jpy": 500,
+  "price_jpy": 100,
   "article_path": "C:\\Users\\hinat\\Documents\\Codex\\2026-08-15\\ai\\work\\hosting-release-countfix\\runs\\kizashi-20260830\\note\\prototype-gate\\article.md",
   "article_sha256": "a9323fedcb21740f5d38a5763d8e20d88430bca2d50631c2c8ab1a81f988b848",
   "article_char_count": 4093,
@@ -48,17 +48,22 @@
   ],
   "preview_path": "C:\\Users\\hinat\\Documents\\Codex\\2026-08-15\\ai\\work\\hosting-release-countfix\\runs\\kizashi-20260830\\note\\prototype-gate\\preview.html",
   "gate": {
-    "round_1": "PASS",
-    "round_2": "PASS",
-    "round_3": "PASS_WITH_EXTERNAL_HOLD",
-    "external_receipt": null
+    "round_1": "REJECTED_BY_OWNER",
+    "round_2": "REJECTED_BY_OWNER",
+    "round_3": "REJECTED_BY_OWNER",
+    "external_receipt": "runs/kizashi-20260830/note/prototype-gate/note-quality-hold-receipt-r2.json"
   },
   "external_draft": {
-    "state": "READY",
+    "state": "REWRITE_REQUIRED",
     "external_draft_id": "n4bc07009a5ef",
-    "ready_after": "2026-08-30T11:16:00+09:00",
-    "planned_publish_at": "2026-08-30T12:00:00+09:00",
-    "price_jpy": 500,
-    "receipt_path": "runs/kizashi-20260830/note/prototype-gate/note-draft-ready-receipt-r1.json"
+    "planned_publish_at": null,
+    "price_jpy": 100,
+    "receipt_path": "runs/kizashi-20260830/note/prototype-gate/note-quality-hold-receipt-r2.json",
+    "publish_blocked_by": "QUALITY_REGRESSION"
+  },
+  "quality_reset": {
+    "state": "REJECTED_BY_OWNER",
+    "reason": "同じ低品質工程で作成されたため公開を停止し、前回比ゲートから全面改稿する。",
+    "excluded_from_future_baselines": true
   }
 }

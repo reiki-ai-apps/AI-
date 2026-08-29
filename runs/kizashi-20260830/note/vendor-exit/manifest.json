@@ -4,7 +4,7 @@
   "revision": 1,
   "content_id": "kizashi-20260830-model-vendor-exit-plan",
   "title": "AIモデル供給が止まる前に 作る『切替設計』",
-  "price_jpy": 500,
+  "price_jpy": 100,
   "article_path": "C:\\Users\\hinat\\Documents\\Codex\\2026-08-15\\ai\\work\\hosting-release-countfix\\runs\\kizashi-20260830\\note\\vendor-exit\\article.md",
   "article_sha256": "1c571855fb5e7de71dfbf3fb40b6e7f630be5688cda73a9122c5e1dae1181511",
   "article_char_count": 4030,
@@ -48,16 +48,30 @@
   ],
   "preview_path": "C:\\Users\\hinat\\Documents\\Codex\\2026-08-15\\ai\\work\\hosting-release-countfix\\runs\\kizashi-20260830\\note\\vendor-exit\\preview.html",
   "gate": {
-    "round_1": "PASS",
-    "round_2": "PASS",
-    "round_3": "PASS",
-    "external_receipt": "runs/kizashi-20260830/note/vendor-exit/note-publication-receipt-r1.json"
+    "round_1": "REJECTED_BY_OWNER",
+    "round_2": "REJECTED_BY_OWNER",
+    "round_3": "REJECTED_BY_OWNER",
+    "external_receipt": "runs/kizashi-20260830/note/vendor-exit/note-deletion-receipt-r2.json"
   },
   "publication": {
-    "state": "PUBLISHED",
+    "state": "DELETED",
     "external_id": "n4a967cb08202",
     "public_url": "https://note.com/natty_swan9072/n/n4a967cb08202",
     "published_at": "2026-08-30T07:16:00+09:00",
-    "price_jpy": 500
+    "deleted_at": "2026-08-29T23:41:44.756Z",
+    "price_jpy_at_publication": 500,
+    "price_policy_jpy": 100
+  },
+  "quality_reset": {
+    "state": "REJECTED_BY_OWNER",
+    "reason": "サムネイルと本文が前回比で明確に低品質。公開note本文に見出し画像以外の本文図版がなく、比較ゲートも欠落。",
+    "observed_regression": {
+      "current_article_characters": 4030,
+      "previous_owner_approved_characters": 5083,
+      "current_markdown_inline_images": 0,
+      "previous_owner_approved_inline_images": 6,
+      "current_live_inline_visuals": 0
+    },
+    "excluded_from_future_baselines": true
   }
 }
