@@ -1,0 +1,28 @@
+{
+  "schema_version": "reiki-production-gate.v1",
+  "run_id": "kizashi-20260830",
+  "status": "PRODUCTION",
+  "passed": false,
+  "checked_at": "2026-08-29T22:20:49.804Z",
+  "reason": "YouTube Shortsとnote第1記事は外部公開receipt取得済み。note第2記事は最低4時間間隔を守り12:00 JST公開予定。X・Instagramは接続・認証待ち。",
+  "required": {
+    "verified_primary_sources": 2
+  },
+  "observed": {
+    "verified_primary_sources": 2
+  },
+  "checks": {
+    "content_mode": "fresh",
+    "distinct_content_ids": true,
+    "distinct_reader_problems": true,
+    "distinct_evidence_ids": true,
+    "disjoint_photo_sets": true,
+    "visual_assets_complete": true,
+    "visual_three_round_gate": true,
+    "aivis_pricing_verified": true,
+    "aivis_cost_approval": true,
+    "aivis_paid_call_executed": true,
+    "current_revision_owner_approval": false,
+    "external_publish_receipts": false
+  }
+}
