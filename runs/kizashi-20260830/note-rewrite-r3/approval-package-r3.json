@@ -1,6 +1,6 @@
 {
   "schema_version": "reiki-final-approval-package.v1",
-  "status": "AWAITING_OWNER_APPROVAL",
+  "status": "APPROVED_FOR_EXTERNAL_ACTION",
   "platform": "NOTE",
   "run_id": "kizashi-20260830",
   "revision": 3,
@@ -15,8 +15,8 @@
       "title": "AIモデル供給停止に備える「切替設計」実務キット｜期限から逆算する5つの成果物",
       "article_sha256": "0872c2e32d5db034b88aa62e0cd89acaa2e1c67f9faa6c7b1c6bd134195e09f8",
       "thumbnail_sha256": "0144ab47e70ff35fc9ca2d1a5934324993f8b2171ff069814aff5af64dd9347c",
-      "article_approval": "PENDING",
-      "thumbnail_approval": "PENDING",
+      "article_approval": "APPROVED",
+      "thumbnail_approval": "APPROVED",
       "publish_timing": "承認後の次の15分境界"
     },
     {
@@ -24,8 +24,8 @@
       "title": "AI試作品を本番へ運ぶ「8週間ゲート」実務キット｜価値・評価・安全・費用・復旧を揃える",
       "article_sha256": "40cae5d34cbf633cf5b1bdfbc2fd7c085f54450ba561cccb22da892d6be78758",
       "thumbnail_sha256": "706f5ab478b0a04e883c2e504bd40732fadcfa9e636c8ac0577b911cff6740d6",
-      "article_approval": "PENDING",
-      "thumbnail_approval": "PENDING",
+      "article_approval": "APPROVED",
+      "thumbnail_approval": "APPROVED",
       "publish_timing": "第1記事の実公開から4時間以上後"
     }
   ],
@@ -42,8 +42,8 @@
     ]
   },
   "receipts": {
-    "current_article_receipts": 0,
-    "current_thumbnail_receipts": 0,
+    "current_article_receipts": 2,
+    "current_thumbnail_receipts": 2,
     "external_schedule_receipts": 0,
     "external_publish_receipts": 0
   },
@@ -66,5 +66,12 @@
     "mobile_width_px": 375,
     "horizontal_overflow": false,
     "verified_at": "2026-08-30T05:51:42.348Z"
+  },
+  "owner_approval": {
+    "instruction": "承認！進めて。",
+    "approved_at": "2026-08-30T06:04:34.025Z",
+    "expires_at": "2026-08-31T06:04:34.025Z",
+    "article_receipt": "runs/kizashi-20260830/note-rewrite-r3/owner-article-approval-receipt-r3.json",
+    "thumbnail_receipt": "runs/kizashi-20260830/note-rewrite-r3/owner-thumbnail-approval-receipt-r3.json"
   }
 }
