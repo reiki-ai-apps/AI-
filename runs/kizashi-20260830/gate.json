@@ -1,10 +1,10 @@
 {
   "schema_version": "reiki-production-gate.v1",
   "run_id": "kizashi-20260830",
-  "status": "EXTERNAL_WAIT",
+  "status": "IMPROVING",
   "passed": false,
-  "checked_at": "2026-08-30T06:27:31.621Z",
-  "reason": "note Revision 3の本文2件と採用サムネイル2件は現Hash承認済み。第1記事を100円で外部公開処理中。外部公開receipt取得までは公開済みにしない。",
+  "checked_at": "2026-08-30T06:30:43.473Z",
+  "reason": "note Revision 3の本文・サムネイルは承認済み。外部送信前の公開パッケージ証跡不足を自動修正し、第1周から再検査する。",
   "required": {
     "verified_primary_sources": 2
   },
@@ -30,6 +30,7 @@
     "youtube_visual_owner_feedback": "REJECTED_AS_BASELINE",
     "youtube_caption_owner_feedback": "BELOW_TARGET_QUALITY",
     "youtube_continuous_quality_gate_required_next": true,
-    "note_quality_ladder": "PASS_NON_REGRESSION_PLUS_IMPROVEMENT"
+    "note_quality_ladder": "PASS_NON_REGRESSION_PLUS_IMPROVEMENT",
+    "note_release_package": "IMPROVING"
   }
 }

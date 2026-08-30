@@ -1,0 +1,14 @@
+{
+  "schema_version": "reiki-internal-quality-improvement-receipt.v1",
+  "status": "IMPROVING",
+  "platform": "NOTE",
+  "run_id": "kizashi-20260830",
+  "revision": 3,
+  "article_and_thumbnail_hashes_changed": false,
+  "owner_approval_remains_valid": true,
+  "failed_gate": "validate_release_gate.py --mode publish",
+  "cause": "公開本文・画像ではなく、公開マニフェスト、実行計画、重複防止キー、DECAGON/G10、三周公開証跡の不足",
+  "corrective_action": "同じRevision 3で公開パッケージ証跡を補完し、第1周から公開ゲートを再検査する",
+  "external_action_executed": false,
+  "detected_at": "2026-08-30T06:30:43.473Z"
+}
