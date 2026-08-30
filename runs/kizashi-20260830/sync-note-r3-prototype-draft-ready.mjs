@@ -113,7 +113,9 @@ noteChannel.last_verified_at = syncedAt;
 noteChannel.note = `Revision 3第1記事は100円で公開済み。第2記事は外部下書きID ${externalDraftId}、100円、カバー、本文6図版、4リンク、13見出し、有料境界「成果物1：課題・範囲シート」直前まで設定済み。20:18 JST直接公開待ち。`;
 status.production.last_run.stage = 'YouTube Shorts 1/1公開／note 1/2公開・第2記事Revision 3外部下書き完成';
 status.production.last_run.next_action = '20:18 JSTに第2noteを直接公開し、外部receipt取得直後にBoardを2/2へ同期する。';
+status.monitoring.cadence = 'PT2H';
 status.monitoring.last_checked_at = syncedAt;
+status.monitoring.description = status.monitoring.description.replace('1時間ごとに', '2時間ごとに');
 status.evidence = [receiptRelative, ...status.evidence.filter((item) => item !== receiptRelative)];
 await writeCompactJson(statusPath, status);
 
