@@ -1,0 +1,128 @@
+{
+  "schema_version": "content-consistency-contract/v1",
+  "primary_reader": "AIを業務や開発へ組み込み、停止通知後の切替順序を決める情報システム責任者・開発責任者",
+  "situation_trigger": "利用中のAIモデルまたは開発サービスについて、提供終了・契約変更・将来モデル非提供の通知を受けた直後",
+  "opening_scene": "社内で使うAIモデルの提供条件が変わり、移行期限だけが先に示された。ところが、担当者は「次にどのモデルを選ぶか」の比較から始め、業務側の依存、データ退避、切替判定、復旧手順が後回しになる――。この状態を変えるための記事です。",
+  "article_title": "AIモデル供給停止に備える「切替設計」実務キット｜期限から逆算する5つの成果物",
+  "article_sha256": "0872c2e32d5db034b88aa62e0cd89acaa2e1c67f9faa6c7b1c6bd134195e09f8",
+  "core_promise": {
+    "framework_id": "switch-five",
+    "label": "切替設計5項目",
+    "count": 5,
+    "item_names": [
+      "依存",
+      "期限",
+      "比較",
+      "退避",
+      "復旧"
+    ],
+    "reader_action": "停止通知から社内切替の担当・期限・判定・復旧を決める"
+  },
+  "numbered_frameworks": [
+    {
+      "framework_id": "switch-five",
+      "label": "切替設計5項目",
+      "count": 5,
+      "purpose": "停止通知を実行順序へ変換する",
+      "relationship_to_core": "中心フレーム"
+    }
+  ],
+  "foreign_domain_terms": [],
+  "allowed_foreign_term_contexts": [],
+  "free_sample_markers": [
+    "先に結論",
+    "一次情報で確定していること",
+    "無料部分の価値見本"
+  ],
+  "paid_artifacts": [
+    {
+      "name": "依存関係台帳",
+      "heading": "成果物1：依存関係台帳",
+      "reader_action": "自社の次回会議で記入して判断する"
+    },
+    {
+      "name": "切替カレンダー",
+      "heading": "成果物2：期限から逆算する切替カレンダー",
+      "reader_action": "自社の次回会議で記入して判断する"
+    },
+    {
+      "name": "代表ケース比較表",
+      "heading": "成果物3：代表ケース比較表",
+      "reader_action": "自社の次回会議で記入して判断する"
+    },
+    {
+      "name": "切替判定表",
+      "heading": "成果物4：切替判定表",
+      "reader_action": "自社の次回会議で記入して判断する"
+    },
+    {
+      "name": "停止・復旧チェック",
+      "heading": "成果物5：停止・復旧チェック",
+      "reader_action": "自社の次回会議で記入して判断する"
+    }
+  ],
+  "thumbnail_copy": "切替設計5項目",
+  "thumbnail_copy_mode": "evidence",
+  "visuals": [
+    {
+      "visual_id": "visual-01-context",
+      "type": "photo",
+      "purpose": "停止通知を業務設計へ翻訳する",
+      "decision_or_action": "停止通知を業務設計へ翻訳する",
+      "visible_copy": "社内で使うAIモデルの提供条件が変わり",
+      "framework_ids": [
+        "switch-five"
+      ]
+    },
+    {
+      "visual_id": "visual-02-overview",
+      "type": "diagram",
+      "purpose": "5項目の抜けを一画面で確認する",
+      "decision_or_action": "5項目の抜けを一画面で確認する",
+      "visible_copy": "## 無料部分の価値見本：切替設計5項目",
+      "framework_ids": [
+        "switch-five"
+      ]
+    },
+    {
+      "visual_id": "visual-03-priority-matrix",
+      "type": "diagram",
+      "purpose": "切替着手順を二軸で決める",
+      "decision_or_action": "切替着手順を二軸で決める",
+      "visible_copy": "## 成果物1：依存関係台帳",
+      "framework_ids": [
+        "switch-five"
+      ]
+    },
+    {
+      "visual_id": "visual-04-timeline",
+      "type": "timeline",
+      "purpose": "復旧余白を残す順序を決める",
+      "decision_or_action": "復旧余白を残す順序を決める",
+      "visible_copy": "## 成果物2：期限から逆算する切替カレンダー",
+      "framework_ids": [
+        "switch-five"
+      ]
+    },
+    {
+      "visual_id": "visual-05-decision",
+      "type": "diagram",
+      "purpose": "平均点で重大NGを相殺しない",
+      "decision_or_action": "平均点で重大NGを相殺しない",
+      "visible_copy": "## 成果物4：切替判定表",
+      "framework_ids": [
+        "switch-five"
+      ]
+    },
+    {
+      "visual_id": "visual-06-recovery",
+      "type": "checklist",
+      "purpose": "結果不明時の再送を防ぐ",
+      "decision_or_action": "結果不明時の再送を防ぐ",
+      "visible_copy": "## 成果物5：停止・復旧チェック",
+      "framework_ids": [
+        "switch-five"
+      ]
+    }
+  ]
+}

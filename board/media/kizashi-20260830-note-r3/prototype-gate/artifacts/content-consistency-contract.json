@@ -1,0 +1,143 @@
+{
+  "schema_version": "content-consistency-contract/v1",
+  "primary_reader": "AI PoCを本番・限定継続・停止のどれへ進めるかを決める事業責任者・プロダクト責任者",
+  "situation_trigger": "AIデモは動いたが、代表利用者の証拠・評価・安全・費用・復旧が揃わず本番判断できない会議",
+  "opening_scene": "AIのデモは動いた。社内発表でも反応は良い。それでも本番化の会議では「誰が使うのか」「誤りをどう測るのか」「費用上限は」「失敗時に戻せるのか」が答えられず、プロンプト改善だけが続く――。この状態を変えるための記事です。",
+  "article_title": "AI試作品を本番へ運ぶ「8週間ゲート」実務キット｜価値・評価・安全・費用・復旧を揃える",
+  "article_sha256": "40cae5d34cbf633cf5b1bdfbc2fd7c085f54450ba561cccb22da892d6be78758",
+  "core_promise": {
+    "framework_id": "eight-week-gate",
+    "label": "8週間ゲート",
+    "count": 8,
+    "item_names": [
+      "課題",
+      "範囲",
+      "評価",
+      "利用者",
+      "安全",
+      "費用",
+      "復旧",
+      "判断"
+    ],
+    "reader_action": "週ごとの証拠を揃えて本番・限定・停止を決める"
+  },
+  "numbered_frameworks": [
+    {
+      "framework_id": "eight-week-gate",
+      "label": "8週間ゲート",
+      "count": 8,
+      "purpose": "PoCの判断材料を週ごとに揃える",
+      "relationship_to_core": "中心フレーム"
+    },
+    {
+      "framework_id": "weekly-five",
+      "label": "週次レビューで聞く5問",
+      "count": 5,
+      "purpose": "毎週の進捗を証拠で確認する",
+      "relationship_to_core": "8週間ゲートの点検"
+    }
+  ],
+  "foreign_domain_terms": [],
+  "allowed_foreign_term_contexts": [],
+  "free_sample_markers": [
+    "先に結論",
+    "一次情報が示した",
+    "無料部分の価値見本"
+  ],
+  "paid_artifacts": [
+    {
+      "name": "課題・範囲シート",
+      "heading": "成果物1：課題・範囲シート",
+      "reader_action": "自社の次回会議で記入して判断する"
+    },
+    {
+      "name": "代表ケース評価表",
+      "heading": "成果物2：代表ケース評価表",
+      "reader_action": "自社の次回会議で記入して判断する"
+    },
+    {
+      "name": "代表利用者の証拠カード",
+      "heading": "成果物3：代表利用者の証拠カード",
+      "reader_action": "自社の次回会議で記入して判断する"
+    },
+    {
+      "name": "安全・費用の停止表",
+      "heading": "成果物4：安全・費用の停止表",
+      "reader_action": "自社の次回会議で記入して判断する"
+    },
+    {
+      "name": "復旧リハーサル",
+      "heading": "成果物5：復旧リハーサル",
+      "reader_action": "自社の次回会議で記入して判断する"
+    },
+    {
+      "name": "三択判断表",
+      "heading": "成果物6：8週目の三択判断表",
+      "reader_action": "自社の次回会議で記入して判断する"
+    }
+  ],
+  "thumbnail_copy": "本番化の8週間ゲート",
+  "thumbnail_copy_mode": "evidence",
+  "visuals": [
+    {
+      "visual_id": "visual-01-context",
+      "type": "photo",
+      "purpose": "デモから実装へ進む場面を示す",
+      "decision_or_action": "デモから実装へ進む場面を示す",
+      "visible_copy": "AIのデモは動いた。社内発表でも反応は良い",
+      "framework_ids": [
+        "eight-week-gate"
+      ]
+    },
+    {
+      "visual_id": "visual-02-overview",
+      "type": "diagram",
+      "purpose": "週ごとの成果物を一画面で確認する",
+      "decision_or_action": "週ごとの成果物を一画面で確認する",
+      "visible_copy": "## 無料部分の価値見本：8週間ゲート",
+      "framework_ids": [
+        "eight-week-gate"
+      ]
+    },
+    {
+      "visual_id": "visual-03-scope",
+      "type": "diagram",
+      "purpose": "AIへ任せる範囲を分ける",
+      "decision_or_action": "AIへ任せる範囲を分ける",
+      "visible_copy": "## 成果物1：課題・範囲シート",
+      "framework_ids": [
+        "eight-week-gate"
+      ]
+    },
+    {
+      "visual_id": "visual-04-user-evidence",
+      "type": "photo",
+      "purpose": "感想を観察可能な事実へ変える",
+      "decision_or_action": "感想を観察可能な事実へ変える",
+      "visible_copy": "## 成果物3：代表利用者の証拠カード",
+      "framework_ids": [
+        "eight-week-gate"
+      ]
+    },
+    {
+      "visual_id": "visual-05-safety-cost",
+      "type": "diagram",
+      "purpose": "価値と重大NGを相殺しない",
+      "decision_or_action": "価値と重大NGを相殺しない",
+      "visible_copy": "## 成果物4：安全・費用の停止表",
+      "framework_ids": [
+        "eight-week-gate"
+      ]
+    },
+    {
+      "visual_id": "visual-06-recovery",
+      "type": "checklist",
+      "purpose": "開発者不在でも戻せるか検証する",
+      "decision_or_action": "開発者不在でも戻せるか検証する",
+      "visible_copy": "## 成果物5：復旧リハーサル",
+      "framework_ids": [
+        "eight-week-gate"
+      ]
+    }
+  ]
+}

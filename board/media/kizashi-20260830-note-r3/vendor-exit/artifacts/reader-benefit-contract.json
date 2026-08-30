@@ -1,0 +1,178 @@
+{
+  "schema_version": "reader-benefit-contract/v1",
+  "status": "PASS",
+  "source_hash": "0872c2e32d5db034b88aa62e0cd89acaa2e1c67f9faa6c7b1c6bd134195e09f8",
+  "article_hash": "0872c2e32d5db034b88aa62e0cd89acaa2e1c67f9faa6c7b1c6bd134195e09f8",
+  "primary_reader": {
+    "role": "AIを業務や開発へ組み込み、停止通知後の切替順序を決める情報システム責任者・開発責任者",
+    "responsibility": "本番または移行判断の説明責任を持つ",
+    "context": "利用中のAIモデルまたは開発サービスについて、提供終了・契約変更・将来モデル非提供の通知を受けた直後",
+    "knowledge_level": "AIの基本は理解するが専任安全担当でなくても読める",
+    "exclusions": [
+      "一次情報の要約だけで足りる人"
+    ]
+  },
+  "situation_trigger": "利用中のAIモデルまたは開発サービスについて、提供終了・契約変更・将来モデル非提供の通知を受けた直後",
+  "before_state": {
+    "blocked_decision": "判断材料が散在し次の状態を決められない",
+    "current_workaround": "担当者の経験と印象で個別判断する",
+    "inaction_cost": "期限超過、重大NG見落とし、復旧不能が残る"
+  },
+  "after_state": {
+    "enabled_decision": "成果物を使って次の状態を決められる",
+    "first_action": "最重要案件一件へ最初の成果物を記入する",
+    "deliverable": "比較表、判断表、手順、チェックリスト",
+    "time_to_value": "次回30分会議"
+  },
+  "one_sentence_benefit": "AIを業務や開発へ組み込み、停止通知後の切替順序を決める情報システム責任者・開発責任者が、5種類の成果物で次の状態を判断できる。",
+  "benefit_units": [
+    {
+      "benefit_id": "B01",
+      "benefit_type": "quality",
+      "gain": "依存関係台帳を会議で使える",
+      "mechanism": "判断項目、停止条件、担当を同じ成果物へ固定する",
+      "deliverable": "依存関係台帳",
+      "section_anchor": "## 成果物1：依存関係台帳",
+      "evidence_basis": "公式一次情報と本文内の判断表",
+      "metric_or_proxy": "未記入欄と未決定事項の件数",
+      "access": "paid"
+    },
+    {
+      "benefit_id": "B02",
+      "benefit_type": "quality",
+      "gain": "切替カレンダーを会議で使える",
+      "mechanism": "判断項目、停止条件、担当を同じ成果物へ固定する",
+      "deliverable": "切替カレンダー",
+      "section_anchor": "## 成果物2：期限から逆算する切替カレンダー",
+      "evidence_basis": "公式一次情報と本文内の判断表",
+      "metric_or_proxy": "未記入欄と未決定事項の件数",
+      "access": "paid"
+    },
+    {
+      "benefit_id": "B03",
+      "benefit_type": "quality",
+      "gain": "代表ケース比較表を会議で使える",
+      "mechanism": "判断項目、停止条件、担当を同じ成果物へ固定する",
+      "deliverable": "代表ケース比較表",
+      "section_anchor": "## 成果物3：代表ケース比較表",
+      "evidence_basis": "公式一次情報と本文内の判断表",
+      "metric_or_proxy": "未記入欄と未決定事項の件数",
+      "access": "paid"
+    },
+    {
+      "benefit_id": "B04",
+      "benefit_type": "quality",
+      "gain": "切替判定表を会議で使える",
+      "mechanism": "判断項目、停止条件、担当を同じ成果物へ固定する",
+      "deliverable": "切替判定表",
+      "section_anchor": "## 成果物4：切替判定表",
+      "evidence_basis": "公式一次情報と本文内の判断表",
+      "metric_or_proxy": "未記入欄と未決定事項の件数",
+      "access": "paid"
+    },
+    {
+      "benefit_id": "B05",
+      "benefit_type": "quality",
+      "gain": "停止・復旧チェックを会議で使える",
+      "mechanism": "判断項目、停止条件、担当を同じ成果物へ固定する",
+      "deliverable": "停止・復旧チェック",
+      "section_anchor": "## 成果物5：停止・復旧チェック",
+      "evidence_basis": "公式一次情報と本文内の判断表",
+      "metric_or_proxy": "未記入欄と未決定事項の件数",
+      "access": "paid"
+    }
+  ],
+  "free_contract": {
+    "reader_self_identification": "冒頭で役職と発生場面を明示",
+    "news_meaning": "一次情報を自社判断へ翻訳",
+    "promised_outcome": "会議で使える成果物を得る",
+    "non_target_warning": "同等の運用済みなら購入不要",
+    "sample_value": "無料部分で全体像と一次情報を確認"
+  },
+  "paid_contract": {
+    "deliverables": [
+      {
+        "name": "依存関係台帳",
+        "decision_enabled": "次の状態を決める",
+        "action_enabled": "自社の一件へ記入する",
+        "section_anchor": "## 成果物1：依存関係台帳"
+      },
+      {
+        "name": "切替カレンダー",
+        "decision_enabled": "次の状態を決める",
+        "action_enabled": "自社の一件へ記入する",
+        "section_anchor": "## 成果物2：期限から逆算する切替カレンダー"
+      },
+      {
+        "name": "代表ケース比較表",
+        "decision_enabled": "次の状態を決める",
+        "action_enabled": "自社の一件へ記入する",
+        "section_anchor": "## 成果物3：代表ケース比較表"
+      },
+      {
+        "name": "切替判定表",
+        "decision_enabled": "次の状態を決める",
+        "action_enabled": "自社の一件へ記入する",
+        "section_anchor": "## 成果物4：切替判定表"
+      },
+      {
+        "name": "停止・復旧チェック",
+        "decision_enabled": "次の状態を決める",
+        "action_enabled": "自社の一件へ記入する",
+        "section_anchor": "## 成果物5：停止・復旧チェック"
+      }
+    ],
+    "price_justification": "100円でも一次情報の要約ではなく、会議で使える複数成果物を提供する",
+    "free_alternative_gap": "一次情報には自社用の台帳、判定表、復旧手順がない"
+  },
+  "proof_map": [
+    {
+      "benefit_id": "B01",
+      "claim_ids": [
+        "primary-source"
+      ],
+      "section_anchor": "## 成果物1：依存関係台帳"
+    },
+    {
+      "benefit_id": "B02",
+      "claim_ids": [
+        "primary-source"
+      ],
+      "section_anchor": "## 成果物2：期限から逆算する切替カレンダー"
+    },
+    {
+      "benefit_id": "B03",
+      "claim_ids": [
+        "primary-source"
+      ],
+      "section_anchor": "## 成果物3：代表ケース比較表"
+    },
+    {
+      "benefit_id": "B04",
+      "claim_ids": [
+        "primary-source"
+      ],
+      "section_anchor": "## 成果物4：切替判定表"
+    },
+    {
+      "benefit_id": "B05",
+      "claim_ids": [
+        "primary-source"
+      ],
+      "section_anchor": "## 成果物5：停止・復旧チェック"
+    }
+  ],
+  "five_second_test": {
+    "who_is_it_for": "AIを業務や開発へ組み込み、停止通知後の切替順序を決める情報システム責任者・開発責任者",
+    "what_do_they_get": "5種類の実務成果物",
+    "what_can_they_do_next": "次回会議で一件へ記入する"
+  },
+  "scorecard": {
+    "reader_specificity": 19,
+    "problem_stakes": 19,
+    "outcome_specificity": 19,
+    "delivery_strength": 20,
+    "paid_necessity": 18
+  },
+  "fatal_issues": []
+}

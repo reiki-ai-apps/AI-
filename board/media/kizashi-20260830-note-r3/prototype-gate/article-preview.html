@@ -1,0 +1,96 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI試作品を本番へ運ぶ「8週間ゲート」実務キット｜価値・評価・安全・費用・復旧を揃える</title><style>
+:root{--bg:#f3f6f7;--paper:#fff;--ink:#10233f;--muted:#52637b;--line:#dce5f2;--teal:#08a5a0;--coral:#ff6b5e;--gold:#f5b942}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Yu Gothic','Noto Sans JP',Meiryo,sans-serif;font-size:17px;line-height:1.95;overflow-wrap:anywhere}.top{height:6px;background:linear-gradient(90deg,var(--teal),#155eef,var(--gold),var(--coral))}.hero{max-width:1120px;margin:0 auto;padding:28px 22px 0}.hero img{width:100%;border-radius:26px;box-shadow:0 20px 60px #10233f20}.meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.meta span{background:#e9f6f4;color:#05665c;border-radius:999px;padding:6px 13px;font-size:13px;font-weight:700}.article{max-width:820px;margin:0 auto;padding:16px 24px 80px;background:var(--paper);box-shadow:0 10px 50px #10233f0c}.article h1{font-size:clamp(30px,5vw,50px);line-height:1.35;margin:24px 0 22px;letter-spacing:.01em}.article h2{font-size:clamp(23px,3.2vw,30px);line-height:1.5;margin:58px 0 20px;padding:12px 0 12px 18px;border-left:7px solid var(--teal);background:linear-gradient(90deg,#e9f6f4,transparent)}.article h3{font-size:21px;line-height:1.55;margin:34px 0 12px;padding-left:13px;border-left:4px solid var(--coral)}.article p{margin:0 0 1.35em}.article strong{color:#0b5f87}.summary{margin:26px 0 34px;border:2px solid var(--teal);background:#f5fffd;border-radius:18px;padding:18px 24px;box-shadow:0 10px 30px #08a5a015}.summary p{margin:.4em 0}.article figure{margin:28px -40px 8px}.article figure img{width:100%;border-radius:18px;box-shadow:0 14px 36px #10233f22}.caption{font-size:13px;color:var(--muted);margin:0 0 30px!important;padding:0 4px}.table-wrap{overflow-x:auto;margin:22px 0 30px;border-radius:15px;border:1px solid var(--line)}table{border-collapse:collapse;width:100%;min-width:680px;font-size:14px;line-height:1.65}th{background:#10233f;color:#fff}th,td{padding:13px 14px;border:1px solid var(--line);vertical-align:top}tbody tr:nth-child(even){background:#f7f9fc}ul,ol{padding-left:1.4em}.checks{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}.checks li{background:#f6f9ff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;line-height:1.6}.checks span{color:var(--teal);font-weight:900;margin-right:9px}.paid{margin:58px -10px 24px;padding:24px;border:2px solid var(--gold);border-radius:18px;background:#fffaf0;text-align:center}.paid span{display:block;font-size:12px;letter-spacing:.16em;color:#a46d00;font-weight:800}.paid b{display:block;font-size:21px;margin-top:4px}blockquote{margin:20px 0}.article hr{border:0;border-top:1px solid var(--line);margin:34px 0}a{color:#0566b3}.footer{max-width:820px;margin:0 auto;padding:22px 24px 50px;color:var(--muted);font-size:13px}
+@media(max-width:600px){body{font-size:16px;line-height:1.9}.hero{padding:12px 10px 0}.hero img{border-radius:14px}.article{padding:8px 18px 60px}.article h1{font-size:31px}.article h2{font-size:23px;margin-top:44px}.article h3{font-size:19px}.article figure{margin:22px -8px 7px}.checks{grid-template-columns:1fr}.summary{padding:15px 17px}.paid{margin:42px 0 20px;padding:18px 13px}.paid b{font-size:18px}.meta{margin-left:6px}}
+</style></head><body><div class="top"></div><div class="hero"><img src="visuals/thumbnail-1.jpg" alt="本番化の8週間ゲート"><div class="meta"><span>一次情報を実務へ</span><span>実写＋判断図6点</span><span>100円固定</span><span>Revision 3</span></div></div><main class="article"><h1>AI試作品を本番へ運ぶ「8週間ゲート」実務キット｜価値・評価・安全・費用・復旧を揃える</h1>
+<p>AIのデモは動いた。社内発表でも反応は良い。それでも本番化の会議では「誰が使うのか」「誤りをどう測るのか」「費用上限は」「失敗時に戻せるのか」が答えられず、プロンプト改善だけが続く――。この状態を変えるための記事です。</p>
+<p>対象は、PoCを本番・限定継続・停止のどれへ進めるかを決める事業責任者・プロダクト責任者です。読み終えると、8週間を価値、範囲、評価、利用者証拠、安全、費用、運用、判断へ分け、毎週の成果物と停止条件を設定できます。</p>
+<aside class="summary"><p><strong>先に結論</strong></p><p>- 「動く製品」だけでは本番判断に足りません。</p><p>- 代表利用者の行動、評価結果、安全、費用、復旧を同じ時間軸で揃えます。</p><p>- 平均点と重大NGを相殺しません。</p><p>- 最終判断は成功／失敗ではなく、本番・限定・停止の三択です。</p></aside>
+<figure><img src="visuals/visual-01-context.jpg" alt="試作品から本番判断へ進む8週間の全体像"></figure>
+<p class="caption">図1：デモ完成から先に必要な、証拠・評価・安全・費用・運用の全体像。写真は権利確認済み素材。</p>
+<h2>一次情報が示した「製品以外の成果物」</h2>
+<p>2026年8月28日、OpenAIとタイ高等教育科学研究イノベーション省は、医療・ウェルネス5社、教育5社の計10社を対象に8週間のアクセラレータを開始すると発表しました。各社には2,000米ドルのAPIクレジット、技術・製品ガイダンスなどが提供されます。</p>
+<p>終了時に期待されるのは、動作する製品または大幅な改善だけではありません。代表利用者からの証拠、初期評価結果、実装への信頼できる道筋も含まれます。この構造は、社内PoCを「見せられるデモ」から「判断できる案件」へ変える時にも使えます。</p>
+<ul><li>OpenAI公式発表：<a href="https://openai.com/index/supporting-next-generation-ai-startups-thailand/">https://openai.com/index/supporting-next-generation-ai-startups-thailand/</a></li><li>OpenAI Evals公式ガイド：<a href="https://platform.openai.com/docs/guides/evals">https://platform.openai.com/docs/guides/evals</a></li><li>OpenAI安全対策公式ガイド：<a href="https://platform.openai.com/docs/guides/safety-best-practices">https://platform.openai.com/docs/guides/safety-best-practices</a></li><li>NIST AI RMF 1.0：<a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf">https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf</a></li></ul>
+<h2>無料部分の価値見本：8週間ゲート</h2>
+<p>8週間ゲートは、<strong>課題・範囲・評価・利用者・安全・費用・復旧・判断</strong>の8段階です。毎週、会議資料ではなく、次の判断に使える成果物を一つ残します。</p>
+<figure><img src="visuals/visual-02-overview.jpg" alt="8週間ゲートの俯瞰図"></figure>
+<p class="caption">図2：週ごとの成果物を固定し、プロンプト改善だけに偏るのを防ぐ。</p>
+<div class="table-wrap"><table><thead><tr><th>週</th><th>ゲート</th><th>残す成果物</th></tr></thead><tbody>
+<tr><td>1</td><td>課題</td><td>対象者・損失・成功指標</td></tr>
+<tr><td>2</td><td>範囲</td><td>対象内／対象外・権限</td></tr>
+<tr><td>3</td><td>評価</td><td>代表ケース・重大NG</td></tr>
+<tr><td>4</td><td>利用者</td><td>行動変化・迷い・離脱</td></tr>
+<tr><td>5</td><td>安全</td><td>権限・データ・停止条件</td></tr>
+<tr><td>6</td><td>費用</td><td>平均・上限・人手</td></tr>
+<tr><td>7</td><td>復旧</td><td>障害訓練・照合・戻し方</td></tr>
+<tr><td>8</td><td>判断</td><td>本番・限定・停止</td></tr>
+</tbody></table></div>
+<p>同じ8週間ゲートを自社ですでに運用しているなら、この記事を購入する必要はありません。無料部分の一覧と一次情報を使い、欠けている成果物だけを自社様式へ追加してください。</p>
+<h2>8週間で終わらない案件への使い方</h2>
+<p>8週間は万能な期限ではありません。医療、教育、個人情報、既存システム連携では、法令確認や現場調整にさらに時間が必要です。ここで使うのは期間の短さではなく、毎週の成果物を固定する考え方です。</p>
+<p>期間を12週や16週へ延ばしても、課題、範囲、評価、利用者、安全、費用、復旧、判断の順序は維持します。確認が終わらない項目は合格へ推測せず、担当、取得方法、期限を記録します。期限を延ばす時も「何の証拠を得るためか」を明示すれば、改善作業の無限化を防げます。</p>
+<div class="paid"><span>ここから有料部分</span><b>判断表・テンプレート・完全版チェック</b></div>
+<h2>成果物1：課題・範囲シート</h2>
+<p>1週目は「生成AIで効率化する」のような広い目的をやめ、誰の何の損失を減らすかを一文で固定します。</p>
+<p>悪い例は「問い合わせ対応をAI化する」です。改善例は「営業時間外の配送状況確認で翌朝まで待つ顧客を減らし、担当者には例外だけを残す」です。これなら、初回応答時間、自己解決率、誤案内率、人への引き継ぎ率を測れます。</p>
+<p>2週目は対象を狭くします。返金や契約変更は人へ渡し、配送状況の確認だけを扱う。社内検索なら公開済みマニュアルだけを対象にする。高リスク判断を切り離して、価値と危険を測れる範囲へ落とします。</p>
+<figure><img src="visuals/visual-03-scope.jpg" alt="対象内・対象外・人への引継ぎを分ける範囲図"></figure>
+<p class="caption">図3：機能一覧ではなく、扱う範囲、扱わない範囲、人へ渡す範囲を分ける。</p>
+<h2>成果物2：代表ケース評価表</h2>
+<p>3週目は、きれいな成功例だけでなく、失敗ケースを含む評価セットを作ります。</p>
+<div class="table-wrap"><table><thead><tr><th>種類</th><th>例</th><th>期待結果</th><th>重大度</th></tr></thead><tbody>
+<tr><td>標準</td><td>必要情報が揃う</td><td>正しい回答</td><td>通常</td></tr>
+<tr><td>情報不足</td><td>注文番号がない</td><td>追加質問</td><td>通常</td></tr>
+<tr><td>引継ぎ</td><td>返金・契約変更</td><td>人へ渡す</td><td>高</td></tr>
+<tr><td>拒否</td><td>個人情報の不正取得</td><td>実行しない</td><td>最重大</td></tr>
+<tr><td>外部障害</td><td>APIタイムアウト</td><td>再送せず保留</td><td>高</td></tr>
+<tr><td>結果不明</td><td>成功応答なし</td><td>外部側を照合</td><td>最重大</td></tr>
+</tbody></table></div>
+<p>評価は正答率だけでなく、重大NG、構造出力、拒否、人への引継ぎ、速度、費用を分けます。平均正答率が高くても、秘密情報の露出や二重処理があれば本番へ進めません。</p>
+<h2>成果物3：代表利用者の証拠カード</h2>
+<p>4週目は開発チーム内の試用から外へ出し、代表利用者の行動を観察します。満足度だけでは、珍しさや期待が混ざります。</p>
+<figure><img src="visuals/visual-04-user-evidence.jpg" alt="代表利用者の行動を記録する証拠カード"></figure>
+<p class="caption">図4：発言だけでなく、完了時間、迷い、やり直し、引継ぎ、離脱を記録する。</p>
+<ul><li>完了までの時間はどう変わったか</li><li>どの言葉や画面で迷ったか</li><li>同じ説明を再入力したか</li><li>人への引継ぎ後に情報が欠けたか</li><li>次回も自力で使えるか</li></ul>
+<p>「便利だった」ではなく、「10人中7人が自力で完了し、3人は選択肢を誤解した」のように観察可能な事実へ変えます。取得できなかった値は0にせず、未取得と記録します。</p>
+<h2>成果物4：安全・費用の停止表</h2>
+<p>5週目は、読む、書く、送る、削除する、課金する権限を分けます。6週目は平均費用だけでなく、長い入力、再試行、混雑、人の確認を含む上限を計算します。</p>
+<figure><img src="visuals/visual-05-safety-cost.jpg" alt="安全と費用を重大NGで判定する停止表"></figure>
+<p class="caption">図5：価値指標と安全指標を相殺せず、停止条件を先に決める。</p>
+<div class="table-wrap"><table><thead><tr><th>領域</th><th>継続条件</th><th>停止条件</th></tr></thead><tbody>
+<tr><td>データ</td><td>許可済み範囲だけ</td><td>機密・個人情報の不適切出力</td></tr>
+<tr><td>権限</td><td>最小権限・監視付き</td><td>目的外の送信・削除</td></tr>
+<tr><td>外部処理</td><td>IDと状態を保存</td><td>結果不明で再送が必要</td></tr>
+<tr><td>費用</td><td>承認済み上限内</td><td>未承認課金・上限超過</td></tr>
+<tr><td>品質</td><td>代表ケース合格</td><td>重大ケースで誤断定</td></tr>
+</tbody></table></div>
+<p>費用表には、モデル、音声・画像、検索、保存、監視、人の確認、失敗時の再処理を含めます。無料クレジット内で動くことと、継続運用の採算が合うことを混同しません。</p>
+<h2>成果物5：復旧リハーサル</h2>
+<p>7週目は、開発者以外の担当者が停止と復旧を実行できるか試します。</p>
+<figure><img src="visuals/visual-06-recovery.jpg" alt="停止・照合・復旧・再開の手順"></figure>
+<p class="caption">図6：外部結果不明時は再操作せず、証拠保存と外部照合を先に行う。</p>
+<ul class="checks"><li><span>□</span>責任者不在でも緊急停止できる</li><li><span>□</span>対象処理をID・時刻・状態から特定できる</li><li><span>□</span>手作業または旧方式へ戻せる</li><li><span>□</span>利用者へ遅延・制限を通知できる</li><li><span>□</span>二重処理がないことを外部側で照合できる</li><li><span>□</span>再開条件と再開承認者が決まっている</li></ul>
+<p>訓練で詰まった時は、手順書の追記だけで済ませません。画面、権限、通知経路、担当分担という設計の欠陥を直します。</p>
+<h2>成果物6：8週目の三択判断表</h2>
+<p>最終判断は成功／失敗の二択にしません。</p>
+<ol><li><strong>本番へ進む</strong>：価値、品質、安全、費用、運用、復旧が合格。</li><li><strong>限定して継続</strong>：価値はあるが、対象・権限・処理量を狭める。</li><li><strong>停止する</strong>：重大NG、採算不成立、利用者価値不足、法令・権利問題がある。</li></ol>
+<p>停止も成果です。評価セット、失敗条件、利用者の反応、費用、復旧訓練の結果が残れば、次の企画で同じ誤りを繰り返しません。</p>
+<h2>週次レビューで聞く5問</h2>
+<ol><li>今週、誰の行動がどう変わったか。</li><li>重大NGは一度でも起きたか。</li><li>取得できていない値は何か。</li><li>追加費用と人の確認時間は上限内か。</li><li>明日停止しても、データと手順を回収できるか。</li></ol>
+<p>回答できない項目は、次週に取得すべき証拠です。ただし法令、権利、安全、外部結果不明は、証拠がないまま先へ進めません。</p>
+<h2>記入例：病院電話の案内支援</h2>
+<p>病院の電話案内を支援するAIを例にします。目的は、すべての電話を自動化することではありません。予約確認などの定型案内を早くし、緊急性のある電話と判断が必要な電話を人へ確実に渡すことです。</p>
+<p>1週目は、対象者を電話で予約を確認したい患者とします。減らしたい損失は、待ち時間と同じ説明の繰り返しです。成功指標は初回応答時間、自力完了率、人への引継ぎ成功率です。</p>
+<p>2週目は、診断、服薬変更、緊急性の最終判断を対象外にします。予約日時の確認と変更受付だけを対象内へ置きます。症状や不安を示す言葉が出た時は、人へ渡します。</p>
+<p>3週目は、標準予約、聞き取りにくい発話、別言語、情報不足、同姓同名、緊急性を疑う表現、外部予約システム停止を評価セットへ入れます。期待結果と重大度を各ケースへ付けます。</p>
+<p>4週目は、利用者が何秒で用件を伝えられたかを見ます。どの言葉で言い直したかも記録します。人へ引き継いだ後に説明を最初から繰り返したかも確認します。満足度だけで合格にしません。</p>
+<p>5週目は、患者情報を読む権限と予約を変更する権限を分けます。6週目は平均通話費用だけでなく、長い通話、再接続、人の確認時間を含む上限を計算します。</p>
+<p>7週目は、予約システムを意図的に停止した訓練を行います。結果不明の変更を再送しないことを確認します。担当者が処理IDと外部画面を照合し、手作業へ戻せるかも試します。</p>
+<p>8週目は、定型案内だけを本番へ進める、対象を一施設へ限定して続ける、重大NGが解消するまで停止する、の三択で決めます。平均応答時間が改善しても、緊急性のある電話を適切に引き継げなければ本番へ進めません。</p>
+<h2>今日の実行順序</h2>
+<p>今のPoCについて、対象者と減らす損失を一文で書きます。次に、AIへ任せない範囲を一つ決めます。最後に、起きたら即停止する重大NGを一つ決めます。この3点が、8週間ゲートの最初の成果物になります。</p>
+<h2>まとめ</h2>
+<p>AI試作品を本番へ運ぶには、デモの完成度以外の証拠が必要です。1週目に課題を固定し、2週目に範囲を絞る。3週目に代表ケース、4週目に利用者の行動、5週目に安全、6週目に費用、7週目に復旧を検証し、8週目に三択で判断します。</p>
+<p>この8週間ゲートなら、プロンプト改善だけを続けて判断を先送りする状態から抜けられます。最初の行動は、今のPoCについて「誰のどの損失を減らすか」を一文で書き、対象外を一つ決めることです。</p>
+<p>※本稿は公開一次情報を基にした一般的な事業・運用設計です。医療、教育、個人情報、雇用などの高リスク用途では、法令と専門家の確認を追加してください。</p></main><footer class="footer">KIZASHI NOTE／前回比品質ゲート・出典・権利・有料境界を含む確認用プレビュー</footer></body></html>

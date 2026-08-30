@@ -1,0 +1,32 @@
+{
+  "schema_version": "article-layout-review/v1",
+  "baseline_id": "sanko-facility-horticulture-editorial-v1",
+  "article_hash": "0872c2e32d5db034b88aa62e0cd89acaa2e1c67f9faa6c7b1c6bd134195e09f8",
+  "pc_render_file": "screenshots/article-pc.png",
+  "pc_render_sha256": "692c27cb415d0c6c2d874eda986d385be1edda1b1b12cd2532322f91b3ed403b",
+  "mobile_render_file": "screenshots/article-mobile-375.png",
+  "mobile_render_sha256": "9e9704a3310ca5ccbbbdb1972f0a1d80f75a111fb07ae68ba3cb667c6965603c",
+  "checks": {
+    "hero_title_hierarchy": "PASS",
+    "summary_block": "PASS",
+    "section_rhythm": "PASS",
+    "text_size_line_height": "PASS",
+    "controlled_palette": "PASS",
+    "visual_variety": "PASS",
+    "captions_alt": "PASS",
+    "pc_mobile_readability": "PASS",
+    "conclusion_cta": "PASS"
+  },
+  "reference_comparison": "直近所有者合格記事と過去ベストの両方に対し、分割ヒーロー、先出し要約、本文内6図版、判断表、チェックリスト、PC820px本文幅、375px表示を維持した。さらに拒否Revisionに欠けていた本文図版を復活させ、有料成果物数を前回より増やした。",
+  "findings": [
+    "主要軸の後退なし",
+    "有料成果物を前回4種類から5種類へ増やし、停止通知から復旧までを一続きで実行可能にした"
+  ],
+  "fixes": [
+    "拒否Revisionを隔離",
+    "サムネイルを分割レイアウトへ変更",
+    "本文内6図版を実装"
+  ],
+  "reviewed_at": "2026-08-30T11:40:00+09:00",
+  "status": "PASS"
+}

@@ -1,0 +1,120 @@
+{
+  "schema_version": "article-visual-review-loop/v1",
+  "article_hash": "0872c2e32d5db034b88aa62e0cd89acaa2e1c67f9faa6c7b1c6bd134195e09f8",
+  "visual_set_hash": "55d5e0d57bcc74d5f13c33b9617df58f3926a7d4624f23814bc994a28c0a9c6a",
+  "loops": [
+    {
+      "loop": 1,
+      "lens": "facts_labels_rights_sources",
+      "status": "pass",
+      "visual_hashes": {
+        "visual-01-context": "1860c81fb8bb82afc8ddebaefe52e715ed3c113d4d1ad6333aa02d0fafefdb8b",
+        "visual-02-overview": "c0c66763768a321c7ad8041b7b5cc1654ab0a3d9d7350b75b4ece683503b3779",
+        "visual-03-priority-matrix": "4afc084e13ad51dda4b4c02f37cae412cfd6c227904b665746eacfc31889419a",
+        "visual-04-timeline": "aa01a3d2fb4402d02c4a659cec76bab33192e18693c76f8e238a9b8c2e9e8ada",
+        "visual-05-decision": "4220e3c101ae8d433bb69e35611309a07689ddafbebba79a49a99a28a5366c00",
+        "visual-06-recovery": "e831e3f307edf0e673ec5dc9a763956f869d9086c90a408a90f8df205790539b"
+      },
+      "visual_ids": [
+        "visual-01-context",
+        "visual-02-overview",
+        "visual-03-priority-matrix",
+        "visual-04-timeline",
+        "visual-05-decision",
+        "visual-06-recovery"
+      ],
+      "checks": [
+        "一次情報",
+        "数値",
+        "権利",
+        "日本語",
+        "画像ハッシュ"
+      ],
+      "evidence": [
+        "公式URL",
+        "rights ledger",
+        "100%表示"
+      ],
+      "findings": [
+        "生成写真0点",
+        "写真と図解の役割を分離"
+      ],
+      "fixes": [],
+      "checked_at": "2026-08-30T11:40:00+09:00"
+    },
+    {
+      "loop": 2,
+      "lens": "comprehension_value_content_match",
+      "status": "pass",
+      "visual_hashes": {
+        "visual-01-context": "1860c81fb8bb82afc8ddebaefe52e715ed3c113d4d1ad6333aa02d0fafefdb8b",
+        "visual-02-overview": "c0c66763768a321c7ad8041b7b5cc1654ab0a3d9d7350b75b4ece683503b3779",
+        "visual-03-priority-matrix": "4afc084e13ad51dda4b4c02f37cae412cfd6c227904b665746eacfc31889419a",
+        "visual-04-timeline": "aa01a3d2fb4402d02c4a659cec76bab33192e18693c76f8e238a9b8c2e9e8ada",
+        "visual-05-decision": "4220e3c101ae8d433bb69e35611309a07689ddafbebba79a49a99a28a5366c00",
+        "visual-06-recovery": "e831e3f307edf0e673ec5dc9a763956f869d9086c90a408a90f8df205790539b"
+      },
+      "visual_ids": [
+        "visual-01-context",
+        "visual-02-overview",
+        "visual-03-priority-matrix",
+        "visual-04-timeline",
+        "visual-05-decision",
+        "visual-06-recovery"
+      ],
+      "checks": [
+        "初見理解",
+        "購入価値",
+        "本文一致",
+        "見出し対応",
+        "6図の役割分離"
+      ],
+      "evidence": [
+        "contact sheet",
+        "article anchors"
+      ],
+      "findings": [
+        "全6図が別の判断を短縮"
+      ],
+      "fixes": [],
+      "checked_at": "2026-08-30T11:41:00+09:00"
+    },
+    {
+      "loop": 3,
+      "lens": "note_mobile_render_alt_crop_failure",
+      "status": "pass",
+      "visual_hashes": {
+        "visual-01-context": "1860c81fb8bb82afc8ddebaefe52e715ed3c113d4d1ad6333aa02d0fafefdb8b",
+        "visual-02-overview": "c0c66763768a321c7ad8041b7b5cc1654ab0a3d9d7350b75b4ece683503b3779",
+        "visual-03-priority-matrix": "4afc084e13ad51dda4b4c02f37cae412cfd6c227904b665746eacfc31889419a",
+        "visual-04-timeline": "aa01a3d2fb4402d02c4a659cec76bab33192e18693c76f8e238a9b8c2e9e8ada",
+        "visual-05-decision": "4220e3c101ae8d433bb69e35611309a07689ddafbebba79a49a99a28a5366c00",
+        "visual-06-recovery": "e831e3f307edf0e673ec5dc9a763956f869d9086c90a408a90f8df205790539b"
+      },
+      "visual_ids": [
+        "visual-01-context",
+        "visual-02-overview",
+        "visual-03-priority-matrix",
+        "visual-04-timeline",
+        "visual-05-decision",
+        "visual-06-recovery"
+      ],
+      "checks": [
+        "1280x670",
+        "160px",
+        "320px",
+        "代替テキスト",
+        "PC・375px表示"
+      ],
+      "evidence": [
+        "thumbnail size tests",
+        "article preview"
+      ],
+      "findings": [
+        "主コピーを安全域へ実装"
+      ],
+      "fixes": [],
+      "checked_at": "2026-08-30T11:42:00+09:00"
+    }
+  ]
+}

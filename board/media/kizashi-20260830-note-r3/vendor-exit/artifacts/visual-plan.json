@@ -1,0 +1,173 @@
+{
+  "schema_version": "article-visual-plan/v1",
+  "visuals": [
+    {
+      "visual_id": "visual-01-context",
+      "category": "contextual_illustration_or_photo",
+      "type": "photo",
+      "file": "visuals/visual-01-context.jpg",
+      "sha256": "1860c81fb8bb82afc8ddebaefe52e715ed3c113d4d1ad6333aa02d0fafefdb8b",
+      "alt_text": "AIモデル停止通知から社内切替までの全体像",
+      "caption": "Photo: Brett Sayles / Pexels",
+      "purpose": "停止通知を業務設計へ翻訳する",
+      "reader_question": "社内で使うAIモデルの提供条件が変わりで何を決めるか",
+      "decision_or_action": "停止通知を業務設計へ翻訳する",
+      "placement_anchor": "社内で使うAIモデルの提供条件が変わり",
+      "section": "社内で使うAIモデルの提供条件が変わり",
+      "paid_or_free": "free",
+      "benefit_unit_ids": [
+        "B01"
+      ],
+      "claim_ids": [
+        "primary-source"
+      ],
+      "rights": "licensed",
+      "source_urls": [
+        "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/"
+      ],
+      "content_match_reason": "停止通知を業務設計へ翻訳する",
+      "width": 1280,
+      "height": 670
+    },
+    {
+      "visual_id": "visual-02-overview",
+      "category": "overview_diagram",
+      "type": "diagram",
+      "file": "visuals/visual-02-overview.jpg",
+      "sha256": "c0c66763768a321c7ad8041b7b5cc1654ab0a3d9d7350b75b4ece683503b3779",
+      "alt_text": "切替設計5項目の俯瞰図",
+      "caption": "KIZASHI original diagram",
+      "purpose": "5項目の抜けを一画面で確認する",
+      "reader_question": "## 無料部分の価値見本：切替設計5項目で何を決めるか",
+      "decision_or_action": "5項目の抜けを一画面で確認する",
+      "placement_anchor": "## 無料部分の価値見本：切替設計5項目",
+      "section": "## 無料部分の価値見本：切替設計5項目",
+      "paid_or_free": "free",
+      "benefit_unit_ids": [
+        "B02"
+      ],
+      "claim_ids": [
+        "primary-source"
+      ],
+      "rights": "owned",
+      "source_urls": [
+        "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/"
+      ],
+      "content_match_reason": "5項目の抜けを一画面で確認する",
+      "width": 1280,
+      "height": 670
+    },
+    {
+      "visual_id": "visual-03-priority-matrix",
+      "category": "comparison_or_decision_diagram",
+      "type": "diagram",
+      "file": "visuals/visual-03-priority-matrix.jpg",
+      "sha256": "4afc084e13ad51dda4b4c02f37cae412cfd6c227904b665746eacfc31889419a",
+      "alt_text": "業務影響と復旧難度で優先順位を決める二軸表",
+      "caption": "KIZASHI original diagram",
+      "purpose": "切替着手順を二軸で決める",
+      "reader_question": "## 成果物1：依存関係台帳で何を決めるか",
+      "decision_or_action": "切替着手順を二軸で決める",
+      "placement_anchor": "## 成果物1：依存関係台帳",
+      "section": "## 成果物1：依存関係台帳",
+      "paid_or_free": "paid",
+      "benefit_unit_ids": [
+        "B03"
+      ],
+      "claim_ids": [
+        "primary-source"
+      ],
+      "rights": "owned",
+      "source_urls": [
+        "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/"
+      ],
+      "content_match_reason": "切替着手順を二軸で決める",
+      "width": 1280,
+      "height": 670
+    },
+    {
+      "visual_id": "visual-04-timeline",
+      "category": "procedure_or_checklist_diagram",
+      "type": "timeline",
+      "file": "visuals/visual-04-timeline.jpg",
+      "sha256": "aa01a3d2fb4402d02c4a659cec76bab33192e18693c76f8e238a9b8c2e9e8ada",
+      "alt_text": "期限から逆算する切替カレンダー",
+      "caption": "KIZASHI original diagram",
+      "purpose": "復旧余白を残す順序を決める",
+      "reader_question": "## 成果物2：期限から逆算する切替カレンダーで何を決めるか",
+      "decision_or_action": "復旧余白を残す順序を決める",
+      "placement_anchor": "## 成果物2：期限から逆算する切替カレンダー",
+      "section": "## 成果物2：期限から逆算する切替カレンダー",
+      "paid_or_free": "paid",
+      "benefit_unit_ids": [
+        "B04"
+      ],
+      "claim_ids": [
+        "primary-source"
+      ],
+      "rights": "owned",
+      "source_urls": [
+        "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/"
+      ],
+      "content_match_reason": "復旧余白を残す順序を決める",
+      "width": 1280,
+      "height": 670
+    },
+    {
+      "visual_id": "visual-05-decision",
+      "category": "comparison_or_decision_diagram",
+      "type": "diagram",
+      "file": "visuals/visual-05-decision.jpg",
+      "sha256": "4220e3c101ae8d433bb69e35611309a07689ddafbebba79a49a99a28a5366c00",
+      "alt_text": "本番・限定・停止の三択判定表",
+      "caption": "KIZASHI original diagram",
+      "purpose": "平均点で重大NGを相殺しない",
+      "reader_question": "## 成果物4：切替判定表で何を決めるか",
+      "decision_or_action": "平均点で重大NGを相殺しない",
+      "placement_anchor": "## 成果物4：切替判定表",
+      "section": "## 成果物4：切替判定表",
+      "paid_or_free": "paid",
+      "benefit_unit_ids": [
+        "B05"
+      ],
+      "claim_ids": [
+        "primary-source"
+      ],
+      "rights": "owned",
+      "source_urls": [
+        "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/"
+      ],
+      "content_match_reason": "平均点で重大NGを相殺しない",
+      "width": 1280,
+      "height": 670
+    },
+    {
+      "visual_id": "visual-06-recovery",
+      "category": "procedure_or_checklist_diagram",
+      "type": "checklist",
+      "file": "visuals/visual-06-recovery.jpg",
+      "sha256": "e831e3f307edf0e673ec5dc9a763956f869d9086c90a408a90f8df205790539b",
+      "alt_text": "停止から再開までの復旧手順",
+      "caption": "Photo: Alexander Suhorucov / Pexels",
+      "purpose": "結果不明時の再送を防ぐ",
+      "reader_question": "## 成果物5：停止・復旧チェックで何を決めるか",
+      "decision_or_action": "結果不明時の再送を防ぐ",
+      "placement_anchor": "## 成果物5：停止・復旧チェック",
+      "section": "## 成果物5：停止・復旧チェック",
+      "paid_or_free": "paid",
+      "benefit_unit_ids": [
+        "B06"
+      ],
+      "claim_ids": [
+        "primary-source"
+      ],
+      "rights": "licensed",
+      "source_urls": [
+        "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/"
+      ],
+      "content_match_reason": "結果不明時の再送を防ぐ",
+      "width": 1280,
+      "height": 670
+    }
+  ]
+}
