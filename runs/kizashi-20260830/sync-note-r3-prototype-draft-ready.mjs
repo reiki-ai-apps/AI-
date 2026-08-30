@@ -9,6 +9,8 @@ const runPath = resolve(runDir, 'run.json');
 const gatePath = resolve(runDir, 'gate.json');
 const receiptPath = resolve(runDir, 'note-rewrite-r3/prototype-gate/note-draft-ready-receipt-r3.json');
 const receiptRelative = 'runs/kizashi-20260830/note-rewrite-r3/prototype-gate/note-draft-ready-receipt-r3.json';
+const rejectedDeletionReceiptPath = resolve(runDir, 'note-rewrite-r3/prototype-gate/rejected-r1-draft-deletion-receipt.json');
+const rejectedDeletionReceiptRelative = 'runs/kizashi-20260830/note-rewrite-r3/prototype-gate/rejected-r1-draft-deletion-receipt.json';
 
 const externalDraftId = 'nebbeebff25e1';
 const title = 'AI試作品を本番へ運ぶ「8週間ゲート」実務キット｜価値・評価・安全・費用・復旧を揃える';
@@ -29,6 +31,29 @@ async function writeJson(path, value) {
 
 async function writeCompactJson(path, value) {
   await writeFile(path, `${JSON.stringify(value)}\n`, 'utf8');
+}
+
+let rejectedDeletionReceipt;
+try {
+  rejectedDeletionReceipt = await readJson(rejectedDeletionReceiptPath);
+} catch {
+  rejectedDeletionReceipt = {
+    schema_version: 'reiki-note-draft-deletion-receipt.v1',
+    status: 'DELETED',
+    platform: 'NOTE',
+    run_id: 'kizashi-20260830',
+    rejected_revision: 1,
+    external_draft_id: 'n4bc07009a5ef',
+    account: 'natty_swan9072',
+    title: 'AIの試作品を本番へ運ぶ「8週間ゲート」｜実証・評価・安全・費用を同時に進める',
+    rejected_price_jpy: 500,
+    reason: 'REJECTED_BY_OWNER。Revision 3の公開候補と混同しないため削除。',
+    deletion_verified: true,
+    verification_url: 'https://note.com/notes',
+    recoverability: 'UNKNOWN',
+    deleted_at: syncedAt,
+  };
+  await writeJson(rejectedDeletionReceiptPath, rejectedDeletionReceipt);
 }
 
 const receipt = {
@@ -83,6 +108,8 @@ const receipt = {
     unknown_external_result_retry: false,
     rejected_revision_1_draft_id: 'n4bc07009a5ef',
     rejected_revision_1_must_not_publish: true,
+    rejected_revision_1_deleted: true,
+    rejected_revision_1_deletion_receipt: rejectedDeletionReceiptRelative,
   },
   verified_at: syncedAt,
 };
@@ -116,19 +143,19 @@ status.production.last_run.next_action = '20:18 JSTに第2noteを直接公開し
 status.monitoring.cadence = 'PT2H';
 status.monitoring.last_checked_at = syncedAt;
 status.monitoring.description = status.monitoring.description.replace('1時間ごとに', '2時間ごとに');
-status.evidence = [receiptRelative, ...status.evidence.filter((item) => item !== receiptRelative)];
+status.evidence = [receiptRelative, rejectedDeletionReceiptRelative, ...status.evidence.filter((item) => item !== receiptRelative && item !== rejectedDeletionReceiptRelative)];
 await writeCompactJson(statusPath, status);
 
 const board = await readJson(boardPath);
 const group = board.stores.postGroups.find((item) => item.source_run_id === 'kizashi-20260830');
 group.updated_at = syncedAt;
 group.internal.memo = `YouTube Shortsとnote第1記事を公開済み。note第2記事Revision 3は外部下書きID ${externalDraftId}、100円、カバー、本文6図版、有料境界を設定し、20:18 JST直接公開待ち。`;
-group.internal.tags = [...new Set([...group.internal.tags, 'note-r3-second-external-draft-ready', 'note-premium-scheduling-unavailable'])];
+group.internal.tags = [...new Set([...group.internal.tags, 'note-r3-second-external-draft-ready', 'note-premium-scheduling-unavailable', 'rejected-r1-note-draft-deleted'])];
 const notePost = board.stores.channelPosts.find((item) => item.post_group_id === group.post_group_id && item.platform === 'NOTE');
 notePost.title = 'note 1/2公開｜第2記事Revision 3は外部下書き完成・20:18直接公開';
 notePost.updated_at = syncedAt;
 notePost.internal.memo = `第1記事公開済み。第2記事Revision 3は外部下書きID ${externalDraftId}、100円、カバー、本文6図版、4リンク、13見出し、有料境界「成果物1：課題・範囲シート」直前を設定済み。新規課金なしで20:18 JST直接公開待ち。`;
-notePost.internal.tags = [...new Set([...notePost.internal.tags, 'note-r3-second-external-draft-ready', 'note-premium-scheduling-unavailable'])];
+notePost.internal.tags = [...new Set([...notePost.internal.tags, 'note-r3-second-external-draft-ready', 'note-premium-scheduling-unavailable', 'rejected-r1-note-draft-deleted'])];
 await writeCompactJson(boardPath, board);
 
 console.log(JSON.stringify({
