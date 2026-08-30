@@ -3,8 +3,8 @@
   "run_id": "kizashi-20260830",
   "status": "PASS",
   "passed": true,
-  "checked_at": "2026-08-30T06:44:35.458Z",
-  "reason": "note Revision 3の2記事で公開パッケージ、77件の三重検証、承認Hash、100円固定、復旧計画が合格。外部note receiptは未取得。",
+  "checked_at": "2026-08-30T07:22:52.943Z",
+  "reason": "note Revision 3第1記事の外部公開receipt取得済み。100円・有料境界・6図版・一次情報リンクを検証し、第2記事は4時間間隔待ち。",
   "required": {
     "verified_primary_sources": 2
   },
@@ -23,7 +23,7 @@
     "aivis_cost_approval": true,
     "aivis_paid_call_executed": true,
     "current_revision_owner_approval": true,
-    "external_publish_receipts": false,
+    "external_publish_receipts": true,
     "note_owner_quality": "REVISION_3_APPROVED",
     "note_price_policy_jpy": 100,
     "youtube_published_content_feedback": "POSITIVE_RESPONSE_OBSERVED",
@@ -31,6 +31,8 @@
     "youtube_caption_owner_feedback": "BELOW_TARGET_QUALITY",
     "youtube_continuous_quality_gate_required_next": true,
     "note_quality_ladder": "PASS_NON_REGRESSION_PLUS_IMPROVEMENT",
-    "note_release_package": "PASS"
+    "note_release_package": "PASS",
+    "external_publish_receipt_count": 1,
+    "note_purchase_status": "UNAVAILABLE"
   }
 }
