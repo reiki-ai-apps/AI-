@@ -40,7 +40,7 @@ for(const [index,item] of data.entries()){
   const paragraphs=detail.split(/\n+/).map(value=>value.trim()).filter(Boolean);
   const sentences=(detail.match(/[。！？!?]/g)||[]).length;
   const longestSentence=detail.split(/(?<=[。！？!?])/).reduce((max,value)=>Math.max(max,value.replace(/\s+/g,"").length),0);
-  if(compactLength<170||compactLength>310||paragraphs.length<2||paragraphs.length>3||sentences<5||sentences>7||longestSentence>85){
+  if(compactLength<280||compactLength>440||paragraphs.length!==3||sentences<8||sentences>11||longestSentence>85){
     failures.push(`${index+1}件目のやさしい解説が高校生向け基準未達です: ${item.article_id||item.title}`);
   }
   for(const [term,meaning] of [["GPU","半導体"],["AIエージェント","作業も順番"],["マルチモーダル","文章だけでなく"],["API","窓口"]]){
@@ -59,7 +59,7 @@ for(const id of ids){
   if(!page.includes('assets/visitor-tracker.js'))failures.push(`記事閲覧が累計ユニーク閲覧者に反映されません: ${id}`);
   if(!page.includes(`href="https://reiki-ai-apps.github.io/AI-/">AI最新ニュースをやさしい要約で確認</a>`))failures.push(`記事から最新ニュースへの導線がありません: ${id}`);
   if(!page.includes("<h2>やさしい解説</h2>"))failures.push(`記事にやさしい解説がありません: ${id}`);
-  if(!page.includes("</p><p>"))failures.push(`やさしい解説の2段落が保持されていません: ${id}`);
+  if((page.match(/<\/p><p>/g)||[]).length<2)failures.push(`やさしい解説の3段落が保持されていません: ${id}`);
   if(!page.includes('class="article-image"')||!page.includes('class="related"'))failures.push(`記事画像または内部リンクがありません: ${id}`);
   if(page.includes('#update-detail/'))failures.push(`保存期間後に切れる記事詳細リンクがあります: ${id}`);
 }

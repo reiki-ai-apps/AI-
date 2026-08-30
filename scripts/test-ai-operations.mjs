@@ -14,7 +14,7 @@ vm.createContext(context);
 vm.runInContext(source.slice(0,mainStart),context);
 
 const promptVersion=vm.runInContext("PROMPT_VERSION",context);
-if(promptVersion!=="ai-radar-2026-08-29-v12-student-clear"){
+if(promptVersion!=="ai-radar-2026-08-30-v13-core-depth"){
   throw new Error("student-friendly explanation prompt version was not activated");
 }
 const backfillLimit=vm.runInContext("AI_DEEP_BACKFILL_LIMIT",context);
@@ -22,11 +22,12 @@ if(backfillLimit!==24)throw new Error("legacy friendly explanation backfill limi
 const migrationBatchSize=vm.runInContext("AI_MIGRATION_BATCH_SIZE",context);
 if(migrationBatchSize!==2)throw new Error("legacy migration batch size changed unexpectedly");
 const deepExplanation=[
-  "Anthropicは、Chrome上でClaudeにページ操作を任せられる公式機能「Claude in Chrome」を公開しました。これは、AIが質問に答えるだけでなく、開いているページを読み、クリックや入力まで進める仕組みです。たとえば、複数のページを比べたり、フォームへ情報を写したりする作業を助けます。",
-  "ただし、Claudeは作業のために画面の内容を読み取るので、個人情報や会社の秘密が見える場合があります。Webページに隠された悪い命令をAIが本物だと勘違いする攻撃にも注意が必要です。使える料金プランや地域は同じではないため、自分の環境で利用できるか公式案内を確認してください。"
+  "Anthropicは、Chrome上でClaudeにページ操作を任せられる公式機能「Claude in Chrome」を公開しました。Claudeは、質問に答えるだけでなく作業も進めるAIです。以前よりも、ブラウザで行う仕事を直接任せやすくなりました。",
+  "記事の核は、Claudeが開いているページを読み、クリックや入力まで行える点です。複数のページを比べたり、フォームへ情報を写したりできます。人が画面を行き来する手間を減らせることが重要です。",
+  "一方で、作業中の画面に個人情報や会社の秘密が見える場合があります。Webページの悪い命令を本物の指示だと勘違いする攻撃にも注意が必要です。使える料金プランや地域は同じではないため、公式案内で自分の条件を確認する必要があります。"
 ].join("\n\n");
 if(!context.hasDeepFriendlyExplanation(deepExplanation)){
-  throw new Error("a two-paragraph student-friendly explanation was rejected");
+  throw new Error("a three-paragraph student-friendly explanation was rejected");
 }
 if(context.hasDeepFriendlyExplanation("OpenAIが新モデルを公開しました。詳しい条件は不明です。")){
   throw new Error("a thin friendly explanation was accepted");

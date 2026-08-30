@@ -183,7 +183,7 @@ jobs:
             const paragraphs = detail.split(/\n+/).map(value => value.trim()).filter(Boolean);
             const sentences = (detail.match(/[。！？!?]/g) || []).length;
             const longestSentence = detail.split(/(?<=[。！？!?])/).reduce((max, value) => Math.max(max, value.replace(/\s+/g, "").length), 0);
-            if (compactLength < 170 || compactLength > 310 || paragraphs.length < 2 || paragraphs.length > 3 || sentences < 5 || sentences > 7 || longestSentence > 85) {
+            if (compactLength < 280 || compactLength > 440 || paragraphs.length !== 3 || sentences < 8 || sentences > 11 || longestSentence > 85) {
               errors.push(itemError(index, "高校生向け解説の長さ・段落・文数が基準未達です"));
             }
             const unnatural = `${item.detail || ""}\n${item.action_suggestion || ""}`;

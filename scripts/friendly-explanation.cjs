@@ -1,10 +1,10 @@
-const CURRENT_PROMPT_VERSION="ai-radar-2026-08-29-v12-student-clear";
-const SAFE_COMPOSITE_VERSION="ai-radar-2026-08-29-student-composite-v18";
-const TARGET_COMPACT_CHARS=190;
-const MIN_COMPACT_CHARS=170;
-const MAX_COMPACT_CHARS=310;
-const MIN_SENTENCES=5;
-const MAX_SENTENCES=7;
+const CURRENT_PROMPT_VERSION="ai-radar-2026-08-30-v13-core-depth";
+const SAFE_COMPOSITE_VERSION="ai-radar-2026-08-30-student-core-v21";
+const TARGET_COMPACT_CHARS=330;
+const MIN_COMPACT_CHARS=280;
+const MAX_COMPACT_CHARS=440;
+const MIN_SENTENCES=8;
+const MAX_SENTENCES=11;
 const MAX_SENTENCE_CHARS=85;
 
 function compact(value){
@@ -52,6 +52,11 @@ function toStudentJapanese(value){
     [/NVIDIAの好調な四半期決算が改めて確認されたこと。/g,"NVIDIAは、好調な第2四半期の決算を発表しました。"],
     [/AI関連投資の拡大が業績を押し上げているとされる。/g,"AIに使うお金が増え、NVIDIAの売上や利益を伸ばしているとされています。"],
     [/NVIDIAの業績はAI関連半導体需要の強さを示す指標であり、日本の半導体・AIインフラ関連企業の投資判断にも影響する可能性がある。/g,"NVIDIAの決算を見ると、AI向け半導体がどれだけ求められているかが分かります。日本の半導体やAI設備の会社がお金を使う判断にも影響する可能性があります。"],
+    [/安全性チェック体制が変わると、Geminiを利用する企業や開発者にとってリスク管理の透明性に影響が及ぶ可能性がある。/g,"安全性を確認する組織が変わると、Geminiを使う企業や開発者は、危険性を誰がどう調べているのか把握しにくくなる可能性があります。"],
+    [/日本企業にとっても、中国AI業界の資本関係の変化はAIエージェント市場の競合動向を把握する材料となりうる。/g,"テンセントがManusの経営へどこまで関わるかは、作業を自動で進めるAIの競争を見る材料になります。日本企業が似たサービスを選ぶ際にも関係する可能性があります。"],
+    [/営業部門のデータ活用・業務効率化が進む可能性があるが、具体的な効果や国内提供時期は不明。/g,"営業担当者が、顧客情報や商談記録をClaudeから直接使いやすくなる可能性があります。ただし、日本で使える時期や具体的な機能はまだ分かっていません。"],
+    [/Googleからの正式発表はまだなく、今後の体制変更の(?:詳しい|詳細な)内容が注目される。/g,"Googleからの正式発表はまだありません。体制が本当に変わるのか、正式な発表を確認する必要があります。"],
+    [/提供開始時期や料金詳細については、Googleの公式発表を確認する必要がある\(記事からは不明\)。/g,"記事では、詳しい料金や利用条件までは分かりません。Googleの公式発表で確認する必要があります。"],
     [/大手電機メーカーの技術戦略転換は、関連部品・サービス業界や社内の雇用・人事体制にも波及する可能性がある。/g,"この変化は、関連会社の仕事や社内の採用にも影響する可能性があります。"],
     [/クラウド経由のトークン課金なしに動作するローカル型AIエージェント端末が新たに発表された。/g,"PerplexityとNVIDIAは、外部のAIサービスへデータを送らず、端末内で動かせるAI端末を発表しました。利用した文字量に応じた料金は、かからないとしています。"],
     [/企業や個人がAI利用コストを気にせず継続的に活用できる可能性があり、データをローカルに留めたいユーザーにも影響する。/g,"使うたびにかかる料金を抑えながら、AIを続けて利用できる可能性があります。データを外部へ送りたくない人にも選択肢が増えます。"],
@@ -93,6 +98,7 @@ function toStudentJapanese(value){
     [/事業構造の変革/g,"会社の仕事の進め方を大きく変えること"],
     [/事業変革/g,"会社の仕事の進め方を変えること"],
     [/中核に据え/g,"中心に置き"],
+    [/中心に置きた/g,"中心に置いた"],
     [/業務プロセス/g,"仕事の手順"],
     [/技術戦略/g,"技術をどう使うかの計画"],
     [/事業領域/g,"事業の分野"],
@@ -105,6 +111,8 @@ function toStudentJapanese(value){
     [/AIモデルの学習・推論/g,"AIを学習させたり、回答を作らせたりする計算"],
     [/大型AIモデル/g,"高性能なAI"],
     [/ローカル実行/g,"自分の端末だけで動かすこと"],
+    [/ローカル動作のAI/g,"手元の端末だけで動くAI"],
+    [/ローカル型AI/g,"手元の端末だけで動くAI"],
     [/ローカル型/g,"手元の端末で動く"],
     [/自分の端末だけで動かすこと型/g,"自分の端末だけで動く"],
     [/アーキテクチャ/g,"基本の仕組み"],
@@ -137,6 +145,7 @@ function toStudentJapanese(value){
     [/株主構成/g,"だれがどれだけ株を持つか"],
     [/M&A/g,"会社の合併や買収"],
     [/自律型AI/g,"人の指示を待たずに作業するAI"],
+    [/AIエージェント市場/g,"調査や入力などの作業を順番に進めるAIの市場"],
     [/自律的なシステム侵入/g,"人の指示を待たずにシステムへ侵入すること"],
     [/セキュリティリスク/g,"安全上の危険"],
     [/商用化/g,"販売や有料サービスへ使うこと"],
@@ -162,6 +171,7 @@ function toStudentJapanese(value){
     [/インフラ/g,"設備"],
     [/プラットフォーム/g,"サービス"],
     [/チェンジログ/g,"更新記録"],
+    [/現地仕様/g,"現地向けの仕組み"],
     [/技術的な仕様/g,"技術の詳しい仕組み"],
     [/仕様/g,"詳しい仕組み"],
     [/標準規格名/g,"共通ルール名"],
@@ -186,6 +196,7 @@ function toStudentJapanese(value){
     [/フレーム補間/g,"映像の間をなめらかにつなぐ機能"],
     [/提供チャネル/g,"使える場所"],
     [/業務効率化/g,"仕事の時間や手間を減らすこと"],
+    [/AI投資判断/g,"AIへお金を出す判断"],
     [/投資判断/g,"お金を出すかどうかの判断"],
     [/需給/g,"必要な量と供給できる量"],
     [/投資動向/g,"お金の流れ"],
@@ -205,6 +216,17 @@ function toStudentJapanese(value){
     [/クリエイター/g,"画像などを作る人"],
     [/ツール開発者/g,"アプリを作る人"],
     [/生成の多様性/g,"作れる内容の種類"],
+    [/競争構図/g,"会社どうしの競争関係"],
+    [/競合動向/g,"会社どうしの競争の動き"],
+    [/導入先選定/g,"どのAIを使うかの判断"],
+    [/基盤選定/g,"どの仕組みを使うかの判断"],
+    [/実用性/g,"実際の仕事で役立つか"],
+    [/効率化/g,"時間や手間を減らすこと"],
+    [/資本関係/g,"どの会社がお金を出しているか"],
+    [/法整備/g,"法律づくり"],
+    [/エコシステム/g,"関連する会社やサービス全体"],
+    [/主導権/g,"中心的な立場"],
+    [/波及/g,"影響が広がること"],
     [/コンサルティング業界/g,"企業の課題解決を助ける業界"],
     [/採用基準/g,"人を採用する基準"],
     [/AI関連半導体需要の強さを示す指標/g,"AI向け半導体がどれだけ求められているかを見る材料"],
@@ -238,6 +260,11 @@ function toStudentJapanese(value){
     [/方針を示した。/g,"方針を示しました。"],
     [/新たに発表した。/g,"新たに発表しました。"],
     [/発表した。/g,"発表しました。"],
+    [/対応した。/g,"対応しました。"],
+    [/語った。/g,"語りました。"],
+    [/明かした。/g,"明かしました。"],
+    [/説明している。/g,"説明しています。"],
+    [/出ている。/g,"出ています。"],
     [/公開された。/g,"公開されました。"],
     [/追加された。/g,"追加されました。"],
     [/実施した。/g,"実施しました。"],
@@ -245,6 +272,7 @@ function toStudentJapanese(value){
     [/報告した。/g,"報告しました。"],
     [/指摘した。/g,"指摘しました。"],
     [/とされる。/g,"とされています。"],
+    [/とされている。/g,"とされています。"],
     [/である。/g,"です。"],
     [/となる。/g,"となります。"],
     [/とされる。/g,"とされています。"],
@@ -255,8 +283,11 @@ function toStudentJapanese(value){
     [/だという。/g,"ということです。"],
     [/とみられる。/g,"と考えられています。"],
     [/広がった。/g,"広がりました。"],
+    [/始まった。/g,"始まりました。"],
+    [/なった。/g,"なりました。"],
     [/拡大された。/g,"広がりました。"],
     [/示された。/g,"示されました。"],
+    [/示した。/g,"示しました。"],
     [/判明した。/g,"分かりました。"],
     [/明らかになった。/g,"分かりました。"],
     [/異なる。/g,"異なります。"],
@@ -287,6 +318,11 @@ function toStudentJapanese(value){
     [/新たに示された。/g,"新しく示されました。"],
     [/新たに分かりました。/g,"新しく分かりました。"],
     [/必要がある。/g,"必要があります。"],
+    [/待たれる。/g,"待つ必要があります。"],
+    [/注目される。/g,"注目されています。"],
+    [/注目が集まる。/g,"注目が集まっています。"],
+    [/となりうる。/g,"になる可能性があります。"],
+    [/不明。/g,"まだ分かっていません。"],
     [/可能性がある。/g,"可能性があります。"],
     [/確認できない。/g,"確認できません。"],
     [/分かっていない。/g,"まだ分かっていません。"],
@@ -303,6 +339,13 @@ function toStudentJapanese(value){
     .replace(/この動きが重要なのは[、,]\s*/g,"")
     .replace(/次に確認するなら[、,]\s*/g,"")
     .replace(/可能性がある可能性があります。/g,"可能性があります。")
+    .replace(/手元の端末で動くのAI/g,"手元の端末だけで動くAI")
+    .replace(/現地詳しい仕組み/g,"現地向けの仕組み")
+    .replace(/AIお金を出すかどうかの判断/g,"AIへお金を出す判断")
+    .replace(/詳しい仕組みの詳細/g,"仕組みの詳細")
+    .replace(/詳細詳しい仕組み/g,"詳しい仕組み")
+    .replace(/本格販売や有料サービスへ使うことする/g,"本格的な販売や有料サービスに使う")
+    .replace(/[（(]記事からは不明[）)]/g,"。記事では分かりません")
     .replace(/\s+/g," ")
     .trim();
 }
@@ -327,15 +370,15 @@ function addUnique(target,value,prefix=""){
   }
 }
 
-function beginnerImpactSentence(value){
-  const hardWords=/競争構図|動向|指標|進化速度|注意喚起|AI依存傾向|導入先選定|基盤選定|実用性|効率化|資本関係|法整備|戦略|エコシステム|波及|主導権/;
+function beginnerImpactSentences(value){
+  const hardWords=/進化速度|注意喚起|AI依存傾向/;
   return sentences(toStudentJapanese(value))
-    .filter(sentence=>compact(sentence).length<=68&&!hardWords.test(sentence))
-    .slice(0,1)
+    .filter(sentence=>compact(sentence).length<=MAX_SENTENCE_CHARS&&!hardWords.test(sentence))
+    .slice(0,2)
     .join("");
 }
 
-// 関数名は既存テストとの互換性のため維持する。判定内容は高校生向けR3基準。
+// 関数名は既存テストとの互換性のため維持する。判定内容は高校生向けR5基準。
 function hasDeepFriendlyExplanation(value){
   const raw=String(value||"").trim();
   const paragraphs=raw.split(/\n+/).map(value=>value.trim()).filter(Boolean);
@@ -343,7 +386,7 @@ function hasDeepFriendlyExplanation(value){
   const length=compact(raw).length;
   const longest=sentenceList.reduce((max,sentence)=>Math.max(max,compact(sentence).length),0);
   return length>=MIN_COMPACT_CHARS&&length<=MAX_COMPACT_CHARS&&
-    paragraphs.length>=2&&paragraphs.length<=3&&
+    paragraphs.length===3&&
     sentenceList.length>=MIN_SENTENCES&&sentenceList.length<=MAX_SENTENCES&&longest<=MAX_SENTENCE_CHARS;
 }
 
@@ -351,6 +394,7 @@ function stageSentence(item){
   const stage=String(item.event_stage||"").trim();
   const scope=String(item.event_scope||"").trim();
   const messages={
+    rumor:"これは報道段階の情報で、会社の正式発表ではありません。実施されるかや時期は、まだ決まっていません。",
     announced:"今は発表された段階で、記事だけでは詳しい数字や条件まで分かりません。正式な内容は、情報元の資料で確認する必要があります。",
     planned:"今は計画の段階です。開始日や内容が変わる可能性があります。",
     beta:"今は試験中です。正式版では機能や使える条件が変わる可能性があります。",
@@ -393,7 +437,12 @@ function termSentence(item){
 function mechanismSentence(item){
   const type=String(item.event_type||"").trim();
   const text=[item.title,item.story_subject,item.change_summary].join(" ");
+  if(/AI投資5億円|増収27億円|SBI北尾/.test(text))return "5億円と27億円は、どちらも北尾会長が説明した数字です。この二つの数字だけでは、利益が増えたかや、AI投資だけが増収の理由かまでは判断できません。";
+  if(/安全性チーム|政府対応部門|チーム移管/.test(text))return "記事の核は、安全性を調べるチームの所属先が変わる可能性がある点です。政府対応を担う部門の中でも、危険性を独立して調べられるかが問われています。";
   if(/警告|注意/.test(text))return "これは新しい法律ではなく、公的な機関が注意を呼びかけた情報です。誰にどんな危険があるのかを分けて見る必要があります。";
+  if(/答弁書/.test(text))return "今回は裁判が終わったというニュースではありません。答弁書は、訴えられた側が、相手の主張を認めるか反論するかを裁判所へ伝える書類です。今回争われているのは、AI画像と著作権の関係です。裁判所の判断はこれからです。";
+  if(/請求却下|一部却下/.test(text))return "今回は裁判が終わったというニュースではありません。一部却下の申し立ては、一部の請求を裁判の対象から外すよう求める手続きです。今回争われているのは、AI検索による記事利用と著作権の関係です。認めるかどうかは裁判所がこれから判断します。";
+  if(/訴訟|裁判/.test(text))return "今回は裁判が終わったというニュースではありません。企業側が裁判所へ自分の主張や申し立てを出した段階です。裁判所の判断はこれからです。";
   const byType={
     release:"発表されたことと、すぐ全員が使えることは同じではありません。地域、料金、使う端末によって条件が変わります。",
     pricing:"料金は、表示された金額だけでは判断できません。無料で使える量や、今の契約へいつ反映されるかも大切です。",
@@ -410,6 +459,28 @@ function mechanismSentence(item){
   if(/退社|退任|就任|人事|再編/.test(text))return "人や部署が変わると、会社の方針や仕事の進め方も変わることがあります。ただし、担当や計画が発表されるまでは影響は分かりません。";
   if(/投資|出資|資金/.test(text))return "投資は、会社や事業へお金を出すことです。金額だけでなく、いつ何に使うかも重要です。";
   return "大切なのは、すでに決まったことと、まだ発表されていないことを分けて読むことです。";
+}
+
+function coreMeaningSentence(item){
+  const text=[item.title,item.story_subject,item.change_summary,item.raw_excerpt].join(" ");
+  if(/AI投資5億円|増収27億円|SBI北尾/.test(text))return "記事の核は、5億円のAI投資に対して27億円の増収効果があったと北尾会長が説明した点です。ただし、27億円は利益ではなく売上の増加で、計算方法や対象事業は記事だけでは分かりません。";
+  if(/Google Flow|4K出力|サンプル動画/.test(text))return "低費用のサンプル動画で内容を先に試し、完成版は4Kの高画質で出せる点が核です。試作と本番を同じサービスで進められるため、作り直しの手間を減らせる可能性があります。";
+  if(/shiftsemi|シフト自動作成/.test(text))return "記事の核は、勤務表を一から手作業で組む負担をAIで減らそうとしている点です。現場の管理者が開発したため、介護施設で実際に起きる困りごとをもとにしたサービスです。";
+  if(/クラウド接続不要|クラウド不要|ローカルAI/.test(text))return "記事の核は、質問や資料を外部のサービスへ送らず、手元の端末だけでAIを動かせる点です。通信できない場所で使える可能性と、外部送信を減らせる点が違いになります。";
+  if(/4D|ニューラルオペレーター|物理状態/.test(text))return "記事の核は、物体や気象が時間とともにどう変わるかを、4次元のデータとして予測する点です。従来と違う計算方法で、非常に長い情報を扱えるとされています。";
+  if(/MHS|AI機器連携/.test(text))return "記事の核は、メーカーが違うAI機器でも同じ共通ルールでつなげる構想です。対応製品や細かな決まりが未発表なので、現時点では使い方までは判断できません。";
+  if(/授業準備|教員・学生/.test(text))return "記事の核は、教材づくりや授業前の整理をChatGPTで助ける機能が追加された点です。ただし、具体的に何を自動化できるかは、記事ではまだ説明されていません。";
+  if(/512GB|M5 Ultra|M6/.test(text))return "記事の核は、大きなメモリを使い、高性能なAIを外部サービスへ送らずMacの中で動かせる点です。扱えるAIの大きさと処理速度が、実際の使い勝手を左右します。";
+  if(/Firefly Audio|音声生成|クレジット消費/.test(text))return "記事の核は、音声を作る機能が正式に使えるようになった一方、生成するたびに利用枠を消費する点です。何回作れるかは契約と残りの利用枠で変わります。";
+  if(/Claude Mythos 5|安全上の弱点スキャン専用/.test(text))return "記事の核は、一般向けの会話AIではなく、システムの安全上の弱点を探すためだけの専用モデルだという点です。利用者が直接試すのではなく、Claude Securityの検査の中で使われます。";
+  if(/CEO交代|経営トップ交代|人員削減/.test(text))return "記事の核は、経営トップの交代準備とAI部門の人員削減が同時に伝えられた点です。人を減らす理由や、AI開発計画がどう変わるかはまだ分かっていません。";
+  if(/退社|退任/.test(text))return "分かったのは担当者が会社を離れたことです。設備計画そのものの中止が決まったわけではなく、後任や仕事の引き継ぎが次の確認点です。";
+  if(/開発遅延|開発の遅れ|Grokの遅れ/.test(text))return "開発の遅れを認めたことと、提供の中止は同じではありません。今後の公開予定や機能が変わるかが重要です。";
+  if(/決算|売上|利益|業績/.test(text))return "記事の核は、AI向け製品への支出が増え、それが会社の売上や利益を支えているとされる点です。詳しい強さを比べるには、部門ごとの数字を見る必要があります。";
+  if(/株価|株式市場/.test(text))return "記事の核は、今の売上が増えたという事実ではなく、AI向け投資が長く続くという市場の期待が株価を押し上げた点です。期待どおりに投資が続くかは、今後の決算で確認する必要があります。";
+  if(/サイバー攻撃|ハッカー|安全対策回避|データ外部送信/.test(text))return "記事の核は、AIが守る側だけでなく、攻撃する側の作業にも使われた点です。攻撃対象と被害の範囲、対策済みかを分けて確認する必要があります。";
+  if(/性的動画|ディープフェイク/.test(text))return "記事の核は、画像を作る技術の問題だけでなく、本人の同意がない被害を今の法律で十分に止めにくい点です。削除方法や被害相談の窓口も重要になります。";
+  return "";
 }
 
 function factSlotSentences(item){
@@ -447,55 +518,72 @@ function buildLegacyDeepFriendlyExplanation(item){
   if(item.enrichment_version===SAFE_COMPOSITE_VERSION&&hasDeepFriendlyExplanation(item.detail))return String(item.detail).trim();
 
   const first=[];
-  const second=[];
-  addUnique(first,item.change_summary);
-  addUnique(first,termSentence(item));
-
-  addUnique(second,mechanismSentence(item));
-  addUnique(second,stageSentence(item));
-
-  const all=()=>[...first,...second];
-  const total=()=>compact(all().join("")).length;
-  for(const fact of factSlotSentences(item)){
-    if(total()>=TARGET_COMPACT_CHARS&&all().length>=MIN_SENTENCES)break;
-    addUnique(first,fact);
-  }
-  const easyImpact=beginnerImpactSentence(item.impact_summary);
-  if((total()<TARGET_COMPACT_CHARS||all().length<MIN_SENTENCES)&&easyImpact){
-    addUnique(second,easyImpact);
-  }
-  const facts=Array.isArray(item.new_facts)?item.new_facts:[];
-  for(const fact of facts.slice(0,3)){
-    if(total()>=TARGET_COMPACT_CHARS&&all().length>=MIN_SENTENCES)break;
-    addUnique(first,fact);
-  }
-  if((total()<MIN_COMPACT_CHARS||all().length<MIN_SENTENCES)&&first.length<3){
-    const sourceSentences=sentences(toStudentJapanese(originalLegacyDetail(item))).slice(0,3);
-    for(const sentence of sourceSentences){
-      if(total()>=MIN_COMPACT_CHARS&&all().length>=MIN_SENTENCES)break;
-      if(compact(sentence).length>MAX_SENTENCE_CHARS||first.length>=4)continue;
-      addUnique(first,sentence);
+  const core=[];
+  const closing=[];
+  const groups=[first,core,closing];
+  const add=(target,value)=>{
+    const before=target.length;
+    for(const sentence of sentences(toStudentJapanese(value))){
+      if(compact(sentence).length>MAX_SENTENCE_CHARS)continue;
+      if(groups.flat().some(existing=>isNearDuplicate(existing,sentence)))continue;
+      addUnique(target,sentence);
     }
-  }
-  if(total()<MIN_COMPACT_CHARS||all().length<MIN_SENTENCES){
-    const entity=String(item.primary_entity||"").trim();
-    if(entity)addUnique(second,`この情報の発表元は${entity}です。`);
-  }
-
-  const removeLowerValueSentence=()=>{
-    const genericIndex=second.findIndex(sentence=>/正式な内容|情報元の資料|詳しい条件は|新しい発表が出るか/.test(sentence));
-    const index=genericIndex>=0?genericIndex:Math.max(0,second.length-2);
-    second.splice(index,1);
+    return target.length>before;
   };
-  while(all().length>MAX_SENTENCES&&second.length>2)removeLowerValueSentence();
-  while(total()>MAX_COMPACT_CHARS&&second.length>2)removeLowerValueSentence();
-  while(total()>MAX_COMPACT_CHARS&&first.length>2)first.pop();
+  const all=()=>groups.flat();
+  const total=()=>compact(all().join("")).length;
 
-  if(second.length<2){
-    addUnique(second,stageSentence(item));
-    if(second.length<2)addUnique(second,"詳しい条件は、情報元の新しい発表で確認する必要があります。");
+  add(first,item.change_summary||item.raw_excerpt||item.title);
+  const sourceSentences=sentences(toStudentJapanese(originalLegacyDetail(item)))
+    .filter(sentence=>compact(sentence).length<=MAX_SENTENCE_CHARS);
+  for(const sentence of sourceSentences.slice(0,3)){
+    if(first.length>=3)break;
+    add(first,sentence);
   }
-  return [first.join(""),second.join("")].map(value=>value.trim()).filter(Boolean).join("\n\n");
+  if(first.length<3)add(first,termSentence(item));
+
+  const facts=[...factSlotSentences(item),...(Array.isArray(item.new_facts)?item.new_facts:[])];
+  for(const fact of facts){
+    if(core.length>=3)break;
+    add(core,fact);
+  }
+  add(core,coreMeaningSentence(item));
+  const easyImpact=beginnerImpactSentences(item.impact_summary);
+  if(easyImpact)add(core,easyImpact);
+  add(core,mechanismSentence(item));
+
+  add(closing,stageSentence(item));
+  add(closing,item.action_suggestion);
+
+  const remaining=[...sourceSentences.slice(3),...facts];
+  for(const sentence of remaining){
+    if(total()>=TARGET_COMPACT_CHARS&&all().length>=MIN_SENTENCES)break;
+    add(core,sentence);
+  }
+  if((total()<TARGET_COMPACT_CHARS||all().length<MIN_SENTENCES)&&item.raw_excerpt){
+    add(core,item.raw_excerpt);
+  }
+  if((total()<MIN_COMPACT_CHARS||all().length<MIN_SENTENCES)&&item.event_scope){
+    add(closing,`今回、記事で確認できる対象は「${item.event_scope}」です。`);
+  }
+  if(total()<MIN_COMPACT_CHARS||all().length<MIN_SENTENCES)add(core,item.raw_excerpt);
+
+  const removeGeneric=()=>{
+    for(const target of [closing,core]){
+      const index=target.findIndex(sentence=>/正式な内容|情報元の資料|詳しい条件は|新しい発表が出るか|大切なのは|発表されたことと/.test(sentence));
+      if(index>=0&&target.length>2){target.splice(index,1);return true;}
+    }
+    return false;
+  };
+  while((all().length>MAX_SENTENCES||total()>MAX_COMPACT_CHARS)&&removeGeneric()){}
+  while((all().length>MAX_SENTENCES||total()>MAX_COMPACT_CHARS)&&core.length>2)core.pop();
+  while((all().length>MAX_SENTENCES||total()>MAX_COMPACT_CHARS)&&first.length>2)first.pop();
+  while((all().length>MAX_SENTENCES||total()>MAX_COMPACT_CHARS)&&closing.length>2)closing.pop();
+
+  if(first.length<2)add(first,termSentence(item)||item.raw_excerpt);
+  if(core.length<2)add(core,mechanismSentence(item));
+  if(closing.length<2)add(closing,"まだ発表されていない条件は、情報元の続報で確認する必要があります。");
+  return groups.map(value=>value.join("").trim()).filter(Boolean).join("\n\n");
 }
 
 function upgradeFriendlyExplanationItem(item){
@@ -507,7 +595,7 @@ function upgradeFriendlyExplanationItem(item){
     ...item,
     detail,
     enrichment_version:SAFE_COMPOSITE_VERSION,
-    friendly_explanation_source:"verified_fields_safe_composite_student_v18"
+    friendly_explanation_source:"verified_fields_safe_composite_student_core_v21"
   };
 }
 
