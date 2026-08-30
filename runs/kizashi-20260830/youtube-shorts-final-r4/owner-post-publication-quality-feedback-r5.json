@@ -1,0 +1,44 @@
+{
+  "schema_version": "kizashi.youtube-owner-post-publication-feedback.v1",
+  "run_id": "kizashi-20260830",
+  "revision_id": "kizashi-20260830-youtube-shorts-r4",
+  "external_post_id": "cYcqRkIL8mQ",
+  "public_url": "https://www.youtube.com/shorts/cYcqRkIL8mQ",
+  "status": "LEARNING_CAPTURED",
+  "quality_ladder_evidence": "runs/kizashi-20260830/youtube-shorts-final-r4/quality-ladder-retrospective-r5.json",
+  "owner_feedback": {
+    "content": "POSITIVE_RESPONSE_OBSERVED",
+    "visual_quality": "REJECTED_AS_BASELINE",
+    "captions": "BELOW_TARGET_QUALITY",
+    "summary": "内容は再生といいねにつながっているが、字幕と動画自体の品質が低く、映像品質が上がれば反応改善の余地がある。"
+  },
+  "performance_evidence": {
+    "views": "UNAVAILABLE",
+    "likes": "UNAVAILABLE",
+    "average_view_duration": "UNAVAILABLE",
+    "completion_rate": "UNAVAILABLE",
+    "inferred_zero": false,
+    "qualitative_source": "OWNER_OBSERVATION"
+  },
+  "baseline_policy": {
+    "eligible_as_content_or_hook_baseline": true,
+    "eligible_as_visual_quality_baseline": false,
+    "eligible_as_caption_quality_baseline": false,
+    "published_video_action": "KEEP_PUBLIC",
+    "next_video_requirement": "MUST_NOT_REGRESS_AGAINST_LAST_OWNER_APPROVED_AND_BEST_VISUAL_BASELINES"
+  },
+  "observed_visual_issues": [
+    "静止写真スライド中心で動画としての自然な動きが不足",
+    "同一または実質同一写真の再登場",
+    "上部情報カードと字幕ボックスが写真の閲覧領域を圧迫",
+    "内容の強さを映像の具体的な行動・結果で十分に増幅できていない"
+  ],
+  "mandatory_next_improvements": [
+    "権利確認済み実写動画または意味あるモーション図解を尺の50%以上にする",
+    "同一・近似ショットの再登場を0件にする",
+    "字幕全文カバー100%と同期誤差p95 150ms以下を検証する",
+    "不透明パネル面積比22%以下、主要文字レイヤー2つ以下にする",
+    "候補・直近合格・過去映像ベストの9フレーム比較を保存する",
+    "全項目非退化かつ最低1項目の測定可能な改善を証明する"
+  ]
+}

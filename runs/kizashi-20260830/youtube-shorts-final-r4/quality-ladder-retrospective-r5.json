@@ -1,0 +1,108 @@
+{
+  "schema_version": "kizashi.youtube-quality-ladder.v1",
+  "evaluation_type": "RETROSPECTIVE_OWNER_FEEDBACK",
+  "candidate": {
+    "revision_id": "kizashi-20260830-youtube-shorts-r4",
+    "video_sha256": "0ada2b16508c572ebac6165c4e39a44751ff464f96fa04c6140955b06a5d9bd1"
+  },
+  "baselines": {
+    "last_owner_approved_visual": {
+      "revision_id": "kizashi-20260827-youtube-shorts-r1",
+      "video_sha256": "9cf2f91c859afb5d3251a1babe2ccf5b9a68cdc406552a1586d55cc879a15410",
+      "selection_basis": "OWNER_APPROVAL_RECEIPT"
+    },
+    "best_visual": {
+      "revision_id": "kizashi-20260827-youtube-shorts-r1",
+      "video_sha256": "9cf2f91c859afb5d3251a1babe2ccf5b9a68cdc406552a1586d55cc879a15410",
+      "selection_basis": "PROVISIONAL_BEST_OWNER_APPROVED_SHORTS"
+    },
+    "best_content": {
+      "revision_id": "kizashi-20260830-youtube-shorts-r4",
+      "video_sha256": "0ada2b16508c572ebac6165c4e39a44751ff464f96fa04c6140955b06a5d9bd1",
+      "selection_basis": "OWNER_OBSERVED_VIEWS_AND_LIKES_INCREASING_COUNTS_UNAVAILABLE"
+    }
+  },
+  "hard_gates": {
+    "full_text_coverage": 1,
+    "missing_caption_segments": 0,
+    "ui_overlap_px": 0,
+    "slide_caption_overlap_px": 0,
+    "repeated_shot_count": 2,
+    "unexplained_overlay_count": 0,
+    "rights_unverified_asset_count": 0,
+    "face_or_hand_occlusions": 0,
+    "nine_frame_mobile_qc": "PASS",
+    "human_full_playback_review": "PASS",
+    "natural_motion_duration_ratio": 0,
+    "opaque_panel_area_ratio": 0.24,
+    "subtitle_sync_p95_ms": "UNAVAILABLE"
+  },
+  "dimensions": [
+    {
+      "id": "visual_narrative_fit",
+      "candidate_score": 55,
+      "last_owner_approved_score": 70,
+      "best_visual_score": 70,
+      "evidence": ["qc-montage-r4.png", "OWNER_FEEDBACK_LOW_VIDEO_QUALITY"]
+    },
+    {
+      "id": "real_media_authenticity",
+      "candidate_score": 65,
+      "last_owner_approved_score": 70,
+      "best_visual_score": 70,
+      "evidence": ["rights-cleared real photos used", "static stock-photo sequence remains"]
+    },
+    {
+      "id": "motion_quality",
+      "candidate_score": 20,
+      "last_owner_approved_score": 60,
+      "best_visual_score": 60,
+      "evidence": ["natural_motion_duration_ratio=0"]
+    },
+    {
+      "id": "shot_uniqueness",
+      "candidate_score": 45,
+      "last_owner_approved_score": 70,
+      "best_visual_score": 70,
+      "evidence": ["server-rack shot repeats", "sticky-note shot repeats"]
+    },
+    {
+      "id": "subtitle_completeness",
+      "candidate_score": 85,
+      "last_owner_approved_score": 85,
+      "best_visual_score": 85,
+      "evidence": ["18 caption segments", "full text coverage 100%"]
+    },
+    {
+      "id": "subtitle_sync",
+      "candidate_score": 60,
+      "last_owner_approved_score": 75,
+      "best_visual_score": 75,
+      "evidence": ["subtitle_sync_p95_ms unavailable", "owner caption quality below target"]
+    },
+    {
+      "id": "overlay_discipline",
+      "candidate_score": 45,
+      "last_owner_approved_score": 70,
+      "best_visual_score": 70,
+      "evidence": ["top information card and lower caption box compete", "estimated opaque_panel_area_ratio=0.24"]
+    },
+    {
+      "id": "mobile_legibility",
+      "candidate_score": 80,
+      "last_owner_approved_score": 80,
+      "best_visual_score": 80,
+      "evidence": ["iPhone and Android nine-frame overlap 0px"]
+    },
+    {
+      "id": "audio_quality",
+      "candidate_score": 85,
+      "last_owner_approved_score": 85,
+      "best_visual_score": 85,
+      "evidence": ["owner pronunciation PASS", "integrated loudness -16.2 LUFS"]
+    }
+  ],
+  "owner_visual_feedback": "REJECTED",
+  "expected_validator_status": "FAIL",
+  "release_effect": "PUBLISHED_VIDEO_KEPT_PUBLIC_BUT_EXCLUDED_FROM_VISUAL_BASELINE"
+}
