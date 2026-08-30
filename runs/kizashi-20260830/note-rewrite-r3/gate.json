@@ -2,9 +2,9 @@
   "schema_version": "reiki-note-rewrite-gate.v1",
   "run_id": "kizashi-20260830",
   "revision": 3,
-  "status": "IMPROVING",
+  "status": "PASS",
   "quality_passed": true,
-  "external_action_allowed": false,
+  "external_action_allowed": true,
   "approval_basis_hash": "9ede7d421697a517c4b83a7a2ec5f8de228778dec1d9fa5660a01323aafb5e1d",
   "checks": {
     "facts_sources_rights_numbers": "PASS",
@@ -15,7 +15,7 @@
     "price_jpy_each": 100,
     "article_receipts": 2,
     "thumbnail_receipts": 2,
-    "release_package": "IMPROVING"
+    "release_package": "PASS"
   },
   "component_hashes": {
     "review": "05ec471b1dbfa258b797c053217914a0f9b045ac06cc269ba13c41519a42667d",
@@ -28,10 +28,11 @@
     "prototypeThumb": "706f5ab478b0a04e883c2e504bd40732fadcfa9e636c8ac0577b911cff6740d6",
     "prototypeLadder": "180d5148b8ddeab4c35cb441d420e091e68f024f19171dfc5590bb3a3f29a938"
   },
-  "checked_at": "2026-08-30T06:30:43.473Z",
+  "checked_at": "2026-08-30T06:44:35.458Z",
   "approval_receipts": [
     "runs/kizashi-20260830/note-rewrite-r3/owner-article-approval-receipt-r3.json",
     "runs/kizashi-20260830/note-rewrite-r3/owner-thumbnail-approval-receipt-r3.json"
   ],
-  "improvement_receipt": "runs/kizashi-20260830/note-rewrite-r3/release-gate-improving-receipt-r3.json"
+  "improvement_receipt": "runs/kizashi-20260830/note-rewrite-r3/release-gate-improving-receipt-r3.json",
+  "release_gate_receipt": "runs/kizashi-20260830/note-rewrite-r3/release-gate-pass-receipt-r3.json"
 }

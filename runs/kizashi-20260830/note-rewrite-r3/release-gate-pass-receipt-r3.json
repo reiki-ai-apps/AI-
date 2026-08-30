@@ -1,0 +1,31 @@
+{
+  "schema_version": "reiki-internal-release-gate-receipt.v1",
+  "status": "PASS",
+  "platform": "NOTE",
+  "run_id": "kizashi-20260830",
+  "revision": 3,
+  "article_and_thumbnail_hashes_changed": false,
+  "owner_approval_remains_valid": true,
+  "price_jpy_each": 100,
+  "jobs": [
+    {
+      "job_id": "vendor-exit",
+      "mode": "publish",
+      "content_hash": "0872c2e32d5db034b88aa62e0cd89acaa2e1c67f9faa6c7b1c6bd134195e09f8",
+      "thumbnail_hash": "0144ab47e70ff35fc9ca2d1a5934324993f8b2171ff069814aff5af64dd9347c",
+      "triple_check_records": 77,
+      "release_gate": "PASS"
+    },
+    {
+      "job_id": "prototype-gate",
+      "mode": "publish",
+      "content_hash": "40cae5d34cbf633cf5b1bdfbc2fd7c085f54450ba561cccb22da892d6be78758",
+      "thumbnail_hash": "706f5ab478b0a04e883c2e504bd40732fadcfa9e636c8ac0577b911cff6740d6",
+      "triple_check_records": 77,
+      "release_gate": "PASS"
+    }
+  ],
+  "external_note_receipts": 0,
+  "next_action": "第1記事をnoteアカウントnatty_swan9072へ100円で公開し、公開URL・ID・価格・有料境界・6図版を検証する",
+  "checked_at": "2026-08-30T06:44:35.458Z"
+}
