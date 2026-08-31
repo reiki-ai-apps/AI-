@@ -18,10 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: get repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "24"
 
@@ -185,6 +185,14 @@ jobs:
             const longestSentence = detail.split(/(?<=[。！？!?])/).reduce((max, value) => Math.max(max, value.replace(/\s+/g, "").length), 0);
             if (compactLength < 280 || compactLength > 440 || paragraphs.length !== 3 || sentences < 8 || sentences > 11 || longestSentence > 85) {
               errors.push(itemError(index, "高校生向け解説の長さ・段落・文数が基準未達です"));
+            }
+            for (const [term, meaning] of [["GPU", "半導体"], ["AIエージェント", "作業も順番"], ["マルチモーダル", "文章だけでなく"], ["API", "窓口"]]) {
+              if (detail.includes(term) && !detail.includes(meaning)) {
+                errors.push(itemError(index, `専門語「${term}」に説明がありません`));
+              }
+            }
+            if (/\bM&A\b|セキュリティリスク|業務プロセス|相互運用性|知識労働|AI依存傾向|注意喚起|競争構図|導入先選定/.test(detail)) {
+              errors.push(itemError(index, "やさしい解説に言い換えていない業界語があります"));
             }
             const unnatural = `${item.detail || ""}\n${item.action_suggestion || ""}`;
             if (/^(?:まず[、,]\s*)?このニュースを(?:ひと|一)言で(?:いう|言う)と|^かんたんに言うと|すぐに全部のやり方を変える必要はありません|小さな作業から試すと安心です/.test(unnatural.trim())) {
