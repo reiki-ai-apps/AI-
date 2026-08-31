@@ -2928,7 +2928,7 @@
       "story_id": "story_7b2391cc372dc024db",
       "story_sequence": 1,
       "relation_type": "new",
-      "relation_confidence": 1,
+      "relation_confidence": 0.72,
       "title": "OpenAIのデータセンター担当幹部クリス・マローン氏が退社",
       "source_published_at": "2026-08-25T22:04:51.000Z",
       "published_at": "2026-08-25T22:04:51.000Z",
@@ -2958,9 +2958,13 @@
         }
       ],
       "structured_complete": true,
-      "dedupe_decision": "new",
+      "dedupe_decision": "uncertain",
       "dedupe_reasons": [
-        "no_previous_story"
+        "same_url",
+        "same_primary_entity",
+        "uncertain_subject",
+        "similar_title",
+        "same_url_content_changed"
       ],
       "change_summary": "OpenAIのデータセンター事業を担当していた幹部クリス・マローン氏が同社を退社した。",
       "detail": "OpenAIでデータセンター事業を担当していた幹部、クリス・マローン氏が同社を退社したことが分かった。データセンターとは、AIの計算処理を行う大量のコンピューターを集めた施設のことだ。マローン氏はOpenAIの大規模な計算基盤づくりを担う立場にいた人物とされている。\n\n報道によると、マローン氏がいつ退社したのか、退社の理由や今後の進路については記事内で明らかにされていない。OpenAIは大量の計算資源を必要とするAIモデルの開発を続けており、データセンター確保は経営上の重要な課題となっている。幹部の退社は、こうした計算基盤の整備計画に関わる人事の変化として注目される。\n\n利用者や開発者への直接的な影響は、現時点では明らかになっていない。後任人事や、データセンター戦略への影響についても、まだ発表されていない。",
