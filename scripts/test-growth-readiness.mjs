@@ -14,7 +14,7 @@ const requireText=(body,text,label)=>{if(!body.includes(text))failures.push(labe
 for(const text of [
   '<link rel="canonical" href="https://reiki-ai-apps.github.io/AI-/"',
   'property="og:title"','name="twitter:card"','"@type":"WebSite"','function shareArticle','一般利用者向けの登録・ログイン機能はありません',
-  '変化と仕事への影響を見る','テーマ設定に関係なく重要度で選定','function trackAppEvent',
+  '変化と仕事への影響を見る','前回更新後の新着を話題性・重要性で審査','function trackAppEvent',
   '興味のある情報テーマを好きなだけ選んでください','AI要約の根拠になった元の記事を、登録なしで確認できます','function renderOperator',
   "p_event_id:APP_OPEN_EVENT_ID","data-operator-account-daily-opens",
   "String(u.article_id||'')===key",'href="${esc(publicArticleUrl(u))}"'
@@ -30,7 +30,7 @@ if(index.includes('複数事業やチームで'))failures.push('未提供のチ�
 if(/signUpMember|renderAccount|go\('account'\)|data-operator-users|syncMemberAppStateFromCloud/.test(index))failures.push('廃止した会員制度の画面または処理が残っています');
 
 for(const text of ['create table if not exists public.app_open_events','function public.record_app_open','daily_opens','Asia/Tokyo','alter table public.app_open_events enable row level security','revoke all on table public.app_open_events from anon, authenticated'])requireText(schema,text);
-for(const text of ['node scripts/build-public-articles.mjs','articles sitemap.xml robots.txt'])requireText(workflow,text);
+for(const text of ['node scripts/build-public-articles.mjs','data.json home-edition.json .story-index.json index.html articles sitemap.xml robots.txt'])requireText(workflow,text);
 
 const ids=data.map(item=>String(item.article_id||item.id||'')).filter(id=>/^[A-Za-z0-9_-]{8,100}$/.test(id));
 const itemsById=new Map(data.map(item=>[String(item.article_id||item.id||''),item]));

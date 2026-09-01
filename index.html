@@ -358,6 +358,14 @@
   .filterbar{
     display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:18px;
   }
+  .archive-intro{margin-bottom:16px;padding:18px 20px;border:1px solid rgba(76,213,226,.28);border-radius:16px;background:linear-gradient(135deg,rgba(6,27,47,.86),rgba(16,15,53,.82))}
+  .archive-intro h2{margin:0 0 6px;color:#eefcff;font-size:20px}.archive-intro p{margin:0;color:#aebfd3;font-size:13px;line-height:1.75}
+  .archive-results{display:flex;align-items:center;gap:10px;margin:-5px 0 16px;color:#a9bacf;font-size:12px;font-weight:700}.archive-results strong{color:#e9fdff;font-size:14px}
+  @media(max-width:760px){
+    .archive-intro{padding:15px 16px}
+    .archive-intro + .filterbar{display:grid;grid-template-columns:1fr}
+    .archive-intro + .filterbar .search,.archive-intro + .filterbar select.filter,.archive-intro + .filterbar .toggle-pill,.archive-intro + .filterbar>.btn{width:100%;max-width:none;min-height:44px}
+  }
   .search{
     display:flex;align-items:center;gap:8px;background:var(--surface);
     border:1px solid var(--border-strong);border-radius:12px;padding:0 13px;
@@ -556,7 +564,7 @@
   .cat-tile{
     background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
     padding:19px 20px;cursor:pointer;transition:transform .18s,box-shadow .18s,border-color .18s;box-shadow:var(--shadow-sm);
-    position:relative;overflow:hidden;
+    position:relative;overflow:hidden;width:100%;text-align:left;color:inherit;font:inherit;
   }
   .cat-tile:hover{border-color:#c9c6f5;box-shadow:var(--shadow-lg);transform:translateY(-3px)}
   .cat-tile .ct-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
@@ -3460,7 +3468,7 @@ function runMigrations(d){
 const NAV = [
   {group:'メイン',items:[
     {id:'home',label:'ホーム',icon:'home'},
-    {id:'updates',label:'すべての記事',icon:'updates'},
+    {id:'updates',label:'全記事アーカイブ',icon:'updates'},
     {id:'categories',label:'ジャンル別',icon:'category'},
     {id:'try-list',label:'後で見る',icon:'flask'},
   ]},
@@ -3540,7 +3548,7 @@ function renderNav(){
       if(it.id==='updates'&&total) badge=`<span class="badge">${total}</span>`;
       if(it.id==='try-list'&&tryN) badge=`<span class="badge">${tryN}</span>`;
       const active = route.name===it.id || (route.name==='tool-form'&&it.id==='tools') || (route.name==='update-detail'&&it.id==='updates');
-      html+=`<button class="nav-item ${active?'active':''}" onclick="go('${it.id}')">${icon(it.icon)}<span>${it.label}</span>${badge}</button>`;
+      html+=`<button class="nav-item ${active?'active':''}" onclick="go('${it.id}')" ${active?'aria-current="page"':''}>${icon(it.icon)}<span>${it.label}</span>${badge}</button>`;
     });
   });
   html+=`<div class="nav-legal"><button onclick="go('terms')">利用規約</button><button onclick="go('privacy')">プライバシー</button><button onclick="go('commerce')">特商法表記</button><button onclick="go('operator')">運営者</button></div>`;
@@ -3548,7 +3556,7 @@ function renderNav(){
 
   const mobileItems=[
     {id:'home',label:'ホーム',icon:'home'},
-    {id:'updates',label:'記事',icon:'updates',badge:total},
+    {id:'updates',label:'全記事',icon:'updates',badge:total},
     {id:'try-list',label:'保存',icon:'flask',badge:tryN},
     {id:'tools',label:'設定',icon:'tools'},
     {id:'categories',label:'分類',icon:'category'},
@@ -3562,7 +3570,7 @@ function renderNav(){
 
 const PAGE_META = {
   home:['仕事に効くAI最新ニュース','重要な変化と次の確認事項をやさしく整理'],
-  updates:['すべての記事','既読・未読をまとめて検索・絞り込み'],
+  updates:['全記事アーカイブ','すべての記事をカテゴリ・キーワードで検索'],
   categories:['ジャンル別','関心のあるAI分野ごとに情報を確認'],
   'try-list':['後で見る','保存した記事をあとから見返せます'],
   tools:['フィード設定','興味のあるAI情報を選び、自分専用のレーダーを設定'],
@@ -3589,7 +3597,8 @@ function renderSignature(){
       memberState.subscription?.access_source||'',memberState.user?.email||'',memberState.ready?1:0,
       planUpdates.length,
       planUpdates.filter(u=>u.status==='unread').length,
-      planUpdates.filter(u=>u.status==='try_later').length
+      planUpdates.filter(u=>u.status==='try_later').length,
+      getUpdates().filter(u=>Number(u.home_top_rank)>0).map(u=>`${u.article_id||u.id}:${u.home_top_rank}:${u.home_selected_at||''}`).sort().join(',')
     ].join('|');
   }catch(_e){return 'sig-'+Date.now();}
 }
@@ -3786,11 +3795,18 @@ function selectLatestCover(items,now=Date.now()){
       ||String(b.id||'').localeCompare(String(a.id||''),'ja')
     )[0]||null;
 }
+function homeTopUpdates(){
+  const selected=getUpdates().filter(item=>Number(item.home_top_rank)>=1&&Number(item.home_top_rank)<=5)
+    .sort((a,b)=>Number(a.home_top_rank)-Number(b.home_top_rank));
+  if(selected.length)return selected.slice(0,5);
+  // 旧キャッシュや初回同期の直前でもホームを空にせず、最大5件だけに抑える。
+  return getUpdates().slice().sort((a,b)=>globalCoverScore(b)-globalCoverScore(a)||byPub(a,b)).slice(0,5);
+}
 const TOP_STORY_REFRESH_MS=5*60000;
 let activeTopStoryId='';
 function refreshTopStoryIfNeeded(){
   if(document.visibilityState!=='visible'||route.name!=='home')return;
-  const nextId=String(selectLatestCover(getUpdates())?.id||'');
+  const nextId=String(homeTopUpdates()[0]?.id||'');
   if(nextId!==activeTopStoryId)render();
 }
 document.addEventListener('visibilitychange',refreshTopStoryIfNeeded);
@@ -3801,15 +3817,16 @@ function renderHome(v){
   const allUpdates=getUpdates();
   const unread=allPlanUpdates.filter(u=>u.status==='unread').length;
   const tryLater=allPlanUpdates.filter(u=>u.status==='try_later').length;
-  // ホームは未読専用。既読を含む全記事は「すべての記事」画面で確認する。
-  const list=allPlanUpdates.filter(u=>u.status==='unread').sort(byFeedOrder);
+  // ホームは各更新回で選ばれたトップ5専用。既読・テーマ設定で選定を変えない。
+  const list=homeTopUpdates();
 
   document.getElementById('topActions').innerHTML =
-    `<button class="btn btn-sm" onclick="openAllUpdates()">${icon('updates')}すべての記事を見る</button>`;
+    `<button class="btn btn-sm" onclick="openAllUpdates()">${icon('updates')}全記事から探す</button>`;
 
-  const latest=allPlanUpdates.length?fmtDate(articleTimelineAt([...allPlanUpdates].sort(byFeedOrder)[0])):'—';
-  // 表紙は設定テーマに関係なく、全記事の中で最も重要な1件を選ぶ。
-  const cover=selectLatestCover(allUpdates);
+  const selectedAt=list[0]?.home_selected_at||list[0]?.fetched_at||'';
+  const latest=selectedAt?fmtDateTime(selectedAt):'確認中';
+  // 1位を大型表示にし、残り4件と合わせてホーム全体を最大5件にする。
+  const cover=list[0]||selectLatestCover(allUpdates);
   activeTopStoryId=String(cover?.id||'');
   const coverSummary=cover?(cover.manual_summary||cover.ai_summary||cover.raw_excerpt||'要約を確認できます。'):'';
   const coverTool=cover?toolById(cover.tool_id):null;
@@ -3818,12 +3835,12 @@ function renderHome(v){
       <div class="daily-cover-meta">${rankBadge(cover.rank)}<span class="daily-cover-source"><b>情報元</b>${esc(cover.source_name||coverTool?.name||'確認中')}・${esc(sourcePublishedLabel(cover))}</span></div>
       <h2>${esc(cover.title)}</h2>
       <p>${esc(coverSummary)}</p>
-      <div class="daily-cover-actions"><a class="btn btn-primary" href="${esc(publicArticleUrl(cover))}" onclick="event.preventDefault();go('update-detail','${cover.id}')">${icon('eye')}変化と仕事への影響を見る</a><span class="daily-cover-note">テーマ設定に関係なく重要度で選定</span></div>`:`
+      <div class="daily-cover-actions"><a class="btn btn-primary" href="${esc(publicArticleUrl(cover))}" onclick="event.preventDefault();go('update-detail','${cover.id}')">${icon('eye')}変化と仕事への影響を見る</a><span class="daily-cover-note">前回更新後の新着を話題性・重要性で審査</span></div>`:`
       <div class="live-line"><span class="live-dot"></span>LIVE INTELLIGENCE FEED</div>
       <h2>世界のAI変化を、<br>仕事の判断へ。</h2>
       <p>英語・中国語・日本語の情報を横断監視。何が変わったか、仕事への影響、次にやることまで、やさしい日本語で確認できます。</p>
       <div class="coverage-proof" aria-label="情報収集の特徴">
-        <span>日本語・英語・中国語</span><span>3時間ごとに更新</span><span>元記事はプラン別の月間枠で確認</span>
+        <span>日本語・英語・中国語</span><span>1日3回・朝昼夜に更新</span><span>全記事と情報元を無料で確認</span>
       </div>`;
   const mobileMediaHtml=`<section class="mobile-media-hub" id="mobileOfficialMedia" aria-label="KIZASHI公式SNS">
     <div class="mobile-media-hub-head"><div class="mobile-media-hub-title"><span>KIZASHI OFFICIAL</span><b>公式SNS・動画はこちら</b></div><span class="mobile-media-hub-note">4つの公式アカウント</span></div>
@@ -3837,23 +3854,23 @@ function renderHome(v){
   let html = `<section class="radar-overview ${cover?'has-daily-cover':''}" aria-label="${cover?'本日のトップニュース':'AIシグナル概要'}">
     <div class="hud-hex-field" aria-hidden="true"><span class="hud-hex h1"></span><span class="hud-hex h2"></span><span class="hud-hex h3"></span><span class="hud-hex h4"></span><span class="hud-hex h5"></span></div>
     <div class="overview-copy">${coverCopy}</div>
-    <div class="radar-orb" aria-label="未読${unread}件"><strong>${unread}</strong><small>UNREAD SIGNALS</small></div>
+    <div class="radar-orb" aria-label="今回の重要ニュース${list.length}件"><strong>${list.length}</strong><small>TOP STORIES</small></div>
   </section>
   <div class="home-feed">
   <div class="quick-stats">
-    <span class="signal-count">未読${unread}件・最終更新 ${latest}</span>
-    <button class="mini-chip" onclick="openAllUpdates()">すべての記事 ${allPlanUpdates.length}</button>
+    <span class="signal-count">今回の重要ニュース ${list.length}件・更新確認 ${latest}</span>
+    <button class="mini-chip" onclick="openAllUpdates()">全記事 ${allUpdates.length}</button>
     ${tryLater?`<button class="mini-chip" onclick="go('try-list')">後で見る ${tryLater}</button>`:''}
-  </div><button class="btn mobile-home-search" onclick="openAllUpdates()">${icon('updates')}<span><strong>すべての記事を見る</strong><small>既読・未読をまとめて検索できます</small></span></button>${mobileMediaHtml}`;
+  </div><button class="btn mobile-home-search" onclick="openAllUpdates()">${icon('updates')}<span><strong>全記事アーカイブから探す</strong><small>カテゴリ・キーワードで検索できます</small></span></button>${mobileMediaHtml}`;
 
   if(!list.length){
-    html+=emptyState('未読ニュースはありません','読んだ記事は「すべての記事」からいつでも確認できます。');
+    html+=emptyState('今回の重要ニュースを確認中です','全記事アーカイブでは、これまでの記事をカテゴリから探せます。');
     v.innerHTML=html; return;
   }
 
   // 日付ごとの見出し（今日・昨日…）でグループ表示
   let lastLabel=null, open=false;
-  const feedList=cover?list.filter(item=>item.id!==cover.id):list;
+  const feedList=cover?list.filter(item=>item.id!==cover.id).slice(0,4):list.slice(0,5);
   feedList.forEach(u=>{
     const label=dayLabel(articleTimelineAt(u));
     if(label!==lastLabel){
@@ -3911,9 +3928,13 @@ function openUpdatesFiltered(patch){
 function renderUpdates(v){
   recomputeAll();
   const tools=getTools();
-  let list=getPlanUpdates().slice().sort(byFeedOrder);
+  const allArticles=getUpdates().slice().sort(byFeedOrder);
+  let list=allArticles.slice();
   const f=upFilter;
-  if(f.q){const q=f.q.toLowerCase();list=list.filter(u=>[u.title,u.manual_summary,u.ai_summary,u.easy_summary,u.raw_excerpt].map(s=>s||'').join(' ').toLowerCase().includes(q));}
+  if(f.q){const q=f.q.toLowerCase();list=list.filter(u=>[
+    u.title,u.manual_summary,u.ai_summary,u.easy_summary,u.raw_excerpt,u.source_name,
+    toolById(u.tool_id)?.name,...(u.related_categories||[])
+  ].map(s=>s||'').join(' ').toLowerCase().includes(q));}
   if(f.tool)list=list.filter(u=>u.tool_id===f.tool);
   if(f.cat)list=list.filter(u=>(u.related_categories||[]).includes(f.cat));
   if(f.rank)list=list.filter(u=>u.rank===f.rank);
@@ -3925,8 +3946,8 @@ function renderUpdates(v){
     `${unreadIds.length?`<button class="btn" onclick="markReadMany([${unreadIds.map(id=>"'"+id+"'").join(',')}])">${icon('check')}すべて既読 (${unreadIds.length})</button>`:''}
      <button class="btn" onclick="openUpdateForm()">${icon('plus')}手動で追加</button>`;
 
-  let html=`<div class="filterbar">
-    <div class="search">${icon('search')}<input id="upSearch" placeholder="タイトル・要約を検索…" value="${esc(f.q)}" oninput="upFilter.q=this.value;debouncedUpdates()"></div>
+  let html=`<section class="archive-intro" aria-labelledby="archiveTitle"><h2 id="archiveTitle">全記事アーカイブ</h2><p>ホームのトップ5以外も含め、公開中のすべての記事をカテゴリ・キーワード・情報元から探せます。</p></section><div class="filterbar">
+    <div class="search">${icon('search')}<input id="upSearch" type="search" aria-label="全記事をキーワードで検索" placeholder="タイトル・要約・情報元を検索…" value="${esc(f.q)}" oninput="upFilter.q=this.value;debouncedUpdates()"></div>
     <select class="filter" onchange="upFilter.tool=this.value;renderUpdates(document.getElementById('view'))">
       <option value="">すべてのツール</option>${tools.map(t=>`<option value="${t.id}" ${f.tool===t.id?'selected':''}>${esc(t.name)}</option>`).join('')}</select>
     <select class="filter" onchange="upFilter.cat=this.value;renderUpdates(document.getElementById('view'))">
@@ -3934,7 +3955,8 @@ function renderUpdates(v){
     <select class="filter" onchange="upFilter.status=this.value;renderUpdates(document.getElementById('view'))">
       <option value="">全ステータス</option>${STATUS_ORDER.map(s=>`<option value="${s}" ${f.status===s?'selected':''}>${STATUS_LABELS[s]}</option>`).join('')}</select>
     <label class="toggle-pill"><input type="checkbox" ${f.unreadOnly?'checked':''} onchange="upFilter.unreadOnly=this.checked;renderUpdates(document.getElementById('view'))">未読のみ</label>
-  </div>`;
+    <button class="btn btn-sm" type="button" onclick="upFilter={q:'',tool:'',cat:'',rank:'',status:'',unreadOnly:false};renderUpdates(document.getElementById('view'))">条件をリセット</button>
+  </div><div class="archive-results" aria-live="polite"><strong>${list.length}件</strong><span>／ 全${allArticles.length}件</span></div>`;
 
   if(!list.length){ v.innerHTML=html+emptyState('該当するアップデートがありません','フィルター条件を変えるか、取得実行から情報を集めてください。'); return; }
 
@@ -4525,7 +4547,7 @@ function submitTool(id){
 let catView=null;
 function renderCategories(v){
   recomputeAll();
-  const ups=getPlanUpdates();
+  const ups=getUpdates();
   if(catView){
     const list=ups.filter(u=>(u.related_categories||[]).includes(catView)).sort((a,b)=>b.score-a.score);
     document.getElementById('topActions').innerHTML='';
@@ -4539,10 +4561,10 @@ function renderCategories(v){
   let html=`<div class="grid cols-3">`;
   BUSINESS_CATEGORIES.forEach((c,i)=>{
     const items=ups.filter(u=>(u.related_categories||[]).includes(c));
-    html+=`<div class="cat-tile" onclick="catView='${c.replace(/'/g,"\\'")}';renderCategories(document.getElementById('view'))">
+    html+=`<button type="button" class="cat-tile" onclick="upFilter={q:'',tool:'',cat:'${c.replace(/'/g,"\\'")}',rank:'',status:'',unreadOnly:false};go('updates')" aria-label="${esc(c)}の記事${items.length}件を全記事アーカイブで見る">
       <div class="ct-top"><div class="ct-name">${esc(c)}</div><div class="ct-num" style="color:${TOOL_COLORS[i%TOOL_COLORS.length]}">${items.length}</div></div>
       <div class="ct-bar"><i style="width:${Math.round(items.length/max*100)}%"></i></div>
-    </div>`;
+    </button>`;
   });
   html+=`</div>`;
   v.innerHTML=html;
@@ -4607,7 +4629,7 @@ function renderFetch(v){
       <span>アプリを開くたびに最新情報を自動で読み込む</span>
     </label>
     <div style="margin-top:14px;padding:11px 13px;background:var(--ok-bg);border-radius:10px;font-size:12.5px;color:#14633a;line-height:1.6">
-      ✅ <b>情報取得の仕組み</b>：サーバーが3時間ごとに情報源を確認し、安全に要約・分類した記事を配信します。この画面では公開済みの最新データを再読み込みできます。
+      ✅ <b>情報取得の仕組み</b>：サーバーが朝・昼・夜の1日3回、前回以降の新着を審査して配信します。この画面では公開済みの最新データを再読み込みできます。
     </div>
   </div>`;
 
@@ -4617,7 +4639,7 @@ function renderFetch(v){
     html+=`<tr data-topic-search="${esc(`${t.name} ${t.category||''} ${(t.related_businesses||[]).join(' ')}`.toLowerCase())}" data-topic-selected="${!!t.is_using}">
       <td><span style="display:inline-flex;align-items:center;gap:9px"><span class="tool-dot" style="background:${TOOL_COLORS[getTools().indexOf(t)%TOOL_COLORS.length]}"></span><span style="font-weight:700">${esc(t.name)}</span></span></td>
       <td style="font-size:12px;color:var(--text-mute)">サーバー管理</td>
-      <td style="font-size:12.5px;color:var(--text-mute)">3時間ごと</td>
+      <td style="font-size:12.5px;color:var(--text-mute)">1日3回（朝・昼・夜）</td>
     </tr>`;
   });
   html+=`</tbody></table></div>`;
@@ -4666,7 +4688,7 @@ function setAutoStatus(on){
   el.innerHTML=on?'<span class="spin"></span>最新情報を確認中…':'';
 }
 
-/* ---- 開くたびに data.json（サーバーが3時間ごとに更新）を読み込む ---- */
+/* ---- 開くたびに data.json（サーバーが1日3回まとめて更新）を読み込む ---- */
 /* data.json は同一オリジンなのでCORSが起きず確実に読める。無ければ静かに無視。 */
 let _syncDone=false;
 let _lastSyncAt=0;
@@ -4784,7 +4806,14 @@ function patchPublishedArticleFields(target,it,tool){
     source_name:String(it.source_name||''),
     is_official:!!it.is_official,
     importance:String(it.importance||''),
-    related_categories:[...categories]
+    related_categories:[...categories],
+    home_top_rank:Number(it.home_top_rank)||0,
+    home_top_score:Number(it.home_top_score)||0,
+    home_score_breakdown:it.home_score_breakdown&&typeof it.home_score_breakdown==='object'?{...it.home_score_breakdown}:null,
+    home_selection_reasons:Array.isArray(it.home_selection_reasons)?it.home_selection_reasons.map(String).filter(Boolean):[],
+    home_selected_at:String(it.home_selected_at||''),
+    home_window_start:String(it.home_window_start||''),
+    home_window_end:String(it.home_window_end||'')
   };
   let changed=patchTimelineFields(target,it);
   Object.entries(fields).forEach(([key,value])=>{
@@ -4807,6 +4836,15 @@ async function syncFromDataJson(force=false,renderChanges=true,allowPrune=true){
     setAutoStatus(false);
     if(!Array.isArray(items)||!items.length)return 0;
     let added=0,patched=0;
+    // 前回版のトップ指定を先に外し、今回のdata.jsonに含まれる最大5件だけを付け直す。
+    // 端末に長く残った記事が古いトップとして復活することを防ぐ。
+    DB.load().updates.forEach(update=>{
+      if(Number(update.home_top_rank)>0||update.home_selected_at){
+        update.home_top_rank=0;update.home_top_score=0;update.home_score_breakdown=null;
+        update.home_selection_reasons=[];update.home_selected_at='';update.home_window_start='';update.home_window_end='';
+        patched++;
+      }
+    });
     items.forEach(it=>{
       if(!it||!it.title||looksCorruptedText(it.title)||looksCorruptedText(it.summary)||looksCorruptedText(it.detail)) return;
       if(!isCompletePublishedArticle(it))return;
@@ -4836,6 +4874,13 @@ async function syncFromDataJson(force=false,renderChanges=true,allowPrune=true){
         is_official:!!it.is_official,
         importance:(it.importance||'').toString(),
         related_categories:(Array.isArray(it.related_categories)&&it.related_categories.length)?it.related_categories:(tool.related_businesses?[...tool.related_businesses]:[]),
+        home_top_rank:Number(it.home_top_rank)||0,
+        home_top_score:Number(it.home_top_score)||0,
+        home_score_breakdown:it.home_score_breakdown&&typeof it.home_score_breakdown==='object'?{...it.home_score_breakdown}:null,
+        home_selection_reasons:Array.isArray(it.home_selection_reasons)?it.home_selection_reasons.map(String).filter(Boolean):[],
+        home_selected_at:String(it.home_selected_at||''),
+        home_window_start:String(it.home_window_start||''),
+        home_window_end:String(it.home_window_end||''),
         ...importedTimelineFields(it),
         score:0, rank:'C', status:'unread', is_saved:false, memo:''
       },false);

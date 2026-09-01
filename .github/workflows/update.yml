@@ -2,8 +2,10 @@ name: Update AI feeds
 
 on:
   schedule:
-    # 海外発表の見逃しを減らすため、3時間ごとに監視する
-    - cron: "17 */3 * * *"
+    # 日本時間の朝・昼・夜にまとめて審査する（GitHub Actionsの混雑を避けて17分開始）
+    - cron: "17 22 * * *" # 07:17 JST
+    - cron: "17 4 * * *"  # 13:17 JST
+    - cron: "17 10 * * *" # 19:17 JST
   workflow_dispatch:
 
 permissions:
@@ -36,6 +38,9 @@ jobs:
 
       - name: test global top news and AI industry leadership coverage
         run: node scripts/test-global-top-news.mjs
+
+      - name: test three daily editions, top five, and archive contract
+        run: node scripts/test-edition-publishing.mjs
 
       - name: validate optional USD budget settings
         env:
@@ -80,7 +85,6 @@ jobs:
           files=()
           [ -f .ai-cache.json ] && files+=(.ai-cache.json)
           [ -f .ai-usage.json ] && files+=(.ai-usage.json)
-          [ -f .story-index.json ] && files+=(.story-index.json)
           if [ ${#files[@]} -eq 0 ]; then
             echo "No AI ledger files to persist"
             exit 0
@@ -232,6 +236,7 @@ jobs:
       - name: build public article pages and growth checks
         run: |
           node scripts/build-public-articles.mjs
+          node scripts/test-edition-publishing.mjs
           node scripts/test-growth-readiness.mjs
           node scripts/test-runtime-resilience.mjs
           node scripts/test-free-access-daily-metrics.mjs
@@ -242,7 +247,7 @@ jobs:
         run: |
           git config user.name "ai-radar-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data.json index.html articles sitemap.xml robots.txt
+          git add data.json home-edition.json .story-index.json index.html articles sitemap.xml robots.txt
           if git diff --staged --quiet; then
             echo "Published data is already current"
             exit 0

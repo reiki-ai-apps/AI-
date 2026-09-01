@@ -8,6 +8,7 @@
 const fs = require("fs");
 const crypto = require("crypto");
 const {upgradeFriendlyExplanationItem}=require("./scripts/friendly-explanation.cjs");
+const {buildHomeEdition,applyHomeEdition}=require("./scripts/home-edition.cjs");
 
 // ホームの「主要AIアプリ・ツール」と収集対象を同じ一覧で監査する。
 // 公式更新ページを毎回確認し、日本語ニュースだけでは拾いにくい製品更新も補う。
@@ -188,6 +189,7 @@ const ARTICLE_CONTEXT_LIMIT = 3600;
 const AI_CACHE_PATH = ".ai-cache.json";
 const AI_USAGE_PATH = ".ai-usage.json";
 const STORY_INDEX_PATH = ".story-index.json";
+const HOME_EDITION_PATH = "home-edition.json";
 const STORY_REPOST_WINDOW_MS = 31 * 86400000;
 const STORY_TIMELINE_WINDOW_MS = 365 * 86400000;
 // 完全一致の再掲載を公開から外す期間。表示保持(31日)より長く、365日の全面抑制はしない。
@@ -1740,6 +1742,9 @@ function bootstrapCacheResult(cache,source,result) {
 }
 
 (async () => {
+  // 更新区間の終点は処理完了時ではなく実行開始時に固定する。
+  // 処理中に公開された記事は次回へ回り、更新区間の隙間を作らない。
+  const editionWindowEnd=new Date().toISOString();
   const out = [];
   for (const t of TOOLS) {
     let items = [];
@@ -1878,6 +1883,14 @@ function bootstrapCacheResult(cache,source,result) {
   appendStepSummary(ledger,{cacheHits,rejectedHits,fresh:fresh.length,selected:selectedCount,
     migrationSelected:migrationCandidates.length});
 
+  // 新着候補があるのに予算・API障害で1件も処理できなかった回は、更新成功にしない。
+  // チェックポイントを進めず、次の回で同じ期間を再審査する。
+  if(fresh.length>0&&selectedCount===0){
+    console.error("NEW ARTICLES ARE WAITING: keeping the previous public edition until AI processing resumes");
+    process.exitCode=1;
+    return;
+  }
+
   // 今回フィードに現れなかった記事も保存期間内なら残す。
   // 一時的なRSS欠落で、良質な要約済み記事が突然消えるのを防ぐ。
   const retentionStart=Date.now()-31*86400000;
@@ -1942,8 +1955,12 @@ function bootstrapCacheResult(cache,source,result) {
 
   const publicationReadyFinal=final.map(upgradeFriendlyExplanationItem);
   const safelyExpanded=publicationReadyFinal.filter((item,index)=>item!==final[index]).length;
-  writeJsonFile("data.json",publicationReadyFinal);
-  writeJsonFile(STORY_INDEX_PATH,updateStoryIndex(storyIndex,publicationReadyFinal));
-  console.error("WROTE data.json with",publicationReadyFinal.length,"complete items; candidates",uniqueOut.length,"after recent-story filter",filteredOut.length,"new",newlyEnriched.length,"reused",reused.length,"cache",cachedEnriched.length,"retained",recentPrevious.length,"safe-expanded",safelyExpanded);
+  const previousEdition=readJsonFile(HOME_EDITION_PATH,{});
+  const homeEdition=buildHomeEdition(publicationReadyFinal,previousEdition,{windowEnd:editionWindowEnd});
+  const editionReadyFinal=applyHomeEdition(publicationReadyFinal,homeEdition);
+  writeJsonFile("data.json",editionReadyFinal);
+  writeJsonFile(HOME_EDITION_PATH,homeEdition);
+  writeJsonFile(STORY_INDEX_PATH,updateStoryIndex(storyIndex,editionReadyFinal));
+  console.error("WROTE data.json with",editionReadyFinal.length,"complete items; home",homeEdition.selected_count,"of",homeEdition.candidate_count,"new candidates; candidates",uniqueOut.length,"after recent-story filter",filteredOut.length,"new",newlyEnriched.length,"reused",reused.length,"cache",cachedEnriched.length,"retained",recentPrevious.length,"safe-expanded",safelyExpanded);
 
 })();
