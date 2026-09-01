@@ -58,6 +58,8 @@ jobs:
           NODE
 
       - name: build data.json
+        id: build_data
+        continue-on-error: true
         run: node update.js
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -67,6 +69,10 @@ jobs:
           AI_OUTPUT_USD_PER_MTOK: ${{ vars.AI_OUTPUT_USD_PER_MTOK }}
           AI_CACHE_WRITE_USD_PER_MTOK: ${{ vars.AI_CACHE_WRITE_USD_PER_MTOK }}
           AI_CACHE_READ_USD_PER_MTOK: ${{ vars.AI_CACHE_READ_USD_PER_MTOK }}
+
+      - name: report validated existing-data fallback
+        if: steps.build_data.outcome == 'failure'
+        run: echo "::warning::AI enrichment is unavailable; reuse the existing data.json only if the following validation and growth checks pass."
 
       - name: persist charged AI operations ledger
         if: always()
