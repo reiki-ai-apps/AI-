@@ -37050,7 +37050,223 @@
         ],
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
+    },
+    "url:https://news.google.com/rss/articles/cbmitwfbvv95cuxnu0fhrud1blczdjjsmxfzn2fzbutxzmflservq1pwsy1idw1iz3b2sep0uxi5mjlxtmvmahffx3haotbzavjzqnrkav9abdc0b1qyzwdxngtyvhvnzkfzvew5v2o2ylpwmznszk9pnhh1zxzjvwm0ti03yurwchdsuy1ozenzq3joczzwamvdaxlilvbbmee2elpfv3e1atd6ohrndhrzlupldjdyvkdmy1rpowvzrjtsabwbqvvfexfmtlhozwhonddss2lyr3rfb1dwr01mqkllwnzzwhrrc0jyzktktdnzbmvfrgpjmhm4ytrobmphelhsm0heml8tvgtlsujsrujtdvnssmn4tmhls3vnd3piwdayeww3mm9kzm1jcmdma2otsddkmgxwzmp6u0dmajfmr0twajbqbhbuc04zwfgwuhvjzfjilwx5a2tjbvlya0rmzfbjzurlnw9ty29yse5twxaxmmjis2nqnjjudze": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmitwfbvv95cuxnu0fhrud1blczdjjsmxfzn2fzbutxzmflservq1pwsy1idw1iz3b2sep0uxi5mjlxtmvmahffx3haotbzavjzqnrkav9abdc0b1qyzwdxngtyvhvnzkfzvew5v2o2ylpwmznszk9pnhh1zxzjvwm0ti03yurwchdsuy1ozenzq3joczzwamvdaxlilvbbmee2elpfv3e1atd6ohrndhrzlupldjdyvkdmy1rpowvzrjtsabwbqvvfexfmtlhozwhonddss2lyr3rfb1dwr01mqkllwnzzwhrrc0jyzktktdnzbmvfrgpjmhm4ytrobmphelhsm0heml8tvgtlsujsrujtdvnssmn4tmhls3vnd3piwdayeww3mm9kzm1jcmdma2otsddkmgxwzmp6u0dmajfmr0twajbqbhbuc04zwfgwuhvjzfjilwx5a2tjbvlya0rmzfbjzurlnw9ty29yse5twxaxmmjis2nqnjjudze",
+      "content_hash": "b5422c45a1830db9785e23f6bdfcf2d87d1884a3f015b7fde9cde3d787d4f891",
+      "story_key": "8add705875f398d3a1aab0a8733e350fdfb3ff55d0b5a51184b77a9d6a8663fe",
+      "status": "enriched",
+      "processed_at": "2026-09-02T02:01:35.608Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "",
+      "result": {
+        "tool": "AI業界・経営重要速報",
+        "title": "パロアルトネットワークスCEO「1兆ドル規模のセキュリティ基盤がAI対応できていない」",
+        "source_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNU0FhRUd1blczdjJsMXFzN2FzbUtxZmFlSERVQ1pwSy1IdW1IZ3B2SEp0UXI5MjlxTmVmaHFfX3haOTBzaVJzQnRkaV9abDc0b1QyZWdXNGtyVHVnZkFZVEw5V2o2YlpwMzNsZk9pNHh1ZXZJVWM0Ti03YURWcHdsUy1oZENzQ3JOczZwamVDaXliLVBBMEE2elpfV3E1aTd6OHRndHRZLUpLdjdYVkdmY1RPOWVzRjTSAbwBQVVfeXFMTlhoZWhoNDdSS2lYR3Rfb1dwR01MQkllWnZzWHRRc0JYZktkTDNZbmVfRGpJMHM4YTRObmphelhSM0hEMl8tVGtlSUJSRUJTdVNSSmN4TmhlS3Vnd3piWDAyeWw3Mm9KZm1jcmdMa2otSDdKMGxWZmp6U0dmajFmR0tWajBQbHBUc04zWFgwUHVJZFJiLWx5a2tJbVlya0RmZFBJZURlNW9TY29YSE5TWXAxMmJiS2NqNjJudzE?oc=5",
+        "source_name": "CNBC",
+        "is_official": false,
+        "published_at": "2026-09-01T23:20:44.000Z",
+        "source_published_at": "2026-09-01T23:20:44.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-09-02T01:59:45.132Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Palo Alto Networks",
+          "サイバーセキュリティ"
+        ],
+        "primary_entity": "Palo Alto Networks",
+        "story_subject": "サイバーセキュリティ基盤のAI対応状況に関するCEO発言",
+        "event_type": "other",
+        "event_stage": "announced",
+        "event_scope": "世界のサイバーセキュリティ市場",
+        "fact_slots": [
+          {
+            "type": "amount",
+            "scope": "AI未対応とされるセキュリティ基盤の規模",
+            "value": "1兆ドル",
+            "normalized_value": "1000000000000USD"
+          }
+        ],
+        "new_facts": [
+          "パロアルトネットワークスのCEOが、1兆ドル相当のサイバーセキュリティ基盤がAIに対応できていないと発言した。"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "パロアルトネットワークスのCEOが、既存のサイバーセキュリティ設備の多くがAI時代に対応できていないと発言した。",
+        "detail": "パロアルトネットワークスのCEOが、企業などが持つサイバーセキュリティ関連の設備について発言した。簡単に言うと、AIを悪用した攻撃やAIを使った防御に、いまの設備がまだ対応しきれていないという指摘である。以前は具体的な金額を挙げてこの問題が語られることは少なかった。\n\n記事によると、CEOは「1兆ドル(約150兆円)相当のサイバーセキュリティ基盤がAIに対応できていない」と述べた。サイバーセキュリティ基盤とは、企業や組織がコンピューターやネットワークを守るために導入している装置やソフトウェアのことを指す。この発言が重要なのは、AIを使った攻撃が増える一方で、守る側の設備が古いままだと被害が広がりかねないためである。\n\n企業の経営者やIT担当者にとっては、既存の防御設備を見直す必要性を考えるきっかけになる。ただし記事では、具体的にどの設備が対応していないのか、どう改善すべきかは説明されていない。今後どのような対策が示されるかは、まだ発表されていない。",
+        "change_summary": "パロアルトネットワークスのCEOが、1兆ドル規模のセキュリティ基盤がAIに未対応だと具体的な数字で指摘した。",
+        "impact_summary": "企業のIT担当者や経営者は、自社のセキュリティ投資がAI時代に見合っているか見直しを迫られる可能性がある。",
+        "action_suggestion": "記事では具体的な改善策や対象設備の詳細は示されておらず、今後の追加発言や対応策の発表を待つ必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "セキュリティ",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmidefvx3lxte92vvg5c2doztdkwwnkte1gvkc3nno0wmwtr2nwcvvjdtbcm2hocjk2ci1yr3pzzldnlxluqjiwdflxmhuynle1s05ex3dybdvptxrwmuztmdvnawx6vkdtwnbnq3lxztlwzulortjdvjvttxet": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte92vvg5c2doztdkwwnkte1gvkc3nno0wmwtr2nwcvvjdtbcm2hocjk2ci1yr3pzzldnlxluqjiwdflxmhuynle1s05ex3dybdvptxrwmuztmdvnawx6vkdtwnbnq3lxztlwzulortjdvjvttxet",
+      "content_hash": "bdddedc41ead22dd696de8385570dd442dc6ce698f0cc42a1712b840ca309719",
+      "story_key": "a2f6e69637b4c019dc3cbfc73f61c1b1207953e019eee51edab9e53c3c1c6167",
+      "status": "enriched",
+      "processed_at": "2026-09-02T02:01:35.608Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "",
+      "result": {
+        "tool": "Runway",
+        "title": "Runwayが操作に応じて映像をその場で生成する新モデル「Solaris」を公開",
+        "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE92VVg5c2doZTdkWWNKTE1GVkc3Nno0WmwtR2NwcVVjdTBCM2hocjk2ci1YR3pzZldNLXluQjIwdFlxMHUyNlE1S05EX3dYbDVpTXRwMUZtMDVNaWx6VkdTWnBNQ3lXZTlwZUlORTJDVjVtTXEt?oc=5",
+        "source_name": "ababnews.com",
+        "is_official": false,
+        "published_at": "2026-09-01T09:44:31.000Z",
+        "source_published_at": "2026-09-01T09:44:31.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-09-02T01:59:45.132Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Runway",
+          "Solaris Interface World Model"
+        ],
+        "primary_entity": "Runway",
+        "story_subject": "Solaris Interface World Model",
+        "event_type": "release",
+        "event_stage": "announced",
+        "event_scope": "全世界",
+        "fact_slots": [],
+        "new_facts": [
+          "Runwayが、ユーザーの操作後に1コマずつ画面を生成するリアルタイムのAIモデル「Solaris Interface World Model」を発表した。"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Runwayが、ユーザーの操作ごとに画面をリアルタイムで生成する新しいAIモデル「Solaris」を発表した。",
+        "detail": "Runwayが新たに「Solaris Interface World Model」というAIモデルを発表した。簡単に言うと、ユーザーが操作するたびに、その反応をその場で映像として作り出す仕組みである。以前の動画生成AIは、あらかじめ作られた映像を再生するだけのものが中心だった。\n\n記事によると、このモデルはユーザーの操作の後に、1コマずつ画面を新しく生成していく仕組みを持つ。ワールドモデルとは、現実の動きや反応をAIに学習させ、まるでゲームのように操作へ応答させる技術のことを指す。この仕組みが重要なのは、決まった映像を流すだけでなく、操作に合わせて内容が変化する体験を作れる点にある。\n\n開発者にとっては、新しい種類のインタラクティブな映像体験を作れる可能性が広がる。ただし記事には、公開時期や対応する環境、料金についての説明はない。今後の提供形態や利用条件は、まだ発表されていない。",
+        "change_summary": "Runwayが、ユーザーの操作に応じて1コマずつ映像を生成する新モデル「Solaris」を公開した。",
+        "impact_summary": "映像やゲームの制作に携わる人にとって、操作に反応するリアルタイム映像という新しい表現手段が増える可能性がある。",
+        "action_suggestion": "公開時期や対応環境、料金など具体的な提供条件は記事に明記されておらず、続報を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "画像・動画生成",
+          "研究・技術"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmixwfbvv95cuxpov9rv1zwnmxwrep0cgzjunfwahfhdvhzq3q0ztbutu1qquf6uv83b0kzwvrordl0qw5qqmrreldmvwh6uddimerlrwt6ngp1swk1tgxjx2z4y0d1edfrq0htzhazrhpqnm1bsmrcu3m4s1lmeku4ehq2ukjzewlpn3hfenh5rvvmmtrrou5tddvszgllnxbyqjf2vdlhwg12rxbbbdjtrgtjrzn1snhynfa4y3zquej2mtlwodfnq2ktrhbcczy00ghuaufvx3lxtfa5v1nfowjibg5zamzlteo4z3vlb1fhaxhwu2debehdv2rzstzicuzavezex2nyoghwyvdvawrnr3nhnlplqwhpv0hrdwxkymnhbm1bzvpmdc1czelhsufryknkazdkvtvmyi1pt20zvjhvvjdeaevnz0xptjd0szrudxhqcvrya0ntmxlnwjvhlvbqvxlunkjmy0gtdvdctly0zhv0nulscvq2wnj2s2fpzvrozvhaatjpt2m2bnhpa1u5ekntr09td1k4rvz6ttbhchdl": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmixwfbvv95cuxpov9rv1zwnmxwrep0cgzjunfwahfhdvhzq3q0ztbutu1qquf6uv83b0kzwvrordl0qw5qqmrreldmvwh6uddimerlrwt6ngp1swk1tgxjx2z4y0d1edfrq0htzhazrhpqnm1bsmrcu3m4s1lmeku4ehq2ukjzewlpn3hfenh5rvvmmtrrou5tddvszgllnxbyqjf2vdlhwg12rxbbbdjtrgtjrzn1snhynfa4y3zquej2mtlwodfnq2ktrhbcczy00ghuaufvx3lxtfa5v1nfowjibg5zamzlteo4z3vlb1fhaxhwu2debehdv2rzstzicuzavezex2nyoghwyvdvawrnr3nhnlplqwhpv0hrdwxkymnhbm1bzvpmdc1czelhsufryknkazdkvtvmyi1pt20zvjhvvjdeaevnz0xptjd0szrudxhqcvrya0ntmxlnwjvhlvbqvxlunkjmy0gtdvdctly0zhv0nulscvq2wnj2s2fpzvrozvhaatjpt2m2bnhpa1u5ekntr09td1k4rvz6ttbhchdl",
+      "content_hash": "abe03f3271f172934cad0157aaf689987de3f6b0ddf88539f8db581f847f8c9a",
+      "story_key": "6ff0b7e63ad34f2ae58fa8c185a42f0999b6a3dd7c07ce676cd56524c3bc284b",
+      "status": "enriched",
+      "processed_at": "2026-09-02T02:01:35.608Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "",
+      "result": {
+        "tool": "Perplexity",
+        "title": "Perplexity、NVIDIAのGPU搭載の携帯型AI専用コンピューターを発表",
+        "source_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPOV9rV1ZwNmxwREp0cGZJUnFWaHFhdVhZQ3Q0ZTBuTU1QQUF6UV83b0kzWVRoRDl0QW5qQmRreldmVWh6UDdiMERLRWt6NGp1SWk1TGxjX2Z4Y0d1eDFrQ0htZHAzRHpQNm1BSmRCU3M4S1lmekU4eHQ2UkJZeWlpN3hfenh5RVVmMTRrOU5TdDVsZGlLNXByQjF2VDlHWG12RXBBbDJTRGtjRzN1SnhyNFA4Y3ZQUEJ2MTlwODFNQ2ktRHBCczY00gHUAUFVX3lxTFA5V1NfOWJibG5ZamZLTEo4Z3Vlb1FhaXhWU2dEbEhDV2RZSTZicUZaVEZEX2NYOGhWYVdVaWRnR3NhNlpLQWhPV0hrdWxKYmNHbm1BZVpMdC1CZElhSUFrYkNkazdKVTVmYi1PT20zVjhvVjdEaEVnZ0xPTjd0SzRUdXhQcVRya0NtMXlNWjVhLVBqVXluNkJMY0gtdVdCTlY0ZHV0NUlscVQ2WnJ2S2FpZVROZVhaaTJPT2M2bnhpa1U5ekNtR09td1k4RVZ6TTBhcHdl?oc=5",
+        "source_name": "Analytics Insight",
+        "is_official": false,
+        "published_at": "2026-08-27T21:30:00.000Z",
+        "source_published_at": "2026-08-27T21:30:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-09-02T01:59:45.132Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Perplexity",
+          "NVIDIA DGX Spark",
+          "RTX GPU"
+        ],
+        "primary_entity": "Perplexity",
+        "story_subject": "Perplexity Portable Computer",
+        "event_type": "release",
+        "event_stage": "announced",
+        "event_scope": "全世界",
+        "fact_slots": [],
+        "new_facts": [
+          "PerplexityがNVIDIAのDGX SparkおよびRTX GPUを採用した携帯型コンピューターを発表した。"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Perplexityが、NVIDIAの「DGX Spark」やRTXシリーズのGPUを使った携帯型コンピューターを発表した。",
+        "detail": "Perplexityが新たに、持ち運びできる小型のAI専用コンピューターを発表した。簡単に言うと、クラウド上のサービスとしてではなく、手元で動かせる専用の機械を用意したということである。以前は同社のAI機能はインターネット経由のサービスとして使われることが中心だった。\n\n記事によると、この端末はNVIDIAの「DGX Spark」と「RTX」シリーズのGPUを採用している。GPUとは、画像処理などのために作られた、大量の計算を同時にこなせる部品のことで、AIの処理速度を大きく左右する。高性能なGPUを積むことで、手元の端末だけでAIの計算をその場で速く行えるようになる点が特徴である。\n\n手元でAI処理を完結させたい利用者にとって、新しい選択肢が生まれる可能性がある。ただし記事には、価格や発売時期、対応するソフトウェアについての具体的な説明はない。購入方法や提供開始時期は、まだ発表されていない。",
+        "change_summary": "Perplexityが、NVIDIAのDGX SparkやRTX GPUを搭載した携帯型のAI専用コンピューターを発表した。",
+        "impact_summary": "クラウドに頼らず手元でAI処理を行いたい利用者や開発者にとって、新しい端末の選択肢が増える。",
+        "action_suggestion": "価格や発売時期、対応環境など具体的な販売条件は記事に示されておらず、続報を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "半導体・インフラ"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmizwfbvv95cuxpbw9ncg1ndhh1lutkqwtxteszn0nlstrbd01hcgdos0hzbljzrgz1x25fwfltnljlumhemfm2ulleqw5bbmveouvkc253al81shj3mlhyek1sy2dibxjvzxrhchdjuxphvy1rvfjvzejnqxexz2jrsnp1elnvynfdszlxm0ktludjrjnrzxy1v1fsd2fqrkzjmdfeqwsxs25ztuxudfjhzc1vq0t6avrtcevsn0fyc25nyzdfxzjqulb3q0pdue1unvbpvfuxclhsadwbqvvfexfmtjuxbexxdwxsvmtwsuttlxrurjjgzvpsnnn0ylfquefqu1ewetl1cgtvvuhbadfpenzjtkpfnhbbutl2vmpmtux1nje1mktoewlndhkzee1rbgjxnddonnnktfr2buotc2cxahlnrehwdwlrb2wxtnixwmxvrhzgb2vvtvndnnd2rwvhqjdaohjsqvz2afezdjhocfz5lxpryvjmstnut0nxwefhqtc2mtjhyxq1v0t2yk01owr2amt0zgr5eeeyounraxpqwmtwx1jms2rranzlcfvhzw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmizwfbvv95cuxpbw9ncg1ndhh1lutkqwtxteszn0nlstrbd01hcgdos0hzbljzrgz1x25fwfltnljlumhemfm2ulleqw5bbmveouvkc253al81shj3mlhyek1sy2dibxjvzxrhchdjuxphvy1rvfjvzejnqxexz2jrsnp1elnvynfdszlxm0ktludjrjnrzxy1v1fsd2fqrkzjmdfeqwsxs25ztuxudfjhzc1vq0t6avrtcevsn0fyc25nyzdfxzjqulb3q0pdue1unvbpvfuxclhsadwbqvvfexfmtjuxbexxdwxsvmtwsuttlxrurjjgzvpsnnn0ylfquefqu1ewetl1cgtvvuhbadfpenzjtkpfnhbbutl2vmpmtux1nje1mktoewlndhkzee1rbgjxnddonnnktfr2buotc2cxahlnrehwdwlrb2wxtnixwmxvrhzgb2vvtvndnnd2rwvhqjdaohjsqvz2afezdjhocfz5lxpryvjmstnut0nxwefhqtc2mtjhyxq1v0t2yk01owr2amt0zgr5eeeyounraxpqwmtwx1jms2rranzlcfvhzw",
+      "content_hash": "7d8bf222d6f76b5d14fe53e415357709289487ae6626a3ea426607929929fbd5",
+      "story_key": "3a096a9dddae446ce6fa507224b80fd17fd1fdf1f475f28979423efacc394bdf",
+      "status": "rejected",
+      "processed_at": "2026-09-02T02:01:35.608Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "ai_skip: 具体的事実がなく概要説明のみで実質情報が乏しい"
+    },
+    "url:https://news.google.com/rss/articles/cbmix0fvx3lxte1haffzcflnuk9mnvpwcvdfq0niouc5lurpenowlwtaq3iwd3bxoecxnlgznjnjulzqvvnndtnios1zqjjry3pjavgyoxnhbknysuzxchvwc0jotejkwtfn": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmix0fvx3lxte1haffzcflnuk9mnvpwcvdfq0niouc5lurpenowlwtaq3iwd3bxoecxnlgznjnjulzqvvnndtnios1zqjjry3pjavgyoxnhbknysuzxchvwc0jotejkwtfn",
+      "content_hash": "814c8ecab8d67ce5bdbcf042addb43eef353b0d81aa95e3ad95667bd862b48e5",
+      "story_key": "42e0350ce5359b2ee2fc173feebdb5bdf2cea45a8c6bb2c5e1ad81cce2310015",
+      "status": "rejected",
+      "processed_at": "2026-09-02T02:01:35.608Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "ai_skip: モデル名の実在や情報の正確性が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmia0fvx3lxte01wuhtuzzcovfqa2c5n3puq0r4mmtiuw9lqkhwz2ddrgfdofbkmklnuwlprtl6rluyugq3tnv6nhyyuzjpudfpzlfxu0fyn2jht19kuhb3axlhanfranvpquthvhdrnnzxs2dr": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmia0fvx3lxte01wuhtuzzcovfqa2c5n3puq0r4mmtiuw9lqkhwz2ddrgfdofbkmklnuwlprtl6rluyugq3tnv6nhyyuzjpudfpzlfxu0fyn2jht19kuhb3axlhanfranvpquthvhdrnnzxs2dr",
+      "content_hash": "44b1e826dd9ab6bf3087372db0e09199e14d06072da6ddb8ea7a687e5850599a",
+      "story_key": "cb3a42d3b501e620aefd1740ebb90a068972ebefcfcc38b6004b3bd5e1250818",
+      "status": "rejected",
+      "processed_at": "2026-09-02T02:01:35.608Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "ai_skip: 具体的事実に乏しい一般論のブログ記事のため"
+    },
+    "url:https://news.google.com/rss/articles/cbmic0fvx3lxtfbfuddzuwx6nxpomdrkmufyq0piefhbtlj2rhjmefjkbxe4cws3ywtjr0fonvrsthvktnvpa3uxehllvkpunu55ddvlsfnyti1nn2hrt1pjdwfkqtrbeet2sersvv9rwdhsb2ldulhjbwzmz1e": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmic0fvx3lxtfbfuddzuwx6nxpomdrkmufyq0piefhbtlj2rhjmefjkbxe4cws3ywtjr0fonvrsthvktnvpa3uxehllvkpunu55ddvlsfnyti1nn2hrt1pjdwfkqtrbeet2sersvv9rwdhsb2ldulhjbwzmz1e",
+      "content_hash": "e0ad24e4bb47f9f264cc262a4636fe6eed914da482a1fbd171b349cc601df9e6",
+      "story_key": "1330f411698934c5902fb5e7550e27633186fce31e1512c6cce2b0991929c70e",
+      "status": "rejected",
+      "processed_at": "2026-09-02T02:01:39.671Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "ai_skip: 出典不明で内容が不自然、実質的事実を確認できない"
+    },
+    "url:https://windsurf.com/changelog": {
+      "canonical_url": "https://windsurf.com/changelog",
+      "content_hash": "d7daaaaf87c79a11fcce2a107fd61e76cad815378aba3ceeed31d05d9fcf9bd5",
+      "story_key": "edf2662f78feed39f60a81f9714fd31eee618e2660136f1b611473da884ab1be",
+      "status": "rejected",
+      "processed_at": "2026-09-02T02:01:39.671Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "ai_skip: ドキュメント索引ページで具体的な更新事実がない"
     }
   },
-  "updated_at": "2026-09-02T01:55:28.226Z"
+  "updated_at": "2026-09-02T02:01:39.671Z"
 }
