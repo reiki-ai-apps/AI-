@@ -8,7 +8,7 @@
 const fs = require("fs");
 const crypto = require("crypto");
 const {upgradeFriendlyExplanationItem}=require("./scripts/friendly-explanation.cjs");
-const {buildHomeEdition,applyHomeEdition}=require("./scripts/home-edition.cjs");
+const {MAX_HOME_ARTICLES,buildHomeEdition,applyHomeEdition}=require("./scripts/home-edition.cjs");
 
 // ホームの「主要AIアプリ・ツール」と収集対象を同じ一覧で監査する。
 // 公式更新ページを毎回確認し、日本語ニュースだけでは拾いにくい製品更新も補う。
@@ -1781,7 +1781,9 @@ function bootstrapCacheResult(cache,source,result) {
         source_published_at:it.date||"",
         source_updated_at:it.updatedAt||"",
         source_date_status:it.dateSource||"unknown",
-        fetched_at:new Date().toISOString(),
+        // 取得処理は実行開始後に進むが、この回で発見した記事は今回の審査対象。
+        // 実際の処理時刻を入れると区間終点より後になり、全件が次回送りになる。
+        fetched_at:editionWindowEnd,
         raw_excerpt: it.desc || "",
         source_name: it.sourceName || (it.official ? "公式情報" : "Google ニュース掲載記事"),
         is_official: !!it.official,
@@ -1907,26 +1909,32 @@ function bootstrapCacheResult(cache,source,result) {
   const rankedPool=dedupeStories(preferCurrentEnrichment(
     [...recentPrevious,...cachedEnriched,...reused,...newlyEnriched]))
     .filter(isCompleteEnrichedItem);
+  // 新着がない回でも直前のトップ5が公開上限処理で消えないよう、最優先で保持する。
+  const previousEdition=readJsonFile(HOME_EDITION_PATH,{});
+  const rankedById=new Map(rankedPool.map(item=>[item.article_id||stableArticleId(item),item]));
+  const editionPicks=(previousEdition.article_ids||[]).map(id=>rankedById.get(String(id))).filter(Boolean).slice(0,MAX_HOME_ARTICLES);
+  const editionKeys=new Set(editionPicks.map(item=>item.article_id||stableArticleId(item)));
   // 主要ツールは各1件を優先確保し、画面にあるのに進化情報が出ない状態を防ぐ。
   const featuredPicks=[];
   for(const toolName of FEATURED_RESEARCH_TOOL_NAMES){
     const item=rankedPool.filter(candidate=>candidate.tool===toolName)
       .sort((a,b)=>articleTime(b)-articleTime(a))[0];
-    if(item)featuredPicks.push(item);
+    const key=item&&(item.article_id||stableArticleId(item));
+    if(item&&!editionKeys.has(key)&&!featuredPicks.some(candidate=>(candidate.article_id||stableArticleId(candidate))===key))featuredPicks.push(item);
   }
   const featuredKeys=new Set(featuredPicks.map(item=>item.article_id||stableArticleId(item)));
   // 新着保証枠: 主要ツール枠を除いた残りから直近72時間の記事を最大12件確保する。
   const freshCutoff=Date.now()-72*3600000;
-  const freshPicks=rankedPool.filter(item=>!featuredKeys.has(item.article_id||stableArticleId(item))&&articleTime(item)>=freshCutoff)
-    .sort((a,b)=>articleTime(b)-articleTime(a)).slice(0,Math.min(12,Math.max(0,AI_MAX-featuredPicks.length)));
-  const reservedKeys=new Set([...featuredKeys,...freshPicks.map(item=>item.article_id||stableArticleId(item))]);
+  const freshPicks=rankedPool.filter(item=>!editionKeys.has(item.article_id||stableArticleId(item))&&!featuredKeys.has(item.article_id||stableArticleId(item))&&articleTime(item)>=freshCutoff)
+    .sort((a,b)=>articleTime(b)-articleTime(a)).slice(0,Math.min(12,Math.max(0,AI_MAX-editionPicks.length-featuredPicks.length)));
+  const reservedKeys=new Set([...editionKeys,...featuredKeys,...freshPicks.map(item=>item.article_id||stableArticleId(item))]);
   const restPicks=rankedPool.filter(item=>!reservedKeys.has(item.article_id||stableArticleId(item)))
     .sort((a,b)=>(importanceOrder[b.importance]||0)-(importanceOrder[a.importance]||0)||
       articleTime(b)-articleTime(a))
-    .slice(0,Math.max(0,AI_MAX-featuredPicks.length-freshPicks.length));
-  const capDropped=rankedPool.length-featuredPicks.length-freshPicks.length-restPicks.length;
+    .slice(0,Math.max(0,AI_MAX-editionPicks.length-featuredPicks.length-freshPicks.length));
+  const capDropped=rankedPool.length-editionPicks.length-featuredPicks.length-freshPicks.length-restPicks.length;
   if(capDropped>0)console.error("PUBLISH CAP: 完成記事のうち"+capDropped+"件が60件枠から漏れました");
-  const baseFinal=[...featuredPicks,...freshPicks,...restPicks].sort((a,b)=>articleTime(b)-articleTime(a));
+  const baseFinal=[...editionPicks,...featuredPicks,...freshPicks,...restPicks].sort((a,b)=>articleTime(b)-articleTime(a));
   const publishedIds=new Set(previous.map(item=>item&&item.article_id).filter(Boolean));
   const connectedFinal=connectStoryTimeline(baseFinal,storyIndex.items,publishedIds);
   // During the v7 migration, a legacy summary and its newly structured version
@@ -1955,7 +1963,6 @@ function bootstrapCacheResult(cache,source,result) {
 
   const publicationReadyFinal=final.map(upgradeFriendlyExplanationItem);
   const safelyExpanded=publicationReadyFinal.filter((item,index)=>item!==final[index]).length;
-  const previousEdition=readJsonFile(HOME_EDITION_PATH,{});
   const homeEdition=buildHomeEdition(publicationReadyFinal,previousEdition,{windowEnd:editionWindowEnd});
   const editionReadyFinal=applyHomeEdition(publicationReadyFinal,homeEdition);
   writeJsonFile("data.json",editionReadyFinal);

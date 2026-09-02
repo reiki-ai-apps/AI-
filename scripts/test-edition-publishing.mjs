@@ -49,6 +49,11 @@ assert.match(html,/const allArticles=getUpdates\(\)/,"全記事アーカイブ�
 assert.match(html,/\.archive-intro \+ \.filterbar\{display:grid;grid-template-columns:1fr\}/,"スマホの全記事検索を1列で操作できる");
 assert.doesNotMatch(html,/3時間ごと|プラン別の月間枠/,"廃止済みの更新頻度・会員向け文言を残さない");
 
+const update=fs.readFileSync("update.js","utf8");
+assert.match(update,/fetched_at:editionWindowEnd/,"この回で発見した記事を次回へ誤送しない");
+assert.match(update,/const editionPicks=.*previousEdition\.article_ids/s,"直前のトップ5を公開上限より先に保持する");
+assert.match(update,/const baseFinal=\[\.\.\.editionPicks,\.\.\.featuredPicks,\.\.\.freshPicks,\.\.\.restPicks\]/,"トップ5保持枠を公開データへ含める");
+
 const data=JSON.parse(fs.readFileSync("data.json","utf8"));
 const publicTop=data.filter(item=>Number(item.home_top_rank)>0).sort((a,b)=>a.home_top_rank-b.home_top_rank);
 assert.ok(publicTop.length>=1&&publicTop.length<=5,"公開データのホーム指定は1〜5件");
