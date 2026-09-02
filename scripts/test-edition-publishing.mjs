@@ -45,6 +45,11 @@ assert.deepEqual(crons,["17 22 * * *","17 4 * * *","17 10 * * *"],"定期更新�
 const html=fs.readFileSync("index.html","utf8");
 assert.match(html,/function homeTopUpdates\(\)/,"ホーム専用の選定を使う");
 assert.match(html,/const list=homeTopUpdates\(\)/,"ホームは選定済みトップ記事だけを描画する");
+const renderHomeSource=html.slice(html.indexOf("function renderHome(v)"),html.indexOf("function byPub(a,b)"));
+const feedRenderIndex=renderHomeSource.indexOf("feedList.forEach");
+const secondaryRenderIndex=renderHomeSource.indexOf("html+=homeSecondaryHtml",feedRenderIndex);
+assert.ok(feedRenderIndex>=0&&secondaryRenderIndex>feedRenderIndex,"トップ5の記事カードを統計・アーカイブ・公式SNSより先に描画する");
+assert.match(renderHomeSource,/const homeSecondaryHtml=`<section class="home-secondary"/,"記事以外の案内を後半ブロックとして固定する");
 assert.match(html,/const allArticles=getUpdates\(\)/,"全記事アーカイブはテーマ設定前の全記事を使う");
 assert.match(html,/\.archive-intro \+ \.filterbar\{display:grid;grid-template-columns:1fr\}/,"スマホの全記事検索を1列で操作できる");
 assert.doesNotMatch(html,/3時間ごと|プラン別の月間枠/,"廃止済みの更新頻度・会員向け文言を残さない");
