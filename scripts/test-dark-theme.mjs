@@ -28,7 +28,8 @@ const checks=[
   [contrast("#e9edff","#070b16")>=7,"primary text has strong contrast on the dark background"],
   [contrast("#aab4dc","#070b16")>=4.5,"secondary text remains readable on the dark background"],
   [manifest.background_color==="#070b14"&&manifest.theme_color==="#070b14","PWA colors are dark"],
-  [worker.includes("ai-radar-v5-20260902-three-editions-top5-v21"),"service worker cache was bumped"]
+  [worker.includes("ai-radar-v5-20260902-first-open-fresh-v22"),"service worker cache was bumped"],
+  [worker.includes('fetch(request,{cache:"no-store"})'),"service worker bypasses stale HTTP cache for data.json"]
 ];
 
 if(!article)checks.push([false,"at least one public article exists"]);

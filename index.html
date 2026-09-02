@@ -4829,7 +4829,10 @@ async function syncFromDataJson(force=false,renderChanges=true,allowPrune=true){
     _lastSyncAt=Date.now();
     const controller=new AbortController();
     const timeout=window.setTimeout(()=>controller.abort(),8000);
-    const res=await fetch('./data.json',{cache:'no-store',signal:controller.signal});
+    // GitHub Pages/CDNと旧Service WorkerのHTTPキャッシュを同時に避ける。
+    // 端末内データだけ更新され、次に開いた時に初めて見える状態を作らない。
+    const dataUrl=`./data.json?app_sync=${Date.now()}`;
+    const res=await fetch(dataUrl,{cache:'no-store',signal:controller.signal});
     window.clearTimeout(timeout);
     if(!res.ok){ setAutoStatus(false); return 0; }
     const items=await res.json();
@@ -5005,7 +5008,8 @@ function dismissBootScreen(){
 }
 async function finishBootInBackground(){
   // 新着取込と運営者確認を並列に行い、一般利用の表示を待たせない。
-  const syncPromise=syncFromDataJson(false,false,false).catch(()=>0);
+  // 最新データの取得完了時点で即再描画する。運営者認証の完了待ちにしない。
+  const syncPromise=syncFromDataJson(false,true,false).catch(()=>0);
   try{
     await Promise.race([initOperatorAuth(),new Promise(resolve=>window.setTimeout(resolve,8000))]);
     if(memberState.ready)pruneOld();

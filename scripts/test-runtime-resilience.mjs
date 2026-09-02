@@ -85,5 +85,9 @@ expect(authInit.includes("if(event==='INITIAL_SESSION'&&nextUserId===lastAuthUse
 expect(authInit.indexOf("memberClient.auth.onAuthStateChange")<authInit.indexOf("await queueOperatorRefresh(data.session)"),"auth listener is installed before initial operator loading");
 expect(workflow.includes("node scripts/test-runtime-resilience.mjs"),"scheduled updates run the stability regression test");
 
+const initialSync=section("async function finishBootInBackground\\(\\)\\{","function bootApp");
+expect(initialSync.includes("syncFromDataJson(false,true,false)"),"first-open data sync redraws immediately without waiting for operator auth");
+expect(index.includes("const dataUrl=`./data.json?app_sync=${Date.now()}`"),"first-open data request bypasses stale CDN and service-worker cache entries");
+
 if(failures.length){console.error(failures.join("\n"));process.exit(1);}
 console.log("Runtime resilience contract passed.");

@@ -1,6 +1,6 @@
 // アプリシェルの構成を変えたときは日付を更新する。
 // 画像などの静的アセットも network-first なので、同名差し替えは次回通信時に反映される。
-const CACHE_NAME = "ai-radar-v5-20260902-three-editions-top5-v21";
+const CACHE_NAME = "ai-radar-v5-20260902-first-open-fresh-v22";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -50,7 +50,7 @@ self.addEventListener("fetch", event => {
   // (index.html を返すと呼び出し側の res.json() が壊れるため絶対に返さない)。
   if (url.pathname.endsWith("/data.json")) {
     event.respondWith(
-      fetch(request)
+      fetch(request,{cache:"no-store"})
         .then(response => {
           if (response.ok) {
             const copy = response.clone();
