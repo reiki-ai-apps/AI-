@@ -2,6 +2,295 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_5460e2e6e130cd09a9d0",
+      "story_id": "story_9ef4af258eaa16d877",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.8455,
+      "title": "Google、「Gemini 3.8 Flash」を発表 6週間で3度目のFlashモデル公開",
+      "source_published_at": "2026-09-02T23:08:48.000Z",
+      "published_at": "2026-09-02T23:08:48.000Z",
+      "fetched_at": "2026-09-03T00:20:10.664Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Googleは軽量AIモデル「Gemini 3.8 Flash」を発表し、6週間で3回目のFlash系モデル公開となった。",
+      "source_name": "窓の杜",
+      "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE01cUxHNDFPQjQxeFZtZndFMWZlaTBuNzFPLWo1RVZ3eDl2UHl6QUw5U3JaVGdscC1VRy1scTVROHAyREtSSk55SkpDWFFwNG0wTmNUd1MyMUVlYVc3cVViTExXQnV1RHl6?oc=5",
+      "story_entities": [
+        "Google",
+        "Gemini 3.8 Flash",
+        "google",
+        "gemini3.8flash",
+        "google-gemini"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "Gemini 3.8 Flash",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "全世界",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "モデル名",
+          "value": "Gemini 3.8 Flash",
+          "normalized_value": "gemini3.8flash"
+        },
+        {
+          "type": "count",
+          "scope": "6週間内のFlashリリース回数",
+          "value": "3回",
+          "normalized_value": "3"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "material_fact_changed",
+        "low_confidence_follow_up_demoted"
+      ],
+      "change_summary": "Gemini 3.8 Flashが新たに発表され、6週間で3回目のFlashモデル公開となった。",
+      "detail": "Googleは新しい軽量AIモデル「Gemini 3.8 Flash」を発表しました。Flashは、Geminiシリーズの中でも動作が速く扱いやすい軽量版のモデルです。今回の発表は、この6週間で3回目となるFlashモデルの公開です。\n\n短期間に続けてFlashモデルが更新されていることが今回の特徴です。詳しい性能の数値や変更点については、記事内で具体的には示されていません。頻繁なモデル更新は、AI開発競争の速さを示す動きとして注目されています。\n\n利用者にとっては、Geminiの軽量モデルを選ぶ際の選択肢が増えることになります。ただし、旧バージョンとの違いや対応環境については現時点で詳しく発表されていません。今後、性能や利用条件の詳細情報が公開されるかが注目されます。",
+      "new_facts": [
+        "Googleが「Gemini 3.8 Flash」を発表した",
+        "6週間で3度目のFlashモデルリリースとなった"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_f87103a4fdcc5ce973a2",
+      "story_id": "story_8366fddf3a9197f5fb",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.82,
+      "title": "Anthropic、Claude生成コンテンツを判定するツールを公開",
+      "source_published_at": "2026-09-02T22:51:21.000Z",
+      "published_at": "2026-09-02T22:51:21.000Z",
+      "fetched_at": "2026-09-03T00:20:10.664Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Anthropicは文章や画像がClaudeで作られたか見分けるツールを公開したが、テキストの判定には未対応。",
+      "source_name": "article.auone.jp",
+      "source_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE54YU5ORjgwVUVZelMtMWJIYWhHa2N0dUFtNTRLNlhTOXlkTmNaeHBNUi1aRW4tZ1MyV3lSdTZCZVk4RHpsNDJWb1Jfd2RiLUdQakU3dVlPR2Z5bEp6em5KZFB0VkRoX1ItWDhHcVNn?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "anthropic",
+        "claude"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claudeコンテンツ判定ツール",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "画像等一部(テキスト未対応)",
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "テキスト判定",
+          "value": "未対応",
+          "normalized_value": "未対応"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "material_fact_changed",
+        "low_confidence_follow_up_demoted"
+      ],
+      "change_summary": "Claudeで作られたコンテンツを判定するツールが新たに公開されたが、テキストへの対応はまだない。",
+      "detail": "Anthropicは、AI「Claude」を使って作られた内容かどうかを見分けるための判定ツールを公開しました。簡単に言うと、AIが書いた文章や作った画像を後から確認しやすくする仕組みです。これまでClaudeが関わった内容を公式に確認する手段はありませんでした。\n\nただし現時点では、文章についての判定には対応しておらず、対象は画像など一部にとどまっています。誰かが書いた文章がClaudeによるものかは、今のところこのツールでは分かりません。AIが作った内容の真偽が分かりにくくなる中、作成元を確認できる仕組みは偽情報対策として注目されています。\n\nこのツールを使えば、画像などについてはAIが関わったかどうかを調べやすくなります。ただし文章の判定にはまだ使えず、なりすましなどを完全には見抜けません。テキスト判定への対応時期は、現時点で発表されていません。",
+      "new_facts": [
+        "Anthropicがコンテンツ判定ツールを公開した",
+        "現時点でテキストの判定には対応していない"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_da2843eeeb62516f0efc",
+      "story_id": "story_3e0aa6e96956803f5e",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Google、「Gemini 3.8 Flash」を公開 価格据え置きで防御特化「Cyber」も追加",
+      "source_published_at": "2026-09-02T22:42:19.000Z",
+      "published_at": "2026-09-02T22:42:19.000Z",
+      "fetched_at": "2026-09-03T00:20:10.664Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Googleが前バージョン3.7から3週間で「Gemini 3.8 Flash」を公開し、価格を据え置いたまま防御特化型の「Cyber」も加えた。",
+      "source_name": "ITmedia",
+      "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9nY3JJT3pNTDVkWHVTVktTOWEtSENwWG12em1Ba1FOejJTQ3E4Q1NGUGdFVHRPNkx3ekZDMV9FRUwxb1ZBanNNdGdvdGh0VVdETkQyWmZTc3RNeWRhNlhJZUFCQXdlbGZEVElpRw?oc=5",
+      "story_entities": [
+        "Google",
+        "Gemini 3.8 Flash",
+        "Gemini Cyber",
+        "google",
+        "gemini3.8flash"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "Gemini 3.8 Flashおよび防御特化モデルCyber",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "API・全世界",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "Geminiモデル",
+          "value": "Gemini 3.8 Flash",
+          "normalized_value": "gemini3.8flash"
+        },
+        {
+          "type": "price",
+          "scope": "利用料金",
+          "value": "据え置き",
+          "normalized_value": "据え置き"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "前版から3週間という短い間隔での更新であり、価格据え置きのまま防御特化の「Cyber」モデルが新設された点が新しい。",
+      "detail": "Googleが自社のAIモデル「Gemini」シリーズの新版「Gemini 3.8 Flash」を公開した。Geminiは文章作成や質問応答などをこなすAIで、Flashは処理が速く軽量な版を指す。前の版である3.7からわずか3週間という短い間隔での更新となった。\n\n今回の更新では利用料金が据え置かれたことに加え、サイバー攻撃への防御に特化した「Cyber」という新しい種類のモデルも追加された。短期間での更新にもかかわらず価格が変わらなかった点は、利用者にとって負担が増えないという意味で目を引く。防御特化モデルの登場は、AIをセキュリティ対策に使う動きが広がっていることを示している。\n\nGeminiを業務や開発で使っている人は、新しい「Cyber」モデルがどんな場面で使えるのか確認する必要が出てくる。ただし記事の時点では、Cyber版の詳しい性能や対象ユーザー、提供開始時期についてはまだ明らかにされていない。",
+      "new_facts": [
+        "Googleが「Gemini 3.8 Flash」を公開し、前版3.7から3週間での更新となった。",
+        "価格は据え置かれ、防御特化の新モデル「Cyber」も追加された。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_2faf9eaf28288b64ec30",
+      "story_id": "story_a46cb5e7a4061a324e",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Runway、開発者向け「Dev MCP」を公開 AIワークフローの構築を簡易化",
+      "source_published_at": "2026-09-02T19:24:15.000Z",
+      "published_at": "2026-09-02T19:24:15.000Z",
+      "fetched_at": "2026-09-03T00:20:10.664Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Runwayは開発者向けツール「Dev MCP」を公開し、AIを使った作業手順の構築を簡単にできるようにした。",
+      "source_name": "blockchain.news",
+      "source_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5yelB1MFBrWjl0aUdjbUVMZ2xkSW5UbUhMVThtN3VFZThJOFZPeXZKcHBzZTB5OVpkWkpHYlpwbUZ1em5QN3JnTjlzRFFkV3NzRVdNd21JUmhpUlJRa0pJWnQ4cHhXYlk?oc=5",
+      "story_entities": [
+        "Runway",
+        "Dev MCP",
+        "runway",
+        "devmcp"
+      ],
+      "primary_entity": "Runway",
+      "story_subject": "Dev MCP",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "開発者向け",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Runwayが開発者向けの新ツール「Dev MCP」を公開した。",
+      "detail": "AI動画生成企業のRunwayは、新しい開発者向けツール「Dev MCP」を公開しました。MCPとは、AIモデルと外部のツールやサービスをつなぐための共通の仕組みのことです。これにより、開発者がAIを使った一連の作業手順をより簡単に組み立てられるようになりました。\n\n今回のDev MCPは、Runwayの機能を他のソフトやサービスと連携させやすくすることを目的としています。具体的な性能や対応範囲についての数値は、記事内では示されていません。開発者向けの基盤が整うことで、Runwayを使ったサービス開発がしやすくなる点が重要です。\n\n開発者にとっては、Runwayの機能を自分のアプリやサービスに組み込みやすくなります。ただし、対応する言語や環境、料金体系などの詳細はまだ明らかにされていません。今後、具体的な利用方法や対応状況が発表されるか注目されます。",
+      "new_facts": [
+        "RunwayがDev MCPという開発者向けツールを公開した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_6012fcb8d0c57ea9afaf",
+      "story_id": "story_be6ed511c2bff2dd13",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "ウクライナ前国防相が防衛企業を設立、アメリカ大手AI企業CEOが出資",
+      "source_published_at": "2026-09-02T19:23:20.000Z",
+      "published_at": "2026-09-02T19:23:20.000Z",
+      "fetched_at": "2026-09-03T00:20:10.664Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "ウクライナの前国防相が新たな防衛関連企業の設立を発表し、アメリカの大手AI企業のCEOが出資したことが明らかになった。",
+      "source_name": "TBS NEWS DIG",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1yMGdFWGVYYlFwWjhLVzRRdFhIUWdDeWFJeGEzMDZaUE80bHc4cTF3TTQxeHR0MEdUWW5LWFdCOTVrS29aYl9scE9heGxOeWRZTGphOWYxNV9KQ2YySms1RE0yN3JMWnhtbHU5YVZyYi1FQ09G?oc=5",
+      "story_entities": [
+        "ウクライナ",
+        "防衛企業",
+        "アメリカ大手AI企業CEO",
+        "アメリカ大手ai企業ceo"
+      ],
+      "primary_entity": "ウクライナ前国防相",
+      "story_subject": "ウクライナ前国防相が設立した防衛企業への出資",
+      "event_type": "funding",
+      "event_stage": "announced",
+      "event_scope": "ウクライナ・防衛産業",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "アメリカの大手AI企業のCEOが、ウクライナ前国防相の新たな防衛企業に出資したことが明らかになった点が新しい。",
+      "detail": "ウクライナの前国防相が、新しい防衛関連企業を設立したと発表した。この会社にはアメリカの大手AI企業のCEOが出資していることが明らかになった。CEOは「世界にとって画期的な会社になる」と述べたとされる。\n\n記事からは、AI企業の経営トップが防衛分野の新会社に個人的または企業として出資したという事実が確認できる。ただし、出資額や新会社の具体的な事業内容、出資したCEOの氏名や所属企業名までは記事の抜粋からは分からない。AI技術を持つ企業のトップが防衛産業に関わる動きとして注目される。\n\nAI技術と軍事・防衛の結びつきに関心を持つ人にとっては、今後の展開を追う材料になる。ただし記事の時点では、新会社の詳細な事業内容や資金規模、AI企業CEOの具体的な関与の仕方はまだ発表されていない。",
+      "new_facts": [
+        "ウクライナ前国防相が防衛企業の設立を発表し、アメリカ大手AI企業のCEOが出資した。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_e045221c306967404ad4",
+      "story_id": "story_de85af837362c568fc",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "イーロン・マスク氏、10日以内にGrok 4.7を公開へ 全モデル超えると発言",
+      "source_published_at": "2026-09-02T07:13:18.000Z",
+      "published_at": "2026-09-02T07:13:18.000Z",
+      "fetched_at": "2026-09-03T00:20:10.664Z",
+      "event_at": "",
+      "event_status": "予定",
+      "raw_excerpt": "イーロン・マスク氏がxAIの新モデル「Grok 4.7」を10日以内に公開すると述べ、既存の全モデルを上回る性能になるとの見通しを示した。",
+      "source_name": "BeInCrypto",
+      "source_url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5iZmtsZWg5UnZVYnRoOTJlVnVIeElDLUk4QnE2OWhXa0xKN1ljVHRIUE1RbHpBZDdjUEpyaDZxdWJ6aHJTMHREakwyZW5iRERnY1RZUGR2U3p4bmNrYXNwTFVqT0NPZw?oc=5",
+      "story_entities": [
+        "xAI",
+        "Grok 4.7",
+        "イーロン・マスク",
+        "xai",
+        "grok4.7"
+      ],
+      "primary_entity": "xAI",
+      "story_subject": "Grok 4.7の公開予告",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "全世界",
+      "fact_slots": [
+        {
+          "type": "date",
+          "scope": "Grok 4.7公開予定",
+          "value": "発言から10日以内",
+          "normalized_value": "発言から10日以内"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "マスク氏が新モデルGrok 4.7を10日以内に公開すると初めて明言した。",
+      "detail": "イーロン・マスク氏が、自身のAI企業xAIが開発する次期モデル「Grok 4.7」を10日以内に公開すると発言しました。簡単に言うと、新しいAIモデルの登場が近いうちにあるという予告です。これまでのGrokシリーズからどのように進化するのか、具体的な内容はまだ明らかにされていません。\n\nマスク氏は、Grok 4.7が既存のすべてのAIモデルを上回る性能になるとの見通しを示しました。ただしこの発言は本人の言葉によるもので、第三者による検証結果や性能テストの数字はまだ示されていません。AI業界では新モデル発表のたびに性能の優位性が主張されることが多く、実際の実力は公開後に検証される必要があります。\n\n利用者にとっては、Grok 4.7が実際にどのような機能を持つのか、公開時期や利用条件がまだ分かりません。マスク氏の過去の発言でも公開時期が遅れることがあったため、10日以内という期限が守られるかは不明です。正式な性能評価や利用開始の詳細は、今後の発表を待つ必要があります。",
+      "new_facts": [
+        "イーロン・マスク氏がGrok 4.7を10日以内に公開すると発言した",
+        "全モデルを上回る性能になるとの見通しを示した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_f98b4692edb2b816e724",
       "story_id": "story_da053563aa75f5d431",
       "story_sequence": 1,
