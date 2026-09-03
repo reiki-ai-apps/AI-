@@ -14,14 +14,14 @@ const {MAX_HOME_ARTICLES,buildHomeEdition,applyHomeEdition}=require("./scripts/h
 // 公式更新ページを毎回確認し、日本語ニュースだけでは拾いにくい製品更新も補う。
 const FEATURED_RESEARCH_TOOL_NAMES = [
   "Kling AI", "Google Veo", "ChatGPT / OpenAI", "Claude / Claude Code", "Gemini",
-  "Runway", "Midjourney", "Adobe Firefly", "Perplexity", "Grok / xAI", "DeepSeek",
+  "Runway", "Canva", "Midjourney", "Adobe Firefly", "Perplexity", "Grok / xAI", "DeepSeek",
   "Manus AI", "Genspark", "Microsoft Copilot", "GitHub Copilot", "Cursor", "Windsurf",
   "Lovable", "Replit Agent", "ElevenLabs", "HeyGen", "Notion AI", "Gamma"
 ];
 const FEATURED_RESEARCH_SET = new Set(FEATURED_RESEARCH_TOOL_NAMES);
 const FEATURED_RESEARCH_QUERY = {
   "Kling AI":"Kling AI", "Google Veo":"Google Veo", "ChatGPT / OpenAI":"OpenAI ChatGPT",
-  "Claude / Claude Code":"Anthropic Claude", Gemini:"Google Gemini", Runway:"Runway AI",
+  "Claude / Claude Code":"Anthropic Claude", Gemini:"Google Gemini", Runway:"Runway AI", Canva:"Canva AI",
   Midjourney:"Midjourney", "Adobe Firefly":"Adobe Firefly", Perplexity:"Perplexity AI",
   "Grok / xAI":"Grok xAI", DeepSeek:"DeepSeek AI", "Manus AI":"Manus AI",
   Genspark:"Genspark AI", "Microsoft Copilot":"Microsoft Copilot", "GitHub Copilot":"GitHub Copilot",
@@ -36,6 +36,7 @@ const OFFICIAL_UPDATE_PAGES = {
   "Claude / Claude Code":["https://docs.anthropic.com/en/release-notes/overview"],
   Gemini:["https://gemini.google/release-notes/"],
   Runway:["https://runwayml.com/news/"],
+  Canva:["https://www.canva.com/newsroom/news/?category=product"],
   Midjourney:["https://updates.midjourney.com/"],
   "Adobe Firefly":["https://helpx.adobe.com/firefly/whats-new.html"],
   Perplexity:["https://www.perplexity.ai/hub/blog"],

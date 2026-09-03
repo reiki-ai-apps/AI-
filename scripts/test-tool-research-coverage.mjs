@@ -19,7 +19,7 @@ const aliases={
 };
 const normalizedUi=uiNames.map(name=>aliases[name]||name);
 
-if(normalizedUi.length!==23)throw new Error(`featured UI list changed unexpectedly: ${normalizedUi.length}`);
+if(normalizedUi.length!==24)throw new Error(`featured UI list changed unexpectedly: ${normalizedUi.length}`);
 const missingResearch=normalizedUi.filter(name=>!researchNames.includes(name));
 const orphanResearch=researchNames.filter(name=>!normalizedUi.includes(name));
 if(missingResearch.length||orphanResearch.length){

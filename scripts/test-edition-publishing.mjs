@@ -3,7 +3,7 @@ import fs from "node:fs";
 import {createRequire} from "node:module";
 
 const require=createRequire(import.meta.url);
-const {candidateStatus,selectTopArticles,buildHomeEdition,applyHomeEdition}=require("./home-edition.cjs");
+const {candidateStatus,isToolEvolutionCandidate,sameEditionStory,selectTopArticles,buildHomeEdition,applyHomeEdition}=require("./home-edition.cjs");
 
 const start=Date.parse("2026-09-02T00:00:00.000Z");
 const end=Date.parse("2026-09-02T06:00:00.000Z");
@@ -31,12 +31,59 @@ assert.equal(new Set(selection.selected.map(record=>record.score.article_id)).si
 assert.equal(selection.selected[0].score.article_id,"s","重要度と社会影響の大きい記事が上位になる");
 assert.ok(selection.selected.filter(record=>record.entity==="openai").length<=2,"候補がある場合は同一企業へ偏らない");
 
+const geminiRich=base("gemini-rich","2026-09-02T04:30:00.000Z",{
+  title:"Google、『Gemini 3.8 Flash』を公開 価格据え置きでCyberも追加",importance:"A",is_official:true,
+  primary_entity:"Google",story_subject:"Gemini 3.8 Flashおよび防御特化モデルCyber",event_type:"release",event_stage:"launched",
+  story_entities:["Google","Gemini 3.8 Flash","Gemini Cyber"],fact_slots:[{type:"version",scope:"モデル",value:"Gemini 3.8 Flash",normalized_value:"gemini3.8flash"}]
+});
+const geminiCopy=base("gemini-copy","2026-09-02T04:40:00.000Z",{
+  title:"Google、Gemini 3.8 Flashを発表 6週間で3度目",importance:"A",
+  primary_entity:"Google",story_subject:"Gemini 3.8 Flash",event_type:"release",event_stage:"launched",
+  story_entities:["Google","Gemini 3.8 Flash"],fact_slots:[{type:"version",scope:"モデル名",value:"Gemini 3.8 Flash",normalized_value:"gemini3.8flash"}]
+});
+assert.equal(sameEditionStory(geminiRich,geminiCopy),true,"URLとstory_idが違っても同じ製品発表を同一ニュースと判定する");
+const distinctPool=[
+  geminiRich,geminiCopy,
+  base("claude-tool","2026-09-02T04:50:00.000Z",{title:"AnthropicがClaude判定ツールを公開",primary_entity:"Anthropic",story_subject:"Claude判定ツール",event_type:"release",event_stage:"launched"}),
+  base("runway-tool","2026-09-02T05:00:00.000Z",{title:"Runwayが動画ワークフロー機能を公開",importance:"C",primary_entity:"Runway",story_subject:"Runway動画ワークフロー",event_type:"release",event_stage:"launched",related_categories:["画像・動画生成"]}),
+  base("policy","2026-09-02T05:10:00.000Z",{title:"政府がAI法案を承認",importance:"A",primary_entity:"政府",story_subject:"AI法案",event_type:"policy",event_stage:"approved"}),
+  base("chip","2026-09-02T05:20:00.000Z",{title:"NVIDIAが新しいAI半導体を発表",primary_entity:"NVIDIA",story_subject:"AI半導体",event_type:"release",event_stage:"announced"})
+];
+const distinctSelection=selectTopArticles(distinctPool,{windowStart:start,windowEnd:end});
+assert.equal(distinctSelection.ranked.length,6,"候補URLの監査件数は保持する");
+assert.equal(distinctSelection.distinctRanked.length,5,"同じ出来事を統合した件数を別に記録する");
+assert.equal(distinctSelection.selected.length,5,"別の出来事が5件あればトップ5を満たす");
+assert.ok(distinctSelection.selected.some(record=>record.score.article_id==="gemini-rich"),"同じ出来事では公式性と情報量の強い記事を残す");
+assert.ok(!distinctSelection.selected.some(record=>record.score.article_id==="gemini-copy"),"同じGemini発表を2枠へ入れない");
+
+const progressionAnnouncement={...geminiCopy,article_id:"gemini-announcement",story_id:"story-gemini",event_stage:"announced"};
+const progressionLaunch={...geminiRich,article_id:"gemini-launch",story_id:"story-gemini",event_stage:"launched",relation_type:"follow_up",previous_article_id:"gemini-announcement"};
+assert.equal(sameEditionStory(progressionAnnouncement,progressionLaunch),false,"正式提供などの実質的な続報は別の進展として残せる");
+
+const toolQuotaPool=[
+  base("critical-1","2026-09-02T01:00:00.000Z",{importance:"S",title:"政府がAI安全法を施行",primary_entity:"政府",story_subject:"AI安全法",event_type:"policy",event_stage:"enacted"}),
+  base("critical-2","2026-09-02T01:10:00.000Z",{importance:"S",title:"大規模AI障害の原因を特定",primary_entity:"基盤企業",story_subject:"大規模AI障害",event_type:"security",event_stage:"cause_identified"}),
+  base("critical-3","2026-09-02T01:20:00.000Z",{importance:"S",title:"AI半導体の重大脆弱性を修正",primary_entity:"半導体企業",story_subject:"重大脆弱性",event_type:"security",event_stage:"fixed"}),
+  base("important-other","2026-09-02T01:30:00.000Z",{importance:"A",title:"AI企業が大型資金調達",primary_entity:"投資先",story_subject:"大型資金調達",event_type:"funding",event_stage:"announced"}),
+  base("kling-evolution","2026-09-02T01:40:00.000Z",{importance:"C",title:"Kling AIが動画編集の新機能を公開",primary_entity:"Kling AI",story_subject:"Kling動画編集機能",event_type:"release",event_stage:"launched",event_scope:"全世界",related_categories:["画像・動画生成"]}),
+  base("canva-evolution","2026-09-02T01:50:00.000Z",{importance:"C",title:"CanvaがAIデザイン編集機能を提供開始",primary_entity:"Canva",story_subject:"Canva AIデザイン編集",event_type:"release",event_stage:"launched",event_scope:"全世界",related_categories:["画像・動画生成"]})
+];
+assert.equal(isToolEvolutionCandidate(toolQuotaPool[4]),true,"動画生成・編集ツールの能力差分を候補として認識する");
+const toolQuotaSelection=selectTopArticles(toolQuotaPool,{windowStart:start,windowEnd:end});
+assert.equal(toolQuotaSelection.selected.filter(record=>record.tool_evolution).length,2,"重大S級を守りながら有力なツール進化を2製品まで確保する");
+assert.ok(toolQuotaSelection.selected.some(record=>record.score.article_id==="kling-evolution"),"Klingなど動画生成の進化を比較対象へ入れる");
+assert.ok(toolQuotaSelection.selected.some(record=>record.score.article_id==="canva-evolution"),"Canvaなど編集ツールの進化を比較対象へ入れる");
+
 const firstEdition=buildHomeEdition(candidates,{}, {windowStart:start,windowEnd:end,checkedAt:end});
 const flagged=applyHomeEdition(candidates,firstEdition).filter(item=>item.home_top_rank);
 assert.deepEqual(flagged.map(item=>item.home_top_rank).sort((a,b)=>a-b),[1,2,3,4,5],"1位の大型記事を含む合計5件に順位を付ける");
 const carried=buildHomeEdition(candidates,firstEdition,{windowStart:end,windowEnd:end+3600000,checkedAt:end+3600000});
 assert.equal(carried.carried_forward,true,"新着0件なら直前のトップ5を保持する");
 assert.deepEqual(carried.article_ids,firstEdition.article_ids,"新着0件で表示記事を勝手に差し替えない");
+
+const unsafeEdition={...firstEdition,article_ids:["gemini-rich","gemini-copy","runway-tool"],scores:{}};
+const guarded=applyHomeEdition(distinctPool,unsafeEdition).filter(item=>item.home_top_rank).sort((a,b)=>a.home_top_rank-b.home_top_rank);
+assert.deepEqual(guarded.map(item=>item.article_id),["gemini-rich","runway-tool"],"公開直前にも同じ出来事の2件目を落とす");
 
 const workflow=fs.readFileSync(".github/workflows/update.yml","utf8");
 const crons=[...workflow.matchAll(/cron:\s*["']([^"']+)["']/g)].map(match=>match[1]);
@@ -81,7 +128,14 @@ for(const item of publicTop){
   assert.ok(item.home_selected_at&&item.home_window_start&&item.home_window_end,"選定記事に更新時刻と対象期間がある");
   assert.ok(Number.isFinite(Number(item.home_top_score)),"選定記事に審査点がある");
 }
+for(let left=0;left<publicTop.length;left++){
+  for(let right=left+1;right<publicTop.length;right++){
+    assert.equal(sameEditionStory(publicTop[left],publicTop[right]),false,`公開トップ5の${left+1}位と${right+1}位は別の出来事`);
+  }
+}
 
 const edition=JSON.parse(fs.readFileSync("home-edition.json","utf8"));
 assert.deepEqual(edition.article_ids,publicTop.map(item=>item.article_id),"選定正本と公開データのID順が一致する");
+assert.equal(edition.selection_version,"distinct-story-tool-evolution-v2","重複統合とツール進化枠を使う選定版である");
+assert.equal(edition.distinct_candidate_count,edition.candidate_count-edition.duplicate_candidate_count,"候補URL数と異なる出来事件数を監査できる");
 console.log("Edition publishing tests passed.");
