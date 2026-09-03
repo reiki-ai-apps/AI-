@@ -114,7 +114,7 @@ const openSettings=()=>setModal('設定',settingsHtml(),'settings');
 /* ---- 保存はこの端末の中だけ（ログイン不要） ---- */
 const LINE_KEY='white-shelf.line-endpoint';
 const lineEndpoint=()=>{try{return localStorage.getItem(LINE_KEY)||''}catch{return''}};
-function collectAlarms(){const out=[];state.tasks.filter(active).forEach(t=>{alarmSlots(t).forEach((a,i)=>{if(!a)return;const dueAt=new Date(`${a.date}T${a.time}:00`).getTime();if(Number.isFinite(dueAt)&&dueAt>Date.now())out.push({id:`${t.id}-${i+1}`,title:t.title,memo:t.memo||'',dueAt})})});return out}
+function collectAlarms(){const out=[];state.tasks.filter(active).forEach(t=>{alarmSlots(t).forEach((a,i)=>{if(!a)return;const dueAt=new Date(`${a.date}T${a.time}:00`).getTime();if(Number.isFinite(dueAt)&&dueAt>Date.now())out.push({id:`${t.id}-${i+1}`,title:t.title,memo:t.memo||'',date:taskDate(t)||null,dueAt})})});return out}
 function pushAlarmsToLine(){const ep=lineEndpoint();if(!ep)return;try{fetch(ep,{method:'POST',body:JSON.stringify({type:'sync',alarms:collectAlarms(),snapshot:{updatedAt:Date.now(),tasks:state.tasks}})}).catch(()=>{})}catch{}}
 async function testLine(){const msg=$('#settingsMessage'),ep=($('#lineEndpointBox')?.value||'').trim()||lineEndpoint();if(!ep){if(msg)msg.textContent='先に接続先URLを入れてください。';return}if(msg)msg.textContent='テスト送信中…';try{await fetch(ep,{method:'POST',body:JSON.stringify({type:'test'})});if(msg)msg.textContent='送信しました。LINEに「接続テスト」が届いていれば成功です。'}catch{if(msg)msg.textContent='送信できませんでした。URLを確認してください。'}}
 function syncInBackground(){saveLocal();pushAlarmsToLine()}
