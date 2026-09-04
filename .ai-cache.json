@@ -31570,56 +31570,14 @@
     },
     "url:https://news.google.com/rss/articles/cbmiowfbvv95cuxqshlsx285cv9acu9qd0stnknzmnrrvuriahvxegs1bm5ir05jy2h3dgpfukpnbgxcmfzvcfdzthf3q2xmcvjia1rrnjv6ewn5redjynbpc29inwm5mglvu0nmdvixatztdvfbcm83deltzxziz1lfa3fhr1hmn3zrwgjrnmdddhfheuzty0rlu2jra2fpawnxz1b1bmxeutfpumm0": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiowfbvv95cuxqshlsx285cv9acu9qd0stnknzmnrrvuriahvxegs1bm5ir05jy2h3dgpfukpnbgxcmfzvcfdzthf3q2xmcvjia1rrnjv6ewn5redjynbpc29inwm5mglvu0nmdvixatztdvfbcm83deltzxziz1lfa3fhr1hmn3zrwgjrnmdddhfheuzty0rlu2jra2fpawnxz1b1bmxeutfpumm0",
-      "content_hash": "7e239ca154691d6f30b7b5fc5a0badd1f5e7a1601649a879dc63432870824344",
-      "story_key": "42f1be8dcc738362e7b7bf976018c1061b71bdbc163cef39da0a595308c06e1e",
-      "status": "enriched",
-      "processed_at": "2026-08-25T04:03:51.224Z",
+      "content_hash": "8073ef63c3d767bfe46c81dfd9bb8ca090fc57fa5a7deb6b656d1324637993b7",
+      "story_key": "8037ca304e3701b3f577d5e9b0a4540201fadbf887a9d5b75454570a24f8bbef",
+      "status": "retry",
+      "processed_at": "2026-09-04T00:10:37.829Z",
       "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Gemini",
-        "title": "セキュリティ企業Adversa AI、暗号化命令でGrokとGeminiの安全対策回避を実証",
-        "source_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQSHlsX285cV9acU9qd0stNkNzMnRRVURIaHVxeGs1bm5iR05jY2h3dGpfUkpnbGxCMFZVcFdzTHF3Q2xmcVJIa1RrNjV6eWN5REdJYnBpc29iNWM5MGlVU0NmdVIxaTZtdVFBcm83dElTZXZiZ1lFa3FHR1hMN3ZrWGJRNmdDdHFheUZTY0RLU2Jra2FPaWNXZ1B1bmxEUTFpUmM0?oc=5",
-        "source_name": "合同会社ロケットボーイズ",
-        "is_official": false,
-        "published_at": "2026-08-25T02:00:58.000Z",
-        "source_published_at": "2026-08-25T02:00:58.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-25T04:01:00.560Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Adversa AI",
-          "Grok",
-          "Gemini"
-        ],
-        "primary_entity": "Adversa AI",
-        "story_subject": "暗号化命令によるGrok・Geminiの安全対策回避実証",
-        "event_type": "security",
-        "event_stage": "investigating",
-        "event_scope": "Grok・Gemini全般",
-        "fact_slots": [],
-        "new_facts": [
-          "Adversa AIが暗号化命令でGrokのデータ外部送信を実証した",
-          "同様の手法でGeminiの安全ガードレールも回避可能と確認された"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "Adversa AIが暗号化した命令を使い、Grokのデータ外部送信やGeminiの安全ガードレール回避が可能なことを実証した。",
-        "detail": "Adversa AIは、AIチャットボットに暗号化した指示を与えることでxAIの「Grok」からデータを外部へ送信させる手法を実証したと発表した。同様の手法でGoogleの「Gemini」に組み込まれた、不適切な出力を防ぐ安全性のためのガードレールも回避できることが確認されたという。通常のフィルタリングでは検知しにくい暗号化プロンプトを用いる点が攻撃手法の特徴とされる。各社の具体的な対応状況や修正の有無は明らかになっていない。",
-        "change_summary": "暗号化命令によってGrokのデータ外部送信とGeminiの安全ガードレール回避が可能であることが新たに実証された。",
-        "impact_summary": "企業がGrokやGeminiを業務利用する際に想定外のデータ漏えいリスクがあることを示しており、セキュリティ対策の見直しが必要になる可能性がある。",
-        "action_suggestion": "各社の脆弱性対応状況や修正パッチの有無を今後確認する必要がある。",
-        "importance": "A",
-        "related_categories": [
-          "セキュリティ",
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
+      "reason": "missing_or_incomplete_ai_output"
     },
     "url:https://news.google.com/rss/articles/cbmif0fvx3lxte42efbyagvbsg5nd1bhew90t1rfmjr5dg9ruhrcufnidmdkserzchnnbgxrr0hfewrryv84cgdztdjtsvj1blpmofvhnhfnu3dqz2pvu3k1szmwqzhqslruaw1scgzcoevnatvtuli3mundrwh2nnbwthhomdg4sja": {
       "canonical_url": "https://news.google.com/rss/articles/cbmif0fvx3lxte42efbyagvbsg5nd1bhew90t1rfmjr5dg9ruhrcufnidmdkserzchnnbgxrr0hfewrryv84cgdztdjtsvj1blpmofvhnhfnu3dqz2pvu3k1szmwqzhqslruaw1scgzcoevnatvtuli3mundrwh2nnbwthhomdg4sja",
@@ -31905,63 +31863,14 @@
     },
     "url:https://news.google.com/rss/articles/cbmidefvx3lxte9tvkhumk9zrwzjbnitszhntnzczxbtv0t3lwdzzw94wnpyuujgunziwm11cklla1njadexu2lvrepjvu5ptmsxqzk5s0itofl2cwftzujuvvlibfjwveltb1potlhvchz4vly5dhhmdhb0qu1t": {
       "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte9tvkhumk9zrwzjbnitszhntnzczxbtv0t3lwdzzw94wnpyuujgunziwm11cklla1njadexu2lvrepjvu5ptmsxqzk5s0itofl2cwftzujuvvlibfjwveltb1potlhvchz4vly5dhhmdhb0qu1t",
-      "content_hash": "ce912f3929abf765cbc9675802a0cf7a657d20ce999504935f6bc37bf2276947",
-      "story_key": "b7f827e415edd9e4dbe53176bc2ce06080bd59d1d9ea0bec5b095e8d825a5f95",
-      "status": "enriched",
-      "processed_at": "2026-08-25T07:11:02.008Z",
+      "content_hash": "817cfb68ac9ade895bf4589ae46d6856e9f3f4ee95e57d79771f0d0d5abed1fe",
+      "story_key": "8b0285dd4b8386e31ed5794c73170d242ec008082a8f8bc5a2104a614a1b98f9",
+      "status": "retry",
+      "processed_at": "2026-09-04T00:13:15.110Z",
       "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Perplexity",
-        "title": "Nvidia、PerplexityとPoolsideに数十億ドル規模を投資しオープンモデル戦略を強化",
-        "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9TVkhUMk9ZRWZJbnItSzhnTnZCZXBtV0t3LWdzZW94WnpyUUJGUnZIWm11cklla1NjaDExU2lVREpjVU5PTmsxQzk5S0ItOFl2cWFtZUJuVVlibFJwVElTb1poTlhVcHZ4VlY5dHhMdHB0QU1T?oc=5",
-        "source_name": "BigGo ファイナンス",
-        "is_official": false,
-        "published_at": "2026-08-25T02:35:00.000Z",
-        "source_published_at": "2026-08-25T02:35:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-25T07:09:19.653Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Nvidia",
-          "Perplexity",
-          "Poolside"
-        ],
-        "primary_entity": "Nvidia",
-        "story_subject": "NvidiaによるPerplexity・Poolsideへの投資",
-        "event_type": "funding",
-        "event_stage": "announced",
-        "event_scope": "Perplexity・Poolsideへの投資",
-        "fact_slots": [
-          {
-            "type": "amount",
-            "scope": "Nvidiaの投資規模",
-            "value": "数十億ドル規模",
-            "normalized_value": "数十億ドル規模"
-          }
-        ],
-        "new_facts": [
-          "NvidiaがPerplexityとPoolsideに数十億ドル規模の投資を実施した",
-          "この投資はオープンモデル分野での主導権確保を狙うものとされる"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "Nvidiaが検索AI企業Perplexityとコーディング特化AI企業Poolsideに対し数十億ドル規模の投資を実施し、オープンモデル分野での主導権確保を狙う。",
-        "detail": "Nvidiaが検索エンジン型AI企業Perplexityと、コーディング支援AIを手がけるPoolsideに対し、数十億ドル規模の投資を行ったことが明らかになった。記事によれば、この投資はNvidiaがオープンモデル分野での主導権を確保する狙いがあるとされる。AI半導体で圧倒的なシェアを持つNvidiaが、ソフトウェア・モデル開発企業への出資を通じてAIエコシステム全体への関与を強めていることを示す動きであり、投資対象や規模の詳細については記事内でさらに言及がある可能性があるが、抜粋の範囲では投資実施の事実と狙いが確認できる。",
-        "change_summary": "NvidiaがPerplexityとPoolsideに新たに数十億ドル規模の投資を実施したことが明らかになった。",
-        "impact_summary": "AIチップ企業がモデル・ソフトウェア企業への投資を拡大することで、AI業界の勢力図や技術の主導権争いに影響し、関連企業の株式・提携動向にも波及する可能性がある。",
-        "action_suggestion": "投資の正式な金額や契約条件、対象企業の具体的な事業内容については今後の公式発表や詳細報道を確認する必要がある。",
-        "importance": "A",
-        "related_categories": [
-          "企業・株式",
-          "半導体・インフラ"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
+      "reason": "missing_or_incomplete_ai_output"
     },
     "url:https://news.google.com/rss/articles/cbmidefvx3lxte1xamvonuv4cknudmdqvuzslwjiwfjteffjnkyxrlcxn29vegs3s1vfmu9ytu5aq2tmcgu0uflxtklttnp2bklslxpwbzvymktbtlywdke4dkvnzjkxzu1amvbiwxqxsnn1ykfbwwwxslrkvtjz": {
       "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte1xamvonuv4cknudmdqvuzslwjiwfjteffjnkyxrlcxn29vegs3s1vfmu9ytu5aq2tmcgu0uflxtklttnp2bklslxpwbzvymktbtlywdke4dkvnzjkxzu1amvbiwxqxsnn1ykfbwwwxslrkvtjz",
@@ -33949,69 +33858,14 @@
     },
     "url:https://news.google.com/rss/articles/cbmingfbvv95cuxqafcxqzjuexq0rxdbykfmzlr1vjn6qthamfvjsexpv1n3czbuothiwhhydlvkovf6zveyqwzfajdknexqbupgwfplus1sv3vru2pva3mwwglxx3zvafb2ywjmb2dtr2dycu5mznuyzmm4tmnawvnhbwnktc05uk1md3e4c1frug1wls1isy03cw9xam50otztdvp4vtzszw": {
       "canonical_url": "https://news.google.com/rss/articles/cbmingfbvv95cuxqafcxqzjuexq0rxdbykfmzlr1vjn6qthamfvjsexpv1n3czbuothiwhhydlvkovf6zveyqwzfajdknexqbupgwfplus1sv3vru2pva3mwwglxx3zvafb2ywjmb2dtr2dycu5mznuyzmm4tmnawvnhbwnktc05uk1md3e4c1frug1wls1isy03cw9xam50otztdvp4vtzszw",
-      "content_hash": "a0ecb6f03763eab8f521cf74b31664ffd9ae680c674f3117fabfc75f0fcfc3ad",
-      "story_key": "eca534826900db54e11ed33ad5f91f6ac6ccf402e70132bcd209590789ce94fa",
-      "status": "enriched",
-      "processed_at": "2026-08-31T05:44:40.884Z",
+      "content_hash": "8140a70eba3ddb414619bd9e6eb4b1ec52da828f8f57c9c37156f7e0b281e564",
+      "story_key": "3b566de27616d7ec9d4b3eeb3dff27abd95b457a8ea7b98d554b160844ba1643",
+      "status": "retry",
+      "processed_at": "2026-09-04T00:17:30.508Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Adobe Firefly",
-        "title": "Adobe Firefly Audioが一般提供開始、生成にはクレジット消費が必要に",
-        "source_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQaFcxQzJUeXQ0RXdBYkFMZlR1VjN6QThaMFVjSExpV1N3czBuOThiWHhYdlVkOVF6ZVEyQWZfajdKNExQbUpGWFpLUS1SV3VrU2pva3MwWGlXX3ZVaFB2YWJmb2dtR2dycU5MZnUyZmM4TmNaWVNHbWNkTC05Uk1md3E4c1FrUG1wLS1iSy03cW9Xam50OTZTdVp4VTZSZw?oc=5",
-        "source_name": "quasa.io",
-        "is_official": false,
-        "published_at": "2026-08-27T08:00:00.000Z",
-        "source_published_at": "2026-08-27T08:00:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-27T14:14:12.973Z",
-        "event_at": "",
-        "event_status": "開始済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Adobe",
-          "Firefly Audio"
-        ],
-        "primary_entity": "Adobe",
-        "story_subject": "Firefly Audio",
-        "event_type": "pricing",
-        "event_stage": "launched",
-        "event_scope": "一般提供",
-        "fact_slots": [
-          {
-            "type": "status",
-            "scope": "Firefly Audioの提供状況",
-            "value": "一般提供開始",
-            "normalized_value": "一般提供開始"
-          },
-          {
-            "type": "other",
-            "scope": "課金方式",
-            "value": "クレジット消費制",
-            "normalized_value": "クレジット消費制"
-          }
-        ],
-        "new_facts": [
-          "Firefly Audioが一般提供開始となった",
-          "生成のたびにクレジットを消費する課金方式が採用された"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "AdobeがAI音声・音楽生成機能「Firefly Audio」の一般提供を開始し、生成のたびに専用クレジットを消費する課金方式を採用した。",
-        "detail": "Adobeが、AIで音声や音楽を作る機能「Firefly Audio」の一般提供を始めました。これは、文章の指示などから声や音楽をコンピューターに自動で作らせる仕組みです。これまで試験段階だった機能が、誰でも使える正式な形になったという違いがあります。\n\n今回のポイントは、音声や音楽を1回作るごとに「クレジット」と呼ばれる利用ポイントを消費する課金方式が採用されたことです。クレジットは生成の回数に応じて減っていく仕組みで、使えば使うほどコストがかかります。無料で使い放題ではなく、利用量に応じた負担が発生する点が重要です。\n\n動画や広告制作でナレーションやBGMを手軽に用意したい人にとって、選択肢が増えることになります。ただしクレジットの具体的な価格や無料枠の有無など、詳しい料金体系はまだ記事内で明らかになっていません。今後Adobeから料金の詳細が案内されるか注目されます。",
-        "change_summary": "Firefly Audioが試験提供から一般提供へ切り替わり、生成ごとにクレジットを消費する課金方式が導入された。",
-        "impact_summary": "動画制作や広告制作でナレーションや音楽を自作したい個人・企業にとって、利用コストの管理が新たな検討事項になる。",
-        "action_suggestion": "クレジットの価格や無料枠の有無など、詳細な料金体系についてAdobeからの追加案内を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "音楽・クリエイティブ",
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-        "migration_replacement_of": "article_8efd00df882848bf71fb"
-      }
+      "reason": "missing_or_incomplete_ai_output"
     },
     "url:https://news.google.com/rss/articles/cbmiakfvx3lxtfa5cwpmdg1nauziwfp3m1hbqnjbr3a4evzmlus4mhzprk1zoulezelmdnlpdedfn0lts2d5ufppv09vrkh3ec1lmm44exv0nwjrt1rxreh1zm4tedg1q0tzzwzhcmdlbgdqvlhsawpbvv95cuxqoxfqthrttwlgylhadznyqujyqudwohlwzi1lodb2auznwtljrgrjthz5t3rhrtdju0tnevbaavdpb0zid3gtztjuohl1ddviuu9uv0ridwzulxg4nunlwwvmyxjnzwxnalzr": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxtfa5cwpmdg1nauziwfp3m1hbqnjbr3a4evzmlus4mhzprk1zoulezelmdnlpdedfn0lts2d5ufppv09vrkh3ec1lmm44exv0nwjrt1rxreh1zm4tedg1q0tzzwzhcmdlbgdqvlhsawpbvv95cuxqoxfqthrttwlgylhadznyqujyqudwohlwzi1lodb2auznwtljrgrjthz5t3rhrtdju0tnevbaavdpb0zid3gtztjuohl1ddviuu9uv0ridwzulxg4nunlwwvmyxjnzwxnalzr",
@@ -36912,517 +36766,368 @@
       "canonical_url": "https://news.google.com/rss/articles/cbmic0fvx3lxte5zz2tmz01klufprnu5oezrr0c4ynvjtmo0su1pt0pgyzczahc1thzvy2p3c0pyqzy3ofzsyuzyukzpvvdyajz2dxjldnblzkmxszbwthbfcm5jamrjtelir1pjc3hqxzdfd2zqcwvkafcwndq",
       "content_hash": "72b0ddab794520050ccc6407d591378b076b8a110fa8f3ffad7fbd38d143c7aa",
       "story_key": "4f279fe25988b53c1306ebd2fcb0868bfeb666a8260160708e0dea4b5ec35662",
-      "status": "enriched",
-      "processed_at": "2026-08-27T00:49:04.695Z",
-      "model": "legacy",
-      "prompt_version": "legacy-before-event-date-v5",
-      "lane": "bootstrap",
-      "reason": "existing_complete_article",
-      "result": {
-        "tool": "AI業界・経営重要速報",
-        "title": "AWSとNVIDIA、次世代AIインフラで提携を拡大",
-        "source_url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5zZ2tmZ01kLUFpRnU5OEZRR0c4YnVjTmo0SU1pT0pGYzczaHc1THZvY2p3c0pYQzY3OFZSYUZYUkZPVVdYajZ2dXJLdnBlZkMxSzBwTHBfcm5JamRjTEliR1pjc3hQXzdFd2ZqcWVKaFcwNDQ?oc=5",
-        "source_name": "About Amazon",
-        "is_official": false,
-        "published_at": "2026-08-26T22:15:05.000Z",
-        "source_published_at": "2026-08-26T22:15:05.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-27T00:49:04.695Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "AWS",
-          "NVIDIA",
-          "aws",
-          "nvidia",
-          "amazon"
-        ],
-        "primary_entity": "AWS",
-        "story_subject": "AWSとNVIDIAの次世代AIインフラ提携拡大",
-        "event_type": "partnership",
-        "event_stage": "expanded",
-        "event_scope": "全世界",
-        "fact_slots": [],
-        "new_facts": [
-          "AWSとNVIDIAが次世代AIインフラに向けて提携を拡大したと発表した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "AmazonのAWSとNVIDIAが、次世代のAIインフラ構築に向けてパートナーシップを拡大すると発表した。",
-        "detail": "AWSとNVIDIAの既存の協業関係が、AIを動かす設備分野でさらに広がりました。GPUは、AIに必要な大量の計算を速く進める半導体です。\n\nAWSとNVIDIAが次世代AIを動かす設備に向けて提携を拡大したと発表しました。インターネット経由で使うサービスを利用する日本企業にとって、計算資源の確保や今後のAI活用費用に影響し得る動きです。提携は、会社どうしが協力すると決めたことです。製品、開始日、料金が出るまでは、使う人への変化は決まりません。\n\n使える範囲が広がりました。新しく対象になった地域や料金プランは確認が必要です。提携拡大の詳しい内容や規模については、本文に詳細記載がなく続報の確認が必要です。",
-        "change_summary": "AWSとNVIDIAの既存の協業関係が、AIインフラ分野でさらに拡大された。",
-        "impact_summary": "クラウドサービスを利用する日本企業にとって、計算資源の確保や今後のAI活用コストに影響し得る動きである。",
-        "action_suggestion": "提携拡大の具体的な内容や規模については、本文に詳細記載がなく続報の確認が必要。",
-        "importance": "A",
-        "related_categories": [
-          "半導体・インフラ",
-          "企業・株式"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-student-core-v21",
-        "article_id": "article_a23661d5137fb06782a8",
-        "story_id": "story_267290b7622f1c4061",
-        "story_sequence": 1,
-        "relation_type": "new",
-        "relation_confidence": 1,
-        "previous_article_id": "",
-        "previous_title": "",
-        "previous_source_published_at": "",
-        "continuation_lead": "",
-        "dedupe_decision": "new",
-        "dedupe_reasons": [
-          "no_previous_story"
-        ],
-        "friendly_explanation_source": "verified_fields_safe_composite_student_core_v21"
-      }
+      "status": "retry",
+      "processed_at": "2026-09-04T00:11:42.739Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
     },
     "url:https://news.google.com/rss/articles/cbmivgfbvv95cuxowepwnfhdqs1fuhvqnxfrtlnqc1rjrjz1x2k4ylnabflkzkdat09ln1itutftbljvmk5pmtbhrwpawnhptuhgu2vynkjqtfbuwnrkrmw0alnplwtwtdjiquzjweu0znvmsvrysevxwhb6zdduazyttlhrrddma2hprzvmufbwvnm2ym5pnmrfvdhyng9leuzfregxwmprblrjswxpbk0tvfa4vlvin09xzkfnanfobzblnjdmtvhb": {
       "canonical_url": "https://news.google.com/rss/articles/cbmivgfbvv95cuxowepwnfhdqs1fuhvqnxfrtlnqc1rjrjz1x2k4ylnabflkzkdat09ln1itutftbljvmk5pmtbhrwpawnhptuhgu2vynkjqtfbuwnrkrmw0alnplwtwtdjiquzjweu0znvmsvrysevxwhb6zdduazyttlhrrddma2hprzvmufbwvnm2ym5pnmrfvdhyng9leuzfregxwmprblrjswxpbk0tvfa4vlvin09xzkfnanfobzblnjdmtvhb",
       "content_hash": "1b4839d2d72d321927ab41f99684e909ee80a8f15be8934f2d6e52ba92dfcdff",
       "story_key": "87d3081c96e390fe15ab85569f63c5a621074bf8845b61b1c9426900bc11baad",
-      "status": "enriched",
-      "processed_at": "2026-08-27T00:48:29.357Z",
-      "model": "legacy",
-      "prompt_version": "legacy-before-event-date-v5",
-      "lane": "bootstrap",
-      "reason": "existing_complete_article",
-      "result": {
-        "tool": "Claude / Claude Code",
-        "title": "SalesforceとAnthropic、営業データ活用AI「Claudeforce」を発表",
-        "source_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOWEpwNFhDQS1FUHVQNXFrTlNqc1RjRjZ1X2k4YlNabFlkZkdaT09lN1ItUTFtblJvMk5pMTBhRWpaWnhpTUhGU2VYNkJqTFBuWnRKRmw0alNPLWtwTDJiQUZJWEU0ZnVmSVRYSEVXWHB6ZDdUazYtTlhRRDdma2hPRzVmUFBWVnM2Ym5pNmRfVDhyNG9leUZfREgxWmprblRjSWxpbk0tVFA4VlViN09XZkFNanFObzBlNjdmTVhB?oc=5",
-        "source_name": "디지털투데이",
-        "is_official": false,
-        "published_at": "2026-08-26T21:02:02.000Z",
-        "source_published_at": "2026-08-26T21:02:02.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-27T00:48:29.357Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Salesforce",
-          "Anthropic",
-          "Claudeforce",
-          "salesforce",
-          "anthropic"
-        ],
-        "primary_entity": "Salesforce",
-        "story_subject": "Claudeforce",
-        "event_type": "partnership",
-        "event_stage": "announced",
-        "event_scope": "エンタープライズ/営業部門向け",
-        "fact_slots": [
-          {
-            "type": "other",
-            "scope": "提携製品名",
-            "value": "Claudeforce",
-            "normalized_value": "claudeforce"
-          }
-        ],
-        "new_facts": [
-          "SalesforceとAnthropicが提携し、Claudeから営業データを直接活用できる「Claudeforce」を発表した。"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "SalesforceとAnthropicが提携し、ClaudeでCRMの営業データを直接活用できる新機能「Claudeforce」を発表した。",
-        "detail": "SalesforceとAnthropicが提携し、Claudeから営業データを直接活用できる新機能「Claudeforce」を発表しました。CRMは、顧客情報や商談の記録をまとめる仕組みです。\n\n営業担当者が、顧客情報や商談記録をClaudeから直接使いやすくなる可能性があります。ただし、日本で使える時期や具体的な機能はまだ分かっていません。提携は、会社どうしが協力すると決めたことです。製品、開始日、料金が出るまでは、使う人への変化は決まりません。\n\n今は発表された段階で、記事だけでは詳しい数字や条件まで分かりません。正式な内容は、情報元の資料で確認する必要があります。両社から機能の詳しい仕組みや提供開始時期、料金に関する続報を確認する必要があります。",
-        "change_summary": "SalesforceとAnthropicが提携し、Claudeから営業データを直接活用できる新機能「Claudeforce」を発表した。",
-        "impact_summary": "営業部門のデータ活用・業務効率化が進む可能性があるが、具体的な効果や国内提供時期は不明。",
-        "action_suggestion": "両社から機能の詳細仕様や提供開始時期、料金に関する続報を確認する必要がある。",
-        "importance": "A",
-        "related_categories": [
-          "企業・株式",
-          "営業・マーケティング",
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-student-core-v21",
-        "article_id": "article_febbdbe470aa58677fa1",
-        "story_id": "story_a96bf11310e38a3619",
-        "story_sequence": 1,
-        "relation_type": "new",
-        "relation_confidence": 0.5482926829268293,
-        "previous_article_id": "",
-        "previous_title": "",
-        "previous_source_published_at": "",
-        "continuation_lead": "",
-        "dedupe_decision": "uncertain",
-        "dedupe_reasons": [
-          "shared_entity",
-          "same_subject"
-        ],
-        "friendly_explanation_source": "verified_fields_safe_composite_student_core_v21"
-      }
+      "status": "retry",
+      "processed_at": "2026-09-04T00:12:29.841Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
     },
     "url:https://news.google.com/rss/articles/cbmiy0fvx3lxtfb6z2zrak9ltwlllup3vwdmrtfcr1nbm29frvb2uu5modlpr09fcjhyugttrxzkqmniovk3uknfwfrrv0rzc2mtukgyadhwb0lgmzdfaldms1bsbk9xx3yzv19uqq": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiy0fvx3lxtfb6z2zrak9ltwlllup3vwdmrtfcr1nbm29frvb2uu5modlpr09fcjhyugttrxzkqmniovk3uknfwfrrv0rzc2mtukgyadhwb0lgmzdfaldms1bsbk9xx3yzv19uqq",
       "content_hash": "b6b75d303a1b3cc9adbc4a8d1025e1e324b9217a84faa0bc602eefe60b3c7ed7",
       "story_key": "d5bc71368a6a7f306403cb8a08fac19caea26b28fe164f6837a45564511ea76f",
-      "status": "enriched",
-      "processed_at": "2026-08-26T04:04:39.867Z",
-      "model": "legacy",
-      "prompt_version": "legacy-before-event-date-v5",
-      "lane": "bootstrap",
-      "reason": "existing_complete_article",
-      "result": {
-        "tool": "世界の新モデル・速報",
-        "title": "Apple、M6とM5 Ultraを発表 M5 Ultraは最大512GBメモリで大型AIモデルをローカル実行可能に",
-        "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFB6Z2ZRak9LTWllLUp3VWdMRTFCR1NBM29FRVB2UU5MODlpR09FcjhyUGttRXZKQmNiOVk3UkNFWFRRV0RZc2MtUkgyaDhWb0lGMzdfaldmS1BSbk9xX3YzV19UQQ?oc=5",
-        "source_name": "GIGAZINE",
-        "is_official": false,
-        "published_at": "2026-08-26T01:45:00.000Z",
-        "source_published_at": "2026-08-26T01:45:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T04:04:39.867Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Apple",
-          "M5 Ultra",
-          "apple",
-          "m5ultra",
-          "ultra"
-        ],
-        "primary_entity": "Apple",
-        "story_subject": "M6・M5 Ultraチップ",
-        "event_type": "release",
-        "event_stage": "announced",
-        "event_scope": "全世界",
-        "fact_slots": [
-          {
-            "type": "other",
-            "scope": "M5 Ultraの最大メモリ容量",
-            "value": "512GB",
-            "normalized_value": "512"
-          }
-        ],
-        "new_facts": [
-          "AppleがM6とM5 Ultraチップを発表した",
-          "M5 Ultraは最大512GBの統合メモリを搭載し大型AIモデルをローカル実行可能"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "AppleがM6とM5 Ultraを発表し、M5 Ultraは最大512GBの統合メモリ搭載で大型AIモデルをMac上でローカル実行できるようにした。",
-        "detail": "Appleは、最大512GBのメモリを選べる「M5 Ultra」を発表しました。高性能なAIを、自分のMacだけで動かせるとしています。自分の端末だけで動かすことは、外部のクラウドへ送らず、手元の端末だけで処理する方法です。\n\n記事の核は、大きなメモリを使い、高性能なAIを外部サービスへ送らずMacの中で動かせる点です。扱えるAIの大きさと処理速度が、実際の使い勝手を左右します。企業や開発者がクラウドに依存せずMac上で高性能AIモデルを扱えるようになり、費用削減やデータ管理の選択肢が広がる可能性があります。発表されたことと、すぐ全員が使えることは同じではありません。地域、料金、使う端末によって条件が変わります。\n\n今は発表された段階で、記事だけでは詳しい数字や条件まで分かりません。正式な内容は、情報元の資料で確認する必要があります。発売時期や価格など詳細情報は記事からは確認できず、続報の確認が必要です。",
-        "change_summary": "M5 Ultraが最大512GBのメモリを搭載し、大型AIモデルのローカル実行を可能にしたことが新たに発表された。",
-        "impact_summary": "企業や開発者がクラウドに依存せずMac上で高性能AIモデルを扱えるようになり、コスト削減やデータ管理の選択肢が広がる可能性がある。",
-        "action_suggestion": "発売時期や価格など詳細情報は記事からは確認できず、続報の確認が必要。",
-        "importance": "A",
-        "related_categories": [
-          "半導体・インフラ",
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-student-core-v21",
-        "article_id": "article_18e2a9300077a4672a64",
-        "story_id": "story_b149fd395bf77b6edf",
-        "story_sequence": 1,
-        "relation_type": "new",
-        "relation_confidence": 1,
-        "previous_article_id": "",
-        "previous_title": "",
-        "previous_source_published_at": "",
-        "continuation_lead": "",
-        "dedupe_decision": "new",
-        "dedupe_reasons": [
-          "no_previous_story"
-        ],
-        "friendly_explanation_source": "verified_fields_safe_composite_student_core_v21"
-      }
+      "status": "retry",
+      "processed_at": "2026-09-04T00:13:15.110Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
     },
     "url:https://news.google.com/rss/articles/cbmi2afbvv95cuxqczztq1lozwtlx2ljaujrudz5b3mynmrhnnrgs0u3muvydlvdcl90ywtwohpftjrodl93zkq5nwlinjnywvm3rkc0x1ldowx0c0hicmtpegziddj3eevxdwfewg1jz0c2r3v6b01oenzwu0xta1ywcfr0djrvukk5azuyzdbwtlladlnzdkf6lxhfzwpkwwdncev5uuuzn3c1n1dhdhliuwvfodzldkdzodnxmldwnwt3elzvz2fls0dormt2dgvxn1a2ukv4btlfek1kqnbnq2_savpbvv95cuxqdjvev2tzdjzobkn0duoxwfd0x0x2yzbravrvrnd4wgnsc2ffr1ixlur6d0nyulbbq0pcbfhzbuzoc0xla3hfbgxgm2naqxa3blrts25xm0tlrke": {
       "canonical_url": "https://news.google.com/rss/articles/cbmi2afbvv95cuxqczztq1lozwtlx2ljaujrudz5b3mynmrhnnrgs0u3muvydlvdcl90ywtwohpftjrodl93zkq5nwlinjnywvm3rkc0x1ldowx0c0hicmtpegziddj3eevxdwfewg1jz0c2r3v6b01oenzwu0xta1ywcfr0djrvukk5azuyzdbwtlladlnzdkf6lxhfzwpkwwdncev5uuuzn3c1n1dhdhliuwvfodzldkdzodnxmldwnwt3elzvz2fls0dormt2dgvxn1a2ukv4btlfek1kqnbnq2_savpbvv95cuxqdjvev2tzdjzobkn0duoxwfd0x0x2yzbravrvrnd4wgnsc2ffr1ixlur6d0nyulbbq0pcbfhzbuzoc0xla3hfbgxgm2naqxa3blrts25xm0tlrke",
       "content_hash": "d230736e2dc7db2a85d9b92c8746c581a9d03cbbe6a1c85ae9f24825ba33317d",
       "story_key": "b78cc040f663d77ca4e0afa7e09b58f63747cddf4309801c216aeac2e18d9f18",
-      "status": "enriched",
-      "processed_at": "2026-08-27T00:48:34.085Z",
-      "model": "legacy",
-      "prompt_version": "legacy-before-event-date-v5",
-      "lane": "bootstrap",
-      "reason": "existing_complete_article",
-      "result": {
-        "tool": "Midjourney",
-        "title": "Midjourney、ディズニー・ワーナーの著作権訴訟で答弁書を提出",
-        "source_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQczZtQ1loZWtlX2ljaUJrUDZ5b3MyNmRHNnRGS0U3MUVYdlVDcl90YWtwOHpFTjROdl93ZkQ5NWliNjNyWVM3Rkc0X1lDOWx0c0hicmtPeGZIdDJ3eEVXdWFEWG1jZ0c2R3V6b01OenZwU0xta1YwcFR0djRVUkk5azUyZDBWTlladlNzdkF6LXhfZWpkWWdncEV5UUUzN3c1N1dhdHliUWVFODZldkdZODNxMldwNWt3elZVZ2FlS0doRmt2dGVXN1A2UkV4bTlfek1KQnBnQ2_SAVpBVV95cUxQdjVEV2tZdjZobkN0dUoxWFd0X0x2YzBraVRvRnd4WGNSc2FfR1IxLUR6d0NyUlBBQ0pCbFhZbUZOc0xLa3hFbGxGM2NaQXA3blRTS25XM0tlRkE?oc=5",
-        "source_name": "MLex",
-        "is_official": false,
-        "published_at": "2026-08-25T22:31:00.000Z",
-        "source_published_at": "2026-08-25T22:31:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-27T00:48:34.085Z",
-        "event_at": "",
-        "event_status": "継続中",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Midjourney",
-          "ディズニー",
-          "ワーナー・ブラザース",
-          "midjourney",
-          "ワーナーブラザース"
-        ],
-        "primary_entity": "Midjourney",
-        "story_subject": "ディズニー・ワーナー著作権侵害訴訟",
-        "event_type": "other",
-        "event_stage": "other",
-        "event_scope": "米国司法(著作権訴訟)",
-        "fact_slots": [
-          {
-            "type": "status",
-            "scope": "訴訟の対応状況",
-            "value": "答弁書提出",
-            "normalized_value": "答弁書提出"
-          }
-        ],
-        "new_facts": [
-          "Midjourneyがディズニー・ワーナー著作権侵害訴訟に答弁書を提出した",
-          "答弁書で判決の一部を容認する姿勢を示した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "画像生成AI企業Midjourneyが、ディズニーとワーナーから著作権侵害で訴えられた訴訟に答弁書を提出し、判決の一部を容認する姿勢を示した。",
-        "detail": "Midjourneyがディズニー・ワーナーの著作権訴訟に答弁書を提出し、判決の一部を容認する姿勢を示しました。訴訟の対応状況は「答弁書提出」です。\n\nAI生成画像を利用する企業や画像などを作る人にとって、著作権侵害リスクの判断基準が今後変わる可能性があります。今回は裁判が終わったというニュースではありません。答弁書は、訴えられた側が、相手の主張を認めるか反論するかを裁判所へ伝える書類です。今回争われているのは、AI画像と著作権の関係です。裁判所の判断はこれからです。\n\n今回、記事で分かる対象は「米国司法(著作権訴訟)」までです。詳しい条件は情報元で確認する必要があります。",
-        "change_summary": "Midjourneyがディズニー・ワーナーの著作権訴訟に答弁書を提出し、判決の一部を容認する姿勢を示した。",
-        "impact_summary": "AI生成画像を利用する企業やクリエイターにとって、著作権侵害リスクの判断基準が今後変わる可能性がある。",
-        "action_suggestion": "訴訟の今後の審理内容や判決確定時期について、続報を確認する必要がある。",
-        "importance": "A",
-        "related_categories": [
-          "規制・法務",
-          "画像・動画生成"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-student-core-v21",
-        "article_id": "article_a8f2950e41547285322d_rev_d230736e2dc7",
-        "story_id": "story_b154893465db725548",
-        "story_sequence": 1,
-        "relation_type": "new",
-        "relation_confidence": 0.82,
-        "previous_article_id": "",
-        "previous_title": "",
-        "previous_source_published_at": "",
-        "continuation_lead": "",
-        "dedupe_decision": "uncertain",
-        "dedupe_reasons": [
-          "same_url",
-          "same_primary_entity",
-          "uncertain_subject",
-          "similar_title",
-          "material_fact_changed",
-          "low_confidence_follow_up_demoted"
-        ],
-        "friendly_explanation_source": "verified_fields_safe_composite_student_core_v21"
-      }
+      "status": "retry",
+      "processed_at": "2026-09-04T00:10:37.829Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
     },
     "url:https://news.google.com/rss/articles/cbmitkfvx3lxte5eoexzvnjxxzfjsdn2q25patlzwm11sw9cmvcwymfrdmjragz4uznwtgtsnzdltfflmkjjevhtbgdldlffejk0adnmverlzw": {
       "canonical_url": "https://news.google.com/rss/articles/cbmitkfvx3lxte5eoexzvnjxxzfjsdn2q25patlzwm11sw9cmvcwymfrdmjragz4uznwtgtsnzdltfflmkjjevhtbgdldlffejk0adnmverlzw",
       "content_hash": "8d5bf77cb0dffb3e4efdeb9bbb2bda0085072297283eb21507a16643dc213cc7",
       "story_key": "11500e27200d4f819454f7d93a94c6f00bbdfbd3c060b3041f5fa939a2ac804f",
-      "status": "enriched",
-      "processed_at": "2026-08-11T10:12:09.728Z",
-      "model": "legacy",
-      "prompt_version": "legacy-before-event-date-v5",
-      "lane": "bootstrap",
-      "reason": "existing_complete_article",
-      "result": {
-        "tool": "GitHub Copilot",
-        "title": "GitHub CopilotでオープンウェイトモデルKimi K3が正式提供開始",
-        "source_url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5EOExzVnJxXzFjSDN2Q25PaTlzWm11SW9CMVcwYmFrdmJRaGZ4UzNWTGtsNzdLTFFlMkJJeVhtbGdldlFFejk0aDNMVERLZw?oc=5",
-        "source_name": "CodeZine",
-        "is_official": false,
-        "published_at": "2026-08-11T09:00:00.000Z",
-        "source_published_at": "2026-08-11T09:00:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-11T10:12:09.728Z",
-        "event_at": "",
-        "event_status": "開始済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "GitHub Copilot",
-          "Kimi K3",
-          "githubcopilot",
-          "kimik3",
-          "moonshot-ai"
-        ],
-        "primary_entity": "GitHub",
-        "story_subject": "GitHub CopilotへのKimi K3モデル提供",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "GitHub Copilot",
-        "fact_slots": [
-          {
-            "type": "availability",
-            "scope": "GitHub CopilotでのKimi K3提供",
-            "value": "正式提供開始",
-            "normalized_value": "正式提供開始"
-          }
-        ],
-        "new_facts": [
-          "GitHub CopilotでKimi K3が正式に利用可能になった"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "GitHub Copilotに新たな大規模言語モデル『Kimi K3』が追加され、正式に利用できるようになった。",
-        "detail": "GitHub Copilotのモデル選択肢に、オープンウェイトモデル「Kimi K3」が新たに加わった。大規模言語モデルは、大量の文章を学び、質問への回答や文章作成を行うAIです。使える場所は「正式提供開始」と案内されています。\n\n日本の開発者もGitHub Copilot上でKimi K3を選択できるようになり、用途に応じたモデル選定の幅が広がる可能性があります。発表されたことと、すぐ全員が使えることは同じではありません。地域、料金、使う端末によって条件が変わります。GitHub Copilotに新たな大規模言語モデル『Kimi K3』が追加され、正式に利用できるようになりました。\n\nすでに提供は始まっています。ただし、地域や料金プランによって使えない場合があります。GitHub Copilotの設定画面でKimi K3が選択可能か、対象プランや利用条件を確認する必要があります。",
-        "change_summary": "GitHub Copilotのモデル選択肢に、オープンウェイトモデル「Kimi K3」が新たに加わった。",
-        "impact_summary": "日本の開発者もGitHub Copilot上でKimi K3を選択できるようになり、用途に応じたモデル選定の幅が広がる可能性がある。",
-        "action_suggestion": "GitHub Copilotの設定画面でKimi K3が選択可能か、対象プランや利用条件を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "アプリ開発・自動化"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-student-core-v21",
-        "article_id": "article_d41d4500c12f236ec663_rev_8d5bf77cb0df",
-        "story_id": "story_c48af9c8a3da3a7c50",
-        "story_sequence": 1,
-        "relation_type": "new",
-        "relation_confidence": 1,
-        "previous_article_id": "",
-        "previous_title": "",
-        "previous_source_published_at": "",
-        "continuation_lead": "",
-        "dedupe_decision": "uncertain",
-        "dedupe_reasons": [
-          "same_url",
-          "shared_entity",
-          "same_subject",
-          "same_event_type",
-          "same_scope",
-          "same_url_content_changed"
-        ],
-        "friendly_explanation_source": "verified_fields_safe_composite_student_core_v21"
-      }
+      "status": "retry",
+      "processed_at": "2026-09-04T00:11:42.739Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
     },
     "url:https://k-tai.watch.impress.co.jp/docs/news/2131052.html": {
       "canonical_url": "https://k-tai.watch.impress.co.jp/docs/news/2131052.html",
       "content_hash": "f6871708040e65d002c17cd4ddd552073c29b2b183959a7f77cde8a1a91fae7a",
       "story_key": "43b21df910547298c43c524c15142aab90756f4050afa2dbb7c4f6cf8bc1b75f",
+      "status": "retry",
+      "processed_at": "2026-09-04T00:12:29.841Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmitkfvx3lxte5vqlu4vdrmtnbeb2jkae9hmtvmnurgqluwwgdzyvnkejf5d3fvze51au81auwtbhnpwxnxakply1vzlu9mttvqa0e1z2frqq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmitkfvx3lxte5vqlu4vdrmtnbeb2jkae9hmtvmnurgqluwwgdzyvnkejf5d3fvze51au81auwtbhnpwxnxakply1vzlu9mttvqa0e1z2frqq",
+      "content_hash": "fc03b0b1b1fabe58a2a95e7fd6034acfbcf690a3c6861efe7b29b71a697a2aef",
+      "story_key": "89627cda470ab56f5d685ddcb127538f329e16c803348102aaa6ceb52d0c139f",
       "status": "enriched",
-      "processed_at": "2026-08-12T00:00:00.000Z",
-      "model": "legacy",
-      "prompt_version": "legacy-before-event-date-v5",
-      "lane": "bootstrap",
-      "reason": "existing_complete_article",
+      "processed_at": "2026-09-04T00:15:03.238Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
       "result": {
-        "tool": "AI業界・経営重要速報",
-        "title": "Google DeepMindが経営体制を刷新、ハサビス氏は会長兼Alphabetチーフサイエンティストへ",
-        "source_url": "https://k-tai.watch.impress.co.jp/docs/news/2131052.html",
-        "source_name": "ケータイ Watch",
+        "tool": "Gemini",
+        "title": "Google、Gemini 3.8 FlashとFlash Cyberを発表",
+        "source_url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5vQlU4VDRMTnBEb2JKaE9HMTVMNURGQlUwWGdZYVNkejF5d3FvZE51aU81aUwtbHNpWXNXakplY1VZLU9mTTVQa0E1Z2FRQQ?oc=5",
+        "source_name": "CodeZine",
         "is_official": false,
-        "published_at": "2026-08-06T03:22:00.000Z",
-        "source_published_at": "2026-08-06T03:22:00.000Z",
+        "published_at": "2026-09-03T23:00:00.000Z",
+        "source_published_at": "2026-09-03T23:00:00.000Z",
         "source_updated_at": "",
         "source_date_status": "published",
-        "fetched_at": "2026-08-12T00:00:00.000Z",
-        "event_at": "2026-08-05",
+        "fetched_at": "2026-09-04T00:09:05.227Z",
+        "event_at": "",
         "event_status": "発表済み",
-        "event_date_precision": "day",
+        "event_date_precision": "unknown",
         "story_entities": [
-          "Google DeepMind",
-          "デミス・ハサビス",
-          "コライ・カブクチュオール",
-          "ジェフ・ディーン",
-          "googledeepmind"
+          "Google",
+          "Gemini 3.8 Flash",
+          "Flash Cyber"
         ],
-        "primary_entity": "Google DeepMind",
-        "story_subject": "Google DeepMindの経営・研究体制刷新",
-        "event_type": "other",
+        "primary_entity": "Google",
+        "story_subject": "Gemini 3.8 Flash / Flash Cyber",
+        "event_type": "release",
         "event_stage": "announced",
-        "event_scope": "全世界",
+        "event_scope": "不明",
         "fact_slots": [
           {
-            "type": "date",
-            "scope": "Googleによる発表日",
-            "value": "2026年8月5日",
-            "normalized_value": "2026-08-05"
+            "type": "version",
+            "scope": "Geminiモデル",
+            "value": "Gemini 3.8 Flash / Flash Cyber",
+            "normalized_value": "gemini3.8flashflashcyber"
           }
         ],
         "new_facts": [
-          "デミス・ハサビス氏がGoogle DeepMindのCEOを退任し、会長兼Alphabetチーフサイエンティストに就任する",
-          "コライ・カブクチュオール氏が後任CEOとなる",
-          "ジェフ・ディーン氏とサンジェイ・ゲマワット氏が退社し、独立公益法人を設立する"
+          "Googleが新モデル「Gemini 3.8 Flash」と「Flash Cyber」を発表した"
         ],
         "structured_complete": true,
-        "raw_excerpt": "GoogleはGoogle DeepMindの経営体制変更を発表した。デミス・ハサビス氏はCEOを退任して会長兼Alphabetチーフサイエンティストに就き、コライ・カブクチュオール氏が後任CEOとなる。",
-        "detail": "世界有数のAI研究所で経営トップ交代と研究経営・開発のまとめ役の変更が同時に発表され、著名研究者2人の退社も明らかになりました。発表で確認できる日付は「2026年8月5日」です。\n\nデミス・ハサビス氏がGoogle DeepMindの経営トップを退任し、会長兼Alphabetチーフサイエンティストに就任する。コライ・カブクチュオール氏が後任経営トップとなります。ジェフ・ディーン氏とサンジェイ・ゲマワット氏が退社し、独立公益法人を設立する。記事の核は、経営トップの交代準備とAI部門の人員削減が同時に伝えられた点です。人を減らす理由や、AI開発計画がどう変わるかはまだ分かっていません。\n\n今は発表された段階で、記事だけでは詳しい数字や条件まで分かりません。Google DeepMindの新体制で研究・製品開発の重点やGeminiの提供方針がどう変わるか、今後のGoogle公式発表を継続確認する。",
-        "change_summary": "世界有数のAI研究所でCEO交代と研究指導体制の変更が同時に発表され、著名研究者2人の退社も明らかになった。",
-        "impact_summary": "Geminiを含むGoogleのAI開発方針、研究から製品化までの意思決定、AI人材競争に影響し得るため、個別製品の更新を超えた重要な業界ニュースである。",
-        "action_suggestion": "Google DeepMindの新体制で研究・製品開発の重点やGeminiの提供方針がどう変わるか、今後のGoogle公式発表を継続確認する。",
-        "importance": "S",
+        "raw_excerpt": "Googleが新しいAIモデル「Gemini 3.8 Flash」と「Flash Cyber」を発表したと報じられたが、機能や提供時期の詳細は不明。",
+        "detail": "Googleが新しいAIモデル「Gemini 3.8 Flash」と「Flash Cyber」を発表したと報じられました。Geminiは、Googleが開発している文章や画像を扱える人工知能の名前です。これまでのGemini 3系のモデルに、新しく「3.8」という番号のバージョンが加わった形になります。\n\n報道では、この2つのモデルがどのような機能を持ち、これまでのモデルと何が違うのかは詳しく説明されていません。「Flash」はGeminiシリーズの中で処理速度を重視した軽量版モデルを指す名称です。「Cyber」という名前から、セキュリティ関連の用途を想定している可能性がありますが、具体的な用途は明らかにされていません。\n\n開発者や利用者がいつからこれらのモデルを使えるようになるのか、料金がどうなるのかは、今のところ発表されていません。実際に使える機能の詳細は、Googleからの正式な情報を待つ必要があります。",
+        "change_summary": "Googleが新モデル「Gemini 3.8 Flash」と「Flash Cyber」を発表したことが報じられた。",
+        "impact_summary": "詳細が不明なため、業務利用への具体的な影響は現時点で判断できない。",
+        "action_suggestion": "提供開始時期や料金、機能の詳細について、Googleからの正式発表を確認する必要がある。",
+        "importance": "A",
         "related_categories": [
-          "企業・株式",
-          "研究・技術",
           "AIツール・モデル"
         ],
-        "enrichment_version": "ai-radar-2026-08-30-student-core-v21",
-        "article_id": "article_681923b6852fdf54e3b5",
-        "story_id": "story_135e262aceb87912b9",
-        "story_sequence": 1,
-        "relation_type": "new",
-        "relation_confidence": 1,
-        "previous_article_id": "",
-        "previous_title": "",
-        "previous_source_published_at": "",
-        "continuation_lead": "",
-        "dedupe_decision": "new",
-        "dedupe_reasons": [
-          "no_previous_story"
-        ],
-        "friendly_explanation_source": "verified_fields_safe_composite_student_core_v21"
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
     },
-    "url:https://blog.google/innovation-and-ai/technology/safety-security/fairwind-program": {
-      "canonical_url": "https://blog.google/innovation-and-ai/technology/safety-security/fairwind-program",
-      "content_hash": "71088ea30143670030fafe930e393738669a0b1781d0cb43c5449265e6582110",
-      "story_key": "6d512404bd335621593ece5e5762aef144962252a64fa3d11007a6bae6b3b9cb",
-      "status": "retry",
-      "processed_at": "2026-09-03T14:35:49.850Z",
+    "url:https://news.google.com/rss/articles/cbmif0fvx3lxte1qcglpzezzafhuahk2rud1udb2c1preunlavvmwg1pa0h6u1nnz0zvymvsceloq3nzrzm5nnz2cxlccnbgd2yylwdnnunomelledy1tlfyu2nkndhly1l1t1blyxhwcgzqenjzwg1tdvrmzvztmhuws19unw9nwue": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmif0fvx3lxte1qcglpzezzafhuahk2rud1udb2c1preunlavvmwg1pa0h6u1nnz0zvymvsceloq3nzrzm5nnz2cxlccnbgd2yylwdnnunomelledy1tlfyu2nkndhly1l1t1blyxhwcgzqenjzwg1tdvrmzvztmhuws19unw9nwue",
+      "content_hash": "3321e8f2eea299b5c6bbefbd00ac60b0bcb19bf0d1e6fba2e85211ed756ede1d",
+      "story_key": "08efc969337886c1522244860b65dfce81948940c47e8be07a0ab976d0a71a74",
+      "status": "enriched",
+      "processed_at": "2026-09-04T00:15:03.238Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "AI業界・経営重要速報",
+        "title": "OpenAI、AIの恩恵を伝える取り組みに不備とアルトマンCEOが認める",
+        "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1QcGlpZEZZaFhUaHk2RUd1UDB2c1pReUNLaVVmWG1Pa0h6U1NnZ0ZVYmVScEloQ3NzRzM5NnZ2cXlCcnBGd2YyLWdnNUNoMElLeDY1TlFYU2NKNDhLY1l1T1BlYXhWcGZqenJzWG1tdVRMZVZTMHUwS19UNW9nWUE?oc=5",
+        "source_name": "Yahoo!ニュース",
+        "is_official": false,
+        "published_at": "2026-09-03T22:32:15.000Z",
+        "source_published_at": "2026-09-03T22:32:15.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-09-04T00:09:05.227Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "OpenAI",
+          "サム・アルトマン"
+        ],
+        "primary_entity": "OpenAI",
+        "story_subject": "アルトマンCEOのAI恩恵発信に関する発言",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "不明",
+        "fact_slots": [],
+        "new_facts": [
+          "OpenAIのサム・アルトマンCEOが、AIの恩恵を伝える取り組みに不備があったと認めた"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "OpenAIのサム・アルトマンCEOが、AIの恩恵を人々に伝える取り組みが不十分だったと認めたとBloombergが報じた。",
+        "detail": "OpenAIのサム・アルトマンCEOが、AI技術がもたらす恩恵を人々にきちんと伝える取り組みに不備があったと認めたと、Bloombergが報じました。OpenAIは対話型AI「ChatGPT」などを開発しているアメリカの企業です。これまで同社はAIの便利さや将来性を強調することが多く、うまく伝わっていない部分があると経営トップ自身が認めた形です。\n\n記事では、アルトマン氏がどのような場面でこの発言をしたのか、具体的にどの点が不十分だったのかは詳しく書かれていません。AIの恩恵とは、仕事の効率化や新しいサービスの登場など、人々の生活を便利にする効果を指します。企業トップが自ら課題を認める発言は、AIに対する社会の受け止め方に影響を与える可能性があります。\n\n今後OpenAIがこの課題にどう対応するのか、具体的な計画は記事の時点では示されていません。利用者にとって直接何かが変わるという発表はまだありません。詳しい発言内容や対応策については、続報を確認する必要があります。",
+        "change_summary": "OpenAIのサム・アルトマンCEOが、AIの恩恵を伝える取り組みに不備があったと発言した。",
+        "impact_summary": "AIに対する社会の受け止め方や企業の情報発信のあり方に影響を与える可能性がある。",
+        "action_suggestion": "発言の詳しい文脈や今後の対応策について、続報を確認する必要がある。",
+        "importance": "A",
+        "related_categories": [
+          "企業・株式",
+          "その他"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte5nstljlwmxz3jmujzeb3honhexukwzuemwtkljzgdyau5lrvdwdwvdvknbov9ioudycxziluneeupmdvpyenhna0hfnhjftelzsw1nd1pnogznlwjiwg50zgnkblz3duhcbxc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte5nstljlwmxz3jmujzeb3honhexukwzuemwtkljzgdyau5lrvdwdwvdvknbov9ioudycxziluneeupmdvpyenhna0hfnhjftelzsw1nd1pnogznlwjiwg50zgnkblz3duhcbxc",
+      "content_hash": "1b7cc77032fafb483fd899d49d01cc6b611fe7aca284c184d806400fe142f868",
+      "story_key": "507d618e0a9d8146736d0f27d5409733e9533945de5c0a3bdfce73bdd7f33f1d",
+      "status": "rejected",
+      "processed_at": "2026-09-04T00:15:03.239Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 自社サービスの宣伝を目的としたPR TIMES記事"
+    },
+    "url:https://news.google.com/rss/articles/cbmiz0fvx3lxtfaxnflstzjzszjxyvhlwjrmdwtkbk9jv0hgcjrqowrwcwnlttg0vhkxnk1flw1vekpftfdxq1fyywlvwg9hy1pyrgo1wgvtew44bxhlzunwbfzlwmpfnmhjuzzvn1dfqxc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiz0fvx3lxtfaxnflstzjzszjxyvhlwjrmdwtkbk9jv0hgcjrqowrwcwnlttg0vhkxnk1flw1vekpftfdxq1fyywlvwg9hy1pyrgo1wgvtew44bxhlzunwbfzlwmpfnmhjuzzvn1dfqxc",
+      "content_hash": "36e9eb566af7b453883fce75f78a7636616414c1b781814666a0ef6c8fbb8b46",
+      "story_key": "7d9edef27069a2785cfe6a366024cdea1fca2426732c7ad2300ffff933eaabe8",
+      "status": "retry",
+      "processed_at": "2026-09-04T00:15:03.239Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
       "reason": "missing_or_incomplete_ai_output"
     },
-    "url:https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber": {
-      "canonical_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber",
-      "content_hash": "3a3ee7bdc257a6b9a60e33572d2984cec6410eca437611338d0616cce82e9e78",
-      "story_key": "2f95d24b0aa13c6530f0dde6c768d043d08b7ad4741f17acc5cba3223fd670a0",
+    "url:https://news.google.com/rss/articles/cbmiuefvx3lxtfburxroq0wzrddmtm9ttevhnel1xzbxohrnatfbx3fcoehaamk3m0xuefvpvzjjeww5tnbra3h1shhhmhl3zvbjng9mwumyn2dt": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiuefvx3lxtfburxroq0wzrddmtm9ttevhnel1xzbxohrnatfbx3fcoehaamk3m0xuefvpvzjjeww5tnbra3h1shhhmhl3zvbjng9mwumyn2dt",
+      "content_hash": "767cf4a63e4894ea0da8f4b68a28dfeac5775cd5b8b4b1d5d406beeaad1d8d46",
+      "story_key": "0c14ecb8cab604066581410d215eef21e66614e434c325267cc1dbe990c5e72f",
       "status": "retry",
-      "processed_at": "2026-09-03T14:35:49.850Z",
+      "processed_at": "2026-09-04T00:15:03.239Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
+      "lane": "regular",
       "reason": "missing_or_incomplete_ai_output"
     },
-    "url:https://news.google.com/rss/articles/cbmioafbvv95cuxnstnucwjiohl5zghcvxj6zxlkrez1njjjavz2bgpslxpyofzuv3a5t2fwuenatkffzhvfbjzqb3dsmnjmsdzude95ogrgvlnpui1vq1hrawu3mv9gbc1tzmvkbw1msnhdwvfkyvbkoxdhbghhwflfdwdiv1fry1nimmjfmhcxv0fywgdbdmpcsvbtww5uekf1b2vqd0thtzk40ggcaufvx3lxtfbfb21rve1iazkyykm3cunttnlovfftnevcmxhosmfxvwtqbl9fnf9tb1ztq1zmodr5mlfsdxmytjfgvmlpr0zfeg1pdnrmbkhfz3b0x1z6buc2nvrhsznfset5eezjt014udaxu0ntn05woutaykzwtenrovaxuu1hc0lnshbanwrqdkdgukxbwvjgu0zzvfq1wjnqoa": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmioafbvv95cuxnstnucwjiohl5zghcvxj6zxlkrez1njjjavz2bgpslxpyofzuv3a5t2fwuenatkffzhvfbjzqb3dsmnjmsdzude95ogrgvlnpui1vq1hrawu3mv9gbc1tzmvkbw1msnhdwvfkyvbkoxdhbghhwflfdwdiv1fry1nimmjfmhcxv0fywgdbdmpcsvbtww5uekf1b2vqd0thtzk40ggcaufvx3lxtfbfb21rve1iazkyykm3cunttnlovfftnevcmxhosmfxvwtqbl9fnf9tb1ztq1zmodr5mlfsdxmytjfgvmlpr0zfeg1pdnrmbkhfz3b0x1z6buc2nvrhsznfset5eezjt014udaxu0ntn05woutaykzwtenrovaxuu1hc0lnshbanwrqdkdgukxbwvjgu0zzvfq1wjnqoa",
-      "content_hash": "39ba0bf2e4dd5b758b5ff188263cce466c6d6da0037a334f04a838cbeacd3d1d",
-      "story_key": "c891063eb7e313a2245086e59a26f739f0b0c2798bbddeb9979770a8a52be830",
+    "url:https://news.google.com/rss/articles/cbmimafbvv95cuxnzvvqx2i0cnbqtk1gndlizjlklvkysdvjt3nxcfdlr3dwtunnsgply1lnqzjez2lpelfochl0yzvxsuzvwehbu3r1ewpiawjzbuzmew5oajvnnkjqrdhmtxvot0vxvvrfqi1yq2rcdgqzr1fqawnfedzzczdhdtrxu1nlwe5wsmvzyzzgoxjorvp6b1nuz19oza": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmimafbvv95cuxnzvvqx2i0cnbqtk1gndlizjlklvkysdvjt3nxcfdlr3dwtunnsgply1lnqzjez2lpelfochl0yzvxsuzvwehbu3r1ewpiawjzbuzmew5oajvnnkjqrdhmtxvot0vxvvrfqi1yq2rcdgqzr1fqawnfedzzczdhdtrxu1nlwe5wsmvzyzzgoxjorvp6b1nuz19oza",
+      "content_hash": "5b2b51a30c456840f3064e6e60b65cddeb3df8ec46a673fa824f01f57648360b",
+      "story_key": "370521029c771a0194319f583d5c0730bc3cb585fad1cd8cdbeb2cc2d038bbdb",
       "status": "retry",
-      "processed_at": "2026-09-03T14:35:49.850Z",
+      "processed_at": "2026-09-04T00:15:03.239Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
+      "lane": "regular",
       "reason": "missing_or_incomplete_ai_output"
     },
-    "url:https://news.google.com/rss/articles/cbmi0afbvv95cuxoc2fymna1ees4oghicmw4mtdsu3fbcmtjbkjjuhn2tdncouxosnhyv0tfvwuwu2m2tnfiefbkx3dcs1phdjvkutmtmvhgevcwmvlkvv9bnvgyx3h5dvawy1c5dlfmwva3zgxju21od2zicfvbvwg5mjvtb1rrbzldlw92rkk0adzauhlxqxf1tmpfmy1vsk1wbvniegninnzusepwa2rnz3zsym9bbwdut191rxdnqxvaq1qtu2z0vf9vmfzwvlpzmnjzsze3tfo1": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmi0afbvv95cuxoc2fymna1ees4oghicmw4mtdsu3fbcmtjbkjjuhn2tdncouxosnhyv0tfvwuwu2m2tnfiefbkx3dcs1phdjvkutmtmvhgevcwmvlkvv9bnvgyx3h5dvawy1c5dlfmwva3zgxju21od2zicfvbvwg5mjvtb1rrbzldlw92rkk0adzauhlxqxf1tmpfmy1vsk1wbvniegninnzusepwa2rnz3zsym9bbwdut191rxdnqxvaq1qtu2z0vf9vmfzwvlpzmnjzsze3tfo1",
-      "content_hash": "c95c9b22fdd1e60436416f3212176c58facd5f7fce30fd4241c90b34d5aca50e",
-      "story_key": "902aa9ccb1a06eef4be65c1383c66c592e126f782d6a6d2c4056702ffbaa4e66",
-      "status": "retry",
-      "processed_at": "2026-09-03T14:35:49.851Z",
+    "url:https://news.google.com/rss/articles/cbmif0fvx3lxte9ym2fxoer5yknqrutqm2tpb0xoa2vhtlo2cwwtry1pcxc3nmzhus1nrmjreg90df9mv1vqotnmx0fmbk5qsfg0qjfomu1xwkf2vnrrzdd1atf5qjr4zmlawhzmohq1ofnlvxvmv2zsmwc1tdzhrvjkrgria2xxytq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmif0fvx3lxte9ym2fxoer5yknqrutqm2tpb0xoa2vhtlo2cwwtry1pcxc3nmzhus1nrmjreg90df9mv1vqotnmx0fmbk5qsfg0qjfomu1xwkf2vnrrzdd1atf5qjr4zmlawhzmohq1ofnlvxvmv2zsmwc1tdzhrvjkrgria2xxytq",
+      "content_hash": "c5a55414d7b0ec459d248a04804e6437f16497d56e8e004ef37f04e35942ddc3",
+      "story_key": "29661a52fe095b912c9330fdacb46452ad11efe095a94f7352606f6d16be0ea5",
+      "status": "enriched",
+      "processed_at": "2026-09-04T00:16:12.689Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "ChatGPT / OpenAI",
+        "title": "OpenAI、「GPT-6 Astra」を一部組織向けに公開、サイバー能力が初の『重大』評価に",
+        "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9YM2FxOER5YkNqRUtQM2tPb0xoa2VHTlo2cWwtRy1PcXc3NmZHUS1nRmJreG90dF9mV1VqOTNMX0FMbk5qSFg0QjFOMU1xWkF2VnRRZDd1aTF5QjR4ZmlaWHZmOHQ1OFNLVXVMV2ZSMWc1TDZHRVJkRGRia2xxYTQ?oc=5",
+        "source_name": "Yahoo!ニュース",
+        "is_official": false,
+        "published_at": "2026-09-03T23:57:38.000Z",
+        "source_published_at": "2026-09-03T23:57:38.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-09-04T00:09:05.227Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "OpenAI",
+          "GPT-6 Astra"
+        ],
+        "primary_entity": "OpenAI",
+        "story_subject": "GPT-6 Astra",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "一部組織向け(限定公開)",
+        "fact_slots": [
+          {
+            "type": "status",
+            "scope": "サイバー能力評価",
+            "value": "Critical(重大)",
+            "normalized_value": "critical重大"
+          }
+        ],
+        "new_facts": [
+          "OpenAIがGPT-6 Astraを一部組織向けに公開した",
+          "GPT-6 Astraのサイバー能力評価が初めて最高水準の『Critical』に達した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "OpenAIが新モデル「GPT-6 Astra」を一部組織向けに限定公開し、サイバー攻撃関連の能力評価が初めて最高水準の「Critical(重大)」に達した。",
+        "detail": "OpenAIが新しいAIモデル「GPT-6 Astra」を発表し、一部の組織向けに限定的に提供を始めた。簡単に言うと、特定の企業や研究機関だけがまず使える新しい人工知能モデルということだ。これまでのモデルと違い、サイバー攻撃に関わる能力の評価が初めて最も高い「Critical(重大)」という区分になった。\n\n記事によると、このサイバー能力の評価は、モデルがどれだけ危険な行為に使われる可能性があるかを示す指標だとされている。OpenAIはこれまでも安全性の基準を設けてモデルを評価してきたが、「Critical」という最も厳しい区分に達したのは今回が初めてだという。仕組みの詳細や具体的な評価基準は記事からは分からない。\n\n一部組織向けの限定公開のため、一般利用者がすぐに使えるわけではない。サイバー能力が高い評価を受けたことで、悪用を防ぐための追加の対策が必要になる可能性がある。公開範囲の拡大時期や安全対策の詳細については、現時点で発表されていない。",
+        "change_summary": "GPT-6 Astraのサイバー能力評価が初めて最高水準の「Critical」に達した。",
+        "impact_summary": "サイバー攻撃に転用されるリスクが高まる可能性があり、企業のセキュリティ対応に影響しうる。",
+        "action_suggestion": "一般提供の時期や具体的な安全対策について、OpenAIからの続報が待たれる。",
+        "importance": "A",
+        "related_categories": [
+          "AIツール・モデル",
+          "セキュリティ"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiz0fvx3lxte5syvr3a0fhvw9xvkyxsg9nmehvvjjfodbzne5dyzyty3zxemzts000cm90vhdnmnnocgd6x0dkr1cxbkldt0j6nzboset6n0l6q1ltvjhxujnxtm56v3rhm1zvwve0rke": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiz0fvx3lxte5syvr3a0fhvw9xvkyxsg9nmehvvjjfodbzne5dyzyty3zxemzts000cm90vhdnmnnocgd6x0dkr1cxbkldt0j6nzboset6n0l6q1ltvjhxujnxtm56v3rhm1zvwve0rke",
+      "content_hash": "3849d73f4bbfa1ec7aabdd139996e9eaf0ec5fa89402d522c2867e68b9c2e67d",
+      "story_key": "f1b60f1a5c853007fcb7af5cc6214e54f5f667d5853dbebb9cf82420edba4058",
+      "status": "rejected",
+      "processed_at": "2026-09-04T00:16:12.689Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 意見・疑問形式の記事で具体的な事実がないため"
+    },
+    "url:https://news.google.com/rss/articles/cbmiigfbvv95cuxqymq4mhnemnvjbvbkvtrom3b5y3zfsnjldehfdm1qakc2megzcunjoed3ujrfoxbpunjmuxzfmwvmwetlm2tvre1vshzhvudxedjiwwfvctninjlhvvb1s2tqbe1km2rya2tfuwxgcf8zreq1czlxrvbkufjkujntoe5drfrfwtj2yke": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiigfbvv95cuxqymq4mhnemnvjbvbkvtrom3b5y3zfsnjldehfdm1qakc2megzcunjoed3ujrfoxbpunjmuxzfmwvmwetlm2tvre1vshzhvudxedjiwwfvctninjlhvvb1s2tqbe1km2rya2tfuwxgcf8zreq1czlxrvbkufjkujntoe5drfrfwtj2yke",
+      "content_hash": "a38ba72ce6259a278a09c0515e6a6e104175d7dfac4ab26dd7cdd8953d95b42d",
+      "story_key": "5d2ffb6a8e4e9674cc71e93dcc476f49fc82ea3a8f7f41214c7b77797dfefbf0",
+      "status": "rejected",
+      "processed_at": "2026-09-04T00:16:12.689Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: AIと無関係な飛行機事故のニュースのため"
+    },
+    "url:https://news.google.com/rss/articles/cbmiaefvx3lxte1bofz4sktubm1xsjbxou9kntrleknxr2jxmhrilu1yxzg1wfzzz1k0rkrbwdditfets0kxn0vklufnqmvwvlfsdedaqjfyb3bgbuzjeevjvhlzmtn1cnbtltbsrlf6q3nh": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxte1bofz4sktubm1xsjbxou9kntrleknxr2jxmhrilu1yxzg1wfzzz1k0rkrbwdditfets0kxn0vklufnqmvwvlfsdedaqjfyb3bgbuzjeevjvhlzmtn1cnbtltbsrlf6q3nh",
+      "content_hash": "1663875309485f5c7af0abd679e87b36d270481011b5c12459c0267c880bf47f",
+      "story_key": "d118a932dbebe09448e5b3c91d496d9caf35ccbed201f7948bbaeeaadd1a4db9",
+      "status": "rejected",
+      "processed_at": "2026-09-04T00:16:12.689Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 使い方チュートリアル記事でニュース性がないため"
+    },
+    "url:https://news.google.com/rss/articles/cbmixgfbvv95cuxpbfpjvxvfrjf2cuhqqkphtklilwf5dwzxbwi2amzicnv1r2xss0xgm1lyanpnmu84dtzxavzyzgc4be4yalhib1jhd2hsdg1szte4oehkqxryzxhowi1xvna4rkl3uxz6vgoycfdzmddtowktzu9wcuuyoveyv3l0eulgzgzhblvuzmxbdzbzywxpq3nhlxb6v0pzbzzmlwqywfg1rdqwtuzlbkrrcmw1mmtpoe5ddg8wdnr6wgtvv20yvvjhnke": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmixgfbvv95cuxpbfpjvxvfrjf2cuhqqkphtklilwf5dwzxbwi2amzicnv1r2xss0xgm1lyanpnmu84dtzxavzyzgc4be4yalhib1jhd2hsdg1szte4oehkqxryzxhowi1xvna4rkl3uxz6vgoycfdzmddtowktzu9wcuuyoveyv3l0eulgzgzhblvuzmxbdzbzywxpq3nhlxb6v0pzbzzmlwqywfg1rdqwtuzlbkrrcmw1mmtpoe5ddg8wdnr6wgtvv20yvvjhnke",
+      "content_hash": "f8598b5fd0bf65f25c99ea2f88370d6fa4a57da47555d117b9bf10fdce940cdb",
+      "story_key": "8bbcd5a577d01a33f85492846b01d8f1807c0d9427e684f6be91c3940e325fd7",
+      "status": "retry",
+      "processed_at": "2026-09-04T00:16:12.689Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
       "reason": "missing_or_incomplete_ai_output"
     },
-    "url:https://news.google.com/rss/articles/cbmiugfbvv95cuxodvhic1n2sucwtgpmr1q0n3jeetbhaww3wvzielnbbxnxnnjus251chnndfk3u3q5zvlinhywyvpqm21zv0jkehzismhjrtlyrunfuepgq2huq1prx2d0otfqzgdws0tnvkzsuty4zvqwlvjhznvcwfd1d3lcu1p3wg5tyuc4uja5tw96tnhpzxlvb0jvdmyxztg5b2rzrxutbnzzqnixeldurjrqnmv1vjdzzxp0wnhpn1e": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiugfbvv95cuxodvhic1n2sucwtgpmr1q0n3jeetbhaww3wvzielnbbxnxnnjus251chnndfk3u3q5zvlinhywyvpqm21zv0jkehzismhjrtlyrunfuepgq2huq1prx2d0otfqzgdws0tnvkzsuty4zvqwlvjhznvcwfd1d3lcu1p3wg5tyuc4uja5tw96tnhpzxlvb0jvdmyxztg5b2rzrxutbnzzqnixeldurjrqnmv1vjdzzxp0wnhpn1e",
-      "content_hash": "dbaef9a39705116e1777eaecbe1da6b6db130df6c658d836f84fa874a56f8cc4",
-      "story_key": "10a132c7ff00737f36c73359a0dd7a4a24aef0080beee25fe597692770f98303",
+    "url:https://news.google.com/rss/articles/cbmiugfbvv95cuxnuuwtvmphm1bsmhfnqwvgahvkbxpcnuxuevzxvestogz5akk1cdnlajctc010evvkzw1nzw5zrzk1cldqr1dhodbswnruywrwvuxavejxy29ywgtede9itmfvaerzve1vbgjhvu4tlw1mqujmstbsowvqcxrwzxvurdniaej4x0r0rhizq1a4r0w2su0xymljvfhjsfpxsgm0b3blemdxaedhowrlqs1vlwfrmnleahvkx1e": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiugfbvv95cuxnuuwtvmphm1bsmhfnqwvgahvkbxpcnuxuevzxvestogz5akk1cdnlajctc010evvkzw1nzw5zrzk1cldqr1dhodbswnruywrwvuxavejxy29ywgtede9itmfvaerzve1vbgjhvu4tlw1mqujmstbsowvqcxrwzxvurdniaej4x0r0rhizq1a4r0w2su0xymljvfhjsfpxsgm0b3blemdxaedhowrlqs1vlwfrmnleahvkx1e",
+      "content_hash": "ead561d127f878133c00be8978057d5a7fb2c197cfa0f76ac98ceb6fb0729979",
+      "story_key": "996e797b7ab06856921b45742aaf1b9499174ce2088018055b80bb2b6f61e777",
       "status": "retry",
-      "processed_at": "2026-09-03T14:35:49.851Z",
+      "processed_at": "2026-09-04T00:16:12.689Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbminafbvv95cuxnytf3y0fjzdzob2ntb1zpsetbzflzdhhgb2ryb0jzt2luz0hjd3dstupcekntafv4a2dhawzqn1g3y2rldfhcr2xiagczsehnbjzqejfpngnjbuu4u2ranxpkskhwuhjzwnpstfhwmerkltjrs0xhd2k1ukpeuxbovm5hbnfkntdroc1wti1uvlpiwnd0m2q4n2pnawm": {
+      "canonical_url": "https://news.google.com/rss/articles/cbminafbvv95cuxnytf3y0fjzdzob2ntb1zpsetbzflzdhhgb2ryb0jzt2luz0hjd3dstupcekntafv4a2dhawzqn1g3y2rldfhcr2xiagczsehnbjzqejfpngnjbuu4u2ranxpkskhwuhjzwnpstfhwmerkltjrs0xhd2k1ukpeuxbovm5hbnfkntdroc1wti1uvlpiwnd0m2q4n2pnawm",
+      "content_hash": "32ddfc45ca1dda82065b4950b95d69534f86a7698884a7a0a2f17afc61141bdb",
+      "story_key": "eebac7d01b348bf33e076b6d3bd40a58e139f50a19c842b63b06b6b6d466b87f",
+      "status": "rejected",
+      "processed_at": "2026-09-04T00:17:30.507Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: PR配信記事で自社製品の宣伝と判断されるため"
+    },
+    "url:https://news.google.com/rss/articles/cbmid0fvx3lxte1xnuddt3ndzmdolxdfwnjloxpiq0fuvl9jc041b3vcmnc4euhlv2dka1voufrddlzqwkr1d2zkmnpfr3dnoetmogdzwnppadg3u1jla2vxckm1oenhyljkbm9ryk5nctdan0lrcxnzzxzrzkfragkw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmid0fvx3lxte1xnuddt3ndzmdolxdfwnjloxpiq0fuvl9jc041b3vcmnc4euhlv2dka1voufrddlzqwkr1d2zkmnpfr3dnoetmogdzwnppadg3u1jla2vxckm1oenhyljkbm9ryk5nctdan0lrcxnzzxzrzkfragkw",
+      "content_hash": "0ae7c382b0c2f97602985bcae27974b16614bec6469129f7e9c514411989f6a9",
+      "story_key": "dce0c97d77c2247f1b3b750d6e248f57103202b6d7767e10484facb6d50eb252",
+      "status": "retry",
+      "processed_at": "2026-09-04T00:17:30.508Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmiykfvx3lxte9vnfqtwu1zcxvorvv2ana3eefea1ozrgl5evpzwlnpagldbknyzw9aexnhs1dbc1pyqkczrup0x1vhtuhdexpqnvjtakk3mwjirmk1sxjjsdfoblztbgm5d2fb": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiykfvx3lxte9vnfqtwu1zcxvorvv2ana3eefea1ozrgl5evpzwlnpagldbknyzw9aexnhs1dbc1pyqkczrup0x1vhtuhdexpqnvjtakk3mwjirmk1sxjjsdfoblztbgm5d2fb",
+      "content_hash": "0ab0d894be96ae52adc7d62462357889ba9c4ea5e76d34a4d3ba0df008e40bd8",
+      "story_key": "8ad935b46e8a147c5ef0f6c7bf4984c9286bee4f89092df0c660f3495a428ce6",
+      "status": "retry",
+      "processed_at": "2026-09-04T00:17:30.508Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
       "reason": "missing_or_incomplete_ai_output"
     }
   },
-  "updated_at": "2026-09-03T14:35:49.851Z"
+  "updated_at": "2026-09-04T00:17:30.508Z"
 }
