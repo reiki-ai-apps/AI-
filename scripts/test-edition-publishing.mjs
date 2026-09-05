@@ -81,6 +81,26 @@ const carried=buildHomeEdition(candidates,firstEdition,{windowStart:end,windowEn
 assert.equal(carried.carried_forward,true,"新着0件なら直前のトップ5を保持する");
 assert.deepEqual(carried.article_ids,firstEdition.article_ids,"新着0件で表示記事を勝手に差し替えない");
 
+const nextStart=end;
+const nextEnd=end+6*3600000;
+const priorGemini={...geminiRich,source_published_at:"2026-09-02T05:30:00.000Z",fetched_at:"2026-09-02T05:30:00.000Z"};
+const nextGemini={...geminiCopy,article_id:"gemini-other-media",source_published_at:"2026-09-02T07:00:00.000Z",fetched_at:"2026-09-02T07:00:00.000Z"};
+const priorGeminiEdition=buildHomeEdition([priorGemini],{}, {windowStart:start,windowEnd:end,checkedAt:end});
+const crossEdition=buildHomeEdition([priorGemini,nextGemini],priorGeminiEdition,{windowStart:nextStart,windowEnd:nextEnd,checkedAt:nextEnd});
+assert.equal(crossEdition.cross_edition_duplicate_count,1,"前72時間に掲載した同じ発表を別媒体の記事でも検知する");
+assert.equal(crossEdition.carried_forward,true,"新しい事実のない同一ニュースでトップを差し替えない");
+assert.deepEqual(crossEdition.article_ids,["gemini-rich"],"重複記事をトップ枠へ再掲載しない");
+
+const materiallyNew={...nextGemini,article_id:"gemini-general-release",event_stage:"expanded",relation_type:"follow_up",previous_article_id:"gemini-rich",title:"Google、Gemini 3.8 Flashを一般提供へ拡大"};
+const progressedEdition=buildHomeEdition([priorGemini,materiallyNew],priorGeminiEdition,{windowStart:nextStart,windowEnd:nextEnd,checkedAt:nextEnd});
+assert.deepEqual(progressedEdition.article_ids,["gemini-general-release"],"正式提供など実質的に進んだ続報は新しいニュースとして残す");
+assert.equal(progressedEdition.update_health,"HEALTHY","内容が変わった更新回は正常と記録する");
+
+const staleOnce=buildHomeEdition([priorGemini],priorGeminiEdition,{windowStart:end,windowEnd:end+12*3600000,checkedAt:end+12*3600000});
+const staleTwice=buildHomeEdition([priorGemini],staleOnce,{windowStart:end+12*3600000,windowEnd:end+25*3600000,checkedAt:end+25*3600000});
+assert.equal(staleTwice.update_health,"DEGRADED","24時間不変または候補0件の連続を異常として見える化する");
+assert.ok(staleTwice.update_health_reasons.length>=1,"更新停止の理由を監査できる");
+
 const unsafeEdition={...firstEdition,article_ids:["gemini-rich","gemini-copy","runway-tool"],scores:{}};
 const guarded=applyHomeEdition(distinctPool,unsafeEdition).filter(item=>item.home_top_rank).sort((a,b)=>a.home_top_rank-b.home_top_rank);
 assert.deepEqual(guarded.map(item=>item.article_id),["gemini-rich","runway-tool"],"公開直前にも同じ出来事の2件目を落とす");
@@ -88,6 +108,10 @@ assert.deepEqual(guarded.map(item=>item.article_id),["gemini-rich","runway-tool"
 const workflow=fs.readFileSync(".github/workflows/update.yml","utf8");
 const crons=[...workflow.matchAll(/cron:\s*["']([^"']+)["']/g)].map(match=>match[1]);
 assert.deepEqual(crons,["17 22 * * *","17 4 * * *","17 10 * * *"],"定期更新は日本時間の朝・昼・夜の3回だけ");
+const validationIndex=workflow.indexOf("- name: validate published articles");
+const finalizeIndex=workflow.indexOf("node scripts/finalize-home-edition.mjs",validationIndex);
+const buildArticlesIndex=workflow.indexOf("node scripts/build-public-articles.mjs",validationIndex);
+assert.ok(validationIndex>=0&&finalizeIndex>validationIndex&&buildArticlesIndex>finalizeIndex,"記事検証後にトップ選定を作り直してから公開ページを生成する");
 
 const html=fs.readFileSync("index.html","utf8");
 assert.match(html,/function homeTopUpdates\(\)/,"ホーム専用の選定を使う");
@@ -136,6 +160,9 @@ for(let left=0;left<publicTop.length;left++){
 
 const edition=JSON.parse(fs.readFileSync("home-edition.json","utf8"));
 assert.deepEqual(edition.article_ids,publicTop.map(item=>item.article_id),"選定正本と公開データのID順が一致する");
-assert.equal(edition.selection_version,"distinct-story-tool-evolution-v2","重複統合とツール進化枠を使う選定版である");
+assert.equal(edition.selection_version,"cross-edition-novelty-v3","過去72時間の重複統合とツール進化枠を使う選定版である");
 assert.equal(edition.distinct_candidate_count,edition.candidate_count-edition.duplicate_candidate_count,"候補URL数と異なる出来事件数を監査できる");
+assert.equal(edition.novel_candidate_count,edition.distinct_candidate_count-edition.cross_edition_duplicate_count,"過去回との重複を除いた本当の新着件数を監査できる");
+assert.ok(Array.isArray(edition.recent_story_history),"過去72時間の掲載履歴を次回の重複判定へ引き継ぐ");
+assert.ok(["HEALTHY","DEGRADED"].includes(edition.update_health),"更新停止を検知できる健康状態を公開する");
 console.log("Edition publishing tests passed.");

@@ -1,9 +1,11 @@
 "use strict";
 
-const EDITION_VERSION="distinct-story-tool-evolution-v2";
+const EDITION_VERSION="cross-edition-novelty-v3";
 const MAX_HOME_ARTICLES=5;
 const LATE_ARRIVAL_HOURS=48;
 const FUTURE_TOLERANCE_MS=15*60*1000;
+const RECENT_STORY_WINDOW_MS=72*60*60*1000;
+const MAX_RECENT_STORY_HISTORY=45;
 const TOOL_EVOLUTION_TARGET=2;
 const MIN_TOOL_EVOLUTION_SCORE=40;
 const TOOL_CATEGORIES=new Set([
@@ -237,7 +239,49 @@ function distinctArticleIds(items,ids,max=MAX_HOME_ARTICLES){
   return selected.map(articleId);
 }
 
-function selectTopArticles(items,{windowStart,windowEnd,max=MAX_HOME_ARTICLES}={}){
+function storyHistoryEntry(item,selectedAt,editionWindowEnd){
+  return {
+    article_id:articleId(item),
+    story_id:String(item?.story_id||""),
+    title:String(item?.title||""),
+    primary_entity:String(item?.primary_entity||""),
+    story_subject:String(item?.story_subject||""),
+    event_type:String(item?.event_type||"other"),
+    event_stage:String(item?.event_stage||"other"),
+    event_scope:String(item?.event_scope||""),
+    story_entities:Array.isArray(item?.story_entities)?item.story_entities:[],
+    fact_slots:Array.isArray(item?.fact_slots)?item.fact_slots:[],
+    relation_type:String(item?.relation_type||""),
+    dedupe_decision:String(item?.dedupe_decision||""),
+    previous_article_id:String(item?.previous_article_id||""),
+    selected_at:new Date(validTime(selectedAt)||Date.now()).toISOString(),
+    edition_window_end:new Date(validTime(editionWindowEnd)||Date.now()).toISOString()
+  };
+}
+
+function recentStoryHistory(items,previous,windowEnd){
+  const cutoff=windowEnd-RECENT_STORY_WINDOW_MS;
+  const stored=Array.isArray(previous?.recent_story_history)?previous.recent_story_history:[];
+  const history=stored.filter(entry=>{
+    const time=validTime(entry?.selected_at);
+    return articleId(entry)&&time>=cutoff&&time<=windowEnd+60*60*1000;
+  });
+  if(!history.length){
+    const byId=new Map((items||[]).map(item=>[articleId(item),item]));
+    const selectedAt=previous?.home_content_changed_at||previous?.last_published_at||previous?.last_checked_at;
+    for(const id of previous?.article_ids||[]){
+      const item=byId.get(String(id));
+      if(item)history.push(storyHistoryEntry(item,selectedAt,previous?.window_end||previous?.last_window_end||windowEnd));
+    }
+  }
+  return history.slice(-MAX_RECENT_STORY_HISTORY);
+}
+
+function sameArticleOrder(left,right){
+  return left.length===right.length&&left.every((id,index)=>String(id)===String(right[index]));
+}
+
+function selectTopArticles(items,{windowStart,windowEnd,max=MAX_HOME_ARTICLES,excludeStories=[]}={}){
   const start=validTime(windowStart);
   const end=validTime(windowEnd)||Date.now();
   const seen=new Set();
@@ -250,6 +294,16 @@ function selectTopArticles(items,{windowStart,windowEnd,max=MAX_HOME_ARTICLES}={
     .sort((a,b)=>b.score.total-a.score.total||publishedTime(b.item)-publishedTime(a.item)||articleId(a.item).localeCompare(articleId(b.item)));
 
   const {distinctRanked,duplicateGroups}=collapseRankedStories(ranked);
+  const novelRanked=[];
+  const crossEditionDuplicateGroups=[];
+  for(const record of distinctRanked){
+    const previousMatch=(excludeStories||[]).find(entry=>sameEditionStory(entry,record.item));
+    if(!previousMatch){novelRanked.push(record);continue;}
+    crossEditionDuplicateGroups.push({
+      representative_id:articleId(previousMatch),
+      duplicate_ids:[articleId(record.item)]
+    });
+  }
   const selected=[];
   const entityCounts=new Map();
   const add=record=>{
@@ -259,9 +313,9 @@ function selectTopArticles(items,{windowStart,windowEnd,max=MAX_HOME_ARTICLES}={
     return true;
   };
 
-  for(const record of distinctRanked.filter(record=>importanceRank(record.item)==="S"))add(record);
+  for(const record of novelRanked.filter(record=>importanceRank(record.item)==="S"))add(record);
 
-  const meaningfulTools=distinctRanked.filter(record=>record.tool_evolution&&record.score.total>=MIN_TOOL_EVOLUTION_SCORE);
+  const meaningfulTools=novelRanked.filter(record=>record.tool_evolution&&record.score.total>=MIN_TOOL_EVOLUTION_SCORE);
   const availableToolEntities=new Set(meaningfulTools.map(record=>record.entity));
   const toolTarget=Math.min(TOOL_EVOLUTION_TARGET,availableToolEntities.size,Math.max(0,max-selected.length));
   const selectedToolEntities=new Set(selected.filter(record=>record.tool_evolution).map(record=>record.entity));
@@ -271,33 +325,76 @@ function selectTopArticles(items,{windowStart,windowEnd,max=MAX_HOME_ARTICLES}={
     if(add(record))selectedToolEntities.add(record.entity);
   }
 
-  for(const record of distinctRanked){
+  for(const record of novelRanked){
     if(selected.length>=max)break;
     const count=entityCounts.get(record.entity)||0;
     if(count>=2)continue;
     add(record);
   }
   if(selected.length<max){
-    for(const record of distinctRanked){
+    for(const record of novelRanked){
       if(selected.length>=max)break;
       add(record);
     }
   }
   selected.sort((a,b)=>b.score.total-a.score.total||publishedTime(b.item)-publishedTime(a.item)||articleId(a.item).localeCompare(articleId(b.item)));
-  return {ranked,distinctRanked,duplicateGroups,selected,toolTarget};
+  return {ranked,distinctRanked,novelRanked,duplicateGroups,crossEditionDuplicateGroups,selected,toolTarget};
 }
 
 function buildHomeEdition(items,previous={},options={}){
   const windowEnd=validTime(options.windowEnd)||Date.now();
   const fallbackStart=windowEnd-24*3600000;
   const windowStart=validTime(options.windowStart||previous.last_window_end)||fallbackStart;
-  const selection=selectTopArticles(items,{windowStart,windowEnd,max:options.max||MAX_HOME_ARTICLES});
+  const previousWindowEnd=validTime(previous.window_end||previous.last_window_end);
+  const previousWindowStart=validTime(previous.window_start);
+  const rebuildingSameWindow=previousWindowEnd===windowEnd&&previousWindowStart===windowStart;
+  let history=recentStoryHistory(items,previous,windowEnd);
+  const exclusionHistory=rebuildingSameWindow
+    ?history.filter(entry=>validTime(entry?.edition_window_end)!==windowEnd)
+    :history;
+  const selection=selectTopArticles(items,{
+    windowStart,windowEnd,max:options.max||MAX_HOME_ARTICLES,excludeStories:exclusionHistory
+  });
   const liveIds=new Set((items||[]).map(articleId));
   const previousIds=distinctArticleIds(items,(previous.article_ids||[]).filter(id=>liveIds.has(String(id))),MAX_HOME_ARTICLES);
   const selectedIds=distinctArticleIds(items,selection.selected.map(record=>record.score.article_id),MAX_HOME_ARTICLES);
   const carriedForward=selectedIds.length===0&&previousIds.length>0;
   const articleIds=carriedForward?previousIds:selectedIds;
   const selectedAt=new Date(options.checkedAt||Date.now()).toISOString();
+  const previousArticleIds=Array.isArray(previous.article_ids)?previous.article_ids.map(String):[];
+  const contentChanged=!sameArticleOrder(articleIds,previousArticleIds);
+  const previousChangedAt=previous.home_content_changed_at||previous.last_published_at||previous.last_checked_at||selectedAt;
+  const homeContentChangedAt=contentChanged?selectedAt:previousChangedAt;
+  const previousUnchanged=Number(previous.consecutive_unchanged_editions)||0;
+  const previousZero=Number(previous.consecutive_zero_candidate_editions)||0;
+  const unchangedEditions=contentChanged?0:(rebuildingSameWindow?previousUnchanged:previousUnchanged+1);
+  const zeroCandidateEditions=selection.ranked.length===0
+    ?(rebuildingSameWindow?previousZero:previousZero+1)
+    :0;
+  const staleHours=Math.max(0,(validTime(selectedAt)-validTime(homeContentChangedAt))/3600000);
+  const healthReasons=[];
+  if(staleHours>=24)healthReasons.push("トップ記事の内容が24時間以上変わっていません");
+  if(zeroCandidateEditions>=2)healthReasons.push("新着候補0件が2回以上続いています");
+  const updateHealth=healthReasons.length?"DEGRADED":"HEALTHY";
+
+  if(rebuildingSameWindow){
+    history=history.filter(entry=>validTime(entry?.edition_window_end)!==windowEnd);
+  }
+  if(!carriedForward||rebuildingSameWindow){
+    const byId=new Map((items||[]).map(item=>[articleId(item),item]));
+    for(const id of articleIds){
+      const item=byId.get(id);
+      if(item)history.push(storyHistoryEntry(item,carriedForward?previousChangedAt:selectedAt,windowEnd));
+    }
+  }
+  const historyCutoff=windowEnd-RECENT_STORY_WINDOW_MS;
+  const historyByArticle=new Map();
+  for(const entry of history){
+    if(validTime(entry?.selected_at)>=historyCutoff)historyByArticle.set(articleId(entry),entry);
+  }
+  const recentHistory=[...historyByArticle.values()]
+    .sort((a,b)=>validTime(a.selected_at)-validTime(b.selected_at))
+    .slice(-MAX_RECENT_STORY_HISTORY);
   const scores={};
   for(const id of articleIds){
     const item=(items||[]).find(candidate=>articleId(candidate)===id);
@@ -312,11 +409,20 @@ function buildHomeEdition(items,previous={},options={}){
     window_end:new Date(windowEnd).toISOString(),
     last_window_end:new Date(windowEnd).toISOString(),
     last_checked_at:selectedAt,
-    last_published_at:carriedForward?(previous.last_published_at||previous.last_checked_at||selectedAt):selectedAt,
+    last_published_at:contentChanged?selectedAt:(previous.last_published_at||previous.last_checked_at||selectedAt),
+    home_content_changed_at:homeContentChangedAt,
+    consecutive_unchanged_editions:unchangedEditions,
+    consecutive_zero_candidate_editions:zeroCandidateEditions,
+    update_health:updateHealth,
+    update_health_reasons:healthReasons,
+    edition_status:carriedForward?"NO_NEW_STORIES":"NEW_STORIES",
     candidate_count:selection.ranked.length,
     distinct_candidate_count:selection.distinctRanked.length,
     duplicate_candidate_count:selection.ranked.length-selection.distinctRanked.length,
     duplicate_groups:selection.duplicateGroups,
+    novel_candidate_count:selection.novelRanked.length,
+    cross_edition_duplicate_count:selection.distinctRanked.length-selection.novelRanked.length,
+    cross_edition_duplicate_groups:selection.crossEditionDuplicateGroups,
     selected_count:articleIds.length,
     tool_evolution_selected_count:articleIds.filter(id=>{
       const item=(items||[]).find(candidate=>articleId(candidate)===id);
@@ -324,7 +430,8 @@ function buildHomeEdition(items,previous={},options={}){
     }).length,
     carried_forward:carriedForward,
     article_ids:articleIds,
-    scores
+    scores,
+    recent_story_history:recentHistory
   };
 }
 
@@ -340,6 +447,9 @@ function applyHomeEdition(items,edition){
     delete copy.home_selected_at;
     delete copy.home_window_start;
     delete copy.home_window_end;
+    delete copy.home_content_changed_at;
+    delete copy.home_update_health;
+    delete copy.home_consecutive_unchanged_editions;
     const id=articleId(copy);
     const rank=rankById.get(id);
     if(!rank)return copy;
@@ -351,12 +461,15 @@ function applyHomeEdition(items,edition){
     copy.home_selected_at=edition.last_checked_at;
     copy.home_window_start=edition.window_start;
     copy.home_window_end=edition.window_end;
+    copy.home_content_changed_at=edition.home_content_changed_at;
+    copy.home_update_health=edition.update_health;
+    copy.home_consecutive_unchanged_editions=edition.consecutive_unchanged_editions;
     return copy;
   });
 }
 
 module.exports={
-  EDITION_VERSION,MAX_HOME_ARTICLES,validTime,articleId,publishedTime,firstSeenTime,
+  EDITION_VERSION,MAX_HOME_ARTICLES,RECENT_STORY_WINDOW_MS,validTime,articleId,publishedTime,firstSeenTime,
   candidateStatus,isToolEvolutionCandidate,scoreArticle,sameEditionStory,distinctArticleIds,
   selectTopArticles,buildHomeEdition,applyHomeEdition
 };

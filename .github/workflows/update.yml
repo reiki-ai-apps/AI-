@@ -235,6 +235,8 @@ jobs:
 
       - name: build public article pages and growth checks
         run: |
+          # 検証で除外された記事をトップ選定からも外し、残った候補で同じ更新回を再確定する。
+          node scripts/finalize-home-edition.mjs
           node scripts/build-public-articles.mjs
           node scripts/test-edition-publishing.mjs
           node scripts/test-growth-readiness.mjs

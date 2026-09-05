@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "selection_version": "distinct-story-tool-evolution-v2",
+  "selection_version": "cross-edition-novelty-v3",
   "timezone": "Asia/Tokyo",
   "schedule_jst": [
     "07:17",
@@ -12,10 +12,19 @@
   "last_window_end": "2026-09-04T14:21:06.286Z",
   "last_checked_at": "2026-09-04T14:24:19.021Z",
   "last_published_at": "2026-09-04T00:17:50.566Z",
+  "home_content_changed_at": "2026-09-04T00:17:50.566Z",
+  "consecutive_unchanged_editions": 0,
+  "consecutive_zero_candidate_editions": 0,
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
+  "edition_status": "NO_NEW_STORIES",
   "candidate_count": 0,
   "distinct_candidate_count": 0,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
+  "novel_candidate_count": 0,
+  "cross_edition_duplicate_count": 0,
+  "cross_edition_duplicate_groups": [],
   "selected_count": 3,
   "tool_evolution_selected_count": 2,
   "carried_forward": true,
@@ -86,5 +95,90 @@
       ],
       "published_at": "2026-09-03T22:32:15.000Z"
     }
-  }
+  },
+  "recent_story_history": [
+    {
+      "article_id": "article_a9e6a2ebfc51e0ec9d4c",
+      "story_id": "story_58154e8611cd0361d4",
+      "title": "OpenAI、「GPT-6 Astra」を一部組織向けに公開、サイバー能力が初の『重大』評価に",
+      "primary_entity": "OpenAI",
+      "story_subject": "GPT-6 Astra",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "一部組織向け(限定公開)",
+      "story_entities": [
+        "OpenAI",
+        "GPT-6 Astra",
+        "openai",
+        "gpt-6astra",
+        "gpt-6"
+      ],
+      "fact_slots": [
+        {
+          "type": "status",
+          "scope": "サイバー能力評価",
+          "value": "Critical(重大)",
+          "normalized_value": "critical重大"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-04T00:17:50.566Z",
+      "edition_window_end": "2026-09-04T14:21:06.286Z"
+    },
+    {
+      "article_id": "article_70cbda0ac4e11ca60471",
+      "story_id": "story_6d8d38b06af6f04317",
+      "title": "Google、Gemini 3.8 FlashとFlash Cyberを発表",
+      "primary_entity": "Google",
+      "story_subject": "Gemini 3.8 Flash / Flash Cyber",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "不明",
+      "story_entities": [
+        "Google",
+        "Gemini 3.8 Flash",
+        "Flash Cyber",
+        "google",
+        "gemini3.8flash"
+      ],
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "Geminiモデル",
+          "value": "Gemini 3.8 Flash / Flash Cyber",
+          "normalized_value": "gemini3.8flashflashcyber"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-04T00:17:50.566Z",
+      "edition_window_end": "2026-09-04T14:21:06.286Z"
+    },
+    {
+      "article_id": "article_9eebc1e1c272d9faa4d2",
+      "story_id": "story_ce086382e86c24e787",
+      "title": "OpenAI、AIの恩恵を伝える取り組みに不備とアルトマンCEOが認める",
+      "primary_entity": "OpenAI",
+      "story_subject": "アルトマンCEOのAI恩恵発信に関する発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "不明",
+      "story_entities": [
+        "OpenAI",
+        "サム・アルトマン",
+        "openai",
+        "サムアルトマン",
+        "bloomberg"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-04T00:17:50.566Z",
+      "edition_window_end": "2026-09-04T14:21:06.286Z"
+    }
+  ]
 }
