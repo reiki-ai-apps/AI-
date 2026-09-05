@@ -1,477 +1,6 @@
 {
   "version": 1,
   "items": {
-    "url:https://arxiv.org/abs/2608.00008": {
-      "canonical_url": "https://arxiv.org/abs/2608.00008",
-      "content_hash": "380e05c1819844de3fd7581fba971c715a7725e3688bd0a54b8591e94e9acf2b",
-      "story_key": "96b99761bf14f89f822eb8d083bdb1574b21ce99d6eec08ba223b6d9f6eb9c7f",
-      "status": "enriched",
-      "processed_at": "2026-08-05T09:08:42.163Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "AIベンチマーク・研究速報",
-        "title": "消費者向けGPUでのローカルLLM電力効率をベンチマーク",
-        "source_url": "https://arxiv.org/abs/2608.00008",
-        "source_name": "rss.arxiv.org",
-        "is_official": true,
-        "published_at": "2026-08-05T04:00:00.000Z",
-        "source_published_at": "2026-08-05T04:00:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T09:07:00.692Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "RTX 4060Ti",
-          "gemma3:1b",
-          "llama3.2:1b"
-        ],
-        "primary_entity": "研究チーム(arXiv投稿者)",
-        "story_subject": "ローカルLLMの電力効率ベンチマーク",
-        "event_type": "research",
-        "event_stage": "other",
-        "event_scope": "消費者向けGPU",
-        "fact_slots": [
-          {
-            "type": "other",
-            "scope": "gemma3:1bの電力効率",
-            "value": "0.56 J/token",
-            "normalized_value": "0.56"
-          },
-          {
-            "type": "other",
-            "scope": "llama3.2:1bの電力効率",
-            "value": "0.65 J/token",
-            "normalized_value": "0.65"
-          },
-          {
-            "type": "other",
-            "scope": "7B-Mistralの電力消費倍率",
-            "value": "最大4.4倍",
-            "normalized_value": "4.4"
-          }
-        ],
-        "new_facts": [
-          "gemma3:1bとllama3.2:1bが1トークンあたり0.56J・0.65Jで最も電力効率が高かった",
-          "7BのMistralは最も効率的なモデルの最大4.4倍の電力を消費した",
-          "qwen3.5:2bは内部推論が長いため1プロンプトあたりの消費電力が異常に高くなった"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "研究者らが消費者向けGPU『RTX 4060Ti』で9種類のオープンソースLLMを実行し、電力効率がモデルにより最大4.4倍異なることを示した。",
-        "detail": "プライバシー保護やオンプレミス推論への需要からローカル環境でのLLM実行が広がる一方、消費者向けハードウェアでの電力コストは正確に測定されていなかった。研究チームは1台の消費者向けGPU『RTX 4060Ti(16GB)』上で、パラメータ数1B〜7Bの9種類のオープンソースLLMをOllamaで実行し、nvidia-smiにより2Hzで電力を計測した。その結果、gemma3:1bとllama3.2:1bが1トークンあたり0.56Jと0.65Jで最も効率が高く、スループットも170トークン/秒を超えた一方、7BのMistralは最も効率的なモデルの最大4.4倍の電力を消費した。またqwen3.5:2bは内部推論が長いため1プロンプトあたりの消費電力が異常に高くなる例も確認され、効率評価にはトークン生成の種類を区別する必要があると結論づけた。",
-        "change_summary": "消費者向けGPU上での9種類のオープンソースLLMの電力効率を詳細に比較したベンチマーク結果が示された。",
-        "impact_summary": "企業や個人がローカル環境でAIを運用する際、モデル選定によって電力コストが大きく変わることが具体的な数値で確認できるようになった。",
-        "action_suggestion": "元論文（arXiv:2608.00008）で使用モデルや測定条件の詳細を確認できる。",
-        "importance": "C",
-        "related_categories": [
-          "研究・技術",
-          "半導体・インフラ"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://arxiv.org/abs/2608.00017": {
-      "canonical_url": "https://arxiv.org/abs/2608.00017",
-      "content_hash": "8de727db9be9cec909eb97619548293421fee19fc46e8820cb207bea9e303160",
-      "story_key": "2007185e6aee6a538349a76be0fd7a29038a6d98d5d5a520880feacc0e723b1a",
-      "status": "enriched",
-      "processed_at": "2026-08-05T09:08:42.162Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "AIベンチマーク・研究速報",
-        "title": "自己改善型LLMエージェントの『メモリ報酬インフレ』問題を指摘する研究",
-        "source_url": "https://arxiv.org/abs/2608.00017",
-        "source_name": "rss.arxiv.org",
-        "is_official": true,
-        "published_at": "2026-08-05T04:00:00.000Z",
-        "source_published_at": "2026-08-05T04:00:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T09:07:00.692Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "LUCID",
-          "Echo Gap",
-          "BIRDベンチマーク"
-        ],
-        "primary_entity": "研究チーム(arXiv投稿者)",
-        "story_subject": "Memory Reward Inflation in Self-Improving LLM Agents",
-        "event_type": "research",
-        "event_stage": "other",
-        "event_scope": "研究・論文",
-        "fact_slots": [
-          {
-            "type": "other",
-            "scope": "BIRD執行精度(LUCID)",
-            "value": "56.9%",
-            "normalized_value": "56.9%"
-          },
-          {
-            "type": "other",
-            "scope": "BIRD執行精度(自己採点型)",
-            "value": "54.0%",
-            "normalized_value": "54%"
-          },
-          {
-            "type": "other",
-            "scope": "BIRD執行精度(メモリなし)",
-            "value": "52.4%",
-            "normalized_value": "52.4%"
-          }
-        ],
-        "new_facts": [
-          "LUCIDはBIRDベンチマークで実行精度56.9%を達成し、自己採点型エージェント(54.0%)やメモリなしエージェント(52.4%)を上回った",
-          "論文は記憶ベースの自己改善エージェントに生じる報酬インフレ現象を『Echo Gap』と定式化した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "研究者らは、経験を外部メモリに蓄積して自己改善するLLMエージェントで、誤った行動ほど高評価される『Echo Gap』現象を発見し、補正アルゴリズムLUCIDを提案した。",
-        "detail": "自己改善型のLLMエージェントは、モデルの重みを更新せずに、経験したタスクの結果を外部メモリに保存し、似た場面で再利用することで性能を高めている。論文は、この仕組みでは保存されたスコアが実際の正解に基づかず、LLM自身の判断に依存するため、誤った行動ほど自信を持って高評価され、それが繰り返し使われる『Echo Gap』という失敗パターンが生じると指摘した。研究チームは補正に必要な条件を『Error-Independence Assumption』として定式化し、正解データを使わずインフレを補正するアルゴリズム『LUCID』を提案。text-to-SQLのベンチマークBIRDで実行精度を56.9%に高め、自己採点型エージェントの54.0%やメモリなしエージェントの52.4%を上回ったとしている。",
-        "change_summary": "記憶ベースで自己改善するLLMエージェントに潜む報酬インフレの問題『Echo Gap』を定式化し、補正アルゴリズムLUCIDを提案した。",
-        "impact_summary": "業務でLLMエージェントを長期運用し経験から自動改善させる仕組みの信頼性評価に影響し、実運用での過信によるミス蓄積リスクへの注意が必要になる。",
-        "action_suggestion": "LUCIDの詳細な実装や適用範囲については元論文（arXiv:2608.00017）の確認が必要。",
-        "importance": "C",
-        "related_categories": [
-          "研究・技術"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://arxiv.org/abs/2608.00001": {
-      "canonical_url": "https://arxiv.org/abs/2608.00001",
-      "content_hash": "0c50762397501873351f1dc1cd2b6bb80ce560fe5e1c89ce16599aa65924157f",
-      "story_key": "f98f62a9ad0319ca4cc5c03abdd66726ec497c16c2b13db9e6e2816bee7c5b5c",
-      "status": "enriched",
-      "processed_at": "2026-08-05T11:31:39.398Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "AIベンチマーク・研究速報",
-        "title": "AI安全性のための意識測定、古典的思考実験を再検討する研究論文",
-        "source_url": "https://arxiv.org/abs/2608.00001",
-        "source_name": "rss.arxiv.org",
-        "is_official": true,
-        "published_at": "2026-08-05T04:00:00.000Z",
-        "source_published_at": "2026-08-05T04:00:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T11:30:20.836Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Conservation-Congruent Encoding",
-          "AI安全性"
-        ],
-        "primary_entity": "arXiv論文執筆者",
-        "story_subject": "AI意識測定のための思考実験再検討研究",
-        "event_type": "research",
-        "event_stage": "announced",
-        "event_scope": "研究",
-        "fact_slots": [],
-        "new_facts": [
-          "Conservation-Congruent Encoding(CCE)という枠組みで、ライプニッツの水車・チューリングテスト・中国語の部屋を再検討した",
-          "タスク性能と操作的意識という2つの指標を定式化した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "研究者らが、ライプニッツの水車やチューリングテストなど古典的思考実験をAI安全性における意識測定の観点から再検討する論文を発表した。",
-        "detail": "この研究ノートは、Conservation-Congruent Encoding(CCE)という枠組みを用いて、ライプニッツの水車、チューリングの模倣ゲーム、サールの中国語の部屋という3つの古典的思考実験を再検討したもの。記号的な模擬環境を用い、課題遂行の成功度を示す「タスク性能」と、内部構造の保存効率を示す「操作的意識」という2つの指標を定式化した。この枠組みでは、非圧縮の参照表方式とコンパクトな生成方式のシステムが、行動面での成功度は同程度でも操作的意識の値では大きく異なることが示された。論文は、外見上の性能とそれを支える内部構造の組織化を区別することで理解をめぐる古典的議論を再構成し、AI安全性分析にとってこの区別が重要となりうる理由を論じている。",
-        "change_summary": "AI意識の測定枠組みとして、タスク性能と操作的意識を分離する新たな定式化を提示した。",
-        "impact_summary": "AIの安全性評価における『理解』や『意識』の定義に関する議論に理論的材料を提供するもので、直接的な実務への影響は現時点では限定的とみられる。",
-        "action_suggestion": "詳細はarXiv掲載の論文(2608.00001)で確認できる。",
-        "importance": "C",
-        "related_categories": [
-          "研究・技術"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://arxiv.org/abs/2608.00003": {
-      "canonical_url": "https://arxiv.org/abs/2608.00003",
-      "content_hash": "598eb0a4ea22f3d33f0f7dda0f3f15706031ea118d5d32a0fbbdce99790c0966",
-      "story_key": "f4bc0568e96e05456021dc5f80576311050cff1f99e415977338c776adbdfd3f",
-      "status": "enriched",
-      "processed_at": "2026-08-05T11:31:39.398Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "AIベンチマーク・研究速報",
-        "title": "AutoFOAM、OpenFOAMを自律操作するAIエージェント",
-        "source_url": "https://arxiv.org/abs/2608.00003",
-        "source_name": "rss.arxiv.org",
-        "is_official": true,
-        "published_at": "2026-08-05T04:00:00.000Z",
-        "source_published_at": "2026-08-05T04:00:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T11:30:20.836Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "AutoFOAM",
-          "OpenFOAM",
-          "Qwen-coder"
-        ],
-        "primary_entity": "AutoFOAM開発チーム",
-        "story_subject": "AutoFOAM(自己改善型OpenFOAMエージェント)",
-        "event_type": "research",
-        "event_stage": "announced",
-        "event_scope": "研究",
-        "fact_slots": [
-          {
-            "type": "other",
-            "scope": "基盤モデル",
-            "value": "Qwen-coder 2.5-14B",
-            "normalized_value": "2.5"
-          }
-        ],
-        "new_facts": [
-          "AutoFOAMはQwen-coder 2.5-14Bを基盤に252件のプロンプトで微調整された",
-          "7種のOpenFOAMソルバーと13種のメッシュテンプレートを対象とする",
-          "7段階の進化ループと3つの自己崩壊防止策を備える"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "研究者らが、自然言語の指示だけでOpenFOAMの流体シミュレーションを作成・実行・改良する自己改善型AIエージェント「AutoFOAM」を発表した。",
-        "detail": "OpenFOAMはオープンソースの数値流体力学(CFD)ソルバーだが、利用には専門知識と設定ファイル作成の手間がかかる。この課題に対応するため、研究者らはAutoFOAMという自己進化型の大規模言語モデル(LLM)エージェントを開発した。AutoFOAMはQwen-coder 2.5-14Bを基盤に、7種のOpenFOAMソルバーや13種のメッシュテンプレートなどを対象とする252件のテキストプロンプトで微調整されている。7段階からなる進化ループを備え、自己学習の繰り返しによる性能劣化を防ぐため、検索拡張による再試行、辞書レベルでのピンポイント修正、プロンプトの多様化という3つの対策を組み合わせている。生成AIと流体シミュレーションを橋渡しすることで、高度なCFD作業の迅速な試作と民主化を目指すとしている。",
-        "change_summary": "自然言語指示だけでOpenFOAMシミュレーションを自律的に作成・実行・改良するAIエージェントが提案された。",
-        "impact_summary": "専門知識がなくても流体シミュレーションを扱える可能性が広がり、製造業や研究現場での設計・解析業務の効率化につながりうる。",
-        "action_suggestion": "詳細はarXiv掲載の論文(2608.00003)で確認できる。",
-        "importance": "C",
-        "related_categories": [
-          "研究・技術",
-          "アプリ開発・自動化"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiwkfvx3lxte1ytkfxv2p4eki2vduzbdrote41y2r1t01wymlzdednsmt6de5dzc01amdrqkfenkzpykjprhh1mg8xajzweldqegg0dzlxwkywtw1jsm0zwlbtuq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiwkfvx3lxte1ytkfxv2p4eki2vduzbdrote41y2r1t01wymlzdednsmt6de5dzc01amdrqkfenkzpykjprhh1mg8xajzweldqegg0dzlxwkywtw1jsm0zwlbtuq",
-      "content_hash": "ac3b4c245232dcffaf09d7b13d6c387beaa59465e427adb8224d33a72029011d",
-      "story_key": "313f34efbd483e05875b12d0159e2b79b100d17f3d758a392c798d9f7ca519ac",
-      "status": "enriched",
-      "processed_at": "2026-08-05T09:08:42.163Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "AIセキュリティ",
-        "title": "RGS、AIガバナンスとデータ保護を統合した新製品を自社開発",
-        "source_url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1YTkFXV2p4ekI2VDUzbDROTE41Y2R1T01WYmlZdEdnSmt6dE5DZC01amdRQkFENkZpYkJpRHh1MG8xajZWeldQeGg0dzlXWkYwTW1jSm0zWlBtUQ?oc=5",
-        "source_name": "EnterpriseZine",
-        "is_official": false,
-        "published_at": "2026-08-05T08:48:54.000Z",
-        "source_published_at": "2026-08-05T08:48:54.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T09:06:55.435Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "RGS",
-          "AIガバナンス",
-          "データ保護"
-        ],
-        "primary_entity": "RGS",
-        "story_subject": "AIガバナンス/データ保護統合型製品",
-        "event_type": "release",
-        "event_stage": "announced",
-        "event_scope": "企業・製品",
-        "fact_slots": [],
-        "new_facts": [
-          "RGSは金融向けシステム開発を祖業とする企業である",
-          "RGSがAIガバナンスとデータ保護を統合した新製品を自社開発したと発表した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "金融システム開発を祖業とするRGSが、企業のAI利用を統制する『AIガバナンス／データ保護』の統合型製品を自社開発したと発表した。",
-        "detail": "金融向けシステム開発を祖業とするRGSは、企業が生成AIを安全に活用するための『AIガバナンス』と『データ保護』を一体化した新製品を自社で開発したと発表した。記事では製品の具体的な機能や提供開始日など詳細は明らかにされていないが、金融分野での開発実績を持つ同社が、AI利用に伴うガバナンスとデータ保護の課題に対応する製品を投入した点が確認できる。今後、製品の詳細な機能や提供時期などについては同社からの追加発表が待たれる。",
-        "change_summary": "RGSがAIガバナンスとデータ保護を統合した新製品を自社開発したと発表した。",
-        "impact_summary": "企業がAI活用を進める中でガバナンスとデータ保護を一体的に管理できる選択肢が増え、特に金融分野での導入検討材料となる可能性がある。",
-        "action_suggestion": "製品の詳細な機能や提供開始時期については、RGSからの追加発表を確認する必要がある。",
-        "importance": "C",
-        "related_categories": [
-          "セキュリティ",
-          "企業・株式"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiaefvx3lxte9cyw5hthu2dzmyntfvy0lqm1pou2xfltryzms4vjjvwwe4wedlwfd3x3n5vdjqtfy3budbd052wljobejnnfqyd3zkzhhztfhoazj4alatzk96mue5nnzhz2nywdv1sjhb": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxte9cyw5hthu2dzmyntfvy0lqm1pou2xfltryzms4vjjvwwe4wedlwfd3x3n5vdjqtfy3budbd052wljobejnnfqyd3zkzhhztfhoazj4alatzk96mue5nnzhz2nywdv1sjhb",
-      "content_hash": "97060f71bc0749a2e3c07b3182ad2679e56ab34973fc7a9be2a24e0201b72655",
-      "story_key": "7fbd1ec0a1c58501892d9f291d1e3ae4987822e29a225aec58e388cbe0f5818d",
-      "status": "enriched",
-      "processed_at": "2026-08-05T09:08:42.163Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "世界の新モデル・速報",
-        "title": "テンセント、新AIモデル『Hy3』をグローバルに提供開始",
-        "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9CYW5hTHU2dzMyNTFVY0lQM1poU2xFLTRYZms4VjJvWWE4WEdlWFd3X3N5VDJQTFY3bUdBd052WlJobEJNNFQyd3ZkZHhzTFhoazJ4alAtZk96MUE5NnZhZ2NyWDV1SjhB?oc=5",
-        "source_name": "ニュースメディアVOIX",
-        "is_official": false,
-        "published_at": "2026-08-05T08:37:32.000Z",
-        "source_published_at": "2026-08-05T08:37:32.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T09:06:57.923Z",
-        "event_at": "",
-        "event_status": "不明",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "テンセント",
-          "Hy3"
-        ],
-        "primary_entity": "テンセント",
-        "story_subject": "AIモデルHy3",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "全世界",
-        "fact_slots": [],
-        "new_facts": [
-          "テンセントが新AIモデル『Hy3』のグローバル提供を開始したと報じられた"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "テンセントが企業の業務効率化を支援する新しいAIモデル『Hy3』の提供を世界規模で開始したと報じられた。",
-        "detail": "記事によると、中国のテック大手テンセントは新しいAIモデル『Hy3』の提供をグローバルに開始したという。企業の業務効率化を支援することを目的としているとされるが、モデルの具体的な性能や対応言語、価格、提供形態などの詳細は記事内で明らかにされていない。テンセントは以前から『Hunyuan（混元）』ブランドのAIモデルを展開しており、Hy3がこの系列に位置づけられるモデルかどうかも不明。今後、公式発表による詳細情報の確認が必要となる。",
-        "change_summary": "テンセントの新AIモデル『Hy3』がグローバル提供を開始したと報じられた。",
-        "impact_summary": "企業が業務効率化のために利用できるAIモデルの選択肢が増える可能性があるが、詳細不明のため実際の活用効果は現時点で判断できない。",
-        "action_suggestion": "モデルの性能や提供条件など詳細については、テンセントからの公式発表を確認する必要がある。",
-        "importance": "C",
-        "related_categories": [
-          "AIツール・モデル",
-          "企業・株式"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte1zr3dndmxhmvfumlbtaepdduswtmpazdhjm0xmx1huz255slutm0gwexrvbzrns19lthfqx24yz1e1wmljb3pmseptr0hoa28xau5iu2x2unv6ufpsywzythg4stbbx0nnyle": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte1zr3dndmxhmvfumlbtaepdduswtmpazdhjm0xmx1huz255slutm0gwexrvbzrns19lthfqx24yz1e1wmljb3pmseptr0hoa28xau5iu2x2unv6ufpsywzythg4stbbx0nnyle",
-      "content_hash": "7a01575565e3e9156586887c379689f12ce247a9c9e3705749438dfb45b15b3f",
-      "story_key": "4510eb0765e6c2d1f02536984367ee87b813931922a03f7b5387c4063415b580",
-      "status": "enriched",
-      "processed_at": "2026-08-05T09:08:42.163Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "AI規制・著作権",
-        "title": "FDUA生成AIワーキンググループ、『金融生成AIガイドライン』第1.2版を公開",
-        "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1ZR3dNdmxHMVFuMlBTaEpDdUswTmpaZDhJM0xMX1huZ255SlUtM0gweXRvbzRnS19LTHFQX24yZ1E1WmlJb3pMSEptR0hoa28xaU5IU2x2UnV6UFpsYWZYTHg4STBBX0NnYlE?oc=5",
-        "source_name": "PR TIMES",
-        "is_official": false,
-        "published_at": "2026-08-05T09:00:02.000Z",
-        "source_published_at": "2026-08-05T09:00:02.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T09:06:54.277Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "FDUA",
-          "生成AIWG",
-          "金融生成AIガイドライン"
-        ],
-        "primary_entity": "FDUA(金融データ活用推進協会)生成AIWG",
-        "story_subject": "金融生成AIガイドライン第1.2版",
-        "event_type": "policy",
-        "event_stage": "other",
-        "event_scope": "金融分野・日本",
-        "fact_slots": [
-          {
-            "type": "version",
-            "scope": "金融生成AIガイドライン",
-            "value": "第1.2版",
-            "normalized_value": "第1.2版"
-          }
-        ],
-        "new_facts": [
-          "FDUA生成AIWGが金融生成AIガイドラインの第1.2版を公開した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "金融データ活用推進協会（FDUA）の生成AIワーキンググループが、金融分野向け生成AI活用の指針をまとめた『金融生成AIガイドライン』の第1.2版を公開した。",
-        "detail": "金融分野におけるデータ活用を推進する団体FDUAの生成AIワーキンググループ（生成AIWG）は、金融機関が生成AIを活用する際の指針をまとめた『金融生成AIガイドライン』の改訂版である第1.2版を公開した。記事ではガイドラインの具体的な改訂内容までは示されていないが、金融業界における生成AI活用のルール整備が段階的に進んでいることが確認できる。同ガイドラインはこれまでにも版を重ねており、今回の1.2版が最新の公開版となる。",
-        "change_summary": "FDUA生成AIWGが『金融生成AIガイドライン』の改訂版である第1.2版を新たに公開した。",
-        "impact_summary": "金融機関が生成AIを業務に導入する際の指針が更新されたことで、社内規程やリスク管理体制の見直しを検討する材料となる。",
-        "action_suggestion": "ガイドラインの具体的な内容はFDUAの公開資料を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "政策・行政",
-          "規制・法務"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxte9xatctnldhtzq2a2drbgjdvlvjmunhmjjiouhcsudjdnv1qzfrz2zvwdgtm0vpbhniqlnczeruu2fzdhprcuhbsfzpsmjtwmu5uzbj": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxte9xatctnldhtzq2a2drbgjdvlvjmunhmjjiouhcsudjdnv1qzfrz2zvwdgtm0vpbhniqlnczeruu2fzdhprcuhbsfzpsmjtwmu5uzbj",
-      "content_hash": "df67d1ddb1bd263bb82c96dffa85b183124c95ffd1576fba21c629e1522457f6",
-      "story_key": "d34b55b550304dac2e5cf8f5b648f848d8ee0c86e9bcf2cc61358bba2893f424",
-      "status": "enriched",
-      "processed_at": "2026-08-05T09:09:43.469Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "中国AI・基盤モデル",
-        "title": "中国の大規模モデル呼び出し量が世界首位に、Kimi K3が価格競争に火をつける",
-        "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9xaTctNldhTzQ2a2dRbGJDVlVjMUNhMjJiOUhCSUdjdnV1QzFRZ2ZvWDgtM0VpbHNIQlNCZERUU2FzdHpRcUhBSFZPSmJTWmU5UzBJ?oc=5",
-        "source_name": "36 Kr",
-        "is_official": false,
-        "published_at": "2026-08-05T09:03:35.000Z",
-        "source_published_at": "2026-08-05T09:03:35.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T09:06:56.517Z",
-        "event_at": "",
-        "event_status": "不明",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Kimi K3",
-          "中国AI業界"
-        ],
-        "primary_entity": "Kimi K3",
-        "story_subject": "Kimi K3による価格競争",
-        "event_type": "pricing",
-        "event_stage": "other",
-        "event_scope": "中国",
-        "fact_slots": [],
-        "new_facts": [
-          "中国の大規模モデル週間呼び出し量が世界ランキング首位になったと報じられた",
-          "新モデルKimi K3の登場がAI業界の価格競争を誘発したとされる"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "中国発AIモデルの週間呼び出し量が世界トップとなり、新モデル『Kimi K3』の登場が業界内の価格引き下げ競争を引き起こしたと報じられた。",
-        "detail": "中国のAI業界で、大規模言語モデルの週間呼び出し量が世界ランキングで首位に立ったと報じられた。背景には新モデル『Kimi K3』の登場があり、これが利用料金を巡る業界内の価格競争を誘発したとされる。ただし具体的な呼び出し件数や参加企業名、価格引き下げ幅などの数値は記事から確認できず、詳細は不明である。中国AI市場の急速な普及と競争激化を示す動きとして注目されている。",
-        "change_summary": "中国のAIモデル週間呼び出し量が世界首位となり、Kimi K3の登場が価格競争の引き金になったと報じられた。",
-        "impact_summary": "中国発AIサービスの利用拡大と低価格化が進めば、日本企業のAI調達コストや競合環境にも影響し得る。",
-        "action_suggestion": "具体的な呼び出し件数や価格引き下げの詳細は記事からは不明で、今後の続報が待たれる。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "企業・株式"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
     "url:https://news.google.com/rss/articles/cbmiy0fvx3lxte5ey2rhdxdvzkxtm0y2si1nbu9obhc1z2rhuvlzzljsz1fjdu1tr3ppb3ryceo2eux4ulhrzxq2ve5oqwlsmhbum1dtqtflm09lwfluounndkoxnvpnvedxz1gyrq": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiy0fvx3lxte5ey2rhdxdvzkxtm0y2si1nbu9obhc1z2rhuvlzzljsz1fjdu1tr3ppb3ryceo2eux4ulhrzxq2ve5oqwlsmhbum1dtqtflm09lwfluounndkoxnvpnvedxz1gyrq",
       "content_hash": "4afdf8b17956a73214d7f19a166e950f4ab73b12a00f346f8352f676d2492ebd",
@@ -519,229 +48,6 @@
         "related_categories": [
           "政策・行政",
           "規制・法務"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiiafbvv95cuxqchlpaffcufrosjbzwde0dlpntulin1mzlxn2qulass1dbzr2mxv0s3lncdfjszk2ulf4nlzhq0tmttfndhdqrhpxbdlfrux5wlytnzmwdmvmugvqagnrz2rftxnqa2jht3u2tmptmmhjs3rsnwvzcgrxv0trmhdst3zgvwjhc0rp": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiiafbvv95cuxqchlpaffcufrosjbzwde0dlpntulin1mzlxn2qulass1dbzr2mxv0s3lncdfjszk2ulf4nlzhq0tmttfndhdqrhpxbdlfrux5wlytnzmwdmvmugvqagnrz2rftxnqa2jht3u2tmptmmhjs3rsnwvzcgrxv0trmhdst3zgvwjhc0rp",
-      "content_hash": "327b187dea73c9420072d064a4c44d6b09392061c49605e884f4d30273839a43",
-      "story_key": "e150f9c85c3fbcafc34eaee321767c71d555293ffbec3af77216bd9da1cc153d",
-      "status": "enriched",
-      "processed_at": "2026-08-05T09:09:43.469Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "中国AI・基盤モデル",
-        "title": "DeepSeekが第2回資金調達を再開、500億元の調達を目指すと報道",
-        "source_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQcHlpaFFCUFROSjBZWDE0dlpnTUlIN1MzLXN2QUlaSS1DbzR2MXV0S3lNcDFJSzk2UlF4NlZHQ0tMTTFNdHdQRHpxbDlFRUx5WlYtNzMwdmVmUGVqaGNRZ2RfTXNQa2JhT3U2TmptMmhjS3RSNWVZcGRxV0trMHdsT3ZGVWJhc0Rp?oc=5",
-        "source_name": "搜狐网",
-        "is_official": false,
-        "published_at": "2026-08-05T08:56:17.000Z",
-        "source_published_at": "2026-08-05T08:56:17.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T09:06:56.517Z",
-        "event_at": "",
-        "event_status": "不明",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "DeepSeek"
-        ],
-        "primary_entity": "DeepSeek",
-        "story_subject": "DeepSeekの第2回資金調達",
-        "event_type": "funding",
-        "event_stage": "rumor",
-        "event_scope": "中国",
-        "fact_slots": [
-          {
-            "type": "amount",
-            "scope": "調達目標額",
-            "value": "500億人民元",
-            "normalized_value": "50000000000"
-          }
-        ],
-        "new_facts": [
-          "DeepSeekが第2回資金調達を再開したと報じられた",
-          "調達目標額は500億元とされる"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "中国AI企業DeepSeekが第2回目の資金調達を再開し、500億元(約1兆円規模)の調達を計画していると中国メディアが報じた。",
-        "detail": "中国のAIスタートアップDeepSeekが、第2回目となる資金調達を再開し、500億元の調達を目指していると中国メディアが報じた。DeepSeekは低コストで高性能な大規模言語モデルを開発したことで世界的に注目を集めた企業で、これまでも巨額の投資対象とされてきた。今回の報道は「曝」（暴露・リーク）という表現で伝えられており、正式発表ではなく関係者情報に基づく報道である点に留意が必要である。調達の使途や投資家、実施時期など具体的な内容は記事からは確認できず、続報が待たれる。",
-        "change_summary": "DeepSeekが第2回資金調達を再開し、500億元規模の調達を計画しているとの報道が出た。",
-        "impact_summary": "DeepSeekへの巨額投資が実現すれば、中国AI開発の競争力強化や世界のAI市場における価格・技術競争に影響を与える可能性がある。",
-        "action_suggestion": "報道は関係者情報に基づくもので正式発表ではなく、今後の公式発表の有無を確認する必要がある。",
-        "importance": "A",
-        "related_categories": [
-          "企業・株式",
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmidkfvx3lxte43nwhpmet6nwrstzhmwghpuhjqclk4sdq0rgzirk9cc19itmrtunv6umwtvvy3rg1rag54bha3lte4wkj3eelottrcrtd3nw1ptvjsdlvkoxi1ohi0yzdicxbxufd3y1bywwwwx1z2yzjftmdibve": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmidkfvx3lxte43nwhpmet6nwrstzhmwghpuhjqclk4sdq0rgzirk9cc19itmrtunv6umwtvvy3rg1rag54bha3lte4wkj3eelottrcrtd3nw1ptvjsdlvkoxi1ohi0yzdicxbxufd3y1bywwwwx1z2yzjftmdibve",
-      "content_hash": "e4533cb0b2702edd735650b748465b3535ba8f156c98514ce5f0444422f36390",
-      "story_key": "e96f710d671851a67dfdc979e54ca3bff3da3966aa2872c8099045061d80ca31",
-      "status": "enriched",
-      "processed_at": "2026-08-05T09:09:43.469Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "世界の新モデル・速報",
-        "title": "Red Hat、オープンソースのAIガバナンス自動化ツール「Asago」を発表 NvidiaとMicrosoftも参加",
-        "source_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE43NWhpMEt6NWRSTzhMWGhpUHJqclk4SDQ0RGZIRk9Cc19iTmRtUnV6UmwtVVY3RG1raG54bHA3LTE4WkJ3eElOTTRCRTd3NW1PTVJSdlVkOXI1OHI0YzdicXBxUFd3Y1ByWWwwX1Z2YzJfTmdIbVE?oc=5",
-        "source_name": "finance.biggo.com",
-        "is_official": false,
-        "published_at": "2026-08-05T08:55:00.000Z",
-        "source_published_at": "2026-08-05T08:55:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T09:06:57.923Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Red Hat",
-          "Asago",
-          "Nvidia"
-        ],
-        "primary_entity": "Red Hat",
-        "story_subject": "Asago",
-        "event_type": "release",
-        "event_stage": "announced",
-        "event_scope": "オープンソース",
-        "fact_slots": [],
-        "new_facts": [
-          "Red HatがAIガバナンス自動化のオープンソースツール「Asago」を発表した",
-          "NvidiaとMicrosoftがこの取り組みに参加している"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "Red HatがAIガバナンスを自動化するオープンソースツール「Asago」を発表し、NvidiaとMicrosoftも取り組みに参加した。",
-        "detail": "Red HatがAIガバナンスの自動化を目的としたオープンソースツール「Asago」を発表した。AIガバナンス自動化とは、企業がAIモデルの利用状況やリスクを継続的に監視・管理する仕組みをソフトウェアで自動化する取り組みを指す。この取り組みにはNvidiaとMicrosoftも参加していることが明らかになった。オープンソースとして公開されることで、複数の企業が共同で開発・改良に関わることが可能になるとみられる。ただしツールの具体的な機能範囲や提供時期、対応環境などの詳細は記事からは確認できず、不明な点も残る。",
-        "change_summary": "Red HatがAIガバナンス自動化のオープンソースツール「Asago」を発表し、NvidiaとMicrosoftが参加を表明した。",
-        "impact_summary": "企業のAIガバナンス管理を自動化する選択肢が増えることで、日本企業のAIリスク管理体制の効率化にもつながる可能性がある。",
-        "action_suggestion": "ツールの提供開始時期や具体的な機能詳細は記事からは不明で、今後の公式発表を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "規制・法務",
-          "企業・株式"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmickfvx3lxte41bghoewjjbe80ymxsazfdslhlsjllqwhdwe5zdddlbej0a09bvfpjnwljwtk2qucwuuhhyxj5ovlcwnjbunntskhka0t3qk1gzwd5ttljmho4ogdnq3feb1n4tgnlzhrqmffqbuvzovroqq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmickfvx3lxte41bghoewjjbe80ymxsazfdslhlsjllqwhdwe5zdddlbej0a09bvfpjnwljwtk2qucwuuhhyxj5ovlcwnjbunntskhka0t3qk1gzwd5ttljmho4ogdnq3feb1n4tgnlzhrqmffqbuvzovroqq",
-      "content_hash": "53dc5eadd1584f8770eb5cdf7ebc3d862704715500b0689eb71b4f1c58fe374d",
-      "story_key": "a92b774c8436c2cba3db422f3ae033849125c8a99f5b37b722e0171cc51ebe57",
-      "status": "enriched",
-      "processed_at": "2026-08-05T09:09:43.470Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Claude / Claude Code",
-        "title": "ココナラ、Anthropic「Claude」対応の新サービスを提供開始",
-        "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE41bGhoeWJjbE80YmxsazFDSlhLSjlLQWhDWE5ZdDdLbEJ0a09BVFpJNWljWTk2QUcwUUhHYXJ5OVlCWnJBUnNTSkhKa0t3Qk1GZWd5TTlJMHo4OGdNQ3FEb1N4TGNlZHRqMFFQbUVzOVRoQQ?oc=5",
-        "source_name": "ニュースメディアVOIX",
-        "is_official": false,
-        "published_at": "2026-08-05T09:01:11.000Z",
-        "source_published_at": "2026-08-05T09:01:11.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T09:06:45.416Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "ココナラ",
-          "Anthropic",
-          "Claude"
-        ],
-        "primary_entity": "ココナラ",
-        "story_subject": "Claude対応新サービス",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "日本",
-        "fact_slots": [],
-        "new_facts": [
-          "ココナラがAnthropicのClaudeに対応した新サービスの提供を開始した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "スキルシェアサービスのココナラが、Anthropicの生成AI「Claude」に対応した新サービスの提供を開始したと発表した。",
-        "detail": "個人のスキルやサービスを売買できるプラットフォーム「ココナラ」が、Anthropic社の生成AI「Claude」に対応した新サービスの提供を開始したと発表された。Claudeは文章作成やプログラミング支援などに用いられる対話型AIで、ビジネス利用が広がっている。ココナラがこれに対応することで、Claudeを活用したサービスの出品や利用がプラットフォーム上で可能になるとみられる。ただし新サービスの具体的な内容や利用料金、対応時期などの詳細は記事からは確認できず、不明な点が多い。",
-        "change_summary": "ココナラがAnthropicのClaudeに対応した新サービスの提供を開始したと発表した。",
-        "impact_summary": "Claudeを使ったスキル提供や業務効率化サービスがココナラ上で広がれば、個人事業主や副業希望者のAI活用の選択肢が増える可能性がある。",
-        "action_suggestion": "新サービスの詳細な内容や料金、開始時期は記事からは不明で、公式発表の続報確認が必要となる。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "EC・業務活用"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmivkfvx3lxte80aup5bkrswnlprjvtal9xddhsqndkafvpwhlhvk9kdtnozefubzvuazjtt1rfutrotny0ruvyz0hzohjhmzhfze9hmg9xq21jughsd2ln": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmivkfvx3lxte80aup5bkrswnlprjvtal9xddhsqndkafvpwhlhvk9kdtnozefubzvuazjtt1rfutrotny0ruvyz0hzohjhmzhfze9hmg9xq21jughsd2ln",
-      "content_hash": "64429479e1e45a7608442f321e5f052209009c7ed7a2da5a01bd573e39e5a23a",
-      "story_key": "0cfa9a8d6ea064041f15591ede99040c626db3953623a25a77708a0efc2464ec",
-      "status": "enriched",
-      "processed_at": "2026-08-05T11:31:39.398Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "AIセキュリティ",
-        "title": "FDUA、生成AIガイドラインを改訂し権限管理を明記",
-        "source_url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE80aUp5bkRsWnlpRjVtal9xdDhsQndkaFVpWHlhVk9KdTNOZEFubzVUazJtT1RFUTROTnY0RUVyZ0hzOHJhMzhfZE9HMG9xQ21JUGhsd2ln?oc=5",
-        "source_name": "nikkinonline.com",
-        "is_official": false,
-        "published_at": "2026-08-05T10:57:31.000Z",
-        "source_published_at": "2026-08-05T10:57:31.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T11:30:16.652Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "FDUA",
-          "生成AI指針"
-        ],
-        "primary_entity": "FDUA",
-        "story_subject": "生成AI指針の改訂",
-        "event_type": "policy",
-        "event_stage": "announced",
-        "event_scope": "金融業界(日本)",
-        "fact_slots": [
-          {
-            "type": "other",
-            "scope": "改訂内容",
-            "value": "権限管理の明記",
-            "normalized_value": "権限管理の明記"
-          }
-        ],
-        "new_facts": [
-          "FDUAが生成AI指針を改訂し、権限管理の項目を新たに明記した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "FDUA(金融データ活用推進協会)が生成AI利用指針を改訂し、アクセス権限管理の項目を新たに明記した。",
-        "detail": "金融分野でのデータ活用を推進する団体FDUAが、生成AIの利用に関する指針を改訂したと報じられた。改訂内容としては、生成AIシステムやデータへのアクセス権限を管理する『権限管理』の項目が新たに明記された点が挙げられる。改訂の具体的な背景や適用時期、対象となる金融機関の範囲などは記事本文からは不明。生成AIの業務利用が広がる中、金融業界における安全な運用ルールの整備が進んでいる状況がうかがえる。",
-        "change_summary": "生成AI指針の改訂により『権限管理』の項目が新たに明記された。",
-        "impact_summary": "金融機関が生成AIを業務に導入する際、アクセス権限管理などのガバナンス整備が一段と求められる可能性がある。",
-        "action_suggestion": "改訂の詳細な内容や適用時期について、FDUAの公式発表を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "政策・行政",
-          "規制・法務",
-          "セキュリティ"
         ],
         "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
       }
@@ -800,281 +106,6 @@
         "related_categories": [
           "企業・株式",
           "半導体・インフラ"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmif0fvx3lxte03v25fcuu3reu0n3lvlvmtrg1fohljnjdaafnsq211mlzoegfise5mt3rxstb1redgvkhitmjsrhrzv21au3j1q1voywvfuwu3sk14m24tnvvleuy4sza1rkvsb29ld0xwv2xswm9ouvk2u2xpdm90qthfefrxnjq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmif0fvx3lxte03v25fcuu3reu0n3lvlvmtrg1fohljnjdaafnsq211mlzoegfise5mt3rxstb1redgvkhitmjsrhrzv21au3j1q1voywvfuwu3sk14m24tnvvleuy4sza1rkvsb29ld0xwv2xswm9ouvk2u2xpdm90qthfefrxnjq",
-      "content_hash": "c4eb6c6993bcdd6b390da30838a96ba02c2bc1da8e89bd252d618647ad24b9c1",
-      "story_key": "a3990400d6edda30ddbe43103b28edf86d0cf822bd3c67013dc8c26b3fd19c5e",
-      "status": "enriched",
-      "processed_at": "2026-08-05T11:32:58.260Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "AI補助金・助成金",
-        "title": "サテライトオフィスとトライフォースが業務提携、AIリスキリング研修で企業DXを支援",
-        "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE03V25fcUU3REU0N3lVLVMtRG1FOHljNjdaaFNsQ211MlZOeGFiSE5MT3RxSTB1REdGVkhITmJsRHRzV21aU3J1Q1VoYWVfUWU3Sk14M24tNVVLeUY4SzA1RkVSb29ld0xWV2xSWm9OUVk2U2xPdm90QThFeFRxNjQ?oc=5",
-        "source_name": "ニュースメディアVOIX",
-        "is_official": false,
-        "published_at": "2026-08-05T10:37:11.000Z",
-        "source_published_at": "2026-08-05T10:37:11.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T11:30:14.872Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "サテライトオフィス",
-          "トライフォース"
-        ],
-        "primary_entity": "サテライトオフィス",
-        "story_subject": "AIリスキリング研修に関する業務提携",
-        "event_type": "partnership",
-        "event_stage": "announced",
-        "event_scope": "日本",
-        "fact_slots": [],
-        "new_facts": [
-          "サテライトオフィスとトライフォースが業務提携した",
-          "AIリスキリング研修を通じて企業のDX推進を支援する"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "サテライトオフィスとトライフォースが業務提携し、AIリスキリング研修を通じて企業のDX推進を支援する取り組みを始めた。",
-        "detail": "サテライトオフィスとトライフォースの両社が業務提携を発表し、AIリスキリング研修を通じて企業のDX(デジタルトランスフォーメーション)推進を支援する取り組みを始めた。リスキリングとは従業員が新しい技術や知識を学び直すことを指し、AI活用の広がりに合わせて企業内の人材育成需要が高まっている。研修の具体的な内容や対象企業、提供開始時期などの詳細は記事本文からは確認できない。",
-        "change_summary": "サテライトオフィスとトライフォースがAIリスキリング研修分野で業務提携したことが新たに発表された。",
-        "impact_summary": "AI活用の人材育成を求める企業にとって、研修サービスの選択肢が増える可能性がある。",
-        "action_suggestion": "研修の具体的な内容や申し込み条件については両社の公式発表を確認する必要がある。",
-        "importance": "C",
-        "related_categories": [
-          "企業・株式",
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmicefvx3lxte02ue1quhhjqudna0lszvlxvnnpakvktem2zezfnunnngjnexlxq0ndmkfkrxrfyk1utnhurlzwsy1pvnvmsxlobxlori1vavbrzlfntzlartfdz0xlajhhrglrzkl3etfuekn4zwtzvhg": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmicefvx3lxte02ue1quhhjqudna0lszvlxvnnpakvktem2zezfnunnngjnexlxq0ndmkfkrxrfyk1utnhurlzwsy1pvnvmsxlobxlori1vavbrzlfntzlartfdz0xlajhhrglrzkl3etfuekn4zwtzvhg",
-      "content_hash": "f010cf9435ebf82cf99aa220e084c0b5421dfb8c3606292c9a9c4e77d48eb68d",
-      "story_key": "78311eb64a157891821296370ed5cb0331fd3cae3263e911b43250e83b880de5",
-      "status": "enriched",
-      "processed_at": "2026-08-05T11:32:58.260Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "世界の新モデル・速報",
-        "title": "マークビジョン、生成AI活用のブランド保護エージェント「Brand Intelligence Agent」を公開",
-        "source_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE02UE1QUHhJQUdna0lSZVlxVnNPakVkTEM2ZEZFNUNnNGJNeXlxQ0NDMkFKRXRFYk1uTnhURlZWSy1PVnVMSXlObXloRi1VaVBRZlFNTzlaRTFDZ0xlajhhRGlRZkl3eTFUekN4ZWtzVHg?oc=5",
-        "source_name": "ニュースメディアVOIX",
-        "is_official": false,
-        "published_at": "2026-08-05T09:15:26.000Z",
-        "source_published_at": "2026-08-05T09:15:26.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T11:30:18.665Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "マークビジョン",
-          "Brand Intelligence Agent"
-        ],
-        "primary_entity": "マークビジョン",
-        "story_subject": "Brand Intelligence Agent",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "不明",
-        "fact_slots": [],
-        "new_facts": [
-          "マークビジョンが「Brand Intelligence Agent」を公開した",
-          "同エージェントは生成AIを活用したブランド保護向けサービスである"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "マークビジョンが生成AIを活用したブランド保護エージェント「Brand Intelligence Agent」を新たに公開した。",
-        "detail": "マークビジョンが、生成AIを活用したブランド保護エージェント「Brand Intelligence Agent」を公開した。同社はブランド保護に関するサービスを手掛ける企業で、新たなエージェントは生成AIを用いてブランド関連業務の支援を行うとみられるが、具体的な機能や対象企業、提供開始時期などの詳細は記事本文からは確認できない。",
-        "change_summary": "マークビジョンが新たに生成AI活用のブランド保護エージェントを公開した。",
-        "impact_summary": "企業のブランド管理や知的財産保護業務にAIエージェントを活用する動きが広がる可能性がある。",
-        "action_suggestion": "サービスの機能や利用条件については同社の公式発表を確認する必要がある。",
-        "importance": "C",
-        "related_categories": [
-          "AIツール・モデル",
-          "規制・法務"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiugfbvv95cuxpaffym0jlbfyxnm1jskm1emxkx3hncji3qvdrc3rfrgcyvm9omvkwcefksvq0n0i5twhdc1psago0zvv0chllauptbxntzkm2c01attvia2plmhljwgpmvndprxpyx3hyrtcyvhzdnwmwt29zowq5yjreefvxudrycenonxjjcnlxsvmtbwpddenxmndqcwdcztrkrze0nza5dljux0jwrkd0dlprswjqzfv3zmnbv3rkwnc": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiugfbvv95cuxpaffym0jlbfyxnm1jskm1emxkx3hncji3qvdrc3rfrgcyvm9omvkwcefksvq0n0i5twhdc1psago0zvv0chllauptbxntzkm2c01attvia2plmhljwgpmvndprxpyx3hyrtcyvhzdnwmwt29zowq5yjreefvxudrycenonxjjcnlxsvmtbwpddenxmndqcwdcztrkrze0nza5dljux0jwrkd0dlprswjqzfv3zmnbv3rkwnc",
-      "content_hash": "357dcca09b310943c98d8a4a2858ec48310005f9e1c0919d66fbae4d3f12341e",
-      "story_key": "cf497e6468447ce4060869f2e35a50b1708e84ead6c3f0bbaf1aac8aecc72229",
-      "status": "enriched",
-      "processed_at": "2026-08-05T11:32:58.260Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "中国AI・基盤モデル",
-        "title": "Options、2.8兆パラメータの中国製モデル「Kimi K3」をPrivateMindに追加",
-        "source_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPaFFyM0JlbFYxNm1jSkM1emxKX3hncjI3QVdrc3RFRGcyVm9oMVkwcEFkSVQ0N0I5TWhDc1pSaGo0ZVV0cHllaUptbXNtZkM2c01aTTVia2plMHljWGpMVndpRXpYX3hYRTcyVHZDNWMwT29ZOWQ5YjREeFVxUDRYcENONXJJcnlxSVMtbWpDdENxMndQcWdCZTRkRzE0NzA5dlJuX0JwRkd0dlprSWJqZFV3ZmNBV3RkWnc?oc=5",
-        "source_name": "FinanceFeeds",
-        "is_official": false,
-        "published_at": "2026-08-05T11:28:48.000Z",
-        "source_published_at": "2026-08-05T11:28:48.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T11:30:17.882Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Options",
-          "Kimi K3",
-          "PrivateMind"
-        ],
-        "primary_entity": "Options",
-        "story_subject": "Kimi K3のPrivateMind統合",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "PrivateMindプラットフォーム",
-        "fact_slots": [
-          {
-            "type": "count",
-            "scope": "Kimi K3のパラメータ数",
-            "value": "2.8兆パラメータ",
-            "normalized_value": "2800000000000"
-          }
-        ],
-        "new_facts": [
-          "OptionsがKimi K3をPrivateMindに追加した",
-          "Kimi K3のパラメータ数は2.8兆である"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "金融技術企業Optionsが、2.8兆パラメータの大規模言語モデル「Kimi K3」を自社のプライベートAI基盤「PrivateMind」に追加した。",
-        "detail": "金融業界向けテクノロジー企業のOptionsは、パラメータ数2.8兆の大規模言語モデル「Kimi K3」を、自社のプライベートAI基盤サービス「PrivateMind」に追加した。PrivateMindは金融機関が自社データを外部に出さずにAIモデルを利用できる環境を提供するサービスで、Kimi K3の追加により利用者が選択できるモデルの規模が拡大した。具体的な提供時期や対象顧客など詳細は記事本文からは確認できない。",
-        "change_summary": "OptionsがPrivateMindに新たに2.8兆パラメータのKimi K3を追加した。",
-        "impact_summary": "金融機関がプライベート環境で選べるAIモデルの選択肢が増え、業務でのAI活用の幅が広がる可能性がある。",
-        "action_suggestion": "利用を検討する企業はOptionsに提供条件や対応範囲などの詳細を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "企業・株式"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiaefvx3lxte1cwgzave9xoevqaunxrgzvawhmevpyoejothdhn2owdlzxm05legmtawndndfmb2hablplx1rwnxdun0tqwdhdc1hoqnzjtfhmd1rcn0rxqlnmzhpxyvnure1zr2fgbhrl": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxte1cwgzave9xoevqaunxrgzvawhmevpyoejothdhn2owdlzxm05legmtawndndfmb2hablplx1rwnxdun0tqwdhdc1hoqnzjtfhmd1rcn0rxqlnmzhpxyvnure1zr2fgbhrl",
-      "content_hash": "baedd56860b1489fce5f9246a6c233997026b89502d10dcd51fb06b312fd05ee",
-      "story_key": "2f467f85db71ffa86c9645436f784608321376807c06c5af37b077e37cd97e1c",
-      "status": "enriched",
-      "processed_at": "2026-08-05T11:32:58.260Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "中国AI・基盤モデル",
-        "title": "DeepSeek、500億元規模の第2回資金調達再開を検討と報道",
-        "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1CWGZaVE9XOEVQaUNxRGZVaWhmeVpyOEJoTHdhN2owdlZxM05leGMtaWNDNDFMb2hablplX1RwNXduN0tqWDhDc1hOQnZJTFhMd1RCN0RXQlNmZHpXYVNuRE1ZR2FGbHRl?oc=5",
-        "source_name": "三易生活",
-        "is_official": false,
-        "published_at": "2026-08-05T11:21:18.000Z",
-        "source_published_at": "2026-08-05T11:21:18.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T11:30:17.882Z",
-        "event_at": "",
-        "event_status": "不明",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "DeepSeek"
-        ],
-        "primary_entity": "DeepSeek",
-        "story_subject": "第2回資金調達(500億元規模)",
-        "event_type": "funding",
-        "event_stage": "rumor",
-        "event_scope": "中国",
-        "fact_slots": [
-          {
-            "type": "amount",
-            "scope": "DeepSeekの計画調達額",
-            "value": "500億人民元",
-            "normalized_value": "50000000000"
-          }
-        ],
-        "new_facts": [
-          "DeepSeekが第2回目の資金調達再開を検討していると報じられた",
-          "調達計画額は500億元とされる"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "中国のAI企業DeepSeekが、停止していた第2回目の資金調達を再開し、500億元規模の調達を計画していると報じられた。",
-        "detail": "中国のAIスタートアップDeepSeekが、停止していた第2回目の資金調達を再開し、500億元の調達を計画していると報じられた。DeepSeekは低コストで高性能な大規模言語モデルを開発した企業として知られ、これまでも資金調達や事業拡大の動向が注目されてきた。報道時点で、調達の実施時期や投資家、具体的な用途などの詳細は確認できていない。",
-        "change_summary": "DeepSeekが500億元規模の第2回資金調達を再開する可能性があると新たに報じられた。",
-        "impact_summary": "中国のAI開発競争における資金力や技術投資の動向が、世界のAI市場の勢力図に影響する可能性がある。",
-        "action_suggestion": "調達の正式発表や条件については今後の公式発表を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "企業・株式",
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxte5jvhniowm0eezpeuzgnlh2u1o5di1nz1jbrnv3y0h6dwzom1dmmglwqy1qcu9evzbivfbqtnjur3r1zxfyrhgxak1fyxnxv2xwmwjn": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxte5jvhniowm0eezpeuzgnlh2u1o5di1nz1jbrnv3y0h6dwzom1dmmglwqy1qcu9evzbivfbqtnjur3r1zxfyrhgxak1fyxnxv2xwmwjn",
-      "content_hash": "1b058dd361229fa6584ac1999984246232f10cf29acce47753ca0c1c2d586af8",
-      "story_key": "a23f4772c635be2d0b4e1305465043cbfc59ac57be27d5d7e89010d8db9c4747",
-      "status": "enriched",
-      "processed_at": "2026-08-05T11:32:58.261Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "AI政策・政府動向",
-        "title": "OpenAI・Anthropic・Google、米政府とAI安全性を協議",
-        "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5jVHNIOWM0eEZPeUZGNlh2U1o5di1NZ1JBRnV3Y0h6dWZOM1dMMGlwQy1QcU9EVzBiVFBQTnJUR3R1ZXFYRHgxak1FYXNXV2xWMWJn?oc=5",
-        "source_name": "innovaTopia",
-        "is_official": false,
-        "published_at": "2026-08-05T09:20:52.000Z",
-        "source_published_at": "2026-08-05T09:20:52.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-05T11:30:14.157Z",
-        "event_at": "",
-        "event_status": "継続中",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "OpenAI",
-          "Anthropic",
-          "Google"
-        ],
-        "primary_entity": "OpenAI",
-        "story_subject": "AI安全性に関する米政府との協議",
-        "event_type": "policy",
-        "event_stage": "other",
-        "event_scope": "米国",
-        "fact_slots": [],
-        "new_facts": [
-          "OpenAI・Anthropic・Googleが米政府とAI安全性について協議している",
-          "AI企業の自主審査が機能するかどうかが論点となっている"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "OpenAI、Anthropic、GoogleなどのAI企業が米政府とAIの安全性について協議し、自主審査の実効性が論点となっている。",
-        "detail": "OpenAI、Anthropic、Googleといった主要AI企業が、米政府とAIの安全性に関する協議を行っていることが報じられた。企業による自主的な安全性審査(自主審査)が実際に機能するかどうかが論点となっており、企業の自主的な取り組みだけでAIのリスクを十分に管理できるのか、政府による規制の必要性との関係が議論されている。今後、協議の具体的な結果や規制の方向性がどう定まるかが注目される。",
-        "change_summary": "OpenAI・Anthropic・Googleが米政府とAI安全性について協議していることが新たに報じられた。",
-        "impact_summary": "AI安全規制の枠組みが定まることで、AI企業の開発・提供方針や日本企業の米国製AI利用にも影響が及ぶ可能性がある。",
-        "action_suggestion": "米政府とAI企業の協議の進展や、自主審査の具体的な運用基準について今後の発表を確認する必要がある。",
-        "importance": "A",
-        "related_categories": [
-          "政策・行政",
-          "規制・法務"
         ],
         "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
       }
@@ -35658,61 +34689,6 @@
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
     },
-    "url:https://news.google.com/rss/articles/cbmilwfbvv95cuxqajjeql96nkvjuk5qqzlimdzhuug3vtb2rglyvm9zcw1sqwdzdwtzednwqvj3wgzstfbpeee0a1f0vjnusuvjqwtid3i0s08ysjbqbghubtbgstrfueu2ouppuldqtmprd2frtupjdg90qzrltmpys0lpqji1ueloshh2y2rrczg3luhubflbwuzrrhitnwfv": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmilwfbvv95cuxqajjeql96nkvjuk5qqzlimdzhuug3vtb2rglyvm9zcw1sqwdzdwtzednwqvj3wgzstfbpeee0a1f0vjnusuvjqwtid3i0s08ysjbqbghubtbgstrfueu2ouppuldqtmprd2frtupjdg90qzrltmpys0lpqji1ueloshh2y2rrczg3luhubflbwuzrrhitnwfv",
-      "content_hash": "2d357cbfac6226cb6927c9d547761a6d1a44adb07a5908d04baa28056e7aea2d",
-      "story_key": "8f5ce52232534a2f756b5949b112171d4750a581c10953fa443a05ddce68cacc",
-      "status": "rejected",
-      "processed_at": "2026-09-03T08:58:54.992Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 製品名「Mythos 5」が確認できず内容の信頼性が不明"
-    },
-    "url:https://news.google.com/rss/articles/cbmigwfbvv95cuxpylpramxldeq0rlrzsddodl9deklqzmz2qnjpqnyxqmzluxfzu1pvbudpttzpu1djqw5pdhb6tdbjexo4a240oufulviwemfqruzocu4tbwzbufvpr2eyuxeyzg9mvuk3bjfkvflpwlncqmpsv0tfvk1omdbszzrqnzf4wq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmigwfbvv95cuxpylpramxldeq0rlrzsddodl9deklqzmz2qnjpqnyxqmzluxfzu1pvbudpttzpu1djqw5pdhb6tdbjexo4a240oufulviwemfqruzocu4tbwzbufvpr2eyuxeyzg9mvuk3bjfkvflpwlncqmpsv0tfvk1omdbszzrqnzf4wq",
-      "content_hash": "534d4e38489ea6225b2597ff2f30be053cb25127266094104bb9dc37bf29d9f0",
-      "story_key": "6981a2cac3223783fd607593e3cae85b09bfeb608f71a7f779cd8f8d161ec54c",
-      "status": "rejected",
-      "processed_at": "2026-09-03T09:00:54.656Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: CEOの所感のみで具体的発表や事実がない"
-    },
-    "url:https://news.google.com/rss/articles/cbmikwfbvv95cuxocxrjdlu3tenluu4yu2rrnhjivetbbzfdowdmskhqx1rbdxfsqmc1bdvwzzjbtv9qs3u4ou1quezzn2xxtzjlv2fetfe3odlkwlvqbevbemfhevpmzjv0qwjczjg3wddqv2j0q051czv2uzjfrwnsn3hlwmzibwxrn3o0d0lrszrrcezuemjyqnfoumc": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmikwfbvv95cuxocxrjdlu3tenluu4yu2rrnhjivetbbzfdowdmskhqx1rbdxfsqmc1bdvwzzjbtv9qs3u4ou1quezzn2xxtzjlv2fetfe3odlkwlvqbevbemfhevpmzjv0qwjczjg3wddqv2j0q051czv2uzjfrwnsn3hlwmzibwxrn3o0d0lrszrrcezuemjyqnfoumc",
-      "content_hash": "8f9fc7d530b8ae5ba582f144e122737d1912dbd49a84039793f5480bc30afb68",
-      "story_key": "bd3574636c32a5ecb9c6c5e0728eab1f29e7ddd7914e885f9f235ab39ddce147",
-      "status": "rejected",
-      "processed_at": "2026-09-03T09:02:45.252Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "ai_skip: 具体的な制限内容が不明でタイトルの繰り返しのみ"
-    },
-    "url:https://news.google.com/rss/articles/cbmiz0fvx3lxtfboqlfxnurkmm9wbw9na1dqmxc2c0gweepncet3str4cnc3tm1xelntrerosfrlmjdwchpzedbwyxn6n3p3wvlqrgl0rtnynvlfnw5nuwc0qmxet3rzlxbfznllm0hzwwm": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiz0fvx3lxtfboqlfxnurkmm9wbw9na1dqmxc2c0gweepncet3str4cnc3tm1xelntrerosfrlmjdwchpzedbwyxn6n3p3wvlqrgl0rtnynvlfnw5nuwc0qmxet3rzlxbfznllm0hzwwm",
-      "content_hash": "c980d80fbc23a332a052d5f608e8d67315cf9ded1e2348158c665f0eca4b2b9a",
-      "story_key": "01ddf9bc902994a91c6052195a5a91f21d93c7b4553cc0a4ab44828720fabfda",
-      "status": "rejected",
-      "processed_at": "2026-09-03T09:02:45.252Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "ai_skip: 存在確認できないモデル名で情報の信頼性が乏しい"
-    },
-    "url:https://news.google.com/rss/articles/cbmijafbvv95cuxor3hnek5awuruyvffrzvobhvpdvfuulazufdhblberni3cuj4bux0mf9lvmn0tzf4vkf4vvhsdkj6d0s3cgzqekxjdzi2cy1xbwzly3rtuhd4mgozuhpulxhxu25uvluts3l6elq0uwjryxhrvhuzstlqotfrznktdnjma1nqnvrvsuzjyw": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmijafbvv95cuxor3hnek5awuruyvffrzvobhvpdvfuulazufdhblberni3cuj4bux0mf9lvmn0tzf4vkf4vvhsdkj6d0s3cgzqekxjdzi2cy1xbwzly3rtuhd4mgozuhpulxhxu25uvluts3l6elq0uwjryxhrvhuzstlqotfrznktdnjma1nqnvrvsuzjyw",
-      "content_hash": "77ab6eaa8af79bb3531a56c258aa1dff69854958775159e6d36cfe9f8be9fad4",
-      "story_key": "b762e797e1e3e0a4e211bc27588638fe9806f5ef92da01fc01f0cb4510c22441",
-      "status": "rejected",
-      "processed_at": "2026-09-03T09:02:45.252Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "ai_skip: 具体的な比較内容や数字がなく実質的事実が確認できない"
-    },
     "url:https://news.google.com/rss/articles/cbmitkfvx3lxte5vqlu4vdrmtnbeb2jkae9hmtvmnurgqluwwgdzyvnkejf5d3fvze51au81auwtbhnpwxnxakply1vzlu9mttvqa0e1z2frqq": {
       "canonical_url": "https://news.google.com/rss/articles/cbmitkfvx3lxte5vqlu4vdrmtnbeb2jkae9hmtvmnurgqluwwgdzyvnkejf5d3fvze51au81auwtbhnpwxnxakply1vzlu9mttvqa0e1z2frqq",
       "content_hash": "fc03b0b1b1fabe58a2a95e7fd6034acfbcf690a3c6861efe7b29b71a697a2aef",
@@ -37426,61 +36402,148 @@
       "lane": "emergency",
       "reason": "ai_skip: 具体的事実が確認できず信頼性に乏しい記事"
     },
-    "url:https://arxiv.org/abs/2609.03209": {
-      "canonical_url": "https://arxiv.org/abs/2609.03209",
-      "content_hash": "5ce369d0c049eec0d1faa9364b4ce67763a67015e7c8f9317e1423c45c32ece2",
-      "story_key": "0327d607775e2e8537ae5bea34664f63ca401b823f0b0dce666a7b57835836be",
-      "status": "retry",
-      "processed_at": "2026-09-05T08:24:34.723Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "missing_or_incomplete_ai_output"
+    "url:https://news.google.com/rss/articles/cbmilwfbvv95cuxqajjeql96nkvjuk5qqzlimdzhuug3vtb2rglyvm9zcw1sqwdzdwtzednwqvj3wgzstfbpeee0a1f0vjnusuvjqwtid3i0s08ysjbqbghubtbgstrfueu2ouppuldqtmprd2frtupjdg90qzrltmpys0lpqji1ueloshh2y2rrczg3luhubflbwuzrrhitnwfv": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmilwfbvv95cuxqajjeql96nkvjuk5qqzlimdzhuug3vtb2rglyvm9zcw1sqwdzdwtzednwqvj3wgzstfbpeee0a1f0vjnusuvjqwtid3i0s08ysjbqbghubtbgstrfueu2ouppuldqtmprd2frtupjdg90qzrltmpys0lpqji1ueloshh2y2rrczg3luhubflbwuzrrhitnwfv",
+      "content_hash": "2d357cbfac6226cb6927c9d547761a6d1a44adb07a5908d04baa28056e7aea2d",
+      "story_key": "8f5ce52232534a2f756b5949b112171d4750a581c10953fa443a05ddce68cacc",
+      "status": "enriched",
+      "processed_at": "2026-08-26T01:59:00.060Z",
+      "model": "legacy",
+      "prompt_version": "legacy-before-event-date-v5",
+      "lane": "bootstrap",
+      "reason": "existing_complete_article",
+      "result": {
+        "tool": "Claude / Claude Code",
+        "title": "Anthropic、防御的セキュリティ利用拡大とOSS向け3500万ドルのクレジット提供を発表",
+        "source_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQajJEQl96NkVjUk5qQzliMDZhUUg3VTB2RGlyVm9ZcW1sQWdZdWtzeDNwQVJ3WGZsTFBpeEE0a1F0VjNUSUVjQWtid3I0S08ySjBQbGhUbTBGSTRFUEU2OUppUldQTmprd2FrTUpjdG90QzRlTmpyS0lPQjI1UEloSHh2Y2Rrczg3LUhUbFlBWUZrRHItNWFV?oc=5",
+        "source_name": "合同会社ロケットボーイズ",
+        "is_official": false,
+        "published_at": "2026-08-25T21:00:13.000Z",
+        "source_published_at": "2026-08-25T21:00:13.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-26T01:59:00.060Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Anthropic",
+          "Claude Security",
+          "Mythos 5",
+          "anthropic",
+          "claudesecurity"
+        ],
+        "primary_entity": "Anthropic",
+        "story_subject": "Claude Security / OSSクレジット提供",
+        "event_type": "security",
+        "event_stage": "announced",
+        "event_scope": "OSS開発者向け",
+        "fact_slots": [
+          {
+            "type": "amount",
+            "scope": "OSS向けクレジット",
+            "value": "3500万ドル",
+            "normalized_value": "35000000USD"
+          }
+        ],
+        "new_facts": [
+          "AnthropicがOSS向けに3500万ドル相当のクレジットを提供すると発表した",
+          "Claude Securityへの対応拡大を発表した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Anthropicが「Mythos 5」の防御的なセキュリティ利用を拡大し、Claude Securityへの対応とオープンソース向けに3500万ドル分のクレジット提供を発表した。",
+        "detail": "Anthropicがセキュリティ防御用途でのAIの利用拡大とだれでも中身を確認・改良できるソフト向け3500万ドルの無料で使える利用枠の提供を新たに発表しました。\n\nClaude Securityへの対応拡大を発表しました。中身を公開しているソフトを作る人にとってセキュリティ対策費用の負担軽減につながる可能性があります。安全上の問題は、見つかったこと、影響する範囲、修正されたかを分けて見る必要があります。\n\n今は発表された段階で、記事だけでは詳しい数字や条件まで分かりません。正式な内容は、情報元の資料で確認する必要があります。クレジットの申請方法や対象条件について、Anthropicの公式発表を確認する必要があります。今回、記事で確認できる対象は「OSS開発者向け」です。",
+        "change_summary": "Anthropicがセキュリティ防御用途でのモデル活用拡大とOSS向け3500万ドルのクレジット提供を新たに発表した。",
+        "impact_summary": "オープンソース開発者にとってセキュリティ対策コストの負担軽減につながる可能性がある。",
+        "action_suggestion": "クレジットの申請方法や対象条件について、Anthropicの公式発表を確認する必要がある。",
+        "importance": "A",
+        "related_categories": [
+          "セキュリティ",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-student-core-v21",
+        "article_id": "article_a526d0ef6e70cd1d423b",
+        "story_id": "story_f160670129ef1ad227",
+        "story_sequence": 1,
+        "relation_type": "new",
+        "relation_confidence": 0.63,
+        "previous_article_id": "",
+        "previous_title": "",
+        "previous_source_published_at": "",
+        "continuation_lead": "",
+        "dedupe_decision": "uncertain",
+        "dedupe_reasons": [
+          "same_primary_entity",
+          "same_subject"
+        ],
+        "friendly_explanation_source": "verified_fields_safe_composite_student_core_v21"
+      }
     },
-    "url:https://news.google.com/rss/articles/cbmiuafbvv95cuxqbfhjt2q3yu5awmpkrk1cr3fmrwpidtnrv25dumvksjbgltfhekdmlvdjywkwvnb3q0rznmnktzhmem9mmupqelvuzm1qnkmtdmrey1zfbdh0tw11twvbdnztq3zlzuplmep6wgdlqwlnrdrczklsmjres2hxctjyvzvns2zwodbzqwnxammtd0hltxbnoedowmu1axbxzwxmb0g0vu9tyxp0s2jssv9pwfqyqvoyblrg": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiuafbvv95cuxqbfhjt2q3yu5awmpkrk1cr3fmrwpidtnrv25dumvksjbgltfhekdmlvdjywkwvnb3q0rznmnktzhmem9mmupqelvuzm1qnkmtdmrey1zfbdh0tw11twvbdnztq3zlzuplmep6wgdlqwlnrdrczklsmjres2hxctjyvzvns2zwodbzqwnxammtd0hltxbnoedowmu1axbxzwxmb0g0vu9tyxp0s2jssv9pwfqyqvoyblrg",
-      "content_hash": "a65107f35299c32e5a7212f3d4435ebf80aa9ffa9e51d6f4f751b80e9dfebcc2",
-      "story_key": "8f52f4db37dc818c86d30883c5e30262d56edf771510dcedb46bda22584b49b7",
-      "status": "retry",
-      "processed_at": "2026-09-05T08:24:34.723Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmidefvx3lxte5zexuyd3hlx1lctfrwuef4wudzr1hodlvwewlfufkwz0jtvhjlskvxoulrvzlzn3nfu2n2edvtsznobhfuqi1htgdcndzxdllyew9wowvhn3zrv3judkvsyjazukz4v1fqywotv3bkrde1rhuw": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte5zexuyd3hlx1lctfrwuef4wudzr1hodlvwewlfufkwz0jtvhjlskvxoulrvzlzn3nfu2n2edvtsznobhfuqi1htgdcndzxdllyew9wowvhn3zrv3judkvsyjazukz4v1fqywotv3bkrde1rhuw",
-      "content_hash": "f85d66e7f5f48162222cea592cba80d44fce2a6f841d8e61a80ea911db861600",
-      "story_key": "81e46088eb7b0147a7cfbed0ca30802bd2f119c171094dd626adb920d070dab3",
-      "status": "retry",
-      "processed_at": "2026-09-05T08:24:34.723Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmixafbvv95cuxodg1vyurvcl9uuvhrdmp4aelrnhzjymlmn3rvzvjvenl5rwtjmzu1bs1oq0hpvlfvvzbbchn0uzg0ewvumv9iagjkzw0xu1jfeufrze14d2nnszm3uhryx29jlw1rwgf0d21beeposee0uuutb09kujb2eku4emmzduvrs1d4smj4cmthef85mzfmsdetm1lvquswalfhd1ridkdvmep2zk12zwrkvehjq3bznmpzvuh1mwtldgxzmljlrzbo": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmixafbvv95cuxodg1vyurvcl9uuvhrdmp4aelrnhzjymlmn3rvzvjvenl5rwtjmzu1bs1oq0hpvlfvvzbbchn0uzg0ewvumv9iagjkzw0xu1jfeufrze14d2nnszm3uhryx29jlw1rwgf0d21beeposee0uuutb09kujb2eku4emmzduvrs1d4smj4cmthef85mzfmsdetm1lvquswalfhd1ridkdvmep2zk12zwrkvehjq3bznmpzvuh1mwtldgxzmljlrzbo",
-      "content_hash": "1d6dc05be45c90dbb933ab8bd4ca6dbaa403075048a42d5010878111bd0e8f51",
-      "story_key": "6d5a43c73db668c21148fc3aa5a0089b9f6c4fb55800195e3ff760a76007044e",
-      "status": "retry",
-      "processed_at": "2026-09-05T08:25:26.824Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmipkfvx3lxtfbevenrou9zthdzotb6eljotglld056tersc0nzek9ht0nqtxnkngl5ynzutkp0n1fxogptvm5b": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmipkfvx3lxtfbevenrou9zthdzotb6eljotglld056tersc0nzek9ht0nqtxnkngl5ynzutkp0n1fxogptvm5b",
-      "content_hash": "912d625c574e2fb6f9dbd0dd2a72d117bf994bb254886c0103ecd021639749ce",
-      "story_key": "94342ecc82ee22881d048069fb03381ad784dc67c1209ec26efb2ae8b5e7ccc5",
-      "status": "retry",
-      "processed_at": "2026-09-05T08:25:26.824Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "missing_or_incomplete_ai_output"
+    "url:https://news.google.com/rss/articles/cbmigwfbvv95cuxpylpramxldeq0rlrzsddodl9deklqzmz2qnjpqnyxqmzluxfzu1pvbudpttzpu1djqw5pdhb6tdbjexo4a240oufulviwemfqruzocu4tbwzbufvpr2eyuxeyzg9mvuk3bjfkvflpwlncqmpsv0tfvk1omdbszzrqnzf4wq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmigwfbvv95cuxpylpramxldeq0rlrzsddodl9deklqzmz2qnjpqnyxqmzluxfzu1pvbudpttzpu1djqw5pdhb6tdbjexo4a240oufulviwemfqruzocu4tbwzbufvpr2eyuxeyzg9mvuk3bjfkvflpwlncqmpsv0tfvk1omdbszzrqnzf4wq",
+      "content_hash": "534d4e38489ea6225b2597ff2f30be053cb25127266094104bb9dc37bf29d9f0",
+      "story_key": "6981a2cac3223783fd607593e3cae85b09bfeb608f71a7f779cd8f8d161ec54c",
+      "status": "enriched",
+      "processed_at": "2026-08-16T09:43:32.546Z",
+      "model": "legacy",
+      "prompt_version": "legacy-before-event-date-v5",
+      "lane": "bootstrap",
+      "reason": "existing_complete_article",
+      "result": {
+        "tool": "Replit Agent",
+        "title": "Replit CEO、『自律的に回る会社』づくりについて語る",
+        "source_url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPYlpramxLdEQ0RlRZSDdodl9DeklqZmZ2QnJPQnYxQmZLUXFZU1pvbUdpTTZpU1djQW5PdHB6TDBjeXo4a240OUFULVIwemFqRUZOcU4tbWZBUFVPR2EyUXEyZG9mVUk3bjFKVFlPWlNCQmpSV0tfVk1OMDBSZzRqNzF4WQ?oc=5",
+        "source_name": "Platformer",
+        "is_official": false,
+        "published_at": "2026-08-06T07:00:00.000Z",
+        "source_published_at": "2026-08-06T07:00:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-08-16T09:43:32.546Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Replit",
+          "replit"
+        ],
+        "primary_entity": "Replit",
+        "story_subject": "ReplitのCEOによる自律型企業運営構想",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "不明",
+        "fact_slots": [],
+        "new_facts": [
+          "ReplitのCEOがAIエージェントを活用した自律的な会社運営についての考えをインタビューで語ったと報じられた。"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "コーディング支援AI企業Replitのトップが、AIエージェントを活用して自律的に運営できる会社づくりについての考えを語った。",
+        "detail": "ReplitのトップがAIを使って人の手を減らすの会社づくりについての考えを公に語りました。Replitの経営トップは、AIに仕事を任せて人の手間を減らす会社づくりについて話しました。AIエージェントは、答えるだけでなく、調べる・入力するなどの作業も順番に進めるAIです。\n\nReplitの経営トップがAIエージェントを活用した自律的な会社運営についての考えをインタビューで語ったと報じられました。AI企業のトップ自らが組織運営へのAI活用を語ることで、他企業の経営判断にも影響を与える可能性があります。大切なのは、すでに決まったことと、まだ発表されていないことを分けて読むことです。\n\n記事だけでは、詳しい条件までは分かりません。新しい発表が出るか確認が必要です。インタビューの詳細内容は元記事の全文確認が必要で、現時点では具体的な取り組みはまだ分かっていません。",
+        "change_summary": "Replitのトップが自律運営型の会社づくりについての考えを公に語った。",
+        "impact_summary": "AI企業のトップ自らが組織運営へのAI活用を語ることで、他企業の経営判断にも影響を与える可能性がある。",
+        "action_suggestion": "インタビューの詳細内容は元記事の全文確認が必要で、現時点では具体的な施策は不明。",
+        "importance": "B",
+        "related_categories": [
+          "企業・株式",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-student-core-v21",
+        "article_id": "article_1a0d4df555b03c446f88",
+        "story_id": "story_d9e060189eaff24e48",
+        "story_sequence": 1,
+        "relation_type": "new",
+        "relation_confidence": 1,
+        "previous_article_id": "",
+        "previous_title": "",
+        "previous_source_published_at": "",
+        "continuation_lead": "",
+        "dedupe_decision": "new",
+        "dedupe_reasons": [
+          "no_previous_story"
+        ],
+        "friendly_explanation_source": "verified_fields_safe_composite_student_core_v21"
+      }
     }
   },
-  "updated_at": "2026-09-05T08:25:26.824Z"
+  "updated_at": "2026-09-05T13:28:28.277Z"
 }
