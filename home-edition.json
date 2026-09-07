@@ -7,59 +7,44 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-09-06T08:40:39.019Z",
-  "window_end": "2026-09-06T13:40:54.491Z",
-  "last_window_end": "2026-09-06T13:40:54.491Z",
-  "last_checked_at": "2026-09-06T13:46:29.862Z",
-  "last_published_at": "2026-09-06T13:46:29.862Z",
-  "home_content_changed_at": "2026-09-06T13:46:29.862Z",
+  "window_start": "2026-09-06T13:40:54.491Z",
+  "window_end": "2026-09-06T23:59:53.177Z",
+  "last_window_end": "2026-09-06T23:59:53.177Z",
+  "last_checked_at": "2026-09-07T00:04:37.232Z",
+  "last_published_at": "2026-09-07T00:04:37.232Z",
+  "home_content_changed_at": "2026-09-07T00:04:37.232Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 3,
-  "distinct_candidate_count": 3,
+  "candidate_count": 2,
+  "distinct_candidate_count": 2,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 3,
-  "cross_edition_duplicate_count": 0,
-  "cross_edition_duplicate_groups": [],
-  "selected_count": 3,
+  "novel_candidate_count": 1,
+  "cross_edition_duplicate_count": 1,
+  "cross_edition_duplicate_groups": [
+    {
+      "representative_id": "article_9eebc1e1c272d9faa4d2",
+      "duplicate_ids": [
+        "article_8836d69d9cd8a9c4164c"
+      ]
+    }
+  ],
+  "selected_count": 1,
   "tool_evolution_selected_count": 1,
   "carried_forward": false,
   "article_ids": [
-    "article_ea659d541fec86dd33d8",
-    "article_f1123800a9bdadd1171a",
-    "article_1633d31715fa1d55c46b_rev_49b5f95d1c4e"
+    "article_b99f9a81fbf9754cff5b"
   ],
   "scores": {
-    "article_ea659d541fec86dd33d8": {
-      "article_id": "article_ea659d541fec86dd33d8",
-      "total": 90,
-      "breakdown": {
-        "importance": 60,
-        "topicality": 15,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度S",
-        "主要AI企業・基盤",
-        "大きな製品・市場変化",
-        "遅れて確認できた新着"
-      ],
-      "published_at": "2026-09-05T21:05:08.000Z"
-    },
-    "article_f1123800a9bdadd1171a": {
-      "article_id": "article_f1123800a9bdadd1171a",
-      "total": 72,
+    "article_b99f9a81fbf9754cff5b": {
+      "article_id": "article_b99f9a81fbf9754cff5b",
+      "total": 62,
       "breakdown": {
         "importance": 25,
-        "topicality": 20,
+        "topicality": 10,
         "scope": 6,
         "authority": 5,
         "freshness": 8,
@@ -68,31 +53,10 @@
       },
       "reasons": [
         "重要度B",
-        "主要AI企業・基盤",
-        "制度・安全への影響",
         "大きな製品・市場変化",
         "AIツールの能力進化"
       ],
-      "published_at": "2026-09-06T12:44:02.000Z"
-    },
-    "article_1633d31715fa1d55c46b_rev_49b5f95d1c4e": {
-      "article_id": "article_1633d31715fa1d55c46b_rev_49b5f95d1c4e",
-      "total": 67,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 7,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "重要な経営・研究体制",
-        "遅れて確認できた新着"
-      ],
-      "published_at": "2026-09-05T17:00:00.000Z"
+      "published_at": "2026-09-06T22:13:32.000Z"
     }
   },
   "recent_story_history": [
@@ -511,6 +475,33 @@
       "previous_article_id": "",
       "selected_at": "2026-09-06T13:46:29.862Z",
       "edition_window_end": "2026-09-06T13:40:54.491Z"
+    },
+    {
+      "article_id": "article_b99f9a81fbf9754cff5b",
+      "story_id": "story_57708613103bc0262d",
+      "title": "Canva、ビジュアルツールキットに新機能100項目以上を追加",
+      "primary_entity": "Canva",
+      "story_subject": "ビジュアルツールキットの新機能追加",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Canva全体",
+      "story_entities": [
+        "Canva",
+        "canva"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "新機能数",
+          "value": "100項目以上",
+          "normalized_value": "100"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-07T00:04:37.232Z",
+      "edition_window_end": "2026-09-06T23:59:53.177Z"
     }
   ]
 }
