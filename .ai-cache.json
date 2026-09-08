@@ -1971,54 +1971,12 @@
       "canonical_url": "https://news.google.com/rss/articles/cbmiiafbvv95cuxnrxlxlwhamdfzvglprhnknnluqmlmqwrvrvphugvommfbngvlbxdquzjzzzftodiwslfmd3uxnjraztzmbmjmx1yzx2xpazzpogwwd0tknwrqnjhan0jazmrjmfnws1z1mw51vuo0zlo2ukzxnnlzzxvmsxvrszzvcumxaloyyxpq",
       "content_hash": "acb7389bf6838b4c6894c487d09bdb9b1bdf44e47f3688d0759cd750372bd671",
       "story_key": "f72b33da6562517d12b47eb45d841a3ce5c1daf1e48fa0318021d9315cad44fd",
-      "status": "enriched",
-      "processed_at": "2026-08-11T07:39:29.862Z",
+      "status": "retry",
+      "processed_at": "2026-09-08T00:30:36.172Z",
       "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Google Veo",
-        "title": "未発表モデル「Gemini Omni」、Veo 3.1を上回るとする流出デモ動画が話題に",
-        "source_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNRXlxLWhaMDFzVGlpRHNKNnlUQmlMQWRvRVphUGVoMmFBNGVlbXdQUzJzZzFTODIwSlFmd3UxNjRaZTZmbmJmX1YzX2xpazZPOGwwd0tKNWRqNjhaN0JaZmRJMFNWS1Z1MW51VUo0Zlo2UkZxNnlzZXVmSXVrSzZVcUMxaloyYXpq?oc=5",
-        "source_name": "TechJuice",
-        "is_official": false,
-        "published_at": "2026-08-07T16:08:12.000Z",
-        "source_published_at": "2026-08-07T16:08:12.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-11T07:38:06.458Z",
-        "event_at": "",
-        "event_status": "不明",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Gemini Omni",
-          "Veo 3.1",
-          "Google"
-        ],
-        "primary_entity": "Google",
-        "story_subject": "Gemini Omni",
-        "event_type": "other",
-        "event_stage": "rumor",
-        "event_scope": "全世界",
-        "fact_slots": [],
-        "new_facts": [
-          "未発表とされる「Gemini Omni」のデモ動画が流出したと報じられた",
-          "流出動画はVeo 3.1を上回る性能を示しているとされるが未確認情報"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "Googleの未発表とされるモデル「Gemini Omni」のデモ動画が流出し、既存の動画生成モデルVeo 3.1を上回る性能を示しているとされる。",
-        "detail": "Googleの動画生成モデル「Veo 3.1」を上回る性能を示すとされるデモ動画が流出し、「Gemini Omni」という名称の未発表モデルによるものだと報じられた。流出情報のため、Googleからの公式な発表や仕様の詳細は確認されておらず、モデル名や性能比較の内容が正確かどうかも不明な段階にある。記事では流出したデモ動画の内容がVeo 3.1より優れているとする見方が伝えられているが、正式発表があるかどうかは記事の時点では示されていない。",
-        "change_summary": "未発表とされる「Gemini Omni」のデモ動画が流出し、Veo 3.1を上回るとの見方が出ている。",
-        "impact_summary": "動画生成AIの性能競争が続く中、未確認情報ではあるが今後の正式発表次第で映像制作業務への影響が想定される。",
-        "action_suggestion": "流出情報であり公式発表は確認されていないため、Googleからの正式な発表を待つ必要がある。",
-        "importance": "C",
-        "related_categories": [
-          "画像・動画生成",
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
+      "reason": "missing_or_incomplete_ai_output"
     },
     "url:https://news.google.com/rss/articles/cbmilgfbvv95cuxqnkp4qxhhvvkwuxrkqwpxv3rcwmmxavq0nnjtcnbsevh4ehmtvfv6rkdktny2bfjfmeh3vkxgsenyt0hfnvlvy3phwtnzbdiymdffdda5avnyyw9lvjztx1rncy15nfrrlxdtzum1zm5wadk1zulmx1owr2lds05wrgdusmtrudhywtzuyuutylfdr3v2wve": {
       "canonical_url": "https://news.google.com/rss/articles/cbmilgfbvv95cuxqnkp4qxhhvvkwuxrkqwpxv3rcwmmxavq0nnjtcnbsevh4ehmtvfv6rkdktny2bfjfmeh3vkxgsenyt0hfnvlvy3phwtnzbdiymdffdda5avnyyw9lvjztx1rncy15nfrrlxdtzum1zm5wadk1zulmx1owr2lds05wrgdusmtrudhywtzuyuutylfdr3v2wve",
@@ -32166,14 +32124,14 @@
     },
     "url:https://news.google.com/rss/articles/cbmizkfvx3lxte9nqutmc3zjz09xsufic2pls193bfbwzersehvzc3yttkvwnwlsrmtiofnyqlhxzjlxudbovfhjwwszznnhtjnjewjoszlttfiyz19lq1zxanywx19iynnqegjqtjgydw": {
       "canonical_url": "https://news.google.com/rss/articles/cbmizkfvx3lxte9nqutmc3zjz09xsufic2pls193bfbwzersehvzc3yttkvwnwlsrmtiofnyqlhxzjlxudbovfhjwwszznnhtjnjewjoszlttfiyz19lq1zxanywx19iynnqegjqtjgydw",
-      "content_hash": "b7e6b97c753ce4f5d695c9506ad09737b9acf70b7913fed40ba4eb7185eb5b82",
-      "story_key": "57f95526c85f3d220e0f4c0002e8a1cca054f43d4ecc363d4beb680d2c4ebe1a",
-      "status": "rejected",
-      "processed_at": "2026-09-06T13:42:48.810Z",
+      "content_hash": "76d27ff14ac214de190917503ca7dc808fb97e6bb0973e4d95277f82f4859a5c",
+      "story_key": "bf198a041fba09e1d603a3a17f46db4824a007967c0f3a5085c161ee8a2914b5",
+      "status": "retry",
+      "processed_at": "2026-09-08T00:30:36.172Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
-      "reason": "ai_skip: 参加発表のみで具体的事実に乏しい記事"
+      "reason": "missing_or_incomplete_ai_output"
     },
     "url:https://news.google.com/rss/articles/cbmilwfbvv95cuxqajjeql96nkvjuk5qqzlimdzhuug3vtb2rglyvm9zcw1sqwdzdwtzednwqvj3wgzstfbpeee0a1f0vjnusuvjqwtid3i0s08ysjbqbghubtbgstrfueu2ouppuldqtmprd2frtupjdg90qzrltmpys0lpqji1ueloshh2y2rrczg3luhubflbwuzrrhitnwfv": {
       "canonical_url": "https://news.google.com/rss/articles/cbmilwfbvv95cuxqajjeql96nkvjuk5qqzlimdzhuug3vtb2rglyvm9zcw1sqwdzdwtzednwqvj3wgzstfbpeee0a1f0vjnusuvjqwtid3i0s08ysjbqbghubtbgstrfueu2ouppuldqtmprd2frtupjdg90qzrltmpys0lpqji1ueloshh2y2rrczg3luhubflbwuzrrhitnwfv",
@@ -32822,17 +32780,6 @@
       "lane": "regular",
       "reason": "ai_skip: 具体的な更新内容がなく変更点一覧のみで実質情報なし"
     },
-    "url:https://news.google.com/rss/articles/cbmihgfbvv95cuxnnzjtr1ngwjdtzepjy1a4txcwu2xit3diow9cbm8ywnd6wm1zwjfsnedslwt6ofdfsdjyq3hwmxitn2rpqkxtcvfuogdswmfhtmhpdthzwmjwmi03rhjkq05fcdrwtfv3oxzbbc16nfrhamtyckcztfpxcnbaaefwqwphdxnqdw": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmihgfbvv95cuxnnzjtr1ngwjdtzepjy1a4txcwu2xit3diow9cbm8ywnd6wm1zwjfsnedslwt6ofdfsdjyq3hwmxitn2rpqkxtcvfuogdswmfhtmhpdthzwmjwmi03rhjkq05fcdrwtfv3oxzbbc16nfrhamtyckcztfpxcnbaaefwqwphdxnqdw",
-      "content_hash": "554409e409b70f74a6384f5723d8beef42415e54c4a1bf8ba04f7d285a571420",
-      "story_key": "abfbf0dedf410d4c5388ba4f51b9d3044e34641342411b0d04fc7105d21900e9",
-      "status": "retry",
-      "processed_at": "2026-09-07T15:51:51.557Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
     "url:https://news.google.com/rss/articles/cbmi2afbvv95cuxqczztq1lozwtlx2ljaujrudz5b3mynmrhnnrgs0u3muvydlvdcl90ywtwohpftjrodl93zkq5nwlinjnywvm3rkc0x1ldowx0c0hicmtpegziddj3eevxdwfewg1jz0c2r3v6b01oenzwu0xta1ywcfr0djrvukk5azuyzdbwtlladlnzdkf6lxhfzwpkwwdncev5uuuzn3c1n1dhdhliuwvfodzldkdzodnxmldwnwt3elzvz2fls0dormt2dgvxn1a2ukv4btlfek1kqnbnq2_savpbvv95cuxqdjvev2tzdjzobkn0duoxwfd0x0x2yzbravrvrnd4wgnsc2ffr1ixlur6d0nyulbbq0pcbfhzbuzoc0xla3hfbgxgm2naqxa3blrts25xm0tlrke": {
       "canonical_url": "https://news.google.com/rss/articles/cbmi2afbvv95cuxqczztq1lozwtlx2ljaujrudz5b3mynmrhnnrgs0u3muvydlvdcl90ywtwohpftjrodl93zkq5nwlinjnywvm3rkc0x1ldowx0c0hicmtpegziddj3eevxdwfewg1jz0c2r3v6b01oenzwu0xta1ywcfr0djrvukk5azuyzdbwtlladlnzdkf6lxhfzwpkwwdncev5uuuzn3c1n1dhdhliuwvfodzldkdzodnxmldwnwt3elzvz2fls0dormt2dgvxn1a2ukv4btlfek1kqnbnq2_savpbvv95cuxqdjvev2tzdjzobkn0duoxwfd0x0x2yzbravrvrnd4wgnsc2ffr1ixlur6d0nyulbbq0pcbfhzbuzoc0xla3hfbgxgm2naqxa3blrts25xm0tlrke",
       "content_hash": "d230736e2dc7db2a85d9b92c8746c581a9d03cbbe6a1c85ae9f24825ba33317d",
@@ -32889,14 +32836,14 @@
     },
     "url:https://news.google.com/rss/articles/cbmixgfbvv95cuxot3pjnvkxzmstt3zjsnjrd2lvtnhwag9kltrkcxdcbknxcnzyy0xwrvzdos1rrlk3nxpmoej0s25zmw5vns16nkxttur4mw5zwnrhrgvzak94ovzru2ctyud2mtm4ovk3ve9nnlrmdkjqluhqslpzd0otwuz4x3prd0e5wu5gtlppoe5nmdncrgqwrutsempfb1lozxhna2zarfpsb0nnzlvnos1dbkpxouqtdnnoavrfqwhhm2zdykt2shf2u2c": {
       "canonical_url": "https://news.google.com/rss/articles/cbmixgfbvv95cuxot3pjnvkxzmstt3zjsnjrd2lvtnhwag9kltrkcxdcbknxcnzyy0xwrvzdos1rrlk3nxpmoej0s25zmw5vns16nkxttur4mw5zwnrhrgvzak94ovzru2ctyud2mtm4ovk3ve9nnlrmdkjqluhqslpzd0otwuz4x3prd0e5wu5gtlppoe5nmdncrgqwrutsempfb1lozxhna2zarfpsb0nnzlvnos1dbkpxouqtdnnoavrfqwhhm2zdykt2shf2u2c",
-      "content_hash": "4c506d41f0643e9061105d85ed3627fc6ce9e526c15bd9926843fc8158427cdb",
+      "content_hash": "1c81be113e2931e5932ad9f3ea698ab2c98c9956ff6a9111b8c10274333c8322",
       "story_key": "bfb86bbbe9045f1c4b39153afc6b0d16bea7bc50b98c0f880d2c8daabdb78a01",
       "status": "rejected",
-      "processed_at": "2026-09-07T15:51:53.727Z",
+      "processed_at": "2026-09-08T00:30:36.172Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
-      "reason": "ai_skip: イベント告知のみで具体的な事実が確認できない"
+      "reason": "ai_skip: 法律事務所主催の夕食会告知で実質的なニュースがない"
     },
     "url:https://news.google.com/rss/articles/cbmizkfvx3lxte40a1a4qjbgcjvuzkfgahbbnkhddkzhvwpptjv6avu0bc1pdgrdre84mnzhr2ped2rhnxrnotzhc295qmytx1vrrxvaekzxuu5wrg5pvwhsclhua0n3texsn2s0wfvwuq": {
       "canonical_url": "https://news.google.com/rss/articles/cbmizkfvx3lxte40a1a4qjbgcjvuzkfgahbbnkhddkzhvwpptjv6avu0bc1pdgrdre84mnzhr2ped2rhnxrnotzhc295qmytx1vrrxvaekzxuu5wrg5pvwhsclhua0n3texsn2s0wfvwuq",
@@ -32931,61 +32878,462 @@
       "lane": "emergency",
       "reason": "ai_skip: 製品比較レビュー記事で一次的な発表事実がない"
     },
-    "url:https://news.google.com/rss/articles/cbmiuefvx3lxte1smdcwcdbjunzsmxzkmlnwdmm2x3dla1h3avpiqlp5mzbynmjpckq0sefhzhjzsk1kt0nptgvwnm45y2nhymznz05jatlhwe1m": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiuefvx3lxte1smdcwcdbjunzsmxzkmlnwdmm2x3dla1h3avpiqlp5mzbynmjpckq0sefhzhjzsk1kt0nptgvwnm45y2nhymznz05jatlhwe1m",
-      "content_hash": "7bc82ac85af7634c64e2e69d2428769b851c6b5b0d7a7e19503aa35555fd8646",
-      "story_key": "d90fe07d02819c365e56022a290f5315ec4c4ec173f8677e3e2744f2f8ebaff0",
-      "status": "retry",
-      "processed_at": "2026-09-07T15:52:42.743Z",
+    "url:https://news.google.com/rss/articles/cbmihgfbvv95cuxnnzjtr1ngwjdtzepjy1a4txcwu2xit3diow9cbm8ywnd6wm1zwjfsnedslwt6ofdfsdjyq3hwmxitn2rpqkxtcvfuogdswmfhtmhpdthzwmjwmi03rhjkq05fcdrwtfv3oxzbbc16nfrhamtyckcztfpxcnbaaefwqwphdxnqdw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmihgfbvv95cuxnnzjtr1ngwjdtzepjy1a4txcwu2xit3diow9cbm8ywnd6wm1zwjfsnedslwt6ofdfsdjyq3hwmxitn2rpqkxtcvfuogdswmfhtmhpdthzwmjwmi03rhjkq05fcdrwtfv3oxzbbc16nfrhamtyckcztfpxcnbaaefwqwphdxnqdw",
+      "content_hash": "554409e409b70f74a6384f5723d8beef42415e54c4a1bf8ba04f7d285a571420",
+      "story_key": "abfbf0dedf410d4c5388ba4f51b9d3044e34641342411b0d04fc7105d21900e9",
+      "status": "rejected",
+      "processed_at": "2026-09-08T00:29:09.986Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
+      "lane": "regular",
+      "reason": "ai_skip: 具体的な手口・被害範囲が不明で実質的事実に乏しい"
+    },
+    "url:https://news.google.com/rss/articles/cbmihgfbvv95cuxpstqwme5zvgdwdwnaq1dgnk9jt0lowm40uzditk1ybzdkoxnuckzisepjq05ytdzwm2jjnnntae85ukxkrmdrztbhz1pnyy0xnjrottnpowzymflvadr6vtbat3ndc09ytzdjv1hytjvjcnawatvfz0ltvknnrjy3v29stghcuq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmihgfbvv95cuxpstqwme5zvgdwdwnaq1dgnk9jt0lowm40uzditk1ybzdkoxnuckzisepjq05ytdzwm2jjnnntae85ukxkrmdrztbhz1pnyy0xnjrottnpowzymflvadr6vtbat3ndc09ytzdjv1hytjvjcnawatvfz0ltvknnrjy3v29stghcuq",
+      "content_hash": "5617db1a31632d906ff70b4ff063b4522537ff7c29629f04c5ff5a1fe9fc60d5",
+      "story_key": "cf672874f53b5c715f6fba2ff7e5e1b156926eec5a4fe8bef44ecbcf85f278b4",
+      "status": "enriched",
+      "processed_at": "2026-09-08T00:30:36.172Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "世界の新モデル・速報",
+        "title": "TenableとOpenAI、AIエージェント向け点検ツールを公開",
+        "source_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPSTQwME5zVGdWdWNaQ1dGNk9jT0loWm40UzdiTk1ybzdkOXNuckZiSEpJQ05yTDZwM2JjNnNTaE85UkxKRmdrZTBHZ1pnYy0xNjRoTTNPOWZYMFlVaDR6VTBaT3NDc09YTzdJV1hyTjVjcnAwaTVfZ0lTVkNNRjY3V29sTGhCUQ?oc=5",
+        "source_name": "IT Brief UK",
+        "is_official": false,
+        "published_at": "2026-09-08T00:01:00.000Z",
+        "source_published_at": "2026-09-08T00:01:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-09-08T00:28:12.973Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Tenable",
+          "OpenAI"
+        ],
+        "primary_entity": "Tenable",
+        "story_subject": "AI Inspector for cyber agents",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "サイバーセキュリティ分野",
+        "fact_slots": [],
+        "new_facts": [
+          "TenableとOpenAIがAIエージェント向けの点検ツールを公開した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "セキュリティ企業TenableとOpenAIが、AIエージェント(自動でタスクをこなすAIプログラム)の安全性を点検するツールを共同で公開したと報じられた。",
+        "detail": "セキュリティ企業のTenableとOpenAIが、「AIインスペクター」というツールを公開したと報じられた。簡単に言うと、企業が業務に使うAIエージェント(自動でタスクをこなすAIプログラム)の動作を点検する仕組みとされる。これまでこうした点検ツールが両社から共同で出されたことはなく、新しい取り組みとみられる。\n\n記事ではツール名と公開の事実のみが確認でき、具体的な機能内容や対象範囲、数値データは示されていない。仕組みとしては、AIエージェントがサイバーセキュリティ業務でどう動くかを確認する目的とされる。企業がAIエージェントを業務に取り入れる動きが進む中、その安全性を確認する需要が高まっており、この分野の新ツールは注目される。\n\nセキュリティ担当者は、AIエージェントの動作を点検する新しい手段を得られる可能性がある。ただし価格や提供開始時期、対象となる利用者の範囲は明らかにされていない。詳しい機能や利用条件は今後の公式発表を待つ必要がある。",
+        "change_summary": "TenableとOpenAIが共同でAIエージェント向けの点検ツールを新たに公開した。",
+        "impact_summary": "AIエージェントを業務に導入する企業のセキュリティ担当者に、新たな点検手段が提供される可能性がある。",
+        "action_suggestion": "ツールの詳細な機能や提供条件について、公式発表を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "セキュリティ",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmizkfvx3lxtfbsmjd5uzrda1vhdfpmcvrhvxnfz3dkzvzaazbxy0etnzi4uld5su5imepbylffbxu1chv5zuq1rxvhbk9xrdhtd1pmymo2ogvlx3zxvl9ms2w2ywflme5om0ctnhh4uq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmizkfvx3lxtfbsmjd5uzrda1vhdfpmcvrhvxnfz3dkzvzaazbxy0etnzi4uld5su5imepbylffbxu1chv5zuq1rxvhbk9xrdhtd1pmymo2ogvlx3zxvl9ms2w2ywflme5om0ctnhh4uq",
+      "content_hash": "17f75fc347f192a01db7ae0c7bdc65e96bb4834b07f66975e19000f8f7a4bd1c",
+      "story_key": "b7b6b5fe0220e25b61a261bfafe264d20596915c612250a796e3746577b8afa5",
+      "status": "enriched",
+      "processed_at": "2026-09-08T00:30:36.172Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "DeepSeek",
+        "title": "DeepSeek、次期モデル『V4』の試作版を公開",
+        "source_url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBSMjd5UzRDa1VHdFpmcVRhVXNfZ3dKZVZaazBXY0EtNzI4Uld5SU5iMEpBYlFfbXU1cHV5ZUQ1RXVhbk9XRDhTd1pMYmo2OGVLX3ZxVl9MS2w2YWFLME5OM0ctNHh4UQ?oc=5",
+        "source_name": "Межа. Новини України.",
+        "is_official": false,
+        "published_at": "2026-09-07T21:34:37.000Z",
+        "source_published_at": "2026-09-07T21:34:37.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-09-08T00:28:12.973Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "DeepSeek",
+          "V4"
+        ],
+        "primary_entity": "DeepSeek",
+        "story_subject": "DeepSeek V4",
+        "event_type": "release",
+        "event_stage": "beta",
+        "event_scope": "全世界",
+        "fact_slots": [
+          {
+            "type": "version",
+            "scope": "DeepSeekモデル",
+            "value": "V4(試作版)",
+            "normalized_value": "v4試作版"
+          }
+        ],
+        "new_facts": [
+          "DeepSeekがV4の試作版を公開した",
+          "エージェント能力とトークン処理性能を強化した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "中国のAI企業DeepSeekが、次期大規模言語モデル『V4』の試作版を公開し、エージェント機能とトークン処理性能を強化した。",
+        "detail": "中国のAI企業DeepSeekが、次期モデル「V4」の試作版を公開した。簡単に言うと、まだ正式版ではない開発途中のモデルを先行して出したという内容。これまでのV3などと比べ、AIが自分で判断して作業を進める「エージェント能力」と、文章を処理する単位である「トークン」の処理性能が強化された点が違いとされる。\n\n記事で確認できる強化点は、エージェント能力とトークン処理の2点にとどまる。具体的な性能数値や比較データは記事に明記されていない。AIが人の指示を細かく受けずに自律的にタスクをこなす「エージェント」機能は、今後のAI活用の鍵とされる分野であり、この強化は競争力に直結する。\n\n開発者や企業利用者は、今後DeepSeekの新モデルでより高度な自動処理が可能になる可能性がある。ただし今回は試作版であり、正式版ではない点に注意が必要である。正式リリースの時期や価格などはまだ発表されていない。",
+        "change_summary": "DeepSeekがV4の試作版を公開し、エージェント能力とトークン処理性能を強化したと発表した。",
+        "impact_summary": "AIを使った自動化業務を検討する企業にとって、選択肢となる新モデルの動向として注目される。",
+        "action_suggestion": "正式版のリリース時期や具体的な性能データについて、今後の発表を確認する必要がある。",
+        "importance": "A",
+        "related_categories": [
+          "AIツール・モデル",
+          "研究・技術"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmixkfvx3lxte5oedhmcwkzakdrwwjyszfptwd4etvurmdpt1v5wfprde9iaufquutlcvrdyvnnvgp0nzq0alvnugvnwhhzyjh2u0lbmefvnutjugnodhbasg5iquxiwgc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmixkfvx3lxte5oedhmcwkzakdrwwjyszfptwd4etvurmdpt1v5wfprde9iaufquutlcvrdyvnnvgp0nzq0alvnugvnwhhzyjh2u0lbmefvnutjugnodhbasg5iquxiwgc",
+      "content_hash": "4dfe9bf5f6e7018791476326085ed8e2b205cad600faa7c2347f18aadb6a1d54",
+      "story_key": "a867c5a73ea74f46b6b63d5188f638b10ac927092513a6688bc60d409317ad4c",
+      "status": "rejected",
+      "processed_at": "2026-09-08T00:30:36.172Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 個人ブログの投資分析記事で具体的な発表事実がない"
+    },
+    "url:https://openai.com/index/supporting-independent-journalism-in-ukraine": {
+      "canonical_url": "https://openai.com/index/supporting-independent-journalism-in-ukraine",
+      "content_hash": "492c501eefd6a028892a9382cf2dda9d61d78d6b6ac13fbb3c7eb3dd0818b662",
+      "story_key": "e5fa8c7ef25752d5f661bf7f59461b45eefb4bf16845917896a2a241b2b44e26",
+      "status": "enriched",
+      "processed_at": "2026-09-08T00:32:06.240Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "ChatGPT / OpenAI",
+        "title": "OpenAI、ウクライナの独立系報道機関支援でAIRPPU・WAN-IFRAと新プログラムを開始",
+        "source_url": "https://openai.com/index/supporting-independent-journalism-in-ukraine",
+        "source_name": "openai.com",
+        "is_official": true,
+        "published_at": "2026-09-07T00:00:00.000Z",
+        "source_published_at": "2026-09-07T00:00:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-09-08T00:28:12.973Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "OpenAI",
+          "AIRPPU",
+          "WAN-IFRA"
+        ],
+        "primary_entity": "OpenAI",
+        "story_subject": "ウクライナの独立系報道機関向けAI支援プログラム",
+        "event_type": "partnership",
+        "event_stage": "announced",
+        "event_scope": "ウクライナ",
+        "fact_slots": [],
+        "new_facts": [
+          "OpenAIがAIRPPUおよびWAN-IFRAと共同でウクライナの報道機関向けAIプログラムを開始した",
+          "プログラムの目的は報道機関の技術革新・持続力・独立性の強化とされている"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "OpenAIがAIRPPU・WAN-IFRAと共同で、ウクライナの独立系報道機関の革新性と持続力を支えるAIプログラムを立ち上げた。",
+        "detail": "OpenAIは、ウクライナの独立系報道機関支援団体AIRPPUおよび新聞協会WAN-IFRAと共同で新しいAI支援プログラムを立ち上げました。これは、ウクライナの報道機関がAI技術を使って取材や運営を強化できるようにする取り組みです。従来、OpenAIがウクライナの報道機関に特化した支援策を発表したことはありませんでした。\n\nこのプログラムは、報道機関の技術革新、危機に対する耐久力、そして独立したジャーナリズムの維持を目的としています。具体的な支援内容や参加する報道機関の数は、公開された記事には明記されていません。ロシアの侵攻下で情報発信を続けるウクライナのメディアにとって、AIを使った支援は重要な意味を持ちます。\n\n今後、実際にどのような技術や資金が提供されるのか、詳細な発表が待たれます。日本の報道機関にとって直接の影響は小さいものの、AI企業が報道支援に関わる事例として注目されます。プログラムの対象範囲や具体的な支援内容はまだ公表されていません。",
+        "change_summary": "OpenAIがAIRPPU・WAN-IFRAと組み、ウクライナの独立系報道機関向けAI支援プログラムを新たに開始した。",
+        "impact_summary": "日本の報道機関への直接の影響は小さいが、AI企業が紛争地域の報道支援に踏み出す動きとして業界の関心を集める。",
+        "action_suggestion": "支援の具体的内容や対象となる報道機関の数は本文に記載がなく、今後の追加発表を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "政策・行政",
+          "その他"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiqgfbvv95cuxpc1fseuj6vxmwv3jiag9wz1jouzfqdxrpv3n5qm9lq09qreh2bezimdcwwmnfqwjdzwhbamm2snn6c2zyt2xvtnpwn0dyrjhdwgc2z3ixclo1b3q4s2y0cwfsmzixagzeaurvsetgedl6vjzvnju1rzzqrhbhzxdkegdvsvyyuxhazny2qvh3c1g3vzfmrkrxv2vmsdk5tud3n2djegxjq3u0dw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiqgfbvv95cuxpc1fseuj6vxmwv3jiag9wz1jouzfqdxrpv3n5qm9lq09qreh2bezimdcwwmnfqwjdzwhbamm2snn6c2zyt2xvtnpwn0dyrjhdwgc2z3ixclo1b3q4s2y0cwfsmzixagzeaurvsetgedl6vjzvnju1rzzqrhbhzxdkegdvsvyyuxhazny2qvh3c1g3vzfmrkrxv2vmsdk5tud3n2djegxjq3u0dw",
+      "content_hash": "6710b1edfc51d4ea114c39229c4e19575f53bbe6723cfb855083b5f28a88b4fc",
+      "story_key": "8ca6eca627853d98263459081d421ae6bc6ccb4da6b9788cb3243b73383ca830",
+      "status": "enriched",
+      "processed_at": "2026-09-08T00:32:06.240Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Canva",
+        "title": "Canva、新AIモデルを準備 Google Picsは法人利用者取り込みを画策とAFR報道",
+        "source_url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPc1FSeUJ6VXMwV3JiaG9wZ1JoUzFqdXRpV3N5Qm9LQ09qREh2bEZIMDcwWmNfQWJDZWhBamM2SnN6c2ZYT2xVTnpWN0dyRjhDWGc2Z3Ixclo1b3Q4S2Y0cWFsMzIxaGZEaURVSEtGeDl6VjZVNjU1RzZQRHBHZXdKeGdVSVYyUXhaZnY2QVh3c1g3VzFmRkRXV2VMSDk5TUd3N2djeGxjQ3U0dw?oc=5",
+        "source_name": "AFR",
+        "is_official": false,
+        "published_at": "2026-09-07T23:00:00.000Z",
+        "source_published_at": "2026-09-07T23:00:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-09-08T00:28:12.973Z",
+        "event_at": "",
+        "event_status": "不明",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Canva",
+          "Google Pics"
+        ],
+        "primary_entity": "Canva",
+        "story_subject": "Canvaの新AIモデル",
+        "event_type": "other",
+        "event_stage": "rumor",
+        "event_scope": "不明",
+        "fact_slots": [],
+        "new_facts": [
+          "Canvaが新しいAIモデルを準備しているとAFRが報じた",
+          "Google Picsが法人向け利用者の獲得を狙っているとされる"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Canvaが新たなAIモデルを準備中で、Google Picsは法人向け利用者の取り込みを狙っているとAFRが報じた。",
+        "detail": "オーストラリアの経済紙AFRによると、デザインツールを提供するCanvaは新しいAIモデルを準備していると報じられました。これは、Canvaが自社サービスに使う生成AIの新しい仕組みを開発しているという内容です。記事は、Googleの画像関連サービス「Google Pics」が法人向け利用者の獲得を狙っていることにも触れています。\n\n記事本文からは、新しいAIモデルの具体的な性能や公開時期は明らかにされていません。Canvaはこれまでもデザイン作業を助けるAI機能を提供してきましたが、今回の動きは競合するGoogleの法人向け展開を意識したものとみられます。AFRの報道は、デザインツール分野でCanvaとGoogleがAIモデルの開発競争を進めていることを示しています。\n\nCanvaを利用する企業やデザイナーにとって、新しいAI機能が今後どのように追加されるかが注目点です。ただし、モデルの名称や搭載時期など詳細は今回の記事では示されておらず、続報を待つ必要があります。",
+        "change_summary": "Canvaが新しいAIモデルを準備しているとAFRが報じ、Googleの法人向け展開への対抗軸として位置づけられている。",
+        "impact_summary": "デザインツールを使う企業やクリエイターにとって、今後のAI機能追加の動向を左右する可能性がある。",
+        "action_suggestion": "新モデルの名称・性能・公開時期は本文に記載がなく、続報の発表を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmie0fvx3lxtfbxlw0zclf4uf9vmhlvb2jfdnfuejuxmxnts2lxr2vfvjrcukgxaewyqxfeamu2s3bezvnnsk1yvxh0tfnpmeh0tvnmoerorlrfq1c5setywll5a2xkx2q4dzu1sktasnnwytf5rnrpawphu3horv8wx0g5sq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmie0fvx3lxtfbxlw0zclf4uf9vmhlvb2jfdnfuejuxmxnts2lxr2vfvjrcukgxaewyqxfeamu2s3bezvnnsk1yvxh0tfnpmeh0tvnmoerorlrfq1c5setywll5a2xkx2q4dzu1sktasnnwytf5rnrpawphu3horv8wx0g5sq",
+      "content_hash": "1092276571cfa83e0e132e113bc1176e2f82e351f3d57c9e975638db574639e1",
+      "story_key": "ea62b047880ae98e81c2cbb3ecdf18633500fce5dba73044212630e2740eba75",
+      "status": "rejected",
+      "processed_at": "2026-09-08T00:32:06.240Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: モデル名の裏付けが乏しく事実確認が困難な販促的な記事"
+    },
+    "url:https://news.google.com/rss/articles/cbmi3wfbvv95cuxnaml2r1q4c25cdv95zxe3ndznmdy2rf9drlfrquhezwh4mvven3vlbllgwnppqk1ftw13svh1mzhmafzqrg5oby03sfrty1joymzsbzm3d1ftcdrenwp6tjvzqlvrqjjum3ctndbzewz2nvfvvvrnavi5bw9rwtf5adjks2jhs2nxchzsr1fmyvhiauzyrtbvbjbdzujssnjzzzg1czdjowqwallqc0oxa1y3a0nmzjjxsfhrv2pdbk1vu25vcenusgfznmvwcvyzqlbyodu5v25ivkzsnkfz": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmi3wfbvv95cuxnaml2r1q4c25cdv95zxe3ndznmdy2rf9drlfrquhezwh4mvven3vlbllgwnppqk1ftw13svh1mzhmafzqrg5oby03sfrty1joymzsbzm3d1ftcdrenwp6tjvzqlvrqjjum3ctndbzewz2nvfvvvrnavi5bw9rwtf5adjks2jhs2nxchzsr1fmyvhiauzyrtbvbjbdzujssnjzzzg1czdjowqwallqc0oxa1y3a0nmzjjxsfhrv2pdbk1vu25vcenusgfznmvwcvyzqlbyodu5v25ivkzsnkfz",
+      "content_hash": "2d36ed2a2aa7a837e9eb4b29f7e5707801a2420b0733878c4c7d8156c19676e8",
+      "story_key": "5e1322e7e0ab0b82470be98267df26b150b75848fe144dba13eb5ede22e35389",
+      "status": "rejected",
+      "processed_at": "2026-09-08T00:32:06.241Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: AIと無関係な航空機事故のニュース"
+    },
+    "url:https://news.google.com/rss/articles/cbmiyefvx3lxte1rsxetegfidwyyc3jxrk1yanyxyk1bm1vavgvrx0nfuerbywlmyjfiwmjtbznjml81bfk4vg1nsmnywtc0nmczwtb6vuw0de9hr2nvddg3svaym2xptjjwta": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiyefvx3lxte1rsxetegfidwyyc3jxrk1yanyxyk1bm1vavgvrx0nfuerbywlmyjfiwmjtbznjml81bfk4vg1nsmnywtc0nmczwtb6vuw0de9hr2nvddg3svaym2xptjjwta",
+      "content_hash": "56a56f44109a2de71076274b6fba9ad3da3c22150f29493f4317ab38b548f75d",
+      "story_key": "190bad6897bcbbc3286e495e6da42fdc0e1eb96013e18ecf995a89e0aa154b21",
+      "status": "retry",
+      "processed_at": "2026-09-08T00:32:06.241Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
       "reason": "missing_or_incomplete_ai_output"
     },
-    "url:https://news.google.com/rss/articles/cbmiaefvx3lxte5vshhpnwhiawt1cgc4tlfqsddst0p2v2fpwenad2przw1mrgzcxzjivmxydun4qliyslf6qjlszxlzvujqzuvptdrjcw1jcfvsr2otqlpsuxrxehktddbqcmvqvgnnwvfx": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxte5vshhpnwhiawt1cgc4tlfqsddst0p2v2fpwenad2przw1mrgzcxzjivmxydun4qliyslf6qjlszxlzvujqzuvptdrjcw1jcfvsr2otqlpsuxrxehktddbqcmvqvgnnwvfx",
-      "content_hash": "173eae651d639583dd38742dbf6cbbdc0ada54819ed81ed201596d0168774790",
-      "story_key": "d8e2b16f32672e023f758475523c67e672e4048bf3ed30260b9c72facf05f190",
+    "url:https://news.google.com/rss/articles/cbmiekfvx3lxtfbmmwxycepesffwq1pxutrvtfhkdlqwdlpnvxvnlufoclrtd196s05xmzbnqmtnswxeeuxqddvlytvudddpnjfimfdkrfdldwj6vjk1b2dir0vbxzbdxznaekxcc29eufq1n3rxcg9qm2dvrwp2cxjzc3n3": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiekfvx3lxtfbmmwxycepesffwq1pxutrvtfhkdlqwdlpnvxvnlufoclrtd196s05xmzbnqmtnswxeeuxqddvlytvudddpnjfimfdkrfdldwj6vjk1b2dir0vbxzbdxznaekxcc29eufq1n3rxcg9qm2dvrwp2cxjzc3n3",
+      "content_hash": "010f168c3e66e0f52088f59f438d207442abbe9d94d0d08f5682986a5aa578cc",
+      "story_key": "3fd3569294f3ab1f11934121f7ef76667ddac4eb8fdae1eb8c98f908f82308b0",
       "status": "retry",
-      "processed_at": "2026-09-07T15:52:42.744Z",
+      "processed_at": "2026-09-08T00:32:06.241Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
+      "lane": "regular",
       "reason": "missing_or_incomplete_ai_output"
     },
-    "url:https://news.google.com/rss/articles/cbmiwgfbvv95cuxpc1jxu2v0nkjkrlpmsk10og1ln1zhtjfkx1nmsgnzvjvnmwplbfbhckrpufjpd2r0uu1qclrsnty5b3hfvdrusnlxy3q1agu5cjbra1ddwedtdk1kyuczudjvohjst19yedqxykjyuzh2b0zxdll0tdl3nlbjc1pcmky4cnz4evu1ddhuuktxnnvxmjjvnlhdndq3y3bqs2toamrvem8yr09vttvbouetz0rxywtirjzrx1zylwhtzw1bzw": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiwgfbvv95cuxpc1jxu2v0nkjkrlpmsk10og1ln1zhtjfkx1nmsgnzvjvnmwplbfbhckrpufjpd2r0uu1qclrsnty5b3hfvdrusnlxy3q1agu5cjbra1ddwedtdk1kyuczudjvohjst19yedqxykjyuzh2b0zxdll0tdl3nlbjc1pcmky4cnz4evu1ddhuuktxnnvxmjjvnlhdndq3y3bqs2toamrvem8yr09vttvbouetz0rxywtirjzrx1zylwhtzw1bzw",
-      "content_hash": "1fe1174c55f86def7dd9f344b798e01be36e1e897e538709c079c494eb1e9e0a",
-      "story_key": "1e5a30c65502062fb70620873e1648c9a42727bc3247e1b2248b0655f5c9416d",
-      "status": "retry",
-      "processed_at": "2026-09-07T15:52:42.744Z",
+    "url:https://news.google.com/rss/articles/cbmirwfbvv95cuxpamvxa0jpdk9oyjc3mvz2y3bushjuemfrmnbyng1isgfcneu4yk1rdvqwnwhtz21geuq0nuzfowp3tuzvnlhbvtbusepnregyv3hiqjfkafhgb25qm1yyeu83akj6u0qzvudpyzrgewxnuvd0btjdmfvesxbpbmxtbtvdtlblus1lu2vxwdc2ohdorwzrvtrmvhjty19pz1zgmxfbrhpkvlffwhbua0pn": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmirwfbvv95cuxpamvxa0jpdk9oyjc3mvz2y3bushjuemfrmnbyng1isgfcneu4yk1rdvqwnwhtz21geuq0nuzfowp3tuzvnlhbvtbusepnregyv3hiqjfkafhgb25qm1yyeu83akj6u0qzvudpyzrgewxnuvd0btjdmfvesxbpbmxtbtvdtlblus1lu2vxwdc2ohdorwzrvtrmvhjty19pz1zgmxfbrhpkvlffwhbua0pn",
+      "content_hash": "df802a6786653ec702950c15ab58c3a82ebaab57785f9c69c7129df32b505fed",
+      "story_key": "6a256bcb6f9f064c826c20b53657797cfe18a442bcac106d3d4fce7217f03754",
+      "status": "enriched",
+      "processed_at": "2026-09-08T00:33:23.420Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "missing_or_incomplete_ai_output"
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Perplexity",
+        "title": "Perplexity、2028年のIPO方針を維持 OpenAIとAnthropicは上場に向け始動",
+        "source_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPamVXa0Jpdk9OYjc3MVZ2Y3BUSHJuemFRMnBYNG1iSGFCNEU4Yk1rdVQwNWhTZ21GeUQ0NUZFOWp3TUZVNlhBVTBuSEpnREgyV3hIQjFkaFhGb25qM1YyeU83akJ6U0QzVUdpYzRGeWxNUVd0bTJDMFVESXBPbmxTbTVDTlBLUS1lU2VxWDc2OHdORWZrVTRMVHJtY19pZ1ZGMXFBRHpkVlFFWHBua0pn?oc=5",
+        "source_name": "International Business Times",
+        "is_official": false,
+        "published_at": "2026-09-06T15:47:43.000Z",
+        "source_published_at": "2026-09-06T15:47:43.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-09-08T00:28:12.973Z",
+        "event_at": "",
+        "event_status": "不明",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Perplexity",
+          "OpenAI",
+          "Anthropic"
+        ],
+        "primary_entity": "Perplexity",
+        "story_subject": "PerplexityのIPO方針とOpenAI・Anthropicの上場に向けた動き",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "全世界",
+        "fact_slots": [],
+        "new_facts": [
+          "Perplexityが2028年のIPO方針を維持していると報じられた",
+          "OpenAIとAnthropicが上場に向けた具体的な動きを始めたと報じられた"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Perplexityが2028年のIPO方針を維持する一方、OpenAIとAnthropicは株式市場公開に向けた具体的な動きを始めたと報じられた。",
+        "detail": "Perplexityが2028年のIPO（新規株式公開）方針を維持すると伝えられた。簡単に言うと、上場の時期を予定通り2028年のままにするという内容。同時にOpenAIやAnthropicは、上場に向けた具体的な動きをすでに始めているとされ、両社との違いが注目されている。\n\n記事によると、OpenAIとAnthropicは株式市場公開への準備段階に入ったとされるが、具体的な申請時期や条件は本文からは確認できない。一方Perplexityは検索AIサービスを提供する企業で、資金調達の一手段として上場を視野に入れているが、時期を早める予定はないという。\n\n利用者にとっては、主要なAI企業の上場動向が今後の資金力や事業展開の速さに影響する可能性がある。ただし本文の抜粋には具体的な金額や条件までは記載されていない。各社の正式な申請時期や計画の詳細は、まだ発表されていない。",
+        "change_summary": "Perplexityが2028年のIPO方針を維持する一方、OpenAIとAnthropicは上場に向けた具体的な動きを始めたと報じられた。",
+        "impact_summary": "AI検索や対話サービスを手がける主要企業の上場動向は、資金調達や競争環境に影響を与える可能性がある。",
+        "action_suggestion": "各社の具体的なIPO申請時期や条件について、今後の公式発表を確認する必要がある。",
+        "importance": "A",
+        "related_categories": [
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
     },
-    "url:https://news.google.com/rss/articles/cbmidefvx3lxte1yn2nvvnjjdxlfy19zy2hjnuzgy2hpzwxsrnjsm0w3d3jyal85zxria1j5n2rcnhi3s2yynhjndflwwho5m1hvmhplzjk0bleyxzdhev9jowpkteswog10mjlezmrovfrttgi3ytl3vwhsz1c5": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte1yn2nvvnjjdxlfy19zy2hjnuzgy2hpzwxsrnjsm0w3d3jyal85zxria1j5n2rcnhi3s2yynhjndflwwho5m1hvmhplzjk0bleyxzdhev9jowpkteswog10mjlezmrovfrttgi3ytl3vwhsz1c5",
-      "content_hash": "9dbd021f981a9664752a313085d9162340a2c9713b56b8743342a7d1b4f10fe7",
-      "story_key": "46fdccf5f73b015307c21e3ca1b645500371f4b3948df47d7a353deb26552135",
-      "status": "retry",
-      "processed_at": "2026-09-07T15:53:27.622Z",
+    "url:https://news.google.com/rss/articles/cbmiaefvx3lxte5vnwzpeudxa3nuwuzqymzmeerjzvvtcnzym2q3dkrab1l2bnngwg5sbjgzamffetfynnjhbln0awznnw5qvlvcsezobkxywnfhwkrzohzwel9yvmtdnupjthbqnerstvyw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxte5vnwzpeudxa3nuwuzqymzmeerjzvvtcnzym2q3dkrab1l2bnngwg5sbjgzamffetfynnjhbln0awznnw5qvlvcsezobkxywnfhwkrzohzwel9yvmtdnupjthbqnerstvyw",
+      "content_hash": "0b0ed7f84ffbabdfa4fd2ac68099ba820ab42d6ed24d56320cd2ae2e106829a7",
+      "story_key": "00c013100178b50e798d8391a1f391ff500917bde952b49855ba5a33329826e7",
+      "status": "enriched",
+      "processed_at": "2026-09-08T00:33:23.420Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "missing_or_incomplete_ai_output"
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Grok / xAI",
+        "title": "米司法省がxAIを支持、メンフィスのガスタービン使用を容認",
+        "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5vNWZPeUdXa3NUWUZqYmZmeERjZVVTcnZYM2Q3dkRab1l2bnNGWG5SbjgzamFfeTFyNnJhblN0aWZNNW5QVlVCSEZobkxYWnFHWkRzOHZWel9YVmtDNUpJTHBqNERsTVYw?oc=5",
+        "source_name": "Межа. Новини України.",
+        "is_official": false,
+        "published_at": "2026-09-07T21:19:52.000Z",
+        "source_published_at": "2026-09-07T21:19:52.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-09-08T00:28:12.973Z",
+        "event_at": "",
+        "event_status": "不明",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "xAI",
+          "米司法省",
+          "メンフィス"
+        ],
+        "primary_entity": "xAI",
+        "story_subject": "メンフィスのガスタービン発電機使用を巡る争い",
+        "event_type": "policy",
+        "event_stage": "other",
+        "event_scope": "米国・メンフィス",
+        "fact_slots": [],
+        "new_facts": [
+          "米司法省がxAIのガスタービン使用を支持する立場を示したと報じられた"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "米司法省が、xAIがテネシー州メンフィスでガスタービン発電機を使用することを支持する立場を示したと報じられた。",
+        "detail": "米司法省が、xAIがテネシー州メンフィスでガスタービン発電機を使用することを支持する立場を示したと報じられた。簡単に言うと、xAIのデータセンター運用を巡る争いで、国の機関がxAI側の主張を後押ししたという内容。以前はこの発電設備の使用を巡り、地域住民や環境団体などとの対立が伝えられていた。\n\n記事の抜粋からは、具体的な訴訟の経緯や司法省の判断根拠までは確認できない。xAIはメンフィスに大規模なデータセンターを構え、AIの計算処理に必要な電力をガスタービンで賄っているとされる。この電力確保のあり方は、AI開発企業が急増する電力需要にどう対応するかという課題の一例として注目されている。\n\nxAIを含むAI企業のデータセンター運営における電力調達のあり方は、今後同様の施設を計画する他の企業にも影響しうる。ただし規制の具体的な内容や司法省の声明の詳細は本文からは分からない。今後、正式な司法判断や環境基準の扱いがどうなるかはまだ発表されていない。",
+        "change_summary": "米司法省がxAIのメンフィスでのガスタービン発電機使用を支持する立場を示したと報じられた。",
+        "impact_summary": "AI企業の電力調達方法や規制対応が、今後のデータセンター建設計画に影響する可能性がある。",
+        "action_suggestion": "司法省の具体的な声明内容や今後の法的手続きについて、続報の確認が必要。",
+        "importance": "B",
+        "related_categories": [
+          "政策・行政",
+          "半導体・インフラ",
+          "規制・法務"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
     },
-    "url:https://news.google.com/rss/articles/cbmiqkfvx3lxte0wogtqohdyevlts2xpejz4z0fzaehlr1dfykhpwxnbrk1lq1bsqxjcd1bjbnvgdzb0mkjqztruwthsdw": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiqkfvx3lxte0wogtqohdyevlts2xpejz4z0fzaehlr1dfykhpwxnbrk1lq1bsqxjcd1bjbnvgdzb0mkjqztruwthsdw",
-      "content_hash": "41f9dc74e05fc0bdec69a47b09d771e1dd7308a488de7bdd981459a131bed3cc",
-      "story_key": "2360cddd55541001b97e3c0a2d7723d921fb269d25de35ad6232f07ef494bd42",
-      "status": "retry",
-      "processed_at": "2026-09-07T15:53:27.622Z",
+    "url:https://news.google.com/rss/articles/cbmijgfbvv95cuxobnbgrxvlwnjxeutfvfnyzgpxa3lzevdlqtbvqjzocefwcgrzs2hltddyaxznrwrzcjy5rge0tu5qbnjwqznjdnn0ug5nsw04aty0zmtnvfhlmuzkuzrgr3ngtknxbzhxq2u4akdvee9iv3nxufvrevluzxvslvvtvm4zyzblrhpxrfzvcvnr": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmijgfbvv95cuxobnbgrxvlwnjxeutfvfnyzgpxa3lzevdlqtbvqjzocefwcgrzs2hltddyaxznrwrzcjy5rge0tu5qbnjwqznjdnn0ug5nsw04aty0zmtnvfhlmuzkuzrgr3ngtknxbzhxq2u4akdvee9iv3nxufvrevluzxvslvvtvm4zyzblrhpxrfzvcvnr",
+      "content_hash": "66783ae6c20e2ecbb7e4fce314564fea43ad50a7d9ec6c005985f6ffa37275e8",
+      "story_key": "22921ae9a8115ed3fbf250cca5242048b1ddd35d7e72c1c3f28dd95fe2169525",
+      "status": "enriched",
+      "processed_at": "2026-09-08T00:33:23.420Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Manus AI",
+        "title": "Manus AI、Metaとの買収交渉終了 9月1日から独立運営に",
+        "source_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxObnBGRXVLWnJxeUtfVFNYZGpXa3lZeVdLQTBVQjZocEFwcGRZS2hlTDdYaXZNRWRZcjY5RGE0TU5QbnJWQzNJdnN0UG5NSW04aTY0ZmtNVFhlMUZkUzRGR3NGTkNXbzhXQ2U4akdVeE9IV3NxUFVReVlUZXVSLVVtVm4zYzBlRHpxRFZVcVNR?oc=5",
+        "source_name": "Yahoo!ニュース",
+        "is_official": false,
+        "published_at": "2026-09-07T02:55:40.000Z",
+        "source_published_at": "2026-09-07T02:55:40.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-09-08T00:28:12.973Z",
+        "event_at": "2026-09-01",
+        "event_status": "発表済み",
+        "event_date_precision": "day",
+        "story_entities": [
+          "Manus AI",
+          "Meta"
+        ],
+        "primary_entity": "Manus AI",
+        "story_subject": "Metaとの買収交渉終了と独立運営への移行",
+        "event_type": "acquisition",
+        "event_stage": "cancelled",
+        "event_scope": "全世界",
+        "fact_slots": [
+          {
+            "type": "date",
+            "scope": "Manusの独立運営移行日",
+            "value": "2026-09-01",
+            "normalized_value": "2026-09-01"
+          }
+        ],
+        "new_facts": [
+          "ManusがMetaとの買収交渉を終了したと発表した",
+          "Manusが2026年9月1日から独立運営に移行した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "AIエージェント開発のManusが、米Metaとの数十億ドル規模の買収交渉を終了し、9月1日から独立して運営すると発表した。",
+        "detail": "Manus AIが、米Metaとの間で報じられていた数十億ドル規模の買収交渉に決着をつけたと発表した。簡単に言うと、Metaに買収されるのではなく、自社単独で事業を続けることを選んだという内容。以前はMetaによる買収の可能性が繰り返し報じられ、金額や条件が注目されていた。\n\n記事によると、Manusは2026年9月1日から独立した運営体制に移行したという。具体的な買収交渉の中身や、なぜ交渉が終了したのかという理由は本文からは確認できない。Manusは自律的にタスクをこなすAIエージェントサービスを提供する企業として知られている。\n\n独立運営を続けることで、Manusは自社の方針でサービス開発や資金調達を進めることになる。買収されなかったことで、今後の資金力や事業拡大の速さに変化が生じる可能性がある。買収交渉が終了した具体的な経緯や、今後の資金調達計画についてはまだ発表されていない。",
+        "change_summary": "ManusがMetaとの買収交渉を終了し、2026年9月1日から独立運営に移行したと発表した。",
+        "impact_summary": "AIエージェント企業の独立性が保たれることで、業界内の競争や技術開発の方向性に影響しうる。",
+        "action_suggestion": "買収交渉が終了した具体的な理由や、今後の資金調達方針について続報の確認が必要。",
+        "importance": "B",
+        "related_categories": [
+          "企業・株式",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmio0fvx3lxte01v21it2dnbklquxf3cy1mr1i1wggwdmzjbi1qynzsm09cqtb5wuftnfatc0rplvzzdkdz": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmio0fvx3lxte01v21it2dnbklquxf3cy1mr1i1wggwdmzjbi1qynzsm09cqtb5wuftnfatc0rplvzzdkdz",
+      "content_hash": "ce8848e05b4d33f7fd908dc2408e2599f88f67d8cee0ec3ec1f9bdaf306c10f1",
+      "story_key": "eebccf27931134555ac96159f7bdaeb7aaa5b28ec72ab1360d9cc0b73506747b",
+      "status": "retry",
+      "processed_at": "2026-09-08T00:33:23.420Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
       "reason": "missing_or_incomplete_ai_output"
     }
   },
-  "updated_at": "2026-09-07T15:53:27.622Z"
+  "updated_at": "2026-09-08T00:33:23.420Z"
 }
