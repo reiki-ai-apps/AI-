@@ -14,7 +14,7 @@ const requireText=(body,text,label)=>{if(!body.includes(text))failures.push(labe
 for(const text of [
   '<link rel="canonical" href="https://reiki-ai-apps.github.io/AI-/"',
   'property="og:title"','name="twitter:card"','"@type":"WebSite"','function shareArticle','一般利用者向けの登録・ログイン機能はありません',
-  '変化と仕事への影響を見る','前回更新後の新着を話題性・重要性で審査','function trackAppEvent',
+  '変化と仕事への影響を見る','今回の新着${newCount?` ${newCount}件`:\'\'}を話題性・重要性で審査','直近の重要記事から重複なく継続掲載','function trackAppEvent',
   '興味のある情報テーマを好きなだけ選んでください','AI要約の根拠になった元の記事を、登録なしで確認できます','function renderOperator',
   "p_event_id:APP_OPEN_EVENT_ID","data-operator-account-daily-opens",
   "String(u.article_id||'')===key",'href="${esc(publicArticleUrl(u))}"'

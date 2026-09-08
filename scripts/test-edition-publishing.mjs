@@ -81,6 +81,27 @@ const carried=buildHomeEdition(candidates,firstEdition,{windowStart:end,windowEn
 assert.equal(carried.carried_forward,true,"新着0件なら直前のトップ5を保持する");
 assert.deepEqual(carried.article_ids,firstEdition.article_ids,"新着0件で表示記事を勝手に差し替えない");
 
+const oneFresh=base("one-fresh","2026-09-02T07:00:00.000Z",{
+  importance:"A",title:"新しいAI業務支援機能を正式公開",primary_entity:"新企業",
+  story_subject:"AI業務支援機能",event_type:"release",event_stage:"launched"
+});
+const filledEdition=buildHomeEdition([...candidates,oneFresh],firstEdition,{
+  windowStart:end,windowEnd:end+6*3600000,checkedAt:end+6*3600000
+});
+assert.equal(filledEdition.new_selected_count,1,"新着件数は古い記事で水増ししない");
+assert.equal(filledEdition.continued_selected_count,4,"新着が1件でも別の重要記事を4件継続掲載する");
+assert.equal(filledEdition.selected_count,5,"ホームは新着が少ない回も5件を目標に満たす");
+assert.equal(filledEdition.update_health,"HEALTHY","異なる記事を最低3件確保できれば更新状態は正常になる");
+assert.equal(new Set(filledEdition.article_ids).size,5,"補充後も記事IDを重複させない");
+const filledItems=applyHomeEdition([...candidates,oneFresh],filledEdition).filter(item=>item.home_top_rank);
+assert.equal(filledItems.filter(item=>item.home_top_origin==="new").length,1,"新着記事を公開データで識別できる");
+assert.equal(filledItems.filter(item=>item.home_top_origin==="continued").length,4,"継続掲載を新着と分けて公開データへ記録する");
+for(let left=0;left<filledItems.length;left++){
+  for(let right=left+1;right<filledItems.length;right++){
+    assert.equal(sameEditionStory(filledItems[left],filledItems[right]),false,"継続掲載を加えても同じ出来事を2枠へ入れない");
+  }
+}
+
 const nextStart=end;
 const nextEnd=end+6*3600000;
 const priorGemini={...geminiRich,source_published_at:"2026-09-02T05:30:00.000Z",fetched_at:"2026-09-02T05:30:00.000Z"};
@@ -94,7 +115,7 @@ assert.deepEqual(crossEdition.article_ids,["gemini-rich"],"重複記事をトッ
 const materiallyNew={...nextGemini,article_id:"gemini-general-release",event_stage:"expanded",relation_type:"follow_up",previous_article_id:"gemini-rich",title:"Google、Gemini 3.8 Flashを一般提供へ拡大"};
 const progressedEdition=buildHomeEdition([priorGemini,materiallyNew],priorGeminiEdition,{windowStart:nextStart,windowEnd:nextEnd,checkedAt:nextEnd});
 assert.deepEqual(progressedEdition.article_ids,["gemini-general-release"],"正式提供など実質的に進んだ続報は新しいニュースとして残す");
-assert.equal(progressedEdition.update_health,"HEALTHY","内容が変わった更新回は正常と記録する");
+assert.equal(progressedEdition.update_health,"DEGRADED","検証済みの異なる記事が3件に届かなければ不足を検知する");
 
 const staleOnce=buildHomeEdition([priorGemini],priorGeminiEdition,{windowStart:end,windowEnd:end+12*3600000,checkedAt:end+12*3600000});
 const staleTwice=buildHomeEdition([priorGemini],staleOnce,{windowStart:end+12*3600000,windowEnd:end+25*3600000,checkedAt:end+25*3600000});
@@ -116,6 +137,8 @@ assert.ok(validationIndex>=0&&finalizeIndex>validationIndex&&buildArticlesIndex>
 const html=fs.readFileSync("index.html","utf8");
 assert.match(html,/function homeTopUpdates\(\)/,"ホーム専用の選定を使う");
 assert.match(html,/const list=homeTopUpdates\(\)/,"ホームは選定済みトップ記事だけを描画する");
+assert.match(html,/function homeOriginBadge\(u\)/,"ホーム記事を新着と継続掲載に分けて表示する");
+assert.match(html,/注目ニュース \$\{list\.length\}件・新着 \$\{newCount\}件/,"合計件数と本当の新着件数を分けて表示する");
 const renderHomeSource=html.slice(html.indexOf("function renderHome(v)"),html.indexOf("function byPub(a,b)"));
 const feedRenderIndex=renderHomeSource.indexOf("feedList.forEach");
 const secondaryRenderIndex=renderHomeSource.indexOf("html+=homeSecondaryHtml",feedRenderIndex);
@@ -146,11 +169,12 @@ assert.match(update,/const baseFinal=\[\.\.\.editionPicks,\.\.\.featuredPicks,\.
 
 const data=JSON.parse(fs.readFileSync("data.json","utf8"));
 const publicTop=data.filter(item=>Number(item.home_top_rank)>0).sort((a,b)=>a.home_top_rank-b.home_top_rank);
-assert.ok(publicTop.length>=1&&publicTop.length<=5,"公開データのホーム指定は1〜5件");
+assert.ok(publicTop.length>=3&&publicTop.length<=5,"公開データのホーム指定は常に3〜5件");
 assert.deepEqual(publicTop.map(item=>item.home_top_rank),Array.from({length:publicTop.length},(_,index)=>index+1),"公開順位は1から連続する");
 for(const item of publicTop){
   assert.ok(item.home_selected_at&&item.home_window_start&&item.home_window_end,"選定記事に更新時刻と対象期間がある");
   assert.ok(Number.isFinite(Number(item.home_top_score)),"選定記事に審査点がある");
+  assert.ok(["new","continued"].includes(item.home_top_origin),"選定記事に新着または継続掲載の区分がある");
 }
 for(let left=0;left<publicTop.length;left++){
   for(let right=left+1;right<publicTop.length;right++){
@@ -160,9 +184,12 @@ for(let left=0;left<publicTop.length;left++){
 
 const edition=JSON.parse(fs.readFileSync("home-edition.json","utf8"));
 assert.deepEqual(edition.article_ids,publicTop.map(item=>item.article_id),"選定正本と公開データのID順が一致する");
-assert.equal(edition.selection_version,"cross-edition-novelty-v3","過去72時間の重複統合とツール進化枠を使う選定版である");
+assert.equal(edition.selection_version,"home-value-continuation-v4","最低3件・目標5件と過去72時間の重複統合を使う選定版である");
 assert.equal(edition.distinct_candidate_count,edition.candidate_count-edition.duplicate_candidate_count,"候補URL数と異なる出来事件数を監査できる");
 assert.equal(edition.novel_candidate_count,edition.distinct_candidate_count-edition.cross_edition_duplicate_count,"過去回との重複を除いた本当の新着件数を監査できる");
 assert.ok(Array.isArray(edition.recent_story_history),"過去72時間の掲載履歴を次回の重複判定へ引き継ぐ");
 assert.ok(["HEALTHY","DEGRADED"].includes(edition.update_health),"更新停止を検知できる健康状態を公開する");
+assert.equal(edition.selected_count,edition.new_selected_count+edition.continued_selected_count,"ホーム合計を新着と継続掲載へ分解できる");
+assert.equal(edition.target_selected_count,5,"通常はトップ5を目標にする");
+assert.equal(edition.minimum_selected_count,3,"ホーム最低3件を選定データへ固定する");
 console.log("Edition publishing tests passed.");
