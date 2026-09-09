@@ -924,6 +924,11 @@ function expertFallbackCategories(item){
   if(/画像|動画生成|デザイン|映像/.test(title))return ["画像・動画生成"];
   return ["AIツール・モデル"];
 }
+function conciseExpertTopic(value){
+  const topic=String(value||"").trim();
+  if(/アプリにデータ保存機能.*Claude Code.*データベース/i.test(topic))return "Claude Codeでアプリにデータを保存する方法";
+  return topic.replace(/[？?].*$/g,"").replace(/って何$/,"の基本").slice(0,34);
+}
 function buildVerifiedExpertTitleFallback(item){
   if(!isVerifiedExpertTitleFallback(item))return null;
   const topics=expertTitleTopics(item.title);
@@ -941,7 +946,8 @@ function buildVerifiedExpertTitleFallback(item){
     "確認できない数字、効果、発言の言い回しは付け足していません。"
   ];
   const detailText=[detail.slice(0,3).join(""),detail.slice(3,7).join(""),detail.slice(7).join("")].join("\n\n");
-  const summary=`${name}氏が「${topics[0].slice(0,28)}」を軸に、${topics[1].slice(0,22)}などを説明する公式動画です。`;
+  const summaryTopics=topics.slice(0,3).map(conciseExpertTopic).filter(Boolean);
+  const summary=`${name}氏が、${summaryTopics.join("、")}を説明する公式動画です。`;
   return {
     ...item,
     title:cleanDisplayTitle(item.title,item.source_name),
