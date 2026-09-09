@@ -54,13 +54,16 @@ assert.equal(new Set(reviewPicks.slice(0,2).map(item=>item.expert_id)).size,2,"�
 assert.ok(buildExpertWebDiscoveryUrl(nakajima).includes("news.google.com/rss/search"),"Web動画探索フィードを作る");
 
 assert.match(updateSource,/collectExpertVideoCandidates/,"専門家動画を毎回収集する");
-assert.match(updateSource,/AI_DAILY_EXPERT_LIMIT\s*=\s*12/,"記事枠が埋まっても専門家動画の専用審査枠を確保する");
+assert.match(updateSource,/AI_DAILY_EXPERT_LIMIT\s*=\s*14/,"記事枠が埋まっても専門家動画の専用審査枠を確保する");
 assert.match(updateSource,/enrichNewItems\(expertReviewCandidates,cache,ledger,"expert",2\)/,"専門家動画を記事とは別の小分けバッチで審査する");
 assert.match(updateSource,/"shortDescription"/,"YouTubeの短い定型メタ情報ではなく動画の完全な説明文を読む");
 assert.match(updateSource,/詳細なチャプター一覧/,"公式チャプターを検証可能な動画内容として審査する");
 assert.match(updateSource,/isYouTubeSource\?18000:7000/,"YouTubeの完全説明を待つため取得時間を確保する");
 assert.match(updateSource,/fetchYouTubePlayerDescription/,"通常ページの説明が短い時はYouTube公式player応答で補完する");
 assert.match(updateSource,/videoDetails\?\.shortDescription/,"YouTube公式player応答の完全説明欄を使う");
+assert.match(updateSource,/parseYouTubeVideoFeed/,"公式チャンネルRSSの説明と公開日時も候補へ統合する");
+assert.match(updateSource,/EXPERT TITLE FALLBACK/,"説明取得障害時も具体的な公式タイトルだけ安全に掲載する");
+assert.match(updateSource,/EXPERT_TITLE_FALLBACK_BLOCK_PATTERN/,"誇張・切り抜き・販促動画をタイトル救済から除外する");
 assert.match(updateSource,/content_type:\s*"expert_video"/,"動画を公開データで識別する");
 assert.match(updateSource,/発言者の意見・予測・評価は確定事実として書かず/,"専門家の見解を事実と混同しない");
 assert.match(homeEditionSource,/isEditorialArticle/,"記事トップ5を記事だけに固定する");

@@ -191,7 +191,7 @@ const AI_NEW_LIMIT = 16;
 const AI_DEEP_BACKFILL_LIMIT = 24;
 const AI_DAILY_UNIQUE_LIMIT = 40;
 const AI_DAILY_EMERGENCY_LIMIT = 8;
-const AI_DAILY_EXPERT_LIMIT = 12;
+const AI_DAILY_EXPERT_LIMIT = 14;
 const ARTICLE_CONTEXT_LIMIT = 3600;
 const AI_CACHE_PATH = ".ai-cache.json";
 const AI_USAGE_PATH = ".ai-usage.json";
@@ -201,7 +201,7 @@ const EXPERT_SOURCES_PATH = "expert-sources.json";
 const EXPERT_VIDEO_ARCHIVE_LIMIT = 12;
 const EXPERT_VIDEO_PROTECTED_LIMIT = 4;
 const EXPERT_VIDEO_REVIEW_LIMIT = 6;
-const EXPERT_REVIEW_VERSION = "expert-video-review-v5-youtube-player-context";
+const EXPERT_REVIEW_VERSION = "expert-video-review-v6-official-feed-fallback";
 const STORY_REPOST_WINDOW_MS = 31 * 86400000;
 const STORY_TIMELINE_WINDOW_MS = 365 * 86400000;
 // 完全一致の再掲載を公開から外す期間。表示保持(31日)より長く、365日の全面抑制はしない。
@@ -667,7 +667,9 @@ async function fetchArticleContext(item) {
     const openingParagraphs=paragraphs.slice(0,7);
     const endingParagraphs=paragraphs.slice(-4).filter(value=>!openingParagraphs.includes(value));
     const opening=[...new Set([
-      youtubeDescription,meta("og:description"),meta("description"),meta("twitter:description"),
+      youtubeDescription,
+      isExpertVideoItem(item)?String(item.raw_excerpt||""):"",
+      meta("og:description"),meta("description"),meta("twitter:description"),
       ...openingParagraphs
     ].filter(Boolean))].join("\n");
     const ending=endingParagraphs.join("\n");
@@ -898,6 +900,67 @@ async function enrichNewItems(items,cache,ledger,lane="regular",batchSize=AI_BAT
   return {items:enriched,processed,rejected:rejectedCount};
 }
 
+const EXPERT_TITLE_FALLBACK_BLOCK_PATTERN=/(?:切り抜き|shorts?\b|#shorts|予告|ティザー|キャンペーン|無料.{0,10}学べる|稼ぎ方|AGI.{0,12}達成|汎用人工知能.{0,12}達成|[!！][?？]|暴露|衝撃|ヤバ)/i;
+function expertTitleTopics(value){
+  const title=stripTags(String(value||""))
+    .replace(/^【[^】]{2,40}】\s*/,"")
+    .replace(/\s+/g," ").trim();
+  return [...new Set(title.split(/\s*[/／｜|]\s*/)
+    .map(topic=>topic.replace(/[!?！？]+$/g,"").trim())
+    .filter(topic=>topic.length>=8)
+    .map(topic=>topic.slice(0,52)))].slice(0,5);
+}
+function isVerifiedExpertTitleFallback(item){
+  if(!isExpertVideoItem(item)||!item.is_official)return false;
+  if(!["primary","institutional"].includes(String(item.source_trust||"")))return false;
+  const title=String(item.title||"");
+  if(EXPERT_TITLE_FALLBACK_BLOCK_PATTERN.test(title)||!isSubstantiveAiVideo(title))return false;
+  return expertTitleTopics(title).length>=3;
+}
+function expertFallbackCategories(item){
+  const title=String(item.title||"");
+  if(/政策|行政|政府|国会|選挙/.test(title))return ["政策・行政"];
+  if(/Claude Code|コーディング|開発|データベース|Supabase|GitHub/i.test(title))return ["アプリ開発・自動化"];
+  if(/画像|動画生成|デザイン|映像/.test(title))return ["画像・動画生成"];
+  return ["AIツール・モデル"];
+}
+function buildVerifiedExpertTitleFallback(item){
+  if(!isVerifiedExpertTitleFallback(item))return null;
+  const topics=expertTitleTopics(item.title);
+  const name=String(item.expert_name||"専門家");
+  const detail=[
+    `${name}氏の公式動画です。`,
+    `動画の中心は「${topics[0]}」です。`,
+    "新製品の速報ではなく、AIを使う手順や考え方を本人が説明します。",
+    `具体的には「${topics[1]}」を扱います。`,
+    `さらに「${topics[2]}」も取り上げます。`,
+    "複数の論点を一つの流れで学べる点が、この動画を選んだ理由です。",
+    "仕事では、AIに任せる部分と、人が確認する部分を考える材料になります。",
+    "ここでは動画タイトルと公式説明で確認できる範囲だけをまとめています。",
+    "詳しい結論や実演の手順は、元動画で確かめてください。",
+    "確認できない数字、効果、発言の言い回しは付け足していません。"
+  ];
+  const detailText=[detail.slice(0,3).join(""),detail.slice(3,7).join(""),detail.slice(7).join("")].join("\n\n");
+  const summary=`${name}氏が「${topics[0].slice(0,28)}」を軸に、${topics[1].slice(0,22)}などを説明する公式動画です。`;
+  return {
+    ...item,
+    title:cleanDisplayTitle(item.title,item.source_name),
+    raw_excerpt:summary,
+    detail:detailText,
+    change_summary:`${name}氏の公式動画から、${topics.slice(0,3).join("、")}を確認できます。`,
+    impact_summary:"AIを仕事で使う際に、操作だけでなく仕組みや注意点まで考える材料になります。",
+    action_suggestion:"詳しい結論、実演手順、前提条件は元動画で確認してください。",
+    importance:String(item.expert_tier||"").startsWith("core_")?"A":"B",
+    related_categories:expertFallbackCategories(item),
+    event_at:"",event_status:"継続中",event_date_precision:"unknown",
+    story_entities:[name,...topics.slice(0,2)].slice(0,3),
+    primary_entity:name,story_subject:topics[0],event_type:"other",event_stage:"other",
+    event_scope:"YouTube公式動画",fact_slots:[],new_facts:topics.slice(0,5),
+    structured_complete:true,enrichment_version:PROMPT_VERSION,
+    expert_context_basis:"official_title_topics"
+  };
+}
+
 function decode(s) {
   s = s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1");
   const map = { "&lt;": "<", "&gt;": ">", "&quot;": '"', "&#39;": "'", "&apos;": "'", "&#x27;": "'", "&amp;": "&" };
@@ -958,6 +1021,21 @@ function parseFeed(xml, official, fallbackSource) {
   return out;
 }
 
+function parseYouTubeVideoFeed(xml,source={}){
+  return String(xml||"").split(/<entry\b[^>]*>/i).slice(1).map(block=>{
+    const videoId=stripTags(tag(block,"yt:videoId"));
+    const title=stripTags(tag(block,"title"));
+    const description=stripTags(tag(block,"media:description"));
+    const exactPublishedAt=toIso(tag(block,"published"))||"";
+    return {
+      videoId,title,description,exactPublishedAt,publishedAt:exactPublishedAt,
+      link:videoId?`https://www.youtube.com/watch?v=${videoId}`:"",
+      sourceName:String(source.source_name||"YouTube"),
+      channelId:String(source.channel_id||""),platform:"YouTube"
+    };
+  }).filter(video=>video.videoId&&video.title);
+}
+
 function expertVideoRecord(expert,source,video,fetchedAt){
   const expertNames=(video.experts||[expert]).map(item=>item.name).filter(Boolean);
   const platform=video.platform||source.platform||"Web動画・講演";
@@ -980,7 +1058,7 @@ function expertVideoRecord(expert,source,video,fetchedAt){
     source_updated_at:"",
     source_date_status:video.exactPublishedAt?"published":"unknown",
     fetched_at:fetchedAt,
-    raw_excerpt:[video.description,`発言者: ${expertNames.join("、")}`,`配信: ${source.source_name||video.sourceName||platform}`].filter(Boolean).join(" / ").slice(0,500),
+    raw_excerpt:[video.description,`発言者: ${expertNames.join("、")}`,`配信: ${source.source_name||video.sourceName||platform}`].filter(Boolean).join(" / ").slice(0,3000),
     source_name:source.source_name||video.sourceName||platform,
     is_official:officialTrust
   };
@@ -995,10 +1073,31 @@ async function collectExpertVideoCandidates(registry,fetchedAt){
   const channelSources=[...directSources,...hostSources];
   for(const source of channelSources){
     try{
-      const channelUrl=String(source.channel_url||"").replace(/\/$/,"")+"/videos";
-      const videos=parseYouTubeChannelVideos(await fetchText(channelUrl),source);
+      const channelUrl=source.channel_id
+        ?`https://www.youtube.com/channel/${source.channel_id}/videos`
+        :String(source.channel_url||"").replace(/\/$/,"")+"/videos";
+      const videos=parseYouTubeChannelVideos(await fetchText(channelUrl,{youtube:true}),source);
+      let feedVideos=[];
+      if(source.channel_id){
+        try{
+          const feedUrl=`https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(source.channel_id)}`;
+          feedVideos=parseYouTubeVideoFeed(await fetchText(feedUrl,{youtube:true,retries:2}),source);
+        }catch(error){
+          console.error("  expert feed fail",source.source_name||source.channel_id,String(error.message||error).slice(0,80));
+        }
+      }
+      const feedById=new Map(feedVideos.map(video=>[video.videoId,video]));
+      const mergedVideos=videos.map(video=>{
+        const feed=feedById.get(video.videoId);
+        return feed?{...video,
+          description:feed.description||video.description,
+          exactPublishedAt:feed.exactPublishedAt||video.exactPublishedAt,
+          publishedAt:feed.publishedAt||video.publishedAt}:video;
+      });
+      const pageIds=new Set(mergedVideos.map(video=>video.videoId));
+      for(const feedVideo of feedVideos)if(!pageIds.has(feedVideo.videoId))mergedVideos.push(feedVideo);
       let kept=0;
-      for(const video of videos){
+      for(const video of mergedVideos){
         if(kept>=4)break;
         const text=`${video.title} ${video.description||""}`;
         if(!isSubstantiveAiVideo(text))continue;
@@ -1008,7 +1107,7 @@ async function collectExpertVideoCandidates(registry,fetchedAt){
         records.push(expertVideoRecord(experts[0],source,video,fetchedAt));
         kept++;
       }
-      console.error("OK expert channel",source.source_name||source.channel_id,"kept",kept,"/ fetched",videos.length);
+      console.error("OK expert channel",source.source_name||source.channel_id,"kept",kept,"/ page",videos.length,"/ feed",feedVideos.length);
     }catch(error){
       console.error("  expert channel fail",source.source_name||source.channel_id,String(error.message||error).slice(0,80));
     }
@@ -1075,16 +1174,28 @@ function parseOfficialUpdatePage(html, url, toolName) {
   };
 }
 
-async function fetchText(url) {
-  const controller=new AbortController();
-  const timeout=setTimeout(()=>controller.abort(),12000);
-  try{
-    const res = await fetch(url, { signal:controller.signal,headers: { "User-Agent": "Mozilla/5.0 (AI-Radar bot)" } });
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    return await res.text();
-  }finally{
-    clearTimeout(timeout);
+async function fetchText(url,options={}) {
+  const attempts=Math.max(1,Number(options.retries||0)+1);
+  let lastError=null;
+  for(let attempt=0;attempt<attempts;attempt++){
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),12000);
+    try{
+      const userAgent=options.youtube
+        ?"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+        :"Mozilla/5.0 (AI-Radar bot)";
+      const res = await fetch(url, { signal:controller.signal,headers: {
+        "User-Agent":userAgent,"Accept-Language":"ja-JP,ja;q=0.9,en;q=0.5"
+      } });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return await res.text();
+    }catch(error){
+      lastError=error;
+    }finally{
+      clearTimeout(timeout);
+    }
   }
+  throw lastError||new Error("fetch failed");
 }
 function normalizedUrl(value) {
   try{
@@ -2075,7 +2186,17 @@ function bootstrapCacheResult(cache,source,result) {
   } catch (e) {
     console.error("AI要約に失敗:",String(e.message||e).slice(0,300));
   }
-  const newlyEnriched=[...expertResult.items,...migrationResult.items,...regularResult.items,...emergencyResult.items];
+  const expertAcceptedUrls=new Set(expertResult.items.map(item=>normalizedUrl(item.source_url)).filter(Boolean));
+  const expertTitleFallbacks=selectExpertVideoArchivePicks(
+    fresh.filter(isVerifiedExpertTitleFallback),3
+  ).filter(source=>!expertAcceptedUrls.has(normalizedUrl(source.source_url)))
+    .map(buildVerifiedExpertTitleFallback).filter(item=>item&&isCompleteEnrichedItem(item));
+  for(const item of expertTitleFallbacks){
+    const source=fresh.find(candidate=>normalizedUrl(candidate.source_url)===normalizedUrl(item.source_url));
+    if(source)rememberCacheResult(cache,source,"enriched",item,"expert","official_title_topics");
+    console.error("EXPERT TITLE FALLBACK",item.expert_name,item.title);
+  }
+  const newlyEnriched=[...expertResult.items,...expertTitleFallbacks,...migrationResult.items,...regularResult.items,...emergencyResult.items];
   const selectedCount=regularCandidates.length+emergencyCandidates.length;
   if(dailyBudget>0&&usageDay(ledger).estimated_usd>=dailyBudget*0.8){
     console.error("AI DAILY BUDGET WARNING:",usageDay(ledger).estimated_usd,"/",dailyBudget,"USD");
