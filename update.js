@@ -191,7 +191,7 @@ const AI_NEW_LIMIT = 16;
 const AI_DEEP_BACKFILL_LIMIT = 24;
 const AI_DAILY_UNIQUE_LIMIT = 40;
 const AI_DAILY_EMERGENCY_LIMIT = 8;
-const AI_DAILY_EXPERT_LIMIT = 10;
+const AI_DAILY_EXPERT_LIMIT = 12;
 const ARTICLE_CONTEXT_LIMIT = 3600;
 const AI_CACHE_PATH = ".ai-cache.json";
 const AI_USAGE_PATH = ".ai-usage.json";
@@ -201,7 +201,7 @@ const EXPERT_SOURCES_PATH = "expert-sources.json";
 const EXPERT_VIDEO_ARCHIVE_LIMIT = 12;
 const EXPERT_VIDEO_PROTECTED_LIMIT = 4;
 const EXPERT_VIDEO_REVIEW_LIMIT = 6;
-const EXPERT_REVIEW_VERSION = "expert-video-review-v4-youtube-timeout";
+const EXPERT_REVIEW_VERSION = "expert-video-review-v5-youtube-player-context";
 const STORY_REPOST_WINDOW_MS = 31 * 86400000;
 const STORY_TIMELINE_WINDOW_MS = 365 * 86400000;
 // 完全一致の再掲載を公開から外す期間。表示保持(31日)より長く、365日の全面抑制はしない。
@@ -566,6 +566,50 @@ function explicitEventDateCandidates(text, referenceDate="") {
   }
   return [...new Map(matches.map(candidate=>[candidate.date+"|"+candidate.context,candidate])).values()].slice(0,5);
 }
+function youtubeVideoId(value){
+  try{
+    const url=new URL(String(value||""));
+    if(url.hostname.toLowerCase()==="youtu.be")return url.pathname.split("/").filter(Boolean)[0]||"";
+    if(/(?:^|\.)youtube\.com$/.test(url.hostname.toLowerCase())){
+      if(url.pathname==="/watch")return url.searchParams.get("v")||"";
+      const match=url.pathname.match(/^\/(?:shorts|embed|live)\/([A-Za-z0-9_-]{11})/);
+      return match?.[1]||"";
+    }
+  }catch(_invalidUrl){}
+  return "";
+}
+
+async function fetchYouTubePlayerDescription(sourceUrl,signal){
+  const videoId=youtubeVideoId(sourceUrl);
+  if(!/^[A-Za-z0-9_-]{11}$/.test(videoId))return "";
+  const browserHeaders={
+    "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "Accept-Language":"ja-JP,ja;q=0.9,en;q=0.5"
+  };
+  try{
+    // 通常のwatchページはデータセンターIPで短い定型説明だけを返すことがある。
+    // 同じYouTube公式プレイヤーが使う設定とplayer応答から、公式説明欄を再取得する。
+    const embed=await fetch(`https://www.youtube.com/embed/${videoId}?hl=ja`,{
+      signal,headers:browserHeaders
+    });
+    if(!embed.ok)return "";
+    const embedHtml=(await embed.text()).slice(0,500000);
+    const apiKey=(embedHtml.match(/"INNERTUBE_API_KEY":"([^"]+)"/)||[])[1]||"";
+    const clientVersion=(embedHtml.match(/"INNERTUBE_CLIENT_VERSION":"([^"]+)"/)||[])[1]||"";
+    if(!apiKey||!clientVersion)return "";
+    const player=await fetch(`https://www.youtube.com/youtubei/v1/player?key=${encodeURIComponent(apiKey)}`,{
+      method:"POST",signal,
+      headers:{...browserHeaders,"Content-Type":"application/json"},
+      body:JSON.stringify({videoId,context:{client:{clientName:"WEB",clientVersion,hl:"ja",gl:"JP"}}})
+    });
+    if(!player.ok)return "";
+    const payload=await player.json();
+    return stripTags(payload?.videoDetails?.shortDescription||"");
+  }catch(_error){
+    return "";
+  }
+}
+
 async function fetchArticleContext(item) {
   let sourceHost="";
   try{sourceHost=new URL(item.source_url).hostname.toLowerCase();}catch(_invalidUrl){}
@@ -602,12 +646,16 @@ async function fetchArticleContext(item) {
     // リダイレクト先がGoogle Newsのままなら本文は取得できていない。
     const finalHost=(()=>{try{return new URL(res.url||item.source_url).hostname;}catch(_e){return "";}})();
     if(finalHost.endsWith("news.google.com")||meta("og:site_name")==="Google News")return fallback();
-    const youtubeDescription=/(?:^|\.)youtube\.com$/.test(finalHost)?(()=>{
+    let youtubeDescription=/(?:^|\.)youtube\.com$/.test(finalHost)?(()=>{
       const match=html.match(/"shortDescription":"((?:\\.|[^"\\])*)"/);
       if(!match)return "";
       try{return stripTags(JSON.parse(`"${match[1]}"`));}
       catch(_error){return stripTags(match[1].replace(/\\n/g," ").replace(/\\"/g,'"'));}
     })():"";
+    if(isYouTubeSource&&youtubeDescription.length<180){
+      const playerDescription=await fetchYouTubePlayerDescription(item.source_url,controller.signal);
+      if(playerDescription.length>youtubeDescription.length)youtubeDescription=playerDescription;
+    }
     const paragraphs=[...html.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
       .map(m=>stripTags(m[1])).filter(t=>t.length>=45);
     const jsonDate=(field)=>{
@@ -800,7 +848,7 @@ async function enrichNewItems(items,cache,ledger,lane="regular",batchSize=AI_BAT
     const batch=items.slice(start,start+batchSize);
     const withContext=await Promise.all(batch.map(async item=>{
       const context=await fetchArticleContext(item);
-      if(isExpertVideoItem(item))console.error("EXPERT CONTEXT",item.expert_name||"不明",String(item.title||"").slice(0,70),"chars",context.text.length,"official",context.text.includes("【公式動画"));
+      if(isExpertVideoItem(item))console.error("EXPERT CONTEXT",item.expert_name||"不明",String(item.title||"").slice(0,70),"chars",context.text.length,"chapters",/(?:^|\s)\d{1,2}:\d{2}(?::\d{2})?(?:\s|$)/m.test(context.text));
       return {
         ...item,
         article_context:context.text,
