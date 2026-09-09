@@ -13,6 +13,12 @@ function esc(value){
 function clean(value,max=220){
   return String(value??"").replace(/\s+/g," ").trim().slice(0,max);
 }
+function safeHttpUrl(value){
+  try{
+    const url=new URL(String(value||""));
+    return ["http:","https:"].includes(url.protocol)?url.toString():"";
+  }catch(_error){return "";}
+}
 function safeId(item){
   const value=String(item.article_id||item.id||"").trim();
   return /^[A-Za-z0-9_-]{8,100}$/.test(value)?value:"";
@@ -59,17 +65,20 @@ function relatedArticles(item,id,pool,limit=3){
   }).sort((a,b)=>b.score-a.score||b.date-a.date).slice(0,limit);
 }
 function page(item,id,related=[]){
+  const expertVideo=String(item.content_type||"").toLowerCase()==="expert_video";
+  const sourceUrl=safeHttpUrl(item.source_url);
   const canonical=`${baseUrl}articles/${encodeURIComponent(id)}/`;
   const appUrl=baseUrl;
   const title=clean(item.title,120)||"AI重要ニュース";
-  const description=clean(item.easy_summary||item.raw_excerpt||item.detail,180)||"AI進化レーダーが重要度と仕事への影響を整理したAIニュースです。";
+  const description=clean(item.easy_summary||item.raw_excerpt||item.detail,180)||(expertVideo?"AI進化レーダーが専門家の重要発言と背景を整理した解説です。":"AI進化レーダーが重要度と仕事への影響を整理したAIニュースです。");
   const published=isoDate(item.source_published_at||item.published_at||item.fetched_at);
   const updated=isoDate(item.source_updated_at||item.fetched_at||item.published_at);
   const image=articleImage(item);
   const articleLd={
-    "@type":"NewsArticle",
+    "@type":expertVideo?"Article":"NewsArticle",
     "@id":`${canonical}#article`,
     headline:title,
+    about:expertVideo&&item.expert_name?{"@type":"Person",name:clean(item.expert_name,80)}:undefined,
     description,
     image:[image],
     datePublished:published||undefined,
@@ -86,7 +95,8 @@ function page(item,id,related=[]){
       {"@type":"ListItem",position:2,name:title,item:canonical}
     ]
   }]};
-  const relatedHtml=related.length?`<section class="related"><h2>関連するAIニュース</h2><div class="related-grid">${related.map(candidate=>{
+  const relatedHeading=expertVideo?"関連するAIニュース・専門家解説":"関連するAIニュース";
+  const relatedHtml=related.length?`<section class="related"><h2>${relatedHeading}</h2><div class="related-grid">${related.map(candidate=>{
     const candidateTitle=clean(candidate.item.title,120)||"AI重要ニュース";
     const candidateUrl=`${baseUrl}articles/${encodeURIComponent(candidate.id)}/`;
     return `<a href="${candidateUrl}">${esc(candidateTitle)}</a>`;
@@ -109,16 +119,16 @@ function page(item,id,related=[]){
 :root{color-scheme:dark;font-family:"Noto Sans JP",system-ui,sans-serif;background:#050a14;color:#eef6ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0,#10295a 0,transparent 30rem),#050a14}main{width:min(860px,calc(100% - 28px));margin:0 auto;padding:24px 0 60px}.brand{display:flex;align-items:center;gap:10px;color:#73e8ee;font-size:13px;font-weight:800;letter-spacing:.1em;text-decoration:none}.brand img{width:34px;height:34px;border-radius:9px}.hero{margin-top:22px;padding:clamp(22px,5vw,46px);border:1px solid #1c8ea0;border-radius:22px;background:linear-gradient(145deg,rgba(7,28,51,.97),rgba(16,19,58,.94));box-shadow:0 24px 80px #0009}.meta{color:#9fb1c6;font-size:13px}.rank{display:inline-flex;margin-right:8px;padding:4px 9px;border-radius:999px;background:#d82757;color:white;font-weight:900}.hero h1{margin:18px 0 14px;font-size:clamp(26px,5vw,44px);line-height:1.38}.lead{color:#c6d4e4;font-size:clamp(15px,2vw,18px);line-height:1.9}.article-image{display:block;width:100%;height:auto;aspect-ratio:16/9;margin:22px 0 0;border:1px solid #173d5c;border-radius:16px;object-fit:cover}.byline{margin:14px 0 0;color:#91a5bb;font-size:13px;line-height:1.7}section{margin-top:18px;padding:21px;border:1px solid #18344c;border-radius:16px;background:#081526}section h2{margin:0 0 9px;color:#72e6ec;font-size:16px}section p{margin:0;color:#c3d0df;line-height:1.9;white-space:pre-line}section p+p{margin-top:1em}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.button{display:inline-flex;min-height:48px;align-items:center;justify-content:center;padding:0 18px;border-radius:12px;background:linear-gradient(135deg,#0899bd,#6d35d8);color:white;font-weight:800;text-decoration:none}.button.secondary{border:1px solid #2a6380;background:#0b1d31}.related-grid{display:grid;gap:10px}.related-grid a{display:block;padding:12px 14px;border:1px solid #1e4967;border-radius:11px;color:#dffbff;background:#0a1b2d;text-decoration:none;line-height:1.6}.related-grid a:hover{border-color:#61dbe4;color:#fff}.note{margin-top:18px;color:#8194aa;font-size:12px;line-height:1.7}@media(max-width:520px){main{width:min(100% - 20px,860px)}.hero{border-radius:16px}.actions{display:grid}.button{width:100%}}
 </style></head><body><main>
 <a class="brand" href="${baseUrl}"><img src="${baseUrl}assets/ai-radar-icon-192.png" alt="">AI進化レーダー</a>
-<article class="hero"><div class="meta"><span class="rank">重要度${esc(String(item.importance||"B").toUpperCase())}</span>${esc(item.source_name||"情報元確認済み")}・${esc(displayDate(item.source_published_at||item.published_at||item.fetched_at))}</div><h1>${esc(title)}</h1><p class="lead">${esc(description)}</p>
+<article class="hero"><div class="meta"><span class="rank">${expertVideo?'専門家動画':'重要度'+esc(String(item.importance||"B").toUpperCase())}</span>${expertVideo&&item.expert_name?`${esc(item.expert_name)}・${esc(item.expert_role||'AIの専門家')}｜`:''}${esc(item.source_name||"情報元確認済み")}・${esc(displayDate(item.source_published_at||item.published_at||item.fetched_at))}</div><h1>${esc(title)}</h1><p class="lead">${esc(description)}</p>
 <img class="article-image" src="${image}" alt="${esc(title)}の内容を表すイメージ" width="1200" height="675">
-<p class="byline">KIZASHI編集部｜公開情報を整理し、変化・仕事への影響・次の確認事項を明示しています。</p>
-<div class="actions"><a class="button" href="${appUrl}">AI最新ニュースをやさしい要約で確認</a></div></article>
-${paragraph("やさしい解説",item.detail||item.easy_summary)}
-${paragraph("何が変わったか",item.change_summary||item.simple_explanation)}
+<p class="byline">KIZASHI編集部｜${expertVideo?'発言者の見解と確認済み事実を分け、主張・理由・影響・未確定点を整理しています。':'公開情報を整理し、変化・仕事への影響・次の確認事項を明示しています。'}</p>
+<div class="actions"><a class="button" href="${appUrl}">${expertVideo?'専門家の重要発言をやさしい要約で確認':'AI最新ニュースをやさしい要約で確認'}</a>${expertVideo&&sourceUrl?`<a class="button secondary" href="${esc(sourceUrl)}" target="_blank" rel="noopener noreferrer">元の動画・講演を見る</a>`:''}</div></article>
+${paragraph(expertVideo?"重要発言のやさしい解説":"やさしい解説",item.detail||item.easy_summary)}
+${paragraph(expertVideo?"発言の核心":"何が変わったか",item.change_summary||item.simple_explanation)}
 ${paragraph("仕事への影響",item.impact_summary)}
-${paragraph("次に確認すること",item.action_suggestion)}
+${paragraph(expertVideo?"次に確かめること":"次に確認すること",item.action_suggestion)}
 ${relatedHtml}
-<p class="note">AI進化レーダーは公開情報を整理し、重要度と影響を分かりやすく伝えます。最終判断は情報元の最新内容もご確認ください。</p>
+<p class="note">AI進化レーダーは公開情報を整理し、重要度と影響を分かりやすく伝えます。${expertVideo?'専門家の予測や評価は発言者本人の見解です。':''}最終判断は情報元の最新内容もご確認ください。</p>
 </main></body></html>`;
 }
 

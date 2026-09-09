@@ -1,0 +1,170 @@
+{
+  "version": "ai-radar-experts-2026-09-09-v1",
+  "selection_policy": "人気だけでは選ばず、AIの研究・開発・実装・政策について継続して具体的な発言ができる人物を登録する。研究開発・政策の当事者と事業・社会への解説者は区分する。",
+  "experts": [
+    {
+      "id": "yutaka-matsuo",
+      "name": "松尾豊",
+      "aliases": ["松尾豊", "松尾 豊", "Yutaka Matsuo"],
+      "role": "AI研究者・東京大学教授",
+      "tier": "core_research_policy",
+      "coverage": ["生成AI研究", "AI政策", "産業・教育"],
+      "selection_reason": "人工知能・深層学習・生成AIの研究と、日本のAI政策・産学連携の両方に関わる当事者。",
+      "profile_url": "https://weblab.t.u-tokyo.ac.jp/member/yutaka-matsuo/",
+      "official_sources": []
+    },
+    {
+      "id": "daisuke-okanohara",
+      "name": "岡野原大輔",
+      "aliases": ["岡野原大輔", "岡野原 大輔", "Daisuke Okanohara"],
+      "role": "AI研究開発者・Preferred Networks代表取締役社長",
+      "tier": "core_research_engineering",
+      "coverage": ["基盤モデル", "AI計算基盤", "社会実装"],
+      "selection_reason": "国産大規模言語モデルやAI計算基盤の研究開発と事業化を率いる当事者。",
+      "profile_url": "https://www.preferred.jp/ja/company/cofounders",
+      "official_sources": []
+    },
+    {
+      "id": "shota-imai",
+      "name": "今井翔太",
+      "aliases": ["今井翔太", "今井 翔太", "Shota Imai"],
+      "role": "AI研究者・解説者",
+      "tier": "core_research",
+      "coverage": ["生成AI", "AI能力評価", "社会への影響"],
+      "selection_reason": "生成AIの技術進展と社会・仕事への影響を、研究に基づいて継続的に説明している。",
+      "profile_url": "https://www.jaist.ac.jp/whatsnew/info/2025/06/16-1.html",
+      "official_sources": []
+    },
+    {
+      "id": "satoshi-nakajima",
+      "name": "中島聡",
+      "aliases": ["中島聡", "中島 聡", "Satoshi Nakajima"],
+      "role": "ソフトウェア技術者・起業家",
+      "tier": "core_engineering",
+      "coverage": ["AIコーディング", "ソフトウェア開発", "AI製品"],
+      "selection_reason": "長年のソフトウェア開発経験を基に、AIによる開発手法と製品設計の変化を具体的に検証している。",
+      "profile_url": "https://www.youtube.com/@s_nakajima",
+      "official_sources": [
+        {
+          "platform": "youtube",
+          "kind": "official_person_channel",
+          "channel_id": "UCtjRA-7EuBmyWMyty1HZAPQ",
+          "channel_url": "https://www.youtube.com/@s_nakajima",
+          "source_name": "中島聡のLife is Beautiful",
+          "trust": "primary"
+        }
+      ]
+    },
+    {
+      "id": "takahiro-anno",
+      "name": "安野貴博",
+      "aliases": ["安野貴博", "安野 貴博", "安野たかひろ", "Takahiro Anno"],
+      "role": "AIエンジニア・起業家・政策当事者",
+      "tier": "core_engineering_policy",
+      "coverage": ["AI実装", "デジタル政策", "行政"],
+      "selection_reason": "AI開発・起業と政策の両方を経験し、技術を社会制度へどう実装するかを具体的に発信している。",
+      "profile_url": "https://team-mir.ai/member/sangiin/takahiro-anno",
+      "official_sources": [
+        {
+          "platform": "youtube",
+          "kind": "official_person_channel",
+          "channel_id": "UCiMwbmcCSMORJ-85XWhStBw",
+          "channel_url": "https://www.youtube.com/@%E5%AE%89%E9%87%8E%E8%B2%B4%E5%8D%9A",
+          "source_name": "安野貴博の自由研究",
+          "trust": "primary"
+        }
+      ]
+    },
+    {
+      "id": "yoichi-ochiai",
+      "name": "落合陽一",
+      "aliases": ["落合陽一", "落合 陽一", "Yoichi Ochiai"],
+      "role": "研究者・メディアアーティスト",
+      "tier": "core_research_society",
+      "coverage": ["AIと社会", "デジタル技術", "産業・文化"],
+      "selection_reason": "デジタル技術の研究と実装を通じ、AIが産業・文化・社会へ与える変化を継続的に論じている。",
+      "profile_url": "https://digitalnature.slis.tsukuba.ac.jp/",
+      "official_sources": []
+    },
+    {
+      "id": "issei-yamamoto",
+      "name": "山本一成",
+      "aliases": ["山本一成", "山本 一成", "Issei Yamamoto"],
+      "role": "AI開発者・起業家",
+      "tier": "core_engineering",
+      "coverage": ["自律型AI", "AI開発", "技術経営"],
+      "selection_reason": "AIシステムの研究開発と事業化の当事者として、能力の進歩と実装上の論点を発信している。",
+      "profile_url": "https://heroz.co.jp/",
+      "official_sources": []
+    },
+    {
+      "id": "takafumi-horie",
+      "name": "堀江貴文",
+      "aliases": ["堀江貴文", "堀江 貴文", "ホリエモン", "Takafumi Horie"],
+      "role": "事業家・AI社会実装の解説者",
+      "tier": "informed_business_commentary",
+      "coverage": ["AI事業活用", "働き方", "社会実装"],
+      "selection_reason": "AI研究者とは区別し、事業・働き方・社会実装について具体的なAI論点がある発信だけを対象にする。",
+      "profile_url": "https://www.youtube.com/@takaponjp",
+      "official_sources": [
+        {
+          "platform": "youtube",
+          "kind": "official_person_channel",
+          "channel_id": "UCXjTiSGclQLVVU83GVrRM4w",
+          "channel_url": "https://www.youtube.com/@takaponjp",
+          "source_name": "堀江貴文 ホリエモン",
+          "trust": "primary"
+        }
+      ]
+    }
+  ],
+  "trusted_hosts": [
+    {
+      "id": "nii-official",
+      "platform": "youtube",
+      "kind": "official_institution_channel",
+      "channel_id": "UCqnWxgOhtmQbgM_ivpSn5Yw",
+      "channel_url": "https://www.youtube.com/@jyouhougaku",
+      "source_name": "国立情報学研究所 - National Institute of Informatics",
+      "trust": "institutional",
+      "allowed_experts": ["yutaka-matsuo", "daisuke-okanohara", "shota-imai"]
+    },
+    {
+      "id": "rehacq-official",
+      "platform": "youtube",
+      "kind": "verified_interview_channel",
+      "channel_id": "UCG_oqDSlIYEspNpd2H4zWhw",
+      "channel_url": "https://www.youtube.com/@rehacq",
+      "source_name": "ReHacQ−リハック−【公式】",
+      "trust": "trusted_host",
+      "allowed_experts": ["*"]
+    },
+    {
+      "id": "pivot-official",
+      "platform": "youtube",
+      "kind": "verified_interview_channel",
+      "channel_id": "UC8yHePe_RgUBE-waRWy6olw",
+      "channel_url": "https://www.youtube.com/@pivot00",
+      "source_name": "PIVOT 公式チャンネル",
+      "trust": "trusted_host",
+      "allowed_experts": ["*"]
+    },
+    {
+      "id": "professional-ai-channel",
+      "platform": "youtube",
+      "kind": "company_expert_interview_channel",
+      "channel_id": "UCh20Uo_3_Kprrxe4tLqeAQw",
+      "channel_url": "https://www.youtube.com/@legalontechnologies",
+      "source_name": "Professional AI CHANNEL",
+      "trust": "trusted_host",
+      "allowed_experts": ["*"]
+    }
+  ],
+  "web_discovery": {
+    "enabled": true,
+    "platform": "web_video",
+    "lookback_days": 30,
+    "format_terms": ["動画", "講演", "対談", "インタビュー", "ポッドキャスト", "文字起こし"],
+    "trust": "editorial_host_candidate"
+  }
+}

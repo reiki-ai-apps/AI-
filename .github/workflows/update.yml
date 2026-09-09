@@ -39,6 +39,9 @@ jobs:
       - name: test global top news and AI industry leadership coverage
         run: node scripts/test-global-top-news.mjs
 
+      - name: test expert video sources, separation, and attribution
+        run: node scripts/test-expert-video-coverage.mjs
+
       - name: test three daily editions, top five, and archive contract
         run: node scripts/test-edition-publishing.mjs
 
@@ -151,6 +154,16 @@ jobs:
             if (!Array.isArray(item.story_entities) || item.story_entities.length === 0) {
               errors.push(itemError(index, "story_entities が空です"));
             }
+            if (item.content_type === "expert_video") {
+              for (const key of ["expert_id", "expert_name", "expert_role", "expert_tier", "platform", "source_trust"]) {
+                if (typeof item[key] !== "string" || !item[key].trim()) {
+                  errors.push(itemError(index, `専門家動画の${key}が空です`));
+                }
+              }
+              if (Number(item.home_top_rank) > 0) {
+                errors.push(itemError(index, "専門家動画が記事トップ5へ混入しています"));
+              }
+            }
             if (!item.source_published_at && !["unknown", "updated_only"].includes(item.source_date_status)) {
               errors.push(itemError(index, "情報元掲載日がないのに日付確認済みになっています"));
             }
@@ -239,6 +252,7 @@ jobs:
           node scripts/finalize-home-edition.mjs
           node scripts/build-public-articles.mjs
           node scripts/test-edition-publishing.mjs
+          node scripts/test-expert-video-coverage.mjs
           node scripts/test-growth-readiness.mjs
           node scripts/test-runtime-resilience.mjs
           node scripts/test-free-access-daily-metrics.mjs

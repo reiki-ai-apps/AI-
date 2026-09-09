@@ -1,6 +1,6 @@
 "use strict";
 
-const EDITION_VERSION="home-value-continuation-v4";
+const EDITION_VERSION="home-value-continuation-v5-article-only";
 const MAX_HOME_ARTICLES=5;
 const MIN_HOME_ARTICLES=3;
 const LATE_ARRIVAL_HOURS=48;
@@ -23,6 +23,10 @@ function validTime(value){
 
 function articleId(item){
   return String(item?.article_id||item?.id||"").trim();
+}
+
+function isEditorialArticle(item){
+  return String(item?.content_type||"article").toLowerCase()!=="expert_video";
 }
 
 function publishedTime(item){
@@ -229,7 +233,7 @@ function collapseRankedStories(ranked){
 }
 
 function distinctArticleIds(items,ids,max=MAX_HOME_ARTICLES){
-  const byId=new Map((items||[]).map(item=>[articleId(item),item]));
+  const byId=new Map((items||[]).filter(isEditorialArticle).map(item=>[articleId(item),item]));
   const selected=[];
   for(const rawId of ids||[]){
     if(selected.length>=max)break;
@@ -294,9 +298,10 @@ function sameHomeTopic(a,b){
 }
 
 function selectContinuationArticles(items,{freshIds=[],previousIds=[],history=[],windowStart,windowEnd,max=MAX_HOME_ARTICLES,min=MIN_HOME_ARTICLES}={}){
+  const editorialItems=(items||[]).filter(isEditorialArticle);
   const end=validTime(windowEnd)||Date.now();
   const start=validTime(windowStart)||end;
-  const byId=new Map((items||[]).map(item=>[articleId(item),item]));
+  const byId=new Map(editorialItems.map(item=>[articleId(item),item]));
   const freshItems=freshIds.map(id=>byId.get(String(id))).filter(Boolean);
   const selected=[...freshItems];
   const selectedIds=new Set(freshIds.map(String));
@@ -321,7 +326,7 @@ function selectContinuationArticles(items,{freshIds=[],previousIds=[],history=[]
       time:publishedTime(item)||firstSeenTime(item)
     };
   };
-  const records=(items||[]).filter(item=>{
+  const records=editorialItems.filter(item=>{
     const id=articleId(item);
     if(!id||selectedIds.has(id))return false;
     const knownAt=firstSeenTime(item)||publishedTime(item);
@@ -355,7 +360,7 @@ function selectContinuationArticles(items,{freshIds=[],previousIds=[],history=[]
 
   // 7日以内だけで3件に届かない非常時は、検証済み公開データから最低件数まで補う。
   if(selected.length<min){
-    const emergency=(items||[]).filter(item=>{
+    const emergency=editorialItems.filter(item=>{
       const id=articleId(item);
       const knownAt=firstSeenTime(item)||publishedTime(item);
       return id&&!selectedIds.has(id)&&knownAt>0&&knownAt<=start+FUTURE_TOLERANCE_MS;
@@ -373,7 +378,7 @@ function selectTopArticles(items,{windowStart,windowEnd,max=MAX_HOME_ARTICLES,ex
   const start=validTime(windowStart);
   const end=validTime(windowEnd)||Date.now();
   const seen=new Set();
-  const ranked=(items||[]).filter(item=>{
+  const ranked=(items||[]).filter(isEditorialArticle).filter(item=>{
     const id=articleId(item);
     if(!id||seen.has(id))return false;
     seen.add(id);
@@ -430,25 +435,26 @@ function selectTopArticles(items,{windowStart,windowEnd,max=MAX_HOME_ARTICLES,ex
 }
 
 function buildHomeEdition(items,previous={},options={}){
+  const editorialItems=(items||[]).filter(isEditorialArticle);
   const windowEnd=validTime(options.windowEnd)||Date.now();
   const fallbackStart=windowEnd-24*3600000;
   const windowStart=validTime(options.windowStart||previous.last_window_end)||fallbackStart;
   const previousWindowEnd=validTime(previous.window_end||previous.last_window_end);
   const previousWindowStart=validTime(previous.window_start);
   const rebuildingSameWindow=previousWindowEnd===windowEnd&&previousWindowStart===windowStart;
-  let history=recentStoryHistory(items,previous,windowEnd);
+  let history=recentStoryHistory(editorialItems,previous,windowEnd);
   const exclusionHistory=rebuildingSameWindow
     ?history.filter(entry=>validTime(entry?.edition_window_end)!==windowEnd)
     :history;
   const max=options.max||MAX_HOME_ARTICLES;
   const min=Math.min(options.min||MIN_HOME_ARTICLES,max);
-  const selection=selectTopArticles(items,{
+  const selection=selectTopArticles(editorialItems,{
     windowStart,windowEnd,max,excludeStories:exclusionHistory
   });
-  const liveIds=new Set((items||[]).map(articleId));
-  const previousIds=distinctArticleIds(items,(previous.article_ids||[]).filter(id=>liveIds.has(String(id))),MAX_HOME_ARTICLES);
-  const selectedIds=distinctArticleIds(items,selection.selected.map(record=>record.score.article_id),max);
-  const continuation=selectContinuationArticles(items,{
+  const liveIds=new Set(editorialItems.map(articleId));
+  const previousIds=distinctArticleIds(editorialItems,(previous.article_ids||[]).filter(id=>liveIds.has(String(id))),MAX_HOME_ARTICLES);
+  const selectedIds=distinctArticleIds(editorialItems,selection.selected.map(record=>record.score.article_id),max);
+  const continuation=selectContinuationArticles(editorialItems,{
     freshIds:selectedIds,previousIds,history,windowStart,windowEnd,max,min
   });
   const continuedIds=continuation.continuationIds;
@@ -477,7 +483,7 @@ function buildHomeEdition(items,previous={},options={}){
     history=history.filter(entry=>validTime(entry?.edition_window_end)!==windowEnd);
   }
   if(selectedIds.length){
-    const byId=new Map((items||[]).map(item=>[articleId(item),item]));
+    const byId=new Map(editorialItems.map(item=>[articleId(item),item]));
     for(const id of selectedIds){
       const item=byId.get(id);
       if(item)history.push(storyHistoryEntry(item,selectedAt,windowEnd));
@@ -493,7 +499,7 @@ function buildHomeEdition(items,previous={},options={}){
     .slice(-MAX_RECENT_STORY_HISTORY);
   const scores={};
   for(const id of articleIds){
-    const item=(items||[]).find(candidate=>articleId(candidate)===id);
+    const item=editorialItems.find(candidate=>articleId(candidate)===id);
     if(item)scores[id]=scoreArticle(item,windowStart,windowEnd);
   }
   return {
@@ -525,7 +531,7 @@ function buildHomeEdition(items,previous={},options={}){
     new_selected_count:selectedIds.length,
     continued_selected_count:continuedIds.length,
     tool_evolution_selected_count:articleIds.filter(id=>{
-      const item=(items||[]).find(candidate=>articleId(candidate)===id);
+      const item=editorialItems.find(candidate=>articleId(candidate)===id);
       return item&&isToolEvolutionCandidate(item);
     }).length,
     carried_forward:carriedForward,
@@ -540,7 +546,7 @@ function buildHomeEdition(items,previous={},options={}){
 }
 
 function applyHomeEdition(items,edition){
-  const safeIds=distinctArticleIds(items,edition.article_ids||[],MAX_HOME_ARTICLES);
+  const safeIds=distinctArticleIds((items||[]).filter(isEditorialArticle),edition.article_ids||[],MAX_HOME_ARTICLES);
   const rankById=new Map(safeIds.map((id,index)=>[String(id),index+1]));
   const newIds=new Set((edition.new_article_ids||[]).map(String));
   return (items||[]).map(item=>{
@@ -580,7 +586,7 @@ function applyHomeEdition(items,edition){
 }
 
 module.exports={
-  EDITION_VERSION,MAX_HOME_ARTICLES,MIN_HOME_ARTICLES,RECENT_STORY_WINDOW_MS,CONTINUATION_WINDOW_MS,validTime,articleId,publishedTime,firstSeenTime,
+  EDITION_VERSION,MAX_HOME_ARTICLES,MIN_HOME_ARTICLES,RECENT_STORY_WINDOW_MS,CONTINUATION_WINDOW_MS,validTime,articleId,isEditorialArticle,publishedTime,firstSeenTime,
   candidateStatus,isToolEvolutionCandidate,scoreArticle,sameEditionStory,distinctArticleIds,
   selectTopArticles,selectContinuationArticles,buildHomeEdition,applyHomeEdition
 };

@@ -16,7 +16,7 @@ for(const marker of [
 }
 
 for(const marker of [
-  "const selected=getUpdates().filter(item=>Number(item.home_top_rank)>=1",
+  "const selected=getUpdates().filter(item=>!isExpertVideo(item)&&Number(item.home_top_rank)>=1",
   "const list=homeTopUpdates();",
   "今回の新着${newCount?` ${newCount}件`:''}を話題性・重要性で審査",
   "直近の重要記事から重複なく継続掲載",
@@ -42,6 +42,9 @@ if(selected.some(item=>!item.home_selected_at||!item.home_window_start||!item.ho
 }
 if(selected.some(item=>!["new","continued"].includes(item.home_top_origin))){
   throw new Error("a selected story is missing its new/continued label");
+}
+if(selected.some(item=>item.content_type==="expert_video")){
+  throw new Error("expert videos must never consume an article top-five slot");
 }
 
 for(const marker of [
