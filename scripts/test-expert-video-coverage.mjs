@@ -5,7 +5,8 @@ import {createRequire} from "node:module";
 const require=createRequire(import.meta.url);
 const {
   isExpertVideoItem,parseYouTubeChannelVideos,matchedExpertsForSource,
-  dedupeExpertVideoCandidates,selectExpertVideoArchivePicks,buildExpertWebDiscoveryUrl
+  dedupeExpertVideoCandidates,selectExpertVideoArchivePicks,selectExpertVideoReviewCandidates,
+  isSubstantiveAiVideo,buildExpertWebDiscoveryUrl
 }=require("./expert-video.cjs");
 
 const registry=JSON.parse(fs.readFileSync(new URL("../expert-sources.json",import.meta.url),"utf8"));
@@ -40,9 +41,20 @@ const duplicateFixture=[
 ];
 assert.equal(dedupeExpertVideoCandidates(duplicateFixture).length,2,"同じ動画・同じ発言を重複させない");
 assert.equal(selectExpertVideoArchivePicks(duplicateFixture,3).length,2,"専門家動画の公開枠を独立して確保する");
+assert.equal(isSubstantiveAiVideo("【VLOG】AIロボタクシーに体験乗車してみた"),false,"VLOGを重要発言として扱わない");
+assert.equal(isSubstantiveAiVideo("AIコーディングが仕事をどう変えるか、実装例を対談で解説"),true,"具体的な解説・対談を候補にする");
+const reviewFixture=[
+  {content_type:"expert_video",expert_id:"a",video_id:"a1",title:"AIの仕組みを解説",published_at:"2026-09-08T00:00:00Z",source_trust:"primary"},
+  {content_type:"expert_video",expert_id:"a",video_id:"a2",title:"AI実装を対談",published_at:"2026-09-07T00:00:00Z",source_trust:"primary"},
+  {content_type:"expert_video",expert_id:"b",video_id:"b1",title:"生成AI政策を講演",published_at:"2026-09-06T00:00:00Z",source_trust:"institutional"}
+];
+const reviewPicks=selectExpertVideoReviewCandidates(reviewFixture,3,2,Date.parse("2026-09-09T00:00:00Z"));
+assert.equal(reviewPicks.length,3,"1人目だけで止めず、良質な次候補まで審査する");
+assert.equal(new Set(reviewPicks.slice(0,2).map(item=>item.expert_id)).size,2,"先に異なる専門家を審査する");
 assert.ok(buildExpertWebDiscoveryUrl(nakajima).includes("news.google.com/rss/search"),"Web動画探索フィードを作る");
 
 assert.match(updateSource,/collectExpertVideoCandidates/,"専門家動画を毎回収集する");
+assert.match(updateSource,/enrichNewItems\(expertReviewCandidates,cache,ledger,"regular",2\)/,"専門家動画を記事とは別の小分けバッチで審査する");
 assert.match(updateSource,/content_type:\s*"expert_video"/,"動画を公開データで識別する");
 assert.match(updateSource,/発言者の意見・予測・評価は確定事実として書かず/,"専門家の見解を事実と混同しない");
 assert.match(homeEditionSource,/isEditorialArticle/,"記事トップ5を記事だけに固定する");

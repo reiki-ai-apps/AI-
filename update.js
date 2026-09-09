@@ -12,7 +12,7 @@ const {MAX_HOME_ARTICLES,buildHomeEdition,applyHomeEdition}=require("./scripts/h
 const {
   isExpertVideoItem,parseYouTubeChannelVideos,matchedExpertsForSource,
   isSubstantiveAiVideo,isWebVideoCandidate,dedupeExpertVideoCandidates,
-  selectExpertVideoArchivePicks,buildExpertWebDiscoveryUrl
+  selectExpertVideoArchivePicks,selectExpertVideoReviewCandidates,buildExpertWebDiscoveryUrl
 }=require("./scripts/expert-video.cjs");
 
 // ホームの「主要AIアプリ・ツール」と収集対象を同じ一覧で監査する。
@@ -199,6 +199,7 @@ const HOME_EDITION_PATH = "home-edition.json";
 const EXPERT_SOURCES_PATH = "expert-sources.json";
 const EXPERT_VIDEO_ARCHIVE_LIMIT = 12;
 const EXPERT_VIDEO_PROTECTED_LIMIT = 4;
+const EXPERT_VIDEO_REVIEW_LIMIT = 6;
 const STORY_REPOST_WINDOW_MS = 31 * 86400000;
 const STORY_TIMELINE_WINDOW_MS = 365 * 86400000;
 // 完全一致の再掲載を公開から外す期間。表示保持(31日)より長く、365日の全面抑制はしない。
@@ -374,6 +375,7 @@ function appendStepSummary(ledger, extra = {}) {
     `- 推定API費用: ${Number(day.estimated_usd || 0).toFixed(6)} USD`,
     `- キャッシュ再利用: ${Number(extra.cacheHits || 0)}件`,
     `- 再処理回避: ${Number(extra.rejectedHits || 0)}件`,
+    `- 専門家動画の専用審査: ${Number(extra.expertSelected || 0)}件`,
     `- 旧要約の深掘り再処理: ${Number(extra.migrationSelected || 0)}件`
   ];
   fs.appendFileSync(path, lines.join("\n") + "\n");
@@ -642,7 +644,7 @@ async function aiEnrichBatch(items) {
     "主要AI企業・研究所のCEO交代、著名研究者の退社、経営・研究体制の再編、大型買収・投資・提携は、製品名がタイトルになくても業界全体への波及を評価し、重要度SまたはAを積極的に検討してください。" +
     "記事本文の抜粋にない数字・人物・効果は作らず、不明な点は不明と明記してください。除外するのは広告・宣伝と、AIと無関係な別テーマの誤ヒットだけです。それ以外の記事は、確認できる事実の範囲で伝えることを優先してください。" +
     "要約文は元記事の論点と叙述順序を尊重し、主語と出来事から直接書き始め、元記事で確認できる事実・今後の予定・発表者の見解などで自然に結んでください。" +
-    "content_typeがexpert_videoの候補は、発言者の意見・予測・評価は確定事実として書かず、誰の見解かを各要点で明示してください。主張、その根拠や理由、仕事・社会への意味、未確定点を分けます。本人・所属機関・確認済み番組以外の切り抜きや転載、出演しただけでAIの中身が薄い動画、宣伝中心の動画は除外してください。" +
+    "content_typeがexpert_videoの候補はニュース発表とは別に審査します。新製品の発表がなくても、AI専門家が具体的な主張、比較、仕組み、実装例、政策論、将来予測とその理由を話していれば採用対象です。発言者の意見・予測・評価は確定事実として書かず、誰の見解かを各要点で明示してください。主張、その根拠や理由、仕事・社会への意味、未確定点を分けます。本人・所属機関・確認済み番組以外の切り抜きや転載、出演しただけでAIの中身が薄い動画、VLOG、宣伝中心の動画、根拠を示さない憶測は除外してください。" +
     "やさしい解説は、AI業界を知らない高校生が一度で意味をつかめる言葉で書いてください。専門用語や英字略語は日常語へ言い換えるか、初出の直後に短く説明してください。一文には一つの内容だけを書き、長い修飾語や名詞を重ねた表現を避けてください。記事の核となる事実・仕組み・以前との違いを具体的に説明し、一般論で文字数を増やさないでください。" +
     "『まず、このニュースをひと言でいうと』『かんたんに言うと』『この記事では』などのメタな前置きや、元記事にない一般論・注意喚起・安心を促す定型文は使わないでください。";
   const user =
@@ -650,7 +652,7 @@ async function aiEnrichBatch(items) {
     "出力は次の形式のJSON配列だけ（前置き・説明・コードフェンスは一切不要）:\n" +
     '[{"i":元番号,"title_ja":"媒体名を除いた自然な日本語タイトル","summary_ja":"60〜100字で主語と結論が分かる要約","detail_ja":"300〜400字、8〜10文、空行2回で3段落。AI業界を知らない高校生向けに、一文を短くする。第1段落は、誰が何を発表・実施したか→簡単にいうと何か→以前との違い。第2段落は記事の核となる事実・数字→仕組み→なぜ重要か。第3段落は、使う人に何が変わるか→注意点→まだ発表されていないこと。元記事で確認できる具体的な情報だけを使い、従来より約5行増やしても一般論や同じ事実の言い換えで水増ししない。専門用語・英字略語・業界語は初出の直後に日常語で説明するか、日常語へ言い換える。impact_jaやaction_jaと同じ文を繰り返さない","change_ja":"何が新しいかを1〜2文","impact_ja":"日本の仕事・経営・生活への影響を1〜2文","action_ja":"元記事から具体的に確認できる次の確認事項・期限・利用条件を1〜2文。根拠がなければ行動を作らず、現時点の状況を簡潔に書く","event_date":"記事本文に出来事の年月日が明記されている場合だけYYYY-MM-DD、不明なら空文字","event_status":"発表済み|開始済み|予定|継続中|不明","story_entities":["企業名・製品名など話題を識別する固有名詞を1〜3件"],"importance":"S|A|B|C","categories":["指定カテゴリから1〜3件"],"primary_entity":"主体となる企業・組織名","story_subject":"具体的な製品・モデル・法律・事案・取引・計画の名前","event_type":"release|pricing|funding|security|policy|partnership|acquisition|research|other","event_stage":"rumor|announced|planned|beta|launched|expanded|paused|delayed|cancelled|investigating|cause_identified|fixed|restored|proposed|approved|enacted|completed|denied|corrected|other","event_scope":"API・デスクトップ・日本・全世界・影響範囲など","fact_slots":[{"type":"amount|price|region|date|availability|status|count|version|other","scope":"何についての事実か","value":"通貨・単位を含めて正規化した値"}],"new_facts_ja":["この記事で確認できる重要な事実。記事にない事実は書かない"]}]\n' +
     "指定カテゴリ:"+JSON.stringify(ALLOWED_CATEGORIES)+"\n"+
-    "英語・中国語は自然な日本語に翻訳してください。article_contextを最優先の根拠にし、情報不足でもタイトルを言い換えただけの要約は作らないでください。detail_jaは、誰が何をしたか→日常語での意味→以前との違い→記事の核となる具体的事実・数字・仕組み→なぜ重要か→使う人への変化→注意点と未確定点、の順で、高校生にも読める3段落にしてください。一文は85字以内にし、一文へ複数の論点を詰め込まないでください。『相互運用性』『知識労働』『業務プロセス』のような業界語は、そのまま置かず日常語へ言い換えてください。GPU、APIなど残す必要がある英字語は、同じ文か次の文で意味を説明してください。固有名詞、数値、確認済みの条件は残し、元記事にない理由・効果・将来予測は加えないでください。impact_jaは仕事への影響、action_jaは次の確認事項に役割を分け、detail_jaとの文面重複を避けてください。説明のための定型的な導入や、どの記事にも当てはまる助言、同じ事実の言い換えで文字数を埋めてはいけません。content_typeがexpert_videoなら、発表ニュースのように断定せず、expert_nameの主張→その人が示した根拠・理由→仕事や社会への意味→意見と事実の境界・未確定点の順で要約してください。発言者名を省略したまま予測や評価を書かないでください。event_date_candidatesは本文中で出来事を表す文の近くに明記された日付候補です。候補の文脈を確認し、発表日・施行日・発生日・提供開始日・予定日として明確なものだけevent_dateへ入れてください。記事の掲載日や更新日は出来事の日にしないでください。候補がない、または意味が曖昧なら空文字にしてください。skipにするのは、広告・宣伝、AIと無関係な誤ヒット、実質的な事実がひとつも確認できない記事だけです。article_contextが短い・取得できていない場合でも、タイトルと抜粋から確認できる事実の範囲で要約を作成し、不明な点は『まだ発表されていません』と平易に書いて採用してください。primary_entity以下の構造化項目は話題の同一判定に使うため、採用する記事では必ず出力してください(fact_slotsは確認できる事実だけ。なければ空配列)。モデル・製品名は正確に区別し(例: Gemini 3 FlashとGemini 3 Proは別物)、掲載日・閲覧数・四捨五入した換算金額・『5』と『5.0』の表記差を新しい進展として扱わないでください。地域や提供チャネルの違いは、同じ製品・制度が実際にそこへ拡大した場合だけ進展です。\n候補:\n" +
+    "英語・中国語は自然な日本語に翻訳してください。article_contextを最優先の根拠にし、情報不足でもタイトルを言い換えただけの要約は作らないでください。detail_jaは、誰が何をしたか→日常語での意味→以前との違い→記事の核となる具体的事実・数字・仕組み→なぜ重要か→使う人への変化→注意点と未確定点、の順で、高校生にも読める3段落にしてください。一文は85字以内にし、一文へ複数の論点を詰め込まないでください。『相互運用性』『知識労働』『業務プロセス』のような業界語は、そのまま置かず日常語へ言い換えてください。GPU、APIなど残す必要がある英字語は、同じ文か次の文で意味を説明してください。固有名詞、数値、確認済みの条件は残し、元記事にない理由・効果・将来予測は加えないでください。impact_jaは仕事への影響、action_jaは次の確認事項に役割を分け、detail_jaとの文面重複を避けてください。説明のための定型的な導入や、どの記事にも当てはまる助言、同じ事実の言い換えで文字数を埋めてはいけません。content_typeがexpert_videoなら、新しい発表の有無では除外せず、expert_nameの主張→その人が示した根拠・具体例→仕事や社会への意味→意見と確認済み事実の境界・未確定点の順で要約してください。発言者名を省略したまま予測や評価を書かないでください。専門家動画のprimary_entityは発言者または所属組織、story_subjectは中心となる論点、event_typeはresearchまたはother、event_stageは継続中の議論ならongoingに近い値としてotherを使って構いません。event_date_candidatesは本文中で出来事を表す文の近くに明記された日付候補です。候補の文脈を確認し、発表日・施行日・発生日・提供開始日・予定日として明確なものだけevent_dateへ入れてください。記事の掲載日や更新日は出来事の日にしないでください。候補がない、または意味が曖昧なら空文字にしてください。skipにするのは、広告・宣伝、AIと無関係な誤ヒット、実質的な事実も具体的な専門家の主張も確認できない内容だけです。article_contextが短い・取得できていない場合でも、タイトルと抜粋から確認できる事実の範囲で要約を作成し、不明な点は『まだ発表されていません』と平易に書いて採用してください。primary_entity以下の構造化項目は話題の同一判定に使うため、採用する記事では必ず出力してください(fact_slotsは確認できる事実だけ。なければ空配列)。モデル・製品名は正確に区別し(例: Gemini 3 FlashとGemini 3 Proは別物)、掲載日・閲覧数・四捨五入した換算金額・『5』と『5.0』の表記差を新しい進展として扱わないでください。地域や提供チャネルの違いは、同じ製品・制度が実際にそこへ拡大した場合だけ進展です。\n候補:\n" +
     JSON.stringify(list);
 
   let response;
@@ -1970,35 +1972,43 @@ function bootstrapCacheResult(cache,source,result) {
   const dailyBudget=Number(process.env.AI_DAILY_BUDGET_USD||0);
   const budgetExhausted=dailyBudget>0&&today.estimated_usd>=dailyBudget;
   const regularRemaining=budgetExhausted?0:Math.max(0,AI_DAILY_UNIQUE_LIMIT-today.regular_processed);
+  // 記事と同じ大きなバッチへ混ぜると、動画の主張がニュース発表用の判定に引っ張られる。
+  // 専門家動画を最初に2件ずつ審査し、人物の多様性を保ちながら次候補まで確認する。
+  const expertReviewCandidates=selectExpertVideoReviewCandidates(fresh,
+    Math.min(EXPERT_VIDEO_REVIEW_LIMIT,regularRemaining));
+  const expertReviewKeys=new Set(expertReviewCandidates.map(articleCacheKey));
+  const regularAfterExperts=Math.max(0,regularRemaining-expertReviewCandidates.length);
   // プロンプト更新だけでは既存記事が「処理済み」のまま残るため、毎日24件を上限に
   // 旧要約へ再度一次情報の文脈を付け、記事固有の深い3段落へ安全に移行する。
   const migrationFresh=previous.filter(needsDeepFriendlyMigration)
     .filter(item=>!cacheEntryFor(item,cache));
   const migrationCandidates=selectProtectedCandidates(migrationFresh,
-    Math.min(AI_DEEP_BACKFILL_LIMIT,regularRemaining));
+    Math.min(AI_DEEP_BACKFILL_LIMIT,regularAfterExperts));
   const migrationKeys=new Set(migrationCandidates.map(articleCacheKey));
   const regularNewCandidates=selectProtectedCandidates(
-    fresh.filter(item=>!migrationKeys.has(articleCacheKey(item))),
-    Math.min(AI_NEW_LIMIT,Math.max(0,regularRemaining-migrationCandidates.length)));
-  const regularCandidates=[...migrationCandidates,...regularNewCandidates];
+    fresh.filter(item=>!isExpertVideoItem(item)&&!expertReviewKeys.has(articleCacheKey(item))&&!migrationKeys.has(articleCacheKey(item))),
+    Math.min(Math.max(0,AI_NEW_LIMIT-expertReviewCandidates.length),Math.max(0,regularAfterExperts-migrationCandidates.length)));
+  const regularCandidates=[...expertReviewCandidates,...migrationCandidates,...regularNewCandidates];
   const regularKeys=new Set(regularCandidates.map(articleCacheKey));
   const emergencyRemaining=Math.max(0,AI_DAILY_EMERGENCY_LIMIT-today.emergency_processed);
   const emergencySlots=Math.min(Math.max(0,AI_NEW_LIMIT-regularCandidates.length),emergencyRemaining);
   const emergencyCandidates=(!budgetExhausted&&regularRemaining<AI_NEW_LIMIT)
-    ?selectProtectedCandidates(fresh.filter(item=>criticalBucket(item)&&!regularKeys.has(articleCacheKey(item))),emergencySlots)
+    ?selectProtectedCandidates(fresh.filter(item=>!isExpertVideoItem(item)&&criticalBucket(item)&&!regularKeys.has(articleCacheKey(item))),emergencySlots)
     :[];
 
+  let expertResult={items:[],processed:0,rejected:0};
   let migrationResult={items:[],processed:0,rejected:0};
   let regularResult={items:[],processed:0,rejected:0};
   let emergencyResult={items:[],processed:0,rejected:0};
   try {
+    expertResult=await enrichNewItems(expertReviewCandidates,cache,ledger,"regular",2);
     migrationResult=await enrichNewItems(migrationCandidates,cache,ledger,"regular",AI_MIGRATION_BATCH_SIZE);
     regularResult=await enrichNewItems(regularNewCandidates,cache,ledger,"regular",AI_BATCH_SIZE);
     emergencyResult=await enrichNewItems(emergencyCandidates,cache,ledger,"emergency");
   } catch (e) {
     console.error("AI要約に失敗:",String(e.message||e).slice(0,300));
   }
-  const newlyEnriched=[...migrationResult.items,...regularResult.items,...emergencyResult.items];
+  const newlyEnriched=[...expertResult.items,...migrationResult.items,...regularResult.items,...emergencyResult.items];
   const selectedCount=regularCandidates.length+emergencyCandidates.length;
   if(dailyBudget>0&&usageDay(ledger).estimated_usd>=dailyBudget*0.8){
     console.error("AI DAILY BUDGET WARNING:",usageDay(ledger).estimated_usd,"/",dailyBudget,"USD");
@@ -2007,7 +2017,7 @@ function bootstrapCacheResult(cache,source,result) {
   writeJsonFile(AI_CACHE_PATH,cache);
   writeJsonFile(AI_USAGE_PATH,ledger);
   appendStepSummary(ledger,{cacheHits,rejectedHits,fresh:fresh.length,selected:selectedCount,
-    migrationSelected:migrationCandidates.length});
+    migrationSelected:migrationCandidates.length,expertSelected:expertReviewCandidates.length});
 
   // 新着候補があるのに予算・API障害で1件も処理できなかった回は、更新成功にしない。
   // チェックポイントを進めず、次の回で同じ期間を再審査する。

@@ -2,7 +2,8 @@
 
 const AI_TOPIC_PATTERN=/(?:\bAI\b|人工知能|生成AI|機械学習|深層学習|大規模言語モデル|\bLLM\b|ChatGPT|Claude|Gemini|AIエージェント|AIコーディング|ロボティクス)/i;
 const VIDEO_FORMAT_PATTERN=/(?:動画|講演|対談|インタビュー|ポッドキャスト|文字起こし|解説|討論|セッション|基調講演|YouTube)/i;
-const LOW_VALUE_PATTERN=/(?:切り抜き|無断転載|まとめ動画|反応集|shorts?\b|#shorts|予告編|ティザー|CM\b|プレゼント|キャンペーン|ランキング|おすすめ\d*選)/i;
+const SUBSTANTIVE_SIGNAL_PATTERN=/(?:解説|講座|講演|対談|インタビュー|討論|議論|検証|比較|仕組み|なぜ|何を|どのよう|できる|影響|変わる|未来|政策|規制|技術|研究|実演|実装|条件|課題|対策|リスク|能力|記憶|仕事|社会|開発|モデル|エージェント|コーディング)/i;
+const LOW_VALUE_PATTERN=/(?:切り抜き|無断転載|まとめ動画|反応集|shorts?\b|#shorts|予告編|ティザー|CM(?:動画)?\b|プレゼント|キャンペーン|ランキング|おすすめ\d*選|\bVLOG\b|行ってみた|潜入|体験乗車|スパルタキャンプ|無料.{0,12}学べる|受講者募集)/i;
 
 function isExpertVideoItem(item){
   return String(item?.content_type||"").toLowerCase()==="expert_video";
@@ -113,7 +114,7 @@ function matchedExpertsForSource(text,source,registry){
 
 function isSubstantiveAiVideo(text){
   const value=String(text||"");
-  return AI_TOPIC_PATTERN.test(value)&&!LOW_VALUE_PATTERN.test(value);
+  return AI_TOPIC_PATTERN.test(value)&&SUBSTANTIVE_SIGNAL_PATTERN.test(value)&&!LOW_VALUE_PATTERN.test(value);
 }
 
 function isWebVideoCandidate(text){
@@ -158,14 +159,53 @@ function selectExpertVideoArchivePicks(items,limit=12){
   return selected;
 }
 
+function selectExpertVideoReviewCandidates(items,limit=6,maxPerExpert=2,now=Date.now()){
+  const cutoff=now-45*86400000;
+  const candidates=dedupeExpertVideoCandidates((items||[]).filter(isExpertVideoItem))
+    .filter(item=>{
+      const time=new Date(item.source_published_at||item.published_at||item.fetched_at||0).getTime();
+      return !Number.isFinite(time)||time<=0||time>=cutoff;
+    })
+    .sort((a,b)=>{
+      const quality=item=>{
+        const text=`${item.title||""} ${item.raw_excerpt||""}`;
+        let score=0;
+        if(/(?:講演|対談|インタビュー|討論|議論)/i.test(text))score+=22;
+        if(/(?:解説|講座|検証|比較|仕組み|実演|実装|条件|課題|対策)/i.test(text))score+=18;
+        if(["primary","institutional"].includes(String(item.source_trust||"")))score+=15;
+        if(LOW_VALUE_PATTERN.test(text))score-=100;
+        const time=new Date(item.source_published_at||item.published_at||item.fetched_at||0).getTime();
+        if(Number.isFinite(time)&&time>0)score+=Math.max(0,30-(now-time)/86400000);
+        return score;
+      };
+      return quality(b)-quality(a);
+    });
+  const selected=[];
+  const selectedKeys=new Set();
+  const counts=new Map();
+  const add=item=>{
+    const key=String(item.video_id||item.source_url||"");
+    const expert=String(item.expert_id||item.expert_name||"unknown");
+    if(!key||selectedKeys.has(key)||(counts.get(expert)||0)>=maxPerExpert||selected.length>=limit)return false;
+    selected.push(item);selectedKeys.add(key);counts.set(expert,(counts.get(expert)||0)+1);return true;
+  };
+  for(const item of candidates){
+    const expert=String(item.expert_id||item.expert_name||"unknown");
+    if((counts.get(expert)||0)===0)add(item);
+  }
+  for(const item of candidates)add(item);
+  return selected;
+}
+
 function buildExpertWebDiscoveryUrl(expert,lookbackDays=30){
   const query=`"${expert.name}" (AI OR 生成AI OR 人工知能 OR ChatGPT) (動画 OR 講演 OR 対談 OR インタビュー OR ポッドキャスト OR 文字起こし) when:${Math.max(1,Number(lookbackDays)||30)}d`;
   return `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=ja&gl=JP&ceid=JP:ja`;
 }
 
 module.exports={
-  AI_TOPIC_PATTERN,VIDEO_FORMAT_PATTERN,LOW_VALUE_PATTERN,
+  AI_TOPIC_PATTERN,VIDEO_FORMAT_PATTERN,SUBSTANTIVE_SIGNAL_PATTERN,LOW_VALUE_PATTERN,
   isExpertVideoItem,decodeJsHexEscapes,approximatePublishedAt,parseYouTubeChannelVideos,
   expertMentioned,matchedExpertsForSource,isSubstantiveAiVideo,isWebVideoCandidate,
-  dedupeExpertVideoCandidates,selectExpertVideoArchivePicks,buildExpertWebDiscoveryUrl
+  dedupeExpertVideoCandidates,selectExpertVideoArchivePicks,selectExpertVideoReviewCandidates,
+  buildExpertWebDiscoveryUrl
 };
