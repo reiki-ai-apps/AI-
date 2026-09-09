@@ -2276,7 +2276,9 @@ function bootstrapCacheResult(cache,source,result) {
   }
   const final=[...finalByArticleId.values()].sort((a,b)=>articleTime(b)-articleTime(a));
 
-  if(selectedCount&&migrationResult.processed+regularResult.processed+emergencyResult.processed===0){
+  const completedProcessingCount=expertResult.processed+expertTitleFallbacks.length+
+    migrationResult.processed+regularResult.processed+emergencyResult.processed;
+  if(selectedCount&&completedProcessingCount===0){
     console.error("NO NEW ENRICHED ARTICLES: keeping the existing complete data.json");
     process.exitCode = 1;
     return;

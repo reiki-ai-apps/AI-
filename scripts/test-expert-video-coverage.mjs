@@ -64,6 +64,7 @@ assert.match(updateSource,/videoDetails\?\.shortDescription/,"YouTube公式playe
 assert.match(updateSource,/parseYouTubeVideoFeed/,"公式チャンネルRSSの説明と公開日時も候補へ統合する");
 assert.match(updateSource,/EXPERT TITLE FALLBACK/,"説明取得障害時も具体的な公式タイトルだけ安全に掲載する");
 assert.match(updateSource,/EXPERT_TITLE_FALLBACK_BLOCK_PATTERN/,"誇張・切り抜き・販促動画をタイトル救済から除外する");
+assert.match(updateSource,/expertResult\.processed\+expertTitleFallbacks\.length/,"専門家動画だけ追加できた回も公開処理を継続する");
 assert.match(updateSource,/content_type:\s*"expert_video"/,"動画を公開データで識別する");
 assert.match(updateSource,/発言者の意見・予測・評価は確定事実として書かず/,"専門家の見解を事実と混同しない");
 assert.match(homeEditionSource,/isEditorialArticle/,"記事トップ5を記事だけに固定する");
