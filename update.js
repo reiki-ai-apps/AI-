@@ -2209,7 +2209,9 @@ function bootstrapCacheResult(cache,source,result) {
 
   // 新着候補があるのに予算・API障害で1件も処理できなかった回は、更新成功にしない。
   // チェックポイントを進めず、次の回で同じ期間を再審査する。
-  if(fresh.length>0&&selectedCount===0){
+  const hasPublishableExpertCache=Object.values(cache.items||{}).some(entry=>
+    entry&&entry.status==="enriched"&&isExpertVideoItem(entry.result)&&isCompleteEnrichedItem(entry.result));
+  if(fresh.length>0&&selectedCount===0&&!hasPublishableExpertCache){
     console.error("NEW ARTICLES ARE WAITING: keeping the previous public edition until AI processing resumes");
     process.exitCode=1;
     return;
