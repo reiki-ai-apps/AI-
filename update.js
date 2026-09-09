@@ -311,6 +311,10 @@ function usageDay(ledger, day = utcDay()) {
   return ledger.days[day];
 }
 
+function expertUsageDay(ledger,now=Date.now()){
+  return usageDay(ledger,jstDayKey(now));
+}
+
 function estimatedUsageCost(usage) {
   const inputRate = Number(process.env.AI_INPUT_USD_PER_MTOK || 0);
   const outputRate = Number(process.env.AI_OUTPUT_USD_PER_MTOK || 0);
@@ -325,7 +329,8 @@ function estimatedUsageCost(usage) {
 }
 
 function addUsage(ledger, usage, meta = {}) {
-  const day = usageDay(ledger);
+  const now=Number.isFinite(Number(meta.now))?Number(meta.now):Date.now();
+  const day = usageDay(ledger,utcDay(now));
   day.calls += Number(meta.attempts || 1);
   day.attempts += Number(meta.attempts || 1);
   for (const key of ["input_tokens", "output_tokens", "cache_creation_input_tokens", "cache_read_input_tokens"]) {
@@ -334,7 +339,9 @@ function addUsage(ledger, usage, meta = {}) {
   day.estimated_usd += estimatedUsageCost(usage || {});
   day.regular_processed += meta.lane === "regular" ? Number(meta.processed || 0) : 0;
   day.emergency_processed += meta.lane === "emergency" ? Number(meta.processed || 0) : 0;
-  day.expert_processed += meta.lane === "expert" ? Number(meta.processed || 0) : 0;
+  // 動画の日次探索と同じ日本時間の日付へ専門家動画の審査件数を記録する。
+  // 朝7時台だけ前日のUTC上限を参照して動画審査が止まる不整合を防ぐ。
+  if(meta.lane === "expert")expertUsageDay(ledger,now).expert_processed += Number(meta.processed || 0);
   day.enriched += Number(meta.enriched || 0);
   day.rejected += Number(meta.rejected || 0);
   day.estimated_usd = Number(day.estimated_usd.toFixed(6));
@@ -369,6 +376,7 @@ function appendStepSummary(ledger, extra = {}) {
   const path = process.env.GITHUB_STEP_SUMMARY;
   if (!path) return;
   const day = usageDay(ledger);
+  const expertDay=expertUsageDay(ledger);
   const lines = [
     "## AI進化レーダー AI利用状況",
     "",
@@ -378,7 +386,7 @@ function appendStepSummary(ledger, extra = {}) {
     `- 出力トークン: ${day.output_tokens}`,
     `- 通常処理: ${day.regular_processed}/${AI_DAILY_UNIQUE_LIMIT}件`,
     `- 緊急処理: ${day.emergency_processed}/${AI_DAILY_EMERGENCY_LIMIT}件`,
-    `- 専門家動画処理: ${day.expert_processed}/${AI_DAILY_EXPERT_LIMIT}件`,
+    `- 専門家動画処理 (JST ${jstDayKey()}): ${expertDay.expert_processed}/${AI_DAILY_EXPERT_LIMIT}件`,
     `- 採用: ${day.enriched}件 / 不採用: ${day.rejected}件`,
     `- 推定API費用: ${Number(day.estimated_usd || 0).toFixed(6)} USD`,
     `- キャッシュ再利用: ${Number(extra.cacheHits || 0)}件`,
@@ -2186,7 +2194,8 @@ function bootstrapCacheResult(cache,source,result) {
   const dailyBudget=Number(process.env.AI_DAILY_BUDGET_USD||0);
   const budgetExhausted=dailyBudget>0&&today.estimated_usd>=dailyBudget;
   const regularRemaining=budgetExhausted?0:Math.max(0,AI_DAILY_UNIQUE_LIMIT-today.regular_processed);
-  const expertRemaining=budgetExhausted?0:Math.max(0,AI_DAILY_EXPERT_LIMIT-today.expert_processed);
+  const expertToday=expertUsageDay(ledger,editionNow);
+  const expertRemaining=budgetExhausted?0:Math.max(0,AI_DAILY_EXPERT_LIMIT-expertToday.expert_processed);
   // 記事と同じ大きなバッチへ混ぜると、動画の主張がニュース発表用の判定に引っ張られる。
   // 専門家動画を最初に2件ずつ審査し、人物の多様性を保ちながら次候補まで確認する。
   const expertReviewCandidates=selectExpertVideoReviewCandidates(fresh,

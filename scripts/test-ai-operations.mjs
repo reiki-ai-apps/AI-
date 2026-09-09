@@ -543,6 +543,16 @@ if(day.regular_processed!==1||day.input_tokens!==100||day.rejected!==1){
   throw new Error("charged classification was not counted in the daily limit");
 }
 
+// 専門家動画だけは日本時間の日付で上限を分ける。UTCでは同じ9月9日でも、
+// 日本時間の深夜0時を越えたら翌日の動画審査枠でなければならない。
+const expertLedger={version:1,days:{}};
+context.addUsage(expertLedger,{},{lane:"expert",processed:2,now:Date.parse("2026-09-09T14:59:59Z")});
+context.addUsage(expertLedger,{},{lane:"expert",processed:3,now:Date.parse("2026-09-09T15:00:00Z")});
+if(context.expertUsageDay(expertLedger,Date.parse("2026-09-09T14:59:59Z")).expert_processed!==2||
+   context.expertUsageDay(expertLedger,Date.parse("2026-09-09T15:00:00Z")).expert_processed!==3){
+  throw new Error("expert video daily limit did not reset at JST midnight");
+}
+
 const checkpointPath=path.join(os.tmpdir(),`ai-radar-checkpoint-${process.pid}.json`);
 try{
   context.writeJsonFile(checkpointPath,{version:1});
