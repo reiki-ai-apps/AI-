@@ -18,8 +18,16 @@ function jstDayKey(now=Date.now()){
   return `${values.year}-${values.month}-${values.day}`;
 }
 
-function shouldRefreshExpertVideos(state,now=Date.now()){
-  return String(state?.last_successful_refresh_day_jst||"")!==jstDayKey(now);
+function shouldRefreshExpertVideos(state,now=Date.now(),schedule=""){
+  const today=jstDayKey(now);
+  const morningStart=Date.parse(`${today}T07:17:00+09:00`);
+  const morningEnd=Date.parse(`${today}T12:00:00+09:00`);
+  // 朝の定期実行はキュー待ちで遅れても有効。昼・夜の定期実行は対象外。
+  // 手動実行は朝7:17〜正午の間だけ許可し、深夜に当日分を消費しない。
+  const morningRun=schedule?String(schedule)==="17 22 * * *":now>=morningStart&&now<morningEnd;
+  if(!morningRun)return false;
+  const lastRefresh=Date.parse(state?.last_successful_refresh_at||"");
+  return String(state?.last_successful_refresh_day_jst||"")!==today||lastRefresh<morningStart;
 }
 
 function isFreshExpertVideo(item,now=Date.now(),maxAgeDays=EXPERT_VIDEO_MAX_AGE_DAYS){

@@ -2116,13 +2116,13 @@ function bootstrapCacheResult(cache,source,result) {
   const expertVideoState=readJsonFile(EXPERT_VIDEO_STATE_PATH,{
     version:1,last_successful_refresh_day_jst:"",last_successful_refresh_at:"",max_age_days:EXPERT_VIDEO_MAX_AGE_DAYS
   });
-  const expertRefreshDue=shouldRefreshExpertVideos(expertVideoState,editionNow);
+  const expertRefreshDue=shouldRefreshExpertVideos(expertVideoState,editionNow,process.env.AI_UPDATE_SCHEDULE||"");
   let expertVideoCollection={items:[],attemptedSources:0,successfulSources:0};
   if(expertRefreshDue){
     expertVideoCollection=await collectExpertVideoCandidates(EXPERT_REGISTRY,editionWindowEnd);
     console.error("EXPERT VIDEO DAILY CHECK:",expertVideoCollection.successfulSources,"/",expertVideoCollection.attemptedSources,"sources succeeded");
   }else{
-    console.error("EXPERT VIDEO DAILY CHECK: already completed for",jstDayKey(editionNow),"JST; preserving fresh published videos");
+    console.error("EXPERT VIDEO DAILY CHECK: outside the 07:17 JST morning run or already completed for",jstDayKey(editionNow));
   }
   const expertVideoCandidates=expertVideoCollection.items
     .filter(item=>isFreshExpertVideo(item,editionNow,EXPERT_VIDEO_MAX_AGE_DAYS));
@@ -2347,8 +2347,8 @@ function bootstrapCacheResult(cache,source,result) {
   writeJsonFile("data.json",editionReadyFinal);
   writeJsonFile(HOME_EDITION_PATH,homeEdition);
   writeJsonFile(STORY_INDEX_PATH,updateStoryIndex(storyIndex,editionReadyFinal));
-  // 公開データの生成まで完了した時だけ日次チェックを確定する。通信障害やAI処理失敗なら
-  // 日付を進めず、同じ日の次回記事更新で動画探索だけを再試行できる。
+  // 公開データの生成まで完了した時だけ朝のチェックを確定する。
+  // 失敗時は未完了のまま残し、朝の再実行または翌朝に再試行する。
   if(nextExpertVideoState)writeJsonFile(EXPERT_VIDEO_STATE_PATH,nextExpertVideoState);
   console.error("WROTE data.json with",editionReadyFinal.length,"complete items; home",homeEdition.selected_count,"of",homeEdition.candidate_count,"new candidates; candidates",uniqueOut.length,"after recent-story filter",filteredOut.length,"new",newlyEnriched.length,"reused",reused.length,"cache",cachedEnriched.length,"retained",recentPrevious.length,"safe-expanded",safelyExpanded);
 

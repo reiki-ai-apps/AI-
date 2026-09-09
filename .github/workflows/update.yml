@@ -3,7 +3,7 @@ name: Update AI feeds
 on:
   schedule:
     # 日本時間の朝・昼・夜にまとめて審査する（GitHub Actionsの混雑を避けて17分開始）
-    - cron: "17 22 * * *" # 07:17 JST
+    - cron: "17 22 * * *" # 07:17 JST: articles + daily expert videos
     - cron: "17 4 * * *"  # 13:17 JST
     - cron: "17 10 * * *" # 19:17 JST
   workflow_dispatch:
@@ -70,6 +70,7 @@ jobs:
         continue-on-error: true
         run: node update.js
         env:
+          AI_UPDATE_SCHEDULE: ${{ github.event.schedule }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_MODEL: claude-sonnet-5
           AI_DAILY_BUDGET_USD: ${{ vars.AI_DAILY_BUDGET_USD }}
