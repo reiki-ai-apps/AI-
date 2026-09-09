@@ -1,0 +1,80 @@
+/* 3Dシミュレーター画面 */
+.sim { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(320px, 430px); gap: 1.25rem; align-items: start; padding-bottom: 2rem; }
+.sim-viewer { position: sticky; top: calc(var(--header-h) + 0.75rem); }
+.viewer { position: relative; height: min(68vh, 640px); min-height: 360px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: #e4f0f7; box-shadow: var(--shadow-sm); }
+.viewer-canvas { width: 100% !important; height: 100% !important; display: block; touch-action: none; }
+.viewer-labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.dim-label { background: rgba(255,255,255,0.92); border: 1px solid var(--line); color: var(--green-900); font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.dim-label.strong { background: var(--green-800); color: #fff; border-color: var(--green-800); }
+.viewer-fallback { display: grid; place-items: center; height: 100%; padding: 2rem; text-align: center; color: var(--muted); }
+.viewer-toolbar { position: absolute; left: 0.75rem; top: 0.75rem; display: flex; gap: 0.35rem; flex-wrap: wrap; z-index: 2; }
+.viewer-toolbar button, .viewer-tools button { background: rgba(255,255,255,0.92); border: 1px solid var(--line); border-radius: 999px; padding: 0.35rem 0.75rem; font: inherit; font-size: 0.8rem; font-weight: 700; cursor: pointer; color: var(--text); }
+.viewer-toolbar button:hover, .viewer-tools button:hover { background: #fff; border-color: var(--green-500); }
+.viewer-toolbar button[aria-pressed="true"] { background: var(--green-700); color: #fff; border-color: var(--green-700); }
+.viewer-tools { position: absolute; right: 0.75rem; top: 0.75rem; display: flex; gap: 0.35rem; z-index: 2; }
+.viewer-hint { position: absolute; right: 0.75rem; bottom: 0.75rem; font-size: 0.75rem; color: var(--muted); background: rgba(255,255,255,0.85); padding: 0.2rem 0.6rem; border-radius: 999px; pointer-events: none; }
+.viewer-legend { position: absolute; left: 0.75rem; bottom: 0.75rem; font-size: 0.75rem; background: rgba(255,255,255,0.85); padding: 0.2rem 0.6rem; border-radius: 999px; pointer-events: none; }
+
+.sim-panel .card { padding: 1.1rem 1.25rem; }
+.sim-panel .card + .card { margin-top: 1rem; }
+fieldset { border: 0; padding: 0; margin: 0 0 1.1rem; min-width: 0; }
+fieldset:last-child { margin-bottom: 0; }
+legend { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--green-800); padding: 0; display: flex; align-items: center; gap: 0.5rem; }
+legend .n { width: 1.4rem; height: 1.4rem; border-radius: 50%; background: var(--green-100); color: var(--green-800); font-size: 0.75rem; display: grid; place-items: center; }
+.ctl { display: grid; gap: 0.65rem; }
+.ctl label.field select, .ctl label.field input[type="number"] { padding: 0.5rem 0.65rem; margin-top: 0.25rem; }
+.range-row { display: grid; grid-template-columns: 1fr 5.6rem; gap: 0.5rem; align-items: center; margin-top: 0.25rem; }
+.range-row input[type="range"] { width: 100%; accent-color: var(--green-600); margin: 0; }
+.range-row .unit { display: flex; align-items: center; gap: 0.25rem; font-weight: 400; font-size: 0.85rem; }
+.range-row .unit input { width: 4rem; padding: 0.35rem 0.4rem; text-align: right; }
+.range-meta { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted); font-weight: 400; }
+.seg { display: flex; gap: 0.3rem; margin-top: 0.3rem; }
+.seg label { flex: 1; position: relative; font-weight: 400; }
+.seg input { position: absolute; opacity: 0; width: 0; height: 0; }
+.seg span { display: block; text-align: center; padding: 0.45rem 0.4rem; border: 1px solid var(--line); border-radius: 8px; font-size: 0.82rem; cursor: pointer; background: #fff; }
+.seg input:checked + span { background: var(--green-700); color: #fff; border-color: var(--green-700); font-weight: 700; }
+.seg input:focus-visible + span { outline: 2px solid var(--green-500); }
+.seg input:disabled + span { opacity: 0.45; cursor: not-allowed; }
+.check { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 500; padding: 0.35rem 0; cursor: pointer; }
+.check input { width: 1.1rem; height: 1.1rem; accent-color: var(--green-600); margin: 0; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+
+.result .total-box { background: linear-gradient(135deg, var(--green-800), var(--green-600)); color: #fff; border-radius: var(--radius-sm); padding: 1rem 1.1rem; }
+.result .total-box .lbl { font-size: 0.8rem; opacity: 0.9; }
+.result .total-box .big { font-size: clamp(1.7rem, 3.5vw, 2.1rem); font-weight: 700; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.result .total-box .sub { font-size: 0.85rem; opacity: 0.9; margin-top: 0.25rem; display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; }
+.kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin-top: 0.8rem; }
+.kpi { background: var(--surface-2); border-radius: 8px; padding: 0.5rem 0.7rem; }
+.kpi .v { font-weight: 700; font-size: 1.02rem; font-variant-numeric: tabular-nums; }
+.kpi .k { font-size: 0.74rem; color: var(--muted); }
+.result details { margin-top: 0.8rem; border-top: 1px solid var(--line); padding-top: 0.6rem; }
+.result summary { cursor: pointer; font-weight: 700; font-size: 0.92rem; }
+.result .table { font-size: 0.83rem; margin-top: 0.5rem; }
+.result .table td.detail { color: var(--muted); font-size: 0.76rem; }
+.result .notes { font-size: 0.78rem; color: var(--muted); margin: 0.8rem 0 0; padding-left: 1.1em; }
+.result .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.9rem; }
+.result .actions .btn.block { grid-column: 1 / -1; }
+
+.sticky-total { display: none; }
+@media (max-width: 960px) {
+  .sim { grid-template-columns: 1fr; }
+  .viewer-toolbar { right: 0.75rem; }
+  .viewer-tools { position: absolute; top: auto; bottom: 0.75rem; right: 0.75rem; }
+  .viewer-legend { display: none; }
+  .viewer-hint { right: auto; left: 0.75rem; max-width: 55%; }
+  .viewer-toolbar button, .viewer-tools button { padding: 0.3rem 0.6rem; font-size: 0.75rem; }
+  .sim-viewer { position: static; }
+  .viewer { height: 46vh; min-height: 300px; }
+  .sticky-total { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: #fff; border-top: 1px solid var(--line); padding: 0.6rem 1rem; align-items: center; justify-content: space-between; gap: 0.75rem; box-shadow: 0 -6px 20px rgba(0,0,0,0.08); }
+  .sticky-total .v { font-weight: 700; font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+  .sticky-total .k { font-size: 0.72rem; color: var(--muted); }
+  body.has-sticky { padding-bottom: 76px; }
+  body.has-sticky .quote-fab { bottom: 88px; }
+}
+@media print {
+  .sim { grid-template-columns: 1fr; }
+  .viewer { height: 420px; box-shadow: none; }
+  .viewer-toolbar, .viewer-tools, .viewer-hint, .sticky-total, .result .actions, .sim-panel .card.controls { display: none !important; }
+  .result details { display: block; }
+  .result details summary { display: none; }
+}

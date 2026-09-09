@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>出店・パートナー募集｜三高産業 ハウスEC</title>
+<meta name="description" content="地域の資材店・施工店・メーカー向けに、三高産業ハウスECへの出店とパートナー参加を募集しています。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1f6b3a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+<div class="proto-banner"><strong>プロトタイプ版</strong>　表示している価格はすべて仮単価です。正式なお見積りは現地確認後にご提出します。</div>
+<header class="site-header">
+  <div class="container inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 20V11a9 9 0 0 1 18 0v9"/><path d="M3 20h18M12 2.2V20M7 20V6.2M17 20V6.2"/></svg></span>
+      <span class="brand-text"><span class="name">三高産業 ハウスEC</span><span class="sub">ビニールハウス資材・施工のオンライン見積</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">☰</button>
+    <nav class="nav" aria-label="メイン">
+      <a href="index.html">トップ</a>
+      <a href="simulator.html">3Dシミュレーター</a>
+      <a href="catalog.html">資材カタログ</a>
+      <a href="partners.html">出店・パートナー</a>
+      <a href="quote.html">見積依頼</a>
+      <a class="btn sm accent" href="simulator.html">3Dで見積る</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="container page-head">
+  <div class="breadcrumb"><a href="index.html">トップ</a> › 出店・パートナー</div>
+  <h1>出店・パートナー募集</h1>
+  <p>地域の資材店・施工店・メーカーの皆さまへ。三高産業のハウスECに出店し、お客様の農家さんにも3D見積りをご提供いただけます。</p>
+</section>
+<section class="container" style="padding-bottom:3rem">
+  <div class="cards">
+    <div class="card"><div class="icon">⬢</div><h3>3D見積りを自社のお客様に</h3><p>自社で開発しなくても、3Dシミュレーターと概算見積りを自社のお客様にご案内できます。御社の単価を設定した見積表示にも対応予定です。</p></div>
+    <div class="card"><div class="icon">▦</div><h3>商品を掲載・受注</h3><p>取り扱い資材をカタログに掲載し、見積依頼・注文を受け付けられます。既存のお客様との取引はそのまま継続できます。</p></div>
+    <div class="card"><div class="icon">⇄</div><h3>地域で在庫・施工を補完</h3><p>近隣の出店者同士で在庫や施工班を補い合い、納期短縮と稼働率向上につなげます。</p></div>
+  </div>
+
+  <div class="card mt-4">
+    <h2>費用の考え方(案)</h2>
+    <p class="muted">正式な条件は個別にご相談のうえ決定します。以下はプロトタイプ段階の目安です。</p>
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th>項目</th><th>内容</th><th class="num">目安</th></tr></thead>
+        <tbody>
+          <tr><td>初期費用</td><td>アカウント開設・商品登録サポート</td><td class="num">0円(仮)</td></tr>
+          <tr><td>月額管理費</td><td>3Dシミュレーター・カタログ・見積依頼機能の利用</td><td class="num">要相談</td></tr>
+          <tr><td>販売手数料</td><td>ECを通じて成立した売上に対する数パーセント</td><td class="num">要相談</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section-title mt-4"><span class="eyebrow">FLOW</span><h2>出店までの流れ</h2></div>
+  <div class="steps">
+    <div class="step"><h3>お問い合わせ</h3><p>下のフォームから会社名と取り扱い資材をお知らせください。</p></div>
+    <div class="step"><h3>ご説明・条件のご相談</h3><p>仕組み・費用・運用ルールをご説明し、条件をすり合わせます。</p></div>
+    <div class="step"><h3>商品登録</h3><p>商品マスタ(CSV)をお預かりし、カタログに掲載します。</p></div>
+    <div class="step"><h3>販売開始</h3><p>お客様からの見積依頼・注文を受け付け、対応を開始します。</p></div>
+  </div>
+
+  <form class="card mt-4" id="partner-form">
+    <h2>出店・パートナーのお問い合わせ</h2>
+    <div class="form-grid">
+      <label class="field">会社名・店名<span class="req">必須</span><input name="company" required></label>
+      <label class="field">ご担当者名<span class="req">必須</span><input name="person" required></label>
+      <label class="field">電話番号<span class="req">必須</span><input name="tel" type="tel" required></label>
+      <label class="field">メールアドレス<input name="email" type="email"></label>
+      <label class="field">所在地(都道府県・市町村)<input name="area"></label>
+      <label class="field">事業内容<select name="type"><option>資材販売</option><option>ハウス施工</option><option>資材メーカー</option><option>その他</option></select></label>
+      <label class="field full">取り扱い資材・ご相談内容<textarea name="message"></textarea></label>
+    </div>
+    <div class="flex mt-3"><button class="btn accent" type="submit">内容を送る(メールが開きます)</button><button class="btn ghost" type="button" id="p-copy">内容をコピー</button></div>
+    <div class="notice mt-2" id="p-result" hidden></div>
+  </form>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <h4>三高産業株式会社</h4>
+        <p>群馬県桐生市（正式な住所・電話番号・FAXはここに入れます）<br>ビニールハウス・パイプハウスの資材販売と施工。ハウス関連資材全般を取り扱っています。</p>
+      </div>
+      <div>
+        <h4>サービス</h4>
+        <ul>
+          <li><a href="simulator.html">3Dハウスシミュレーター</a></li>
+          <li><a href="catalog.html">資材カタログ</a></li>
+          <li><a href="quote.html">見積依頼・お問い合わせ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>事業者の方へ</h4>
+        <ul>
+          <li><a href="partners.html">出店・パートナー募集</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© <span data-year>2026</span> 三高産業株式会社</span>
+      <span>このサイトはプロトタイプです。価格は仮単価です。</span>
+    </div>
+  </div>
+</footer>
+<script type="module">
+import { initSite, toast, copyText } from "./assets/site.js";
+import { buildMail } from "./assets/quote.js";
+initSite();
+const f = document.getElementById("partner-form"), res = document.getElementById("p-result");
+const text = () => { const d = new FormData(f); return ["【出店・パートナーのお問い合わせ】", ...[["会社名・店名","company"],["ご担当者名","person"],["電話番号","tel"],["メール","email"],["所在地","area"],["事業内容","type"],["ご相談内容","message"]].map(([k,n]) => `${k}: ${d.get(n) || ""}`)].join("\n"); };
+f.addEventListener("submit", e => { e.preventDefault(); const t = text(); location.href = buildMail("出店・パートナーのお問い合わせ", t); res.hidden = false; res.innerHTML = "メールソフトが開きます。開かない場合は「内容をコピー」して、下記の連絡先までお送りください。<pre style=\"white-space:pre-wrap;margin:.5rem 0 0\">" + t.replace(/[<>&]/g, c => ({"<":"&lt;",">":"&gt;","&":"&amp;"}[c])) + "</pre>"; });
+document.getElementById("p-copy").addEventListener("click", async () => toast((await copyText(text())) ? "内容をコピーしました" : "コピーできませんでした"));
+</script>
+</body>
+</html>

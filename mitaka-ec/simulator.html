@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3Dハウスシミュレーター｜三高産業 ハウスEC</title>
+<meta name="description" content="間口・奥行・被覆材・換気を選ぶだけで、パイプハウスの3Dモデルと概算見積りをその場で表示します。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1f6b3a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/simulator.css">
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js","three/addons/":"./vendor/three/"}}</script>
+
+</head>
+<body>
+<div class="proto-banner"><strong>プロトタイプ版</strong>　表示している価格はすべて仮単価です。正式なお見積りは現地確認後にご提出します。</div>
+<header class="site-header">
+  <div class="container inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 20V11a9 9 0 0 1 18 0v9"/><path d="M3 20h18M12 2.2V20M7 20V6.2M17 20V6.2"/></svg></span>
+      <span class="brand-text"><span class="name">三高産業 ハウスEC</span><span class="sub">ビニールハウス資材・施工のオンライン見積</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">☰</button>
+    <nav class="nav" aria-label="メイン">
+      <a href="index.html">トップ</a>
+      <a href="simulator.html">3Dシミュレーター</a>
+      <a href="catalog.html">資材カタログ</a>
+      <a href="partners.html">出店・パートナー</a>
+      <a href="quote.html">見積依頼</a>
+      <a class="btn sm accent" href="simulator.html">3Dで見積る</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="container page-head">
+  <div class="breadcrumb"><a href="index.html">トップ</a> › 3Dハウスシミュレーター</div>
+  <h1>3Dハウスシミュレーター</h1>
+  <p>間口・奥行・被覆材・換気などを選ぶと、ハウスの3Dモデルと概算見積りがその場で表示されます。内容はURLに保存されるので、そのまま共有・見積依頼ができます。</p>
+</section>
+
+<section class="container sim">
+  <div class="sim-viewer">
+    <div class="viewer" id="viewer">
+      <div class="viewer-toolbar" role="group" aria-label="視点">
+        <button type="button" data-view="exterior" aria-pressed="true">外観</button>
+        <button type="button" data-view="front">正面(妻面)</button>
+        <button type="button" data-view="side">横</button>
+        <button type="button" data-view="top">上から</button>
+        <button type="button" data-view="interior">内観</button>
+      </div>
+      <div class="viewer-tools">
+        <button type="button" id="btn-labels" aria-pressed="true" title="寸法表示の切り替え">寸法</button>
+        <button type="button" id="btn-shot" title="3D画像をPNGで保存">画像保存</button>
+      </div>
+      <div class="viewer-legend">青い人物は身長約1.7mの目安です</div>
+      <div class="viewer-hint">ドラッグで回転 / ホイール・ピンチで拡大縮小 / 右ドラッグで移動</div>
+    </div>
+  </div>
+
+  <aside class="sim-panel">
+    <div class="card result" id="result">
+      <div class="total-box">
+        <div class="lbl">概算見積り(税込)　<span class="badge" style="background:rgba(255,255,255,.2);color:#fff" id="pricing-version"></span></div>
+        <div class="big" id="total-incl">—</div>
+        <div class="sub"><span>税抜 <b id="total-excl">—</b></span><span>1m²あたり <b id="per-sqm">—</b></span><span>1坪あたり <b id="per-tsubo">—</b></span></div>
+      </div>
+      <div class="kpis" id="kpis"></div>
+      <details>
+        <summary>内訳を見る</summary>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>項目</th><th class="num">数量</th><th class="num">金額(税抜)</th></tr></thead>
+            <tbody id="lines"></tbody>
+            <tfoot>
+              <tr><td>小計(税抜)</td><td></td><td class="num" id="foot-sub"></td></tr>
+              <tr><td>消費税(10%)</td><td></td><td class="num" id="foot-tax"></td></tr>
+              <tr><td>合計(税込)</td><td></td><td class="num" id="foot-total"></td></tr>
+            </tfoot>
+          </table>
+        </div>
+      </details>
+      <ul class="notes" id="notes"></ul>
+      <div class="actions">
+        <a class="btn accent block" id="quote-link" href="quote.html">この内容で見積依頼する</a>
+        <button class="btn ghost sm" type="button" id="btn-copy">共有URLをコピー</button>
+        <button class="btn ghost sm" type="button" id="btn-print">印刷・PDF保存</button>
+      </div>
+    </div>
+
+    <form class="card controls" id="controls" autocomplete="off">
+      <fieldset>
+        <legend><span class="n">1</span>大きさ</legend>
+        <div class="ctl">
+          <label class="field">間口(はば)<select id="f-span"></select></label>
+          <label class="field">奥行(長さ)
+            <div class="range-row"><input type="range" id="f-length" min="5" max="100" step="1"><span class="unit"><input type="number" id="f-length-num" min="5" max="100" step="0.5">m</span></div>
+            <div class="range-meta"><span>5m</span><span>100m</span></div>
+          </label>
+          <div class="two">
+            <label class="field">肩高(側面の高さ)
+              <div class="range-row"><input type="range" id="f-eave" min="1.0" max="2.4" step="0.1"><span class="unit"><input type="number" id="f-eave-num" min="1.0" max="2.4" step="0.1">m</span></div>
+            </label>
+            <label class="field">棟高(いちばん高い所)
+              <div class="range-row"><input type="range" id="f-ridge" step="0.1"><span class="unit"><input type="number" id="f-ridge-num" step="0.1">m</span></div>
+              <div class="range-meta" id="ridge-meta"></div>
+            </label>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><span class="n">2</span>骨組</legend>
+        <div class="ctl">
+          <label class="field">アーチ間隔<div class="seg" id="f-pitch"></div></label>
+          <label class="field">パイプ径<select id="f-pipe"></select></label>
+          <label class="check"><input type="checkbox" id="f-snow">耐雪補強(中柱・タイバー)を入れる</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><span class="n">3</span>被覆・出入口</legend>
+        <div class="ctl">
+          <label class="field">被覆材(フィルム)<select id="f-film"></select><div class="help" id="film-help"></div></label>
+          <label class="field">妻面ドア<select id="f-doors"></select></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><span class="n">4</span>換気・環境設備</legend>
+        <div class="ctl">
+          <label class="field">側面換気(巻き上げ)<select id="f-sidevent"></select></label>
+          <label class="field">巻き上げの開閉<div class="seg" id="f-ventdrive"></div></label>
+          <label class="check"><input type="checkbox" id="f-roofvent">天窓換気を付ける</label>
+          <label class="check"><input type="checkbox" id="f-net">換気部に防虫ネットを付ける</label>
+          <label class="field">内張保温カーテン<select id="f-curtain"></select></label>
+          <label class="field">潅水設備<select id="f-irrigation"></select></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><span class="n">5</span>施工・お届け先</legend>
+        <div class="ctl">
+          <label class="field">施工<div class="seg" id="f-install"></div></label>
+          <label class="field">お届け先の地域<select id="f-region"></select></label>
+        </div>
+      </fieldset>
+      <button class="btn ghost sm block" type="button" id="btn-reset">初期値に戻す</button>
+    </form>
+    <p class="small muted mt-2">※ 数量・金額は形状から自動計算した概算です。強風・多雪地域や特殊な作物条件では、現地確認のうえ正式見積りをご提出します。</p>
+  </aside>
+</section>
+
+<div class="sticky-total no-print">
+  <div><div class="k">概算(税込)</div><div class="v" id="sticky-total">—</div></div>
+  <a class="btn accent sm" id="sticky-quote" href="quote.html">見積依頼</a>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <h4>三高産業株式会社</h4>
+        <p>群馬県桐生市（正式な住所・電話番号・FAXはここに入れます）<br>ビニールハウス・パイプハウスの資材販売と施工。ハウス関連資材全般を取り扱っています。</p>
+      </div>
+      <div>
+        <h4>サービス</h4>
+        <ul>
+          <li><a href="simulator.html">3Dハウスシミュレーター</a></li>
+          <li><a href="catalog.html">資材カタログ</a></li>
+          <li><a href="quote.html">見積依頼・お問い合わせ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>事業者の方へ</h4>
+        <ul>
+          <li><a href="partners.html">出店・パートナー募集</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© <span data-year>2026</span> 三高産業株式会社</span>
+      <span>このサイトはプロトタイプです。価格は仮単価です。</span>
+    </div>
+  </div>
+</footer>
+<script type="module" src="assets/simulator.js"></script>
+</body>
+</html>

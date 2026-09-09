@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三高産業 ハウスEC｜ビニールハウスを3Dで組んで、その場で概算見積り</title>
+<meta name="description" content="群馬県桐生市の三高産業が運営するビニールハウス資材・施工のオンライン見積サイト。3Dシミュレーターで間口・奥行・設備を選ぶと、概算見積りがその場で表示されます。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1f6b3a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+<div class="proto-banner"><strong>プロトタイプ版</strong>　表示している価格はすべて仮単価です。正式なお見積りは現地確認後にご提出します。</div>
+<header class="site-header">
+  <div class="container inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 20V11a9 9 0 0 1 18 0v9"/><path d="M3 20h18M12 2.2V20M7 20V6.2M17 20V6.2"/></svg></span>
+      <span class="brand-text"><span class="name">三高産業 ハウスEC</span><span class="sub">ビニールハウス資材・施工のオンライン見積</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">☰</button>
+    <nav class="nav" aria-label="メイン">
+      <a href="index.html">トップ</a>
+      <a href="simulator.html">3Dシミュレーター</a>
+      <a href="catalog.html">資材カタログ</a>
+      <a href="partners.html">出店・パートナー</a>
+      <a href="quote.html">見積依頼</a>
+      <a class="btn sm accent" href="simulator.html">3Dで見積る</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero">
+  <div class="container grid">
+    <div>
+      <span class="badge">群馬県桐生市 ・ ビニールハウス資材と施工</span>
+      <h1 class="mt-2">ハウスを<span class="accent">3Dで組んで</span>、<br>その場で概算見積り。</h1>
+      <p class="lead">三高産業のハウスECは、パイプハウスの資材選びから見積り・施工相談までをオンラインで。間口と奥行を選ぶだけで、3Dモデルと概算金額がすぐに表示されます。</p>
+      <div class="actions">
+        <a class="btn accent lg" href="simulator.html">3Dシミュレーターで見積る</a>
+        <a class="btn outline lg" href="catalog.html">資材カタログを見る</a>
+      </div>
+      <p class="note">会員登録は不要・無料でお使いいただけます。表示価格は仮単価で、正式なお見積りは現地確認後にご提出します。</p>
+    </div>
+    <a class="hero-visual" href="simulator.html" aria-label="3Dハウスシミュレーターを開く">
+      <img src="assets/hero-3d.jpg" alt="3Dシミュレーターで表示した間口6m×奥行24mのパイプハウス" width="1200" height="900" loading="eager">
+      <span class="tag">▶ 3Dシミュレーター(実際の画面)</span>
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <span class="eyebrow">FEATURES</span>
+      <h2>ハウスづくりを、もっとわかりやすく</h2>
+      <p>図面や資材リストがなくても大丈夫。3Dで形を確かめながら、必要な資材と概算金額を確認できます。</p>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="icon">⬢</div><h3>3Dビューで見積りが楽</h3><p>間口・奥行・肩高・被覆材・換気を選ぶと、ハウスの3Dモデルと数量、概算金額が同時に更新されます。</p></div>
+      <div class="card"><div class="icon">▦</div><h3>資材カタログ</h3><p>パイプ、農ビ・農PO、換気・カーテン・潅水用品、金具まで。必要なものを見積リストに入れて、まとめて依頼できます。</p></div>
+      <div class="card"><div class="icon">🛠</div><h3>施工までおまかせ</h3><p>新設だけでなく、張り替え・修理・メンテナンスもご相談ください。資材のみのご購入にも対応します。</p></div>
+      <div class="card"><div class="icon">↗</div><h3>URLで共有・相談</h3><p>作った内容はURLに保存されます。ご家族やJA担当者と共有したり、あとで続きから編集できます。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="container">
+    <div class="section-title">
+      <span class="eyebrow">CATALOG</span>
+      <h2>取り扱い資材</h2>
+      <p>ハウス関連資材全般を取り扱っています。カテゴリを選ぶとカタログが開きます。</p>
+    </div>
+    <div class="tiles" id="category-tiles"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <span class="eyebrow">FLOW</span>
+      <h2>ご利用の流れ</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>形を決める</h3><p>3Dシミュレーターで間口・奥行・設備を選び、3Dで形を確認します。</p></div>
+      <div class="step"><h3>概算を確認</h3><p>数量と概算金額をその場で確認。URLをコピーして共有・保存できます。</p></div>
+      <div class="step"><h3>見積依頼</h3><p>「この内容で見積依頼」から連絡先を送信。必要に応じて現地を確認します。</p></div>
+      <div class="step"><h3>正式見積り・施工</h3><p>地盤・積雪・風の条件を反映した正式見積りをご提出し、施工日程を調整します。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="cta-band">
+      <div>
+        <h2>資材店・施工店・メーカーの皆さまへ</h2>
+        <p>このECに出店して、お客様の農家さんにも3D見積りをご提供いただけます。初期費用や手数料の考え方は「出店・パートナー」ページをご覧ください。</p>
+      </div>
+      <a class="btn lg" href="partners.html">出店・パートナーについて</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-title">
+      <span class="eyebrow">FAQ</span>
+      <h2>よくあるご質問</h2>
+    </div>
+    <div class="cards">
+      <div class="card"><h3>表示される金額は正確ですか？</h3><p>形状から自動計算した概算で、単価は仮の値です。正式なお見積りは、現地の地盤・積雪・風速条件を確認したうえでご提出します。</p></div>
+      <div class="card"><h3>施工エリアはどこまでですか？</h3><p>群馬県内と隣接県を中心に対応しています。その他の地域は、運搬費・施工費を別途ご相談ください。</p></div>
+      <div class="card"><h3>資材だけ購入できますか？</h3><p>できます。シミュレーターで「資材のみ」を選ぶか、カタログから必要な資材を見積リストに入れてご依頼ください。</p></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <h4>三高産業株式会社</h4>
+        <p>群馬県桐生市（正式な住所・電話番号・FAXはここに入れます）<br>ビニールハウス・パイプハウスの資材販売と施工。ハウス関連資材全般を取り扱っています。</p>
+      </div>
+      <div>
+        <h4>サービス</h4>
+        <ul>
+          <li><a href="simulator.html">3Dハウスシミュレーター</a></li>
+          <li><a href="catalog.html">資材カタログ</a></li>
+          <li><a href="quote.html">見積依頼・お問い合わせ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>事業者の方へ</h4>
+        <ul>
+          <li><a href="partners.html">出店・パートナー募集</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© <span data-year>2026</span> 三高産業株式会社</span>
+      <span>このサイトはプロトタイプです。価格は仮単価です。</span>
+    </div>
+  </div>
+</footer>
+<script type="module">
+import { initSite, esc } from "./assets/site.js";
+import { CATEGORIES } from "./assets/catalog-data.js";
+initSite();
+document.getElementById("category-tiles").innerHTML = CATEGORIES.map(c => `<a class="tile" href="catalog.html#cat=${esc(c.id)}"><span class="ic" aria-hidden="true">${c.icon}</span><span>${esc(c.label)}</span></a>`).join("");
+</script>
+</body>
+</html>

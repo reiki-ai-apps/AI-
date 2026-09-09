@@ -1,0 +1,52 @@
+// 資材カタログのサンプルデータ(価格はすべて仮単価・税抜)
+// 実運用ではこの配列を自社の商品マスタ(CSV/DB)に置き換えます。
+export const CATEGORIES = [
+  { id: "pipe", label: "パイプ材", icon: "〰", desc: "アーチ・直管・妻面用の亜鉛メッキパイプ" },
+  { id: "film", label: "農ビ・農PO", icon: "▦", desc: "単年張り〜多年張りの被覆フィルム" },
+  { id: "multi", label: "多年張被覆材", icon: "◈", desc: "5年以上使える長期展張フィルム" },
+  { id: "vent", label: "換気用品", icon: "≋", desc: "巻き上げ機・天窓・換気扇" },
+  { id: "curtain", label: "カーテン用品", icon: "▤", desc: "保温・遮光カーテンと開閉装置" },
+  { id: "irrigation", label: "潅水用品", icon: "💧", desc: "点滴チューブ・スプリンクラー・タイマー" },
+  { id: "mulch", label: "マルチ・ネット", icon: "▩", desc: "マルチフィルム・防虫ネット・防草シート" },
+  { id: "hardware", label: "金具・部材", icon: "⚙", desc: "クロスバンド・ビニペット・杭・ドア" },
+  { id: "animal", label: "鳥獣害防止", icon: "⚠", desc: "電気柵・防獣ネット・忌避用品" }
+];
+
+export const PRODUCTS = [
+  { id: "P-1910", cat: "pipe", name: "亜鉛メッキパイプ φ19.1×1.2t", spec: "5.5m", unit: "本", price: 1430, tags: ["小型ハウス", "直管"] },
+  { id: "P-2210", cat: "pipe", name: "亜鉛メッキパイプ φ22.2×1.2t", spec: "5.5m", unit: "本", price: 1815, tags: ["標準", "アーチ"] },
+  { id: "P-2510", cat: "pipe", name: "亜鉛メッキパイプ φ25.4×1.2t", spec: "5.5m", unit: "本", price: 2310, tags: ["標準", "アーチ", "人気"] },
+  { id: "P-2560", cat: "pipe", name: "亜鉛メッキパイプ φ25.4×1.2t", spec: "6.0m", unit: "本", price: 2520, tags: ["アーチ"] },
+  { id: "P-3110", cat: "pipe", name: "亜鉛メッキパイプ φ31.8×1.6t", spec: "5.5m", unit: "本", price: 3520, tags: ["大型", "耐雪"] },
+  { id: "P-ARCH54", cat: "pipe", name: "曲げ加工アーチパイプ 間口5.4m用", spec: "φ25.4 肩高1.6m 棟高3.0m 2本組", unit: "組", price: 5900, tags: ["曲げ加工済", "人気"] },
+  { id: "P-ARCH72", cat: "pipe", name: "曲げ加工アーチパイプ 間口7.2m用", spec: "φ31.8 肩高1.8m 棟高3.6m 2本組", unit: "組", price: 9800, tags: ["曲げ加工済", "大型"] },
+  { id: "F-NOVI010", cat: "film", name: "農ビ 0.1mm", spec: "幅230cm × 100m巻", unit: "巻", price: 52000, tags: ["単年張り"] },
+  { id: "F-NOVI013", cat: "film", name: "農ビ 0.13mm(防滴・流滴)", spec: "幅230cm × 100m巻", unit: "巻", price: 68000, tags: ["単年張り", "防滴"] },
+  { id: "F-PO015", cat: "film", name: "農PO 0.15mm(3年張り)", spec: "幅540cm × 100m巻", unit: "巻", price: 158000, tags: ["3年張り", "人気"] },
+  { id: "F-PO015S", cat: "film", name: "農PO 0.15mm 散乱光タイプ", spec: "幅540cm × 100m巻", unit: "巻", price: 176000, tags: ["散乱光", "葉焼け防止"] },
+  { id: "M-PO5Y", cat: "multi", name: "多年張りPO 0.15mm(5年)", spec: "幅600cm × 100m巻", unit: "巻", price: 248000, tags: ["5年張り"] },
+  { id: "M-ETFE", cat: "multi", name: "フッ素系フィルム(10年以上)", spec: "幅600cm × 50m巻", unit: "巻", price: 385000, tags: ["長期", "高透過"] },
+  { id: "V-ROLL-M", cat: "vent", name: "手動巻き上げ機", spec: "巻き上げ長さ 50mまで", unit: "台", price: 16800, tags: ["側面換気", "人気"] },
+  { id: "V-ROLL-E", cat: "vent", name: "電動巻き上げ機(温度センサー付)", spec: "AC100V 巻き上げ長さ 60mまで", unit: "台", price: 92000, tags: ["側面換気", "自動"] },
+  { id: "V-ROLLPIPE", cat: "vent", name: "巻き上げ用パイプ φ19.1", spec: "5.5m", unit: "本", price: 1350, tags: ["側面換気"] },
+  { id: "V-FAN40", cat: "vent", name: "循環扇(サーキュレーター) 40cm", spec: "AC100V 吊り下げ型", unit: "台", price: 34000, tags: ["空気循環"] },
+  { id: "V-ROOF", cat: "vent", name: "天窓開閉装置(手動)", spec: "開閉長さ 30mまで", unit: "台", price: 58000, tags: ["天窓"] },
+  { id: "C-HEAT", cat: "curtain", name: "内張保温カーテン(アルミ蒸着)", spec: "幅600cm × 50m巻", unit: "巻", price: 96000, tags: ["保温", "省エネ"] },
+  { id: "C-SHADE50", cat: "curtain", name: "遮光ネット 遮光率50%", spec: "幅400cm × 50m巻", unit: "巻", price: 42000, tags: ["遮光", "高温対策"] },
+  { id: "C-DRIVE", cat: "curtain", name: "カーテン開閉装置(電動)", spec: "AC100V タイマー付", unit: "台", price: 148000, tags: ["自動"] },
+  { id: "I-DRIP", cat: "irrigation", name: "点滴チューブ 15cmピッチ", spec: "内径16mm × 200m巻", unit: "巻", price: 14800, tags: ["点滴潅水", "人気"] },
+  { id: "I-MIST", cat: "irrigation", name: "ミストノズルセット", spec: "φ13 配管用 20個入", unit: "セット", price: 8600, tags: ["ミスト"] },
+  { id: "I-TIMER", cat: "irrigation", name: "潅水タイマー(電池式・2系統)", spec: "最大16回/日", unit: "台", price: 12800, tags: ["自動潅水"] },
+  { id: "I-FILTER", cat: "irrigation", name: "ディスクフィルター 25A", spec: "120メッシュ", unit: "個", price: 6400, tags: ["点滴潅水"] },
+  { id: "N-MULCH", cat: "mulch", name: "黒マルチ 0.02mm", spec: "幅135cm × 200m巻", unit: "巻", price: 3200, tags: ["雑草防止"] },
+  { id: "N-INSECT", cat: "mulch", name: "防虫ネット 1mm目", spec: "幅180cm × 100m巻", unit: "巻", price: 19800, tags: ["防虫", "換気部"] },
+  { id: "N-WEED", cat: "mulch", name: "防草シート(高耐久)", spec: "幅100cm × 100m巻", unit: "巻", price: 15800, tags: ["通路"] },
+  { id: "H-CROSS", cat: "hardware", name: "クロスバンド φ25.4×φ25.4", spec: "100個入", unit: "箱", price: 6500, tags: ["接合金具", "人気"] },
+  { id: "H-VINYPET", cat: "hardware", name: "ビニペット(被覆材固定レール)", spec: "4m", unit: "本", price: 1080, tags: ["フィルム固定"] },
+  { id: "H-SPRING", cat: "hardware", name: "ビニペット用スプリング", spec: "2m 50本入", unit: "箱", price: 4200, tags: ["フィルム固定"] },
+  { id: "H-ANCHOR", cat: "hardware", name: "らせん杭 φ13×600", spec: "10本入", unit: "箱", price: 8600, tags: ["基礎", "風対策"] },
+  { id: "H-DOOR", cat: "hardware", name: "妻面用片引きドアセット", spec: "W1.8m × H1.9m", unit: "セット", price: 42000, tags: ["出入口"] },
+  { id: "A-EFENCE", cat: "animal", name: "電気柵セット(ソーラー式)", spec: "周囲250m 2段張り", unit: "セット", price: 78000, tags: ["イノシシ", "シカ"] },
+  { id: "A-NET", cat: "animal", name: "防獣ネット 高さ1.5m", spec: "50m巻 16mm目", unit: "巻", price: 9800, tags: ["シカ", "ハクビシン"] },
+  { id: "A-BIRD", cat: "animal", name: "防鳥ネット 20mm目", spec: "幅900cm × 50m", unit: "巻", price: 12600, tags: ["鳥害"] }
+];

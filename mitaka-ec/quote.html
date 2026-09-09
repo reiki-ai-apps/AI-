@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>見積依頼・お問い合わせ｜三高産業 ハウスEC</title>
+<meta name="description" content="3Dシミュレーターの内容やカタログの見積リストを添えて、ビニールハウスの見積依頼・ご相談を送れます。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1f6b3a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+<div class="proto-banner"><strong>プロトタイプ版</strong>　表示している価格はすべて仮単価です。正式なお見積りは現地確認後にご提出します。</div>
+<header class="site-header">
+  <div class="container inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 20V11a9 9 0 0 1 18 0v9"/><path d="M3 20h18M12 2.2V20M7 20V6.2M17 20V6.2"/></svg></span>
+      <span class="brand-text"><span class="name">三高産業 ハウスEC</span><span class="sub">ビニールハウス資材・施工のオンライン見積</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">☰</button>
+    <nav class="nav" aria-label="メイン">
+      <a href="index.html">トップ</a>
+      <a href="simulator.html">3Dシミュレーター</a>
+      <a href="catalog.html">資材カタログ</a>
+      <a href="partners.html">出店・パートナー</a>
+      <a href="quote.html">見積依頼</a>
+      <a class="btn sm accent" href="simulator.html">3Dで見積る</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="container page-head">
+  <div class="breadcrumb"><a href="index.html">トップ</a> › 見積依頼・お問い合わせ</div>
+  <h1>見積依頼・お問い合わせ</h1>
+  <p>3Dシミュレーターの内容や、カタログの見積リストをそのまま送れます。内容が空でも、ご相談だけでもお気軽にどうぞ。</p>
+</section>
+<section class="container" style="padding-bottom:3rem">
+  <div style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:1.25rem;align-items:start" class="quote-grid">
+    <form class="card" id="quote-form">
+      <h2>お客様情報</h2>
+      <div class="form-grid">
+        <label class="field">お名前<span class="req">必須</span><input name="name" required autocomplete="name"></label>
+        <label class="field">農園名・法人名<input name="farm" autocomplete="organization"></label>
+        <label class="field">電話番号<span class="req">必須</span><input name="tel" type="tel" required autocomplete="tel"></label>
+        <label class="field">メールアドレス<input name="email" type="email" autocomplete="email"></label>
+        <label class="field">設置予定地(市町村)<span class="req">必須</span><input name="place" required placeholder="例: 群馬県桐生市"></label>
+        <label class="field">ご希望時期<select name="timing"><option>未定</option><option>1か月以内</option><option>3か月以内</option><option>半年以内</option><option>来年以降</option></select></label>
+        <label class="field">栽培作物<input name="crop" placeholder="例: トマト、いちご、花き"></label>
+        <label class="field">ご希望の連絡方法<select name="contact"><option>どちらでも</option><option>電話</option><option>メール</option></select></label>
+        <label class="field full">ご相談内容<textarea name="message" placeholder="現地の状況(地盤・風・積雪)、既存ハウスの張り替え、補助金の活用など、何でもご記入ください。"></textarea></label>
+      </div>
+      <div class="flex mt-3">
+        <button class="btn accent lg" type="submit">この内容で見積依頼する</button>
+        <button class="btn ghost" type="button" id="q-copy">内容をコピー</button>
+      </div>
+      <p class="small muted mt-2">送信いただいた内容は見積作成とご連絡のみに使用します。</p>
+      <div class="notice info mt-2" id="q-result" hidden></div>
+    </form>
+    <aside>
+      <div class="card" id="sim-summary" hidden>
+        <div class="flex between"><h3 style="margin:0">3Dシミュレーターの内容</h3><a class="btn ghost sm" href="simulator.html">内容を変更する</a></div>
+        <pre style="white-space:pre-wrap;font-size:.85rem;margin:.75rem 0 0;line-height:1.6"></pre>
+      </div>
+      <div class="card mt-2" id="list-summary" hidden>
+        <div class="flex between"><h3 style="margin:0">カタログ見積リスト</h3><a class="btn ghost sm" href="catalog.html">資材を追加する</a></div>
+        <pre style="white-space:pre-wrap;font-size:.85rem;margin:.75rem 0 0;line-height:1.6"></pre>
+      </div>
+      <div class="card" id="empty-summary" hidden>
+        <h3>内容はまだありません</h3>
+        <p class="muted">ご相談だけでも送信できます。ハウス1棟分の概算が必要な場合は、先に3Dシミュレーターで形を決めると、数量と概算を添えて依頼できます。</p>
+        <a class="btn block" href="simulator.html">3Dシミュレーターを使う</a>
+      </div>
+      <div class="card mt-2">
+        <h3>お電話・FAXでも</h3>
+        <p class="muted small">電話番号・FAX番号・受付時間は、ここに入れます(プレースホルダー)。</p>
+      </div>
+    </aside>
+  </div>
+</section>
+<style>@media (max-width: 860px) { .quote-grid { grid-template-columns: 1fr !important; } .quote-grid aside { order: -1; } }</style>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <h4>三高産業株式会社</h4>
+        <p>群馬県桐生市（正式な住所・電話番号・FAXはここに入れます）<br>ビニールハウス・パイプハウスの資材販売と施工。ハウス関連資材全般を取り扱っています。</p>
+      </div>
+      <div>
+        <h4>サービス</h4>
+        <ul>
+          <li><a href="simulator.html">3Dハウスシミュレーター</a></li>
+          <li><a href="catalog.html">資材カタログ</a></li>
+          <li><a href="quote.html">見積依頼・お問い合わせ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>事業者の方へ</h4>
+        <ul>
+          <li><a href="partners.html">出店・パートナー募集</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© <span data-year>2026</span> 三高産業株式会社</span>
+      <span>このサイトはプロトタイプです。価格は仮単価です。</span>
+    </div>
+  </div>
+</footer>
+<script type="module" src="assets/quote.js"></script>
+</body>
+</html>
