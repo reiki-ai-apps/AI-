@@ -32204,14 +32204,14 @@
     },
     "url:https://www.youtube.com/watch?v=wwacopj-0j0": {
       "canonical_url": "https://www.youtube.com/watch?v=wwacopj-0j0",
-      "content_hash": "a2293db1a91449c452831be6ee2ffecda2a4e8ac6d95c0e2a6026ae42249abcb",
+      "content_hash": "ee1f0b4b1053e5cc4d8a1824a45a29260fa71c352e6a633cbf478137a08fd5e2",
       "story_key": "b444239e735f831e074722337061e35ba4d9db7658fede5b84ce0f4db0544e45",
       "status": "rejected",
-      "processed_at": "2026-09-09T06:54:10.639Z",
+      "processed_at": "2026-09-09T07:03:23.918Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "expert",
-      "reason": "ai_skip: 公式説明が汎用文のみで具体的な主張・論点が確認できない"
+      "reason": "ai_skip: 動画説明が宣伝リンクのみで具体的な主張内容が確認できない"
     },
     "url:https://news.google.com/rss/articles/cbmiw0fvx3lxte9sb0zprvrtsl9kvexzrvzeufjytzd4uxnlvefwqmvindffq0v0uwfjwv9rznv4svnxchhjckhmvzl3aml1atvyu0y3reltcetobzfkynuzmxdfzuk": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiw0fvx3lxte9sb0zprvrtsl9kvexzrvzeufjytzd4uxnlvefwqmvindffq0v0uwfjwv9rznv4svnxchhjckhmvzl3aml1atvyu0y3reltcetobzfkynuzmxdfzuk",
@@ -32358,14 +32358,68 @@
     },
     "url:https://www.youtube.com/watch?v=tneufnrwsba": {
       "canonical_url": "https://www.youtube.com/watch?v=tneufnrwsba",
-      "content_hash": "7b170c10b62505b601f0ca9cf65a3828605053522309cec4cc40d345c6eb5850",
+      "content_hash": "fb872f33bed3b490b78b3fde90d4ad6e7d9aa1bfb1f35c78bfd4883499c8e263",
       "story_key": "be0a42dd6f08df9901a37d357a781f378bfe5988b8c12a9a84c1566e7913235a",
-      "status": "rejected",
-      "processed_at": "2026-09-09T06:54:10.639Z",
+      "status": "enriched",
+      "processed_at": "2026-09-09T07:03:23.931Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "expert",
-      "reason": "ai_skip: 公式説明が汎用文のみでチャプター内容が確認できない"
+      "reason": "official_title_topics",
+      "result": {
+        "tool": "専門家動画・発言",
+        "content_type": "expert_video",
+        "expert_id": "takahiro-anno",
+        "expert_name": "安野貴博",
+        "expert_names": [
+          "安野貴博"
+        ],
+        "expert_role": "AIエンジニア・起業家・政策当事者",
+        "expert_tier": "core_engineering_policy",
+        "platform": "YouTube",
+        "video_id": "tNEUfNrwsbA",
+        "source_trust": "primary",
+        "title": "【バイブコーディング超入門講座第7回】アプリにデータ保存機能を追加するには？Claude Codeで実装するデータベース講座 / Supabaseって何？ / AIにデータを壊されないための必須対策",
+        "source_url": "https://www.youtube.com/watch?v=tNEUfNrwsbA",
+        "published_at": "2026-08-21T11:00:36.000Z",
+        "source_published_at": "2026-08-21T11:00:36.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-09-09T07:02:26.209Z",
+        "raw_excerpt": "安野貴博氏が「アプリにデータ保存機能を追加するには？Claude Co」を軸に、Supabaseって何などを説明する公式動画です。",
+        "source_name": "安野貴博の自由研究",
+        "is_official": true,
+        "detail": "安野貴博氏の公式動画です。動画の中心は「アプリにデータ保存機能を追加するには？Claude Codeで実装するデータベース講座」です。新製品の速報ではなく、AIを使う手順や考え方を本人が説明します。\n\n具体的には「Supabaseって何」を扱います。さらに「AIにデータを壊されないための必須対策」も取り上げます。複数の論点を一つの流れで学べる点が、この動画を選んだ理由です。仕事では、AIに任せる部分と、人が確認する部分を考える材料になります。\n\nここでは動画タイトルと公式説明で確認できる範囲だけをまとめています。詳しい結論や実演の手順は、元動画で確かめてください。確認できない数字、効果、発言の言い回しは付け足していません。",
+        "change_summary": "安野貴博氏の公式動画から、アプリにデータ保存機能を追加するには？Claude Codeで実装するデータベース講座、Supabaseって何、AIにデータを壊されないための必須対策を確認できます。",
+        "impact_summary": "AIを仕事で使う際に、操作だけでなく仕組みや注意点まで考える材料になります。",
+        "action_suggestion": "詳しい結論、実演手順、前提条件は元動画で確認してください。",
+        "importance": "A",
+        "related_categories": [
+          "アプリ開発・自動化"
+        ],
+        "event_at": "",
+        "event_status": "継続中",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "安野貴博",
+          "アプリにデータ保存機能を追加するには？Claude Codeで実装するデータベース講座",
+          "Supabaseって何"
+        ],
+        "primary_entity": "安野貴博",
+        "story_subject": "アプリにデータ保存機能を追加するには？Claude Codeで実装するデータベース講座",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "YouTube公式動画",
+        "fact_slots": [],
+        "new_facts": [
+          "アプリにデータ保存機能を追加するには？Claude Codeで実装するデータベース講座",
+          "Supabaseって何",
+          "AIにデータを壊されないための必須対策"
+        ],
+        "structured_complete": true,
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+        "expert_context_basis": "official_title_topics"
+      }
     },
     "url:https://www.youtube.com/watch?v=eth2hb3j05q": {
       "canonical_url": "https://www.youtube.com/watch?v=eth2hb3j05q",
@@ -32714,7 +32768,18 @@
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "emergency",
       "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://www.youtube.com/watch?v=05llppyuahg": {
+      "canonical_url": "https://www.youtube.com/watch?v=05llppyuahg",
+      "content_hash": "43530a88a302c328ebddb87253568cd50ca15e627bd6304b9ae24a9724f7025f",
+      "story_key": "25e7f1d34fc2d7c24a5463f27b2996b5619773472e73de287b6cdb647595e419",
+      "status": "rejected",
+      "processed_at": "2026-09-09T07:03:23.918Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "ai_skip: 出演者の具体的主張やチャプター一覧が確認できない座談会"
     }
   },
-  "updated_at": "2026-09-09T06:54:10.639Z"
+  "updated_at": "2026-09-09T07:03:23.918Z"
 }
