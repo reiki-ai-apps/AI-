@@ -163,6 +163,12 @@ jobs:
               if (Number(item.home_top_rank) > 0) {
                 errors.push(itemError(index, "専門家動画が記事トップ5へ混入しています"));
               }
+              const sourcePublishedAt = new Date(item.source_published_at || 0).getTime();
+              const videoAgeMs = Date.now() - sourcePublishedAt;
+              if (item.source_date_status !== "published" || !Number.isFinite(sourcePublishedAt) ||
+                  sourcePublishedAt <= 0 || videoAgeMs < 0 || videoAgeMs > 10 * 86400000) {
+                errors.push(itemError(index, "専門家動画の元投稿日が未確認または10日超です"));
+              }
             }
             if (!item.source_published_at && !["unknown", "updated_only"].includes(item.source_date_status)) {
               errors.push(itemError(index, "情報元掲載日がないのに日付確認済みになっています"));
@@ -263,7 +269,7 @@ jobs:
         run: |
           git config user.name "ai-radar-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data.json home-edition.json .story-index.json index.html articles sitemap.xml robots.txt
+          git add data.json home-edition.json .story-index.json index.html articles sitemap.xml robots.txt .expert-video-state.json
           if git diff --staged --quiet; then
             echo "Published data is already current"
             exit 0

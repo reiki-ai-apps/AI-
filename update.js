@@ -10,7 +10,8 @@ const crypto = require("crypto");
 const {upgradeFriendlyExplanationItem}=require("./scripts/friendly-explanation.cjs");
 const {MAX_HOME_ARTICLES,buildHomeEdition,applyHomeEdition}=require("./scripts/home-edition.cjs");
 const {
-  isExpertVideoItem,parseYouTubeChannelVideos,matchedExpertsForSource,
+  EXPERT_VIDEO_MAX_AGE_DAYS,isExpertVideoItem,jstDayKey,shouldRefreshExpertVideos,isFreshExpertVideo,
+  parseYouTubeChannelVideos,matchedExpertsForSource,
   isSubstantiveAiVideo,isWebVideoCandidate,dedupeExpertVideoCandidates,
   selectExpertVideoArchivePicks,selectExpertVideoReviewCandidates,buildExpertWebDiscoveryUrl
 }=require("./scripts/expert-video.cjs");
@@ -198,6 +199,7 @@ const AI_USAGE_PATH = ".ai-usage.json";
 const STORY_INDEX_PATH = ".story-index.json";
 const HOME_EDITION_PATH = "home-edition.json";
 const EXPERT_SOURCES_PATH = "expert-sources.json";
+const EXPERT_VIDEO_STATE_PATH = ".expert-video-state.json";
 const EXPERT_VIDEO_ARCHIVE_LIMIT = 12;
 const EXPERT_VIDEO_PROTECTED_LIMIT = 4;
 const EXPERT_VIDEO_REVIEW_LIMIT = 6;
@@ -1072,17 +1074,21 @@ function expertVideoRecord(expert,source,video,fetchedAt){
 
 async function collectExpertVideoCandidates(registry,fetchedAt){
   const records=[];
+  let attemptedSources=0;
+  let successfulSources=0;
   const directSources=(registry.experts||[]).flatMap(expert=>(expert.official_sources||[])
     .filter(source=>source.platform==="youtube")
     .map(source=>({...source,expert_id:expert.id})));
   const hostSources=(registry.trusted_hosts||[]).filter(source=>source.platform==="youtube");
   const channelSources=[...directSources,...hostSources];
   for(const source of channelSources){
+    attemptedSources++;
     try{
       const channelUrl=source.channel_id
         ?`https://www.youtube.com/channel/${source.channel_id}/videos`
         :String(source.channel_url||"").replace(/\/$/,"")+"/videos";
       const videos=parseYouTubeChannelVideos(await fetchText(channelUrl,{youtube:true}),source);
+      successfulSources++;
       let feedVideos=[];
       if(source.channel_id){
         try{
@@ -1121,9 +1127,11 @@ async function collectExpertVideoCandidates(registry,fetchedAt){
 
   if(registry.web_discovery?.enabled){
     for(const expert of registry.experts||[]){
+      attemptedSources++;
       const feedUrl=buildExpertWebDiscoveryUrl(expert,registry.web_discovery.lookback_days);
       try{
         const feedItems=parseFeed(await fetchText(feedUrl),false,"Web動画・講演");
+        successfulSources++;
         const source={
           platform:registry.web_discovery.platform||"web_video",
           trust:registry.web_discovery.trust||"editorial_host_candidate",
@@ -1147,7 +1155,7 @@ async function collectExpertVideoCandidates(registry,fetchedAt){
       }
     }
   }
-  return dedupeExpertVideoCandidates(records);
+  return {items:dedupeExpertVideoCandidates(records),attemptedSources,successfulSources};
 }
 
 function decodeHtmlText(value) {
@@ -2096,7 +2104,29 @@ function bootstrapCacheResult(cache,source,result) {
     }
     console.error("OK", t.name, "kept", Math.min(items.length, PER_TOOL), "/ fetched", before);
   }
-  const expertVideoCandidates=await collectExpertVideoCandidates(EXPERT_REGISTRY,editionWindowEnd);
+  const editionNow=Date.parse(editionWindowEnd);
+  const expertVideoState=readJsonFile(EXPERT_VIDEO_STATE_PATH,{
+    version:1,last_successful_refresh_day_jst:"",last_successful_refresh_at:"",max_age_days:EXPERT_VIDEO_MAX_AGE_DAYS
+  });
+  const expertRefreshDue=shouldRefreshExpertVideos(expertVideoState,editionNow);
+  let expertVideoCollection={items:[],attemptedSources:0,successfulSources:0};
+  if(expertRefreshDue){
+    expertVideoCollection=await collectExpertVideoCandidates(EXPERT_REGISTRY,editionWindowEnd);
+    console.error("EXPERT VIDEO DAILY CHECK:",expertVideoCollection.successfulSources,"/",expertVideoCollection.attemptedSources,"sources succeeded");
+  }else{
+    console.error("EXPERT VIDEO DAILY CHECK: already completed for",jstDayKey(editionNow),"JST; preserving fresh published videos");
+  }
+  const expertVideoCandidates=expertVideoCollection.items
+    .filter(item=>isFreshExpertVideo(item,editionNow,EXPERT_VIDEO_MAX_AGE_DAYS));
+  const nextExpertVideoState=expertRefreshDue&&expertVideoCollection.successfulSources>0?{
+    version:1,
+    last_successful_refresh_day_jst:jstDayKey(editionNow),
+    last_successful_refresh_at:editionWindowEnd,
+    max_age_days:EXPERT_VIDEO_MAX_AGE_DAYS,
+    source_attempts:expertVideoCollection.attemptedSources,
+    source_successes:expertVideoCollection.successfulSources,
+    fresh_candidate_count:expertVideoCandidates.length
+  }:null;
   out.push(...expertVideoCandidates);
   out.sort((a, b) => articleTime(b)-articleTime(a));
 
@@ -2160,7 +2190,7 @@ function bootstrapCacheResult(cache,source,result) {
   // 記事と同じ大きなバッチへ混ぜると、動画の主張がニュース発表用の判定に引っ張られる。
   // 専門家動画を最初に2件ずつ審査し、人物の多様性を保ちながら次候補まで確認する。
   const expertReviewCandidates=selectExpertVideoReviewCandidates(fresh,
-    Math.min(EXPERT_VIDEO_REVIEW_LIMIT,expertRemaining));
+    Math.min(EXPERT_VIDEO_REVIEW_LIMIT,expertRemaining),2,editionNow);
   const expertReviewKeys=new Set(expertReviewCandidates.map(articleCacheKey));
   // プロンプト更新だけでは既存記事が「処理済み」のまま残るため、毎日24件を上限に
   // 旧要約へ再度一次情報の文脈を付け、記事固有の深い3段落へ安全に移行する。
@@ -2194,7 +2224,7 @@ function bootstrapCacheResult(cache,source,result) {
   }
   const expertAcceptedUrls=new Set(expertResult.items.map(item=>normalizedUrl(item.source_url)).filter(Boolean));
   const expertTitleFallbacks=selectExpertVideoArchivePicks(
-    fresh.filter(isVerifiedExpertTitleFallback),3
+    fresh.filter(isVerifiedExpertTitleFallback),3,editionNow
   ).filter(source=>!expertAcceptedUrls.has(normalizedUrl(source.source_url)))
     .map(buildVerifiedExpertTitleFallback).filter(item=>item&&isCompleteEnrichedItem(item));
   for(const item of expertTitleFallbacks){
@@ -2216,7 +2246,8 @@ function bootstrapCacheResult(cache,source,result) {
   // 新着候補があるのに予算・API障害で1件も処理できなかった回は、更新成功にしない。
   // チェックポイントを進めず、次の回で同じ期間を再審査する。
   const hasPublishableExpertCache=Object.values(cache.items||{}).some(entry=>
-    entry&&entry.status==="enriched"&&isExpertVideoItem(entry.result)&&isCompleteEnrichedItem(entry.result));
+    entry&&entry.status==="enriched"&&isExpertVideoItem(entry.result)&&
+    isFreshExpertVideo(entry.result,editionNow,EXPERT_VIDEO_MAX_AGE_DAYS)&&isCompleteEnrichedItem(entry.result));
   if(fresh.length>0&&selectedCount===0&&!hasPublishableExpertCache){
     console.error("NEW ARTICLES ARE WAITING: keeping the previous public edition until AI processing resumes");
     process.exitCode=1;
@@ -2238,14 +2269,17 @@ function bootstrapCacheResult(cache,source,result) {
   // 「既存原記事を消す → 転載も履歴重複で消す」という二重除外が起きる。
   const rankedPool=dedupeStories(preferCurrentEnrichment(
     [...recentPrevious,...cachedEnriched,...reused,...newlyEnriched]))
-    .filter(isCompleteEnrichedItem);
+    .filter(isCompleteEnrichedItem)
+    // 動画は元の投稿日を確認でき、実行時点で10日以内のものだけを公開候補に残す。
+    // キャッシュや前回データから期限切れ動画が復活する経路もここで一括して遮断する。
+    .filter(item=>!isExpertVideoItem(item)||isFreshExpertVideo(item,editionNow,EXPERT_VIDEO_MAX_AGE_DAYS));
   // 新着がない回でも直前のトップ5が公開上限処理で消えないよう、最優先で保持する。
   const previousEdition=readJsonFile(HOME_EDITION_PATH,{});
   const rankedById=new Map(rankedPool.map(item=>[item.article_id||stableArticleId(item),item]));
   const editionPicks=(previousEdition.article_ids||[]).map(id=>rankedById.get(String(id))).filter(Boolean).slice(0,MAX_HOME_ARTICLES);
   const editionKeys=new Set(editionPicks.map(item=>item.article_id||stableArticleId(item)));
   // 専門家動画は記事トップ5を消費させず、公開上限の中に独立して保持する。
-  const expertPicks=selectExpertVideoArchivePicks(rankedPool,EXPERT_VIDEO_ARCHIVE_LIMIT)
+  const expertPicks=selectExpertVideoArchivePicks(rankedPool,EXPERT_VIDEO_ARCHIVE_LIMIT,editionNow)
     .filter(item=>!editionKeys.has(item.article_id||stableArticleId(item)));
   const expertKeys=new Set(expertPicks.map(item=>item.article_id||stableArticleId(item)));
   // 主要ツールは各1件を優先確保し、画面にあるのに進化情報が出ない状態を防ぐ。
@@ -2304,6 +2338,9 @@ function bootstrapCacheResult(cache,source,result) {
   writeJsonFile("data.json",editionReadyFinal);
   writeJsonFile(HOME_EDITION_PATH,homeEdition);
   writeJsonFile(STORY_INDEX_PATH,updateStoryIndex(storyIndex,editionReadyFinal));
+  // 公開データの生成まで完了した時だけ日次チェックを確定する。通信障害やAI処理失敗なら
+  // 日付を進めず、同じ日の次回記事更新で動画探索だけを再試行できる。
+  if(nextExpertVideoState)writeJsonFile(EXPERT_VIDEO_STATE_PATH,nextExpertVideoState);
   console.error("WROTE data.json with",editionReadyFinal.length,"complete items; home",homeEdition.selected_count,"of",homeEdition.candidate_count,"new candidates; candidates",uniqueOut.length,"after recent-story filter",filteredOut.length,"new",newlyEnriched.length,"reused",reused.length,"cache",cachedEnriched.length,"retained",recentPrevious.length,"safe-expanded",safelyExpanded);
 
 })();

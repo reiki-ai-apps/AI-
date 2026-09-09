@@ -1,5 +1,5 @@
 {
-  "version": "ai-radar-experts-2026-09-09-v1",
+  "version": "ai-radar-experts-2026-09-10-v2",
   "selection_policy": "人気だけでは選ばず、AIの研究・開発・実装・政策について継続して具体的な発言ができる人物を登録する。研究開発・政策の当事者と事業・社会への解説者は区分する。",
   "experts": [
     {
@@ -163,7 +163,7 @@
   "web_discovery": {
     "enabled": true,
     "platform": "web_video",
-    "lookback_days": 30,
+    "lookback_days": 10,
     "format_terms": ["動画", "講演", "対談", "インタビュー", "ポッドキャスト", "文字起こし"],
     "trust": "editorial_host_candidate"
   }

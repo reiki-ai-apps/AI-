@@ -4,9 +4,29 @@ const AI_TOPIC_PATTERN=/(?:\bAI\b|人工知能|生成AI|機械学習|深層学�
 const VIDEO_FORMAT_PATTERN=/(?:動画|講演|対談|インタビュー|ポッドキャスト|文字起こし|解説|討論|セッション|基調講演|YouTube)/i;
 const SUBSTANTIVE_SIGNAL_PATTERN=/(?:解説|講座|講演|対談|インタビュー|討論|議論|検証|比較|仕組み|なぜ|何を|どのよう|できる|影響|変わる|未来|政策|規制|技術|研究|実演|実装|条件|課題|対策|リスク|能力|記憶|仕事|社会|開発|モデル|エージェント|コーディング)/i;
 const LOW_VALUE_PATTERN=/(?:切り抜き|無断転載|まとめ動画|反応集|shorts?\b|#shorts|予告編|ティザー|CM(?:動画)?\b|プレゼント|キャンペーン|ランキング|おすすめ\d*選|\bVLOG\b|行ってみた|潜入|体験乗車|スパルタキャンプ|無料.{0,12}学べる|受講者募集)/i;
+const EXPERT_VIDEO_MAX_AGE_DAYS=10;
 
 function isExpertVideoItem(item){
   return String(item?.content_type||"").toLowerCase()==="expert_video";
+}
+
+function jstDayKey(now=Date.now()){
+  const parts=new Intl.DateTimeFormat("en-US",{
+    timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"
+  }).formatToParts(new Date(now));
+  const values=Object.fromEntries(parts.map(part=>[part.type,part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+function shouldRefreshExpertVideos(state,now=Date.now()){
+  return String(state?.last_successful_refresh_day_jst||"")!==jstDayKey(now);
+}
+
+function isFreshExpertVideo(item,now=Date.now(),maxAgeDays=EXPERT_VIDEO_MAX_AGE_DAYS){
+  if(!isExpertVideoItem(item)||String(item?.source_date_status||"")!=="published")return false;
+  const publishedAt=new Date(item?.source_published_at||0).getTime();
+  const ageLimit=Math.max(1,Number(maxAgeDays)||EXPERT_VIDEO_MAX_AGE_DAYS)*86400000;
+  return Number.isFinite(publishedAt)&&publishedAt>0&&publishedAt<=now&&publishedAt>=now-ageLimit;
 }
 
 function decodeJsHexEscapes(value){
@@ -141,8 +161,8 @@ function dedupeExpertVideoCandidates(items){
   return output;
 }
 
-function selectExpertVideoArchivePicks(items,limit=12){
-  const candidates=dedupeExpertVideoCandidates((items||[]).filter(isExpertVideoItem))
+function selectExpertVideoArchivePicks(items,limit=12,now=Date.now()){
+  const candidates=dedupeExpertVideoCandidates((items||[]).filter(item=>isFreshExpertVideo(item,now)))
     .sort((a,b)=>new Date(b.source_published_at||b.published_at||b.fetched_at||0)-new Date(a.source_published_at||a.published_at||a.fetched_at||0));
   const selected=[];
   const selectedIds=new Set();
@@ -160,12 +180,8 @@ function selectExpertVideoArchivePicks(items,limit=12){
 }
 
 function selectExpertVideoReviewCandidates(items,limit=6,maxPerExpert=2,now=Date.now()){
-  const cutoff=now-45*86400000;
   const candidates=dedupeExpertVideoCandidates((items||[]).filter(isExpertVideoItem))
-    .filter(item=>{
-      const time=new Date(item.source_published_at||item.published_at||item.fetched_at||0).getTime();
-      return !Number.isFinite(time)||time<=0||time>=cutoff;
-    })
+    .filter(item=>isFreshExpertVideo(item,now))
     .sort((a,b)=>{
       const quality=item=>{
         const text=`${item.title||""} ${item.raw_excerpt||""}`;
@@ -197,14 +213,15 @@ function selectExpertVideoReviewCandidates(items,limit=6,maxPerExpert=2,now=Date
   return selected;
 }
 
-function buildExpertWebDiscoveryUrl(expert,lookbackDays=30){
-  const query=`"${expert.name}" (AI OR 生成AI OR 人工知能 OR ChatGPT) (動画 OR 講演 OR 対談 OR インタビュー OR ポッドキャスト OR 文字起こし) when:${Math.max(1,Number(lookbackDays)||30)}d`;
+function buildExpertWebDiscoveryUrl(expert,lookbackDays=EXPERT_VIDEO_MAX_AGE_DAYS){
+  const query=`"${expert.name}" (AI OR 生成AI OR 人工知能 OR ChatGPT) (動画 OR 講演 OR 対談 OR インタビュー OR ポッドキャスト OR 文字起こし) when:${Math.max(1,Number(lookbackDays)||EXPERT_VIDEO_MAX_AGE_DAYS)}d`;
   return `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=ja&gl=JP&ceid=JP:ja`;
 }
 
 module.exports={
   AI_TOPIC_PATTERN,VIDEO_FORMAT_PATTERN,SUBSTANTIVE_SIGNAL_PATTERN,LOW_VALUE_PATTERN,
-  isExpertVideoItem,decodeJsHexEscapes,approximatePublishedAt,parseYouTubeChannelVideos,
+  EXPERT_VIDEO_MAX_AGE_DAYS,isExpertVideoItem,jstDayKey,shouldRefreshExpertVideos,isFreshExpertVideo,
+  decodeJsHexEscapes,approximatePublishedAt,parseYouTubeChannelVideos,
   expertMentioned,matchedExpertsForSource,isSubstantiveAiVideo,isWebVideoCandidate,
   dedupeExpertVideoCandidates,selectExpertVideoArchivePicks,selectExpertVideoReviewCandidates,
   buildExpertWebDiscoveryUrl

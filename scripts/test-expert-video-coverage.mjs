@@ -4,7 +4,8 @@ import {createRequire} from "node:module";
 
 const require=createRequire(import.meta.url);
 const {
-  isExpertVideoItem,parseYouTubeChannelVideos,matchedExpertsForSource,
+  EXPERT_VIDEO_MAX_AGE_DAYS,isExpertVideoItem,jstDayKey,shouldRefreshExpertVideos,isFreshExpertVideo,
+  parseYouTubeChannelVideos,matchedExpertsForSource,
   dedupeExpertVideoCandidates,selectExpertVideoArchivePicks,selectExpertVideoReviewCandidates,
   isSubstantiveAiVideo,buildExpertWebDiscoveryUrl
 }=require("./expert-video.cjs");
@@ -15,8 +16,10 @@ const homeEditionSource=fs.readFileSync(new URL("./home-edition.cjs",import.meta
 const html=fs.readFileSync(new URL("../index.html",import.meta.url),"utf8");
 const workflow=fs.readFileSync(new URL("../.github/workflows/update.yml",import.meta.url),"utf8");
 const data=JSON.parse(fs.readFileSync(new URL("../data.json",import.meta.url),"utf8"));
+const dailyState=JSON.parse(fs.readFileSync(new URL("../.expert-video-state.json",import.meta.url),"utf8"));
 
-assert.equal(registry.version,"ai-radar-experts-2026-09-09-v1","専門家台帳の版を固定する");
+assert.equal(registry.version,"ai-radar-experts-2026-09-10-v2","専門家台帳の版を固定する");
+assert.equal(registry.web_discovery.lookback_days,10,"Web動画探索を投稿10日以内に絞る");
 assert.ok(registry.experts.length>=8,"初期専門家を8人以上登録する");
 for(const name of ["松尾豊","岡野原大輔","今井翔太","中島聡","安野貴博","落合陽一","山本一成","堀江貴文"]){
   assert.ok(registry.experts.some(expert=>expert.name===name),`${name}を専門家台帳へ登録する`);
@@ -35,25 +38,42 @@ const nakajima=registry.experts.find(expert=>expert.name==="中島聡");
 assert.deepEqual(matchedExpertsForSource(parsed[0].title,{expert_id:nakajima.id},registry).map(expert=>expert.id),[nakajima.id]);
 
 const duplicateFixture=[
-  {content_type:"expert_video",expert_id:"shota-imai",video_id:"same-video-1",source_url:"https://www.youtube.com/watch?v=same-video-1",title:"今井翔太が生成AIの進化を解説",published_at:"2026-09-09T01:00:00Z"},
-  {content_type:"expert_video",expert_id:"shota-imai",video_id:"same-video-1",source_url:"https://example.com/mirror",title:"今井翔太が生成AIの進化を解説",published_at:"2026-09-09T02:00:00Z"},
-  {content_type:"expert_video",expert_id:"yutaka-matsuo",video_id:"other-video",source_url:"https://example.com/other",title:"松尾豊がAI政策を講演",published_at:"2026-09-09T03:00:00Z"}
+  {content_type:"expert_video",expert_id:"shota-imai",video_id:"same-video-1",source_url:"https://www.youtube.com/watch?v=same-video-1",title:"今井翔太が生成AIの進化を解説",published_at:"2026-09-09T01:00:00Z",source_published_at:"2026-09-09T01:00:00Z",source_date_status:"published"},
+  {content_type:"expert_video",expert_id:"shota-imai",video_id:"same-video-1",source_url:"https://example.com/mirror",title:"今井翔太が生成AIの進化を解説",published_at:"2026-09-09T02:00:00Z",source_published_at:"2026-09-09T02:00:00Z",source_date_status:"published"},
+  {content_type:"expert_video",expert_id:"yutaka-matsuo",video_id:"other-video",source_url:"https://example.com/other",title:"松尾豊がAI政策を講演",published_at:"2026-09-09T03:00:00Z",source_published_at:"2026-09-09T03:00:00Z",source_date_status:"published"}
 ];
+const testNow=Date.parse("2026-09-10T00:00:00Z");
 assert.equal(dedupeExpertVideoCandidates(duplicateFixture).length,2,"同じ動画・同じ発言を重複させない");
-assert.equal(selectExpertVideoArchivePicks(duplicateFixture,3).length,2,"専門家動画の公開枠を独立して確保する");
+assert.equal(selectExpertVideoArchivePicks(duplicateFixture,3,testNow).length,2,"専門家動画の公開枠を独立して確保する");
+const exactlyTenDays={content_type:"expert_video",source_published_at:"2026-08-31T00:00:00Z",source_date_status:"published"};
+const tooOld={...exactlyTenDays,source_published_at:"2026-08-30T23:59:59Z"};
+const unknownDate={content_type:"expert_video",published_at:"2026-09-09T00:00:00Z",source_published_at:"",source_date_status:"unknown"};
+assert.equal(EXPERT_VIDEO_MAX_AGE_DAYS,10,"専門家動画の公開期限を10日に固定する");
+assert.equal(isFreshExpertVideo(exactlyTenDays,testNow),true,"投稿からちょうど10日の動画は掲載できる");
+assert.equal(isFreshExpertVideo(tooOld,testNow),false,"投稿から10日を超えた動画は掲載しない");
+assert.equal(isFreshExpertVideo(unknownDate,testNow),false,"投稿日を確認できない動画は掲載しない");
+const beforeJstMidnight=Date.parse("2026-09-09T14:59:59Z");
+const afterJstMidnight=Date.parse("2026-09-09T15:00:00Z");
+assert.equal(jstDayKey(beforeJstMidnight),"2026-09-09","日次判定は日本時間を使う");
+assert.equal(jstDayKey(afterJstMidnight),"2026-09-10","日本時間の日付変更で次の動画更新を許可する");
+assert.equal(shouldRefreshExpertVideos({last_successful_refresh_day_jst:"2026-09-10"},afterJstMidnight),false,"同じ日本日の2回目以降は動画探索しない");
+assert.equal(shouldRefreshExpertVideos({last_successful_refresh_day_jst:"2026-09-09"},afterJstMidnight),true,"翌日は動画探索を再開する");
 assert.equal(isSubstantiveAiVideo("【VLOG】AIロボタクシーに体験乗車してみた"),false,"VLOGを重要発言として扱わない");
 assert.equal(isSubstantiveAiVideo("AIコーディングが仕事をどう変えるか、実装例を対談で解説"),true,"具体的な解説・対談を候補にする");
 const reviewFixture=[
-  {content_type:"expert_video",expert_id:"a",video_id:"a1",title:"AIの仕組みを解説",published_at:"2026-09-08T00:00:00Z",source_trust:"primary"},
-  {content_type:"expert_video",expert_id:"a",video_id:"a2",title:"AI実装を対談",published_at:"2026-09-07T00:00:00Z",source_trust:"primary"},
-  {content_type:"expert_video",expert_id:"b",video_id:"b1",title:"生成AI政策を講演",published_at:"2026-09-06T00:00:00Z",source_trust:"institutional"}
+  {content_type:"expert_video",expert_id:"a",video_id:"a1",title:"AIの仕組みを解説",published_at:"2026-09-08T00:00:00Z",source_published_at:"2026-09-08T00:00:00Z",source_date_status:"published",source_trust:"primary"},
+  {content_type:"expert_video",expert_id:"a",video_id:"a2",title:"AI実装を対談",published_at:"2026-09-07T00:00:00Z",source_published_at:"2026-09-07T00:00:00Z",source_date_status:"published",source_trust:"primary"},
+  {content_type:"expert_video",expert_id:"b",video_id:"b1",title:"生成AI政策を講演",published_at:"2026-09-06T00:00:00Z",source_published_at:"2026-09-06T00:00:00Z",source_date_status:"published",source_trust:"institutional"},
+  {content_type:"expert_video",expert_id:"c",video_id:"c1",title:"古いAI講演",published_at:"2026-08-01T00:00:00Z",source_published_at:"2026-08-01T00:00:00Z",source_date_status:"published",source_trust:"institutional"}
 ];
 const reviewPicks=selectExpertVideoReviewCandidates(reviewFixture,3,2,Date.parse("2026-09-09T00:00:00Z"));
 assert.equal(reviewPicks.length,3,"1人目だけで止めず、良質な次候補まで審査する");
 assert.equal(new Set(reviewPicks.slice(0,2).map(item=>item.expert_id)).size,2,"先に異なる専門家を審査する");
 assert.ok(buildExpertWebDiscoveryUrl(nakajima).includes("news.google.com/rss/search"),"Web動画探索フィードを作る");
 
-assert.match(updateSource,/collectExpertVideoCandidates/,"専門家動画を毎回収集する");
+assert.match(updateSource,/shouldRefreshExpertVideos\(expertVideoState,editionNow\)/,"専門家動画の探索を日本時間で1日1回に制限する");
+assert.match(updateSource,/successfulSources>0/,"動画取得に失敗した日は確認済みにせず再試行する");
+assert.match(updateSource,/isFreshExpertVideo\(item,editionNow,EXPERT_VIDEO_MAX_AGE_DAYS\)/,"キャッシュを含む全公開経路で10日超の動画を除外する");
 assert.match(updateSource,/AI_DAILY_EXPERT_LIMIT\s*=\s*14/,"記事枠が埋まっても専門家動画の専用審査枠を確保する");
 assert.match(updateSource,/enrichNewItems\(expertReviewCandidates,cache,ledger,"expert",2\)/,"専門家動画を記事とは別の小分けバッチで審査する");
 assert.match(updateSource,/"shortDescription"/,"YouTubeの短い定型メタ情報ではなく動画の完全な説明文を読む");
@@ -72,6 +92,8 @@ assert.match(homeEditionSource,/isEditorialArticle/,"記事トップ5を記事�
 assert.match(html,/専門家の重要発言/,"ホームに記事とは別の専門家枠を表示する");
 assert.match(html,/記事と専門家動画・発言/,"分類検索で種類を区別する");
 assert.match(workflow,/test-expert-video-coverage\.mjs/,"定期更新前に専門家動画契約を検査する");
+assert.match(workflow,/\.expert-video-state\.json/,"成功した日次動画確認を公開コミットへ保存する");
+assert.equal(dailyState.max_age_days,10,"日次状態にも10日ルールを明示する");
 
 for(const item of data.filter(isExpertVideoItem)){
   for(const key of ["expert_id","expert_name","expert_role","expert_tier","platform","source_trust"]){
