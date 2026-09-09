@@ -191,7 +191,7 @@ const AI_NEW_LIMIT = 16;
 const AI_DEEP_BACKFILL_LIMIT = 24;
 const AI_DAILY_UNIQUE_LIMIT = 40;
 const AI_DAILY_EMERGENCY_LIMIT = 8;
-const AI_DAILY_EXPERT_LIMIT = 8;
+const AI_DAILY_EXPERT_LIMIT = 10;
 const ARTICLE_CONTEXT_LIMIT = 3600;
 const AI_CACHE_PATH = ".ai-cache.json";
 const AI_USAGE_PATH = ".ai-usage.json";
@@ -201,7 +201,7 @@ const EXPERT_SOURCES_PATH = "expert-sources.json";
 const EXPERT_VIDEO_ARCHIVE_LIMIT = 12;
 const EXPERT_VIDEO_PROTECTED_LIMIT = 4;
 const EXPERT_VIDEO_REVIEW_LIMIT = 6;
-const EXPERT_REVIEW_VERSION = "expert-video-review-v3-official-chapters";
+const EXPERT_REVIEW_VERSION = "expert-video-review-v4-youtube-timeout";
 const STORY_REPOST_WINDOW_MS = 31 * 86400000;
 const STORY_TIMELINE_WINDOW_MS = 365 * 86400000;
 // 完全一致の再掲載を公開から外す期間。表示保持(31日)より長く、365日の全面抑制はしない。
@@ -567,8 +567,11 @@ function explicitEventDateCandidates(text, referenceDate="") {
   return [...new Map(matches.map(candidate=>[candidate.date+"|"+candidate.context,candidate])).values()].slice(0,5);
 }
 async function fetchArticleContext(item) {
+  let sourceHost="";
+  try{sourceHost=new URL(item.source_url).hostname.toLowerCase();}catch(_invalidUrl){}
+  const isYouTubeSource=/(?:^|\.)youtube\.com$/.test(sourceHost)||sourceHost==="youtu.be";
   const controller=new AbortController();
-  const timeout=setTimeout(()=>controller.abort(),7000);
+  const timeout=setTimeout(()=>controller.abort(),isYouTubeSource?18000:7000);
   const fallback=()=>({
     text:item.raw_excerpt||"",source_published_at:"",source_updated_at:"",source_date_status:"unknown",
     event_date_candidates:explicitEventDateCandidates(item.raw_excerpt||"",item.source_published_at||item.published_at||"")
@@ -580,7 +583,8 @@ async function fetchArticleContext(item) {
     catch(_invalidUrl){ return fallback(); }
     const res=await fetch(item.source_url,{redirect:"follow",signal:controller.signal,headers:{
       "User-Agent":"Mozilla/5.0 (compatible; AI-Radar/1.0; +https://reiki-ai-apps.github.io/AI-/)",
-      "Accept":"text/html,application/xhtml+xml"
+      "Accept":"text/html,application/xhtml+xml",
+      "Accept-Language":"ja-JP,ja;q=0.9,en;q=0.5"
     }});
     if(!res.ok)return fallback();
     const type=String(res.headers.get("content-type")||"");
@@ -796,6 +800,7 @@ async function enrichNewItems(items,cache,ledger,lane="regular",batchSize=AI_BAT
     const batch=items.slice(start,start+batchSize);
     const withContext=await Promise.all(batch.map(async item=>{
       const context=await fetchArticleContext(item);
+      if(isExpertVideoItem(item))console.error("EXPERT CONTEXT",item.expert_name||"不明",String(item.title||"").slice(0,70),"chars",context.text.length,"official",context.text.includes("【公式動画"));
       return {
         ...item,
         article_context:context.text,
