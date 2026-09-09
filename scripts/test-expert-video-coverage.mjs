@@ -54,7 +54,9 @@ assert.equal(new Set(reviewPicks.slice(0,2).map(item=>item.expert_id)).size,2,"�
 assert.ok(buildExpertWebDiscoveryUrl(nakajima).includes("news.google.com/rss/search"),"Web動画探索フィードを作る");
 
 assert.match(updateSource,/collectExpertVideoCandidates/,"専門家動画を毎回収集する");
-assert.match(updateSource,/enrichNewItems\(expertReviewCandidates,cache,ledger,"regular",2\)/,"専門家動画を記事とは別の小分けバッチで審査する");
+assert.match(updateSource,/AI_DAILY_EXPERT_LIMIT\s*=\s*6/,"記事枠が埋まっても専門家動画の専用審査枠を確保する");
+assert.match(updateSource,/enrichNewItems\(expertReviewCandidates,cache,ledger,"expert",2\)/,"専門家動画を記事とは別の小分けバッチで審査する");
+assert.match(updateSource,/"shortDescription"/,"YouTubeの短い定型メタ情報ではなく動画の完全な説明文を読む");
 assert.match(updateSource,/content_type:\s*"expert_video"/,"動画を公開データで識別する");
 assert.match(updateSource,/発言者の意見・予測・評価は確定事実として書かず/,"専門家の見解を事実と混同しない");
 assert.match(homeEditionSource,/isEditorialArticle/,"記事トップ5を記事だけに固定する");

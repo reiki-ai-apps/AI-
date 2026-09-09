@@ -191,6 +191,7 @@ const AI_NEW_LIMIT = 16;
 const AI_DEEP_BACKFILL_LIMIT = 24;
 const AI_DAILY_UNIQUE_LIMIT = 40;
 const AI_DAILY_EMERGENCY_LIMIT = 8;
+const AI_DAILY_EXPERT_LIMIT = 6;
 const ARTICLE_CONTEXT_LIMIT = 3600;
 const AI_CACHE_PATH = ".ai-cache.json";
 const AI_USAGE_PATH = ".ai-usage.json";
@@ -200,6 +201,7 @@ const EXPERT_SOURCES_PATH = "expert-sources.json";
 const EXPERT_VIDEO_ARCHIVE_LIMIT = 12;
 const EXPERT_VIDEO_PROTECTED_LIMIT = 4;
 const EXPERT_VIDEO_REVIEW_LIMIT = 6;
+const EXPERT_REVIEW_VERSION = "expert-video-review-v2-full-description";
 const STORY_REPOST_WINDOW_MS = 31 * 86400000;
 const STORY_TIMELINE_WINDOW_MS = 365 * 86400000;
 // 完全一致の再掲載を公開から外す期間。表示保持(31日)より長く、365日の全面抑制はしない。
@@ -248,7 +250,8 @@ function articleContentHash(item) {
   return sha256([
     normalizedStoryTitle(item && item.title),
     String(item && item.raw_excerpt || "").replace(/\s+/g, " ").trim(),
-    String(item && item.source_name || "").toLowerCase().trim()
+    String(item && item.source_name || "").toLowerCase().trim(),
+    isExpertVideoItem(item)?EXPERT_REVIEW_VERSION:""
   ].join("\n"));
 }
 
@@ -297,6 +300,7 @@ function usageDay(ledger, day = utcDay()) {
     cache_read_input_tokens: 0,
     regular_processed: 0,
     emergency_processed: 0,
+    expert_processed: 0,
     enriched: 0,
     rejected: 0,
     estimated_usd: 0
@@ -328,6 +332,7 @@ function addUsage(ledger, usage, meta = {}) {
   day.estimated_usd += estimatedUsageCost(usage || {});
   day.regular_processed += meta.lane === "regular" ? Number(meta.processed || 0) : 0;
   day.emergency_processed += meta.lane === "emergency" ? Number(meta.processed || 0) : 0;
+  day.expert_processed += meta.lane === "expert" ? Number(meta.processed || 0) : 0;
   day.enriched += Number(meta.enriched || 0);
   day.rejected += Number(meta.rejected || 0);
   day.estimated_usd = Number(day.estimated_usd.toFixed(6));
@@ -371,6 +376,7 @@ function appendStepSummary(ledger, extra = {}) {
     `- 出力トークン: ${day.output_tokens}`,
     `- 通常処理: ${day.regular_processed}/${AI_DAILY_UNIQUE_LIMIT}件`,
     `- 緊急処理: ${day.emergency_processed}/${AI_DAILY_EMERGENCY_LIMIT}件`,
+    `- 専門家動画処理: ${day.expert_processed}/${AI_DAILY_EXPERT_LIMIT}件`,
     `- 採用: ${day.enriched}件 / 不採用: ${day.rejected}件`,
     `- 推定API費用: ${Number(day.estimated_usd || 0).toFixed(6)} USD`,
     `- キャッシュ再利用: ${Number(extra.cacheHits || 0)}件`,
@@ -592,6 +598,12 @@ async function fetchArticleContext(item) {
     // リダイレクト先がGoogle Newsのままなら本文は取得できていない。
     const finalHost=(()=>{try{return new URL(res.url||item.source_url).hostname;}catch(_e){return "";}})();
     if(finalHost.endsWith("news.google.com")||meta("og:site_name")==="Google News")return fallback();
+    const youtubeDescription=/(?:^|\.)youtube\.com$/.test(finalHost)?(()=>{
+      const match=html.match(/"shortDescription":"((?:\\.|[^"\\])*)"/);
+      if(!match)return "";
+      try{return stripTags(JSON.parse(`"${match[1]}"`));}
+      catch(_error){return stripTags(match[1].replace(/\\n/g," ").replace(/\\"/g,'"'));}
+    })():"";
     const paragraphs=[...html.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
       .map(m=>stripTags(m[1])).filter(t=>t.length>=45);
     const jsonDate=(field)=>{
@@ -602,10 +614,10 @@ async function fetchArticleContext(item) {
     const updatedRaw=meta("article:modified_time")||meta("dateModified")||jsonDate("dateModified");
     const openingParagraphs=paragraphs.slice(0,7);
     const endingParagraphs=paragraphs.slice(-4).filter(value=>!openingParagraphs.includes(value));
-    const opening=[
-      meta("og:description"),meta("description"),meta("twitter:description"),
+    const opening=[...new Set([
+      youtubeDescription,meta("og:description"),meta("description"),meta("twitter:description"),
       ...openingParagraphs
-    ].filter(Boolean).join("\n");
+    ].filter(Boolean))].join("\n");
     const ending=endingParagraphs.join("\n");
     const openingBudget=Math.floor(ARTICLE_CONTEXT_LIMIT*0.68);
     const endingBudget=ARTICLE_CONTEXT_LIMIT-openingBudget;
@@ -1972,22 +1984,22 @@ function bootstrapCacheResult(cache,source,result) {
   const dailyBudget=Number(process.env.AI_DAILY_BUDGET_USD||0);
   const budgetExhausted=dailyBudget>0&&today.estimated_usd>=dailyBudget;
   const regularRemaining=budgetExhausted?0:Math.max(0,AI_DAILY_UNIQUE_LIMIT-today.regular_processed);
+  const expertRemaining=budgetExhausted?0:Math.max(0,AI_DAILY_EXPERT_LIMIT-today.expert_processed);
   // 記事と同じ大きなバッチへ混ぜると、動画の主張がニュース発表用の判定に引っ張られる。
   // 専門家動画を最初に2件ずつ審査し、人物の多様性を保ちながら次候補まで確認する。
   const expertReviewCandidates=selectExpertVideoReviewCandidates(fresh,
-    Math.min(EXPERT_VIDEO_REVIEW_LIMIT,regularRemaining));
+    Math.min(EXPERT_VIDEO_REVIEW_LIMIT,expertRemaining));
   const expertReviewKeys=new Set(expertReviewCandidates.map(articleCacheKey));
-  const regularAfterExperts=Math.max(0,regularRemaining-expertReviewCandidates.length);
   // プロンプト更新だけでは既存記事が「処理済み」のまま残るため、毎日24件を上限に
   // 旧要約へ再度一次情報の文脈を付け、記事固有の深い3段落へ安全に移行する。
   const migrationFresh=previous.filter(needsDeepFriendlyMigration)
     .filter(item=>!cacheEntryFor(item,cache));
   const migrationCandidates=selectProtectedCandidates(migrationFresh,
-    Math.min(AI_DEEP_BACKFILL_LIMIT,regularAfterExperts));
+    Math.min(AI_DEEP_BACKFILL_LIMIT,regularRemaining));
   const migrationKeys=new Set(migrationCandidates.map(articleCacheKey));
   const regularNewCandidates=selectProtectedCandidates(
     fresh.filter(item=>!isExpertVideoItem(item)&&!expertReviewKeys.has(articleCacheKey(item))&&!migrationKeys.has(articleCacheKey(item))),
-    Math.min(Math.max(0,AI_NEW_LIMIT-expertReviewCandidates.length),Math.max(0,regularAfterExperts-migrationCandidates.length)));
+    Math.min(AI_NEW_LIMIT,Math.max(0,regularRemaining-migrationCandidates.length)));
   const regularCandidates=[...expertReviewCandidates,...migrationCandidates,...regularNewCandidates];
   const regularKeys=new Set(regularCandidates.map(articleCacheKey));
   const emergencyRemaining=Math.max(0,AI_DAILY_EMERGENCY_LIMIT-today.emergency_processed);
@@ -2001,7 +2013,7 @@ function bootstrapCacheResult(cache,source,result) {
   let regularResult={items:[],processed:0,rejected:0};
   let emergencyResult={items:[],processed:0,rejected:0};
   try {
-    expertResult=await enrichNewItems(expertReviewCandidates,cache,ledger,"regular",2);
+    expertResult=await enrichNewItems(expertReviewCandidates,cache,ledger,"expert",2);
     migrationResult=await enrichNewItems(migrationCandidates,cache,ledger,"regular",AI_MIGRATION_BATCH_SIZE);
     regularResult=await enrichNewItems(regularNewCandidates,cache,ledger,"regular",AI_BATCH_SIZE);
     emergencyResult=await enrichNewItems(emergencyCandidates,cache,ledger,"emergency");
