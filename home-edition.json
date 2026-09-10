@@ -7,65 +7,139 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-09-09T16:04:36.453Z",
-  "window_end": "2026-09-10T00:17:53.192Z",
-  "last_window_end": "2026-09-10T00:17:53.192Z",
-  "last_checked_at": "2026-09-10T00:23:24.091Z",
-  "last_published_at": "2026-09-10T00:23:24.091Z",
-  "home_content_changed_at": "2026-09-10T00:23:24.091Z",
+  "window_start": "2026-09-10T00:17:53.192Z",
+  "window_end": "2026-09-10T08:57:36.175Z",
+  "last_window_end": "2026-09-10T08:57:36.175Z",
+  "last_checked_at": "2026-09-10T09:03:35.365Z",
+  "last_published_at": "2026-09-10T09:03:35.365Z",
+  "home_content_changed_at": "2026-09-10T09:03:35.365Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 6,
+  "candidate_count": 5,
   "distinct_candidate_count": 5,
-  "duplicate_candidate_count": 1,
-  "duplicate_groups": [
+  "duplicate_candidate_count": 0,
+  "duplicate_groups": [],
+  "novel_candidate_count": 4,
+  "cross_edition_duplicate_count": 1,
+  "cross_edition_duplicate_groups": [
     {
-      "representative_id": "article_cfb61628203d78b2b0cd",
+      "representative_id": "article_e4451136b58bd1da44fd",
       "duplicate_ids": [
-        "article_60ee69e6708ae176270d"
+        "article_bbe6172ef91688829040"
       ]
     }
   ],
-  "novel_candidate_count": 5,
-  "cross_edition_duplicate_count": 0,
-  "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 5,
-  "continued_selected_count": 0,
+  "new_selected_count": 4,
+  "continued_selected_count": 1,
   "tool_evolution_selected_count": 2,
   "carried_forward": false,
-  "partially_carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
-    "article_3eb3e9557eb7038ef8ad",
-    "article_e4451136b58bd1da44fd",
-    "article_31383729563ed9e85888",
-    "article_cfb61628203d78b2b0cd",
-    "article_2c2847e7803d3cf44d49"
+    "article_51a1dcc15975fbda30af",
+    "article_11a9e76d51cf6bef0a83",
+    "article_0f265f8adfcf2846d84f",
+    "article_175fc28203d74f6b3273",
+    "article_3eb3e9557eb7038ef8ad"
   ],
   "new_article_ids": [
-    "article_3eb3e9557eb7038ef8ad",
-    "article_e4451136b58bd1da44fd",
-    "article_31383729563ed9e85888",
-    "article_cfb61628203d78b2b0cd",
-    "article_2c2847e7803d3cf44d49"
+    "article_51a1dcc15975fbda30af",
+    "article_11a9e76d51cf6bef0a83",
+    "article_0f265f8adfcf2846d84f",
+    "article_175fc28203d74f6b3273"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continued_article_ids": [
+    "article_3eb3e9557eb7038ef8ad"
+  ],
+  "continuation_sources": {
+    "article_3eb3e9557eb7038ef8ad": "previous_edition"
+  },
   "scores": {
+    "article_51a1dcc15975fbda30af": {
+      "article_id": "article_51a1dcc15975fbda30af",
+      "total": 84,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 7,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 9,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "重要な経営・研究体制",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-09-10T07:43:36.000Z"
+    },
+    "article_11a9e76d51cf6bef0a83": {
+      "article_id": "article_11a9e76d51cf6bef0a83",
+      "total": 33,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 0,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B"
+      ],
+      "published_at": "2026-09-10T00:39:11.000Z"
+    },
+    "article_0f265f8adfcf2846d84f": {
+      "article_id": "article_0f265f8adfcf2846d84f",
+      "total": 25,
+      "breakdown": {
+        "importance": 10,
+        "topicality": 0,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度C"
+      ],
+      "published_at": "2026-09-03T17:26:44.000Z"
+    },
+    "article_175fc28203d74f6b3273": {
+      "article_id": "article_175fc28203d74f6b3273",
+      "total": 18,
+      "breakdown": {
+        "importance": 10,
+        "topicality": 0,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度C",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-09-08T20:00:00.000Z"
+    },
     "article_3eb3e9557eb7038ef8ad": {
       "article_id": "article_3eb3e9557eb7038ef8ad",
-      "total": 90,
+      "total": 89,
       "breakdown": {
         "importance": 45,
         "topicality": 20,
         "scope": 6,
         "authority": 10,
-        "freshness": 1,
+        "freshness": 0,
         "tool_evolution": 8,
         "penalty": 0
       },
@@ -78,83 +152,6 @@
         "AIツールの能力進化"
       ],
       "published_at": "2026-09-09T17:00:00.000Z"
-    },
-    "article_e4451136b58bd1da44fd": {
-      "article_id": "article_e4451136b58bd1da44fd",
-      "total": 81,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 15,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 10,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "主要AI企業・基盤",
-        "制度・安全への影響"
-      ],
-      "published_at": "2026-09-10T00:07:49.000Z"
-    },
-    "article_31383729563ed9e85888": {
-      "article_id": "article_31383729563ed9e85888",
-      "total": 78,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 15,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 7,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "主要AI企業・基盤",
-        "制度・安全への影響"
-      ],
-      "published_at": "2026-09-09T21:37:39.000Z"
-    },
-    "article_cfb61628203d78b2b0cd": {
-      "article_id": "article_cfb61628203d78b2b0cd",
-      "total": 65,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 15,
-        "scope": 3,
-        "authority": 5,
-        "freshness": 9,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "主要AI企業・基盤",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-09-09T23:06:52.000Z"
-    },
-    "article_2c2847e7803d3cf44d49": {
-      "article_id": "article_2c2847e7803d3cf44d49",
-      "total": 58,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 17,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 5,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化",
-        "重要な経営・研究体制"
-      ],
-      "published_at": "2026-09-09T20:00:00.000Z"
     }
   },
   "recent_story_history": [
@@ -699,6 +696,108 @@
       "previous_article_id": "",
       "selected_at": "2026-09-10T00:23:24.091Z",
       "edition_window_end": "2026-09-10T00:17:53.192Z"
+    },
+    {
+      "article_id": "article_51a1dcc15975fbda30af",
+      "story_id": "story_be018ad41c59ad61f1",
+      "title": "アップル新CEO、就任後初の演説で「AIでiPhoneの重要性が増す」と発言",
+      "primary_entity": "Apple",
+      "story_subject": "新CEOの就任後初演説",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "全世界",
+      "story_entities": [
+        "Apple",
+        "iPhone",
+        "apple",
+        "iphone"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-10T09:03:35.365Z",
+      "edition_window_end": "2026-09-10T08:57:36.175Z"
+    },
+    {
+      "article_id": "article_11a9e76d51cf6bef0a83",
+      "story_id": "story_d14c5b9829da7f37be",
+      "title": "富山市がPRキャラクター制作にAdobe Fireflyを活用、クリエイターと協働",
+      "primary_entity": "富山市",
+      "story_subject": "富山市PRキャラクター制作",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "富山市(地域)",
+      "story_entities": [
+        "富山市",
+        "Adobe Firefly",
+        "adobefirefly",
+        "adobe",
+        "firefly"
+      ],
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "使用ツール",
+          "value": "Adobe Firefly",
+          "normalized_value": "adobefirefly"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-10T09:03:35.365Z",
+      "edition_window_end": "2026-09-10T08:57:36.175Z"
+    },
+    {
+      "article_id": "article_0f265f8adfcf2846d84f",
+      "story_id": "story_080f656b22320f736f",
+      "title": "Midjourney V8.1の使い方を12ステップで解説",
+      "primary_entity": "Midjourney",
+      "story_subject": "Midjourney V8.1",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "story_entities": [
+        "Midjourney",
+        "Midjourney V8.1",
+        "midjourney",
+        "midjourneyv8.1",
+        "v8.1"
+      ],
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "Midjourneyのバージョン",
+          "value": "V8.1",
+          "normalized_value": "v8.1"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-10T09:03:35.365Z",
+      "edition_window_end": "2026-09-10T08:57:36.175Z"
+    },
+    {
+      "article_id": "article_175fc28203d74f6b3273",
+      "story_id": "story_1b7d60ea907674561a",
+      "title": "Canvaで名刺やポスターを短時間でプロ仕上げに、スマホ編集も可能",
+      "primary_entity": "Canva",
+      "story_subject": "Canvaを使ったデザイン作成",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "デスクトップ・スマートフォン",
+      "story_entities": [
+        "Canva",
+        "canva"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-10T09:03:35.365Z",
+      "edition_window_end": "2026-09-10T08:57:36.175Z"
     }
   ]
 }
