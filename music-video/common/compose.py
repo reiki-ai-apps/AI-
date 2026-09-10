@@ -54,7 +54,7 @@ def placeholder(label, size=(1080, 1920)):
     return im
 
 
-def video_frame(path, base_dir, t_local, fps=FPS):
+def video_frame(path, base_dir, t_local, fps=FPS, loop=True):
     """動画クリップの t_local 秒のフレーム(RGBA)。初回にフレーム列へ展開してキャッシュ。"""
     full = path if os.path.isabs(path) else os.path.join(base_dir, path)
     if full not in _video_cache:
@@ -67,7 +67,13 @@ def video_frame(path, base_dir, t_local, fps=FPS):
     frames = _video_cache[full]
     if not frames:
         return placeholder(os.path.basename(path))
-    i = max(0, min(len(frames) - 1, int(t_local * fps)))
+    i = int(t_local * fps)
+    if loop and len(frames) > 1:
+        # 往復ループ(端でパタンと戻らない)
+        n = len(frames)
+        i = i % (2 * n - 2)
+        i = i if i < n else 2 * n - 2 - i
+    i = max(0, min(len(frames) - 1, i))
     return Image.open(frames[i]).convert("RGBA")
 
 
@@ -246,7 +252,9 @@ class Composer:
             p = max(0.0, min(1.0, (T - t_from) / max(0.1, t_to - t_from)))
             src = render_fizz(int(layer.get("px", 900)), p, T, tint=tuple(layer.get("tint", [255, 255, 255])))
         elif "video" in layer:
-            src = video_frame(layer["video"], self.dir, T - layer.get("from_t", self.shot_at(T)["start"]))
+            base = layer.get("from_t", self.shot_at(T)["start"])
+            local = (T - base) * layer.get("speed", 1.0) + layer.get("clip_start", 0.0)
+            src = video_frame(layer["video"], self.dir, local, loop=layer.get("loop", True))
         else:
             src = load_image(layer["file"], self.dir)
         # 大きさ: w(画面幅に対する比) か cover
