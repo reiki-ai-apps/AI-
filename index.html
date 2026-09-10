@@ -3934,7 +3934,7 @@ function renderHome(v){
     ${mobileMediaHtml}
   </section>`;
   const expertVideoHtml=expertVideos.length?`<section class="expert-video-section" aria-labelledby="expertVideoTitle">
-    <div class="expert-video-head"><div><span class="expert-video-kicker">EXPERT SIGNALS</span><h2 id="expertVideoTitle">専門家の重要発言</h2></div><p>記事トップ5とは別枠です。本人・所属機関・確認済み番組の動画や講演から、AIの進化を判断するうえで重要な発言だけを整理します。</p></div>
+    <div class="expert-video-head"><div><span class="expert-video-kicker">EXPERT SIGNALS</span><h2 id="expertVideoTitle">専門家の重要発言</h2></div><p>記事トップ5とは別枠です。毎朝7:17（日本時間）に、公開から10日以内の動画・講演を確認し、重要な発言を整理します。処理状況によって反映が遅れる場合があります。</p></div>
     <div class="expert-video-grid">${expertVideos.map(expertVideoCard).join('')}</div>
   </section>`:'';
   let html = `<section class="radar-overview ${cover?'has-daily-cover':''}" aria-label="${cover?'本日のトップニュース':'AIシグナル概要'}">
@@ -4189,6 +4189,7 @@ function renderDetailRead(v,u,tool){
         <div class="rb-body">${esc(friendlyExplanation)}</div>
       </div>`:''}
 
+      ${safeExternalUrl(u.context_source_url)?`<div class="read-block"><div class="rb-head"><span class="rb-label">解説の確認元</span></div><div class="rb-body">${esc(u.context_source_note||'')}<br><a href="${esc(safeExternalUrl(u.context_source_url))}" target="_blank" rel="noopener noreferrer">${esc(u.context_source_name||'補足資料を読む')}</a></div></div>`:''}
       <div class="detail-share-actions">
         ${u.source_url?`<button class="btn btn-primary" onclick="openSourceArticle('${u.id}')" aria-label="${expertVideo?'元の動画・講演':'情報元の記事'}を外部サイトで見る">${icon('ext')}${expertVideo?'元の動画・講演を見る':'情報元の記事を読む'}</button>`:''}
         <button class="btn" onclick="shareArticle('${u.id}')" aria-label="この${expertVideo?'解説':'記事'}を共有する">${icon('shuffle')}この${expertVideo?'解説':'記事'}を共有</button>
@@ -4864,6 +4865,13 @@ function patchTimelineFields(target,it){
   if(it?.fetched_at&&target.fetched_at!==it.fetched_at){target.fetched_at=it.fetched_at;changed=true;}
   return changed;
 }
+function importedContextSourceFields(it){
+  return {
+    context_source_url:safeExternalUrl(it.context_source_url),
+    context_source_name:String(it.context_source_name||''),
+    context_source_note:String(it.context_source_note||'')
+  };
+}
 function patchPublishedArticleFields(target,it,tool){
   const publishedAt=it.published_at||it.source_published_at||it.fetched_at||target.published_at||nowISO();
   const categories=(Array.isArray(it.related_categories)&&it.related_categories.length)
@@ -4881,6 +4889,7 @@ function patchPublishedArticleFields(target,it,tool){
     source_trust:String(it.source_trust||''),
     title:String(it.title||''),
     source_url:safeExternalUrl(it.source_url),
+    ...importedContextSourceFields(it),
     published_at:publishedAt,
     fetched_at:it.fetched_at||target.fetched_at||nowISO(),
     ai_summary:String(it.raw_excerpt||it.summary||''),
@@ -4956,6 +4965,7 @@ async function syncFromDataJson(force=false,renderChanges=true,allowPrune=true){
       const ex=(it.raw_excerpt||it.summary||'').toString();
       saveUpdate({
         tool_id:tool.id, title:it.title, source_url:safeExternalUrl(it.source_url),
+        ...importedContextSourceFields(it),
         content_type:String(it.content_type||'article'),
         expert_id:String(it.expert_id||''), expert_name:String(it.expert_name||''),
         expert_names:Array.isArray(it.expert_names)?it.expert_names.map(String).filter(Boolean):[],

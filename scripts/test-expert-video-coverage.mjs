@@ -73,6 +73,13 @@ assert.equal(shouldRefreshExpertVideos({},afternoon,"17 22 * * *"),true,"朝の�
 assert.equal(shouldRefreshExpertVideos(morningState,morning+86400000,"17 22 * * *"),true,"翌朝は再び更新する");
 assert.equal(isSubstantiveAiVideo("【VLOG】AIロボタクシーに体験乗車してみた"),false,"VLOGを重要発言として扱わない");
 assert.equal(isSubstantiveAiVideo("AIコーディングが仕事をどう変えるか、実装例を対談で解説"),true,"具体的な解説・対談を候補にする");
+const cybercabTitle='テスラの無人タクシー「サイバーキャブ」の何がすごいのか解説します';
+assert.equal(isSubstantiveAiVideo(cybercabTitle),true,"AIという文字がない自動運転解説も拾う");
+assert.equal(isSubstantiveAiVideo(cybercabTitle.normalize('NFD')),true,"YouTubeの分離した濁点を正規化する");
+assert.equal(isSubstantiveAiVideo('新型自動車の内装と乗り心地を解説'),false,"一般の車レビューまでAI動画へ広げない");
+assert.equal(isSubstantiveAiVideo('サイバーキャブに体験乗車【VLOG】'),false,"自動運転でも体験VLOGは対象外");
+assert.match(html,/function importedContextSourceFields/,"補助報道の出典を端末へ引き継ぐ");
+assert.match(html,/解説の確認元/,"動画本文を直接確認できない場合の根拠を表示する");
 const reviewFixture=[
   {content_type:"expert_video",expert_id:"a",video_id:"a1",title:"AIの仕組みを解説",published_at:"2026-09-08T00:00:00Z",source_published_at:"2026-09-08T00:00:00Z",source_date_status:"published",source_trust:"primary"},
   {content_type:"expert_video",expert_id:"a",video_id:"a2",title:"AI実装を対談",published_at:"2026-09-07T00:00:00Z",source_published_at:"2026-09-07T00:00:00Z",source_date_status:"published",source_trust:"primary"},

@@ -1,6 +1,6 @@
 "use strict";
 
-const AI_TOPIC_PATTERN=/(?:\bAI\b|人工知能|生成AI|機械学習|深層学習|大規模言語モデル|\bLLM\b|ChatGPT|Claude|Gemini|AIエージェント|AIコーディング|ロボティクス)/i;
+const AI_TOPIC_PATTERN=/(?:\bAI\b|人工知能|生成AI|機械学習|深層学習|大規模言語モデル|\bLLM\b|ChatGPT|Claude|Gemini|AIエージェント|AIコーディング|ロボティクス|自動運転|無人タクシー|ロボタクシー|サイバーキャブ|\bCybercab\b)/i;
 const VIDEO_FORMAT_PATTERN=/(?:動画|講演|対談|インタビュー|ポッドキャスト|文字起こし|解説|討論|セッション|基調講演|YouTube)/i;
 const SUBSTANTIVE_SIGNAL_PATTERN=/(?:解説|講座|講演|対談|インタビュー|討論|議論|検証|比較|仕組み|なぜ|何を|どのよう|できる|影響|変わる|未来|政策|規制|技術|研究|実演|実装|条件|課題|対策|リスク|能力|記憶|仕事|社会|開発|モデル|エージェント|コーディング)/i;
 const LOW_VALUE_PATTERN=/(?:切り抜き|無断転載|まとめ動画|反応集|shorts?\b|#shorts|予告編|ティザー|CM(?:動画)?\b|プレゼント|キャンペーン|ランキング|おすすめ\d*選|\bVLOG\b|行ってみた|潜入|体験乗車|スパルタキャンプ|無料.{0,12}学べる|受講者募集)/i;
@@ -141,7 +141,7 @@ function matchedExpertsForSource(text,source,registry){
 }
 
 function isSubstantiveAiVideo(text){
-  const value=String(text||"");
+  const value=String(text||"").normalize("NFKC");
   return AI_TOPIC_PATTERN.test(value)&&SUBSTANTIVE_SIGNAL_PATTERN.test(value)&&!LOW_VALUE_PATTERN.test(value);
 }
 

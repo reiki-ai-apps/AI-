@@ -123,7 +123,7 @@ function page(item,id,related=[]){
 <img class="article-image" src="${image}" alt="${esc(title)}の内容を表すイメージ" width="1200" height="675">
 <p class="byline">KIZASHI編集部｜${expertVideo?'発言者の見解と確認済み事実を分け、主張・理由・影響・未確定点を整理しています。':'公開情報を整理し、変化・仕事への影響・次の確認事項を明示しています。'}</p>
 <div class="actions"><a class="button" href="${appUrl}">${expertVideo?'専門家の重要発言をやさしい要約で確認':'AI最新ニュースをやさしい要約で確認'}</a>${expertVideo&&sourceUrl?`<a class="button secondary" href="${esc(sourceUrl)}" target="_blank" rel="noopener noreferrer">元の動画・講演を見る</a>`:''}</div></article>
-${paragraph(expertVideo?"重要発言のやさしい解説":"やさしい解説",item.detail||item.easy_summary)}
+${paragraph(expertVideo?"重要発言のやさしい解説":"やさしい解説",item.detail||item.easy_summary)}${safeHttpUrl(item.context_source_url)?`\n<section><h2>解説の確認元</h2><p>${esc(item.context_source_note||'')}</p><a class="button secondary" href="${esc(safeHttpUrl(item.context_source_url))}" target="_blank" rel="noopener noreferrer">${esc(item.context_source_name||'補足資料を読む')}</a></section>`:''}
 ${paragraph(expertVideo?"発言の核心":"何が変わったか",item.change_summary||item.simple_explanation)}
 ${paragraph("仕事への影響",item.impact_summary)}
 ${paragraph(expertVideo?"次に確かめること":"次に確認すること",item.action_suggestion)}
