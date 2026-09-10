@@ -19,6 +19,10 @@ import subprocess
 import numpy as np
 from PIL import Image, ImageChops, ImageDraw, ImageEnhance, ImageFilter, ImageFont
 
+import sys as _sys
+_sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "common"))
+from mvkit import LyricTimeline  # noqa: E402
+
 W, H = 1080, 1920
 FPS = 30
 FONT = "/usr/share/fonts/opentype/ipafont-gothic/ipagp.ttf"
@@ -844,6 +848,8 @@ class Animatic:
         self.backs = make_back_textures(self.paper)
         self.fold_starts = [grid.bt_rel(4 + 2 * k) for k in range(5)]
         self.fold_dur = 0.36
+        here = os.path.dirname(os.path.abspath(__file__))
+        self.tl = LyricTimeline(os.path.join(here, "lyrics_timing.json"), lead=0.25, end_time=grid.t0 + grid.dur)
 
     # ---- 共通
     def paper_state(self, t):
@@ -860,25 +866,9 @@ class Animatic:
     def fade_alpha(self, t, t_in, t_out, fi=0.3, fo=0.25):
         return max(0.0, min(1.0, (t - t_in) / fi, (t_out - t) / fo))
 
-    def subtitles(self, img, t, b):
-        """英語＋訳 / 日本語の字幕ブロック(画面下の安全域)。"""
-        if b < 24:
-            i = b // 3  # チャント8行を24拍に等分(3拍ずつ)
-            if i < len(CHANT):
-                en, jp = CHANT[i]
-                a = self.fade_alpha(t, self.g.bt_rel(3 * i), self.g.bt_rel(3 * i + 3), 0.25, 0.2)
-                paste_center(img, lyric_block(en, jp), W / 2, 1420, a)
-        elif b < 56:
-            i = (b - 24) // 8
-            if i < 4:
-                a = self.fade_alpha(t, self.g.bt_rel(24 + 8 * i), self.g.bt_rel(32 + 8 * i), 0.35, 0.3)
-                paste_center(img, lyric_block(None, BRIDGE[i]), W / 2, 1420, a)
-        elif b >= 60:
-            bar = min(7, (b - 60) // 4)
-            en, jp = CHORUS[bar]
-            t_out = self.g.bt_rel(64 + 4 * bar) if bar < 7 else self.g.bt_rel(91)
-            a = self.fade_alpha(t, self.g.bt_rel(60 + 4 * bar), t_out)
-            paste_center(img, lyric_block(en, jp), W / 2, 1420, a)
+    def subtitles(self, img, t, b=None):
+        """歌詞タイムライン(lyrics_timing.json、絶対秒)に従って英語＋訳の字幕を出す。"""
+        self.tl.draw(img, self.g.t0 + t, y=1420)
 
     def hook(self, img, t):
         t_end = self.g.bt_rel(8)
@@ -1269,19 +1259,28 @@ class Animatic:
 
 
 # ---------------------------------------------------------------- 出力
-def render_video(anim, grid, song, out, fps=FPS):
+def render_video(anim, grid, song, out, fps=FPS, lead=0.4):
+    """lead 秒だけ音源を早く始め、その間は先頭フレームを静止(「Fold it」の頭切れ防止)。"""
     seg = out + ".seg.wav"
-    subprocess.run(["ffmpeg", "-hide_banner", "-v", "error", "-y", "-i", song, "-ss", f"{grid.t0:.3f}",
-                    "-t", f"{grid.dur:.3f}", "-ar", "48000", "-ac", "2", seg], check=True)
-    n = int(round(grid.dur * fps))
+    subprocess.run(["ffmpeg", "-hide_banner", "-v", "error", "-y", "-i", song, "-ss", f"{grid.t0 - lead:.3f}",
+                    "-t", f"{grid.dur + lead:.3f}", "-ar", "48000", "-ac", "2", seg], check=True)
+    n = int(round((grid.dur + lead) * fps))
+    n_lead = int(round(lead * fps))
     cmd = ["ffmpeg", "-hide_banner", "-v", "error", "-y",
            "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(fps), "-i", "-",
            "-i", seg, "-map", "0:v", "-map", "1:a",
            "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", "-r", str(fps),
-           "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-movflags", "+faststart", "-shortest", out]
+           "-c:a", "aac", "-b:a", "320k", "-ar", "48000", "-movflags", "+faststart", "-shortest", out]
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
+    first = None
     for i in range(n):
-        p.stdin.write(anim.render(i / fps).tobytes())
+        if i < n_lead:
+            if first is None:
+                first = anim.render(0.0)
+            frame = first
+        else:
+            frame = anim.render((i - n_lead) / fps)
+        p.stdin.write(frame.tobytes())
         if i % 150 == 0:
             print(f"  frame {i}/{n}", flush=True)
     p.stdin.close()

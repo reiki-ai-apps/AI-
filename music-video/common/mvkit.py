@@ -231,19 +231,28 @@ def paste_center(img, layer, cx, cy, alpha=1.0, scale=1.0):
     img.paste(layer, (int(cx - layer.width / 2), int(cy - layer.height / 2)), layer)
 
 
-def render_video(anim, grid, song, out, fps=FPS):
+def render_video(anim, grid, song, out, fps=FPS, lead=0.0):
+    """lead 秒だけ音源を早く始め、その間は先頭フレームを静止させる(歌い出しの頭切れ防止)。"""
     seg = out + ".seg.wav"
-    subprocess.run(["ffmpeg", "-hide_banner", "-v", "error", "-y", "-i", song, "-ss", f"{grid.t0:.3f}",
-                    "-t", f"{grid.dur:.3f}", "-ar", "48000", "-ac", "2", seg], check=True)
-    n = int(round(grid.dur * fps))
+    subprocess.run(["ffmpeg", "-hide_banner", "-v", "error", "-y", "-i", song, "-ss", f"{grid.t0 - lead:.3f}",
+                    "-t", f"{grid.dur + lead:.3f}", "-ar", "48000", "-ac", "2", seg], check=True)
+    n = int(round((grid.dur + lead) * fps))
+    n_lead = int(round(lead * fps))
     cmd = ["ffmpeg", "-hide_banner", "-v", "error", "-y",
            "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(fps), "-i", "-",
            "-i", seg, "-map", "0:v", "-map", "1:a",
            "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", "-r", str(fps),
-           "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-movflags", "+faststart", "-shortest", out]
+           "-c:a", "aac", "-b:a", "320k", "-ar", "48000", "-movflags", "+faststart", "-shortest", out]
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
+    first = None
     for i in range(n):
-        p.stdin.write(anim.render(i / fps).tobytes())
+        if i < n_lead:
+            if first is None:
+                first = anim.render(0.0)
+            frame = first
+        else:
+            frame = anim.render((i - n_lead) / fps)
+        p.stdin.write(frame.tobytes())
         if i % 150 == 0:
             print(f"  frame {i}/{n}", flush=True)
     p.stdin.close()
@@ -324,3 +333,35 @@ class Grid:
 
 def fade_alpha(t, t_in, t_out, fi=0.3, fo=0.25):
     return max(0.0, min(1.0, (t - t_in) / fi, (t_out - t) / fo))
+
+
+class LyricTimeline:
+    """歌詞行の絶対秒タイムライン。JSON: [{"t": 187.95, "en": "...", "jp": "..."}, ...]
+    行の終わりは次の行の開始。字幕は歌い出しの lead 秒前に出す。"""
+
+    def __init__(self, path, lead=0.25, gap=0.12, max_len=6.0, end_time=None):
+        self.lines = json.load(open(path, encoding="utf-8"))
+        self.lead, self.gap, self.max_len, self.end_time = lead, gap, max_len, end_time
+
+    def span(self, i):
+        t0 = self.lines[i]["t"] - self.lead
+        nxt = self.lines[i + 1]["t"] - self.lead if i + 1 < len(self.lines) else (self.end_time or t0 + self.max_len)
+        t1 = min(nxt - self.gap, t0 + self.max_len)
+        return t0, max(t1, t0 + 0.5)
+
+    def start(self, key):
+        """key: 行番号 or 英語/日本語の歌詞(最初に一致した行)の歌い出し(絶対秒)。"""
+        if isinstance(key, int):
+            return self.lines[key]["t"]
+        for ln in self.lines:
+            if ln.get("en") == key or ln.get("jp") == key:
+                return ln["t"]
+        raise KeyError(key)
+
+    def draw(self, img, T, y=1420):
+        for i, ln in enumerate(self.lines):
+            t0, t1 = self.span(i)
+            if t0 <= T < t1:
+                a = fade_alpha(T, t0, t1, 0.28, 0.22)
+                paste_center(img, lyric_block(ln.get("en"), ln.get("jp")), W / 2, y, a)
+                return

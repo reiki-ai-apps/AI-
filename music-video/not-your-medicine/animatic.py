@@ -412,16 +412,25 @@ class Animatic:
     def __init__(self, grid, sections):
         self.g = grid
         self.sec = sections  # 相対拍: hook, quiet, ret, dip230
+        here = os.path.dirname(os.path.abspath(__file__))
+        self.tl = K.LyricTimeline(os.path.join(here, "lyrics_timing.json"), lead=0.25, end_time=grid.t0 + grid.dur)
+        # 歌い出しに結びついたシーン境界(絶対秒)
+        self.T_hook = grid.t0 + grid.bt_rel(sections["hook"])
+        self.T_quiet = grid.t0 + grid.bt_rel(sections["quiet"])
+        self.T_ret = grid.t0 + grid.bt_rel(sections["ret"])
+        self.T_reply = self.tl.start("I can stay") - 0.4
+        self.T_morning = self.tl.start(15)  # 最後の I'm not your medicine
+        self.T_end = grid.t0 + grid.dur
+        self.T_savior = self.tl.start("No savior")
+        self.T_love = self.tl.start("Just love")
+        self.T_line = self.tl.start("With a line")
+        self.T_strength = self.tl.start("You have strength beneath your skin")
 
-    def subtitles(self, img, t, b):
-        for b0, b1, (en, jp) in SUB_TIMING:
-            if b0 <= b < b1:
-                a = K.fade_alpha(t, self.g.bt_rel(b0), self.g.bt_rel(b1), 0.35, 0.3)
-                paste_center(img, lyric_block(en, jp), W / 2, 1420, a)
-                break
+    def subtitles(self, img, t, b=None):
+        self.tl.draw(img, self.g.t0 + t, y=1420)
 
     def hook_caption(self, img, t):
-        t_end = self.g.bt_rel(10)
+        t_end = self.T_savior - 0.2 - self.g.t0
         if t > t_end + 0.3:
             return
         a = 1.0 if t < t_end else 1.0 - (t - t_end) / 0.3
@@ -445,17 +454,19 @@ class Animatic:
         hook_b = self.sec["hook"]
         u = t / self.g.bt_rel(hook_b)
         flat = table_flat(0.0)
+        T = self.g.t0 + t
+        t_savior, t_love, t_line = (x - self.g.t0 for x in (self.T_savior, self.T_love, self.T_line))
         # 着信 → 通話終了(Just love で暗く)
-        call_on = b < 20
+        call_on = t < t_love
         ring = 0.75 + 0.25 * math.sin(t * 22) if call_on else 0.0
-        screen_b = 1.0 if call_on else max(0.0, 1.0 - (t - self.g.bt_rel(20)) / 0.5)
+        screen_b = 1.0 if call_on else max(0.0, 1.0 - (t - t_love) / 0.5)
         glow_paste(flat, PHONE_C, 520, PHONE_GLOW, 0.55 * screen_b * (0.85 + 0.15 * ring))
-        # 錠剤(=僕)が水へ: b 12〜20 で落ちて溶ける
+        # 錠剤(=僕)が水へ: No savior で落ちて、Just love までに溶ける
         fizz = 0.0
         tablet_pos = TABLET_HOME
         show_tablet = True
-        if b >= 12:
-            v = (t - self.g.bt_rel(12)) / (self.g.bt_rel(20) - self.g.bt_rel(12))
+        if t >= t_savior:
+            v = (t - t_savior) / max(0.5, (t_line - t_savior))
             if v < 0.18:
                 w = ease(v / 0.18)
                 tablet_pos = (lerp(TABLET_HOME[0], GLASS_C[0], w), lerp(TABLET_HOME[1], GLASS_C[1], w))
@@ -463,15 +474,15 @@ class Animatic:
                 show_tablet = False
                 fizz = min(1.0, (v - 0.18) / 0.82)
         ripple = 0.0
-        if b >= 12 and fizz < 1.0 and not show_tablet:
+        if t >= t_savior and fizz < 1.0 and not show_tablet:
             ripple = (t * 0.9) % 1.0
         draw_glass_flat(flat, GLASS_C, GLASS_R, fizz=fizz, t=t, warm=0.0, ripple=ripple)
         if show_tablet:
             draw_tablet_flat(flat, tablet_pos, 44)
         draw_phone_flat(flat, PHONE_C, -8, "call" if call_on else "off", brightness=screen_b)
-        # With a line: 線が引かれる
-        if b >= 26:
-            prog = (t - self.g.bt_rel(26)) / (self.g.bt_rel(hook_b) - self.g.bt_rel(26))
+        # With a line: 線が引かれる(歌い出しからサビ頭まで)
+        if t >= t_line - 0.2:
+            prog = (t - (t_line - 0.2)) / max(0.6, (self.T_hook - self.T_line - 0.3))
             draw_line_flat(flat, ease(min(1.0, prog * 1.05)))
         img = self.camera(flat, t, push=0.5 * ease(u), bump=0.0)
         img = self.finish(img, t, "night", 95, do_bloom=True)
@@ -513,12 +524,12 @@ class Animatic:
 
     # ---- シーン4: サビ後半(朝の光が横切る)
     def scene_dawn(self, t, b, phase):
-        b0, b1 = self.sec["ret"], 105
-        u = (t - self.g.bt_rel(b0)) / (self.g.bt_rel(b1) - self.g.bt_rel(b0))
+        T = self.g.t0 + t
+        u = (T - self.T_ret) / (self.T_reply - self.T_ret)
         u = max(0.0, min(1.0, u))
         warm = 0.2 + 0.8 * ease(u)
         flat = table_flat(warm)
-        msg_on = b >= 81
+        msg_on = T >= self.T_strength - 0.2
         draw_glass_flat(flat, GLASS_C, GLASS_R, warm=warm)
         draw_tablet_flat(flat, (GLASS_C[0] + 235, GLASS_C[1] + 120), 44, standing=True, warm=warm, shadow_len=int(220 * ease(u)))
         draw_line_flat(flat, 1.0, alpha=235)
@@ -533,8 +544,8 @@ class Animatic:
 
     # ---- シーン5: 返信を打つ(スマホのクローズアップ)
     def scene_reply(self, t, b, phase):
-        b0, b1 = 105, self.sec["dip230"]
-        u = (t - self.g.bt_rel(b0)) / (self.g.bt_rel(b1) - self.g.bt_rel(b0))
+        T = self.g.t0 + t
+        u = (T - self.T_reply) / (self.T_morning - self.T_reply)
         u = max(0.0, min(1.0, u))
         typed = int(len(REPLY) * min(1.0, u / 0.82))
         sent = u >= 0.93
@@ -566,8 +577,8 @@ class Animatic:
 
     # ---- シーン6: 朝(送信後、引きの俯瞰、フェードアウト)
     def scene_morning(self, t, b, phase):
-        b0, b1 = self.sec["dip230"], 146
-        u = (t - self.g.bt_rel(b0)) / (self.g.bt_rel(b1) - self.g.bt_rel(b0))
+        T = self.g.t0 + t
+        u = (T - self.T_morning) / (self.T_end - self.T_morning)
         u = max(0.0, min(1.0, u))
         flat = table_flat(1.0)
         draw_glass_flat(flat, GLASS_C, GLASS_R, warm=1.0)
@@ -585,15 +596,16 @@ class Animatic:
 
     def render(self, t):
         b, phase = self.g.at(t)
-        if b < self.sec["hook"]:
+        T = self.g.t0 + t
+        if T < self.T_hook:
             return self.scene_break(t, b, phase)
-        if b < self.sec["quiet"]:
+        if T < self.T_quiet:
             return self.scene_rim(t, b, phase)
-        if b < self.sec["ret"]:
+        if T < self.T_ret:
             return self.scene_still(t, b, phase)
-        if b < 105:
+        if T < self.T_reply:
             return self.scene_dawn(t, b, phase)
-        if b < self.sec["dip230"]:
+        if T < self.T_morning:
             return self.scene_reply(t, b, phase)
         return self.scene_morning(t, b, phase)
 
