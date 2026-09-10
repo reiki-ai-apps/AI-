@@ -56,6 +56,7 @@ export const ICONS = {
   rail: svg(`<rect x="6" y="36" width="52" height="12" rx="3" ${F}/><rect x="6" y="36" width="52" height="12" rx="3"/><path d="M10 36c4-10 8-10 12 0s8 10 12 0 8-10 12 0 8 10 10 0" stroke-width="3.6"/>`),
   arch: svg(`<path d="M8 58V30a24 24 0 0 1 48 0v28" stroke-width="10" stroke="var(--ic-fill,#e6f2ea)" fill="none"/><path d="M8 58V30a24 24 0 0 1 48 0v28" stroke-width="10" fill="none"/><path d="M8 58V30a24 24 0 0 1 48 0v28" stroke="#fff" stroke-width="3" fill="none"/>`),
   fence: svg(`<path d="M10 58V16M26 58V10M42 58V10M58 58V16" stroke-width="4"/><path d="M4 24h58M4 36h58M4 48h58"/><path d="M4 24l4-4M20 24l4-4" stroke-width="2"/>`),
+  pin: svg(`<path d="M32 58s-18-18-18-32a18 18 0 0 1 36 0c0 14-18 32-18 32z" ${F}/><path d="M32 58s-18-18-18-32a18 18 0 0 1 36 0c0 14-18 32-18 32z"/><circle cx="32" cy="26" r="7" fill="#fff"/><circle cx="32" cy="26" r="7"/>`),
   truck: svg(`<path d="M6 16h32v28H6z" ${F}/><path d="M6 16h32v28H6zM38 26h12l8 10v8H38z"/><circle cx="16" cy="48" r="5" fill="#fff"/><circle cx="16" cy="48" r="5"/><circle cx="48" cy="48" r="5" fill="#fff"/><circle cx="48" cy="48" r="5"/>`)
 };
 export const icon = (name, cls = "") => `<span class="ic ${cls}">${ICONS[name] || ICONS.cube}</span>`;

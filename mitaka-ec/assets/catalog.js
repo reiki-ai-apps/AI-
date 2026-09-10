@@ -22,15 +22,15 @@ function card(p) {
   const hot = (p.tags || []).includes("人気");
   const pills = (p.tags || []).filter(t => t !== "人気").slice(0, 2);
   return `<article class="pcard" data-id="${esc(p.id)}">
-    <button class="pcard-fig" type="button" data-detail="${esc(p.id)}" aria-label="${esc(p.name)} をくわしく見る">${figure(p)}${hot ? `<span class="hot">人気</span>` : ""}</button>
+    <a class="pcard-fig" href="product.html?id=${encodeURIComponent(p.id)}" aria-label="${esc(p.name)} をくわしく見る" style="display:block">${figure(p)}${hot ? `<span class="hot">人気</span>` : ""}</a>
     <div class="pcard-body">
       <div class="pcard-maker">${esc(makerLabel(p.maker))}</div>
       <h3 class="pcard-name">${esc(p.name)}</h3>
       <p class="pcard-use">${esc(p.use || p.spec)}</p>
-      ${p.price != null ? `<div class="pcard-price"><span class="yen">¥</span>${Math.round(p.price * 1.1).toLocaleString("ja-JP")}<small>税込 / ${esc(unitWord(p))}</small></div>` : `<div class="pcard-price ask">${["pipe", "film", "door", "gutter", "curtain"].includes(p.cat) ? "ハウスのサイズで変わります" : "金額はご相談"}<small>${["pipe", "film", "door", "gutter", "curtain"].includes(p.cat) ? "→ 3Dで出す" : "すぐお答えします"}</small></div>`}
+      ${p.price != null ? (() => { const pm = (p.spec || "").match(/(\d+)(個|本|枚)入/); const pk = pm ? Number(pm[1]) : 1; const inc = Math.round(p.price * 1.1); return `<div class="pcard-price"><span class="yen">¥</span>${inc.toLocaleString("ja-JP")}<small>税込 / ${esc(unitWord(p))}</small>${pk > 1 ? `<div class="per">${pk}${pm[2]}入 ・ 1${pm[2]}あたり約 ${yen(Math.round(inc / pk))}</div>` : ""}</div>`; })() : `<div class="pcard-price ask">${["pipe", "film", "door", "gutter", "curtain"].includes(p.cat) ? "ハウスのサイズで変わります" : "金額はご相談"}<small>${["pipe", "film", "door", "gutter", "curtain"].includes(p.cat) ? "→ 3Dで出す" : "すぐお答えします"}</small></div>`}
       <div class="pcard-pills">${pills.map(t => `<span class="pill">${esc(t)}</span>`).join("")}</div>
     </div>
-    <div class="pcard-acts"><button class="btn accent" type="button" data-add="${esc(p.id)}" aria-label="${esc(p.name)} をかごに入れる"><span class="ic">${ICONS.basket}</span>かごに入れる</button><button class="btn ghost" type="button" data-detail="${esc(p.id)}">くわしく</button></div>
+    <div class="pcard-acts"><button class="btn accent" type="button" data-add="${esc(p.id)}" aria-label="${esc(p.name)} をかごに入れる"><span class="ic">${ICONS.basket}</span>かごに入れる</button><a class="btn ghost detail" href="product.html?id=${encodeURIComponent(p.id)}">くわしく</a></div>
   </article>`;
 }
 
@@ -127,7 +127,7 @@ document.addEventListener("keydown", e => { if (e.key === "Escape" && wrap.class
 document.addEventListener("click", e => {
   const add = e.target.closest("[data-add]");
   if (add) { const p = PRODUCTS.find(x => x.id === add.dataset.add); if (p) { addToQuoteList(withMaker(p), 1); flyToCart(add.closest(".pcard")?.querySelector(".fig")); } return; }
-  const det = e.target.closest("[data-detail]"); if (det) { openSheet(det.dataset.detail); return; }
+  const det = e.target.closest("[data-detail]"); if (det) { location.href = `product.html?id=${encodeURIComponent(det.dataset.detail)}`; return; }
   const pu = e.target.closest("[data-purpose]"); if (pu) { state.purpose = pu.dataset.purpose; state.shelf = null; state.cat = null; state.q = ""; $("#q").value = ""; apply(); window.scrollTo({ top: 0, behavior: "smooth" }); return; }
   const sh = e.target.closest("[data-shelf]"); if (sh) { state.shelf = sh.dataset.shelf; state.purpose = null; state.cat = null; state.q = ""; $("#q").value = ""; apply(); window.scrollTo({ top: 0, behavior: "smooth" }); return; }
   const mk = e.target.closest("[data-maker]"); if (mk) { state.maker = mk.dataset.maker; apply(); return; }
