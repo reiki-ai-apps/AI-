@@ -1,94 +1,462 @@
 {
-  "cut": {"start": 187.43, "end": 238.28, "lead": 0.0},
+  "cut": {
+    "start": 187.43,
+    "end": 238.28,
+    "lead": 0.0
+  },
   "lyrics": "lyrics_timing.json",
   "lyric_lead": 0.25,
-  "accent": [255, 172, 84],
+  "accent": [
+    255,
+    172,
+    84
+  ],
   "grade": "night",
   "procedural_module": "animatic",
   "shots": [
     {
       "name": "01 table_night",
-      "start": 187.43, "end": 198.0,
+      "start": 187.43,
+      "end": 198.0,
       "grade": "night",
-      "camera": {"from": {"zoom": 1.0, "x": 0.0, "y": 0.0}, "to": {"zoom": 1.07, "x": 0.015, "y": -0.01}},
-      "caption": {"text": "毎晩、僕は君の薬だった。", "until": 189.2, "y": 372},
+      "camera": {
+        "from": {
+          "zoom": 1.0,
+          "x": 0.0,
+          "y": 0.0
+        },
+        "to": {
+          "zoom": 1.07,
+          "x": 0.015,
+          "y": -0.01
+        }
+      },
+      "caption": {
+        "text": "毎晩、僕は君の薬だった。",
+        "until": 189.2,
+        "y": 372
+      },
       "layers": [
-        {"file": "art/01_table_night_bg.png", "fit": "cover", "depth": 0.0},
-        {"file": "art/obj_phone.png", "x": 0.33, "y": 0.40, "w": 0.30, "rot": -8, "depth": 0.5, "shadow": {"alpha": 0.55, "blur": 16, "offset": [14, 22]}},
-        {"type": "phone_ui", "state": "call", "x": 0.33, "y": 0.40, "w": 0.255, "rot": -8, "depth": 0.5, "until": 192.1},
-        {"type": "phone_ui", "state": "off", "x": 0.33, "y": 0.40, "w": 0.255, "rot": -8, "depth": 0.5, "from_t": 192.1},
-        {"file": "art/obj_glass_top.png", "x": 0.68, "y": 0.60, "w": 0.34, "depth": 0.6, "shadow": {"alpha": 0.5, "blur": 18, "offset": [10, 18]}},
-        {"file": "art/obj_tablet.png", "x": 0.84, "y": 0.70, "w": 0.09, "depth": 0.7, "until": 189.4, "shadow": {"alpha": 0.5, "blur": 6, "offset": [6, 10]}},
-        {"video": "art/01b_fizz.mp4", "x": 0.68, "y": 0.60, "w": 0.36, "depth": 0.6, "from_t": 189.4, "until": 195.0},
-        {"file": "art/obj_line.png", "fit": "cover", "depth": 0.55, "from_t": 194.8, "reveal": {"from_t": 194.8, "to_t": 197.6}}
+        {
+          "file": "art/01_table_night_bg.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/obj_phone.png",
+          "x": 0.33,
+          "y": 0.4,
+          "w": 0.3,
+          "rot": -8,
+          "depth": 0.5,
+          "shadow": {
+            "alpha": 0.55,
+            "blur": 16,
+            "offset": [
+              14,
+              22
+            ]
+          }
+        },
+        {
+          "type": "phone_ui",
+          "state": "call",
+          "x": 0.33,
+          "y": 0.4,
+          "w": 0.255,
+          "rot": -8,
+          "depth": 0.5,
+          "until": 192.1
+        },
+        {
+          "type": "phone_ui",
+          "state": "off",
+          "x": 0.33,
+          "y": 0.4,
+          "w": 0.255,
+          "rot": -8,
+          "depth": 0.5,
+          "from_t": 192.1
+        },
+        {
+          "file": "art/obj_tablet.png",
+          "x": 0.84,
+          "y": 0.7,
+          "w": 0.09,
+          "depth": 0.7,
+          "until": 189.4,
+          "shadow": {
+            "alpha": 0.5,
+            "blur": 6,
+            "offset": [
+              6,
+              10
+            ]
+          }
+        },
+        {
+          "video": "art/01b_fizz.mp4",
+          "x": 0.68,
+          "y": 0.6,
+          "w": 0.36,
+          "depth": 0.6,
+          "from_t": 189.4,
+          "until": 195.0
+        },
+        {
+          "file": "art/obj_line.png",
+          "fit": "cover",
+          "depth": 0.55,
+          "from_t": 194.8,
+          "reveal": {
+            "from_t": 194.8,
+            "to_t": 197.6
+          }
+        }
       ],
-      "fx": ["glow:0.33,0.40,520,196,212,240,0.45", "dof:6", "bloom", "vignette:95", "grain:0.9"]
+      "fx": [
+        "glow:0.33,0.40,520,196,212,240,0.45",
+        "dof:6",
+        "bloom",
+        "vignette:95",
+        "grain:0.9"
+      ]
     },
     {
       "name": "02 glass_side",
-      "start": 198.0, "end": 204.6,
+      "start": 198.0,
+      "end": 204.6,
       "grade": "night",
-      "camera": {"from": {"zoom": 1.0, "x": 0.0, "y": 0.0}, "to": {"zoom": 1.05, "x": 0.0, "y": -0.01}},
+      "camera": {
+        "from": {
+          "zoom": 1.0,
+          "x": 0.0,
+          "y": 0.0
+        },
+        "to": {
+          "zoom": 1.05,
+          "x": 0.0,
+          "y": -0.01
+        }
+      },
       "layers": [
-        {"file": "art/02_glass_side_bg.png", "fit": "cover", "depth": 0.0},
-        {"file": "art/obj_tablet_side.png", "x": 0.63, "y": 0.355, "w": 0.09, "rot": 6, "depth": 0.9, "until": 201.3, "shadow": {"alpha": 0.45, "blur": 6, "offset": [6, 12]}},
-        {"file": "art/obj_tablet_side.png", "x": {"from": 0.63, "to": 0.72}, "y": {"from": 0.355, "to": 0.745}, "w": 0.09, "rot": {"from": 6, "to": 90}, "depth": 0.9, "from_t": 201.3, "shadow": {"alpha": 0.45, "blur": 6, "offset": [6, 12]}}
+        {
+          "file": "art/02_glass_side_bg.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/obj_tablet_side.png",
+          "x": 0.63,
+          "y": 0.355,
+          "w": 0.09,
+          "rot": 6,
+          "depth": 0.9,
+          "until": 201.3,
+          "shadow": {
+            "alpha": 0.45,
+            "blur": 6,
+            "offset": [
+              6,
+              12
+            ]
+          }
+        },
+        {
+          "file": "art/obj_tablet_side.png",
+          "x": {
+            "from": 0.63,
+            "to": 0.72
+          },
+          "y": {
+            "from": 0.355,
+            "to": 0.745
+          },
+          "w": 0.09,
+          "rot": {
+            "from": 6,
+            "to": 90
+          },
+          "depth": 0.9,
+          "from_t": 201.3,
+          "shadow": {
+            "alpha": 0.45,
+            "blur": 6,
+            "offset": [
+              6,
+              12
+            ]
+          }
+        }
       ],
-      "fx": ["glow:0.76,0.20,520,255,172,84,0.6", "dust:46", "bloom", "vignette:70", "grain:0.9"]
+      "fx": [
+        "glow:0.76,0.20,520,255,172,84,0.6",
+        "dust:46",
+        "bloom",
+        "vignette:70",
+        "grain:0.9"
+      ]
     },
     {
       "name": "03 water_closeup",
-      "start": 204.6, "end": 212.95,
+      "start": 204.6,
+      "end": 212.95,
       "grade": "night",
-      "camera": {"from": {"zoom": 1.0, "x": 0.0, "y": 0.0}, "to": {"zoom": 1.09, "x": -0.01, "y": 0.02}},
+      "camera": {
+        "from": {
+          "zoom": 1.0,
+          "x": 0.0,
+          "y": 0.0
+        },
+        "to": {
+          "zoom": 1.09,
+          "x": -0.01,
+          "y": 0.02
+        }
+      },
       "layers": [
-        {"file": "art/03_water_closeup_bg.png", "fit": "cover", "depth": 0.0}
+        {
+          "file": "art/03_water_closeup_bg.png",
+          "fit": "cover",
+          "depth": 0.0
+        }
       ],
-      "fx": ["dof:8", "vignette:100", "grain:0.9"]
+      "fx": [
+        "dof:8",
+        "vignette:100",
+        "grain:0.9"
+      ]
     },
     {
       "name": "04 dawn_sweep",
-      "start": 212.95, "end": 227.9,
+      "start": 212.95,
+      "end": 227.9,
       "grade": "dawn",
-      "camera": {"from": {"zoom": 1.02, "x": 0.0, "y": 0.0}, "to": {"zoom": 1.08, "x": 0.02, "y": -0.01}},
+      "camera": {
+        "from": {
+          "zoom": 1.02,
+          "x": 0.0,
+          "y": 0.0
+        },
+        "to": {
+          "zoom": 1.08,
+          "x": 0.02,
+          "y": -0.01
+        }
+      },
       "layers": [
-        {"file": "art/04_table_dawn_bg.png", "fit": "cover", "depth": 0.0},
-        {"file": "art/obj_line.png", "fit": "cover", "depth": 0.55},
-        {"file": "art/obj_phone.png", "x": 0.33, "y": 0.40, "w": 0.30, "rot": -8, "depth": 0.5, "shadow": {"alpha": 0.55, "blur": 16, "offset": [-30, 24]}},
-        {"type": "phone_ui", "state": "off", "x": 0.33, "y": 0.40, "w": 0.255, "rot": -8, "depth": 0.5, "until": 216.9},
-        {"type": "phone_ui", "state": "message", "x": 0.33, "y": 0.40, "w": 0.255, "rot": -8, "depth": 0.5, "from_t": 216.9},
-        {"file": "art/obj_glass_top.png", "x": 0.68, "y": 0.60, "w": 0.34, "depth": 0.6, "shadow": {"alpha": 0.5, "blur": 18, "offset": [-40, 18]}},
-        {"file": "art/obj_tablet_standing.png", "x": 0.86, "y": 0.66, "w": 0.06, "depth": 0.7, "shadow": {"alpha": 0.5, "blur": 8, "offset": [-60, 14]}}
+        {
+          "file": "art/04_table_dawn_bg.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "video": "art/04b_dawn.mp4",
+          "fit": "cover",
+          "depth": 0.0,
+          "from_t": 212.95,
+          "until": 220.95
+        },
+        {
+          "file": "art/obj_line.png",
+          "fit": "cover",
+          "depth": 0.55
+        },
+        {
+          "file": "art/obj_phone.png",
+          "x": 0.33,
+          "y": 0.4,
+          "w": 0.3,
+          "rot": -8,
+          "depth": 0.5,
+          "shadow": {
+            "alpha": 0.55,
+            "blur": 16,
+            "offset": [
+              -30,
+              24
+            ]
+          }
+        },
+        {
+          "type": "phone_ui",
+          "state": "off",
+          "x": 0.33,
+          "y": 0.4,
+          "w": 0.255,
+          "rot": -8,
+          "depth": 0.5,
+          "until": 216.9
+        },
+        {
+          "type": "phone_ui",
+          "state": "message",
+          "x": 0.33,
+          "y": 0.4,
+          "w": 0.255,
+          "rot": -8,
+          "depth": 0.5,
+          "from_t": 216.9
+        },
+        {
+          "file": "art/obj_tablet_standing.png",
+          "x": 0.86,
+          "y": 0.66,
+          "w": 0.06,
+          "depth": 0.7,
+          "shadow": {
+            "alpha": 0.5,
+            "blur": 8,
+            "offset": [
+              -60,
+              14
+            ]
+          }
+        }
       ],
-      "fx": ["light_sweep:212.95,224.0,0.85", "bloom", "vignette:70", "grain:0.8"]
+      "fx": [
+        "light_sweep:212.95,224.0,0.85",
+        "bloom",
+        "vignette:70",
+        "grain:0.8"
+      ]
     },
     {
       "name": "05 reply",
-      "start": 227.9, "end": 233.4,
+      "start": 227.9,
+      "end": 233.4,
       "grade": "dawn",
-      "camera": {"from": {"zoom": 1.0, "x": 0.0, "y": 0.0}, "to": {"zoom": 1.02, "x": 0.0, "y": 0.0}},
+      "camera": {
+        "from": {
+          "zoom": 1.0,
+          "x": 0.0,
+          "y": 0.0
+        },
+        "to": {
+          "zoom": 1.02,
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
       "layers": [
-        {"file": "art/04_table_dawn_bg.png", "fit": "cover", "depth": 0.0, "blur": 10},
-        {"type": "phone_ui", "state": "message", "big": true, "x": 0.5, "y": 0.52, "w": 0.86, "rot": -4, "depth": 0.8, "typed": {"from": 0, "to": 20}, "until": 232.9},
-        {"type": "phone_ui", "state": "message", "big": true, "x": 0.5, "y": 0.52, "w": 0.86, "rot": -4, "depth": 0.8, "typed": 17, "sent": true, "from_t": 232.9}
+        {
+          "file": "art/04_table_dawn_bg.png",
+          "fit": "cover",
+          "depth": 0.0,
+          "blur": 10
+        },
+        {
+          "type": "phone_ui",
+          "state": "message",
+          "big": true,
+          "x": 0.5,
+          "y": 0.52,
+          "w": 0.86,
+          "rot": -4,
+          "depth": 0.8,
+          "typed": {
+            "from": 0,
+            "to": 20
+          },
+          "until": 232.9
+        },
+        {
+          "type": "phone_ui",
+          "state": "message",
+          "big": true,
+          "x": 0.5,
+          "y": 0.52,
+          "w": 0.86,
+          "rot": -4,
+          "depth": 0.8,
+          "typed": 17,
+          "sent": true,
+          "from_t": 232.9
+        }
       ],
-      "fx": ["vignette:60", "grain:0.8"]
+      "fx": [
+        "vignette:60",
+        "grain:0.8"
+      ]
     },
     {
       "name": "06 morning",
-      "start": 233.4, "end": 238.28,
+      "start": 233.4,
+      "end": 238.28,
       "grade": "dawn",
       "fade_out": 0.8,
-      "camera": {"from": {"zoom": 1.08, "x": 0.02, "y": -0.01}, "to": {"zoom": 1.0, "x": 0.0, "y": 0.0}},
+      "camera": {
+        "from": {
+          "zoom": 1.08,
+          "x": 0.02,
+          "y": -0.01
+        },
+        "to": {
+          "zoom": 1.0,
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
       "layers": [
-        {"file": "art/04_table_dawn_bg.png", "fit": "cover", "depth": 0.0},
-        {"file": "art/obj_line.png", "fit": "cover", "depth": 0.55},
-        {"file": "art/obj_phone.png", "x": 0.33, "y": 0.40, "w": 0.30, "rot": -8, "depth": 0.5, "shadow": {"alpha": 0.55, "blur": 16, "offset": [-30, 24]}},
-        {"type": "phone_ui", "state": "message", "x": 0.33, "y": 0.40, "w": 0.255, "rot": -8, "depth": 0.5, "typed": 17, "sent": true},
-        {"file": "art/obj_glass_top.png", "x": 0.68, "y": 0.60, "w": 0.34, "depth": 0.6, "shadow": {"alpha": 0.5, "blur": 18, "offset": [-40, 18]}},
-        {"file": "art/obj_tablet_standing.png", "x": 0.86, "y": 0.66, "w": 0.06, "depth": 0.7, "shadow": {"alpha": 0.5, "blur": 8, "offset": [-60, 14]}}
+        {
+          "file": "art/04_table_dawn_bg.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/obj_line.png",
+          "fit": "cover",
+          "depth": 0.55
+        },
+        {
+          "file": "art/obj_phone.png",
+          "x": 0.33,
+          "y": 0.4,
+          "w": 0.3,
+          "rot": -8,
+          "depth": 0.5,
+          "shadow": {
+            "alpha": 0.55,
+            "blur": 16,
+            "offset": [
+              -30,
+              24
+            ]
+          }
+        },
+        {
+          "type": "phone_ui",
+          "state": "message",
+          "x": 0.33,
+          "y": 0.4,
+          "w": 0.255,
+          "rot": -8,
+          "depth": 0.5,
+          "typed": 17,
+          "sent": true
+        },
+        {
+          "file": "art/obj_tablet_standing.png",
+          "x": 0.86,
+          "y": 0.66,
+          "w": 0.06,
+          "depth": 0.7,
+          "shadow": {
+            "alpha": 0.5,
+            "blur": 8,
+            "offset": [
+              -60,
+              14
+            ]
+          }
+        }
       ],
-      "fx": ["light_sweep:200.0,201.0,0.85", "bloom", "vignette:70", "grain:0.8"]
+      "fx": [
+        "light_sweep:200.0,201.0,0.85",
+        "bloom",
+        "vignette:70",
+        "grain:0.8"
+      ]
     }
   ]
 }

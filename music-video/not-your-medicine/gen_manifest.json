@@ -1,0 +1,45 @@
+{
+  "style_suffix": "Japanese anime background art, cinematic film still, painterly but clean, subtle highlights, rich shadow detail, no people, no hands, no text, no logos, vertical 9:16 composition, keep the top 17% and bottom 25% of the frame free of important objects.",
+  "assets": [
+    {
+      "id": "01_table_night_bg", "type": "image", "aspect": "9:16", "out": "art/01_table_night_bg.png", "size": "2K",
+      "prompt": "Top-down view of a dark wooden table at 2 a.m. A thick glass of still water sits in the lower right area of the frame. Deep blue darkness, a faint amber lamp glow from the upper right corner, cool blue-white light spilling on the upper left of the table as if from a phone screen (the phone itself is not shown). Empty space in the upper left where a phone would lie. Matte wood grain, soft reflections on the glass rim."
+    },
+    {
+      "id": "04_table_dawn_bg", "type": "image", "aspect": "9:16", "out": "art/04_table_dawn_bg.png", "size": "2K", "refs": ["01_table_night_bg"],
+      "prompt": "The same top-down wooden table and the same glass of water in the same position as the reference image, but at early morning: low golden sunlight enters from the right edge and sweeps across the table, long soft shadows fall to the left, warm amber and cream tones, the blue night is gone. Keep the composition identical."
+    },
+    {
+      "id": "02_glass_side_bg", "type": "image", "aspect": "9:16", "out": "art/02_glass_side_bg.png", "size": "2K", "refs": ["01_table_night_bg"],
+      "prompt": "Side view at table height of the same thick glass of water at night, centered, with an out-of-focus warm amber lamp glowing behind it in the upper right, the rim of the glass and the waterline catching thin bright highlights, deep blue shadows, dust motes in the lamp light, the table surface in the lower part of the frame."
+    },
+    {
+      "id": "03_water_closeup_bg", "type": "image", "aspect": "9:16", "out": "art/03_water_closeup_bg.png", "size": "2K", "refs": ["01_table_night_bg"],
+      "prompt": "Extreme close-up top-down of the still water surface inside the same glass, filling most of the frame, a faint rectangular window reflection on the surface, the very first hint of dawn: mostly deep blue with a pale amber edge, calm, quiet, minimal."
+    },
+    {
+      "id": "obj_phone", "type": "object", "aspect": "1:1", "out": "art/obj_phone.png", "refs": ["01_table_night_bg"],
+      "prompt": "A black modern smartphone seen exactly from above, screen completely black and turned off, matte black frame, thin bezels, in the same painterly anime style as the reference."
+    },
+    {
+      "id": "obj_tablet", "type": "object", "aspect": "1:1", "out": "art/obj_tablet.png", "refs": ["01_table_night_bg"],
+      "prompt": "A single round white medicine tablet with a score line, seen exactly from above, slightly chalky surface, in the same painterly anime style as the reference."
+    },
+    {
+      "id": "obj_tablet_side", "type": "object", "aspect": "1:1", "out": "art/obj_tablet_side.png", "refs": ["01_table_night_bg"],
+      "prompt": "A single round white medicine tablet seen exactly from the side (a thin white disc edge-on, slightly rounded), chalky surface, in the same painterly anime style as the reference."
+    },
+    {
+      "id": "obj_tablet_standing", "type": "object", "aspect": "1:1", "out": "art/obj_tablet_standing.png", "refs": ["01_table_night_bg"],
+      "prompt": "A single round white medicine tablet standing upright on its edge like a coin, seen from slightly above, chalky surface with a score line, in the same painterly anime style as the reference."
+    },
+    {
+      "id": "01b_fizz", "type": "video", "aspect": "9:16", "seconds": 8, "out": "art/01b_fizz.mp4", "image": "01_table_night_bg", "crop": [0.30, 0.38, 0.98, 0.86],
+      "prompt": "Static top-down camera. A small white tablet drops into the glass of water, fizzes with fine bubbles rising, clouds the water briefly, and dissolves until it disappears. Night, blue darkness, faint amber lamp light. No people, no hands, no text."
+    },
+    {
+      "id": "04b_dawn", "type": "video", "aspect": "9:16", "seconds": 8, "out": "art/04b_dawn.mp4", "image": "04_table_dawn_bg", "crop": [0.0, 0.0, 1.0, 1.0],
+      "prompt": "Static top-down camera. Early morning light slowly sweeps across the wooden table from right to left, shadows of the glass lengthen and soften, warm amber tones grow. Very slow, calm. No people, no hands, no text."
+    }
+  ]
+}
