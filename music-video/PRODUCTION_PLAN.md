@@ -31,6 +31,35 @@
 **生成側に文字を描かせない。** 日本語は必ず壊れるので、文字はすべて合成で乗せる。
 プロンプトには毎回 `no text, no letters, no logos` を入れる。
 
+## 接続方法: 公式 MCP コネクタ（これが本命）
+
+Higgsfield は 2026-04-30 に**公式 MCP サーバー**を出した。Claude にコネクタとして繋ぐと、
+**Claude が直接** 画像・動画を生成できる。API キーの受け渡しも、手動のダウンロード＆アップロードも要らない。
+
+- サーバー: `https://mcp.higgsfield.ai/mcp`
+- 認証: ブラウザ OAuth（Higgsfield アカウントでログインするだけ。API キー不要）
+- 使えるツール: `generate_image` / `generate_video` / `create_character` / `get_generation_status` / `list_characters`
+- 使えるモデル: Kling 3.0、Veo 3.1、Seedance 2.0、Sora 2、MiniMax Hailuo、GPT Image 2、Soul V2、Flux 2 など 30 以上
+- 動画は 1 本あたり最大 15 秒（8 秒クリップ 6 本の構成がそのまま通る）
+
+### 繋ぎ方（claude.ai 側で設定する）
+
+この実行環境からは `mcp.higgsfield.ai` へ直接出られない（ネットワーク方針で遮断）。
+一方 `mcp-proxy.anthropic.com` は到達できるので、**claude.ai のコネクタとして登録する**のが正しい経路。
+
+1. claude.ai にログイン → 左の **Customize**（またはSettings）→ **Connectors**
+2. **＋ → Add custom connector**
+3. URL に `https://mcp.higgsfield.ai/mcp` を入れて追加
+4. Higgsfield アカウントで OAuth ログイン
+5. このブランチ `claude/music-video-examples-05xvns` で**新しいセッション**を開いて「Higgsfield で6本生成して」と言う
+
+繋がると、このセッションに `mcp__higgsfield__generate_video` などのツールが現れる。
+そうなれば発注書の 6 本を私がそのまま生成し、`art/` に保存して、書き出しまで一気に通せる。
+
+（ローカルの Claude Code CLI で使う場合は
+`claude mcp add --transport http --scope user higgsfield https://mcp.higgsfield.ai/mcp`。
+ただしこのサンドボックスからは OAuth のブラウザ遷移ができないので、上の claude.ai 経由が確実。）
+
 ## 進め方
 
 1. Higgsfield Starter を契約（$19）。
@@ -44,11 +73,13 @@
    ```
 5. 直しは `shots.json` の秒数と座標だけ。生成し直しは基本不要。
 
-## API で自動化する場合（任意）
+## 代替経路
 
-`common/gen_higgsfield.py` を用意済み。ただし **この環境からは higgsfield.ai が遮断されている**ので、
-使うには環境のネットワーク方針で `platform.higgsfield.ai` を許可し、`HIGGSFIELD_API_KEY` を環境変数に入れる。
-許可されれば `common/generate.py` から 6 本を一括生成できる。手動でも所要 20 分程度なので、急がないなら Web UI で十分。
+| 経路 | 手間 | 備考 |
+|---|---|---|
+| **MCP コネクタ（推奨）** | 設定 2 分。あとは全部こちら | Claude が直接生成。キー不要 |
+| Higgsfield Web UI で手動 | 20 分／曲 | 発注書のプロンプトを貼って mp4 を `art/` に置く |
+| REST API | ネットワーク方針の変更が必要 | `common/gen_higgsfield.py` を用意済み。`platform.higgsfield.ai` の許可と `HIGGSFIELD_API_KEY` が要る |
 
 ## PAPER PLANE ROYALTY 側
 
