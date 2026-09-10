@@ -82,7 +82,7 @@ small, .small { font-size: 0.88rem; }
 @media (max-width: 600px) { .sekki { flex-wrap: wrap; text-align: center; line-height: 1.5; padding: 4px 12px; } .sekki .proto { display: none; } }
 
 /* ヘッダー */
-.site-header { position: sticky; top: 0; z-index: 50; background: rgba(245,239,227,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); transition: background var(--t-card), border-color var(--t-card); }
+.site-header { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); transition: background var(--t-card), border-color var(--t-card); }
 .site-header .inner { height: var(--header-h); display: flex; align-items: center; gap: 12px; }
 .brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 700; text-decoration: none; flex: none; }
 .brand:hover { text-decoration: none; }
