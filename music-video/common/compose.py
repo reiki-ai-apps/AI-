@@ -71,6 +71,39 @@ def video_frame(path, base_dir, t_local, fps=FPS):
     return Image.open(frames[i]).convert("RGBA")
 
 
+def render_fizz(size, p, T, tint=(255, 255, 255)):
+    """円形の水面領域に、縮む錠剤・白い濁り・上がる泡・波紋を描く(RGBA、size×size)。p: 0→1 で溶けきる。"""
+    import math
+    import random
+    im = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    cx = cy = size / 2
+    r = size * 0.42
+    haze = int(150 * math.sin(math.pi * p))
+    if haze > 0:
+        hz = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+        ImageDraw.Draw(hz).ellipse([cx - r * 0.7, cy - r * 0.7, cx + r * 0.7, cy + r * 0.7], fill=tint + (haze // 2,))
+        im.alpha_composite(hz.filter(ImageFilter.GaussianBlur(size * 0.05)))
+    tr = r * 0.30 * max(0.0, 1 - p / 0.7)
+    if tr > 2:
+        d.ellipse([cx - tr, cy - tr, cx + tr, cy + tr], fill=(244, 242, 236, 235))
+        d.line([(cx - tr * 0.6, cy), (cx + tr * 0.6, cy)], fill=(214, 210, 202, 255), width=max(1, int(tr * 0.08)))
+    rng = random.Random(3)
+    for i in range(110):
+        ang = rng.uniform(0, 2 * math.pi)
+        sp = rng.uniform(0.3, 1.0)
+        life = (p * 3.0 * sp + rng.random()) % 1.0
+        rad = r * 0.85 * life
+        bx, by = cx + rad * math.cos(ang), cy + rad * math.sin(ang)
+        br = rng.uniform(2, 6) * (1 - life * 0.5) * size / 900
+        d.ellipse([bx - br, by - br, bx + br, by + br], fill=tint + (int(210 * (1 - life) * (1 - p * 0.6)),))
+    for i in range(3):
+        rr = r * ((T * 0.9 + i * 0.33) % 1.0)
+        a = int(80 * (1 - (T * 0.9 + i * 0.33) % 1.0) * (1 - p * 0.5))
+        d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], outline=tint + (a,), width=max(1, int(size * 0.003)))
+    return im
+
+
 def load_procedural(spec_dir, module_name):
     """曲側のスクリプト(例: animatic.py)から関数を借りる(スマホ画面などの手続き描画)。"""
     path = os.path.join(spec_dir, module_name + ".py")
@@ -161,6 +194,12 @@ class Composer:
             mask = Image.new("L", src.size, 0)
             ImageDraw.Draw(mask).rounded_rectangle([0, 0, src.width - 1, src.height - 1], radius=int(src.width * 0.11), fill=255)
             src.putalpha(mask)
+        elif ltype == "fizz":
+            # 発泡の手続き描画(動画生成なしで「錠剤が溶ける」を作る)
+            t_from = layer.get("from_t", self.shot_at(T)["start"])
+            t_to = layer.get("until", self.shot_at(T)["end"])
+            p = max(0.0, min(1.0, (T - t_from) / max(0.1, t_to - t_from)))
+            src = render_fizz(int(layer.get("px", 900)), p, T, tint=tuple(layer.get("tint", [255, 255, 255])))
         elif "video" in layer:
             src = video_frame(layer["video"], self.dir, T - layer.get("from_t", self.shot_at(T)["start"]))
         else:
