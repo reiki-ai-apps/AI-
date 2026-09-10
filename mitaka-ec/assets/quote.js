@@ -1,21 +1,40 @@
 // 見積依頼フォーム: シミュレーター内容とカタログ見積リストをまとめて送信
-// 送信先の設定(正式運用時にここを変更):
-//   endpoint: フォーム受付API(Supabase Edge Function / Formspree など)のURL。空ならメール送信にフォールバック。
-//   mailTo:   見積依頼を受け取るメールアドレス。
-export const CONFIG = { endpoint: "", mailTo: "info@example.com" };
-
+// 送信先は config.js の mailTo / quoteEndpoint で設定します。
+import { CONFIG as SITE } from "./config.js";
 import { initSite, toast, copyText, getQuoteList, quoteListText, esc } from "./site.js";
-import { decodeParams, estimate, summarize, encodeParams } from "./pricing.js";
+import { OPTIONS, decodeParams, estimate, summarize, encodeParams, estimateRecover, yen } from "./pricing.js";
+import { store } from "./store.js";
+const CONFIG = { endpoint: SITE.quoteEndpoint, mailTo: SITE.mailTo };
 
 export function buildMail(subject, body) {
   return `mailto:${CONFIG.mailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-if (document.getElementById("quote-form")) {
+if (document.getElementById("quote-form")) (async () => {
   initSite();
+  const sp = new URLSearchParams(location.search);
   const params = decodeParams(location.search);
   const est = params ? estimate(params) : null;
   const simBox = document.getElementById("sim-summary"), listBox = document.getElementById("list-summary"), emptyBox = document.getElementById("empty-summary");
+  // ハウスカルテからの依頼: 対象ハウスと張り替え概算を添える
+  let houseText = "";
+  if (sp.get("house")) {
+    try {
+      const houses = await store.listAllHouses();
+      const h = houses.find(x => x.id === sp.get("house"));
+      if (h) {
+        const c = await store.getCustomer(h.customerId);
+        const filmLabel = (OPTIONS.films.find(f => f.id === h.params.film) || {}).label || h.params.film;
+        const lines = ["【対象ハウス(ハウスカルテ)】", `${c ? c.farmName || c.name : ""} ${h.name}  間口${h.params.span}m × 奥行${h.params.length}m / 被覆材 ${filmLabel} / 張った年 ${h.filmYear || "不明"} / 作物 ${h.crop || "-"}`];
+        if (sp.get("mode") === "recover") { const r = estimateRecover(h.params); lines.push(`張り替え概算(税抜): ${yen(r.subtotal)}  税込: ${yen(r.total)}`); }
+        houseText = lines.join("\n");
+        simBox.hidden = false; simBox.querySelector("h3").textContent = "対象のハウス";
+        simBox.querySelector("pre").textContent = houseText; simBox.querySelector("a").href = `karte.html?c=${encodeURIComponent(c ? c.code : "")}`; simBox.querySelector("a").textContent = "カルテに戻る";
+        const f = document.getElementById("quote-form"); if (c) { f.name.value = c.name || ""; f.farm.value = c.farmName || ""; f.tel.value = c.tel || ""; f.place.value = c.address || c.area || ""; f.crop.value = h.crop || ""; }
+        if (sp.get("mode") === "recover") f.message.value = `${h.name} の被覆材張り替えを検討しています。`;
+      }
+    } catch (e) { console.warn(e); }
+  }
   if (est) {
     simBox.hidden = false;
     simBox.querySelector("pre").textContent = summarize(est);
@@ -26,13 +45,14 @@ if (document.getElementById("quote-form")) {
     listBox.hidden = false;
     listBox.querySelector("pre").textContent = quoteListText(list);
   }
-  emptyBox.hidden = !!(est || list.length);
+  emptyBox.hidden = !!(est || list.length || houseText);
 
   const form = document.getElementById("quote-form"), result = document.getElementById("q-result");
   const FIELDS = [["お名前", "name"], ["農園名・法人名", "farm"], ["電話番号", "tel"], ["メールアドレス", "email"], ["設置予定地", "place"], ["ご希望時期", "timing"], ["栽培作物", "crop"], ["ご希望の連絡方法", "contact"], ["ご相談内容", "message"]];
   const buildText = () => {
     const d = new FormData(form);
     const parts = ["【見積依頼】", ...FIELDS.map(([k, n]) => `${k}: ${d.get(n) || ""}`), ""];
+    if (houseText) parts.push(houseText, "");
     if (est) parts.push(summarize(est), `シミュレーターURL: ${location.origin}${location.pathname.replace(/quote\.html$/, "simulator.html")}?${encodeParams(est.params)}`, "");
     if (list.length) parts.push(quoteListText(list), "");
     parts.push(`送信日時: ${new Date().toLocaleString("ja-JP")}`);
@@ -61,4 +81,4 @@ if (document.getElementById("quote-form")) {
     showText(text, "<strong>メールソフトが開きます。</strong>開かない場合は「内容をコピー」して、電話・FAX・メールでお送りください。");
   });
   document.getElementById("q-copy").addEventListener("click", async () => toast((await copyText(buildText())) ? "内容をコピーしました" : "コピーできませんでした"));
-}
+})();

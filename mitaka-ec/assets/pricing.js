@@ -220,6 +220,24 @@ export function estimate(rawParams) {
   };
 }
 
+// 被覆材の張り替えだけの概算(ハウスカルテから使う)
+export function estimateRecover(rawParams, opts = {}) {
+  const p = normalizeParams(rawParams);
+  const g = computeGeometry(p);
+  const film = OPTIONS.films.find(f => f.id === (opts.film || p.film));
+  const lines = [];
+  const add = (key, label, detail, qty, unit, unitPrice, amount) => lines.push({ key, label, detail, qty: Math.round(qty * 10) / 10, unit, unitPrice, amount: Math.round(amount != null ? amount : qty * unitPrice), note: "" });
+  add("film", `被覆材 ${film.label}`, "屋根・側面・妻面(ロス10%込)", g.coverArea, "m²", film.perSqm);
+  add("spring", "スプリング・パッカー交換", "固定金具の消耗分(約3割)", g.railLen * 0.3, "m", UNIT.railPerM);
+  if (p.install === "full") {
+    add("labor", "張り替え施工費", `被覆面積 ${g.coverArea.toFixed(0)}m² + 基本料`, 1, "式", 0, g.coverArea * 380 + 25000);
+    add("disposal", "旧フィルム処分費", `${g.coverArea.toFixed(0)}m²`, g.coverArea, "m²", 40);
+  }
+  add("delivery", "運搬費", OPTIONS.regions.find(r => r.id === p.region).label, 1, "式", 0, UNIT.delivery[p.region]);
+  const subtotal = lines.reduce((s, l) => s + l.amount, 0), tax = Math.round(subtotal * TAX_RATE);
+  return { params: p, geometry: g, film, lines, subtotal, tax, total: subtotal + tax, perSqm: Math.round(subtotal / g.floorArea), notes: ["張り替えのみの概算です。骨組の補修が必要な場合は現地確認後にご案内します。"] };
+}
+
 // URLクエリ <-> パラメータ
 const KEYS = ["span", "length", "eave", "ridge", "pitch", "pipe", "film", "doors", "sideVent", "ventDrive", "roofVent", "curtain", "insectNet", "irrigation", "snow", "install", "region"];
 export function encodeParams(p) {

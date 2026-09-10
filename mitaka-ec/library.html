@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>みんなのハウス図鑑｜三高産業 ハウスEC</title>
+<meta name="description" content="地域のハウスの大きさ・骨組・被覆材の集計と、作物別の定番構成。名前や場所は出ません。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1f6b3a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+<div class="proto-banner"><strong>プロトタイプ版</strong>　表示している価格はすべて仮単価です。正式なお見積りは現地確認後にご提出します。</div>
+<header class="site-header">
+  <div class="container inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 20V11a9 9 0 0 1 18 0v9"/><path d="M3 20h18M12 2.2V20M7 20V6.2M17 20V6.2"/></svg></span>
+      <span class="brand-text"><span class="name">三高産業 ハウスEC</span><span class="sub">ビニールハウス資材・施工のオンライン見積</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">☰</button>
+    <nav class="nav" aria-label="メイン">
+      <a href="index.html">トップ</a>
+      <a href="karte.html">マイハウスカルテ</a>
+      <a href="simulator.html">3Dシミュレーター</a>
+      <a href="catalog.html">資材カタログ</a>
+      <a href="library.html">ハウス図鑑</a>
+      <a href="quote.html">見積依頼</a>
+      <a class="btn sm accent" href="simulator.html">3Dで見積る</a>
+    </nav>
+  </div>
+</header>
+<main>
+<style>
+.filters { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; margin: 1rem 0; }
+.filters select { padding: 0.5rem 0.7rem; border: 1px solid var(--line); border-radius: 8px; font: inherit; background: #fff; }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+.stat-grid .card h3 { font-size: 1rem; }
+.bars { display: grid; gap: 0.4rem; }
+.bar { display: grid; grid-template-columns: 9.5rem 1fr 4.5rem; gap: 0.5rem; align-items: center; font-size: 0.85rem; }
+.bar .bl { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar .bt { height: 10px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.bar .bf { display: block; height: 100%; background: var(--green-600); border-radius: 999px; }
+.bar .bn { text-align: right; font-variant-numeric: tabular-nums; } .bar .bn small { color: var(--muted); }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 0.3rem 1rem; font-size: 0.9rem; margin: 0; }
+.kv dt { color: var(--muted); } .kv dd { margin: 0; font-weight: 700; text-align: right; }
+.tpls { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+</style>
+<section class="container page-head">
+  <div class="breadcrumb"><a href="index.html">トップ</a> › みんなのハウス図鑑</div>
+  <h1>みんなのハウス図鑑</h1>
+  <p>この地域の農家さんのハウスが、どんな大きさ・骨組・被覆材で建てられているかの集計です。名前や場所は出ません。新しく建てるときの参考や、補助金申請の「地域の標準仕様」の根拠に使えます。</p>
+</section>
+<section class="container" style="padding-bottom:3rem">
+  <div class="notice info">個人が特定されないよう、市町村単位・5棟以上の組み合わせだけを表示しています。登録データが集まるまでは「地域サンプル」を含めて表示できます。詳しくは<a href="privacy.html">登録情報の取り扱い</a>をご覧ください。</div>
+  <div class="filters">
+    <select id="crop" aria-label="作物"></select>
+    <select id="area" aria-label="地区"></select>
+    <label class="check"><input type="checkbox" id="include-sample" checked>地域サンプルを含める</label>
+    <span class="muted small" id="count"></span>
+  </div>
+  <div id="stats"></div>
+  <div class="section-title mt-4"><span class="eyebrow">TEMPLATES</span><h2>作物別の定番構成</h2><p>いちばん多い組み合わせを型紙にしました。そのまま3Dシミュレーターに読み込んで、自分の奥行に変えるだけで見積りが出ます。</p></div>
+  <div class="tpls" id="templates"></div>
+  <div class="cta-band mt-4">
+    <div><h2>自分のハウスも登録すると</h2><p>マイハウスカルテができ、張り替え時期のお知らせや、仕様に合った資材の再注文がワンタップになります。登録は担当者が訪問時に無料で行います。</p></div>
+    <a class="btn lg" href="karte.html">マイハウスカルテを見る</a>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <h4>三高産業株式会社</h4>
+        <p>群馬県桐生市（正式な住所・電話番号・FAXはここに入れます）<br>ビニールハウス・パイプハウスの資材販売と施工。ハウス関連資材全般を取り扱っています。</p>
+      </div>
+      <div>
+        <h4>サービス</h4>
+        <ul>
+          <li><a href="karte.html">マイハウスカルテ</a></li>
+          <li><a href="simulator.html">3Dハウスシミュレーター</a></li>
+          <li><a href="catalog.html">資材カタログ</a></li>
+          <li><a href="library.html">みんなのハウス図鑑</a></li>
+          <li><a href="quote.html">見積依頼・お問い合わせ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>事業者の方へ</h4>
+        <ul>
+          <li><a href="partners.html">出店・パートナー募集</a></li>
+          <li><a href="privacy.html">登録情報の取り扱い</a></li>
+          <li><a href="staff.html">担当者用: カルテ登録</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© <span data-year>2026</span> 三高産業株式会社</span>
+      <span>このサイトはプロトタイプです。価格は仮単価です。</span>
+    </div>
+  </div>
+</footer>
+<script type="module" src="assets/library.js"></script>
+</body>
+</html>

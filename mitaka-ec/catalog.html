@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>資材カタログ｜三高産業 ハウスEC</title>
-<meta name="description" content="パイプ材・農ビ・農PO・換気・カーテン・潅水用品・金具など、ビニールハウス関連資材のカタログ。見積リストに入れてまとめて見積依頼できます。">
+<meta name="description" content="佐藤産業・誠和・東都興業のハウス部材から汎用資材まで。見積リストに入れてまとめて見積依頼できます。">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#1f6b3a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,9 +24,10 @@
     <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">☰</button>
     <nav class="nav" aria-label="メイン">
       <a href="index.html">トップ</a>
+      <a href="karte.html">マイハウスカルテ</a>
       <a href="simulator.html">3Dシミュレーター</a>
       <a href="catalog.html">資材カタログ</a>
-      <a href="partners.html">出店・パートナー</a>
+      <a href="library.html">ハウス図鑑</a>
       <a href="quote.html">見積依頼</a>
       <a class="btn sm accent" href="simulator.html">3Dで見積る</a>
     </nav>
@@ -50,6 +51,12 @@
 .p-foot .price { font-size: 1.1rem; }
 .p-add { display: flex; gap: 0.35rem; align-items: center; }
 .p-add input { width: 3.6rem; padding: 0.4rem; border: 1px solid var(--line); border-radius: 8px; font: inherit; text-align: center; }
+.p-note { font-size: 0.8rem; color: var(--green-800); background: var(--green-50); border-radius: 6px; padding: 0.25rem 0.5rem; }
+.price.ask { color: var(--earth-600); }
+.chip.maker { background: var(--green-50); }
+.chip.maker[aria-pressed="true"] { background: var(--earth-500); border-color: var(--earth-500); }
+.maker-row { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+.maker-row .lbl { font-size: 0.8rem; color: var(--muted); font-weight: 700; }
 </style>
 <section class="container page-head">
   <div class="breadcrumb"><a href="index.html">トップ</a> › 資材カタログ</div>
@@ -57,7 +64,8 @@
   <p id="cat-desc">ハウス関連資材全般を取り扱っています。価格はすべて仮単価(税抜)です。</p>
 </section>
 <section class="container" style="padding-bottom:3rem">
-  <div class="notice">価格は<strong>仮単価(税抜)</strong>のサンプルです。在庫・納期・正式価格は見積依頼後にご案内します。必要な資材を「見積リストへ」に入れると、まとめて見積依頼できます。</div>
+  <div class="notice">メーカー品の価格は<strong>確認前の参考値または要見積</strong>です。在庫・納期・正式価格は見積依頼後にご案内します。必要な資材を「見積リストへ」に入れると、まとめて見積依頼できます。</div>
+  <div class="maker-row mt-2"><span class="lbl">メーカー</span><div class="chips" id="maker-chips" style="margin:0"></div></div>
   <div class="chips" id="chips"></div>
   <div class="cat-bar">
     <input class="input" id="q" type="search" placeholder="商品名・規格・品番で検索(例: 農PO、φ25.4、巻き上げ)" aria-label="検索">
@@ -80,8 +88,10 @@
       <div>
         <h4>サービス</h4>
         <ul>
+          <li><a href="karte.html">マイハウスカルテ</a></li>
           <li><a href="simulator.html">3Dハウスシミュレーター</a></li>
           <li><a href="catalog.html">資材カタログ</a></li>
+          <li><a href="library.html">みんなのハウス図鑑</a></li>
           <li><a href="quote.html">見積依頼・お問い合わせ</a></li>
         </ul>
       </div>
@@ -89,6 +99,8 @@
         <h4>事業者の方へ</h4>
         <ul>
           <li><a href="partners.html">出店・パートナー募集</a></li>
+          <li><a href="privacy.html">登録情報の取り扱い</a></li>
+          <li><a href="staff.html">担当者用: カルテ登録</a></li>
         </ul>
       </div>
     </div>

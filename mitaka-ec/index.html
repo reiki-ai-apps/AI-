@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>三高産業 ハウスEC｜ビニールハウスを3Dで組んで、その場で概算見積り</title>
-<meta name="description" content="群馬県桐生市の三高産業が運営するビニールハウス資材・施工のオンライン見積サイト。3Dシミュレーターで間口・奥行・設備を選ぶと、概算見積りがその場で表示されます。">
+<meta name="description" content="群馬県桐生市の三高産業が運営するビニールハウス資材・施工のオンライン見積サイト。マイハウスカルテ、3Dシミュレーター、資材カタログ。">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#1f6b3a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,9 +24,10 @@
     <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">☰</button>
     <nav class="nav" aria-label="メイン">
       <a href="index.html">トップ</a>
+      <a href="karte.html">マイハウスカルテ</a>
       <a href="simulator.html">3Dシミュレーター</a>
       <a href="catalog.html">資材カタログ</a>
-      <a href="partners.html">出店・パートナー</a>
+      <a href="library.html">ハウス図鑑</a>
       <a href="quote.html">見積依頼</a>
       <a class="btn sm accent" href="simulator.html">3Dで見積る</a>
     </nav>
@@ -71,9 +72,26 @@
 <section class="section" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="container">
     <div class="section-title">
+      <span class="eyebrow">HOUSE KARTE</span>
+      <h2>あなたのハウスの「カルテ」を、無料でお作りします</h2>
+      <p>担当者が訪問時にハウスの寸法・骨組・被覆材を登録します。次からはスマホで自分のハウスを開くだけ。寸法を測り直さなくても、ぴったりの資材が注文できます。</p>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="icon">🗂</div><h3>圃場ごとに全棟が見える</h3><p>地図と一緒に、1棟ずつの仕様・張った年・工事の記録が並びます。家族や後継者にもそのまま引き継げます。</p></div>
+      <div class="card"><div class="icon">🔔</div><h3>張り替え時期をお知らせ</h3><p>被覆材の種類と張った年から次の目安を計算。台風・降雪の前には点検のご案内が届きます。</p></div>
+      <div class="card"><div class="icon">⚡</div><h3>再注文はワンタップ</h3><p>「このハウスの張り替えを見積る」を押すだけで、面積・金具の数量まで自動計算した概算が出ます。</p></div>
+      <div class="card"><div class="icon">🛡</div><h3>災害時は優先対応</h3><p>どこに何棟あるかがわかっているので、台風・大雪のあとの資材確保と修理を登録済みのお客様から順にご案内します。</p></div>
+    </div>
+    <p class="center mt-3"><a class="btn accent" href="karte.html?c=DEMO01">デモのカルテを見る</a> <a class="btn outline" href="library.html">みんなのハウス図鑑を見る</a></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-title">
       <span class="eyebrow">CATALOG</span>
       <h2>取り扱い資材</h2>
-      <p>ハウス関連資材全般を取り扱っています。カテゴリを選ぶとカタログが開きます。</p>
+      <p>佐藤産業・誠和・東都興業などのメーカー品から自社取り扱いの汎用資材まで。カテゴリを選ぶとカタログが開きます。</p>
     </div>
     <div class="tiles" id="category-tiles"></div>
   </div>
@@ -130,8 +148,10 @@
       <div>
         <h4>サービス</h4>
         <ul>
+          <li><a href="karte.html">マイハウスカルテ</a></li>
           <li><a href="simulator.html">3Dハウスシミュレーター</a></li>
           <li><a href="catalog.html">資材カタログ</a></li>
+          <li><a href="library.html">みんなのハウス図鑑</a></li>
           <li><a href="quote.html">見積依頼・お問い合わせ</a></li>
         </ul>
       </div>
@@ -139,6 +159,8 @@
         <h4>事業者の方へ</h4>
         <ul>
           <li><a href="partners.html">出店・パートナー募集</a></li>
+          <li><a href="privacy.html">登録情報の取り扱い</a></li>
+          <li><a href="staff.html">担当者用: カルテ登録</a></li>
         </ul>
       </div>
     </div>

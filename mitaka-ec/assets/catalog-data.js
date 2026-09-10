@@ -1,52 +1,113 @@
-// 資材カタログのサンプルデータ(価格はすべて仮単価・税抜)
-// 実運用ではこの配列を自社の商品マスタ(CSV/DB)に置き換えます。
-export const CATEGORIES = [
-  { id: "pipe", label: "パイプ材", icon: "〰", desc: "アーチ・直管・妻面用の亜鉛メッキパイプ" },
-  { id: "film", label: "農ビ・農PO", icon: "▦", desc: "単年張り〜多年張りの被覆フィルム" },
-  { id: "multi", label: "多年張被覆材", icon: "◈", desc: "5年以上使える長期展張フィルム" },
-  { id: "vent", label: "換気用品", icon: "≋", desc: "巻き上げ機・天窓・換気扇" },
-  { id: "curtain", label: "カーテン用品", icon: "▤", desc: "保温・遮光カーテンと開閉装置" },
-  { id: "irrigation", label: "潅水用品", icon: "💧", desc: "点滴チューブ・スプリンクラー・タイマー" },
-  { id: "mulch", label: "マルチ・ネット", icon: "▩", desc: "マルチフィルム・防虫ネット・防草シート" },
-  { id: "hardware", label: "金具・部材", icon: "⚙", desc: "クロスバンド・ビニペット・杭・ドア" },
-  { id: "animal", label: "鳥獣害防止", icon: "⚠", desc: "電気柵・防獣ネット・忌避用品" }
+// 資材カタログのデータ。
+// メーカー品(佐藤産業・誠和・東都興業)は公開情報から商品名・用途をざっくり集めたもので、
+// 規格・価格は確認前の「参考(仮)」または「要見積」です。実運用では販売管理の商品マスタ(約2万点)から
+// scripts/import-catalog.mjs で生成します。
+export const MAKERS = [
+  { id: "satoh", label: "佐藤産業", desc: "ハウス部材の総合メーカー。ジョイント・クロス連結・パッカー・ドア・換気・谷部・強靭化資材" },
+  { id: "seiwa", label: "誠和", desc: "換気装置くるファミ、カーテン装置、環境制御プロファインダー、CO₂施用機、暖房・潅水" },
+  { id: "toto", label: "東都興業", desc: "被覆材固定レール ビニペット、ヒフクスプリング" },
+  { id: "generic", label: "汎用・自社", desc: "パイプ材、フィルム、マルチ、ネット、潅水、鳥獣害対策など" }
 ];
 
-export const PRODUCTS = [
-  { id: "P-1910", cat: "pipe", name: "亜鉛メッキパイプ φ19.1×1.2t", spec: "5.5m", unit: "本", price: 1430, tags: ["小型ハウス", "直管"] },
-  { id: "P-2210", cat: "pipe", name: "亜鉛メッキパイプ φ22.2×1.2t", spec: "5.5m", unit: "本", price: 1815, tags: ["標準", "アーチ"] },
-  { id: "P-2510", cat: "pipe", name: "亜鉛メッキパイプ φ25.4×1.2t", spec: "5.5m", unit: "本", price: 2310, tags: ["標準", "アーチ", "人気"] },
-  { id: "P-2560", cat: "pipe", name: "亜鉛メッキパイプ φ25.4×1.2t", spec: "6.0m", unit: "本", price: 2520, tags: ["アーチ"] },
-  { id: "P-3110", cat: "pipe", name: "亜鉛メッキパイプ φ31.8×1.6t", spec: "5.5m", unit: "本", price: 3520, tags: ["大型", "耐雪"] },
-  { id: "P-ARCH54", cat: "pipe", name: "曲げ加工アーチパイプ 間口5.4m用", spec: "φ25.4 肩高1.6m 棟高3.0m 2本組", unit: "組", price: 5900, tags: ["曲げ加工済", "人気"] },
-  { id: "P-ARCH72", cat: "pipe", name: "曲げ加工アーチパイプ 間口7.2m用", spec: "φ31.8 肩高1.8m 棟高3.6m 2本組", unit: "組", price: 9800, tags: ["曲げ加工済", "大型"] },
-  { id: "F-NOVI010", cat: "film", name: "農ビ 0.1mm", spec: "幅230cm × 100m巻", unit: "巻", price: 52000, tags: ["単年張り"] },
-  { id: "F-NOVI013", cat: "film", name: "農ビ 0.13mm(防滴・流滴)", spec: "幅230cm × 100m巻", unit: "巻", price: 68000, tags: ["単年張り", "防滴"] },
-  { id: "F-PO015", cat: "film", name: "農PO 0.15mm(3年張り)", spec: "幅540cm × 100m巻", unit: "巻", price: 158000, tags: ["3年張り", "人気"] },
-  { id: "F-PO015S", cat: "film", name: "農PO 0.15mm 散乱光タイプ", spec: "幅540cm × 100m巻", unit: "巻", price: 176000, tags: ["散乱光", "葉焼け防止"] },
-  { id: "M-PO5Y", cat: "multi", name: "多年張りPO 0.15mm(5年)", spec: "幅600cm × 100m巻", unit: "巻", price: 248000, tags: ["5年張り"] },
-  { id: "M-ETFE", cat: "multi", name: "フッ素系フィルム(10年以上)", spec: "幅600cm × 50m巻", unit: "巻", price: 385000, tags: ["長期", "高透過"] },
-  { id: "V-ROLL-M", cat: "vent", name: "手動巻き上げ機", spec: "巻き上げ長さ 50mまで", unit: "台", price: 16800, tags: ["側面換気", "人気"] },
-  { id: "V-ROLL-E", cat: "vent", name: "電動巻き上げ機(温度センサー付)", spec: "AC100V 巻き上げ長さ 60mまで", unit: "台", price: 92000, tags: ["側面換気", "自動"] },
-  { id: "V-ROLLPIPE", cat: "vent", name: "巻き上げ用パイプ φ19.1", spec: "5.5m", unit: "本", price: 1350, tags: ["側面換気"] },
-  { id: "V-FAN40", cat: "vent", name: "循環扇(サーキュレーター) 40cm", spec: "AC100V 吊り下げ型", unit: "台", price: 34000, tags: ["空気循環"] },
-  { id: "V-ROOF", cat: "vent", name: "天窓開閉装置(手動)", spec: "開閉長さ 30mまで", unit: "台", price: 58000, tags: ["天窓"] },
-  { id: "C-HEAT", cat: "curtain", name: "内張保温カーテン(アルミ蒸着)", spec: "幅600cm × 50m巻", unit: "巻", price: 96000, tags: ["保温", "省エネ"] },
-  { id: "C-SHADE50", cat: "curtain", name: "遮光ネット 遮光率50%", spec: "幅400cm × 50m巻", unit: "巻", price: 42000, tags: ["遮光", "高温対策"] },
-  { id: "C-DRIVE", cat: "curtain", name: "カーテン開閉装置(電動)", spec: "AC100V タイマー付", unit: "台", price: 148000, tags: ["自動"] },
-  { id: "I-DRIP", cat: "irrigation", name: "点滴チューブ 15cmピッチ", spec: "内径16mm × 200m巻", unit: "巻", price: 14800, tags: ["点滴潅水", "人気"] },
-  { id: "I-MIST", cat: "irrigation", name: "ミストノズルセット", spec: "φ13 配管用 20個入", unit: "セット", price: 8600, tags: ["ミスト"] },
-  { id: "I-TIMER", cat: "irrigation", name: "潅水タイマー(電池式・2系統)", spec: "最大16回/日", unit: "台", price: 12800, tags: ["自動潅水"] },
-  { id: "I-FILTER", cat: "irrigation", name: "ディスクフィルター 25A", spec: "120メッシュ", unit: "個", price: 6400, tags: ["点滴潅水"] },
-  { id: "N-MULCH", cat: "mulch", name: "黒マルチ 0.02mm", spec: "幅135cm × 200m巻", unit: "巻", price: 3200, tags: ["雑草防止"] },
-  { id: "N-INSECT", cat: "mulch", name: "防虫ネット 1mm目", spec: "幅180cm × 100m巻", unit: "巻", price: 19800, tags: ["防虫", "換気部"] },
-  { id: "N-WEED", cat: "mulch", name: "防草シート(高耐久)", spec: "幅100cm × 100m巻", unit: "巻", price: 15800, tags: ["通路"] },
-  { id: "H-CROSS", cat: "hardware", name: "クロスバンド φ25.4×φ25.4", spec: "100個入", unit: "箱", price: 6500, tags: ["接合金具", "人気"] },
-  { id: "H-VINYPET", cat: "hardware", name: "ビニペット(被覆材固定レール)", spec: "4m", unit: "本", price: 1080, tags: ["フィルム固定"] },
-  { id: "H-SPRING", cat: "hardware", name: "ビニペット用スプリング", spec: "2m 50本入", unit: "箱", price: 4200, tags: ["フィルム固定"] },
-  { id: "H-ANCHOR", cat: "hardware", name: "らせん杭 φ13×600", spec: "10本入", unit: "箱", price: 8600, tags: ["基礎", "風対策"] },
-  { id: "H-DOOR", cat: "hardware", name: "妻面用片引きドアセット", spec: "W1.8m × H1.9m", unit: "セット", price: 42000, tags: ["出入口"] },
-  { id: "A-EFENCE", cat: "animal", name: "電気柵セット(ソーラー式)", spec: "周囲250m 2段張り", unit: "セット", price: 78000, tags: ["イノシシ", "シカ"] },
-  { id: "A-NET", cat: "animal", name: "防獣ネット 高さ1.5m", spec: "50m巻 16mm目", unit: "巻", price: 9800, tags: ["シカ", "ハクビシン"] },
-  { id: "A-BIRD", cat: "animal", name: "防鳥ネット 20mm目", spec: "幅900cm × 50m", unit: "巻", price: 12600, tags: ["鳥害"] }
+export const CATEGORIES = [
+  { id: "pipe", label: "パイプ材", icon: "〰", desc: "アーチ・直管・妻面用の亜鉛メッキパイプと曲げ加工品" },
+  { id: "joint", label: "ジョイント・クロス金具", icon: "⚙", desc: "天井ジョイント、スエジジョイント、パイプクロス、パイプバンドなどの接合金具" },
+  { id: "reinforce", label: "強靭化・補強材", icon: "▲", desc: "タイバース、筋交い、中柱など台風・積雪対策の補強資材" },
+  { id: "fastener", label: "フィルム固定・パッカー", icon: "▤", desc: "ビニペット、スプリング、パッカーなど被覆材の固定用品" },
+  { id: "film", label: "農ビ・農PO・多年張り", icon: "▦", desc: "単年張りから多年張りまでの被覆フィルム" },
+  { id: "door", label: "ドア・妻面部材", icon: "▯", desc: "妻面ドア、ドアレール、妻面金具" },
+  { id: "vent", label: "換気装置", icon: "≋", desc: "巻上機くるファミ、妻面換気、天窓、循環扇" },
+  { id: "curtain", label: "カーテン装置・資材", icon: "▥", desc: "保温・遮光カーテンと開閉装置" },
+  { id: "control", label: "環境制御・CO₂・暖房", icon: "◉", desc: "プロファインダー、CO₂施用機、温風暖房機" },
+  { id: "irrigation", label: "潅水用品", icon: "💧", desc: "点滴チューブ・スプリンクラー・タイマー・フィルター" },
+  { id: "gutter", label: "谷部・連棟資材", icon: "⌒", desc: "アマノガワ(谷樋)、谷シートなど連棟ハウス用" },
+  { id: "mulch", label: "マルチ・ネット", icon: "▩", desc: "マルチフィルム・防虫ネット・防草シート" },
+  { id: "animal", label: "鳥獣害防止", icon: "⚠", desc: "電気柵・防獣ネット・防鳥ネット" }
 ];
+
+// price: 数値=参考価格(税抜・仮)。null=要見積。
+const P = (id, maker, cat, name, spec, unit, price, tags = [], note = "") => ({ id, maker, cat, name, spec, unit, price, tags, note });
+
+// BEGIN PRODUCTS (scripts/import-catalog.mjs が CSV から書き換える範囲)
+export const PRODUCTS = [
+  // ---- 佐藤産業 ----
+  P("ST-JT-N2", "satoh", "joint", "天井ジョイント ノーマル", "パイプハウス峰部連結用 2個入", "袋", 780, ["峰部", "人気"], "トップクロスと組み合わせて峰部を固定"),
+  P("ST-JT-N10", "satoh", "joint", "天井ジョイント ノーマル", "パイプハウス峰部連結用 10個入", "箱", 3600, ["峰部"]),
+  P("ST-JT-IN22", "satoh", "joint", "内ジョイント", "φ22.2用 直管の延長連結", "個", 320, ["直管"]),
+  P("ST-JT-IN25", "satoh", "joint", "内ジョイント", "φ25.4用 直管の延長連結", "個", 380, ["直管", "人気"]),
+  P("ST-JT-SUEJI", "satoh", "joint", "両スエジジョイント 120°", "φ25.4用 直管をつないでアーチ状に(曲げ加工不要)", "個", null, ["アーチ", "曲げ不要"]),
+  P("ST-JT-VB", "satoh", "joint", "スエジビニーバーα", "コーティング付スプリング式 被覆材を傷めにくい", "本", null, ["被覆固定"]),
+  P("ST-CR-PC", "satoh", "joint", "パイプクロス", "φ22.2〜31.8対応 直交固定・平行固定 10個入", "箱", 2900, ["クロス連結", "人気"], "クサビで直交パイプを固定"),
+  P("ST-CR-PB22", "satoh", "joint", "パイプバンド", "φ22.2×φ22.2 十字固定 10個入", "箱", 1500, ["クロス連結"]),
+  P("ST-CR-PB25", "satoh", "joint", "パイプバンド", "φ25.4×φ25.4 十字固定 10個入", "箱", 1700, ["クロス連結", "人気"]),
+  P("ST-CR-PB31", "satoh", "joint", "パイプバンド", "φ31.8×φ31.8 十字固定 10個入", "箱", 2300, ["クロス連結"]),
+  P("ST-CR-TB", "satoh", "joint", "リング式Tバンド", "φ25.4用 T字連結 10個入", "箱", 2400, ["T連結"]),
+  P("ST-CR-JZ", "satoh", "joint", "自在バンド", "φ25.4用 角度自在の固定 10個入", "箱", 3200, ["斜め固定"]),
+  P("ST-RF-TB32", "satoh", "reinforce", "タイバース 32用", "φ31.8アーチ用 タイバー取付金具 10個入", "箱", null, ["強靭化", "積雪", "強風"], "既設ハウスの補強にも使えます"),
+  P("ST-RF-TB25", "satoh", "reinforce", "タイバース 25用", "φ25.4アーチ用 タイバー取付金具 10個入", "箱", null, ["強靭化", "積雪"]),
+  P("ST-RF-BRACE", "satoh", "reinforce", "筋交い金具セット", "妻面・側面の筋交い用 φ25.4", "セット", null, ["強靭化", "強風"]),
+  P("ST-PK-NC22", "satoh", "fastener", "ナイスキャッチ(パッカー)", "φ22.2用 樹脂パッカー 50個入", "袋", 2100, ["パッカー"]),
+  P("ST-PK-NC25", "satoh", "fastener", "ナイスキャッチ(パッカー)", "φ25.4用 樹脂パッカー 50個入", "袋", 2300, ["パッカー", "人気"]),
+  P("ST-PK-NC31", "satoh", "fastener", "ナイスキャッチ(パッカー)", "φ31.8用 樹脂パッカー 50個入", "袋", 2900, ["パッカー"]),
+  P("ST-FS-CLIP", "satoh", "fastener", "フィルム止金具", "妻面・裾用 スチール製 50個入", "袋", null, ["被覆固定"]),
+  P("ST-DR-STD", "satoh", "door", "サトーのドア(妻面ドアセット)", "片引きタイプ 標準サイズ レール・戸車付", "セット", null, ["出入口", "人気"], "間口・肩高に合わせてサイズをご案内します"),
+  P("ST-DR-RAIL", "satoh", "door", "ドアレール・戸車セット", "片引きドア用", "セット", null, ["出入口"]),
+  P("ST-VT-TSUMA", "satoh", "vent", "妻将軍PC(妻面換気装置)", "妻面の開閉換気 手動", "台", null, ["妻面換気"]),
+  P("ST-VT-ROLL", "satoh", "vent", "ハウス巻上機(手動)", "側面巻き上げ用 オートロック", "台", 16800, ["側面換気"]),
+  P("ST-GT-AMANO", "satoh", "gutter", "アマノガワ(連棟谷樋)", "大容量・歩きやすい幅・耐錆 1mあたり", "m", null, ["連棟", "谷部"]),
+  P("ST-GT-SHEET", "satoh", "gutter", "谷シート", "連棟谷部の雨仕舞用 幅60cm 1mあたり", "m", null, ["連棟", "谷部"]),
+
+  // ---- 誠和 ----
+  P("SW-VT-KF50", "seiwa", "vent", "くるファミ50", "手動巻き上げ換気装置 巻き上げ長さ50mまで オートロック", "台", 19800, ["側面換気", "人気"], "谷換気・内張カーテン開閉にも使える多目的巻取り"),
+  P("SW-VT-KF100", "seiwa", "vent", "くるファミ100", "手動巻き上げ換気装置 巻き上げ長さ100mまで", "台", 32000, ["側面換気"]),
+  P("SW-VT-KK", "seiwa", "vent", "くるっ子", "小型ハウス向け 手動巻き上げ装置", "台", 12800, ["側面換気", "小型ハウス"]),
+  P("SW-VT-KK100", "seiwa", "vent", "くるっ子100", "小型ハウス向け 巻き上げ長さ100mまで", "台", 16800, ["側面換気"]),
+  P("SW-VT-ACE", "seiwa", "vent", "くるファミAce制御盤", "電動巻き上げの温度制御・タイマー制御", "台", null, ["電動", "自動換気"]),
+  P("SW-CT-DRIVE", "seiwa", "curtain", "カーテン開閉装置(電動)", "内張カーテン・遮光カーテン用 制御盤付", "台", null, ["電動", "保温"]),
+  P("SW-CT-SCREEN", "seiwa", "curtain", "保温スクリーン(カーテン資材)", "アルミ蒸着 保温・遮光タイプ 幅・長さ指定", "m²", null, ["保温", "省エネ"]),
+  P("SW-CT-SHADE", "seiwa", "curtain", "遮光スクリーン", "遮光率指定 夏場の高温対策", "m²", null, ["遮光", "高温対策"]),
+  P("SW-EC-PF4", "seiwa", "control", "プロファインダーⅣ", "温度・湿度・CO₂・日射の環境モニタリング専用機 スマホで確認", "台", null, ["環境制御", "モニタリング"]),
+  P("SW-EC-NEXT80", "seiwa", "control", "プロファインダーNext80", "統合環境制御システム 最大12系統の設備+潅水1系統を制御", "台", null, ["環境制御", "統合制御"]),
+  P("SW-EC-CLOUD", "seiwa", "control", "プロファインダークラウド", "クラウド型環境制御 いつでもどこでもハウス内環境を確認", "式", null, ["環境制御", "クラウド"]),
+  P("SW-EC-CO2", "seiwa", "control", "真呼吸(CO₂施用機)", "光合成促進のためのCO₂施用", "台", null, ["CO₂", "増収"]),
+  P("SW-EC-HEATER", "seiwa", "control", "温風暖房機", "施設園芸用 能力・燃料はご相談", "台", null, ["暖房"]),
+  P("SW-LED", "seiwa", "control", "補光LED", "育苗・栽培用補光", "台", null, ["LED", "補光"]),
+  P("SW-IR-SYS", "seiwa", "irrigation", "潅水制御装置", "タイマー・センサー連動の自動潅水", "式", null, ["自動潅水"]),
+
+  // ---- 東都興業 ----
+  P("TT-FS-VP4", "toto", "fastener", "ビニペットEX", "被覆材固定レール 4m", "本", 1080, ["フィルム固定", "人気"]),
+  P("TT-FS-VP6", "toto", "fastener", "ビニペットEX", "被覆材固定レール 6m", "本", 1580, ["フィルム固定"]),
+  P("TT-FS-SP", "toto", "fastener", "ヒフクスプリング", "軟質フィルム専用 2m 50本入", "箱", 4200, ["フィルム固定", "人気"]),
+
+  // ---- 汎用・自社 ----
+  P("GN-PP-1910", "generic", "pipe", "亜鉛メッキパイプ φ19.1×1.2t", "5.5m", "本", 1430, ["小型ハウス", "直管"]),
+  P("GN-PP-2210", "generic", "pipe", "亜鉛メッキパイプ φ22.2×1.2t", "5.5m", "本", 1815, ["標準", "アーチ"]),
+  P("GN-PP-2510", "generic", "pipe", "亜鉛メッキパイプ φ25.4×1.2t", "5.5m", "本", 2310, ["標準", "アーチ", "人気"]),
+  P("GN-PP-2560", "generic", "pipe", "亜鉛メッキパイプ φ25.4×1.2t", "6.0m", "本", 2520, ["アーチ"]),
+  P("GN-PP-3110", "generic", "pipe", "亜鉛メッキパイプ φ31.8×1.6t", "5.5m", "本", 3520, ["大型", "耐雪"]),
+  P("GN-PP-ARCH54", "generic", "pipe", "曲げ加工アーチパイプ 間口5.4m用", "φ25.4 肩高1.6m 棟高3.0m 2本組", "組", 5900, ["曲げ加工済", "人気"]),
+  P("GN-PP-ARCH72", "generic", "pipe", "曲げ加工アーチパイプ 間口7.2m用", "φ31.8 肩高1.8m 棟高3.6m 2本組", "組", 9800, ["曲げ加工済", "大型"]),
+  P("GN-FL-NOVI010", "generic", "film", "農ビ 0.1mm", "幅230cm × 100m巻", "巻", 52000, ["単年張り"]),
+  P("GN-FL-NOVI013", "generic", "film", "農ビ 0.13mm(防滴・流滴)", "幅230cm × 100m巻", "巻", 68000, ["単年張り", "防滴"]),
+  P("GN-FL-PO015", "generic", "film", "農PO 0.15mm(3年張り)", "幅540cm × 100m巻", "巻", 158000, ["3年張り", "人気"]),
+  P("GN-FL-PO015S", "generic", "film", "農PO 0.15mm 散乱光タイプ", "幅540cm × 100m巻", "巻", 176000, ["散乱光", "葉焼け防止"]),
+  P("GN-FL-PO5Y", "generic", "film", "多年張りPO 0.15mm(5年)", "幅600cm × 100m巻", "巻", 248000, ["5年張り"]),
+  P("GN-FL-ETFE", "generic", "film", "フッ素系フィルム(10年以上)", "幅600cm × 50m巻", "巻", 385000, ["長期", "高透過"]),
+  P("GN-DR-STD", "generic", "door", "妻面用片引きドアセット", "W1.8m × H1.9m", "セット", 42000, ["出入口"]),
+  P("GN-VT-FAN40", "generic", "vent", "循環扇(サーキュレーター) 40cm", "AC100V 吊り下げ型", "台", 34000, ["空気循環"]),
+  P("GN-VT-ROOF", "generic", "vent", "天窓開閉装置(手動)", "開閉長さ 30mまで", "台", 58000, ["天窓"]),
+  P("GN-CT-HEAT", "generic", "curtain", "内張保温カーテン(アルミ蒸着)", "幅600cm × 50m巻", "巻", 96000, ["保温", "省エネ"]),
+  P("GN-CT-SHADE50", "generic", "curtain", "遮光ネット 遮光率50%", "幅400cm × 50m巻", "巻", 42000, ["遮光", "高温対策"]),
+  P("GN-IR-DRIP", "generic", "irrigation", "点滴チューブ 15cmピッチ", "内径16mm × 200m巻", "巻", 14800, ["点滴潅水", "人気"]),
+  P("GN-IR-MIST", "generic", "irrigation", "ミストノズルセット", "φ13配管用 20個入", "セット", 8600, ["ミスト"]),
+  P("GN-IR-TIMER", "generic", "irrigation", "潅水タイマー(電池式・2系統)", "最大16回/日", "台", 12800, ["自動潅水"]),
+  P("GN-IR-FILTER", "generic", "irrigation", "ディスクフィルター 25A", "120メッシュ", "個", 6400, ["点滴潅水"]),
+  P("GN-HW-ANCHOR", "generic", "reinforce", "らせん杭 φ13×600", "10本入", "箱", 8600, ["基礎", "風対策"]),
+  P("GN-ML-BLACK", "generic", "mulch", "黒マルチ 0.02mm", "幅135cm × 200m巻", "巻", 3200, ["雑草防止"]),
+  P("GN-ML-INSECT", "generic", "mulch", "防虫ネット 1mm目", "幅180cm × 100m巻", "巻", 19800, ["防虫", "換気部"]),
+  P("GN-ML-WEED", "generic", "mulch", "防草シート(高耐久)", "幅100cm × 100m巻", "巻", 15800, ["通路"]),
+  P("GN-AN-EFENCE", "generic", "animal", "電気柵セット(ソーラー式)", "周囲250m 2段張り", "セット", 78000, ["イノシシ", "シカ"]),
+  P("GN-AN-NET", "generic", "animal", "防獣ネット 高さ1.5m", "50m巻 16mm目", "巻", 9800, ["シカ", "ハクビシン"]),
+  P("GN-AN-BIRD", "generic", "animal", "防鳥ネット 20mm目", "幅900cm × 50m", "巻", 12600, ["鳥害"])
+];
+// END PRODUCTS

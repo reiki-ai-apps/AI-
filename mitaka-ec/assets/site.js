@@ -56,7 +56,7 @@ function saveQuoteList(list) {
 export function addToQuoteList(item, qty = 1) {
   const list = getQuoteList();
   const found = list.find(x => x.id === item.id);
-  if (found) found.qty += qty; else list.push({ id: item.id, name: item.name, spec: item.spec, unit: item.unit, price: item.price, qty });
+  if (found) found.qty += qty; else list.push({ id: item.id, name: item.name, spec: item.spec, unit: item.unit, price: item.price == null ? null : item.price, qty });
   saveQuoteList(list);
   toast(`見積リストに追加しました: ${item.name}`);
 }
@@ -68,8 +68,9 @@ export function removeFromQuoteList(id) { saveQuoteList(getQuoteList().filter(x 
 export function clearQuoteList() { saveQuoteList([]); }
 export function quoteListText(list = getQuoteList()) {
   if (!list.length) return "";
-  const lines = ["【カタログ見積リスト】", ...list.map(x => `・${x.name}(${x.spec}) × ${x.qty}${x.unit}  参考 ${yen(x.price * x.qty)}`)];
-  lines.push(`参考小計(税抜): ${yen(list.reduce((s, x) => s + x.price * x.qty, 0))}`);
+  const lines = ["【カタログ見積リスト】", ...list.map(x => `・${x.name}(${x.spec}) × ${x.qty}${x.unit}  ${x.price == null ? "要見積" : "参考 " + yen(x.price * x.qty)}`)];
+  const ask = list.filter(x => x.price == null).length;
+  lines.push(`参考小計(税抜): ${yen(list.reduce((s, x) => s + (x.price || 0) * x.qty, 0))}${ask ? `(要見積 ${ask}件を除く)` : ""}`);
   return lines.join("\n");
 }
 
@@ -97,10 +98,11 @@ function initQuoteDrawer() {
     const list = getQuoteList();
     fab.querySelector(".count").textContent = String(list.reduce((s, x) => s + x.qty, 0));
     fab.hidden = list.length === 0 && !drawer.classList.contains("open");
-    drawer.querySelector("[data-sub]").textContent = yen(list.reduce((s, x) => s + x.price * x.qty, 0));
+    const ask = list.filter(x => x.price == null).length;
+    drawer.querySelector("[data-sub]").textContent = yen(list.reduce((s, x) => s + (x.price || 0) * x.qty, 0)) + (ask ? ` +要見積${ask}件` : "");
     body.innerHTML = list.length ? list.map(x => `
       <div class="line">
-        <div><div class="nm">${esc(x.name)}</div><div class="sp">${esc(x.spec)} / ${yen(x.price)}/${esc(x.unit)}</div>
+        <div><div class="nm">${esc(x.name)}</div><div class="sp">${esc(x.spec)} / ${x.price == null ? "要見積" : yen(x.price)}/${esc(x.unit)}</div>
           <button class="rm" type="button" data-rm="${esc(x.id)}">削除</button></div>
         <div class="qty"><button type="button" data-dec="${esc(x.id)}">−</button><input type="number" min="0" value="${x.qty}" data-qty="${esc(x.id)}"><button type="button" data-inc="${esc(x.id)}">＋</button></div>
       </div>`).join("") : `<p class="muted">まだ何も入っていません。<a href="catalog.html">資材カタログ</a>から追加できます。</p>`;
