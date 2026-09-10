@@ -427,7 +427,17 @@ class Animatic:
         self.T_strength = self.tl.start("You have strength beneath your skin")
 
     def subtitles(self, img, t, b=None):
-        self.tl.draw(img, self.g.t0 + t, y=1420)
+        self.tl.draw(img, self.g.t0 + t, y=1420, kinetic=True)
+
+    def punch(self, img, t, amp=0.012):
+        """拍の頭で僅かに寄って戻る(拍同期パンチイン)。"""
+        b, phase = self.g.at(t)
+        z = 1 + amp * math.exp(-phase * 7.0)
+        if z <= 1.0005:
+            return img
+        w, h = int(W / z), int(H / z)
+        x0, y0 = (W - w) // 2, (H - h) // 2
+        return img.crop((x0, y0, x0 + w, y0 + h)).resize((W, H), Image.BILINEAR)
 
     def hook_caption(self, img, t):
         t_end = self.T_savior - 0.2 - self.g.t0
@@ -502,6 +512,7 @@ class Animatic:
             k = int(6 * (1 - phase / 0.15))
             img = ImageChops.offset(img, 0, k)
         img = self.finish(img, t, "night", 70, do_bloom=True)
+        img = self.punch(img, t, 0.015)
         self.subtitles(img, t, b)
         return img
 
@@ -539,6 +550,7 @@ class Animatic:
         flat = dawn_sweep(flat, ease(min(1.0, u * 1.15)), strength=0.85)
         img = self.camera(flat, t, push=0.2 + 0.3 * ease(u), bump=0.0)
         img = self.finish(img, t, "dawn" if warm > 0.5 else "night", 70, do_bloom=True, grain=0.8)
+        img = self.punch(img, t, 0.012)
         self.subtitles(img, t, b)
         return img
 
@@ -572,6 +584,7 @@ class Animatic:
         img.paste(sh, (0, 0), sh)
         img.paste(body, (int(W / 2 - body.width / 2), int(1000 - body.height / 2 + 40 * u)), body)
         img = self.finish(img, t, "dawn", 60, do_bloom=False, grain=0.8)
+        img = self.punch(img, t, 0.008)
         self.subtitles(img, t, b)
         return img
 
@@ -588,6 +601,7 @@ class Animatic:
         flat = dawn_sweep(flat, 1.0, strength=0.85)
         img = self.camera(flat, t, push=0.5 - 0.5 * ease(u), bump=0.0)
         img = self.finish(img, t, "dawn", 70, do_bloom=True, grain=0.8)
+        img = self.punch(img, t, 0.012)
         self.subtitles(img, t, b)
         if u > 0.86:
             k = ease((u - 0.86) / 0.14)
