@@ -91,3 +91,4 @@ expect(index.includes("const dataUrl=`./data.json?app_sync=${Date.now()}`"),"fir
 
 if(failures.length){console.error(failures.join("\n"));process.exit(1);}
 console.log("Runtime resilience contract passed.");
+await import('./test-startup-recovery.mjs');

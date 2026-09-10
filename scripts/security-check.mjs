@@ -183,11 +183,14 @@ if (!/id="mobileOfficialMedia"/.test(html) || !/class="mobile-media-shortcut"/.t
 if (!/request\.mode === "navigate" && isAppDocument/.test(serviceWorker) || !/url\.pathname === scopePath/.test(serviceWorker)) {
   findings.push("sw.js: non-app navigation can poison the app-shell cache");
 }
-if (!/fetch\(request,\{cache:"no-store"\}\)/.test(serviceWorker) || !/client\.navigate\(client\.url\)/.test(serviceWorker)) {
-  findings.push("sw.js: mobile clients can remain on stale app HTML");
+if (!/fetch\(request,\{cache:"no-store"\}\)/.test(serviceWorker)) {
+  findings.push("sw.js: normal app navigation must request current HTML");
 }
-if (/toastAction\('アプリが新しくなりました'/.test(html) || !/controllerchange'[\s\S]{0,260}window\.location\.reload\(\)/.test(html)) {
-  findings.push("index.html: app updates still require manual reload");
+if (/client\.navigate\(/.test(serviceWorker) || /controllerchange'[\s\S]{0,600}window\.location\.reload\(\)/.test(html)) {
+  findings.push("app updates must not interrupt first-open data sync with forced navigation");
+}
+if (!/controllerchange'[\s\S]{0,600}syncFromDataJson\(true,true,true\)/.test(html)) {
+  findings.push("index.html: controller changes must refresh data without reopening the app");
 }
 if (!/function public\.operator_metrics\(\)\s*returns jsonb[\s\S]{0,900}operator_grant/i.test(schema)) {
   findings.push("supabase/schema.sql: server-side operator metrics authorization is missing");

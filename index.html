@@ -3251,12 +3251,15 @@ const DEMO_ARTICLE_TITLES = [
 /* ============================================================
    Seed data（初期ツールのみ。ニュースは検証済みdata.jsonから取得）
    ============================================================ */
-function seedData(){
-  const t = (o)=>Object.assign({
+function createToolRecord(o){
+  return Object.assign({
     id:uid(),slug:slugify(o.name),category:'',official_url:'',release_notes_url:'',rss_url:'',x_url:'',
     priority:'B',is_using:false,related_businesses:[],memo:'',is_active:true,
     last_fetched_at:null,created_at:nowISO(),updated_at:nowISO()
   },o);
+}
+function seedData(){
+  const t=createToolRecord;
 
   const tools = [
     t({name:'ChatGPT / OpenAI',category:'総合AI',priority:'A',is_using:false,
@@ -3415,7 +3418,7 @@ const MIGRATIONS = [
         existing.related_businesses=[...new Set([...(existing.related_businesses||[]),preset.category])];
         return;
       }
-      d.tools.push(t({
+      d.tools.push(createToolRecord({
         name:preset.name,
         category:preset.kind,
         priority:preset.priority,
@@ -3446,7 +3449,7 @@ const MIGRATIONS = [
         existing.related_businesses=[...new Set([...(existing.related_businesses||[]),preset.category])];
         return;
       }
-      d.tools.push(t({
+      d.tools.push(createToolRecord({
         name:preset.name,
         category:preset.kind,
         priority:preset.priority,
@@ -3491,8 +3494,10 @@ function runMigrations(d){
   let changed=false;
   MIGRATIONS.forEach(m=>{
     if(!d.applied_migrations.includes(m.id)){
-      try{ m.apply(d); }catch(e){ console.warn('migration failed',m.id,e); }
-      d.applied_migrations.push(m.id); changed=true;
+      try{
+        m.apply(d);
+        d.applied_migrations.push(m.id);changed=true;
+      }catch(e){ console.warn('migration failed',m.id,e); }
     }
   });
   return changed;
@@ -4769,15 +4774,35 @@ function setAutoStatus(on){
 /* data.json は同一オリジンなのでCORSが起きず確実に読める。無ければ静かに無視。 */
 let _syncDone=false;
 let _lastSyncAt=0;
+let _syncPromise=null;
+let _syncRetryTimer=null;
+let _syncRetryCount=0;
+function scheduleDataSyncRetry(){
+  if(_syncRetryTimer!==null||!getSettings().autoFetch)return;
+  const delays=[1000,3000,10000];
+  if(_syncRetryCount>=delays.length){
+    const el=document.getElementById('autoStatus');
+    if(el){el.style.display='inline-flex';el.innerHTML='<span>最新情報を取得できませんでした</span><button type="button" onclick="retryDataSync()">再取得</button>';}
+    return;
+  }
+  const delay=delays[_syncRetryCount++];
+  _syncRetryTimer=window.setTimeout(()=>{_syncRetryTimer=null;void syncFromDataJson(true,true,true);},delay);
+}
+function retryDataSync(){
+  if(_syncRetryTimer!==null)window.clearTimeout(_syncRetryTimer);
+  _syncRetryTimer=null;_syncRetryCount=0;
+  return syncFromDataJson(true,true,true);
+}
 /* タブやPWAを開きっぱなしでも、画面に戻ったとき・一定時間ごとに新着を取り込む */
 const RESYNC_STALE_MS=5*60000;
 function resyncIfStale(){
   if(document.visibilityState!=='visible')return;
-  if(!_lastSyncAt||Date.now()-_lastSyncAt<RESYNC_STALE_MS)return;
+  if(_syncDone&&_lastSyncAt&&Date.now()-_lastSyncAt<RESYNC_STALE_MS)return;
   if(!getSettings().autoFetch)return;
-  void syncFromDataJson(true,true,true);
+  void retryDataSync();
 }
 document.addEventListener('visibilitychange',resyncIfStale);
+window.addEventListener('online',resyncIfStale);
 window.setInterval(resyncIfStale,5*60000);
 function looksCorruptedText(value){
   const s=String(value||'');
@@ -4919,22 +4944,36 @@ function patchPublishedArticleFields(target,it,tool){
   return changed;
 }
 async function syncFromDataJson(force=false,renderChanges=true,allowPrune=true){
-  if(_syncDone&&!force)return 0; _syncDone=true;
+  if(_syncPromise)return _syncPromise;
+  if(_syncDone&&!force)return 0;
   if(!force&&!getSettings().autoFetch)return 0;
+  _syncPromise=performDataSync(renderChanges,allowPrune);
+  try{return await _syncPromise;}finally{_syncPromise=null;}
+}
+async function fetchPublishedItems(){
+  const controller=new AbortController();
+  let timeout;
+  try{
+    // ヘッダー受信だけでなくJSON本文の受信完了まで期限を適用する。
+    // 古いService Workerがabortを伝えなくても待ち続けない。
+    return await Promise.race([
+      (async()=>{
+        const dataUrl=`./data.json?app_sync=${Date.now()}`;
+        const res=await fetch(dataUrl,{cache:'no-store',signal:controller.signal});
+        if(!res.ok)throw new Error(`news HTTP ${res.status}`);
+        const items=await res.json();
+        if(!Array.isArray(items)||!items.some(isCompletePublishedArticle))throw new Error('invalid news feed');
+        return items;
+      })(),
+      new Promise((_,reject)=>{timeout=window.setTimeout(()=>{controller.abort();reject(new Error('news request timed out'));},8000);})
+    ]);
+  }finally{window.clearTimeout(timeout);}
+}
+async function performDataSync(renderChanges,allowPrune){
   try{
     setAutoStatus(true);
-    _lastSyncAt=Date.now();
-    const controller=new AbortController();
-    const timeout=window.setTimeout(()=>controller.abort(),8000);
-    // GitHub Pages/CDNと旧Service WorkerのHTTPキャッシュを同時に避ける。
-    // 端末内データだけ更新され、次に開いた時に初めて見える状態を作らない。
-    const dataUrl=`./data.json?app_sync=${Date.now()}`;
-    const res=await fetch(dataUrl,{cache:'no-store',signal:controller.signal});
-    window.clearTimeout(timeout);
-    if(!res.ok){ setAutoStatus(false); return 0; }
-    const items=await res.json();
+    const items=await fetchPublishedItems();
     setAutoStatus(false);
-    if(!Array.isArray(items)||!items.length)return 0;
     let added=0,patched=0;
     // 前回版のトップ指定を先に外し、今回のdata.jsonに含まれる最大5件だけを付け直す。
     // 端末に長く残った記事が古いトップとして復活することを防ぐ。
@@ -5005,8 +5044,16 @@ async function syncFromDataJson(force=false,renderChanges=true,allowPrune=true){
       toast(added>0?`最新ニュースを${added}件取り込みました`:'記事の解説と更新情報を更新しました','ok');
       if(renderChanges){renderNav();render();}
     }
+    _syncDone=true;_lastSyncAt=Date.now();_syncRetryCount=0;
+    if(_syncRetryTimer!==null)window.clearTimeout(_syncRetryTimer);
+    _syncRetryTimer=null;
     return added;
-  }catch(e){ setAutoStatus(false);return 0; }
+  }catch(e){
+    _syncDone=false;setAutoStatus(false);
+    console.warn('news sync failed; retrying without reload',e);
+    scheduleDataSyncRetry();
+    return 0;
+  }
 }
 
 /* ============================================================
@@ -5078,10 +5125,11 @@ function setupPWA(){
   navigator.serviceWorker.addEventListener('controllerchange',()=>{
     if(!hadController||updatePromptShown)return;
     updatePromptShown=true;
-    // 新しいService Workerが制御を引き継いだら、操作を求めず最新版へ切り替える。
-    window.location.reload();
+    // 起動中の記事取得や読書を中断しない。アプリ本体は次回の通常起動で更新する。
+    // 記事データはこの画面のままで再取得できる。
+    void syncFromDataJson(true,true,true);
   });
-  window.addEventListener('load',()=>{
+  const registerWorker=()=>{
     navigator.serviceWorker.register('./sw.js').then(reg=>{
       // 開きっぱなしのPWAでも新しいアプリ本体の配信を検知できるようにする。
       window.setInterval(()=>{ reg.update().catch(()=>{}); },60*60000);
@@ -5089,7 +5137,9 @@ function setupPWA(){
         if(document.visibilityState==='visible')reg.update().catch(()=>{});
       });
     }).catch(()=>{});
-  },{once:true});
+  };
+  if(document.readyState==='complete')registerWorker();
+  else window.addEventListener('load',registerWorker,{once:true});
 }
 
 /* ============================================================
@@ -5146,6 +5196,9 @@ function bootApp(){
       }
     }catch(_error){trackAppEvent('landing_view',{route:route.name});}
     trackRouteView();
+  }catch(error){
+    // 初期描画で失敗しても下の新着取得を止めない（保存済みの途中状態から回復する）。
+    console.warn('initial render failed; continuing news sync',error);
   }finally{
     // 途中で例外が起きても起動オーバーレイは必ず退場させ、画面が固まらないようにする。
     dismissBootScreen();
