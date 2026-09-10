@@ -26,6 +26,7 @@ from PIL import Image, ImageFilter
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import gen_google as G  # noqa: E402
+import gen_openai as O  # noqa: E402
 
 GREEN_HINT = (" The subject is isolated on a flat, solid, evenly lit pure green (#00FF00) background, "
               "no shadow on the background, no other objects, centered, whole object visible with margin.")
@@ -80,12 +81,15 @@ def main():
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--dry", action="store_true", help="生成せずプロンプトを表示")
     ap.add_argument("--key")
+    ap.add_argument("--backend", choices=["google", "openai"], default="google",
+                    help="画像の生成先。動画は常に Google(Veo)。openai は GPT Image、物は透過背景で直接生成")
     args = ap.parse_args()
     man = json.load(open(args.manifest, encoding="utf-8"))
     base = os.path.dirname(os.path.abspath(args.manifest))
     suffix = man.get("style_suffix", "")
     only = set(args.only.split(",")) if args.only else None
-    key = None if args.dry else G.key_of(args)
+    key = None if args.dry else (O.key_of(args) if args.backend == "openai" else G.key_of(args))
+    vkey = None if args.dry else (os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or key)
     done = {}
     for a in man["assets"]:
         out = os.path.join(base, a["out"])
@@ -103,18 +107,24 @@ def main():
             print("   ", prompt[:300], "...")
             continue
         if a["type"] == "image":
-            G.gen_image(key, prompt, out, a.get("aspect", "9:16"), refs, a.get("model"), a.get("size"))
+            if args.backend == "openai":
+                O.gen_image(key, prompt, out, a.get("aspect", "9:16"), refs, a.get("model"))
+            else:
+                G.gen_image(key, prompt, out, a.get("aspect", "9:16"), refs, a.get("model"), a.get("size"))
         elif a["type"] == "object":
-            raw = out.replace(".png", "_raw.png")
-            G.gen_image(key, prompt + GREEN_HINT, raw, a.get("aspect", "1:1"), refs, a.get("model"), a.get("size"))
-            chroma_key(raw, out)
+            if args.backend == "openai":
+                O.gen_image(key, prompt + " Isolated object, nothing else.", out, a.get("aspect", "1:1"), refs, a.get("model"), transparent=True)
+            else:
+                raw = out.replace(".png", "_raw.png")
+                G.gen_image(key, prompt + GREEN_HINT, raw, a.get("aspect", "1:1"), refs, a.get("model"), a.get("size"))
+                chroma_key(raw, out)
         elif a["type"] == "video":
             start = None
             if a.get("image"):
                 src = done[a["image"]]
                 start = out.replace(".mp4", "_start.png")
                 crop_for_video(src, a.get("crop", [0, 0, 1, 1]), start)
-            G.gen_video(key, a["prompt"], out, a.get("aspect", "9:16"), start, a.get("seconds", 8), a.get("model"),
+            G.gen_video(vkey, a["prompt"], out, a.get("aspect", "9:16"), start, a.get("seconds", 8), a.get("model"),
                         a.get("resolution", "1080p"))
         print("   ok")
 
