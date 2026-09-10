@@ -58,3 +58,4 @@ expect(workflow.includes("node scripts/test-free-access-daily-metrics.mjs"),"sch
 
 if(failures.length){console.error(failures.join("\n"));process.exit(1);}
 console.log("Registration-free access and operator metrics contract passed.");
+await import('./test-operator-analytics-exclusion.mjs');

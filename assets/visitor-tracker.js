@@ -13,6 +13,21 @@
   const OPEN_EVENT_ID=crypto?.randomUUID?.()||"";
   const requestHeaders={apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:`Bearer ${SUPABASE_PUBLISHABLE_KEY}`,"Content-Type":"application/json"};
 
+  // Same policy as the app shell; tested together to prevent drift. No SDK or
+  // auth network request is needed, and uncertain storage fails closed.
+function isPublicReaderVisit(){
+  try{
+    if(location.hostname!=='reiki-ai-apps.github.io'||!location.pathname.startsWith('/AI-/'))return false;
+    if(/operator|access_token=|refresh_token=|type=recovery/.test(location.hash))return false;
+    const operator=JSON.parse(localStorage.getItem('ai_radar_verified_operator_v1')||'null');
+    if(operator?.isOperator===true)return false;
+    // Only operators log in. An expired/restoring session must not be mistaken
+    // for an anonymous reader while the SDK is still loading.
+    if(localStorage.getItem('sb-ncosmmesecpqhzfikpmn-auth-token'))return false;
+    return true;
+  }catch(_error){return false;}
+}
+
   function storedValue(key){
     try{return localStorage.getItem(key)||"";}catch(_error){return "";}
   }
@@ -27,11 +42,13 @@
     return saveValue(REVIEWER_KEY,key)?key:"";
   }
   async function register(){
+    if(!isPublicReaderVisit())return;
     if(storedValue(REGISTERED_KEY)==="1"||!crypto?.subtle)return;
     const key=visitorKey();
     if(!key)return;
     const digest=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(key));
     const hash=Array.from(new Uint8Array(digest),byte=>byte.toString(16).padStart(2,"0")).join("");
+    if(!isPublicReaderVisit())return;
     const response=await fetch(`${SUPABASE_URL}/rest/v1/rpc/register_unique_visitor`,{
       method:"POST",keepalive:true,
       headers:requestHeaders,
@@ -40,6 +57,7 @@
     if(response.ok)saveValue(REGISTERED_KEY,"1");
   }
   async function recordOpen(){
+    if(!isPublicReaderVisit())return;
     if(!OPEN_EVENT_ID)return;
     await fetch(`${SUPABASE_URL}/rest/v1/rpc/record_app_open`,{
       method:"POST",keepalive:true,

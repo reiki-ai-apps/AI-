@@ -2792,6 +2792,22 @@ const DB = {
 };
 /* ---------- 匿名の利用状況集計 ----------
    レビュー重複防止と同じ匿名ブラウザキーをSHA-256化し、初回だけ登録する。人数はブラウザへ返さない。 */
+// Keep this small, synchronous policy identical to assets/visitor-tracker.js.
+// It must run before auth restoration and must not delay the first render.
+// Verified operator browsers remain excluded after logout. This is only an
+// analytics exclusion, never a grant of access to operator data.
+function isPublicReaderVisit(){
+  try{
+    if(location.hostname!=='reiki-ai-apps.github.io'||!location.pathname.startsWith('/AI-/'))return false;
+    if(/operator|access_token=|refresh_token=|type=recovery/.test(location.hash))return false;
+    const operator=JSON.parse(localStorage.getItem('ai_radar_verified_operator_v1')||'null');
+    if(operator?.isOperator===true)return false;
+    // Only operators log in. An expired/restoring session must not be mistaken
+    // for an anonymous reader while the SDK is still loading.
+    if(localStorage.getItem('sb-ncosmmesecpqhzfikpmn-auth-token'))return false;
+    return true;
+  }catch(_error){return false;}
+}
 let visitorRegistrationStarted=false;
 let visitorRegistrationComplete=false;
 let visitorRegistrationAttempts=0;
@@ -2812,12 +2828,14 @@ function scheduleUniqueVisitorRetry(){
   visitorRegistrationRetryTimer=window.setTimeout(()=>{visitorRegistrationRetryTimer=null;registerUniqueVisitor();},delay);
 }
 async function registerUniqueVisitor(){
+  if(!isPublicReaderVisit()||memberState.user)return;
   if(visitorRegistrationComplete||visitorRegistrationStarted)return;
   if(hasRegisteredUniqueVisitor()){visitorRegistrationComplete=true;return;}
   if(!ensureMemberClient()){visitorRegistrationAttempts++;scheduleUniqueVisitorRetry();return;}
   visitorRegistrationStarted=true;
   try{
     const visitorHash=await publicReviewerHash();
+    if(!isPublicReaderVisit()||memberState.user){visitorRegistrationStarted=false;return;}
     const {error}=await memberClient.rpc('register_unique_visitor',{p_visitor_key_hash:visitorHash});
     if(error)throw error;
     visitorRegistrationComplete=true;
@@ -2853,6 +2871,7 @@ function scheduleAppOpenRetry(){
   appOpenRetryTimer=window.setTimeout(()=>{appOpenRetryTimer=null;recordAppOpen();},delay);
 }
 async function recordAppOpen(){
+  if(!isPublicReaderVisit()||memberState.user)return;
   if(appOpenComplete||appOpenStarted)return;
   if(!ensureMemberClient()){appOpenAttempts++;scheduleAppOpenRetry();return;}
   appOpenStarted=true;
@@ -5264,6 +5283,7 @@ function renderOperator(v){
       </div>
       <div class="operator-metric-state ${memberState.operatorMetricsStatus==='live'?'is-live':memberState.operatorMetricsStatus==='stale'?'is-stale':memberState.operatorMetricsStatus==='error'?'is-error':''}" data-operator-metrics-state><span>${esc(operatorMetricsStatusLabel())}</span><button class="btn operator-metric-refresh" type="button" onclick="refreshOperatorMetrics()">今すぐ再取得</button></div>
       <p class="billing-help">累計ユニーク閲覧者は同じ端末・ブラウザーの重複を除いた概算です。今日の総表示回数は日本時間0時からの、アプリまたは公開記事が開かれた回数です。</p>
+      <p class="billing-help">運営者として確認済みのブラウザーからの閲覧は、今後の人数・回数に加算しません。ログアウト後も除外を維持します。別のブラウザーや端末では一度運営者としてログインしてください。過去の集計値は変更していません。</p>
     </section>`:''}
     <div class="account-security">表示されるのは匿名集計だけです。一般利用者の設定・保存内容や個人情報は表示しません。</div>
   </section></div>`;
