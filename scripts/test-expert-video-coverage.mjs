@@ -18,6 +18,26 @@ const workflow=fs.readFileSync(new URL("../.github/workflows/update.yml",import.
 const data=JSON.parse(fs.readFileSync(new URL("../data.json",import.meta.url),"utf8"));
 const dailyState=JSON.parse(fs.readFileSync(new URL("../.expert-video-state.json",import.meta.url),"utf8"));
 
+// 実際のホーム選定関数を実行し、翌日の候補が複数になっても1件を超えないことを守る。
+const homeSelectorSource=html.match(/function homeExpertVideos\(items\)\{[\s\S]*?\n\}\nfunction expertVideoCard/)?.[0]
+  ?.replace(/\nfunction expertVideoCard$/,"");
+assert.ok(homeSelectorSource,"ホームの動画選定関数が存在する");
+const selectHomeVideos=Function("isExpertVideo","byFeedOrder",`${homeSelectorSource}; return homeExpertVideos;`)(
+  isExpertVideoItem,(a,b)=>b.order-a.order
+);
+const homeVideoFixtures=[
+  {content_type:"article",video_id:"news",order:9},
+  {content_type:"expert_video",video_id:"older",expert_id:"expert-a",order:1},
+  {content_type:"expert_video",video_id:"newer",expert_id:"expert-b",order:3},
+  {content_type:"expert_video",video_id:"middle",expert_id:"expert-c",order:2}
+];
+const homeFixturesBefore=JSON.stringify(homeVideoFixtures);
+assert.deepEqual(selectHomeVideos(homeVideoFixtures).map(item=>item.video_id),["newer"],"複数の動画があっても既存の優先順で1件だけをホームに表示する");
+assert.equal(JSON.stringify(homeVideoFixtures),homeFixturesBefore,"分類ページ用の動画を削除・並べ替えない");
+assert.equal(selectHomeVideos([homeVideoFixtures[1]]).length,1,"動画が1件だけならそのまま表示する");
+assert.equal(selectHomeVideos([]).length,0,"候補がないとき架空の動画を補充しない");
+assert.equal(selectHomeVideos([homeVideoFixtures[0]]).length,0,"通常記事を動画枠へ混ぜない");
+
 assert.equal(registry.version,"ai-radar-experts-2026-09-10-v2","専門家台帳の版を固定する");
 assert.equal(registry.web_discovery.lookback_days,10,"Web動画探索を投稿10日以内に絞る");
 assert.ok(registry.experts.length>=8,"初期専門家を8人以上登録する");

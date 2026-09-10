@@ -3856,7 +3856,7 @@ function homeExpertVideos(items){
     const videoKey=String(item.video_id||item.source_url||item.article_id||item.id||'');
     if(!videoKey||seenVideos.has(videoKey)||seenExperts.has(item.expert_id))continue;
     selected.push(item);seenVideos.add(videoKey);seenExperts.add(item.expert_id);
-    if(selected.length>=3)break;
+    if(selected.length>=1)break;
   }
   return selected;
 }
@@ -3934,7 +3934,7 @@ function renderHome(v){
     ${mobileMediaHtml}
   </section>`;
   const expertVideoHtml=expertVideos.length?`<section class="expert-video-section" aria-labelledby="expertVideoTitle">
-    <div class="expert-video-head"><div><span class="expert-video-kicker">EXPERT SIGNALS</span><h2 id="expertVideoTitle">専門家の重要発言</h2></div><p>記事トップ5とは別枠です。毎朝7:17（日本時間）に、公開から10日以内の動画・講演を確認し、重要な発言を整理します。処理状況によって反映が遅れる場合があります。</p></div>
+    <div class="expert-video-head"><div><span class="expert-video-kicker">EXPERT SIGNALS</span><h2 id="expertVideoTitle">専門家の重要発言</h2></div><p>記事トップ5とは別枠で、ホームには動画記事を1件表示します。毎朝7:17（日本時間）に、公開から10日以内の動画・講演を確認し、重要な発言を整理します。処理状況によって反映が遅れる場合があります。</p></div>
     <div class="expert-video-grid">${expertVideos.map(expertVideoCard).join('')}</div>
   </section>`:'';
   let html = `<section class="radar-overview ${cover?'has-daily-cover':''}" aria-label="${cover?'本日のトップニュース':'AIシグナル概要'}">
