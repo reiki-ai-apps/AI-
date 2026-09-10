@@ -15,34 +15,34 @@
 .pd-visual .tabs { display: flex; gap: 8px; margin-bottom: 12px; }
 .pd-visual .tabs button { flex: 1; min-height: 56px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font: inherit; font-weight: 700; font-size: 1rem; cursor: pointer; color: var(--text); }
 .pd-visual .tabs button[aria-selected="true"] { background: var(--ink-900); color: var(--gold); border-color: var(--ink-900); }
-.pd-visual .pane { position: relative; aspect-ratio: 4 / 3; max-height: 620px; background: var(--paper); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.pd-visual .pane { position: relative; aspect-ratio: 4 / 3; max-height: 620px; background-color: #FFFFFF; background-image: linear-gradient(rgba(11,31,22,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(11,31,22,0.05) 1px, transparent 1px); background-size: 8px 8px; border: 1px solid var(--line-strong); border-radius: 4px; overflow: hidden; }
 .pd-visual .pane[hidden] { display: none; }
 .bigfig { position: absolute; inset: 0; display: grid; place-items: center; }
 .bigfig .fig-ic svg { width: clamp(120px, 24vw, 200px); height: auto; color: var(--ink-800); --ic-fill: var(--surface-2); }
 .bigfig .key { position: absolute; left: 20px; bottom: 18px; font-size: clamp(32px, 4vw, 44px); font-weight: 700; color: var(--ink-900); line-height: 1; padding-bottom: 6px; border-bottom: 2px solid var(--soil); font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
 .bigfig .shelf-badge { position: absolute; right: 16px; top: 14px; font-size: 13px; font-weight: 700; color: var(--shelf); border: 1px solid var(--shelf); border-radius: 4px; padding: 1px 8px; background: #fff; }
-.bigfig .guide { position: absolute; left: 12%; right: 12%; top: 22px; height: 14px; border-top: 1px dashed #C9BFAE; }
-.bigfig .guide::before, .bigfig .guide::after { content: ""; position: absolute; top: -5px; width: 1px; height: 10px; background: #C9BFAE; }
+.bigfig .guide { position: absolute; left: 12%; right: 12%; top: 22px; height: 14px; border-top: 1px dashed #9AA49E; }
+.bigfig .guide::before, .bigfig .guide::after { content: ""; position: absolute; top: -5px; width: 1px; height: 10px; background: #9AA49E; }
 .bigfig .guide::before { left: 0; } .bigfig .guide::after { right: 0; }
-.bigfig .guide span { position: absolute; left: 50%; top: -12px; transform: translateX(-50%); background: var(--paper); padding: 0 8px; font-size: 15px; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.bigfig .guide span { position: absolute; left: 50%; top: -12px; transform: translateX(-50%); background: #FFFFFF; padding: 0 8px; font-size: 15px; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
 .fig-caption { margin: 10px 4px 0; font-size: 15px; color: var(--muted); line-height: 1.6; display: flex; gap: 12px; flex-wrap: wrap; }
 .fig-caption span::before { content: "— "; color: var(--soil); }
 .bigfig .dots { position: absolute; left: 20px; top: 56px; display: grid; grid-auto-flow: column; grid-template-rows: repeat(5, 8px); gap: 4px; }
-.bigfig .dots i { width: 8px; height: 8px; border-radius: 50%; background: #D8CDB8; display: block; }
+.bigfig .dots i { width: 8px; height: 8px; border-radius: 50%; background: #DDE2DE; display: block; }
 .pane.v3d canvas { width: 100% !important; height: 100% !important; display: block; }
 .pane.v3d .viewer-labels { display: none; }
 .pane.v3d .where { position: absolute; left: 16px; top: 14px; background: var(--ink-900); color: var(--gold); font-size: 15px; font-weight: 700; padding: 6px 12px; border-radius: 999px; }
-.pane.v3d .hint3d { position: absolute; right: 16px; bottom: 14px; font-size: 13px; color: var(--muted); background: rgba(245,239,227,.9); padding: 2px 8px; border-radius: 4px; }
+.pane.v3d .hint3d { position: absolute; right: 16px; bottom: 14px; font-size: 13px; color: var(--muted); background: rgba(255,255,255,.9); padding: 2px 8px; border-radius: 4px; }
 
 /* カルテ帯 */
 .karte-band { margin-top: 12px; min-height: 64px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 12px 16px; border-radius: 12px; border-left: 4px solid var(--green-600); background: var(--green-100); font-size: 1rem; line-height: 1.6; }
-.karte-band.no { border-left-color: var(--sunrise-deep); background: var(--earth-100); }
+.karte-band.no { border-left-color: var(--sunrise-deep); background: #FFF4EC; }
 .karte-band b { font-weight: 700; }
 .karte-band a { margin-left: auto; white-space: nowrap; font-size: 15px; font-weight: 700; }
 .karte-link { font-size: 15px; margin-top: 8px; display: inline-block; }
 
 /* 購入パネル */
-.pd-buy { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 28px; }
+.pd-buy { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 28px; box-shadow: 0 1px 0 rgba(11,31,22,0.04); }
 @media (max-width: 1023px) { .pd-buy { padding: 20px; } }
 .price-main { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
 .price-main .incl { font-size: 36px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink-900); line-height: 1.1; }
@@ -93,14 +93,14 @@
 .with-item .nm { font-weight: 700; font-size: 1rem; } .with-item .sp { font-size: 13px; color: var(--muted); }
 .with-item .pr { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .with-all { margin-top: 10px; min-height: 64px; border-radius: 999px; white-space: normal; line-height: 1.3; padding: 8px 20px; }
-.tip-card { background: var(--ink-800); color: var(--paper); border-radius: 12px; padding: 24px; font-size: 1.05rem; line-height: 1.9; box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+.tip-card { background: var(--ink-800); color: var(--on-dark); border-radius: 12px; padding: 24px; font-size: 1.05rem; line-height: 1.9; box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
 .tip-card .who { display: block; margin-top: 10px; font-size: 15px; color: var(--gold); }
 .faq details { border-top: 1px solid var(--line); } .faq details:last-of-type { border-bottom: 1px solid var(--line); }
 .faq summary { min-height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 12px 8px; font-weight: 700; cursor: pointer; list-style: none; }
 .faq summary::-webkit-details-marker { display: none; } .faq summary::after { content: "＋"; color: var(--sunrise-deep); } .faq details[open] summary::after { content: "－"; }
 .faq p { padding: 0 8px 16px; margin: 0; color: var(--muted); }
-.phone-band { margin-top: 48px; background: var(--ink-900); color: var(--paper); border-radius: 18px; padding: 28px 24px; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
-.phone-band h2 { color: #fff; margin: 0 0 4px; font-size: 1.3rem; } .phone-band p { margin: 0; color: rgba(245,239,227,.8); }
+.phone-band { margin-top: 48px; background: var(--ink-900); color: var(--on-dark); border-radius: 18px; padding: 28px 24px; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+.phone-band h2 { color: #fff; margin: 0 0 4px; font-size: 1.3rem; } .phone-band p { margin: 0; color: rgba(233,238,234,.8); }
 @media (max-width: 700px) { .phone-band { grid-template-columns: 1fr; } }
 
 /* スマホ下部の固定バー */
@@ -110,6 +110,7 @@
 .sticky-cta .cta-main { width: auto; padding: 0 24px; min-height: 60px; font-size: 17px; }
 body.sticky-on .quote-fab { bottom: 100px; }
 @media (min-width: 1024px) { .sticky-cta { display: none; } body.sticky-on .quote-fab { bottom: 16px; } }
+@media (prefers-reduced-motion: reduce) { .pd .reveal { opacity: 1 !important; transform: none !important; } }
 .pd .reveal { opacity: 0; transform: translateY(12px); transition: opacity var(--t-section) var(--ease-in), transform var(--t-section) var(--ease-in); }
 .pd .reveal.in { opacity: 1; transform: none; }
 .notfound { text-align: center; padding: 64px 16px; }

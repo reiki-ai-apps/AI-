@@ -30,7 +30,7 @@ $("#pd-crumb").innerHTML = `<a href="index.html">トップ</a> › <a href="cata
 function compareText() {
   const s = p.name + " " + p.spec, out = [];
   const dia = s.match(/φ(\d+(?:\.\d+)?)/); if (dia) { const d = Number(dia[1]); out.push(d >= 31 ? `φ${d} は500円玉より約1cm太い` : d >= 25 ? `φ${d} は500円玉(2.65cm)とほぼ同じ太さ` : d >= 22 ? `φ${d} は500円玉より少し細い` : `φ${d} は10円玉(2.35cm)より細い`); }
-  const len = s.match(/(?:^|[^\d.])(\d+(?:\.\d+)?)m(?![m0-9])/); if (len) { const L = Number(len[1]); if (L >= 50) out.push(`${L}m は 50mプール${(L / 50).toFixed(L % 50 ? 1 : 0)}本分`); else if (L >= 3) out.push(`${L}m は 軽トラの荷台(約1.9m)${Math.round(L / 1.9)}台分`); }
+  const len = s.match(/(?:^|[^\d.])(\d+(?:\.\d+)?)m(?![m0-9])/); if (len && !/mまで/.test(s)) { const L = Number(len[1]); if (L >= 100) out.push(`${L}m は 50mプール${(L / 50).toFixed(L % 50 ? 1 : 0)}本分`); else if (L >= 3) out.push(`${L}m は 軽トラの荷台(約1.9m)${Math.round(L / 1.9)}台分`); }
   const w = s.match(/幅(\d+)cm/); if (w) out.push(`幅${w[1]}cm は 間口${(Number(w[1]) / 100).toFixed(1)}mのハウスをまたぐ幅`);
   return out.slice(0, 2).join(" ／ ");
 }
@@ -136,6 +136,6 @@ const sio = new IntersectionObserver(es => { const vis = es[0].isIntersecting; s
 sio.observe($("#cta-main"));
 
 // ---- 出現 ----
-const io = new IntersectionObserver(es => { for (const e of es) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }, { rootMargin: "0px 0px -8% 0px" });
+const io = new IntersectionObserver(es => { for (const e of es) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }, { rootMargin: "0px 0px 40% 0px" });
 document.querySelectorAll(".pd .reveal").forEach((el, i) => { el.style.transitionDelay = `${Math.min(i, 4) * 60}ms`; io.observe(el); });
-setTimeout(() => document.querySelectorAll(".pd .reveal:not(.in)").forEach(el => el.classList.add("in")), 3000);
+setTimeout(() => document.querySelectorAll(".pd .reveal:not(.in)").forEach(el => el.classList.add("in")), 1500);

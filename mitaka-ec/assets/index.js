@@ -20,9 +20,9 @@ const idx = SEKKI.findIndex(t => t.name === now.name);
 $("#works").innerHTML = [0, 1, 2].map(i => { const t = SEKKI[(idx + i) % SEKKI.length]; return `<a class="work${i === 0 ? " now" : ""}" href="catalog.html"><div class="term">${esc(t.name)}</div><div class="date">${t.month}月${t.day}日ごろ${i === 0 ? " ・ いま" : ""}</div><p>${esc(t.task)}</p></a>`; }).join("");
 
 // ---- 出現 ----
-const io = new IntersectionObserver(es => { for (const e of es) if (e.isIntersecting) { e.target.classList.add("in"); e.target.classList.remove("pre"); io.unobserve(e.target); } }, { rootMargin: "0px 0px -10% 0px" });
+const io = new IntersectionObserver(es => { for (const e of es) if (e.isIntersecting) { e.target.classList.add("in"); e.target.classList.remove("pre"); io.unobserve(e.target); } }, { rootMargin: "0px 0px 40% 0px" });
 document.querySelectorAll(".reveal, .phone").forEach(el => io.observe(el));
-setTimeout(() => document.querySelectorAll(".reveal:not(.in), .phone.pre").forEach(el => { el.classList.add("in"); el.classList.remove("pre"); }), 4000); // 保険: 何があっても表示する
+setTimeout(() => document.querySelectorAll(".reveal:not(.in), .phone.pre").forEach(el => { el.classList.add("in"); el.classList.remove("pre"); }), 1500); // 保険: 何があっても表示する
 // 数字のカウントアップ
 const cio = new IntersectionObserver(es => { for (const e of es) if (e.isIntersecting) { count(e.target); cio.unobserve(e.target); } }, { threshold: 0.4 });
 document.querySelectorAll("[data-count]").forEach(el => cio.observe(el));
