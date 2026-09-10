@@ -49,3 +49,21 @@ ChatGPT の画像生成で、以下を **縦長（2:3 か 9:16）** で作り、
 2. `python3 common/compose.py --spec not-your-medicine/shots.json --song NOT_YOUR_MEDICINE.mp3 --out nym_illustrated.mp4`
 3. 確認用の軽量版と絵コンテを送付。直しは座標と時間の数字だけ。
 4. 同じ素材で PAPER PLANE ROYALTY 側も、机とオフィスのセットを 7 枚作ってもらい同様に進める。
+
+## PAPER PLANE ROYALTY 側（ChatGPT で 7 枚 + 透過 4 点）
+
+`music-video/paper-plane-royalty/art/` に保存。1 枚目（A）を添付して「同じ画風で」と続ける。
+画風の指定は共通で「明るいアニメ調、線は細く、色はフラット寄りだが紙の質感は描き込む。人物・手・文字・ロゴなし。縦長。主役は横幅の中央75%に収め、上17%と下25%は空ける」。
+
+| ファイル名 | 指示 |
+|---|---|
+| `A_desk_gray_bg.png` | 灰色のオフィスの机を真上から。付箋、コーヒーの輪染み、ピンクの蛍光ペンだけが唯一の色。蛍光灯の柔らかい光。 |
+| `B_desk_color_bg.png` | （A を添付）同じ机を、パステルの朝の光で色が戻った状態に。木の温かさ。 |
+| `C_wall_bg.png` | 灰色のオフィスの壁を横から。上に蛍光灯、光の中に埃。 |
+| `D_city_gray_bg.png` | オフィスの窓越しに、昼の曇った灰色の街。遠くほど霞む。 |
+| `E_city_color_bg.png` | （D を添付）同じ構図で、パステル色のビルと青空。明るく希望のある雰囲気。 |
+| `F_fireworks_bg.png` | 明るい昼の空にパステルの花火。手前に紙飛行機。 |
+| `obj_plane_top.png` / `obj_plane_side.png` / `obj_plane_front.png` | 白い紙飛行機を真上・真横・正面から。**背景は透明**。 |
+| `obj_crown.png` | 紙で折った王冠を真上から。背景は透明。 |
+
+始末書を折る工程は実写（スマホの俯瞰で 1 拍 1 折り）に任せる。アニマティックの折り工程はその撮影のタイミング指示として使う。
