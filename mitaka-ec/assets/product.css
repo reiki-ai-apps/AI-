@@ -1,7 +1,9 @@
 /* 商品1点ページ「一個から」 */
 .pd { padding-bottom: 48px; }
 .pd .breadcrumb { padding-top: 16px; }
-.pd-grid { display: grid; grid-template-columns: 1fr; gap: 24px; align-items: start; }
+.pd-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: start; }
+.pd-left, .pd-buy, .pd-block { min-width: 0; }
+.pd-visual .pane { max-width: 100%; }
 @media (min-width: 1024px) { .pd-grid { grid-template-columns: minmax(0, 1fr) 420px; gap: 48px; } .pd-head-sp { display: none; } .pd-buy { position: sticky; top: calc(var(--header-h) + 24px); } }
 @media (max-width: 1023px) { .pd-buy .pd-head { display: none; } }
 .pd-head .shelf-badge { display: inline-block; font-size: 13px; font-weight: 700; color: var(--shelf); border: 1px solid var(--shelf); border-radius: 4px; padding: 1px 8px; margin-right: 8px; }
