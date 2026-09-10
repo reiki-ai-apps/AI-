@@ -202,7 +202,7 @@ export function createViewer(container, options = {}) {
     for (let i = 0; i < rows; i++) {
       const x = -a + 0.5 + (i + 0.5) * ((W - 1.0) / rows);
       const r = new THREE.Mesh(rowGeo, MAT.ridgeSoil); r.position.set(x, 0.08, 0); r.receiveShadow = true; house.add(r);
-      if (p.irrigation === "drip") house.add(cylinderAlongZ(0.012, Math.max(L - 1.2, 1), MAT.hose, x, 0.18, 0, 6));
+      if (p.irrigation === "drip") { const dr = cylinderAlongZ(0.012, Math.max(L - 1.2, 1), MAT.hose, x, 0.18, 0, 6); dr.userData.part = "irrigation"; house.add(dr); }
     }
 
     // アーチ(インスタンス化)
@@ -211,14 +211,19 @@ export function createViewer(container, options = {}) {
     const pitchActual = g.archCount > 1 ? L / (g.archCount - 1) : 0;
     const m4 = new THREE.Matrix4();
     for (let i = 0; i < g.archCount; i++) { m4.makeTranslation(0, 0, z0 + i * pitchActual); arches.setMatrixAt(i, m4); }
-    arches.instanceMatrix.needsUpdate = true; arches.castShadow = true; house.add(arches);
+    arches.instanceMatrix.needsUpdate = true; arches.castShadow = true; arches.userData.part = "arch"; house.add(arches);
 
     // 母屋(直管)
     for (let i = 0; i < g.purlinRuns; i++) {
       const th = THREE.MathUtils.degToRad(10 + i * (160 / (g.purlinRuns - 1)));
       const pl = cylinderAlongZ(rPipe * 0.9, L + 0.2, MAT.steel, a * Math.cos(th) * 0.985, He + g.b * Math.sin(th) * 0.985);
-      pl.castShadow = true; house.add(pl);
+      pl.castShadow = true; pl.userData.part = "purlin"; house.add(pl);
+      // アーチと母屋の交点(クロス金具の位置)
+      if (!showcase || options.parts) { const jGeo = new THREE.SphereGeometry(rPipe * 1.9, 8, 8); const jm = new THREE.InstancedMesh(jGeo, MAT.dark, g.archCount); const mm = new THREE.Matrix4(); for (let k = 0; k < g.archCount; k++) { mm.makeTranslation(a * Math.cos(th) * 0.985, He + g.b * Math.sin(th) * 0.985, z0 + k * pitchActual); jm.setMatrixAt(k, mm); } jm.instanceMatrix.needsUpdate = true; jm.userData.part = "joint"; jm.visible = false; house.add(jm); }
     }
+
+    // 脚元のアンカー(らせん杭)。ハイライト時だけ見せる
+    if (!showcase || options.parts) { const ag = new THREE.CylinderGeometry(0.03, 0.03, 0.5, 6); const am = new THREE.InstancedMesh(ag, MAT.dark, g.archCount * 2); const mm = new THREE.Matrix4(); for (let k = 0; k < g.archCount; k++) { mm.makeTranslation(-a, 0.25, z0 + k * pitchActual); am.setMatrixAt(k * 2, mm); mm.makeTranslation(a, 0.25, z0 + k * pitchActual); am.setMatrixAt(k * 2 + 1, mm); } am.instanceMatrix.needsUpdate = true; am.userData.part = "anchor"; am.visible = false; house.add(am); }
 
     // 妻面骨組・ドア・妻面被覆
     const doorW = Math.min(1.8, W - 0.8);
@@ -228,20 +233,20 @@ export function createViewer(container, options = {}) {
       const dz = e.z < 0 ? -0.02 : 0.02;
       const yAt = x => He + g.b * Math.sqrt(Math.max(0, 1 - (x / a) ** 2));
       const xs = e.door ? [-doorW / 2, doorW / 2] : [-a / 2, a / 2];
-      for (const x of xs) { const pp = post(rPipe * 0.9, yAt(x) - 0.02, MAT.steel, x, e.z); pp.castShadow = true; house.add(pp); }
+      for (const x of xs) { const pp = post(rPipe * 0.9, yAt(x) - 0.02, MAT.steel, x, e.z); pp.castShadow = true; pp.userData.part = "endframe"; house.add(pp); }
       if (a > 1.5) for (const x of [-a * 0.72, a * 0.72]) house.add(post(rPipe * 0.9, yAt(x) - 0.02, MAT.steel, x, e.z));
       house.add(cylinderAlongX(rPipe * 0.9, W, MAT.steel, 0, e.door ? doorH + 0.05 : He * 0.6, e.z));
       const door = e.door ? { w: doorW, h: doorH } : null;
       const wall = new THREE.Mesh(new THREE.ShapeGeometry(endWallShape(g, door)), filmMat);
-      wall.position.z = e.z + dz; house.add(wall);
+      wall.position.z = e.z + dz; wall.userData.part = "film"; house.add(wall);
       if (door) {
         const panel = new THREE.Mesh(new THREE.PlaneGeometry(doorW - 0.08, doorH - 0.06), doorFilm);
-        panel.position.set(0, doorH / 2, e.z + dz * 3); house.add(panel);
+        panel.position.set(0, doorH / 2, e.z + dz * 3); panel.userData.part = "door"; house.add(panel);
         const fr = 0.035;
         const frame = [
           [-doorW / 2 + fr, doorH / 2, fr, doorH], [doorW / 2 - fr, doorH / 2, fr, doorH], [0, doorH - fr, doorW, fr], [0, fr, doorW, fr]
         ];
-        for (const [x, y, w, h] of frame) { const f = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.05), MAT.dark); f.position.set(x, y, e.z + dz * 3); house.add(f); }
+        for (const [x, y, w, h] of frame) { const f = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.05), MAT.dark); f.position.set(x, y, e.z + dz * 3); f.userData.part = "door"; house.add(f); }
         const handle = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.25, 0.06), MAT.dark); handle.position.set(doorW / 2 - 0.25, 1.0, e.z + dz * 4); house.add(handle);
       }
     }
@@ -251,16 +256,18 @@ export function createViewer(container, options = {}) {
     const ventR = p.sideVent === "both";
     const vh = g.ventOpenHeight;
     const cover = new THREE.Mesh(stripGeometry(coverProfile(g, ventL ? vh : -0.02, ventR ? vh : -0.02), z0 - 0.04, z1 + 0.04), filmMat);
-    cover.renderOrder = 2; house.add(cover);
+    cover.renderOrder = 2; cover.userData.part = "film"; house.add(cover);
+    // 被覆材の固定レール(裾)とパッカー位置(肩)
+    for (const side of [-1, 1]) { const rail = cylinderAlongZ(0.02, L + 0.1, MAT.dark, side * (a + 0.02), 0.06); rail.userData.part = "fastener"; house.add(rail); const sh = cylinderAlongZ(0.018, L + 0.1, MAT.dark, side * (a + 0.02), He); sh.userData.part = "fastener"; house.add(sh); }
     for (const [side, on] of [[-1, ventL], [1, ventR]]) {
       if (!on) continue;
       const x = side * (a + 0.09);
-      const roll = cylinderAlongZ(0.075, L + 0.08, doorFilm, x, vh, 0, 14); roll.renderOrder = 3; house.add(roll);
-      house.add(cylinderAlongZ(rPipe, L + 0.3, MAT.steel, x, vh, 0));
-      const crank = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.18, 0.12), MAT.dark); crank.position.set(x, vh - 0.15, z0 - 0.25); house.add(crank);
+      const roll = cylinderAlongZ(0.075, L + 0.08, doorFilm, x, vh, 0, 14); roll.renderOrder = 3; roll.userData.part = "vent"; house.add(roll);
+      const rp = cylinderAlongZ(rPipe, L + 0.3, MAT.steel, x, vh, 0); rp.userData.part = "vent"; house.add(rp);
+      const crank = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.18, 0.12), MAT.dark); crank.position.set(x, vh - 0.15, z0 - 0.25); crank.userData.part = "vent"; house.add(crank);
       if (p.insectNet) {
         const net = new THREE.Mesh(new THREE.PlaneGeometry(L, vh - 0.05), MAT.net);
-        net.rotation.y = Math.PI / 2; net.position.set(side * (a + 0.01), (vh - 0.05) / 2 + 0.03, 0); house.add(net);
+        net.rotation.y = Math.PI / 2; net.position.set(side * (a + 0.01), (vh - 0.05) / 2 + 0.03, 0); net.userData.part = "net"; house.add(net);
       }
     }
 
@@ -270,32 +277,32 @@ export function createViewer(container, options = {}) {
       const pl = new THREE.Mesh(new THREE.PlaneGeometry(0.8, Math.max(L - 1, 1)), doorFilm);
       pl.rotation.x = -Math.PI / 2; pl.position.x = 0.4; flap.add(pl);
       flap.add(cylinderAlongZ(rPipe * 0.8, Math.max(L - 1, 1), MAT.steel, 0.8, 0));
-      house.add(flap);
+      flap.traverse(o => { o.userData.part = "roofvent"; }); house.add(flap);
     }
 
     // 内張カーテン
     if (p.curtain !== "none") {
       const cur = new THREE.Mesh(stripGeometry(coverProfile(g, He * 0.55, He * 0.55, 32, 0.25), z0 + 0.3, z1 - 0.3), MAT.curtain);
-      cur.renderOrder = 1; house.add(cur);
+      cur.renderOrder = 1; cur.userData.part = "curtain"; house.add(cur);
     }
 
     // 潅水(ミスト)
     if (p.irrigation === "mist") {
-      house.add(cylinderAlongZ(0.02, L - 0.5, MAT.hose, 0, Hr - 0.4));
+      const mp = cylinderAlongZ(0.02, L - 0.5, MAT.hose, 0, Hr - 0.4); mp.userData.part = "irrigation"; house.add(mp);
       const nozGeo = new THREE.SphereGeometry(0.05, 8, 8);
-      for (let z = z0 + 1; z < z1 - 0.5; z += 3) { const n = new THREE.Mesh(nozGeo, MAT.nozzle); n.position.set(0, Hr - 0.45, z); house.add(n); }
+      for (let z = z0 + 1; z < z1 - 0.5; z += 3) { const n = new THREE.Mesh(nozGeo, MAT.nozzle); n.position.set(0, Hr - 0.45, z); n.userData.part = "irrigation"; house.add(n); }
     }
 
     // 耐雪補強
     if (p.snow) {
       for (let i = 0; i < g.snowPosts; i++) {
         const z = z0 + 0.4 + i * ((L - 0.8) / Math.max(g.snowPosts - 1, 1));
-        const pp = post(rPipe, Hr - 0.03, MAT.steel, 0, z); pp.castShadow = true; house.add(pp);
+        const pp = post(rPipe, Hr - 0.03, MAT.steel, 0, z); pp.castShadow = true; pp.userData.part = "reinforce"; house.add(pp);
       }
       const ty = He + g.b * 0.45, tx = a * Math.sqrt(1 - 0.45 ** 2) * 2;
       for (let i = 0; i < g.snowTies; i++) {
         const z = z0 + i * (L / Math.max(g.snowTies - 1, 1));
-        house.add(cylinderAlongX(rPipe * 0.9, tx, MAT.steel, 0, ty, Math.min(z, z1)));
+        const tb = cylinderAlongX(rPipe * 0.9, tx, MAT.steel, 0, ty, Math.min(z, z1)); tb.userData.part = "reinforce"; house.add(tb);
       }
     }
 
@@ -416,6 +423,26 @@ export function createViewer(container, options = {}) {
     setSky(hex) { const c = new THREE.Color(hex); if (!options.transparent) scene.background = c; scene.fog.color = c; },
     setAutoRotate(on) { controls.autoRotate = !!on; },
     getPose(view) { return computePose(view); },
+    // 部位を光らせる: arch / purlin / joint / endframe / film / fastener / door / vent / net / roofvent / curtain / irrigation / reinforce / anchor。null で解除
+    highlight(part) {
+      if (!house) return;
+      const glow = new THREE.Color(0xE8622A);
+      house.traverse(o => {
+        if (!o.isMesh) return;
+        const mine = o.userData.part && (o.userData.part === part);
+        if (o.userData.part === "joint" || o.userData.part === "anchor") o.visible = mine; // 普段は隠している部位
+        if (!o.userData.part) return;
+        if (!o.userData.origMat) o.userData.origMat = o.material;
+        if (mine) {
+          if (!o.userData.glowMat) { const m = o.userData.origMat.clone(); m.emissive = glow; m.emissiveIntensity = 0.9; m.color = new THREE.Color(0xff9a5c); m.transparent = false; m.opacity = 1; m.depthWrite = true; o.userData.glowMat = m; }
+          o.material = o.userData.glowMat;
+        } else {
+          o.material = o.userData.origMat;
+          if (part && o.userData.dimMat === undefined) { const m = o.userData.origMat.clone(); if (m.transparent) m.opacity = Math.min(m.opacity, 0.18); else { m.transparent = true; m.opacity = 0.35; m.depthWrite = false; } o.userData.dimMat = m; }
+          if (part && o.userData.dimMat) o.material = o.userData.dimMat;
+        }
+      });
+    },
     setPose(pos, target) { anim = null; camera.position.copy(pos); controls.target.copy(target); controls.update(); },
     get camera() { return camera; },
     update(est, opts = {}) {
