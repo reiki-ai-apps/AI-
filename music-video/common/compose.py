@@ -214,6 +214,10 @@ class Composer:
                 continue
             if "until" in layer and T >= layer["until"]:
                 continue
+            if layer.get("optional"):
+                ref = layer.get("video") or layer.get("file")
+                if ref and not os.path.exists(os.path.join(self.dir, ref)):
+                    continue  # 素材がまだ無い: 下のレイヤーに任せる
             self.draw_layer(img, layer, T, u, cam)
         for rp in shot.get("ripples", []):
             if rp.get("from_t", 0) <= T < rp.get("until", 1e9):
