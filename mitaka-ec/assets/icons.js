@@ -34,6 +34,28 @@ export const ICONS = {
   cube: svg(`<path d="M32 6l24 12v28L32 58 8 46V18z" ${F}/><path d="M32 6l24 12v28L32 58 8 46V18z"/><path d="M8 18l24 12 24-12M32 30v28"/>`),
   star: svg(`<path d="M32 6l8 16 18 3-13 12 3 18-16-8-16 8 3-18L6 25l18-3z" ${F}/><path d="M32 6l8 16 18 3-13 12 3 18-16-8-16 8 3-18L6 25l18-3z"/>`),
   bell: svg(`<path d="M16 44V28a16 16 0 0 1 32 0v16l6 6H10z" ${F}/><path d="M16 44V28a16 16 0 0 1 32 0v16l6 6H10z"/><path d="M26 56a6 6 0 0 0 12 0M32 6v6"/>`),
+
+  // 商品の形(寸法図用)
+  cross: svg(`<rect x="6" y="27" width="52" height="10" rx="5" ${F}/><rect x="6" y="27" width="52" height="10" rx="5"/><rect x="27" y="6" width="10" height="52" rx="5" ${F}/><rect x="27" y="6" width="10" height="52" rx="5"/><rect x="22" y="22" width="20" height="20" rx="3" fill="#fff"/><rect x="22" y="22" width="20" height="20" rx="3"/>`),
+  tee: svg(`<rect x="6" y="14" width="52" height="10" rx="5" ${F}/><rect x="6" y="14" width="52" height="10" rx="5"/><rect x="27" y="24" width="10" height="34" rx="5" ${F}/><rect x="27" y="24" width="10" height="34" rx="5"/><rect x="20" y="10" width="24" height="18" rx="3" fill="#fff"/><rect x="20" y="10" width="24" height="18" rx="3"/>`),
+  sleeve: svg(`<rect x="4" y="27" width="24" height="10" rx="5" ${F}/><rect x="4" y="27" width="24" height="10" rx="5"/><rect x="36" y="27" width="24" height="10" rx="5" ${F}/><rect x="36" y="27" width="24" height="10" rx="5"/><rect x="22" y="24" width="20" height="16" rx="4" fill="#fff"/><rect x="22" y="24" width="20" height="16" rx="4"/>`),
+  angle: svg(`<path d="M8 50 L32 22 L56 50" stroke-width="10" stroke="var(--ic-fill,#e6f2ea)"/><path d="M8 50 L32 22 L56 50" stroke-width="10" fill="none"/><path d="M8 50 L32 22 L56 50" stroke="#fff" stroke-width="4"/><circle cx="32" cy="22" r="7" fill="#fff"/><circle cx="32" cy="22" r="7"/>`),
+  packer: svg(`<rect x="6" y="30" width="52" height="10" rx="5" ${F}/><rect x="6" y="30" width="52" height="10" rx="5"/><path d="M22 44a12 12 0 1 1 20 0" fill="none" stroke-width="6"/><path d="M22 44v6M42 44v6"/><path d="M4 26h56" stroke-dasharray="4 4"/>`),
+  crank: svg(`<rect x="6" y="26" width="46" height="14" rx="7" ${F}/><rect x="6" y="26" width="46" height="14" rx="7"/><path d="M52 33h6v14l-8 6" /><circle cx="50" cy="53" r="4" fill="#fff"/><circle cx="50" cy="53" r="4"/><path d="M12 33h34" stroke-dasharray="3 5"/>`),
+  fan: svg(`<circle cx="32" cy="32" r="24" ${F}/><circle cx="32" cy="32" r="24"/><path d="M32 32c-2-10 2-18 8-20-6 8-4 14-8 20zM32 32c10-2 18 2 20 8-8-6-14-4-20-8zM32 32c2 10-2 18-8 20 6-8 4-14 8-20zM32 32c-10 2-18-2-20-8 8 6 14 4 20 8z"/><circle cx="32" cy="32" r="3" fill="#fff"/>`),
+  roof: svg(`<path d="M8 56V30a24 24 0 0 1 48 0v26" ${F}/><path d="M8 56V30a24 24 0 0 1 48 0v26M8 56h48"/><path d="M32 6l16 8" stroke-width="4"/><path d="M32 6v10"/>`),
+  timer: svg(`<circle cx="32" cy="34" r="22" ${F}/><circle cx="32" cy="34" r="22"/><path d="M32 34V20M32 34l10 6M26 6h12"/>`),
+  filter: svg(`<rect x="18" y="8" width="28" height="48" rx="8" ${F}/><rect x="18" y="8" width="28" height="48" rx="8"/><path d="M18 22h28M18 42h28M4 32h14M46 32h14"/>`),
+  heater: svg(`<rect x="8" y="20" width="48" height="36" rx="6" ${F}/><rect x="8" y="20" width="48" height="36" rx="6"/><path d="M20 44c-6-8 4-12 2-18 8 4 10 12 4 18M36 44c-6-8 4-12 2-18 8 4 10 12 4 18" fill="#fff"/><path d="M20 8v6M32 8v6M44 8v6"/>`),
+  led: svg(`<rect x="8" y="16" width="48" height="16" rx="6" ${F}/><rect x="8" y="16" width="48" height="16" rx="6"/><circle cx="18" cy="24" r="3" fill="#fff"/><circle cx="32" cy="24" r="3" fill="#fff"/><circle cx="46" cy="24" r="3" fill="#fff"/><path d="M18 40v8M32 40v12M46 40v8"/>`),
+  co2: svg(`<rect x="14" y="8" width="36" height="48" rx="10" ${F}/><rect x="14" y="8" width="36" height="48" rx="10"/><path d="M26 8V4h12v4"/><text x="32" y="38" font-size="14" font-weight="700" text-anchor="middle" fill="currentColor" stroke="none">CO₂</text>`),
+  sheet: svg(`<path d="M6 44l20-24h32L38 44z" ${F}/><path d="M6 44l20-24h32L38 44z"/><path d="M14 44l14-18M22 44l14-18M30 44l14-18"/><path d="M6 44h32v8H6z" fill="#fff"/><path d="M6 44h32v8H6z"/>`),
+  net: svg(`<rect x="8" y="8" width="48" height="48" rx="6" ${F}/><rect x="8" y="8" width="48" height="48" rx="6"/><path d="M8 20h48M8 32h48M8 44h48M20 8v48M32 8v48M44 8v48" stroke-width="2"/>`),
+  anchor: svg(`<path d="M32 4v56" stroke-width="5"/><path d="M22 20c10-6 10 6 20 0M22 32c10-6 10 6 20 0M22 44c10-6 10 6 20 0" stroke-width="3.6"/><path d="M8 56h48" stroke-dasharray="4 4"/>`),
+  brace: svg(`<rect x="8" y="10" width="48" height="44" rx="4" ${F}/><rect x="8" y="10" width="48" height="44" rx="4"/><path d="M8 54L56 10M8 10l48 44"/><circle cx="32" cy="32" r="6" fill="#fff"/><circle cx="32" cy="32" r="6"/>`),
+  rail: svg(`<rect x="6" y="36" width="52" height="12" rx="3" ${F}/><rect x="6" y="36" width="52" height="12" rx="3"/><path d="M10 36c4-10 8-10 12 0s8 10 12 0 8-10 12 0 8 10 10 0" stroke-width="3.6"/>`),
+  arch: svg(`<path d="M8 58V30a24 24 0 0 1 48 0v28" stroke-width="10" stroke="var(--ic-fill,#e6f2ea)" fill="none"/><path d="M8 58V30a24 24 0 0 1 48 0v28" stroke-width="10" fill="none"/><path d="M8 58V30a24 24 0 0 1 48 0v28" stroke="#fff" stroke-width="3" fill="none"/>`),
+  fence: svg(`<path d="M10 58V16M26 58V10M42 58V10M58 58V16" stroke-width="4"/><path d="M4 24h58M4 36h58M4 48h58"/><path d="M4 24l4-4M20 24l4-4" stroke-width="2"/>`),
   truck: svg(`<path d="M6 16h32v28H6z" ${F}/><path d="M6 16h32v28H6zM38 26h12l8 10v8H38z"/><circle cx="16" cy="48" r="5" fill="#fff"/><circle cx="16" cy="48" r="5"/><circle cx="48" cy="48" r="5" fill="#fff"/><circle cx="48" cy="48" r="5"/>`)
 };
 export const icon = (name, cls = "") => `<span class="ic ${cls}">${ICONS[name] || ICONS.cube}</span>`;

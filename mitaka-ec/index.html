@@ -24,10 +24,9 @@
     <button class="text-size" type="button" data-textsize aria-pressed="false" title="文字を大きくする"><span aria-hidden="true">あ</span><span class="lbl">文字大</span></button>
     <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">☰</button>
     <nav class="nav" aria-label="メイン">
-      <a href="index.html">トップ</a>
       <a href="karte.html">マイハウスカルテ</a>
       <a href="simulator.html">3Dシミュレーター</a>
-      <a href="catalog.html">資材カタログ</a>
+      <a href="catalog.html">資材をさがす</a>
       <a href="library.html">ハウス図鑑</a>
       <a href="quote.html">見積依頼</a>
       <a class="btn sm accent" href="simulator.html">3Dで見積る</a>
@@ -43,7 +42,7 @@
       <p class="lead">三高産業のハウスECは、パイプハウスの資材選びから見積り・施工相談までをオンラインで。間口と奥行を選ぶだけで、3Dモデルと概算金額がすぐに表示されます。</p>
       <div class="actions">
         <a class="btn accent lg" href="simulator.html">3Dシミュレーターで見積る</a>
-        <a class="btn outline lg" href="catalog.html">資材カタログを見る</a>
+        <a class="btn outline lg" href="catalog.html">資材をさがす</a>
       </div>
       <p class="note">会員登録は不要・無料でお使いいただけます。表示価格は仮単価で、正式なお見積りは現地確認後にご提出します。</p>
     </div>
@@ -91,8 +90,8 @@
   <div class="container">
     <div class="section-title">
       <span class="eyebrow">CATALOG</span>
-      <h2>取り扱い資材</h2>
-      <p>佐藤産業・誠和・東都興業などのメーカー品から自社取り扱いの汎用資材まで。カテゴリを選ぶとカタログが開きます。</p>
+      <h2>6つの棚から、さがす</h2>
+      <p>骨組み、張る、風を通す、あたためる・冷やす、水をやる、まもる。困りごとの言葉で探せます。</p>
     </div>
     <div class="tiles" id="category-tiles"></div>
   </div>
@@ -151,7 +150,7 @@
         <ul>
           <li><a href="karte.html">マイハウスカルテ</a></li>
           <li><a href="simulator.html">3Dハウスシミュレーター</a></li>
-          <li><a href="catalog.html">資材カタログ</a></li>
+          <li><a href="catalog.html">資材をさがす</a></li>
           <li><a href="library.html">みんなのハウス図鑑</a></li>
           <li><a href="quote.html">見積依頼・お問い合わせ</a></li>
         </ul>
@@ -173,9 +172,10 @@
 </footer>
 <script type="module">
 import { initSite, esc } from "./assets/site.js";
-import { CATEGORIES } from "./assets/catalog-data.js";
+import { SHELVES } from "./assets/catalog-data.js";
+import { ICONS } from "./assets/icons.js";
 initSite();
-document.getElementById("category-tiles").innerHTML = CATEGORIES.map(c => `<a class="tile" href="catalog.html#cat=${esc(c.id)}"><span class="ic" aria-hidden="true">${c.icon}</span><span>${esc(c.label)}</span></a>`).join("");
+document.getElementById("category-tiles").innerHTML = SHELVES.map(s => `<a class="tile shelf-tile" href="catalog.html#shelf=${esc(s.id)}" style="--shelf:${s.color};--ic-fill:${s.color}22"><span class="ic" aria-hidden="true" style="color:${s.color}">${ICONS[s.icon]}</span><span><b>${esc(s.label)}</b><small>${esc(s.sub)}</small></span></a>`).join("");
 </script>
 </body>
 </html>

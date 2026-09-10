@@ -26,13 +26,16 @@ export function initSite() {
   initQuoteDrawer();
 }
 
-// 文字を大きくする(端末ごとに記憶)
+// 文字の大きさ: 標準 → 大 → 特大 の3段階(端末ごとに記憶)
 function initTextSize() {
-  const KEY = "mitaka-big-text";
-  const apply = on => { document.documentElement.classList.toggle("big-text", on); document.querySelectorAll("[data-textsize]").forEach(b => b.setAttribute("aria-pressed", String(on))); };
-  let on = false; try { on = localStorage.getItem(KEY) === "1"; } catch {}
-  apply(on);
-  document.querySelectorAll("[data-textsize]").forEach(b => b.addEventListener("click", () => { on = !on; try { localStorage.setItem(KEY, on ? "1" : "0"); } catch {} apply(on); toast(on ? "文字を大きくしました" : "文字を標準に戻しました"); }));
+  const KEY = "mitaka-text-size", LEVELS = ["", "text-l", "text-xl"], LABELS = ["文字大", "大", "特大"];
+  let i = 0; try { i = Math.max(0, LEVELS.indexOf(localStorage.getItem(KEY) || "")); } catch {}
+  const apply = () => {
+    document.documentElement.classList.remove("text-l", "text-xl"); if (LEVELS[i]) document.documentElement.classList.add(LEVELS[i]);
+    document.querySelectorAll("[data-textsize]").forEach(b => { b.setAttribute("aria-pressed", String(i > 0)); const l = b.querySelector(".lbl"); if (l) l.textContent = LABELS[i]; });
+  };
+  apply();
+  document.querySelectorAll("[data-textsize]").forEach(b => b.addEventListener("click", () => { i = (i + 1) % LEVELS.length; try { localStorage.setItem(KEY, LEVELS[i]); } catch {} apply(); toast(["文字を標準に戻しました", "文字を大きくしました", "文字を特大にしました"][i]); }));
 }
 
 let toastTimer;
@@ -66,9 +69,19 @@ function saveQuoteList(list) {
 export function addToQuoteList(item, qty = 1) {
   const list = getQuoteList();
   const found = list.find(x => x.id === item.id);
-  if (found) found.qty += qty; else list.push({ id: item.id, name: item.name, spec: item.spec, unit: item.unit, price: item.price == null ? null : item.price, qty });
+  if (found) { found.qty += qty; if (item.confirm) found.confirm = true; } else list.push({ id: item.id, name: item.name, spec: item.spec, unit: item.unit, price: item.price == null ? null : item.price, qty, confirm: !!item.confirm, cat: item.cat || "" });
   saveQuoteList(list);
-  toast(`見積リストに追加しました: ${item.name}`);
+  toast(item.confirm ? `かごに入れました ✓(担当が合っているか確認します)` : `かごに入れました ✓  ${item.name}`);
+  const fab = document.querySelector(".quote-fab"); if (fab) { fab.classList.remove("bump"); void fab.offsetWidth; fab.classList.add("bump"); }
+}
+// 図がかごへ飛ぶ演出(動きを減らす設定では省略)
+export function flyToCart(fromEl) {
+  const fab = document.querySelector(".quote-fab"); if (!fromEl || !fab || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const a = fromEl.getBoundingClientRect(), b = fab.getBoundingClientRect();
+  const ghost = fromEl.cloneNode(true); ghost.className = "fly"; ghost.style.cssText += `left:${a.left}px;top:${a.top}px;width:${a.width}px;height:${a.height}px;background:var(--surface-2);overflow:hidden;`;
+  document.body.appendChild(ghost);
+  requestAnimationFrame(() => { ghost.style.transform = `translate(${b.left + b.width / 2 - a.left - a.width / 2}px, ${b.top + b.height / 2 - a.top - a.height / 2}px) scale(0.15)`; ghost.style.opacity = "0.2"; });
+  setTimeout(() => ghost.remove(), 500);
 }
 export function setQuoteQty(id, qty) {
   const list = getQuoteList().map(x => x.id === id ? { ...x, qty: Math.max(0, qty) } : x).filter(x => x.qty > 0);
@@ -78,9 +91,9 @@ export function removeFromQuoteList(id) { saveQuoteList(getQuoteList().filter(x 
 export function clearQuoteList() { saveQuoteList([]); }
 export function quoteListText(list = getQuoteList()) {
   if (!list.length) return "";
-  const lines = ["【カタログ見積リスト】", ...list.map(x => `・${x.name}(${x.spec}) × ${x.qty}${x.unit}  ${x.price == null ? "要見積" : "参考 " + yen(x.price * x.qty)}`)];
+  const lines = ["【かごの中身】", ...list.map(x => `・${x.name}(${x.spec}) × ${x.qty}${x.unit}  ${x.price == null ? "金額はご相談" : "めやす " + yen(x.price * x.qty)}${x.confirm ? "  ※合っているか確認希望" : ""}`)];
   const ask = list.filter(x => x.price == null).length;
-  lines.push(`参考小計(税抜): ${yen(list.reduce((s, x) => s + (x.price || 0) * x.qty, 0))}${ask ? `(要見積 ${ask}件を除く)` : ""}`);
+  lines.push(`おおよその小計(税別): ${yen(list.reduce((s, x) => s + (x.price || 0) * x.qty, 0))}${ask ? `(金額ご相談 ${ask}件は別途)` : ""}`);
   return lines.join("\n");
 }
 
@@ -88,18 +101,19 @@ function initQuoteDrawer() {
   if (document.body.dataset.noQuoteList != null) return;
   const fab = document.createElement("button");
   fab.className = "quote-fab"; fab.type = "button";
-  fab.innerHTML = `📋 見積リスト <span class="count">0</span>`;
+  fab.innerHTML = `🧺 かご <span class="count">0</span>`;
   const drawer = document.createElement("div");
   drawer.className = "drawer";
   drawer.innerHTML = `
     <div class="backdrop"></div>
     <div class="panel" role="dialog" aria-label="見積リスト">
-      <header><h3>見積リスト</h3><button class="close-x" type="button" aria-label="閉じる">×</button></header>
+      <header><h3>かご</h3><button class="close-x" type="button" aria-label="とじる">× とじる</button></header>
       <div class="body"></div>
       <footer>
-        <div class="flex between mb-2"><span class="muted small">参考小計(税抜)</span><span class="price" data-sub>¥0</span></div>
-        <a class="btn accent block" href="quote.html">この内容で見積依頼</a>
-        <button class="btn ghost sm block mt-1" type="button" data-clear>リストを空にする</button>
+        <div class="flex between mb-2"><span class="muted small">おおよその小計(税別)</span><span class="price" data-sub>¥0</span></div>
+        <p class="small muted" style="margin:0 0 .6rem">表示の金額はめやすです。正式な金額は担当がお見積りします。</p>
+        <a class="btn accent lg block" href="quote.html">この内容で見積をたのむ</a>
+        <button class="btn ghost sm block mt-1" type="button" data-clear>かごを空にする</button>
       </footer>
     </div>`;
   document.body.append(fab, drawer);
@@ -109,13 +123,14 @@ function initQuoteDrawer() {
     fab.querySelector(".count").textContent = String(list.reduce((s, x) => s + x.qty, 0));
     fab.hidden = list.length === 0 && !drawer.classList.contains("open");
     const ask = list.filter(x => x.price == null).length;
-    drawer.querySelector("[data-sub]").textContent = yen(list.reduce((s, x) => s + (x.price || 0) * x.qty, 0)) + (ask ? ` +要見積${ask}件` : "");
+    drawer.querySelector("[data-sub]").textContent = yen(list.reduce((s, x) => s + (x.price || 0) * x.qty, 0)) + (ask ? ` + ご相談${ask}件` : "");
     body.innerHTML = list.length ? list.map(x => `
       <div class="line">
-        <div><div class="nm">${esc(x.name)}</div><div class="sp">${esc(x.spec)} / ${x.price == null ? "要見積" : yen(x.price)}/${esc(x.unit)}</div>
-          <button class="rm" type="button" data-rm="${esc(x.id)}">削除</button></div>
-        <div class="qty"><button type="button" data-dec="${esc(x.id)}">−</button><input type="number" min="0" value="${x.qty}" data-qty="${esc(x.id)}"><button type="button" data-inc="${esc(x.id)}">＋</button></div>
-      </div>`).join("") : `<p class="muted">まだ何も入っていません。<a href="catalog.html">資材カタログ</a>から追加できます。</p>`;
+        <div class="fig" style="--shelf-bg:var(--surface-2);display:grid;place-items:center"><span class="fig-ic">${figureIcon(x)}</span></div>
+        <div><div class="nm">${esc(x.name)}${x.confirm ? ' <span class="badge warn">要確認</span>' : ""}</div><div class="sp">${esc(x.spec)} / ${x.price == null ? "金額はご相談" : yen(x.price) + "/" + esc(x.unit)}</div>
+          <button class="rm" type="button" data-rm="${esc(x.id)}">けす</button></div>
+        <div class="qty"><button type="button" data-dec="${esc(x.id)}" aria-label="1つ減らす">−</button><span class="n">${x.qty}${esc(x.unit)}</span><button type="button" data-inc="${esc(x.id)}" aria-label="1つ増やす">＋</button></div>
+      </div>`).join("") : `<p class="muted">まだ何も入っていません。<a href="catalog.html">資材をさがす</a>から入れられます。</p>`;
   };
   const open = (v) => { drawer.classList.toggle("open", v); render(); };
   fab.addEventListener("click", () => open(true));
@@ -128,10 +143,12 @@ function initQuoteDrawer() {
     if (t.dataset.inc) { const x = getQuoteList().find(i => i.id === t.dataset.inc); if (x) setQuoteQty(x.id, x.qty + 1); }
     if (t.dataset.dec) { const x = getQuoteList().find(i => i.id === t.dataset.dec); if (x) setQuoteQty(x.id, x.qty - 1); }
   });
-  body.addEventListener("change", e => { const t = e.target; if (t.dataset.qty) setQuoteQty(t.dataset.qty, parseInt(t.value, 10) || 0); });
   document.addEventListener("quotelist:change", render);
   document.addEventListener("keydown", e => { if (e.key === "Escape") open(false); });
   render();
 }
+
+let _icons = null;
+function figureIcon(x) { if (!_icons) { import("./icons.js").then(m => { _icons = m.ICONS; document.dispatchEvent(new CustomEvent("quotelist:change", { detail: getQuoteList() })); }); return ""; } const map = { pipe: "pipe", joint: "joint", reinforce: "reinforce", fastener: "fastener", film: "film", door: "door", vent: "vent", curtain: "curtain", control: "control", irrigation: "irrigation", gutter: "gutter", mulch: "mulch", animal: "animal" }; return _icons[map[x.cat] || "basket"]; }
 
 export function esc(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }

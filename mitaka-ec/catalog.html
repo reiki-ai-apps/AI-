@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/catalog.css">
 
 </head>
 <body>
@@ -24,10 +25,9 @@
     <button class="text-size" type="button" data-textsize aria-pressed="false" title="文字を大きくする"><span aria-hidden="true">あ</span><span class="lbl">文字大</span></button>
     <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">☰</button>
     <nav class="nav" aria-label="メイン">
-      <a href="index.html">トップ</a>
       <a href="karte.html">マイハウスカルテ</a>
       <a href="simulator.html">3Dシミュレーター</a>
-      <a href="catalog.html">資材カタログ</a>
+      <a href="catalog.html">資材をさがす</a>
       <a href="library.html">ハウス図鑑</a>
       <a href="quote.html">見積依頼</a>
       <a class="btn sm accent" href="simulator.html">3Dで見積る</a>
@@ -35,49 +35,44 @@
   </div>
 </header>
 <main>
-<style>
-.chips { display: flex; gap: 0.4rem; flex-wrap: wrap; margin: 1rem 0; }
-.chip { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 0.4rem 0.85rem; font: inherit; font-size: 0.85rem; font-weight: 700; cursor: pointer; color: var(--text); }
-.chip:hover { border-color: var(--green-500); }
-.chip[aria-pressed="true"] { background: var(--green-700); color: #fff; border-color: var(--green-700); }
-.cat-bar { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; justify-content: space-between; margin-bottom: 1rem; }
-.cat-bar .input { max-width: 360px; margin: 0; }
-.products { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
-.product { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
-.product h3 { font-size: 1.02rem; margin: 0; }
-.p-head { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--muted); }
-.p-spec { color: var(--muted); font-size: 0.88rem; }
-.p-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; }
-.p-foot { margin-top: auto; padding-top: 0.6rem; border-top: 1px dashed var(--line); display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
-.p-foot .price { font-size: 1.1rem; }
-.p-add { display: flex; gap: 0.35rem; align-items: center; }
-.p-add input { width: 3.6rem; padding: 0.4rem; border: 1px solid var(--line); border-radius: 8px; font: inherit; text-align: center; }
-.p-note { font-size: 0.8rem; color: var(--green-800); background: var(--green-50); border-radius: 6px; padding: 0.25rem 0.5rem; }
-.price.ask { color: var(--earth-600); }
-.chip.maker { background: var(--green-50); }
-.chip.maker[aria-pressed="true"] { background: var(--earth-500); border-color: var(--earth-500); }
-.maker-row { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
-.maker-row .lbl { font-size: 0.8rem; color: var(--muted); font-weight: 700; }
-</style>
-<section class="container page-head">
-  <div class="breadcrumb"><a href="index.html">トップ</a> › 資材カタログ</div>
-  <h1>資材カタログ</h1>
-  <p id="cat-desc">ハウス関連資材全般を取り扱っています。価格はすべて仮単価(税抜)です。</p>
-</section>
-<section class="container" style="padding-bottom:3rem">
-  <div class="notice">メーカー品の価格は<strong>確認前の参考値または要見積</strong>です。在庫・納期・正式価格は見積依頼後にご案内します。必要な資材を「見積リストへ」に入れると、まとめて見積依頼できます。</div>
-  <div class="maker-row mt-2"><span class="lbl">メーカー</span><div class="chips" id="maker-chips" style="margin:0"></div></div>
-  <div class="chips" id="chips"></div>
-  <div class="cat-bar">
-    <input class="input" id="q" type="search" placeholder="商品名・規格・品番で検索(例: 農PO、φ25.4、巻き上げ)" aria-label="検索">
-    <span class="muted small" id="count"></span>
-  </div>
-  <div class="products" id="grid"></div>
-  <div class="cta-band mt-4">
-    <div><h2>ハウス1棟分をまとめて見積りたい方へ</h2><p>3Dシミュレーターなら、間口と奥行を選ぶだけでアーチ本数・被覆材面積・金具まで自動で数量計算します。</p></div>
-    <a class="btn lg" href="simulator.html">3Dシミュレーターを使う</a>
+<section class="container cat-head">
+  <div class="breadcrumb"><a href="index.html">トップ</a> › 資材をさがす</div>
+  <h1>資材をさがす</h1>
+  <div class="search-row">
+    <label class="box"><span class="sr-only">何をお探しですか</span><input id="q" type="search" placeholder="何をお探しですか？(例: ビニール、くるふぁみ、パイプ)" autocomplete="off" enterkeyhint="search"><button class="clear" id="q-clear" type="button" aria-label="消す" hidden>×</button></label>
+    <button class="mic" id="mic" type="button" aria-label="声で探す" aria-pressed="false" title="声で探す"></button>
   </div>
 </section>
+<section class="container cat-layout" style="padding-bottom:3rem">
+  <nav class="side-nav" id="side-nav" aria-label="棚"></nav>
+  <div>
+    <div id="browse">
+      <div class="sec-title"><h2>困りごとから探す</h2></div>
+      <div class="purposes" id="purposes"></div>
+      <div class="sec-title"><h2>桐生でよく出ているもの <span class="badge warn">今週</span></h2></div>
+      <div class="rail" id="hot"></div>
+      <div id="shelves"></div>
+    </div>
+    <div id="results" hidden>
+      <div class="results-head"><button class="btn ghost back-all" type="button" id="back-all">← すべての棚にもどる</button><h2 id="results-title"></h2><span class="count" id="count"></span></div>
+      <details class="makers" id="makers"><summary>メーカーで絞る</summary><div class="chips" id="maker-chips"></div></details>
+      <div class="grid-cards" id="grid"></div>
+    </div>
+    <div class="help-band">
+      <h2>わからないときは、そのまま聞いてください</h2>
+      <p class="muted" style="margin:0">品名がわからなくても大丈夫。壊れたところの写真を送っていただければ、担当が部品を特定してお見積りします。</p>
+      <div class="btns"><a class="btn help" id="tel-btn" href="quote.html">📞 電話で聞く</a><a class="btn outline" href="quote.html">📷 写真を送って相談</a></div>
+    </div>
+  </div>
+</section>
+<div class="sheet-wrap" id="sheet-wrap" aria-hidden="true">
+  <div class="backdrop"></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <div class="grab"></div>
+    <div class="close-bar"><button type="button" id="sheet-close">✕ とじる</button></div>
+    <div class="sheet-body" id="sheet-body"></div>
+  </div>
+</div>
 </main>
 <footer class="site-footer">
   <div class="container">
@@ -91,7 +86,7 @@
         <ul>
           <li><a href="karte.html">マイハウスカルテ</a></li>
           <li><a href="simulator.html">3Dハウスシミュレーター</a></li>
-          <li><a href="catalog.html">資材カタログ</a></li>
+          <li><a href="catalog.html">資材をさがす</a></li>
           <li><a href="library.html">みんなのハウス図鑑</a></li>
           <li><a href="quote.html">見積依頼・お問い合わせ</a></li>
         </ul>

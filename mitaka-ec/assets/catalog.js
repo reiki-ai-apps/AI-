@@ -1,44 +1,144 @@
-// 資材カタログ: メーカー・カテゴリ絞り込み、検索、見積リストへの追加
-import { initSite, addToQuoteList, esc, yen } from "./site.js";
-import { CATEGORIES, PRODUCTS, MAKERS } from "./catalog-data.js";
+// 資材をさがす: 困りごとタイル・6つの棚・検索(ひらがな/声)・詳細シート・かご
+import { CONFIG } from "./config.js";
+import { initSite, addToQuoteList, flyToCart, esc, yen, toast } from "./site.js";
+import { CATEGORIES, PRODUCTS, MAKERS, SHELVES, PURPOSES, KANA, shelfOf } from "./catalog-data.js";
+import { ICONS } from "./icons.js";
+import { figure, keySpec } from "./figures.js";
+import { attachVoiceSearch } from "./voice.js";
+
 initSite();
 const $ = s => document.querySelector(s);
-const chips = $("#chips"), makerChips = $("#maker-chips"), grid = $("#grid"), q = $("#q"), count = $("#count"), catDesc = $("#cat-desc");
-const state = { cat: "all", maker: "all", q: "" };
 const makerLabel = id => (MAKERS.find(m => m.id === id) || {}).label || "";
+const catLabel = id => (CATEGORIES.find(c => c.id === id) || {}).label || "";
+const state = { mode: "browse", shelf: null, purpose: null, cat: null, maker: "all", q: "" };
+
+// ---- 検索用の正規化(カタカナ→ひらがな、全角英数→半角) ----
+const norm = s => String(s || "").toLowerCase().replace(/[ァ-ヶ]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60)).replace(/[Ａ-Ｚａ-ｚ０-９]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xfee0)).replace(/[\s　・,、。]/g, "");
+const index = new Map(PRODUCTS.map(p => [p.id, norm([p.name, p.spec, p.use, KANA[p.id], makerLabel(p.maker), catLabel(p.cat), ...(p.tags || []), p.id].join(" "))]));
+const unitWord = p => ({ 本: "1本", 袋: "1袋", 箱: "1箱", 個: "1個", 台: "1台", 巻: "1巻", セット: "1セット", 組: "1組", m: "1mあたり", "m²": "1m²あたり", 式: "一式", か所: "1か所", 枚: "1枚" })[p.unit] || `1${p.unit}`;
+
+// ---- カード ----
+function card(p) {
+  const hot = (p.tags || []).includes("人気");
+  const pills = (p.tags || []).filter(t => t !== "人気").slice(0, 2);
+  return `<article class="pcard" data-id="${esc(p.id)}">
+    <button class="pcard-fig" type="button" data-detail="${esc(p.id)}" aria-label="${esc(p.name)} をくわしく見る">${figure(p)}${hot ? `<span class="hot">人気</span>` : ""}</button>
+    <div class="pcard-body">
+      <div class="pcard-maker">${esc(makerLabel(p.maker))}</div>
+      <h3 class="pcard-name">${esc(p.name)}</h3>
+      <p class="pcard-use">${esc(p.use || p.spec)}</p>
+      ${p.price != null ? `<div class="pcard-price">${unitWord(p)} ${yen(p.price)}<small>めやす・税別</small></div>` : `<div class="pcard-price ask">金額はご相談<small>すぐお答えします</small></div>`}
+      <div class="pcard-pills">${pills.map(t => `<span class="pill">${esc(t)}</span>`).join("")}</div>
+    </div>
+    <div class="pcard-acts"><button class="btn accent" type="button" data-add="${esc(p.id)}" aria-label="${esc(p.name)} をかごに入れる">🧺 かごに入れる</button><button class="btn ghost" type="button" data-detail="${esc(p.id)}">くわしく</button></div>
+  </article>`;
+}
+
+// ---- 一覧(棚モード) ----
+function renderBrowse() {
+  $("#purposes").innerHTML = PURPOSES.map(x => x.link
+    ? `<a class="purpose build" href="${x.link}"><span class="ic">${ICONS[x.icon]}</span><span>${esc(x.label)}</span></a>`
+    : `<button class="purpose" type="button" data-purpose="${x.id}"><span class="ic">${ICONS[x.icon]}</span><span>${esc(x.label)}</span></button>`).join("");
+  $("#hot").innerHTML = PRODUCTS.filter(p => (p.tags || []).includes("人気")).slice(0, 9).map(card).join("");
+  $("#shelves").innerHTML = SHELVES.map(s => {
+    const items = PRODUCTS.filter(p => s.cats.includes(p.cat));
+    return `<section class="shelf" id="shelf-${s.id}" style="--shelf:${s.color};--shelf-bg:${s.color}14">
+      <div class="shelf-head"><span class="ic">${ICONS[s.icon]}</span><div><h2>${esc(s.label)}</h2><div class="sub">${esc(s.sub)}</div></div><button class="more" type="button" data-shelf="${s.id}">すべて見る(${items.length})</button></div>
+      <div class="shelf-body"><div class="rail">${items.slice(0, 6).map(card).join("")}</div></div>
+    </section>`;
+  }).join("");
+  $("#side-nav").innerHTML = `<div class="grp">棚</div>` + SHELVES.map(s => `<a href="#shelf=${s.id}" data-nav-shelf="${s.id}" style="--shelf:${s.color}"><span class="ic" style="color:${s.color}">${ICONS[s.icon]}</span>${esc(s.label)}</a>`).join("") +
+    `<div class="grp">困りごと</div>` + PURPOSES.filter(x => !x.link).map(x => `<a class="purpose-link" href="#purpose=${x.id}">${esc(x.label)}</a>`).join("");
+}
+
+// ---- 絞り込み結果 ----
+function matches(p) {
+  if (state.maker !== "all" && p.maker !== state.maker) return false;
+  if (state.shelf) { const s = SHELVES.find(x => x.id === state.shelf); if (!s.cats.includes(p.cat)) return false; }
+  if (state.cat && p.cat !== state.cat) return false;
+  if (state.purpose) { const pu = PURPOSES.find(x => x.id === state.purpose); if (!(pu.cats.includes(p.cat) || (p.tags || []).some(t => pu.tags.includes(t)))) return false; }
+  if (state.q) { const q = norm(state.q); if (!q.split("").length || !index.get(p.id).includes(q)) return false; }
+  return true;
+}
+function renderResults() {
+  const list = PRODUCTS.filter(matches);
+  const s = SHELVES.find(x => x.id === state.shelf), pu = PURPOSES.find(x => x.id === state.purpose);
+  $("#results-title").textContent = state.q ? `「${state.q}」で探しています` : pu ? pu.label : s ? `${s.label}の棚` : state.cat ? catLabel(state.cat) : state.maker !== "all" ? makerLabel(state.maker) : "すべて";
+  $("#count").textContent = `${list.length}件`;
+  $("#maker-chips").innerHTML = [{ id: "all", label: "全メーカー" }, ...MAKERS].map(m => `<button type="button" class="chip" data-maker="${m.id}" aria-pressed="${state.maker === m.id}">${esc(m.label)}</button>`).join("");
+  $("#grid").innerHTML = list.length ? list.map(card).join("") : `<div class="empty"><p style="margin:0;font-weight:700">見つかりませんでした。</p><p class="muted" style="margin:.3rem 0 0">言い方を変えるか、お電話で聞いてみませんか？</p><a class="btn help" href="quote.html">📞 担当に聞く</a></div>`;
+  document.querySelectorAll("[data-nav-shelf]").forEach(a => a.setAttribute("aria-current", String(a.dataset.navShelf === state.shelf)));
+}
+function apply() {
+  const browsing = !state.shelf && !state.purpose && !state.cat && !state.q && state.maker === "all";
+  state.mode = browsing ? "browse" : "results";
+  $("#browse").hidden = !browsing; $("#results").hidden = browsing;
+  if (!browsing) renderResults(); else document.querySelectorAll("[data-nav-shelf]").forEach(a => a.setAttribute("aria-current", "false"));
+  const parts = []; if (state.shelf) parts.push(`shelf=${state.shelf}`); if (state.purpose) parts.push(`purpose=${state.purpose}`); if (state.cat) parts.push(`cat=${state.cat}`); if (state.maker !== "all") parts.push(`maker=${state.maker}`); if (state.q) parts.push(`q=${encodeURIComponent(state.q)}`);
+  const hash = parts.length ? "#" + parts.join("&") : "";
+  if (location.hash !== hash) history.replaceState(null, "", location.pathname + hash);
+  $("#q-clear").hidden = !state.q;
+}
 function readHash() {
-  const m = location.hash.match(/cat=([\w-]+)/); state.cat = m && CATEGORIES.some(c => c.id === m[1]) ? m[1] : "all";
-  const k = location.hash.match(/maker=([\w-]+)/); state.maker = k && MAKERS.some(c => c.id === k[1]) ? k[1] : "all";
+  const h = new URLSearchParams(location.hash.replace(/^#/, ""));
+  state.shelf = SHELVES.some(s => s.id === h.get("shelf")) ? h.get("shelf") : null;
+  state.purpose = PURPOSES.some(p => p.id === h.get("purpose") && !p.link) ? h.get("purpose") : null;
+  state.cat = CATEGORIES.some(c => c.id === h.get("cat")) ? h.get("cat") : null;
+  state.maker = MAKERS.some(m => m.id === h.get("maker")) ? h.get("maker") : "all";
+  state.q = h.get("q") || ""; $("#q").value = state.q;
 }
-function writeHash() { const parts = []; if (state.cat !== "all") parts.push(`cat=${state.cat}`); if (state.maker !== "all") parts.push(`maker=${state.maker}`); history.replaceState(null, "", parts.length ? `#${parts.join("&")}` : location.pathname); }
-function render() {
-  chips.innerHTML = [{ id: "all", label: "すべて", icon: "▣" }, ...CATEGORIES].map(c => `<button type="button" class="chip" data-cat="${c.id}" aria-pressed="${state.cat === c.id}"><span aria-hidden="true">${c.icon}</span> ${esc(c.label)}</button>`).join("");
-  makerChips.innerHTML = [{ id: "all", label: "全メーカー" }, ...MAKERS].map(m => `<button type="button" class="chip maker" data-maker="${m.id}" aria-pressed="${state.maker === m.id}">${esc(m.label)}</button>`).join("");
-  const cur = CATEGORIES.find(c => c.id === state.cat), mk = MAKERS.find(m => m.id === state.maker);
-  catDesc.textContent = mk ? `${mk.label}: ${mk.desc}` : cur ? cur.desc : "パイプハウス関連資材全般を取り扱っています。メーカー品の価格は確認前の参考値、または要見積です。";
-  const kw = state.q.trim().toLowerCase();
-  const list = PRODUCTS.filter(p => (state.cat === "all" || p.cat === state.cat) && (state.maker === "all" || p.maker === state.maker) && (!kw || [p.name, p.spec, p.id, makerLabel(p.maker), ...(p.tags || [])].join(" ").toLowerCase().includes(kw)));
-  count.textContent = `${list.length}件 / 全${PRODUCTS.length}件`;
-  grid.innerHTML = list.length ? list.map(p => `
-    <article class="product" data-id="${esc(p.id)}">
-      <div class="p-head"><span class="badge ${p.maker === "generic" ? "gray" : ""}">${esc(makerLabel(p.maker))}</span><span class="p-id">${esc(p.id)}</span></div>
-      <h3>${esc(p.name)}</h3>
-      <div class="p-spec">${esc(p.spec)}</div>
-      ${p.note ? `<div class="p-note">${esc(p.note)}</div>` : ""}
-      <div class="p-tags"><span class="badge gray">${esc((CATEGORIES.find(c => c.id === p.cat) || {}).label || "")}</span>${(p.tags || []).map(t => `<span class="badge${t === "人気" ? " warn" : ""}">${esc(t)}</span>`).join("")}</div>
-      <div class="p-foot">
-        <div>${p.price != null ? `<span class="price">${yen(p.price)}</span><span class="muted small"> /${esc(p.unit)}(税抜・参考)</span>` : `<span class="price ask">要見積</span><span class="muted small"> /${esc(p.unit)}</span>`}</div>
-        <div class="p-add"><input type="number" min="1" value="1" aria-label="数量"><button type="button" class="btn sm" data-add="${esc(p.id)}">見積リストへ</button></div>
-      </div>
-    </article>`).join("") : `<p class="muted">該当する資材がありません。キーワードやメーカーを変えてお試しください。</p>`;
+function reset() { state.shelf = state.purpose = state.cat = null; state.maker = "all"; state.q = ""; $("#q").value = ""; apply(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+
+// ---- 詳細シート ----
+const wrap = $("#sheet-wrap"), body = $("#sheet-body");
+let sheetQty = 1, sheetProduct = null, lastFocus = null;
+function openSheet(id) {
+  const p = PRODUCTS.find(x => x.id === id); if (!p) return;
+  sheetProduct = p; sheetQty = 1; lastFocus = document.activeElement;
+  const related = PRODUCTS.filter(x => x.cat === p.cat && x.id !== p.id).slice(0, 4);
+  body.innerHTML = `
+    ${figure(p, true)}
+    <div><h2 id="sheet-title">${esc(p.name)}</h2><div class="meta">${esc(makerLabel(p.maker))} / ${esc(catLabel(p.cat))} / 品番 ${esc(p.id)}(お電話のときにお伝えください)</div></div>
+    <div class="use-box"><b>こんな時に使います</b>${esc(p.use || p.spec)}${p.note ? `<br><span class="muted small">${esc(p.note)}</span>` : ""}</div>
+    <table class="spec"><tr><th>規格・サイズ</th><td>${esc(p.spec)}</td></tr><tr><th>売り方</th><td>${esc(unitWord(p))}${keySpec(p) ? ` / ${esc(keySpec(p))}` : ""}</td></tr>${(p.tags || []).length ? `<tr><th>特長</th><td>${p.tags.map(t => `<span class="pill">${esc(t)}</span>`).join(" ")}</td></tr>` : ""}</table>
+    <div class="price-row">${p.price != null ? `<span class="big">${yen(p.price)}</span><small>${esc(unitWord(p))}・税別のめやす</small>` : `<span class="ask">金額はご相談</span><small>すぐお答えします</small>`}<small style="flex-basis:100%">正式な金額は担当がお見積りします。</small></div>
+    <div class="qty-row"><span class="lbl">いくつ？</span><button type="button" id="qty-dec" aria-label="1つ減らす">−</button><span class="n" id="qty-n">1${esc(p.unit)}</span><button type="button" id="qty-inc" aria-label="1つ増やす">＋</button></div>
+    <button class="btn accent add-big" type="button" id="sheet-add">🧺 かごに入れる</button>
+    <div class="help-row">
+      <a class="btn help" href="${CONFIG.tel ? "tel:" + CONFIG.tel : "quote.html?item=" + encodeURIComponent(p.id)}">📞 電話で聞く</a>
+      <a class="btn outline" href="quote.html?item=${encodeURIComponent(p.id)}">📷 写真を送って相談</a>
+      <button class="btn ghost wide" type="button" id="sheet-confirm">これで合っているか、担当に見てもらう(かごに入れて要確認)</button>
+    </div>
+    ${related.length ? `<div><div class="sec-title" style="margin:.25rem 0 .5rem"><h2 style="font-size:1.05rem">同じ棚のほかの品</h2></div><div class="related">${related.map(r => `<button class="rel" type="button" data-detail="${esc(r.id)}">${figure(r)}<div class="nm">${esc(r.name)}</div></button>`).join("")}</div></div>` : ""}`;
+  wrap.classList.add("open"); wrap.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden";
+  $("#sheet-close").focus();
+  const setQty = q => { sheetQty = Math.max(1, q); $("#qty-n").textContent = `${sheetQty}${p.unit}`; };
+  $("#qty-dec").onclick = () => setQty(sheetQty - 1); $("#qty-inc").onclick = () => setQty(sheetQty + 1);
+  $("#sheet-add").onclick = e => { addToQuoteList(withMaker(p), sheetQty); flyToCart(body.querySelector(".fig")); closeSheet(); };
+  $("#sheet-confirm").onclick = () => { addToQuoteList({ ...withMaker(p), confirm: true }, sheetQty); closeSheet(); };
 }
-chips.addEventListener("click", e => { const b = e.target.closest("[data-cat]"); if (!b) return; state.cat = b.dataset.cat; writeHash(); render(); });
-makerChips.addEventListener("click", e => { const b = e.target.closest("[data-maker]"); if (!b) return; state.maker = b.dataset.maker; writeHash(); render(); });
-q.addEventListener("input", () => { state.q = q.value; render(); });
-grid.addEventListener("click", e => {
-  const b = e.target.closest("[data-add]"); if (!b) return;
-  const p = PRODUCTS.find(x => x.id === b.dataset.add); const qty = parseInt(b.parentElement.querySelector("input").value, 10) || 1;
-  if (p) addToQuoteList({ ...p, name: `${p.name}${p.maker !== "generic" ? "(" + makerLabel(p.maker) + ")" : ""}`, price: p.price }, qty);
+function closeSheet() { wrap.classList.remove("open"); wrap.setAttribute("aria-hidden", "true"); document.body.style.overflow = ""; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+const withMaker = p => ({ ...p, name: `${p.name}${p.maker !== "generic" ? "(" + makerLabel(p.maker) + ")" : ""}` });
+wrap.querySelector(".backdrop").addEventListener("click", closeSheet);
+$("#sheet-close").addEventListener("click", closeSheet);
+document.addEventListener("keydown", e => { if (e.key === "Escape" && wrap.classList.contains("open")) closeSheet(); });
+
+// ---- イベント ----
+document.addEventListener("click", e => {
+  const add = e.target.closest("[data-add]");
+  if (add) { const p = PRODUCTS.find(x => x.id === add.dataset.add); if (p) { addToQuoteList(withMaker(p), 1); flyToCart(add.closest(".pcard")?.querySelector(".fig")); } return; }
+  const det = e.target.closest("[data-detail]"); if (det) { openSheet(det.dataset.detail); return; }
+  const pu = e.target.closest("[data-purpose]"); if (pu) { state.purpose = pu.dataset.purpose; state.shelf = null; state.cat = null; state.q = ""; $("#q").value = ""; apply(); window.scrollTo({ top: 0, behavior: "smooth" }); return; }
+  const sh = e.target.closest("[data-shelf]"); if (sh) { state.shelf = sh.dataset.shelf; state.purpose = null; state.cat = null; state.q = ""; $("#q").value = ""; apply(); window.scrollTo({ top: 0, behavior: "smooth" }); return; }
+  const mk = e.target.closest("[data-maker]"); if (mk) { state.maker = mk.dataset.maker; apply(); return; }
 });
-window.addEventListener("hashchange", () => { readHash(); render(); });
-readHash(); render();
+$("#back-all").addEventListener("click", reset);
+$("#q-clear").addEventListener("click", () => { state.q = ""; $("#q").value = ""; apply(); $("#q").focus(); });
+let qt; $("#q").addEventListener("input", () => { clearTimeout(qt); qt = setTimeout(() => { state.q = $("#q").value.trim(); if (state.q) { state.shelf = state.purpose = state.cat = null; } apply(); }, 150); });
+$("#q").addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); $("#q").blur(); } });
+$("#mic").innerHTML = ICONS.mic;
+attachVoiceSearch($("#q"), $("#mic"), t => { state.q = t; state.shelf = state.purpose = state.cat = null; apply(); toast(`「${t}」で探しています`); });
+if (CONFIG.tel) $("#tel-btn").href = `tel:${CONFIG.tel}`;
+window.addEventListener("hashchange", () => { readHash(); apply(); });
+
+renderBrowse(); readHash(); apply();

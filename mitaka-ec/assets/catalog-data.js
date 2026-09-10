@@ -111,3 +111,47 @@ export const PRODUCTS = [
   P("GN-AN-BIRD", "generic", "animal", "防鳥ネット 20mm目", "幅900cm × 50m", "巻", 12600, ["鳥害"], "", "鳥の食害を防ぐネット。")
 ];
 // END PRODUCTS
+
+// ---- 6つの棚(農家の言い方で束ねる) ----
+export const SHELVES = [
+  { id: "frame", label: "骨組み", sub: "パイプ・金具・補強", color: "#2F5D8C", icon: "pipe", cats: ["pipe", "joint", "reinforce"] },
+  { id: "cover", label: "張る", sub: "フィルム・留め具・マルチ", color: "#6B4FA0", icon: "film", cats: ["film", "fastener", "mulch"] },
+  { id: "air", label: "風を通す", sub: "巻き上げ・天窓・扇風機", color: "#2A7BA8", icon: "vent", cats: ["vent"] },
+  { id: "temp", label: "あたためる・冷やす", sub: "カーテン・暖房・環境制御", color: "#C0442A", icon: "heat", cats: ["curtain", "control"] },
+  { id: "water", label: "水をやる", sub: "点滴・ミスト・タイマー", color: "#14776E", icon: "irrigation", cats: ["irrigation"] },
+  { id: "guard", label: "まもる", sub: "獣害・ドア・雨どい", color: "#8F6314", icon: "animal", cats: ["animal", "door", "gutter"] }
+];
+export const shelfOf = catId => SHELVES.find(s => s.cats.includes(catId)) || SHELVES[0];
+
+// ---- 困りごとから探す ----
+export const PURPOSES = [
+  { id: "torn", label: "ビニールが破れた・穴があいた", icon: "recover", cats: ["film", "fastener"], tags: [] },
+  { id: "bent", label: "パイプが曲がった・折れた", icon: "repair", cats: ["pipe", "joint"], tags: [] },
+  { id: "hot", label: "中が暑い・葉が焼ける", icon: "heat", cats: ["vent"], tags: ["遮光", "散乱光", "高温対策"] },
+  { id: "cold", label: "冬の寒さ・燃料代をおさえたい", icon: "curtain", cats: [], tags: ["保温", "暖房", "省エネ"] },
+  { id: "water", label: "水やりを楽にしたい", icon: "water", cats: ["irrigation"], tags: [] },
+  { id: "storm", label: "雪・台風にそなえたい", icon: "storm", cats: ["reinforce"], tags: ["強靭化", "積雪", "強風", "風対策", "基礎"] },
+  { id: "animal", label: "イノシシ・シカ・鳥・虫を防ぐ", icon: "pest", cats: ["animal"], tags: ["防虫"] },
+  { id: "recover", label: "ビニールを張り替える", icon: "film", cats: ["film", "fastener"], tags: [] },
+  { id: "build", label: "新しくハウスを建てる", icon: "build", link: "simulator.html" }
+];
+
+// ---- ふりがな(声や、ひらがなで探せるように) ----
+export const KANA = {
+  "ST-JT-N2": "てんじょうじょいんと", "ST-JT-N10": "てんじょうじょいんと", "ST-JT-IN22": "うちじょいんと", "ST-JT-IN25": "うちじょいんと",
+  "ST-JT-SUEJI": "すえじじょいんと まげずにあーち", "ST-JT-VB": "すえじびにーばー すぷりんぐ", "ST-CR-PC": "ぱいぷくろす", "ST-CR-PB22": "ぱいぷばんど", "ST-CR-PB25": "ぱいぷばんど", "ST-CR-PB31": "ぱいぷばんど",
+  "ST-CR-TB": "りんぐしき てぃーばんど", "ST-CR-JZ": "じざいばんど", "ST-RF-TB32": "たいばーす ゆき かぜ", "ST-RF-TB25": "たいばーす ゆき かぜ", "ST-RF-BRACE": "すじかい かなぐ",
+  "ST-PK-NC22": "ないすきゃっち ぱっかー", "ST-PK-NC25": "ないすきゃっち ぱっかー", "ST-PK-NC31": "ないすきゃっち ぱっかー", "ST-FS-CLIP": "ふぃるむとめかなぐ",
+  "ST-DR-STD": "さとーのどあ つまめんどあ でいりぐち", "ST-DR-RAIL": "どあれーる とぐるま", "ST-VT-TSUMA": "つましょうぐん つまめんかんき", "ST-VT-ROLL": "まきあげき てまわし",
+  "ST-GT-AMANO": "あまのがわ たにどい あまどい れんとう", "ST-GT-SHEET": "たにしーと れんとう",
+  "SW-VT-KF50": "くるふぁみ ごじゅう まきあげき", "SW-VT-KF100": "くるふぁみ ひゃく まきあげき", "SW-VT-KK": "くるっこ まきあげき", "SW-VT-KK100": "くるっこ ひゃく まきあげき", "SW-VT-ACE": "くるふぁみえーす せいぎょばん でんどう",
+  "SW-CT-DRIVE": "かーてん かいへいそうち でんどう", "SW-CT-SCREEN": "ほおん すくりーん かーてん", "SW-CT-SHADE": "しゃこう すくりーん かーてん", "SW-EC-PF4": "ぷろふぁいんだー おんど しつど",
+  "SW-EC-NEXT80": "ぷろふぁいんだー ねくすと", "SW-EC-CLOUD": "ぷろふぁいんだー くらうど", "SW-EC-CO2": "しんこきゅう しーおーつー", "SW-EC-HEATER": "おんぷう だんぼうき", "SW-LED": "ほこう えるいーでぃー", "SW-IR-SYS": "かんすい せいぎょ じどう",
+  "TT-FS-VP4": "びにぺっと れーる びにーるとめ", "TT-FS-VP6": "びにぺっと れーる", "TT-FS-SP": "ひふく すぷりんぐ ばね びにーるとめ",
+  "GN-PP-1910": "あえん めっき ぱいぷ", "GN-PP-2210": "あえん めっき ぱいぷ", "GN-PP-2510": "あえん めっき ぱいぷ", "GN-PP-2560": "あえん めっき ぱいぷ", "GN-PP-3110": "あえん めっき ぱいぷ ふとい",
+  "GN-PP-ARCH54": "まげかこう あーち ぱいぷ", "GN-PP-ARCH72": "まげかこう あーち ぱいぷ", "GN-FL-NOVI010": "のうび びにーる ふぃるむ", "GN-FL-NOVI013": "のうび ぼうてき ふぃるむ びにーる",
+  "GN-FL-PO015": "のうぴーおー のうぽ ふぃるむ びにーる", "GN-FL-PO015S": "のうぴーおー さんらんこう ふぃるむ びにーる", "GN-FL-PO5Y": "たねんばり ふぃるむ びにーる", "GN-FL-ETFE": "ふっそ ふぃるむ ちょうき びにーる",
+  "GN-DR-STD": "つまめん どあ でいりぐち", "GN-VT-FAN40": "じゅんかんせん さーきゅれーたー せんぷうき", "GN-VT-ROOF": "てんまど かいへい", "GN-CT-HEAT": "うちばり ほおん かーてん", "GN-CT-SHADE50": "しゃこう ねっと",
+  "GN-IR-DRIP": "てんてき ちゅーぶ", "GN-IR-MIST": "みすと のずる", "GN-IR-TIMER": "かんすい たいまー", "GN-IR-FILTER": "でぃすく ふぃるたー", "GN-HW-ANCHOR": "らせん くい あんかー",
+  "GN-ML-BLACK": "くろ まるち", "GN-ML-INSECT": "ぼうちゅう ねっと", "GN-ML-WEED": "ぼうそう しーと", "GN-AN-EFENCE": "でんき さく いのしし しか", "GN-AN-NET": "ぼうじゅう ねっと", "GN-AN-BIRD": "ぼうちょう ねっと とり"
+};

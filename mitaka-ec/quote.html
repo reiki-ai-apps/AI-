@@ -24,10 +24,9 @@
     <button class="text-size" type="button" data-textsize aria-pressed="false" title="文字を大きくする"><span aria-hidden="true">あ</span><span class="lbl">文字大</span></button>
     <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">☰</button>
     <nav class="nav" aria-label="メイン">
-      <a href="index.html">トップ</a>
       <a href="karte.html">マイハウスカルテ</a>
       <a href="simulator.html">3Dシミュレーター</a>
-      <a href="catalog.html">資材カタログ</a>
+      <a href="catalog.html">資材をさがす</a>
       <a href="library.html">ハウス図鑑</a>
       <a href="quote.html">見積依頼</a>
       <a class="btn sm accent" href="simulator.html">3Dで見積る</a>
@@ -38,25 +37,25 @@
 <section class="container page-head">
   <div class="breadcrumb"><a href="index.html">トップ</a> › 見積依頼・お問い合わせ</div>
   <h1>見積依頼・お問い合わせ</h1>
-  <p>3Dシミュレーターの内容や、カタログの見積リストをそのまま送れます。内容が空でも、ご相談だけでもお気軽にどうぞ。</p>
+  <p>3Dシミュレーターの内容や、かごの中身をそのまま送れます。内容が空でも、ご相談だけでもお気軽にどうぞ。表示の金額はめやすで、正式な金額は担当がお見積りします。</p>
 </section>
 <section class="container" style="padding-bottom:3rem">
   <div style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:1.25rem;align-items:start" class="quote-grid">
     <form class="card" id="quote-form">
-      <h2>お客様情報</h2>
+      <h2>お名前と電話番号だけで送れます</h2><p class="muted small" style="margin:-.3rem 0 1rem">担当から、翌営業日までにお電話またはメールでご連絡します。</p>
       <div class="form-grid">
         <label class="field">お名前<span class="req">必須</span><input name="name" required autocomplete="name"></label>
         <label class="field">農園名・法人名<input name="farm" autocomplete="organization"></label>
-        <label class="field">電話番号<span class="req">必須</span><input name="tel" type="tel" required autocomplete="tel"></label>
+        <label class="field">電話番号<span class="req">必須</span><input name="tel" type="tel" inputmode="tel" required autocomplete="tel"></label>
         <label class="field">メールアドレス<input name="email" type="email" autocomplete="email"></label>
-        <label class="field">設置予定地(市町村)<span class="req">必須</span><input name="place" required placeholder="例: 群馬県桐生市"></label>
+        <label class="field">設置予定地(市町村)<input name="place" placeholder="例: 群馬県桐生市"></label>
         <label class="field">ご希望時期<select name="timing"><option>未定</option><option>1か月以内</option><option>3か月以内</option><option>半年以内</option><option>来年以降</option></select></label>
         <label class="field">栽培作物<input name="crop" placeholder="例: トマト、いちご、花き"></label>
         <label class="field">ご希望の連絡方法<select name="contact"><option>どちらでも</option><option>電話</option><option>メール</option></select></label>
         <label class="field full">ご相談内容<textarea name="message" placeholder="現地の状況(地盤・風・積雪)、既存ハウスの張り替え、補助金の活用など、何でもご記入ください。"></textarea></label>
       </div>
       <div class="flex mt-3">
-        <button class="btn accent lg" type="submit">この内容で見積依頼する</button>
+        <button class="btn accent lg" type="submit">この内容で見積をたのむ</button>
         <button class="btn ghost" type="button" id="q-copy">内容をコピー</button>
       </div>
       <p class="small muted mt-2">送信いただいた内容は見積作成とご連絡のみに使用します。</p>
@@ -68,7 +67,7 @@
         <pre style="white-space:pre-wrap;font-size:.85rem;margin:.75rem 0 0;line-height:1.6"></pre>
       </div>
       <div class="card mt-2" id="list-summary" hidden>
-        <div class="flex between"><h3 style="margin:0">カタログ見積リスト</h3><a class="btn ghost sm" href="catalog.html">資材を追加する</a></div>
+        <div class="flex between"><h3 style="margin:0">かごの中身</h3><a class="btn ghost sm" href="catalog.html">資材を追加する</a></div>
         <pre style="white-space:pre-wrap;font-size:.85rem;margin:.75rem 0 0;line-height:1.6"></pre>
       </div>
       <div class="card" id="empty-summary" hidden>
@@ -97,7 +96,7 @@
         <ul>
           <li><a href="karte.html">マイハウスカルテ</a></li>
           <li><a href="simulator.html">3Dハウスシミュレーター</a></li>
-          <li><a href="catalog.html">資材カタログ</a></li>
+          <li><a href="catalog.html">資材をさがす</a></li>
           <li><a href="library.html">みんなのハウス図鑑</a></li>
           <li><a href="quote.html">見積依頼・お問い合わせ</a></li>
         </ul>

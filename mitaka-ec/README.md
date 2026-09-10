@@ -15,7 +15,7 @@
 | `index.html` | お客様 | トップ(特徴・ハウスカルテの案内・取り扱い資材・流れ・FAQ) |
 | `karte.html` | お客様 | **マイハウスカルテ**。`?c=お客様コード` で開く。圃場ごとの地図・全棟の仕様・張り替え目安・工事記録・「張り替えを見積る」 |
 | `simulator.html` | お客様・担当者 | 3Dハウスシミュレーター + 概算見積り(URLに内容を保存) |
-| `catalog.html` | お客様 | 資材カタログ(メーカー・カテゴリ絞り込み、検索、見積リスト) |
+| `catalog.html` | お客様 | **資材をさがす**。困りごとタイル、6つの棚(骨組み・張る・風を通す・あたためる冷やす・水をやる・まもる)、ひらがな/声で検索、写真の代わりの寸法図、詳細シート、かご |
 | `library.html` | お客様 | **みんなのハウス図鑑**。名前・場所を出さない集計(5棟未満は非表示)と作物別の定番構成 |
 | `quote.html` | お客様 | 見積依頼(シミュレーター内容・見積リスト・カルテのハウスを添えて送信) |
 | `staff.html` | 担当者 | **ハウスカルテ登録**。お客様・圃場・ハウスを登録し、カルテURLのQRコードを発行。一覧・JSON書き出し |
@@ -31,8 +31,12 @@
 | `assets/pricing.js` | **数量計算と概算見積りのロジック。単価表(`UNIT`)と選択肢(`OPTIONS`)はここ。** 張り替えのみの概算(`estimateRecover`)も含む |
 | `assets/house3d.js` | three.js によるハウスの3D描画 |
 | `assets/simulator.js` / `karte.js` / `staff.js` / `library.js` / `catalog.js` / `quote.js` | 各ページの動作 |
-| `assets/catalog-data.js` | カタログ商品データ(佐藤産業・誠和・東都興業・汎用)。`// BEGIN PRODUCTS` 〜 `// END PRODUCTS` はスクリプトで書き換える範囲 |
-| `assets/site.js` / `style.css` / `simulator.css` | 共通UIとデザイン |
+| `assets/icons.js` / `figures.js` | 写真が無い商品を「形のアイコン + 大きな規格文字」の寸法図で見せる |
+| `assets/voice.js` | 声で探す(対応ブラウザのみボタン表示) |
+| `assets/catalog-data.js` | カタログ商品データ(佐藤産業・誠和・東都興業・汎用)、6つの棚 `SHELVES`、困りごと `PURPOSES`、ふりがな `KANA`。`// BEGIN PRODUCTS` 〜 `// END PRODUCTS` はスクリプトで書き換える範囲 |
+| `assets/site.js` / `style.css` / `simulator.css` / `catalog.css` | 共通UI(かご、文字サイズ3段階)とデザイン |
+
+カタログの設計方針は「絵で選ぶ資材棚」です。商品より先に注意書きを置かない、品番はカード表面に出さない、文字は15px以上・ボタンは56px以上、13分類は6つの棚に束ねる、数量は −/+ で入力させない、を守っています。
 | `scripts/import-catalog.mjs` | 販売管理の商品マスタ(CSV)から `catalog-data.js` の商品を生成 |
 | `supabase/schema.sql` | 本番DBのテーブル定義(customers / plots / houses)と図鑑用ビュー |
 | `vendor/three/`, `vendor/qrcode/` | three.js r180、QRコード生成(いずれもMIT)。CDNに依存せず動くよう同梱 |
