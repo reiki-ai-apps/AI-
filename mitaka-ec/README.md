@@ -33,8 +33,21 @@
 | `assets/simulator.js` / `karte.js` / `staff.js` / `library.js` / `catalog.js` / `quote.js` | 各ページの動作 |
 | `assets/icons.js` / `figures.js` | 写真が無い商品を「形のアイコン + 大きな規格文字」の寸法図で見せる |
 | `assets/voice.js` | 声で探す(対応ブラウザのみボタン表示) |
+| `assets/index.js` / `index.css` | トップページ(3Dヒーロー、時刻スライダー、スクロール連動カメラ、節気の仕事) |
+| `assets/scene.js` / `sekki.js` | 風景SVG(赤城山・田畑)と二十四節気の表 |
 | `assets/catalog-data.js` | カタログ商品データ(佐藤産業・誠和・東都興業・汎用)、6つの棚 `SHELVES`、困りごと `PURPOSES`、ふりがな `KANA`。`// BEGIN PRODUCTS` 〜 `// END PRODUCTS` はスクリプトで書き換える範囲 |
 | `assets/site.js` / `style.css` / `simulator.css` / `catalog.css` | 共通UI(かご、文字サイズ3段階)とデザイン |
+
+## デザイン方針「暁(あかつき)」
+
+ベンチマーク(Bootstrap Farmer、Johnny's Selected Seeds、Greenhouse Megastore、食べチョク、坂ノ途中、北欧暮らしの道具店、Snow Peak、Aesop、土屋鞄、Tesla/IKEA/meviy の構成体験)を調べたうえで、次の方針で作っています。
+
+- 色は「深緑黒 #0B1F16 × 朝焼け #E8622A」の2色対比。緑を面に塗らない。ダーク面は感情(ヒーロー・カルテ・フッター)、明るい面 #F5EFE3 は作業(カタログ・見積・FAQ)。
+- 書体は見出し Zen Old Mincho、本文 BIZ UDPゴシック(UD設計)。数字は等幅。
+- 写真は使わず、実時間3D(`house3d.js`)と線画SVGで画をつくる。トップのヒーローは3Dのハウスに朝6時の低い光を当て、**時刻スライダー**で太陽・空・影が動く。スクロールで外観→軒下→内部へカメラが寄る。
+- 角丸は 4 / 12 / 18 / 999 の4段、明るい面では影を使わず1pxの線。動きは 160/240/420/900ms。
+- 農業らしさは、朝の光、赤城山の稜線(面の境界の罫線)、二十四節気の帯(最上部)、土色の下線だけで出す。
+- 70代向けは「文字を大きく」だけに頼らず、行間1.75、コントラスト4.5:1、タップ56px、農家の言葉(「被覆資材」→「張る」)で対応。
 
 カタログの設計方針は「絵で選ぶ資材棚」です。商品より先に注意書きを置かない、品番はカード表面に出さない、文字は15px以上・ボタンは56px以上、13分類は6つの棚に束ねる、数量は −/+ で入力させない、を守っています。
 | `scripts/import-catalog.mjs` | 販売管理の商品マスタ(CSV)から `catalog-data.js` の商品を生成 |

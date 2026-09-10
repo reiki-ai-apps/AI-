@@ -118,11 +118,11 @@ export function createViewer(container, options = {}) {
     container.innerHTML = `<div class="viewer-fallback">この端末では3D表示(WebGL)を利用できません。<br>数量と概算見積りは右側の一覧でご確認ください。</div>`;
     return { update() {}, setView() {}, setLabels() {}, screenshot() { return null; }, dispose() {}, ok: false };
   }
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, options.maxPixelRatio || 2));
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
+  renderer.toneMappingExposure = options.exposure ?? 1.05;
   renderer.domElement.className = "viewer-canvas";
   container.appendChild(renderer.domElement);
 
@@ -136,12 +136,12 @@ export function createViewer(container, options = {}) {
   scene.fog = new THREE.FogExp2(skyColor.getHex(), options.fog ?? 0.0045);
   if (options.transparent) renderer.setClearColor(0x000000, 0);
 
-  const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 2000);
+  const camera = new THREE.PerspectiveCamera(options.fov || 42, 1, 0.1, 2000);
   camera.position.set(14, 7, -20);
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true; controls.dampingFactor = 0.08;
-  if (showcase) { controls.autoRotate = true; controls.autoRotateSpeed = options.rotateSpeed || 0.6; controls.enableZoom = !!options.zoom; controls.enablePan = false; }
+  if (showcase) { controls.autoRotate = !!options.autoRotate; controls.autoRotateSpeed = options.rotateSpeed || 0.6; controls.enableZoom = !!options.zoom; controls.enablePan = false; controls.enabled = options.interactive !== false; }
   controls.maxPolarAngle = Math.PI / 2 - 0.03;
   controls.minDistance = 1.2; controls.maxDistance = 600;
   controls.target.set(0, 1.5, 0);
@@ -330,10 +330,8 @@ export function createViewer(container, options = {}) {
     const sc = sun.shadow.camera; sc.left = -span; sc.right = span; sc.top = span; sc.bottom = -span; sc.near = 1; sc.far = 400; sc.updateProjectionMatrix();
   }
 
-  function fit(view = "exterior", animate = true) {
-    if (!g) return;
-    currentView = view;
-    if (heightLabels) heightLabels.visible = view !== "top";
+  function computePose(view = "exterior") {
+    if (!g) return null;
     const { a, Hr, L } = g;
     const c = new V3(0, Hr * 0.45, 0);
     const R = Math.sqrt(a * a + (Hr / 2) ** 2 + (L / 2) ** 2);
@@ -346,7 +344,8 @@ export function createViewer(container, options = {}) {
       case "front": dir = new V3(0.22, 0.3, -1); dist *= 0.8; target.set(0, Hr * 0.4, 0); break;
       case "side": dir = new V3(1, 0.42, 0.06); break;
       case "top": dir = new V3(0, 1, -0.001); dist *= 0.95; break;
-      case "interior": pos = new V3(-a * 0.3, 1.75, -L / 2 + 1.2); target = new V3(-a * 0.12, 1.2, L / 2); break; // 中柱と正面衝突しないよう少し横にずらす
+      case "interior": pos = new V3(-a * 0.3, 1.75, -L / 2 + 1.2); pos.isInterior = true; target = new V3(-a * 0.12, 1.2, L / 2); break; // 中柱と正面衝突しないよう少し横にずらす
+      case "eave": pos = new V3(a + 2.2, 1.6, -L / 2 + 3.5); pos.isInterior = true; target = new V3(0, g.He + 0.6, L * 0.15); break; // 軒下から奥を見る
       default: dir = showcase ? (camera.aspect < 1 ? new V3(0.7, 0.42, -1.0) : new V3(1, 0.4, -1.1)) : camera.aspect < 1 ? new V3(0.55, 0.6, -1.15) : new V3(1, 0.62, -1.25); // 縦長画面では奥行方向から見て収まりを良くする
     }
     if (!pos) {
@@ -372,8 +371,14 @@ export function createViewer(container, options = {}) {
     }
     if (showcase && !pos.isInterior) { const k = options.zoomFactor || 0.86; pos.copy(target.clone().add(pos.clone().sub(target).multiplyScalar(k))); }
     pos.y = Math.max(pos.y, 0.5);
-    if (!animate) { camera.position.copy(pos); controls.target.copy(target); controls.update(); anim = null; return; }
-    anim = { p0: camera.position.clone(), t0: controls.target.clone(), p1: pos, t1: target, start: performance.now(), dur: 650 };
+    return { pos, target };
+  }
+  function fit(view = "exterior", animate = true) {
+    const pose = computePose(view); if (!pose) return;
+    currentView = view;
+    if (heightLabels) heightLabels.visible = view !== "top";
+    if (!animate) { camera.position.copy(pose.pos); controls.target.copy(pose.target); controls.update(); anim = null; return; }
+    anim = { p0: camera.position.clone(), t0: controls.target.clone(), p1: pose.pos, t1: pose.target, start: performance.now(), dur: options.cameraMs || 650 };
   }
 
   function resize() {
@@ -410,6 +415,9 @@ export function createViewer(container, options = {}) {
     },
     setSky(hex) { const c = new THREE.Color(hex); if (!options.transparent) scene.background = c; scene.fog.color = c; },
     setAutoRotate(on) { controls.autoRotate = !!on; },
+    getPose(view) { return computePose(view); },
+    setPose(pos, target) { anim = null; camera.position.copy(pos); controls.target.copy(target); controls.update(); },
+    get camera() { return camera; },
     update(est, opts = {}) {
       const prev = g ? { L: g.L, W: g.W, Hr: g.Hr } : null;
       build(est);

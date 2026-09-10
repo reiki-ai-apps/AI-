@@ -27,10 +27,10 @@ function card(p) {
       <div class="pcard-maker">${esc(makerLabel(p.maker))}</div>
       <h3 class="pcard-name">${esc(p.name)}</h3>
       <p class="pcard-use">${esc(p.use || p.spec)}</p>
-      ${p.price != null ? `<div class="pcard-price">${unitWord(p)} ${yen(p.price)}<small>めやす・税別</small></div>` : `<div class="pcard-price ask">金額はご相談<small>すぐお答えします</small></div>`}
+      ${p.price != null ? `<div class="pcard-price"><span class="yen">¥</span>${Math.round(p.price * 1.1).toLocaleString("ja-JP")}<small>税込 / ${esc(unitWord(p))}</small></div>` : `<div class="pcard-price ask">${["pipe", "film", "door", "gutter", "curtain"].includes(p.cat) ? "ハウスのサイズで変わります" : "金額はご相談"}<small>${["pipe", "film", "door", "gutter", "curtain"].includes(p.cat) ? "→ 3Dで出す" : "すぐお答えします"}</small></div>`}
       <div class="pcard-pills">${pills.map(t => `<span class="pill">${esc(t)}</span>`).join("")}</div>
     </div>
-    <div class="pcard-acts"><button class="btn accent" type="button" data-add="${esc(p.id)}" aria-label="${esc(p.name)} をかごに入れる">🧺 かごに入れる</button><button class="btn ghost" type="button" data-detail="${esc(p.id)}">くわしく</button></div>
+    <div class="pcard-acts"><button class="btn accent" type="button" data-add="${esc(p.id)}" aria-label="${esc(p.name)} をかごに入れる"><span class="ic">${ICONS.basket}</span>かごに入れる</button><button class="btn ghost" type="button" data-detail="${esc(p.id)}">くわしく</button></div>
   </article>`;
 }
 
@@ -66,7 +66,7 @@ function renderResults() {
   $("#results-title").textContent = state.q ? `「${state.q}」で探しています` : pu ? pu.label : s ? `${s.label}の棚` : state.cat ? catLabel(state.cat) : state.maker !== "all" ? makerLabel(state.maker) : "すべて";
   $("#count").textContent = `${list.length}件`;
   $("#maker-chips").innerHTML = [{ id: "all", label: "全メーカー" }, ...MAKERS].map(m => `<button type="button" class="chip" data-maker="${m.id}" aria-pressed="${state.maker === m.id}">${esc(m.label)}</button>`).join("");
-  $("#grid").innerHTML = list.length ? list.map(card).join("") : `<div class="empty"><p style="margin:0;font-weight:700">見つかりませんでした。</p><p class="muted" style="margin:.3rem 0 0">言い方を変えるか、お電話で聞いてみませんか？</p><a class="btn help" href="quote.html">📞 担当に聞く</a></div>`;
+  $("#grid").innerHTML = list.length ? list.map(card).join("") : `<div class="empty"><p style="margin:0;font-weight:700">見つかりませんでした。</p><p class="muted" style="margin:.3rem 0 0">言い方を変えるか、お電話で聞いてみませんか？</p><a class="btn help" href="quote.html"><span class="ic">${ICONS.phone}</span>担当に聞く</a></div>`;
   document.querySelectorAll("[data-nav-shelf]").forEach(a => a.setAttribute("aria-current", String(a.dataset.navShelf === state.shelf)));
 }
 function apply() {
@@ -101,12 +101,12 @@ function openSheet(id) {
     <div><h2 id="sheet-title">${esc(p.name)}</h2><div class="meta">${esc(makerLabel(p.maker))} / ${esc(catLabel(p.cat))} / 品番 ${esc(p.id)}(お電話のときにお伝えください)</div></div>
     <div class="use-box"><b>こんな時に使います</b>${esc(p.use || p.spec)}${p.note ? `<br><span class="muted small">${esc(p.note)}</span>` : ""}</div>
     <table class="spec"><tr><th>規格・サイズ</th><td>${esc(p.spec)}</td></tr><tr><th>売り方</th><td>${esc(unitWord(p))}${keySpec(p) ? ` / ${esc(keySpec(p))}` : ""}</td></tr>${(p.tags || []).length ? `<tr><th>特長</th><td>${p.tags.map(t => `<span class="pill">${esc(t)}</span>`).join(" ")}</td></tr>` : ""}</table>
-    <div class="price-row">${p.price != null ? `<span class="big">${yen(p.price)}</span><small>${esc(unitWord(p))}・税別のめやす</small>` : `<span class="ask">金額はご相談</span><small>すぐお答えします</small>`}<small style="flex-basis:100%">正式な金額は担当がお見積りします。</small></div>
+    <div class="price-row">${p.price != null ? `<span class="big">${yen(Math.round(p.price * 1.1))}</span><small>税込 / ${esc(unitWord(p))}(税別 ${yen(p.price)})</small>` : `<span class="ask">金額はご相談</span><small>すぐお答えします</small>`}<small style="flex-basis:100%">表示はめやすです。正式な金額は担当がお見積りします。</small></div>
     <div class="qty-row"><span class="lbl">いくつ？</span><button type="button" id="qty-dec" aria-label="1つ減らす">−</button><span class="n" id="qty-n">1${esc(p.unit)}</span><button type="button" id="qty-inc" aria-label="1つ増やす">＋</button></div>
-    <button class="btn accent add-big" type="button" id="sheet-add">🧺 かごに入れる</button>
+    <button class="btn accent add-big" type="button" id="sheet-add"><span class="ic">${ICONS.basket}</span>かごに入れる</button>
     <div class="help-row">
-      <a class="btn help" href="${CONFIG.tel ? "tel:" + CONFIG.tel : "quote.html?item=" + encodeURIComponent(p.id)}">📞 電話で聞く</a>
-      <a class="btn outline" href="quote.html?item=${encodeURIComponent(p.id)}">📷 写真を送って相談</a>
+      <a class="btn help" href="${CONFIG.tel ? "tel:" + CONFIG.tel : "quote.html?item=" + encodeURIComponent(p.id)}"><span class="ic">${ICONS.phone}</span>電話で聞く</a>
+      <a class="btn outline" href="quote.html?item=${encodeURIComponent(p.id)}"><span class="ic">${ICONS.camera}</span>写真を送って相談</a>
       <button class="btn ghost wide" type="button" id="sheet-confirm">これで合っているか、担当に見てもらう(かごに入れて要確認)</button>
     </div>
     ${related.length ? `<div><div class="sec-title" style="margin:.25rem 0 .5rem"><h2 style="font-size:1.05rem">同じ棚のほかの品</h2></div><div class="related">${related.map(r => `<button class="rel" type="button" data-detail="${esc(r.id)}">${figure(r)}<div class="nm">${esc(r.name)}</div></button>`).join("")}</div></div>` : ""}`;
@@ -137,6 +137,8 @@ $("#q-clear").addEventListener("click", () => { state.q = ""; $("#q").value = ""
 let qt; $("#q").addEventListener("input", () => { clearTimeout(qt); qt = setTimeout(() => { state.q = $("#q").value.trim(); if (state.q) { state.shelf = state.purpose = state.cat = null; } apply(); }, 150); });
 $("#q").addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); $("#q").blur(); } });
 $("#mic").innerHTML = ICONS.mic;
+if (innerWidth < 480) $("#q").placeholder = "何をお探しですか？";
+document.querySelectorAll("[data-icon]").forEach(el => { el.innerHTML = ICONS[el.dataset.icon] || ""; });
 attachVoiceSearch($("#q"), $("#mic"), t => { state.q = t; state.shelf = state.purpose = state.cat = null; apply(); toast(`「${t}」で探しています`); });
 if (CONFIG.tel) $("#tel-btn").href = `tel:${CONFIG.tel}`;
 window.addEventListener("hashchange", () => { readHash(); apply(); });

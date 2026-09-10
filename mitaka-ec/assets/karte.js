@@ -53,7 +53,7 @@ function render(c, plots, houses) {
     <section class="plot">
       <div class="plot-head">
         <div class="card" style="padding:1rem 1.2rem">
-          <h2 style="font-size:1.25rem;margin:0 0 .25rem">📍 ${esc(g.plot.name)} <span class="muted small" style="font-weight:400">${esc(g.plot.area || "")}</span></h2>
+          <h2 style="font-size:1.25rem;margin:0 0 .25rem">${esc(g.plot.name)} <span class="muted small" style="font-weight:400">${esc(g.plot.area || "")}</span></h2>
           <div class="muted small">${g.houses.length}棟 / 合計 ${g.houses.reduce((s, h) => s + computeGeometry(h.params).floorArea, 0).toFixed(0)} m²${g.plot.note ? " / " + esc(g.plot.note) : ""}</div>
           ${g.plot.lat && g.plot.lng ? `<a class="small no-print" href="https://www.google.com/maps?q=${g.plot.lat},${g.plot.lng}" target="_blank" rel="noopener">地図アプリで開く</a>` : `<span class="small muted">位置は未登録です</span>`}
         </div>

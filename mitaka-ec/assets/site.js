@@ -1,4 +1,6 @@
 // 共通UI: ナビ、トースト、見積リスト(カタログの選択品をブラウザに保存)
+import { ICONS } from "./icons.js";
+import { currentSekki } from "./sekki.js";
 const STORAGE_KEY = "mitaka-ec-quote-list-v1";
 
 export function initSite() {
@@ -22,6 +24,10 @@ export function initSite() {
   });
   const y = document.querySelector("[data-year]");
   if (y) y.textContent = String(new Date().getFullYear());
+  const sekki = document.getElementById("sekki");
+  if (sekki) { const t = currentSekki(); sekki.querySelector("b").textContent = t.name; sekki.querySelector("span").textContent = t.task; }
+  const header = document.querySelector(".site-header");
+  if (header) { const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 80); onScroll(); addEventListener("scroll", onScroll, { passive: true }); }
   initTextSize();
   initQuoteDrawer();
 }
@@ -101,7 +107,7 @@ function initQuoteDrawer() {
   if (document.body.dataset.noQuoteList != null) return;
   const fab = document.createElement("button");
   fab.className = "quote-fab"; fab.type = "button";
-  fab.innerHTML = `🧺 かご <span class="count">0</span>`;
+  fab.innerHTML = `<span class="ic">${ICONS.basket}</span> かご <span class="count">0</span>`;
   const drawer = document.createElement("div");
   drawer.className = "drawer";
   drawer.innerHTML = `
@@ -148,7 +154,6 @@ function initQuoteDrawer() {
   render();
 }
 
-let _icons = null;
-function figureIcon(x) { if (!_icons) { import("./icons.js").then(m => { _icons = m.ICONS; document.dispatchEvent(new CustomEvent("quotelist:change", { detail: getQuoteList() })); }); return ""; } const map = { pipe: "pipe", joint: "joint", reinforce: "reinforce", fastener: "fastener", film: "film", door: "door", vent: "vent", curtain: "curtain", control: "control", irrigation: "irrigation", gutter: "gutter", mulch: "mulch", animal: "animal" }; return _icons[map[x.cat] || "basket"]; }
+function figureIcon(x) { const map = { pipe: "pipe", joint: "joint", reinforce: "reinforce", fastener: "fastener", film: "film", door: "door", vent: "vent", curtain: "curtain", control: "control", irrigation: "irrigation", gutter: "gutter", mulch: "mulch", animal: "animal" }; return ICONS[map[x.cat] || "basket"]; }
 
 export function esc(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }

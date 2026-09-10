@@ -3,23 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>三高産業 ハウスEC｜ビニールハウスを3Dで組んで、その場で概算見積り</title>
-<meta name="description" content="群馬県桐生市の三高産業が運営するビニールハウス資材・施工のオンライン見積サイト。マイハウスカルテ、3Dシミュレーター、資材カタログ。">
+<title>三高産業 ハウスEC｜朝いちばんの光が、いちばん高く売れる。</title>
+<meta name="description" content="群馬・桐生の三高産業。ビニールハウスを3Dで組んで概算見積り、マイハウスカルテ、農家の言葉で探せる資材の棚。">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#1f6b3a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/index.css">
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js","three/addons/":"./vendor/three/"}}</script>
 
 </head>
 <body>
-<div class="proto-banner"><strong>プロトタイプ版</strong>　表示している価格はすべて仮単価です。正式なお見積りは現地確認後にご提出します。</div>
+<div class="sekki" id="sekki" aria-label="二十四節気"><b>—</b><span></span><span class="proto">試作版・価格はめやす</span></div>
 <header class="site-header">
   <div class="container inner">
     <a class="brand" href="index.html">
-      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 20V11a9 9 0 0 1 18 0v9"/><path d="M3 20h18M12 2.2V20M7 20V6.2M17 20V6.2"/></svg></span>
-      <span class="brand-text"><span class="name">三高産業 ハウスEC</span><span class="sub">ビニールハウス資材・施工のオンライン見積</span></span>
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 20V11a9 9 0 0 1 18 0v9"/><path d="M3 20h18M12 2.2V20M7 20V6.2M17 20V6.2"/><circle cx="19.5" cy="4.5" r="1.6" fill="currentColor" stroke="none"/></svg></span>
+      <span class="brand-text"><span class="name">三高産業</span><span class="sub">ハウス資材と施工 ・ 群馬・桐生</span></span>
     </a>
     <button class="text-size" type="button" data-textsize aria-pressed="false" title="文字を大きくする"><span aria-hidden="true">あ</span><span class="lbl">文字大</span></button>
     <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">☰</button>
@@ -34,107 +36,101 @@
   </div>
 </header>
 <main>
-<section class="hero">
+<script>document.querySelector(".site-header").classList.add("on-dark");</script>
+<section class="hero" id="hero">
+  <div class="land" id="hero-land"></div>
+  <div class="v3d" id="hero3d"></div>
+  <img class="fallback" src="assets/hero-dawn.jpg" alt="朝焼けの中のパイプハウス(3D)" width="1600" height="900" loading="eager">
+  <div class="scrim"></div>
+  <div class="copy reveal in">
+    <div class="kicker">MITAKA SANGYO ・ 群馬・桐生から</div>
+    <h1>朝いちばんの光が、<br>いちばん高く売れる。</h1>
+    <p class="sub">間口と奥行を選ぶだけ。三高産業のハウスを、いまここで組み立てられます。資材も、見積りも、施工も、あなたのカルテから。</p>
+    <div class="actions"><a class="btn accent lg" href="simulator.html">3Dで見積る</a><a class="textlink" href="catalog.html">資材をさがす</a></div>
+  </div>
+  <div class="timebar" id="timebar">
+    <span class="t" id="time-label">朝 6:00</span>
+    <input type="range" id="time" min="5" max="18" step="0.25" value="6" aria-label="時刻を動かすと、光と影が変わります">
+    <span class="hint">動かすと、光と影が変わります</span>
+  </div>
+</section>
+
+<section class="section" style="padding-top:40px;padding-bottom:40px">
+  <div class="container stats reveal">
+    <div class="stat"><div class="v" data-count="20000">0<small>点</small></div><div class="k">取り扱い資材。パイプから<u>環境制御</u>まで</div></div>
+    <div class="stat"><div class="v" data-count="30">0<small>秒</small></div><div class="k">3Dで間口と奥行を選べば、<u>概算見積り</u>が出る</div></div>
+    <div class="stat"><div class="v" data-count="6">0<small>つの棚</small></div><div class="k">「張る」「風を通す」。<u>農家の言葉</u>で探せる</div></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="doors reveal">
+      <a class="door" href="karte.html"><span class="ic" data-icon="bell"></span><div><h3>マイハウスカルテ</h3><p>あなたのハウスの寸法・張った年・工事の記録。張り替え時期のお知らせも。</p></div><span class="go">開く →</span></a>
+      <a class="door" href="simulator.html"><span class="ic" data-icon="cube"></span><div><h3>3Dで見積る</h3><p>間口・奥行・被覆材を選ぶと、3Dと概算金額がその場で出ます。</p></div><span class="go">組む →</span></a>
+      <a class="door" href="catalog.html"><span class="ic" data-icon="basket"></span><div><h3>資材をさがす</h3><p>困りごとの言葉から。写真がなくても、形と数字で選べます。</p></div><span class="go">さがす →</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-title reveal"><span class="eyebrow">SHELVES</span><h2>6つの棚</h2><p>骨組み、張る、風を通す、あたためる・冷やす、水をやる、まもる。棚を開くと、寸法図と金額が並びます。</p></div>
+    <div class="shelf-rail reveal" id="shelf-rail"></div>
+  </div>
+</section>
+
+<div class="ridge" aria-hidden="true"><svg viewBox="0 0 1600 80" preserveAspectRatio="none"><path d="M0 80 L0 62 C120 58 200 30 320 34 C420 38 480 62 560 58 C700 52 760 18 880 22 C980 26 1040 54 1120 52 C1240 48 1300 26 1400 30 C1500 34 1560 56 1600 58 L1600 80 Z" fill="#F5EFE3"/></svg></div>
+<section class="section dark karte-sec">
   <div class="container grid">
-    <div>
-      <span class="badge">群馬県桐生市 ・ ビニールハウス資材と施工</span>
-      <h1 class="mt-2">ハウスを<span class="accent">3Dで組んで</span>、<br>その場で概算見積り。</h1>
-      <p class="lead">三高産業のハウスECは、パイプハウスの資材選びから見積り・施工相談までをオンラインで。間口と奥行を選ぶだけで、3Dモデルと概算金額がすぐに表示されます。</p>
-      <div class="actions">
-        <a class="btn accent lg" href="simulator.html">3Dシミュレーターで見積る</a>
-        <a class="btn outline lg" href="catalog.html">資材をさがす</a>
+    <div class="reveal">
+      <div class="section-title"><span class="eyebrow">HOUSE KARTE</span><h2>ハウスは、次の代まで使う道具です。</h2><p>担当者が訪問時に、あなたのハウスの寸法・骨組・被覆材を登録します。次からはスマホで開くだけ。寸法を測り直さなくても、ぴったりの資材が注文できます。</p></div>
+      <div class="benefit"><span class="ic" data-icon="bell"></span><div><h3>張り替え時期をお知らせ</h3><p>被覆材の種類と張った年から次の目安を計算。台風・降雪の前には点検のご案内。</p></div></div>
+      <div class="benefit"><span class="ic" data-icon="recover"></span><div><h3>再注文はワンタップ</h3><p>「このハウスの張り替えを見積る」を押すだけで、面積と金具の数量まで自動計算。</p></div></div>
+      <div class="benefit"><span class="ic" data-icon="storm"></span><div><h3>災害のとき、順番を待たせない</h3><p>どこに何棟あるかがわかっているので、資材の確保と修理を登録済みのお客様から。</p></div></div>
+      <p class="mt-3"><a class="btn light pill" href="karte.html?c=DEMO01">デモのカルテを見る</a> <a class="textlink" href="library.html" style="margin-left:16px;color:var(--paper)">みんなのハウス図鑑</a></p>
+    </div>
+    <div class="phone pre" id="phone">
+      <div class="scr">
+        <div class="hd">山田農園 山田 太郎 様</div>
+        <div class="sub">桐生市新里町 / トマト / 3棟</div>
+        <div class="todo"><i></i><div><b>3号: 要補修</b><small>北側妻面のフィルムに裂け目</small></div></div>
+        <div class="todo"><i style="background:var(--gold)"></i><div><b>1号: 来年が張り替えの目安</b><small>農PO 0.15mm / 2023年張り</small></div></div>
+        <div class="hcard"><div class="nm">1号 <span class="badge">良好</span></div><dl><dt>大きさ</dt><dd>間口5.4m × 奥行30m</dd><dt>骨組</dt><dd>φ25.4 @50cm 肩高1.6m</dd><dt>被覆材</dt><dd>農PO 0.15mm(2023年)</dd></dl><span class="btn accent">張り替えを見積る</span></div>
       </div>
-      <p class="note">会員登録は不要・無料でお使いいただけます。表示価格は仮単価で、正式なお見積りは現地確認後にご提出します。</p>
     </div>
-    <a class="hero-visual" href="simulator.html" aria-label="3Dハウスシミュレーターを開く">
-      <img src="assets/hero-3d.jpg" alt="3Dシミュレーターで表示した間口6m×奥行24mのパイプハウス" width="1200" height="900" loading="eager">
-      <span class="tag">▶ 3Dシミュレーター(実際の画面)</span>
-    </a>
   </div>
 </section>
+<div class="ridge flip" aria-hidden="true"><svg viewBox="0 0 1600 80" preserveAspectRatio="none"><path d="M0 80 L0 62 C120 58 200 30 320 34 C420 38 480 62 560 58 C700 52 760 18 880 22 C980 26 1040 54 1120 52 C1240 48 1300 26 1400 30 C1500 34 1560 56 1600 58 L1600 80 Z" fill="#F5EFE3"/></svg></div>
 
 <section class="section">
   <div class="container">
-    <div class="section-title">
-      <span class="eyebrow">FEATURES</span>
-      <h2>ハウスづくりを、もっとわかりやすく</h2>
-      <p>図面や資材リストがなくても大丈夫。3Dで形を確かめながら、必要な資材と概算金額を確認できます。</p>
-    </div>
-    <div class="cards">
-      <div class="card"><div class="icon">⬢</div><h3>3Dビューで見積りが楽</h3><p>間口・奥行・肩高・被覆材・換気を選ぶと、ハウスの3Dモデルと数量、概算金額が同時に更新されます。</p></div>
-      <div class="card"><div class="icon">▦</div><h3>資材カタログ</h3><p>パイプ、農ビ・農PO、換気・カーテン・潅水用品、金具まで。必要なものを見積リストに入れて、まとめて依頼できます。</p></div>
-      <div class="card"><div class="icon">🛠</div><h3>施工までおまかせ</h3><p>新設だけでなく、張り替え・修理・メンテナンスもご相談ください。資材のみのご購入にも対応します。</p></div>
-      <div class="card"><div class="icon">↗</div><h3>URLで共有・相談</h3><p>作った内容はURLに保存されます。ご家族やJA担当者と共有したり、あとで続きから編集できます。</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="section" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-  <div class="container">
-    <div class="section-title">
-      <span class="eyebrow">HOUSE KARTE</span>
-      <h2>あなたのハウスの「カルテ」を、無料でお作りします</h2>
-      <p>担当者が訪問時にハウスの寸法・骨組・被覆材を登録します。次からはスマホで自分のハウスを開くだけ。寸法を測り直さなくても、ぴったりの資材が注文できます。</p>
-    </div>
-    <div class="cards">
-      <div class="card"><div class="icon">🗂</div><h3>圃場ごとに全棟が見える</h3><p>地図と一緒に、1棟ずつの仕様・張った年・工事の記録が並びます。家族や後継者にもそのまま引き継げます。</p></div>
-      <div class="card"><div class="icon">🔔</div><h3>張り替え時期をお知らせ</h3><p>被覆材の種類と張った年から次の目安を計算。台風・降雪の前には点検のご案内が届きます。</p></div>
-      <div class="card"><div class="icon">⚡</div><h3>再注文はワンタップ</h3><p>「このハウスの張り替えを見積る」を押すだけで、面積・金具の数量まで自動計算した概算が出ます。</p></div>
-      <div class="card"><div class="icon">🛡</div><h3>災害時は優先対応</h3><p>どこに何棟あるかがわかっているので、台風・大雪のあとの資材確保と修理を登録済みのお客様から順にご案内します。</p></div>
-    </div>
-    <p class="center mt-3"><a class="btn accent" href="karte.html?c=DEMO01">デモのカルテを見る</a> <a class="btn outline" href="library.html">みんなのハウス図鑑を見る</a></p>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-title">
-      <span class="eyebrow">CATALOG</span>
-      <h2>6つの棚から、さがす</h2>
-      <p>骨組み、張る、風を通す、あたためる・冷やす、水をやる、まもる。困りごとの言葉で探せます。</p>
-    </div>
-    <div class="tiles" id="category-tiles"></div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-title">
-      <span class="eyebrow">FLOW</span>
-      <h2>ご利用の流れ</h2>
-    </div>
-    <div class="steps">
-      <div class="step"><h3>形を決める</h3><p>3Dシミュレーターで間口・奥行・設備を選び、3Dで形を確認します。</p></div>
-      <div class="step"><h3>概算を確認</h3><p>数量と概算金額をその場で確認。URLをコピーして共有・保存できます。</p></div>
-      <div class="step"><h3>見積依頼</h3><p>「この内容で見積依頼」から連絡先を送信。必要に応じて現地を確認します。</p></div>
-      <div class="step"><h3>正式見積り・施工</h3><p>地盤・積雪・風の条件を反映した正式見積りをご提出し、施工日程を調整します。</p></div>
+    <div class="section-title reveal"><span class="eyebrow">MITAKA SANGYO</span><h2>売るだけでなく、建てて、直して、見ています。</h2></div>
+    <div class="promises reveal">
+      <div class="promise"><h3>新設から張り替え・修理まで</h3><p>ハウスの新設、被覆材の張り替え、台風・雪のあとの修理、日ごろのメンテナンスまで、自社の施工班が伺います。</p></div>
+      <div class="promise"><h3>群馬・桐生から、隣接県へ</h3><p>群馬県内と隣接県を中心に対応。その他の地域も、運搬と施工の段取りをご相談のうえで。</p></div>
+      <div class="promise"><h3>地域のJA・生産者とともに</h3><p>長く地域の施設園芸を支えてきた資材屋として、農家さんの一棟一棟を記録し、次の代へ引き継ぎます。</p></div>
     </div>
   </div>
 </section>
 
 <section class="section" style="padding-top:0">
   <div class="container">
-    <div class="cta-band">
-      <div>
-        <h2>資材店・施工店・メーカーの皆さまへ</h2>
-        <p>このECに出店して、お客様の農家さんにも3D見積りをご提供いただけます。初期費用や手数料の考え方は「出店・パートナー」ページをご覧ください。</p>
-      </div>
-      <a class="btn lg" href="partners.html">出店・パートナーについて</a>
-    </div>
+    <div class="section-title reveal"><span class="eyebrow">SEASON</span><h2>節気の仕事</h2><p>二十四節気に合わせて、いまハウスでやること。今日の節気は黄色で示しています。</p></div>
+    <div class="works reveal" id="works"></div>
   </div>
 </section>
 
 <section class="section" style="padding-top:0">
   <div class="container">
-    <div class="section-title">
-      <span class="eyebrow">FAQ</span>
-      <h2>よくあるご質問</h2>
+    <div class="section-title reveal"><span class="eyebrow">FAQ</span><h2>よくあるご質問</h2></div>
+    <div class="faq reveal">
+      <details><summary>表示される金額は正確ですか？</summary><p>形状から自動計算した概算で、単価はめやすです。正式なお見積りは、現地の地盤・積雪・風速条件を確認したうえでご提出します。</p></details>
+      <details><summary>施工エリアはどこまでですか？</summary><p>群馬県内と隣接県を中心に対応しています。その他の地域は、運搬費・施工費を別途ご相談ください。</p></details>
+      <details><summary>資材だけ購入できますか？</summary><p>できます。3Dシミュレーターで「資材のみ」を選ぶか、資材をさがすページからかごに入れてご依頼ください。</p></details>
+      <details><summary>ハウスカルテは有料ですか？</summary><p>無料です。担当者が訪問時に登録し、QRコードをお渡しします。登録内容はいつでも変更・削除できます。</p></details>
     </div>
-    <div class="cards">
-      <div class="card"><h3>表示される金額は正確ですか？</h3><p>形状から自動計算した概算で、単価は仮の値です。正式なお見積りは、現地の地盤・積雪・風速条件を確認したうえでご提出します。</p></div>
-      <div class="card"><h3>施工エリアはどこまでですか？</h3><p>群馬県内と隣接県を中心に対応しています。その他の地域は、運搬費・施工費を別途ご相談ください。</p></div>
-      <div class="card"><h3>資材だけ購入できますか？</h3><p>できます。シミュレーターで「資材のみ」を選ぶか、カタログから必要な資材を見積リストに入れてご依頼ください。</p></div>
-    </div>
+    <div class="phone-cta reveal"><div><h3 style="margin:0 0 4px">わからないことは、そのまま聞いてください</h3><p class="muted" style="margin:0">品名がわからなくても大丈夫。壊れたところの写真を送っていただければ、担当が部品を特定してお見積りします。</p></div><a class="btn lg accent" id="tel-cta" href="quote.html"><span class="ic" data-icon="phone"></span>担当に聞く</a></div>
   </div>
 </section>
 </main>
@@ -166,16 +162,10 @@
     </div>
     <div class="copy">
       <span>© <span data-year>2026</span> 三高産業株式会社</span>
-      <span>このサイトはプロトタイプです。価格は仮単価です。</span>
+      <span>試作版です。表示の金額はめやすで、正式な金額は担当がお見積りします。</span>
     </div>
   </div>
 </footer>
-<script type="module">
-import { initSite, esc } from "./assets/site.js";
-import { SHELVES } from "./assets/catalog-data.js";
-import { ICONS } from "./assets/icons.js";
-initSite();
-document.getElementById("category-tiles").innerHTML = SHELVES.map(s => `<a class="tile shelf-tile" href="catalog.html#shelf=${esc(s.id)}" style="--shelf:${s.color};--ic-fill:${s.color}22"><span class="ic" aria-hidden="true" style="color:${s.color}">${ICONS[s.icon]}</span><span><b>${esc(s.label)}</b><small>${esc(s.sub)}</small></span></a>`).join("");
-</script>
+<script type="module" src="assets/index.js"></script>
 </body>
 </html>
