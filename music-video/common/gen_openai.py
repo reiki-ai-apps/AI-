@@ -17,7 +17,8 @@ import urllib.request
 import uuid
 
 API = "https://api.openai.com/v1"
-MODELS = ["gpt-image-2", "gpt-image-1.5", "gpt-image-1"]
+MODELS = ["gpt-image-2", "gpt-image-1.5", "gpt-image-1"]          # 背景画(最上位モデル優先)
+TRANSPARENT_MODELS = ["gpt-image-1.5", "gpt-image-1"]           # 透過 PNG は gpt-image-2 非対応のため
 SIZES = {"9:16": "1024x1536", "16:9": "1536x1024", "1:1": "1024x1024"}
 
 
@@ -38,7 +39,7 @@ def _request(req, timeout=600):
 
 def gen_image(key, prompt, out, aspect="9:16", refs=(), model=None, transparent=False, quality="high"):
     """refs があれば /images/edits(参照画像つき)、無ければ /images/generations。"""
-    models = [model] if model else MODELS
+    models = [model] if model else (TRANSPARENT_MODELS if transparent else MODELS)
     last = None
     for m in models:
         try:
@@ -75,7 +76,8 @@ def gen_image(key, prompt, out, aspect="9:16", refs=(), model=None, transparent=
             return out
         except SystemExit as e:
             last = e
-            if "model" in str(e).lower() and not model:
+            msg = str(e).lower()
+            if not model and ("model" in msg or "not supported" in msg or "background" in msg):
                 continue  # 次の候補モデルへ
             raise
     raise SystemExit(f"どのモデルでも生成できませんでした: {last}")
