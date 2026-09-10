@@ -154,7 +154,7 @@ $("#btn-shot").addEventListener("click", () => {
   const a = document.createElement("a"); a.href = url; a.download = `house-${current.params.span}x${current.params.length}.png`; a.click();
   toast("3D画像を保存しました");
 });
-$("#btn-copy").addEventListener("click", async () => { (await copyText(location.href)) ? toast("共有URLをコピーしました") : toast("コピーできませんでした"); });
+$("#btn-copy").addEventListener("click", async () => { (await copyText(location.href)) ? toast("共有URLをコピーしました") : toast("コピーできませんでした"); import("./store.js").then(m => m.logEc("sim_save", { ref: `${current.params.span}x${current.params.length}` })).catch(() => {}); });
 $("#btn-print").addEventListener("click", () => { document.querySelector("#result details").open = true; window.print(); });
 
 // 初期化: URLに内容があれば復元

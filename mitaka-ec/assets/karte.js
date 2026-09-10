@@ -2,7 +2,7 @@
 import { CONFIG } from "./config.js";
 import { initSite, toast, copyText, esc } from "./site.js";
 import { OPTIONS, computeGeometry, encodeParams, estimateRecover, yen } from "./pricing.js";
-import { store, seedDemo, houseStatus } from "./store.js";
+import { store, seedDemo, houseStatus, logEc } from "./store.js";
 
 initSite();
 const $ = s => document.querySelector(s);
@@ -25,7 +25,8 @@ function showEnter(msg = "") {
 
 function render(c, plots, houses) {
   $("#karte").hidden = false;
-  try { localStorage.setItem("mitaka-karte-last", JSON.stringify({ code: c.code, name: c.name, farmName: c.farmName, houses: houses.map(h => ({ id: h.id, name: h.name, params: h.params })) })); } catch {}
+  try { localStorage.setItem("mitaka-karte-last", JSON.stringify({ code: c.code, token: c.karteToken, customerId: c.id, name: c.name, farmName: c.farmName, houses: houses.map(h => ({ id: h.id, name: h.name, params: h.params })) })); } catch {}
+  logEc("karte_view", { customerId: c.id });
   document.title = `${c.farmName || c.name} のハウスカルテ｜三高産業 ハウスEC`;
   $("#k-title").textContent = `${c.farmName ? c.farmName + " " : ""}${c.name} 様`;
   $("#k-sub").textContent = `${c.area || ""}${c.address ? " " + c.address : ""} / 主な作物: ${c.crop || "-"} / お客様コード ${c.code}${c.staff ? " / 担当: " + c.staff : ""}`;

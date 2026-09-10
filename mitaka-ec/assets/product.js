@@ -19,6 +19,7 @@ const unitWord = ({ 本: "1本", 袋: "1袋", 箱: "1箱", 個: "1個", 台: "1�
 const incl = p.price != null ? Math.round(p.price * 1.1) : null;
 const per = incl && pack > 1 ? Math.round(incl / pack) : null;
 document.title = `${p.name}｜三高産業 ハウスEC`;
+import("./store.js").then(m => m.logEc("product_view", { productCode: p.id })).catch(() => {});
 document.documentElement.style.setProperty("--shelf", shelf.color);
 
 // ---- 見出し(スマホは上、PCは購入パネル内) ----

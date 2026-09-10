@@ -79,6 +79,7 @@ export function addToQuoteList(item, qty = 1) {
   saveQuoteList(list);
   toast(item.confirm ? `かごに入れました ✓(担当が合っているか確認します)` : `かごに入れました ✓  ${item.name}`);
   const fab = document.querySelector(".quote-fab"); if (fab) { fab.classList.remove("bump"); void fab.offsetWidth; fab.classList.add("bump"); }
+  import("./store.js").then(m => m.logEc("cart_add", { productCode: item.id })).catch(() => {});
 }
 // 図がかごへ飛ぶ演出(動きを減らす設定では省略)
 export function flyToCart(fromEl) {

@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ハウスカルテ登録(担当者用)｜三高産業 ハウスEC</title>
-<meta name="description" content="担当者がお客様のハウス仕様を登録し、カルテのQRコードを発行する画面です。">
+<title>担当者コンソール｜三高産業 ハウスEC</title>
+<meta name="description" content="今日やること・電話メモ・お客様の記録・ハウスカルテ登録。">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#1f6b3a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/staff.css">
 
 </head>
 <body>
@@ -34,139 +35,172 @@
   </div>
 </header>
 <main>
-<style>
-.staff-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 380px); gap: 1.25rem; align-items: start; }
-@media (max-width: 960px) { .staff-wrap { grid-template-columns: 1fr; } }
-.stepper { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
-.stepper span { font-size: 0.8rem; font-weight: 700; padding: 0.3rem 0.7rem; border-radius: 999px; background: var(--surface-2); color: var(--muted); }
-.stepper span.on { background: var(--green-700); color: #fff; }
-.house-list { display: grid; gap: 0.5rem; margin: 0.75rem 0; }
-.house-item { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; padding: 0.6rem 0.8rem; border: 1px solid var(--line); border-radius: 8px; background: var(--green-50); font-size: 0.9rem; }
-.photo-strip { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.4rem; }
-.photo-strip img { width: 72px; height: 72px; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); }
-.consent-box { background: var(--surface-2); border-radius: var(--radius-sm); padding: 1rem; font-size: 0.9rem; }
-.consent-box label { display: flex; gap: 0.5rem; align-items: flex-start; margin: 0.5rem 0; font-weight: 500; }
-.consent-box input { margin-top: 0.3rem; }
-.qr-box { text-align: center; }
-.qr-box svg { width: 200px; height: 200px; }
-.lock { max-width: 420px; margin: 3rem auto; }
-.cust-row { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; align-items: center; padding: 0.7rem 0; border-bottom: 1px dashed var(--line); font-size: 0.9rem; }
-.cust-row .nm { font-weight: 700; }
-.cust-row .sub { color: var(--muted); font-size: 0.8rem; }
-.tools { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-.geo { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; font-size: 0.85rem; }
-.geo input { width: 7.5rem; }
-</style>
-<section class="container page-head">
-  <div class="breadcrumb"><a href="index.html">トップ</a> › 担当者用: ハウスカルテ登録</div>
-  <h1>ハウスカルテ登録(担当者用)</h1>
-  <p>訪問先でお客様のハウスを登録し、その場でカルテのQRコードをお渡しします。1棟あたり約5分。<span class="badge gray" id="store-kind"></span></p>
-</section>
-<section class="container" style="padding-bottom:3rem">
+<section class="container">
   <div class="card lock" id="lock">
     <h3>担当者コードを入力</h3>
-    <p class="muted small">プロトタイプ用の簡易ロックです。本番では担当者ログインに置き換えます。</p>
+    <p class="muted small">試作用の簡易ロックです。本番では担当者ログイン(Supabase認証)に置き換えます。</p>
     <label class="field">担当者コード<input id="pin" type="password" inputmode="numeric" autocomplete="off"></label>
     <button class="btn block mt-2" id="unlock" type="button">開く</button>
     <p class="small muted mt-2" id="lock-msg"></p>
   </div>
 
-  <div class="staff-wrap" id="app" hidden>
-    <form class="card" id="reg" autocomplete="off">
-      <div class="stepper"><span class="on" data-step="1">1 お客様</span><span data-step="2">2 圃場</span><span data-step="3">3 ハウス</span><span data-step="4">4 同意・発行</span></div>
+  <div id="app" hidden>
+    <div class="console-head">
+      <h1>担当者コンソール</h1>
+      <span class="badge gray" id="store-kind"></span>
+      <span class="who" id="who"></span>
+    </div>
+    <div class="tabs-main" role="tablist">
+      <button role="tab" data-tab="today" aria-selected="true">今日やること<span class="n" id="n-today">0</span></button>
+      <button role="tab" data-tab="phone" aria-selected="false">電話メモ</button>
+      <button role="tab" data-tab="cust" aria-selected="false">お客様</button>
+      <button role="tab" data-tab="reg" aria-selected="false">カルテ登録</button>
+      <button role="tab" data-tab="data" aria-selected="false">データ</button>
+    </div>
 
-      <fieldset id="step1">
-        <legend>お客様</legend>
-        <label class="field">既存のお客様から選ぶ<select id="c-existing"><option value="">(新規のお客様)</option></select></label>
-        <div class="form-grid mt-2">
-          <label class="field">お名前<span class="req">必須</span><input id="c-name" required></label>
-          <label class="field">農園名・法人名<input id="c-farm"></label>
-          <label class="field">電話番号<span class="req">必須</span><input id="c-tel" type="tel" required></label>
-          <label class="field">地区(市町村)<select id="c-area"></select></label>
-          <label class="field full">住所<input id="c-address" placeholder="群馬県桐生市..."></label>
-          <label class="field">主な作物<select id="c-crop"></select></label>
-          <label class="field">担当者名<input id="c-staff" placeholder="例: 山本"></label>
+    <!-- 今日やること -->
+    <div class="pane-main" id="pane-today">
+      <div class="today-grid">
+        <div>
+          <h2>今日やること</h2>
+          <div id="todo-list"></div>
         </div>
-      </fieldset>
+        <div>
+          <h2>見積の状況</h2>
+          <div class="pipeline" id="pipeline"></div>
+          <h2 class="mt-3">溜まり具合</h2>
+          <div class="kpi-grid" id="kpis"></div>
+          <p class="small muted mt-2">溜まっているかを毎朝見る数字です。電話ログが増えないときは、入力が面倒になっている合図です。</p>
+        </div>
+      </div>
+    </div>
 
-      <fieldset id="step2">
-        <legend>圃場(ハウスがある場所)</legend>
-        <div class="form-grid">
-          <label class="field">圃場名<span class="req">必須</span><input id="p-name" placeholder="例: 自宅裏、川向こう" required></label>
-          <label class="field">地区<select id="p-area"></select></label>
-          <div class="field full">位置(地図のピン)
-            <div class="geo mt-1"><button class="btn sm outline" type="button" id="geo-btn">📍 現在地をピンにする</button><span>緯度 <input class="input" id="p-lat" inputmode="decimal" style="display:inline-block;margin:0"></span><span>経度 <input class="input" id="p-lng" inputmode="decimal" style="display:inline-block;margin:0"></span><span class="muted" id="geo-msg"></span></div>
+    <!-- 電話メモ -->
+    <div class="pane-main phone-pane" id="pane-phone" hidden>
+      <h2>電話メモ</h2>
+      <p class="muted">電話を切る前に15秒で。番号を入れて、用件を選んで、話した内容を残します。</p>
+      <div class="tel-search">
+        <input class="input" id="tel" type="tel" inputmode="tel" placeholder="電話番号(下4桁でも可)" autocomplete="off" style="margin:0">
+        <button class="btn" id="tel-find" type="button">さがす</button>
+      </div>
+      <div class="tel-hits" id="tel-hits"></div>
+      <div id="phone-form" hidden>
+        <label class="field">どちらから<div class="chip-row" id="ch-channel"></div></label>
+        <label class="field">用件<div class="chip-row" id="ch-topic"></div></label>
+        <label class="field">話した内容
+          <div class="memo-box"><textarea id="memo" placeholder="例: 3号の妻面が破れた。来週見に行く。"></textarea><button class="mic" id="memo-mic" type="button" aria-label="声で入力" aria-pressed="false"></button></div>
+        </label>
+        <label class="field">次にすること<div class="next-row" id="ch-next"></div></label>
+        <button class="btn accent lg block mt-3" id="save-memo" type="button">この内容で残す</button>
+        <p class="small muted mt-1" id="memo-msg"></p>
+      </div>
+    </div>
+
+    <!-- お客様360 -->
+    <div class="pane-main" id="pane-cust" hidden>
+      <div class="cust-grid">
+        <div>
+          <input class="input" id="cust-search" placeholder="名前・電話・コードでさがす">
+          <div class="cust-list mt-2" id="cust-list"></div>
+        </div>
+        <div class="c360" id="c360"><p class="muted">左からお客様を選ぶと、ハウス・見積・やりとりが時系列で出ます。</p></div>
+      </div>
+    </div>
+
+    <!-- カルテ登録 -->
+    <div class="pane-main" id="pane-reg" hidden>
+      <form class="card" id="reg" autocomplete="off" style="max-width:840px">
+        <h2>ハウスカルテ登録</h2>
+        <p class="muted small">訪問先で、お客様 → 圃場 → ハウス → 同意の順に。1棟あたり約5分。</p>
+        <fieldset>
+          <legend>お客様</legend>
+          <label class="field">既存のお客様から選ぶ<select id="c-existing"><option value="">(新規のお客様)</option></select></label>
+          <div class="form-grid mt-2">
+            <label class="field">お名前<span class="req">必須</span><input id="c-name" required></label>
+            <label class="field">農園名・法人名<input id="c-farm"></label>
+            <label class="field">電話番号<span class="req">必須</span><input id="c-tel" type="tel" inputmode="tel" required></label>
+            <label class="field">区分<select id="c-kind"><option value="individual">個人</option><option value="corporate">法人</option><option value="ja">JA</option></select></label>
+            <label class="field">地区(市町村)<select id="c-area"></select></label>
+            <label class="field full">住所<input id="c-address" placeholder="群馬県桐生市..."></label>
+            <label class="field">主な作物<select id="c-crop"></select></label>
+            <label class="field">担当者名<input id="c-staff" placeholder="例: 山本"></label>
           </div>
-          <label class="field full">メモ(進入路・水利など)<input id="p-note"></label>
-        </div>
-      </fieldset>
-
-      <fieldset id="step3">
-        <legend>ハウス <span class="muted small" style="font-weight:400">複数棟ある場合は「この棟を追加」で1棟ずつ登録します</span></legend>
-        <div class="form-grid">
-          <label class="field">ハウス名<input id="h-name" placeholder="例: 1号"></label>
-          <label class="field">作物<select id="h-crop"></select></label>
-          <label class="field">間口<select id="h-span"></select></label>
-          <label class="field">奥行(m)<input id="h-length" type="number" min="5" max="100" step="0.5" value="30"></label>
-          <label class="field">肩高(m)<input id="h-eave" type="number" min="1.0" max="2.4" step="0.1" value="1.6"></label>
-          <label class="field">棟高(m)<input id="h-ridge" type="number" step="0.1" value="3.0"><div class="help" id="h-ridge-help"></div></label>
-          <label class="field">アーチ間隔<select id="h-pitch"></select></label>
-          <label class="field">パイプ径<select id="h-pipe"></select></label>
-          <label class="field">被覆材<select id="h-film"></select></label>
-          <label class="field">被覆材を張った年<select id="h-filmyear"></select></label>
-          <label class="field">建てた年<select id="h-builtyear"></select></label>
-          <label class="field">妻面ドア<select id="h-doors"><option value="0">なし</option><option value="1">片側1か所</option><option value="2" selected>両側2か所</option></select></label>
-          <label class="field">側面換気<select id="h-sidevent"></select></label>
-          <label class="field">開閉<select id="h-ventdrive"></select></label>
-          <label class="field">内張カーテン<select id="h-curtain"></select></label>
-          <label class="field">潅水<select id="h-irrigation"></select></label>
-          <div class="field full flex"><label class="check"><input type="checkbox" id="h-roofvent">天窓あり</label><label class="check"><input type="checkbox" id="h-net" checked>防虫ネットあり</label><label class="check"><input type="checkbox" id="h-snow">耐雪補強あり</label></div>
-          <label class="field">状態<select id="h-condition"></select></label>
-          <label class="field">写真(最大2枚)<input id="h-photos" type="file" accept="image/*" capture="environment" multiple><div class="photo-strip" id="photo-strip"></div></label>
-          <label class="field full">メモ(困っていること・要望)<textarea id="h-notes" style="min-height:70px"></textarea></label>
-        </div>
-        <div class="flex mt-2"><button class="btn outline" type="button" id="add-house">＋ この棟を追加</button><span class="muted small">追加した棟: <b id="house-count">0</b></span></div>
-        <div class="house-list" id="house-list"></div>
-      </fieldset>
-
-      <fieldset id="step4">
-        <legend>同意とカルテの発行</legend>
-        <div class="consent-box">
-          <p style="margin:0 0 .5rem"><strong>お客様への説明(読み上げ用)</strong><br>ご登録いただいたハウスの情報は、カルテの作成、見積り・修理のご案内、張り替え時期などのお知らせに使います。名前や場所がわからない形にした統計は「みんなのハウス図鑑」に使わせていただくことがあります。登録内容はいつでも変更・削除できます。</p>
-          <label><input type="checkbox" id="k-service" checked disabled>カルテ作成・お知らせへの利用(必須)</label>
-          <label><input type="checkbox" id="k-stats" checked>個人がわからない統計(ハウス図鑑)への利用</label>
-          <label><input type="checkbox" id="k-showcase">事例として農園名・写真を掲載してもよい</label>
-          <label><input type="checkbox" id="k-agree">上記をお客様に説明し、同意をいただきました<span class="req">必須</span></label>
-        </div>
-        <button class="btn accent lg block mt-3" type="submit" id="issue">登録してカルテを発行する</button>
-        <p class="small muted mt-1" id="reg-msg"></p>
-      </fieldset>
-    </form>
-
-    <aside>
-      <div class="card" id="result" hidden>
+        </fieldset>
+        <fieldset>
+          <legend>圃場</legend>
+          <div class="form-grid">
+            <label class="field">圃場名<span class="req">必須</span><input id="p-name" placeholder="例: 自宅裏、川向こう" required></label>
+            <label class="field">地区<select id="p-area"></select></label>
+            <div class="field full">位置(地図のピン)
+              <div class="flex mt-1"><button class="btn sm outline" type="button" id="geo-btn">現在地をピンにする</button><span class="small">緯度 <input class="input" id="p-lat" inputmode="decimal" style="display:inline-block;width:8rem;margin:0"></span><span class="small">経度 <input class="input" id="p-lng" inputmode="decimal" style="display:inline-block;width:8rem;margin:0"></span><span class="muted small" id="geo-msg"></span></div>
+            </div>
+            <label class="field full">メモ(進入路・水利など)<input id="p-note"></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>ハウス <span class="muted small" style="font-weight:400">複数棟は「この棟を追加」で1棟ずつ</span></legend>
+          <div class="form-grid">
+            <label class="field">ハウス名<input id="h-name" placeholder="例: 1号"></label>
+            <label class="field">作物<select id="h-crop"></select></label>
+            <label class="field">間口<select id="h-span"></select></label>
+            <label class="field">奥行(m)<input id="h-length" type="number" min="5" max="100" step="0.5" value="30"></label>
+            <label class="field">肩高(m)<input id="h-eave" type="number" min="1.0" max="2.4" step="0.1" value="1.6"></label>
+            <label class="field">棟高(m)<input id="h-ridge" type="number" step="0.1" value="3.0"><div class="help" id="h-ridge-help"></div></label>
+            <label class="field">アーチ間隔<select id="h-pitch"></select></label>
+            <label class="field">パイプ径<select id="h-pipe"></select></label>
+            <label class="field">被覆材<select id="h-film"></select></label>
+            <label class="field">被覆材を張った年<select id="h-filmyear"></select></label>
+            <label class="field">建てた年<select id="h-builtyear"></select></label>
+            <label class="field">妻面ドア<select id="h-doors"><option value="0">なし</option><option value="1">片側1か所</option><option value="2" selected>両側2か所</option></select></label>
+            <label class="field">側面換気<select id="h-sidevent"></select></label>
+            <label class="field">開閉<select id="h-ventdrive"></select></label>
+            <label class="field">内張カーテン<select id="h-curtain"></select></label>
+            <label class="field">潅水<select id="h-irrigation"></select></label>
+            <div class="field full flex"><label class="check"><input type="checkbox" id="h-roofvent">天窓あり</label><label class="check"><input type="checkbox" id="h-net" checked>防虫ネットあり</label><label class="check"><input type="checkbox" id="h-snow">耐雪補強あり</label></div>
+            <label class="field">状態<select id="h-condition"></select></label>
+            <label class="field">写真(最大2枚)<input id="h-photos" type="file" accept="image/*" capture="environment" multiple><div class="flex mt-1" id="photo-strip"></div><div class="help">試作では端末内に保存します。本番では写真置き場(Storage)に上げ、DBには場所だけ残します。</div></label>
+            <label class="field full">メモ(困っていること・要望)<textarea id="h-notes" style="min-height:70px"></textarea></label>
+          </div>
+          <div class="flex mt-2"><button class="btn outline" type="button" id="add-house">＋ この棟を追加</button><span class="muted small">追加した棟: <b id="house-count">0</b></span></div>
+          <div class="mt-2" id="house-list"></div>
+        </fieldset>
+        <fieldset>
+          <legend>同意とカルテの発行</legend>
+          <div class="card" style="background:var(--calm)">
+            <p style="margin:0 0 8px"><strong>お客様への説明(読み上げ用)</strong><br>ご登録いただいたハウスの情報は、カルテの作成、見積り・修理のご案内、張り替え時期などのお知らせに使います。名前や場所がわからない形にした統計は「みんなのハウス図鑑」に使わせていただくことがあります。登録内容はいつでも変更・削除できます。</p>
+            <label class="check"><input type="checkbox" id="k-service" checked disabled>カルテ作成・お知らせへの利用(必須)</label>
+            <label class="check"><input type="checkbox" id="k-stats" checked>個人がわからない統計(ハウス図鑑)への利用</label>
+            <label class="check"><input type="checkbox" id="k-showcase">事例として農園名・写真を掲載してもよい</label>
+            <label class="check"><input type="checkbox" id="k-agree">上記をお客様に説明し、同意をいただきました<span class="req">必須</span></label>
+          </div>
+          <button class="btn accent lg block mt-3" type="submit" id="issue">登録してカルテを発行する</button>
+          <p class="small muted mt-1" id="reg-msg"></p>
+        </fieldset>
+      </form>
+      <div class="card mt-3" id="result" hidden style="max-width:420px">
         <h3>カルテを発行しました</h3>
-        <div class="qr-box" id="qr"></div>
+        <div id="qr" style="text-align:center"></div>
         <p class="small" style="word-break:break-all"><a id="karte-link" href="#" target="_blank"></a></p>
         <div class="flex"><button class="btn sm" type="button" id="share-btn">LINE・メールで送る</button><button class="btn sm ghost" type="button" id="copy-link">URLをコピー</button><a class="btn sm outline" id="show3d" href="#" target="_blank">3Dで見せる</a></div>
-        <p class="small muted mt-2">お客様コード: <b id="cust-code"></b>。QRコードを読み取るか、URLをLINEで送ると、次回からお客様が自分のカルテを開けます。</p>
+        <p class="small muted mt-2">お客様コード: <b id="cust-code"></b>。QRを読み取ると、次回からお客様が自分のカルテを開けます。</p>
       </div>
-      <div class="card">
-        <div class="flex between"><h3 style="margin:0">登録済みのお客様</h3><span class="muted small" id="cust-total"></span></div>
-        <input class="input mt-2" id="cust-search" placeholder="名前・電話で探す">
-        <div id="cust-list"></div>
-      </div>
-      <div class="card mt-2">
-        <h3>データ</h3>
-        <div class="tools">
+    </div>
+
+    <!-- データ -->
+    <div class="pane-main" id="pane-data" hidden>
+      <div class="card" style="max-width:720px">
+        <h2>データ</h2>
+        <div class="flex">
           <button class="btn sm ghost" type="button" id="export">JSON書き出し</button>
           <label class="btn sm ghost" style="cursor:pointer">JSON読み込み<input type="file" id="import" accept="application/json" hidden></label>
           <button class="btn sm ghost" type="button" id="seed">デモデータを入れる</button>
           <button class="btn sm ghost" type="button" id="wipe" style="color:var(--danger)">全削除</button>
         </div>
-        <p class="small muted mt-2" id="data-msg">ブラウザ保存モードでは、この端末のブラウザだけにデータが残ります。本番はSupabaseに接続します(config.js)。</p>
+        <p class="small muted mt-2" id="data-msg"></p>
+        <h3 class="mt-3">最近のEC行動</h3>
+        <div id="ec-list" class="small"></div>
       </div>
-    </aside>
+    </div>
   </div>
 </section>
 </main>

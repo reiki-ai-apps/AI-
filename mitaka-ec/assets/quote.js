@@ -2,8 +2,8 @@
 // 送信先は config.js の mailTo / quoteEndpoint で設定します。
 import { CONFIG as SITE } from "./config.js";
 import { initSite, toast, copyText, getQuoteList, quoteListText, esc } from "./site.js";
-import { OPTIONS, decodeParams, estimate, summarize, encodeParams, estimateRecover, yen } from "./pricing.js";
-import { store } from "./store.js";
+import { OPTIONS, decodeParams, estimate, summarize, encodeParams, estimateRecover, yen, PRICING_VERSION } from "./pricing.js";
+import { store, logEc, normTel } from "./store.js";
 const CONFIG = { endpoint: SITE.quoteEndpoint, mailTo: SITE.mailTo };
 
 export function buildMail(subject, body) {
@@ -66,19 +66,40 @@ if (document.getElementById("quote-form")) (async () => {
   form.addEventListener("submit", async e => {
     e.preventDefault();
     const text = buildText();
+    // まずDBに残す(メールが届かなくても、依頼は消えない)
+    let savedQuote = null;
+    try {
+      const d = Object.fromEntries(new FormData(form).entries());
+      const tel = String(d.tel || "");
+      let customerId = null;
+      const hit = (await store.findByTel(tel))[0];
+      if (hit) customerId = hit.id;
+      else if (tel) customerId = (await store.saveCustomer({ name: d.name || "お名前未記入", farmName: d.farm || "", tel, address: d.place || "", crop: d.crop || "", status: "prospect" })).id;
+      savedQuote = await store.saveQuote({
+        customerId, houseId: sp.get("house") || null,
+        source: sp.get("house") ? "karte" : est ? "simulator" : list.length ? "catalog" : "form",
+        status: "requested", simParams: est ? est.params : null, pricingVersion: est ? PRICING_VERSION : null,
+        subtotal: est ? est.subtotal : list.reduce((s, x) => s + (x.price || 0) * x.qty, 0),
+        total: est ? est.total : null,
+        name: d.name || "", tel, email: d.email || "", place: d.place || "",
+        message: (d.message || "").trim() || (houseText ? "カルテのハウスについて" : est ? `3Dで作成 間口${est.params.span}m×奥行${est.params.length}m` : list.length ? `かごの資材 ${list.length}点` : "お問い合わせ")
+      });
+      if (customerId) await store.saveInteraction({ customerId, channel: "ec", topic: "見積", body: `ECから見積依頼(${savedQuote.quoteNo || ""})\n${d.message || ""}`.trim(), nextActionOn: null });
+      await logEc("quote_request", { customerId, ref: savedQuote.quoteNo || "" });
+    } catch (err) { console.warn("見積の保存に失敗", err); }
     if (CONFIG.endpoint) {
       try {
         const d = Object.fromEntries(new FormData(form).entries());
         const r = await fetch(CONFIG.endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...d, simulator: est ? est.params : null, estimate: est ? { subtotal: est.subtotal, total: est.total } : null, items: list, text }) });
         if (!r.ok) throw new Error(String(r.status));
-        showText(text, "<strong>送信しました。</strong>担当者から折り返しご連絡します。送信内容は以下のとおりです。");
+        showText(text, `<strong>受け付けました。</strong>担当の者から翌営業日までにご連絡します。${savedQuote ? `受付番号 ${esc(savedQuote.quoteNo)}。` : ""}送信内容は以下のとおりです。`);
         return;
       } catch (err) {
         toast("送信に失敗したため、メール送信に切り替えます");
       }
     }
     location.href = buildMail(`見積依頼: ${new FormData(form).get("name") || ""} 様`, text);
-    showText(text, "<strong>メールソフトが開きます。</strong>開かない場合は「内容をコピー」して、電話・FAX・メールでお送りください。");
+    showText(text, `<strong>受け付けました。</strong>${savedQuote ? `受付番号 ${esc(savedQuote.quoteNo)}。` : ""}メールソフトも開きます。開かない場合は「内容をコピー」して、電話・FAX・メールでもお送りいただけます。`);
   });
   document.getElementById("q-copy").addEventListener("click", async () => toast((await copyText(buildText())) ? "内容をコピーしました" : "コピーできませんでした"));
 })();
