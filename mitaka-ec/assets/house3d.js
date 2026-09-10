@@ -109,10 +109,11 @@ function line(points) {
   return new THREE.Line(geo, MAT.line);
 }
 
-export function createViewer(container) {
+export function createViewer(container, options = {}) {
+  const showcase = !!options.showcase;
   let renderer;
   try {
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: "high-performance" });
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: !!options.transparent, powerPreference: "high-performance" });
   } catch (e) {
     container.innerHTML = `<div class="viewer-fallback">この端末では3D表示(WebGL)を利用できません。<br>数量と概算見積りは右側の一覧でご確認ください。</div>`;
     return { update() {}, setView() {}, setLabels() {}, screenshot() { return null; }, dispose() {}, ok: false };
@@ -130,14 +131,17 @@ export function createViewer(container) {
   container.appendChild(labelRenderer.domElement);
 
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xe4f0f7);
-  scene.fog = new THREE.FogExp2(0xe4f0f7, 0.0045);
+  const skyColor = new THREE.Color(options.sky || 0xe4f0f7);
+  scene.background = options.transparent ? null : skyColor;
+  scene.fog = new THREE.FogExp2(skyColor.getHex(), options.fog ?? 0.0045);
+  if (options.transparent) renderer.setClearColor(0x000000, 0);
 
   const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 2000);
   camera.position.set(14, 7, -20);
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true; controls.dampingFactor = 0.08;
+  if (showcase) { controls.autoRotate = true; controls.autoRotateSpeed = options.rotateSpeed || 0.6; controls.enableZoom = !!options.zoom; controls.enablePan = false; }
   controls.maxPolarAngle = Math.PI / 2 - 0.03;
   controls.minDistance = 1.2; controls.maxDistance = 600;
   controls.target.set(0, 1.5, 0);
@@ -153,7 +157,7 @@ export function createViewer(container) {
   let labels = null;      // 寸法ラベル(Group)
   let heightLabels = null;// 高さのラベル(上から見るときは隠す)
   let currentView = "exterior";
-  let labelsOn = true;
+  let labelsOn = !showcase;
   let g = null;           // 直近の形状
   let anim = null;        // カメラ移動
   let running = true;
@@ -179,10 +183,18 @@ export function createViewer(container) {
 
     // 地面・床土・畝
     const gsize = Math.max(L, W) * 2.4 + 40;
-    const ground = new THREE.Mesh(new THREE.PlaneGeometry(gsize, gsize), MAT.grass);
-    ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; house.add(ground);
-    const grid = new THREE.GridHelper(gsize, Math.round(gsize / 2), 0x9fbf86, 0x9fbf86);
-    grid.material.opacity = 0.35; grid.material.transparent = true; grid.position.y = 0.002; house.add(grid);
+    if (showcase) {
+      // 見せるモード: 地面は影だけを受ける透明面にして、背景の風景を透かす
+      const ground = new THREE.Mesh(new THREE.PlaneGeometry(gsize, gsize), new THREE.ShadowMaterial({ opacity: 0.28 }));
+      ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; house.add(ground);
+      const patch = new THREE.Mesh(new THREE.CircleGeometry(Math.max(L, W) * 0.62, 48), new THREE.MeshStandardMaterial({ color: 0x7f9a5e, transparent: true, opacity: 0.55, roughness: 1 }));
+      patch.rotation.x = -Math.PI / 2; patch.position.y = 0.003; patch.receiveShadow = true; house.add(patch);
+    } else {
+      const ground = new THREE.Mesh(new THREE.PlaneGeometry(gsize, gsize), MAT.grass);
+      ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; house.add(ground);
+      const grid = new THREE.GridHelper(gsize, Math.round(gsize / 2), 0x9fbf86, 0x9fbf86);
+      grid.material.opacity = 0.35; grid.material.transparent = true; grid.position.y = 0.002; house.add(grid);
+    }
     const soil = new THREE.Mesh(new THREE.PlaneGeometry(W + 0.6, L + 0.6), MAT.soil);
     soil.rotation.x = -Math.PI / 2; soil.position.y = 0.006; soil.receiveShadow = true; house.add(soil);
     const rows = g.dripRows;
@@ -288,7 +300,7 @@ export function createViewer(container) {
     }
 
     // スケール用の人物(身長約1.7m)
-    const person = new THREE.Group(); person.position.set(a + 1.2, 0, z0 - 0.8);
+    const person = new THREE.Group(); person.position.set(a + 1.2, 0, z0 - 0.8); person.visible = !showcase;
     person.add(post(0.13, 0.8, MAT.legs, 0, 0), post(0.19, 0.62, MAT.torso, 0, 0, 0.8));
     const head = new THREE.Mesh(new THREE.SphereGeometry(0.13, 12, 12), MAT.head); head.position.y = 1.57; person.add(head);
     person.traverse(o => { if (o.isMesh) o.castShadow = true; });
@@ -335,7 +347,7 @@ export function createViewer(container) {
       case "side": dir = new V3(1, 0.42, 0.06); break;
       case "top": dir = new V3(0, 1, -0.001); dist *= 0.95; break;
       case "interior": pos = new V3(-a * 0.3, 1.75, -L / 2 + 1.2); target = new V3(-a * 0.12, 1.2, L / 2); break; // 中柱と正面衝突しないよう少し横にずらす
-      default: dir = camera.aspect < 1 ? new V3(0.55, 0.6, -1.15) : new V3(1, 0.62, -1.25); // 縦長画面では奥行方向から見て収まりを良くする
+      default: dir = showcase ? (camera.aspect < 1 ? new V3(0.7, 0.42, -1.0) : new V3(1, 0.4, -1.1)) : camera.aspect < 1 ? new V3(0.55, 0.6, -1.15) : new V3(1, 0.62, -1.25); // 縦長画面では奥行方向から見て収まりを良くする
     }
     if (!pos) {
       dir.normalize();
@@ -358,6 +370,7 @@ export function createViewer(container) {
       }
       pos = target.clone().add(dir.multiplyScalar(dist));
     }
+    if (showcase && !pos.isInterior) { const k = options.zoomFactor || 0.86; pos.copy(target.clone().add(pos.clone().sub(target).multiplyScalar(k))); }
     pos.y = Math.max(pos.y, 0.5);
     if (!animate) { camera.position.copy(pos); controls.target.copy(target); controls.update(); anim = null; return; }
     anim = { p0: camera.position.clone(), t0: controls.target.clone(), p1: pos, t1: target, start: performance.now(), dur: 650 };
@@ -390,6 +403,13 @@ export function createViewer(container) {
   let first = true;
   return {
     ok: true,
+    setLight({ color, intensity, azimuth, elevation } = {}) {
+      if (color != null) sun.color.set(color);
+      if (intensity != null) sun.intensity = intensity;
+      if (azimuth != null && elevation != null && g) { const r = Math.max(g.L, g.W) * 1.2 + 10; sun.position.set(Math.cos(elevation) * Math.cos(azimuth) * r, Math.sin(elevation) * r, Math.cos(elevation) * Math.sin(azimuth) * r); }
+    },
+    setSky(hex) { const c = new THREE.Color(hex); if (!options.transparent) scene.background = c; scene.fog.color = c; },
+    setAutoRotate(on) { controls.autoRotate = !!on; },
     update(est, opts = {}) {
       const prev = g ? { L: g.L, W: g.W, Hr: g.Hr } : null;
       build(est);
