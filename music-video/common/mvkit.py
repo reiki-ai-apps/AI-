@@ -358,10 +358,55 @@ class LyricTimeline:
                 return ln["t"]
         raise KeyError(key)
 
-    def draw(self, img, T, y=1420):
+    def draw(self, img, T, y=1420, kinetic=False):
         for i, ln in enumerate(self.lines):
             t0, t1 = self.span(i)
             if t0 <= T < t1:
                 a = fade_alpha(T, t0, t1, 0.28, 0.22)
-                paste_center(img, lyric_block(ln.get("en"), ln.get("jp")), W / 2, y, a)
+                if kinetic and ln.get("en"):
+                    self._draw_kinetic(img, ln, T, t0, t1, y, a)
+                else:
+                    paste_center(img, lyric_block(ln.get("en"), ln.get("jp")), W / 2, y, a)
                 return
+
+    def _draw_kinetic(self, img, ln, T, t0, t1, y, a):
+        """英語を単語ごとに、歌の進行に合わせて出す。訳は英語が出そろってから。"""
+        en, jp = ln["en"], ln.get("jp")
+        words = en.split(" ")
+        sing = max(0.6, min(t1 - t0 - 0.3, 0.32 * len(words) + 0.2))  # 歌い切る目安
+        prog = (T - t0) / sing
+        n_vis = min(len(words), int(prog * len(words)) + 1)
+        f = font(66)
+        tmp = ImageDraw.Draw(Image.new("L", (1, 1)))
+        widths = [tmp.textlength(w, font=f) for w in words]
+        gap = 22
+        total = sum(widths) + gap * (len(words) - 1)
+        scale = min(1.0, (W - 140) / total)
+        if scale < 1.0:
+            f = font(int(66 * scale))
+            widths = [tmp.textlength(w, font=f) for w in words]
+            total = sum(widths) + gap * (len(words) - 1)
+        layer = Image.new("RGBA", (W, 260), (0, 0, 0, 0))
+        d = ImageDraw.Draw(layer)
+        x = (W - total) / 2
+        for k, (w, wd) in enumerate(zip(words, widths)):
+            if k < n_vis:
+                t_word = t0 + sing * k / len(words)
+                u = max(0.0, min(1.0, (T - t_word) / 0.16))
+                e = 1 - (1 - u) ** 3
+                dy = int((1 - e) * 26)
+                al = int(255 * e * a)
+                d.text((x + 3, 100 + dy + 6), w, font=f, fill=(0, 0, 0, int(al * 0.7)), stroke_width=3, stroke_fill=(0, 0, 0, int(al * 0.7)))
+                d.text((x, 100 + dy), w, font=f, fill=(255, 255, 255, al), stroke_width=1, stroke_fill=(255, 255, 255, al))
+            x += wd + gap
+        # アクセント線と訳
+        done_t = t0 + sing
+        if jp:
+            uj = max(0.0, min(1.0, (T - done_t + 0.25) / 0.3))
+            if uj > 0:
+                ImageDraw.Draw(layer).rectangle([W / 2 - 22, 176, W / 2 + 22, 179], fill=ACCENT + (int(230 * uj * a),))
+                jl = tracked_text(jp, 38, (255, 255, 255, int(216 * uj * a)), tracking=3)
+                layer.alpha_composite(jl, (int((W - jl.width) / 2), 190))
+        sh = layer.filter(ImageFilter.GaussianBlur(6))
+        img.paste(sh, (0, int(y - 130)), sh)
+        img.paste(layer, (0, int(y - 130)), layer)

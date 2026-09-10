@@ -121,6 +121,17 @@
         "bloom",
         "vignette:95",
         "grain:0.9"
+      ],
+      "ripples": [
+        {
+          "x": 0.68,
+          "y": 0.6,
+          "w": 0.3,
+          "h": 0.17,
+          "amp": 2.5,
+          "speed": 1.0,
+          "glint": 14
+        }
       ]
     },
     {
@@ -195,7 +206,8 @@
         "dust:46",
         "bloom",
         "vignette:70",
-        "grain:0.9"
+        "grain:0.9",
+        "punch:0.015"
       ]
     },
     {
@@ -226,6 +238,17 @@
         "dof:8",
         "vignette:100",
         "grain:0.9"
+      ],
+      "ripples": [
+        {
+          "x": 0.5,
+          "y": 0.5,
+          "w": 0.9,
+          "h": 0.55,
+          "amp": 4.0,
+          "speed": 0.6,
+          "glint": 22
+        }
       ]
     },
     {
@@ -312,7 +335,19 @@
         "light_sweep:212.95,224.0,0.85",
         "bloom",
         "vignette:70",
-        "grain:0.8"
+        "grain:0.8",
+        "punch:0.012"
+      ],
+      "ripples": [
+        {
+          "x": 0.68,
+          "y": 0.6,
+          "w": 0.3,
+          "h": 0.17,
+          "amp": 2.0,
+          "speed": 0.8,
+          "glint": 20
+        }
       ]
     },
     {
@@ -449,8 +484,21 @@
         "light_sweep:200.0,201.0,0.85",
         "bloom",
         "vignette:70",
-        "grain:0.8"
+        "grain:0.8",
+        "punch:0.012"
+      ],
+      "ripples": [
+        {
+          "x": 0.68,
+          "y": 0.6,
+          "w": 0.3,
+          "h": 0.17,
+          "amp": 2.0,
+          "speed": 0.8,
+          "glint": 20
+        }
       ]
     }
-  ]
+  ],
+  "lyric_style": "kinetic"
 }

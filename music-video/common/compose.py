@@ -104,6 +104,33 @@ def render_fizz(size, p, T, tint=(255, 255, 255)):
     return im
 
 
+def ripple(img, rp, T):
+    """楕円領域の中を水面のように揺らす(正弦波の変位)。rp: {"x","y","w","h"(画面比), "amp"(px), "speed"}"""
+    from scipy.ndimage import map_coordinates
+    cx, cy = rp["x"] * W, rp["y"] * H
+    rw, rh = rp["w"] * W / 2, rp["h"] * H / 2
+    x0, y0 = int(max(0, cx - rw)), int(max(0, cy - rh))
+    x1, y1 = int(min(W, cx + rw)), int(min(H, cy + rh))
+    if x1 - x0 < 8 or y1 - y0 < 8:
+        return img
+    region = np.array(img.crop((x0, y0, x1, y1))).astype(np.float32)
+    h, w = region.shape[:2]
+    ys, xs = np.mgrid[0:h, 0:w].astype(np.float32)
+    nx, ny = (xs - w / 2) / (w / 2), (ys - h / 2) / (h / 2)
+    inside = np.clip(1.0 - np.sqrt(nx * nx + ny * ny), 0, 1) ** 0.7
+    amp, sp = rp.get("amp", 3.0), rp.get("speed", 1.0)
+    dx = amp * inside * (np.sin(ys * 0.11 + T * 2.1 * sp) + 0.6 * np.sin((xs + ys) * 0.07 - T * 1.6 * sp))
+    dy = amp * inside * (np.cos(xs * 0.09 + T * 1.7 * sp) + 0.6 * np.sin(ys * 0.13 + T * 2.4 * sp))
+    out = np.empty_like(region)
+    for c in range(3):
+        out[..., c] = map_coordinates(region[..., c], [ys + dy, xs + dx], order=1, mode="nearest")
+    # ハイライトのきらめき
+    glint = (np.clip(np.sin(xs * 0.05 + T * 3.0 * sp) * np.sin(ys * 0.04 - T * 2.2 * sp), 0, 1) ** 6) * inside * rp.get("glint", 18)
+    out += glint[..., None]
+    img.paste(Image.fromarray(np.clip(out, 0, 255).astype(np.uint8)), (x0, y0))
+    return img
+
+
 def load_procedural(spec_dir, module_name):
     """曲側のスクリプト(例: animatic.py)から関数を借りる(スマホ画面などの手続き描画)。"""
     path = os.path.join(spec_dir, module_name + ".py")
@@ -136,11 +163,12 @@ def layer_value(layer, key, default, u):
 
 # ---------------------------------------------------------------- 描画
 class Composer:
-    def __init__(self, spec, spec_dir, song_t0, song_dur):
+    def __init__(self, spec, spec_dir, song_t0, song_dur, beats=None):
         self.spec = spec
         self.dir = spec_dir
         self.t0 = song_t0
         self.dur = song_dur
+        self.beats = beats  # 拍位置(絶対秒)。punch(拍同期の寄り)に使う
         if spec.get("accent"):
             K.ACCENT = tuple(spec["accent"])
         self.tl = K.LyricTimeline(os.path.join(spec_dir, spec["lyrics"]), lead=spec.get("lyric_lead", 0.25),
@@ -160,6 +188,20 @@ class Composer:
         u = (T - shot["start"]) / max(1e-6, shot["end"] - shot["start"])
         u = max(0.0, min(1.0, u))
         cam = interp_camera(shot.get("camera", {}), u)
+        # 手持ちの揺れ(画面比、ごく小さく)とカット頭の寄り
+        drift = shot.get("drift", 0.004)
+        cam["x"] += drift * (math.sin(T * 0.7) + 0.6 * math.sin(T * 1.9 + 1.3))
+        cam["y"] += drift * 0.8 * math.sin(T * 0.9 + 0.4)
+        cut_in = shot.get("cut_punch", 0.03)
+        if cut_in and T - shot["start"] < 0.35:
+            cam["zoom"] *= 1 + cut_in * (1 - ease((T - shot["start"]) / 0.35))
+        # 拍同期のパンチイン: fx "punch:振幅"
+        amp = next((float(f.split(":")[1]) for f in shot.get("fx", []) if f.startswith("punch")), 0.0)
+        if amp and self.beats is not None:
+            k = int(np.searchsorted(self.beats, T, side="right") - 1)
+            if 0 <= k < len(self.beats) - 1:
+                phase = (T - self.beats[k]) / (self.beats[k + 1] - self.beats[k])
+                cam["zoom"] *= 1 + amp * math.exp(-phase * 7.0)
         img = Image.new("RGB", (W, H), tuple(shot.get("bg_color", [12, 14, 20])))
         for layer in shot.get("layers", []):
             if "from_t" in layer and T < layer["from_t"]:
@@ -167,6 +209,9 @@ class Composer:
             if "until" in layer and T >= layer["until"]:
                 continue
             self.draw_layer(img, layer, T, u, cam)
+        for rp in shot.get("ripples", []):
+            if rp.get("from_t", 0) <= T < rp.get("until", 1e9):
+                img = ripple(img, rp, T)
         img = self.effects(img, shot, T, u)
         if "caption" in shot:
             c = shot["caption"]
@@ -174,7 +219,7 @@ class Composer:
                 a = min(1.0, (T - shot["start"]) / 0.15, (c.get("until", shot["end"]) - T) / 0.3)
                 paste_center(img, caption_hook(c["text"]), W / 2, c.get("y", 372), max(0.0, a))
         if self.tl and shot.get("subtitles", True):
-            self.tl.draw(img, T, y=shot.get("subtitle_y", 1420))
+            self.tl.draw(img, T, y=shot.get("subtitle_y", 1420), kinetic=self.spec.get("lyric_style") == "kinetic")
         # フェード
         if shot.get("fade_in") and T - shot["start"] < shot["fade_in"]:
             k = 1 - (T - shot["start"]) / shot["fade_in"]
@@ -299,12 +344,14 @@ def main():
     ap.add_argument("--out", default="illustrated.mp4")
     ap.add_argument("--stills")
     ap.add_argument("--out-dir", default="stills")
+    ap.add_argument("--grid-json", help="拍解析のキャッシュ")
     args = ap.parse_args()
     spec = json.load(open(args.spec, encoding="utf-8"))
     spec_dir = os.path.dirname(os.path.abspath(args.spec))
     cut = spec["cut"]
     t0, dur = float(cut["start"]), float(cut["end"]) - float(cut["start"])
-    comp = Composer(spec, spec_dir, t0, dur)
+    beats = K.beat_grid(args.song, args.grid_json) if spec.get("beats", True) else None
+    comp = Composer(spec, spec_dir, t0, dur, beats=beats)
     grid = types.SimpleNamespace(t0=t0, dur=dur)
     if args.stills:
         os.makedirs(args.out_dir, exist_ok=True)
