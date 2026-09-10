@@ -26,6 +26,10 @@
 }
 
 * { box-sizing: border-box; }
+html.big-text { font-size: 118%; }
+html.big-text body { font-size: 1.05rem; }
+html.big-text .btn { padding: 0.85rem 1.4rem; }
+html.big-text .nav a { font-size: 1.05rem; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
@@ -76,9 +80,15 @@ small, .small { font-size: 0.85rem; }
 .nav a:hover { background: var(--green-50); text-decoration: none; }
 .nav a[aria-current="page"] { color: var(--green-700); font-weight: 700; }
 .nav .btn { margin-left: 0.5rem; }
-.nav-toggle { display: none; margin-left: auto; background: none; border: 1px solid var(--line); border-radius: 10px; width: 42px; height: 42px; font-size: 1.2rem; cursor: pointer; }
+.text-size { margin-left: auto; display: inline-flex; align-items: center; gap: 0.3rem; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 0.35rem 0.7rem; font: inherit; font-size: 0.8rem; font-weight: 700; cursor: pointer; color: var(--text); }
+.text-size span[aria-hidden] { font-size: 1.05rem; line-height: 1; }
+.text-size[aria-pressed="true"] { background: var(--green-700); color: #fff; border-color: var(--green-700); }
+.nav { margin-left: 0.5rem; }
+.nav-toggle { display: none; margin-left: 0; background: none; border: 1px solid var(--line); border-radius: 10px; width: 42px; height: 42px; font-size: 1.2rem; cursor: pointer; }
 @media (max-width: 860px) {
   .nav-toggle { display: inline-grid; place-items: center; }
+  .text-size .lbl { display: none; }
+  .text-size { padding: 0.35rem 0.6rem; }
   .nav {
     position: absolute; left: 0; right: 0; top: var(--header-h);
     background: #fff; border-bottom: 1px solid var(--line);

@@ -22,7 +22,17 @@ export function initSite() {
   });
   const y = document.querySelector("[data-year]");
   if (y) y.textContent = String(new Date().getFullYear());
+  initTextSize();
   initQuoteDrawer();
+}
+
+// 文字を大きくする(端末ごとに記憶)
+function initTextSize() {
+  const KEY = "mitaka-big-text";
+  const apply = on => { document.documentElement.classList.toggle("big-text", on); document.querySelectorAll("[data-textsize]").forEach(b => b.setAttribute("aria-pressed", String(on))); };
+  let on = false; try { on = localStorage.getItem(KEY) === "1"; } catch {}
+  apply(on);
+  document.querySelectorAll("[data-textsize]").forEach(b => b.addEventListener("click", () => { on = !on; try { localStorage.setItem(KEY, on ? "1" : "0"); } catch {} apply(on); toast(on ? "文字を大きくしました" : "文字を標準に戻しました"); }));
 }
 
 let toastTimer;
