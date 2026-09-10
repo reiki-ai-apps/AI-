@@ -95,3 +95,27 @@ Top-down view of the same wooden table in full morning light. The glass of water
 | 合成（こちら） | 拍に合わせたカット、キネティック字幕、スマホ画面の日本語、境界線のグラフィック、色調、粒子、ループ |
 
 生成側に文字を描かせない。文字は全部こちらで乗せるので、**プロンプトに no text を必ず入れる**。
+
+## 生成時の必須チェック: 明るさ
+
+2026-09-10 の1回目の生成で、7枚すべてが**ほぼ真っ黒**になった（平均輝度 8〜19 / 255）。
+「Deep blue darkness」「2 a.m.」のような語を強く書くと、モデルが露出を落としきってしまう。
+さらに1枚目を参照画像に使うと、その暗さが後続の全カットに伝染する。
+朝のカットまで青く暗いまま上がってきた（R=6 / B=33）。
+
+スマホの画面で、屋外の明るさで見る前提なので、これは作品として成立しない。
+
+**発注のたびに守ること:**
+
+- 「darkness」「pitch black」ではなく、**光源を書く**。
+  「lit clearly and brightly by an amber desk lamp just outside the top-right」のように、
+  どこから、どれくらいの強さで当たっているかを書く。
+- `luminous` / `well exposed` / `clearly visible detail throughout` /
+  `bright enough to read easily on a phone screen` を必ず入れる。
+- 夜は「暗い」ではなく「**暖色の光と青い影のコントラストが強い**」と書く。
+- **朝のカットに夜の画像を参照させない**。参照すると夜の色に引きずられる。
+- 上げたら必ず平均輝度を測る。目安は **夜 45〜70 / 朝 110〜140**。
+  ```
+  identify -format "%f mean=%[fx:int(mean*255)] R=%[fx:int(mean.r*255)] G=%[fx:int(mean.g*255)] B=%[fx:int(mean.b*255)]\n" *.png
+  ```
+  20 を切っていたら作り直す。目で見て判断する前に、この数字で弾く。

@@ -1,0 +1,54 @@
+{
+  "_comment": "Higgsfield で生成した背景美術。fetch_assets.sh でこの表のとおり art/ に落とす。job_id があれば URL が切れても再取得できる。",
+  "model": "soul_cinematic",
+  "aspect_ratio": "9:16",
+  "reference_image_job": "60b2190f-3c40-4cec-8684-f5e9bd88e1e0",
+  "images": [
+    {
+      "file": "01_table_night_bg.png",
+      "job_id": "60b2190f-3c40-4cec-8684-f5e9bd88e1e0",
+      "quality": "1080p",
+      "scene": "深夜2時の机（俯瞰）。右下にグラス、右上から琥珀のランプ、左上にスマホの青い光",
+      "used_by": ["01a table_night", "01b tablet_dissolve"],
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3J8lwc3kVHTtbkxNryOZubNcjOD/hf_20260910_150444_60b2190f-3c40-4cec-8684-f5e9bd88e1e0.png"
+    },
+    {
+      "file": "02_glass_side_bg.png",
+      "job_id": "193dbeab-e751-48a6-9a45-319d96b43af9",
+      "quality": "2k",
+      "scene": "横アングルのグラス。後ろに琥珀のボケ、縁に錠剤が落ちずに立つ",
+      "used_by": ["02 glass_side"],
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3J8lwc3kVHTtbkxNryOZubNcjOD/hf_20260910_153920_193dbeab-e751-48a6-9a45-319d96b43af9.png"
+    },
+    {
+      "file": "03_water_closeup_bg.png",
+      "job_id": "94dbbd5c-b792-4dd4-a3a6-7e2bd22900eb",
+      "quality": "2k",
+      "scene": "水面の極端なクローズアップ。窓の反射、夜明けの琥珀が片側に滲む",
+      "used_by": ["03 water_closeup"],
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3J8lwc3kVHTtbkxNryOZubNcjOD/hf_20260910_154009_94dbbd5c-b792-4dd4-a3a6-7e2bd22900eb.png"
+    },
+    {
+      "file": "04_table_dawn_bg.png",
+      "job_id": "8b5c8106-7cda-404f-a893-8f1fa9ca391c",
+      "quality": "2k",
+      "scene": "同じ机の朝。右から低い金色の光、グラスの影が長く伸びる",
+      "used_by": ["04 dawn_sweep", "05 reply", "06 morning"],
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3J8lwc3kVHTtbkxNryOZubNcjOD/hf_20260910_153801_8b5c8106-7cda-404f-a893-8f1fa9ca391c.png"
+    }
+  ],
+  "discarded": [
+    {
+      "job_id": "ea35d805-78c7-43a2-8497-569a37325cf3",
+      "why": "prompt が空のまま送られ、01 の振り直しになっていた"
+    },
+    {
+      "job_id": "cd67f6de-edfe-447e-8e08-edb91a9c8396",
+      "why": "同上"
+    },
+    {
+      "job_id": "fe0ed631-4c1c-4020-84cd-5ce59029e49e",
+      "why": "同上"
+    }
+  ]
+}
