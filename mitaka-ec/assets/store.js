@@ -5,7 +5,7 @@ import { CONFIG } from "./config.js";
 import { normalizeParams } from "./pricing.js";
 
 const KEY = "mitaka-karte-v2";
-const EMPTY = { customers: [], plots: [], houses: [], interactions: [], quotes: [], tasks: [], events: [], consents: [] };
+const EMPTY = { customers: [], plots: [], houses: [], interactions: [], quotes: [], tasks: [], events: [], consents: [], houseEvents: [] };
 export const CROPS = ["トマト", "きゅうり", "いちご", "なす", "ほうれん草", "小松菜", "花き", "ぶどう", "その他"];
 export const CONDITIONS = ["良好", "要補修", "要相談"];
 export const AREAS = ["桐生市", "みどり市", "太田市", "伊勢崎市", "前橋市", "足利市", "館林市", "その他"];
@@ -60,6 +60,8 @@ class LocalStore {
   async logEvent(e) { const db = this._read(); db.events.push({ id: uid("e_"), occurredAt: now(), ...e }); if (db.events.length > 500) db.events = db.events.slice(-500); this._write(db); }
   async listEvents(limit = 50) { return this._read().events.slice(-limit).reverse(); }
   async saveConsent(c) { return this._put("consents", { grantedOn: today(), ...c }, "s_"); }
+  async listHouseEvents(houseId) { const all = this._read().houseEvents; return (houseId ? all.filter(e => e.houseId === houseId) : all).sort((a, b) => (b.occurredOn || "").localeCompare(a.occurredOn || "")); }
+  async saveHouseEvent(e) { if (!e.occurredOn) e.occurredOn = today(); return this._put("houseEvents", e, "he_"); }
   async exportAll() { return this._read(); }
   async importAll(json) { const db = this._read(); for (const k of Object.keys(EMPTY)) for (const r of (json[k] || [])) { const i = db[k].findIndex(x => x.id === r.id); i >= 0 ? db[k][i] = r : db[k].push(r); } this._write(db); }
   async clearAll() { localStorage.removeItem(KEY); document.dispatchEvent(new CustomEvent("karte:change")); }
@@ -105,12 +107,24 @@ class SupabaseStore {
   async logEvent(e) { try { await this._req("ec_events", { method: "POST", prefer: "return=minimal", body: JSON.stringify({ id: uid("e_"), occurred_at: now(), visitor_id: e.visitorId || null, customer_id: e.customerId || null, event_type: e.type, product_code: e.productCode || null, ref: e.ref || null }) }); } catch { /* 記録できなくても操作は止めない */ } }
   async listEvents(limit = 50) { return (await this._req(`ec_events?select=*&order=occurred_at.desc&limit=${limit}`)).map(r => ({ id: r.id, occurredAt: r.occurred_at, type: r.event_type, productCode: r.product_code, customerId: r.customer_id })); }
   async saveConsent(c) { return this._upsert("consents", { id: c.id || uid("s_"), customer_id: c.customerId, purpose: c.purpose, granted: c.granted, granted_on: c.grantedOn || today() }); }
+  async listHouseEvents(houseId) { const q = houseId ? `&house_id=eq.${encodeURIComponent(houseId)}` : ""; return (await this._req(`house_events?select=*${q}&order=occurred_on.desc&limit=500`)).map(r => ({ id: r.id, houseId: r.house_id, type: r.event_type, occurredOn: r.occurred_on, summary: r.summary, amount: r.amount, staff: r.staff_id })); }
+  async saveHouseEvent(e) { const row = { id: e.id || uid("he_"), house_id: e.houseId, event_type: e.type, occurred_on: e.occurredOn || today(), summary: e.summary || null, amount: e.amount || null, staff_id: e.staff || null }; await this._upsert("house_events", row); return e; }
   async exportAll() { const [customers, plots, houses, interactions, quotes] = await Promise.all([this.listCustomers(), this._req("plots?select=*").then(r => r.map(x => fromRow(x, PLOT_COLS))), this.listAllHouses(), this.listInteractions(), this.listQuotes()]); return { customers, plots, houses, interactions, quotes }; }
   async importAll(json) { for (const c of json.customers || []) await this.saveCustomer(c); for (const p of json.plots || []) await this.savePlot(p); for (const h of json.houses || []) await this.saveHouse(h); }
   async clearAll() { throw new Error("本番DBの全削除は管理画面から行ってください"); }
 }
 
 export const store = CONFIG.supabaseUrl && CONFIG.supabaseAnonKey ? new SupabaseStore(CONFIG.supabaseUrl, CONFIG.supabaseAnonKey) : new LocalStore();
+
+// ---------------- 災害時の被害度 ----------------
+export const DAMAGE = [
+  { id: "none", label: "被害なし", rank: 0, color: "#7FB069" },
+  { id: "minor", label: "軽微", rank: 1, color: "#F2C14E" },
+  { id: "major", label: "大きい", rank: 2, color: "#E8622A" },
+  { id: "destroyed", label: "倒壊・全損", rank: 3, color: "#B3261E" },
+  { id: "unknown", label: "未確認", rank: 1.5, color: "#8A948E" }
+];
+export const damageOf = id => DAMAGE.find(d => d.id === id) || DAMAGE[4];
 
 // ---------------- ECの行動ログ ----------------
 // 取るのは5種だけ: 商品を見た / かごに入れた / 3Dで作った / 見積を依頼 / カルテを見た。

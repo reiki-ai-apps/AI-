@@ -4,6 +4,7 @@ import { initSite, toast, copyText, esc } from "./site.js";
 import { OPTIONS, ridgeRange, normalizeParams, encodeParams, yen } from "./pricing.js";
 import { ICONS } from "./icons.js";
 import { attachVoiceSearch } from "./voice.js";
+import { initDisaster } from "./disaster.js";
 import { store, seedDemo, todayList, healthStats, houseStatus, addDays, normTel,
          CROPS, CONDITIONS, AREAS, TOPICS, CHANNELS, QUOTE_STATUS, TASK_KIND } from "./store.js";
 
@@ -29,6 +30,7 @@ document.querySelectorAll("[role=tab]").forEach(b => b.addEventListener("click",
   document.querySelectorAll("[role=tab]").forEach(x => x.setAttribute("aria-selected", String(x === b)));
   document.querySelectorAll(".pane-main").forEach(p => { p.hidden = p.id !== `pane-${b.dataset.tab}`; });
   if (b.dataset.tab === "phone") $("#tel").focus();
+  if (b.dataset.tab === "dz" && !dzReady) { dzReady = true; initDisaster().catch(err => console.error(err)); }
 }));
 
 // ---------------- 今日やること ----------------
@@ -111,7 +113,7 @@ $("#save-memo").addEventListener("click", async () => {
 });
 
 // ---------------- お客様360 ----------------
-let customers = [], currentCustomerId = null;
+let customers = [], currentCustomerId = null, dzReady = false;
 async function refreshCustomers() {
   customers = await store.listCustomers();
   fill($("#c-existing"), [["", "(新規のお客様)"], ...customers.map(c => [c.id, `${c.name}${c.farmName ? " / " + c.farmName : ""}(${c.code})`])]);

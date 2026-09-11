@@ -73,3 +73,38 @@
 .tl-item .what { font-weight: 700; }
 .tl-item .body { font-size: 0.95rem; white-space: pre-wrap; }
 .consent-row { display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.85rem; color: var(--muted); }
+
+/* 災害モード */
+.dz-head { display: grid; gap: 12px; margin-bottom: 20px; }
+.dz-controls { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+.dz-controls .chip-row { margin: 0; }
+.dz-controls .chip-row button { min-height: 44px; padding: 0 14px; font-size: 0.95rem; }
+.dz-tip { background: var(--calm); border-left: 4px solid var(--gold); border-radius: 8px; padding: 10px 14px; font-size: 0.95rem; }
+.dz-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+.dz-stat { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; text-align: center; }
+.dz-stat .v { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.dz-stat .k { font-size: 0.8rem; color: var(--muted); }
+.dz-stat.bad { border-color: var(--danger); } .dz-stat.bad .v { color: var(--danger); }
+.dz-stat.ok { border-color: var(--green-600); }
+.dz-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 400px); gap: 24px; align-items: start; }
+@media (max-width: 1000px) { .dz-grid { grid-template-columns: 1fr; } }
+.dz-row { display: grid; grid-template-columns: 32px minmax(0, 1fr) auto auto; gap: 12px; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; }
+.dz-row.checked { background: var(--calm); }
+.dz-row.flash { border-color: var(--sunrise); box-shadow: 0 0 0 3px rgba(232,98,42,0.25); }
+.dz-row .no { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--muted); text-align: center; }
+.dz-row .nm { font-weight: 700; }
+.dz-row .sub { font-size: 0.82rem; color: var(--muted); }
+.dz-row .sub .weak { color: var(--sunrise-deep); font-weight: 700; }
+.dz-row .dmg { display: flex; gap: 4px; flex-wrap: wrap; }
+.dz-row .dmg button { min-height: 44px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--line); background: #fff; font: inherit; font-size: 0.85rem; font-weight: 700; cursor: pointer; color: var(--text); white-space: nowrap; }
+.dz-row .dmg button[aria-pressed="true"] { background: var(--c); border-color: var(--c); color: #fff; }
+.dz-row .acts { display: flex; gap: 6px; }
+@media (max-width: 820px) { .dz-row { grid-template-columns: 32px 1fr; } .dz-row .dmg, .dz-row .acts { grid-column: 1 / -1; } }
+.map-wrap { position: relative; height: 360px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #eef1ee; }
+.map-tiles { position: absolute; display: grid; }
+.map-tiles img { display: block; width: 256px; height: 256px; }
+.map-pin { position: absolute; width: 26px; height: 26px; margin: -26px 0 0 -13px; border: 0; padding: 0; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--pin); box-shadow: 0 2px 6px rgba(0,0,0,.3); cursor: pointer; }
+.map-pin .cnt { display: block; transform: rotate(45deg); color: #fff; font-size: 12px; font-weight: 700; line-height: 26px; }
+.map-pin .map-label { position: absolute; left: 50%; top: 30px; transform: rotate(45deg) translateX(-10%); white-space: nowrap; background: rgba(255,255,255,.92); border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; font-size: 11px; color: var(--text); pointer-events: none; }
+.map-attr { position: absolute; right: 4px; bottom: 2px; font-size: 10px; background: rgba(255,255,255,.8); padding: 0 4px; border-radius: 4px; }
+.map-empty { display: grid; place-items: center; height: 100%; padding: 24px; text-align: center; color: var(--muted); font-size: 0.9rem; }
