@@ -5,21 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://ncosmmesecpqhzfikpmn.supabase.co wss://ncosmmesecpqhzfikpmn.supabase.co; form-action 'self' https://*.stripe.com; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
-<title>AI最新ニュース｜仕事への影響と次の行動をやさしく確認｜AI進化レーダー</title>
+<title>AI進化レーダー（KIZASHI）｜AI最新ニュースを、仕事への影響と次の行動まで確認</title>
 <meta name="description" content="生成AI・AIツールの最新ニュースを、何が変わったか、仕事にどう影響するか、次に何を確認するかまでやさしく整理。情報元と重要度付きで確認できます。" />
 <link rel="canonical" href="https://reiki-ai-apps.github.io/AI-/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="AI進化レーダー" />
-<meta property="og:title" content="AI最新ニュース｜仕事への影響をやさしく確認" />
+<meta property="og:title" content="AI進化レーダー（KIZASHI）｜AI最新ニュース、仕事への影響と次の行動" />
 <meta property="og:description" content="生成AIの重要ニュースを、変化・仕事への影響・次の確認事項まで情報元付きで整理します。" />
 <meta property="og:url" content="https://reiki-ai-apps.github.io/AI-/" />
 <meta property="og:image" content="https://reiki-ai-apps.github.io/AI-/assets/ai-radar-human-hero.webp" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="AI最新ニュース｜仕事への影響をやさしく確認" />
+<meta name="twitter:title" content="AI進化レーダー（KIZASHI）｜AI最新ニュース、仕事への影響と次の行動" />
 <meta name="twitter:description" content="生成AIの重要ニュースを、変化・仕事への影響・次の確認事項まで情報元付きで整理。" />
 <meta name="twitter:image" content="https://reiki-ai-apps.github.io/AI-/assets/ai-radar-human-hero.webp" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://reiki-ai-apps.github.io/AI-/#website","url":"https://reiki-ai-apps.github.io/AI-/","name":"AI進化レーダー","description":"生成AI・AIツールの最新ニュースを、仕事への影響と次の確認事項までやさしく整理するニュースサービス","inLanguage":"ja"},{"@type":"Organization","@id":"https://reiki-ai-apps.github.io/AI-/#organization","name":"KIZASHI","url":"https://reiki-ai-apps.github.io/AI-/","logo":{"@type":"ImageObject","url":"https://reiki-ai-apps.github.io/AI-/assets/ai-radar-icon-512.png"}}]}
+{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://reiki-ai-apps.github.io/AI-/#website","url":"https://reiki-ai-apps.github.io/AI-/","name":"AI進化レーダー","alternateName":["KIZASHI AI進化レーダー","KIZASHI レーダー","AI進化レーダー KIZASHI"],"description":"KIZASHIが運営する、生成AI・AIツールの最新ニュースを仕事への影響と次の確認事項までやさしく整理するニュースサービス","inLanguage":"ja"},{"@type":"Organization","@id":"https://reiki-ai-apps.github.io/AI-/#organization","name":"KIZASHI","url":"https://reiki-ai-apps.github.io/AI-/","logo":{"@type":"ImageObject","url":"https://reiki-ai-apps.github.io/AI-/assets/ai-radar-icon-512.png"}}]}
 </script>
 <meta name="theme-color" content="#070b14" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -2179,6 +2179,19 @@
     .light-media-theme .mobile-home-search small{color:#52647b!important}
   }
 
+  /* 記事トップ5とは分離した、専門家動画・講演の重要発言枠 */
+  .content-type-badge{display:inline-flex;align-items:center;min-height:24px;padding:3px 8px;border:1px solid rgba(91,224,236,.34);border-radius:999px;background:rgba(29,125,153,.16);color:#8bf5f2;font-size:9px;font-weight:900;letter-spacing:.06em;white-space:nowrap}
+  .content-type-badge.is-video{border-color:rgba(180,123,255,.45);background:rgba(104,57,180,.2);color:#dbc8ff}
+  .expert-video-section{margin-top:30px;padding:22px;border:1px solid rgba(105,210,231,.3);border-radius:18px;background:linear-gradient(145deg,rgba(5,25,44,.92),rgba(18,15,54,.9));box-shadow:0 18px 46px rgba(0,0,0,.28)}
+  .expert-video-head{display:flex;align-items:flex-end;gap:18px;margin-bottom:16px}.expert-video-head>div{display:grid;gap:4px}.expert-video-kicker{color:#72eff1;font-size:9px;font-weight:900;letter-spacing:.16em}.expert-video-head h2{margin:0;color:#f3fbff;font-size:21px}.expert-video-head p{margin:0 0 1px auto;max-width:470px;color:#9fb1c7;font-size:11px;line-height:1.7;text-align:right}
+  .expert-video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .expert-video-card{display:flex;min-width:0;min-height:260px;flex-direction:column;padding:17px;border:1px solid rgba(111,172,221,.26);border-radius:14px;background:linear-gradient(150deg,rgba(9,29,51,.98),rgba(10,15,40,.98));box-shadow:0 12px 26px rgba(0,0,0,.24)}
+  .expert-video-card-top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.expert-video-platform{margin-left:auto;color:#8fa5be;font-size:9px;font-weight:800}.expert-video-person{display:grid;gap:2px;margin:13px 0 9px}.expert-video-person strong{color:#f3fbff;font-size:14px}.expert-video-person span{color:#83cfd8;font-size:10px;line-height:1.5}.expert-video-card h3{margin:0;color:#eef7ff;font-size:15px;line-height:1.55}.expert-video-summary{display:-webkit-box;margin:9px 0 15px;overflow:hidden;color:#adbed1;font-size:11px;line-height:1.75;-webkit-box-orient:vertical;-webkit-line-clamp:4}.expert-video-actions{display:grid;gap:8px;margin-top:auto}.expert-video-actions .btn{width:100%;min-height:40px;font-size:10px}
+  .expert-video-card .read-proof{margin-left:0}
+  .light-media-theme .expert-video-section{border-color:#c9dfe8!important;background:linear-gradient(145deg,#fff,#f4f7fb 70%,#f2effd)!important;box-shadow:0 14px 34px rgba(41,60,89,.09)!important}.light-media-theme .expert-video-head h2,.light-media-theme .expert-video-card h3,.light-media-theme .expert-video-person strong{color:#1d2c42!important}.light-media-theme .expert-video-head p,.light-media-theme .expert-video-summary{color:#52647b!important}.light-media-theme .expert-video-card{border-color:#cfdae7!important;background:#fff!important;box-shadow:0 8px 22px rgba(39,57,86,.08)!important}
+  @media(max-width:960px){.expert-video-grid{grid-template-columns:1fr}.expert-video-card{min-height:0}.expert-video-head{display:grid}.expert-video-head p{margin:0;text-align:left}.expert-video-summary{-webkit-line-clamp:5}}
+  @media(max-width:760px){.expert-video-section{margin-top:24px;padding:15px}.expert-video-head h2{font-size:18px}.expert-video-actions{grid-template-columns:1fr 1fr}.expert-video-actions .btn{padding:0 8px}}
+
   /* モバイルでは background-attachment:fixed が毎フレーム全画面再描画を招く
      (iOSはそもそも非対応)ため、スクロール追従に切り替えてかくつきを防ぐ */
   @media(max-width:760px){
@@ -2243,6 +2256,7 @@
 <div class="toast-wrap" id="toasts"></div>
 <div id="modalRoot"></div>
 
+<script id="visitorTracker" defer src="./assets/visitor-tracker.js"></script>
 <script id="supabaseSdk" defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.100.0"></script>
 <script>
 /* 同一セッションの2回目以降の読み込み(スワイプ遷移によるスナップショット・
@@ -2426,16 +2440,20 @@ function cachedOperatorAccessForUser(userId){
 function cacheOperatorAccess(userId,isOperator){
   if(!userId)return;
   try{localStorage.setItem(OPERATOR_ACCESS_CACHE_KEY,JSON.stringify({userId,isOperator:isOperator===true}));}catch(_error){}
+  if(isOperator)try{localStorage.setItem('ai_radar_exclude_operator_browser_v1','1');}catch(_error){}
+  window.aiRadarAnalytics?.identityChanged(isOperator===true);
 }
 async function loadOperatorAccess(){
+  const requestedUserId=memberState.user?.id;
   const safeFallback=memberState.subscription?.access_source==='operator_grant'
     ?memberState.subscription:cachedOperatorAccessForUser(memberState.user?.id);
   if(!memberClient||!memberState.user)return safeFallback;
   for(const delay of [0,500,1400]){
     if(delay)await waitMs(delay);
     try{
-      const result=await memberClient.rpc('get_my_membership');
-      if(!result.error&&result.data){
+      const result=await operatorRpc('get_my_membership');
+      if(memberState.user?.id!==requestedUserId)return null;
+      if(!result.error&&typeof result.data?.access_source==='string'){
         const isOperator=result.data.access_source==='operator_grant';
         cacheOperatorAccess(memberState.user.id,isOperator);
         return isOperator?{access_source:'operator_grant'}:{access_source:'none'};
@@ -2444,17 +2462,42 @@ async function loadOperatorAccess(){
   }
   return safeFallback;
 }
+async function operatorRpc(name){
+  let timer;
+  try{return await Promise.race([memberClient.rpc(name),
+    new Promise((_,reject)=>{timer=window.setTimeout(()=>reject(new Error('利用状況の取得が遅れています')),8000);})]);}
+  finally{window.clearTimeout(timer);}
+}
 function validOperatorMetrics(data){
+  const validCount=value=>(typeof value==='number'||typeof value==='string'&&/^\d+$/.test(value))&&Number.isSafeInteger(Number(value))&&Number(value)>=0;
+  if(!validCount(data?.unique_visitors))return null;
   const uniqueVisitors=Number(data?.unique_visitors);
   if(!Number.isFinite(uniqueVisitors)||uniqueVisitors<0)return null;
   const rawDailyOpens=data?.daily_opens;
+  if(rawDailyOpens!=null&&!validCount(rawDailyOpens))return null;
   const dailyOpens=rawDailyOpens==null?null:Number(rawDailyOpens);
   if(dailyOpens!==null&&(!Number.isFinite(dailyOpens)||dailyOpens<0))return null;
-  return {uniqueVisitors,dailyOpens};
+  return {uniqueVisitors,dailyOpens,dailyOpensDate:String(data?.daily_opens_date||new Date(Date.now()+9*3600000).toISOString().slice(0,10))};
+}
+const OPERATOR_METRICS_CACHE_KEY='ai_radar_operator_metrics_snapshot_v1';
+function cachedOperatorMetrics(userId){
+  if(!cachedOperatorAccessForUser(userId))return null;
+  try{
+    const snapshot=JSON.parse(localStorage.getItem(OPERATOR_METRICS_CACHE_KEY)||'null');
+    if(snapshot?.userId!==userId||!Number.isFinite(Date.parse(snapshot?.updatedAt)))return null;
+    const metrics=validOperatorMetrics({unique_visitors:snapshot.metrics?.uniqueVisitors,daily_opens:snapshot.metrics?.dailyOpens,daily_opens_date:snapshot.metrics?.dailyOpensDate});
+    return metrics?{metrics,updatedAt:snapshot.updatedAt}:null;
+  }catch(_error){return null;}
+}
+function displayedOperatorMetrics(){
+  const metrics=memberState.operatorMetrics;
+  const today=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
+  return metrics&&metrics.dailyOpensDate&&metrics.dailyOpensDate!==today?{...metrics,dailyOpens:null}:metrics;
 }
 async function loadOperatorMetrics(){
   if(!memberClient||!memberState.user||memberState.subscription?.access_source!=='operator_grant')return null;
-  const {data,error}=await memberClient.rpc('operator_metrics');
+  const result=await operatorRpc('operator_metrics');
+  const {data,error}=result;
   if(error)throw error;
   const metrics=validOperatorMetrics(data);
   if(!metrics)throw new Error('invalid operator metrics');
@@ -2463,7 +2506,9 @@ async function loadOperatorMetrics(){
 function operatorMetricsTimeLabel(value){
   if(!value)return '';
   const date=new Date(value);if(!Number.isFinite(date.getTime()))return '';
-  return date.toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const today=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
+  const day=new Date(date.getTime()+9*3600000).toISOString().slice(0,10);
+  return (day===today?'':date.toLocaleDateString('ja-JP',{timeZone:'Asia/Tokyo',month:'numeric',day:'numeric'})+' ')+date.toLocaleTimeString('ja-JP',{timeZone:'Asia/Tokyo',hour:'2-digit',minute:'2-digit',second:'2-digit'});
 }
 function operatorMetricsStatusLabel(){
   if(memberState.operatorMetricsStatus==='live')return `実数 ${operatorMetricsTimeLabel(memberState.operatorMetricsUpdatedAt)}取得`;
@@ -2487,7 +2532,7 @@ function renderOperatorMetrics(){
   const desktopBadge=document.getElementById('operatorMetrics');
   const mobileBadge=document.getElementById('mobileOperatorMetrics');
   const mobileSlot=document.getElementById('mobileOperatorMetricsSlot');
-  const metrics=memberState.operatorMetrics;
+  const metrics=displayedOperatorMetrics();
   const isOperator=memberState.subscription?.access_source==='operator_grant';
   if(!desktopBadge||!mobileBadge||!mobileSlot)return;
   desktopBadge.hidden=!isOperator;
@@ -2522,6 +2567,7 @@ async function refreshOperatorMetrics(){
     return;
   }
   if(operatorMetricsRefreshInFlight)return operatorMetricsRefreshInFlight;
+  const requestedUserId=memberState.user.id;
   memberState.operatorMetricsStatus='loading';
   renderOperatorMetrics();
   operatorMetricsRefreshInFlight=(async()=>{
@@ -2533,12 +2579,15 @@ async function refreshOperatorMetrics(){
         try{metrics=await loadOperatorMetrics();break;}catch(error){lastError=error;}
       }
       if(!metrics)throw lastError||new Error('管理者統計を取得できませんでした');
+      if(memberState.user?.id!==requestedUserId||memberState.subscription?.access_source!=='operator_grant')return;
       memberState.operatorMetrics=metrics;
       memberState.operatorMetricsStatus='live';
       memberState.operatorMetricsUpdatedAt=new Date().toISOString();
       memberState.operatorMetricsError='';
+      try{localStorage.setItem(OPERATOR_METRICS_CACHE_KEY,JSON.stringify({userId:requestedUserId,metrics,updatedAt:memberState.operatorMetricsUpdatedAt}));}catch(_error){}
     }catch(error){
       // A transient failure must not erase the last verified counts.
+      if(memberState.user?.id!==requestedUserId)return;
       memberState.operatorMetricsStatus=memberState.operatorMetrics?'stale':'error';
       memberState.operatorMetricsError=String(error?.message||'管理者統計を取得できませんでした');
     }finally{
@@ -2595,15 +2644,17 @@ async function refreshOperatorState(session){
   const nextUserId=session?.user?.id||'';
   const sameUser=!!nextUserId&&previousUserId===nextUserId;
   const previousAccess=sameUser?memberState.subscription:cachedOperatorAccessForUser(nextUserId);
-  const previousMetrics=sameUser?memberState.operatorMetrics:null;
-  const previousMetricsStatus=sameUser?memberState.operatorMetricsStatus:'idle';
-  const previousMetricsUpdatedAt=sameUser?memberState.operatorMetricsUpdatedAt:null;
+  const savedMetrics=cachedOperatorMetrics(nextUserId);
+  const previousMetrics=sameUser?memberState.operatorMetrics:savedMetrics?.metrics||null;
+  const previousMetricsStatus=sameUser?memberState.operatorMetricsStatus:savedMetrics?'stale':'idle';
+  const previousMetricsUpdatedAt=sameUser?memberState.operatorMetricsUpdatedAt:savedMetrics?.updatedAt||null;
   memberState.user=session?.user||null;
   memberState.subscription=previousAccess;
   memberState.operatorMetrics=previousMetrics;
   memberState.operatorMetricsStatus=previousMetricsStatus;
   memberState.operatorMetricsUpdatedAt=previousMetricsUpdatedAt;
   memberState.operatorMetricsError='';
+  renderOperatorMetrics();
   if(memberState.user&&memberClient){
     const access=await loadOperatorAccess();
     memberState.subscription=access?.access_source==='operator_grant'?access:null;
@@ -2629,7 +2680,26 @@ function queueOperatorRefresh(session){
   });
   return memberRefreshQueue;
 }
+function restoreOperatorSnapshot(){
+  // Show only this browser's previously verified operator snapshot while the
+  // SDK/session is restoring. This never authorizes a server request.
+  if(memberState.user)return;
+  try{
+    const session=JSON.parse(localStorage.getItem('sb-ncosmmesecpqhzfikpmn-auth-token')||'null');
+    const userId=session?.user?.id;
+    const access=cachedOperatorAccessForUser(userId);
+    if(!access)return;
+    const saved=cachedOperatorMetrics(userId);
+    memberState.user=session.user;
+    memberState.subscription=access;
+    memberState.operatorMetrics=saved?.metrics||null;
+    memberState.operatorMetricsStatus=saved?'stale':'loading';
+    memberState.operatorMetricsUpdatedAt=saved?.updatedAt||null;
+    renderOperatorMetrics();
+  }catch(_error){}
+}
 async function initOperatorAuth(){
+  restoreOperatorSnapshot();
   await waitForSupabaseSdk();
   ensureMemberClient();
   if(!memberClient){memberState.ready=true;return;}
@@ -2777,93 +2847,17 @@ const DB = {
   },
   reset(){ this._data = seedData(); this.save(); },
 };
-/* ---------- 匿名の利用状況集計 ----------
-   レビュー重複防止と同じ匿名ブラウザキーをSHA-256化し、初回だけ登録する。人数はブラウザへ返さない。 */
-let visitorRegistrationStarted=false;
-let visitorRegistrationComplete=false;
-let visitorRegistrationAttempts=0;
-let visitorRegistrationRetryTimer=null;
-const VISITOR_REGISTRATION_MAX_ATTEMPTS=5;
-const UNIQUE_VISITOR_REGISTERED_KEY='ai_radar_unique_visitor_registered_v1';
-function hasRegisteredUniqueVisitor(){try{return localStorage.getItem(UNIQUE_VISITOR_REGISTERED_KEY)==='1';}catch(_error){return false;}}
-function markUniqueVisitorRegistered(){try{localStorage.setItem(UNIQUE_VISITOR_REGISTERED_KEY,'1');}catch(_error){}}
-function isMissingSupabaseRpc(error,rpcName){
-  const code=String(error?.code||'');
-  const status=Number(error?.status||error?.statusCode||0);
-  const details=[error?.message,error?.details,error?.hint].filter(Boolean).join(' ');
-  return ['PGRST202','42883'].includes(code)||status===404||new RegExp(`(?:${rpcName}.*(?:not found|schema cache|does not exist)|(?:not found|schema cache|does not exist).*${rpcName})`,'i').test(details);
-}
-function scheduleUniqueVisitorRetry(){
-  if(visitorRegistrationComplete||visitorRegistrationRetryTimer!==null||visitorRegistrationAttempts>=VISITOR_REGISTRATION_MAX_ATTEMPTS)return;
-  const delay=Math.min(60000,5000*Math.pow(2,Math.min(visitorRegistrationAttempts,3)));
-  visitorRegistrationRetryTimer=window.setTimeout(()=>{visitorRegistrationRetryTimer=null;registerUniqueVisitor();},delay);
-}
-async function registerUniqueVisitor(){
-  if(visitorRegistrationComplete||visitorRegistrationStarted)return;
-  if(hasRegisteredUniqueVisitor()){visitorRegistrationComplete=true;return;}
-  if(!ensureMemberClient()){visitorRegistrationAttempts++;scheduleUniqueVisitorRetry();return;}
-  visitorRegistrationStarted=true;
-  try{
-    const visitorHash=await publicReviewerHash();
-    const {error}=await memberClient.rpc('register_unique_visitor',{p_visitor_key_hash:visitorHash});
-    if(error)throw error;
-    visitorRegistrationComplete=true;
-    markUniqueVisitorRegistered();
-    visitorRegistrationAttempts=0;
-    if(visitorRegistrationRetryTimer!==null){window.clearTimeout(visitorRegistrationRetryTimer);visitorRegistrationRetryTimer=null;}
-  }catch(error){
-    visitorRegistrationStarted=false;
-    if(isMissingSupabaseRpc(error,'register_unique_visitor')){visitorRegistrationComplete=true;return;}
-    visitorRegistrationAttempts++;
-    scheduleUniqueVisitorRetry();
-  }
-}
-
-/* ---------- 匿名の日次表示回数 ---------- */
-function randomUuid(){
-  if(crypto.randomUUID)return crypto.randomUUID();
-  const bytes=crypto.getRandomValues(new Uint8Array(16));bytes[6]=(bytes[6]&15)|64;bytes[8]=(bytes[8]&63)|128;
-  const hex=Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
-  return `${hex.slice(0,8)}-${hex.slice(8,12)}-${hex.slice(12,16)}-${hex.slice(16,20)}-${hex.slice(20)}`;
-}
-/* 1回のページ起動・再読み込みを1表示として記録する。同じ起動内の再試行は
-   同じUUIDを使うため、通信結果が不明でも二重加算されない。 */
-const APP_OPEN_EVENT_ID=randomUuid();
-const APP_OPEN_MAX_ATTEMPTS=5;
-let appOpenStarted=false;
-let appOpenComplete=false;
-let appOpenAttempts=0;
-let appOpenRetryTimer=null;
-function scheduleAppOpenRetry(){
-  if(appOpenComplete||appOpenRetryTimer!==null||appOpenAttempts>=APP_OPEN_MAX_ATTEMPTS)return;
-  const delay=Math.min(60000,4000*Math.pow(2,Math.min(appOpenAttempts,3)));
-  appOpenRetryTimer=window.setTimeout(()=>{appOpenRetryTimer=null;recordAppOpen();},delay);
-}
-async function recordAppOpen(){
-  if(appOpenComplete||appOpenStarted)return;
-  if(!ensureMemberClient()){appOpenAttempts++;scheduleAppOpenRetry();return;}
-  appOpenStarted=true;
-  try{
-    const {error}=await memberClient.rpc('record_app_open',{p_event_id:APP_OPEN_EVENT_ID});
-    if(error)throw error;
-    appOpenComplete=true;
-    appOpenAttempts=0;
-    if(appOpenRetryTimer!==null){window.clearTimeout(appOpenRetryTimer);appOpenRetryTimer=null;}
-  }catch(error){
-    appOpenStarted=false;
-    if(isMissingSupabaseRpc(error,'record_app_open')){appOpenComplete=true;return;}
-    appOpenAttempts++;
-    scheduleAppOpenRetry();
-  }
-}
+/* ---------- Shared anonymous analytics ---------- */
+// The deferred tracker starts independently of news sync and Supabase SDK.
+// Compatibility callers only flush pending UUIDs; they never create new opens.
+function registerUniqueVisitor(){return window.aiRadarAnalytics?.flush()||Promise.resolve();}
+function recordAppOpen(){return window.aiRadarAnalytics?.flush()||Promise.resolve();}
 // 旧ファネルRPCは本番未導入のまま廃止した。呼び出し元との互換だけ残し、
 // 存在しないrecord_app_eventへ404を発生させない。
 function trackAppEvent(){return Promise.resolve(false);}
 function flushAppEvents(){return Promise.resolve(true);}
 function trackRouteView(){}
 window.addEventListener('online',()=>{
-  if(!visitorRegistrationComplete)visitorRegistrationAttempts=0;
-  if(!appOpenComplete)appOpenAttempts=0;
   registerUniqueVisitor();
   recordAppOpen();
   flushAppEvents();
@@ -3238,12 +3232,15 @@ const DEMO_ARTICLE_TITLES = [
 /* ============================================================
    Seed data（初期ツールのみ。ニュースは検証済みdata.jsonから取得）
    ============================================================ */
-function seedData(){
-  const t = (o)=>Object.assign({
+function createToolRecord(o){
+  return Object.assign({
     id:uid(),slug:slugify(o.name),category:'',official_url:'',release_notes_url:'',rss_url:'',x_url:'',
     priority:'B',is_using:false,related_businesses:[],memo:'',is_active:true,
     last_fetched_at:null,created_at:nowISO(),updated_at:nowISO()
   },o);
+}
+function seedData(){
+  const t=createToolRecord;
 
   const tools = [
     t({name:'ChatGPT / OpenAI',category:'総合AI',priority:'A',is_using:false,
@@ -3402,7 +3399,7 @@ const MIGRATIONS = [
         existing.related_businesses=[...new Set([...(existing.related_businesses||[]),preset.category])];
         return;
       }
-      d.tools.push(t({
+      d.tools.push(createToolRecord({
         name:preset.name,
         category:preset.kind,
         priority:preset.priority,
@@ -3433,7 +3430,7 @@ const MIGRATIONS = [
         existing.related_businesses=[...new Set([...(existing.related_businesses||[]),preset.category])];
         return;
       }
-      d.tools.push(t({
+      d.tools.push(createToolRecord({
         name:preset.name,
         category:preset.kind,
         priority:preset.priority,
@@ -3478,8 +3475,10 @@ function runMigrations(d){
   let changed=false;
   MIGRATIONS.forEach(m=>{
     if(!d.applied_migrations.includes(m.id)){
-      try{ m.apply(d); }catch(e){ console.warn('migration failed',m.id,e); }
-      d.applied_migrations.push(m.id); changed=true;
+      try{
+        m.apply(d);
+        d.applied_migrations.push(m.id);changed=true;
+      }catch(e){ console.warn('migration failed',m.id,e); }
     }
   });
   return changed;
@@ -3621,7 +3620,8 @@ function renderSignature(){
       planUpdates.length,
       planUpdates.filter(u=>!isArticleRead(u)).length,
       planUpdates.filter(u=>u.status==='try_later').length,
-      getUpdates().filter(u=>Number(u.home_top_rank)>0).map(u=>`${u.article_id||u.id}:${u.home_top_rank}:${u.home_selected_at||''}:${u.home_top_origin||''}`).sort().join(',')
+      getUpdates().filter(u=>Number(u.home_top_rank)>0).map(u=>`${u.article_id||u.id}:${u.home_top_rank}:${u.home_selected_at||''}:${u.home_top_origin||''}`).sort().join(','),
+      planUpdates.filter(isExpertVideo).map(u=>`${u.article_id||u.id}:${u.expert_id||''}:${u.published_at||''}:${u.home_video_selected_at||''}`).sort().join(',')
     ].join('|');
   }catch(_e){return 'sig-'+Date.now();}
 }
@@ -3666,6 +3666,8 @@ function validArticleDate(value){
 function articleTimelineAt(u){
   return u?.published_at||u?.source_published_at||u?.fetched_at||'';
 }
+function isExpertVideo(u){ return String(u?.content_type||'article').toLowerCase()==='expert_video'; }
+function contentTypeBadge(u){ return isExpertVideo(u)?'<span class="content-type-badge is-video">専門家動画</span>':'<span class="content-type-badge">記事</span>'; }
 function sourcePublishedAt(u){
   if(u?.source_published_at)return u.source_published_at;
   const status=String(u?.source_date_status||'');
@@ -3681,8 +3683,9 @@ function storySequence(u){
   return Number.isFinite(value)&&value>=2?Math.floor(value):2;
 }
 function timelineMeta(u){
-  return `<div class="timeline-meta" aria-label="情報元の記事掲載日">
-    <span><b>情報元の掲載日</b>${esc(sourcePublishedLabel(u))}</span>
+  const label=isExpertVideo(u)?'元動画・講演の公開日':'情報元の掲載日';
+  return `<div class="timeline-meta" aria-label="${label}">
+    <span><b>${label}</b>${esc(sourcePublishedLabel(u))}</span>
   </div>`;
 }
 function relDate(iso){
@@ -3706,6 +3709,7 @@ const ART_VARIANTS=['art-quantum','art-robot','art-city','art-space','art-cyber'
 
 function updateCard(u){
   const tool=toolById(u.tool_id);
+  const expertVideo=isExpertVideo(u);
   const color=toolColor(u.tool_id);
   const sum=u.manual_summary||u.ai_summary||u.raw_excerpt||'要約はまだありません。';
   const artKey=((tool&&tool.name)||u.tool_id||u.title||'').toLowerCase();
@@ -3733,11 +3737,12 @@ function updateCard(u){
   else if(/(model|code|api|developer|fable|モデル|コード|開発|生成)/.test(storyKey))artPool=['art-quantum','art-robot','art-cyber','art-creative'];
   const artDeck=[...artPool,...allArt.filter(art=>!artPool.includes(art))];
   const artClass=artDeck[(artSeed%artPool.length)%artDeck.length];
-  return `<article class="ucard ${isArticleRead(u)?'':'is-new'} ${artClass}">
+  return `<article class="ucard ${isArticleRead(u)?'':'is-new'} ${expertVideo?'is-expert-video':''} ${artClass}">
     <div class="ucard-top">
-      <div class="ucard-tool"><span class="tool-dot" style="background:${color};color:${color}"></span><span>${esc(tool?tool.name:'不明')}</span></div>
+      <div class="ucard-tool"><span class="tool-dot" style="background:${color};color:${color}"></span><span>${esc(tool?tool.name:'不明')}</span>${contentTypeBadge(u)}</div>
       <div class="ucard-top-meta">${rankBadge(u.rank)}${homeOriginBadge(u)}${u.relation_type==='follow_up'?`<span class="followup-badge">続報 ${storySequence(u)}</span>`:''}${u.relation_type==='correction'?`<span class="followup-badge is-correction">訂正・状況変更</span>`:''}${readProofBadge(u)}${!['unread','read'].includes(u.status)?statusBadge(u.status):''}</div>
     </div>
+    ${expertVideo?`<div class="expert-video-person"><strong>${esc(u.expert_name||'専門家')}</strong><span>${esc(u.expert_role||'AIの専門家')}</span></div>`:''}
     <a class="ucard-title-link" href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')" aria-label="${esc(u.title)}の要約をアプリ内で見る"><h3>${esc(u.title)}</h3></a>
     ${timelineMeta(u)}
     ${u.continuation_lead?`<button class="continuation-card" onclick="go('update-detail','${u.id}')"><strong>前回からの続き</strong><span>${esc(u.continuation_lead)}</span></button>`:''}
@@ -3748,8 +3753,8 @@ function updateCard(u){
         ${u.source_name?`<div class="ucard-meta-group"><span class="ucard-meta-label">情報元</span><span class="chip more">${esc(u.source_name)}</span></div>`:''}
       </div>
       <div class="card-actions">
-        <a class="card-open card-detail" href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')">${icon('eye')}変化と仕事への影響を見る</a>
-        ${u.source_url?`<button class="card-source" onclick="openSourceArticle('${u.id}')" aria-label="情報元の記事を外部サイトで読む">${icon('ext')}情報元の記事を読む</button>`:''}
+        <a class="card-open card-detail" href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')">${icon('eye')}${expertVideo?'重要発言と背景を見る':'変化と仕事への影響を見る'}</a>
+        ${u.source_url?`<button class="card-source" onclick="openSourceArticle('${u.id}')" aria-label="${expertVideo?'元の動画・講演':'情報元の記事'}を外部サイトで見る">${icon('ext')}${expertVideo?'元の動画・講演を見る':'情報元の記事を読む'}</button>`:''}
         ${!isArticleRead(u)?`<button class="mark-read card-action-labeled" onclick="markRead('${u.id}')" aria-label="読了の印を付ける" title="記事は残したまま、読んだ証を付ける">${icon('check')}<span>読了にする</span></button>`:''}
         ${u.status!=='try_later'?`<button class="icon-action card-action-labeled" onclick="quickStatus('${u.id}','try_later');render()" aria-label="後で見るに保存" title="後で見る一覧に保存する">${icon('flask')}<span>後で見る</span></button>`:''}
       </div>
@@ -3808,7 +3813,7 @@ function selectLatestCover(items,now=Date.now()){
   // まず直近24時間のS/A記事から「掲載日時が最も新しい記事」を選ぶ。
   // 重要記事が無い場合だけB/Cを含め、72時間・14日へ段階的に広げる。
   // 強いキーワード加点より新しさを優先し、新しい重要記事が入るたびに表紙を切り替える。
-  const dated=[...(items||[])].filter(item=>validArticleDate(articleTimelineAt(item))>0);
+  const dated=[...(items||[])].filter(item=>!isExpertVideo(item)&&validArticleDate(articleTimelineAt(item))>0);
   let candidates=[];
   for(const hours of [24,72,14*24]){
     const cutoff=now-hours*3600000;
@@ -3825,11 +3830,30 @@ function selectLatestCover(items,now=Date.now()){
     )[0]||null;
 }
 function homeTopUpdates(){
-  const selected=getUpdates().filter(item=>Number(item.home_top_rank)>=1&&Number(item.home_top_rank)<=5)
+  const selected=getUpdates().filter(item=>!isExpertVideo(item)&&Number(item.home_top_rank)>=1&&Number(item.home_top_rank)<=5)
     .sort((a,b)=>Number(a.home_top_rank)-Number(b.home_top_rank));
   if(selected.length)return selected.slice(0,5);
   // 旧キャッシュや初回同期の直前でもホームを空にせず、最大5件だけに抑える。
-  return getUpdates().slice().sort((a,b)=>globalCoverScore(b)-globalCoverScore(a)||byPub(a,b)).slice(0,5);
+  return getUpdates().filter(item=>!isExpertVideo(item)).sort((a,b)=>globalCoverScore(b)-globalCoverScore(a)||byPub(a,b)).slice(0,5);
+}
+function homeExpertVideos(items){
+  const selected=[];const seenVideos=new Set();const seenExperts=new Set();
+  for(const item of [...(items||[])].filter(isExpertVideo).sort((a,b)=>(Date.parse(b.home_video_selected_at)||0)-(Date.parse(a.home_video_selected_at)||0)||byFeedOrder(a,b))){
+    const videoKey=String(item.video_id||item.source_url||item.article_id||item.id||'');
+    if(!videoKey||seenVideos.has(videoKey)||seenExperts.has(item.expert_id))continue;
+    selected.push(item);seenVideos.add(videoKey);seenExperts.add(item.expert_id);
+    if(selected.length>=1)break;
+  }
+  return selected;
+}
+function expertVideoCard(u){
+  const summary=u.manual_summary||u.ai_summary||u.raw_excerpt||'重要な発言の要点を確認できます。';
+  return `<article class="expert-video-card">
+    <div class="expert-video-card-top">${contentTypeBadge(u)}${readProofBadge(u)}<span class="expert-video-platform">${esc(u.platform||'動画・講演')}</span></div>
+    <div class="expert-video-person"><strong>${esc(u.expert_name||'専門家')}</strong><span>${esc(u.expert_role||'AIの専門家')}</span></div>
+    <h3>${esc(u.title)}</h3><div class="expert-video-summary">${esc(summary)}</div>
+    <div class="expert-video-actions"><a class="btn btn-primary" href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')">${icon('eye')}要点と背景</a>${u.source_url?`<button class="btn" onclick="openSourceArticle('${u.id}')">${icon('ext')}元動画を見る</button>`:''}</div>
+  </article>`;
 }
 const TOP_STORY_REFRESH_MS=5*60000;
 let activeTopStoryId='';
@@ -3843,6 +3867,8 @@ window.setInterval(refreshTopStoryIfNeeded,TOP_STORY_REFRESH_MS);
 function renderHome(v){
   recomputeAll();
   const allUpdates=getUpdates();
+  const articleUpdates=allUpdates.filter(item=>!isExpertVideo(item));
+  const expertVideos=homeExpertVideos(allUpdates);
   const tryLater=allUpdates.filter(u=>u.status==='try_later').length;
   // ホームは各更新回で選ばれたトップ5専用。既読・テーマ設定で選定を変えない。
   const list=homeTopUpdates();
@@ -3855,7 +3881,7 @@ function renderHome(v){
   const selectedAt=list[0]?.home_selected_at||list[0]?.fetched_at||'';
   const latest=selectedAt?fmtDateTime(selectedAt):'確認中';
   // 1位を大型表示にし、残り4件と合わせてホーム全体を最大5件にする。
-  const cover=list[0]||selectLatestCover(allUpdates);
+  const cover=list[0]||selectLatestCover(articleUpdates);
   activeTopStoryId=String(cover?.id||'');
   const coverSummary=cover?(cover.manual_summary||cover.ai_summary||cover.raw_excerpt||'要約を確認できます。'):'';
   const coverTool=cover?toolById(cover.tool_id):null;
@@ -3886,12 +3912,17 @@ function renderHome(v){
   const homeSecondaryHtml=`<section class="home-secondary" aria-label="記事以外の案内">
     <div class="quick-stats">
       <span class="signal-count">注目ニュース ${list.length}件・新着 ${newCount}件${continuedCount?`・継続 ${continuedCount}件`:''}・更新確認 ${latest}</span>
-      <button class="mini-chip" onclick="openAllUpdates()">公開記事 ${allUpdates.length}</button>
+      <button class="mini-chip" onclick="openUpdatesFiltered({type:'article'})">公開記事 ${articleUpdates.length}</button>
+      ${expertVideos.length?`<button class="mini-chip" onclick="openUpdatesFiltered({type:'expert_video'})">専門家動画 ${allUpdates.filter(isExpertVideo).length}</button>`:''}
       ${tryLater?`<button class="mini-chip" onclick="go('try-list')">後で見る ${tryLater}</button>`:''}
     </div>
     <button class="btn mobile-home-search" onclick="openAllUpdates()">${icon('category')}<span><strong>分類・キーワードから探す</strong><small>すべての記事を検索できます</small></span></button>
     ${mobileMediaHtml}
   </section>`;
+  const expertVideoHtml=expertVideos.length?`<section class="expert-video-section" aria-labelledby="expertVideoTitle">
+    <div class="expert-video-head"><div><span class="expert-video-kicker">EXPERT SIGNALS</span><h2 id="expertVideoTitle">専門家の重要発言</h2></div><p>ホームには動画記事を1件表示。毎朝7:17（日本時間）から、公開10日以内の別の動画を選びます。未更新時は昼・夜にも再試行します。${expertVideos[0]?.home_video_selected_at?`動画記事の更新：${esc(fmtDate(expertVideos[0].home_video_selected_at))}`:'動画記事の更新を確認中'}</p></div>
+    <div class="expert-video-grid">${expertVideos.map(expertVideoCard).join('')}</div>
+  </section>`:'';
   let html = `<section class="radar-overview ${cover?'has-daily-cover':''}" aria-label="${cover?'本日のトップニュース':'AIシグナル概要'}">
     <div class="hud-hex-field" aria-hidden="true"><span class="hud-hex h1"></span><span class="hud-hex h2"></span><span class="hud-hex h3"></span><span class="hud-hex h4"></span><span class="hud-hex h5"></span></div>
     <div class="overview-copy">${coverCopy}</div>
@@ -3900,7 +3931,7 @@ function renderHome(v){
   <div class="home-feed">`;
 
   if(!list.length){
-    html+=emptyState('今回の重要ニュースを確認中です','「記事を探す」では、これまでの記事をカテゴリから探せます。')+homeSecondaryHtml+`</div>`;
+    html+=emptyState('今回の重要ニュースを確認中です','「記事を探す」では、これまでの記事をカテゴリから探せます。')+expertVideoHtml+homeSecondaryHtml+`</div>`;
     v.innerHTML=html; return;
   }
 
@@ -3917,7 +3948,7 @@ function renderHome(v){
     html+=updateCard(u);
   });
   if(open) html+=`</div>`;
-  html+=homeSecondaryHtml+`</div>`;
+  html+=expertVideoHtml+homeSecondaryHtml+`</div>`;
 
   v.innerHTML=html;
 }
@@ -3950,14 +3981,14 @@ function emptyState(title,desc){
 /* ============================================================
    UPDATES (/updates)  仕様書6-4
    ============================================================ */
-let upFilter={q:'',tool:'',cat:'',rank:'',status:'',unreadOnly:false};
+let upFilter={q:'',tool:'',cat:'',rank:'',type:'',status:'',unreadOnly:false};
 function openAllUpdates(){
-  upFilter={q:'',tool:'',cat:'',rank:'',status:'',unreadOnly:false};
+  upFilter={q:'',tool:'',cat:'',rank:'',type:'',status:'',unreadOnly:false};
   go('categories');
 }
 // ホームの統計タイルから、絞り込み済みのアップデート一覧を開く
 function openUpdatesFiltered(patch){
-  upFilter={q:'',tool:'',cat:'',rank:'',status:'',unreadOnly:false};
+  upFilter={q:'',tool:'',cat:'',rank:'',type:'',status:'',unreadOnly:false};
   Object.assign(upFilter, patch||{});
   go('categories');
 }
@@ -3965,15 +3996,20 @@ function renderUpdates(v){
   recomputeAll();
   const tools=getTools();
   const allArticles=getUpdates().slice().sort(byFeedOrder);
+  const articleCount=allArticles.filter(item=>!isExpertVideo(item)).length;
+  const videoCount=allArticles.filter(isExpertVideo).length;
   let list=allArticles.slice();
   const f=upFilter;
   if(f.q){const q=f.q.toLowerCase();list=list.filter(u=>[
     u.title,u.manual_summary,u.ai_summary,u.easy_summary,u.raw_excerpt,u.source_name,
+    u.expert_name,u.expert_role,u.platform,
     toolById(u.tool_id)?.name,...(u.related_categories||[])
   ].map(s=>s||'').join(' ').toLowerCase().includes(q));}
   if(f.tool)list=list.filter(u=>u.tool_id===f.tool);
   if(f.cat)list=list.filter(u=>(u.related_categories||[]).includes(f.cat));
   if(f.rank)list=list.filter(u=>u.rank===f.rank);
+  if(f.type==='article')list=list.filter(u=>!isExpertVideo(u));
+  else if(f.type==='expert_video')list=list.filter(isExpertVideo);
   if(f.status==='read')list=list.filter(isArticleRead);
   else if(f.status==='unread')list=list.filter(u=>!isArticleRead(u));
   else if(f.status)list=list.filter(u=>u.status===f.status);
@@ -3990,14 +4026,16 @@ function renderUpdates(v){
     ${BUSINESS_CATEGORIES.map((c,i)=>{const count=allArticles.filter(u=>(u.related_categories||[]).includes(c)).length;const safe=c.replace(/'/g,"\\'");return `<button type="button" class="cat-tile ${f.cat===c?'is-active':''}" onclick="upFilter.cat='${safe}';renderUpdates(document.getElementById('view'))" aria-pressed="${f.cat===c?'true':'false'}" aria-label="${esc(c)}の記事${count}件を表示"><div class="ct-top"><div class="ct-name">${esc(c)}</div><div class="ct-num" style="color:${TOOL_COLORS[i%TOOL_COLORS.length]}">${count}</div></div><div class="ct-bar"><i style="width:${Math.round(count/maxCategoryCount*100)}%"></i></div></button>`;}).join('')}
   </div></section>`;
 
-  let html=`<section class="archive-intro" aria-labelledby="archiveTitle"><h2 id="archiveTitle">分類・検索</h2><p>カテゴリを選ぶか、キーワード・情報元から、公開中のすべての記事を探せます。読了後も記事は消えません。</p></section><div class="filterbar">
-    <div class="search">${icon('search')}<input id="upSearch" type="search" aria-label="記事をキーワードで検索" placeholder="タイトル・要約・情報元を検索…" value="${esc(f.q)}" oninput="upFilter.q=this.value;debouncedUpdates()"></div>
+  let html=`<section class="archive-intro" aria-labelledby="archiveTitle"><h2 id="archiveTitle">記事と専門家動画・発言を探す</h2><p>重要記事${articleCount}件と専門家動画・講演${videoCount}件を、種類・カテゴリ・キーワード・情報元から探せます。読了後も消えません。</p></section><div class="filterbar">
+    <div class="search">${icon('search')}<input id="upSearch" type="search" aria-label="記事と専門家動画をキーワードで検索" placeholder="タイトル・要約・人物・情報元を検索…" value="${esc(f.q)}" oninput="upFilter.q=this.value;debouncedUpdates()"></div>
+    <select class="filter" onchange="upFilter.type=this.value;renderUpdates(document.getElementById('view'))">
+      <option value="">記事・動画すべて</option><option value="article" ${f.type==='article'?'selected':''}>重要記事</option><option value="expert_video" ${f.type==='expert_video'?'selected':''}>専門家動画・発言</option></select>
     <select class="filter" onchange="upFilter.tool=this.value;renderUpdates(document.getElementById('view'))">
       <option value="">すべてのツール</option>${tools.map(t=>`<option value="${t.id}" ${f.tool===t.id?'selected':''}>${esc(t.name)}</option>`).join('')}</select>
     <select class="filter" onchange="upFilter.status=this.value;renderUpdates(document.getElementById('view'))">
       <option value="">全ステータス</option>${STATUS_ORDER.map(s=>`<option value="${s}" ${f.status===s?'selected':''}>${STATUS_LABELS[s]}</option>`).join('')}</select>
     <label class="toggle-pill"><input type="checkbox" ${f.unreadOnly?'checked':''} onchange="upFilter.unreadOnly=this.checked;renderUpdates(document.getElementById('view'))">未読のみ</label>
-    <button class="btn btn-sm" type="button" onclick="upFilter={q:'',tool:'',cat:'',rank:'',status:'',unreadOnly:false};renderUpdates(document.getElementById('view'))">条件をリセット</button>
+    <button class="btn btn-sm" type="button" onclick="upFilter={q:'',tool:'',cat:'',rank:'',type:'',status:'',unreadOnly:false};renderUpdates(document.getElementById('view'))">条件をリセット</button>
   </div>${categoryTiles}<div class="archive-results" aria-live="polite"><strong>${list.length}件</strong><span>／ 全${allArticles.length}件</span></div>`;
 
   if(!list.length){ v.innerHTML=html+emptyState('該当するアップデートがありません','フィルター条件を変えるか、取得実行から情報を集めてください。'); return; }
@@ -4007,12 +4045,13 @@ function renderUpdates(v){
     html+=`<div class="grid cols-1">${list.map(updateCard).join('')}</div>`;
   }else{
     html+=`<div class="table-wrap"><table>
-      <thead><tr><th>タイトル</th><th style="width:130px">ツール</th><th style="width:150px">カテゴリ</th><th style="width:90px">公開日</th><th style="width:160px">ステータス</th></tr></thead><tbody>`;
+      <thead><tr><th>タイトル</th><th style="width:105px">種類</th><th style="width:130px">ツール・人物</th><th style="width:150px">カテゴリ</th><th style="width:90px">公開日</th><th style="width:160px">ステータス</th></tr></thead><tbody>`;
     list.forEach(u=>{
       const tool=toolById(u.tool_id);
       html+=`<tr>
         <td><span class="row-title" onclick="go('update-detail','${u.id}')">${esc(u.title)}</span></td>
-        <td><span style="display:inline-flex;align-items:center;gap:7px"><span class="tool-dot" style="background:${toolColor(u.tool_id)}"></span><span style="font-size:13px;color:var(--text-soft);font-weight:600">${esc(tool?tool.name:'—')}</span></span></td>
+        <td>${contentTypeBadge(u)}</td>
+        <td><span style="display:inline-flex;align-items:center;gap:7px"><span class="tool-dot" style="background:${toolColor(u.tool_id)}"></span><span style="font-size:13px;color:var(--text-soft);font-weight:600">${esc(isExpertVideo(u)?(u.expert_name||'専門家'):(tool?tool.name:'—'))}</span></span></td>
         <td>${catChips(u.related_categories,1)}</td>
         <td style="color:var(--text-mute);font-size:13px">${fmtDate(u.published_at)}</td>
         <td><div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">${readProofBadge(u)}${!isArticleRead(u)?statusBadge('unread'):''}${!['unread','read'].includes(u.status)?statusBadge(u.status):''}${!isArticleRead(u)?`<button class="mark-read" onclick="event.stopPropagation();markRead('${u.id}')">${icon('check')}読了</button>`:''}</div></td>
@@ -4105,6 +4144,7 @@ function buildFriendlyExplanation(u){
 
 /* ---- 読みモード（既定） ---- */
 function renderDetailRead(v,u,tool){
+  const expertVideo=isExpertVideo(u);
   document.getElementById('topActions').innerHTML =
     `<button class="btn btn-primary" onclick="enterDetailEdit('${u.id}')">${icon('edit')}編集</button>`;
   const rawText = (u.raw_excerpt||u.raw_content||'').trim();
@@ -4116,9 +4156,11 @@ function renderDetailRead(v,u,tool){
       <div class="detail-head">
         <div class="detail-toprow">
           <span class="detail-tool"><span class="tool-dot" style="background:${toolColor(u.tool_id)}"></span>${esc(tool?tool.name:'')}</span>
+          ${contentTypeBadge(u)}
+          ${expertVideo?`<span class="detail-tool">${esc(u.expert_name||'専門家')}・${esc(u.expert_role||'AIの専門家')}</span>`:''}
           ${u.relation_type==='follow_up'?`<span class="followup-badge">続報 ${storySequence(u)}</span>`:''}
           ${u.relation_type==='correction'?`<span class="followup-badge is-correction">訂正・状況変更</span>`:''}
-          <span style="color:var(--text-mute);font-size:13px;margin-left:auto">情報元掲載 ${esc(fmtDate(sourcePublishedAt(u)))}</span>
+          <span style="color:var(--text-mute);font-size:13px;margin-left:auto">${expertVideo?'元動画公開':'情報元掲載'} ${esc(fmtDate(sourcePublishedAt(u)))}</span>
         </div>
         <div class="detail-title-lg">${esc(u.title)}</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
@@ -4129,19 +4171,20 @@ function renderDetailRead(v,u,tool){
       ${storyFlowBlock(u)}
 
       ${friendlyExplanation?`<div class="read-block is-easy">
-        <div class="rb-head"><span class="rb-ico" style="background:#e9f9f0;color:#16a34a">${icon('eye')}</span><span class="rb-label">やさしい解説（AIが要約）</span></div>
+        <div class="rb-head"><span class="rb-ico" style="background:#e9f9f0;color:#16a34a">${icon('eye')}</span><span class="rb-label">${expertVideo?'重要発言のやさしい解説':'やさしい解説'}（AIが要約）</span></div>
         <div class="rb-body">${esc(friendlyExplanation)}</div>
       </div>`:''}
 
+      ${safeExternalUrl(u.context_source_url)?`<div class="read-block"><div class="rb-head"><span class="rb-label">解説の確認元</span></div><div class="rb-body">${esc(u.context_source_note||'')}<br><a href="${esc(safeExternalUrl(u.context_source_url))}" target="_blank" rel="noopener noreferrer">${esc(u.context_source_name||'補足資料を読む')}</a></div></div>`:''}
       <div class="detail-share-actions">
-        ${u.source_url?`<button class="btn btn-primary" onclick="openSourceArticle('${u.id}')" aria-label="情報元の記事を外部サイトで読む">${icon('ext')}情報元の記事を読む</button>`:''}
-        <button class="btn" onclick="shareArticle('${u.id}')" aria-label="この記事を共有する">${icon('shuffle')}この記事を共有</button>
+        ${u.source_url?`<button class="btn btn-primary" onclick="openSourceArticle('${u.id}')" aria-label="${expertVideo?'元の動画・講演':'情報元の記事'}を外部サイトで見る">${icon('ext')}${expertVideo?'元の動画・講演を見る':'情報元の記事を読む'}</button>`:''}
+        <button class="btn" onclick="shareArticle('${u.id}')" aria-label="この${expertVideo?'解説':'記事'}を共有する">${icon('shuffle')}この${expertVideo?'解説':'記事'}を共有</button>
       </div>
 
-      ${readBlock(u.id,'何が変わったか',u.simple_explanation,'eye','#2563eb','#e7efff')}
+      ${readBlock(u.id,expertVideo?'発言の核心':'何が変わったか',u.simple_explanation,'eye','#2563eb','#e7efff')}
       ${readBlock(u.id,'仕事への影響',u.impact_summary,'bolt','#7c5cf6','#efeaff')}
-      ${readBlock(u.id,'次にやること',u.action_suggestion,'check','#16a34a','#e3f7ea','is-action')}
-      ${showRaw?readBlock(u.id,'原文抜粋',rawText,'updates','#64748b','#eef1f6','is-raw'):''}
+      ${readBlock(u.id,expertVideo?'次に確かめること':'次にやること',u.action_suggestion,'check','#16a34a','#e3f7ea','is-action')}
+      ${showRaw?readBlock(u.id,expertVideo?'動画説明・文字起こし抜粋':'原文抜粋',rawText,'updates','#64748b','#eef1f6','is-raw'):''}
       ${u.memo&&u.memo.trim()?readBlock(u.id,'メモ',u.memo,'edit','#b45309','#fff2dd'):''}
     </div>
     <div>${detailSidebar(u,tool)}</div>
@@ -4712,15 +4755,35 @@ function setAutoStatus(on){
 /* data.json は同一オリジンなのでCORSが起きず確実に読める。無ければ静かに無視。 */
 let _syncDone=false;
 let _lastSyncAt=0;
+let _syncPromise=null;
+let _syncRetryTimer=null;
+let _syncRetryCount=0;
+function scheduleDataSyncRetry(){
+  if(_syncRetryTimer!==null||!getSettings().autoFetch)return;
+  const delays=[1000,3000,10000];
+  if(_syncRetryCount>=delays.length){
+    const el=document.getElementById('autoStatus');
+    if(el){el.style.display='inline-flex';el.innerHTML='<span>最新情報を取得できませんでした</span><button type="button" onclick="retryDataSync()">再取得</button>';}
+    return;
+  }
+  const delay=delays[_syncRetryCount++];
+  _syncRetryTimer=window.setTimeout(()=>{_syncRetryTimer=null;void syncFromDataJson(true,true,true);},delay);
+}
+function retryDataSync(){
+  if(_syncRetryTimer!==null)window.clearTimeout(_syncRetryTimer);
+  _syncRetryTimer=null;_syncRetryCount=0;
+  return syncFromDataJson(true,true,true);
+}
 /* タブやPWAを開きっぱなしでも、画面に戻ったとき・一定時間ごとに新着を取り込む */
 const RESYNC_STALE_MS=5*60000;
 function resyncIfStale(){
   if(document.visibilityState!=='visible')return;
-  if(!_lastSyncAt||Date.now()-_lastSyncAt<RESYNC_STALE_MS)return;
+  if(_syncDone&&_lastSyncAt&&Date.now()-_lastSyncAt<RESYNC_STALE_MS)return;
   if(!getSettings().autoFetch)return;
-  void syncFromDataJson(true,true,true);
+  void retryDataSync();
 }
 document.addEventListener('visibilitychange',resyncIfStale);
+window.addEventListener('online',resyncIfStale);
 window.setInterval(resyncIfStale,5*60000);
 function looksCorruptedText(value){
   const s=String(value||'');
@@ -4808,14 +4871,32 @@ function patchTimelineFields(target,it){
   if(it?.fetched_at&&target.fetched_at!==it.fetched_at){target.fetched_at=it.fetched_at;changed=true;}
   return changed;
 }
+function importedContextSourceFields(it){
+  return {
+    home_video_selected_at:String(it.home_video_selected_at||''),
+    context_source_url:safeExternalUrl(it.context_source_url),
+    context_source_name:String(it.context_source_name||''),
+    context_source_note:String(it.context_source_note||'')
+  };
+}
 function patchPublishedArticleFields(target,it,tool){
   const publishedAt=it.published_at||it.source_published_at||it.fetched_at||target.published_at||nowISO();
   const categories=(Array.isArray(it.related_categories)&&it.related_categories.length)
     ?it.related_categories:(tool.related_businesses?[...tool.related_businesses]:[]);
   const fields={
     tool_id:tool.id,
+    content_type:String(it.content_type||'article'),
+    expert_id:String(it.expert_id||''),
+    expert_name:String(it.expert_name||''),
+    expert_names:Array.isArray(it.expert_names)?it.expert_names.map(String).filter(Boolean):[],
+    expert_role:String(it.expert_role||''),
+    expert_tier:String(it.expert_tier||''),
+    platform:String(it.platform||''),
+    video_id:String(it.video_id||''),
+    source_trust:String(it.source_trust||''),
     title:String(it.title||''),
     source_url:safeExternalUrl(it.source_url),
+    ...importedContextSourceFields(it),
     published_at:publishedAt,
     fetched_at:it.fetched_at||target.fetched_at||nowISO(),
     ai_summary:String(it.raw_excerpt||it.summary||''),
@@ -4845,22 +4926,36 @@ function patchPublishedArticleFields(target,it,tool){
   return changed;
 }
 async function syncFromDataJson(force=false,renderChanges=true,allowPrune=true){
-  if(_syncDone&&!force)return 0; _syncDone=true;
+  if(_syncPromise)return _syncPromise;
+  if(_syncDone&&!force)return 0;
   if(!force&&!getSettings().autoFetch)return 0;
+  _syncPromise=performDataSync(renderChanges,allowPrune);
+  try{return await _syncPromise;}finally{_syncPromise=null;}
+}
+async function fetchPublishedItems(){
+  const controller=new AbortController();
+  let timeout;
+  try{
+    // ヘッダー受信だけでなくJSON本文の受信完了まで期限を適用する。
+    // 古いService Workerがabortを伝えなくても待ち続けない。
+    return await Promise.race([
+      (async()=>{
+        const dataUrl=`./data.json?app_sync=${Date.now()}`;
+        const res=await fetch(dataUrl,{cache:'no-store',signal:controller.signal});
+        if(!res.ok)throw new Error(`news HTTP ${res.status}`);
+        const items=await res.json();
+        if(!Array.isArray(items)||!items.some(isCompletePublishedArticle))throw new Error('invalid news feed');
+        return items;
+      })(),
+      new Promise((_,reject)=>{timeout=window.setTimeout(()=>{controller.abort();reject(new Error('news request timed out'));},8000);})
+    ]);
+  }finally{window.clearTimeout(timeout);}
+}
+async function performDataSync(renderChanges,allowPrune){
   try{
     setAutoStatus(true);
-    _lastSyncAt=Date.now();
-    const controller=new AbortController();
-    const timeout=window.setTimeout(()=>controller.abort(),8000);
-    // GitHub Pages/CDNと旧Service WorkerのHTTPキャッシュを同時に避ける。
-    // 端末内データだけ更新され、次に開いた時に初めて見える状態を作らない。
-    const dataUrl=`./data.json?app_sync=${Date.now()}`;
-    const res=await fetch(dataUrl,{cache:'no-store',signal:controller.signal});
-    window.clearTimeout(timeout);
-    if(!res.ok){ setAutoStatus(false); return 0; }
-    const items=await res.json();
+    const items=await fetchPublishedItems();
     setAutoStatus(false);
-    if(!Array.isArray(items)||!items.length)return 0;
     let added=0,patched=0;
     // 前回版のトップ指定を先に外し、今回のdata.jsonに含まれる最大5件だけを付け直す。
     // 端末に長く残った記事が古いトップとして復活することを防ぐ。
@@ -4891,6 +4986,12 @@ async function syncFromDataJson(force=false,renderChanges=true,allowPrune=true){
       const ex=(it.raw_excerpt||it.summary||'').toString();
       saveUpdate({
         tool_id:tool.id, title:it.title, source_url:safeExternalUrl(it.source_url),
+        ...importedContextSourceFields(it),
+        content_type:String(it.content_type||'article'),
+        expert_id:String(it.expert_id||''), expert_name:String(it.expert_name||''),
+        expert_names:Array.isArray(it.expert_names)?it.expert_names.map(String).filter(Boolean):[],
+        expert_role:String(it.expert_role||''), expert_tier:String(it.expert_tier||''),
+        platform:String(it.platform||''), video_id:String(it.video_id||''), source_trust:String(it.source_trust||''),
         published_at:it.published_at||it.source_published_at||it.fetched_at||nowISO(), fetched_at:it.fetched_at||nowISO(),
         raw_content:'', raw_excerpt:'', manual_summary:'', ai_summary:ex, // 一覧カードの短いAI要約に使用
         easy_summary:(it.detail||'').toString(),                          // AIのやさしい解説
@@ -4925,8 +5026,16 @@ async function syncFromDataJson(force=false,renderChanges=true,allowPrune=true){
       toast(added>0?`最新ニュースを${added}件取り込みました`:'記事の解説と更新情報を更新しました','ok');
       if(renderChanges){renderNav();render();}
     }
+    _syncDone=true;_lastSyncAt=Date.now();_syncRetryCount=0;
+    if(_syncRetryTimer!==null)window.clearTimeout(_syncRetryTimer);
+    _syncRetryTimer=null;
     return added;
-  }catch(e){ setAutoStatus(false);return 0; }
+  }catch(e){
+    _syncDone=false;setAutoStatus(false);
+    console.warn('news sync failed; retrying without reload',e);
+    scheduleDataSyncRetry();
+    return 0;
+  }
 }
 
 /* ============================================================
@@ -4998,10 +5107,11 @@ function setupPWA(){
   navigator.serviceWorker.addEventListener('controllerchange',()=>{
     if(!hadController||updatePromptShown)return;
     updatePromptShown=true;
-    // 新しいService Workerが制御を引き継いだら、操作を求めず最新版へ切り替える。
-    window.location.reload();
+    // 起動中の記事取得や読書を中断しない。アプリ本体は次回の通常起動で更新する。
+    // 記事データはこの画面のままで再取得できる。
+    void syncFromDataJson(true,true,true);
   });
-  window.addEventListener('load',()=>{
+  const registerWorker=()=>{
     navigator.serviceWorker.register('./sw.js').then(reg=>{
       // 開きっぱなしのPWAでも新しいアプリ本体の配信を検知できるようにする。
       window.setInterval(()=>{ reg.update().catch(()=>{}); },60*60000);
@@ -5009,7 +5119,9 @@ function setupPWA(){
         if(document.visibilityState==='visible')reg.update().catch(()=>{});
       });
     }).catch(()=>{});
-  },{once:true});
+  };
+  if(document.readyState==='complete')registerWorker();
+  else window.addEventListener('load',registerWorker,{once:true});
 }
 
 /* ============================================================
@@ -5066,6 +5178,9 @@ function bootApp(){
       }
     }catch(_error){trackAppEvent('landing_view',{route:route.name});}
     trackRouteView();
+  }catch(error){
+    // 初期描画で失敗しても下の新着取得を止めない（保存済みの途中状態から回復する）。
+    console.warn('initial render failed; continuing news sync',error);
   }finally{
     // 途中で例外が起きても起動オーバーレイは必ず退場させ、画面が固まらないようにする。
     dismissBootScreen();
@@ -5127,10 +5242,12 @@ function renderOperator(v){
       </div>
       <div class="operator-metric-grid" aria-label="管理者だけに表示される現在の実数">
         <div class="operator-metric-card"><span>累計ユニーク閲覧者</span><strong data-operator-account-visitors>${memberState.operatorMetrics?`${memberState.operatorMetrics.uniqueVisitors.toLocaleString('ja-JP')}人`:'—'}</strong></div>
-        <div class="operator-metric-card"><span>今日の総表示回数</span><strong data-operator-account-daily-opens>${memberState.operatorMetrics&&memberState.operatorMetrics.dailyOpens!==null?`${memberState.operatorMetrics.dailyOpens.toLocaleString('ja-JP')}回`:'—'}</strong></div>
+        <div class="operator-metric-card"><span>今日開かれた回数</span><strong data-operator-account-daily-opens>${displayedOperatorMetrics()?.dailyOpens!=null?`${displayedOperatorMetrics().dailyOpens.toLocaleString('ja-JP')}回`:'—'}</strong></div>
       </div>
       <div class="operator-metric-state ${memberState.operatorMetricsStatus==='live'?'is-live':memberState.operatorMetricsStatus==='stale'?'is-stale':memberState.operatorMetricsStatus==='error'?'is-error':''}" data-operator-metrics-state><span>${esc(operatorMetricsStatusLabel())}</span><button class="btn operator-metric-refresh" type="button" onclick="refreshOperatorMetrics()">今すぐ再取得</button></div>
-      <p class="billing-help">累計ユニーク閲覧者は同じ端末・ブラウザーの重複を除いた概算です。今日の総表示回数は日本時間0時からの、アプリまたは公開記事が開かれた回数です。</p>
+      <p class="billing-help">累計ユニークは同じ端末・ブラウザーを重複させない閲覧者数の概算です。今日の回数は、リピーターも含めてアプリ・公開記事を開いた時や、別のアプリから戻って表示した時に加算します。画面内の移動や通信の再試行では二重に加算しません。</p>
+      <p class="billing-help">日本時間の当日中にサーバーへ記録された回数です。通信が途切れた記録は復旧後に反映されます。数値は毎分・再表示時に再取得し、取得に失敗した時は0回にせず最後の確認値と時刻を表示します。</p>
+      <p class="billing-help">運営者として確認済みのブラウザーからの閲覧は、今後の人数・回数に加算しません。ログアウト後も除外を維持します。別のブラウザーや端末では一度運営者としてログインしてください。過去の集計値は変更していません。</p>
     </section>`:''}
     <div class="account-security">表示されるのは匿名集計だけです。一般利用者の設定・保存内容や個人情報は表示しません。</div>
   </section></div>`;

@@ -1,10 +1,11 @@
 // アプリシェルの構成を変えたときは日付を更新する。
 // 画像などの静的アセットも network-first なので、同名差し替えは次回通信時に反映される。
-const CACHE_NAME = "ai-radar-v5-20260908-minimum-three-v26";
+const CACHE_NAME = "ai-radar-v5-20260911-reliable-open-counts-v33";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
+  "./assets/visitor-tracker.js",
   "./assets/ai-radar-icon.webp",
   "./assets/ai-radar-icon-192.png",
   "./assets/ai-radar-icon-512.png"
@@ -19,8 +20,7 @@ self.addEventListener("install", event => {
         if(!response.ok)throw new Error(`app shell fetch failed: ${path}`);
         await cache.put(path,response);
       }));
-      // data.json はベストエフォートで先読みする(失敗してもインストールは成功させる)。
-      await fetch("./data.json",{cache:"reload"}).then(response=>response.ok?cache.put("./data.json",response):undefined).catch(()=>{});
+      // 記事の先読みをインストールの必須処理にしない。画面側の取得と競合させない。
     })
   );
   self.skipWaiting();
@@ -30,11 +30,13 @@ self.addEventListener("activate", event => {
   event.waitUntil(
     (async()=>{
       const keys=await caches.keys();
-      await Promise.all(keys.filter(key=>key!==CACHE_NAME).map(key=>caches.delete(key)));
+      // 更新中も前回の記事をオフラインで読めるよう、新キャッシュへ引き継ぐ。
+      const current=await caches.open(CACHE_NAME);
+      const previousData=await caches.match('./data.json');
+      if(previousData&&!await current.match('./data.json'))await current.put('./data.json',previousData);
+      await Promise.all(keys.filter(key=>key.startsWith('ai-radar-')&&key!==CACHE_NAME).map(key=>caches.delete(key)));
       await self.clients.claim();
-      // 旧HTMLを表示中のスマホも、新しいService Workerの有効化後に自動で最新版へ切り替える。
-      const windows=await self.clients.matchAll({type:"window",includeUncontrolled:true});
-      await Promise.all(windows.filter(client=>client.visibilityState==="visible").map(client=>client.navigate(client.url).catch(()=>null)));
+      // clients.navigateで画面を強制再読込しない。進行中の初回取得を中断しない。
     })()
   );
 });

@@ -36,6 +36,11 @@ jobs:
       - name: Run application security assertions
         run: node scripts/security-check.mjs
 
+      - name: Test analytics and first-open recovery
+        run: |
+          node scripts/test-free-access-daily-metrics.mjs
+          node scripts/test-runtime-resilience.mjs
+
       - name: Analyze with CodeQL
         uses: github/codeql-action/analyze@v4
 

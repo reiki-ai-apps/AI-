@@ -141,8 +141,10 @@ assert.match(html,/function homeOriginBadge\(u\)/,"ホーム記事を新着と�
 assert.match(html,/注目ニュース \$\{list\.length\}件・新着 \$\{newCount\}件/,"合計件数と本当の新着件数を分けて表示する");
 const renderHomeSource=html.slice(html.indexOf("function renderHome(v)"),html.indexOf("function byPub(a,b)"));
 const feedRenderIndex=renderHomeSource.indexOf("feedList.forEach");
-const secondaryRenderIndex=renderHomeSource.indexOf("html+=homeSecondaryHtml",feedRenderIndex);
+const expertRenderIndex=renderHomeSource.indexOf("html+=expertVideoHtml+homeSecondaryHtml",feedRenderIndex);
+const secondaryRenderIndex=expertRenderIndex;
 assert.ok(feedRenderIndex>=0&&secondaryRenderIndex>feedRenderIndex,"トップ5の記事カードを統計・アーカイブ・公式SNSより先に描画する");
+assert.ok(expertRenderIndex>feedRenderIndex,"専門家動画は記事トップ5の後に描画する");
 assert.match(renderHomeSource,/const homeSecondaryHtml=`<section class="home-secondary"/,"記事以外の案内を後半ブロックとして固定する");
 assert.match(html,/const allArticles=getUpdates\(\)/,"分類・検索はテーマ設定前の全記事を使う");
 assert.match(html,/\.archive-intro \+ \.filterbar\{display:grid;grid-template-columns:1fr\}/,"スマホの分類・検索を1列で操作できる");
@@ -165,7 +167,7 @@ assert.doesNotMatch(html,/3時間ごと|プラン別の月間枠/,"廃止済み�
 const update=fs.readFileSync("update.js","utf8");
 assert.match(update,/fetched_at:editionWindowEnd/,"この回で発見した記事を次回へ誤送しない");
 assert.match(update,/const editionPicks=.*previousEdition\.article_ids/s,"直前のトップ5を公開上限より先に保持する");
-assert.match(update,/const baseFinal=\[\.\.\.editionPicks,\.\.\.featuredPicks,\.\.\.freshPicks,\.\.\.restPicks\]/,"トップ5保持枠を公開データへ含める");
+assert.match(update,/const baseFinal=\[\.\.\.editionPicks,\.\.\.expertPicks,\.\.\.featuredPicks,\.\.\.freshPicks,\.\.\.restPicks\]/,"トップ5保持枠と独立した専門家動画枠を公開データへ含める");
 
 const data=JSON.parse(fs.readFileSync("data.json","utf8"));
 const publicTop=data.filter(item=>Number(item.home_top_rank)>0).sort((a,b)=>a.home_top_rank-b.home_top_rank);
@@ -184,7 +186,7 @@ for(let left=0;left<publicTop.length;left++){
 
 const edition=JSON.parse(fs.readFileSync("home-edition.json","utf8"));
 assert.deepEqual(edition.article_ids,publicTop.map(item=>item.article_id),"選定正本と公開データのID順が一致する");
-assert.equal(edition.selection_version,"home-value-continuation-v4","最低3件・目標5件と過去72時間の重複統合を使う選定版である");
+assert.equal(edition.selection_version,"home-value-continuation-v5-article-only","最低3件・目標5件と過去72時間の重複統合を使い、記事だけを選ぶ版である");
 assert.equal(edition.distinct_candidate_count,edition.candidate_count-edition.duplicate_candidate_count,"候補URL数と異なる出来事件数を監査できる");
 assert.equal(edition.novel_candidate_count,edition.distinct_candidate_count-edition.cross_edition_duplicate_count,"過去回との重複を除いた本当の新着件数を監査できる");
 assert.ok(Array.isArray(edition.recent_story_history),"過去72時間の掲載履歴を次回の重複判定へ引き継ぐ");

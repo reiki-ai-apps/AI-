@@ -9,6 +9,13 @@ const fs = require("fs");
 const crypto = require("crypto");
 const {upgradeFriendlyExplanationItem}=require("./scripts/friendly-explanation.cjs");
 const {MAX_HOME_ARTICLES,buildHomeEdition,applyHomeEdition}=require("./scripts/home-edition.cjs");
+const {
+  EXPERT_VIDEO_MAX_AGE_DAYS,isExpertVideoItem,jstDayKey,shouldRefreshExpertVideos,isFreshExpertVideo,
+  parseYouTubeChannelVideos,matchedExpertsForSource,
+  isSubstantiveAiVideo,isWebVideoCandidate,dedupeExpertVideoCandidates,
+  selectExpertVideoArchivePicks,selectExpertVideoReviewCandidates,buildExpertWebDiscoveryUrl,
+  finalizeExpertVideoEdition,extractVideoChapters
+}=require("./scripts/expert-video.cjs");
 
 // ホームの「主要AIアプリ・ツール」と収集対象を同じ一覧で監査する。
 // 公式更新ページを毎回確認し、日本語ニュースだけでは拾いにくい製品更新も補う。
@@ -186,11 +193,18 @@ const AI_NEW_LIMIT = 16;
 const AI_DEEP_BACKFILL_LIMIT = 24;
 const AI_DAILY_UNIQUE_LIMIT = 40;
 const AI_DAILY_EMERGENCY_LIMIT = 8;
+const AI_DAILY_EXPERT_LIMIT = 14;
 const ARTICLE_CONTEXT_LIMIT = 3600;
 const AI_CACHE_PATH = ".ai-cache.json";
 const AI_USAGE_PATH = ".ai-usage.json";
 const STORY_INDEX_PATH = ".story-index.json";
 const HOME_EDITION_PATH = "home-edition.json";
+const EXPERT_SOURCES_PATH = "expert-sources.json";
+const EXPERT_VIDEO_STATE_PATH = ".expert-video-state.json";
+const EXPERT_VIDEO_ARCHIVE_LIMIT = 12;
+const EXPERT_VIDEO_PROTECTED_LIMIT = 4;
+const EXPERT_VIDEO_REVIEW_LIMIT = 6;
+const EXPERT_REVIEW_VERSION = "expert-video-review-v7-chapters-first";
 const STORY_REPOST_WINDOW_MS = 31 * 86400000;
 const STORY_TIMELINE_WINDOW_MS = 365 * 86400000;
 // 完全一致の再掲載を公開から外す期間。表示保持(31日)より長く、365日の全面抑制はしない。
@@ -239,7 +253,8 @@ function articleContentHash(item) {
   return sha256([
     normalizedStoryTitle(item && item.title),
     String(item && item.raw_excerpt || "").replace(/\s+/g, " ").trim(),
-    String(item && item.source_name || "").toLowerCase().trim()
+    String(item && item.source_name || "").toLowerCase().trim(),
+    isExpertVideoItem(item)?EXPERT_REVIEW_VERSION:""
   ].join("\n"));
 }
 
@@ -288,12 +303,17 @@ function usageDay(ledger, day = utcDay()) {
     cache_read_input_tokens: 0,
     regular_processed: 0,
     emergency_processed: 0,
+    expert_processed: 0,
     enriched: 0,
     rejected: 0,
     estimated_usd: 0
   };
   ledger.days[day]={...defaults,...(ledger.days[day]||{})};
   return ledger.days[day];
+}
+
+function expertUsageDay(ledger,now=Date.now()){
+  return usageDay(ledger,jstDayKey(now));
 }
 
 function estimatedUsageCost(usage) {
@@ -310,7 +330,8 @@ function estimatedUsageCost(usage) {
 }
 
 function addUsage(ledger, usage, meta = {}) {
-  const day = usageDay(ledger);
+  const now=Number.isFinite(Number(meta.now))?Number(meta.now):Date.now();
+  const day = usageDay(ledger,utcDay(now));
   day.calls += Number(meta.attempts || 1);
   day.attempts += Number(meta.attempts || 1);
   for (const key of ["input_tokens", "output_tokens", "cache_creation_input_tokens", "cache_read_input_tokens"]) {
@@ -319,6 +340,9 @@ function addUsage(ledger, usage, meta = {}) {
   day.estimated_usd += estimatedUsageCost(usage || {});
   day.regular_processed += meta.lane === "regular" ? Number(meta.processed || 0) : 0;
   day.emergency_processed += meta.lane === "emergency" ? Number(meta.processed || 0) : 0;
+  // 動画の日次探索と同じ日本時間の日付へ専門家動画の審査件数を記録する。
+  // 朝7時台だけ前日のUTC上限を参照して動画審査が止まる不整合を防ぐ。
+  if(meta.lane === "expert")expertUsageDay(ledger,now).expert_processed += Number(meta.processed || 0);
   day.enriched += Number(meta.enriched || 0);
   day.rejected += Number(meta.rejected || 0);
   day.estimated_usd = Number(day.estimated_usd.toFixed(6));
@@ -353,6 +377,7 @@ function appendStepSummary(ledger, extra = {}) {
   const path = process.env.GITHUB_STEP_SUMMARY;
   if (!path) return;
   const day = usageDay(ledger);
+  const expertDay=expertUsageDay(ledger);
   const lines = [
     "## AI進化レーダー AI利用状況",
     "",
@@ -362,10 +387,12 @@ function appendStepSummary(ledger, extra = {}) {
     `- 出力トークン: ${day.output_tokens}`,
     `- 通常処理: ${day.regular_processed}/${AI_DAILY_UNIQUE_LIMIT}件`,
     `- 緊急処理: ${day.emergency_processed}/${AI_DAILY_EMERGENCY_LIMIT}件`,
+    `- 専門家動画処理 (JST ${jstDayKey()}): ${expertDay.expert_processed}/${AI_DAILY_EXPERT_LIMIT}件`,
     `- 採用: ${day.enriched}件 / 不採用: ${day.rejected}件`,
     `- 推定API費用: ${Number(day.estimated_usd || 0).toFixed(6)} USD`,
     `- キャッシュ再利用: ${Number(extra.cacheHits || 0)}件`,
     `- 再処理回避: ${Number(extra.rejectedHits || 0)}件`,
+    `- 専門家動画の専用審査: ${Number(extra.expertSelected || 0)}件`,
     `- 旧要約の深掘り再処理: ${Number(extra.migrationSelected || 0)}件`
   ];
   fs.appendFileSync(path, lines.join("\n") + "\n");
@@ -441,6 +468,8 @@ function isCompleteEnrichedItem(item) {
     Array.isArray(item.related_categories) && item.related_categories.length>0 &&
     isJapaneseDisplayItem(item);
 }
+
+const EXPERT_REGISTRY=readJsonFile(EXPERT_SOURCES_PATH,{experts:[],trusted_hosts:[],web_discovery:{enabled:false}});
 function hasDeepFriendlyExplanation(value) {
   const raw=String(value||"").trim();
   const compact=raw.replace(/\s+/g,"");
@@ -548,9 +577,57 @@ function explicitEventDateCandidates(text, referenceDate="") {
   }
   return [...new Map(matches.map(candidate=>[candidate.date+"|"+candidate.context,candidate])).values()].slice(0,5);
 }
+function youtubeVideoId(value){
+  try{
+    const url=new URL(String(value||""));
+    if(url.hostname.toLowerCase()==="youtu.be")return url.pathname.split("/").filter(Boolean)[0]||"";
+    if(/(?:^|\.)youtube\.com$/.test(url.hostname.toLowerCase())){
+      if(url.pathname==="/watch")return url.searchParams.get("v")||"";
+      const match=url.pathname.match(/^\/(?:shorts|embed|live)\/([A-Za-z0-9_-]{11})/);
+      return match?.[1]||"";
+    }
+  }catch(_invalidUrl){}
+  return "";
+}
+
+async function fetchYouTubePlayerDescription(sourceUrl,signal){
+  const videoId=youtubeVideoId(sourceUrl);
+  if(!/^[A-Za-z0-9_-]{11}$/.test(videoId))return "";
+  const browserHeaders={
+    "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "Accept-Language":"ja-JP,ja;q=0.9,en;q=0.5"
+  };
+  try{
+    // 通常のwatchページはデータセンターIPで短い定型説明だけを返すことがある。
+    // 同じYouTube公式プレイヤーが使う設定とplayer応答から、公式説明欄を再取得する。
+    const embed=await fetch(`https://www.youtube.com/embed/${videoId}?hl=ja`,{
+      signal,headers:browserHeaders
+    });
+    if(!embed.ok)return "";
+    const embedHtml=(await embed.text()).slice(0,500000);
+    const apiKey=(embedHtml.match(/"INNERTUBE_API_KEY":"([^"]+)"/)||[])[1]||"";
+    const clientVersion=(embedHtml.match(/"INNERTUBE_CLIENT_VERSION":"([^"]+)"/)||[])[1]||"";
+    if(!apiKey||!clientVersion)return "";
+    const player=await fetch(`https://www.youtube.com/youtubei/v1/player?key=${encodeURIComponent(apiKey)}`,{
+      method:"POST",signal,
+      headers:{...browserHeaders,"Content-Type":"application/json"},
+      body:JSON.stringify({videoId,context:{client:{clientName:"WEB",clientVersion,hl:"ja",gl:"JP"}}})
+    });
+    if(!player.ok)return "";
+    const payload=await player.json();
+    const description=payload?.videoDetails?.shortDescription||"";
+    return [extractVideoChapters(description),stripTags(description)].filter(Boolean).join('\n');
+  }catch(_error){
+    return "";
+  }
+}
+
 async function fetchArticleContext(item) {
+  let sourceHost="";
+  try{sourceHost=new URL(item.source_url).hostname.toLowerCase();}catch(_invalidUrl){}
+  const isYouTubeSource=/(?:^|\.)youtube\.com$/.test(sourceHost)||sourceHost==="youtu.be";
   const controller=new AbortController();
-  const timeout=setTimeout(()=>controller.abort(),7000);
+  const timeout=setTimeout(()=>controller.abort(),isYouTubeSource?18000:7000);
   const fallback=()=>({
     text:item.raw_excerpt||"",source_published_at:"",source_updated_at:"",source_date_status:"unknown",
     event_date_candidates:explicitEventDateCandidates(item.raw_excerpt||"",item.source_published_at||item.published_at||"")
@@ -562,7 +639,8 @@ async function fetchArticleContext(item) {
     catch(_invalidUrl){ return fallback(); }
     const res=await fetch(item.source_url,{redirect:"follow",signal:controller.signal,headers:{
       "User-Agent":"Mozilla/5.0 (compatible; AI-Radar/1.0; +https://reiki-ai-apps.github.io/AI-/)",
-      "Accept":"text/html,application/xhtml+xml"
+      "Accept":"text/html,application/xhtml+xml",
+      "Accept-Language":"ja-JP,ja;q=0.9,en;q=0.5"
     }});
     if(!res.ok)return fallback();
     const type=String(res.headers.get("content-type")||"");
@@ -580,6 +658,16 @@ async function fetchArticleContext(item) {
     // リダイレクト先がGoogle Newsのままなら本文は取得できていない。
     const finalHost=(()=>{try{return new URL(res.url||item.source_url).hostname;}catch(_e){return "";}})();
     if(finalHost.endsWith("news.google.com")||meta("og:site_name")==="Google News")return fallback();
+    let youtubeDescription=/(?:^|\.)youtube\.com$/.test(finalHost)?(()=>{
+      const match=html.match(/"shortDescription":"((?:\\.|[^"\\])*)"/);
+      if(!match)return "";
+      try{const description=JSON.parse(`"${match[1]}"`);return [extractVideoChapters(description),stripTags(description)].filter(Boolean).join('\n');}
+      catch(_error){return stripTags(match[1].replace(/\\n/g," ").replace(/\\"/g,'"'));}
+    })():"";
+    if(isYouTubeSource&&youtubeDescription.length<180){
+      const playerDescription=await fetchYouTubePlayerDescription(item.source_url,controller.signal);
+      if(playerDescription.length>youtubeDescription.length)youtubeDescription=playerDescription;
+    }
     const paragraphs=[...html.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
       .map(m=>stripTags(m[1])).filter(t=>t.length>=45);
     const jsonDate=(field)=>{
@@ -590,16 +678,20 @@ async function fetchArticleContext(item) {
     const updatedRaw=meta("article:modified_time")||meta("dateModified")||jsonDate("dateModified");
     const openingParagraphs=paragraphs.slice(0,7);
     const endingParagraphs=paragraphs.slice(-4).filter(value=>!openingParagraphs.includes(value));
-    const opening=[
+    const opening=[...new Set([
+      youtubeDescription,
+      isExpertVideoItem(item)?String(item.raw_excerpt||""):"",
       meta("og:description"),meta("description"),meta("twitter:description"),
       ...openingParagraphs
-    ].filter(Boolean).join("\n");
+    ].filter(Boolean))].join("\n");
     const ending=endingParagraphs.join("\n");
     const openingBudget=Math.floor(ARTICLE_CONTEXT_LIMIT*0.68);
     const endingBudget=ARTICLE_CONTEXT_LIMIT-openingBudget;
+    const contextHead=isExpertVideoItem(item)?"【公式動画の説明・チャプター】":"【記事の冒頭・要点】";
+    const contextTail=isExpertVideoItem(item)?"【公式動画説明の後半】":"【記事後半・結び】";
     const text=(
-      "【記事の冒頭・要点】\n"+opening.slice(0,openingBudget)+
-      (ending?"\n【記事後半・結び】\n"+ending.slice(-endingBudget):"")
+      contextHead+"\n"+opening.slice(0,openingBudget)+
+      (ending?"\n"+contextTail+"\n"+ending.slice(-endingBudget):"")
     ).trim()||(item.raw_excerpt||"");
     return {
       text,
@@ -619,6 +711,9 @@ async function aiEnrichBatch(items) {
   const list=items.map((it,i)=>({
     i,tool:it.tool,title:it.title,source:it.source_name||"",
     official:!!it.is_official,source_published_at:it.source_published_at||it.published_at||"",
+    content_type:it.content_type||"article",expert_name:it.expert_name||"",
+    expert_role:it.expert_role||"",expert_tier:it.expert_tier||"",
+    platform:it.platform||"",source_trust:it.source_trust||"",
     excerpt:String(it.raw_excerpt||"").slice(0,500),
     article_context:String(it.article_context||"").slice(0,ARTICLE_CONTEXT_LIMIT),
     event_date_candidates:Array.isArray(it.event_date_candidates)?it.event_date_candidates.slice(0,5):[]
@@ -629,6 +724,7 @@ async function aiEnrichBatch(items) {
     "主要AI企業・研究所のCEO交代、著名研究者の退社、経営・研究体制の再編、大型買収・投資・提携は、製品名がタイトルになくても業界全体への波及を評価し、重要度SまたはAを積極的に検討してください。" +
     "記事本文の抜粋にない数字・人物・効果は作らず、不明な点は不明と明記してください。除外するのは広告・宣伝と、AIと無関係な別テーマの誤ヒットだけです。それ以外の記事は、確認できる事実の範囲で伝えることを優先してください。" +
     "要約文は元記事の論点と叙述順序を尊重し、主語と出来事から直接書き始め、元記事で確認できる事実・今後の予定・発表者の見解などで自然に結んでください。" +
+    "content_typeがexpert_videoの候補はニュース発表とは別に審査します。新製品の発表がなくても、AI専門家が具体的な主張、比較、仕組み、実装例、政策論、将来予測とその理由を話していれば採用対象です。公式動画の説明に詳細なチャプター一覧があり、3つ以上の具体的な論点・機能・注意点が確認できる場合は、字幕がなくても内容不足だけを理由に除外しないでください。その場合は、チャプターに明記された『扱う内容』だけを要約し、実際の発言文や結論を推測してはいけません。発言者の意見・予測・評価は確定事実として書かず、誰の見解かを各要点で明示してください。主張、その根拠や理由、仕事・社会への意味、未確定点を分けます。本人・所属機関・確認済み番組以外の切り抜きや転載、出演しただけでAIの中身が薄い動画、VLOG、宣伝中心の動画、根拠を示さない憶測は除外してください。" +
     "やさしい解説は、AI業界を知らない高校生が一度で意味をつかめる言葉で書いてください。専門用語や英字略語は日常語へ言い換えるか、初出の直後に短く説明してください。一文には一つの内容だけを書き、長い修飾語や名詞を重ねた表現を避けてください。記事の核となる事実・仕組み・以前との違いを具体的に説明し、一般論で文字数を増やさないでください。" +
     "『まず、このニュースをひと言でいうと』『かんたんに言うと』『この記事では』などのメタな前置きや、元記事にない一般論・注意喚起・安心を促す定型文は使わないでください。";
   const user =
@@ -636,7 +732,7 @@ async function aiEnrichBatch(items) {
     "出力は次の形式のJSON配列だけ（前置き・説明・コードフェンスは一切不要）:\n" +
     '[{"i":元番号,"title_ja":"媒体名を除いた自然な日本語タイトル","summary_ja":"60〜100字で主語と結論が分かる要約","detail_ja":"300〜400字、8〜10文、空行2回で3段落。AI業界を知らない高校生向けに、一文を短くする。第1段落は、誰が何を発表・実施したか→簡単にいうと何か→以前との違い。第2段落は記事の核となる事実・数字→仕組み→なぜ重要か。第3段落は、使う人に何が変わるか→注意点→まだ発表されていないこと。元記事で確認できる具体的な情報だけを使い、従来より約5行増やしても一般論や同じ事実の言い換えで水増ししない。専門用語・英字略語・業界語は初出の直後に日常語で説明するか、日常語へ言い換える。impact_jaやaction_jaと同じ文を繰り返さない","change_ja":"何が新しいかを1〜2文","impact_ja":"日本の仕事・経営・生活への影響を1〜2文","action_ja":"元記事から具体的に確認できる次の確認事項・期限・利用条件を1〜2文。根拠がなければ行動を作らず、現時点の状況を簡潔に書く","event_date":"記事本文に出来事の年月日が明記されている場合だけYYYY-MM-DD、不明なら空文字","event_status":"発表済み|開始済み|予定|継続中|不明","story_entities":["企業名・製品名など話題を識別する固有名詞を1〜3件"],"importance":"S|A|B|C","categories":["指定カテゴリから1〜3件"],"primary_entity":"主体となる企業・組織名","story_subject":"具体的な製品・モデル・法律・事案・取引・計画の名前","event_type":"release|pricing|funding|security|policy|partnership|acquisition|research|other","event_stage":"rumor|announced|planned|beta|launched|expanded|paused|delayed|cancelled|investigating|cause_identified|fixed|restored|proposed|approved|enacted|completed|denied|corrected|other","event_scope":"API・デスクトップ・日本・全世界・影響範囲など","fact_slots":[{"type":"amount|price|region|date|availability|status|count|version|other","scope":"何についての事実か","value":"通貨・単位を含めて正規化した値"}],"new_facts_ja":["この記事で確認できる重要な事実。記事にない事実は書かない"]}]\n' +
     "指定カテゴリ:"+JSON.stringify(ALLOWED_CATEGORIES)+"\n"+
-    "英語・中国語は自然な日本語に翻訳してください。article_contextを最優先の根拠にし、情報不足でもタイトルを言い換えただけの要約は作らないでください。detail_jaは、誰が何をしたか→日常語での意味→以前との違い→記事の核となる具体的事実・数字・仕組み→なぜ重要か→使う人への変化→注意点と未確定点、の順で、高校生にも読める3段落にしてください。一文は85字以内にし、一文へ複数の論点を詰め込まないでください。『相互運用性』『知識労働』『業務プロセス』のような業界語は、そのまま置かず日常語へ言い換えてください。GPU、APIなど残す必要がある英字語は、同じ文か次の文で意味を説明してください。固有名詞、数値、確認済みの条件は残し、元記事にない理由・効果・将来予測は加えないでください。impact_jaは仕事への影響、action_jaは次の確認事項に役割を分け、detail_jaとの文面重複を避けてください。説明のための定型的な導入や、どの記事にも当てはまる助言、同じ事実の言い換えで文字数を埋めてはいけません。event_date_candidatesは本文中で出来事を表す文の近くに明記された日付候補です。候補の文脈を確認し、発表日・施行日・発生日・提供開始日・予定日として明確なものだけevent_dateへ入れてください。記事の掲載日や更新日は出来事の日にしないでください。候補がない、または意味が曖昧なら空文字にしてください。skipにするのは、広告・宣伝、AIと無関係な誤ヒット、実質的な事実がひとつも確認できない記事だけです。article_contextが短い・取得できていない場合でも、タイトルと抜粋から確認できる事実の範囲で要約を作成し、不明な点は『まだ発表されていません』と平易に書いて採用してください。primary_entity以下の構造化項目は話題の同一判定に使うため、採用する記事では必ず出力してください(fact_slotsは確認できる事実だけ。なければ空配列)。モデル・製品名は正確に区別し(例: Gemini 3 FlashとGemini 3 Proは別物)、掲載日・閲覧数・四捨五入した換算金額・『5』と『5.0』の表記差を新しい進展として扱わないでください。地域や提供チャネルの違いは、同じ製品・制度が実際にそこへ拡大した場合だけ進展です。\n候補:\n" +
+    "英語・中国語は自然な日本語に翻訳してください。article_contextを最優先の根拠にし、情報不足でもタイトルを言い換えただけの要約は作らないでください。detail_jaは、誰が何をしたか→日常語での意味→以前との違い→記事の核となる具体的事実・数字・仕組み→なぜ重要か→使う人への変化→注意点と未確定点、の順で、高校生にも読める3段落にしてください。一文は85字以内にし、一文へ複数の論点を詰め込まないでください。『相互運用性』『知識労働』『業務プロセス』のような業界語は、そのまま置かず日常語へ言い換えてください。GPU、APIなど残す必要がある英字語は、同じ文か次の文で意味を説明してください。固有名詞、数値、確認済みの条件は残し、元記事にない理由・効果・将来予測は加えないでください。impact_jaは仕事への影響、action_jaは次の確認事項に役割を分け、detail_jaとの文面重複を避けてください。説明のための定型的な導入や、どの記事にも当てはまる助言、同じ事実の言い換えで文字数を埋めてはいけません。content_typeがexpert_videoなら、新しい発表の有無では除外しないでください。公式説明やチャプターから発言者の主張を確認できる場合は主張→根拠・具体例→仕事や社会への意味→意見と確認済み事実の境界・未確定点の順にします。チャプターから扱う論点だけ確認できる場合は、『動画では何を扱うか』を中心にまとめ、発言者がどう結論づけたかを作らないでください。発言者名を省略したまま予測や評価を書かないでください。専門家動画のprimary_entityは発言者または所属組織、story_subjectは中心となる論点、event_typeはresearchまたはother、event_stageは継続中の議論ならotherを使って構いません。event_date_candidatesは本文中で出来事を表す文の近くに明記された日付候補です。候補の文脈を確認し、発表日・施行日・発生日・提供開始日・予定日として明確なものだけevent_dateへ入れてください。記事の掲載日や更新日は出来事の日にしないでください。候補がない、または意味が曖昧なら空文字にしてください。skipにするのは、広告・宣伝、AIと無関係な誤ヒット、実質的な事実も具体的な専門家の主張も、詳細な公式チャプターも確認できない内容だけです。article_contextが短い・取得できていない場合でも、タイトルと抜粋から確認できる事実の範囲で要約を作成し、不明な点は『まだ発表されていません』と平易に書いて採用してください。primary_entity以下の構造化項目は話題の同一判定に使うため、採用する記事では必ず出力してください(fact_slotsは確認できる事実だけ。なければ空配列)。モデル・製品名は正確に区別し(例: Gemini 3 FlashとGemini 3 Proは別物)、掲載日・閲覧数・四捨五入した換算金額・『5』と『5.0』の表記差を新しい進展として扱わないでください。地域や提供チャネルの違いは、同じ製品・制度が実際にそこへ拡大した場合だけ進展です。\n候補:\n" +
     JSON.stringify(list);
 
   let response;
@@ -689,6 +785,15 @@ async function aiEnrichBatch(items) {
     );
     const item={
       tool: src.tool,
+      content_type:src.content_type||"article",
+      expert_id:src.expert_id||"",
+      expert_name:src.expert_name||"",
+      expert_names:Array.isArray(src.expert_names)?src.expert_names:[],
+      expert_role:src.expert_role||"",
+      expert_tier:src.expert_tier||"",
+      platform:src.platform||"",
+      video_id:src.video_id||"",
+      source_trust:src.source_trust||"",
       title: titleJa,
       source_url: src.source_url,
       source_name: src.source_name || "",
@@ -757,6 +862,7 @@ async function enrichNewItems(items,cache,ledger,lane="regular",batchSize=AI_BAT
     const batch=items.slice(start,start+batchSize);
     const withContext=await Promise.all(batch.map(async item=>{
       const context=await fetchArticleContext(item);
+      if(isExpertVideoItem(item))console.error("EXPERT CONTEXT",item.expert_name||"不明",String(item.title||"").slice(0,70),"chars",context.text.length,"chapters",/(?:^|\s)\d{1,2}:\d{2}(?::\d{2})?(?:\s|$)/m.test(context.text));
       return {
         ...item,
         article_context:context.text,
@@ -804,6 +910,73 @@ async function enrichNewItems(items,cache,ledger,lane="regular",batchSize=AI_BAT
     checkpointAiState(cache,ledger);
   }
   return {items:enriched,processed,rejected:rejectedCount};
+}
+
+const EXPERT_TITLE_FALLBACK_BLOCK_PATTERN=/(?:切り抜き|shorts?\b|#shorts|予告|ティザー|キャンペーン|無料.{0,10}学べる|稼ぎ方|AGI.{0,12}達成|汎用人工知能.{0,12}達成|[!！][?？]|暴露|衝撃|ヤバ)/i;
+function expertTitleTopics(value){
+  const title=stripTags(String(value||""))
+    .replace(/^【[^】]{2,40}】\s*/,"")
+    .replace(/\s+/g," ").trim();
+  return [...new Set(title.split(/\s*[/／｜|]\s*/)
+    .map(topic=>topic.replace(/[!?！？]+$/g,"").trim())
+    .filter(topic=>topic.length>=8)
+    .map(topic=>topic.slice(0,52)))].slice(0,5);
+}
+function isVerifiedExpertTitleFallback(item){
+  if(!isExpertVideoItem(item)||!item.is_official)return false;
+  if(!["primary","institutional"].includes(String(item.source_trust||"")))return false;
+  const title=String(item.title||"");
+  if(EXPERT_TITLE_FALLBACK_BLOCK_PATTERN.test(title)||!isSubstantiveAiVideo(title))return false;
+  return expertTitleTopics(title).length>=3;
+}
+function expertFallbackCategories(item){
+  const title=String(item.title||"");
+  if(/政策|行政|政府|国会|選挙/.test(title))return ["政策・行政"];
+  if(/Claude Code|コーディング|開発|データベース|Supabase|GitHub/i.test(title))return ["アプリ開発・自動化"];
+  if(/画像|動画生成|デザイン|映像/.test(title))return ["画像・動画生成"];
+  return ["AIツール・モデル"];
+}
+function conciseExpertTopic(value){
+  const topic=String(value||"").trim();
+  if(/アプリにデータ保存機能.*Claude Code.*データベース/i.test(topic))return "Claude Codeでアプリにデータを保存する方法";
+  return topic.replace(/[？?].*$/g,"").replace(/って何$/,"の基本").slice(0,34);
+}
+function buildVerifiedExpertTitleFallback(item){
+  if(!isVerifiedExpertTitleFallback(item))return null;
+  const topics=expertTitleTopics(item.title);
+  const name=String(item.expert_name||"専門家");
+  const detail=[
+    `${name}氏の公式動画です。`,
+    `動画の中心は「${topics[0]}」です。`,
+    "新製品の速報ではなく、AIを使う手順や考え方を本人が説明します。",
+    `具体的には「${topics[1]}」を扱います。`,
+    `さらに「${topics[2]}」も取り上げます。`,
+    "複数の論点を一つの流れで学べる点が、この動画を選んだ理由です。",
+    "仕事では、AIに任せる部分と、人が確認する部分を考える材料になります。",
+    "ここでは動画タイトルと公式説明で確認できる範囲だけをまとめています。",
+    "詳しい結論や実演の手順は、元動画で確かめてください。",
+    "確認できない数字、効果、発言の言い回しは付け足していません。"
+  ];
+  const detailText=[detail.slice(0,3).join(""),detail.slice(3,7).join(""),detail.slice(7).join("")].join("\n\n");
+  const summaryTopics=topics.slice(0,3).map(conciseExpertTopic).filter(Boolean);
+  const summary=`${name}氏が、${summaryTopics.join("、")}を説明する公式動画です。`;
+  return {
+    ...item,
+    title:cleanDisplayTitle(item.title,item.source_name),
+    raw_excerpt:summary,
+    detail:detailText,
+    change_summary:`${name}氏の公式動画から、${topics.slice(0,3).join("、")}を確認できます。`,
+    impact_summary:"AIを仕事で使う際に、操作だけでなく仕組みや注意点まで考える材料になります。",
+    action_suggestion:"詳しい結論、実演手順、前提条件は元動画で確認してください。",
+    importance:String(item.expert_tier||"").startsWith("core_")?"A":"B",
+    related_categories:expertFallbackCategories(item),
+    event_at:"",event_status:"継続中",event_date_precision:"unknown",
+    story_entities:[name,...topics.slice(0,2)].slice(0,3),
+    primary_entity:name,story_subject:topics[0],event_type:"other",event_stage:"other",
+    event_scope:"YouTube公式動画",fact_slots:[],new_facts:topics.slice(0,5),
+    structured_complete:true,enrichment_version:PROMPT_VERSION,
+    expert_context_basis:"official_title_topics"
+  };
 }
 
 function decode(s) {
@@ -866,6 +1039,136 @@ function parseFeed(xml, official, fallbackSource) {
   return out;
 }
 
+function parseYouTubeVideoFeed(xml,source={}){
+  return String(xml||"").split(/<entry\b[^>]*>/i).slice(1).map(block=>{
+    const videoId=stripTags(tag(block,"yt:videoId"));
+    const title=stripTags(tag(block,"title"));
+    const description=decode(tag(block,"media:description")).replace(/<[^>]+>/g,' ').trim();
+    const exactPublishedAt=toIso(tag(block,"published"))||"";
+    return {
+      videoId,title,description,exactPublishedAt,publishedAt:exactPublishedAt,
+      link:videoId?`https://www.youtube.com/watch?v=${videoId}`:"",
+      sourceName:String(source.source_name||"YouTube"),
+      channelId:String(source.channel_id||""),platform:"YouTube"
+    };
+  }).filter(video=>video.videoId&&video.title);
+}
+
+function expertVideoRecord(expert,source,video,fetchedAt){
+  const expertNames=(video.experts||[expert]).map(item=>item.name).filter(Boolean);
+  const platform=video.platform||source.platform||"Web動画・講演";
+  const officialTrust=["primary","institutional"].includes(String(source.trust||""));
+  return {
+    tool:"専門家動画・発言",
+    content_type:"expert_video",
+    expert_id:expert.id,
+    expert_name:expert.name,
+    expert_names:expertNames,
+    expert_role:expert.role,
+    expert_tier:expert.tier,
+    platform,
+    video_id:video.videoId||"",
+    source_trust:source.trust||"editorial_host_candidate",
+    title:video.title,
+    source_url:video.link||"",
+    published_at:video.publishedAt||fetchedAt,
+    source_published_at:video.exactPublishedAt||"",
+    source_updated_at:"",
+    source_date_status:video.exactPublishedAt?"published":"unknown",
+    fetched_at:fetchedAt,
+    raw_excerpt:[extractVideoChapters(video.description),video.description,`発言者: ${expertNames.join("、")}`,`配信: ${source.source_name||video.sourceName||platform}`].filter(Boolean).join(" / ").slice(0,3000),
+    source_name:source.source_name||video.sourceName||platform,
+    is_official:officialTrust
+  };
+}
+
+async function collectExpertVideoCandidates(registry,fetchedAt){
+  const records=[];
+  let attemptedSources=0;
+  let successfulSources=0;
+  const directSources=(registry.experts||[]).flatMap(expert=>(expert.official_sources||[])
+    .filter(source=>source.platform==="youtube")
+    .map(source=>({...source,expert_id:expert.id})));
+  const hostSources=(registry.trusted_hosts||[]).filter(source=>source.platform==="youtube");
+  const channelSources=[...directSources,...hostSources];
+  for(const source of channelSources){
+    attemptedSources++;
+    try{
+      const channelUrl=source.channel_id
+        ?`https://www.youtube.com/channel/${source.channel_id}/videos`
+        :String(source.channel_url||"").replace(/\/$/,"")+"/videos";
+      const videos=parseYouTubeChannelVideos(await fetchText(channelUrl,{youtube:true}),source);
+      successfulSources++;
+      let feedVideos=[];
+      if(source.channel_id){
+        try{
+          const feedUrl=`https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(source.channel_id)}`;
+          feedVideos=parseYouTubeVideoFeed(await fetchText(feedUrl,{youtube:true,retries:2}),source);
+        }catch(error){
+          console.error("  expert feed fail",source.source_name||source.channel_id,String(error.message||error).slice(0,80));
+        }
+      }
+      const feedById=new Map(feedVideos.map(video=>[video.videoId,video]));
+      const mergedVideos=videos.map(video=>{
+        const feed=feedById.get(video.videoId);
+        return feed?{...video,
+          description:feed.description||video.description,
+          exactPublishedAt:feed.exactPublishedAt||video.exactPublishedAt,
+          publishedAt:feed.publishedAt||video.publishedAt}:video;
+      });
+      const pageIds=new Set(mergedVideos.map(video=>video.videoId));
+      for(const feedVideo of feedVideos)if(!pageIds.has(feedVideo.videoId))mergedVideos.push(feedVideo);
+      let kept=0;
+      for(const video of mergedVideos){
+        if(kept>=4)break;
+        const text=`${video.title} ${video.description||""}`;
+        // 説明欄の「切り抜き禁止」「採用キャンペーン」を動画内容と誤判定しない。
+        if(!isSubstantiveAiVideo(`${video.title} ${extractVideoChapters(video.description)}`))continue;
+        const experts=matchedExpertsForSource(text,source,registry);
+        if(!experts.length)continue;
+        video.experts=experts;
+        records.push(expertVideoRecord(experts[0],source,video,fetchedAt));
+        kept++;
+      }
+      console.error("OK expert channel",source.source_name||source.channel_id,"kept",kept,"/ page",videos.length,"/ feed",feedVideos.length);
+    }catch(error){
+      console.error("  expert channel fail",source.source_name||source.channel_id,String(error.message||error).slice(0,80));
+    }
+  }
+
+  if(registry.web_discovery?.enabled){
+    for(const expert of registry.experts||[]){
+      attemptedSources++;
+      const feedUrl=buildExpertWebDiscoveryUrl(expert,registry.web_discovery.lookback_days);
+      try{
+        const feedItems=parseFeed(await fetchText(feedUrl),false,"Web動画・講演");
+        successfulSources++;
+        const source={
+          platform:registry.web_discovery.platform||"web_video",
+          trust:registry.web_discovery.trust||"editorial_host_candidate",
+          allowed_experts:[expert.id]
+        };
+        let kept=0;
+        for(const item of feedItems){
+          if(kept>=2)break;
+          const text=`${item.title} ${item.desc||""}`;
+          if(!isWebVideoCandidate(text)||!matchedExpertsForSource(text,source,registry).length)continue;
+          const sourceName=item.sourceName||"Web動画・講演";
+          records.push(expertVideoRecord(expert,{...source,source_name:sourceName},{
+            title:item.title,description:item.desc,link:item.link,
+            publishedAt:item.date||fetchedAt,exactPublishedAt:item.date||"",platform:"Web動画・講演"
+          },fetchedAt));
+          kept++;
+        }
+        console.error("OK expert web",expert.name,"kept",kept,"/ fetched",feedItems.length);
+      }catch(error){
+        console.error("  expert web fail",expert.name,String(error.message||error).slice(0,80));
+      }
+    }
+  }
+  return {items:dedupeExpertVideoCandidates(records),attemptedSources,successfulSources};
+}
+
 function decodeHtmlText(value) {
   return stripTags(String(value||""))
     .replace(/\s+/g," ")
@@ -896,16 +1199,28 @@ function parseOfficialUpdatePage(html, url, toolName) {
   };
 }
 
-async function fetchText(url) {
-  const controller=new AbortController();
-  const timeout=setTimeout(()=>controller.abort(),12000);
-  try{
-    const res = await fetch(url, { signal:controller.signal,headers: { "User-Agent": "Mozilla/5.0 (AI-Radar bot)" } });
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    return await res.text();
-  }finally{
-    clearTimeout(timeout);
+async function fetchText(url,options={}) {
+  const attempts=Math.max(1,Number(options.retries||0)+1);
+  let lastError=null;
+  for(let attempt=0;attempt<attempts;attempt++){
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),12000);
+    try{
+      const userAgent=options.youtube
+        ?"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+        :"Mozilla/5.0 (AI-Radar bot)";
+      const res = await fetch(url, { signal:controller.signal,headers: {
+        "User-Agent":userAgent,"Accept-Language":"ja-JP,ja;q=0.9,en;q=0.5"
+      } });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return await res.text();
+    }catch(error){
+      lastError=error;
+    }finally{
+      clearTimeout(timeout);
+    }
   }
+  throw lastError||new Error("fetch failed");
 }
 function normalizedUrl(value) {
   try{
@@ -1022,6 +1337,7 @@ function candidateScore(item) {
   if(item.is_official)score+=35;
   if(FEATURED_RESEARCH_SET.has(item.tool))score+=22;
   if(item.tool==="AI業界・経営重要速報")score+=34;
+  if(isExpertVideoItem(item))score+=item.expert_tier==="informed_business_commentary"?24:42;
   if(/中国AI|世界の新モデル|政策|規制|補助金|セキュリティ|半導体/.test(item.tool||""))score+=16;
   if(/発表|公開|提供開始|新モデル|規制|法案|提携|買収|資金調達|脆弱性|料金/.test(item.title||""))score+=12;
   if(/CEO|最高経営責任者|会長|チーフサイエンティスト|経営体制|研究体制|人事|退任|退社|辞任|就任|再編|幹部/.test(item.title||""))score+=28;
@@ -1051,6 +1367,13 @@ function selectProtectedCandidates(items,limit) {
     toolCounts.set(item.tool,(toolCounts.get(item.tool)||0)+1);
     return true;
   };
+  // 専門家動画は記事候補と別枠で毎回確認し、同じ人物だけに処理枠を偏らせない。
+  const protectedExperts=new Set();
+  for(const item of sorted){
+    if(selected.length>=limit||protectedExperts.size>=EXPERT_VIDEO_PROTECTED_LIMIT)break;
+    if(!isExpertVideoItem(item)||protectedExperts.has(item.expert_id))continue;
+    if(add(item))protectedExperts.add(item.expert_id);
+  }
   for(const bucket of ["policy","security","frontier","semiconductor","leadership"]){
     const item=sorted.find(candidate=>criticalBucket(candidate)===bucket&&!selectedKeys.has(articleCacheKey(candidate)));
     if(item)add(item);
@@ -1792,10 +2115,28 @@ function bootstrapCacheResult(cache,source,result) {
     }
     console.error("OK", t.name, "kept", Math.min(items.length, PER_TOOL), "/ fetched", before);
   }
+  const editionNow=Date.parse(editionWindowEnd);
+  const expertVideoState=readJsonFile(EXPERT_VIDEO_STATE_PATH,{
+    version:1,last_successful_refresh_day_jst:"",last_successful_refresh_at:"",max_age_days:EXPERT_VIDEO_MAX_AGE_DAYS
+  });
+  const expertRefreshDue=shouldRefreshExpertVideos(expertVideoState,editionNow,process.env.AI_UPDATE_SCHEDULE||"");
+  let expertVideoCollection={items:[],attemptedSources:0,successfulSources:0};
+  if(expertRefreshDue){
+    expertVideoCollection=await collectExpertVideoCandidates(EXPERT_REGISTRY,editionWindowEnd);
+    console.error("EXPERT VIDEO DAILY CHECK:",expertVideoCollection.successfulSources,"/",expertVideoCollection.attemptedSources,"sources succeeded");
+  }else{
+    console.error("EXPERT VIDEO DAILY CHECK: outside the 07:17 JST morning run or already completed for",jstDayKey(editionNow));
+  }
+  const expertVideoCandidates=expertVideoCollection.items
+    .filter(item=>isFreshExpertVideo(item,editionNow,EXPERT_VIDEO_MAX_AGE_DAYS));
+  out.push(...expertVideoCandidates);
   out.sort((a, b) => articleTime(b)-articleTime(a));
 
-  // URLだけでなくタイトルの類似度も見て、媒体をまたぐ同一話題を1件にまとめる。
-  const uniqueOut = dedupeStories(out);
+  // 記事と専門家動画は別の情報型として保ち、それぞれの中で転載・言い換えを統合する。
+  const articleOut=out.filter(item=>!isExpertVideoItem(item));
+  const videoOut=dedupeExpertVideoCandidates(out.filter(isExpertVideoItem));
+  const uniqueOut = [...dedupeStories(articleOut),...dedupeStories(videoOut)]
+    .sort((a,b)=>articleTime(b)-articleTime(a));
 
   // 一時的な通信障害で全フィード取得に失敗しても、既存ニュースを消さない。
   if (uniqueOut.length === 0) {
@@ -1847,6 +2188,13 @@ function bootstrapCacheResult(cache,source,result) {
   const dailyBudget=Number(process.env.AI_DAILY_BUDGET_USD||0);
   const budgetExhausted=dailyBudget>0&&today.estimated_usd>=dailyBudget;
   const regularRemaining=budgetExhausted?0:Math.max(0,AI_DAILY_UNIQUE_LIMIT-today.regular_processed);
+  const expertToday=expertUsageDay(ledger,editionNow);
+  const expertRemaining=budgetExhausted?0:Math.max(0,AI_DAILY_EXPERT_LIMIT-expertToday.expert_processed);
+  // 記事と同じ大きなバッチへ混ぜると、動画の主張がニュース発表用の判定に引っ張られる。
+  // 専門家動画を最初に2件ずつ審査し、人物の多様性を保ちながら次候補まで確認する。
+  const expertReviewCandidates=selectExpertVideoReviewCandidates(fresh,
+    Math.min(EXPERT_VIDEO_REVIEW_LIMIT,expertRemaining),2,editionNow);
+  const expertReviewKeys=new Set(expertReviewCandidates.map(articleCacheKey));
   // プロンプト更新だけでは既存記事が「処理済み」のまま残るため、毎日24件を上限に
   // 旧要約へ再度一次情報の文脈を付け、記事固有の深い3段落へ安全に移行する。
   const migrationFresh=previous.filter(needsDeepFriendlyMigration)
@@ -1855,27 +2203,39 @@ function bootstrapCacheResult(cache,source,result) {
     Math.min(AI_DEEP_BACKFILL_LIMIT,regularRemaining));
   const migrationKeys=new Set(migrationCandidates.map(articleCacheKey));
   const regularNewCandidates=selectProtectedCandidates(
-    fresh.filter(item=>!migrationKeys.has(articleCacheKey(item))),
+    fresh.filter(item=>!isExpertVideoItem(item)&&!expertReviewKeys.has(articleCacheKey(item))&&!migrationKeys.has(articleCacheKey(item))),
     Math.min(AI_NEW_LIMIT,Math.max(0,regularRemaining-migrationCandidates.length)));
-  const regularCandidates=[...migrationCandidates,...regularNewCandidates];
+  const regularCandidates=[...expertReviewCandidates,...migrationCandidates,...regularNewCandidates];
   const regularKeys=new Set(regularCandidates.map(articleCacheKey));
   const emergencyRemaining=Math.max(0,AI_DAILY_EMERGENCY_LIMIT-today.emergency_processed);
   const emergencySlots=Math.min(Math.max(0,AI_NEW_LIMIT-regularCandidates.length),emergencyRemaining);
   const emergencyCandidates=(!budgetExhausted&&regularRemaining<AI_NEW_LIMIT)
-    ?selectProtectedCandidates(fresh.filter(item=>criticalBucket(item)&&!regularKeys.has(articleCacheKey(item))),emergencySlots)
+    ?selectProtectedCandidates(fresh.filter(item=>!isExpertVideoItem(item)&&criticalBucket(item)&&!regularKeys.has(articleCacheKey(item))),emergencySlots)
     :[];
 
+  let expertResult={items:[],processed:0,rejected:0};
   let migrationResult={items:[],processed:0,rejected:0};
   let regularResult={items:[],processed:0,rejected:0};
   let emergencyResult={items:[],processed:0,rejected:0};
   try {
+    expertResult=await enrichNewItems(expertReviewCandidates,cache,ledger,"expert",2);
     migrationResult=await enrichNewItems(migrationCandidates,cache,ledger,"regular",AI_MIGRATION_BATCH_SIZE);
     regularResult=await enrichNewItems(regularNewCandidates,cache,ledger,"regular",AI_BATCH_SIZE);
     emergencyResult=await enrichNewItems(emergencyCandidates,cache,ledger,"emergency");
   } catch (e) {
     console.error("AI要約に失敗:",String(e.message||e).slice(0,300));
   }
-  const newlyEnriched=[...migrationResult.items,...regularResult.items,...emergencyResult.items];
+  const expertAcceptedUrls=new Set(expertResult.items.map(item=>normalizedUrl(item.source_url)).filter(Boolean));
+  const expertTitleFallbacks=selectExpertVideoArchivePicks(
+    fresh.filter(isVerifiedExpertTitleFallback),3,editionNow
+  ).filter(source=>!expertAcceptedUrls.has(normalizedUrl(source.source_url)))
+    .map(buildVerifiedExpertTitleFallback).filter(item=>item&&isCompleteEnrichedItem(item));
+  for(const item of expertTitleFallbacks){
+    const source=fresh.find(candidate=>normalizedUrl(candidate.source_url)===normalizedUrl(item.source_url));
+    if(source)rememberCacheResult(cache,source,"enriched",item,"expert","official_title_topics");
+    console.error("EXPERT TITLE FALLBACK",item.expert_name,item.title);
+  }
+  const newlyEnriched=[...expertResult.items,...expertTitleFallbacks,...migrationResult.items,...regularResult.items,...emergencyResult.items];
   const selectedCount=regularCandidates.length+emergencyCandidates.length;
   if(dailyBudget>0&&usageDay(ledger).estimated_usd>=dailyBudget*0.8){
     console.error("AI DAILY BUDGET WARNING:",usageDay(ledger).estimated_usd,"/",dailyBudget,"USD");
@@ -1884,11 +2244,14 @@ function bootstrapCacheResult(cache,source,result) {
   writeJsonFile(AI_CACHE_PATH,cache);
   writeJsonFile(AI_USAGE_PATH,ledger);
   appendStepSummary(ledger,{cacheHits,rejectedHits,fresh:fresh.length,selected:selectedCount,
-    migrationSelected:migrationCandidates.length});
+    migrationSelected:migrationCandidates.length,expertSelected:expertReviewCandidates.length});
 
   // 新着候補があるのに予算・API障害で1件も処理できなかった回は、更新成功にしない。
   // チェックポイントを進めず、次の回で同じ期間を再審査する。
-  if(fresh.length>0&&selectedCount===0){
+  const hasPublishableExpertCache=Object.values(cache.items||{}).some(entry=>
+    entry&&entry.status==="enriched"&&isExpertVideoItem(entry.result)&&
+    isFreshExpertVideo(entry.result,editionNow,EXPERT_VIDEO_MAX_AGE_DAYS)&&isCompleteEnrichedItem(entry.result));
+  if(fresh.length>0&&selectedCount===0&&!hasPublishableExpertCache){
     console.error("NEW ARTICLES ARE WAITING: keeping the previous public edition until AI processing resumes");
     process.exitCode=1;
     return;
@@ -1909,33 +2272,40 @@ function bootstrapCacheResult(cache,source,result) {
   // 「既存原記事を消す → 転載も履歴重複で消す」という二重除外が起きる。
   const rankedPool=dedupeStories(preferCurrentEnrichment(
     [...recentPrevious,...cachedEnriched,...reused,...newlyEnriched]))
-    .filter(isCompleteEnrichedItem);
+    .filter(isCompleteEnrichedItem)
+    // 動画は元の投稿日を確認でき、実行時点で10日以内のものだけを公開候補に残す。
+    // キャッシュや前回データから期限切れ動画が復活する経路もここで一括して遮断する。
+    .filter(item=>!isExpertVideoItem(item)||isFreshExpertVideo(item,editionNow,EXPERT_VIDEO_MAX_AGE_DAYS));
   // 新着がない回でも直前のトップ5が公開上限処理で消えないよう、最優先で保持する。
   const previousEdition=readJsonFile(HOME_EDITION_PATH,{});
   const rankedById=new Map(rankedPool.map(item=>[item.article_id||stableArticleId(item),item]));
   const editionPicks=(previousEdition.article_ids||[]).map(id=>rankedById.get(String(id))).filter(Boolean).slice(0,MAX_HOME_ARTICLES);
   const editionKeys=new Set(editionPicks.map(item=>item.article_id||stableArticleId(item)));
+  // 専門家動画は記事トップ5を消費させず、公開上限の中に独立して保持する。
+  const expertPicks=selectExpertVideoArchivePicks(rankedPool,EXPERT_VIDEO_ARCHIVE_LIMIT,editionNow)
+    .filter(item=>!editionKeys.has(item.article_id||stableArticleId(item)));
+  const expertKeys=new Set(expertPicks.map(item=>item.article_id||stableArticleId(item)));
   // 主要ツールは各1件を優先確保し、画面にあるのに進化情報が出ない状態を防ぐ。
   const featuredPicks=[];
   for(const toolName of FEATURED_RESEARCH_TOOL_NAMES){
     const item=rankedPool.filter(candidate=>candidate.tool===toolName)
       .sort((a,b)=>articleTime(b)-articleTime(a))[0];
     const key=item&&(item.article_id||stableArticleId(item));
-    if(item&&!editionKeys.has(key)&&!featuredPicks.some(candidate=>(candidate.article_id||stableArticleId(candidate))===key))featuredPicks.push(item);
+    if(item&&!editionKeys.has(key)&&!expertKeys.has(key)&&!featuredPicks.some(candidate=>(candidate.article_id||stableArticleId(candidate))===key))featuredPicks.push(item);
   }
   const featuredKeys=new Set(featuredPicks.map(item=>item.article_id||stableArticleId(item)));
   // 新着保証枠: 主要ツール枠を除いた残りから直近72時間の記事を最大12件確保する。
   const freshCutoff=Date.now()-72*3600000;
-  const freshPicks=rankedPool.filter(item=>!editionKeys.has(item.article_id||stableArticleId(item))&&!featuredKeys.has(item.article_id||stableArticleId(item))&&articleTime(item)>=freshCutoff)
-    .sort((a,b)=>articleTime(b)-articleTime(a)).slice(0,Math.min(12,Math.max(0,AI_MAX-editionPicks.length-featuredPicks.length)));
-  const reservedKeys=new Set([...editionKeys,...featuredKeys,...freshPicks.map(item=>item.article_id||stableArticleId(item))]);
+  const freshPicks=rankedPool.filter(item=>!isExpertVideoItem(item)&&!editionKeys.has(item.article_id||stableArticleId(item))&&!expertKeys.has(item.article_id||stableArticleId(item))&&!featuredKeys.has(item.article_id||stableArticleId(item))&&articleTime(item)>=freshCutoff)
+    .sort((a,b)=>articleTime(b)-articleTime(a)).slice(0,Math.min(12,Math.max(0,AI_MAX-editionPicks.length-expertPicks.length-featuredPicks.length)));
+  const reservedKeys=new Set([...editionKeys,...expertKeys,...featuredKeys,...freshPicks.map(item=>item.article_id||stableArticleId(item))]);
   const restPicks=rankedPool.filter(item=>!reservedKeys.has(item.article_id||stableArticleId(item)))
     .sort((a,b)=>(importanceOrder[b.importance]||0)-(importanceOrder[a.importance]||0)||
       articleTime(b)-articleTime(a))
-    .slice(0,Math.max(0,AI_MAX-editionPicks.length-featuredPicks.length-freshPicks.length));
-  const capDropped=rankedPool.length-editionPicks.length-featuredPicks.length-freshPicks.length-restPicks.length;
+    .slice(0,Math.max(0,AI_MAX-editionPicks.length-expertPicks.length-featuredPicks.length-freshPicks.length));
+  const capDropped=rankedPool.length-editionPicks.length-expertPicks.length-featuredPicks.length-freshPicks.length-restPicks.length;
   if(capDropped>0)console.error("PUBLISH CAP: 完成記事のうち"+capDropped+"件が60件枠から漏れました");
-  const baseFinal=[...editionPicks,...featuredPicks,...freshPicks,...restPicks].sort((a,b)=>articleTime(b)-articleTime(a));
+  const baseFinal=[...editionPicks,...expertPicks,...featuredPicks,...freshPicks,...restPicks].sort((a,b)=>articleTime(b)-articleTime(a));
   const publishedIds=new Set(previous.map(item=>item&&item.article_id).filter(Boolean));
   const connectedFinal=connectStoryTimeline(baseFinal,storyIndex.items,publishedIds);
   // During the v7 migration, a legacy summary and its newly structured version
@@ -1951,7 +2321,9 @@ function bootstrapCacheResult(cache,source,result) {
   }
   const final=[...finalByArticleId.values()].sort((a,b)=>articleTime(b)-articleTime(a));
 
-  if(selectedCount&&migrationResult.processed+regularResult.processed+emergencyResult.processed===0){
+  const completedProcessingCount=expertResult.processed+expertTitleFallbacks.length+
+    migrationResult.processed+regularResult.processed+emergencyResult.processed;
+  if(selectedCount&&completedProcessingCount===0){
     console.error("NO NEW ENRICHED ARTICLES: keeping the existing complete data.json");
     process.exitCode = 1;
     return;
@@ -1965,10 +2337,18 @@ function bootstrapCacheResult(cache,source,result) {
   const publicationReadyFinal=final.map(upgradeFriendlyExplanationItem);
   const safelyExpanded=publicationReadyFinal.filter((item,index)=>item!==final[index]).length;
   const homeEdition=buildHomeEdition(publicationReadyFinal,previousEdition,{windowEnd:editionWindowEnd});
-  const editionReadyFinal=applyHomeEdition(publicationReadyFinal,homeEdition);
+  const videoEdition=finalizeExpertVideoEdition(applyHomeEdition(publicationReadyFinal,homeEdition),expertVideoState,editionNow,{
+    refreshDue:expertRefreshDue,attemptedSources:expertVideoCollection.attemptedSources,
+    successfulSources:expertVideoCollection.successfulSources,candidateCount:expertVideoCandidates.length
+  });
+  const editionReadyFinal=videoEdition.items;
   writeJsonFile("data.json",editionReadyFinal);
   writeJsonFile(HOME_EDITION_PATH,homeEdition);
   writeJsonFile(STORY_INDEX_PATH,updateStoryIndex(storyIndex,editionReadyFinal));
+  writeJsonFile(EXPERT_VIDEO_STATE_PATH,videoEdition.state);
+  if(expertRefreshDue&&videoEdition.state.status!=='published'){
+    console.error('::warning::EXPERT VIDEO PENDING: no new publishable video; retry at the next scheduled run');
+  }
   console.error("WROTE data.json with",editionReadyFinal.length,"complete items; home",homeEdition.selected_count,"of",homeEdition.candidate_count,"new candidates; candidates",uniqueOut.length,"after recent-story filter",filteredOut.length,"new",newlyEnriched.length,"reused",reused.length,"cache",cachedEnriched.length,"retained",recentPrevious.length,"safe-expanded",safelyExpanded);
 
 })();

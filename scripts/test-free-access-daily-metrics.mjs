@@ -50,11 +50,13 @@ for(const [body,label] of [[schema,"canonical schema"],[migration,"production mi
   ])expect(body.includes(required),`${label}: ${required}`);
 }
 
-expect(/rpc\('record_app_open',\{p_event_id:APP_OPEN_EVENT_ID\}\)/.test(index),"app shell records each initial open");
-expect(/APP_OPEN_MAX_ATTEMPTS=5/.test(index),"app open retries are bounded");
-expect(/\/rpc\/record_app_open/.test(tracker)&&/p_event_id:OPEN_EVENT_ID/.test(tracker),"direct public articles record an open");
-expect(/Promise\.allSettled\(\[register\(\),recordOpen\(\)\]\)/.test(tracker),"unique and total counters fail independently");
+expect(index.includes('id="visitorTracker"')&&index.includes('./assets/visitor-tracker.js'),"app shell uses the shared independent tracker");
+expect(tracker.includes('Math.min(60000,4000*2**Math.min(failures++,4))'),"retry frequency is bounded without discarding failed opens");
+expect(tracker.includes("rpc('record_app_open',{p_event_id:item.id})"),"app and direct articles retry the same event UUID");
+expect(tracker.includes('Promise.allSettled([registerUnique(),sendOpens()])'),"unique and total counters fail independently");
 expect(workflow.includes("node scripts/test-free-access-daily-metrics.mjs"),"scheduled updates run this regression test");
 
 if(failures.length){console.error(failures.join("\n"));process.exit(1);}
 console.log("Registration-free access and operator metrics contract passed.");
+await import('./test-operator-analytics-exclusion.mjs');
+await import('./test-operator-metrics-resilience.mjs');

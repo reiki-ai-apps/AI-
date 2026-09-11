@@ -16,7 +16,7 @@ for(const text of [
   'property="og:title"','name="twitter:card"','"@type":"WebSite"','function shareArticle','一般利用者向けの登録・ログイン機能はありません',
   '変化と仕事への影響を見る','今回の新着${newCount?` ${newCount}件`:\'\'}を話題性・重要性で審査','直近の重要記事から重複なく継続掲載','function trackAppEvent',
   '興味のある情報テーマを好きなだけ選んでください','AI要約の根拠になった元の記事を、登録なしで確認できます','function renderOperator',
-  "p_event_id:APP_OPEN_EVENT_ID","data-operator-account-daily-opens",
+  'id="visitorTracker"',"data-operator-account-daily-opens",
   "String(u.article_id||'')===key",'href="${esc(publicArticleUrl(u))}"'
 ])requireText(index,text);
 for(const text of [
@@ -52,13 +52,18 @@ for(const [index,item] of data.entries()){
 }
 for(const id of ids){
   const item=itemsById.get(id)||{};
+  const expertVideo=String(item.content_type||"").toLowerCase()==="expert_video";
   const file=path.join(root,"articles",id,"index.html");
   if(!fs.existsSync(file)){failures.push(`記事ページがありません: ${id}`);continue;}
   const page=fs.readFileSync(file,"utf8");
   if(!page.includes('application/ld+json')||!page.includes('BreadcrumbList')||!page.includes(`/articles/${encodeURIComponent(id)}/`))failures.push(`記事SEOが不完全です: ${id}`);
   if(!page.includes('assets/visitor-tracker.js'))failures.push(`記事閲覧が累計ユニーク閲覧者に反映されません: ${id}`);
-  if(!page.includes(`href="https://reiki-ai-apps.github.io/AI-/">AI最新ニュースをやさしい要約で確認</a>`))failures.push(`記事から最新ニュースへの導線がありません: ${id}`);
-  if(!page.includes("<h2>やさしい解説</h2>"))failures.push(`記事にやさしい解説がありません: ${id}`);
+  const expectedCta=expertVideo
+    ?`href="https://reiki-ai-apps.github.io/AI-/">専門家の重要発言をやさしい要約で確認</a>`
+    :`href="https://reiki-ai-apps.github.io/AI-/">AI最新ニュースをやさしい要約で確認</a>`;
+  const expectedHeading=expertVideo?"<h2>重要発言のやさしい解説</h2>":"<h2>やさしい解説</h2>";
+  if(!page.includes(expectedCta))failures.push(`記事から一覧への導線がありません: ${id}`);
+  if(!page.includes(expectedHeading))failures.push(`記事に内容別のやさしい解説がありません: ${id}`);
   if((page.match(/<\/p><p>/g)||[]).length<2)failures.push(`やさしい解説の3段落が保持されていません: ${id}`);
   if(!page.includes('class="article-image"')||!page.includes('class="related"'))failures.push(`記事画像または内部リンクがありません: ${id}`);
   if(page.includes('#update-detail/'))failures.push(`保存期間後に切れる記事詳細リンクがあります: ${id}`);
