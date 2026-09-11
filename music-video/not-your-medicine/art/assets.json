@@ -1,64 +1,112 @@
 {
-  "_comment": "Higgsfield で生成した背景美術。fetch_assets.py でこの表のとおり art/ に落とす。job_id があれば URL が切れても再取得できる。mean は平均輝度(0-255)、露出の合格判定に使う。",
+  "_comment": "背景美術。soul_cinematic で構図を作り、flux_kontext でアニメの背景美術に描き直したもの。手順は ART_DIRECTION.md を参照。",
   "model": "soul_cinematic",
   "aspect_ratio": "9:16",
-  "generated": "2026-09-10",
+  "generated": "2026-09-11",
   "images": [
     {
       "file": "01_table_night_bg.png",
-      "job_id": "b1410a6b-5cc2-4ca2-8d97-b4d26db349ba",
-      "quality": "2k",
-      "mean": 90,
-      "rgb": [111, 86, 72],
-      "scene": "深夜の机（俯瞰）。右上外のランプが机を暖色で照らし、左は青い影。右下にグラス、左上にスマホの光",
-      "reference": null,
-      "used_by": ["01a table_night", "01b tablet_dissolve"],
-      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3J8lwc3kVHTtbkxNryOZubNcjOD/hf_20260910_154330_b1410a6b-5cc2-4ca2-8d97-b4d26db349ba.png"
+      "job_id": "5aff2d56-75c6-4a66-8988-68573c551bbd",
+      "source_job": "b1410a6b-5cc2-4ca2-8d97-b4d26db349ba",
+      "model": "flux_kontext",
+      "mean": 105,
+      "scene": "深夜の机。右上のランプが暖色の光だまりを作り、手前にグラス",
+      "used_by": [
+        "01a table_night",
+        "01b tablet_dissolve"
+      ],
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3J8lwc3kVHTtbkxNryOZubNcjOD/hf_20260911_142444_5aff2d56-75c6-4a66-8988-68573c551bbd.png"
     },
     {
       "file": "02_glass_side_bg.png",
-      "job_id": "420d8898-f7a1-4c24-9f18-1bfb92cf6df7",
-      "quality": "2k",
-      "mean": 47,
-      "rgb": [66, 47, 27],
-      "scene": "横アングルのグラス。後ろの琥珀ランプが逆光で水を光らせ、縁に錠剤が落ちずに立つ",
-      "reference": "b1410a6b-5cc2-4ca2-8d97-b4d26db349ba",
-      "used_by": ["02 glass_side"],
-      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3J8lwc3kVHTtbkxNryOZubNcjOD/hf_20260910_154741_420d8898-f7a1-4c24-9f18-1bfb92cf6df7.png"
+      "job_id": "f3e092ac-e2d5-41d6-9e38-0832bdb6615b",
+      "source_job": "420d8898-f7a1-4c24-9f18-1bfb92cf6df7",
+      "model": "flux_kontext",
+      "mean": 63,
+      "scene": "グラスと錠剤。後ろにランプのボケ。錠剤は水面に浮いた形になった",
+      "used_by": [
+        "02 glass_side"
+      ],
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3J8lwc3kVHTtbkxNryOZubNcjOD/hf_20260911_142934_f3e092ac-e2d5-41d6-9e38-0832bdb6615b.png"
     },
     {
       "file": "03_water_closeup_bg.png",
-      "job_id": "95fccfe2-1a4b-40a1-993e-4821cdbefd38",
-      "quality": "2k",
-      "mean": 50,
-      "rgb": [70, 49, 33],
-      "scene": "水面の極端なクローズアップ。窓の反射、琥珀の波紋、内壁の気泡",
-      "reference": "b1410a6b-5cc2-4ca2-8d97-b4d26db349ba",
-      "used_by": ["03 water_closeup"],
-      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3J8lwc3kVHTtbkxNryOZubNcjOD/hf_20260910_154839_95fccfe2-1a4b-40a1-993e-4821cdbefd38.png"
+      "job_id": "4beadd57-19cb-401c-b266-d918c6c614a0",
+      "source_job": "95fccfe2-1a4b-40a1-993e-4821cdbefd38",
+      "model": "flux_kontext",
+      "mean": 98,
+      "scene": "グラスへの寄り。水面と木目",
+      "used_by": [
+        "03 water_closeup"
+      ],
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3J8lwc3kVHTtbkxNryOZubNcjOD/hf_20260911_143003_4beadd57-19cb-401c-b266-d918c6c614a0.png"
     },
     {
       "file": "04_table_dawn_bg.png",
-      "job_id": "ea310a1e-46db-4cb3-bc5d-7a2662a53563",
-      "quality": "2k",
-      "mean": 82,
-      "rgb": [113, 80, 52],
-      "scene": "同じ机の朝。右から金色の光、左は深い茶の影、グラスの影が長く伸びる",
-      "reference": null,
-      "reference_note": "夜の画像を参照させると露出が引きずられるため、朝だけ参照なしで生成した",
-      "used_by": ["04 dawn_sweep", "05 reply", "06 morning"],
-      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3J8lwc3kVHTtbkxNryOZubNcjOD/hf_20260910_155151_ea310a1e-46db-4cb3-bc5d-7a2662a53563.png"
+      "job_id": "aceff184-8749-4947-a206-2c748782f665",
+      "source_job": "5aff2d56-75c6-4a66-8988-68573c551bbd",
+      "model": "flux_kontext",
+      "mean": 125,
+      "scene": "朝の机。右から差す光の筋",
+      "note": "「ランプとモニターを消して」でグラスまで消えた。差し替え候補",
+      "used_by": [
+        "04 dawn_sweep",
+        "05 reply",
+        "06 morning"
+      ],
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3J8lwc3kVHTtbkxNryOZubNcjOD/hf_20260911_143606_aceff184-8749-4947-a206-2c748782f665.png"
     }
   ],
   "rejected": [
-    { "job_id": "60b2190f-3c40-4cec-8684-f5e9bd88e1e0", "mean": 9, "why": "露出不足。ほぼ真っ黒" },
-    { "job_id": "fe0ed631-4c1c-4020-84cd-5ce59029e49e", "mean": 8, "why": "露出不足" },
-    { "job_id": "ea35d805-78c7-43a2-8497-569a37325cf3", "mean": 9, "why": "露出不足" },
-    { "job_id": "cd67f6de-edfe-447e-8e08-edb91a9c8396", "mean": 15, "why": "露出不足" },
-    { "job_id": "8b5c8106-7cda-404f-a893-8f1fa9ca391c", "mean": 19, "why": "朝のはずが青く暗い。夜の画像を参照したため" },
-    { "job_id": "193dbeab-e751-48a6-9a45-319d96b43af9", "mean": 15, "why": "露出不足" },
-    { "job_id": "94dbbd5c-b792-4dd4-a3a6-7e2bd22900eb", "mean": 17, "why": "露出不足" },
-    { "job_id": "2413f236-de65-4e50-a95a-b29008502949", "mean": 49, "why": "朝としては暗い。夜を参照したため" },
-    { "job_id": "19838922-4c50-4dc3-9eba-5c47f8603016", "mean": 223, "why": "白飛び。コントラストが死んだ (sd=28)" }
-  ]
+    {
+      "job_id": "60b2190f-3c40-4cec-8684-f5e9bd88e1e0",
+      "mean": 9,
+      "why": "露出不足。ほぼ真っ黒"
+    },
+    {
+      "job_id": "fe0ed631-4c1c-4020-84cd-5ce59029e49e",
+      "mean": 8,
+      "why": "露出不足"
+    },
+    {
+      "job_id": "ea35d805-78c7-43a2-8497-569a37325cf3",
+      "mean": 9,
+      "why": "露出不足"
+    },
+    {
+      "job_id": "cd67f6de-edfe-447e-8e08-edb91a9c8396",
+      "mean": 15,
+      "why": "露出不足"
+    },
+    {
+      "job_id": "8b5c8106-7cda-404f-a893-8f1fa9ca391c",
+      "mean": 19,
+      "why": "朝のはずが青く暗い。夜の画像を参照したため"
+    },
+    {
+      "job_id": "193dbeab-e751-48a6-9a45-319d96b43af9",
+      "mean": 15,
+      "why": "露出不足"
+    },
+    {
+      "job_id": "94dbbd5c-b792-4dd4-a3a6-7e2bd22900eb",
+      "mean": 17,
+      "why": "露出不足"
+    },
+    {
+      "job_id": "2413f236-de65-4e50-a95a-b29008502949",
+      "mean": 49,
+      "why": "朝としては暗い。夜を参照したため"
+    },
+    {
+      "job_id": "19838922-4c50-4dc3-9eba-5c47f8603016",
+      "mean": 223,
+      "why": "白飛び。コントラストが死んだ (sd=28)"
+    }
+  ],
+  "pipeline": [
+    "soul_cinematic(構図・光)",
+    "flux_kontext(絵柄をアニメ背景美術に描き直す)"
+  ],
+  "note": "1188x2112 に引き伸ばして art/ に置いてある。元は 752x1392。"
 }
