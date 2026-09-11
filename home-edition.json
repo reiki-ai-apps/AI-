@@ -7,68 +7,110 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-09-10T14:25:38.290Z",
-  "window_end": "2026-09-11T00:13:58.323Z",
-  "last_window_end": "2026-09-11T00:13:58.323Z",
-  "last_checked_at": "2026-09-11T00:19:09.754Z",
-  "last_published_at": "2026-09-11T00:19:09.754Z",
-  "home_content_changed_at": "2026-09-11T00:19:09.754Z",
+  "window_start": "2026-09-11T00:13:58.323Z",
+  "window_end": "2026-09-11T08:55:50.919Z",
+  "last_window_end": "2026-09-11T08:55:50.919Z",
+  "last_checked_at": "2026-09-11T09:00:30.382Z",
+  "last_published_at": "2026-09-11T09:00:30.382Z",
+  "home_content_changed_at": "2026-09-11T09:00:30.382Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
-  "edition_status": "NO_NEW_STORIES",
-  "candidate_count": 2,
-  "distinct_candidate_count": 2,
+  "edition_status": "NEW_STORIES",
+  "candidate_count": 3,
+  "distinct_candidate_count": 3,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 0,
-  "cross_edition_duplicate_count": 2,
-  "cross_edition_duplicate_groups": [
-    {
-      "representative_id": "article_cfb61628203d78b2b0cd",
-      "duplicate_ids": [
-        "article_91f68b051861b4aeda6f"
-      ]
-    },
-    {
-      "representative_id": "article_6b87c39b68ff07692d36",
-      "duplicate_ids": [
-        "article_bda47006bc9cfd18212a"
-      ]
-    }
-  ],
+  "novel_candidate_count": 3,
+  "cross_edition_duplicate_count": 0,
+  "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 0,
-  "continued_selected_count": 5,
+  "new_selected_count": 3,
+  "continued_selected_count": 2,
   "tool_evolution_selected_count": 3,
-  "carried_forward": true,
-  "partially_carried_forward": false,
+  "carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_a563106bdc087dc1f1bb",
+    "article_4ab6d23614c53ebf3fb9",
+    "article_2b3f945904e150501ccd",
     "article_3eb3e9557eb7038ef8ad",
-    "article_ea659d541fec86dd33d8",
-    "article_6d05b99579974e339e14",
-    "article_51a1dcc15975fbda30af",
-    "article_6b87c39b68ff07692d36"
+    "article_6d05b99579974e339e14"
   ],
-  "new_article_ids": [],
+  "new_article_ids": [
+    "article_a563106bdc087dc1f1bb",
+    "article_4ab6d23614c53ebf3fb9",
+    "article_2b3f945904e150501ccd"
+  ],
   "continued_article_ids": [
     "article_3eb3e9557eb7038ef8ad",
-    "article_ea659d541fec86dd33d8",
-    "article_6d05b99579974e339e14",
-    "article_51a1dcc15975fbda30af",
-    "article_6b87c39b68ff07692d36"
+    "article_6d05b99579974e339e14"
   ],
   "continuation_sources": {
     "article_3eb3e9557eb7038ef8ad": "previous_edition",
-    "article_ea659d541fec86dd33d8": "previous_edition",
-    "article_6d05b99579974e339e14": "previous_edition",
-    "article_51a1dcc15975fbda30af": "previous_edition",
-    "article_6b87c39b68ff07692d36": "previous_edition"
+    "article_6d05b99579974e339e14": "previous_edition"
   },
   "scores": {
+    "article_a563106bdc087dc1f1bb": {
+      "article_id": "article_a563106bdc087dc1f1bb",
+      "total": 67,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 15,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 8,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-09-11T07:19:49.000Z"
+    },
+    "article_4ab6d23614c53ebf3fb9": {
+      "article_id": "article_4ab6d23614c53ebf3fb9",
+      "total": 60,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 10,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "制度・安全への影響"
+      ],
+      "published_at": "2026-09-11T08:44:53.000Z"
+    },
+    "article_2b3f945904e150501ccd": {
+      "article_id": "article_2b3f945904e150501ccd",
+      "total": 44,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 0,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "遅れて確認できた新着",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-09-10T20:23:10.000Z"
+    },
     "article_3eb3e9557eb7038ef8ad": {
       "article_id": "article_3eb3e9557eb7038ef8ad",
       "total": 89,
@@ -91,25 +133,6 @@
       ],
       "published_at": "2026-09-09T17:00:00.000Z"
     },
-    "article_ea659d541fec86dd33d8": {
-      "article_id": "article_ea659d541fec86dd33d8",
-      "total": 90,
-      "breakdown": {
-        "importance": 60,
-        "topicality": 15,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度S",
-        "主要AI企業・基盤",
-        "大きな製品・市場変化"
-      ],
-      "published_at": "2026-09-05T21:05:08.000Z"
-    },
     "article_6d05b99579974e339e14": {
       "article_id": "article_6d05b99579974e339e14",
       "total": 85,
@@ -127,228 +150,9 @@
         "大きな製品・市場変化"
       ],
       "published_at": "2026-09-08T22:42:00.000Z"
-    },
-    "article_51a1dcc15975fbda30af": {
-      "article_id": "article_51a1dcc15975fbda30af",
-      "total": 75,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 7,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "重要な経営・研究体制",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-09-10T07:43:36.000Z"
-    },
-    "article_6b87c39b68ff07692d36": {
-      "article_id": "article_6b87c39b68ff07692d36",
-      "total": 78,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 10,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-09-07T21:34:37.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_6b87c39b68ff07692d36",
-      "story_id": "story_dfe944eccfbf0a94dc",
-      "title": "DeepSeek、次期モデル『V4』の試作版を公開",
-      "primary_entity": "DeepSeek",
-      "story_subject": "DeepSeek V4",
-      "event_type": "release",
-      "event_stage": "beta",
-      "event_scope": "全世界",
-      "story_entities": [
-        "DeepSeek",
-        "deepseek"
-      ],
-      "fact_slots": [
-        {
-          "type": "version",
-          "scope": "DeepSeekモデル",
-          "value": "V4(試作版)",
-          "normalized_value": "v4試作版"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-09-08T00:33:39.478Z",
-      "edition_window_end": "2026-09-08T00:28:12.973Z"
-    },
-    {
-      "article_id": "article_7818fcbdada02214fafc",
-      "story_id": "story_c08192e2efbe84d973",
-      "title": "Perplexity、2028年のIPO方針を維持 OpenAIとAnthropicは上場に向け始動",
-      "primary_entity": "Perplexity",
-      "story_subject": "PerplexityのIPO方針とOpenAI・Anthropicの上場に向けた動き",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "全世界",
-      "story_entities": [
-        "Perplexity",
-        "OpenAI",
-        "Anthropic",
-        "perplexity",
-        "openai"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-09-08T00:33:39.478Z",
-      "edition_window_end": "2026-09-08T00:28:12.973Z"
-    },
-    {
-      "article_id": "article_1d6575b4f76d46b3395e",
-      "story_id": "story_ff80c629811ba50b7c",
-      "title": "米司法省がxAIを支持、メンフィスのガスタービン使用を容認",
-      "primary_entity": "xAI",
-      "story_subject": "メンフィスのガスタービン発電機使用を巡る争い",
-      "event_type": "policy",
-      "event_stage": "other",
-      "event_scope": "米国・メンフィス",
-      "story_entities": [
-        "xAI",
-        "米司法省",
-        "メンフィス",
-        "xai"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-08T00:33:39.478Z",
-      "edition_window_end": "2026-09-08T00:28:12.973Z"
-    },
-    {
-      "article_id": "article_073b13b14ae0138b1424",
-      "story_id": "story_7338d181623d669c61",
-      "title": "OpenAI、ウクライナの独立系報道機関支援でAIRPPU・WAN-IFRAと新プログラムを開始",
-      "primary_entity": "OpenAI",
-      "story_subject": "ウクライナの独立系報道機関向けAI支援プログラム",
-      "event_type": "partnership",
-      "event_stage": "announced",
-      "event_scope": "ウクライナ",
-      "story_entities": [
-        "OpenAI",
-        "AIRPPU",
-        "WAN-IFRA",
-        "openai",
-        "airppu"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-08T00:33:39.478Z",
-      "edition_window_end": "2026-09-08T00:28:12.973Z"
-    },
-    {
-      "article_id": "article_b0c414332d0a83cc1ea2",
-      "story_id": "story_fefee1ca78117cc2c5",
-      "title": "Canva、新AIモデルを準備 Google Picsは法人利用者取り込みを画策とAFR報道",
-      "primary_entity": "Canva",
-      "story_subject": "Canvaの新AIモデル",
-      "event_type": "other",
-      "event_stage": "rumor",
-      "event_scope": "不明",
-      "story_entities": [
-        "Canva",
-        "Google Pics",
-        "canva",
-        "googlepics",
-        "google-gemini"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-08T00:33:39.478Z",
-      "edition_window_end": "2026-09-08T00:28:12.973Z"
-    },
-    {
-      "article_id": "article_438b94b100e1407eee74",
-      "story_id": "story_6f407a4b7ed2cbd823",
-      "title": "OpenAIのチーフサイエンティスト、AI研究の減速を主張",
-      "primary_entity": "OpenAI",
-      "story_subject": "AI研究の減速に関する主張",
-      "event_type": "research",
-      "event_stage": "announced",
-      "event_scope": "世界",
-      "story_entities": [
-        "OpenAI",
-        "openai"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-08T03:10:13.264Z",
-      "edition_window_end": "2026-09-08T03:06:06.453Z"
-    },
-    {
-      "article_id": "article_f46a9bcaa59060942588",
-      "story_id": "story_86beac2f77ae85f515",
-      "title": "中国最高裁、生成AIによる偽動画の犯罪基準を公表",
-      "primary_entity": "中国最高人民法院",
-      "story_subject": "生成AIによる偽動画の犯罪基準",
-      "event_type": "policy",
-      "event_stage": "announced",
-      "event_scope": "中国全土",
-      "story_entities": [
-        "中国最高人民法院",
-        "生成AI",
-        "偽動画",
-        "生成ai"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-08T03:10:13.264Z",
-      "edition_window_end": "2026-09-08T03:06:06.453Z"
-    },
-    {
-      "article_id": "article_e395cc94ecffb60ed55f",
-      "story_id": "story_d8e9ae5676c8c5444a",
-      "title": "小学生のAI利用実態、コロコロコミック研究所が調査結果を発表",
-      "primary_entity": "コロコロコミック研究所",
-      "story_subject": "小学生のAI利用実態調査",
-      "event_type": "research",
-      "event_stage": "announced",
-      "event_scope": "日本",
-      "story_entities": [
-        "コロコロコミック研究所",
-        "生成AI",
-        "生成ai"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-08T03:10:13.264Z",
-      "edition_window_end": "2026-09-08T03:06:06.453Z"
-    },
     {
       "article_id": "article_a23b3061bdb02fab45e4",
       "story_id": "story_2e6d0a8f2e11db8810",
@@ -781,6 +585,79 @@
       "previous_article_id": "",
       "selected_at": "2026-09-10T09:03:35.365Z",
       "edition_window_end": "2026-09-10T08:57:36.175Z"
+    },
+    {
+      "article_id": "article_a563106bdc087dc1f1bb",
+      "story_id": "story_f26f5d92d68d654c8f",
+      "title": "Google、Windows版「Gemini」アプリの提供を開始",
+      "primary_entity": "Google",
+      "story_subject": "Windows版Geminiアプリ",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Windowsデスクトップ",
+      "story_entities": [
+        "Google",
+        "Gemini",
+        "Windows",
+        "google",
+        "gemini"
+      ],
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "Windows版Geminiアプリ",
+          "value": "提供開始",
+          "normalized_value": "提供開始"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-09-11T09:00:30.382Z",
+      "edition_window_end": "2026-09-11T08:55:50.919Z"
+    },
+    {
+      "article_id": "article_4ab6d23614c53ebf3fb9",
+      "story_id": "story_58de34ae3be465bd02",
+      "title": "首相、AI担当大臣とデジタル相の兼任を検討",
+      "primary_entity": "日本政府",
+      "story_subject": "AI担当大臣とデジタル相の兼任検討",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "日本",
+      "story_entities": [
+        "AI担当大臣",
+        "デジタル相",
+        "ai担当大臣"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-11T09:00:30.382Z",
+      "edition_window_end": "2026-09-11T08:55:50.919Z"
+    },
+    {
+      "article_id": "article_2b3f945904e150501ccd",
+      "story_id": "story_f49c4f179c784956aa",
+      "title": "Runway、「瞬時の動画生成」に向けた新技術を発表",
+      "primary_entity": "Runway",
+      "story_subject": "瞬時の動画生成技術",
+      "event_type": "research",
+      "event_stage": "announced",
+      "event_scope": "動画生成AI",
+      "story_entities": [
+        "Runway",
+        "動画生成AI",
+        "runway",
+        "動画生成ai"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-11T09:00:30.382Z",
+      "edition_window_end": "2026-09-11T08:55:50.919Z"
     }
   ]
 }
