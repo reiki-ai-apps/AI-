@@ -214,6 +214,11 @@ label.field textarea { min-height: 120px; resize: vertical; }
 .help { font-size: 0.8rem; color: var(--muted); font-weight: 400; margin-top: 4px; }
 :focus-visible { outline: 3px solid rgba(232,98,42,0.55); outline-offset: 2px; }
 
+/* チェックボックス付きのラベル */
+.check { display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem; font-weight: 500; padding: 8px 0; cursor: pointer; min-height: 44px; line-height: 1.6; }
+.check input[type="checkbox"] { width: 1.25rem; height: 1.25rem; accent-color: var(--ink-900); margin: 5px 0 0; flex: none; }
+.check .help { display: block; margin-top: 2px; }
+
 /* 表 */
 .table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
 .table th, .table td { padding: 10px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }

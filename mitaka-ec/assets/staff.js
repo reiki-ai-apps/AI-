@@ -146,7 +146,7 @@ async function selectCustomer(id) {
       <a class="btn sm ghost" href="quote.html" target="_blank">見積を作る</a>
     </div>
     <div class="flex mb-2">${houses.map(h => { const s = houseStatus(h); return `<span class="house-chip"><span class="badge ${s.level === "due" ? "warn" : ""}">${s.level === "due" ? "要対応" : s.level === "soon" ? "来年" : "良好"}</span><span><span class="b">${esc(h.name)}</span> ${h.params.span}m×${h.params.length}m ${esc(plotName(h.plotId))}<br><span class="muted small">${esc(s.text)}</span></span></span>`; }).join("") || `<span class="muted small">ハウスは未登録です。</span>`}</div>
-    <div class="consent-row mb-2">同意: カルテ ${cs.agreedAt ? "○" : "-"} / 統計 ${cs.statsOk ? "○" : "×"} / 事例掲載 ${cs.showcaseOk ? "○" : "×"}</div>
+    <div class="consent-row mb-2">同意(${esc(cs.agreedAt || "未取得")}): カルテ ${cs.agreedAt ? "○" : "-"} / 集計 ${cs.statsOk ? "○" : "×"} / <b>JA・提携先への提供 ${cs.shareOk ? "○" : "×"}</b> / 事例掲載 ${cs.showcaseOk ? "○" : "×"}</div>
     <h3>やりとり</h3>
     <div class="timeline">${timeline.length ? timeline.slice(0, 40).map(t => `<div class="tl-item ${esc(t.cls)}"><div class="when">${esc(fmtDateTime(t.at))}${t.who ? ` ・ ${esc(t.who)}` : ""}</div><div class="what">${esc(t.what)}</div><div class="body">${esc(t.body)}</div></div>`).join("") : `<p class="muted small">まだ記録がありません。電話メモから残せます。</p>`}</div>`;
   $("#c360").querySelector("[data-memo]")?.addEventListener("click", () => { document.querySelector('[data-tab="phone"]').click(); $("#tel").value = c.tel || ""; findByTel().then(() => { const b = $("#tel-hits").querySelector(`[data-cust="${c.id}"]`); b?.click(); }); });
@@ -206,11 +206,11 @@ $("#reg").addEventListener("submit", async e => {
   msg.textContent = "保存中...";
   try {
     const existing = customers.find(x => x.id === $("#c-existing").value);
-    const consent = { agreedAt: new Date().toISOString().slice(0, 10), statsOk: $("#k-stats").checked, showcaseOk: $("#k-showcase").checked, staff: $("#c-staff").value.trim() };
+    const consent = { agreedAt: new Date().toISOString().slice(0, 10), statsOk: $("#k-stats").checked, shareOk: $("#k-share").checked, showcaseOk: $("#k-showcase").checked, staff: $("#c-staff").value.trim() };
     const cust = await store.saveCustomer(existing
       ? { ...existing, area: $("#c-area").value, crop: $("#c-crop").value, consent: existing.consent || consent }
       : { name: $("#c-name").value.trim(), farmName: $("#c-farm").value.trim(), tel: $("#c-tel").value.trim(), kind: $("#c-kind").value, area: $("#c-area").value, address: $("#c-address").value.trim(), crop: $("#c-crop").value, staff: $("#c-staff").value.trim(), consent });
-    for (const [purpose, granted] of [["karte", true], ["stats", consent.statsOk], ["showcase", consent.showcaseOk]]) await store.saveConsent({ customerId: cust.id, purpose, granted, grantedOn: consent.agreedAt });
+    for (const [purpose, granted] of [["karte", true], ["stats", consent.statsOk], ["share_ja", consent.shareOk], ["showcase", consent.showcaseOk]]) await store.saveConsent({ customerId: cust.id, purpose, granted, grantedOn: consent.agreedAt });
     const plot = await store.savePlot({ customerId: cust.id, name: $("#p-name").value.trim(), area: $("#p-area").value, lat: parseFloat($("#p-lat").value) || null, lng: parseFloat($("#p-lng").value) || null, note: $("#p-note").value.trim() });
     let last = null;
     for (const h of houses) last = await store.saveHouse({ ...h, customerId: cust.id, plotId: plot.id, area: cust.area });

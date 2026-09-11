@@ -187,11 +187,12 @@ export async function healthStats() {
 // ---------------- デモデータ ----------------
 export async function seedDemo(force = false) {
   const existing = await store.listCustomers();
-  if (existing.length && !force) return false;
+  // デモ3件が無ければ入れる(他のデータが入っていても、デモのカルテは開けるように)
+  if (existing.some(c => c.code === "DEMO01") && !force) return false;
   const base = { lat: 36.405, lng: 139.33 };
   const demo = [
     { code: "DEMO01", name: "山田 太郎", farmName: "山田農園(デモ)", tel: "0277-00-0001", area: "桐生市", address: "群馬県桐生市新里町", crop: "トマト", kind: "individual", staff: "担当A",
-      consent: { agreedAt: "2026-06-12", statsOk: true, showcaseOk: false, staff: "担当A" },
+      consent: { agreedAt: "2026-06-12", statsOk: true, shareOk: true, showcaseOk: false, staff: "担当A" },
       plots: [
         { name: "自宅裏", lat: base.lat + 0.002, lng: base.lng + 0.001, houses: [
           { name: "1号", params: { span: 5.4, length: 30, eave: 1.6, ridge: 3.0, pitch: 0.5, pipe: 25.4, film: "po015", doors: 2, sideVent: "both", ventDrive: "manual", roofVent: false, curtain: "manual", insectNet: true, irrigation: "drip", snow: false }, filmYear: 2023, builtYear: 2015, crop: "トマト", condition: "良好", notes: "南側の巻き上げがやや重い", history: [{ date: "2023-03-10", type: "張り替え", summary: "農PO 0.15mm 全面張り替え", amount: 198000 }, { date: "2025-09-02", type: "修理", summary: "台風後、妻面ドア調整・パッカー交換", amount: 12800 }] },
@@ -208,7 +209,7 @@ export async function seedDemo(force = false) {
       quotes: [{ source: "karte", status: "sent", total: 528000, subtotal: 480000, days: -9, message: "3号の被覆材張り替え" }]
     },
     { code: "DEMO02", name: "佐々木 花子", farmName: "ささき苺園(デモ)", tel: "0277-00-0002", area: "みどり市", address: "群馬県みどり市笠懸町", crop: "いちご", kind: "corporate", staff: "担当B",
-      consent: { agreedAt: "2026-07-03", statsOk: true, showcaseOk: true, staff: "担当B" },
+      consent: { agreedAt: "2026-07-03", statsOk: true, shareOk: true, showcaseOk: true, staff: "担当B" },
       plots: [{ name: "笠懸第1", lat: base.lat + 0.012, lng: base.lng + 0.02, houses: [
         { name: "A棟", params: { span: 6.0, length: 50, eave: 1.8, ridge: 3.4, pitch: 0.5, pipe: 25.4, film: "po_diffuse", doors: 2, sideVent: "both", ventDrive: "motor", roofVent: false, curtain: "motor", insectNet: true, irrigation: "drip", snow: false }, filmYear: 2022, builtYear: 2018, crop: "いちご", condition: "良好", notes: "高設栽培", history: [{ date: "2022-08-01", type: "張り替え", summary: "散乱光PO 張り替え・内張カーテン更新", amount: 420000 }] },
         { name: "B棟", params: { span: 6.0, length: 50, eave: 1.8, ridge: 3.4, pitch: 0.5, pipe: 25.4, film: "po_diffuse", doors: 2, sideVent: "both", ventDrive: "motor", roofVent: false, curtain: "motor", insectNet: true, irrigation: "drip", snow: false }, filmYear: 2022, builtYear: 2018, crop: "いちご", condition: "良好", notes: "", history: [] }
@@ -217,7 +218,7 @@ export async function seedDemo(force = false) {
       quotes: [{ source: "catalog", status: "requested", total: 32560, subtotal: 29600, days: 0, message: "点滴チューブ 2巻" }]
     },
     { code: "DEMO03", name: "鈴木 一郎", farmName: "鈴木園芸(デモ)", tel: "0277-00-0003", area: "太田市", address: "群馬県太田市", crop: "花き", kind: "individual", staff: "担当A",
-      consent: { agreedAt: "2026-08-20", statsOk: false, showcaseOk: false, staff: "担当A" },
+      consent: { agreedAt: "2026-08-20", statsOk: false, shareOk: false, showcaseOk: false, staff: "担当A" },
       plots: [{ name: "本圃場", lat: base.lat - 0.02, lng: base.lng + 0.05, houses: [
         { name: "花1", params: { span: 4.5, length: 20, eave: 1.5, ridge: 2.7, pitch: 0.45, pipe: 22.2, film: "novi010", doors: 1, sideVent: "one", ventDrive: "manual", roofVent: false, curtain: "none", insectNet: false, irrigation: "none", snow: false }, filmYear: 2022, builtYear: 2009, crop: "花き", condition: "要相談", notes: "建て替えを検討中。補助金の相談あり", history: [] }
       ] }],
@@ -228,7 +229,7 @@ export async function seedDemo(force = false) {
   for (const d of demo) {
     const { plots, talks, quotes, consent, ...cust } = d;
     const c = await store.saveCustomer({ ...cust, id: undefined, consent });
-    for (const [purpose, granted] of [["karte", true], ["stats", !!consent.statsOk], ["showcase", !!consent.showcaseOk]]) await store.saveConsent({ customerId: c.id, purpose, granted, grantedOn: consent.agreedAt });
+    for (const [purpose, granted] of [["karte", true], ["stats", !!consent.statsOk], ["share_ja", !!consent.shareOk], ["showcase", !!consent.showcaseOk]]) await store.saveConsent({ customerId: c.id, purpose, granted, grantedOn: consent.agreedAt });
     for (const pl of plots) {
       const { houses, ...plot } = pl;
       const p = await store.savePlot({ ...plot, customerId: c.id, area: c.area });

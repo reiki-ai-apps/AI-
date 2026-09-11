@@ -34,7 +34,12 @@ function render(c, plots, houses) {
   if (CONFIG.lineAddFriendUrl) line.href = CONFIG.lineAddFriendUrl; else { line.href = "#"; line.addEventListener("click", e => { e.preventDefault(); toast("LINE公式アカウントは準備中です。お知らせは担当者から電話・メールでお伝えします"); }); }
   $("#k-share").addEventListener("click", async () => toast((await copyText(location.href)) ? "カルテのURLをコピーしました" : "コピーできませんでした"));
   const cs = c.consent || {};
-  $("#k-consent").textContent = `同意日: ${cs.agreedAt || "-"} / 個人がわからない統計への利用: ${cs.statsOk ? "あり" : "なし"} / 事例掲載: ${cs.showcaseOk ? "可" : "不可"}`;
+  const mark = v => v ? "はい" : "いいえ";
+  $("#k-consent").innerHTML = `ご登録日: ${esc(cs.agreedAt || "-")}<br>
+    個人がわからない集計(ハウス図鑑)への利用: <b>${mark(cs.statsOk)}</b> ／
+    JA・提携する資材店・メーカーへの提供: <b>${mark(cs.shareOk)}</b> ／
+    事例としての掲載: <b>${mark(cs.showcaseOk)}</b><br>
+    <a href="privacy.html" style="text-decoration:underline">それぞれの内容はこちら</a>。変更・取り消しは担当者へお申し付けください。すぐに反映します。`;
 
   // 次にやること
   const todo = [];

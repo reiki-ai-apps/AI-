@@ -156,7 +156,7 @@
             <label class="field">開閉<select id="h-ventdrive"></select></label>
             <label class="field">内張カーテン<select id="h-curtain"></select></label>
             <label class="field">潅水<select id="h-irrigation"></select></label>
-            <div class="field full flex"><label class="check"><input type="checkbox" id="h-roofvent">天窓あり</label><label class="check"><input type="checkbox" id="h-net" checked>防虫ネットあり</label><label class="check"><input type="checkbox" id="h-snow">耐雪補強あり</label></div>
+            <div class="field full flex"><label class="check"><input type="checkbox" id="h-roofvent"><span>天窓あり</span></label><label class="check"><input type="checkbox" id="h-net" checked><span>防虫ネットあり</span></label><label class="check"><input type="checkbox" id="h-snow"><span>耐雪補強あり</span></label></div>
             <label class="field">状態<select id="h-condition"></select></label>
             <label class="field">写真(最大2枚)<input id="h-photos" type="file" accept="image/*" capture="environment" multiple><div class="flex mt-1" id="photo-strip"></div><div class="help">試作では端末内に保存します。本番では写真置き場(Storage)に上げ、DBには場所だけ残します。</div></label>
             <label class="field full">メモ(困っていること・要望)<textarea id="h-notes" style="min-height:70px"></textarea></label>
@@ -167,11 +167,17 @@
         <fieldset>
           <legend>同意とカルテの発行</legend>
           <div class="card" style="background:var(--calm)">
-            <p style="margin:0 0 8px"><strong>お客様への説明(読み上げ用)</strong><br>ご登録いただいたハウスの情報は、カルテの作成、見積り・修理のご案内、張り替え時期などのお知らせに使います。名前や場所がわからない形にした統計は「みんなのハウス図鑑」に使わせていただくことがあります。登録内容はいつでも変更・削除できます。</p>
-            <label class="check"><input type="checkbox" id="k-service" checked disabled>カルテ作成・お知らせへの利用(必須)</label>
-            <label class="check"><input type="checkbox" id="k-stats" checked>個人がわからない統計(ハウス図鑑)への利用</label>
-            <label class="check"><input type="checkbox" id="k-showcase">事例として農園名・写真を掲載してもよい</label>
-            <label class="check"><input type="checkbox" id="k-agree">上記をお客様に説明し、同意をいただきました<span class="req">必須</span></label>
+            <p style="margin:0 0 10px"><strong>お客様への説明(読み上げ用)</strong><br>
+            ご登録いただいたハウスの情報は、カルテの作成、お見積り・修理のご案内、張り替え時期や台風前の点検のお知らせに使います。<br>
+            名前や場所がわからない形にした集計は「みんなのハウス図鑑」に使わせていただくことがあります。<br>
+            また、JAや提携する資材店・メーカーと一緒にご提案する場合に、お名前・ご連絡先・ハウスの仕様をお渡しすることがあります。<br>
+            下の3つは、どれもお断りいただけます。お断りになっても、三高産業のサービスは今までどおりお使いいただけます。登録内容はいつでも変更・削除できます。</p>
+            <label class="check"><input type="checkbox" id="k-service" checked disabled><span>カルテ作成・お知らせへの利用(必須)</span></label>
+            <label class="check"><input type="checkbox" id="k-stats" checked><span>個人がわからない集計(ハウス図鑑)への利用</span></label>
+            <label class="check"><input type="checkbox" id="k-share" checked><span>JA・提携する資材店・メーカーへの提供<span class="help">お渡しするのは、お名前・ご連絡先・住所(市町村)・ハウスの仕様と場所です。断っても不利益はありません。</span></span></label>
+            <label class="check"><input type="checkbox" id="k-showcase"><span>事例として農園名・写真を掲載してもよい</span></label>
+            <hr style="border:0;border-top:1px solid var(--line);margin:12px 0">
+            <label class="check"><input type="checkbox" id="k-agree"><span>上記をお客様に読み上げて説明し、同意をいただきました<span class="req">必須</span></span></label>
           </div>
           <button class="btn accent lg block mt-3" type="submit" id="issue">登録してカルテを発行する</button>
           <p class="small muted mt-1" id="reg-msg"></p>
