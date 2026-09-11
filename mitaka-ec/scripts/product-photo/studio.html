@@ -1,0 +1,246 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>商品撮影スタジオ</title>
+<style>
+  html,body{margin:0;background:#20232a;height:100%;display:grid;place-items:center}
+  #stage{width:min(92vmin,900px);aspect-ratio:4/3;background:#fff;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  #stage canvas{width:100%;height:100%;display:block}
+</style>
+<div id="stage"></div>
+<script type="importmap">{"imports":{"three":"../../vendor/three/three.module.min.js","three/addons/":"../../vendor/three/"}}</script>
+<script type="module">
+import * as THREE from "three";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { BUILDERS } from "./shapes.js";
+import { SHOTS } from "./map.js";
+
+const SSW = 2000, SSH = 1500;   // レンダリング解像度
+const OUTW = 1200, OUTH = 900;  // 書き出し解像度(4:3)
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1);
+renderer.setSize(SSW, SSH, false);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.42; // __exposure() で調整
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.getElementById("stage").appendChild(renderer.domElement);
+
+const pmrem = new THREE.PMREMGenerator(renderer);
+const envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+const scene = new THREE.Scene();
+scene.environment = envTex;
+scene.environmentIntensity = 0.92;
+scene.background = new THREE.Color(0xffffff);
+
+const camera = new THREE.PerspectiveCamera(27, OUTW / OUTH, 0.01, 400);
+
+// --- ホリゾント(白ホリ)。被写体の大きさに合わせて伸縮する ---
+const cycMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.96, metalness: 0 });
+const cyc = new THREE.Mesh(cycShape(1), cycMat);
+cyc.receiveShadow = true;
+scene.add(cyc);
+function cycShape(s) {
+  // 断面: 手前の床 → R で立ち上がり → 背面。shape.x を world Z、shape.y を world Y に対応させる
+  const D = 3.4 * s, W = 3.4 * s, r = 0.95 * s, H = 3.4 * s, t = 0.04 * s, width = 10 * s;
+  const sh = new THREE.Shape();
+  sh.moveTo(D, 0);
+  sh.lineTo(-W + r, 0);
+  sh.quadraticCurveTo(-W, 0, -W, r);
+  sh.lineTo(-W, H);
+  sh.lineTo(-W - t, H);
+  sh.lineTo(-W - t, r);
+  sh.quadraticCurveTo(-W - t, -t, -W + r, -t);
+  sh.lineTo(D, -t);
+  sh.closePath();
+  const g = new THREE.ExtrudeGeometry(sh, { depth: width, bevelEnabled: false, curveSegments: 36 });
+  g.rotateY(-Math.PI / 2);
+  g.translate(width / 2, 0, 0);
+  return g;
+}
+
+// --- 接地影(コンタクトシャドウ)。写真の「置いてある感」はこれで決まる ---
+const blobTex = (() => {
+  const S = 256, c = document.createElement("canvas"); c.width = c.height = S;
+  const x = c.getContext("2d");
+  const grd = x.createRadialGradient(S / 2, S / 2, 0, S / 2, S / 2, S / 2);
+  grd.addColorStop(0, "rgba(0,0,0,0.62)"); grd.addColorStop(0.42, "rgba(0,0,0,0.34)");
+  grd.addColorStop(0.74, "rgba(0,0,0,0.09)"); grd.addColorStop(1, "rgba(0,0,0,0)");
+  x.fillStyle = grd; x.fillRect(0, 0, S, S);
+  return new THREE.CanvasTexture(c);
+})();
+const blob = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ map: blobTex, transparent: true, depthWrite: false, opacity: 0.5 }));
+blob.rotation.x = -Math.PI / 2; blob.renderOrder = 2; scene.add(blob);
+
+// --- 照明: キー(影をつくる) / フィル / リム / ホリゾント起こし ---
+const key = new THREE.DirectionalLight(0xfff6ee, 2.45);
+key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+key.shadow.bias = -0.0005;
+key.shadow.normalBias = 0.01;
+key.shadow.radius = 4;
+scene.add(key, key.target);
+const fill = new THREE.DirectionalLight(0xeaf1ff, 0.42); scene.add(fill, fill.target);
+const rim  = new THREE.DirectionalLight(0xffffff, 0.85); scene.add(rim, rim.target);
+const bg   = new THREE.DirectionalLight(0xffffff, 0.30); scene.add(bg, bg.target); // ホリゾント起こし
+const amb  = new THREE.AmbientLight(0xffffff, 0.09); scene.add(amb);
+
+const DIRS = {
+  std:  new THREE.Vector3(0.60, 0.36, 0.71).normalize(),
+  long: new THREE.Vector3(0.84, 0.30, 0.45).normalize(),
+  flat: new THREE.Vector3(0.32, 0.74, 0.59).normalize(),
+  bundle: new THREE.Vector3(0.88, 0.36, 0.31).normalize()
+};
+
+let subject = null;
+function clearSubject() {
+  if (!subject) return;
+  subject.traverse(o => {
+    if (o.geometry) o.geometry.dispose();
+    if (o.material) (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose());
+  });
+  scene.remove(subject); subject = null;
+}
+
+function layout(shot) {
+  const make = () => BUILDERS[shot.b]({ ...(shot.p || {}) });
+  const first = make();
+  const g = new THREE.Group();
+  const n = shot.count || 1;
+  if (n === 1) { g.add(first.obj); return { group: g, size: first.size }; }
+  const s = first.size;
+  const spots = n === 2
+    ? [[-0.40, -0.26, -0.26], [0.42, 0.24, 0.30]]
+    : [[-0.62, -0.30, -0.34], [0.02, 0.04, 0.14], [0.64, 0.34, -0.46]];
+  const parts = [first, ...Array.from({ length: n - 1 }, make)];
+  parts.forEach((part, i) => {
+    const [x, z, ry] = spots[i];
+    part.obj.position.set(x * s, 0, z * s);
+    part.obj.rotation.y += ry;
+    g.add(part.obj);
+  });
+  return { group: g, size: s * (n === 2 ? 1.4 : 1.9) };
+}
+
+// 被写体の実際の頂点を集める(AABB だと斜めの品が小さく写るため)
+function collectPoints(root, budget = 6000) {
+  const pts = [];
+  const metas = [];
+  let total = 0;
+  root.updateMatrixWorld(true);
+  root.traverse(o => {
+    if (!o.isMesh || !o.geometry?.attributes?.position) return;
+    metas.push(o); total += o.geometry.attributes.position.count;
+  });
+  const stride = Math.max(1, Math.ceil(total / budget));
+  for (const o of metas) {
+    const pos = o.geometry.attributes.position;
+    for (let i = 0; i < pos.count; i += stride) {
+      pts.push(new THREE.Vector3(pos.getX(i), pos.getY(i), pos.getZ(i)).applyMatrix4(o.matrixWorld));
+    }
+  }
+  return pts;
+}
+
+// 距離と画面内の位置を合わせる
+function frame(pts, center, target, biasY) {
+  const dir = camera.userData.dir;
+  let d = 1, look = center.clone();
+  { // 初期距離
+    const sph = new THREE.Sphere().setFromPoints(pts);
+    d = sph.radius / Math.sin(THREE.MathUtils.degToRad(camera.fov) / 2) * 1.2;
+    look.copy(sph.center);
+  }
+  for (let i = 0; i < 16; i++) {
+    camera.position.copy(look).addScaledVector(dir, d);
+    camera.lookAt(look);
+    camera.updateMatrixWorld(true);
+    camera.updateProjectionMatrix();
+    let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+    for (const p of pts) { const q = p.clone().project(camera); if (q.x < x0) x0 = q.x; if (q.x > x1) x1 = q.x; if (q.y < y0) y0 = q.y; if (q.y > y1) y1 = q.y; }
+    const m = Math.max((x1 - x0) / 2, (y1 - y0) / 2);
+    // 画面中心(やや上寄せ: 下に影の余白)へ寄せる
+    const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2 - biasY;
+    const right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0);
+    const up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1);
+    const hh = Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2) * d;
+    look.addScaledVector(right, cx * hh * camera.aspect).addScaledVector(up, cy * hh);
+    const done = Math.abs(m - target) < 0.004 && Math.abs(cx) < 0.004 && Math.abs(cy) < 0.004;
+    d *= m / target;
+    if (done) break;
+  }
+  camera.position.copy(look).addScaledVector(dir, d);
+  camera.lookAt(look);
+  camera.updateProjectionMatrix();
+}
+
+window.__render = function (id, opts = {}) {
+  const shot = SHOTS[id];
+  if (!shot) throw new Error("no shot for " + id);
+  clearSubject();
+
+  const { group } = layout(shot);
+  let box = new THREE.Box3().setFromObject(group);
+  group.position.y -= box.min.y;            // 床に置く
+  subject = group; scene.add(group);
+  group.updateMatrixWorld(true);
+  box = new THREE.Box3().setFromObject(group);
+  const center = box.getCenter(new THREE.Vector3());
+  const span = Math.max(box.max.x - box.min.x, box.max.y - box.min.y, box.max.z - box.min.z, 0.1);
+
+  const L = span * 2.2;
+  key.position.set(center.x - L * 0.70, center.y + L * 1.25, center.z + L * 1.00); key.target.position.copy(center);
+  fill.position.set(center.x + L * 1.30, center.y + L * 0.45, center.z + L * 0.85); fill.target.position.copy(center);
+  rim.position.set(center.x + L * 0.30, center.y + L * 1.00, center.z - L * 1.30);  rim.target.position.copy(center);
+  bg.position.set(center.x, center.y + L * 0.9, center.z + L * 2.2);                bg.target.position.set(center.x, 0, center.z - span);
+  const sc = key.shadow.camera;
+  const half = span * 1.35;
+  sc.left = -half; sc.right = half; sc.top = half; sc.bottom = -half;
+  sc.near = L * 0.15; sc.far = L * 6; sc.updateProjectionMatrix();
+
+  camera.userData.dir = (DIRS[shot.view || "std"]).clone();
+  camera.near = Math.max(span * 0.01, 0.004); camera.far = span * 80;
+  frame(collectPoints(group), center, opts.target ?? 0.76, opts.biasY ?? 0.11);
+
+  // 接地影を被写体の足もとに合わせる
+  const fx = Math.max(box.max.x - box.min.x, span * 0.12), fz = Math.max(box.max.z - box.min.z, span * 0.12);
+  const h = box.max.y - box.min.y;
+  blob.position.set(center.x + fx * 0.10, 0.0006, center.z - fz * 0.06);
+  blob.scale.set(fx * 1.85, fz * 1.85, 1);
+  blob.material.opacity = (span > 1.6 ? 0.34 : 0.5) / (1 + Math.max(0, h / Math.max(fx, fz) - 1) * 0.6);
+
+  // ホリゾントは必ず画面を覆う大きさに
+  const dist = camera.position.distanceTo(new THREE.Vector3(center.x, center.y, center.z));
+  cyc.scale.setScalar(Math.max(span * 2.0, dist * 1.25));
+
+  renderer.render(scene, camera);
+  return { span, view: shot.view || "std", builder: shot.b };
+};
+
+// 背景の明るさを測る(白飛び確認用)
+window.__exposure = e => { renderer.toneMappingExposure = e; };
+window.__probe = function () {
+  const gl = renderer.getContext();
+  const px = new Uint8Array(4 * 4);
+  const read = (x, y) => { gl.readPixels(x, y, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px); return [px[0], px[1], px[2]]; };
+  return { topLeft: read(20, SSH - 20), top: read(SSW >> 1, SSH - 20), bottomLeft: read(30, 30), bottomRight: read(SSW - 30, 30) };
+};
+
+window.__jpeg = function (q) {
+  const c = document.createElement("canvas");
+  c.width = OUTW; c.height = OUTH;
+  const ctx = c.getContext("2d");
+  ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = "high";
+  ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, OUTW, OUTH);
+  const mid = document.createElement("canvas"); mid.width = OUTW * 1.4 | 0; mid.height = OUTH * 1.4 | 0;
+  const mctx = mid.getContext("2d"); mctx.imageSmoothingQuality = "high";
+  mctx.drawImage(renderer.domElement, 0, 0, mid.width, mid.height);
+  ctx.drawImage(mid, 0, 0, OUTW, OUTH);
+  return c.toDataURL("image/jpeg", q || 0.86);
+};
+
+window.__ready = true;
+window.__ids = Object.keys(SHOTS);
+</script>

@@ -47,6 +47,13 @@
 .fig .fig-key { position: absolute; left: 14px; bottom: 10px; font-size: 24px; font-weight: 700; color: var(--ink-900); letter-spacing: 0.02em; font-variant-numeric: tabular-nums; line-height: 1; padding-bottom: 4px; border-bottom: 2px solid var(--soil); }
 .fig .fig-shelf { position: absolute; right: 12px; top: 10px; font-size: 0.78rem; font-weight: 700; color: var(--shelf); border: 1px solid var(--shelf); padding: 1px 8px; border-radius: 4px; background: #fff; }
 .fig.big { aspect-ratio: 16 / 9; min-height: 200px; border-radius: 12px; }
+/* 写真(assets/products/*.jpg)。読めなかったときだけ図に戻る */
+.fig.photo { background-image: none; background-color: #FFFFFF; }
+.fig.photo.big { aspect-ratio: 4 / 3; }
+.fig .fig-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.fig.photo .fig-ic { display: none; }
+.fig.photo .fig-key { background: rgba(255,255,255,0.86); padding: 3px 8px 5px; border-radius: 4px; left: 10px; bottom: 8px; }
+
 .fig.big .fig-ic svg { width: 140px; height: 140px; }
 .fig.big .fig-key { font-size: 1.7rem; }
 .pcard .hot { position: absolute; left: 12px; top: 10px; background: var(--gold); color: var(--ink-900); border-radius: 4px; font-size: 0.78rem; font-weight: 700; padding: 2px 8px; }

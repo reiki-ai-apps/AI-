@@ -1,9 +1,9 @@
-// 商品1点ページ: 寸法図 / 使う場所(3D) / 税込価格 / 数量 / かご / 一緒に使うもの / カルテ帯 / 固定バー
+// 商品1点ページ: 写真 / 使う場所(3D) / 税込価格 / 数量 / かご / 一緒に使うもの / カルテ帯 / 固定バー
 import { CONFIG } from "./config.js";
 import { initSite, addToQuoteList, flyToCart, esc, yen, toast } from "./site.js";
 import { PRODUCTS, MAKERS, SHELVES, shelfOf } from "./catalog-data.js";
 import { ICONS } from "./icons.js";
-import { figure, keySpec, shapeOf } from "./figures.js";
+import { figure, keySpec, shapeOf, photoSrc, watchPhotos } from "./figures.js";
 import { partOf, PART_LABEL, sceneFor, companions, fitText, tipFor, catLabel } from "./product-data.js";
 import { estimate, normalizeParams } from "./pricing.js";
 
@@ -27,7 +27,7 @@ const headHtml = `<div><span class="shelf-badge" style="--shelf:${shelf.color}">
 $("#head-sp").innerHTML = headHtml;
 $("#pd-crumb").innerHTML = `<a href="index.html">トップ</a> › <a href="catalog.html">資材をさがす</a> › <a href="catalog.html#shelf=${shelf.id}">${esc(shelf.label)}</a> › ${esc(p.name)}`;
 
-// ---- 寸法図(大) ----
+// ---- 商品写真(大) ----
 function compareText() {
   const s = p.name + " " + p.spec, out = [];
   const dia = s.match(/φ(\d+(?:\.\d+)?)/); if (dia) { const d = Number(dia[1]); out.push(d >= 31 ? `φ${d} は500円玉より約1cm太い` : d >= 25 ? `φ${d} は500円玉(2.65cm)とほぼ同じ太さ` : d >= 22 ? `φ${d} は500円玉より少し細い` : `φ${d} は10円玉(2.35cm)より細い`); }
@@ -36,14 +36,22 @@ function compareText() {
   return out.slice(0, 2).join(" ／ ");
 }
 const key = keySpec(p);
-$("#pane-fig").innerHTML = `<div class="bigfig" role="img" aria-label="${esc(p.name)} ${esc(key)} の寸法図" style="--shelf:${shelf.color}">
+watchPhotos();
+$("#pane-fig").classList.add("has-photo");
+$("#pane-fig").innerHTML = `<div class="bigfig photo" style="--shelf:${shelf.color}">
+  <img class="fig-img" src="${photoSrc(p)}" alt="${esc(p.name)} ${esc(key)} の写真" width="1200" height="900" decoding="async">
   ${key ? `<div class="guide"><span>${esc(key)}</span></div>` : ""}
   ${pack > 1 && pack <= 100 ? `<div class="dots" aria-hidden="true">${Array.from({ length: pack }, () => "<i></i>").join("")}</div>` : ""}
   <span class="fig-ic">${ICONS[shapeOf(p)] || ICONS.cube}</span>
   <span class="shelf-badge">${esc(shelf.label)}</span>
   ${key ? `<div class="key">${esc(key)}</div>` : ""}
 </div>`;
-{ const ct = compareText(); if (ct) $("#pane-3d").insertAdjacentHTML("afterend", `<div class="fig-caption">${ct.split(" ／ ").map(t => `<span>${esc(t)}</span>`).join("")}</div>`); }
+{
+  const ct = compareText();
+  $("#pane-3d").insertAdjacentHTML("afterend",
+    (ct ? `<div class="fig-caption">${ct.split(" ／ ").map(t => `<span>${esc(t)}</span>`).join("")}</div>` : "") +
+    `<p class="photo-note">写真は部材の実寸から起こした3Dイメージです。実物の写真ではないため、細部が異なる場合があります。</p>`);
+}
 
 // ---- 使う場所(3D)。タブを開いたときに初めて読み込む ----
 let viewer = null;

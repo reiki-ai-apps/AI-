@@ -1,4 +1,5 @@
-// 商品の「寸法図」: 写真の代わりに、形のアイコン + 大きな規格文字で描く
+// 商品の写真。assets/products/<ID>.jpg(部材の実寸から起こしたスタジオ撮影風レンダリング)。
+// 画像が無い品番のときだけ、形のアイコン + 規格文字の図に自動で戻す。
 import { ICONS } from "./icons.js";
 import { shelfOf } from "./catalog-data.js";
 
@@ -40,17 +41,34 @@ export function keySpec(p) {
 
 function hexToRgba(hex, a) { const n = parseInt(hex.slice(1), 16); return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`; }
 
+// 写真のパス
+export function photoSrc(p) { return `assets/products/${encodeURIComponent(p.id)}.jpg`; }
+
 // カード用の図(HTML断片)。big=true で詳細シート用
 export function figure(p, big = false) {
   const shelf = shelfOf(p.cat);
   const key = keySpec(p);
   const shape = shapeOf(p);
-  const pipeScale = p.cat === "pipe" && /φ(\d+(?:\.\d+)?)/.test(p.spec) ? Math.min(1.25, 0.75 + (parseFloat(p.spec.match(/φ(\d+(?:\.\d+)?)/)[1]) - 19) / 26) : 1;
-  return `<div class="fig${big ? " big" : ""}" style="--shelf:${shelf.color};--shelf-bg:${hexToRgba(shelf.color, 0.12)};--ic-fill:${hexToRgba(shelf.color, 0.22)}" role="img" aria-label="${escAttr(p.name)}${key ? " " + escAttr(key) : ""}の図">
-    <span class="fig-ic" style="transform:scale(${pipeScale})">${ICONS[shape] || ICONS.cube}</span>
+  return `<div class="fig photo${big ? " big" : ""}" style="--shelf:${shelf.color};--shelf-bg:${hexToRgba(shelf.color, 0.12)};--ic-fill:${hexToRgba(shelf.color, 0.22)}">
+    <img class="fig-img" src="${photoSrc(p)}" alt="${escAttr(p.name)}${key ? " " + escAttr(key) : ""} の写真" loading="lazy" decoding="async" width="1200" height="900">
+    <span class="fig-ic" aria-hidden="true">${ICONS[shape] || ICONS.cube}</span>
     ${key ? `<span class="fig-key">${escHtml(key)}</span>` : ""}
     <span class="fig-shelf">${escHtml(shelf.label)}</span>
   </div>`;
 }
+
+// 写真が読めなかったカードだけ、図の表示に戻す
+let wired = false;
+export function watchPhotos() {
+  if (wired || typeof document === "undefined") return; wired = true;
+  document.addEventListener("error", e => {
+    const img = e.target;
+    if (!(img instanceof HTMLImageElement) || !img.classList.contains("fig-img")) return;
+    const fig = img.closest(".fig, .bigfig");
+    if (fig) fig.classList.remove("photo");
+    img.remove();
+  }, true);
+}
+
 const escHtml = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const escAttr = escHtml;
