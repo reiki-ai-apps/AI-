@@ -13,7 +13,8 @@ const {
   EXPERT_VIDEO_MAX_AGE_DAYS,isExpertVideoItem,jstDayKey,shouldRefreshExpertVideos,isFreshExpertVideo,
   parseYouTubeChannelVideos,matchedExpertsForSource,
   isSubstantiveAiVideo,isWebVideoCandidate,dedupeExpertVideoCandidates,
-  selectExpertVideoArchivePicks,selectExpertVideoReviewCandidates,buildExpertWebDiscoveryUrl
+  selectExpertVideoArchivePicks,selectExpertVideoReviewCandidates,buildExpertWebDiscoveryUrl,
+  finalizeExpertVideoEdition,extractVideoChapters
 }=require("./scripts/expert-video.cjs");
 
 // ホームの「主要AIアプリ・ツール」と収集対象を同じ一覧で監査する。
@@ -203,7 +204,7 @@ const EXPERT_VIDEO_STATE_PATH = ".expert-video-state.json";
 const EXPERT_VIDEO_ARCHIVE_LIMIT = 12;
 const EXPERT_VIDEO_PROTECTED_LIMIT = 4;
 const EXPERT_VIDEO_REVIEW_LIMIT = 6;
-const EXPERT_REVIEW_VERSION = "expert-video-review-v6-official-feed-fallback";
+const EXPERT_REVIEW_VERSION = "expert-video-review-v7-chapters-first";
 const STORY_REPOST_WINDOW_MS = 31 * 86400000;
 const STORY_TIMELINE_WINDOW_MS = 365 * 86400000;
 // 完全一致の再掲載を公開から外す期間。表示保持(31日)より長く、365日の全面抑制はしない。
@@ -614,7 +615,8 @@ async function fetchYouTubePlayerDescription(sourceUrl,signal){
     });
     if(!player.ok)return "";
     const payload=await player.json();
-    return stripTags(payload?.videoDetails?.shortDescription||"");
+    const description=payload?.videoDetails?.shortDescription||"";
+    return [extractVideoChapters(description),stripTags(description)].filter(Boolean).join('\n');
   }catch(_error){
     return "";
   }
@@ -659,7 +661,7 @@ async function fetchArticleContext(item) {
     let youtubeDescription=/(?:^|\.)youtube\.com$/.test(finalHost)?(()=>{
       const match=html.match(/"shortDescription":"((?:\\.|[^"\\])*)"/);
       if(!match)return "";
-      try{return stripTags(JSON.parse(`"${match[1]}"`));}
+      try{const description=JSON.parse(`"${match[1]}"`);return [extractVideoChapters(description),stripTags(description)].filter(Boolean).join('\n');}
       catch(_error){return stripTags(match[1].replace(/\\n/g," ").replace(/\\"/g,'"'));}
     })():"";
     if(isYouTubeSource&&youtubeDescription.length<180){
@@ -1041,7 +1043,7 @@ function parseYouTubeVideoFeed(xml,source={}){
   return String(xml||"").split(/<entry\b[^>]*>/i).slice(1).map(block=>{
     const videoId=stripTags(tag(block,"yt:videoId"));
     const title=stripTags(tag(block,"title"));
-    const description=stripTags(tag(block,"media:description"));
+    const description=decode(tag(block,"media:description")).replace(/<[^>]+>/g,' ').trim();
     const exactPublishedAt=toIso(tag(block,"published"))||"";
     return {
       videoId,title,description,exactPublishedAt,publishedAt:exactPublishedAt,
@@ -1074,7 +1076,7 @@ function expertVideoRecord(expert,source,video,fetchedAt){
     source_updated_at:"",
     source_date_status:video.exactPublishedAt?"published":"unknown",
     fetched_at:fetchedAt,
-    raw_excerpt:[video.description,`発言者: ${expertNames.join("、")}`,`配信: ${source.source_name||video.sourceName||platform}`].filter(Boolean).join(" / ").slice(0,3000),
+    raw_excerpt:[extractVideoChapters(video.description),video.description,`発言者: ${expertNames.join("、")}`,`配信: ${source.source_name||video.sourceName||platform}`].filter(Boolean).join(" / ").slice(0,3000),
     source_name:source.source_name||video.sourceName||platform,
     is_official:officialTrust
   };
@@ -1120,7 +1122,8 @@ async function collectExpertVideoCandidates(registry,fetchedAt){
       for(const video of mergedVideos){
         if(kept>=4)break;
         const text=`${video.title} ${video.description||""}`;
-        if(!isSubstantiveAiVideo(text))continue;
+        // 説明欄の「切り抜き禁止」「採用キャンペーン」を動画内容と誤判定しない。
+        if(!isSubstantiveAiVideo(`${video.title} ${extractVideoChapters(video.description)}`))continue;
         const experts=matchedExpertsForSource(text,source,registry);
         if(!experts.length)continue;
         video.experts=experts;
@@ -2126,15 +2129,6 @@ function bootstrapCacheResult(cache,source,result) {
   }
   const expertVideoCandidates=expertVideoCollection.items
     .filter(item=>isFreshExpertVideo(item,editionNow,EXPERT_VIDEO_MAX_AGE_DAYS));
-  const nextExpertVideoState=expertRefreshDue&&expertVideoCollection.successfulSources>0?{
-    version:1,
-    last_successful_refresh_day_jst:jstDayKey(editionNow),
-    last_successful_refresh_at:editionWindowEnd,
-    max_age_days:EXPERT_VIDEO_MAX_AGE_DAYS,
-    source_attempts:expertVideoCollection.attemptedSources,
-    source_successes:expertVideoCollection.successfulSources,
-    fresh_candidate_count:expertVideoCandidates.length
-  }:null;
   out.push(...expertVideoCandidates);
   out.sort((a, b) => articleTime(b)-articleTime(a));
 
@@ -2343,13 +2337,18 @@ function bootstrapCacheResult(cache,source,result) {
   const publicationReadyFinal=final.map(upgradeFriendlyExplanationItem);
   const safelyExpanded=publicationReadyFinal.filter((item,index)=>item!==final[index]).length;
   const homeEdition=buildHomeEdition(publicationReadyFinal,previousEdition,{windowEnd:editionWindowEnd});
-  const editionReadyFinal=applyHomeEdition(publicationReadyFinal,homeEdition);
+  const videoEdition=finalizeExpertVideoEdition(applyHomeEdition(publicationReadyFinal,homeEdition),expertVideoState,editionNow,{
+    refreshDue:expertRefreshDue,attemptedSources:expertVideoCollection.attemptedSources,
+    successfulSources:expertVideoCollection.successfulSources,candidateCount:expertVideoCandidates.length
+  });
+  const editionReadyFinal=videoEdition.items;
   writeJsonFile("data.json",editionReadyFinal);
   writeJsonFile(HOME_EDITION_PATH,homeEdition);
   writeJsonFile(STORY_INDEX_PATH,updateStoryIndex(storyIndex,editionReadyFinal));
-  // 公開データの生成まで完了した時だけ朝のチェックを確定する。
-  // 失敗時は未完了のまま残し、朝の再実行または翌朝に再試行する。
-  if(nextExpertVideoState)writeJsonFile(EXPERT_VIDEO_STATE_PATH,nextExpertVideoState);
+  writeJsonFile(EXPERT_VIDEO_STATE_PATH,videoEdition.state);
+  if(expertRefreshDue&&videoEdition.state.status!=='published'){
+    console.error('::warning::EXPERT VIDEO PENDING: no new publishable video; retry at the next scheduled run');
+  }
   console.error("WROTE data.json with",editionReadyFinal.length,"complete items; home",homeEdition.selected_count,"of",homeEdition.candidate_count,"new candidates; candidates",uniqueOut.length,"after recent-story filter",filteredOut.length,"new",newlyEnriched.length,"reused",reused.length,"cache",cachedEnriched.length,"retained",recentPrevious.length,"safe-expanded",safelyExpanded);
 
 })();

@@ -21,13 +21,44 @@ function jstDayKey(now=Date.now()){
 function shouldRefreshExpertVideos(state,now=Date.now(),schedule=""){
   const today=jstDayKey(now);
   const morningStart=Date.parse(`${today}T07:17:00+09:00`);
-  const morningEnd=Date.parse(`${today}T12:00:00+09:00`);
-  // 朝の定期実行はキュー待ちで遅れても有効。昼・夜の定期実行は対象外。
-  // 手動実行は朝7:17〜正午の間だけ許可し、深夜に当日分を消費しない。
-  const morningRun=schedule?String(schedule)==="17 22 * * *":now>=morningStart&&now<morningEnd;
-  if(!morningRun)return false;
-  const lastRefresh=Date.parse(state?.last_successful_refresh_at||"");
-  return String(state?.last_successful_refresh_day_jst||"")!==today||lastRefresh<morningStart;
+  // 朝に開始し、未掲載なら既存の昼・夜の実行や手動実行で再試行する。
+  // ソースの取得成功ではなく、別の動画をホームへ掲載した日を判定する。
+  if(now<morningStart)return false;
+  return String(state?.last_published_day_jst||"")!==today;
+}
+
+function expertVideoKey(item){return String(item?.video_id||item?.source_url||item?.article_id||"");}
+
+function finalizeExpertVideoEdition(items,state={},now=Date.now(),attempt={}){
+  const today=jstDayKey(now), stamp=new Date(now).toISOString();
+  const candidates=selectExpertVideoArchivePicks(items,100,now);
+  const history=Array.isArray(state.published_history)?state.published_history:[];
+  const seen=new Set(history.map(entry=>entry.video_key));
+  if(state.featured_video_key)seen.add(state.featured_video_key);
+  let selected=candidates.find(item=>expertVideoKey(item)===state.featured_video_key);
+  let next={...state};
+  if(attempt.refreshDue){
+    next={...next,last_attempted_at:stamp,source_attempts:attempt.attemptedSources||0,
+      source_successes:attempt.successfulSources||0,fresh_candidate_count:attempt.candidateCount||0};
+    const fresh=candidates.find(item=>!seen.has(expertVideoKey(item)));
+    if(fresh&&state.last_published_day_jst!==today){
+      selected=fresh;
+      next={...next,status:'published',last_published_day_jst:today,last_published_at:stamp,
+        last_successful_refresh_day_jst:today,last_successful_refresh_at:stamp,
+        featured_video_key:expertVideoKey(fresh),
+        published_history:[...history,{day_jst:today,video_key:expertVideoKey(fresh)}].slice(-30)};
+    }else if(state.last_published_day_jst!==today){next.status='pending_no_new_publishable_video';}
+  }
+  next.version=2;next.max_age_days=EXPERT_VIDEO_MAX_AGE_DAYS;
+  return {state:next,items:items.map(item=>isExpertVideoItem(item)?{
+    ...item,home_video_selected_at:selected&&expertVideoKey(item)===expertVideoKey(selected)?String(next.last_published_at||''):''
+  }:item)};
+}
+
+// Official chapters come before recruitment links and other channel boilerplate.
+function extractVideoChapters(description){
+  return String(description||'').split(/\r?\n/).map(line=>line.trim())
+    .filter(line=>/^\d{1,2}:\d{2}(?::\d{2})?\s+\S/.test(line)).slice(0,30).join('\n');
 }
 
 function isFreshExpertVideo(item,now=Date.now(),maxAgeDays=EXPERT_VIDEO_MAX_AGE_DAYS){
@@ -233,4 +264,5 @@ module.exports={
   expertMentioned,matchedExpertsForSource,isSubstantiveAiVideo,isWebVideoCandidate,
   dedupeExpertVideoCandidates,selectExpertVideoArchivePicks,selectExpertVideoReviewCandidates,
   buildExpertWebDiscoveryUrl
+  ,expertVideoKey,finalizeExpertVideoEdition,extractVideoChapters
 };
