@@ -38,7 +38,7 @@ for(const [needle,label] of [
 const operatorState=section("async function refreshOperatorState\\(session\\)\\{","function queueOperatorRefresh");
 for(const [needle,label] of [
   ["const previousAccess=sameUser?memberState.subscription:cachedOperatorAccessForUser(nextUserId)","same operator access survives token refresh"],
-  ["const previousMetrics=sameUser?memberState.operatorMetrics:null","verified counts survive token refresh"],
+  ["const previousMetrics=sameUser?memberState.operatorMetrics:savedMetrics?.metrics||null","verified counts survive token refresh and reload"],
   ["memberState.subscription=access?.access_source==='operator_grant'?access:null","only verified operator grants become active"],
   ["memberClient.auth.signOut({scope:'local'})","retired public sessions are signed out locally"]
 ])expect(operatorState.includes(needle),label);
@@ -69,9 +69,9 @@ for(const [needle,label] of [
   ["data-operator-account-daily-opens","operator page keeps daily opens"],
   [".operator-metrics-status.is-stale","stale values are visibly distinguished"],
   ["function trackAppEvent(){return Promise.resolve(false);}","retired funnel analytics stay disabled"],
-  ["VISITOR_REGISTRATION_MAX_ATTEMPTS=5","visitor registration retry count is bounded"],
+  ['id="visitorTracker"',"visitor tracking is independent of the SDK"],
   ["recordAppOpen();","initial app opens are recorded"],
-  ["p_event_id:APP_OPEN_EVENT_ID","open retries use one idempotent event id"]
+  ["window.aiRadarAnalytics?.flush()","compatibility callers only flush the shared queue"]
 ])expect(index.includes(needle),label);
 
 expect(!/data-operator-users|data-operator-account-users|registeredUsers/.test(index),"registration count cannot return to operator UI");

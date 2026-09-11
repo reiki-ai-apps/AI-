@@ -2256,6 +2256,7 @@
 <div class="toast-wrap" id="toasts"></div>
 <div id="modalRoot"></div>
 
+<script id="visitorTracker" defer src="./assets/visitor-tracker.js"></script>
 <script id="supabaseSdk" defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.100.0"></script>
 <script>
 /* 同一セッションの2回目以降の読み込み(スワイプ遷移によるスナップショット・
@@ -2439,16 +2440,20 @@ function cachedOperatorAccessForUser(userId){
 function cacheOperatorAccess(userId,isOperator){
   if(!userId)return;
   try{localStorage.setItem(OPERATOR_ACCESS_CACHE_KEY,JSON.stringify({userId,isOperator:isOperator===true}));}catch(_error){}
+  if(isOperator)try{localStorage.setItem('ai_radar_exclude_operator_browser_v1','1');}catch(_error){}
+  window.aiRadarAnalytics?.identityChanged(isOperator===true);
 }
 async function loadOperatorAccess(){
+  const requestedUserId=memberState.user?.id;
   const safeFallback=memberState.subscription?.access_source==='operator_grant'
     ?memberState.subscription:cachedOperatorAccessForUser(memberState.user?.id);
   if(!memberClient||!memberState.user)return safeFallback;
   for(const delay of [0,500,1400]){
     if(delay)await waitMs(delay);
     try{
-      const result=await memberClient.rpc('get_my_membership');
-      if(!result.error&&result.data){
+      const result=await operatorRpc('get_my_membership');
+      if(memberState.user?.id!==requestedUserId)return null;
+      if(!result.error&&typeof result.data?.access_source==='string'){
         const isOperator=result.data.access_source==='operator_grant';
         cacheOperatorAccess(memberState.user.id,isOperator);
         return isOperator?{access_source:'operator_grant'}:{access_source:'none'};
@@ -2457,17 +2462,42 @@ async function loadOperatorAccess(){
   }
   return safeFallback;
 }
+async function operatorRpc(name){
+  let timer;
+  try{return await Promise.race([memberClient.rpc(name),
+    new Promise((_,reject)=>{timer=window.setTimeout(()=>reject(new Error('利用状況の取得が遅れています')),8000);})]);}
+  finally{window.clearTimeout(timer);}
+}
 function validOperatorMetrics(data){
+  const validCount=value=>(typeof value==='number'||typeof value==='string'&&/^\d+$/.test(value))&&Number.isSafeInteger(Number(value))&&Number(value)>=0;
+  if(!validCount(data?.unique_visitors))return null;
   const uniqueVisitors=Number(data?.unique_visitors);
   if(!Number.isFinite(uniqueVisitors)||uniqueVisitors<0)return null;
   const rawDailyOpens=data?.daily_opens;
+  if(rawDailyOpens!=null&&!validCount(rawDailyOpens))return null;
   const dailyOpens=rawDailyOpens==null?null:Number(rawDailyOpens);
   if(dailyOpens!==null&&(!Number.isFinite(dailyOpens)||dailyOpens<0))return null;
-  return {uniqueVisitors,dailyOpens};
+  return {uniqueVisitors,dailyOpens,dailyOpensDate:String(data?.daily_opens_date||new Date(Date.now()+9*3600000).toISOString().slice(0,10))};
+}
+const OPERATOR_METRICS_CACHE_KEY='ai_radar_operator_metrics_snapshot_v1';
+function cachedOperatorMetrics(userId){
+  if(!cachedOperatorAccessForUser(userId))return null;
+  try{
+    const snapshot=JSON.parse(localStorage.getItem(OPERATOR_METRICS_CACHE_KEY)||'null');
+    if(snapshot?.userId!==userId||!Number.isFinite(Date.parse(snapshot?.updatedAt)))return null;
+    const metrics=validOperatorMetrics({unique_visitors:snapshot.metrics?.uniqueVisitors,daily_opens:snapshot.metrics?.dailyOpens,daily_opens_date:snapshot.metrics?.dailyOpensDate});
+    return metrics?{metrics,updatedAt:snapshot.updatedAt}:null;
+  }catch(_error){return null;}
+}
+function displayedOperatorMetrics(){
+  const metrics=memberState.operatorMetrics;
+  const today=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
+  return metrics&&metrics.dailyOpensDate&&metrics.dailyOpensDate!==today?{...metrics,dailyOpens:null}:metrics;
 }
 async function loadOperatorMetrics(){
   if(!memberClient||!memberState.user||memberState.subscription?.access_source!=='operator_grant')return null;
-  const {data,error}=await memberClient.rpc('operator_metrics');
+  const result=await operatorRpc('operator_metrics');
+  const {data,error}=result;
   if(error)throw error;
   const metrics=validOperatorMetrics(data);
   if(!metrics)throw new Error('invalid operator metrics');
@@ -2476,7 +2506,9 @@ async function loadOperatorMetrics(){
 function operatorMetricsTimeLabel(value){
   if(!value)return '';
   const date=new Date(value);if(!Number.isFinite(date.getTime()))return '';
-  return date.toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const today=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
+  const day=new Date(date.getTime()+9*3600000).toISOString().slice(0,10);
+  return (day===today?'':date.toLocaleDateString('ja-JP',{timeZone:'Asia/Tokyo',month:'numeric',day:'numeric'})+' ')+date.toLocaleTimeString('ja-JP',{timeZone:'Asia/Tokyo',hour:'2-digit',minute:'2-digit',second:'2-digit'});
 }
 function operatorMetricsStatusLabel(){
   if(memberState.operatorMetricsStatus==='live')return `実数 ${operatorMetricsTimeLabel(memberState.operatorMetricsUpdatedAt)}取得`;
@@ -2500,7 +2532,7 @@ function renderOperatorMetrics(){
   const desktopBadge=document.getElementById('operatorMetrics');
   const mobileBadge=document.getElementById('mobileOperatorMetrics');
   const mobileSlot=document.getElementById('mobileOperatorMetricsSlot');
-  const metrics=memberState.operatorMetrics;
+  const metrics=displayedOperatorMetrics();
   const isOperator=memberState.subscription?.access_source==='operator_grant';
   if(!desktopBadge||!mobileBadge||!mobileSlot)return;
   desktopBadge.hidden=!isOperator;
@@ -2535,6 +2567,7 @@ async function refreshOperatorMetrics(){
     return;
   }
   if(operatorMetricsRefreshInFlight)return operatorMetricsRefreshInFlight;
+  const requestedUserId=memberState.user.id;
   memberState.operatorMetricsStatus='loading';
   renderOperatorMetrics();
   operatorMetricsRefreshInFlight=(async()=>{
@@ -2546,12 +2579,15 @@ async function refreshOperatorMetrics(){
         try{metrics=await loadOperatorMetrics();break;}catch(error){lastError=error;}
       }
       if(!metrics)throw lastError||new Error('管理者統計を取得できませんでした');
+      if(memberState.user?.id!==requestedUserId||memberState.subscription?.access_source!=='operator_grant')return;
       memberState.operatorMetrics=metrics;
       memberState.operatorMetricsStatus='live';
       memberState.operatorMetricsUpdatedAt=new Date().toISOString();
       memberState.operatorMetricsError='';
+      try{localStorage.setItem(OPERATOR_METRICS_CACHE_KEY,JSON.stringify({userId:requestedUserId,metrics,updatedAt:memberState.operatorMetricsUpdatedAt}));}catch(_error){}
     }catch(error){
       // A transient failure must not erase the last verified counts.
+      if(memberState.user?.id!==requestedUserId)return;
       memberState.operatorMetricsStatus=memberState.operatorMetrics?'stale':'error';
       memberState.operatorMetricsError=String(error?.message||'管理者統計を取得できませんでした');
     }finally{
@@ -2608,15 +2644,17 @@ async function refreshOperatorState(session){
   const nextUserId=session?.user?.id||'';
   const sameUser=!!nextUserId&&previousUserId===nextUserId;
   const previousAccess=sameUser?memberState.subscription:cachedOperatorAccessForUser(nextUserId);
-  const previousMetrics=sameUser?memberState.operatorMetrics:null;
-  const previousMetricsStatus=sameUser?memberState.operatorMetricsStatus:'idle';
-  const previousMetricsUpdatedAt=sameUser?memberState.operatorMetricsUpdatedAt:null;
+  const savedMetrics=cachedOperatorMetrics(nextUserId);
+  const previousMetrics=sameUser?memberState.operatorMetrics:savedMetrics?.metrics||null;
+  const previousMetricsStatus=sameUser?memberState.operatorMetricsStatus:savedMetrics?'stale':'idle';
+  const previousMetricsUpdatedAt=sameUser?memberState.operatorMetricsUpdatedAt:savedMetrics?.updatedAt||null;
   memberState.user=session?.user||null;
   memberState.subscription=previousAccess;
   memberState.operatorMetrics=previousMetrics;
   memberState.operatorMetricsStatus=previousMetricsStatus;
   memberState.operatorMetricsUpdatedAt=previousMetricsUpdatedAt;
   memberState.operatorMetricsError='';
+  renderOperatorMetrics();
   if(memberState.user&&memberClient){
     const access=await loadOperatorAccess();
     memberState.subscription=access?.access_source==='operator_grant'?access:null;
@@ -2642,7 +2680,26 @@ function queueOperatorRefresh(session){
   });
   return memberRefreshQueue;
 }
+function restoreOperatorSnapshot(){
+  // Show only this browser's previously verified operator snapshot while the
+  // SDK/session is restoring. This never authorizes a server request.
+  if(memberState.user)return;
+  try{
+    const session=JSON.parse(localStorage.getItem('sb-ncosmmesecpqhzfikpmn-auth-token')||'null');
+    const userId=session?.user?.id;
+    const access=cachedOperatorAccessForUser(userId);
+    if(!access)return;
+    const saved=cachedOperatorMetrics(userId);
+    memberState.user=session.user;
+    memberState.subscription=access;
+    memberState.operatorMetrics=saved?.metrics||null;
+    memberState.operatorMetricsStatus=saved?'stale':'loading';
+    memberState.operatorMetricsUpdatedAt=saved?.updatedAt||null;
+    renderOperatorMetrics();
+  }catch(_error){}
+}
 async function initOperatorAuth(){
+  restoreOperatorSnapshot();
   await waitForSupabaseSdk();
   ensureMemberClient();
   if(!memberClient){memberState.ready=true;return;}
@@ -2790,112 +2847,17 @@ const DB = {
   },
   reset(){ this._data = seedData(); this.save(); },
 };
-/* ---------- 匿名の利用状況集計 ----------
-   レビュー重複防止と同じ匿名ブラウザキーをSHA-256化し、初回だけ登録する。人数はブラウザへ返さない。 */
-// Keep this small, synchronous policy identical to assets/visitor-tracker.js.
-// It must run before auth restoration and must not delay the first render.
-// Verified operator browsers remain excluded after logout. This is only an
-// analytics exclusion, never a grant of access to operator data.
-function isPublicReaderVisit(){
-  try{
-    if(location.hostname!=='reiki-ai-apps.github.io'||!location.pathname.startsWith('/AI-/'))return false;
-    if(/operator|access_token=|refresh_token=|type=recovery/.test(location.hash))return false;
-    const operator=JSON.parse(localStorage.getItem('ai_radar_verified_operator_v1')||'null');
-    if(operator?.isOperator===true)return false;
-    // Only operators log in. An expired/restoring session must not be mistaken
-    // for an anonymous reader while the SDK is still loading.
-    if(localStorage.getItem('sb-ncosmmesecpqhzfikpmn-auth-token'))return false;
-    return true;
-  }catch(_error){return false;}
-}
-let visitorRegistrationStarted=false;
-let visitorRegistrationComplete=false;
-let visitorRegistrationAttempts=0;
-let visitorRegistrationRetryTimer=null;
-const VISITOR_REGISTRATION_MAX_ATTEMPTS=5;
-const UNIQUE_VISITOR_REGISTERED_KEY='ai_radar_unique_visitor_registered_v1';
-function hasRegisteredUniqueVisitor(){try{return localStorage.getItem(UNIQUE_VISITOR_REGISTERED_KEY)==='1';}catch(_error){return false;}}
-function markUniqueVisitorRegistered(){try{localStorage.setItem(UNIQUE_VISITOR_REGISTERED_KEY,'1');}catch(_error){}}
-function isMissingSupabaseRpc(error,rpcName){
-  const code=String(error?.code||'');
-  const status=Number(error?.status||error?.statusCode||0);
-  const details=[error?.message,error?.details,error?.hint].filter(Boolean).join(' ');
-  return ['PGRST202','42883'].includes(code)||status===404||new RegExp(`(?:${rpcName}.*(?:not found|schema cache|does not exist)|(?:not found|schema cache|does not exist).*${rpcName})`,'i').test(details);
-}
-function scheduleUniqueVisitorRetry(){
-  if(visitorRegistrationComplete||visitorRegistrationRetryTimer!==null||visitorRegistrationAttempts>=VISITOR_REGISTRATION_MAX_ATTEMPTS)return;
-  const delay=Math.min(60000,5000*Math.pow(2,Math.min(visitorRegistrationAttempts,3)));
-  visitorRegistrationRetryTimer=window.setTimeout(()=>{visitorRegistrationRetryTimer=null;registerUniqueVisitor();},delay);
-}
-async function registerUniqueVisitor(){
-  if(!isPublicReaderVisit()||memberState.user)return;
-  if(visitorRegistrationComplete||visitorRegistrationStarted)return;
-  if(hasRegisteredUniqueVisitor()){visitorRegistrationComplete=true;return;}
-  if(!ensureMemberClient()){visitorRegistrationAttempts++;scheduleUniqueVisitorRetry();return;}
-  visitorRegistrationStarted=true;
-  try{
-    const visitorHash=await publicReviewerHash();
-    if(!isPublicReaderVisit()||memberState.user){visitorRegistrationStarted=false;return;}
-    const {error}=await memberClient.rpc('register_unique_visitor',{p_visitor_key_hash:visitorHash});
-    if(error)throw error;
-    visitorRegistrationComplete=true;
-    markUniqueVisitorRegistered();
-    visitorRegistrationAttempts=0;
-    if(visitorRegistrationRetryTimer!==null){window.clearTimeout(visitorRegistrationRetryTimer);visitorRegistrationRetryTimer=null;}
-  }catch(error){
-    visitorRegistrationStarted=false;
-    if(isMissingSupabaseRpc(error,'register_unique_visitor')){visitorRegistrationComplete=true;return;}
-    visitorRegistrationAttempts++;
-    scheduleUniqueVisitorRetry();
-  }
-}
-
-/* ---------- 匿名の日次表示回数 ---------- */
-function randomUuid(){
-  if(crypto.randomUUID)return crypto.randomUUID();
-  const bytes=crypto.getRandomValues(new Uint8Array(16));bytes[6]=(bytes[6]&15)|64;bytes[8]=(bytes[8]&63)|128;
-  const hex=Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
-  return `${hex.slice(0,8)}-${hex.slice(8,12)}-${hex.slice(12,16)}-${hex.slice(16,20)}-${hex.slice(20)}`;
-}
-/* 1回のページ起動・再読み込みを1表示として記録する。同じ起動内の再試行は
-   同じUUIDを使うため、通信結果が不明でも二重加算されない。 */
-const APP_OPEN_EVENT_ID=randomUuid();
-const APP_OPEN_MAX_ATTEMPTS=5;
-let appOpenStarted=false;
-let appOpenComplete=false;
-let appOpenAttempts=0;
-let appOpenRetryTimer=null;
-function scheduleAppOpenRetry(){
-  if(appOpenComplete||appOpenRetryTimer!==null||appOpenAttempts>=APP_OPEN_MAX_ATTEMPTS)return;
-  const delay=Math.min(60000,4000*Math.pow(2,Math.min(appOpenAttempts,3)));
-  appOpenRetryTimer=window.setTimeout(()=>{appOpenRetryTimer=null;recordAppOpen();},delay);
-}
-async function recordAppOpen(){
-  if(!isPublicReaderVisit()||memberState.user)return;
-  if(appOpenComplete||appOpenStarted)return;
-  if(!ensureMemberClient()){appOpenAttempts++;scheduleAppOpenRetry();return;}
-  appOpenStarted=true;
-  try{
-    const {error}=await memberClient.rpc('record_app_open',{p_event_id:APP_OPEN_EVENT_ID});
-    if(error)throw error;
-    appOpenComplete=true;
-    appOpenAttempts=0;
-    if(appOpenRetryTimer!==null){window.clearTimeout(appOpenRetryTimer);appOpenRetryTimer=null;}
-  }catch(error){
-    appOpenStarted=false;
-    if(isMissingSupabaseRpc(error,'record_app_open')){appOpenComplete=true;return;}
-    appOpenAttempts++;
-    scheduleAppOpenRetry();
-  }
-}
+/* ---------- Shared anonymous analytics ---------- */
+// The deferred tracker starts independently of news sync and Supabase SDK.
+// Compatibility callers only flush pending UUIDs; they never create new opens.
+function registerUniqueVisitor(){return window.aiRadarAnalytics?.flush()||Promise.resolve();}
+function recordAppOpen(){return window.aiRadarAnalytics?.flush()||Promise.resolve();}
 // 旧ファネルRPCは本番未導入のまま廃止した。呼び出し元との互換だけ残し、
 // 存在しないrecord_app_eventへ404を発生させない。
 function trackAppEvent(){return Promise.resolve(false);}
 function flushAppEvents(){return Promise.resolve(true);}
 function trackRouteView(){}
 window.addEventListener('online',()=>{
-  if(!visitorRegistrationComplete)visitorRegistrationAttempts=0;
-  if(!appOpenComplete)appOpenAttempts=0;
   registerUniqueVisitor();
   recordAppOpen();
   flushAppEvents();
@@ -5280,10 +5242,11 @@ function renderOperator(v){
       </div>
       <div class="operator-metric-grid" aria-label="管理者だけに表示される現在の実数">
         <div class="operator-metric-card"><span>累計ユニーク閲覧者</span><strong data-operator-account-visitors>${memberState.operatorMetrics?`${memberState.operatorMetrics.uniqueVisitors.toLocaleString('ja-JP')}人`:'—'}</strong></div>
-        <div class="operator-metric-card"><span>今日の総表示回数</span><strong data-operator-account-daily-opens>${memberState.operatorMetrics&&memberState.operatorMetrics.dailyOpens!==null?`${memberState.operatorMetrics.dailyOpens.toLocaleString('ja-JP')}回`:'—'}</strong></div>
+        <div class="operator-metric-card"><span>今日開かれた回数</span><strong data-operator-account-daily-opens>${displayedOperatorMetrics()?.dailyOpens!=null?`${displayedOperatorMetrics().dailyOpens.toLocaleString('ja-JP')}回`:'—'}</strong></div>
       </div>
       <div class="operator-metric-state ${memberState.operatorMetricsStatus==='live'?'is-live':memberState.operatorMetricsStatus==='stale'?'is-stale':memberState.operatorMetricsStatus==='error'?'is-error':''}" data-operator-metrics-state><span>${esc(operatorMetricsStatusLabel())}</span><button class="btn operator-metric-refresh" type="button" onclick="refreshOperatorMetrics()">今すぐ再取得</button></div>
-      <p class="billing-help">累計ユニーク閲覧者は同じ端末・ブラウザーの重複を除いた概算です。今日の総表示回数は日本時間0時からの、アプリまたは公開記事が開かれた回数です。</p>
+      <p class="billing-help">累計ユニークは同じ端末・ブラウザーを重複させない閲覧者数の概算です。今日の回数は、リピーターも含めてアプリ・公開記事を開いた時や、別のアプリから戻って表示した時に加算します。画面内の移動や通信の再試行では二重に加算しません。</p>
+      <p class="billing-help">日本時間の当日中にサーバーへ記録された回数です。通信が途切れた記録は復旧後に反映されます。数値は毎分・再表示時に再取得し、取得に失敗した時は0回にせず最後の確認値と時刻を表示します。</p>
       <p class="billing-help">運営者として確認済みのブラウザーからの閲覧は、今後の人数・回数に加算しません。ログアウト後も除外を維持します。別のブラウザーや端末では一度運営者としてログインしてください。過去の集計値は変更していません。</p>
     </section>`:''}
     <div class="account-security">表示されるのは匿名集計だけです。一般利用者の設定・保存内容や個人情報は表示しません。</div>

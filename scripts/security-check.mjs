@@ -35,6 +35,7 @@ for (const file of textFiles) {
 
 const htmlPath = path.join(root, "index.html");
 const html = fs.readFileSync(htmlPath, "utf8");
+const analytics = fs.readFileSync(path.join(root, "assets/visitor-tracker.js"), "utf8");
 const serviceWorker = fs.readFileSync(path.join(root, "sw.js"), "utf8");
 const requiredHtmlControls = [
   ["Content Security Policy", /http-equiv="Content-Security-Policy"/],
@@ -107,7 +108,7 @@ if (!/grant execute on function public\.submit_public_review\(text, text, intege
 if (!/create unique index if not exists reviews_reviewer_key_hash_key/i.test(schema)) {
   findings.push("supabase/schema.sql: public review duplicate-prevention index missing");
 }
-if (!/rpc\('register_unique_visitor',\{p_visitor_key_hash:visitorHash\}\)/.test(html)) {
+if (!analytics.includes("rpc('register_unique_visitor',{p_visitor_key_hash:hash})")) {
   findings.push("index.html: anonymous unique visitor registration RPC missing");
 }
 if (!/grant execute on function public\.register_unique_visitor\(text\) to anon, authenticated/i.test(schema)) {
@@ -121,7 +122,7 @@ if (!/function public\.record_app_open\(p_event_id uuid\)\s*returns boolean/i.te
     !/revoke all on table public\.app_open_events from anon, authenticated/i.test(schema)) {
   findings.push("supabase/schema.sql: daily open counter RPC or table protection is incomplete");
 }
-if (!/rpc\('record_app_open',\{p_event_id:APP_OPEN_EVENT_ID\}\)/.test(html)) {
+if (!analytics.includes("rpc('record_app_open',{p_event_id:item.id})") || !html.includes('id="visitorTracker"')) {
   findings.push("index.html: idempotent daily open registration is missing");
 }
 if (/data-registered-count|rpc\('registered_user_count'\)|id=["']onlineNow["']|これまでに\s*<b>[\s\S]*?人が閲覧/.test(html)) {
@@ -133,7 +134,7 @@ if (/grant execute on function public\.registered_user_count\(\) to (?:anon|auth
 if (!/function public\.register_unique_visitor\(p_visitor_key_hash text\)\s*returns boolean/i.test(schema)) {
   findings.push("supabase/schema.sql: unique visitor RPC must not return a total count");
 }
-if (!/rpc\('operator_metrics'\)/.test(html) || !/access_source==='operator_grant'[\s\S]{0,180}refreshOperatorMetrics\(\)/.test(html)) {
+if (!/operatorRpc\('operator_metrics'\)/.test(html) || !/access_source==='operator_grant'[\s\S]{0,180}refreshOperatorMetrics\(\)/.test(html)) {
   findings.push("index.html: operator-only metrics loading is missing");
 }
 if (/\.operator-metrics\{display:none\}/.test(html)) {
@@ -171,7 +172,7 @@ if (!/operatorMetricsStatus=memberState\.operatorMetrics\?'stale':'error'/.test(
     !/operator-metrics-status\.is-stale/.test(html)) {
   findings.push("index.html: stale operator metrics can be mistaken for current actual counts");
 }
-if (!/scheduleUniqueVisitorRetry/.test(html) || !/window\.addEventListener\('online',[\s\S]{0,180}registerUniqueVisitor\(\)/.test(html)) {
+if (!analytics.includes("ai_radar_pending_open_v2:") || !analytics.includes("function retry()") || !/window\.addEventListener\('online',[\s\S]{0,180}registerUniqueVisitor\(\)/.test(html)) {
   findings.push("index.html: failed unique visitor registrations are not retried reliably");
 }
 if (/syncMemberAppStateFromCloud|loadMemberAppState|saveMemberAppState|from\('user_states'\)/.test(html)) {
