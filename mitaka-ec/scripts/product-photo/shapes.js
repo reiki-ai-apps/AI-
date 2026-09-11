@@ -340,74 +340,185 @@ export const BUILDERS = {
     const flap = new THREE.Mesh(new THREE.PlaneGeometry(w, 0.26, 20, 6), mat); flap.rotation.x = -0.4; flap.position.set(0, -R + 0.02, R); g.add(flap);
     return { obj: g, size: w * 1.25 };
   },
-  crank({ big = false, small = false }) { // 巻き上げ機
+  crank({ big = false, small = false }) { // 手動巻き上げ機。鋳物の本体 + ハンドル + パイプ取付バンド + 巻き取り軸
     const g = new THREE.Group();
-    const body = box(0.13, 0.15, 0.085, M.white(), 0.012); body.position.y = 0.02; g.add(body);
-    const face = box(0.1, 0.11, 0.004, M.darkGrey(), 0.006); face.position.set(0, 0.02, 0.045); g.add(face);
-    const gear = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.022, 18), M.steelDark()); gear.rotation.x = Math.PI / 2; gear.position.set(0, 0.02, 0.055); gear.castShadow = true; g.add(gear);
-    const shaft = tube(0.0105, 0.42, M.zinc(), 24); shaft.rotation.z = Math.PI / 2; shaft.position.set(0.26, 0.02, 0); g.add(shaft);
-    const shaft2 = tube(0.0105, 0.2, M.zinc(), 24); shaft2.rotation.z = Math.PI / 2; shaft2.position.set(-0.16, 0.02, 0); g.add(shaft2);
-    // ハンドル
-    const hArm = box(0.012, 0.14, 0.012, M.steelDark()); hArm.position.set(0, -0.05, 0.075); g.add(hArm);
-    const grip = tube(0.011, 0.065, M.black(), 16); grip.position.set(0, -0.115, 0.075); grip.rotation.x = Math.PI / 2; g.add(grip);
-    const bracket = box(0.02, 0.12, 0.05, M.zinc()); bracket.position.set(-0.08, 0.0, 0); g.add(bracket);
-    if (big) { const ext = tube(0.0105, 0.3, M.zinc(), 24); ext.rotation.z = Math.PI / 2; ext.position.set(0.6, 0.02, 0); g.add(ext); }
-    if (small) g.scale.setScalar(0.78);
-    return { obj: g, size: big ? 1.0 : small ? 0.56 : 0.7 };
+    const k = small ? 0.84 : 1;
+    const cast = new THREE.MeshStandardMaterial({ color: 0xdfe1e0, metalness: 0.22, roughness: 0.52, envMapIntensity: 1.0 });
+    const dark = new THREE.MeshStandardMaterial({ color: 0x33383c, metalness: 0.3, roughness: 0.45 });
+
+    const W = 0.15 * k, H = 0.17 * k, D = 0.095 * k;
+    const body = box(W, H, D, cast, 0.014 * k); g.add(body);
+    // 前面の一段落ちたフタとビス
+    const lid = box(W * 0.78, H * 0.74, 0.008, cast, 0.01 * k); lid.position.set(0, H * 0.02, D / 2 + 0.002); g.add(lid);
+    for (const [x, y] of [[-1, 1], [1, 1], [-1, -1], [1, -1]]) {
+      const scr = new THREE.Mesh(new THREE.CylinderGeometry(0.0035, 0.0035, 0.004, 12), dark);
+      scr.rotation.x = Math.PI / 2; scr.position.set(x * W * 0.33, H * 0.02 + y * H * 0.29, D / 2 + 0.007); g.add(scr);
+    }
+    // 軸まわりのボス
+    const boss = new THREE.Mesh(new THREE.CylinderGeometry(0.028 * k, 0.032 * k, 0.03, 28), cast);
+    boss.rotation.z = Math.PI / 2; boss.position.set(W / 2 + 0.012, 0, 0); boss.castShadow = true; g.add(boss);
+    // 巻き取り軸(φ22.2)と継手
+    const shaftLen = big ? 0.78 : 0.48;
+    const shaft = pipeHollow(0.0111, shaftLen, M.zinc()); shaft.rotation.z = Math.PI / 2;
+    shaft.position.set(W / 2 + 0.03 + shaftLen / 2, 0, 0); g.add(shaft);
+    const coup = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.016, 0.05, 24), M.steelDark());
+    coup.rotation.z = Math.PI / 2; coup.position.set(W / 2 + 0.055, 0, 0); coup.castShadow = true; g.add(coup);
+    if (big) { const coup2 = coup.clone(); coup2.position.x = W / 2 + 0.03 + shaftLen * 0.62; g.add(coup2); }
+    // ハンドル(クランク)
+    const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.017, 0.017, 0.026, 24), dark);
+    hub.rotation.x = Math.PI / 2; hub.position.set(0, H * 0.02, D / 2 + 0.022); hub.castShadow = true; g.add(hub);
+    const arm = box(0.018, 0.15 * k, 0.014, dark, 0.005); arm.position.set(0, H * 0.02 - 0.07 * k, D / 2 + 0.03); g.add(arm);
+    const grip = new THREE.Mesh(new THREE.CylinderGeometry(0.013, 0.013, 0.062, 24), M.orange());
+    grip.rotation.x = Math.PI / 2; grip.position.set(0, H * 0.02 - 0.14 * k, D / 2 + 0.058); grip.castShadow = true; g.add(grip);
+    const gcap = new THREE.Mesh(new THREE.SphereGeometry(0.0135, 16, 12), dark); gcap.position.set(0, H * 0.02 - 0.14 * k, D / 2 + 0.09); g.add(gcap);
+    // ハウスのパイプに留めるバンド
+    const bandR = 0.0165;
+    const saddle = clampOriented(bandR + 0.0008, 0.0026, 0.03, M.steelDark(), Math.PI * 1.2, "z", Math.PI / 2);
+    saddle.position.set(-W / 2 - 0.02, -H * 0.18, 0); g.add(saddle);
+    const plate = box(0.03, H * 0.86, 0.05, M.steelDark(), 0.004); plate.position.set(-W / 2 - 0.012, 0, 0); g.add(plate);
+    for (const y of [-H * 0.3, H * 0.28]) { const bl = bolt(0.05, 0.0034); bl.rotation.z = Math.PI / 2; bl.position.set(-W / 2 - 0.012, y, 0); g.add(bl); }
+    // ロックレバー
+    const lev = box(0.05, 0.012, 0.012, dark, 0.004); lev.position.set(W * 0.18, -H / 2 - 0.012, 0); lev.rotation.z = -0.3; g.add(lev);
+    return { obj: g, size: big ? 1.15 : small ? 0.62 : 0.82 };
   },
-  panel({ kind = "std" }) {
+
+  panel({ kind = "std" }) { // 制御盤・環境制御の箱
     const g = new THREE.Group();
     const big = kind === "big";
     const W = big ? 0.34 : 0.26, H = big ? 0.46 : 0.34, D = big ? 0.13 : 0.1;
-    const body = box(W, H, D, M.white(), 0.012); g.add(body);
-    const scr = box(W * 0.66, H * 0.3, 0.006, M.screen(), 0.004); scr.position.set(0, H * 0.22, D / 2 + 0.003); g.add(scr);
+    const shell = new THREE.MeshStandardMaterial({ color: 0xe9eae7, metalness: 0.12, roughness: 0.46, envMapIntensity: 1.0 });
+    const face = new THREE.MeshStandardMaterial({ color: 0xf3f4f1, metalness: 0.1, roughness: 0.38, envMapIntensity: 1.0 });
+    const body = box(W, H, D, shell, 0.01); g.add(body);
+    // 一段落ちた前面パネル(扉の見切り)
+    const door = box(W * 0.92, H * 0.94, 0.012, face, 0.008); door.position.z = D / 2 - 0.002; g.add(door);
+    const seam = box(W * 0.92, H * 0.94, 0.016, new THREE.MeshStandardMaterial({ color: 0xbfc4c0, roughness: 0.6 }), 0.008);
+    seam.position.z = D / 2 - 0.006; seam.scale.set(1.02, 1.02, 1); g.add(seam);
+    // 表示窓
+    const scr = box(W * 0.62, H * 0.28, 0.007, M.screen(), 0.004); scr.position.set(0, H * 0.22, D / 2 + 0.007); g.add(scr);
+    const bezel = box(W * 0.68, H * 0.34, 0.005, M.darkGrey(), 0.005); bezel.position.set(0, H * 0.22, D / 2 + 0.004); g.add(bezel);
+    // ボタン
     const cols = big ? 4 : 3;
     for (let i = 0; i < cols; i++) for (let j = 0; j < 2; j++) {
-      const b = new THREE.Mesh(new THREE.CylinderGeometry(0.011, 0.011, 0.008, 20), j === 0 && i === 1 ? M.orange() : M.darkGrey());
-      b.rotation.x = Math.PI / 2; b.position.set(-W * 0.26 + i * (W * 0.17), -H * 0.14 - j * 0.052, D / 2 + 0.003); b.castShadow = true; g.add(b);
+      const b = new THREE.Mesh(new THREE.CylinderGeometry(0.0105, 0.0105, 0.007, 20), j === 0 && i === 1 ? M.orange() : M.darkGrey());
+      b.rotation.x = Math.PI / 2; b.position.set(-W * 0.26 + i * (W * 0.17), -H * 0.12 - j * 0.05, D / 2 + 0.011); b.castShadow = true; g.add(b);
     }
     const led = new THREE.Mesh(new THREE.SphereGeometry(0.005, 12, 12), new THREE.MeshStandardMaterial({ color: 0x7FB069, emissive: 0x2f6b45, emissiveIntensity: 2 }));
-    led.position.set(W * 0.36, -H * 0.14, D / 2 + 0.003); g.add(led);
-    if (kind === "cloud") { const ant = tube(0.005, 0.16, M.black(), 12); ant.position.set(W * 0.36, H / 2 + 0.08, 0); ant.rotation.z = -0.18; g.add(ant); }
-    if (kind === "irrigation") {
-      const man = tube(0.017, W * 1.1, M.darkGrey(), 20); man.rotation.z = Math.PI / 2; man.position.y = -H / 2 - 0.07; g.add(man);
-      for (const x of [-W * 0.3, 0, W * 0.3]) { const v = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.05, 18), M.orange()); v.position.set(x, -H / 2 - 0.045, 0); v.castShadow = true; g.add(v); }
+    led.position.set(W * 0.34, -H * 0.12, D / 2 + 0.009); g.add(led);
+    // 銘板(無地)
+    const plate2 = box(W * 0.3, 0.03, 0.003, new THREE.MeshStandardMaterial({ color: 0xd7dad6, metalness: 0.4, roughness: 0.4 }));
+    plate2.position.set(-W * 0.24, -H * 0.36, D / 2 + 0.008); g.add(plate2);
+    // 取付耳
+    for (const sgn of [-1, 1]) {
+      const ear = box(0.03, H * 0.3, 0.006, shell, 0.004); ear.position.set(sgn * (W / 2 + 0.012), H * 0.18, -D / 2 + 0.01); g.add(ear);
+      const hole = new THREE.Mesh(new THREE.TorusGeometry(0.005, 0.0018, 8, 18), M.steelDark()); hole.position.set(sgn * (W / 2 + 0.012), H * 0.18, -D / 2 + 0.014); g.add(hole);
     }
-    if (kind === "dial") { const d = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.014, 28), M.darkGrey()); d.rotation.x = Math.PI / 2; d.position.set(0, -H * 0.3, D / 2 + 0.004); d.castShadow = true; g.add(d);
-      const knob = box(0.006, 0.03, 0.006, M.orange()); knob.position.set(0.012, -H * 0.28, D / 2 + 0.012); knob.rotation.z = -0.6; g.add(knob); }
-    for (const x of [-W * 0.25, W * 0.25]) { const gl = tube(0.011, 0.03, M.darkGrey(), 16); gl.position.set(x, -H / 2 - 0.012, 0); g.add(gl); }
+    // 側面の放熱スリット
+    for (let i = 0; i < 5; i++) { const sl = box(0.002, 0.004, D * 0.6, new THREE.MeshStandardMaterial({ color: 0x9aa0a0, roughness: 0.7 })); sl.position.set(W / 2 - 0.001, -H * 0.3 + i * 0.011, 0); g.add(sl); }
+    if (kind === "cloud") {
+      const ant = new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.006, 0.17, 14), M.black()); ant.position.set(W * 0.34, H / 2 + 0.085, 0); ant.rotation.z = -0.16; ant.castShadow = true; g.add(ant);
+      const tip = new THREE.Mesh(new THREE.SphereGeometry(0.006, 12, 10), M.black()); tip.position.set(W * 0.34 - 0.027, H / 2 + 0.17, 0); g.add(tip);
+    }
+    if (kind === "irrigation") {
+      const man = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.018, W * 1.15, 24), M.darkGrey());
+      man.rotation.z = Math.PI / 2; man.position.y = -H / 2 - 0.075; man.castShadow = true; g.add(man);
+      for (const x of [-W * 0.32, 0, W * 0.32]) {
+        const v = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.016, 0.055, 20), M.orange()); v.position.set(x, -H / 2 - 0.045, 0); v.castShadow = true; g.add(v);
+        const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.019, 0.019, 0.01, 20), M.darkGrey()); cap.position.set(x, -H / 2 - 0.018, 0); g.add(cap);
+      }
+    }
+    if (kind === "dial") {
+      const d = new THREE.Mesh(new THREE.CylinderGeometry(0.034, 0.034, 0.012, 30), M.darkGrey()); d.rotation.x = Math.PI / 2; d.position.set(0, -H * 0.3, D / 2 + 0.012); d.castShadow = true; g.add(d);
+      const knob = box(0.006, 0.028, 0.006, M.orange()); knob.position.set(0.011, -H * 0.28, D / 2 + 0.02); knob.rotation.z = -0.6; g.add(knob);
+    }
+    for (const x of [-W * 0.25, W * 0.25]) {
+      const gl = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.014, 0.03, 18), M.darkGrey()); gl.position.set(x, -H / 2 - 0.013, 0); gl.castShadow = true; g.add(gl);
+    }
     return { obj: g, size: Math.max(W, H) * 1.5 };
   },
 
-  sensor({ }) { // 環境測定器
+  sensor({ }) { // 環境測定器(温湿度・CO₂・日射)
     const g = new THREE.Group();
-    const body = box(0.12, 0.2, 0.07, M.white(), 0.01); g.add(body);
-    const scr = box(0.085, 0.055, 0.005, M.screen(), 0.003); scr.position.set(0, 0.05, 0.038); g.add(scr);
-    const shield = new THREE.Group();
-    for (let i = 0; i < 5; i++) { const d = new THREE.Mesh(new THREE.ConeGeometry(0.045 - i * 0.002, 0.016, 28, 1, true), M.white()); d.position.y = -0.06 - i * 0.017; d.castShadow = true; shield.add(d); }
-    g.add(shield);
-    const cable = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([new THREE.Vector3(0, -0.15, 0), new THREE.Vector3(0.05, -0.19, 0.04), new THREE.Vector3(0.14, -0.2, -0.02)]), 40, 0.004, 8), M.black()); g.add(cable);
-    return { obj: g, size: 0.42 };
+    const shell = new THREE.MeshStandardMaterial({ color: 0xeceded, metalness: 0.1, roughness: 0.44, envMapIntensity: 1.0 });
+    const body = box(0.12, 0.2, 0.07, shell, 0.01); g.add(body);
+    const scr = box(0.085, 0.055, 0.006, M.screen(), 0.003); scr.position.set(0, 0.05, 0.039); g.add(scr);
+    const bez = box(0.095, 0.065, 0.004, M.darkGrey(), 0.004); scr.position.z = 0.041; bez.position.set(0, 0.05, 0.037); g.add(bez);
+    for (let i = 0; i < 2; i++) { const b = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.006, 18), i ? M.orange() : M.darkGrey()); b.rotation.x = Math.PI / 2; b.position.set(-0.02 + i * 0.04, -0.005, 0.038); g.add(b); }
+    // 日射よけ(重ね皿)
+    for (let i = 0; i < 5; i++) {
+      const d = new THREE.Mesh(new THREE.ConeGeometry(0.047 - i * 0.0025, 0.014, 32, 1, true), shell);
+      d.position.y = -0.062 - i * 0.017; d.castShadow = d.receiveShadow = true; g.add(d);
+    }
+    const rod = new THREE.Mesh(new THREE.CylinderGeometry(0.004, 0.004, 0.1, 12), M.steelDark()); rod.position.y = -0.1; g.add(rod);
+    // 取付金具
+    const brk = box(0.05, 0.012, 0.05, M.steelDark(), 0.004); brk.position.set(0, -0.158, 0); g.add(brk);
+    const clamp = clampOriented(0.0135, 0.0026, 0.03, M.steelDark(), Math.PI * 1.25, "z", -Math.PI / 2);
+    clamp.position.set(0, -0.178, 0); g.add(clamp);
+    const cable = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([new THREE.Vector3(0.04, -0.05, 0), new THREE.Vector3(0.09, -0.11, 0.04), new THREE.Vector3(0.16, -0.19, -0.02)]), 40, 0.0042, 10), M.black());
+    cable.castShadow = true; g.add(cable);
+    return { obj: g, size: 0.46 };
   },
-  fan({ }) { // 循環扇
+
+  fan({ }) { // 循環扇(吊り下げ)
     const g = new THREE.Group();
-    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.014, 12, 48), M.steelDark()); ring.castShadow = true; g.add(ring);
-    const ring2 = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.008, 10, 48), M.steel()); ring2.position.z = -0.06; g.add(ring2);
-    for (let i = 0; i < 16; i++) { const a = (i / 16) * Math.PI * 2; const bar = tube(0.0018, 0.4, M.steel(), 8); bar.rotation.z = a; bar.position.z = 0.012; g.add(bar); }
-    const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.06, 0.11, 28), M.white()); hub.rotation.x = Math.PI / 2; hub.castShadow = true; g.add(hub);
-    for (let i = 0; i < 3; i++) { const a = (i / 3) * Math.PI * 2; const bl = new THREE.Mesh(new THREE.BoxGeometry(0.145, 0.075, 0.006), M.white()); bl.position.set(Math.cos(a) * 0.1, Math.sin(a) * 0.1, -0.02); bl.rotation.z = a; bl.rotation.x = 0.5; bl.castShadow = true; g.add(bl); }
-    const hook = new THREE.Mesh(new THREE.TorusGeometry(0.028, 0.005, 8, 20, Math.PI * 1.4), M.steelDark()); hook.position.y = 0.235; g.add(hook);
-    return { obj: g, size: 0.55 };
+    const R = 0.2;
+    const guard = new THREE.MeshStandardMaterial({ color: 0xc6ccd0, metalness: 0.78, roughness: 0.32, envMapIntensity: 1.1 });
+    for (const z of [0.02, -0.075]) { const ring = new THREE.Mesh(new THREE.TorusGeometry(R, 0.011, 12, 56), guard); ring.position.z = z; ring.castShadow = true; g.add(ring); }
+    const ring2 = new THREE.Mesh(new THREE.TorusGeometry(R * 0.62, 0.006, 10, 48), guard); ring2.position.z = 0.02; g.add(ring2);
+    for (let i = 0; i < 20; i++) { const a = (i / 20) * Math.PI * 2; const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.0022, 0.0022, R * 2, 6), guard); bar.rotation.z = a; bar.position.z = 0.02; g.add(bar); }
+    // モーター
+    const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.058, 0.062, 0.13, 32), M.white()); hub.rotation.x = Math.PI / 2; hub.position.z = -0.03; hub.castShadow = true; g.add(hub);
+    const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.058, 0.02, 32), M.darkGrey()); cap.rotation.x = Math.PI / 2; cap.position.z = -0.1; g.add(cap);
+    // 羽根(3枚、ガードの内側)
+    const blade = new THREE.MeshStandardMaterial({ color: 0xeeede7, metalness: 0.06, roughness: 0.38, side: THREE.DoubleSide });
+    const bs = new THREE.Shape();
+    bs.moveTo(0, -0.035);
+    bs.quadraticCurveTo(0.06, -0.05, 0.115, -0.03);
+    bs.quadraticCurveTo(0.132, 0.0, 0.112, 0.032);
+    bs.quadraticCurveTo(0.06, 0.052, 0, 0.038);
+    bs.closePath();
+    const bGeo = new THREE.ExtrudeGeometry(bs, { depth: 0.0035, bevelEnabled: false, curveSegments: 16 });
+    for (let i = 0; i < 3; i++) {
+      const holder = new THREE.Group();
+      holder.rotation.z = (i / 3) * Math.PI * 2;
+      const m = new THREE.Mesh(bGeo, blade);
+      m.position.x = 0.055; m.rotation.x = 0.6; m.castShadow = true; m.receiveShadow = true;
+      holder.add(m); holder.position.z = -0.035; g.add(holder);
+    }
+    // 吊り金具
+    const yoke = new THREE.Mesh(new THREE.TorusGeometry(0.03, 0.006, 10, 24, Math.PI * 1.35), M.steelDark()); yoke.position.y = R + 0.04; yoke.castShadow = true; g.add(yoke);
+    const stem = box(0.016, 0.05, 0.016, M.steelDark(), 0.003); stem.position.y = R + 0.012; g.add(stem);
+    const cord = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([new THREE.Vector3(0.02, -R + 0.02, -0.1), new THREE.Vector3(0.1, -R - 0.03, -0.14), new THREE.Vector3(0.2, -R - 0.01, -0.06)]), 40, 0.0045, 10), M.black());
+    g.add(cord);
+    return { obj: g, size: 0.58 };
   },
-  heater({ }) {
+
+  heater({ }) { // 施設園芸用 温風暖房機
     const g = new THREE.Group();
-    const body = box(0.5, 0.38, 0.34, M.white(), 0.02); g.add(body);
-    const duct = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 0.14, 32), M.zinc()); duct.rotation.z = Math.PI / 2; duct.position.set(0.31, 0.04, 0); duct.castShadow = true; g.add(duct);
-    const grill = box(0.16, 0.2, 0.01, M.darkGrey(), 0.006); grill.position.set(-0.19, 0, 0.175); g.add(grill);
-    const panelBox = box(0.1, 0.07, 0.01, M.screen(), 0.004); panelBox.position.set(0.08, 0.09, 0.175); g.add(panelBox);
-    for (const s of [-1, 1]) { const leg = box(0.05, 0.07, 0.28, M.darkGrey()); leg.position.set(s * 0.2, -0.22, 0); g.add(leg); }
-    return { obj: g, size: 0.85 };
+    const shell = new THREE.MeshStandardMaterial({ color: 0xe6e8e5, metalness: 0.14, roughness: 0.45, envMapIntensity: 1.0 });
+    const W = 0.52, H = 0.42, D = 0.36;
+    const body = box(W, H, D, shell, 0.018); g.add(body);
+    // 温風の吹き出し口
+    const duct = new THREE.Mesh(new THREE.CylinderGeometry(0.115, 0.115, 0.16, 36), M.zinc());
+    duct.rotation.z = Math.PI / 2; duct.position.set(W / 2 + 0.07, 0.03, 0); duct.castShadow = true; g.add(duct);
+    const lip = new THREE.Mesh(new THREE.TorusGeometry(0.116, 0.006, 10, 36), M.zinc()); lip.rotation.y = Math.PI / 2; lip.position.set(W / 2 + 0.145, 0.03, 0); g.add(lip);
+    // 吸気グリル(ルーバー)
+    for (let i = 0; i < 7; i++) { const sl = box(0.14, 0.008, 0.006, M.darkGrey()); sl.position.set(-W * 0.3, -H * 0.3 + i * 0.026, D / 2 + 0.004); sl.rotation.x = 0.35; g.add(sl); }
+    const grillFrame = box(0.16, 0.21, 0.008, shell, 0.006); grillFrame.position.set(-W * 0.3, -H * 0.09, D / 2 + 0.001); g.add(grillFrame);
+    // 操作パネル
+    const cp = box(0.15, 0.1, 0.012, shell, 0.006); cp.position.set(W * 0.16, H * 0.2, D / 2 + 0.004); g.add(cp);
+    const cpScr = box(0.09, 0.04, 0.005, M.screen(), 0.003); cpScr.position.set(W * 0.16, H * 0.23, D / 2 + 0.012); g.add(cpScr);
+    for (let i = 0; i < 3; i++) { const b = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.006, 16), i === 1 ? M.orange() : M.darkGrey()); b.rotation.x = Math.PI / 2; b.position.set(W * 0.16 - 0.03 + i * 0.03, H * 0.16, D / 2 + 0.012); g.add(b); }
+    // 煙突
+    const flue = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.22, 28), M.zinc()); flue.position.set(-W * 0.18, H / 2 + 0.11, -D * 0.2); flue.castShadow = true; g.add(flue);
+    // 燃料配管
+    const fuel = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([new THREE.Vector3(-W / 2, -H * 0.28, 0.04), new THREE.Vector3(-W / 2 - 0.09, -H * 0.34, 0.02), new THREE.Vector3(-W / 2 - 0.14, -H * 0.5, -0.05)]), 40, 0.008, 12), M.steelDark());
+    g.add(fuel);
+    // 脚
+    for (const sx of [-1, 1]) for (const sz of [-1, 1]) { const leg = box(0.05, 0.1, 0.05, M.darkGrey(), 0.004); leg.position.set(sx * W * 0.38, -H / 2 - 0.05, sz * D * 0.33); g.add(leg); }
+    const rail = box(W * 0.9, 0.03, 0.05, M.darkGrey(), 0.004); rail.position.set(0, -H / 2 - 0.085, 0); g.add(rail);
+    return { obj: g, size: 0.95 };
   },
+
   co2({ }) {
     const g = new THREE.Group();
     const body = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.52, 36), M.white()); body.castShadow = true; g.add(body);
@@ -462,15 +573,33 @@ export const BUILDERS = {
     return { obj: g, size: 1.0 };
   },
 
-  curtainDrive({ }) {
+  curtainDrive({ }) { // 電動カーテン開閉装置(ギヤードモーター + 制御盤)
     const g = new THREE.Group();
-    const motor = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 0.22, 32), M.white()); motor.rotation.z = Math.PI / 2; motor.castShadow = true; g.add(motor);
-    const gearbox = box(0.12, 0.14, 0.12, M.darkGrey(), 0.01); gearbox.position.x = -0.16; g.add(gearbox);
-    const shaft = tube(0.012, 0.5, M.zinc(), 20); shaft.rotation.z = Math.PI / 2; shaft.position.x = 0.36; g.add(shaft);
-    const box2 = box(0.14, 0.2, 0.07, M.white(), 0.01); box2.position.set(-0.05, 0.24, 0); g.add(box2);
-    const scr = box(0.09, 0.05, 0.005, M.screen()); scr.position.set(-0.05, 0.27, 0.04); g.add(scr);
-    return { obj: g, size: 0.75 };
+    const shell = new THREE.MeshStandardMaterial({ color: 0xe8e9e6, metalness: 0.16, roughness: 0.44, envMapIntensity: 1.0 });
+    const motor = new THREE.Mesh(new THREE.CylinderGeometry(0.078, 0.078, 0.2, 36), shell);
+    motor.rotation.z = Math.PI / 2; motor.castShadow = true; g.add(motor);
+    for (let i = 0; i < 12; i++) { // 放熱フィン
+      const f = new THREE.Mesh(new THREE.TorusGeometry(0.079, 0.0035, 8, 36), shell);
+      f.rotation.y = Math.PI / 2; f.position.x = -0.09 + i * 0.016; g.add(f);
+    }
+    const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.078, 0.025, 36), M.darkGrey()); cap.rotation.z = Math.PI / 2; cap.position.x = 0.11; g.add(cap);
+    // 減速機
+    const gearbox = box(0.13, 0.16, 0.13, shell, 0.012); gearbox.position.x = -0.17; g.add(gearbox);
+    const out = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.06, 28), M.steelDark()); out.rotation.z = Math.PI / 2; out.position.set(-0.26, 0, 0); out.castShadow = true; g.add(out);
+    // 出力軸
+    const shaft = pipeHollow(0.0125, 0.46, M.zinc()); shaft.rotation.z = Math.PI / 2; shaft.position.x = -0.5; g.add(shaft);
+    // 取付ベース
+    const base = box(0.42, 0.014, 0.16, M.steelDark(), 0.005); base.position.set(-0.1, -0.1, 0); g.add(base);
+    for (const x of [-0.26, 0.04]) { const bl = bolt(0.05, 0.0038); bl.position.set(x, -0.1, 0.05); g.add(bl); }
+    // 制御盤
+    const bx = box(0.15, 0.21, 0.075, shell, 0.01); bx.position.set(0.02, 0.24, 0); g.add(bx);
+    const scr = box(0.095, 0.05, 0.005, M.screen(), 0.003); scr.position.set(0.02, 0.29, 0.04); g.add(scr);
+    for (let i = 0; i < 3; i++) { const b = new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.009, 0.006, 16), i === 1 ? M.orange() : M.darkGrey()); b.rotation.x = Math.PI / 2; b.position.set(-0.008 + i * 0.028, 0.2, 0.04); g.add(b); }
+    const cable = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([new THREE.Vector3(0.02, 0.13, 0), new THREE.Vector3(0.05, 0.06, 0.03), new THREE.Vector3(0.04, 0.0, 0.06)]), 40, 0.005, 10), M.black());
+    g.add(cable);
+    return { obj: g, size: 0.85 };
   },
+
   curtainFabric({ color = 0xd8d8d2, metal = 0.35, stripe = false }) {
     const g = new THREE.Group(); const w = 1.2, R = 0.125;
     const opt = { color, metalness: metal, roughness: 0.45, side: THREE.DoubleSide };

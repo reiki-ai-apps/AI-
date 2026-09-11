@@ -2,6 +2,7 @@
 import { initSite, toast, copyText, esc } from "./site.js";
 import { OPTIONS, defaultParams, normalizeParams, estimate, encodeParams, decodeParams, ridgeRange, yen, PRICING_VERSION } from "./pricing.js";
 import { createViewer } from "./house3d.js";
+import { CONFIG } from "./config.js";
 
 initSite();
 document.body.classList.add("has-sticky");
@@ -145,6 +146,22 @@ document.querySelectorAll("[data-view]").forEach(b => b.addEventListener("click"
   b.setAttribute("aria-pressed", "true");
   viewer.setView(b.dataset.view);
 }));
+// サンプルの3Dハウス(.glb)。読み込めたときだけボタンを出す
+if (CONFIG.sampleModel && viewer.ok) {
+  viewer.loadModel(CONFIG.sampleModel, CONFIG.sampleModelWidth ? { width: CONFIG.sampleModelWidth } : {}).then(ok => {
+    if (!ok) return;
+    viewer.setSample(false);                       // 最初は見積り用のハウスを表示
+    const b = $("#btn-sample"); b.hidden = false;
+    b.addEventListener("click", () => {
+      const on = b.getAttribute("aria-pressed") !== "true";
+      b.setAttribute("aria-pressed", String(on));
+      viewer.setSample(on);
+      $("#btn-labels").disabled = on;              // サンプルには寸法ラベルが付かない
+      toast(on ? "サンプルの3Dハウスを表示しています。数量と見積りは入力した寸法のままです。" : "入力した寸法のハウスに戻しました");
+    });
+  });
+}
+
 $("#btn-labels").addEventListener("click", e => {
   const on = e.currentTarget.getAttribute("aria-pressed") !== "true";
   e.currentTarget.setAttribute("aria-pressed", String(on)); viewer.setLabels(on);

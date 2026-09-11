@@ -380,8 +380,107 @@ export function createViewer(container, options = {}) {
     pos.y = Math.max(pos.y, 0.5);
     return { pos, target };
   }
+  // ---- サンプルの3Dモデル(Blender などから書き出した .glb を読む)----
+  let sample = null, sampleOn = false;
+
+  function poseForBox(box, view) {
+    const c = box.getCenter(new V3()), sz = box.getSize(new V3());
+    const a = sz.x / 2, L = sz.z;
+    const vfov = THREE.MathUtils.degToRad(camera.fov);
+    let target = new V3(c.x, box.min.y + sz.y * 0.45, c.z), dir = null, pos = null;
+    let dist = box.getBoundingSphere(new THREE.Sphere()).radius / Math.sin(vfov / 2) * 1.15;
+    switch (view) {
+      case "front": dir = new V3(0, 0.2, -1); break;
+      case "side": dir = new V3(1, 0.2, -0.02); break;
+      case "top": dir = new V3(0.001, 1, -0.001); break;
+      case "interior": pos = new V3(c.x, box.min.y + Math.min(1.6, sz.y * 0.42), c.z + L * 0.42); pos.isInterior = true; target = new V3(c.x, box.min.y + sz.y * 0.45, c.z - L * 0.35); break;
+      case "eave": pos = new V3(c.x + a + 2.2, box.min.y + 1.6, c.z - L * 0.35); pos.isInterior = true; target = new V3(c.x, box.min.y + sz.y * 0.55, c.z + L * 0.15); break;
+      default: dir = camera.aspect < 1 ? new V3(0.7, 0.42, -1.0) : new V3(1, 0.45, -1.2);
+    }
+    if (!pos) {
+      dir.normalize();
+      const corners = [];
+      for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) corners.push(new V3(x, y, z));
+      const tmpCam = camera.clone(), right = new V3(), up = new V3();
+      const tanV = Math.tan(vfov / 2), tanH = tanV * camera.aspect;
+      for (let i = 0; i < 6; i++) {
+        tmpCam.position.copy(target).add(dir.clone().multiplyScalar(dist));
+        tmpCam.lookAt(target); tmpCam.updateMatrixWorld(); tmpCam.updateProjectionMatrix();
+        let minX = 1e9, maxX = -1e9, minY = 1e9, maxY = -1e9;
+        for (const k of corners) { const v = k.clone().project(tmpCam); minX = Math.min(minX, v.x); maxX = Math.max(maxX, v.x); minY = Math.min(minY, v.y); maxY = Math.max(maxY, v.y); }
+        const cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
+        right.setFromMatrixColumn(tmpCam.matrixWorld, 0); up.setFromMatrixColumn(tmpCam.matrixWorld, 1);
+        target.add(right.multiplyScalar(cx * dist * tanH)).add(up.multiplyScalar(cy * dist * tanV));
+        dist *= Math.max(Math.max(maxX - minX, maxY - minY) / 2, 0.05) * 1.12;   // 端に触れないよう少し余裕をとる
+      }
+      pos = target.clone().add(dir.multiplyScalar(dist));
+    }
+    if (showcase && !pos.isInterior) { const k = options.zoomFactor || 0.86; pos.copy(target.clone().add(pos.clone().sub(target).multiplyScalar(k))); }
+    pos.y = Math.max(pos.y, box.min.y + 0.5);
+    return { pos, target };
+  }
+
+  // url の .glb を読み込んでサンプルとして表示する。読めなければ false を返して今までどおりの表示を続ける。
+  async function loadModel(url, opt = {}) {
+    let GLTFLoader;
+    try { ({ GLTFLoader } = await import("three/addons/loaders/GLTFLoader.js")); }
+    catch (e) { console.warn("GLTFLoader を読み込めませんでした", e); return false; }
+    let gltf;
+    try { gltf = await new GLTFLoader().loadAsync(url); }
+    catch (e) { console.warn("3Dモデルを読み込めませんでした:", url, e.message || e); return false; }
+
+    if (sample) { scene.remove(sample); disposeGroup(sample); sample = null; }
+    const root = gltf.scene;
+    root.traverse(o => {
+      if (!o.isMesh) return;
+      o.castShadow = true; o.receiveShadow = true;
+      const mats = Array.isArray(o.material) ? o.material : [o.material];
+      for (const m of mats) if (m && m.map) m.map.anisotropy = 4;
+    });
+
+    // 大きさと位置をそろえる: 底面を地面(y=0)に、平面の中心を原点に
+    let box = new THREE.Box3().setFromObject(root);
+    const size = box.getSize(new V3());
+    if (opt.width && size.x > 0.001) root.scale.setScalar(opt.width / size.x);
+    root.updateMatrixWorld(true);
+    box = new THREE.Box3().setFromObject(root);
+    const c = box.getCenter(new V3());
+    root.position.sub(new V3(c.x, box.min.y, c.z));
+    root.updateMatrixWorld(true);
+
+    sample = new THREE.Group();
+    sample.add(root);
+    // 地面(影の受け皿)。透過表示のときは影だけ落とす
+    box = new THREE.Box3().setFromObject(root);
+    const span = Math.max(box.max.x - box.min.x, box.max.z - box.min.z, 4);
+    const gsize = span * 4;
+    const ground = new THREE.Mesh(new THREE.PlaneGeometry(gsize, gsize),
+      options.transparent ? new THREE.ShadowMaterial({ opacity: 0.28 }) : MAT.grass);
+    ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; sample.add(ground);
+    scene.add(sample);
+
+    // 太陽の影の範囲をモデルに合わせる
+    const r = Math.max(span, box.max.y - box.min.y) * 1.1;
+    const sc = sun.shadow.camera;
+    sc.left = -r; sc.right = r; sc.top = r; sc.bottom = -r; sc.near = 0.5; sc.far = r * 8; sc.updateProjectionMatrix();
+
+    setSample(true);
+    return true;
+  }
+
+  function setSample(on) {
+    if (on && !sample) return false;
+    sampleOn = !!on;
+    if (sample) sample.visible = sampleOn;
+    if (house) house.visible = !sampleOn;
+    if (labels) labels.visible = !sampleOn && labelsOn;
+    fit(currentView, false);
+    return sampleOn;
+  }
+
   function fit(view = "exterior", animate = true) {
-    const pose = computePose(view); if (!pose) return;
+    const pose = (sampleOn && sample) ? poseForBox(new THREE.Box3().setFromObject(sample.children[0]), view) : computePose(view);
+    if (!pose) return;
     currentView = view;
     if (heightLabels) heightLabels.visible = view !== "top";
     if (!animate) { camera.position.copy(pose.pos); controls.target.copy(pose.target); controls.update(); anim = null; return; }
@@ -453,8 +552,13 @@ export function createViewer(container, options = {}) {
       else if (changed && opts.refit !== false) fit(opts.view || "exterior", true);
     },
     setView(name) { fit(name, true); },
+    // Blender などから書き出した .glb をサンプルとして表示する
+    loadModel(url, opt) { return loadModel(url, opt); },
+    setSample(on) { return setSample(on); },
+    get hasSample() { return !!sample; },
+    get sampleOn() { return sampleOn; },
     setLabels(on) { labelsOn = !!on; if (labels) labels.visible = labelsOn; },
     screenshot() { renderer.render(scene, camera); return renderer.domElement.toDataURL("image/png"); },
-    dispose() { running = false; ro.disconnect(); controls.dispose(); if (house) disposeGroup(house); if (labels) disposeGroup(labels); renderer.dispose(); }
+    dispose() { running = false; ro.disconnect(); controls.dispose(); if (house) disposeGroup(house); if (sample) disposeGroup(sample); if (labels) disposeGroup(labels); renderer.dispose(); }
   };
 }

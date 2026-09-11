@@ -48,6 +48,11 @@ async function setupHero() {
   viewer.update(est, { refit: false });
   computePoses();
   applyTime(Number($("#time").value));
+  // サンプルの3Dハウス(.glb)があれば、そちらに差し替える
+  if (CONFIG.sampleModel) {
+    viewer.loadModel(CONFIG.sampleModel, CONFIG.sampleModelWidth ? { width: CONFIG.sampleModelWidth } : {})
+      .then(ok => { if (ok) { computePoses(); applyTime(Number($("#time").value)); } });
+  }
   addEventListener("resize", debounce(computePoses, 200));
   addEventListener("scroll", () => { target = Math.min(1, Math.max(0, window.scrollY / (hero.offsetHeight * 0.9))); }, { passive: true });
   requestAnimationFrame(tick);
