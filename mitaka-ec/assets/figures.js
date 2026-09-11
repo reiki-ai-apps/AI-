@@ -2,6 +2,7 @@
 // 画像が無い品番のときだけ、形のアイコン + 規格文字の図に自動で戻す。
 import { ICONS } from "./icons.js";
 import { shelfOf } from "./catalog-data.js";
+import { REAL_PHOTOS } from "./product-photos.js";
 
 export function shapeOf(p) {
   const n = p.name, c = p.cat;
@@ -44,14 +45,18 @@ function hexToRgba(hex, a) { const n = parseInt(hex.slice(1), 16); return `rgba(
 // 写真のパス
 export function photoSrc(p) { return `assets/products/${encodeURIComponent(p.id)}.jpg`; }
 
+// 実物写真かどうか。false のものは実寸から起こした3Dイメージ図。
+export function isRealPhoto(p) { return REAL_PHOTOS.has(p.id); }
+
 // カード用の図(HTML断片)。big=true で詳細シート用
 export function figure(p, big = false) {
   const shelf = shelfOf(p.cat);
   const key = keySpec(p);
   const shape = shapeOf(p);
   return `<div class="fig photo${big ? " big" : ""}" style="--shelf:${shelf.color};--shelf-bg:${hexToRgba(shelf.color, 0.12)};--ic-fill:${hexToRgba(shelf.color, 0.22)}">
-    <img class="fig-img" src="${photoSrc(p)}" alt="${escAttr(p.name)}${key ? " " + escAttr(key) : ""} の写真" loading="lazy" decoding="async" width="1200" height="900">
+    <img class="fig-img" src="${photoSrc(p)}" alt="${escAttr(p.name)}${key ? " " + escAttr(key) : ""} の${isRealPhoto(p) ? "写真" : "イメージ図"}" loading="lazy" decoding="async" width="1200" height="900">
     <span class="fig-ic" aria-hidden="true">${ICONS[shape] || ICONS.cube}</span>
+    ${isRealPhoto(p) ? "" : `<span class="fig-note">イメージ図</span>`}
     ${key ? `<span class="fig-key">${escHtml(key)}</span>` : ""}
     <span class="fig-shelf">${escHtml(shelf.label)}</span>
   </div>`;

@@ -582,6 +582,25 @@ export const BUILDERS = {
     }
     return { obj: g, size: len * 1.2 };
   },
+  dripCatch({ }) { // ナイスキャッチ: フィルム止め継手の下に付ける雨だれ受け(W14×D8×H1cm)
+    const g = new THREE.Group();
+    const W = 0.14, D = 0.08, H = 0.012, wall = 0.0018;
+    const mat = new THREE.MeshStandardMaterial({ color: 0x2b2f33, metalness: 0.04, roughness: 0.36, envMapIntensity: 1.0 });
+    const sh = new THREE.Shape();
+    sh.moveTo(-D / 2, 0); sh.lineTo(D / 2, 0); sh.lineTo(D / 2, H); sh.lineTo(D / 2 - wall, H);
+    sh.lineTo(D / 2 - wall, wall); sh.lineTo(-D / 2 + wall, wall); sh.lineTo(-D / 2 + wall, H); sh.lineTo(-D / 2, H); sh.closePath();
+    const body = new THREE.Mesh(new THREE.ExtrudeGeometry(sh, { depth: W, bevelEnabled: true, bevelSize: 0.0006, bevelThickness: 0.0006, bevelSegments: 2 }), mat);
+    body.rotation.y = Math.PI / 2; body.position.x = -W / 2; body.castShadow = body.receiveShadow = true; g.add(body);
+    // 端の立ち上がり(水をためる側板)
+    for (const sgn of [-1, 1]) { const end = box(0.003, H, D, mat); end.position.set(sgn * (W / 2 - 0.0015), H / 2, 0); g.add(end); }
+    // ホース口(内径16φ)
+    const nip = new THREE.Mesh(new THREE.CylinderGeometry(0.0105, 0.0105, 0.028, 28), mat);
+    nip.rotation.z = Math.PI / 2; nip.position.set(-W / 2 - 0.014, H * 0.5, 0); nip.castShadow = true; g.add(nip);
+    const rib = new THREE.Mesh(new THREE.TorusGeometry(0.0112, 0.0016, 8, 28), mat); rib.rotation.y = Math.PI / 2; rib.position.set(-W / 2 - 0.024, H * 0.5, 0); g.add(rib);
+    // 取り付けのツメ
+    for (const x of [-W * 0.28, W * 0.28]) { const clip = box(0.008, 0.008, 0.016, mat); clip.position.set(x, H + 0.003, -D / 2 + 0.008); clip.rotation.x = 0.3; g.add(clip); }
+    return { obj: g, size: W * 1.5 };
+  },
   boxPack({ label = "" }) { // 箱入り金具など
     const g = new THREE.Group();
     const b = box(0.3, 0.2, 0.2, M.cream(), 0.006); g.add(b);

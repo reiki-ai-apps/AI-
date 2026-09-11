@@ -34,9 +34,11 @@
 .bigfig.photo .fig-ic { display: none; }
 .bigfig.photo .guide { display: none; }
 .bigfig.photo .key { font-size: clamp(20px, 2.4vw, 28px); background: rgba(255,255,255,0.88); padding: 4px 10px 6px; border-radius: 6px; left: 14px; bottom: 14px; }
-.bigfig.photo .dots { left: auto; right: 16px; top: auto; bottom: 16px; }
-.bigfig.photo .dots i { background: #C9D0CB; }
-.photo-note { margin: 6px 4px 0; font-size: 13px; color: var(--muted); line-height: 1.6; }
+.bigfig.photo .dots { display: none; }  /* 入数は規格バッジに出ているので写真には重ねない */
+.photo-note { margin: 8px 4px 0; font-size: 13px; color: var(--muted); line-height: 1.7; background: #FFF7EF; border-left: 3px solid var(--gold); border-radius: 4px; padding: 8px 12px; }
+.photo-note b { color: var(--ink-900); }
+.bigfig .fig-note { display: none; }
+.bigfig.photo .fig-note { display: block; position: absolute; right: 14px; bottom: 14px; font-size: 12px; font-weight: 700; color: var(--muted); background: rgba(255,255,255,0.84); border-radius: 4px; padding: 2px 8px; }
 .pd-visual .pane.has-photo { background-image: none; }
 
 .pane.v3d canvas { width: 100% !important; height: 100% !important; display: block; }

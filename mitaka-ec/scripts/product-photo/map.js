@@ -21,9 +21,10 @@ export const SHOTS = {
   "ST-RF-BRACE":  { b: "brace",  p: { dia: 25.4 } },
   "GN-HW-ANCHOR": { b: "anchor", p: {}, count: 3 },
   // ---- フィルム固定 ----
-  "ST-PK-NC22":   { b: "packer", p: { dia: 22.2 }, count: 3 },
-  "ST-PK-NC25":   { b: "packer", p: { dia: 25.4 }, count: 3 },
-  "ST-PK-NC31":   { b: "packer", p: { dia: 31.8 }, count: 3 },
+  "GN-PK-22":     { b: "packer", p: { dia: 22.2 }, count: 3 },
+  "GN-PK-25":     { b: "packer", p: { dia: 25.4 }, count: 3 },
+  "GN-PK-31":     { b: "packer", p: { dia: 31.8 }, count: 3 },
+  "ST-PK-NC":     { b: "dripCatch", p: {} },
   "ST-FS-CLIP":   { b: "packer", p: { dia: 25.4, steel: true }, count: 3 },
   "TT-FS-VP4":    { b: "rail",   p: { len: 4 }, view: "long" },
   "TT-FS-VP6":    { b: "rail",   p: { len: 6 }, view: "long" },

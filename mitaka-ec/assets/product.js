@@ -3,7 +3,7 @@ import { CONFIG } from "./config.js";
 import { initSite, addToQuoteList, flyToCart, esc, yen, toast } from "./site.js";
 import { PRODUCTS, MAKERS, SHELVES, shelfOf } from "./catalog-data.js";
 import { ICONS } from "./icons.js";
-import { figure, keySpec, shapeOf, photoSrc, watchPhotos } from "./figures.js";
+import { figure, keySpec, shapeOf, photoSrc, watchPhotos, isRealPhoto } from "./figures.js";
 import { partOf, PART_LABEL, sceneFor, companions, fitText, tipFor, catLabel } from "./product-data.js";
 import { estimate, normalizeParams } from "./pricing.js";
 
@@ -39,7 +39,8 @@ const key = keySpec(p);
 watchPhotos();
 $("#pane-fig").classList.add("has-photo");
 $("#pane-fig").innerHTML = `<div class="bigfig photo" style="--shelf:${shelf.color}">
-  <img class="fig-img" src="${photoSrc(p)}" alt="${esc(p.name)} ${esc(key)} の写真" width="1200" height="900" decoding="async">
+  <img class="fig-img" src="${photoSrc(p)}" alt="${esc(p.name)} ${esc(key)} の${isRealPhoto(p) ? "写真" : "イメージ図"}" width="1200" height="900" decoding="async">
+  ${isRealPhoto(p) ? "" : `<span class="fig-note">イメージ図</span>`}
   ${key ? `<div class="guide"><span>${esc(key)}</span></div>` : ""}
   ${pack > 1 && pack <= 100 ? `<div class="dots" aria-hidden="true">${Array.from({ length: pack }, () => "<i></i>").join("")}</div>` : ""}
   <span class="fig-ic">${ICONS[shapeOf(p)] || ICONS.cube}</span>
@@ -50,7 +51,9 @@ $("#pane-fig").innerHTML = `<div class="bigfig photo" style="--shelf:${shelf.col
   const ct = compareText();
   $("#pane-3d").insertAdjacentHTML("afterend",
     (ct ? `<div class="fig-caption">${ct.split(" ／ ").map(t => `<span>${esc(t)}</span>`).join("")}</div>` : "") +
-    `<p class="photo-note">写真は部材の実寸から起こした3Dイメージです。実物の写真ではないため、細部が異なる場合があります。</p>`);
+    (isRealPhoto(p)
+      ? ""
+      : `<p class="photo-note">この画像は規格の寸法から起こした<b>イメージ図</b>です。実物の写真ではありません。${p.maker !== "generic" ? "メーカーの商品写真を手配中です。" : ""}実物をご確認のうえご注文ください。<a href="quote.html">担当に聞く</a></p>`));
 }
 
 // ---- 使う場所(3D)。タブを開いたときに初めて読み込む ----
