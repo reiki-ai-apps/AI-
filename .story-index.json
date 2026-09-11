@@ -2,6 +2,105 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_bda47006bc9cfd18212a",
+      "story_id": "story_577afde6ac25ed80cd",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.8968,
+      "title": "DeepSeekが新モデル「V4.1 Flash」を発表",
+      "source_published_at": "2026-09-10T23:19:08.000Z",
+      "published_at": "2026-09-10T23:19:08.000Z",
+      "fetched_at": "2026-09-11T00:13:58.323Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "中国のAI企業DeepSeekは、パラメータ数5520億、最大100万トークンの文脈長に対応した新モデル「V4.1 Flash」を発表した。",
+      "source_name": "BRIDGE（ブリッジ）",
+      "source_url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE40NndGblJvX1RkZlg3TW5ralJXQUF2SDRpQy1UT1lkVTdmV0JjVXNjVERHNkpieDMtUTRsVkVRSy1oa3RGcUFRQXJ5Rnd6Y0VzdlhoSktQZ3ZKUkhiZmtvZHhRS0dNZw?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "V4.1 Flash",
+        "deepseek",
+        "v4.1flash",
+        "v4.1"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek V4.1 Flash",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "API",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "パラメータ数",
+          "value": "5520億",
+          "normalized_value": "552000000000"
+        },
+        {
+          "type": "count",
+          "scope": "最大コンテキスト長",
+          "value": "100万トークン",
+          "normalized_value": "1000000"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "similar_title",
+        "non_forward_stage_change"
+      ],
+      "change_summary": "パラメータ数5520億、最大100万トークン対応の新モデルとして発表された点が新しい。",
+      "detail": "中国のAI企業DeepSeekは、新しい生成AIモデル「V4.1 Flash」を発表しました。簡単に言うと、これまでより大きな知識量と長い文章を扱えるようにした新型のAIです。従来のモデルに比べて、パラメータ数と一度に読み込める文章量の両方が拡大しました。\n\n発表によると、V4.1 Flashのパラメータ数は5520億に達します。パラメータとは、AIが学習の過程で身につける調整可能な数値のことで、多いほど複雑な内容を扱いやすくなります。また、一度に処理できる文字量を示す「トークン」の上限は100万トークンに対応しており、長い文書や会話をまとめて扱えるようになりました。\n\n利用者にとっては、長文の資料を要約したり、大量のデータを一度に分析させたりする用途で使いやすくなる可能性があります。ただし、料金や提供開始時期、対応言語など具体的な利用条件は本文からは確認できていません。",
+      "new_facts": [
+        "DeepSeekが新モデルV4.1 Flashを発表",
+        "パラメータ数は5520億",
+        "最大コンテキスト長は100万トークンに対応"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_91f68b051861b4aeda6f",
+      "story_id": "story_08a451c012541885fa",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6257142857142857,
+      "title": "OpenAIが金融サービス向けChatGPTを発表",
+      "source_published_at": "2026-09-10T19:09:07.000Z",
+      "published_at": "2026-09-10T19:09:07.000Z",
+      "fetched_at": "2026-09-11T00:13:58.323Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIは、銀行や証券会社など金融機関向けに特化したChatGPTの提供を発表した。",
+      "source_name": "Moomoo",
+      "source_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOR3BBTjJOaDhBY0RNbVlRbDQyeTVTNnpwRFR5QU1XMy1mZlJraS1RMGU2U3VINHVRN0JxMG9QZWlkbTctcHdIaGJIOWYzZm5XOTRBZFNpVk5Fam84b2lRdW5YS2NwZzhPTlU4VzI3NHVhUzlQUmJ0RG1wel9oVHdOZWh6YzBHUXBzMmdJM1ZyZ2NHZ1pWcHQyQXdDQQ?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT",
+        "openai",
+        "chatgpt"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "金融サービス向けChatGPT",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "金融業界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "金融サービスに特化したChatGPTの提供をOpenAIが新たに発表した。",
+      "detail": "OpenAIは、金融サービス業界向けに特化したChatGPTを発表しました。簡単に言うと、銀行や証券会社など金融機関がChatGPTを業務で使いやすくするための新しい取り組みです。従来のChatGPTは業種を問わず幅広く使われてきましたが、今回は金融分野に絞った提供という点が新しくなります。\n\n発表の詳細については、本文からは確認できていません。金融業界は個人情報や取引データなど扱う情報の機密性が高いため、専用の対応が求められる分野です。今回の発表は、OpenAIが特定業界向けの展開を進めている動きの一つとして位置づけられます。\n\n金融機関で働く人にとっては、業務でChatGPTを使う選択肢が広がる可能性があります。ただし、具体的な機能内容や料金、提供開始時期、対象となる金融機関の範囲などはまだ発表されていません。",
+      "new_facts": [
+        "OpenAIが金融サービス向けのChatGPTを発表した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_e4e6299397a588161d6d",
       "story_id": "story_2565a27eb449f4ead0",
       "story_sequence": 1,
@@ -1275,6 +1374,52 @@
       "dedupe_decision": "new",
       "dedupe_reasons": [
         "no_previous_story"
+      ],
+      "change_summary": "堀江氏は、人が運転しない前提で車を作り直す発想を評価しています。運転の自動化に加え、部品や製造・整備の負担も変わるという見方です。",
+      "detail": "堀江貴文氏が9月7日の公式動画で、テスラの無人タクシー「サイバーキャブ」を解説しました。発言を紹介したサカノワの記事によると、氏が注目するのは車の設計そのものです。人が運転する車にAIを足すだけでなく、最初から無人走行を前提に作る発想を評価しています。\n\n報道では、ハンドルやペダルなど、人が操作するための装置をなくす点が紹介されています。氏は、車輪の向きやブレーキを電気で制御し、部品を減らせると説明しています。組み立てや整備を簡単にし、車を作る費用も下げられるという見方です。\n\nこの話の核心は、AIが人の代わりに働くと、周囲の道具の形まで変わり得るという点です。仕事への応用としては、今の作業にAIを足すだけでなく、不要になる手順も見直す考え方が参考になります。ただし、堀江氏の評価だけで安全性や日本で使える時期が決まるわけではありません。実際の導入条件は、メーカーや運行地域の発表で別に確かめる必要があります。",
+      "new_facts": [
+        "堀江貴文氏が9月7日にサイバーキャブの解説動画を公開",
+        "発言を紹介した報道では、無人運転を前提に車を設計する発想を評価している"
+      ],
+      "event_date_precision": "day"
+    },
+    {
+      "article_id": "article_11cbaf5841a5cfcef1fd_rev_77b605fef905",
+      "story_id": "story_bdc18e0874cdf80f5d",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "ホリエモンが解説：サイバーキャブは車の設計をどう変えるのか",
+      "source_published_at": "2026-09-07T09:49:07.000Z",
+      "published_at": "2026-09-07T09:49:07.000Z",
+      "fetched_at": "2026-09-10T11:00:46.000Z",
+      "event_at": "2026-09-07",
+      "event_status": "不明",
+      "raw_excerpt": "ホリエモンがサイバーキャブで注目するのは、AIの運転能力だけでなく車の作り方。無人運転を前提に部品を減らし、製造や整備の負担も変えるという見方を、発言を紹介した報道から整理します。",
+      "source_name": "堀江貴文 ホリエモン",
+      "source_url": "https://www.youtube.com/watch?v=YjoSEvWKRCI",
+      "story_entities": [
+        "堀江貴文",
+        "Tesla",
+        "Cybercab",
+        "tesla",
+        "cybercab"
+      ],
+      "primary_entity": "堀江貴文",
+      "story_subject": "Cybercabの無人運転を前提とした設計への評価",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "公式YouTubeでの解説",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "similar_title",
+        "same_scope",
+        "same_url_content_changed"
       ],
       "change_summary": "堀江氏は、人が運転しない前提で車を作り直す発想を評価しています。運転の自動化に加え、部品や製造・整備の負担も変わるという見方です。",
       "detail": "堀江貴文氏が9月7日の公式動画で、テスラの無人タクシー「サイバーキャブ」を解説しました。発言を紹介したサカノワの記事によると、氏が注目するのは車の設計そのものです。人が運転する車にAIを足すだけでなく、最初から無人走行を前提に作る発想を評価しています。\n\n報道では、ハンドルやペダルなど、人が操作するための装置をなくす点が紹介されています。氏は、車輪の向きやブレーキを電気で制御し、部品を減らせると説明しています。組み立てや整備を簡単にし、車を作る費用も下げられるという見方です。\n\nこの話の核心は、AIが人の代わりに働くと、周囲の道具の形まで変わり得るという点です。仕事への応用としては、今の作業にAIを足すだけでなく、不要になる手順も見直す考え方が参考になります。ただし、堀江氏の評価だけで安全性や日本で使える時期が決まるわけではありません。実際の導入条件は、メーカーや運行地域の発表で別に確かめる必要があります。",
