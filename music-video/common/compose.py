@@ -354,7 +354,7 @@ def main():
     ap.add_argument("--spec", required=True)
     ap.add_argument("--song", required=True)
     ap.add_argument("--out", default="illustrated.mp4")
-    ap.add_argument("--stills")
+    ap.add_argument("--stills", help="書き出す時刻(秒)。shots.json と同じ絶対秒で指定する")
     ap.add_argument("--out-dir", default="stills")
     ap.add_argument("--grid-json", help="拍解析のキャッシュ")
     args = ap.parse_args()
@@ -368,9 +368,12 @@ def main():
     if args.stills:
         os.makedirs(args.out_dir, exist_ok=True)
         for s in args.stills.split(","):
-            t = float(s)
-            comp.render(t).save(os.path.join(args.out_dir, f"t{t:06.2f}.png"))
-            print("still", t)
+            # shots.json は絶対秒なので、こちらも絶対秒で受ける(render は頭からの相対秒)
+            abs_t = float(s)
+            if not (t0 <= abs_t <= t0 + dur):
+                sys.exit(f"--stills {abs_t} はカット {t0}〜{t0 + dur} の外です")
+            comp.render(abs_t - t0).save(os.path.join(args.out_dir, f"t{abs_t:07.2f}.png"))
+            print("still", abs_t)
         return
     K.render_video(comp, grid, args.song, args.out, lead=float(cut.get("lead", 0.0)))
 
