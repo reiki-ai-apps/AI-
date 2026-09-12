@@ -41,6 +41,11 @@ jobs:
           node scripts/test-free-access-daily-metrics.mjs
           node scripts/test-runtime-resilience.mjs
 
+      - name: Test home news and expert video selection
+        run: |
+          node scripts/test-expert-video-coverage.mjs
+          node scripts/test-edition-publishing.mjs
+
       - name: Analyze with CodeQL
         uses: github/codeql-action/analyze@v4
 

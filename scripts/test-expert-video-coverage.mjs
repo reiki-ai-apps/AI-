@@ -19,9 +19,25 @@ const data=JSON.parse(fs.readFileSync(new URL("../data.json",import.meta.url),"u
 const dailyState=JSON.parse(fs.readFileSync(new URL("../.expert-video-state.json",import.meta.url),"utf8"));
 
 // 実際のホーム選定関数を実行し、翌日の候補が複数になっても1件を超えないことを守る。
-const homeSelectorSource=html.match(/function homeExpertVideos\(items\)\{[\s\S]*?\n\}\nfunction expertVideoCard/)?.[0]
-  ?.replace(/\nfunction expertVideoCard$/,"");
+function extractHomeSelector(source){
+  // Source editors may preserve LF, CRLF or mixed line endings. Formatting is
+  // not evidence that the actual selector disappeared.
+  return source.replace(/\r\n?/g,"\n")
+    .match(/function homeExpertVideos\(items\)\{[\s\S]*?\n\}\s*\nfunction expertVideoCard/)?.[0]
+    ?.replace(/\s*function expertVideoCard$/,"");
+}
+const homeSelectorSource=extractHomeSelector(html);
 assert.ok(homeSelectorSource,"ホームの動画選定関数が存在する");
+const lfHtml=html.replace(/\r\n?/g,"\n");
+for(const [format,source] of [
+  ["LF",lfHtml],["CRLF",lfHtml.replace(/\n/g,"\r\n")],
+  ["CR",lfHtml.replace(/\n/g,"\r")],
+  ["mixed",lfHtml.replace(/\nfunction/g,"\r\nfunction")],
+  ["blank line",lfHtml.replace(/\nfunction expertVideoCard/,"\n\nfunction expertVideoCard")]
+]){
+  assert.equal(extractHomeSelector(source),homeSelectorSource,format+"でも同じ実装を検査する");
+}
+assert.equal(extractHomeSelector(lfHtml.replace("function homeExpertVideos(items)","function missingSelector(items)")),undefined,"本当に関数がない場合は検査を通さない");
 const selectHomeVideos=Function("isExpertVideo","byFeedOrder",`${homeSelectorSource}; return homeExpertVideos;`)(
   isExpertVideoItem,(a,b)=>b.order-a.order
 );
