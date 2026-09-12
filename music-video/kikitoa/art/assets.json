@@ -1,0 +1,52 @@
+{
+  "_comment": "キャラクター案と世界観の確認用。soul_cinematic 単体で生成。手順は ../PIPELINE.md",
+  "model": "soul_cinematic",
+  "generated": "2026-09-12",
+  "_resolution_note": "リポジトリに入れてあるのは確認用の縮小版。原寸(2048px)は url から再取得できる (common/fetch_assets.py)",
+  "images": [
+    {
+      "file": "char_a_quiet.png",
+      "job_id": "65f0faed-413c-4066-b095-6e1876704f37",
+      "aspect_ratio": "16:9",
+      "mean": 192,
+      "scene": "候補A 静かな子。濃紺ボブ+琥珀メッシュ、特大カーディガン、白マーカー",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3J8lwc3kVHTtbkxNryOZubNcjOD/hf_20260912_095635_65f0faed-413c-4066-b095-6e1876704f37.png"
+    },
+    {
+      "file": "char_b_bright.png",
+      "job_id": "b9e86a6b-51f2-4ac0-9e28-217a4fb15412",
+      "aspect_ratio": "16:9",
+      "mean": 184,
+      "scene": "候補B 動く子。低い位置のポニーテール毛先琥珀、コーチジャケット、紙飛行機",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3J8lwc3kVHTtbkxNryOZubNcjOD/hf_20260912_100535_b9e86a6b-51f2-4ac0-9e28-217a4fb15412.png"
+    },
+    {
+      "file": "char_c_cold.png",
+      "job_id": "633caca1-e722-4943-b688-75655c817fa9",
+      "aspect_ratio": "16:9",
+      "mean": 188,
+      "scene": "候補C 冷たい子。短髪+こめかみ琥珀、紺ロングコート、首にヘッドホン",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3J8lwc3kVHTtbkxNryOZubNcjOD/hf_20260912_100620_633caca1-e722-4943-b688-75655c817fa9.png"
+    },
+    {
+      "file": "world_rooftop_dawn.png",
+      "job_id": "62b7b4df-7e8b-4b97-b722-1ba47716805c",
+      "aspect_ratio": "9:16",
+      "mean": 96,
+      "scene": "夜明けの屋上。藍の空から琥珀の地平線、電線、遠くの街。キキは下三分の一に小さく",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3J8lwc3kVHTtbkxNryOZubNcjOD/hf_20260912_101430_62b7b4df-7e8b-4b97-b722-1ba47716805c.png"
+    }
+  ],
+  "rejected": [
+    {
+      "job_id": "2755b035-f73e-41b3-9ea7-7fe712bd9ae5",
+      "why": "候補Aを image 参照して屋上の場面を作ろうとしたが、場面指定が無視されキャラクターシートのレイアウトが複製された。参照画像は構図ごとコピーする"
+    }
+  ],
+  "derived": [
+    {
+      "file": "proposal_sheet.png",
+      "how": "上記4枚をラベル付きで1枚に並べたもの。生成ではなくローカル合成"
+    }
+  ]
+}
