@@ -11,13 +11,14 @@ export const CONFIG = {
   // 見積依頼の送信先。endpointを入れるとメールではなくAPIにJSON送信します。
   mailTo: "info@example.com",
   quoteEndpoint: "",
-  // サンプルの3Dハウス。Blender などから書き出した .glb をここに置くと、
-  // トップのヒーローと3Dシミュレーターで「サンプル」として表示できます。
-  // ファイルが無いときは、これまでどおり寸法から組み立てたハウスを表示します。
-  // (ファイルを置いたら "assets/models/house.glb" を入れてください。空のままなら読みに行きません)
-  sampleModel: "",
-  // 実寸で書き出していれば0のまま。原寸が違うときだけ「間口(m)」を入れて合わせます。
-  sampleModelWidth: 0,
+  // サンプルの3Dハウス。Blender などから書き出した .glb を assets/models/ に置いて、
+  // ここに並べるとトップのヒーローと3Dシミュレーターで切り替えて見られます。
+  // 空のままなら読みに行かず、これまでどおり寸法から組み立てたハウスを表示します。
+  //   label: 画面に出す名前 / file: ファイルの場所 / width: 実寸で書き出していれば 0
+  sampleModels: [
+    // { label: "単棟ハウス", file: "assets/models/house-a.glb", width: 0 },
+    // { label: "連棟ハウス", file: "assets/models/house-b.glb", width: 0 },
+  ],
   // 担当者画面の簡易ロック(プロトタイプ用。本番はSupabase認証に置き換え)
   staffPin: "1234"
 };

@@ -380,8 +380,9 @@ export function createViewer(container, options = {}) {
     pos.y = Math.max(pos.y, 0.5);
     return { pos, target };
   }
-  // ---- サンプルの3Dモデル(Blender などから書き出した .glb を読む)----
-  let sample = null, sampleOn = false;
+  // ---- サンプルの3Dモデル(Blender などから書き出した .glb を読む)。複数持てる ----
+  const samples = [];   // { group, root, label }
+  let sampleIdx = -1;   // -1 = 寸法から組み立てたハウスを表示
 
   function poseForBox(box, view) {
     const c = box.getCenter(new V3()), sz = box.getSize(new V3());
@@ -420,7 +421,7 @@ export function createViewer(container, options = {}) {
     return { pos, target };
   }
 
-  // url の .glb を読み込んでサンプルとして表示する。読めなければ false を返して今までどおりの表示を続ける。
+  // url の .glb を読み込んでサンプルに加える。読めなければ false を返して今までどおりの表示を続ける。
   async function loadModel(url, opt = {}) {
     let GLTFLoader;
     try { ({ GLTFLoader } = await import("three/addons/loaders/GLTFLoader.js")); }
@@ -429,7 +430,6 @@ export function createViewer(container, options = {}) {
     try { gltf = await new GLTFLoader().loadAsync(url); }
     catch (e) { console.warn("3Dモデルを読み込めませんでした:", url, e.message || e); return false; }
 
-    if (sample) { scene.remove(sample); disposeGroup(sample); sample = null; }
     const root = gltf.scene;
     root.traverse(o => {
       if (!o.isMesh) return;
@@ -448,38 +448,43 @@ export function createViewer(container, options = {}) {
     root.position.sub(new V3(c.x, box.min.y, c.z));
     root.updateMatrixWorld(true);
 
-    sample = new THREE.Group();
-    sample.add(root);
+    const group = new THREE.Group();
+    group.add(root);
     // 地面(影の受け皿)。透過表示のときは影だけ落とす
     box = new THREE.Box3().setFromObject(root);
     const span = Math.max(box.max.x - box.min.x, box.max.z - box.min.z, 4);
-    const gsize = span * 4;
-    const ground = new THREE.Mesh(new THREE.PlaneGeometry(gsize, gsize),
+    const ground = new THREE.Mesh(new THREE.PlaneGeometry(span * 4, span * 4),
       options.transparent ? new THREE.ShadowMaterial({ opacity: 0.28 }) : MAT.grass);
-    ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; sample.add(ground);
-    scene.add(sample);
+    ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; group.add(ground);
+    group.visible = false;
+    scene.add(group);
 
-    // 太陽の影の範囲をモデルに合わせる
-    const r = Math.max(span, box.max.y - box.min.y) * 1.1;
-    const sc = sun.shadow.camera;
-    sc.left = -r; sc.right = r; sc.top = r; sc.bottom = -r; sc.near = 0.5; sc.far = r * 8; sc.updateProjectionMatrix();
-
-    setSample(true);
-    return true;
+    samples.push({ group, root, label: opt.label || `サンプル${samples.length + 1}` });
+    const idx = samples.length - 1;
+    if (opt.show !== false) setSample(idx);
+    return idx;
   }
 
-  function setSample(on) {
-    if (on && !sample) return false;
-    sampleOn = !!on;
-    if (sample) sample.visible = sampleOn;
-    if (house) house.visible = !sampleOn;
-    if (labels) labels.visible = !sampleOn && labelsOn;
+  // true/0以上 = そのサンプルを表示、false/-1 = 寸法から組み立てたハウスに戻す
+  function setSample(v) {
+    const want = v === true ? 0 : (v === false || v == null) ? -1 : Number(v);
+    sampleIdx = (want >= 0 && samples[want]) ? want : -1;
+    samples.forEach((s2, i) => { s2.group.visible = i === sampleIdx; });
+    if (house) house.visible = sampleIdx < 0;
+    if (labels) labels.visible = sampleIdx < 0 && labelsOn;
+    if (sampleIdx >= 0) {
+      // 太陽の影の範囲をモデルに合わせる
+      const box = new THREE.Box3().setFromObject(samples[sampleIdx].root);
+      const r = Math.max(box.max.x - box.min.x, box.max.z - box.min.z, box.max.y - box.min.y) * 1.2;
+      const sc = sun.shadow.camera;
+      sc.left = -r; sc.right = r; sc.top = r; sc.bottom = -r; sc.near = 0.5; sc.far = r * 8; sc.updateProjectionMatrix();
+    }
     fit(currentView, false);
-    return sampleOn;
+    return sampleIdx;
   }
 
   function fit(view = "exterior", animate = true) {
-    const pose = (sampleOn && sample) ? poseForBox(new THREE.Box3().setFromObject(sample.children[0]), view) : computePose(view);
+    const pose = sampleIdx >= 0 ? poseForBox(new THREE.Box3().setFromObject(samples[sampleIdx].root), view) : computePose(view);
     if (!pose) return;
     currentView = view;
     if (heightLabels) heightLabels.visible = view !== "top";
@@ -552,13 +557,13 @@ export function createViewer(container, options = {}) {
       else if (changed && opts.refit !== false) fit(opts.view || "exterior", true);
     },
     setView(name) { fit(name, true); },
-    // Blender などから書き出した .glb をサンプルとして表示する
+    // Blender などから書き出した .glb をサンプルとして読み込む(何棟でも)
     loadModel(url, opt) { return loadModel(url, opt); },
-    setSample(on) { return setSample(on); },
-    get hasSample() { return !!sample; },
-    get sampleOn() { return sampleOn; },
+    setSample(v) { return setSample(v); },
+    get samples() { return samples.map((s2, i) => ({ index: i, label: s2.label })); },
+    get sampleIndex() { return sampleIdx; },
     setLabels(on) { labelsOn = !!on; if (labels) labels.visible = labelsOn; },
     screenshot() { renderer.render(scene, camera); return renderer.domElement.toDataURL("image/png"); },
-    dispose() { running = false; ro.disconnect(); controls.dispose(); if (house) disposeGroup(house); if (sample) disposeGroup(sample); if (labels) disposeGroup(labels); renderer.dispose(); }
+    dispose() { running = false; ro.disconnect(); controls.dispose(); if (house) disposeGroup(house); for (const s2 of samples) disposeGroup(s2.group); if (labels) disposeGroup(labels); renderer.dispose(); }
   };
 }

@@ -79,10 +79,11 @@ async function setupHero() {
   viewer.update(est, { refit: false });
   computePoses();
   applyTime(Number($("#time").value));
-  // サンプルの3Dハウス(.glb)があれば、そちらに差し替える
-  if (CONFIG.sampleModel) {
-    viewer.loadModel(CONFIG.sampleModel, CONFIG.sampleModelWidth ? { width: CONFIG.sampleModelWidth } : {})
-      .then(ok => { if (ok) { computePoses(); applyTime(Number($("#time").value)); } });
+  // サンプルの3Dハウス(.glb)があれば、1棟目に差し替える
+  const sm = (CONFIG.sampleModels || [])[0];
+  if (sm && sm.file) {
+    viewer.loadModel(sm.file, { label: sm.label, width: sm.width || 0 })
+      .then(i => { if (i !== false) { computePoses(); applyTime(Number($("#time").value)); } });
   }
   addEventListener("resize", debounce(computePoses, 200));
   const heroProgress = () => {

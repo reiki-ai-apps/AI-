@@ -78,3 +78,10 @@ legend .n { width: 1.4rem; height: 1.4rem; border-radius: 50%; background: var(-
   .result details { display: block; }
   .result details summary { display: none; }
 }
+
+/* サンプルの3Dハウスの切り替え */
+.sample-pick { position: absolute; left: 0.75rem; bottom: 2.9rem; z-index: 3; display: flex; gap: 0.35rem; flex-wrap: wrap; max-width: calc(100% - 1.5rem); }
+.sample-pick button { background: rgba(255,255,255,0.92); border: 1px solid var(--line); border-radius: 999px; padding: 0.35rem 0.75rem; font: inherit; font-size: 0.8rem; font-weight: 700; cursor: pointer; color: var(--text); white-space: nowrap; }
+.sample-pick button:hover { background: #fff; border-color: var(--green-500); }
+.sample-pick button[aria-pressed="true"] { background: var(--green-700); color: #fff; border-color: var(--green-700); }
+.sample-pick[hidden] { display: none; }
