@@ -79,10 +79,10 @@ function readKarte() { try { return JSON.parse(localStorage.getItem("mitaka-kart
 (function karteBand() {
   const k = readKarte(), dia = (p.name + " " + p.spec).match(/φ(\d+(?:\.\d+)?)/);
   const el = $("#karte-band");
-  if (!k || !k.houses?.length) { el.innerHTML = `<a class="karte-link" href="karte.html">お客様コードをお持ちの方はこちら(あなたのハウスに合うか表示します)</a>`; return; }
-  if (!dia) { el.innerHTML = `<div class="karte-band"><b>${esc(k.farmName || k.name)}様のハウスカルテ</b> 見積依頼のときに、ハウスの大きさから数量を計算します。<a href="karte.html?c=${esc(k.code)}">カルテを見る</a></div>`; return; }
+  if (!k || !k.houses?.length) { el.innerHTML = `<a class="karte-link" href="mypage.html">お客様コードをお持ちの方はこちら(あなたのハウスに合うか表示します)</a>`; return; }
+  if (!dia) { el.innerHTML = `<div class="karte-band"><b>${esc(k.farmName || k.name)}様のハウスカルテ</b> 見積依頼のときに、ハウスの大きさから数量を計算します。<a href="mypage.html?c=${esc(k.code)}">カルテを見る</a></div>`; return; }
   const d = Number(dia[1]); const fits = k.houses.filter(h => Number(h.params.pipe) === d), miss = k.houses.filter(h => Number(h.params.pipe) !== d);
-  if (fits.length) el.innerHTML = `<div class="karte-band"><b>${esc(k.farmName || k.name)}様の${esc(fits.map(h => h.name).join("・"))}ハウス(φ${d})に合います</b>${miss.length ? `<span class="muted">${esc(miss.map(h => h.name).join("・"))}は別の径です</span>` : ""}<a href="karte.html?c=${esc(k.code)}">カルテを見る</a></div>`;
+  if (fits.length) el.innerHTML = `<div class="karte-band"><b>${esc(k.farmName || k.name)}様の${esc(fits.map(h => h.name).join("・"))}ハウス(φ${d})に合います</b>${miss.length ? `<span class="muted">${esc(miss.map(h => h.name).join("・"))}は別の径です</span>` : ""}<a href="mypage.html?c=${esc(k.code)}">カルテを見る</a></div>`;
   else el.innerHTML = `<div class="karte-band no"><b>${esc(k.houses[0].name)}ハウスは φ${k.houses[0].params.pipe} です。この品は φ${d} 用です。</b><a href="catalog.html#q=${encodeURIComponent("φ" + k.houses[0].params.pipe)}">φ${k.houses[0].params.pipe} のものを見る</a></div>`;
 })();
 

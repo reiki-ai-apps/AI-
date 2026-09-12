@@ -7,15 +7,23 @@ export function initSite() {
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".nav");
   if (toggle && nav) {
-    const mq = window.matchMedia("(max-width: 860px)");
-    const apply = () => { nav.hidden = mq.matches; toggle.setAttribute("aria-expanded", "false"); };
-    apply();
-    mq.addEventListener("change", apply);
-    toggle.addEventListener("click", () => {
+    const close = () => { nav.hidden = true; toggle.setAttribute("aria-expanded", "false"); };
+    close();
+    toggle.addEventListener("click", e => {
+      e.stopPropagation();
       nav.hidden = !nav.hidden;
       toggle.setAttribute("aria-expanded", String(!nav.hidden));
     });
+    document.addEventListener("click", e => { if (!nav.hidden && !nav.contains(e.target)) close(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
   }
+  // ヘッダーの検索は「資材をさがす」に送る
+  const hs = document.getElementById("hsearch");
+  if (hs) hs.addEventListener("submit", e => {
+    e.preventDefault();
+    const q = document.getElementById("hsearch-q").value.trim();
+    location.href = q ? `catalog.html#q=${encodeURIComponent(q)}` : "catalog.html";
+  });
   // 現在ページのハイライト
   const here = location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll(".nav a[href]").forEach(a => {

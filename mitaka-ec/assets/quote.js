@@ -29,7 +29,7 @@ if (document.getElementById("quote-form")) (async () => {
         if (sp.get("mode") === "recover") { const r = estimateRecover(h.params); lines.push(`張り替え概算(税抜): ${yen(r.subtotal)}  税込: ${yen(r.total)}`); }
         houseText = lines.join("\n");
         simBox.hidden = false; simBox.querySelector("h3").textContent = "対象のハウス";
-        simBox.querySelector("pre").textContent = houseText; simBox.querySelector("a").href = `karte.html?c=${encodeURIComponent(c ? c.code : "")}`; simBox.querySelector("a").textContent = "カルテに戻る";
+        simBox.querySelector("pre").textContent = houseText; simBox.querySelector("a").href = `mypage.html?c=${encodeURIComponent(c ? c.code : "")}`; simBox.querySelector("a").textContent = "マイページに戻る";
         const f = document.getElementById("quote-form"); if (c) { f.name.value = c.name || ""; f.farm.value = c.farmName || ""; f.tel.value = c.tel || ""; f.place.value = c.address || c.area || ""; f.crop.value = h.crop || ""; }
         if (sp.get("mode") === "recover") f.message.value = `${h.name} の被覆材張り替えを検討しています。`;
       }

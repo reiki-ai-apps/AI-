@@ -51,7 +51,7 @@
 .fig.photo.big { aspect-ratio: 4 / 3; }
 .fig .fig-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .fig.photo .fig-ic { display: none; }
-.fig.photo .fig-key { background: rgba(255,255,255,0.86); padding: 3px 8px 5px; border-radius: 4px; left: 10px; bottom: 8px; }
+.fig.photo .fig-key { background: rgba(255,255,255,0.86); padding: 3px 8px 5px; border-radius: 4px; left: 10px; bottom: 8px; font-size: 20px; max-width: calc(100% - 96px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .fig .fig-note { display: none; }
 .fig.photo .fig-note { display: block; position: absolute; right: 10px; bottom: 10px; font-size: 11px; font-weight: 700; color: var(--muted); background: rgba(255,255,255,0.8); border-radius: 3px; padding: 1px 6px; letter-spacing: .02em; }
 

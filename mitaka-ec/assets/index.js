@@ -26,13 +26,17 @@ $("#home-search").addEventListener("submit", e => {
   location.href = q ? `catalog.html#q=${encodeURIComponent(q)}` : "catalog.html";
 });
 
-// ---- 人気の資材 ----
-const yen = n => "¥" + Number(n).toLocaleString("ja-JP");
-function homeCard(p) {
+// ---- 冒頭のおすすめ(キャンペーン / 新商品 / 売れ筋) ----
+const FEATURES = {
+  campaign: { title: "今月のキャンペーン", tag: "キャンペーン", note: "張り替えシーズンのおすすめ" },
+  new: { title: "新商品", tag: "新商品", note: "あたらしく取り扱いを始めた品" },
+  hot: { title: "売れ筋", tag: "人気", note: "桐生でよく出ているもの" }
+};
+function homeCard(p, ribbon) {
   const shelf = shelfOf(p.cat);
   const inc = p.price != null ? Math.round(p.price * 1.1) : null;
   return `<article class="pcard">
-    <a class="pcard-fig" href="product.html?id=${encodeURIComponent(p.id)}" aria-label="${esc(p.name)} をくわしく見る" style="display:block">${figure(p)}</a>
+    <a class="pcard-fig" href="product.html?id=${encodeURIComponent(p.id)}" aria-label="${esc(p.name)} をくわしく見る" style="display:block">${figure(p)}${ribbon ? `<span class="hot ${ribbon.cls}">${esc(ribbon.label)}</span>` : ""}</a>
     <div class="pcard-body">
       <div class="pcard-maker">${esc(shelf.label)}</div>
       <h3 class="pcard-name">${esc(p.name)}</h3>
@@ -42,9 +46,18 @@ function homeCard(p) {
     <div class="pcard-acts"><a class="btn accent" href="product.html?id=${encodeURIComponent(p.id)}">くわしく見る</a></div>
   </article>`;
 }
-$("#home-hot").innerHTML = PRODUCTS.filter(p => (p.tags || []).includes("人気")).slice(0, 8).map(homeCard).join("");
+function showFeature(key) {
+  const f = FEATURES[key] || FEATURES.campaign;
+  const ribbon = key === "campaign" ? { label: "キャンペーン", cls: "camp" } : key === "new" ? { label: "新商品", cls: "new" } : { label: "人気", cls: "" };
+  const list = PRODUCTS.filter(p => (p.tags || []).includes(f.tag)).slice(0, 8);
+  $("#feature-title").textContent = f.title;
+  $("#feature-rail").innerHTML = list.map(p => homeCard(p, ribbon)).join("");
+  document.querySelectorAll("[data-feat]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.feat === key)));
+}
+document.querySelectorAll("[data-feat]").forEach(b => b.addEventListener("click", () => showFeature(b.dataset.feat)));
+showFeature("campaign");
 
-// ---- 棚・節気 ----
+// ---- 棚・節気 ----// ---- 棚・節気 ----
 $("#shelf-rail").innerHTML = SHELVES.map(s => `<a class="s" href="catalog.html#shelf=${s.id}" style="--shelf:${s.color}"><span class="ic">${ICONS[s.icon]}</span><h3>${esc(s.label)}</h3><p>${esc(s.sub)}</p><span class="n">${PRODUCTS.filter(p => s.cats.includes(p.cat)).length}点を見る →</span></a>`).join("");
 const now = currentSekki();
 const idx = SEKKI.findIndex(t => t.name === now.name);

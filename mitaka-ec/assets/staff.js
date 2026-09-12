@@ -144,7 +144,7 @@ async function selectCustomer(id) {
     <div class="acts">
       ${c.tel ? `<a class="btn sm help" href="tel:${esc(normTel(c.tel))}">電話する</a>` : ""}
       <button class="btn sm" type="button" data-memo="${esc(c.id)}">この方の電話メモ</button>
-      <a class="btn sm outline" href="karte.html?c=${esc(c.karteToken || c.code)}" target="_blank">カルテを開く</a>
+      <a class="btn sm outline" href="mypage.html?c=${esc(c.karteToken || c.code)}" target="_blank">マイページを開く</a>
       <a class="btn sm ghost" href="quote.html" target="_blank">見積を作る</a>
     </div>
     <div class="flex mb-2">${houses.map(h => { const s = houseStatus(h); return `<span class="house-chip"><span class="badge ${s.level === "due" ? "warn" : ""}">${s.level === "due" ? "要対応" : s.level === "soon" ? "来年" : "良好"}</span><span><span class="b">${esc(h.name)}</span> ${h.params.span}m×${h.params.length}m ${esc(plotName(h.plotId))}<br><span class="muted small">${esc(s.text)}</span></span></span>`; }).join("") || `<span class="muted small">ハウスは未登録です。</span>`}</div>
@@ -217,7 +217,7 @@ $("#reg").addEventListener("submit", async e => {
     let last = null;
     for (const h of houses) last = await store.saveHouse({ ...h, customerId: cust.id, plotId: plot.id, area: cust.area });
     await store.saveInteraction({ customerId: cust.id, channel: "visit", topic: "雑談", body: `訪問してハウスカルテを登録(${houses.length}棟)`, staff: consent.staff });
-    const url = new URL(`karte.html?c=${cust.karteToken || cust.code}`, location.href).href;
+    const url = new URL(`mypage.html?c=${cust.karteToken || cust.code}`, location.href).href;
     $("#result").hidden = false;
     $("#karte-link").textContent = url; $("#karte-link").href = url; $("#cust-code").textContent = cust.code;
     $("#show3d").href = `simulator.html?${encodeParams(last.params)}`;

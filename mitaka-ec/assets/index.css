@@ -1,15 +1,23 @@
-/* トップの「さがす」入口(商品から入る) */
-.shop-hero { padding: 40px 0 20px; background: linear-gradient(180deg, #F5F8F6, #FFFFFF 78%); border-bottom: 1px solid var(--line); }
-.shop-hero .kicker { font-size: 0.76rem; letter-spacing: 0.3em; color: var(--soil); font-weight: 700; margin-bottom: 12px; }
-.shop-hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.16; letter-spacing: 0.02em; margin: 0 0 14px; color: var(--ink-900); }
-.shop-hero .sub { font-size: clamp(1rem, 1.3vw, 1.12rem); color: #3E4A43; max-width: 34em; margin: 0 0 24px; line-height: 1.9; }
-.home-search { display: flex; gap: 10px; max-width: 720px; margin: 0 0 24px; }
-.home-search input { flex: 1; min-width: 0; min-height: 60px; border: 1px solid var(--line-strong); border-radius: 12px; padding: 0 16px; font: inherit; font-size: 1.02rem; background: #fff; color: var(--text); }
+/* 冒頭のおすすめ(キャンペーン / 新商品 / 売れ筋) */
+.feature-sec .feature-head { display: flex; align-items: center; gap: 12px 20px; flex-wrap: wrap; margin-bottom: 16px; }
+.feature-sec h2 { font-family: var(--font-display); font-size: clamp(1.5rem, 2.6vw, 2rem); margin: 0; }
+.feature-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.feature-tabs button { min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--line-strong); background: #fff; font: inherit; font-weight: 700; font-size: 0.95rem; color: var(--text); cursor: pointer; }
+.feature-tabs button[aria-selected="true"] { background: var(--ink-900); color: var(--gold); border-color: var(--ink-900); }
+.feature-all { margin-left: auto; white-space: nowrap; }
+.pcard .hot.camp { background: var(--sunrise); color: #fff; }
+.pcard .hot.new { background: var(--ink-900); color: var(--gold); }
+
+/* どんな品物をお探しですか */
+.find-sec .find-trouble { margin-top: 28px; }
+.find-sec .find-trouble h3 { font-size: 1.1rem; margin: 0 0 12px; }
+.purposes.home { margin: 0; }
+@media (min-width: 760px) { .purposes.home { grid-template-columns: repeat(3, 1fr); } }
+.home-search { display: flex; gap: 10px; max-width: 720px; margin: 28px 0 0; }
+.home-search input { flex: 1; min-width: 0; min-height: 56px; border: 1px solid var(--line-strong); border-radius: 12px; padding: 0 16px; font: inherit; font-size: 1.02rem; background: #fff; color: var(--text); }
 .home-search input::placeholder { color: #8A938D; }
 .home-search input:focus-visible { outline: 3px solid var(--sunrise); outline-offset: 1px; }
-.home-search .btn { min-height: 60px; border-radius: 12px; padding: 0 28px; font-size: 1.05rem; white-space: nowrap; }
-.purposes.home { margin: 0; }
-@media (min-width: 760px) { .purposes.home { grid-template-columns: repeat(3, 1fr); } .shop-hero { padding: 56px 0 28px; } }
+.home-search .btn { min-height: 56px; border-radius: 12px; padding: 0 28px; font-size: 1.02rem; white-space: nowrap; }
 @media (max-width: 480px) { .home-search { flex-wrap: wrap; } .home-search .btn { width: 100%; } }
 
 /* トップページ「暁」 */
