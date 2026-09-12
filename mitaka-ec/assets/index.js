@@ -1,8 +1,10 @@
-// トップページ: 朝の光のヒーロー(リアルタイム3D + 時刻スライダー + スクロールで軒下・内部へ)
+// トップページ: 商品から入る導線(さがす → 人気 → 棚) + 3Dハウスの見積り(スクロールで軒下・内部へ)
 import { CONFIG } from "./config.js";
 import { initSite, esc } from "./site.js";
 import { ICONS } from "./icons.js";
-import { SHELVES, PRODUCTS } from "./catalog-data.js";
+import { SHELVES, PRODUCTS, PURPOSES, shelfOf } from "./catalog-data.js";
+import { figure } from "./figures.js";
+import { watchPhotos } from "./figures.js";
 import { SEKKI, currentSekki } from "./sekki.js";
 import { landscapeSvg } from "./scene.js";
 import { estimate, normalizeParams } from "./pricing.js";
@@ -12,6 +14,35 @@ document.documentElement.classList.add("js");
 const $ = s => document.querySelector(s);
 document.querySelectorAll("[data-icon]").forEach(el => { el.innerHTML = ICONS[el.dataset.icon] || ""; });
 if (CONFIG.tel) { const t = $("#tel-cta"); t.href = `tel:${CONFIG.tel}`; }
+
+// ---- さがす(検索・困りごと) ----
+watchPhotos();
+$("#home-purposes").innerHTML = PURPOSES.map(x => x.link
+  ? `<a class="purpose build" href="${x.link}"><span class="ic">${ICONS[x.icon]}</span><span>${esc(x.label)}</span></a>`
+  : `<a class="purpose" href="catalog.html#purpose=${x.id}"><span class="ic">${ICONS[x.icon]}</span><span>${esc(x.label)}</span></a>`).join("");
+$("#home-search").addEventListener("submit", e => {
+  e.preventDefault();
+  const q = $("#home-q").value.trim();
+  location.href = q ? `catalog.html#q=${encodeURIComponent(q)}` : "catalog.html";
+});
+
+// ---- 人気の資材 ----
+const yen = n => "¥" + Number(n).toLocaleString("ja-JP");
+function homeCard(p) {
+  const shelf = shelfOf(p.cat);
+  const inc = p.price != null ? Math.round(p.price * 1.1) : null;
+  return `<article class="pcard">
+    <a class="pcard-fig" href="product.html?id=${encodeURIComponent(p.id)}" aria-label="${esc(p.name)} をくわしく見る" style="display:block">${figure(p)}</a>
+    <div class="pcard-body">
+      <div class="pcard-maker">${esc(shelf.label)}</div>
+      <h3 class="pcard-name">${esc(p.name)}</h3>
+      <p class="pcard-use">${esc(p.use || p.spec)}</p>
+      ${inc != null ? `<div class="pcard-price"><span class="yen">¥</span>${inc.toLocaleString("ja-JP")}<small>税込</small></div>` : `<div class="pcard-price ask">金額はご相談<small>すぐお答えします</small></div>`}
+    </div>
+    <div class="pcard-acts"><a class="btn accent" href="product.html?id=${encodeURIComponent(p.id)}">くわしく見る</a></div>
+  </article>`;
+}
+$("#home-hot").innerHTML = PRODUCTS.filter(p => (p.tags || []).includes("人気")).slice(0, 8).map(homeCard).join("");
 
 // ---- 棚・節気 ----
 $("#shelf-rail").innerHTML = SHELVES.map(s => `<a class="s" href="catalog.html#shelf=${s.id}" style="--shelf:${s.color}"><span class="ic">${ICONS[s.icon]}</span><h3>${esc(s.label)}</h3><p>${esc(s.sub)}</p><span class="n">${PRODUCTS.filter(p => s.cats.includes(p.cat)).length}点を見る →</span></a>`).join("");
@@ -54,7 +85,14 @@ async function setupHero() {
       .then(ok => { if (ok) { computePoses(); applyTime(Number($("#time").value)); } });
   }
   addEventListener("resize", debounce(computePoses, 200));
-  addEventListener("scroll", () => { target = Math.min(1, Math.max(0, window.scrollY / (hero.offsetHeight * 0.9))); }, { passive: true });
+  const heroProgress = () => {
+    // 画面に入ってから出るまでを 0→1 に。真ん中あたりで軒下・内部に入る
+    const r = hero.getBoundingClientRect();
+    const p = (innerHeight - r.top) / (innerHeight + r.height);
+    return Math.min(1, Math.max(0, (p - 0.28) / 0.5));
+  };
+  addEventListener("scroll", () => { target = heroProgress(); }, { passive: true });
+  target = current = heroProgress();
   requestAnimationFrame(tick);
 }
 function computePoses() {
@@ -77,7 +115,7 @@ function lerpPose(t) {
   return { pos: lerpV(p.pos, q.pos, ease(s)), target: lerpV(p.target, q.target, ease(s)) };
 }
 function tick() {
-  if (poses && Math.abs(target - current) > 0.0005) { current += (target - current) * 0.08; const p = lerpPose(current); viewer.setPose(p.pos, p.target); $(".hero .copy").style.opacity = String(Math.max(0, 1 - current * 1.6)); }
+  if (poses && Math.abs(target - current) > 0.0005) { current += (target - current) * 0.08; const p = lerpPose(current); viewer.setPose(p.pos, p.target); }
   requestAnimationFrame(tick);
 }
 function debounce(fn, ms) { let t; return () => { clearTimeout(t); t = setTimeout(fn, ms); }; }

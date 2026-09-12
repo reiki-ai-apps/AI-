@@ -1,5 +1,19 @@
+/* トップの「さがす」入口(商品から入る) */
+.shop-hero { padding: 40px 0 20px; background: linear-gradient(180deg, #F5F8F6, #FFFFFF 78%); border-bottom: 1px solid var(--line); }
+.shop-hero .kicker { font-size: 0.76rem; letter-spacing: 0.3em; color: var(--soil); font-weight: 700; margin-bottom: 12px; }
+.shop-hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.16; letter-spacing: 0.02em; margin: 0 0 14px; color: var(--ink-900); }
+.shop-hero .sub { font-size: clamp(1rem, 1.3vw, 1.12rem); color: #3E4A43; max-width: 34em; margin: 0 0 24px; line-height: 1.9; }
+.home-search { display: flex; gap: 10px; max-width: 720px; margin: 0 0 24px; }
+.home-search input { flex: 1; min-width: 0; min-height: 60px; border: 1px solid var(--line-strong); border-radius: 12px; padding: 0 16px; font: inherit; font-size: 1.02rem; background: #fff; color: var(--text); }
+.home-search input::placeholder { color: #8A938D; }
+.home-search input:focus-visible { outline: 3px solid var(--sunrise); outline-offset: 1px; }
+.home-search .btn { min-height: 60px; border-radius: 12px; padding: 0 28px; font-size: 1.05rem; white-space: nowrap; }
+.purposes.home { margin: 0; }
+@media (min-width: 760px) { .purposes.home { grid-template-columns: repeat(3, 1fr); } .shop-hero { padding: 56px 0 28px; } }
+@media (max-width: 480px) { .home-search { flex-wrap: wrap; } .home-search .btn { width: 100%; } }
+
 /* トップページ「暁」 */
-.hero { position: relative; height: clamp(560px, 100svh, 820px); overflow: hidden; color: var(--paper);
+.hero { position: relative; height: clamp(520px, 86svh, 760px); overflow: hidden; color: var(--paper);
   --sky1: #0B1F16; --sky2: #12233A; --sky3: #4A3450; --sky4: #B4552E; --sky5: #E8933F;
   background: linear-gradient(180deg, var(--sky1) 0%, var(--sky2) 30%, var(--sky3) 58%, var(--sky4) 82%, var(--sky5) 100%); margin-top: calc(-1 * var(--header-h)); }
 .hero .land { position: absolute; inset: auto 0 0 0; height: 46%; opacity: 0.9; pointer-events: none; }
@@ -13,7 +27,7 @@
 .hero .copy { position: absolute; left: max(16px, calc(50% - 590px)); right: 16px; bottom: clamp(88px, 14vh, 140px); max-width: 860px; }
 .hero .kicker { font-size: 0.82rem; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 16px; }
 .hero { color: var(--on-dark); }
-.hero h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.2rem, 5.4vw, 4.6rem); line-height: 1.14; letter-spacing: 0.02em; color: #FFFFFF; margin: 0 0 24px; text-shadow: 0 2px 30px rgba(11,31,22,0.5); }
+.hero h1, .hero h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.2rem, 5.4vw, 4.6rem); line-height: 1.14; letter-spacing: 0.02em; color: #FFFFFF; margin: 0 0 24px; text-shadow: 0 2px 30px rgba(11,31,22,0.5); }
 .hero .sub { font-size: clamp(1rem, 1.6vw, 1.2rem); line-height: 1.9; max-width: 34em; margin: 0 0 32px; color: rgba(233,238,234,0.92); }
 .hero .actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
 .hero .actions .textlink { color: var(--on-dark); text-decoration-color: var(--gold); }
@@ -29,7 +43,7 @@
   .hero .scrim { background: linear-gradient(180deg, transparent 40%, rgba(11,31,22,0.85) 75%); }
   .hero .copy { bottom: 92px; }
   .hero .kicker { margin-bottom: 10px; }
-  .hero h1 { margin-bottom: 14px; font-size: clamp(1.9rem, 8.6vw, 2.3rem); }
+  .hero h1, .hero h2 { margin-bottom: 14px; font-size: clamp(1.9rem, 8.6vw, 2.3rem); }
   .hero .sub { margin-bottom: 20px; font-size: 0.98rem; }
   .timebar { bottom: 16px; gap: 10px; }
   .timebar .hint { display: none; }

@@ -16,7 +16,6 @@
   --text: #131A16;
   --muted: #5C6660;
   --on-dark: #E9EEEA;   /* ダーク面の文字 */
-  --grid: rgba(11,31,22,0.035); --grid-bold: rgba(11,31,22,0.06);
   --sunrise: #E8622A;   /* 主アクション */
   --sunrise-deep: #B94A0F;
   --earth-500: #E8622A; --earth-600: #B94A0F; --earth-100: #FBE9DF;
@@ -43,9 +42,7 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 html.text-l { font-size: 118%; }
 html.text-xl { font-size: 135%; }
 body { margin: 0; font-family: var(--font); font-size: 17px; line-height: 1.75; color: var(--text); letter-spacing: 0.01em;
-  background-color: var(--bg);
-  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), linear-gradient(var(--grid-bold) 1px, transparent 1px), linear-gradient(90deg, var(--grid-bold) 1px, transparent 1px);
-  background-size: 16px 16px, 16px 16px, 96px 96px, 96px 96px; background-position: -1px -1px; }
+  background-color: var(--bg); }
 .section.calm { background: var(--calm); }
 .section-title::before { content: ""; display: block; width: 64px; height: 7px; border-left: 1px solid var(--line-strong); border-right: 1px solid var(--line-strong); background: linear-gradient(var(--line-strong), var(--line-strong)) center / 100% 1px no-repeat; margin-bottom: 14px; }
 .section-title.center::before { margin-left: auto; margin-right: auto; }

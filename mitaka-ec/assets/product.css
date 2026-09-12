@@ -15,7 +15,7 @@
 .pd-visual .tabs { display: flex; gap: 8px; margin-bottom: 12px; }
 .pd-visual .tabs button { flex: 1; min-height: 56px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font: inherit; font-weight: 700; font-size: 1rem; cursor: pointer; color: var(--text); }
 .pd-visual .tabs button[aria-selected="true"] { background: var(--ink-900); color: var(--gold); border-color: var(--ink-900); }
-.pd-visual .pane { position: relative; aspect-ratio: 4 / 3; max-height: 620px; background-color: #FFFFFF; background-image: linear-gradient(rgba(11,31,22,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(11,31,22,0.05) 1px, transparent 1px); background-size: 8px 8px; border: 1px solid var(--line-strong); border-radius: 4px; overflow: hidden; }
+.pd-visual .pane { position: relative; aspect-ratio: 4 / 3; max-height: 620px; background-color: #FFFFFF; border: 1px solid var(--line-strong); border-radius: 4px; overflow: hidden; }
 .pd-visual .pane[hidden] { display: none; }
 .bigfig { position: absolute; inset: 0; display: grid; place-items: center; }
 .bigfig .fig-ic svg { width: clamp(120px, 24vw, 200px); height: auto; color: var(--ink-800); --ic-fill: var(--surface-2); }
@@ -39,7 +39,6 @@
 .photo-note b { color: var(--ink-900); }
 .bigfig .fig-note { display: none; }
 .bigfig.photo .fig-note { display: block; position: absolute; right: 14px; bottom: 14px; font-size: 12px; font-weight: 700; color: var(--muted); background: rgba(255,255,255,0.84); border-radius: 4px; padding: 2px 8px; }
-.pd-visual .pane.has-photo { background-image: none; }
 
 .pane.v3d canvas { width: 100% !important; height: 100% !important; display: block; }
 .pane.v3d .viewer-labels { display: none; }

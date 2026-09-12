@@ -42,13 +42,12 @@
 .pcard { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: border-color var(--t-fast); box-shadow: 0 1px 0 rgba(11,31,22,0.04); }
 .pcard:hover { border-color: var(--sunrise); }
 .pcard-fig { border: 0; padding: 0; background: none; cursor: pointer; text-align: left; position: relative; }
-.fig { position: relative; aspect-ratio: 4 / 3; background-color: #FFFFFF; background-image: linear-gradient(rgba(11,31,22,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(11,31,22,0.05) 1px, transparent 1px); background-size: 8px 8px; border-bottom: 1px solid var(--line); display: grid; place-items: center; overflow: hidden; }
+.fig { position: relative; aspect-ratio: 4 / 3; background-color: #FFFFFF; border-bottom: 1px solid var(--line); display: grid; place-items: center; overflow: hidden; }
 .fig .fig-ic svg { width: 96px; height: 96px; color: var(--shelf); }
 .fig .fig-key { position: absolute; left: 14px; bottom: 10px; font-size: 24px; font-weight: 700; color: var(--ink-900); letter-spacing: 0.02em; font-variant-numeric: tabular-nums; line-height: 1; padding-bottom: 4px; border-bottom: 2px solid var(--soil); }
 .fig .fig-shelf { position: absolute; right: 12px; top: 10px; font-size: 0.78rem; font-weight: 700; color: var(--shelf); border: 1px solid var(--shelf); padding: 1px 8px; border-radius: 4px; background: #fff; }
 .fig.big { aspect-ratio: 16 / 9; min-height: 200px; border-radius: 12px; }
 /* 写真(assets/products/*.jpg)。読めなかったときだけ図に戻る */
-.fig.photo { background-image: none; background-color: #FFFFFF; }
 .fig.photo.big { aspect-ratio: 4 / 3; }
 .fig .fig-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .fig.photo .fig-ic { display: none; }
@@ -77,7 +76,9 @@
 .help-band { margin-top: 64px; background: var(--ink-900); color: var(--on-dark); border-radius: 18px; padding: 28px 24px; display: grid; gap: 12px; box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
 .help-band h2 { color: #fff; } .help-band p.muted { color: rgba(233,238,234,.78) !important; }
 .help-band h2 { font-size: 1.2rem; margin: 0; }
-.help-band .btns { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+.help-band .btns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; }
+.help-band .btns .btn { min-width: 0; }
+@media (max-width: 520px) { .help-band .btns { grid-template-columns: minmax(0, 1fr); } }
 .help-band .btn { min-height: 56px; border-radius: 12px; }
 .help-band .btn.outline { color: var(--on-dark); border-color: rgba(233,238,234,.5); }
 .help-band .btn .ic svg { width: 24px; height: 24px; }

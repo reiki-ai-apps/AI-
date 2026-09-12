@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/catalog.css">
 <link rel="stylesheet" href="assets/index.css">
 <script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js","three/addons/":"./vendor/three/"}}</script>
 
@@ -36,17 +37,43 @@
   </div>
 </header>
 <main>
-<script>document.querySelector(".site-header").classList.add("on-dark");</script>
+<section class="shop-hero">
+  <div class="container">
+    <div class="kicker">MITAKA SANGYO ・ 群馬・桐生から</div>
+    <h1>ハウスの資材、<br>1個から。</h1>
+    <p class="sub">パイプ1本、パッカー1袋から承ります。品名がわからなくても大丈夫。困りごとの言葉でさがせます。</p>
+    <form class="home-search" id="home-search" role="search">
+      <input type="search" id="home-q" placeholder="何をお探しですか？(例: ビニール、くるふぁみ、パイプ)" aria-label="資材をさがす" autocomplete="off">
+      <button class="btn accent" type="submit">さがす</button>
+    </form>
+    <div class="purposes home reveal in" id="home-purposes"></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:32px">
+  <div class="container">
+    <div class="sec-title reveal"><h2>桐生でよく出ているもの</h2><a class="textlink" href="catalog.html">資材をすべて見る →</a></div>
+    <div class="rail reveal" id="home-hot"></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:8px">
+  <div class="container">
+    <div class="section-title reveal"><span class="eyebrow">SHELVES</span><h2>6つの棚</h2><p>骨組み、張る、風を通す、あたためる・冷やす、水をやる、まもる。棚を開くと、写真と金額が並びます。</p></div>
+    <div class="shelf-rail reveal" id="shelf-rail"></div>
+  </div>
+</section>
+
 <section class="hero" id="hero">
   <div class="land" id="hero-land"></div>
   <div class="v3d" id="hero3d"></div>
-  <img class="fallback" src="assets/hero-dawn.jpg" alt="朝焼けの中のパイプハウス(3D)" width="1600" height="900" loading="eager">
+  <img class="fallback" src="assets/hero-dawn.jpg" alt="朝焼けの中のパイプハウス(3D)" width="1600" height="900" loading="lazy">
   <div class="scrim"></div>
   <div class="copy reveal in">
-    <div class="kicker">MITAKA SANGYO ・ 群馬・桐生から</div>
-    <h1>朝いちばんの光が、<br>いちばん高く売れる。</h1>
-    <p class="sub">間口と奥行を選ぶだけ。三高産業のハウスを、いまここで組み立てられます。資材も、見積りも、施工も、あなたのカルテから。</p>
-    <div class="actions"><a class="btn accent lg" href="simulator.html">3Dで見積る</a><a class="textlink" href="catalog.html">資材をさがす</a></div>
+    <div class="kicker">3D ESTIMATE ・ 一棟まるごとお考えの方へ</div>
+    <h2>間口と奥行を選ぶだけ。<br>ハウス一棟を、いまここで。</h2>
+    <p class="sub">被覆材・換気・カーテンを選ぶと、3Dのハウスと概算金額がその場で出ます。そのまま見積依頼まで。</p>
+    <div class="actions"><a class="btn accent lg" href="simulator.html">3Dで見積る</a><a class="textlink" href="quote.html">担当に相談する</a></div>
   </div>
   <div class="timebar" id="timebar">
     <span class="t" id="time-label">朝 6:00</span>
@@ -69,15 +96,8 @@
     <div class="doors reveal">
       <a class="door" href="karte.html"><span class="ic" data-icon="bell"></span><div><h3>マイハウスカルテ</h3><p>あなたのハウスの寸法・張った年・工事の記録。張り替え時期のお知らせも。</p></div><span class="go">開く →</span></a>
       <a class="door" href="simulator.html"><span class="ic" data-icon="cube"></span><div><h3>3Dで見積る</h3><p>間口・奥行・被覆材を選ぶと、3Dと概算金額がその場で出ます。</p></div><span class="go">組む →</span></a>
-      <a class="door" href="catalog.html"><span class="ic" data-icon="basket"></span><div><h3>資材をさがす</h3><p>困りごとの言葉から。写真がなくても、形と数字で選べます。</p></div><span class="go">さがす →</span></a>
+      <a class="door" href="catalog.html"><span class="ic" data-icon="basket"></span><div><h3>資材をさがす</h3><p>困りごとの言葉から。写真と数字で選べます。</p></div><span class="go">さがす →</span></a>
     </div>
-  </div>
-</section>
-
-<section class="section" style="padding-top:0">
-  <div class="container">
-    <div class="section-title reveal"><span class="eyebrow">SHELVES</span><h2>6つの棚</h2><p>骨組み、張る、風を通す、あたためる・冷やす、水をやる、まもる。棚を開くと、寸法図と金額が並びます。</p></div>
-    <div class="shelf-rail reveal" id="shelf-rail"></div>
   </div>
 </section>
 
@@ -128,7 +148,7 @@
     <div class="faq reveal">
       <details><summary>表示される金額は正確ですか？</summary><p>形状から自動計算した概算で、単価はめやすです。正式なお見積りは、現地の地盤・積雪・風速条件を確認したうえでご提出します。</p></details>
       <details><summary>施工エリアはどこまでですか？</summary><p>群馬県内と隣接県を中心に対応しています。その他の地域は、運搬費・施工費を別途ご相談ください。</p></details>
-      <details><summary>資材だけ購入できますか？</summary><p>できます。3Dシミュレーターで「資材のみ」を選ぶか、資材をさがすページからかごに入れてご依頼ください。</p></details>
+      <details><summary>資材だけ購入できますか？</summary><p>できます。資材をさがすページからかごに入れてご依頼いただくか、3Dシミュレーターで「資材のみ」を選んでください。</p></details>
       <details><summary>ハウスカルテは有料ですか？</summary><p>無料です。担当者が訪問時に登録し、QRコードをお渡しします。登録内容はいつでも変更・削除できます。</p></details>
     </div>
     <div class="phone-cta reveal"><div><h3 style="margin:0 0 4px">わからないことは、そのまま聞いてください</h3><p class="muted" style="margin:0">品名がわからなくても大丈夫。壊れたところの写真を送っていただければ、担当が部品を特定してお見積りします。</p></div><a class="btn lg accent" id="tel-cta" href="quote.html"><span class="ic" data-icon="phone"></span>担当に聞く</a></div>
