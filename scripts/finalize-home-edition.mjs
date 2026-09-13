@@ -20,4 +20,11 @@ if(previous.last_window_end){
 
 fs.writeFileSync("data.json",JSON.stringify(applyHomeEdition(data,edition),null,2)+"\n");
 fs.writeFileSync("home-edition.json",JSON.stringify(edition,null,2)+"\n");
-console.log(`Home edition ready: ${edition.selected_count} selected from ${edition.candidate_count} candidates.`);
+const outcome=edition.new_selected_count>0
+  ?`新着 ${edition.new_selected_count}件を掲載・継続 ${edition.continued_selected_count}件`
+  :`新着掲載0件・前回の重要記事 ${edition.continued_selected_count}件を継続表示（新規更新ではありません）`;
+console.log(`Home edition: ${outcome}`);
+if(edition.new_selected_count===0)console.log(`::warning::${outcome}`);
+if(process.env.GITHUB_STEP_SUMMARY){
+  fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,`\n### 記事の掲載結果\n\n${outcome}\n\n取得確認: ${edition.last_checked_at}\n`);
+}

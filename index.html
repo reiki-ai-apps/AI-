@@ -3915,6 +3915,7 @@ function renderHome(v){
   const homeSecondaryHtml=`<section class="home-secondary" aria-label="記事以外の案内">
     <div class="quick-stats">
       <span class="signal-count">注目ニュース ${list.length}件・新着 ${newCount}件${continuedCount?`・継続 ${continuedCount}件`:''}・更新確認 ${latest}</span>
+      ${newCount===0?'<p class="muted">今回は新しい記事の掲載はありません。前回の重要記事を継続表示しています。</p>':''}
       <button class="mini-chip" onclick="openUpdatesFiltered({type:'article'})">公開記事 ${articleUpdates.length}</button>
       ${expertVideos.length?`<button class="mini-chip" onclick="openUpdatesFiltered({type:'expert_video'})">専門家動画 ${allUpdates.filter(isExpertVideo).length}</button>`:''}
       ${tryLater?`<button class="mini-chip" onclick="go('try-list')">後で見る ${tryLater}</button>`:''}

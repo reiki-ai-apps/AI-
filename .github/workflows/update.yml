@@ -113,6 +113,7 @@ jobs:
         run: |
           node - <<'NODE'
           const fs = require("fs");
+          const {publicationTextIssues}=require("./scripts/publication-quality.cjs");
           const items = JSON.parse(fs.readFileSync("data.json", "utf8"));
           const required = [
             "title", "raw_excerpt", "detail", "change_summary",
@@ -130,8 +131,6 @@ jobs:
             "Runway が新しい動画生成モデル（video）をベータ公開",
             "Cursor のエディタUIと補完が小幅アップデート"
           ]);
-          const normalize = value => String(value || "").normalize("NFKC")
-            .toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "");
           const fatal = [];
           const invalidIndexes = new Set();
           const itemError = (index, message) => { invalidIndexes.add(index); return `${index + 1}件目: ${message}`; };
@@ -194,39 +193,8 @@ jobs:
             if (demoTitles.has(item.title)) {
               errors.push(itemError(index, "デモ記事が混入しています"));
             }
-            const normalizedTitle = normalize(item.title);
-            const normalizedSummary = normalize(item.raw_excerpt);
-            if (normalizedTitle && normalizedSummary &&
-                (normalizedTitle === normalizedSummary ||
-                 (normalizedSummary.includes(normalizedTitle) && normalizedSummary.length < normalizedTitle.length + 35))) {
-              errors.push(itemError(index, "要約がタイトルの繰り返しです"));
-            }
-            const explanation = [
-              item.raw_excerpt, item.detail, item.change_summary,
-              item.impact_summary, item.action_suggestion
-            ].join("");
-            if (!/[ぁ-んァ-ヶ一-龠々]/.test(explanation)) {
-              errors.push(itemError(index, "日本語の解説がありません"));
-            }
-            const detail = String(item.detail || "").trim();
-            const compactLength = detail.replace(/\s+/g, "").length;
-            const paragraphs = detail.split(/\n+/).map(value => value.trim()).filter(Boolean);
-            const sentences = (detail.match(/[。！？!?]/g) || []).length;
-            const longestSentence = detail.split(/(?<=[。！？!?])/).reduce((max, value) => Math.max(max, value.replace(/\s+/g, "").length), 0);
-            if (compactLength < 280 || compactLength > 440 || paragraphs.length !== 3 || sentences < 8 || sentences > 11 || longestSentence > 85) {
-              errors.push(itemError(index, "高校生向け解説の長さ・段落・文数が基準未達です"));
-            }
-            for (const [term, meaning] of [["GPU", "半導体"], ["AIエージェント", "作業も順番"], ["マルチモーダル", "文章だけでなく"], ["API", "窓口"]]) {
-              if (detail.includes(term) && !detail.includes(meaning)) {
-                errors.push(itemError(index, `専門語「${term}」に説明がありません`));
-              }
-            }
-            if (/\bM&A\b|セキュリティリスク|業務プロセス|相互運用性|知識労働|AI依存傾向|注意喚起|競争構図|導入先選定/.test(detail)) {
-              errors.push(itemError(index, "やさしい解説に言い換えていない業界語があります"));
-            }
-            const unnatural = `${item.detail || ""}\n${item.action_suggestion || ""}`;
-            if (/^(?:まず[、,]\s*)?このニュースを(?:ひと|一)言で(?:いう|言う)と|^かんたんに言うと|すぐに全部のやり方を変える必要はありません|小さな作業から試すと安心です/.test(unnatural.trim())) {
-              errors.push(itemError(index, "定型的で不自然な書き出し・結びがあります"));
+            for (const message of publicationTextIssues(item)) {
+              errors.push(itemError(index, message));
             }
           });
           // 不備のある記事は個別に除外して残りを公開する。1件の不備で全体を止めない。

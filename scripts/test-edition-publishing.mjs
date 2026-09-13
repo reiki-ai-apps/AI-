@@ -110,6 +110,14 @@ const priorGeminiEdition=buildHomeEdition([priorGemini],{}, {windowStart:start,w
 const crossEdition=buildHomeEdition([priorGemini,nextGemini],priorGeminiEdition,{windowStart:nextStart,windowEnd:nextEnd,checkedAt:nextEnd});
 assert.equal(crossEdition.cross_edition_duplicate_count,1,"前72時間に掲載した同じ発表を別媒体の記事でも検知する");
 assert.equal(crossEdition.carried_forward,true,"新しい事実のない同一ニュースでトップを差し替えない");
+const noNew=buildHomeEdition(candidates,firstEdition,{windowStart:nextStart,windowEnd:nextEnd,checkedAt:nextEnd});
+assert.equal(noNew.new_selected_count,0);
+assert.equal(noNew.selected_count,5,"新着0件でも検証済みの重要記事5件を維持する");
+assert.equal(noNew.update_health,"DEGRADED","記事数が5件でも新着0件を正常更新として扱わない");
+assert.equal(noNew.edition_status,"NO_NEW_STORIES");
+assert.ok(noNew.update_health_reasons.some(reason=>reason.includes("新着掲載は0件")));
+const postValidation=buildHomeEdition(candidates,{...noNew,consecutive_zero_candidate_editions:0},{windowStart:nextStart,windowEnd:nextEnd,checkedAt:nextEnd});
+assert.equal(postValidation.consecutive_zero_candidate_editions,1,"同じ更新回の再検証で新着が消えても候補0件を記録する");
 assert.deepEqual(crossEdition.article_ids,["gemini-rich"],"重複記事をトップ枠へ再掲載しない");
 
 const materiallyNew={...nextGemini,article_id:"gemini-general-release",event_stage:"expanded",relation_type:"follow_up",previous_article_id:"gemini-rich",title:"Google、Gemini 3.8 Flashを一般提供へ拡大"};
@@ -135,6 +143,7 @@ const buildArticlesIndex=workflow.indexOf("node scripts/build-public-articles.mj
 assert.ok(validationIndex>=0&&finalizeIndex>validationIndex&&buildArticlesIndex>finalizeIndex,"記事検証後にトップ選定を作り直してから公開ページを生成する");
 
 const html=fs.readFileSync("index.html","utf8");
+assert.ok(html.includes('newCount===0?')&&html.includes('今回は新しい記事の掲載はありません。前回の重要記事を継続表示しています。'),"新着0件を読者へ明示する");
 assert.match(html,/function homeTopUpdates\(\)/,"ホーム専用の選定を使う");
 assert.match(html,/const list=homeTopUpdates\(\)/,"ホームは選定済みトップ記事だけを描画する");
 assert.match(html,/function homeOriginBadge\(u\)/,"ホーム記事を新着と継続掲載に分けて表示する");

@@ -470,10 +470,11 @@ function buildHomeEdition(items,previous={},options={}){
   const previousZero=Number(previous.consecutive_zero_candidate_editions)||0;
   const unchangedEditions=contentChanged?0:(rebuildingSameWindow?previousUnchanged:previousUnchanged+1);
   const zeroCandidateEditions=selection.ranked.length===0
-    ?(rebuildingSameWindow?previousZero:previousZero+1)
+    ?(rebuildingSameWindow?Math.max(1,previousZero):previousZero+1)
     :0;
   const staleHours=Math.max(0,(validTime(selectedAt)-validTime(homeContentChangedAt))/3600000);
   const healthReasons=[];
+  if(selectedIds.length===0)healthReasons.push("今回の新着掲載は0件です。前回の重要記事を継続表示しています");
   if(staleHours>=24)healthReasons.push("トップ記事の内容が24時間以上変わっていません");
   if(zeroCandidateEditions>=2)healthReasons.push("新着候補0件が2回以上続いています");
   if(articleIds.length<min)healthReasons.push(`ホーム掲載可能な異なる検証済み記事が${min}件未満です`);

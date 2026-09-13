@@ -1,3 +1,4 @@
+const {friendlyExplanationIssues}=require("./publication-quality.cjs");
 const CURRENT_PROMPT_VERSION="ai-radar-2026-08-30-v13-core-depth";
 const SAFE_COMPOSITE_VERSION="ai-radar-2026-08-30-student-core-v21";
 const TARGET_COMPACT_CHARS=330;
@@ -380,14 +381,7 @@ function beginnerImpactSentences(value){
 
 // 関数名は既存テストとの互換性のため維持する。判定内容は高校生向けR5基準。
 function hasDeepFriendlyExplanation(value){
-  const raw=String(value||"").trim();
-  const paragraphs=raw.split(/\n+/).map(value=>value.trim()).filter(Boolean);
-  const sentenceList=sentences(raw);
-  const length=compact(raw).length;
-  const longest=sentenceList.reduce((max,sentence)=>Math.max(max,compact(sentence).length),0);
-  return length>=MIN_COMPACT_CHARS&&length<=MAX_COMPACT_CHARS&&
-    paragraphs.length===3&&
-    sentenceList.length>=MIN_SENTENCES&&sentenceList.length<=MAX_SENTENCES&&longest<=MAX_SENTENCE_CHARS;
+  return friendlyExplanationIssues(value).length===0;
 }
 
 function stageSentence(item){

@@ -8,6 +8,7 @@
 const fs = require("fs");
 const crypto = require("crypto");
 const {upgradeFriendlyExplanationItem}=require("./scripts/friendly-explanation.cjs");
+const {friendlyExplanationIssues,publicationTextIssues}=require("./scripts/publication-quality.cjs");
 const {MAX_HOME_ARTICLES,buildHomeEdition,applyHomeEdition}=require("./scripts/home-edition.cjs");
 const {
   EXPERT_VIDEO_MAX_AGE_DAYS,isExpertVideoItem,jstDayKey,shouldRefreshExpertVideos,isFreshExpertVideo,
@@ -460,7 +461,7 @@ function isCompleteEnrichedItem(item) {
     ?(hasStructuredFlag?item.structured_complete===true:legacyStructuredComplete)
     :true;
   const deepExplanationComplete=item&&item.enrichment_version===PROMPT_VERSION
-    ?hasDeepFriendlyExplanation(item.detail)
+    ?publicationTextIssues(item).length===0
     :true;
   return !!item && structuredComplete && deepExplanationComplete &&
     ["title","raw_excerpt","detail","change_summary","impact_summary","action_suggestion","importance"]
@@ -470,14 +471,8 @@ function isCompleteEnrichedItem(item) {
 }
 
 const EXPERT_REGISTRY=readJsonFile(EXPERT_SOURCES_PATH,{experts:[],trusted_hosts:[],web_discovery:{enabled:false}});
-function hasDeepFriendlyExplanation(value) {
-  const raw=String(value||"").trim();
-  const compact=raw.replace(/\s+/g,"");
-  const paragraphs=raw.split(/\n+/).map(part=>part.trim()).filter(Boolean);
-  const sentenceList=raw.split(/(?<=[。！？!?])/).map(part=>part.trim()).filter(Boolean);
-  const longest=sentenceList.reduce((max,sentence)=>Math.max(max,sentence.replace(/\s+/g,"").length),0);
-  return compact.length>=280&&compact.length<=440&&paragraphs.length===3&&
-    sentenceList.length>=8&&sentenceList.length<=11&&longest<=85;
+function hasDeepFriendlyExplanation(value){
+  return friendlyExplanationIssues(value).length===0;
 }
 function needsDeepFriendlyMigration(item) {
   return Boolean(item)&&(item.enrichment_version!==PROMPT_VERSION||!hasDeepFriendlyExplanation(item.detail));
@@ -827,6 +822,9 @@ async function aiEnrichBatch(items) {
     if(isCompleteEnrichedItem(item)){
       out.push(item);
       acceptedIndexes.add(idx);
+    }else{
+      const issues=publicationTextIssues(item);
+      if(issues.length)console.error(`AI解説の再試行理由 (${idx}): ${issues.join(" / ")}`);
     }
   }
   // モデルが明示的にskipした記事だけを「不採用」として記録し、

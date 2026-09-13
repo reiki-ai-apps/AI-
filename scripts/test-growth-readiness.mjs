@@ -1,4 +1,6 @@
 import fs from "node:fs";
+import {publicationTextIssues} from "./publication-quality.cjs";
+import "./test-publication-quality.mjs";
 import path from "node:path";
 import {fileURLToPath} from "node:url";
 
@@ -35,19 +37,8 @@ for(const text of ['node scripts/build-public-articles.mjs','data.json home-edit
 const ids=data.map(item=>String(item.article_id||item.id||'')).filter(id=>/^[A-Za-z0-9_-]{8,100}$/.test(id));
 const itemsById=new Map(data.map(item=>[String(item.article_id||item.id||''),item]));
 for(const [index,item] of data.entries()){
-  const detail=String(item.detail||"").trim();
-  const compactLength=detail.replace(/\s+/g,"").length;
-  const paragraphs=detail.split(/\n+/).map(value=>value.trim()).filter(Boolean);
-  const sentences=(detail.match(/[。！？!?]/g)||[]).length;
-  const longestSentence=detail.split(/(?<=[。！？!?])/).reduce((max,value)=>Math.max(max,value.replace(/\s+/g,"").length),0);
-  if(compactLength<280||compactLength>440||paragraphs.length!==3||sentences<8||sentences>11||longestSentence>85){
-    failures.push(`${index+1}件目のやさしい解説が高校生向け基準未達です: ${item.article_id||item.title}`);
-  }
-  for(const [term,meaning] of [["GPU","半導体"],["AIエージェント","作業も順番"],["マルチモーダル","文章だけでなく"],["API","窓口"]]){
-    if(detail.includes(term)&&!detail.includes(meaning))failures.push(`${index+1}件目の専門語「${term}」に説明がありません: ${item.article_id||item.title}`);
-  }
-  if(/\bM&A\b|セキュリティリスク|業務プロセス|相互運用性|知識労働|AI依存傾向|注意喚起|競争構図|導入先選定/.test(detail)){
-    failures.push(`${index+1}件目のやさしい解説に言い換えていない業界語があります: ${item.article_id||item.title}`);
+  for(const message of publicationTextIssues(item)){
+    failures.push(`${index+1}件目: ${message}: ${item.article_id||item.title}`);
   }
 }
 for(const id of ids){
