@@ -36,7 +36,7 @@ class LocalStore {
   _write(db) { localStorage.setItem(KEY, JSON.stringify(db)); document.dispatchEvent(new CustomEvent("karte:change")); }
   _put(table, row, prefix) {
     const db = this._read(); row.updatedAt = now();
-    if (!row.id) { row.id = uid(prefix); row.createdAt = row.updatedAt; db[table].push(row); }
+    if (!row.id) { row.id = uid(prefix); row.createdAt = row.createdAt || row.updatedAt; db[table].push(row); }
     else { const i = db[table].findIndex(x => x.id === row.id); i >= 0 ? db[table][i] = row : db[table].push(row); }
     this._write(db); return row;
   }
@@ -220,7 +220,12 @@ export async function seedDemo(force = false) {
         { channel: "phone_in", topic: "修理", body: "3号の妻面が破れたので見てほしい。来週は在宅。", days: -3, next: 2 },
         { channel: "visit", topic: "見積", body: "訪問。3号の張り替えと妻面修理を提案。予算感は50万まで。", days: -2, next: null }
       ],
-      quotes: [{ source: "karte", status: "sent", total: 528000, subtotal: 480000, days: -9, message: "3号の被覆材張り替え" }]
+      quotes: [
+        { source: "karte", status: "sent", total: 528000, subtotal: 480000, days: -9, message: "3号の被覆材張り替え" },
+        { source: "catalog", status: "done", total: 268400, subtotal: 244000, days: -186, message: "1号 農PO 0.15mm 張り替え資材一式", items: [{ id: "GN-FL-PO015", qty: 2 }, { id: "GN-PK-25", qty: 6 }, { id: "TT-FS-SP", qty: 4 }] },
+        { source: "catalog", status: "done", total: 12760, subtotal: 11600, days: -305, message: "パイプクロス・パッカー 追加", items: [{ id: "ST-CR-PC", qty: 3 }, { id: "GN-PK-25", qty: 2 }] },
+        { source: "catalog", status: "done", total: 24200, subtotal: 22000, days: -462, message: "潅水の部材", items: [{ id: "GN-IR-DRIP", qty: 1 }, { id: "GN-IR-FILTER", qty: 1 }] }
+      ]
     },
     { code: "DEMO02", name: "佐々木 花子", farmName: "ささき苺園(デモ)", tel: "0277-00-0002", area: "みどり市", address: "群馬県みどり市笠懸町", crop: "いちご", kind: "corporate", staff: "担当B",
       consent: { agreedAt: "2026-07-03", statsOk: true, shareOk: true, showcaseOk: true, staff: "担当B" },
@@ -229,7 +234,10 @@ export async function seedDemo(force = false) {
         { name: "B棟", params: { span: 6.0, length: 50, eave: 1.8, ridge: 3.4, pitch: 0.5, pipe: 25.4, film: "po_diffuse", doors: 2, sideVent: "both", ventDrive: "motor", roofVent: false, curtain: "motor", insectNet: true, irrigation: "drip", snow: false }, filmYear: 2022, builtYear: 2018, crop: "いちご", condition: "良好", notes: "", history: [] }
       ] }],
       talks: [{ channel: "line", topic: "注文", body: "点滴チューブ2巻を追加。次回配達のときに。", days: -1, next: null }],
-      quotes: [{ source: "catalog", status: "requested", total: 32560, subtotal: 29600, days: 0, message: "点滴チューブ 2巻" }]
+      quotes: [
+        { source: "catalog", status: "requested", total: 32560, subtotal: 29600, days: 0, message: "点滴チューブ 2巻", items: [{ id: "GN-IR-DRIP", qty: 2 }] },
+        { source: "karte", status: "done", total: 462000, subtotal: 420000, days: -1140, message: "A棟 散乱光PO 張り替え・内張カーテン更新" }
+      ]
     },
     { code: "DEMO03", name: "鈴木 一郎", farmName: "鈴木園芸(デモ)", tel: "0277-00-0003", area: "太田市", address: "群馬県太田市", crop: "花き", kind: "individual", staff: "担当A",
       consent: { agreedAt: "2026-08-20", statsOk: false, shareOk: false, showcaseOk: false, staff: "担当A" },
@@ -250,7 +258,7 @@ export async function seedDemo(force = false) {
       for (const h of houses) await store.saveHouse({ ...h, params: normalizeParams(h.params), customerId: c.id, plotId: p.id, area: c.area, photos: [] });
     }
     for (const t of talks || []) await store.saveInteraction({ customerId: c.id, channel: t.channel, topic: t.topic, body: t.body, staff: c.staff, occurredAt: new Date(Date.now() + t.days * 86400000).toISOString(), nextActionOn: t.next ? addDays(t.next) : null });
-    for (const q of quotes || []) await store.saveQuote({ customerId: c.id, source: q.source, status: q.status, total: q.total, subtotal: q.subtotal, message: q.message, name: c.name, tel: c.tel, createdAt: new Date(Date.now() + q.days * 86400000).toISOString() });
+    for (const q of quotes || []) await store.saveQuote({ customerId: c.id, source: q.source, status: q.status, total: q.total, subtotal: q.subtotal, message: q.message, items: q.items || null, name: c.name, tel: c.tel, createdAt: new Date(Date.now() + q.days * 86400000).toISOString() });
   }
   return true;
 }

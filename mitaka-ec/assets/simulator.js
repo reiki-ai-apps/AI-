@@ -2,6 +2,7 @@
 import { initSite, toast, copyText, esc } from "./site.js";
 import { OPTIONS, defaultParams, normalizeParams, estimate, encodeParams, decodeParams, ridgeRange, yen, PRICING_VERSION } from "./pricing.js";
 import { createViewer } from "./house3d.js";
+import { CONFIG } from "./config.js";
 
 initSite();
 document.body.classList.add("has-sticky");
@@ -145,6 +146,27 @@ document.querySelectorAll("[data-view]").forEach(b => b.addEventListener("click"
   b.setAttribute("aria-pressed", "true");
   viewer.setView(b.dataset.view);
 }));
+// サンプルの3Dハウス(.glb)。読み込めたものだけ切り替えボタンを出す
+(async () => {
+  const list = (CONFIG.sampleModels || []).filter(m => m && m.file);
+  if (!list.length || !viewer.ok) return;
+  for (const m of list) await viewer.loadModel(m.file, { label: m.label, width: m.width || 0, show: false });
+  const loaded = viewer.samples;
+  if (!loaded.length) return;
+  const pick = $("#sample-pick");
+  pick.innerHTML = `<button type="button" data-sample="-1" aria-pressed="true">入力した寸法</button>` +
+    loaded.map(s => `<button type="button" data-sample="${s.index}" aria-pressed="false">${esc(s.label)}</button>`).join("");
+  pick.hidden = false;
+  pick.addEventListener("click", e => {
+    const b = e.target.closest("[data-sample]"); if (!b) return;
+    const idx = Number(b.dataset.sample);
+    pick.querySelectorAll("[data-sample]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    viewer.setSample(idx);
+    $("#btn-labels").disabled = idx >= 0;          // サンプルには寸法ラベルが付かない
+    toast(idx >= 0 ? "サンプルのハウスを表示しています。数量と見積りは入力した寸法のままです。" : "入力した寸法のハウスに戻しました");
+  });
+})();
+
 $("#btn-labels").addEventListener("click", e => {
   const on = e.currentTarget.getAttribute("aria-pressed") !== "true";
   e.currentTarget.setAttribute("aria-pressed", String(on)); viewer.setLabels(on);

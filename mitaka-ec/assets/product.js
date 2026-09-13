@@ -1,9 +1,9 @@
-// 商品1点ページ: 寸法図 / 使う場所(3D) / 税込価格 / 数量 / かご / 一緒に使うもの / カルテ帯 / 固定バー
+// 商品1点ページ: 写真 / 使う場所(3D) / 税込価格 / 数量 / かご / 一緒に使うもの / カルテ帯 / 固定バー
 import { CONFIG } from "./config.js";
 import { initSite, addToQuoteList, flyToCart, esc, yen, toast } from "./site.js";
 import { PRODUCTS, MAKERS, SHELVES, shelfOf } from "./catalog-data.js";
 import { ICONS } from "./icons.js";
-import { figure, keySpec, shapeOf } from "./figures.js";
+import { figure, keySpec, shapeOf, photoSrc, watchPhotos, isRealPhoto } from "./figures.js";
 import { partOf, PART_LABEL, sceneFor, companions, fitText, tipFor, catLabel } from "./product-data.js";
 import { estimate, normalizeParams } from "./pricing.js";
 
@@ -27,7 +27,7 @@ const headHtml = `<div><span class="shelf-badge" style="--shelf:${shelf.color}">
 $("#head-sp").innerHTML = headHtml;
 $("#pd-crumb").innerHTML = `<a href="index.html">トップ</a> › <a href="catalog.html">資材をさがす</a> › <a href="catalog.html#shelf=${shelf.id}">${esc(shelf.label)}</a> › ${esc(p.name)}`;
 
-// ---- 寸法図(大) ----
+// ---- 商品写真(大) ----
 function compareText() {
   const s = p.name + " " + p.spec, out = [];
   const dia = s.match(/φ(\d+(?:\.\d+)?)/); if (dia) { const d = Number(dia[1]); out.push(d >= 31 ? `φ${d} は500円玉より約1cm太い` : d >= 25 ? `φ${d} は500円玉(2.65cm)とほぼ同じ太さ` : d >= 22 ? `φ${d} は500円玉より少し細い` : `φ${d} は10円玉(2.35cm)より細い`); }
@@ -36,14 +36,25 @@ function compareText() {
   return out.slice(0, 2).join(" ／ ");
 }
 const key = keySpec(p);
-$("#pane-fig").innerHTML = `<div class="bigfig" role="img" aria-label="${esc(p.name)} ${esc(key)} の寸法図" style="--shelf:${shelf.color}">
+watchPhotos();
+$("#pane-fig").classList.add("has-photo");
+$("#pane-fig").innerHTML = `<div class="bigfig photo" style="--shelf:${shelf.color}">
+  <img class="fig-img" src="${photoSrc(p)}" alt="${esc(p.name)} ${esc(key)} の${isRealPhoto(p) ? "写真" : "イメージ図"}" width="1200" height="900" decoding="async">
+  ${isRealPhoto(p) ? "" : `<span class="fig-note">イメージ図</span>`}
   ${key ? `<div class="guide"><span>${esc(key)}</span></div>` : ""}
   ${pack > 1 && pack <= 100 ? `<div class="dots" aria-hidden="true">${Array.from({ length: pack }, () => "<i></i>").join("")}</div>` : ""}
   <span class="fig-ic">${ICONS[shapeOf(p)] || ICONS.cube}</span>
   <span class="shelf-badge">${esc(shelf.label)}</span>
   ${key ? `<div class="key">${esc(key)}</div>` : ""}
 </div>`;
-{ const ct = compareText(); if (ct) $("#pane-3d").insertAdjacentHTML("afterend", `<div class="fig-caption">${ct.split(" ／ ").map(t => `<span>${esc(t)}</span>`).join("")}</div>`); }
+{
+  const ct = compareText();
+  $("#pane-3d").insertAdjacentHTML("afterend",
+    (ct ? `<div class="fig-caption">${ct.split(" ／ ").map(t => `<span>${esc(t)}</span>`).join("")}</div>` : "") +
+    (isRealPhoto(p)
+      ? ""
+      : `<p class="photo-note">この画像は規格の寸法から起こした<b>イメージ図</b>です。実物の写真ではありません。${p.maker !== "generic" ? "メーカーの商品写真を手配中です。" : ""}実物をご確認のうえご注文ください。<a href="quote.html">担当に聞く</a></p>`));
+}
 
 // ---- 使う場所(3D)。タブを開いたときに初めて読み込む ----
 let viewer = null;
@@ -68,10 +79,10 @@ function readKarte() { try { return JSON.parse(localStorage.getItem("mitaka-kart
 (function karteBand() {
   const k = readKarte(), dia = (p.name + " " + p.spec).match(/φ(\d+(?:\.\d+)?)/);
   const el = $("#karte-band");
-  if (!k || !k.houses?.length) { el.innerHTML = `<a class="karte-link" href="karte.html">お客様コードをお持ちの方はこちら(あなたのハウスに合うか表示します)</a>`; return; }
-  if (!dia) { el.innerHTML = `<div class="karte-band"><b>${esc(k.farmName || k.name)}様のハウスカルテ</b> 見積依頼のときに、ハウスの大きさから数量を計算します。<a href="karte.html?c=${esc(k.code)}">カルテを見る</a></div>`; return; }
+  if (!k || !k.houses?.length) { el.innerHTML = `<a class="karte-link" href="mypage.html">お客様コードをお持ちの方はこちら(あなたのハウスに合うか表示します)</a>`; return; }
+  if (!dia) { el.innerHTML = `<div class="karte-band"><b>${esc(k.farmName || k.name)}様のハウスカルテ</b> 見積依頼のときに、ハウスの大きさから数量を計算します。<a href="mypage.html?c=${esc(k.code)}">カルテを見る</a></div>`; return; }
   const d = Number(dia[1]); const fits = k.houses.filter(h => Number(h.params.pipe) === d), miss = k.houses.filter(h => Number(h.params.pipe) !== d);
-  if (fits.length) el.innerHTML = `<div class="karte-band"><b>${esc(k.farmName || k.name)}様の${esc(fits.map(h => h.name).join("・"))}ハウス(φ${d})に合います</b>${miss.length ? `<span class="muted">${esc(miss.map(h => h.name).join("・"))}は別の径です</span>` : ""}<a href="karte.html?c=${esc(k.code)}">カルテを見る</a></div>`;
+  if (fits.length) el.innerHTML = `<div class="karte-band"><b>${esc(k.farmName || k.name)}様の${esc(fits.map(h => h.name).join("・"))}ハウス(φ${d})に合います</b>${miss.length ? `<span class="muted">${esc(miss.map(h => h.name).join("・"))}は別の径です</span>` : ""}<a href="mypage.html?c=${esc(k.code)}">カルテを見る</a></div>`;
   else el.innerHTML = `<div class="karte-band no"><b>${esc(k.houses[0].name)}ハウスは φ${k.houses[0].params.pipe} です。この品は φ${d} 用です。</b><a href="catalog.html#q=${encodeURIComponent("φ" + k.houses[0].params.pipe)}">φ${k.houses[0].params.pipe} のものを見る</a></div>`;
 })();
 

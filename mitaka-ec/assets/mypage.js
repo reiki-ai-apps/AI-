@@ -1,8 +1,9 @@
-// お客様向け: マイハウスカルテ
+// お客様向け: マイページ(購入履歴 + ハウスカルテ + 次にやること)
 import { CONFIG } from "./config.js";
-import { initSite, toast, copyText, esc } from "./site.js";
+import { initSite, toast, copyText, esc, addToQuoteList } from "./site.js";
 import { OPTIONS, computeGeometry, encodeParams, estimateRecover, yen } from "./pricing.js";
-import { store, seedDemo, houseStatus, logEc } from "./store.js";
+import { store, seedDemo, houseStatus, logEc, QUOTE_STATUS } from "./store.js";
+import { PRODUCTS } from "./catalog-data.js";
 
 initSite();
 const $ = s => document.querySelector(s);
@@ -15,24 +16,24 @@ async function main() {
   let cust = await store.getCustomerByCode(code);
   if (!cust && code.startsWith("DEMO")) { await seedDemo(); cust = await store.getCustomerByCode(code); }
   if (!cust) return showEnter(`お客様コード「${code}」のカルテが見つかりません。コードをご確認ください。`);
-  const [plots, houses] = await Promise.all([store.listPlots(cust.id), store.listHouses(cust.id)]);
-  render(cust, plots, houses);
+  const [plots, houses, quotes] = await Promise.all([store.listPlots(cust.id), store.listHouses(cust.id), store.listQuotes(cust.id)]);
+  render(cust, plots, houses, quotes);
 }
 function showEnter(msg = "") {
   $("#enter").hidden = false; $("#enter-msg").textContent = msg;
-  $("#enter-form").addEventListener("submit", e => { e.preventDefault(); const v = $("#code-input").value.trim(); if (v) location.href = `karte.html?c=${encodeURIComponent(v.toUpperCase())}`; });
+  $("#enter-form").addEventListener("submit", e => { e.preventDefault(); const v = $("#code-input").value.trim(); if (v) location.href = `mypage.html?c=${encodeURIComponent(v.toUpperCase())}`; });
 }
 
-function render(c, plots, houses) {
+function render(c, plots, houses, quotes = []) {
   $("#karte").hidden = false;
   try { localStorage.setItem("mitaka-karte-last", JSON.stringify({ code: c.code, token: c.karteToken, customerId: c.id, name: c.name, farmName: c.farmName, houses: houses.map(h => ({ id: h.id, name: h.name, params: h.params })) })); } catch {}
   logEc("karte_view", { customerId: c.id });
-  document.title = `${c.farmName || c.name} のハウスカルテ｜三高産業 ハウスEC`;
+  document.title = `${c.farmName || c.name} のマイページ｜三高産業 ハウスEC`;
   $("#k-title").textContent = `${c.farmName ? c.farmName + " " : ""}${c.name} 様`;
   $("#k-sub").textContent = `${c.area || ""}${c.address ? " " + c.address : ""} / 主な作物: ${c.crop || "-"} / お客様コード ${c.code}${c.staff ? " / 担当: " + c.staff : ""}`;
   const line = $("#k-line");
   if (CONFIG.lineAddFriendUrl) line.href = CONFIG.lineAddFriendUrl; else { line.href = "#"; line.addEventListener("click", e => { e.preventDefault(); toast("LINE公式アカウントは準備中です。お知らせは担当者から電話・メールでお伝えします"); }); }
-  $("#k-share").addEventListener("click", async () => toast((await copyText(location.href)) ? "カルテのURLをコピーしました" : "コピーできませんでした"));
+  $("#k-share").addEventListener("click", async () => toast((await copyText(location.href)) ? "マイページのURLをコピーしました" : "コピーできませんでした"));
   const cs = c.consent || {};
   const mark = v => v ? "はい" : "いいえ";
   $("#k-consent").innerHTML = `ご登録日: ${esc(cs.agreedAt || "-")}<br>
@@ -51,6 +52,10 @@ function render(c, plots, houses) {
   const season = m >= 8 && m <= 10 ? "台風シーズンです。パッカーの緩み、妻面ドアのガタつき、被覆材の裂けを点検しましょう。" : m >= 11 || m <= 1 ? "降雪期です。積雪時の補強(中柱・タイバー)と、保温カーテンの点検をおすすめします。" : m >= 2 && m <= 4 ? "張り替えの適期です。作付け前の張り替えは早めのご予約をおすすめします。" : "高温期です。換気・遮光・潅水の状態を確認しましょう。";
   todo.push({ level: "ok", t: "季節のお手入れ", s: season, act: `<a class="btn sm ghost" href="catalog.html">資材を見る</a>` });
   $("#todo").innerHTML = todo.map(x => `<div class="todo-item ${x.level}"><span class="dot"></span><div><div class="t">${esc(x.t)}</div><div class="s">${esc(x.s)}</div></div><div class="no-print">${x.act}</div></div>`).join("");
+
+  // 買ったもの・見積りの履歴
+  $("#house-count").textContent = `${houses.length}棟`;
+  renderOrders(quotes, houses);
 
   // 圃場ごと
   const groups = plots.map(p => ({ plot: p, houses: houses.filter(h => h.plotId === p.id) }));
@@ -79,6 +84,59 @@ function render(c, plots, houses) {
     const r = estimateRecover(h.params);
     box.hidden = false;
     box.innerHTML = `<div class="muted small">被覆材 ${esc(r.film.label)} への張り替え概算(施工込み・税込)</div><div class="big">${yen(r.total)}</div><div class="small muted">${r.lines.map(l => `${esc(l.label)} ${yen(l.amount)}`).join(" / ")}<br>${esc(r.notes[0])}</div><a class="btn sm accent mt-1" href="quote.html?house=${esc(h.id)}&mode=recover">この内容で見積依頼</a>`;
+  });
+}
+
+// ---- 買ったもの・見積りの履歴 ----
+const statusLabel = id => (QUOTE_STATUS.find(x => x.id === id) || {}).label || id;
+const statusClass = id => ["done", "approved", "in_progress"].includes(id) ? "ok" : id === "lost" ? "" : "soon";
+function renderOrders(quotes, houses) {
+  const rows = [];
+  for (const q of quotes) {
+    rows.push({
+      date: (q.createdAt || "").slice(0, 10),
+      what: q.message || "お見積り",
+      sum: q.total,
+      badge: statusLabel(q.status), badgeCls: statusClass(q.status),
+      items: Array.isArray(q.items) ? q.items : [],
+      kind: "quote"
+    });
+  }
+  for (const h of houses) for (const x of (h.history || [])) {
+    rows.push({ date: x.date, what: `${h.name}: ${x.type} — ${x.summary}`, sum: x.amount || null, badge: "工事", badgeCls: "ok", items: [], kind: "work" });
+  }
+  rows.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+  const el = $("#orders");
+  if (!rows.length) {
+    el.innerHTML = `<div class="empty-box">まだ履歴がありません。ご注文やお見積りをいただくと、ここに並びます。<br><a href="catalog.html">資材をさがす</a></div>`;
+    return;
+  }
+  el.innerHTML = `<div class="orders">${rows.map((r, i) => {
+    const names = r.items.map(it => (PRODUCTS.find(p => p.id === it.id) || {}).name).filter(Boolean);
+    return `<div class="order">
+      <div>
+        <div class="when">${esc(r.date || "")} <span class="badge ${r.badgeCls}">${esc(r.badge)}</span></div>
+        <div class="what">${esc(r.what)}</div>
+        ${names.length ? `<div class="muted small">${esc(names.join(" / "))}</div>` : ""}
+      </div>
+      <div style="text-align:right">
+        ${r.sum != null ? `<div class="sum">${yen(r.sum)}<small class="muted" style="font-weight:400"> 税込</small></div>` : `<div class="muted small">金額はご相談</div>`}
+        <div class="acts2 no-print" style="justify-content:flex-end;margin-top:6px">
+          ${r.items.length ? `<button class="btn sm accent" type="button" data-reorder="${i}">もう一度かごに入れる</button>` : ""}
+          <a class="btn sm ghost" href="quote.html">同じ内容で相談</a>
+        </div>
+      </div>
+    </div>`;
+  }).join("")}</div>`;
+  el.addEventListener("click", e => {
+    const b = e.target.closest("[data-reorder]"); if (!b) return;
+    const r = rows[Number(b.dataset.reorder)];
+    let n = 0;
+    for (const it of r.items) {
+      const p = PRODUCTS.find(x => x.id === it.id); if (!p) continue;
+      addToQuoteList({ id: p.id, name: p.name, spec: p.spec, price: p.price, unit: p.unit }, it.qty || 1); n++;
+    }
+    toast(n ? `${n}品をかごに入れました。「資材をさがす」のかごから見積依頼できます` : "この履歴には品番の記録がありません");
   });
 }
 

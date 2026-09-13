@@ -3,7 +3,7 @@ import { CONFIG } from "./config.js";
 import { initSite, addToQuoteList, flyToCart, esc, yen, toast } from "./site.js";
 import { CATEGORIES, PRODUCTS, MAKERS, SHELVES, PURPOSES, KANA, shelfOf } from "./catalog-data.js";
 import { ICONS } from "./icons.js";
-import { figure, keySpec } from "./figures.js";
+import { figure, keySpec, watchPhotos } from "./figures.js";
 import { attachVoiceSearch } from "./voice.js";
 
 initSite();
@@ -36,6 +36,7 @@ function card(p) {
 
 // ---- 一覧(棚モード) ----
 function renderBrowse() {
+  watchPhotos();
   $("#purposes").innerHTML = PURPOSES.map(x => x.link
     ? `<a class="purpose build" href="${x.link}"><span class="ic">${ICONS[x.icon]}</span><span>${esc(x.label)}</span></a>`
     : `<button class="purpose" type="button" data-purpose="${x.id}"><span class="ic">${ICONS[x.icon]}</span><span>${esc(x.label)}</span></button>`).join("");
