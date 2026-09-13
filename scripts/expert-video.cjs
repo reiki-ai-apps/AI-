@@ -20,7 +20,7 @@ function jstDayKey(now=Date.now()){
 
 function shouldRefreshExpertVideos(state,now=Date.now(),schedule=""){
   const today=jstDayKey(now);
-  const morningStart=Date.parse(`${today}T07:17:00+09:00`);
+  const morningStart=Date.parse(`${today}T05:17:00+09:00`);
   // 朝に開始し、未掲載なら既存の昼・夜の実行や手動実行で再試行する。
   // ソースの取得成功ではなく、別の動画をホームへ掲載した日を判定する。
   if(now<morningStart)return false;
@@ -218,6 +218,17 @@ function selectExpertVideoArchivePicks(items,limit=12,now=Date.now()){
   return selected;
 }
 
+function selectDailyExpertVideoArchivePicks(items,state={},limit=3,now=Date.now()){
+  const all=selectExpertVideoArchivePicks(items,(items||[]).length,now);
+  const seen=new Set((state.published_history||[]).map(entry=>entry.video_key));
+  if(state.featured_video_key)seen.add(state.featured_video_key);
+  const alreadyToday=state.last_published_day_jst===jstDayKey(now)||!shouldRefreshExpertVideos(state,now);
+  const preferred=alreadyToday
+    ?all.find(item=>expertVideoKey(item)===state.featured_video_key)
+    :all.find(item=>!seen.has(expertVideoKey(item)));
+  return (preferred?[preferred,...all.filter(item=>expertVideoKey(item)!==expertVideoKey(preferred))]:all).slice(0,limit);
+}
+
 function selectExpertVideoReviewCandidates(items,limit=6,maxPerExpert=2,now=Date.now()){
   const candidates=dedupeExpertVideoCandidates((items||[]).filter(isExpertVideoItem))
     .filter(item=>isFreshExpertVideo(item,now))
@@ -264,5 +275,5 @@ module.exports={
   expertMentioned,matchedExpertsForSource,isSubstantiveAiVideo,isWebVideoCandidate,
   dedupeExpertVideoCandidates,selectExpertVideoArchivePicks,selectExpertVideoReviewCandidates,
   buildExpertWebDiscoveryUrl
-  ,expertVideoKey,finalizeExpertVideoEdition,extractVideoChapters
+  ,expertVideoKey,finalizeExpertVideoEdition,extractVideoChapters,selectDailyExpertVideoArchivePicks
 };

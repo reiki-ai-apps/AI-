@@ -128,7 +128,7 @@ assert.deepEqual(guarded.map(item=>item.article_id),["gemini-rich","runway-tool"
 
 const workflow=fs.readFileSync(".github/workflows/update.yml","utf8");
 const crons=[...workflow.matchAll(/cron:\s*["']([^"']+)["']/g)].map(match=>match[1]);
-assert.deepEqual(crons,["17 22 * * *","17 4 * * *","17 10 * * *"],"定期更新は日本時間の朝・昼・夜の3回だけ");
+assert.deepEqual(crons,["17 20 * * *","17 4 * * *","17 10 * * *"],"定期更新は日本時間の朝・昼・夜の3回だけ");
 const validationIndex=workflow.indexOf("- name: validate published articles");
 const finalizeIndex=workflow.indexOf("node scripts/finalize-home-edition.mjs",validationIndex);
 const buildArticlesIndex=workflow.indexOf("node scripts/build-public-articles.mjs",validationIndex);

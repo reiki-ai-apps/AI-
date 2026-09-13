@@ -506,7 +506,7 @@ function buildHomeEdition(items,previous={},options={}){
     version:1,
     selection_version:EDITION_VERSION,
     timezone:"Asia/Tokyo",
-    schedule_jst:["07:17","13:17","19:17"],
+    schedule_jst:["05:17","13:17","19:17"],
     window_start:new Date(windowStart).toISOString(),
     window_end:new Date(windowEnd).toISOString(),
     last_window_end:new Date(windowEnd).toISOString(),

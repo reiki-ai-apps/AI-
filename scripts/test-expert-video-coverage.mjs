@@ -47,12 +47,24 @@ const homeVideoFixtures=[
   {content_type:"expert_video",video_id:"newer",expert_id:"expert-b",order:3},
   {content_type:"expert_video",video_id:"middle",expert_id:"expert-c",order:2}
 ];
+for(const item of homeVideoFixtures){item.source_date_status='published';item.source_published_at=new Date(Date.now()-86400000).toISOString();}
 const homeFixturesBefore=JSON.stringify(homeVideoFixtures);
 assert.deepEqual(selectHomeVideos(homeVideoFixtures).map(item=>item.video_id),["newer"],"複数の動画があっても既存の優先順で1件だけをホームに表示する");
 assert.equal(JSON.stringify(homeVideoFixtures),homeFixturesBefore,"分類ページ用の動画を削除・並べ替えない");
 assert.equal(selectHomeVideos([homeVideoFixtures[1]]).length,1,"動画が1件だけならそのまま表示する");
 assert.equal(selectHomeVideos([]).length,0,"候補がないとき架空の動画を補充しない");
 assert.equal(selectHomeVideos([homeVideoFixtures[0]]).length,0,"通常記事を動画枠へ混ぜない");
+assert.equal(selectHomeVideos([{...homeVideoFixtures[1],source_published_at:new Date(Date.now()-11*86400000).toISOString()}]).length,0,"端末キャッシュに残っても投稿10日を超えた動画はホームへ戻さない");
+assert.equal(selectHomeVideos([{...homeVideoFixtures[1],source_date_status:'unknown'}]).length,0,"投稿日不明の動画はホームに出さない");
+assert.equal(selectHomeVideos([{...homeVideoFixtures[1],home_video_selected_at:new Date().toISOString()},homeVideoFixtures[2]])[0].video_id,'older',"元動画の投稿日順ではなく今朝選ばれた動画を優先する");
+const resetSource=lfHtml.match(/DB\.load\(\)\.updates\.forEach\(update=>\{[\s\S]*?\n    \}\);/)?.[0];
+assert.ok(resetSource,'最新版の指定を同期する処理が存在する');
+const cachedVideos=[{home_video_selected_at:'2026-09-11T01:00:00Z',status:'read',memo:'keep',is_saved:true}];
+Function('DB',`let patched=0;${resetSource}`)({load:()=>({updates:cachedVideos})});
+assert.equal(cachedVideos[0].home_video_selected_at,'','配信から消えた動画にも前回のホーム指定を残さない');
+assert.equal(cachedVideos[0].status,'read');assert.equal(cachedVideos[0].memo,'keep');assert.equal(cachedVideos[0].is_saved,true);
+assert.ok(updateSource.includes("const regularRemaining=(budgetExhausted||expertRetryOnly)?0:"),'動画再試行で記事用の予算枠を消費しない');
+assert.ok(updateSource.includes("if(!expertRetryOnly)writeJsonFile(HOME_EDITION_PATH,homeEdition)"),'動画再試行は記事トップ5の更新区間を動かさない');
 
 assert.equal(registry.version,"ai-radar-experts-2026-09-10-v2","専門家台帳の版を固定する");
 assert.equal(registry.web_discovery.lookback_days,10,"Web動画探索を投稿10日以内に絞る");
@@ -94,20 +106,20 @@ assert.equal(jstDayKey(beforeJstMidnight),"2026-09-09","日次判定は日本時
 assert.equal(jstDayKey(afterJstMidnight),"2026-09-10","日本時間の日付変更で次の動画更新を許可する");
 assert.equal(shouldRefreshExpertVideos({last_successful_refresh_day_jst:"2026-09-10"},afterJstMidnight),false,"同じ日本日の2回目以降は動画探索しない");
 assert.equal(shouldRefreshExpertVideos({last_successful_refresh_day_jst:"2026-09-09"},afterJstMidnight),false,"深夜の手動実行で当日の朝更新を消費しない");
-const morning=Date.parse("2026-09-09T22:17:00Z");
-const morningState={last_published_day_jst:"2026-09-10",last_successful_refresh_day_jst:"2026-09-10",last_successful_refresh_at:"2026-09-09T22:17:00Z"};
-assert.equal(shouldRefreshExpertVideos({},morning-1),false,"朝7:17より前には更新しない");
-assert.equal(shouldRefreshExpertVideos({},morning),true,"朝7:17から手動再実行も可能");
-assert.equal(shouldRefreshExpertVideos({},morning,"17 22 * * *"),true,"朝の定期実行で動画を更新する");
-assert.equal(shouldRefreshExpertVideos(morningState,morning+60000,"17 22 * * *"),false,"同じ朝の成功後は再更新しない");
-assert.equal(shouldRefreshExpertVideos({last_successful_refresh_day_jst:"2026-09-10",last_successful_refresh_at:"2026-09-09T16:04:36Z"},morning,"17 22 * * *"),true,"旧方式の深夜更新があっても朝に更新する");
+const morning=Date.parse("2026-09-09T20:17:00Z");
+const morningState={last_published_day_jst:"2026-09-10",last_successful_refresh_day_jst:"2026-09-10",last_successful_refresh_at:"2026-09-09T20:17:00Z"};
+assert.equal(shouldRefreshExpertVideos({},morning-1),false,"朝5:17より前には更新しない");
+assert.equal(shouldRefreshExpertVideos({},morning),true,"朝5:17から手動再実行も可能");
+assert.equal(shouldRefreshExpertVideos({},morning,"17 20 * * *"),true,"朝の定期実行で動画を更新する");
+assert.equal(shouldRefreshExpertVideos(morningState,morning+60000,"17 20 * * *"),false,"同じ朝の成功後は再更新しない");
+assert.equal(shouldRefreshExpertVideos({last_successful_refresh_day_jst:"2026-09-10",last_successful_refresh_at:"2026-09-09T16:04:36Z"},morning,"17 20 * * *"),true,"旧方式の深夜更新があっても朝に更新する");
 const afternoon=Date.parse("2026-09-10T04:17:00Z");
 assert.equal(shouldRefreshExpertVideos({},afternoon,"17 4 * * *"),true,"未更新なら昼に再試行する");
 assert.equal(shouldRefreshExpertVideos({},afternoon,"17 10 * * *"),true,"未更新なら夜にも再試行する");
 assert.equal(shouldRefreshExpertVideos({},afternoon),true,"当日の手動救済を午後も許可する");
 assert.equal(shouldRefreshExpertVideos(morningState,afternoon,"17 4 * * *"),false,"掲載済みの日は昼に差し替えない");
-assert.equal(shouldRefreshExpertVideos({},afternoon,"17 22 * * *"),true,"朝の定期実行が遅延しても更新できる");
-assert.equal(shouldRefreshExpertVideos(morningState,morning+86400000,"17 22 * * *"),true,"翌朝は再び更新する");
+assert.equal(shouldRefreshExpertVideos({},afternoon,"17 20 * * *"),true,"朝の定期実行が遅延しても更新できる");
+assert.equal(shouldRefreshExpertVideos(morningState,morning+86400000,"17 20 * * *"),true,"翌朝は再び更新する");
 assert.equal(isSubstantiveAiVideo("【VLOG】AIロボタクシーに体験乗車してみた"),false,"VLOGを重要発言として扱わない");
 assert.equal(isSubstantiveAiVideo("AIコーディングが仕事をどう変えるか、実装例を対談で解説"),true,"具体的な解説・対談を候補にする");
 const cybercabTitle='テスラの無人タクシー「サイバーキャブ」の何がすごいのか解説します';
@@ -149,7 +161,7 @@ assert.ok(buildExpertWebDiscoveryUrl(nakajima).includes("news.google.com/rss/sea
 
 assert.match(updateSource,/shouldRefreshExpertVideos\(expertVideoState,editionNow,process.env.AI_UPDATE_SCHEDULE/,"動画の探索を朝の定期実行に結び付ける");
 assert.ok(workflow.includes('AI_UPDATE_SCHEDULE: ${{ github.event.schedule }}'),"朝・昼・夜の起動元を判定へ渡す");
-assert.match(updateSource,/finalizeExpertVideoEdition\(applyHomeEdition/,"動画の実際の掲載結果で成功を判定する");
+assert.ok(updateSource.includes("finalizeExpertVideoEdition(expertRetryOnly?publicationReadyFinal:applyHomeEdition"),"動画の実際の掲載結果で成功を判定する");
 assert.match(updateSource,/isFreshExpertVideo\(item,editionNow,EXPERT_VIDEO_MAX_AGE_DAYS\)/,"キャッシュを含む全公開経路で10日超の動画を除外する");
 assert.match(updateSource,/AI_DAILY_EXPERT_LIMIT\s*=\s*14/,"記事枠が埋まっても専門家動画の専用審査枠を確保する");
 assert.match(updateSource,/enrichNewItems\(expertReviewCandidates,cache,ledger,"expert",2\)/,"専門家動画を記事とは別の小分けバッチで審査する");
@@ -179,4 +191,5 @@ for(const item of data.filter(isExpertVideoItem)){
   assert.equal(Number(item.home_top_rank)||0,0,"専門家動画を記事トップ5へ混ぜない");
 }
 
+await import('./test-morning-video-retry.mjs');
 console.log("Expert video coverage tests passed.");

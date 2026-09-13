@@ -3838,7 +3838,10 @@ function homeTopUpdates(){
 }
 function homeExpertVideos(items){
   const selected=[];const seenVideos=new Set();const seenExperts=new Set();
-  for(const item of [...(items||[])].filter(isExpertVideo).sort((a,b)=>(Date.parse(b.home_video_selected_at)||0)-(Date.parse(a.home_video_selected_at)||0)||byFeedOrder(a,b))){
+  const now=Date.now();
+  const fresh=(items||[]).filter(item=>isExpertVideo(item)&&item.source_date_status==='published'&&
+    Date.parse(item.source_published_at)<=now&&Date.parse(item.source_published_at)>=now-10*86400000);
+  for(const item of [...fresh].sort((a,b)=>(Date.parse(b.home_video_selected_at)||0)-(Date.parse(a.home_video_selected_at)||0)||byFeedOrder(a,b))){
     const videoKey=String(item.video_id||item.source_url||item.article_id||item.id||'');
     if(!videoKey||seenVideos.has(videoKey)||seenExperts.has(item.expert_id))continue;
     selected.push(item);seenVideos.add(videoKey);seenExperts.add(item.expert_id);
@@ -3920,7 +3923,7 @@ function renderHome(v){
     ${mobileMediaHtml}
   </section>`;
   const expertVideoHtml=expertVideos.length?`<section class="expert-video-section" aria-labelledby="expertVideoTitle">
-    <div class="expert-video-head"><div><span class="expert-video-kicker">EXPERT SIGNALS</span><h2 id="expertVideoTitle">専門家の重要発言</h2></div><p>ホームには動画記事を1件表示。毎朝7:17（日本時間）から、公開10日以内の別の動画を選びます。未更新時は昼・夜にも再試行します。${expertVideos[0]?.home_video_selected_at?`動画記事の更新：${esc(fmtDate(expertVideos[0].home_video_selected_at))}`:'動画記事の更新を確認中'}</p></div>
+    <div class="expert-video-head"><div><span class="expert-video-kicker">EXPERT SIGNALS</span><h2 id="expertVideoTitle">専門家の重要発言</h2></div><p>ホームには動画記事を1件表示。毎朝5:17（日本時間）から、公開10日以内の未掲載動画への入替を準備します。朝に最大3回再試行し、未完了なら昼・夜も確認します。公開は処理完了後です。${expertVideos[0]?.home_video_selected_at?`動画記事の更新：${esc(fmtDate(expertVideos[0].home_video_selected_at))}`:'動画記事の更新を確認中'}</p></div>
     <div class="expert-video-grid">${expertVideos.map(expertVideoCard).join('')}</div>
   </section>`:'';
   let html = `<section class="radar-overview ${cover?'has-daily-cover':''}" aria-label="${cover?'本日のトップニュース':'AIシグナル概要'}">
@@ -4960,6 +4963,9 @@ async function performDataSync(renderChanges,allowPrune){
     // 前回版のトップ指定を先に外し、今回のdata.jsonに含まれる最大5件だけを付け直す。
     // 端末に長く残った記事が古いトップとして復活することを防ぐ。
     DB.load().updates.forEach(update=>{
+      // The server is authoritative for the daily video too, including when
+      // yesterday's item was removed from today's public dataset.
+      if(update.home_video_selected_at){update.home_video_selected_at='';patched++;}
       if(Number(update.home_top_rank)>0||update.home_selected_at){
         update.home_top_rank=0;update.home_top_score=0;update.home_score_breakdown=null;
         update.home_selection_reasons=[];update.home_selected_at='';update.home_window_start='';update.home_window_end='';
