@@ -17,7 +17,28 @@ sampleModels: [
 `sampleModels` が空のときは読みに行かず、これまでどおり入力した寸法から組み立てたハウスを表示します。
 **見積りの数量計算は、サンプルを表示していても入力した寸法で行います。**
 
-## Blender からの書き出し方
+## .blend のまま渡す場合(おすすめ)
+
+書き出し作業は不要です。`.blend` をそのまま渡してもらえれば、こちらで変換します。
+
+```bash
+# Blender 本体は不要。PyPI の bpy を使う
+python3 -m pip install --target /tmp/bpylib "bpy==4.5.13"
+
+# 中身(コレクション・オブジェクト・寸法・面数)を確認
+PYTHONPATH=/tmp/bpylib python3 scripts/blend-to-glb.py houses.blend --list
+
+# 1棟だけのファイルなら、そのまま書き出し
+PYTHONPATH=/tmp/bpylib python3 scripts/blend-to-glb.py house.blend -o assets/models/house-a.glb
+
+# 1つの .blend に何棟も入っているときは、コレクション名を指定
+PYTHONPATH=/tmp/bpylib python3 scripts/blend-to-glb.py houses.blend -c 単棟 -o assets/models/house-a.glb
+PYTHONPATH=/tmp/bpylib python3 scripts/blend-to-glb.py houses.blend -c 連棟 -o assets/models/house-b.glb
+```
+
+モディファイアーの適用と Y-up への変換は、このスクリプトが行います。
+
+## 自分で書き出す場合: Blender からの書き出し方
 
 1. `ファイル > エクスポート > glTF 2.0 (.glb/.gltf)`
 2. 形式: **glTF Binary (.glb)** … テクスチャも1ファイルにまとまります
