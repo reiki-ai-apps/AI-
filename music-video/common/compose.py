@@ -289,12 +289,17 @@ class Composer:
         if blur > 0:
             im = im.filter(ImageFilter.GaussianBlur(blur))
         if "reveal" in layer:
-            # 上から下へ描き進める(線など)。reveal: {"from_t", "to_t"}
+            # 描き進める。reveal: {"from_t", "to_t", "dir"}
+            #   dir 省略/"td" = 上から下(垂直の線など)
+            #   dir "lr" = 左から右(横一文字に線を引く)
             rv = layer["reveal"]
             p = (T - rv["from_t"]) / max(0.1, rv["to_t"] - rv["from_t"])
             p = max(0.0, min(1.0, p))
             m = Image.new("L", im.size, 0)
-            ImageDraw.Draw(m).rectangle([0, 0, im.width, int(im.height * ease(p))], fill=255)
+            if rv.get("dir") == "lr":
+                ImageDraw.Draw(m).rectangle([0, 0, int(im.width * ease(p)), im.height], fill=255)
+            else:
+                ImageDraw.Draw(m).rectangle([0, 0, im.width, int(im.height * ease(p))], fill=255)
             m = m.filter(ImageFilter.GaussianBlur(6))
             im = im.copy()
             im.putalpha(Image.fromarray(np.minimum(np.array(im.getchannel("A")), np.array(m))))

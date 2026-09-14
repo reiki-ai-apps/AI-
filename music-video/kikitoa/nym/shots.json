@@ -1,0 +1,207 @@
+{
+  "_comment": "屋上のプレート1枚だけで作る。引きは元のプレートをそのまま、寄りだけ背景と人物を分けて視差をつける。時間帯はグレード、線は手続き描画。生成は使っていない。",
+  "cut": {
+    "start": 187.43,
+    "end": 238.28,
+    "lead": 0.0
+  },
+  "lyrics": "../../not-your-medicine/lyrics_timing.json",
+  "lyric_lead": 0.25,
+  "lyric_style": "kinetic",
+  "accent": [
+    255,
+    176,
+    84
+  ],
+  "grade": "night",
+  "shots": [
+    {
+      "name": "01 rooftop_night",
+      "start": 187.43,
+      "end": 195.0,
+      "grade": "night",
+      "camera": {
+        "from": {
+          "zoom": 1.0
+        },
+        "to": {
+          "zoom": 1.045
+        }
+      },
+      "layers": [
+        {
+          "file": "art/bg_rooftop_dawn.png",
+          "fit": "cover",
+          "depth": 0.0
+        }
+      ],
+      "fx": [
+        "dof:5",
+        "bloom",
+        "vignette:96",
+        "grain:0.9"
+      ],
+      "subtitle_y": 470
+    },
+    {
+      "name": "02 draw_the_line",
+      "start": 195.0,
+      "end": 201.3,
+      "grade": "night",
+      "camera": {
+        "from": {
+          "zoom": 1.045
+        },
+        "to": {
+          "zoom": 1.07,
+          "x": 0.008
+        }
+      },
+      "layers": [
+        {
+          "file": "art/bg_rooftop_dawn.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/line_straight.png",
+          "fit": "cover",
+          "depth": 0.35,
+          "reveal": {
+            "from_t": 195.0,
+            "to_t": 198.4,
+            "dir": "lr"
+          }
+        }
+      ],
+      "fx": [
+        "dof:5",
+        "bloom",
+        "vignette:96",
+        "grain:0.9"
+      ],
+      "subtitle_y": 470
+    },
+    {
+      "name": "03 push_in",
+      "start": 201.3,
+      "end": 212.7,
+      "grade": "night",
+      "cut_punch": 0.02,
+      "camera": {
+        "from": {
+          "zoom": 1.02,
+          "y": 0.0
+        },
+        "to": {
+          "zoom": 1.3,
+          "y": -0.035
+        }
+      },
+      "layers": [
+        {
+          "file": "art/bg_rooftop_dawn_clean.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/line_straight.png",
+          "fit": "cover",
+          "depth": 0.35,
+          "opacity": 0.55
+        },
+        {
+          "file": "art/fig_c_back.png",
+          "x": 0.579,
+          "y": 0.716,
+          "w": 0.463,
+          "depth": 0.8
+        }
+      ],
+      "fx": [
+        "dof:8",
+        "bloom",
+        "vignette:100",
+        "grain:0.9"
+      ],
+      "subtitle_y": 470
+    },
+    {
+      "name": "04 dawn_breaks",
+      "start": 212.7,
+      "end": 228.3,
+      "grade": "dawn",
+      "camera": {
+        "from": {
+          "zoom": 1.3,
+          "y": -0.035
+        },
+        "to": {
+          "zoom": 1.1,
+          "y": 0.0
+        }
+      },
+      "layers": [
+        {
+          "file": "art/bg_rooftop_dawn_clean.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/line_straight.png",
+          "fit": "cover",
+          "depth": 0.35,
+          "opacity": 0.85
+        },
+        {
+          "file": "art/fig_c_back.png",
+          "x": 0.579,
+          "y": 0.716,
+          "w": 0.463,
+          "depth": 0.8
+        }
+      ],
+      "fx": [
+        "light_sweep:213.0,222.0,0.75",
+        "dof:5",
+        "bloom",
+        "vignette:88",
+        "grain:0.8"
+      ],
+      "subtitle_y": 470
+    },
+    {
+      "name": "05 the_line_stays",
+      "start": 228.3,
+      "end": 238.28,
+      "grade": "dawn",
+      "camera": {
+        "from": {
+          "zoom": 1.1
+        },
+        "to": {
+          "zoom": 1.0
+        }
+      },
+      "layers": [
+        {
+          "file": "art/bg_rooftop_dawn.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/line_straight.png",
+          "fit": "cover",
+          "depth": 0.35
+        }
+      ],
+      "fx": [
+        "dof:4",
+        "bloom",
+        "vignette:84",
+        "grain:0.8"
+      ],
+      "subtitle_y": 470
+    }
+  ]
+}
