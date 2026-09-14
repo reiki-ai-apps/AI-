@@ -2,6 +2,8 @@
 
 kikitoa（Suno で作った AI 音楽）の TikTok / YouTube Shorts 用ミュージックビデオ。
 
+> **引き継ぎで来た場合は `kikitoa/START_HERE.md` を読むこと。1枚で現状が分かるようにしてある。**
+
 ## 絶対に守ること
 
 - **Suno の自動生成ジャケットは使わない。**
