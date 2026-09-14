@@ -285,6 +285,10 @@ class Composer:
         if op < 1.0:
             im = im.copy()
             im.putalpha(Image.fromarray((np.array(im.getchannel("A")) * op).astype(np.uint8)))
+        if layer.get("sway"):
+            sw = layer["sway"]
+            im = K.sway_warp(im, T, amp=sw.get("amp", 12.0) * scale, freq=sw.get("freq", 0.42),
+                             phase=sw.get("phase", 0.0))
         blur = layer_value(layer, "blur", 0.0, u)
         if blur > 0:
             im = im.filter(ImageFilter.GaussianBlur(blur))
@@ -333,6 +337,19 @@ class Composer:
                 g = K.glow_sprite(int(r), (int(cr), int(cg), int(cb))).copy()
                 g.putalpha(Image.fromarray((np.array(g.getchannel("A")) * al).astype(np.uint8)))
                 img.paste(g, (int(x * W - g.width / 2), int(y * H - g.height / 2)), g)
+            elif name == "wind":
+                # 風に流れる細かい光の粒。横に速く、縦にゆっくり。画面の中に動きを作る
+                d = ImageDraw.Draw(img, "RGBA")
+                n = int(arg or 70)
+                rng = np.random.default_rng(11)
+                base = rng.uniform(0, 1, (n, 3))
+                for i in range(n):
+                    speed = 90 + base[i, 2] * 210
+                    x = (base[i, 0] * W + T * speed) % (W + 160) - 80
+                    y = base[i, 1] * H + 14 * math.sin(T * 0.8 + i * 0.7)
+                    rr = 1.0 + 2.2 * base[i, 2]
+                    a = int(70 + 110 * base[i, 2])
+                    d.ellipse([x - rr, y - rr, x + rr, y + rr], fill=(255, 226, 186, a))
             elif name == "dust":
                 d = ImageDraw.Draw(img, "RGBA")
                 rng = np.random.default_rng(7)

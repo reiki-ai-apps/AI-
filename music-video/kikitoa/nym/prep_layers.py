@@ -67,15 +67,9 @@ for hid in range(1, hn + 1):
         solid |= h
 solid = ndimage.binary_closing(solid, np.ones((9, 9)))
 
-# コートの裾から下、脚とブーツは細いので別の塊として落ちる。真下の暗い所を拾い足す
-ys_s, xs_s = np.where(solid)
-lo, hi = xs_s.min(), xs_s.max()
-mid, half = (lo + hi) / 2, (hi - lo) * 0.28      # 脚は細い。コート幅で取ると床まで拾う
-below = np.zeros_like(solid)
-below[ys_s.max():int(H * 0.99), int(mid - half):int(mid + half)] = True
-# 縦長の核で閉じる。9x9 だと左右の脚の間まで埋まって黒い塊になる
-solid |= ndimage.binary_closing(below & (dark > 0.45), np.ones((11, 3)))
-solid = ndimage.binary_closing(solid, np.ones((31, 3)))              # 裾と脚の間の隙間を塞ぐ
+# 裾から下(脚とブーツ)は切り出さない。細くてマスクが塊になるうえ、
+# 足は地面に着いていて揺れないので、背景に置いたままのほうが正しい。
+solid = ndimage.binary_closing(solid, np.ones((31, 3)))
 
 m = Image.fromarray(np.where(solid, 255, 0).astype(np.uint8))
 m = m.filter(ImageFilter.GaussianBlur(1.6))                # 縁を馴染ませる
@@ -90,7 +84,7 @@ bb = (max(0, xs.min() - pad), max(0, ys.min() - pad),
 
 fig = plate.convert("RGBA").crop(bb)
 fa = np.asarray(m.crop(bb), dtype=np.float32)
-foot = int(fa.shape[0] * 0.03)                    # 最下端のわずかな帯
+foot = int(fa.shape[0] * 0.10)   # 裾を背景の脚に溶かす                    # 最下端のわずかな帯
 fade = np.ones(fa.shape[0], dtype=np.float32)
 fade[-foot:] = np.linspace(1.0, 0.0, foot)
 fig.putalpha(Image.fromarray((fa * fade[:, None]).astype(np.uint8)))
@@ -99,11 +93,15 @@ fig.save(os.path.join(OUT, "fig_c_back.png"))
 # 人物を別レイヤーにするので、背景からは消しておく。消さないと寄ったときに
 # 背景の彼女と手前の彼女がずれて二重になる。空も床も横方向にほぼ一様なので、
 # 左右の無事な画素から行ごとに渡してやれば埋まる。
-# 背景から消す範囲は、切り抜きより広く取る。同じ範囲だと縁に彼女の欠片が残り、
-# 寄ったときに背景側の残骸として見えてしまう。
-solid_a = ndimage.binary_dilation(np.asarray(m) > 110, iterations=16)
+# 背景から消す範囲は、輪郭をなぞらずに矩形で取る。輪郭に沿って消すと、
+# マスクから漏れたブーツの外側などが必ず残り、寄ったときに欠片として見える。
+# 空も床も横方向にほぼ一様なので、多めに消しても埋め戻せる。
+solid_a = np.zeros((H, W), bool)
+solid_a[max(0, bb[1] - 40):min(H, bb[3] + 12), max(0, bb[0] - 40):min(W, bb[2] + 40)] = True
+# 消した所を埋める。彼女がいた列を行ごとの中央値で潰してから、その結果だけを
+# 大きくぼかして戻す。空も床も横方向にほぼ一様なので、ぼかしても帯の形は崩れない。
+# 借りてくる方式(同じ行の離れた場所から貼る)は元画像から本人を拾って失敗した。
 clean = np.asarray(plate, dtype=np.float32).copy()
-xs_all = np.arange(W)
 for y in range(bb[1], bb[3]):
     row = solid_a[y]
     if not row.any():
@@ -114,16 +112,23 @@ for y in range(bb[1], bb[3]):
     for c in range(3):
         clean[y, row, c] = np.median(clean[y, good, c])
 clean_im = Image.fromarray(clean.astype(np.uint8))
-# 塗った所だけをぼかして、周りの帯と馴染ませる
-soft = clean_im.filter(ImageFilter.GaussianBlur(14))
-blend = Image.fromarray((ndimage.binary_dilation(solid_a, iterations=6) * 255).astype(np.uint8))
-clean_im = Image.composite(soft, clean_im, blend.filter(ImageFilter.GaussianBlur(14)))
+
+# 中央値で潰した跡は平坦な矩形に見えるので、その領域を広くぼかして境目を消す。
+# 羽根を太くしないと、ぼかした四角の輪郭がそのまま出る。
+soft = clean_im.filter(ImageFilter.GaussianBlur(28))
+feather = Image.fromarray((ndimage.binary_dilation(solid_a, iterations=10) * 255)
+                          .astype(np.uint8)).filter(ImageFilter.GaussianBlur(34))
+clean_im = Image.composite(soft, clean_im, feather)
 clean_im.save(os.path.join(OUT, "bg_rooftop_dawn_clean.png"))
 
 # 人物が画面のどこにいるか。shots.json の x / y / w はこれを見て決める
 cx = (bb[0] + bb[2]) / 2 / W
 cy = (bb[1] + bb[3]) / 2 / H
 fw = (bb[2] - bb[0]) / W
+# 位置を書き出す。build_shots.py がこれを読むので、座標を2箇所で持たない
+import json as _json
+_json.dump({"x": round(cx, 4), "y": round(cy, 4), "w": round(fw, 4)},
+           open(os.path.join(OUT, "figure.json"), "w"), indent=1)
 print(f"figure bbox={bb} center=({cx:.3f},{cy:.3f}) width={fw:.3f} 被覆率={(a > 110).mean() * 100:.1f}%")
 
 

@@ -4,6 +4,7 @@
 
 ```bash
 python3 prep_layers.py                     # プレートをレイヤーに分解（art/ ができる）
+python3 build_shots.py                     # カット割りから shots.json を作る
 SONG=/path/to/NOT_YOUR_MEDICINE.mp3
 python3 ../../common/compose.py --spec shots.json --song "$SONG" --out nym.mp4
 python3 ../../common/compose.py --spec shots.json --song "$SONG" \
@@ -11,6 +12,9 @@ python3 ../../common/compose.py --spec shots.json --song "$SONG" \
 ```
 
 `art/` は中間ファイルなのでコミットしない。元は `../art/world_rooftop_dawn_C.png` の 1 枚だけ。
+
+**`shots.json` は直接編集しない。** `build_shots.py` の `CUTS`（いつ・どの framing）と
+`FRAMING`（プレートのどこを切り取るか）を直して再生成する。
 
 `prep_layers.py` が作るもの:
 

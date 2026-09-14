@@ -1,5 +1,5 @@
 {
-  "_comment": "屋上のプレート1枚だけで作る。引きは元のプレートをそのまま、寄りだけ背景と人物を分けて視差をつける。時間帯はグレード、線は手続き描画。生成は使っていない。",
+  "_comment": "屋上のプレート1枚から組む。framing でプレートの別の場所を切り取って別カットにし、人物は sway で風に揺らす。カット割りは build_shots.py で生成する(直接編集しない)。",
   "cut": {
     "start": 187.43,
     "end": 238.28,
@@ -16,86 +16,206 @@
   "grade": "night",
   "shots": [
     {
-      "name": "01 rooftop_night",
+      "name": "01 mid",
       "start": 187.43,
-      "end": 195.0,
+      "end": 189.4,
       "grade": "night",
+      "subtitle_y": 470,
+      "cut_punch": 0.018,
       "camera": {
         "from": {
-          "zoom": 1.0
+          "zoom": 1.22,
+          "y": -0.02
         },
         "to": {
-          "zoom": 1.045
+          "zoom": 1.3,
+          "y": -0.028
         }
       },
       "layers": [
         {
-          "file": "art/bg_rooftop_dawn.png",
+          "file": "art/bg_rooftop_dawn_clean.png",
           "fit": "cover",
           "depth": 0.0
+        },
+        {
+          "file": "art/fig_c_back.png",
+          "x": 0.5794,
+          "y": 0.6213,
+          "w": 0.4627,
+          "depth": 0.0,
+          "sway": {
+            "amp": 20.0,
+            "freq": 0.38,
+            "phase": 5.31
+          }
         }
       ],
       "fx": [
-        "dof:5",
+        "wind:70",
+        "dof:6",
         "bloom",
         "vignette:96",
         "grain:0.9"
-      ],
-      "subtitle_y": 470
+      ]
     },
     {
-      "name": "02 draw_the_line",
-      "start": 195.0,
-      "end": 201.3,
+      "name": "02 wide",
+      "start": 189.4,
+      "end": 192.1,
       "grade": "night",
+      "subtitle_y": 470,
+      "cut_punch": 0.018,
       "camera": {
         "from": {
-          "zoom": 1.045
+          "zoom": 1.0,
+          "y": 0.0
         },
         "to": {
-          "zoom": 1.07,
-          "x": 0.008
+          "zoom": 1.05,
+          "y": 0.0
         }
       },
       "layers": [
         {
-          "file": "art/bg_rooftop_dawn.png",
+          "file": "art/bg_rooftop_dawn_clean.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/fig_c_back.png",
+          "x": 0.5794,
+          "y": 0.6213,
+          "w": 0.4627,
+          "depth": 0.0,
+          "sway": {
+            "amp": 20.0,
+            "freq": 0.38,
+            "phase": 1.0
+          }
+        }
+      ],
+      "fx": [
+        "wind:70",
+        "dof:6",
+        "bloom",
+        "vignette:96",
+        "grain:0.9"
+      ]
+    },
+    {
+      "name": "03 low",
+      "start": 192.1,
+      "end": 195.0,
+      "grade": "night",
+      "subtitle_y": 470,
+      "cut_punch": 0.018,
+      "camera": {
+        "from": {
+          "zoom": 1.3,
+          "y": -0.09
+        },
+        "to": {
+          "zoom": 1.22,
+          "y": -0.078
+        }
+      },
+      "layers": [
+        {
+          "file": "art/bg_rooftop_dawn_clean.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/fig_c_back.png",
+          "x": 0.5794,
+          "y": 0.6213,
+          "w": 0.4627,
+          "depth": 0.0,
+          "sway": {
+            "amp": 20.0,
+            "freq": 0.38,
+            "phase": 3.7
+          }
+        }
+      ],
+      "fx": [
+        "wind:70",
+        "dof:6",
+        "bloom",
+        "vignette:96",
+        "grain:0.9"
+      ]
+    },
+    {
+      "name": "04 wide",
+      "start": 195.0,
+      "end": 197.9,
+      "grade": "night",
+      "subtitle_y": 470,
+      "cut_punch": 0.018,
+      "camera": {
+        "from": {
+          "zoom": 1.0,
+          "y": 0.0
+        },
+        "to": {
+          "zoom": 1.05,
+          "y": 0.0
+        }
+      },
+      "layers": [
+        {
+          "file": "art/bg_rooftop_dawn_clean.png",
           "fit": "cover",
           "depth": 0.0
         },
         {
           "file": "art/line_straight.png",
           "fit": "cover",
-          "depth": 0.35,
+          "depth": 0.0,
           "reveal": {
             "from_t": 195.0,
             "to_t": 198.4,
             "dir": "lr"
           }
+        },
+        {
+          "file": "art/fig_c_back.png",
+          "x": 0.5794,
+          "y": 0.6213,
+          "w": 0.4627,
+          "depth": 0.0,
+          "sway": {
+            "amp": 20.0,
+            "freq": 0.38,
+            "phase": 0.32
+          }
         }
       ],
       "fx": [
-        "dof:5",
+        "wind:70",
+        "dof:6",
         "bloom",
         "vignette:96",
         "grain:0.9"
-      ],
-      "subtitle_y": 470
+      ]
     },
     {
-      "name": "03 push_in",
-      "start": 201.3,
-      "end": 212.7,
+      "name": "05 mid",
+      "start": 197.9,
+      "end": 201.3,
       "grade": "night",
-      "cut_punch": 0.02,
+      "subtitle_y": 470,
+      "cut_punch": 0.018,
       "camera": {
         "from": {
-          "zoom": 1.02,
-          "y": 0.0
+          "zoom": 1.22,
+          "y": -0.02
         },
         "to": {
           "zoom": 1.3,
-          "y": -0.035
+          "y": -0.028
         }
       },
       "layers": [
@@ -107,37 +227,183 @@
         {
           "file": "art/line_straight.png",
           "fit": "cover",
-          "depth": 0.35,
-          "opacity": 0.55
+          "depth": 0.0,
+          "reveal": {
+            "from_t": 195.0,
+            "to_t": 198.4,
+            "dir": "lr"
+          }
         },
         {
           "file": "art/fig_c_back.png",
-          "x": 0.579,
-          "y": 0.716,
-          "w": 0.463,
-          "depth": 0.8
+          "x": 0.5794,
+          "y": 0.6213,
+          "w": 0.4627,
+          "depth": 0.0,
+          "sway": {
+            "amp": 20.0,
+            "freq": 0.38,
+            "phase": 3.22
+          }
         }
       ],
       "fx": [
-        "dof:8",
+        "wind:70",
+        "dof:6",
         "bloom",
-        "vignette:100",
+        "vignette:96",
         "grain:0.9"
-      ],
-      "subtitle_y": 470
+      ]
     },
     {
-      "name": "04 dawn_breaks",
-      "start": 212.7,
-      "end": 228.3,
-      "grade": "dawn",
+      "name": "06 sky",
+      "start": 201.3,
+      "end": 205.4,
+      "grade": "night",
+      "subtitle_y": 470,
+      "cut_punch": 0.018,
       "camera": {
         "from": {
-          "zoom": 1.3,
-          "y": -0.035
+          "zoom": 1.14,
+          "y": 0.085
         },
         "to": {
-          "zoom": 1.1,
+          "zoom": 1.06,
+          "y": 0.06
+        }
+      },
+      "layers": [
+        {
+          "file": "art/bg_rooftop_dawn_clean.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/line_straight.png",
+          "fit": "cover",
+          "depth": 0.0
+        }
+      ],
+      "fx": [
+        "wind:70",
+        "dof:6",
+        "bloom",
+        "vignette:96",
+        "grain:0.9"
+      ]
+    },
+    {
+      "name": "07 mid",
+      "start": 205.4,
+      "end": 209.1,
+      "grade": "night",
+      "subtitle_y": 470,
+      "cut_punch": 0.018,
+      "camera": {
+        "from": {
+          "zoom": 1.22,
+          "y": -0.02
+        },
+        "to": {
+          "zoom": 1.3,
+          "y": -0.028
+        }
+      },
+      "layers": [
+        {
+          "file": "art/bg_rooftop_dawn_clean.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/line_straight.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/fig_c_back.png",
+          "x": 0.5794,
+          "y": 0.6213,
+          "w": 0.4627,
+          "depth": 0.0,
+          "sway": {
+            "amp": 20.0,
+            "freq": 0.38,
+            "phase": 4.44
+          }
+        }
+      ],
+      "fx": [
+        "wind:70",
+        "dof:6",
+        "bloom",
+        "vignette:96",
+        "grain:0.9"
+      ]
+    },
+    {
+      "name": "08 tight",
+      "start": 209.1,
+      "end": 212.7,
+      "grade": "night",
+      "subtitle_y": 470,
+      "cut_punch": 0.018,
+      "camera": {
+        "from": {
+          "zoom": 1.52,
+          "y": -0.052
+        },
+        "to": {
+          "zoom": 1.62,
+          "y": -0.058
+        }
+      },
+      "layers": [
+        {
+          "file": "art/bg_rooftop_dawn_clean.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/line_straight.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/fig_c_back.png",
+          "x": 0.5794,
+          "y": 0.6213,
+          "w": 0.4627,
+          "depth": 0.0,
+          "sway": {
+            "amp": 20.0,
+            "freq": 0.38,
+            "phase": 1.86
+          }
+        }
+      ],
+      "fx": [
+        "wind:70",
+        "dof:10",
+        "bloom",
+        "vignette:96",
+        "grain:0.9"
+      ]
+    },
+    {
+      "name": "09 wide",
+      "start": 212.7,
+      "end": 217.1,
+      "grade": "dawn",
+      "subtitle_y": 470,
+      "cut_punch": 0.018,
+      "camera": {
+        "from": {
+          "zoom": 1.0,
+          "y": 0.0
+        },
+        "to": {
+          "zoom": 1.05,
           "y": 0.0
         }
       },
@@ -150,58 +416,276 @@
         {
           "file": "art/line_straight.png",
           "fit": "cover",
-          "depth": 0.35,
-          "opacity": 0.85
+          "depth": 0.0
         },
         {
           "file": "art/fig_c_back.png",
-          "x": 0.579,
-          "y": 0.716,
-          "w": 0.463,
-          "depth": 0.8
+          "x": 0.5794,
+          "y": 0.6213,
+          "w": 0.4627,
+          "depth": 0.0,
+          "sway": {
+            "amp": 20.0,
+            "freq": 0.38,
+            "phase": 5.46
+          }
         }
       ],
       "fx": [
         "light_sweep:213.0,222.0,0.75",
-        "dof:5",
+        "wind:70",
+        "dof:6",
         "bloom",
-        "vignette:88",
+        "vignette:86",
         "grain:0.8"
-      ],
-      "subtitle_y": 470
+      ]
     },
     {
-      "name": "05 the_line_stays",
-      "start": 228.3,
-      "end": 238.28,
+      "name": "10 mid",
+      "start": 217.1,
+      "end": 221.3,
       "grade": "dawn",
+      "subtitle_y": 470,
+      "cut_punch": 0.018,
       "camera": {
         "from": {
-          "zoom": 1.1
+          "zoom": 1.22,
+          "y": -0.02
         },
         "to": {
-          "zoom": 1.0
+          "zoom": 1.3,
+          "y": -0.028
         }
       },
       "layers": [
         {
-          "file": "art/bg_rooftop_dawn.png",
+          "file": "art/bg_rooftop_dawn_clean.png",
           "fit": "cover",
           "depth": 0.0
         },
         {
           "file": "art/line_straight.png",
           "fit": "cover",
-          "depth": 0.35
+          "depth": 0.0
+        },
+        {
+          "file": "art/fig_c_back.png",
+          "x": 0.5794,
+          "y": 0.6213,
+          "w": 0.4627,
+          "depth": 0.0,
+          "sway": {
+            "amp": 20.0,
+            "freq": 0.38,
+            "phase": 3.58
+          }
         }
       ],
       "fx": [
-        "dof:4",
+        "light_sweep:213.0,222.0,0.75",
+        "wind:70",
+        "dof:6",
         "bloom",
-        "vignette:84",
+        "vignette:86",
         "grain:0.8"
+      ]
+    },
+    {
+      "name": "11 low",
+      "start": 221.3,
+      "end": 225.2,
+      "grade": "dawn",
+      "subtitle_y": 470,
+      "cut_punch": 0.018,
+      "camera": {
+        "from": {
+          "zoom": 1.3,
+          "y": -0.09
+        },
+        "to": {
+          "zoom": 1.22,
+          "y": -0.078
+        }
+      },
+      "layers": [
+        {
+          "file": "art/bg_rooftop_dawn_clean.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/line_straight.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/fig_c_back.png",
+          "x": 0.5794,
+          "y": 0.6213,
+          "w": 0.4627,
+          "depth": 0.0,
+          "sway": {
+            "amp": 20.0,
+            "freq": 0.38,
+            "phase": 1.5
+          }
+        }
       ],
-      "subtitle_y": 470
+      "fx": [
+        "light_sweep:213.0,222.0,0.75",
+        "wind:70",
+        "dof:6",
+        "bloom",
+        "vignette:86",
+        "grain:0.8"
+      ]
+    },
+    {
+      "name": "12 wide",
+      "start": 225.2,
+      "end": 230.0,
+      "grade": "dawn",
+      "subtitle_y": 470,
+      "cut_punch": 0.018,
+      "camera": {
+        "from": {
+          "zoom": 1.0,
+          "y": 0.0
+        },
+        "to": {
+          "zoom": 1.05,
+          "y": 0.0
+        }
+      },
+      "layers": [
+        {
+          "file": "art/bg_rooftop_dawn_clean.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/line_straight.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/fig_c_back.png",
+          "x": 0.5794,
+          "y": 0.6213,
+          "w": 0.4627,
+          "depth": 0.0,
+          "sway": {
+            "amp": 20.0,
+            "freq": 0.38,
+            "phase": 5.4
+          }
+        }
+      ],
+      "fx": [
+        "wind:70",
+        "dof:6",
+        "bloom",
+        "vignette:86",
+        "grain:0.8"
+      ]
+    },
+    {
+      "name": "13 mid",
+      "start": 230.0,
+      "end": 235.2,
+      "grade": "dawn",
+      "subtitle_y": 470,
+      "cut_punch": 0.018,
+      "camera": {
+        "from": {
+          "zoom": 1.22,
+          "y": -0.02
+        },
+        "to": {
+          "zoom": 1.3,
+          "y": -0.028
+        }
+      },
+      "layers": [
+        {
+          "file": "art/bg_rooftop_dawn_clean.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/line_straight.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/fig_c_back.png",
+          "x": 0.5794,
+          "y": 0.6213,
+          "w": 0.4627,
+          "depth": 0.0,
+          "sway": {
+            "amp": 20.0,
+            "freq": 0.38,
+            "phase": 3.92
+          }
+        }
+      ],
+      "fx": [
+        "wind:70",
+        "dof:6",
+        "bloom",
+        "vignette:86",
+        "grain:0.8"
+      ]
+    },
+    {
+      "name": "14 wide",
+      "start": 235.2,
+      "end": 238.28,
+      "grade": "dawn",
+      "subtitle_y": 470,
+      "cut_punch": 0.018,
+      "camera": {
+        "from": {
+          "zoom": 1.0,
+          "y": 0.0
+        },
+        "to": {
+          "zoom": 1.05,
+          "y": 0.0
+        }
+      },
+      "layers": [
+        {
+          "file": "art/bg_rooftop_dawn_clean.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/line_straight.png",
+          "fit": "cover",
+          "depth": 0.0
+        },
+        {
+          "file": "art/fig_c_back.png",
+          "x": 0.5794,
+          "y": 0.6213,
+          "w": 0.4627,
+          "depth": 0.0,
+          "sway": {
+            "amp": 20.0,
+            "freq": 0.38,
+            "phase": 2.84
+          }
+        }
+      ],
+      "fx": [
+        "wind:70",
+        "dof:6",
+        "bloom",
+        "vignette:86",
+        "grain:0.8"
+      ]
     }
   ]
 }

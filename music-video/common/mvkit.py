@@ -281,6 +281,32 @@ def grade(img, mode="gray"):
     return img.point(_cache[key])
 
 
+def sway_warp(img, t, amp=12.0, freq=0.42, phase=0.0, bands=28):
+    """風で揺れる。足元は地面に着いているので動かさず、裾と髪ほど大きく流す。
+
+    横方向のずれを y で変える。周波数の違う 2 つの波を足して、機械的な往復に
+    見えないようにしてある。amp は一番揺れる所のずれ(px)。
+    """
+    w, h = img.size
+    if amp <= 0:
+        return img
+    src, dst = [], []
+    step = max(2, h // bands)
+    ys = list(range(0, h + step, step))
+    for i in range(len(ys) - 1):
+        y0, y1 = ys[i], min(ys[i + 1], h)
+        v = (y0 + y1) / 2 / h
+        # 足元(v=1)で 0、裾(v≒0.75)で最大、頭(v=0)で 4 割ほど
+        weight = math.sin(math.pi * min(1.0, v * 1.18)) ** 1.4 * (1.0 - v) ** 0.35
+        d = amp * weight * (math.sin(t * freq * 2 * math.pi + phase)
+                            + 0.45 * math.sin(t * freq * 3.7 * math.pi + phase * 1.7))
+        dst.append((0, y0, w, y1))
+        src.append((-d, y0, -d, y1, w - d, y1, w - d, y0))
+    mesh = [(dst[i], (src[i][0], src[i][1], src[i][2], src[i][3],
+                      src[i][4], src[i][5], src[i][6], src[i][7])) for i in range(len(dst))]
+    return img.transform((w, h), Image.MESH, mesh, Image.BILINEAR)
+
+
 def perspective_camera(flat, fw, fh, fcx, fcy, t, push=0.0, bump=0.0, drift=1.0, dof=6, top_w=1440, bot_w=990,
                        top_dy=900, bot_dy=940):
     """平面キャンバス → 俯瞰カメラ(パース + 手持ちの揺れ + 押し寄せ + 被写界深度)。"""
