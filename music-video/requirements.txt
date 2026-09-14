@@ -1,0 +1,17 @@
+# music-video/ を動かすのに要るもの
+#   pip install -r music-video/requirements.txt
+#
+# これとは別に ffmpeg を PATH に置くこと(pip では入らない)
+#   macOS:   brew install ffmpeg
+#   Ubuntu:  sudo apt install ffmpeg
+#   Windows: winget install Gyan.FFmpeg
+#
+# 日本語フォントも要る。見つからない場合は MVKIT_FONT にパスを入れる
+#   Ubuntu:  sudo apt install fonts-ipafont-gothic
+#   macOS / Windows は標準のもの(ヒラギノ / 游ゴシック)を自動で拾う
+
+numpy>=1.24
+scipy>=1.10          # prep_layers.py の切り抜き(連結成分・穴埋め)
+Pillow>=10.0
+librosa>=0.10        # 拍の検出。--grid-json でキャッシュすれば2回目以降は不要
+soundfile>=0.12      # librosa の読み込み用

@@ -6,6 +6,7 @@ import json
 import math
 import os
 import random
+import shutil
 import subprocess
 
 import numpy as np
@@ -13,7 +14,20 @@ from PIL import Image, ImageChops, ImageDraw, ImageEnhance, ImageFilter, ImageFo
 
 W, H = 1080, 1920
 FPS = 30
-FONT = "/usr/share/fonts/opentype/ipafont-gothic/ipagp.ttf"
+# 日本語が出せるゴシック体。OS ごとに置き場所が違うので、あるものを使う。
+# 環境変数 MVKIT_FONT を立てればそれを最優先で使う。
+FONT_CANDIDATES = [
+    os.environ.get("MVKIT_FONT", ""),
+    "/usr/share/fonts/opentype/ipafont-gothic/ipagp.ttf",      # Linux (IPA)
+    "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",   # Linux (Noto)
+    "/usr/share/fonts/truetype/fonts-japanese-gothic.ttf",      # Debian 系
+    "/System/Library/Fonts/ヒラギノ角ゴシック W4.ttc",              # macOS
+    "/System/Library/Fonts/Hiragino Sans GB.ttc",               # macOS
+    "/Library/Fonts/Arial Unicode.ttf",                         # macOS
+    "C:/Windows/Fonts/YuGothM.ttc",                             # Windows (游ゴシック)
+    "C:/Windows/Fonts/meiryo.ttc",                              # Windows (メイリオ)
+    "C:/Windows/Fonts/msgothic.ttc",                            # Windows (MS ゴシック)
+]
 _cache = {}
 _font_cache = {}
 PINK = (255, 79, 163)
@@ -62,9 +76,25 @@ def find_coeffs(target, source):
     return tuple(np.linalg.solve(A, B))
 
 
+def _font_path():
+    if "path" not in _font_cache:
+        for p in FONT_CANDIDATES:
+            if p and os.path.exists(p):
+                _font_cache["path"] = p
+                break
+        else:
+            raise SystemExit(
+                "日本語フォントが見つかりません。MVKIT_FONT に .ttf/.ttc のパスを入れてください。\n"
+                "  Linux:   sudo apt install fonts-ipafont-gothic\n"
+                "  macOS:   標準で入っています(ヒラギノ)。入っていなければ Noto Sans JP を入れてください\n"
+                "  Windows: 標準で入っています(游ゴシック)\n"
+                "探した場所: " + ", ".join(p for p in FONT_CANDIDATES if p))
+    return _font_cache["path"]
+
+
 def font(size):
     if size not in _font_cache:
-        _font_cache[size] = ImageFont.truetype(FONT, size)
+        _font_cache[size] = ImageFont.truetype(_font_path(), size)
     return _font_cache[size]
 
 
@@ -231,8 +261,19 @@ def paste_center(img, layer, cx, cy, alpha=1.0, scale=1.0):
     img.paste(layer, (int(cx - layer.width / 2), int(cy - layer.height / 2)), layer)
 
 
+def require_ffmpeg():
+    """ffmpeg が PATH に無いときの FileNotFoundError は読めないので、先に止める。"""
+    if shutil.which("ffmpeg") is None:
+        raise SystemExit(
+            "ffmpeg が PATH にありません。入れてから実行してください。\n"
+            "  macOS:   brew install ffmpeg\n"
+            "  Ubuntu:  sudo apt install ffmpeg\n"
+            "  Windows: winget install Gyan.FFmpeg")
+
+
 def render_video(anim, grid, song, out, fps=FPS, lead=0.0):
     """lead 秒だけ音源を早く始め、その間は先頭フレームを静止させる(歌い出しの頭切れ防止)。"""
+    require_ffmpeg()
     seg = out + ".seg.wav"
     subprocess.run(["ffmpeg", "-hide_banner", "-v", "error", "-y", "-i", song, "-ss", f"{grid.t0 - lead:.3f}",
                     "-t", f"{grid.dur + lead:.3f}", "-ar", "48000", "-ac", "2", seg], check=True)
