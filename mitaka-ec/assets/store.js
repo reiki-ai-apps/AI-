@@ -18,7 +18,7 @@ export const QUOTE_STATUS = [
   { id: "requested", label: "依頼あり" }, { id: "drafted", label: "作成中" }, { id: "sent", label: "提出済" },
   { id: "approved", label: "受注" }, { id: "in_progress", label: "施工中" }, { id: "done", label: "完了" }, { id: "lost", label: "失注" }
 ];
-export const TASK_KIND = { film_due: "張り替え時期", quote_followup: "見積の追いかけ", inspection: "点検", callback: "折り返し", disaster_check: "災害後の確認" };
+export const TASK_KIND = { self_reg: "本人が登録(電話して訪問日を決める)", film_due: "張り替え時期", quote_followup: "見積の追いかけ", inspection: "点検", callback: "折り返し", disaster_check: "災害後の確認" };
 
 export function uid(prefix = "") { return prefix + Math.random().toString(36).slice(2, 8) + Date.now().toString(36).slice(-4); }
 export function customerCode() { const s = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; let c = ""; for (let i = 0; i < 6; i++) c += s[Math.floor(Math.random() * s.length)]; return c; }

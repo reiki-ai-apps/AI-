@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>うちのハウス、いつ張り替え？ 30秒診断｜三高産業 ハウスEC</title>
+<meta name="description" content="ビニールの種類と張った年を押すだけ。次の張り替えの目安、必要なフィルムの量、張り替え費用のめやすがその場でわかります。登録不要。">
+<meta name="theme-color" content="#1f6b3a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.chk-wrap { max-width: 860px; }
+.chk-step { margin-top: 28px; }
+.chk-step .no { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--ink-900); color: var(--on-dark); font-weight: 700; margin-right: 10px; font-variant-numeric: tabular-nums; flex: none; }
+.chk-step h2 { display: flex; align-items: center; font-size: 1.3rem; margin: 0 0 12px; }
+.choices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.choices.yrs { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 560px) { .choices { grid-template-columns: 1fr; } .choices.yrs { grid-template-columns: repeat(2, 1fr); } }
+.choice { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-height: 64px; padding: 12px 16px; border: 1.5px solid var(--line-strong); border-radius: 12px; background: #fff; font: inherit; text-align: left; cursor: pointer; transition: border-color var(--t-fast), background var(--t-fast); }
+.choice b { font-size: 1.05rem; } .choice small { color: var(--muted); font-size: 0.85rem; }
+.choice:hover { border-color: var(--ink-700); }
+.choice.on { border-color: var(--sunrise); background: var(--earth-100); box-shadow: inset 0 0 0 1.5px var(--sunrise); }
+.choice.yr { align-items: center; text-align: center; }
+.size { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 420px; }
+.size label { font-size: 0.92rem; font-weight: 700; }
+.size select, .size input { display: block; width: 100%; margin-top: 6px; padding: 12px 14px; min-height: 52px; font: inherit; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.result { margin-top: 28px; border-radius: var(--radius-lg); padding: 24px; border: 1px solid var(--line); background: #fff; border-left: 8px solid var(--green-500); }
+.result.due { border-left-color: var(--danger); } .result.soon { border-left-color: var(--sunrise); } .result.unknown { border-left-color: var(--line-strong); }
+.result h2 { font-family: var(--font-display); font-size: 1.65rem; margin: 0 0 6px; line-height: 1.35; }
+.result .sub { color: var(--text); margin: 0 0 18px; }
+.nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 560px) { .nums { grid-template-columns: 1fr; } }
+.num { background: var(--surface-2); border-radius: 12px; padding: 12px 14px; }
+.num small { display: block; color: var(--muted); font-size: 0.82rem; }
+.num b { display: block; font-size: 1.45rem; font-variant-numeric: tabular-nums; border-bottom: 2px solid var(--soil); width: max-content; max-width: 100%; }
+.result .acts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+.save { margin-top: 20px; }
+.save h2 { font-size: 1.3rem; margin: 0 0 4px; }
+.save .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
+@media (max-width: 560px) { .save .grid2 { grid-template-columns: 1fr; } }
+.save .sum { background: var(--surface-2); border-radius: 8px; padding: 8px 12px; font-size: 0.9rem; margin: 10px 0 16px; }
+.consents { border-top: 1px solid var(--line); margin-top: 12px; padding-top: 6px; }
+.done { margin-top: 20px; border: 2px solid var(--green-500); }
+.done .code { font-size: 2rem; letter-spacing: 0.25em; font-variant-numeric: tabular-nums; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="sekki" id="sekki" aria-label="二十四節気"><b>—</b><span></span><span class="proto">試作版・価格はめやす</span></div>
+<header class="site-header">
+  <div class="container inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 20V11a9 9 0 0 1 18 0v9"/><path d="M3 20h18M12 2.2V20M7 20V6.2M17 20V6.2"/><circle cx="19.5" cy="4.5" r="1.6" fill="currentColor" stroke="none"/></svg></span>
+      <span class="brand-text"><span class="name">三高産業</span><span class="sub">ハウス資材と施工 ・ 群馬・桐生</span></span>
+    </a>
+    <form class="hsearch" id="hsearch" role="search">
+      <input type="search" id="hsearch-q" placeholder="資材をさがす(例: ビニール、パイプ、くるふぁみ)" aria-label="資材をさがす" autocomplete="off" enterkeyhint="search">
+      <button type="submit" aria-label="さがす"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg></button>
+    </form>
+    <button class="text-size" type="button" data-textsize aria-pressed="false" title="文字を大きくする"><span aria-hidden="true">あ</span><span class="lbl">文字大</span></button>
+    <a class="hmy" href="mypage.html"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M4 20c0-3.3 3.6-6 8-6s8 2.7 8 6"/></svg><span class="lbl">マイページ</span></a>
+    <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">☰</button>
+    <nav class="nav" aria-label="メイン" hidden>
+      <a href="catalog.html">資材をさがす</a>
+      <a href="check.html">30秒診断</a>
+      <a href="simulator.html">3Dで見積る</a>
+      <a href="mypage.html">マイページ</a>
+      <a href="library.html">ハウス図鑑</a>
+      <a href="quote.html">見積依頼</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="container page-head">
+  <div class="breadcrumb"><a href="index.html">トップ</a> › 30秒診断</div>
+  <h1>うちのハウス、いつ張り替え？</h1>
+  <p>ビニールの種類と、張った年を押すだけ。次の目安と、必要なフィルムの量、費用のめやすがその場で出ます。登録は要りません。</p>
+</section>
+<section class="container chk-wrap" style="padding-bottom:3rem">
+
+  <div class="chk-step">
+    <h2><span class="no">1</span>いま張ってあるビニールは？</h2>
+    <div class="choices" id="films"></div>
+    <p class="small muted mt-1">わからない時は、近いものを押してください。担当が伺えば袋や伝票から判断できます。</p>
+  </div>
+
+  <div class="chk-step">
+    <h2><span class="no">2</span>張ったのはいつ？</h2>
+    <div class="choices yrs" id="years"></div>
+  </div>
+
+  <div class="chk-step">
+    <h2><span class="no">3</span>ハウスの大きさ(だいたいで)</h2>
+    <div class="size">
+      <label>間口<select id="span"><option value="3.6">3.6m</option><option value="4.5">4.5m</option><option value="5.4">5.4m</option><option value="6">6.0m</option><option value="7.2">7.2m</option></select></label>
+      <label>奥行(m)<input id="length" type="number" inputmode="numeric" min="5" max="100" step="1" value="30"></label>
+    </div>
+    <p class="small muted mt-1">1棟分で計算します。</p>
+  </div>
+
+  <div class="result" id="result" hidden>
+    <h2 id="r-head"></h2>
+    <p class="sub" id="r-sub"></p>
+    <div class="nums">
+      <div class="num"><small>必要なフィルム</small><b id="r-area"></b></div>
+      <div class="num"><small>フィルム代のめやす</small><b id="r-film"></b></div>
+      <div class="num"><small>張り替え一式(施工・処分込)</small><b id="r-total"></b></div>
+    </div>
+    <p class="small muted mt-1" id="r-size"></p>
+    <div class="acts">
+      <a class="btn ghost" id="r-sim" href="simulator.html">3Dで細かく見る</a>
+      <a class="btn ghost" id="r-quote" href="quote.html">担当に聞く</a>
+    </div>
+  </div>
+
+  <div class="card save" id="save" hidden>
+    <h2>この結果を残しておく(無料)</h2>
+    <p class="muted" style="margin:0">残しておくと、張り替えの年が近づいた時にお知らせします。次からは「1号の張り替え」と言うだけで数量が出ます。担当が一度伺って、寸法を正確に測り直します。</p>
+    <div class="sum" id="s-sum"></div>
+    <form id="save-form">
+      <div class="grid2">
+        <label class="field">お名前<span class="req">必須</span><input id="s-name" required autocomplete="name"></label>
+        <label class="field">電話番号<span class="req">必須</span><input id="s-tel" type="tel" inputmode="tel" required autocomplete="tel" placeholder="例: 0277-00-0000"></label>
+        <label class="field">農園名(あれば)<input id="s-farm" autocomplete="organization"></label>
+        <label class="field">作物<input id="s-crop" placeholder="例: トマト、いちご"></label>
+        <label class="field" style="grid-column:1/-1">ハウスの場所(市町村・地区)<input id="s-place" placeholder="例: 桐生市新里町"></label>
+      </div>
+      <div class="consents">
+        <label class="check"><input type="checkbox" id="s-stats" checked><span>名前や場所を伏せた集計(みんなのハウス図鑑)に使ってよい<span class="help muted small">「トマトの人はこの構成が多い」のような形にだけ使います</span></span></label>
+        <label class="check"><input type="checkbox" id="s-share"><span>JAや提携する資材店・メーカーへ、必要な時にハウスの情報を伝えてよい<span class="help muted small">災害時の資材確保や、メーカー保証の手続きに使います</span></span></label>
+        <label class="check"><input type="checkbox" id="s-showcase"><span>事例として写真や構成を紹介してよい(名前は出しません)</span></label>
+        <p class="small muted">それぞれの内容は<a href="privacy.html" style="text-decoration:underline">登録情報の取り扱い</a>にあります。取り消しは担当へ一言で反映します。</p>
+      </div>
+      <button class="btn accent lg block mt-2" type="submit" id="s-submit">残して、来年も知らせてもらう</button>
+    </form>
+  </div>
+
+  <div class="card done" id="done" hidden>
+    <h2 style="margin:0 0 6px">残しました。ありがとうございます。</h2>
+    <p class="muted" style="margin:0 0 12px">担当から一度お電話して、寸法を測りに伺う日を決めます。あなたのマイページはこちらです。</p>
+    <div class="code" id="d-code"></div>
+    <p class="small muted">お客様コード。マイページを開く時に使います。スクリーンショットを撮っておくか、下のボタンでURLを控えてください。</p>
+    <div class="flex mt-2">
+      <a class="btn" id="d-link" href="mypage.html">マイページを開く</a>
+      <button class="btn ghost" type="button" id="d-copy">URLをコピー</button>
+      <a class="btn ghost" id="d-line" href="#">LINEで受け取る</a>
+    </div>
+  </div>
+
+</section>
+</main>
+<script type="module" src="assets/check.js"></script>
+</body>
+</html>

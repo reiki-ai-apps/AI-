@@ -163,3 +163,6 @@ function applyTime(h) {
 $("#time").addEventListener("input", e => applyTime(Number(e.target.value)));
 applyTime(6);
 setupHero();
+
+// ---------------- 30秒診断の帯 ----------------
+import("./check-lite.js").then(m => m.mountBand()).catch(err => console.warn("check band", err));
