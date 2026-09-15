@@ -169,7 +169,7 @@ assert.match(updateSource,/"shortDescription"/,"YouTubeの短い定型メタ情�
 assert.match(updateSource,/詳細なチャプター一覧/,"公式チャプターを検証可能な動画内容として審査する");
 assert.match(updateSource,/isYouTubeSource\?18000:7000/,"YouTubeの完全説明を待つため取得時間を確保する");
 assert.match(updateSource,/fetchYouTubePlayerDescription/,"通常ページの説明が短い時はYouTube公式player応答で補完する");
-assert.match(updateSource,/videoDetails\?\.shortDescription/,"YouTube公式player応答の完全説明欄を使う");
+assert.match(fs.readFileSync(new URL("./youtube-publication.cjs",import.meta.url),"utf8"),/details\.shortDescription/,"YouTube公式player応答の完全説明欄を使う");
 assert.match(updateSource,/parseYouTubeVideoFeed/,"公式チャンネルRSSの説明と公開日時も候補へ統合する");
 assert.match(updateSource,/EXPERT TITLE FALLBACK/,"説明取得障害時も具体的な公式タイトルだけ安全に掲載する");
 assert.match(updateSource,/EXPERT_TITLE_FALLBACK_BLOCK_PATTERN/,"誇張・切り抜き・販促動画をタイトル救済から除外する");
@@ -192,4 +192,5 @@ for(const item of data.filter(isExpertVideoItem)){
 }
 
 await import('./test-morning-video-retry.mjs');
+await import('./test-video-discovery.mjs');
 console.log("Expert video coverage tests passed.");

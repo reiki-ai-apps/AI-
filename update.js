@@ -9,6 +9,7 @@ const fs = require("fs");
 const crypto = require("crypto");
 const {upgradeFriendlyExplanationItem}=require("./scripts/friendly-explanation.cjs");
 const {friendlyExplanationIssues,publicationTextIssues}=require("./scripts/publication-quality.cjs");
+const {parsePlayerMetadata,mergeChannelVideos,parseOfficialEpisodeLinks}=require("./scripts/youtube-publication.cjs");
 const {MAX_HOME_ARTICLES,buildHomeEdition,applyHomeEdition}=require("./scripts/home-edition.cjs");
 const {
   EXPERT_VIDEO_MAX_AGE_DAYS,isExpertVideoItem,jstDayKey,shouldRefreshExpertVideos,isFreshExpertVideo,
@@ -585,9 +586,10 @@ function youtubeVideoId(value){
   return "";
 }
 
-async function fetchYouTubePlayerDescription(sourceUrl,signal){
+const youtubeMetadataCache=new Map();
+async function fetchYouTubePlayerMetadata(sourceUrl,signal){
   const videoId=youtubeVideoId(sourceUrl);
-  if(!/^[A-Za-z0-9_-]{11}$/.test(videoId))return "";
+  if(!/^[A-Za-z0-9_-]{11}$/.test(videoId))return null;
   const browserHeaders={
     "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
     "Accept-Language":"ja-JP,ja;q=0.9,en;q=0.5"
@@ -598,23 +600,33 @@ async function fetchYouTubePlayerDescription(sourceUrl,signal){
     const embed=await fetch(`https://www.youtube.com/embed/${videoId}?hl=ja`,{
       signal,headers:browserHeaders
     });
-    if(!embed.ok)return "";
+    if(!embed.ok)return null;
     const embedHtml=(await embed.text()).slice(0,500000);
     const apiKey=(embedHtml.match(/"INNERTUBE_API_KEY":"([^"]+)"/)||[])[1]||"";
     const clientVersion=(embedHtml.match(/"INNERTUBE_CLIENT_VERSION":"([^"]+)"/)||[])[1]||"";
-    if(!apiKey||!clientVersion)return "";
+    if(!apiKey||!clientVersion)return null;
     const player=await fetch(`https://www.youtube.com/youtubei/v1/player?key=${encodeURIComponent(apiKey)}`,{
       method:"POST",signal,
       headers:{...browserHeaders,"Content-Type":"application/json"},
       body:JSON.stringify({videoId,context:{client:{clientName:"WEB",clientVersion,hl:"ja",gl:"JP"}}})
     });
-    if(!player.ok)return "";
+    if(!player.ok)return null;
     const payload=await player.json();
-    const description=payload?.videoDetails?.shortDescription||"";
-    return [extractVideoChapters(description),stripTags(description)].filter(Boolean).join('\n');
+    return parsePlayerMetadata(payload,videoId);
   }catch(_error){
-    return "";
+    return null;
   }
+}
+
+async function cachedYouTubeMetadata(sourceUrl){
+  const key=youtubeVideoId(sourceUrl);
+  if(!youtubeMetadataCache.has(key))youtubeMetadataCache.set(key,fetchYouTubePlayerMetadata(sourceUrl,AbortSignal.timeout(18000)));
+  return youtubeMetadataCache.get(key);
+}
+async function fetchYouTubePlayerDescription(sourceUrl,signal){
+  const metadata=await fetchYouTubePlayerMetadata(sourceUrl,signal);
+  const description=metadata?.description||"";
+  return [extractVideoChapters(description),stripTags(description)].filter(Boolean).join("\n");
 }
 
 async function fetchArticleContext(item) {
@@ -1095,37 +1107,64 @@ async function collectExpertVideoCandidates(registry,fetchedAt){
       const channelUrl=source.channel_id
         ?`https://www.youtube.com/channel/${source.channel_id}/videos`
         :String(source.channel_url||"").replace(/\/$/,"")+"/videos";
-      const videos=parseYouTubeChannelVideos(await fetchText(channelUrl,{youtube:true}),source);
-      successfulSources++;
-      let feedVideos=[];
+      let videos=[],feedVideos=[],sourceSucceeded=false;
+      try{
+        videos=parseYouTubeChannelVideos(await fetchText(channelUrl,{youtube:true}),source);
+        sourceSucceeded=true;
+      }catch(error){
+        console.error("  expert page fail",source.source_name,String(error.message||error).slice(0,80));
+      }
       if(source.channel_id){
         try{
-          const feedUrl=`https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(source.channel_id)}`;
+          const feedUrl="https://www.youtube.com/feeds/videos.xml?channel_id="+encodeURIComponent(source.channel_id);
           feedVideos=parseYouTubeVideoFeed(await fetchText(feedUrl,{youtube:true,retries:2}),source);
+          sourceSucceeded=true;
         }catch(error){
           console.error("  expert feed fail",source.source_name||source.channel_id,String(error.message||error).slice(0,80));
         }
       }
-      const feedById=new Map(feedVideos.map(video=>[video.videoId,video]));
-      const mergedVideos=videos.map(video=>{
-        const feed=feedById.get(video.videoId);
-        return feed?{...video,
-          description:feed.description||video.description,
-          exactPublishedAt:feed.exactPublishedAt||video.exactPublishedAt,
-          publishedAt:feed.publishedAt||video.publishedAt}:video;
-      });
-      const pageIds=new Set(mergedVideos.map(video=>video.videoId));
-      for(const feedVideo of feedVideos)if(!pageIds.has(feedVideo.videoId))mergedVideos.push(feedVideo);
-      let kept=0;
-      for(const video of mergedVideos){
+      // Official programme pages cover interviews no longer present in the 15-entry RSS.
+      for(const indexUrl of (source.discovery_pages||[]).slice(0,2)){
+        try{
+          const links=parseOfficialEpisodeLinks(await fetchText(indexUrl),indexUrl)
+            .filter(link=>isSubstantiveAiVideo(link.title)&&matchedExpertsForSource(link.title,source,registry).length).slice(0,6);
+          sourceSucceeded=true;
+          for(const link of links){
+            try{
+              const page=await fetchText(link.url);
+              const id=page.match(/youtube\.com\/embed\/([A-Za-z0-9_-]{11})/)?.[1];
+              if(!id)continue;
+              const meta=await cachedYouTubeMetadata("https://www.youtube.com/watch?v="+id);
+              if(meta&&meta.channelId===source.channel_id)videos.push({...meta,link:"https://www.youtube.com/watch?v="+id});
+            }catch(error){console.error("  expert episode fail",link.url,String(error.message||error).slice(0,80));}
+          }
+        }catch(error){console.error("  expert index fail",indexUrl,String(error.message||error).slice(0,80));}
+      }
+      if(sourceSucceeded)successfulSources++;
+      const mergedVideos=mergeChannelVideos(videos,feedVideos);
+      let kept=0,metadataAttempts=0;
+      for(let video of mergedVideos){
         if(kept>=4)break;
-        const text=`${video.title} ${video.description||""}`;
-        // 説明欄の「切り抜き禁止」「採用キャンペーン」を動画内容と誤判定しない。
-        if(!isSubstantiveAiVideo(`${video.title} ${extractVideoChapters(video.description)}`))continue;
-        const experts=matchedExpertsForSource(text,source,registry);
+        if(!isSubstantiveAiVideo(video.title+" "+extractVideoChapters(video.description)))continue;
+        const knownTime=Date.parse(video.exactPublishedAt);
+        const now=Date.parse(fetchedAt);
+        if(Number.isFinite(knownTime)&&(knownTime>now||now-knownTime>EXPERT_VIDEO_MAX_AGE_DAYS*86400000))continue;
+        // Recover exact dates from the official player when RSS is missing or limited.
+        // Old/undated cards must not consume the four fresh-video slots.
+        if((!video.exactPublishedAt||!matchedExpertsForSource(video.title+" "+(video.description||""),source,registry).length)&&metadataAttempts<8){
+          metadataAttempts++;
+          const meta=await cachedYouTubeMetadata(video.link);
+          if(meta&&meta.channelId===source.channel_id){
+            video={...video,...meta,description:meta.description||video.description,
+              exactPublishedAt:meta.exactPublishedAt||video.exactPublishedAt};
+          }
+        }
+        const experts=matchedExpertsForSource(video.title+" "+(video.description||""),source,registry);
         if(!experts.length)continue;
         video.experts=experts;
-        records.push(expertVideoRecord(experts[0],source,video,fetchedAt));
+        const record=expertVideoRecord(experts[0],source,video,fetchedAt);
+        if(!isFreshExpertVideo(record,now,EXPERT_VIDEO_MAX_AGE_DAYS))continue;
+        records.push(record);
         kept++;
       }
       console.error("OK expert channel",source.source_name||source.channel_id,"kept",kept,"/ page",videos.length,"/ feed",feedVideos.length);
@@ -2157,7 +2196,11 @@ function bootstrapCacheResult(cache,source,result) {
   const fresh=[];
   let cacheHits=0;
   let rejectedHits=0;
+  const publishedVideoKeys=new Set((expertVideoState.published_history||[]).map(entry=>entry.video_key));
+  if(expertVideoState.featured_video_key)publishedVideoKeys.add(expertVideoState.featured_video_key);
   for(const item of filteredOut){
+    // Already featured videos remain in the archive but cannot spend today's review allowance again.
+    if(isExpertVideoItem(item)&&publishedVideoKeys.has(item.video_id||item.source_url))continue;
     const cached=cacheEntryFor(item,cache);
     if(cached&&cached.status==="enriched"&&isCompleteEnrichedItem(cached.result)){
       reused.push(cached.result);
@@ -2168,7 +2211,7 @@ function bootstrapCacheResult(cache,source,result) {
       rejectedHits++;
       continue;
     }
-    if(cached&&cached.status==="retry"){
+    if(cached&&cached.status==="retry"&&!(expertRetryOnly&&isExpertVideoItem(item))){
       rejectedHits++;
       continue;
     }
