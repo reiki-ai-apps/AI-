@@ -256,7 +256,9 @@ function articleContentHash(item) {
     normalizedStoryTitle(item && item.title),
     String(item && item.raw_excerpt || "").replace(/\s+/g, " ").trim(),
     String(item && item.source_name || "").toLowerCase().trim(),
-    isExpertVideoItem(item)?EXPERT_REVIEW_VERSION:""
+    // 専門家動画は審査版が変わったときだけ別版になる。履歴に版が保存されていない
+    // 過去の項目は現行版とみなし、同じ動画の記事IDを毎回付け替えない。
+    isExpertVideoItem(item)?String(item.expert_review_version||EXPERT_REVIEW_VERSION):""
   ].join("\n"));
 }
 
@@ -1071,6 +1073,7 @@ function expertVideoRecord(expert,source,video,fetchedAt){
   return {
     tool:"専門家動画・発言",
     content_type:"expert_video",
+    expert_review_version:EXPERT_REVIEW_VERSION,
     expert_id:expert.id,
     expert_name:expert.name,
     expert_names:expertNames,
@@ -2066,7 +2069,10 @@ function updateStoryIndex(index,items) {
     fact_slots:item.fact_slots,structured_complete:item.structured_complete===true,
     dedupe_decision:item.dedupe_decision,dedupe_reasons:item.dedupe_reasons,
     change_summary:item.change_summary,detail:item.detail,new_facts:item.new_facts,
-    event_date_precision:item.event_date_precision
+    event_date_precision:item.event_date_precision,
+    // 履歴側にも媒体種別と審査版を残し、同じ動画を毎回「本文が変わった別版」と誤認しない。
+    content_type:item.content_type||"article",
+    ...(isExpertVideoItem(item)?{expert_review_version:String(item.expert_review_version||EXPERT_REVIEW_VERSION)}:{})
   });
   index.items=[...byId.values()].sort((a,b)=>articleTime(b)-articleTime(a));
   return index;

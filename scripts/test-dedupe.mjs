@@ -129,3 +129,35 @@ if(context.dedupeStories([disasterAiLegacyReports[0],separateMinisterAnnouncemen
 }
 
 console.log("Semantic dedupe test passed");
+
+// 専門家動画は、同じ動画を次回以降の更新で再確認しても記事ID(公開URL)が変わらない。
+// 履歴に審査版が保存されていない項目は現行版とみなす。審査版が変わったときだけ別版になる。
+const EXPERT_REVIEW_VERSION=vm.runInContext("EXPERT_REVIEW_VERSION",context);
+const expertVideo={
+  content_type:"expert_video",expert_review_version:EXPERT_REVIEW_VERSION,
+  title:"岡野原大輔氏が解説：AIがAIを育てる競争と、日本の開発戦略",
+  raw_excerpt:"AIを使って次のAIの研究開発を進める競争を、岡野原大輔氏のインタビューから紹介します。",
+  source_name:"TBS CROSS DIG with Bloomberg",source_url:"https://www.youtube.com/watch?v=j6hdakNkiXk",
+  source_published_at:"2026-09-08T10:00:13Z",published_at:"2026-09-08T10:00:13Z",
+  primary_entity:"岡野原大輔",story_subject:"AI開発の自己改善",event_type:"other",event_stage:"other",event_scope:"公式インタビュー",
+  story_entities:["岡野原大輔"],fact_slots:[]
+};
+const firstRun=context.connectStoryTimeline([expertVideo],[]);
+const storyIndex=context.updateStoryIndex({version:1,items:[]},firstRun);
+if(storyIndex.items[0].content_type!=="expert_video"||storyIndex.items[0].expert_review_version!==EXPERT_REVIEW_VERSION){
+  throw new Error("story index did not persist the expert video type and review version");
+}
+const secondRun=context.connectStoryTimeline([expertVideo],storyIndex.items);
+if(secondRun[0].article_id!==firstRun[0].article_id||secondRun[0].article_id.includes("_rev_")){
+  throw new Error(`expert video article id changed between runs: ${firstRun[0].article_id} -> ${secondRun[0].article_id}`);
+}
+const legacyIndex={version:1,items:[{...storyIndex.items[0]}]};
+delete legacyIndex.items[0].expert_review_version;
+if(context.connectStoryTimeline([expertVideo],legacyIndex.items)[0].article_id!==firstRun[0].article_id){
+  throw new Error("expert video without a stored review version was treated as a new revision");
+}
+const rereviewed=context.connectStoryTimeline([expertVideo],[{...storyIndex.items[0],expert_review_version:"expert-video-review-v0"}]);
+if(!rereviewed[0].article_id.includes("_rev_")){
+  throw new Error("a re-reviewed expert video under a new review version must get a new revision id");
+}
+console.log("Expert video article ids stay stable across runs");
