@@ -7,73 +7,96 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-09-15T15:00:13.650Z",
-  "window_end": "2026-09-15T22:56:21.641Z",
-  "last_window_end": "2026-09-15T22:56:21.641Z",
-  "last_checked_at": "2026-09-15T23:02:44.178Z",
-  "last_published_at": "2026-09-15T23:02:44.178Z",
-  "home_content_changed_at": "2026-09-15T23:02:44.178Z",
+  "window_start": "2026-09-15T22:56:21.641Z",
+  "window_end": "2026-09-16T09:18:32.544Z",
+  "last_window_end": "2026-09-16T09:18:32.544Z",
+  "last_checked_at": "2026-09-16T09:23:23.517Z",
+  "last_published_at": "2026-09-16T09:23:23.517Z",
+  "home_content_changed_at": "2026-09-16T09:23:23.517Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 1,
-  "distinct_candidate_count": 1,
+  "candidate_count": 3,
+  "distinct_candidate_count": 3,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 1,
-  "cross_edition_duplicate_count": 0,
-  "cross_edition_duplicate_groups": [],
+  "novel_candidate_count": 2,
+  "cross_edition_duplicate_count": 1,
+  "cross_edition_duplicate_groups": [
+    {
+      "representative_id": "article_0dc8cdb130b208b721fe",
+      "duplicate_ids": [
+        "article_28ea5d6954f70b4f68d5"
+      ]
+    }
+  ],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 1,
-  "continued_selected_count": 4,
+  "new_selected_count": 2,
+  "continued_selected_count": 3,
   "tool_evolution_selected_count": 1,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
-    "article_05f3dd72c5b09d360dae",
+    "article_42c44577e2c4ce9554eb",
+    "article_cb9bfdb48b023e26cf52",
     "article_3eb3e9557eb7038ef8ad",
     "article_1c661d197f8cbdd4ee63",
-    "article_66834f9e29d7b88462a2",
-    "article_8552ca13e8f5f6600b1f"
+    "article_66834f9e29d7b88462a2"
   ],
   "new_article_ids": [
-    "article_05f3dd72c5b09d360dae"
+    "article_42c44577e2c4ce9554eb",
+    "article_cb9bfdb48b023e26cf52"
   ],
   "continued_article_ids": [
     "article_3eb3e9557eb7038ef8ad",
     "article_1c661d197f8cbdd4ee63",
-    "article_66834f9e29d7b88462a2",
-    "article_8552ca13e8f5f6600b1f"
+    "article_66834f9e29d7b88462a2"
   ],
   "continuation_sources": {
     "article_3eb3e9557eb7038ef8ad": "previous_edition",
     "article_1c661d197f8cbdd4ee63": "previous_edition",
-    "article_66834f9e29d7b88462a2": "previous_edition",
-    "article_8552ca13e8f5f6600b1f": "previous_edition"
+    "article_66834f9e29d7b88462a2": "previous_edition"
   },
   "scores": {
-    "article_05f3dd72c5b09d360dae": {
-      "article_id": "article_05f3dd72c5b09d360dae",
-      "total": 46,
+    "article_42c44577e2c4ce9554eb": {
+      "article_id": "article_42c44577e2c4ce9554eb",
+      "total": 55,
       "breakdown": {
         "importance": 25,
         "topicality": 10,
         "scope": 6,
         "authority": 5,
-        "freshness": 0,
+        "freshness": 9,
         "tool_evolution": 0,
         "penalty": 0
       },
       "reasons": [
         "重要度B",
-        "大きな製品・市場変化",
-        "遅れて確認できた新着"
+        "制度・安全への影響"
       ],
-      "published_at": "2026-09-15T14:58:00.000Z"
+      "published_at": "2026-09-16T08:39:00.000Z"
+    },
+    "article_cb9bfdb48b023e26cf52": {
+      "article_id": "article_cb9bfdb48b023e26cf52",
+      "total": 35,
+      "breakdown": {
+        "importance": 10,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 4,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度C",
+        "大きな製品・市場変化"
+      ],
+      "published_at": "2026-09-16T02:47:17.000Z"
     },
     "article_3eb3e9557eb7038ef8ad": {
       "article_id": "article_3eb3e9557eb7038ef8ad",
@@ -137,27 +160,6 @@
         "重要な経営・研究体制"
       ],
       "published_at": "2026-09-13T12:33:55.000Z"
-    },
-    "article_8552ca13e8f5f6600b1f": {
-      "article_id": "article_8552ca13e8f5f6600b1f",
-      "total": 76,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 20,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "主要AI企業・基盤",
-        "制度・安全への影響",
-        "大きな製品・市場変化",
-        "重要な経営・研究体制"
-      ],
-      "published_at": "2026-09-13T05:40:31.000Z"
     }
   },
   "recent_story_history": [
@@ -608,6 +610,70 @@
       "previous_article_id": "",
       "selected_at": "2026-09-15T23:02:44.178Z",
       "edition_window_end": "2026-09-15T22:56:21.641Z"
+    },
+    {
+      "article_id": "article_42c44577e2c4ce9554eb",
+      "story_id": "story_f5a059b4724d162768",
+      "title": "生成AI活用は半数超えもルール整備は15%止まり",
+      "primary_entity": "国内企業",
+      "story_subject": "生成AI活用実態調査",
+      "event_type": "research",
+      "event_stage": "other",
+      "event_scope": "日本",
+      "story_entities": [
+        "生成AI",
+        "企業ルール整備",
+        "生成ai"
+      ],
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "生成AI活用率",
+          "value": "過半数",
+          "normalized_value": "過半数"
+        },
+        {
+          "type": "other",
+          "scope": "利用ルール整備率",
+          "value": "15%",
+          "normalized_value": "15%"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-16T09:23:23.517Z",
+      "edition_window_end": "2026-09-16T09:18:32.544Z"
+    },
+    {
+      "article_id": "article_cb9bfdb48b023e26cf52",
+      "story_id": "story_b5e97f12fabc143b62",
+      "title": "Perplexityのローカル動作AIがWindows向けに登場、快適利用には24GBのVRAMが目安に",
+      "primary_entity": "Perplexity",
+      "story_subject": "PerplexityのローカルAI機能(Windows対応)",
+      "event_type": "release",
+      "event_stage": "other",
+      "event_scope": "Windowsデスクトップ",
+      "story_entities": [
+        "Perplexity",
+        "Windows",
+        "perplexity",
+        "windows",
+        "vram"
+      ],
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "推奨VRAM容量",
+          "value": "24GB",
+          "normalized_value": "24"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-16T09:23:23.517Z",
+      "edition_window_end": "2026-09-16T09:18:32.544Z"
     }
   ]
 }
