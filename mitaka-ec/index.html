@@ -55,58 +55,62 @@
   </div>
 </header>
 <main>
-<!-- 1. 商品から(トップは商品が最初) -->
-<section class="section feature-sec">
-  <div class="container">
-    <div class="feature-head">
-      <div class="feature-h">
-        <span class="eyebrow">Campaign</span>
-        <h2 id="feature-title">今月のキャンペーン</h2>
-      </div>
+<!-- 1. 商品から(トップは商品が最初)。いちばん大きく、ひとつだけ見せる -->
+<section class="spot dark" id="spot" aria-labelledby="spot-name">
+  <div class="container spot-inner">
+    <div class="spot-copy">
       <div class="feature-tabs" role="tablist" aria-label="おすすめの切り替え">
-        <button type="button" role="tab" data-feat="campaign" aria-selected="true">キャンペーン</button>
+        <button type="button" role="tab" data-feat="campaign" aria-selected="true">今月のキャンペーン</button>
         <button type="button" role="tab" data-feat="new" aria-selected="false">新商品</button>
         <button type="button" role="tab" data-feat="hot" aria-selected="false">売れ筋</button>
       </div>
-      <a class="feature-all" href="catalog.html">資材をすべて見る <span aria-hidden="true">→</span></a>
+      <p class="spot-shelf" id="spot-shelf"></p>
+      <h2 id="spot-name"></h2>
+      <p class="spot-use" id="spot-use"></p>
+      <div class="spot-price" id="spot-price"></div>
+      <div class="spot-acts"><a class="btn light lg" id="spot-go" href="catalog.html">くわしく見る</a><a class="textlink" href="catalog.html">資材をすべて見る →</a></div>
     </div>
-    <div class="rail" id="feature-rail"></div>
+    <a class="spot-fig" id="spot-fig" href="catalog.html" aria-hidden="true" tabindex="-1"><img id="spot-img" alt="" width="1200" height="900" decoding="async" fetchpriority="high"><span class="fig-note">イメージ図</span></a>
+  </div>
+  <div class="container"><div class="rail spot-rail" id="feature-rail"></div></div>
+</section>
+
+<!-- 2. 6つの棚(写真で選ぶ) -->
+<section class="section shelf-sec">
+  <div class="container">
+    <div class="section-title reveal"><span class="eyebrow">Category</span><h2>どんな品物をお探しですか？</h2><p>棚の写真から。品名がわからなくても大丈夫です。</p></div>
+    <div class="shelf-tiles reveal" id="shelf-rail"></div>
+    <div class="find-row reveal">
+      <div class="find-trouble">
+        <h3>困りごとから探す</h3>
+        <div class="purposes home" id="home-purposes"></div>
+      </div>
+      <form class="home-search" id="home-search" role="search">
+        <h3>品名で探す</h3>
+        <div class="row"><input type="search" id="home-q" placeholder="例: ビニール、くるふぁみ、パイプ" aria-label="資材をさがす" autocomplete="off"><button class="btn" type="submit">さがす</button></div>
+      </form>
+    </div>
   </div>
 </section>
 
-<!-- 2. 30秒診断(黒面) -->
+<!-- 3. 30秒診断(黒面) -->
 <section class="chk-band dark" aria-labelledby="chk-title">
   <div class="container chk-inner">
     <div class="chk-lead">
       <span class="eyebrow">30-Second Check</span>
       <h2 id="chk-title">うちのビニール、<br>いつ替え時？</h2>
       <p>種類と張った年を押すだけ。次の目安と、必要なフィルムの量、費用のめやすがその場で出ます。登録もログインも要りません。</p>
-      <ul class="chk-facts">
-        <li><b>30<span>秒</span></b>押すだけで目安が出る</li>
-        <li><b>0<span>円</span></b>登録もログインも不要</li>
-        <li><b>4<span>種</span></b>農ビ・農PO・長持ちPO・梨地</li>
-      </ul>
+      <div class="chk-fig" aria-hidden="true"><img src="assets/hero/cover.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async"></div>
     </div>
     <form class="chk-form" id="chk-form">
       <div class="chk-q"><span class="lbl">いま張ってあるのは</span><div class="chk-opts" id="chk-films"></div></div>
       <div class="chk-q"><span class="lbl">張ったのは</span><div class="chk-opts" id="chk-years"></div></div>
       <div class="chk-ans" id="chk-ans" hidden><b id="chk-head"></b><span id="chk-sub"></span><a class="btn accent" id="chk-go" href="check.html">量と費用も見る →</a></div>
-    </form>
-  </div>
-</section>
-
-<!-- 3. 棚と困りごと -->
-<section class="section find-sec">
-  <div class="container">
-    <div class="section-title reveal"><span class="eyebrow">Category</span><h2>どんな品物をお探しですか？</h2><p>棚から選ぶか、困りごとの言葉から。品名がわからなくても大丈夫です。</p></div>
-    <div class="shelf-rail reveal" id="shelf-rail"></div>
-    <div class="find-trouble reveal">
-      <h3>困りごとから探す</h3>
-      <div class="purposes home" id="home-purposes"></div>
-    </div>
-    <form class="home-search reveal" id="home-search" role="search">
-      <input type="search" id="home-q" placeholder="品名で探す(例: ビニール、くるふぁみ、パイプ)" aria-label="資材をさがす" autocomplete="off">
-      <button class="btn" type="submit">さがす</button>
+      <ul class="chk-facts">
+        <li><b>30<span>秒</span></b>押すだけで目安が出る</li>
+        <li><b>0<span>円</span></b>登録もログインも不要</li>
+        <li><b>4<span>種</span></b>農ビ・農PO・長持ちPO・梨地</li>
+      </ul>
     </form>
   </div>
 </section>
@@ -130,7 +134,25 @@
   </div>
 </section>
 
-<!-- 5. 数字 -->
+<!-- 5. 見せ場: 棚ごとの主役を大きく -->
+<section class="section stories">
+  <div class="container">
+    <article class="story reveal">
+      <a class="story-fig" href="catalog.html#shelf=air" aria-hidden="true" tabindex="-1"><img src="assets/hero/air.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async"><span class="fig-note">イメージ図</span></a>
+      <div class="story-copy"><span class="eyebrow">風を通す</span><h2>夏のハウスは、<br>風で決まる。</h2><p>循環扇で空気をかき混ぜ、巻き上げ換気と天窓で熱を逃がす。むらと病気が減り、作物が持ち直します。</p><a class="btn" href="catalog.html#shelf=air">風を通す資材を見る</a></div>
+    </article>
+    <article class="story flip reveal">
+      <a class="story-fig" href="catalog.html#shelf=frame" aria-hidden="true" tabindex="-1"><img src="assets/hero/cross.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async"><span class="fig-note">イメージ図</span></a>
+      <div class="story-copy"><span class="eyebrow">骨組み</span><h2>金具ひとつで、<br>骨組みは強くなる。</h2><p>パイプの径に合う金具を、必要な数だけ。φ19からφ31.8まで、一個から取り寄せられます。</p><a class="btn" href="catalog.html#shelf=frame">骨組みの資材を見る</a></div>
+    </article>
+    <article class="story reveal">
+      <a class="story-fig" href="catalog.html#shelf=temp" aria-hidden="true" tabindex="-1"><img src="assets/hero/curtain.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async"><span class="fig-note">イメージ図</span></a>
+      <div class="story-copy"><span class="eyebrow">あたためる・冷やす</span><h2>夜の冷えは、<br>カーテンで止める。</h2><p>保温カーテンと開閉装置、暖房機。燃料代を抑えながら、朝の温度を守ります。</p><a class="btn" href="catalog.html#shelf=temp">あたためる・冷やす資材を見る</a></div>
+    </article>
+  </div>
+</section>
+
+<!-- 6. 数字 -->
 <section class="section stats-wrap">
   <div class="container stats reveal">
     <div class="stat"><div class="v" data-count="20000">0<small>点</small></div><div class="k">取り扱い資材。パイプ1本から、環境制御まで</div></div>
@@ -139,7 +161,7 @@
   </div>
 </section>
 
-<!-- 6. マイページ(黒面) -->
+<!-- 7. マイページ(黒面) -->
 <section class="section dark karte-sec">
   <div class="container grid">
     <div class="reveal">
@@ -161,7 +183,7 @@
   </div>
 </section>
 
-<!-- 7. 会社 -->
+<!-- 8. 会社 -->
 <section class="section">
   <div class="container">
     <div class="section-title reveal"><span class="eyebrow">Mitaka Sangyo</span><h2>売るだけでなく、建てて、直して、見ています。</h2></div>
@@ -173,7 +195,7 @@
   </div>
 </section>
 
-<!-- 8. 節気の仕事 -->
+<!-- 9. 節気の仕事 -->
 <section class="section calm">
   <div class="container">
     <div class="section-title reveal"><span class="eyebrow">Season</span><h2>節気の仕事</h2><p>二十四節気に合わせて、いまハウスでやること。</p></div>
@@ -181,7 +203,7 @@
   </div>
 </section>
 
-<!-- 9. FAQ -->
+<!-- 10. FAQ -->
 <section class="section" style="padding-top:0">
   <div class="container">
     <div class="section-title reveal"><span class="eyebrow">FAQ</span><h2>よくあるご質問</h2></div>

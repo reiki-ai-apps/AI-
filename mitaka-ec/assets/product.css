@@ -125,3 +125,15 @@ body.sticky-on .quote-fab { bottom: 100px; }
 .pd .reveal { opacity: 0; transform: translateY(12px); transition: opacity var(--t-section) var(--ease-in), transform var(--t-section) var(--ease-in); }
 .pd .reveal.in { opacity: 1; transform: none; }
 .notfound { text-align: center; padding: 64px 16px; }
+
+/* 3Dで回す(商品の立体)。背景紙はトップの黒ホリと同じ5色 */
+.paper { --sky1: #141619; --sky2: #1B1E22; --sky3: #24282D; --sky4: #333840; --sky5: #454B54;
+  background: radial-gradient(70% 60% at 50% 104%, rgba(255,255,255,0.16), transparent 68%), linear-gradient(180deg, var(--sky1) 0%, var(--sky2) 26%, var(--sky3) 52%, var(--sky4) 76%, var(--sky5) 100%); }
+.pd-visual .pane.spin { border-color: transparent; background-color: var(--ink-900); cursor: grab; touch-action: pan-y; }
+.pd-visual .pane.spin:active { cursor: grabbing; }
+.pane.spin canvas { width: 100% !important; height: 100% !important; display: block; touch-action: pan-y; }
+.pane.spin .spin-fallback { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.pane.spin .spin-fallback[hidden] { display: none; }
+.pane.spin .fig-note.dark { position: absolute; right: 14px; bottom: 14px; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.75); background: rgba(0,0,0,0.35); border-radius: 4px; padding: 2px 8px; }
+.pane.spin .hint3d.dark { position: absolute; left: 16px; bottom: 14px; right: auto; font-size: 0.72rem; color: rgba(255,255,255,0.7); background: rgba(0,0,0,0.35); padding: 3px 8px; border-radius: var(--radius-sm); }
+.pane.spin .hint3d.dark[hidden] { display: none; }

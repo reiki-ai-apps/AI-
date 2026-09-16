@@ -38,13 +38,29 @@ NODE_PATH=/opt/node22/lib/node_modules node scripts/import-photos.mjs ~/photos -
 | `shapes.js` | 形を作る部品集(34種)。すべてメートル実寸で組み立てる |
 | `map.js` | 商品ID → 形・パラメータ・並べる個数・カメラ位置 |
 | `studio.html` | 撮影セット。白ホリ、三灯、接地影、ACESトーンマッピング |
-| `shoot.mjs` | Playwright で `studio.html` を開いて JPEG を書き出す |
+| `shoot.mjs` | Playwright で `studio.html` を開いて JPEG を書き出す(白ホリ) |
+| `shoot-cdp.mjs` | Playwright が無い環境向け。起動済みの Chrome(`--remote-debugging-port=9222`)に CDP でつなぎ、`jobs.json` の順に書き出す。黒ホリ・大判はこちら |
+| `jobs-hero.json` | 棚と見せ場の大判8枚(`assets/hero/`)の撮り方 |
 
 ```bash
 cd mitaka-ec
 NODE_PATH=/opt/node22/lib/node_modules node scripts/product-photo/shoot.mjs          # 全商品
 NODE_PATH=/opt/node22/lib/node_modules node scripts/product-photo/shoot.mjs ST-CR-PC # 指定商品だけ
 ```
+
+### 黒ホリ(見せ場用)
+
+`studio.html?bg=dark&w=1800&h=1200` で黒ホリになります。背景は描かず透明で描画し、書き出し時に
+トップページのヒーローと同じ5色のグラデーション(背景紙)に合成します(`paperBg`)。床は影だけを受ける透明な板です。
+商品ページの実時間3D(`assets/product3d.js`)はこの黒ホリと同じ立体・照明を使っているので、写真と3Dの見た目が揃います。
+
+```bash
+# 例: Chrome を --remote-debugging-port=9222 で起動し、サイトをローカルで配信しておく
+node scripts/product-photo/shoot-cdp.mjs "http://127.0.0.1:8792/mitaka-ec/scripts/product-photo/studio.html?bg=dark" assets/products/dark jobs.json
+node scripts/product-photo/shoot-cdp.mjs "http://127.0.0.1:8792/mitaka-ec/scripts/product-photo/studio.html?bg=dark&w=1800&h=1200" assets/hero scripts/product-photo/jobs-hero.json
+```
+
+`jobs.json` は `[{ "id": "GN-VT-FAN40", "out": "GN-VT-FAN40.jpg", "q": 0.84, "opts": { "target": 0.62 } }, ...]` の形です。
 
 実物写真が入った商品は `shoot.mjs` で上書きされます。実物写真を入れ終わった商品は
 `map.js` から消すか、`shoot.mjs` に品番を指定して必要な分だけ撮り直してください。

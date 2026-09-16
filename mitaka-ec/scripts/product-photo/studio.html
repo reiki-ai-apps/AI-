@@ -14,16 +14,21 @@ import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { BUILDERS } from "./shapes.js";
 import { SHOTS } from "./map.js";
 
-const SSW = 2000, SSH = 1500;   // レンダリング解像度
-const OUTW = 1200, OUTH = 900;  // 書き出し解像度(4:3)
+// ?bg=dark で黒ホリ(見せ場用)、?w=&h= で書き出しサイズ(既定 1200×900)
+const Q = new URLSearchParams(location.search);
+const DARK = Q.get("bg") === "dark";
+const OUTW = Number(Q.get("w")) || 1200, OUTH = Number(Q.get("h")) || 900;   // 書き出し解像度
+const SSW = Math.round(OUTW * 5 / 3), SSH = Math.round(OUTH * 5 / 3);      // レンダリング解像度(縮小でにじみを取る)
+const BG = DARK ? "#0B0C0E" : "#ffffff";
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true, alpha: DARK });
+if (DARK) renderer.setClearColor(0x000000, 0);   // 黒ホリは書き出し時に背景紙(グラデーション)へ合成する
 renderer.setPixelRatio(1);
 renderer.setSize(SSW, SSH, false);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.42; // __exposure() で調整
+renderer.toneMappingExposure = DARK ? 1.25 : 1.42; // __exposure() で調整
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 document.getElementById("stage").appendChild(renderer.domElement);
 
@@ -32,13 +37,17 @@ const envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 
 const scene = new THREE.Scene();
 scene.environment = envTex;
-scene.environmentIntensity = 0.92;
-scene.background = new THREE.Color(0xffffff);
+scene.environmentIntensity = DARK ? 0.55 : 0.92;
+scene.background = DARK ? null : new THREE.Color(BG);
 
 const camera = new THREE.PerspectiveCamera(27, OUTW / OUTH, 0.01, 400);
+document.getElementById("stage").style.aspectRatio = `${OUTW} / ${OUTH}`;
+document.getElementById("stage").style.background = BG;
 
 // --- ホリゾント(白ホリ)。被写体の大きさに合わせて伸縮する ---
-const cycMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.96, metalness: 0 });
+const cycMat = DARK
+  ? new THREE.ShadowMaterial({ opacity: 0.30 })   // 黒ホリ: 影だけ受ける透明な床。背景紙は合成で描く
+  : new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.96, metalness: 0 });
 const cyc = new THREE.Mesh(cycShape(1), cycMat);
 cyc.receiveShadow = true;
 scene.add(cyc);
@@ -75,17 +84,19 @@ const blob = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMa
 blob.rotation.x = -Math.PI / 2; blob.renderOrder = 2; scene.add(blob);
 
 // --- 照明: キー(影をつくる) / フィル / リム / ホリゾント起こし ---
-const key = new THREE.DirectionalLight(0xfff6ee, 2.45);
+const key = new THREE.DirectionalLight(0xfff6ee, DARK ? 2.1 : 2.45);
 key.castShadow = true;
 key.shadow.mapSize.set(2048, 2048);
 key.shadow.bias = -0.0005;
 key.shadow.normalBias = 0.01;
 key.shadow.radius = 4;
 scene.add(key, key.target);
-const fill = new THREE.DirectionalLight(0xeaf1ff, 0.42); scene.add(fill, fill.target);
-const rim  = new THREE.DirectionalLight(0xffffff, 0.85); scene.add(rim, rim.target);
-const bg   = new THREE.DirectionalLight(0xffffff, 0.30); scene.add(bg, bg.target); // ホリゾント起こし
-const amb  = new THREE.AmbientLight(0xffffff, 0.09); scene.add(amb);
+const fill = new THREE.DirectionalLight(0xeaf1ff, DARK ? 0.30 : 0.42); scene.add(fill, fill.target);
+const rim  = new THREE.DirectionalLight(0xffffff, DARK ? 2.4 : 0.85); scene.add(rim, rim.target);
+const rim2 = new THREE.DirectionalLight(0xdce6ff, DARK ? 1.2 : 0); scene.add(rim2, rim2.target);   // 反対側の縁
+const bg   = new THREE.DirectionalLight(0xffffff, DARK ? 0.0 : 0.30); scene.add(bg, bg.target); // ホリゾント起こし
+const glow = new THREE.SpotLight(0xffffff, 0, 0, Math.PI / 5, 0.9, 1.2); scene.add(glow, glow.target); // (黒ホリでは合成側で照りを描くので未使用)
+const amb  = new THREE.AmbientLight(0xffffff, DARK ? 0.04 : 0.09); scene.add(amb);
 
 const DIRS = {
   std:  new THREE.Vector3(0.60, 0.36, 0.71).normalize(),
@@ -177,8 +188,8 @@ function frame(pts, center, target, biasY) {
 }
 
 window.__render = function (id, opts = {}) {
-  const shot = SHOTS[id];
-  if (!shot) throw new Error("no shot for " + id);
+  const shot = { ...(SHOTS[id] || {}), ...(opts.shot || {}) };
+  if (!shot.b) throw new Error("no shot for " + id);
   clearSubject();
 
   const { group } = layout(shot);
@@ -194,7 +205,10 @@ window.__render = function (id, opts = {}) {
   key.position.set(center.x - L * 0.70, center.y + L * 1.25, center.z + L * 1.00); key.target.position.copy(center);
   fill.position.set(center.x + L * 1.30, center.y + L * 0.45, center.z + L * 0.85); fill.target.position.copy(center);
   rim.position.set(center.x + L * 0.30, center.y + L * 1.00, center.z - L * 1.30);  rim.target.position.copy(center);
+  rim2.position.set(center.x - L * 1.20, center.y + L * 0.55, center.z - L * 0.90); rim2.target.position.copy(center);
   bg.position.set(center.x, center.y + L * 0.9, center.z + L * 2.2);                bg.target.position.set(center.x, 0, center.z - span);
+  glow.position.set(center.x, center.y + L * 2.4, center.z - span * 0.9); glow.target.position.set(center.x, 0, center.z - span * 1.1);
+  glow.intensity = 0;
   const sc = key.shadow.camera;
   const half = span * 1.35;
   sc.left = -half; sc.right = half; sc.top = half; sc.bottom = -half;
@@ -209,7 +223,7 @@ window.__render = function (id, opts = {}) {
   const h = box.max.y - box.min.y;
   blob.position.set(center.x + fx * 0.10, 0.0006, center.z - fz * 0.06);
   blob.scale.set(fx * 1.85, fz * 1.85, 1);
-  blob.material.opacity = (span > 1.6 ? 0.34 : 0.5) / (1 + Math.max(0, h / Math.max(fx, fz) - 1) * 0.6);
+  blob.material.opacity = (DARK ? 0.7 : 1) * (span > 1.6 ? 0.34 : 0.5) / (1 + Math.max(0, h / Math.max(fx, fz) - 1) * 0.6);
 
   // ホリゾントは必ず画面を覆う大きさに
   const dist = camera.position.distanceTo(new THREE.Vector3(center.x, center.y, center.z));
@@ -233,7 +247,7 @@ window.__jpeg = function (q) {
   c.width = OUTW; c.height = OUTH;
   const ctx = c.getContext("2d");
   ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = "high";
-  ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, OUTW, OUTH);
+  if (DARK) paperBg(ctx, OUTW, OUTH); else { ctx.fillStyle = BG; ctx.fillRect(0, 0, OUTW, OUTH); }
   const mid = document.createElement("canvas"); mid.width = OUTW * 1.4 | 0; mid.height = OUTH * 1.4 | 0;
   const mctx = mid.getContext("2d"); mctx.imageSmoothingQuality = "high";
   mctx.drawImage(renderer.domElement, 0, 0, mid.width, mid.height);
@@ -241,6 +255,15 @@ window.__jpeg = function (q) {
   return c.toDataURL("image/jpeg", q || 0.86);
 };
 
+// 背景紙。assets/index.css の .hero と同じ5色 + 床の照り
+function paperBg(ctx, W, H) {
+  const g = ctx.createLinearGradient(0, 0, 0, H);
+  [["#141619", 0], ["#1B1E22", 0.26], ["#24282D", 0.52], ["#333840", 0.76], ["#454B54", 1]].forEach(([c, k]) => g.addColorStop(k, c));
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  const r = ctx.createRadialGradient(W * 0.5, H * 1.02, 0, W * 0.5, H * 1.02, W * 0.62);
+  r.addColorStop(0, "rgba(255,255,255,0.17)"); r.addColorStop(0.6, "rgba(255,255,255,0.05)"); r.addColorStop(1, "rgba(255,255,255,0)");
+  ctx.fillStyle = r; ctx.fillRect(0, 0, W, H);
+}
 window.__ready = true;
 window.__ids = Object.keys(SHOTS);
 </script>

@@ -61,8 +61,9 @@
     <div class="pd-left">
       <div class="pd-head pd-head-sp" id="head-sp"></div>
       <div class="pd-visual">
-        <div class="tabs" role="tablist" aria-label="見え方"><button role="tab" type="button" aria-selected="true" data-tab="fig" id="tab-fig">写真</button><button role="tab" type="button" aria-selected="false" data-tab="3d" id="tab-3d">使う場所</button></div>
-        <div class="pane fig" id="pane-fig" role="tabpanel"></div>
+        <div class="tabs" role="tablist" aria-label="見え方"><button role="tab" type="button" aria-selected="true" data-tab="spin" id="tab-spin">3Dで回す</button><button role="tab" type="button" aria-selected="false" data-tab="fig" id="tab-fig">写真</button><button role="tab" type="button" aria-selected="false" data-tab="3d" id="tab-3d">使う場所</button></div>
+        <div class="pane spin paper" id="pane-spin" role="tabpanel"><div id="pdspin" style="position:absolute;inset:0"></div><img class="spin-fallback" id="spin-fallback" alt="" width="1200" height="900" decoding="async" hidden><span class="fig-note dark" id="spin-note">イメージ図</span><div class="hint3d dark" id="spin-hint">指で回せます</div></div>
+        <div class="pane fig" id="pane-fig" role="tabpanel" hidden></div>
         <div class="pane v3d" id="pane-3d" role="tabpanel" hidden><div id="pd3d" style="position:absolute;inset:0"></div><div class="where" id="where"></div><div class="hint3d">ドラッグで回せます</div></div>
       </div>
       <div id="karte-band"></div>

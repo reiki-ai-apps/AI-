@@ -1,30 +1,80 @@
 /* トップページ 2026-09-16 全面改訂
-   並びは「商品 → 30秒診断(黒) → 棚 → 3D一棟(黒) → 数字 → マイページ(黒) → 会社 → 節気 → FAQ」。
-   白い面で商品を見せ、道具(診断・3D・カルテ)は黒い面で見せる。面の切り替えだけでリズムを作り、飾りは置かない。 */
+   並びは「見せ場の一品(黒) → 6つの棚の写真 → 30秒診断(黒) → 3D一棟(黒) → 見せ場3本 → 数字 → マイページ(黒) → 会社 → 節気 → FAQ」。
+   文字より写真。商品の立体写真(黒ホリ)を画面の半分以上に置き、言葉は短く添える。面の切り替えだけでリズムを作り、飾りは置かない。 */
 
-/* ---------- 1. 冒頭のおすすめ ---------- */
-.feature-sec { padding-top: 40px; }
-@media (min-width: 960px) { .feature-sec { padding-top: 64px; padding-bottom: 88px; } }
-.feature-head { display: flex; align-items: flex-end; gap: 12px 32px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 18px; margin-bottom: 32px; }
-.feature-h .eyebrow { margin-bottom: 8px; }
-.feature-sec h2 { font-size: clamp(1.5rem, 2.8vw, 2.1rem); margin: 0; }
-.feature-tabs { display: flex; gap: 22px; flex-wrap: wrap; margin-left: auto; }
+/* ---------- 1. 見せ場の一品(黒面)。画面の半分を写真に使う ---------- */
+.spot { background: var(--ink-900); color: #fff; padding: 0 0 56px; }
+@media (min-width: 960px) { .spot { padding-bottom: 72px; } }
+.spot-inner { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px 48px; align-items: center; min-height: clamp(520px, 66vh, 720px); }
+@media (max-width: 900px) { .spot-inner { grid-template-columns: 1fr; min-height: 0; gap: 8px; } }
+.spot-copy { padding: 40px 0; }
+.feature-tabs { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 28px; }
 .feature-tabs button { min-height: 34px; padding: 0 0 6px; border: 0; border-bottom: 2px solid transparent; background: none; font: inherit;
-  font-weight: 700; font-size: 0.9rem; color: var(--muted); cursor: pointer; }
-.feature-tabs button:hover { color: var(--text); }
-.feature-tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--ink-900); }
-.feature-all { white-space: nowrap; font-size: 0.85rem; font-weight: 700; padding-bottom: 6px; }
-.feature-all:hover { text-decoration: none; color: var(--sunrise-deep); }
-@media (min-width: 1100px) { .feature-sec .rail { grid-template-columns: repeat(4, 1fr); gap: 24px; } }
+  font-weight: 700; font-size: 0.86rem; color: rgba(255,255,255,0.5); cursor: pointer; letter-spacing: 0.02em; }
+.feature-tabs button:hover { color: #fff; }
+.feature-tabs button[aria-selected="true"] { color: #fff; border-bottom-color: #fff; }
+.spot-shelf { font-family: var(--font-latin); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); margin: 0 0 12px; }
+.spot h2 { font-size: clamp(1.8rem, 3.6vw, 3rem); line-height: 1.22; letter-spacing: -0.01em; color: #fff; margin: 0 0 14px; }
+.spot-use { color: rgba(255,255,255,0.7); margin: 0 0 22px; max-width: 30em; line-height: 1.85; }
+.spot-price { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; color: var(--sunrise); font-variant-numeric: tabular-nums; line-height: 1.1; letter-spacing: -0.02em; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.spot-price .yen { font-size: 0.6em; margin-right: 2px; }
+.spot-price small { font-size: 0.78rem; font-weight: 700; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; }
+.spot-price .ask { color: #fff; font-size: 0.7em; }
+.spot-acts { display: flex; align-items: center; gap: 12px 28px; flex-wrap: wrap; margin-top: 28px; }
+.spot-acts .textlink { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+.spot-fig { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; }
+.spot-fig img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s var(--ease-in);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent), linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent), linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent); mask-composite: intersect; }
+.spot-fig:hover img { transform: scale(1.03); }
+.spot-fig .fig-note, .story-fig .fig-note, .chk-fig .fig-note { position: absolute; right: 14px; bottom: 12px; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.6); letter-spacing: 0.06em; }
+@media (max-width: 900px) { .spot-copy { order: 2; padding: 8px 0 0; } .spot-fig { order: 1; margin: 0 -20px; aspect-ratio: 5 / 4; } .feature-tabs { gap: 16px; margin-bottom: 18px; } }
+.spot-rail { margin-top: 32px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.12); }
+@media (min-width: 720px) { .spot-rail { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+.spot-rail .pcard { background: #fff; border-color: transparent; color: var(--text); }
+.spot-rail .pcard h3, .spot-rail .pcard a, .spot-rail .pcard .pcard-price { color: var(--text); }
+.spot-rail .pcard .btn.outline { color: var(--ink-900); border-color: var(--line-strong); }
+.spot-rail .pcard .btn.outline:hover { background: var(--ink-900); color: #fff; border-color: var(--ink-900); }
+
+/* ---------- 2. 6つの棚(写真のタイル) ---------- */
+.shelf-sec { padding-top: 64px; }
+.shelf-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (min-width: 900px) { .shelf-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; } }
+.shelf-tiles .tile { position: relative; display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--ink-900); color: #fff; padding: 0; border: 0; border-radius: 0; }
+.shelf-tiles .tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.9s var(--ease-in), opacity 0.4s; }
+.shelf-tiles .tile:hover img { transform: scale(1.05); }
+.shelf-tiles .tile:hover { text-decoration: none; }
+.shelf-tiles .tile .txt { position: absolute; left: 0; right: 0; bottom: 0; padding: 48px 20px 18px; background: linear-gradient(180deg, transparent, rgba(13,14,16,0.78)); }
+.shelf-tiles .tile h3 { font-size: clamp(1.1rem, 1.8vw, 1.5rem); font-weight: 800; margin: 0; color: #fff; }
+.shelf-tiles .tile p { margin: 4px 0 0; font-size: 0.78rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+.shelf-tiles .tile .n { position: absolute; right: 16px; bottom: 18px; font-family: var(--font-latin); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; color: rgba(255,255,255,0.7); }
+@media (max-width: 600px) { .shelf-tiles .tile .txt { padding: 36px 14px 12px; } .shelf-tiles .tile .n { display: none; } .shelf-tiles .tile p { display: none; } }
+
+.find-row { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 32px 56px; margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--line); }
+@media (max-width: 900px) { .find-row { grid-template-columns: 1fr; margin-top: 40px; } }
+.find-row h3 { font-size: 1rem; margin: 0 0 16px; }
+.purposes.home { margin: 0; gap: 1px; background: #fff; border: 0; }
+@media (min-width: 760px) { .purposes.home { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.purposes.home .purpose { border: 0; border-radius: 0; background: #fff; min-height: 64px; }
+.purposes.home .purpose:hover { background: var(--surface-2); border: 0; }
+.home-search .row { display: flex; gap: 10px; }
+.home-search input { flex: 1; min-width: 0; min-height: 54px; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); padding: 0 16px; font: inherit; font-size: 0.98rem; background: #fff; color: var(--text); }
+.home-search input::placeholder { color: var(--faint); }
+.home-search input:focus-visible { outline: 2px solid var(--ink-900); outline-offset: 0; }
+.home-search .btn { min-height: 54px; padding: 0 30px; white-space: nowrap; }
+@media (max-width: 480px) { .home-search .row { flex-wrap: wrap; } .home-search .btn { width: 100%; } }
 
 /* ---------- 2. 30秒診断(黒面) ---------- */
 .chk-band { padding: 72px 0; background: var(--ink-900); }
 @media (min-width: 960px) { .chk-band { padding: 104px 0; } }
-.chk-inner { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 40px 72px; align-items: start; }
+.chk-inner { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 40px 72px; align-items: center; }
 @media (max-width: 900px) { .chk-inner { grid-template-columns: 1fr; gap: 32px; } }
 .chk-lead h2 { font-size: clamp(1.9rem, 4vw, 3.1rem); line-height: 1.22; margin: 0 0 18px; color: #fff; }
 .chk-lead p { color: rgba(255,255,255,0.68); margin: 0; max-width: 34em; }
-.chk-facts { list-style: none; display: flex; flex-wrap: wrap; gap: 28px; margin: 32px 0 0; padding: 28px 0 0; border-top: 1px solid rgba(255,255,255,0.14); }
+.chk-fig { position: relative; margin: 32px 0 0; aspect-ratio: 3 / 2; overflow: hidden; }
+.chk-fig img { width: 100%; height: 100%; object-fit: cover; display: block;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent), linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent), linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent); mask-composite: intersect; }
+@media (max-width: 900px) { .chk-fig { display: none; } }
+.chk-facts { list-style: none; display: flex; flex-wrap: wrap; gap: 28px; margin: 24px 0 0; padding: 24px 0 0; border-top: 1px solid rgba(255,255,255,0.14); }
 .chk-facts li { font-size: 0.78rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
 .chk-facts b { display: block; font-size: 1.9rem; font-weight: 800; color: #fff; font-variant-numeric: tabular-nums; line-height: 1.1; }
 .chk-facts b span { font-size: 0.42em; margin-left: 3px; font-weight: 700; }
@@ -45,30 +95,6 @@
 .chk-ans span { grid-column: 1; color: rgba(255,255,255,0.62); font-size: 0.85rem; }
 .chk-ans .btn { grid-row: 1 / span 2; grid-column: 2; }
 @media (max-width: 620px) { .chk-ans { grid-template-columns: 1fr; } .chk-ans .btn { grid-row: auto; grid-column: 1; margin-top: 12px; } }
-
-/* ---------- 3. 棚と困りごと ---------- */
-.shelf-rail { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
-@media (min-width: 720px) { .shelf-rail { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (min-width: 1060px) { .shelf-rail { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
-.shelf-rail .s { min-width: 0; background: #fff; padding: 26px 20px 22px; color: inherit; transition: background var(--t-fast); display: block; }
-.shelf-rail .s:hover { background: var(--surface-2); text-decoration: none; }
-.shelf-rail .s .ic svg { width: 38px; height: 38px; color: var(--ink-900); --ic-fill: var(--surface-2); }
-.shelf-rail .s h3 { font-size: 1.05rem; font-weight: 800; margin: 16px 0 2px; }
-.shelf-rail .s p { color: var(--muted); font-size: 0.8rem; margin: 0 0 14px; line-height: 1.6; }
-.shelf-rail .s .n { font-family: var(--font-latin); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; color: var(--faint); }
-
-.find-sec .find-trouble { margin-top: 56px; }
-.find-sec .find-trouble h3 { font-size: 1rem; margin: 0 0 16px; }
-.purposes.home { margin: 0; gap: 1px; background: #fff; border: 0; }
-@media (min-width: 760px) { .purposes.home { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-.purposes.home .purpose { border: 0; border-radius: 0; background: #fff; min-height: 76px; }
-.purposes.home .purpose:hover { background: var(--surface-2); border: 0; }
-.home-search { display: flex; gap: 10px; max-width: 640px; margin: 40px 0 0; }
-.home-search input { flex: 1; min-width: 0; min-height: 54px; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); padding: 0 16px; font: inherit; font-size: 0.98rem; background: #fff; color: var(--text); }
-.home-search input::placeholder { color: var(--faint); }
-.home-search input:focus-visible { outline: 2px solid var(--ink-900); outline-offset: 0; }
-.home-search .btn { min-height: 54px; padding: 0 30px; white-space: nowrap; }
-@media (max-width: 480px) { .home-search { flex-wrap: wrap; } .home-search .btn { width: 100%; } }
 
 /* ---------- 4. 3Dで一棟(黒面・撮影スタジオ) ---------- */
 .hero { position: relative; min-height: clamp(560px, 82svh, 780px); overflow: hidden; color: #fff; display: flex; flex-direction: column; justify-content: flex-end;
@@ -106,6 +132,19 @@
   .timebar { bottom: 16px; gap: 12px; }
   .timebar .hint { display: none; }
 }
+
+/* ---------- 5. 見せ場: 写真7 / 言葉5 ---------- */
+.stories { padding-top: 0; }
+.story { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 24px 56px; align-items: center; padding: 40px 0; border-top: 1px solid var(--line); }
+.story:first-child { border-top: 0; padding-top: 0; }
+.story.flip .story-fig { order: 2; }
+.story-fig { position: relative; display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--ink-900); }
+.story-fig img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s var(--ease-in); }
+.story-fig:hover img { transform: scale(1.03); }
+.story-copy .eyebrow { margin-bottom: 10px; }
+.story-copy h2 { font-size: clamp(1.5rem, 2.8vw, 2.3rem); line-height: 1.28; margin: 0 0 14px; }
+.story-copy p { color: var(--muted); margin: 0 0 24px; max-width: 28em; }
+@media (max-width: 860px) { .story { grid-template-columns: 1fr; gap: 18px; padding: 32px 0; } .story.flip .story-fig { order: 0; } .story-fig { margin: 0 -20px; aspect-ratio: 16 / 10; } .story-copy .btn { width: 100%; } }
 
 /* ---------- 5. 数字 ---------- */
 .stats-wrap { padding: 72px 0; }
@@ -183,3 +222,6 @@
 .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity var(--t-section) var(--ease-in), transform var(--t-section) var(--ease-in); }
 .js .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; } .js .phone.pre { transform: none; opacity: 1; } }
+
+/* 600px以下は .container の余白が16pxなので、写真の食み出しも16pxに合わせる(横スクロール防止) */
+@media (max-width: 600px) { .spot-fig, .story-fig { margin-left: -16px; margin-right: -16px; } }

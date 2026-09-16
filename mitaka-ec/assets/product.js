@@ -68,11 +68,32 @@ async function ensure3d() {
   const params = normalizeParams({ ...scene.params, ...(h ? { span: h.params.span, length: Math.min(h.params.length, 30), pipe: h.params.pipe, eave: h.params.eave, ridge: h.params.ridge } : {}) });
   viewer.update(estimate(params)); viewer.setView(scene.view); setTimeout(() => viewer.highlight(scene.part), 250);
 }
+// ---- 3Dで回す(商品そのものの立体)。写真と同じ寸法から組んだ立体を、黒ホリの上で回す ----
+let spin = null, spinTried = false;
+const lowPower = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function spinFallback() {
+  const img = $("#spin-fallback"); img.src = `assets/products/dark/${encodeURIComponent(p.id)}.jpg`; img.alt = `${p.name} のイメージ図`; img.hidden = false;
+  $("#spin-hint").hidden = true;
+  img.addEventListener("error", () => { $("#tab-spin").hidden = true; $("#tab-fig").click(); }, { once: true });
+}
+$("#spin-hint").textContent = matchMedia("(hover: hover)").matches ? "ドラッグで回せます" : "指で回せます";
+async function ensureSpin() {
+  if (spin || spinTried) return; spinTried = true;
+  if (lowPower) { spinFallback(); return; }
+  try {
+    const { createProductViewer } = await import("./product3d.js");
+    spin = createProductViewer($("#pdspin"), p.id, { autoRotate: true, maxPixelRatio: 1.75 });
+    if (!spin.ok) spinFallback();
+  } catch (err) { console.warn("product 3d", err); spinFallback(); }
+}
 document.querySelectorAll("[role=tab]").forEach(b => b.addEventListener("click", async () => {
   document.querySelectorAll("[role=tab]").forEach(x => x.setAttribute("aria-selected", String(x === b)));
-  $("#pane-fig").hidden = b.dataset.tab !== "fig"; $("#pane-3d").hidden = b.dataset.tab !== "3d";
+  $("#pane-spin").hidden = b.dataset.tab !== "spin"; $("#pane-fig").hidden = b.dataset.tab !== "fig"; $("#pane-3d").hidden = b.dataset.tab !== "3d";
   if (b.dataset.tab === "3d") await ensure3d();
+  if (b.dataset.tab === "spin") await ensureSpin();
+  if (spin && spin.ok) spin.setAutoRotate(b.dataset.tab === "spin");
 }));
+ensureSpin();
 
 // ---- カルテ帯 ----
 function readKarte() { try { return JSON.parse(localStorage.getItem("mitaka-karte-last") || "null"); } catch { return null; } }

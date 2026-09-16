@@ -49,15 +49,24 @@ function showFeature(key) {
   const f = FEATURES[key] || FEATURES.campaign;
   const ribbon = key === "campaign" ? { label: "キャンペーン", cls: "camp" } : key === "new" ? { label: "新商品", cls: "new" } : { label: "人気", cls: "" };
   const list = PRODUCTS.filter(p => (p.tags || []).includes(f.tag)).slice(0, 4);
-  $("#feature-title").textContent = f.title;
-  $("#feature-rail").innerHTML = list.map(p => homeCard(p, ribbon)).join("");
+  const [top, ...rest] = list;
+  if (top) {
+    const shelf = shelfOf(top.cat), inc = top.price != null ? Math.round(top.price * 1.1) : null, href = `product.html?id=${encodeURIComponent(top.id)}`;
+    $("#spot-shelf").textContent = `${ribbon.label} ／ ${shelf.label}`;
+    $("#spot-name").textContent = top.name;
+    $("#spot-use").textContent = top.use || top.spec;
+    $("#spot-price").innerHTML = inc != null ? `<span class="yen">¥</span>${inc.toLocaleString("ja-JP")}<small>税込 / ${esc(top.unit || "1")}あたり</small>` : `<span class="ask">金額はご相談</span><small>すぐお答えします</small>`;
+    $("#spot-go").href = href; $("#spot-fig").href = href;
+    const img = $("#spot-img"); img.src = `assets/products/dark/${encodeURIComponent(top.id)}.jpg`; img.alt = `${top.name} のイメージ図`;
+  }
+  $("#feature-rail").innerHTML = rest.map(p => homeCard(p, ribbon)).join("");
   document.querySelectorAll("[data-feat]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.feat === key)));
 }
 document.querySelectorAll("[data-feat]").forEach(b => b.addEventListener("click", () => showFeature(b.dataset.feat)));
 showFeature("campaign");
 
-// ---- 棚・節気 ----// ---- 棚・節気 ----
-$("#shelf-rail").innerHTML = SHELVES.map(s => `<a class="s" href="catalog.html#shelf=${s.id}" style="--shelf:${s.color}"><span class="ic">${ICONS[s.icon]}</span><h3>${esc(s.label)}</h3><p>${esc(s.sub)}</p><span class="n">${PRODUCTS.filter(p => s.cats.includes(p.cat)).length}点を見る →</span></a>`).join("");
+// ---- 棚(写真のタイル)・節気 ----
+$("#shelf-rail").innerHTML = SHELVES.map(s => `<a class="tile" href="catalog.html#shelf=${s.id}"><img src="assets/hero/${s.id}.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async"><span class="txt"><h3>${esc(s.label)}</h3><p>${esc(s.sub)}</p><span class="n">${PRODUCTS.filter(p => s.cats.includes(p.cat)).length}点</span></span></a>`).join("");
 const now = currentSekki();
 const idx = SEKKI.findIndex(t => t.name === now.name);
 $("#works").innerHTML = [0, 1, 2].map(i => { const t = SEKKI[(idx + i) % SEKKI.length]; return `<a class="work${i === 0 ? " now" : ""}" href="catalog.html"><div class="term">${esc(t.name)}</div><div class="date">${t.month}月${t.day}日ごろ${i === 0 ? " ・ いま" : ""}</div><p>${esc(t.task)}</p></a>`; }).join("");
