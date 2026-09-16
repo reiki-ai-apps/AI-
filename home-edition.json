@@ -7,12 +7,12 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-09-15T22:56:21.641Z",
-  "window_end": "2026-09-16T09:18:32.544Z",
-  "last_window_end": "2026-09-16T09:18:32.544Z",
-  "last_checked_at": "2026-09-16T09:23:23.517Z",
-  "last_published_at": "2026-09-16T09:23:23.517Z",
-  "home_content_changed_at": "2026-09-16T09:23:23.517Z",
+  "window_start": "2026-09-16T09:18:32.544Z",
+  "window_end": "2026-09-16T14:58:28.150Z",
+  "last_window_end": "2026-09-16T14:58:28.150Z",
+  "last_checked_at": "2026-09-16T15:03:23.708Z",
+  "last_published_at": "2026-09-16T15:03:23.708Z",
+  "home_content_changed_at": "2026-09-16T15:03:23.708Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
@@ -22,81 +22,100 @@
   "distinct_candidate_count": 3,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 2,
-  "cross_edition_duplicate_count": 1,
-  "cross_edition_duplicate_groups": [
-    {
-      "representative_id": "article_0dc8cdb130b208b721fe",
-      "duplicate_ids": [
-        "article_28ea5d6954f70b4f68d5"
-      ]
-    }
-  ],
+  "novel_candidate_count": 3,
+  "cross_edition_duplicate_count": 0,
+  "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 2,
-  "continued_selected_count": 3,
-  "tool_evolution_selected_count": 1,
+  "new_selected_count": 3,
+  "continued_selected_count": 2,
+  "tool_evolution_selected_count": 2,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
-    "article_42c44577e2c4ce9554eb",
-    "article_cb9bfdb48b023e26cf52",
+    "article_32dbd776b8226dbd5298",
+    "article_0c888acc2e8839bcd4ac",
+    "article_0ff16eee0fabb1ce0425",
     "article_3eb3e9557eb7038ef8ad",
-    "article_1c661d197f8cbdd4ee63",
-    "article_66834f9e29d7b88462a2"
+    "article_1c661d197f8cbdd4ee63"
   ],
   "new_article_ids": [
-    "article_42c44577e2c4ce9554eb",
-    "article_cb9bfdb48b023e26cf52"
+    "article_32dbd776b8226dbd5298",
+    "article_0c888acc2e8839bcd4ac",
+    "article_0ff16eee0fabb1ce0425"
   ],
   "continued_article_ids": [
     "article_3eb3e9557eb7038ef8ad",
-    "article_1c661d197f8cbdd4ee63",
-    "article_66834f9e29d7b88462a2"
+    "article_1c661d197f8cbdd4ee63"
   ],
   "continuation_sources": {
     "article_3eb3e9557eb7038ef8ad": "previous_edition",
-    "article_1c661d197f8cbdd4ee63": "previous_edition",
-    "article_66834f9e29d7b88462a2": "previous_edition"
+    "article_1c661d197f8cbdd4ee63": "previous_edition"
   },
   "scores": {
-    "article_42c44577e2c4ce9554eb": {
-      "article_id": "article_42c44577e2c4ce9554eb",
-      "total": 55,
+    "article_32dbd776b8226dbd5298": {
+      "article_id": "article_32dbd776b8226dbd5298",
+      "total": 79,
       "breakdown": {
-        "importance": 25,
-        "topicality": 10,
+        "importance": 45,
+        "topicality": 15,
         "scope": 6,
         "authority": 5,
-        "freshness": 9,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "遅れて確認できた新着",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-09-16T07:03:33.000Z"
+    },
+    "article_0c888acc2e8839bcd4ac": {
+      "article_id": "article_0c888acc2e8839bcd4ac",
+      "total": 62,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 20,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 2,
         "tool_evolution": 0,
         "penalty": 0
       },
       "reasons": [
         "重要度B",
-        "制度・安全への影響"
+        "主要AI企業・基盤",
+        "制度・安全への影響",
+        "大きな製品・市場変化",
+        "重要な経営・研究体制"
       ],
-      "published_at": "2026-09-16T08:39:00.000Z"
+      "published_at": "2026-09-16T10:22:11.000Z"
     },
-    "article_cb9bfdb48b023e26cf52": {
-      "article_id": "article_cb9bfdb48b023e26cf52",
-      "total": 35,
+    "article_0ff16eee0fabb1ce0425": {
+      "article_id": "article_0ff16eee0fabb1ce0425",
+      "total": 60,
       "breakdown": {
-        "importance": 10,
-        "topicality": 10,
-        "scope": 6,
+        "importance": 25,
+        "topicality": 20,
+        "scope": 10,
         "authority": 5,
-        "freshness": 4,
+        "freshness": 0,
         "tool_evolution": 0,
         "penalty": 0
       },
       "reasons": [
-        "重要度C",
-        "大きな製品・市場変化"
+        "重要度B",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "重要な経営・研究体制",
+        "遅れて確認できた新着"
       ],
-      "published_at": "2026-09-16T02:47:17.000Z"
+      "published_at": "2026-09-16T04:55:00.000Z"
     },
     "article_3eb3e9557eb7038ef8ad": {
       "article_id": "article_3eb3e9557eb7038ef8ad",
@@ -140,220 +159,9 @@
         "重要な経営・研究体制"
       ],
       "published_at": "2026-09-14T21:51:02.000Z"
-    },
-    "article_66834f9e29d7b88462a2": {
-      "article_id": "article_66834f9e29d7b88462a2",
-      "total": 76,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 20,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "主要AI企業・基盤",
-        "制度・安全への影響",
-        "重要な経営・研究体制"
-      ],
-      "published_at": "2026-09-13T12:33:55.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_8552ca13e8f5f6600b1f",
-      "story_id": "story_9d480f2088f617e53e",
-      "title": "OpenAI、2026年内の株式上場を見送りとアルトマンCEOが表明",
-      "primary_entity": "OpenAI",
-      "story_subject": "OpenAIの株式上場方針",
-      "event_type": "other",
-      "event_stage": "announced",
-      "event_scope": "OpenAIの企業活動全般",
-      "story_entities": [
-        "OpenAI",
-        "サム・アルトマン",
-        "openai",
-        "サムアルトマン"
-      ],
-      "fact_slots": [
-        {
-          "type": "date",
-          "scope": "上場見送り期間",
-          "value": "2026年内",
-          "normalized_value": "2026年内"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-09-13T09:38:19.050Z",
-      "edition_window_end": "2026-09-13T09:34:05.981Z"
-    },
-    {
-      "article_id": "article_cf790ba7a87ce817d41c",
-      "story_id": "story_d9bac7881bee15f726",
-      "title": "xAIがコロラド州のAI規制法を提訴、適用停止を求める",
-      "primary_entity": "xAI",
-      "story_subject": "コロラド州AI規制法を巡る訴訟",
-      "event_type": "policy",
-      "event_stage": "other",
-      "event_scope": "米国コロラド州",
-      "story_entities": [
-        "xAI",
-        "コロラド州",
-        "Grok",
-        "xai",
-        "grok"
-      ],
-      "fact_slots": [
-        {
-          "type": "status",
-          "scope": "xAIの訴訟",
-          "value": "コロラド州AI規制法に対して提訴し適用停止を求めている",
-          "normalized_value": "コロラド州ai規制法に対して提訴し適用停止を求めている"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-13T09:38:19.050Z",
-      "edition_window_end": "2026-09-13T09:34:05.981Z"
-    },
-    {
-      "article_id": "article_66834f9e29d7b88462a2",
-      "story_id": "story_05286b417c6dcf4ffd",
-      "title": "AnthropicのCEO、AI開発競争の減速を呼びかけ",
-      "primary_entity": "Anthropic",
-      "story_subject": "AnthropicCEOによるAI開発競争減速の呼びかけ",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "グローバル",
-      "story_entities": [
-        "Anthropic",
-        "AI開発競争",
-        "anthropic",
-        "ai開発競争"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-09-13T14:27:58.480Z",
-      "edition_window_end": "2026-09-13T14:22:10.780Z"
-    },
-    {
-      "article_id": "article_afbdb48a7bf379ede645",
-      "story_id": "story_a35fb213ab6b6cf42e",
-      "title": "AI企業トップの警告が半導体株の重荷に、投資テーマは維持との声も",
-      "primary_entity": "半導体業界",
-      "story_subject": "AI企業トップの警告発言と半導体株への影響",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "世界市場",
-      "story_entities": [
-        "Bloomberg",
-        "半導体株",
-        "AI投資",
-        "bloomberg",
-        "ai投資"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-13T14:27:58.480Z",
-      "edition_window_end": "2026-09-13T14:22:10.780Z"
-    },
-    {
-      "article_id": "article_bf7150d0b8c6caa3bb94_rev_81d30f4acf93",
-      "story_id": "story_bb15e645c6a5339c4b",
-      "title": "次世代AIサーバーが置けない日本のデータセンター",
-      "primary_entity": "日本のデータセンター事業者",
-      "story_subject": "次世代AIサーバーの設置制約",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "日本",
-      "story_entities": [
-        "データセンター",
-        "AIサーバー",
-        "aiサーバー"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-09-13T14:27:58.480Z",
-      "edition_window_end": "2026-09-13T14:22:10.780Z"
-    },
-    {
-      "article_id": "article_4327bae709ea5d0f9024",
-      "story_id": "story_0a4871fcae796c5f4d",
-      "title": "ブロックチェーン調査企業TRM Labs、AI活用で評価額20億ドルに",
-      "primary_entity": "TRM Labs",
-      "story_subject": "TRM Labsの評価額20億ドル達成",
-      "event_type": "funding",
-      "event_stage": "announced",
-      "event_scope": "グローバル",
-      "story_entities": [
-        "TRM Labs",
-        "AI捜査支援",
-        "ブロックチェーン分析",
-        "trmlabs",
-        "ai捜査支援"
-      ],
-      "fact_slots": [
-        {
-          "type": "amount",
-          "scope": "TRM Labsの評価額",
-          "value": "20億ドル",
-          "normalized_value": "2000000000USD"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-13T14:27:58.480Z",
-      "edition_window_end": "2026-09-13T14:22:10.780Z"
-    },
-    {
-      "article_id": "article_59adcb771edaf24cd2b0",
-      "story_id": "story_ec22b93dfcac0c19cf",
-      "title": "DeepSeek、評価額12兆円に迫る IPO検討と150人採用へ",
-      "primary_entity": "DeepSeek",
-      "story_subject": "DeepSeekの評価額とIPO計画",
-      "event_type": "funding",
-      "event_stage": "rumor",
-      "event_scope": "中国・グローバル",
-      "story_entities": [
-        "DeepSeek",
-        "IPO",
-        "評価額",
-        "deepseek",
-        "ipo"
-      ],
-      "fact_slots": [
-        {
-          "type": "amount",
-          "scope": "DeepSeekの評価額",
-          "value": "約12兆円",
-          "normalized_value": "12000000000000JPY"
-        },
-        {
-          "type": "count",
-          "scope": "採用人数",
-          "value": "150人",
-          "normalized_value": "150"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-09-13T14:27:58.480Z",
-      "edition_window_end": "2026-09-13T14:22:10.780Z"
-    },
     {
       "article_id": "article_0dc8cdb130b208b721fe",
       "story_id": "story_7652516550b3eb917c",
@@ -674,6 +482,72 @@
       "previous_article_id": "",
       "selected_at": "2026-09-16T09:23:23.517Z",
       "edition_window_end": "2026-09-16T09:18:32.544Z"
+    },
+    {
+      "article_id": "article_32dbd776b8226dbd5298",
+      "story_id": "story_de5419384d168474d8",
+      "title": "Google、音声対話AI「Gemini 3.8 Live」と高度推論機能「Extended Thinking」を発表",
+      "primary_entity": "Google",
+      "story_subject": "Gemini 3.8 Live",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "音声対話AIモデル",
+      "story_entities": [
+        "Google",
+        "Gemini 3.8 Live",
+        "Extended Thinking",
+        "google",
+        "gemini3.8live"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-16T15:03:23.708Z",
+      "edition_window_end": "2026-09-16T14:58:28.150Z"
+    },
+    {
+      "article_id": "article_0c888acc2e8839bcd4ac",
+      "story_id": "story_8c5856d1ca8b750d86",
+      "title": "エヌビディアCEO、AI開発への「新たな規制は不要」と発言",
+      "primary_entity": "Nvidia",
+      "story_subject": "AI規制に関するCEO発言",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "米国・世界",
+      "story_entities": [
+        "Nvidia",
+        "ジェンスン・フアン",
+        "nvidia",
+        "ジェンスンフアン"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-16T15:03:23.708Z",
+      "edition_window_end": "2026-09-16T14:58:28.150Z"
+    },
+    {
+      "article_id": "article_0ff16eee0fabb1ce0425",
+      "story_id": "story_faa22ede770536c4ac",
+      "title": "華為監事会主席、「ICT・計算分野の目標はNvidiaになること」と発言",
+      "primary_entity": "ファーウェイ",
+      "story_subject": "ファーウェイの半導体・AI戦略",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "中国・世界",
+      "story_entities": [
+        "ファーウェイ",
+        "Nvidia",
+        "nvidia"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-16T15:03:23.708Z",
+      "edition_window_end": "2026-09-16T14:58:28.150Z"
     }
   ]
 }
