@@ -1,4 +1,4 @@
-// トップページ: 商品から入る導線(さがす → 人気 → 棚) + 3Dハウスの見積り(スクロールで軒下・内部へ)
+// トップページ: 本物の畑の写真 → その上の一品 → よく出るもの → ハウスの写真から棚へ → 30秒診断 → 3D → 写真の中の商品
 import { CONFIG } from "./config.js";
 import { initSite, esc } from "./site.js";
 import { ICONS } from "./icons.js";
@@ -45,28 +45,39 @@ function homeCard(p, ribbon) {
     <div class="pcard-acts"><a class="btn outline block" href="product.html?id=${encodeURIComponent(p.id)}">くわしく見る</a></div>
   </article>`;
 }
+const priceHtml = (p, small) => { const inc = p.price != null ? Math.round(p.price * 1.1) : null; return inc != null ? `<span class="yen">¥</span>${inc.toLocaleString("ja-JP")}<small>${small ? "税込" : `税込 / ${esc(p.unit || "1")}あたり`}</small>` : `<span class="ask">金額はご相談</span>`; };
 function showFeature(key) {
   const f = FEATURES[key] || FEATURES.campaign;
   const ribbon = key === "campaign" ? { label: "キャンペーン", cls: "camp" } : key === "new" ? { label: "新商品", cls: "new" } : { label: "人気", cls: "" };
   const list = PRODUCTS.filter(p => (p.tags || []).includes(f.tag)).slice(0, 4);
-  const [top, ...rest] = list;
-  if (top) {
-    const shelf = shelfOf(top.cat), inc = top.price != null ? Math.round(top.price * 1.1) : null, href = `product.html?id=${encodeURIComponent(top.id)}`;
-    $("#spot-shelf").textContent = `${ribbon.label} ／ ${shelf.label}`;
-    $("#spot-name").textContent = top.name;
-    $("#spot-use").textContent = top.use || top.spec;
-    $("#spot-price").innerHTML = inc != null ? `<span class="yen">¥</span>${inc.toLocaleString("ja-JP")}<small>税込 / ${esc(top.unit || "1")}あたり</small>` : `<span class="ask">金額はご相談</span><small>すぐお答えします</small>`;
-    $("#spot-go").href = href; $("#spot-fig").href = href;
-    const img = $("#spot-img"); img.src = `assets/products/dark/${encodeURIComponent(top.id)}.jpg`; img.alt = `${top.name} のイメージ図`;
-  }
-  $("#feature-rail").innerHTML = rest.map(p => homeCard(p, ribbon)).join("");
+  $("#feature-rail").innerHTML = list.map(p => homeCard(p, ribbon)).join("");
   document.querySelectorAll("[data-feat]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.feat === key)));
 }
 document.querySelectorAll("[data-feat]").forEach(b => b.addEventListener("click", () => showFeature(b.dataset.feat)));
 showFeature("campaign");
+// 冒頭の写真の上に置く一品(今月のキャンペーンの先頭)
+{
+  const top = PRODUCTS.find(p => (p.tags || []).includes("キャンペーン"));
+  if (top) {
+    const href = `product.html?id=${encodeURIComponent(top.id)}`;
+    $("#spot-fig").href = href;
+    $("#spot-shelf").textContent = `今月のキャンペーン ／ ${shelfOf(top.cat).label}`;
+    $("#spot-name").textContent = top.name;
+    $("#spot-use").textContent = top.use || top.spec;
+    $("#spot-price").innerHTML = priceHtml(top, true);
+    const img = $("#spot-img"); img.src = `assets/products/dark/${encodeURIComponent(top.id)}.jpg`; img.alt = `${top.name} のイメージ図`;
+  }
+}
+// 見せ場の写真の中に置く商品カード
+document.querySelectorAll("[data-story-product]").forEach(el => {
+  const p = PRODUCTS.find(x => x.id === el.dataset.storyProduct); if (!p) { el.hidden = true; return; }
+  el.querySelector(".fig img").src = `assets/products/dark/${encodeURIComponent(p.id)}.jpg`;
+  el.querySelector(".nm").textContent = p.name;
+  el.querySelector(".pr").innerHTML = priceHtml(p, true);
+});
 
 // ---- 棚(写真のタイル)・節気 ----
-$("#shelf-rail").innerHTML = SHELVES.map(s => `<a class="tile" href="catalog.html#shelf=${s.id}"><img src="assets/hero/${s.id}.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async"><span class="txt"><h3>${esc(s.label)}</h3><p>${esc(s.sub)}</p><span class="n">${PRODUCTS.filter(p => s.cats.includes(p.cat)).length}点</span></span></a>`).join("");
+$("#shelf-rail").innerHTML = SHELVES.map(s => `<a class="tile" href="catalog.html#shelf=${s.id}"><img src="assets/photo/shelf-${s.id}.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async"><span class="txt"><h3>${esc(s.label)}</h3><p>${esc(s.sub)}</p><span class="n">${PRODUCTS.filter(p => s.cats.includes(p.cat)).length}点</span></span></a>`).join("");
 const now = currentSekki();
 const idx = SEKKI.findIndex(t => t.name === now.name);
 $("#works").innerHTML = [0, 1, 2].map(i => { const t = SEKKI[(idx + i) % SEKKI.length]; return `<a class="work${i === 0 ? " now" : ""}" href="catalog.html"><div class="term">${esc(t.name)}</div><div class="date">${t.month}月${t.day}日ごろ${i === 0 ? " ・ いま" : ""}</div><p>${esc(t.task)}</p></a>`; }).join("");

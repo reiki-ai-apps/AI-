@@ -55,30 +55,59 @@
   </div>
 </header>
 <main>
-<!-- 1. 商品から(トップは商品が最初)。いちばん大きく、ひとつだけ見せる -->
-<section class="spot dark" id="spot" aria-labelledby="spot-name">
-  <div class="container spot-inner">
-    <div class="spot-copy">
+<!-- 1. 本物の畑をいちばん大きく。その上に、今月の一品(商品カード)を置く -->
+<section class="farm" id="farm" aria-labelledby="farm-title">
+  <picture class="farm-photo">
+    <source media="(max-width: 700px)" srcset="assets/photo/farm-dawn-m.jpg">
+    <img src="assets/photo/farm-dawn.jpg" alt="朝のビニールハウスの中、いちごの畝が奥までつづく" width="1800" height="1350" decoding="async" fetchpriority="high">
+  </picture>
+  <div class="container farm-inner">
+    <div class="farm-copy">
+      <span class="kicker">群馬・桐生 ／ ハウス資材の三高産業</span>
+      <h1 id="farm-title">朝いちばんの光が、<br>いちばん高く売れる。</h1>
+      <p>ビニールハウスの資材を、パイプ1本から。建てて、直して、その後も見ています。</p>
+      <div class="farm-acts"><a class="btn light lg" href="catalog.html">資材をさがす</a><a class="btn outline lg" href="check.html">30秒でビニールの替え時を診る</a></div>
+    </div>
+    <a class="farm-spot" id="spot-fig" href="catalog.html">
+      <span class="tag" id="spot-shelf">今月のキャンペーン</span>
+      <span class="fig"><img id="spot-img" alt="" width="1200" height="900" decoding="async"><span class="fig-note">イメージ図</span></span>
+      <span class="nm" id="spot-name"></span>
+      <span class="use" id="spot-use"></span>
+      <span class="pr" id="spot-price"></span>
+      <span class="go">くわしく見る →</span>
+    </a>
+  </div>
+  <span class="photo-note">写真はイメージです</span>
+</section>
+
+<!-- 2. いま、よく出ているもの(キャンペーン / 新商品 / 売れ筋) -->
+<section class="section feat-sec">
+  <div class="container">
+    <div class="feat-head">
+      <div class="section-title"><span class="eyebrow">Pick Up</span><h2>いま、よく出ているもの</h2></div>
       <div class="feature-tabs" role="tablist" aria-label="おすすめの切り替え">
         <button type="button" role="tab" data-feat="campaign" aria-selected="true">今月のキャンペーン</button>
         <button type="button" role="tab" data-feat="new" aria-selected="false">新商品</button>
         <button type="button" role="tab" data-feat="hot" aria-selected="false">売れ筋</button>
       </div>
-      <p class="spot-shelf" id="spot-shelf"></p>
-      <h2 id="spot-name"></h2>
-      <p class="spot-use" id="spot-use"></p>
-      <div class="spot-price" id="spot-price"></div>
-      <div class="spot-acts"><a class="btn light lg" id="spot-go" href="catalog.html">くわしく見る</a><a class="textlink" href="catalog.html">資材をすべて見る →</a></div>
     </div>
-    <a class="spot-fig" id="spot-fig" href="catalog.html" aria-hidden="true" tabindex="-1"><img id="spot-img" alt="" width="1200" height="900" decoding="async" fetchpriority="high"><span class="fig-note">イメージ図</span></a>
+    <div class="rail feat-rail" id="feature-rail"></div>
+    <p class="feat-more"><a class="textlink" href="catalog.html">資材をすべて見る →</a></p>
   </div>
-  <div class="container"><div class="rail spot-rail" id="feature-rail"></div></div>
 </section>
 
-<!-- 2. 6つの棚(写真で選ぶ) -->
-<section class="section shelf-sec">
+<!-- 3. ハウスの写真から、6つの棚へ -->
+<section class="shelf-sec" aria-labelledby="shelf-title">
+  <div class="shelf-band">
+    <img src="assets/photo/tunnels-aerial.jpg" alt="" width="1800" height="1013" loading="lazy" decoding="async">
+    <div class="container shelf-band-copy">
+      <span class="kicker">Category</span>
+      <h2 id="shelf-title">ハウスのどこの資材ですか？</h2>
+      <p>骨、フィルム、風、温度、水、まもり。品名がわからなくても、場所から選べます。</p>
+    </div>
+    <span class="photo-note">写真はイメージです</span>
+  </div>
   <div class="container">
-    <div class="section-title reveal"><span class="eyebrow">Category</span><h2>どんな品物をお探しですか？</h2><p>棚の写真から。品名がわからなくても大丈夫です。</p></div>
     <div class="shelf-tiles reveal" id="shelf-rail"></div>
     <div class="find-row reveal">
       <div class="find-trouble">
@@ -100,7 +129,7 @@
       <span class="eyebrow">30-Second Check</span>
       <h2 id="chk-title">うちのビニール、<br>いつ替え時？</h2>
       <p>種類と張った年を押すだけ。次の目安と、必要なフィルムの量、費用のめやすがその場で出ます。登録もログインも要りません。</p>
-      <div class="chk-fig" aria-hidden="true"><img src="assets/hero/cover.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async"></div>
+      <div class="chk-fig" aria-hidden="true"><img src="assets/photo/lettuce-house.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async"><span class="photo-note">写真はイメージです</span></div>
     </div>
     <form class="chk-form" id="chk-form">
       <div class="chk-q"><span class="lbl">いま張ってあるのは</span><div class="chk-opts" id="chk-films"></div></div>
@@ -134,19 +163,31 @@
   </div>
 </section>
 
-<!-- 5. 見せ場: 棚ごとの主役を大きく -->
+<!-- 5. 見せ場: 本物の畑の写真から、そこで使う商品へ -->
 <section class="section stories">
   <div class="container">
     <article class="story reveal">
-      <a class="story-fig" href="catalog.html#shelf=air" aria-hidden="true" tabindex="-1"><img src="assets/hero/air.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async"><span class="fig-note">イメージ図</span></a>
+      <div class="story-fig">
+        <img src="assets/photo/glasshouse.jpg" alt="夏のガラス温室の中、通路の奥まで葉物が育つ" width="1800" height="1200" loading="lazy" decoding="async">
+        <a class="story-card" href="product.html?id=GN-VT-FAN40" data-story-product="GN-VT-FAN40"><span class="fig"><img alt="" width="1200" height="900" loading="lazy" decoding="async"></span><span class="txt"><span class="nm"></span><span class="pr"></span></span></a>
+        <span class="photo-note">写真はイメージです</span>
+      </div>
       <div class="story-copy"><span class="eyebrow">風を通す</span><h2>夏のハウスは、<br>風で決まる。</h2><p>循環扇で空気をかき混ぜ、巻き上げ換気と天窓で熱を逃がす。むらと病気が減り、作物が持ち直します。</p><a class="btn" href="catalog.html#shelf=air">風を通す資材を見る</a></div>
     </article>
     <article class="story flip reveal">
-      <a class="story-fig" href="catalog.html#shelf=frame" aria-hidden="true" tabindex="-1"><img src="assets/hero/cross.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async"><span class="fig-note">イメージ図</span></a>
-      <div class="story-copy"><span class="eyebrow">骨組み</span><h2>金具ひとつで、<br>骨組みは強くなる。</h2><p>パイプの径に合う金具を、必要な数だけ。φ19からφ31.8まで、一個から取り寄せられます。</p><a class="btn" href="catalog.html#shelf=frame">骨組みの資材を見る</a></div>
+      <div class="story-fig">
+        <img src="assets/photo/tomatoes.jpg" alt="赤く熟したトマトが山積み" width="1800" height="1200" loading="lazy" decoding="async">
+        <a class="story-card" href="product.html?id=GN-IR-DRIP" data-story-product="GN-IR-DRIP"><span class="fig"><img alt="" width="1200" height="900" loading="lazy" decoding="async"></span><span class="txt"><span class="nm"></span><span class="pr"></span></span></a>
+        <span class="photo-note">写真はイメージです</span>
+      </div>
+      <div class="story-copy"><span class="eyebrow">水をやる</span><h2>水の量で、<br>味が決まる。</h2><p>うねに沿って点々と、決めた時間に決めた量だけ。点滴チューブとタイマーで、毎日の水やりを手放せます。</p><a class="btn" href="catalog.html#shelf=water">水をやる資材を見る</a></div>
     </article>
     <article class="story reveal">
-      <a class="story-fig" href="catalog.html#shelf=temp" aria-hidden="true" tabindex="-1"><img src="assets/hero/curtain.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async"><span class="fig-note">イメージ図</span></a>
+      <div class="story-fig">
+        <img src="assets/photo/strawberry.jpg" alt="冬のハウスで実ったいちご" width="1800" height="1200" loading="lazy" decoding="async">
+        <a class="story-card" href="product.html?id=SW-CT-DRIVE" data-story-product="SW-CT-DRIVE"><span class="fig"><img alt="" width="1200" height="900" loading="lazy" decoding="async"></span><span class="txt"><span class="nm"></span><span class="pr"></span></span></a>
+        <span class="photo-note">写真はイメージです</span>
+      </div>
       <div class="story-copy"><span class="eyebrow">あたためる・冷やす</span><h2>夜の冷えは、<br>カーテンで止める。</h2><p>保温カーテンと開閉装置、暖房機。燃料代を抑えながら、朝の温度を守ります。</p><a class="btn" href="catalog.html#shelf=temp">あたためる・冷やす資材を見る</a></div>
     </article>
   </div>
@@ -186,7 +227,10 @@
 <!-- 8. 会社 -->
 <section class="section">
   <div class="container">
-    <div class="section-title reveal"><span class="eyebrow">Mitaka Sangyo</span><h2>売るだけでなく、建てて、直して、見ています。</h2></div>
+    <div class="company reveal">
+      <div class="company-fig"><img src="assets/photo/harvest-hands.jpg" alt="収穫したミニトマトを両手で差し出す農家" width="1800" height="1200" loading="lazy" decoding="async"><span class="photo-note">写真はイメージです</span></div>
+      <div class="section-title"><span class="eyebrow">Mitaka Sangyo</span><h2><span class="ph">売るだけでなく、</span><span class="ph">建てて、直して、見ています。</span></h2><p>群馬・桐生の資材屋です。農家さんの一棟一棟を記録し、次の代へ引き継ぎます。</p></div>
+    </div>
     <div class="promises reveal">
       <div class="promise"><h3>新設から張り替え・修理まで</h3><p>ハウスの新設、被覆材の張り替え、台風・雪のあとの修理、日ごろのメンテナンスまで、自社の施工班が伺います。</p></div>
       <div class="promise"><h3>群馬・桐生から、隣接県へ</h3><p>群馬県内と隣接県を中心に対応。その他の地域も、運搬と施工の段取りをご相談のうえで。</p></div>
@@ -198,8 +242,13 @@
 <!-- 9. 節気の仕事 -->
 <section class="section calm">
   <div class="container">
-    <div class="section-title reveal"><span class="eyebrow">Season</span><h2>節気の仕事</h2><p>二十四節気に合わせて、いまハウスでやること。</p></div>
-    <div class="works reveal" id="works"></div>
+    <div class="season reveal">
+      <div class="season-fig"><img src="assets/photo/seedlings.jpg" alt="セルトレイに苗を植えている手元" width="1800" height="1200" loading="lazy" decoding="async"><span class="photo-note">写真はイメージです</span></div>
+      <div>
+        <div class="section-title"><span class="eyebrow">Season</span><h2>節気の仕事</h2><p>二十四節気に合わせて、いまハウスでやること。</p></div>
+        <div class="works" id="works"></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -254,7 +303,7 @@
     </div>
     <div class="copy">
       <span>© <span data-year>2026</span> 三高産業株式会社</span>
-      <span>試作版です。表示の金額はめやすで、正式な金額は担当がお見積りします。</span>
+      <span>試作版です。表示の金額はめやすで、正式な金額は担当がお見積りします。畑やハウスの写真はイメージです(Unsplash)。商品の立体図はイメージ図です。</span>
     </div>
   </div>
 </footer>

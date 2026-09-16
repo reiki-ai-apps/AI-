@@ -44,7 +44,7 @@ function renderBrowse() {
   $("#shelves").innerHTML = SHELVES.map(s => {
     const items = PRODUCTS.filter(p => s.cats.includes(p.cat));
     return `<section class="shelf" id="shelf-${s.id}" style="--shelf:${s.color};--shelf-bg:${s.color}14">
-      <button class="shelf-cover" type="button" data-shelf="${s.id}"><img src="assets/hero/${s.id}.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async"><span class="fig-note">イメージ図</span></button>
+      <button class="shelf-cover" type="button" data-shelf="${s.id}"><img src="assets/photo/shelf-${s.id}.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async"><span class="fig-note">写真はイメージです</span></button>
       <div class="shelf-head"><div><h2>${esc(s.label)}</h2><div class="sub">${esc(s.sub)}</div></div><button class="more" type="button" data-shelf="${s.id}">すべて見る(${items.length})</button></div>
       <div class="shelf-body"><div class="rail">${items.slice(0, 6).map(card).join("")}</div></div>
     </section>`;
@@ -69,7 +69,7 @@ function renderResults() {
   $("#count").textContent = `${list.length}件`;
   // 棚で絞った時だけ、棚の写真を上に敷く(困りごと・検索の時は出さない)
   const banner = $("#shelf-banner"); banner.hidden = !(s && !pu && !state.q);
-  if (!banner.hidden) { $("#shelf-banner-img").src = `assets/hero/${s.id}.jpg`; $("#shelf-banner-eyebrow").textContent = `${list.length}点`; $("#shelf-banner-title").textContent = s.label; $("#shelf-banner-sub").textContent = s.sub; }
+  if (!banner.hidden) { $("#shelf-banner-img").src = `assets/photo/shelf-${s.id}.jpg`; $("#shelf-banner-eyebrow").textContent = `${list.length}点`; $("#shelf-banner-title").textContent = s.label; $("#shelf-banner-sub").textContent = s.sub; }
   $("#maker-chips").innerHTML = [{ id: "all", label: "全メーカー" }, ...MAKERS].map(m => `<button type="button" class="chip" data-maker="${m.id}" aria-pressed="${state.maker === m.id}">${esc(m.label)}</button>`).join("");
   $("#grid").innerHTML = list.length ? list.map(card).join("") : `<div class="empty"><p style="margin:0;font-weight:700">見つかりませんでした。</p><p class="muted" style="margin:.3rem 0 0">言い方を変えるか、お電話で聞いてみませんか？</p><a class="btn help" href="quote.html"><span class="ic">${ICONS.phone}</span>担当に聞く</a></div>`;
   document.querySelectorAll("[data-nav-shelf]").forEach(a => a.setAttribute("aria-current", String(a.dataset.navShelf === state.shelf)));
