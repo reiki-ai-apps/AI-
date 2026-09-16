@@ -5,45 +5,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>うちのハウス、いつ張り替え？ 30秒診断｜三高産業 ハウスEC</title>
 <meta name="description" content="ビニールの種類と張った年を押すだけ。次の張り替えの目安、必要なフィルムの量、張り替え費用のめやすがその場でわかります。登録不要。">
-<meta name="theme-color" content="#1f6b3a">
+<meta name="theme-color" content="#0D0E10">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <style>
-.chk-wrap { max-width: 860px; }
-.chk-step { margin-top: 28px; }
-.chk-step .no { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--ink-900); color: var(--on-dark); font-weight: 700; margin-right: 10px; font-variant-numeric: tabular-nums; flex: none; }
-.chk-step h2 { display: flex; align-items: center; font-size: 1.3rem; margin: 0 0 12px; }
+.chk-wrap { max-width: 980px; }
+.chk-step { margin-top: 44px; }
+.chk-step .no { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: var(--radius-sm); background: var(--ink-900); color: #fff; font-weight: 700; font-size: 0.9rem; margin-right: 12px; font-variant-numeric: tabular-nums; flex: none; }
+.chk-step h2 { display: flex; align-items: center; font-size: 1.2rem; font-weight: 800; margin: 0 0 16px; }
 .choices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 .choices.yrs { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 560px) { .choices { grid-template-columns: 1fr; } .choices.yrs { grid-template-columns: repeat(2, 1fr); } }
-.choice { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-height: 64px; padding: 12px 16px; border: 1.5px solid var(--line-strong); border-radius: 12px; background: #fff; font: inherit; text-align: left; cursor: pointer; transition: border-color var(--t-fast), background var(--t-fast); }
-.choice b { font-size: 1.05rem; } .choice small { color: var(--muted); font-size: 0.85rem; }
-.choice:hover { border-color: var(--ink-700); }
-.choice.on { border-color: var(--sunrise); background: var(--earth-100); box-shadow: inset 0 0 0 1.5px var(--sunrise); }
+.choice { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-height: 68px; padding: 14px 18px; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: #fff; font: inherit; text-align: left; cursor: pointer; transition: border-color var(--t-fast), background var(--t-fast), color var(--t-fast); }
+.choice b { font-size: 1rem; font-weight: 700; } .choice small { color: var(--muted); font-size: 0.8rem; }
+.choice:hover { border-color: var(--ink-900); }
+.choice.on { border-color: var(--ink-900); background: var(--ink-900); color: #fff; }
+.choice.on small { color: rgba(255,255,255,0.68); }
 .choice.yr { align-items: center; text-align: center; }
-.size { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 420px; }
-.size label { font-size: 0.92rem; font-weight: 700; }
-.size select, .size input { display: block; width: 100%; margin-top: 6px; padding: 12px 14px; min-height: 52px; font: inherit; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
-.result { margin-top: 28px; border-radius: var(--radius-lg); padding: 24px; border: 1px solid var(--line); background: #fff; border-left: 8px solid var(--green-500); }
-.result.due { border-left-color: var(--danger); } .result.soon { border-left-color: var(--sunrise); } .result.unknown { border-left-color: var(--line-strong); }
-.result h2 { font-family: var(--font-display); font-size: 1.65rem; margin: 0 0 6px; line-height: 1.35; }
-.result .sub { color: var(--text); margin: 0 0 18px; }
-.nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.size { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 440px; }
+.size label { font-size: 0.86rem; font-weight: 700; }
+.size select, .size input { display: block; width: 100%; margin-top: 8px; padding: 12px 14px; min-height: 50px; font: inherit; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: #fff; }
+.result { margin-top: 44px; border-radius: 0; padding: 32px; border: 0; background: var(--ink-900); color: var(--on-dark); }
+.result.due { border-top: 3px solid var(--sunrise); } .result.soon { border-top: 3px solid #E5A94B; } .result.unknown { border-top: 3px solid rgba(255,255,255,0.4); }
+.result h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; color: #fff; margin: 0 0 8px; line-height: 1.35; }
+.result .sub { color: rgba(255,255,255,0.7); margin: 0 0 24px; font-size: 0.92rem; }
+.nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.14); }
 @media (max-width: 560px) { .nums { grid-template-columns: 1fr; } }
-.num { background: var(--surface-2); border-radius: 12px; padding: 12px 14px; }
-.num small { display: block; color: var(--muted); font-size: 0.82rem; }
-.num b { display: block; font-size: 1.45rem; font-variant-numeric: tabular-nums; border-bottom: 2px solid var(--soil); width: max-content; max-width: 100%; }
-.result .acts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
-.save { margin-top: 20px; }
-.save h2 { font-size: 1.3rem; margin: 0 0 4px; }
-.save .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
-@media (max-width: 560px) { .save .grid2 { grid-template-columns: 1fr; } }
-.save .sum { background: var(--surface-2); border-radius: 8px; padding: 8px 12px; font-size: 0.9rem; margin: 10px 0 16px; }
-.consents { border-top: 1px solid var(--line); margin-top: 12px; padding-top: 6px; }
-.done { margin-top: 20px; border: 2px solid var(--green-500); }
-.done .code { font-size: 2rem; letter-spacing: 0.25em; font-variant-numeric: tabular-nums; font-weight: 700; }
+.num { background: var(--ink-900); padding: 18px 20px; }
+.num small { display: block; color: rgba(255,255,255,0.55); font-size: 0.74rem; letter-spacing: 0.06em; margin-bottom: 6px; }
+.num b { display: block; font-size: 1.5rem; font-weight: 800; color: #fff; font-variant-numeric: tabular-nums; border: 0; width: max-content; max-width: 100%; letter-spacing: -0.01em; }
+.result .acts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+.result .acts .btn.ghost { color: #fff; border-color: rgba(255,255,255,0.4); }
+.result .acts .btn.ghost:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.result .small.muted { color: rgba(255,255,255,0.5) !important; }
+.save { margin-top: 32px; padding: 32px; }
+.save h2 { font-size: 1.2rem; font-weight: 800; margin: 0 0 6px; }
+.save .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; margin-top: 20px; }
+@media (max-width: 560px) { .save { padding: 22px; } .save .grid2 { grid-template-columns: 1fr; } }
+.save .sum { background: var(--surface-2); border-radius: var(--radius-sm); padding: 12px 16px; font-size: 0.88rem; margin: 16px 0 0; }
+.consents { border-top: 1px solid var(--line); margin-top: 20px; padding-top: 12px; }
+.done { margin-top: 32px; padding: 32px; border: 1px solid var(--ink-900); }
+.done .code { font-size: 2rem; letter-spacing: 0.24em; font-variant-numeric: tabular-nums; font-weight: 800; }
 </style>
 </head>
 <body>
@@ -51,8 +55,8 @@
 <header class="site-header">
   <div class="container inner">
     <a class="brand" href="index.html">
-      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 20V11a9 9 0 0 1 18 0v9"/><path d="M3 20h18M12 2.2V20M7 20V6.2M17 20V6.2"/><circle cx="19.5" cy="4.5" r="1.6" fill="currentColor" stroke="none"/></svg></span>
-      <span class="brand-text"><span class="name">三高産業</span><span class="sub">ハウス資材と施工 ・ 群馬・桐生</span></span>
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 20V11a9 9 0 0 1 18 0v9"/><path d="M3 20h18M12 2.2V20M7 20V6.2M17 20V6.2"/></svg></span>
+      <span class="brand-text"><span class="name">三高産業</span><span class="sub">Mitaka Sangyo</span></span>
     </a>
     <form class="hsearch" id="hsearch" role="search">
       <input type="search" id="hsearch-q" placeholder="資材をさがす(例: ビニール、パイプ、くるふぁみ)" aria-label="資材をさがす" autocomplete="off" enterkeyhint="search">
@@ -68,7 +72,20 @@
       <a href="mypage.html">マイページ</a>
       <a href="library.html">ハウス図鑑</a>
       <a href="quote.html">見積依頼</a>
+      <a href="partners.html">事業者の方へ</a>
     </nav>
+  </div>
+  <div class="shelfnav">
+    <div class="container inner">
+      <a href="catalog.html#shelf=frame">骨組み</a>
+      <a href="catalog.html#shelf=cover">張る</a>
+      <a href="catalog.html#shelf=air">風を通す</a>
+      <a href="catalog.html#shelf=temp">あたためる・冷やす</a>
+      <a href="catalog.html#shelf=water">水をやる</a>
+      <a href="catalog.html#shelf=guard">まもる</a>
+      <a href="simulator.html">3Dで見積る</a>
+      <a class="em" href="check.html">30秒診断</a>
+    </div>
   </div>
 </header>
 <main>
@@ -150,6 +167,44 @@
 
 </section>
 </main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <div class="f-brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 20V11a9 9 0 0 1 18 0v9"/><path d="M3 20h18M12 2.2V20M7 20V6.2M17 20V6.2"/></svg></span><span><span class="name">三高産業株式会社</span><span class="sub">Mitaka Sangyo</span></span></div>
+        <p>群馬県桐生市（正式な住所・電話番号・FAXはここに入れます）<br>ビニールハウス・パイプハウスの資材販売と施工。ハウス関連資材全般を取り扱っています。</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="catalog.html">資材をさがす</a></li>
+          <li><a href="check.html">30秒診断</a></li>
+          <li><a href="simulator.html">3Dハウスシミュレーター</a></li>
+          <li><a href="quote.html">見積依頼・お問い合わせ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>My House</h4>
+        <ul>
+          <li><a href="mypage.html">マイページ</a></li>
+          <li><a href="library.html">みんなのハウス図鑑</a></li>
+          <li><a href="privacy.html">登録情報の取り扱い</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Business</h4>
+        <ul>
+          <li><a href="partners.html">出店・パートナー募集</a></li>
+          <li><a href="staff.html">担当者用: カルテ登録</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© <span data-year>2026</span> 三高産業株式会社</span>
+      <span>試作版です。表示の金額はめやすで、正式な金額は担当がお見積りします。</span>
+    </div>
+  </div>
+</footer>
 <script type="module" src="assets/check.js"></script>
 </body>
 </html>

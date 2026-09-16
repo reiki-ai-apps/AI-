@@ -6,10 +6,10 @@
 <title>三高産業 ハウスEC｜朝いちばんの光が、いちばん高く売れる。</title>
 <meta name="description" content="群馬・桐生の三高産業。ビニールハウスを3Dで組んで概算見積り、マイハウスカルテ、農家の言葉で探せる資材の棚。">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#1f6b3a">
+<meta name="theme-color" content="#0D0E10">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <link rel="stylesheet" href="assets/catalog.css">
 <link rel="stylesheet" href="assets/index.css">
@@ -21,8 +21,8 @@
 <header class="site-header">
   <div class="container inner">
     <a class="brand" href="index.html">
-      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 20V11a9 9 0 0 1 18 0v9"/><path d="M3 20h18M12 2.2V20M7 20V6.2M17 20V6.2"/><circle cx="19.5" cy="4.5" r="1.6" fill="currentColor" stroke="none"/></svg></span>
-      <span class="brand-text"><span class="name">三高産業</span><span class="sub">ハウス資材と施工 ・ 群馬・桐生</span></span>
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 20V11a9 9 0 0 1 18 0v9"/><path d="M3 20h18M12 2.2V20M7 20V6.2M17 20V6.2"/></svg></span>
+      <span class="brand-text"><span class="name">三高産業</span><span class="sub">Mitaka Sangyo</span></span>
     </a>
     <form class="hsearch" id="hsearch" role="search">
       <input type="search" id="hsearch-q" placeholder="資材をさがす(例: ビニール、パイプ、くるふぁみ)" aria-label="資材をさがす" autocomplete="off" enterkeyhint="search">
@@ -38,31 +38,54 @@
       <a href="mypage.html">マイページ</a>
       <a href="library.html">ハウス図鑑</a>
       <a href="quote.html">見積依頼</a>
+      <a href="partners.html">事業者の方へ</a>
     </nav>
+  </div>
+  <div class="shelfnav">
+    <div class="container inner">
+      <a href="catalog.html#shelf=frame">骨組み</a>
+      <a href="catalog.html#shelf=cover">張る</a>
+      <a href="catalog.html#shelf=air">風を通す</a>
+      <a href="catalog.html#shelf=temp">あたためる・冷やす</a>
+      <a href="catalog.html#shelf=water">水をやる</a>
+      <a href="catalog.html#shelf=guard">まもる</a>
+      <a href="simulator.html">3Dで見積る</a>
+      <a class="em" href="check.html">30秒診断</a>
+    </div>
   </div>
 </header>
 <main>
-<section class="section feature-sec" style="padding-top:28px">
+<!-- 1. 商品から(トップは商品が最初) -->
+<section class="section feature-sec">
   <div class="container">
     <div class="feature-head">
-      <h2 id="feature-title">今月のキャンペーン</h2>
+      <div class="feature-h">
+        <span class="eyebrow">Campaign</span>
+        <h2 id="feature-title">今月のキャンペーン</h2>
+      </div>
       <div class="feature-tabs" role="tablist" aria-label="おすすめの切り替え">
         <button type="button" role="tab" data-feat="campaign" aria-selected="true">キャンペーン</button>
         <button type="button" role="tab" data-feat="new" aria-selected="false">新商品</button>
         <button type="button" role="tab" data-feat="hot" aria-selected="false">売れ筋</button>
       </div>
-      <a class="textlink feature-all" href="catalog.html">資材をすべて見る →</a>
+      <a class="feature-all" href="catalog.html">資材をすべて見る <span aria-hidden="true">→</span></a>
     </div>
     <div class="rail" id="feature-rail"></div>
   </div>
 </section>
 
-<section class="section chk-band" aria-labelledby="chk-title">
+<!-- 2. 30秒診断(黒面) -->
+<section class="chk-band dark" aria-labelledby="chk-title">
   <div class="container chk-inner">
     <div class="chk-lead">
-      <span class="eyebrow">30秒診断 ・ 登録不要</span>
-      <h2 id="chk-title">うちのビニール、いつ替え時？</h2>
-      <p>種類と張った年を押すだけ。次の目安と、必要なフィルムの量、費用のめやすがその場で出ます。破れてから慌てて電話する前に。</p>
+      <span class="eyebrow">30-Second Check</span>
+      <h2 id="chk-title">うちのビニール、<br>いつ替え時？</h2>
+      <p>種類と張った年を押すだけ。次の目安と、必要なフィルムの量、費用のめやすがその場で出ます。登録もログインも要りません。</p>
+      <ul class="chk-facts">
+        <li><b>30<span>秒</span></b>押すだけで目安が出る</li>
+        <li><b>0<span>円</span></b>登録もログインも不要</li>
+        <li><b>4<span>種</span></b>農ビ・農PO・長持ちPO・梨地</li>
+      </ul>
     </div>
     <form class="chk-form" id="chk-form">
       <div class="chk-q"><span class="lbl">いま張ってあるのは</span><div class="chk-opts" id="chk-films"></div></div>
@@ -72,9 +95,10 @@
   </div>
 </section>
 
-<section class="section calm find-sec">
+<!-- 3. 棚と困りごと -->
+<section class="section find-sec">
   <div class="container">
-    <div class="section-title reveal"><span class="eyebrow">CATEGORY</span><h2>どんな品物をお探しですか？</h2><p>棚から選ぶか、困りごとの言葉から探せます。品名がわからなくても大丈夫です。</p></div>
+    <div class="section-title reveal"><span class="eyebrow">Category</span><h2>どんな品物をお探しですか？</h2><p>棚から選ぶか、困りごとの言葉から。品名がわからなくても大丈夫です。</p></div>
     <div class="shelf-rail reveal" id="shelf-rail"></div>
     <div class="find-trouble reveal">
       <h3>困りごとから探す</h3>
@@ -82,74 +106,65 @@
     </div>
     <form class="home-search reveal" id="home-search" role="search">
       <input type="search" id="home-q" placeholder="品名で探す(例: ビニール、くるふぁみ、パイプ)" aria-label="資材をさがす" autocomplete="off">
-      <button class="btn accent" type="submit">さがす</button>
+      <button class="btn" type="submit">さがす</button>
     </form>
   </div>
 </section>
 
+<!-- 4. 3Dで一棟 -->
 <section class="hero" id="hero">
-  <div class="land" id="hero-land"></div>
   <div class="v3d" id="hero3d"></div>
-  <img class="fallback" src="assets/hero-dawn.jpg" alt="朝焼けの中のパイプハウス(3D)" width="1600" height="900" loading="lazy">
-  <div class="scrim"></div>
-  <div class="copy reveal in">
-    <div class="kicker">3D ESTIMATE ・ 一棟まるごとお考えの方へ</div>
-    <h2>間口と奥行を選ぶだけ。<br>ハウス一棟を、いまここで。</h2>
-    <p class="sub">被覆材・換気・カーテンを選ぶと、3Dのハウスと概算金額がその場で出ます。そのまま見積依頼まで。</p>
-    <div class="actions"><a class="btn accent lg" href="simulator.html">3Dで見積る</a><a class="textlink" href="quote.html">担当に相談する</a></div>
-  </div>
-  <div class="timebar" id="timebar">
-    <span class="t" id="time-label">朝 6:00</span>
-    <input type="range" id="time" min="5" max="18" step="0.25" value="6" aria-label="時刻を動かすと、光と影が変わります">
-    <span class="hint">動かすと、光と影が変わります</span>
-  </div>
-</section>
-
-<section class="section stats-wrap" style="padding-top:40px;padding-bottom:40px">
-  <div class="blueprint" aria-hidden="true"><img src="assets/blueprint.svg" alt="" width="1320" height="720"></div>
-  <div class="container stats reveal">
-    <div class="stat"><div class="v" data-count="20000">0<small>点</small></div><div class="k">取り扱い資材。パイプから<u>環境制御</u>まで</div></div>
-    <div class="stat"><div class="v" data-count="30">0<small>秒</small></div><div class="k">3Dで間口と奥行を選べば、<u>概算見積り</u>が出る</div></div>
-    <div class="stat"><div class="v" data-count="6">0<small>つの棚</small></div><div class="k">「張る」「風を通す」。<u>農家の言葉</u>で探せる</div></div>
-  </div>
-</section>
-
-<section class="section" style="padding-top:0">
-  <div class="container">
-    <div class="doors reveal">
-      <a class="door" href="mypage.html"><span class="ic" data-icon="bell"></span><div><h3>マイページ</h3><p>購入履歴、ハウスの寸法と張った年、次の張り替え時期。ぜんぶここに。</p></div><span class="go">開く →</span></a>
-      <a class="door" href="simulator.html"><span class="ic" data-icon="cube"></span><div><h3>3Dで見積る</h3><p>間口・奥行・被覆材を選ぶと、3Dと概算金額がその場で出ます。</p></div><span class="go">組む →</span></a>
-      <a class="door" href="catalog.html"><span class="ic" data-icon="basket"></span><div><h3>資材をさがす</h3><p>困りごとの言葉から。写真と数字で選べます。</p></div><span class="go">さがす →</span></a>
+  <img class="fallback" src="assets/hero-3d.jpg" alt="3Dで組み上げたパイプハウス" width="1600" height="900" loading="lazy">
+  <div class="hero-copy">
+    <div class="container">
+      <span class="kicker">3D Estimate</span>
+      <h2>間口と奥行を選ぶだけ。<br>ハウス一棟を、いまここで。</h2>
+      <p class="sub">被覆材・換気・カーテンを選ぶと、3Dのハウスと概算金額が同時に動きます。選んだ内容はURLに残るので、そのまま担当に送れます。</p>
+      <div class="actions"><a class="btn light lg" href="simulator.html">3Dで見積る</a><a class="btn outline lg" href="quote.html">担当に相談する</a></div>
     </div>
   </div>
+  <div class="timebar" id="timebar">
+    <span class="t" id="time-label">昼 10:00</span>
+    <input type="range" id="time" min="5" max="18" step="0.25" value="10" aria-label="時刻を動かすと、光と影が変わります">
+    <span class="hint">動かすと、光の向きが変わります</span>
+  </div>
 </section>
 
-<div class="ridge" aria-hidden="true"><svg viewBox="0 0 1600 80" preserveAspectRatio="none"><path d="M0 80 L0 62 C120 58 200 30 320 34 C420 38 480 62 560 58 C700 52 760 18 880 22 C980 26 1040 54 1120 52 C1240 48 1300 26 1400 30 C1500 34 1560 56 1600 58 L1600 80 Z" fill="#FFFFFF"/></svg></div>
+<!-- 5. 数字 -->
+<section class="section stats-wrap">
+  <div class="container stats reveal">
+    <div class="stat"><div class="v" data-count="20000">0<small>点</small></div><div class="k">取り扱い資材。パイプ1本から、環境制御まで</div></div>
+    <div class="stat"><div class="v" data-count="30">0<small>秒</small></div><div class="k">間口と奥行を選べば、概算見積りが出るまで</div></div>
+    <div class="stat"><div class="v" data-count="6">0<small>つの棚</small></div><div class="k">「張る」「風を通す」。農家の言葉で探せる</div></div>
+  </div>
+</section>
+
+<!-- 6. マイページ(黒面) -->
 <section class="section dark karte-sec">
   <div class="container grid">
     <div class="reveal">
-      <div class="section-title"><span class="eyebrow">MY PAGE</span><h2>買ったもの、張った年、次の手入れ。</h2><p>30秒診断で残すか、担当者が訪問時に登録するか。どちらでもあなたのハウスがマイページに入ります。次からは開くだけ。購入履歴とハウスカルテがひとつにまとまっていて、寸法を測り直さなくても、ぴったりの資材が注文できます。</p></div>
+      <div class="section-title"><span class="eyebrow">My Page</span><h2>買ったもの、張った年、<br>次の手入れ。</h2><p>30秒診断で残すか、担当者が訪問時に登録するか。どちらでも、あなたのハウスがマイページに入ります。次からは開くだけ。寸法を測り直さなくても、ぴったりの資材が注文できます。</p></div>
       <div class="benefit"><span class="ic" data-icon="bell"></span><div><h3>張り替え時期をお知らせ</h3><p>被覆材の種類と張った年から次の目安を計算。台風・降雪の前には点検のご案内。</p></div></div>
       <div class="benefit"><span class="ic" data-icon="recover"></span><div><h3>買ったものが残る・再注文はワンタップ</h3><p>前に買った資材が履歴に並びます。「もう一度買う」も、「このハウスの張り替えを見積る」も一押しで。</p></div></div>
       <div class="benefit"><span class="ic" data-icon="storm"></span><div><h3>災害のとき、順番を待たせない</h3><p>どこに何棟あるかがわかっているので、資材の確保と修理を登録済みのお客様から。</p></div></div>
-      <p class="mt-3"><a class="btn light pill" href="check.html">30秒診断で自分のハウスを残す</a> <a class="textlink" href="mypage.html?c=DEMO01" style="margin-left:16px;color:var(--on-dark)">デモのマイページ</a> <a class="textlink" href="library.html" style="margin-left:16px;color:var(--on-dark)">みんなのハウス図鑑</a></p>
+      <p class="karte-acts"><a class="btn light" href="check.html">30秒診断で自分のハウスを残す</a><a class="textlink" href="mypage.html?c=DEMO01">デモのマイページ</a><a class="textlink" href="library.html">みんなのハウス図鑑</a></p>
     </div>
     <div class="phone pre" id="phone">
       <div class="scr">
         <div class="hd">山田農園 山田 太郎 様</div>
         <div class="sub">桐生市新里町 / トマト / 3棟</div>
         <div class="todo"><i></i><div><b>3号: 要補修</b><small>北側妻面のフィルムに裂け目</small></div></div>
-        <div class="todo"><i style="background:var(--gold)"></i><div><b>1号: 来年が張り替えの目安</b><small>農PO 0.15mm / 2023年張り</small></div></div>
+        <div class="todo"><i class="warn"></i><div><b>1号: 来年が張り替えの目安</b><small>農PO 0.15mm / 2023年張り</small></div></div>
         <div class="hcard"><div class="nm">1号 <span class="badge">良好</span></div><dl><dt>大きさ</dt><dd>間口5.4m × 奥行30m</dd><dt>骨組</dt><dd>φ25.4 @50cm 肩高1.6m</dd><dt>被覆材</dt><dd>農PO 0.15mm(2023年)</dd></dl><span class="btn accent">張り替えを見積る</span></div>
       </div>
     </div>
   </div>
 </section>
-<div class="ridge flip" aria-hidden="true"><svg viewBox="0 0 1600 80" preserveAspectRatio="none"><path d="M0 80 L0 62 C120 58 200 30 320 34 C420 38 480 62 560 58 C700 52 760 18 880 22 C980 26 1040 54 1120 52 C1240 48 1300 26 1400 30 C1500 34 1560 56 1600 58 L1600 80 Z" fill="#FFFFFF"/></svg></div>
 
+<!-- 7. 会社 -->
 <section class="section">
   <div class="container">
-    <div class="section-title reveal"><span class="eyebrow">MITAKA SANGYO</span><h2>売るだけでなく、建てて、直して、見ています。</h2></div>
+    <div class="section-title reveal"><span class="eyebrow">Mitaka Sangyo</span><h2>売るだけでなく、建てて、直して、見ています。</h2></div>
     <div class="promises reveal">
       <div class="promise"><h3>新設から張り替え・修理まで</h3><p>ハウスの新設、被覆材の張り替え、台風・雪のあとの修理、日ごろのメンテナンスまで、自社の施工班が伺います。</p></div>
       <div class="promise"><h3>群馬・桐生から、隣接県へ</h3><p>群馬県内と隣接県を中心に対応。その他の地域も、運搬と施工の段取りをご相談のうえで。</p></div>
@@ -158,13 +173,15 @@
   </div>
 </section>
 
+<!-- 8. 節気の仕事 -->
 <section class="section calm">
   <div class="container">
-    <div class="section-title reveal"><span class="eyebrow">SEASON</span><h2>節気の仕事</h2><p>二十四節気に合わせて、いまハウスでやること。今日の節気は黄色で示しています。</p></div>
+    <div class="section-title reveal"><span class="eyebrow">Season</span><h2>節気の仕事</h2><p>二十四節気に合わせて、いまハウスでやること。</p></div>
     <div class="works reveal" id="works"></div>
   </div>
 </section>
 
+<!-- 9. FAQ -->
 <section class="section" style="padding-top:0">
   <div class="container">
     <div class="section-title reveal"><span class="eyebrow">FAQ</span><h2>よくあるご質問</h2></div>
@@ -174,7 +191,10 @@
       <details><summary>資材だけ購入できますか？</summary><p>できます。資材をさがすページからかごに入れてご依頼いただくか、3Dシミュレーターで「資材のみ」を選んでください。</p></details>
       <details><summary>マイページ(ハウスカルテ)は有料ですか？</summary><p>無料です。担当者が訪問時に登録し、QRコードをお渡しします。登録内容はいつでも変更・削除できます。</p></details>
     </div>
-    <div class="phone-cta reveal"><div><h3 style="margin:0 0 4px">わからないことは、そのまま聞いてください</h3><p class="muted" style="margin:0">品名がわからなくても大丈夫。壊れたところの写真を送っていただければ、担当が部品を特定してお見積りします。</p></div><a class="btn lg accent" id="tel-cta" href="quote.html"><span class="ic" data-icon="phone"></span>担当に聞く</a></div>
+    <div class="phone-cta reveal">
+      <div><h3>わからないことは、そのまま聞いてください</h3><p class="muted">品名がわからなくても大丈夫。壊れたところの写真を送っていただければ、担当が部品を特定してお見積りします。</p></div>
+      <a class="btn lg accent" id="tel-cta" href="quote.html"><span class="ic" data-icon="phone"></span>担当に聞く</a>
+    </div>
   </div>
 </section>
 </main>
@@ -182,24 +202,30 @@
   <div class="container">
     <div class="grid">
       <div>
-        <h4>三高産業株式会社</h4>
+        <div class="f-brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 20V11a9 9 0 0 1 18 0v9"/><path d="M3 20h18M12 2.2V20M7 20V6.2M17 20V6.2"/></svg></span><span><span class="name">三高産業株式会社</span><span class="sub">Mitaka Sangyo</span></span></div>
         <p>群馬県桐生市（正式な住所・電話番号・FAXはここに入れます）<br>ビニールハウス・パイプハウスの資材販売と施工。ハウス関連資材全般を取り扱っています。</p>
       </div>
       <div>
-        <h4>サービス</h4>
+        <h4>Shop</h4>
         <ul>
-          <li><a href="mypage.html">マイページ</a></li>
-          <li><a href="simulator.html">3Dハウスシミュレーター</a></li>
           <li><a href="catalog.html">資材をさがす</a></li>
-          <li><a href="library.html">みんなのハウス図鑑</a></li>
+          <li><a href="check.html">30秒診断</a></li>
+          <li><a href="simulator.html">3Dハウスシミュレーター</a></li>
           <li><a href="quote.html">見積依頼・お問い合わせ</a></li>
         </ul>
       </div>
       <div>
-        <h4>事業者の方へ</h4>
+        <h4>My House</h4>
+        <ul>
+          <li><a href="mypage.html">マイページ</a></li>
+          <li><a href="library.html">みんなのハウス図鑑</a></li>
+          <li><a href="privacy.html">登録情報の取り扱い</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Business</h4>
         <ul>
           <li><a href="partners.html">出店・パートナー募集</a></li>
-          <li><a href="privacy.html">登録情報の取り扱い</a></li>
           <li><a href="staff.html">担当者用: カルテ登録</a></li>
         </ul>
       </div>

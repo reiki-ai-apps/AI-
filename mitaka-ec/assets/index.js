@@ -6,7 +6,6 @@ import { SHELVES, PRODUCTS, PURPOSES, shelfOf } from "./catalog-data.js";
 import { figure } from "./figures.js";
 import { watchPhotos } from "./figures.js";
 import { SEKKI, currentSekki } from "./sekki.js";
-import { landscapeSvg } from "./scene.js";
 import { estimate, normalizeParams } from "./pricing.js";
 
 initSite();
@@ -43,13 +42,13 @@ function homeCard(p, ribbon) {
       <p class="pcard-use">${esc(p.use || p.spec)}</p>
       ${inc != null ? `<div class="pcard-price"><span class="yen">¥</span>${inc.toLocaleString("ja-JP")}<small>税込</small></div>` : `<div class="pcard-price ask">金額はご相談<small>すぐお答えします</small></div>`}
     </div>
-    <div class="pcard-acts"><a class="btn accent" href="product.html?id=${encodeURIComponent(p.id)}">くわしく見る</a></div>
+    <div class="pcard-acts"><a class="btn outline block" href="product.html?id=${encodeURIComponent(p.id)}">くわしく見る</a></div>
   </article>`;
 }
 function showFeature(key) {
   const f = FEATURES[key] || FEATURES.campaign;
   const ribbon = key === "campaign" ? { label: "キャンペーン", cls: "camp" } : key === "new" ? { label: "新商品", cls: "new" } : { label: "人気", cls: "" };
-  const list = PRODUCTS.filter(p => (p.tags || []).includes(f.tag)).slice(0, 8);
+  const list = PRODUCTS.filter(p => (p.tags || []).includes(f.tag)).slice(0, 4);
   $("#feature-title").textContent = f.title;
   $("#feature-rail").innerHTML = list.map(p => homeCard(p, ribbon)).join("");
   document.querySelectorAll("[data-feat]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.feat === key)));
@@ -77,16 +76,13 @@ function count(el) {
 }
 
 // ---- ヒーロー ----
-const hero = $("#hero"), land = $("#hero-land");
+const hero = $("#hero");
 const lowPower = matchMedia("(prefers-reduced-motion: reduce)").matches || (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4);
-land.innerHTML = landscapeSvg({ mode: "dawn", clouds: false, houses: 0 });
-land.querySelector("svg").querySelectorAll("rect, circle").forEach(el => el.remove()); // 空と太陽はCSSで描くので風景だけ残す
-
 let viewer = null, poses = null, target = 0, current = 0;
 async function setupHero() {
   if (lowPower) { hero.classList.add("static"); $("#timebar").hidden = true; return; }
   const { createViewer } = await import("./house3d.js");
-  viewer = createViewer($("#hero3d"), { showcase: true, transparent: true, fog: 0, fov: 32, exposure: 0.95, maxPixelRatio: 1.5, interactive: false, cameraMs: 900, zoomFactor: innerWidth > 760 ? 1.22 : 0.82 });
+  viewer = createViewer($("#hero3d"), { showcase: true, transparent: true, fog: 0, fov: 32, exposure: 1.18, maxPixelRatio: 1.5, interactive: false, cameraMs: 900, zoomFactor: innerWidth > 760 ? 0.92 : 0.78 });
   if (!viewer.ok) { hero.classList.add("static"); $("#timebar").hidden = true; return; }
   const est = estimate(normalizeParams({ span: 6, length: 24, eave: 1.7, ridge: 3.2, pitch: 0.5, pipe: 25.4, film: "po015", doors: 2, sideVent: "both", ventDrive: "manual", insectNet: true, irrigation: "drip", curtain: "none" }));
   viewer.update(est, { refit: false });
@@ -116,7 +112,7 @@ function computePoses() {
   // ヒーローでは家を画面の右上寄りに置く(文字は左下)。カメラ座標系の右方向・上方向にずらす
   const dir = ext.target.clone().sub(ext.pos), dist = dir.length(); dir.normalize();
   const up = ext.pos.clone().set(0, 1, 0), right = dir.clone().cross(up).normalize(), camUp = right.clone().cross(dir).normalize();
-  const kx = innerWidth > 760 ? -0.26 : 0, ky = innerWidth > 760 ? -0.06 : -0.1; // 負=カメラを左/下へ → 家は右/上へ
+  const kx = innerWidth > 760 ? -0.14 : 0, ky = innerWidth > 760 ? 0.12 : 0.04; // 負=カメラを左/下へ → 家は右/上へ
   const off = right.multiplyScalar(kx * dist * 0.6).add(camUp.multiplyScalar(ky * dist * 0.6));
   ext.pos.add(off); ext.target.add(off);
   poses = [ext, eave, inn];
@@ -135,12 +131,12 @@ function tick() {
 function debounce(fn, ms) { let t; return () => { clearTimeout(t); t = setTimeout(fn, ms); }; }
 
 // ---- 時刻スライダー: 空・太陽・影 ----
-const SKY = [ // [時, 5色]
-  [5, ["#0B1F16", "#12233A", "#4A3450", "#B4552E", "#E8933F"]],
-  [7, ["#1C3B5A", "#4E7FA8", "#A9C7DE", "#EBD3B4", "#F3D9B8"]],
-  [12, ["#2E6FB0", "#7FB6E0", "#C7E1F2", "#EAF3F9", "#F7F3EA"]],
-  [16.5, ["#2A4E7A", "#6F8FB5", "#D9B8A0", "#E8A06A", "#F2C48C"]],
-  [18, ["#101B2E", "#3A2C4E", "#8E3E3A", "#D97A3E", "#E8B47A"]]
+const SKY = [ // [時, 5色] スタジオの背景紙。色で飾らず、明るさと光の温度だけを動かす
+  [5, ["#141619", "#1B1E22", "#24282D", "#333840", "#454B54"]],
+  [7, ["#17191D", "#1F2328", "#2B3036", "#3C424A", "#525860"]],
+  [12, ["#1B1E22", "#262A30", "#343941", "#474D56", "#5D646D"]],
+  [16.5, ["#16181C", "#1E2126", "#2B2F35", "#3C4149", "#4F545C"]],
+  [18, ["#111214", "#181A1E", "#212428", "#2D3035", "#3B3F45"]]
 ];
 const hex2rgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
 const mix = (a, b, t) => { const A = hex2rgb(a), B = hex2rgb(b); return `rgb(${A.map((v, i) => Math.round(v + (B[i] - v) * t)).join(",")})`; };
@@ -158,10 +154,9 @@ function applyTime(h) {
   if (viewer) viewer.setLight({ color: parseInt(color.match(/\d+/g).map(v => (+v).toString(16).padStart(2, "0")).join(""), 16), intensity, azimuth, elevation });
   const hh = Math.floor(h), mm = Math.round((h - hh) * 60);
   $("#time-label").textContent = `${h < 10 ? "朝" : h < 15 ? "昼" : "夕"} ${hh}:${String(mm).padStart(2, "0")}`;
-  const lm = land.querySelector("svg"); if (lm) lm.style.filter = `brightness(${0.55 + Math.sin(Math.PI * f) * 0.7})`;
 }
 $("#time").addEventListener("input", e => applyTime(Number(e.target.value)));
-applyTime(6);
+applyTime(10);
 setupHero();
 
 // ---------------- 30秒診断の帯 ----------------

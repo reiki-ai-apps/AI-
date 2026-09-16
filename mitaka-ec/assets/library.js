@@ -79,7 +79,7 @@ function render() {
     const e = estimate(p);
     return `<article class="card tpl"><div class="flex between"><h3 style="margin:0">${esc(crop)}の定番構成</h3><span class="badge">${hs.length}棟から</span></div>
       <p class="muted small" style="margin:.4rem 0">間口 ${p.span}m × 奥行 ${p.length}m / φ${p.pipe}mm / ${esc(filmLabel(p.film))} / 側面換気 ${p.ventDrive === "motor" ? "電動" : "手動"}${p.curtain !== "none" ? " / 内張カーテン" : ""}${p.irrigation === "drip" ? " / 点滴潅水" : ""}${p.snow ? " / 耐雪補強" : ""}</p>
-      <div class="flex between"><span>概算 <b class="price">${yen(e.total)}</b><span class="muted small">(税込・施工込・仮単価)</span></span><a class="btn sm accent" href="simulator.html?${encodeParams(p)}">この構成で見積る</a></div></article>`;
+      <div class="flex between"><span>概算 <b class="price">${yen(e.total)}</b><span class="muted small">(税込・施工込・仮単価)</span></span><a class="btn sm outline" href="simulator.html?${encodeParams(p)}">この構成で見積る</a></div></article>`;
   }).join("") || `<p class="muted">この条件では定番構成を作れる件数がありません。</p>`;
 }
 main();

@@ -122,7 +122,7 @@ function renderOrders(quotes, houses) {
       <div style="text-align:right">
         ${r.sum != null ? `<div class="sum">${yen(r.sum)}<small class="muted" style="font-weight:400"> 税込</small></div>` : `<div class="muted small">金額はご相談</div>`}
         <div class="acts2 no-print" style="justify-content:flex-end;margin-top:6px">
-          ${r.items.length ? `<button class="btn sm accent" type="button" data-reorder="${i}">もう一度かごに入れる</button>` : ""}
+          ${r.items.length ? `<button class="btn sm" type="button" data-reorder="${i}">もう一度かごに入れる</button>` : ""}
           <a class="btn sm ghost" href="quote.html">同じ内容で相談</a>
         </div>
       </div>

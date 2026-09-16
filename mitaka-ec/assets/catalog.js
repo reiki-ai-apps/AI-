@@ -30,7 +30,7 @@ function card(p) {
       ${p.price != null ? (() => { const pm = (p.spec || "").match(/(\d+)(個|本|枚)入/); const pk = pm ? Number(pm[1]) : 1; const inc = Math.round(p.price * 1.1); return `<div class="pcard-price"><span class="yen">¥</span>${inc.toLocaleString("ja-JP")}<small>税込 / ${esc(unitWord(p))}</small>${pk > 1 ? `<div class="per">${pk}${pm[2]}入 ・ 1${pm[2]}あたり約 ${yen(Math.round(inc / pk))}</div>` : ""}</div>`; })() : `<div class="pcard-price ask">${["pipe", "film", "door", "gutter", "curtain"].includes(p.cat) ? "ハウスのサイズで変わります" : "金額はご相談"}<small>${["pipe", "film", "door", "gutter", "curtain"].includes(p.cat) ? "→ 3Dで出す" : "すぐお答えします"}</small></div>`}
       <div class="pcard-pills">${pills.map(t => `<span class="pill">${esc(t)}</span>`).join("")}</div>
     </div>
-    <div class="pcard-acts"><button class="btn accent" type="button" data-add="${esc(p.id)}" aria-label="${esc(p.name)} をかごに入れる"><span class="ic">${ICONS.basket}</span>かごに入れる</button><a class="btn ghost detail" href="product.html?id=${encodeURIComponent(p.id)}">くわしく</a></div>
+    <div class="pcard-acts"><button class="btn" type="button" data-add="${esc(p.id)}" aria-label="${esc(p.name)} をかごに入れる"><span class="ic">${ICONS.basket}</span>かごに入れる</button><a class="btn ghost detail" href="product.html?id=${encodeURIComponent(p.id)}">くわしく</a></div>
   </article>`;
 }
 

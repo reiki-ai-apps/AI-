@@ -8,7 +8,7 @@ const V3 = THREE.Vector3;
 const MAT = {
   steel: new THREE.MeshStandardMaterial({ color: 0xc8cdd2, metalness: 0.55, roughness: 0.4 }),
   dark: new THREE.MeshStandardMaterial({ color: 0x4b5563, metalness: 0.3, roughness: 0.6 }),
-  grass: new THREE.MeshStandardMaterial({ color: 0x8fae6e, roughness: 1 }),
+  grass: new THREE.MeshStandardMaterial({ color: 0xD9DCE0, roughness: 1 }),
   soil: new THREE.MeshStandardMaterial({ color: 0x6b5137, roughness: 1 }),
   ridgeSoil: new THREE.MeshStandardMaterial({ color: 0x5a4330, roughness: 1 }),
   net: new THREE.MeshStandardMaterial({ color: 0x1f2937, transparent: true, opacity: 0.32, side: THREE.DoubleSide, depthWrite: false }),
@@ -16,9 +16,9 @@ const MAT = {
   hose: new THREE.MeshStandardMaterial({ color: 0x222222, roughness: 0.8 }),
   nozzle: new THREE.MeshStandardMaterial({ color: 0xff7f2a, roughness: 0.6 }),
   legs: new THREE.MeshStandardMaterial({ color: 0x374151 }),
-  torso: new THREE.MeshStandardMaterial({ color: 0x2563eb }),
+  torso: new THREE.MeshStandardMaterial({ color: 0x3A4047 }),
   head: new THREE.MeshStandardMaterial({ color: 0xe7c9a9 }),
-  line: new THREE.LineBasicMaterial({ color: 0x12321f })
+  line: new THREE.LineBasicMaterial({ color: 0x2A2E33 })
 };
 
 class EllipseArc extends THREE.Curve {
@@ -131,7 +131,7 @@ export function createViewer(container, options = {}) {
   container.appendChild(labelRenderer.domElement);
 
   const scene = new THREE.Scene();
-  const skyColor = new THREE.Color(options.sky || 0xe4f0f7);
+  const skyColor = new THREE.Color(options.sky || 0xEFF1F3);
   scene.background = options.transparent ? null : skyColor;
   scene.fog = new THREE.FogExp2(skyColor.getHex(), options.fog ?? 0.0045);
   if (options.transparent) renderer.setClearColor(0x000000, 0);
@@ -146,7 +146,7 @@ export function createViewer(container, options = {}) {
   controls.minDistance = 1.2; controls.maxDistance = 600;
   controls.target.set(0, 1.5, 0);
 
-  scene.add(new THREE.HemisphereLight(0xdfefff, 0x6b7a5b, 0.95));
+  scene.add(new THREE.HemisphereLight(0xf2f5f8, 0x9aa0a6, 0.95));
   const sun = new THREE.DirectionalLight(0xfff4e0, 1.7);
   sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048);
@@ -187,12 +187,12 @@ export function createViewer(container, options = {}) {
       // 見せるモード: 地面は影だけを受ける透明面にして、背景の風景を透かす
       const ground = new THREE.Mesh(new THREE.PlaneGeometry(gsize, gsize), new THREE.ShadowMaterial({ opacity: 0.28 }));
       ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; house.add(ground);
-      const patch = new THREE.Mesh(new THREE.CircleGeometry(Math.max(L, W) * 0.62, 48), new THREE.MeshStandardMaterial({ color: 0x7f9a5e, transparent: true, opacity: 0.55, roughness: 1 }));
+      const patch = new THREE.Mesh(new THREE.CircleGeometry(Math.max(L, W) * 0.62, 48), new THREE.MeshStandardMaterial({ color: 0xCFD3D8, transparent: true, opacity: 0.55, roughness: 1 }));
       patch.rotation.x = -Math.PI / 2; patch.position.y = 0.003; patch.receiveShadow = true; house.add(patch);
     } else {
       const ground = new THREE.Mesh(new THREE.PlaneGeometry(gsize, gsize), MAT.grass);
       ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; house.add(ground);
-      const grid = new THREE.GridHelper(gsize, Math.round(gsize / 2), 0x9fbf86, 0x9fbf86);
+      const grid = new THREE.GridHelper(gsize, Math.round(gsize / 2), 0xC3C7CC, 0xC3C7CC);
       grid.material.opacity = 0.35; grid.material.transparent = true; grid.position.y = 0.002; house.add(grid);
     }
     const soil = new THREE.Mesh(new THREE.PlaneGeometry(W + 0.6, L + 0.6), MAT.soil);
