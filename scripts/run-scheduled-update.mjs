@@ -3,13 +3,15 @@ import {spawnSync} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url);
-const {jstDayKey,isFreshExpertVideo,expertVideoKey}=require('./expert-video.cjs');
+const {jstDayKey,isFreshExpertVideo,expertVideoKey,featuredVideoKeys,HOME_VIDEO_LIMIT}=require('./expert-video.cjs');
 
 export function videoPublishedToday(state,items,now=Date.now()){
   const today=jstDayKey(now);
-  return state?.status==='published'&&state.last_published_day_jst===today&&Array.isArray(items)&&
-    items.some(item=>isFreshExpertVideo(item,now)&&expertVideoKey(item)===state.featured_video_key&&
-      Number.isFinite(Date.parse(item.home_video_selected_at))&&jstDayKey(Date.parse(item.home_video_selected_at))===today);
+  if(state?.status!=='published'||state.last_published_day_jst!==today||!Array.isArray(items))return false;
+  const keys=featuredVideoKeys(state);
+  const selected=items.filter(item=>keys.includes(expertVideoKey(item))&&isFreshExpertVideo(item,now)&&
+    Number.isFinite(Date.parse(item.home_video_selected_at))&&jstDayKey(Date.parse(item.home_video_selected_at))===today);
+  return new Set(selected.map(expertVideoKey)).size===HOME_VIDEO_LIMIT&&new Set(selected.map(item=>item.expert_id)).size===HOME_VIDEO_LIMIT;
 }
 
 // Retry within the same morning run, before public data is committed.

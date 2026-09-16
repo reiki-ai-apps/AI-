@@ -4,10 +4,10 @@ import {createRequire} from 'node:module';
 import {runScheduledUpdate,videoPublishedToday} from './run-scheduled-update.mjs';
 const {selectDailyExpertVideoArchivePicks}=createRequire(import.meta.url)('./expert-video.cjs');
 const morning=Date.parse('2026-09-12T20:17:00Z');
-const state={status:'published',last_published_day_jst:'2026-09-13',featured_video_key:'new-video'};
-const item={content_type:'expert_video',video_id:'new-video',source_date_status:'published',
+const state={status:'published',last_published_day_jst:'2026-09-13',featured_video_key:'new-video',featured_video_keys:['new-video','second-video']};
+const item={content_type:'expert_video',video_id:'new-video',expert_id:'a',source_date_status:'published',
   source_published_at:'2026-09-12T10:00:00Z',home_video_selected_at:new Date(morning).toISOString()};
-assert.equal(videoPublishedToday(state,[item],morning),true);
+assert.equal(videoPublishedToday(state,[item,{...item,video_id:'second-video',expert_id:'b'}],morning),true);
 assert.equal(videoPublishedToday(state,[],morning),false,'state alone does not prove a new video is published');
 assert.equal(videoPublishedToday(state,[{...item,video_id:'yesterday'}],morning),false);
 assert.equal(videoPublishedToday(state,[{...item,home_video_selected_at:'2026-09-11T22:00:00Z'}],morning),false);
@@ -41,7 +41,7 @@ for(const [label,time,succeedAt,expected] of [
   const result=await runScheduledUpdate({
     run:async attempt=>{calls++;assert.equal(attempt,calls);return calls>=succeedAt?0:1;},
     readState:()=>calls>=succeedAt?state:{status:'pending_no_new_publishable_video'},
-    readItems:()=>calls>=succeedAt?[item]:[],now:()=>time,
+    readItems:()=>calls>=succeedAt?[item,{...item,video_id:'second-video',expert_id:'b'}]:[],now:()=>time,
     sleep:async ms=>{assert.equal(ms,60000);waits++;},log:()=>{}
   });
   assert.equal(calls,expected,label);assert.equal(waits,expected-1,label);

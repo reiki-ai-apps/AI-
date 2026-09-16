@@ -50,9 +50,9 @@ for(const id of ids){
   if(!page.includes('application/ld+json')||!page.includes('BreadcrumbList')||!page.includes(`/articles/${encodeURIComponent(id)}/`))failures.push(`記事SEOが不完全です: ${id}`);
   if(!page.includes('assets/visitor-tracker.js'))failures.push(`記事閲覧が累計ユニーク閲覧者に反映されません: ${id}`);
   const expectedCta=expertVideo
-    ?`href="https://reiki-ai-apps.github.io/AI-/">専門家の重要発言をやさしい要約で確認</a>`
+    ?`href="https://reiki-ai-apps.github.io/AI-/">動画の内容をやさしい要約で確認</a>`
     :`href="https://reiki-ai-apps.github.io/AI-/">AI最新ニュースをやさしい要約で確認</a>`;
-  const expectedHeading=expertVideo?"<h2>重要発言のやさしい解説</h2>":"<h2>やさしい解説</h2>";
+  const expectedHeading=expertVideo?"<h2>動画のやさしい解説</h2>":"<h2>やさしい解説</h2>";
   if(!page.includes(expectedCta))failures.push(`記事から一覧への導線がありません: ${id}`);
   if(!page.includes(expectedHeading))failures.push(`記事に内容別のやさしい解説がありません: ${id}`);
   if((page.match(/<\/p><p>/g)||[]).length<2)failures.push(`やさしい解説の3段落が保持されていません: ${id}`);

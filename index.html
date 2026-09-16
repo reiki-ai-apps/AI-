@@ -2179,17 +2179,17 @@
     .light-media-theme .mobile-home-search small{color:#52647b!important}
   }
 
-  /* 記事トップ5とは分離した、専門家動画・講演の重要発言枠 */
+  /* 記事トップ5とは分離した、AIを学ぶコンパクトな動画2件枠 */
   .content-type-badge{display:inline-flex;align-items:center;min-height:24px;padding:3px 8px;border:1px solid rgba(91,224,236,.34);border-radius:999px;background:rgba(29,125,153,.16);color:#8bf5f2;font-size:9px;font-weight:900;letter-spacing:.06em;white-space:nowrap}
   .content-type-badge.is-video{border-color:rgba(180,123,255,.45);background:rgba(104,57,180,.2);color:#dbc8ff}
   .expert-video-section{margin-top:30px;padding:22px;border:1px solid rgba(105,210,231,.3);border-radius:18px;background:linear-gradient(145deg,rgba(5,25,44,.92),rgba(18,15,54,.9));box-shadow:0 18px 46px rgba(0,0,0,.28)}
   .expert-video-head{display:flex;align-items:flex-end;gap:18px;margin-bottom:16px}.expert-video-head>div{display:grid;gap:4px}.expert-video-kicker{color:#72eff1;font-size:9px;font-weight:900;letter-spacing:.16em}.expert-video-head h2{margin:0;color:#f3fbff;font-size:21px}.expert-video-head p{margin:0 0 1px auto;max-width:470px;color:#9fb1c7;font-size:11px;line-height:1.7;text-align:right}
-  .expert-video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-  .expert-video-card{display:flex;min-width:0;min-height:260px;flex-direction:column;padding:17px;border:1px solid rgba(111,172,221,.26);border-radius:14px;background:linear-gradient(150deg,rgba(9,29,51,.98),rgba(10,15,40,.98));box-shadow:0 12px 26px rgba(0,0,0,.24)}
-  .expert-video-card-top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.expert-video-platform{margin-left:auto;color:#8fa5be;font-size:9px;font-weight:800}.expert-video-person{display:grid;gap:2px;margin:13px 0 9px}.expert-video-person strong{color:#f3fbff;font-size:14px}.expert-video-person span{color:#83cfd8;font-size:10px;line-height:1.5}.expert-video-card h3{margin:0;color:#eef7ff;font-size:15px;line-height:1.55}.expert-video-summary{display:-webkit-box;margin:9px 0 15px;overflow:hidden;color:#adbed1;font-size:11px;line-height:1.75;-webkit-box-orient:vertical;-webkit-line-clamp:4}.expert-video-actions{display:grid;gap:8px;margin-top:auto}.expert-video-actions .btn{width:100%;min-height:40px;font-size:10px}
+  .expert-video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .expert-video-card{display:flex;min-width:0;min-height:0;flex-direction:column;padding:13px;border:1px solid rgba(111,172,221,.26);border-radius:14px;background:linear-gradient(150deg,rgba(9,29,51,.98),rgba(10,15,40,.98));box-shadow:0 12px 26px rgba(0,0,0,.24)}
+  .expert-video-card-top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.expert-video-platform{margin-left:auto;color:#8fa5be;font-size:9px;font-weight:800}.expert-video-person{display:grid;gap:2px;margin:8px 0 6px}.expert-video-person strong{color:#f3fbff;font-size:14px}.expert-video-person span{color:#83cfd8;font-size:10px;line-height:1.5}.expert-video-card h3{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;margin:0;color:#eef7ff;font-size:15px;line-height:1.55}.expert-video-summary{display:-webkit-box;margin:9px 0 15px;overflow:hidden;color:#adbed1;font-size:11px;line-height:1.75;-webkit-box-orient:vertical;-webkit-line-clamp:2}.expert-video-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}.expert-video-actions .btn{width:100%;min-height:40px;font-size:10px}
   .expert-video-card .read-proof{margin-left:0}
   .light-media-theme .expert-video-section{border-color:#c9dfe8!important;background:linear-gradient(145deg,#fff,#f4f7fb 70%,#f2effd)!important;box-shadow:0 14px 34px rgba(41,60,89,.09)!important}.light-media-theme .expert-video-head h2,.light-media-theme .expert-video-card h3,.light-media-theme .expert-video-person strong{color:#1d2c42!important}.light-media-theme .expert-video-head p,.light-media-theme .expert-video-summary{color:#52647b!important}.light-media-theme .expert-video-card{border-color:#cfdae7!important;background:#fff!important;box-shadow:0 8px 22px rgba(39,57,86,.08)!important}
-  @media(max-width:960px){.expert-video-grid{grid-template-columns:1fr}.expert-video-card{min-height:0}.expert-video-head{display:grid}.expert-video-head p{margin:0;text-align:left}.expert-video-summary{-webkit-line-clamp:5}}
+  @media(max-width:600px){.expert-video-grid{grid-template-columns:1fr}.expert-video-card{min-height:0}.expert-video-head{display:grid}.expert-video-head p{margin:0;text-align:left}.expert-video-summary{-webkit-line-clamp:2;margin:6px 0 10px}.expert-video-person span{display:none}}
   @media(max-width:760px){.expert-video-section{margin-top:24px;padding:15px}.expert-video-head h2{font-size:18px}.expert-video-actions{grid-template-columns:1fr 1fr}.expert-video-actions .btn{padding:0 8px}}
 
   /* モバイルでは background-attachment:fixed が毎フレーム全画面再描画を招く
@@ -3667,7 +3667,7 @@ function articleTimelineAt(u){
   return u?.published_at||u?.source_published_at||u?.fetched_at||'';
 }
 function isExpertVideo(u){ return String(u?.content_type||'article').toLowerCase()==='expert_video'; }
-function contentTypeBadge(u){ return isExpertVideo(u)?'<span class="content-type-badge is-video">専門家動画</span>':'<span class="content-type-badge">記事</span>'; }
+function contentTypeBadge(u){ return isExpertVideo(u)?'<span class="content-type-badge is-video">AI学習動画</span>':'<span class="content-type-badge">記事</span>'; }
 function sourcePublishedAt(u){
   if(u?.source_published_at)return u.source_published_at;
   const status=String(u?.source_date_status||'');
@@ -3753,7 +3753,7 @@ function updateCard(u){
         ${u.source_name?`<div class="ucard-meta-group"><span class="ucard-meta-label">情報元</span><span class="chip more">${esc(u.source_name)}</span></div>`:''}
       </div>
       <div class="card-actions">
-        <a class="card-open card-detail" href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')">${icon('eye')}${expertVideo?'重要発言と背景を見る':'変化と仕事への影響を見る'}</a>
+        <a class="card-open card-detail" href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')">${icon('eye')}${expertVideo?'学べること・背景を見る':'変化と仕事への影響を見る'}</a>
         ${u.source_url?`<button class="card-source" onclick="openSourceArticle('${u.id}')" aria-label="${expertVideo?'元の動画・講演':'情報元の記事'}を外部サイトで見る">${icon('ext')}${expertVideo?'元の動画・講演を見る':'情報元の記事を読む'}</button>`:''}
         ${!isArticleRead(u)?`<button class="mark-read card-action-labeled" onclick="markRead('${u.id}')" aria-label="読了の印を付ける" title="記事は残したまま、読んだ証を付ける">${icon('check')}<span>読了にする</span></button>`:''}
         ${u.status!=='try_later'?`<button class="icon-action card-action-labeled" onclick="quickStatus('${u.id}','try_later');render()" aria-label="後で見るに保存" title="後で見る一覧に保存する">${icon('flask')}<span>後で見る</span></button>`:''}
@@ -3837,20 +3837,21 @@ function homeTopUpdates(){
   return getUpdates().filter(item=>!isExpertVideo(item)).sort((a,b)=>globalCoverScore(b)-globalCoverScore(a)||byPub(a,b)).slice(0,5);
 }
 function homeExpertVideos(items){
-  const selected=[];const seenVideos=new Set();const seenExperts=new Set();
+  const selected=[];const seenVideos=new Set();const seenExperts=new Set();const seenSubjects=new Set();
   const now=Date.now();
   const fresh=(items||[]).filter(item=>isExpertVideo(item)&&item.source_date_status==='published'&&
     Date.parse(item.source_published_at)<=now&&Date.parse(item.source_published_at)>=now-10*86400000);
   for(const item of [...fresh].sort((a,b)=>(Date.parse(b.home_video_selected_at)||0)-(Date.parse(a.home_video_selected_at)||0)||byFeedOrder(a,b))){
     const videoKey=String(item.video_id||item.source_url||item.article_id||item.id||'');
-    if(!videoKey||seenVideos.has(videoKey)||seenExperts.has(item.expert_id))continue;
-    selected.push(item);seenVideos.add(videoKey);seenExperts.add(item.expert_id);
-    if(selected.length>=1)break;
+    if(!videoKey||seenVideos.has(videoKey)||seenExperts.has(item.expert_id||item.expert_name||item.source_name)||(item.story_subject&&seenSubjects.has(item.story_subject)))continue;
+    selected.push(item);seenVideos.add(videoKey);seenExperts.add(item.expert_id||item.expert_name||item.source_name);
+    if(item.story_subject)seenSubjects.add(item.story_subject);
+    if(selected.length>=2)break;
   }
   return selected;
 }
 function expertVideoCard(u){
-  const summary=u.manual_summary||u.ai_summary||u.raw_excerpt||'重要な発言の要点を確認できます。';
+  const summary=u.manual_summary||u.ai_summary||u.raw_excerpt||'この動画で学べることを確認できます。';
   return `<article class="expert-video-card">
     <div class="expert-video-card-top">${contentTypeBadge(u)}${readProofBadge(u)}<span class="expert-video-platform">${esc(u.platform||'動画・講演')}</span></div>
     <div class="expert-video-person"><strong>${esc(u.expert_name||'専門家')}</strong><span>${esc(u.expert_role||'AIの専門家')}</span></div>
@@ -3917,14 +3918,14 @@ function renderHome(v){
       <span class="signal-count">注目ニュース ${list.length}件・新着 ${newCount}件${continuedCount?`・継続 ${continuedCount}件`:''}・更新確認 ${latest}</span>
       ${newCount===0?'<p class="muted">今回は新しい記事の掲載はありません。前回の重要記事を継続表示しています。</p>':''}
       <button class="mini-chip" onclick="openUpdatesFiltered({type:'article'})">公開記事 ${articleUpdates.length}</button>
-      ${expertVideos.length?`<button class="mini-chip" onclick="openUpdatesFiltered({type:'expert_video'})">専門家動画 ${allUpdates.filter(isExpertVideo).length}</button>`:''}
+      ${expertVideos.length?`<button class="mini-chip" onclick="openUpdatesFiltered({type:'expert_video'})">AI学習動画 ${allUpdates.filter(isExpertVideo).length}</button>`:''}
       ${tryLater?`<button class="mini-chip" onclick="go('try-list')">後で見る ${tryLater}</button>`:''}
     </div>
     <button class="btn mobile-home-search" onclick="openAllUpdates()">${icon('category')}<span><strong>分類・キーワードから探す</strong><small>すべての記事を検索できます</small></span></button>
     ${mobileMediaHtml}
   </section>`;
   const expertVideoHtml=expertVideos.length?`<section class="expert-video-section" aria-labelledby="expertVideoTitle">
-    <div class="expert-video-head"><div><span class="expert-video-kicker">EXPERT SIGNALS</span><h2 id="expertVideoTitle">専門家の重要発言</h2></div><p>ホームには動画記事を1件表示。毎朝5:17（日本時間）から、公開10日以内の未掲載動画への入替を準備します。朝に最大3回再試行し、未完了なら昼・夜も確認します。公開は処理完了後です。${expertVideos[0]?.home_video_selected_at?`動画記事の更新：${esc(fmtDate(expertVideos[0].home_video_selected_at))}`:'動画記事の更新を確認中'}</p></div>
+    <div class="expert-video-head"><div><span class="expert-video-kicker">LEARN AI</span><h2 id="expertVideoTitle">AIを学ぶ動画</h2></div><p>毎朝更新・公開10日以内から2件。使い方や仕組みを学べる動画を、異なる発信者から選びます。${expertVideos[0]?.home_video_selected_at?`動画記事の更新：${esc(fmtDate(expertVideos[0].home_video_selected_at))}`:'動画記事の更新を確認中'}</p></div>
     <div class="expert-video-grid">${expertVideos.map(expertVideoCard).join('')}</div>
   </section>`:'';
   let html = `<section class="radar-overview ${cover?'has-daily-cover':''}" aria-label="${cover?'本日のトップニュース':'AIシグナル概要'}">
@@ -4030,10 +4031,10 @@ function renderUpdates(v){
     ${BUSINESS_CATEGORIES.map((c,i)=>{const count=allArticles.filter(u=>(u.related_categories||[]).includes(c)).length;const safe=c.replace(/'/g,"\\'");return `<button type="button" class="cat-tile ${f.cat===c?'is-active':''}" onclick="upFilter.cat='${safe}';renderUpdates(document.getElementById('view'))" aria-pressed="${f.cat===c?'true':'false'}" aria-label="${esc(c)}の記事${count}件を表示"><div class="ct-top"><div class="ct-name">${esc(c)}</div><div class="ct-num" style="color:${TOOL_COLORS[i%TOOL_COLORS.length]}">${count}</div></div><div class="ct-bar"><i style="width:${Math.round(count/maxCategoryCount*100)}%"></i></div></button>`;}).join('')}
   </div></section>`;
 
-  let html=`<section class="archive-intro" aria-labelledby="archiveTitle"><h2 id="archiveTitle">記事と専門家動画・発言を探す</h2><p>重要記事${articleCount}件と専門家動画・講演${videoCount}件を、種類・カテゴリ・キーワード・情報元から探せます。読了後も消えません。</p></section><div class="filterbar">
-    <div class="search">${icon('search')}<input id="upSearch" type="search" aria-label="記事と専門家動画をキーワードで検索" placeholder="タイトル・要約・人物・情報元を検索…" value="${esc(f.q)}" oninput="upFilter.q=this.value;debouncedUpdates()"></div>
+  let html=`<section class="archive-intro" aria-labelledby="archiveTitle"><h2 id="archiveTitle">記事とAI学習動画を探す</h2><p>重要記事${articleCount}件とAI学習動画・講演${videoCount}件を、種類・カテゴリ・キーワード・情報元から探せます。読了後も消えません。</p></section><div class="filterbar">
+    <div class="search">${icon('search')}<input id="upSearch" type="search" aria-label="記事とAI学習動画をキーワードで検索" placeholder="タイトル・要約・人物・情報元を検索…" value="${esc(f.q)}" oninput="upFilter.q=this.value;debouncedUpdates()"></div>
     <select class="filter" onchange="upFilter.type=this.value;renderUpdates(document.getElementById('view'))">
-      <option value="">記事・動画すべて</option><option value="article" ${f.type==='article'?'selected':''}>重要記事</option><option value="expert_video" ${f.type==='expert_video'?'selected':''}>専門家動画・発言</option></select>
+      <option value="">記事・動画すべて</option><option value="article" ${f.type==='article'?'selected':''}>重要記事</option><option value="expert_video" ${f.type==='expert_video'?'selected':''}>AI学習動画</option></select>
     <select class="filter" onchange="upFilter.tool=this.value;renderUpdates(document.getElementById('view'))">
       <option value="">すべてのツール</option>${tools.map(t=>`<option value="${t.id}" ${f.tool===t.id?'selected':''}>${esc(t.name)}</option>`).join('')}</select>
     <select class="filter" onchange="upFilter.status=this.value;renderUpdates(document.getElementById('view'))">
@@ -4175,7 +4176,7 @@ function renderDetailRead(v,u,tool){
       ${storyFlowBlock(u)}
 
       ${friendlyExplanation?`<div class="read-block is-easy">
-        <div class="rb-head"><span class="rb-ico" style="background:#e9f9f0;color:#16a34a">${icon('eye')}</span><span class="rb-label">${expertVideo?'重要発言のやさしい解説':'やさしい解説'}（AIが要約）</span></div>
+        <div class="rb-head"><span class="rb-ico" style="background:#e9f9f0;color:#16a34a">${icon('eye')}</span><span class="rb-label">${expertVideo?'動画のやさしい解説':'やさしい解説'}（AIが要約）</span></div>
         <div class="rb-body">${esc(friendlyExplanation)}</div>
       </div>`:''}
 
@@ -4185,7 +4186,7 @@ function renderDetailRead(v,u,tool){
         <button class="btn" onclick="shareArticle('${u.id}')" aria-label="この${expertVideo?'解説':'記事'}を共有する">${icon('shuffle')}この${expertVideo?'解説':'記事'}を共有</button>
       </div>
 
-      ${readBlock(u.id,expertVideo?'発言の核心':'何が変わったか',u.simple_explanation,'eye','#2563eb','#e7efff')}
+      ${readBlock(u.id,expertVideo?'この動画で学べること':'何が変わったか',u.simple_explanation,'eye','#2563eb','#e7efff')}
       ${readBlock(u.id,'仕事への影響',u.impact_summary,'bolt','#7c5cf6','#efeaff')}
       ${readBlock(u.id,expertVideo?'次に確かめること':'次にやること',u.action_suggestion,'check','#16a34a','#e3f7ea','is-action')}
       ${showRaw?readBlock(u.id,expertVideo?'動画説明・文字起こし抜粋':'原文抜粋',rawText,'updates','#64748b','#eef1f6','is-raw'):''}

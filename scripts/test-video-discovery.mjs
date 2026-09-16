@@ -18,6 +18,10 @@ assert.deepEqual(parseOfficialEpisodeLinks('<a href="/articles/withbloomberg/123
 const source=fs.readFileSync(new URL("../update.js",import.meta.url),"utf8").replace(/\r\n?/g,"\n");
 const context={require,console:{log(){},error(){}},process,setTimeout,clearTimeout,URL,AbortController,AbortSignal,fetch};
 vm.createContext(context);vm.runInContext(source.slice(0,source.indexOf("(async () => {")),context);
+const guestRegistry={experts:[{id:'anno',name:'安野貴博'}]};
+const guestSource={allowed_experts:['anno'],attribution_scope:'title_and_chapters'};
+assert.equal(context.matchedVideoExperts({title:'他の人のAI解説',description:'チャンネル代表：安野貴博'},guestSource,guestRegistry).length,0,'channel boilerplate is not evidence that a person appears');
+assert.equal(context.matchedVideoExperts({title:'安野貴博がAIを解説',description:''},guestSource,guestRegistry).length,1);
 const expert={id:"test-expert",name:"専門家",tier:"core_research",official_sources:[{platform:"youtube",channel_id:"trusted",trust:"primary"}]};
 const registry={experts:[expert],trusted_hosts:[],web_discovery:{enabled:false}};
 context.fetchText=async url=>{

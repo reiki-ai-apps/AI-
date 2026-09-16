@@ -206,7 +206,7 @@ const EXPERT_VIDEO_STATE_PATH = ".expert-video-state.json";
 const EXPERT_VIDEO_ARCHIVE_LIMIT = 12;
 const EXPERT_VIDEO_PROTECTED_LIMIT = 4;
 const EXPERT_VIDEO_REVIEW_LIMIT = 6;
-const EXPERT_REVIEW_VERSION = "expert-video-review-v7-chapters-first";
+const EXPERT_REVIEW_VERSION = "expert-video-review-v8-learning-diversity";
 const STORY_REPOST_WINDOW_MS = 31 * 86400000;
 const STORY_TIMELINE_WINDOW_MS = 365 * 86400000;
 // 完全一致の再掲載を公開から外す期間。表示保持(31日)より長く、365日の全面抑制はしない。
@@ -731,7 +731,7 @@ async function aiEnrichBatch(items) {
     "主要AI企業・研究所のCEO交代、著名研究者の退社、経営・研究体制の再編、大型買収・投資・提携は、製品名がタイトルになくても業界全体への波及を評価し、重要度SまたはAを積極的に検討してください。" +
     "記事本文の抜粋にない数字・人物・効果は作らず、不明な点は不明と明記してください。除外するのは広告・宣伝と、AIと無関係な別テーマの誤ヒットだけです。それ以外の記事は、確認できる事実の範囲で伝えることを優先してください。" +
     "要約文は元記事の論点と叙述順序を尊重し、主語と出来事から直接書き始め、元記事で確認できる事実・今後の予定・発表者の見解などで自然に結んでください。" +
-    "content_typeがexpert_videoの候補はニュース発表とは別に審査します。新製品の発表がなくても、AI専門家が具体的な主張、比較、仕組み、実装例、政策論、将来予測とその理由を話していれば採用対象です。公式動画の説明に詳細なチャプター一覧があり、3つ以上の具体的な論点・機能・注意点が確認できる場合は、字幕がなくても内容不足だけを理由に除外しないでください。その場合は、チャプターに明記された『扱う内容』だけを要約し、実際の発言文や結論を推測してはいけません。発言者の意見・予測・評価は確定事実として書かず、誰の見解かを各要点で明示してください。主張、その根拠や理由、仕事・社会への意味、未確定点を分けます。本人・所属機関・確認済み番組以外の切り抜きや転載、出演しただけでAIの中身が薄い動画、VLOG、宣伝中心の動画、根拠を示さない憶測は除外してください。" +
+    "content_typeがexpert_videoの候補はニュース発表とは別に審査します。AIの使い方、操作手順、仕組み、モデルの使い分けを教える動画も採用対象です。実用解説者を研究者と呼ばず、発信者の立場を正しく区別してください。何を学べるか、確認できる具体例、利用条件や注意点を整理し、宣伝文の効果を保証しないでください。新製品の発表がなくても、AI専門家が具体的な主張、比較、仕組み、実装例、政策論、将来予測とその理由を話していれば採用対象です。公式動画の説明に詳細なチャプター一覧があり、3つ以上の具体的な論点・機能・注意点が確認できる場合は、字幕がなくても内容不足だけを理由に除外しないでください。その場合は、チャプターに明記された『扱う内容』だけを要約し、実際の発言文や結論を推測してはいけません。発言者の意見・予測・評価は確定事実として書かず、誰の見解かを各要点で明示してください。主張、その根拠や理由、仕事・社会への意味、未確定点を分けます。本人・所属機関・確認済み番組以外の切り抜きや転載、出演しただけでAIの中身が薄い動画、VLOG、宣伝中心の動画、根拠を示さない憶測は除外してください。" +
     "やさしい解説は、AI業界を知らない高校生が一度で意味をつかめる言葉で書いてください。専門用語や英字略語は日常語へ言い換えるか、初出の直後に短く説明してください。一文には一つの内容だけを書き、長い修飾語や名詞を重ねた表現を避けてください。記事の核となる事実・仕組み・以前との違いを具体的に説明し、一般論で文字数を増やさないでください。" +
     "『まず、このニュースをひと言でいうと』『かんたんに言うと』『この記事では』などのメタな前置きや、元記事にない一般論・注意喚起・安心を促す定型文は使わないでください。";
   const user =
@@ -1092,6 +1092,11 @@ function expertVideoRecord(expert,source,video,fetchedAt){
   };
 }
 
+function matchedVideoExperts(video,source,registry){
+  const description=source.attribution_scope==="title_and_chapters"?extractVideoChapters(video.description):video.description||"";
+  return matchedExpertsForSource(video.title+" "+description,source,registry);
+}
+
 async function collectExpertVideoCandidates(registry,fetchedAt){
   const records=[];
   let attemptedSources=0;
@@ -1151,7 +1156,7 @@ async function collectExpertVideoCandidates(registry,fetchedAt){
         if(Number.isFinite(knownTime)&&(knownTime>now||now-knownTime>EXPERT_VIDEO_MAX_AGE_DAYS*86400000))continue;
         // Recover exact dates from the official player when RSS is missing or limited.
         // Old/undated cards must not consume the four fresh-video slots.
-        if((!video.exactPublishedAt||!matchedExpertsForSource(video.title+" "+(video.description||""),source,registry).length)&&metadataAttempts<8){
+        if((!video.exactPublishedAt||!matchedVideoExperts(video,source,registry).length)&&metadataAttempts<8){
           metadataAttempts++;
           const meta=await cachedYouTubeMetadata(video.link);
           if(meta&&meta.channelId===source.channel_id){
@@ -1159,7 +1164,7 @@ async function collectExpertVideoCandidates(registry,fetchedAt){
               exactPublishedAt:meta.exactPublishedAt||video.exactPublishedAt};
           }
         }
-        const experts=matchedExpertsForSource(video.title+" "+(video.description||""),source,registry);
+        const experts=matchedVideoExperts(video,source,registry);
         if(!experts.length)continue;
         video.experts=experts;
         const record=expertVideoRecord(experts[0],source,video,fetchedAt);
@@ -2197,6 +2202,7 @@ function bootstrapCacheResult(cache,source,result) {
   let cacheHits=0;
   let rejectedHits=0;
   const publishedVideoKeys=new Set((expertVideoState.published_history||[]).map(entry=>entry.video_key));
+  for(const key of expertVideoState.featured_video_keys||[])publishedVideoKeys.add(key);
   if(expertVideoState.featured_video_key)publishedVideoKeys.add(expertVideoState.featured_video_key);
   for(const item of filteredOut){
     // Already featured videos remain in the archive but cannot spend today's review allowance again.
@@ -2235,7 +2241,7 @@ function bootstrapCacheResult(cache,source,result) {
   // 記事と同じ大きなバッチへ混ぜると、動画の主張がニュース発表用の判定に引っ張られる。
   // 専門家動画を最初に2件ずつ審査し、人物の多様性を保ちながら次候補まで確認する。
   const expertReviewCandidates=selectExpertVideoReviewCandidates(fresh,
-    Math.min(EXPERT_VIDEO_REVIEW_LIMIT,expertRemaining),2,editionNow);
+    Math.min(EXPERT_VIDEO_REVIEW_LIMIT,expertRemaining),2,editionNow,expertVideoState);
   const expertReviewKeys=new Set(expertReviewCandidates.map(articleCacheKey));
   // プロンプト更新だけでは既存記事が「処理済み」のまま残るため、毎日24件を上限に
   // 旧要約へ再度一次情報の文脈を付け、記事固有の深い3段落へ安全に移行する。

@@ -1,7 +1,29 @@
 {
   "version": "ai-radar-experts-2026-09-10-v2",
-  "selection_policy": "人気だけでは選ばず、AIの研究・開発・実装・政策について継続して具体的な発言ができる人物を登録する。研究開発・政策の当事者と事業・社会への解説者は区分する。",
+  "selection_policy": "AIの研究・開発・政策に加え、使い方・仕組み・比較を具体的に教える発信者も登録する。研究者・政策当事者・実用解説者は区分する。毎朝、投稿10日以内の未掲載動画から異なる発信者を2件選び、直近7日間の掲載頻度が低い人と実践的な学習動画を優先する。宣伝のみ・転載・根拠のない効果の断定は除外する。",
   "experts": [
+    {
+      "id": "keito-aiweb",
+      "name": "KEITO",
+      "aliases": ["KEITO", "けいと"],
+      "role": "AIツールの使い方・検証を発信する解説者",
+      "tier": "practical_ai_educator",
+      "coverage": ["AIツール活用", "画像・動画生成", "実演・比較"],
+      "selection_reason": "本人のチャンネルで生成AIの操作、機能比較、活用例を継続的に解説。研究者とは区別し、手順と注意点を確認できる動画を対象にする。",
+      "profile_url": "https://www.youtube.com/@keitoaiweb",
+      "official_sources": [{"platform":"youtube","kind":"official_person_channel","channel_id":"UCfapRkagDtoQEkGeyD3uERQ","channel_url":"https://www.youtube.com/@keitoaiweb","source_name":"KEITO【AI&WEB ch】","trust":"primary"}]
+    },
+    {
+      "id": "tomohiro-ikeda",
+      "name": "池田朋弘（いけとも）",
+      "aliases": ["池田朋弘", "池田 朋弘", "いけとも"],
+      "role": "生成AIの仕事への活用を教える解説者",
+      "tier": "practical_ai_educator",
+      "coverage": ["AI仕事術", "AIツール比較", "業務活用"],
+      "selection_reason": "本人・運営会社から確認できるAI活用の発信者。仕事での使い分けや具体的な操作を教える動画を対象にし、研修募集だけの動画は選ばない。",
+      "profile_url": "https://workstyle-evolution.co.jp/profile",
+      "official_sources": [{"platform":"youtube","kind":"official_person_channel","channel_id":"UCpUQnk6MaY4o3NdgJmv10cw","channel_url":"https://www.youtube.com/@iketomo-ch","source_name":"いけともch","trust":"primary"}]
+    },
     {
       "id": "yutaka-matsuo",
       "name": "松尾豊",
@@ -137,6 +159,7 @@
       "channel_id": "UC72A_x2FKHkJ8Nc2eIzqj8Q",
       "channel_url": "https://www.youtube.com/channel/UC72A_x2FKHkJ8Nc2eIzqj8Q",
       "source_name": "チームみらい【公式】",
+      "attribution_scope": "title_and_chapters",
       "trust": "institutional",
       "allowed_experts": ["takahiro-anno"]
     },

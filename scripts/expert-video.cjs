@@ -1,10 +1,11 @@
 "use strict";
 
-const AI_TOPIC_PATTERN=/(?:\bAI\b|人工知能|生成AI|機械学習|深層学習|大規模言語モデル|\bLLM\b|ChatGPT|Claude|Gemini|AIエージェント|AIコーディング|ロボティクス|自動運転|無人タクシー|ロボタクシー|サイバーキャブ|\bCybercab\b)/i;
+const AI_TOPIC_PATTERN=/(?:\bAI\b|人工知能|生成AI|機械学習|深層学習|大規模言語モデル|\bLLM\b|ChatGPT|GPT[-\s]?\d|Claude|Gemini|NotebookLM|Kling|Midjourney|AIエージェント|AIコーディング|ロボティクス|自動運転|無人タクシー|ロボタクシー|サイバーキャブ|\bCybercab\b)/i;
 const VIDEO_FORMAT_PATTERN=/(?:動画|講演|対談|インタビュー|ポッドキャスト|文字起こし|解説|討論|セッション|基調講演|YouTube)/i;
-const SUBSTANTIVE_SIGNAL_PATTERN=/(?:解説|講座|講演|対談|インタビュー|討論|議論|検証|比較|仕組み|なぜ|何を|どのよう|できる|影響|変わる|未来|政策|規制|技術|研究|実演|実装|条件|課題|対策|リスク|能力|記憶|仕事|社会|開発|モデル|エージェント|コーディング|格差|進化|理由|限界)/i;
+const SUBSTANTIVE_SIGNAL_PATTERN=/(?:解説|講座|講演|対談|インタビュー|討論|議論|検証|比較|仕組み|なぜ|何を|どのよう|できる|影響|変わる|未来|政策|規制|技術|研究|実演|実装|条件|課題|対策|リスク|能力|記憶|仕事|社会|開発|モデル|エージェント|コーディング|格差|進化|理由|限界|使い方|使い道|活用|手順|入門|基礎|プロンプト|コツ|注意点)/i;
 const LOW_VALUE_PATTERN=/(?:切り抜き|無断転載|まとめ動画|反応集|shorts?\b|#shorts|予告編|ティザー|CM(?:動画)?\b|プレゼント|キャンペーン|ランキング|おすすめ\d*選|\bVLOG\b|行ってみた|潜入|体験乗車|スパルタキャンプ|無料.{0,12}学べる|受講者募集)/i;
 const EXPERT_VIDEO_MAX_AGE_DAYS=10;
+const HOME_VIDEO_LIMIT=2;
 
 function isExpertVideoItem(item){
   return String(item?.content_type||"").toLowerCase()==="expert_video";
@@ -24,34 +25,68 @@ function shouldRefreshExpertVideos(state,now=Date.now(),schedule=""){
   // 朝に開始し、未掲載なら既存の昼・夜の実行や手動実行で再試行する。
   // ソースの取得成功ではなく、別の動画をホームへ掲載した日を判定する。
   if(now<morningStart)return false;
-  return String(state?.last_published_day_jst||"")!==today;
+  return String(state?.last_published_day_jst||"")!==today||state?.status!=="published"||
+    (state?.featured_video_keys||[]).length<HOME_VIDEO_LIMIT;
 }
 
 function expertVideoKey(item){return String(item?.video_id||item?.source_url||item?.article_id||"");}
+function featuredVideoKeys(state={}){return [...new Set([...(state.featured_video_keys||[]),state.featured_video_key].filter(Boolean))];}
+function videoPersonKey(item){return String(item.expert_id||item.expert_name||item.source_name||expertVideoKey(item));}
+function isLearningVideo(item){return item.expert_tier==="practical_ai_educator"||/(?:使い方|使い道|活用|手順|入門|講座|実演|プロンプト|コツ)/.test(item.title||"");}
+function dailyVideoCandidates(items,state,now){
+  const all=selectExpertVideoArchivePicks(items,items.length,now);
+  const byKey=new Map(all.map(item=>[expertVideoKey(item),item]));
+  const history=(state.published_history||[]).filter(entry=>Date.parse(entry.day_jst+'T00:00:00+09:00')>=now-7*86400000);
+  const count=item=>history.filter(entry=>(entry.expert_id||byKey.get(entry.video_key)?.expert_id)===item.expert_id).length;
+  return all.sort((a,b)=>count(a)-count(b)||Date.parse(b.source_published_at)-Date.parse(a.source_published_at));
+}
+function pickDiverseVideos(candidates,initial=[],limit=HOME_VIDEO_LIMIT){
+  const selected=[...initial];
+  const eligible=item=>!selected.some(chosen=>expertVideoKey(chosen)===expertVideoKey(item)||videoPersonKey(chosen)===videoPersonKey(item)||
+    (chosen.story_subject&&item.story_subject&&chosen.story_subject===item.story_subject));
+  // If available, include one practical learning video alongside a different voice.
+  if(selected.length<limit&&!selected.some(isLearningVideo)){
+    const learning=candidates.find(item=>isLearningVideo(item)&&eligible(item));
+    if(learning)selected.push(learning);
+  }
+  for(const item of candidates){if(selected.length>=limit)break;if(eligible(item))selected.push(item);}
+  return selected;
+}
 
 function finalizeExpertVideoEdition(items,state={},now=Date.now(),attempt={}){
   const today=jstDayKey(now), stamp=new Date(now).toISOString();
-  const candidates=selectExpertVideoArchivePicks(items,100,now);
-  const history=Array.isArray(state.published_history)?state.published_history:[];
+  const candidates=dailyVideoCandidates(items,state,now);
+  const byKey=new Map(items.filter(isExpertVideoItem).map(item=>[expertVideoKey(item),item]));
+  const history=(Array.isArray(state.published_history)?state.published_history:[]).map(entry=>({...entry,
+    expert_id:entry.expert_id||byKey.get(entry.video_key)?.expert_id||""}));
   const seen=new Set(history.map(entry=>entry.video_key));
-  if(state.featured_video_key)seen.add(state.featured_video_key);
-  let selected=candidates.find(item=>expertVideoKey(item)===state.featured_video_key);
+  const keys=featuredVideoKeys(state);
+  for(const key of keys)seen.add(key);
+  const current=candidates.filter(item=>keys.includes(expertVideoKey(item)));
+  let selected=pickDiverseVideos(current);
   let next={...state};
   if(attempt.refreshDue){
     next={...next,last_attempted_at:stamp,source_attempts:attempt.attemptedSources||0,
       source_successes:attempt.successfulSources||0,fresh_candidate_count:attempt.candidateCount||0};
-    const fresh=candidates.find(item=>!seen.has(expertVideoKey(item)));
-    if(fresh&&state.last_published_day_jst!==today){
-      selected=fresh;
-      next={...next,status:'published',last_published_day_jst:today,last_published_at:stamp,
+    // Preserve today's picks across retries; only fill missing slots with unseen videos.
+    const locked=state.last_published_day_jst===today?current.filter(item=>history.some(entry=>entry.day_jst===today&&entry.video_key===expertVideoKey(item))):[];
+    const fresh=pickDiverseVideos(candidates.filter(item=>!seen.has(expertVideoKey(item))),pickDiverseVideos(locked));
+    const additions=fresh.filter(item=>!locked.includes(item));
+    selected=pickDiverseVideos(current,fresh);
+    if(fresh.length){
+      next={...next,status:fresh.length===HOME_VIDEO_LIMIT?'published':'partial',last_published_day_jst:today,
+        last_published_at:additions.length?stamp:state.last_published_at,
+        published_history:[...history,...additions.map(item=>({day_jst:today,video_key:expertVideoKey(item),expert_id:item.expert_id}))].slice(-60)};
+      if(fresh.length===HOME_VIDEO_LIMIT)Object.assign(next,{
         last_successful_refresh_day_jst:today,last_successful_refresh_at:stamp,
-        featured_video_key:expertVideoKey(fresh),
-        published_history:[...history,{day_jst:today,video_key:expertVideoKey(fresh)}].slice(-30)};
-    }else if(state.last_published_day_jst!==today){next.status='pending_no_new_publishable_video';}
+      });
+    }else {next.status='pending_no_new_publishable_video';}
   }
-  next.version=2;next.max_age_days=EXPERT_VIDEO_MAX_AGE_DAYS;
+  next.featured_video_keys=selected.map(expertVideoKey);next.featured_video_key=next.featured_video_keys[0]||'';
+  next.version=3;next.max_age_days=EXPERT_VIDEO_MAX_AGE_DAYS;next.daily_target=HOME_VIDEO_LIMIT;
   return {state:next,items:items.map(item=>isExpertVideoItem(item)?{
-    ...item,home_video_selected_at:selected&&expertVideoKey(item)===expertVideoKey(selected)?String(next.last_published_at||''):''
+    ...item,home_video_selected_at:next.featured_video_keys.includes(expertVideoKey(item))?
+      (item.home_video_selected_at||String(next.last_published_at||'')):''
   }:item)};
 }
 
@@ -219,17 +254,16 @@ function selectExpertVideoArchivePicks(items,limit=12,now=Date.now()){
 }
 
 function selectDailyExpertVideoArchivePicks(items,state={},limit=3,now=Date.now()){
-  const all=selectExpertVideoArchivePicks(items,(items||[]).length,now);
+  const all=dailyVideoCandidates(items,state,now);
   const seen=new Set((state.published_history||[]).map(entry=>entry.video_key));
-  if(state.featured_video_key)seen.add(state.featured_video_key);
-  const alreadyToday=state.last_published_day_jst===jstDayKey(now)||!shouldRefreshExpertVideos(state,now);
-  const preferred=alreadyToday
-    ?all.find(item=>expertVideoKey(item)===state.featured_video_key)
-    :all.find(item=>!seen.has(expertVideoKey(item)));
-  return (preferred?[preferred,...all.filter(item=>expertVideoKey(item)!==expertVideoKey(preferred))]:all).slice(0,limit);
+  const keys=featuredVideoKeys(state);for(const key of keys)seen.add(key);
+  const current=all.filter(item=>keys.includes(expertVideoKey(item)));
+  const locked=state.last_published_day_jst===jstDayKey(now)?current.filter(item=>(state.published_history||[]).some(entry=>entry.day_jst===jstDayKey(now)&&entry.video_key===expertVideoKey(item))):[];
+  const preferred=shouldRefreshExpertVideos(state,now)?pickDiverseVideos(all.filter(item=>!seen.has(expertVideoKey(item))),pickDiverseVideos(locked)):current;
+  return [...preferred,...current.filter(item=>!preferred.includes(item)),...all.filter(item=>!preferred.includes(item)&&!current.includes(item))].slice(0,limit);
 }
 
-function selectExpertVideoReviewCandidates(items,limit=6,maxPerExpert=2,now=Date.now()){
+function selectExpertVideoReviewCandidates(items,limit=6,maxPerExpert=2,now=Date.now(),state={}){
   const candidates=dedupeExpertVideoCandidates((items||[]).filter(isExpertVideoItem))
     .filter(item=>isFreshExpertVideo(item,now))
     .sort((a,b)=>{
@@ -239,7 +273,9 @@ function selectExpertVideoReviewCandidates(items,limit=6,maxPerExpert=2,now=Date
         if(/(?:講演|対談|インタビュー|討論|議論)/i.test(text))score+=22;
         if(/(?:解説|講座|検証|比較|仕組み|実演|実装|条件|課題|対策)/i.test(text))score+=18;
         if(["primary","institutional"].includes(String(item.source_trust||"")))score+=15;
-        if(LOW_VALUE_PATTERN.test(text))score-=100;
+        if(isLearningVideo(item))score+=12;
+        score-=20*(state.published_history||[]).filter(entry=>entry.expert_id===item.expert_id&&Date.parse(entry.day_jst+'T00:00:00+09:00')>=now-7*86400000).length;
+        if(LOW_VALUE_PATTERN.test(item.title||""))score-=100;
         const time=new Date(item.source_published_at||item.published_at||item.fetched_at||0).getTime();
         if(Number.isFinite(time)&&time>0)score+=Math.max(0,30-(now-time)/86400000);
         return score;
@@ -270,7 +306,7 @@ function buildExpertWebDiscoveryUrl(expert,lookbackDays=EXPERT_VIDEO_MAX_AGE_DAY
 
 module.exports={
   AI_TOPIC_PATTERN,VIDEO_FORMAT_PATTERN,SUBSTANTIVE_SIGNAL_PATTERN,LOW_VALUE_PATTERN,
-  EXPERT_VIDEO_MAX_AGE_DAYS,isExpertVideoItem,jstDayKey,shouldRefreshExpertVideos,isFreshExpertVideo,
+  EXPERT_VIDEO_MAX_AGE_DAYS,HOME_VIDEO_LIMIT,featuredVideoKeys,isExpertVideoItem,jstDayKey,shouldRefreshExpertVideos,isFreshExpertVideo,
   decodeJsHexEscapes,approximatePublishedAt,parseYouTubeChannelVideos,
   expertMentioned,matchedExpertsForSource,isSubstantiveAiVideo,isWebVideoCandidate,
   dedupeExpertVideoCandidates,selectExpertVideoArchivePicks,selectExpertVideoReviewCandidates,
