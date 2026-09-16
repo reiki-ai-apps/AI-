@@ -7,60 +7,75 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-09-16T09:18:32.544Z",
-  "window_end": "2026-09-16T14:58:28.150Z",
-  "last_window_end": "2026-09-16T14:58:28.150Z",
-  "last_checked_at": "2026-09-16T15:03:23.708Z",
-  "last_published_at": "2026-09-16T15:03:23.708Z",
-  "home_content_changed_at": "2026-09-16T15:03:23.708Z",
+  "window_start": "2026-09-16T14:58:28.150Z",
+  "window_end": "2026-09-16T23:00:38.766Z",
+  "last_window_end": "2026-09-16T23:00:38.766Z",
+  "last_checked_at": "2026-09-16T23:06:42.693Z",
+  "last_published_at": "2026-09-16T23:06:42.693Z",
+  "home_content_changed_at": "2026-09-16T23:06:42.693Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 3,
-  "distinct_candidate_count": 3,
+  "candidate_count": 5,
+  "distinct_candidate_count": 5,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 3,
+  "novel_candidate_count": 5,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 3,
-  "continued_selected_count": 2,
+  "new_selected_count": 5,
+  "continued_selected_count": 0,
   "tool_evolution_selected_count": 2,
   "carried_forward": false,
-  "partially_carried_forward": true,
+  "partially_carried_forward": false,
   "article_ids": [
-    "article_32dbd776b8226dbd5298",
-    "article_0c888acc2e8839bcd4ac",
-    "article_0ff16eee0fabb1ce0425",
-    "article_3eb3e9557eb7038ef8ad",
-    "article_1c661d197f8cbdd4ee63"
+    "article_8a34d7e21a208face7f2",
+    "article_a5a6f7cedcd309167eb6",
+    "article_ed8f064aa97f02b879f7",
+    "article_f4f8dcd0b51125696492",
+    "article_4a3783534204476ed4c3"
   ],
   "new_article_ids": [
-    "article_32dbd776b8226dbd5298",
-    "article_0c888acc2e8839bcd4ac",
-    "article_0ff16eee0fabb1ce0425"
+    "article_8a34d7e21a208face7f2",
+    "article_a5a6f7cedcd309167eb6",
+    "article_ed8f064aa97f02b879f7",
+    "article_f4f8dcd0b51125696492",
+    "article_4a3783534204476ed4c3"
   ],
-  "continued_article_ids": [
-    "article_3eb3e9557eb7038ef8ad",
-    "article_1c661d197f8cbdd4ee63"
-  ],
-  "continuation_sources": {
-    "article_3eb3e9557eb7038ef8ad": "previous_edition",
-    "article_1c661d197f8cbdd4ee63": "previous_edition"
-  },
+  "continued_article_ids": [],
+  "continuation_sources": {},
   "scores": {
-    "article_32dbd776b8226dbd5298": {
-      "article_id": "article_32dbd776b8226dbd5298",
-      "total": 79,
+    "article_8a34d7e21a208face7f2": {
+      "article_id": "article_8a34d7e21a208face7f2",
+      "total": 82,
       "breakdown": {
         "importance": 45,
-        "topicality": 15,
+        "topicality": 17,
         "scope": 6,
+        "authority": 5,
+        "freshness": 9,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "制度・安全への影響",
+        "重要な経営・研究体制"
+      ],
+      "published_at": "2026-09-16T22:07:09.000Z"
+    },
+    "article_a5a6f7cedcd309167eb6": {
+      "article_id": "article_a5a6f7cedcd309167eb6",
+      "total": 78,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 10,
+        "scope": 10,
         "authority": 5,
         "freshness": 0,
         "tool_evolution": 8,
@@ -68,40 +83,56 @@
       },
       "reasons": [
         "重要度A",
-        "主要AI企業・基盤",
         "大きな製品・市場変化",
-        "遅れて確認できた新着",
         "AIツールの能力進化"
       ],
-      "published_at": "2026-09-16T07:03:33.000Z"
+      "published_at": "2026-09-14T02:30:03.000Z"
     },
-    "article_0c888acc2e8839bcd4ac": {
-      "article_id": "article_0c888acc2e8839bcd4ac",
-      "total": 62,
+    "article_ed8f064aa97f02b879f7": {
+      "article_id": "article_ed8f064aa97f02b879f7",
+      "total": 64,
       "breakdown": {
         "importance": 25,
         "topicality": 20,
-        "scope": 10,
+        "scope": 6,
         "authority": 5,
-        "freshness": 2,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "制度・安全への影響",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-09-16T15:10:02.000Z"
+    },
+    "article_f4f8dcd0b51125696492": {
+      "article_id": "article_f4f8dcd0b51125696492",
+      "total": 61,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 17,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 8,
         "tool_evolution": 0,
         "penalty": 0
       },
       "reasons": [
         "重要度B",
-        "主要AI企業・基盤",
-        "制度・安全への影響",
         "大きな製品・市場変化",
         "重要な経営・研究体制"
       ],
-      "published_at": "2026-09-16T10:22:11.000Z"
+      "published_at": "2026-09-16T21:15:00.000Z"
     },
-    "article_0ff16eee0fabb1ce0425": {
-      "article_id": "article_0ff16eee0fabb1ce0425",
-      "total": 60,
+    "article_4a3783534204476ed4c3": {
+      "article_id": "article_4a3783534204476ed4c3",
+      "total": 55,
       "breakdown": {
         "importance": 25,
-        "topicality": 20,
+        "topicality": 15,
         "scope": 10,
         "authority": 5,
         "freshness": 0,
@@ -111,54 +142,10 @@
       "reasons": [
         "重要度B",
         "主要AI企業・基盤",
-        "大きな製品・市場変化",
-        "重要な経営・研究体制",
+        "制度・安全への影響",
         "遅れて確認できた新着"
       ],
-      "published_at": "2026-09-16T04:55:00.000Z"
-    },
-    "article_3eb3e9557eb7038ef8ad": {
-      "article_id": "article_3eb3e9557eb7038ef8ad",
-      "total": 89,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 20,
-        "scope": 6,
-        "authority": 10,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "主要AI企業・基盤",
-        "制度・安全への影響",
-        "重要な経営・研究体制",
-        "公式一次情報",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-09-09T17:00:00.000Z"
-    },
-    "article_1c661d197f8cbdd4ee63": {
-      "article_id": "article_1c661d197f8cbdd4ee63",
-      "total": 80,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 20,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "主要AI企業・基盤",
-        "制度・安全への影響",
-        "大きな製品・市場変化",
-        "重要な経営・研究体制"
-      ],
-      "published_at": "2026-09-14T21:51:02.000Z"
+      "published_at": "2026-09-16T12:33:17.000Z"
     }
   },
   "recent_story_history": [
@@ -548,6 +535,119 @@
       "previous_article_id": "",
       "selected_at": "2026-09-16T15:03:23.708Z",
       "edition_window_end": "2026-09-16T14:58:28.150Z"
+    },
+    {
+      "article_id": "article_8a34d7e21a208face7f2",
+      "story_id": "story_906505fffa0c8f7876",
+      "title": "メタCEO、AI開発の一律減速に反対し企業の自主性を強調",
+      "primary_entity": "メタ",
+      "story_subject": "AI開発規制・減速をめぐる議論",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "AI業界全体の規制論議",
+      "story_entities": [
+        "AI開発規制",
+        "ai開発規制"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-16T23:06:42.693Z",
+      "edition_window_end": "2026-09-16T23:00:38.766Z"
+    },
+    {
+      "article_id": "article_a5a6f7cedcd309167eb6",
+      "story_id": "story_7baacd906461fdb1f5",
+      "title": "快手（Kuaishou）、動画生成AI新版「Kling 3.0」を発表",
+      "primary_entity": "Kuaishou(快手)",
+      "story_subject": "Kling 3.0(動画生成AI)",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "全世界",
+      "story_entities": [
+        "Kling AI",
+        "Kuaishou",
+        "Kling 3.0",
+        "klingai",
+        "kuaishou"
+      ],
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "Klingのバージョン",
+          "value": "3.0",
+          "normalized_value": "3.0"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-16T23:06:42.693Z",
+      "edition_window_end": "2026-09-16T23:00:38.766Z"
+    },
+    {
+      "article_id": "article_ed8f064aa97f02b879f7",
+      "story_id": "story_929447070840b5642f",
+      "title": "採用書類専用の個人情報マスクツール「conneMas」提供開始、生成AIへの隠し指示も検知",
+      "primary_entity": "conneMas提供企業",
+      "story_subject": "conneMas(採用書類向け個人情報マスクツール)",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本",
+      "story_entities": [
+        "conneMas",
+        "connemas"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-16T23:06:42.693Z",
+      "edition_window_end": "2026-09-16T23:00:38.766Z"
+    },
+    {
+      "article_id": "article_f4f8dcd0b51125696492",
+      "story_id": "story_76a6185a27128593ed",
+      "title": "パナソニック エナジーCEO、好調なAIデータセンター向け事業を語る",
+      "primary_entity": "パナソニック エナジー",
+      "story_subject": "AIデータセンター向け電池事業",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "パナソニック エナジー社の事業",
+      "story_entities": [
+        "パナソニック エナジー",
+        "パナソニックエナジー"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-16T23:06:42.693Z",
+      "edition_window_end": "2026-09-16T23:00:38.766Z"
+    },
+    {
+      "article_id": "article_4a3783534204476ed4c3",
+      "story_id": "story_edb315cdcdd0cfb338",
+      "title": "Salesforce、OpenAIと提携し政府向けAI「Missionforce」を拡大",
+      "primary_entity": "Salesforce",
+      "story_subject": "Missionforce(政府向けAIプラットフォーム)",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "政府機関向け",
+      "story_entities": [
+        "Salesforce",
+        "OpenAI",
+        "Missionforce",
+        "salesforce",
+        "openai"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-16T23:06:42.693Z",
+      "edition_window_end": "2026-09-16T23:00:38.766Z"
     }
   ]
 }
