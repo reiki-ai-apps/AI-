@@ -1,6 +1,6 @@
 {
   "version": "ai-radar-experts-2026-09-10-v2",
-  "selection_policy": "AIの研究・開発・政策に加え、使い方・仕組み・比較を具体的に教える発信者も登録する。研究者・政策当事者・実用解説者は区分する。毎朝、投稿10日以内の未掲載動画から異なる発信者を2件選び、直近7日間の掲載頻度が低い人と実践的な学習動画を優先する。宣伝のみ・転載・根拠のない効果の断定は除外する。",
+  "selection_policy": "AIの研究・開発・政策に加え、使い方・仕組み・比較を具体的に教える発信者も登録する。研究者・政策当事者・実用解説者は区分する。毎朝、投稿10日以内の未掲載動画から異なる発信者を2件選ぶ。前回の最終掲載回の発信者は共演者も含め候補から除外し、別動画でも連続掲載しない。残る候補では直近7日間の掲載頻度が低い人と実践的な学習動画を優先する。足りない枠は未完了として再試行し、前回の人で埋めない。宣伝のみ・転載・根拠のない効果の断定は除外する。",
   "experts": [
     {
       "id": "keito-aiweb",
@@ -141,6 +141,17 @@
     }
   ],
   "trusted_hosts": [
+    {
+      "id": "business-it-official",
+      "platform": "youtube",
+      "kind": "verified_interview_channel",
+      "channel_id": "UCrEIxEZJnQvUJn6W8f5UG9Q",
+      "channel_url": "https://www.youtube.com/channel/UCrEIxEZJnQvUJn6W8f5UG9Q",
+      "source_name": "ビジネス＋ITチャンネル",
+      "attribution_scope": "title_and_chapters",
+      "trust": "trusted_host",
+      "allowed_experts": ["*"]
+    },
     {
       "id": "tbs-crossdig-official",
       "platform": "youtube",

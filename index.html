@@ -3843,12 +3843,13 @@ function homeTopUpdates(){
 function homeExpertVideos(items){
   const selected=[];const seenVideos=new Set();const seenExperts=new Set();const seenSubjects=new Set();
   const now=Date.now();
-  const fresh=(items||[]).filter(item=>isExpertVideo(item)&&item.source_date_status==='published'&&
+  const fresh=(items||[]).filter(item=>isExpertVideo(item)&&Number.isFinite(Date.parse(item.home_video_selected_at))&&item.source_date_status==='published'&&
     Date.parse(item.source_published_at)<=now&&Date.parse(item.source_published_at)>=now-10*86400000);
   for(const item of [...fresh].sort((a,b)=>(Date.parse(b.home_video_selected_at)||0)-(Date.parse(a.home_video_selected_at)||0)||byFeedOrder(a,b))){
     const videoKey=String(item.video_id||item.source_url||item.article_id||item.id||'');
-    if(!videoKey||seenVideos.has(videoKey)||seenExperts.has(item.expert_id||item.expert_name||item.source_name)||(item.story_subject&&seenSubjects.has(item.story_subject)))continue;
-    selected.push(item);seenVideos.add(videoKey);seenExperts.add(item.expert_id||item.expert_name||item.source_name);
+    const people=[item.expert_id||item.expert_name||item.source_name,...(item.expert_ids||[])].filter(Boolean);
+    if(!videoKey||seenVideos.has(videoKey)||people.some(id=>seenExperts.has(id))||(item.story_subject&&seenSubjects.has(item.story_subject)))continue;
+    selected.push(item);seenVideos.add(videoKey);people.forEach(id=>seenExperts.add(id));
     if(item.story_subject)seenSubjects.add(item.story_subject);
     if(selected.length>=2)break;
   }
@@ -3930,12 +3931,12 @@ function renderHome(v){
   </section>`;
   const todayVideoDay=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
   const currentVideoCount=expertVideos.filter(u=>Number.isFinite(Date.parse(u.home_video_selected_at))&&new Date(Date.parse(u.home_video_selected_at)+9*3600000).toISOString().slice(0,10)===todayVideoDay).length;
-  const videoRefreshNote=currentVideoCount>=2?'本日の2件を更新済み':`本日分を準備中（${currentVideoCount}/2件）。確認できた前回分を表示しています。`;
-  const expertVideoHtml=expertVideos.length?`<section class="expert-video-section" aria-labelledby="expertVideoTitle">
-    <div class="expert-video-head"><div><span class="expert-video-kicker">LEARN AI</span><h2 id="expertVideoTitle">AIを学ぶ動画</h2></div><p>毎朝更新・公開10日以内から2件。使い方や仕組みを学べる動画を、異なる発信者から選びます。${expertVideos[0]?.home_video_selected_at?`動画記事の更新：${esc(fmtDate(expertVideos[0].home_video_selected_at))}`:'動画記事の更新を確認中'}</p></div>
+  const videoRefreshNote=currentVideoCount>=2?'本日の2件を更新済み':`本日分を準備中（${currentVideoCount}/2件）。前回とは別の発信者を確認し、順次追加します。`;
+  const expertVideoHtml=`<section class="expert-video-section" aria-labelledby="expertVideoTitle">
+    <div class="expert-video-head"><div><span class="expert-video-kicker">LEARN AI</span><h2 id="expertVideoTitle">AIを学ぶ動画</h2></div><p>毎朝更新・公開10日以内から2件。前回とは別の発信者から、使い方や仕組みを学べる動画を選びます。${expertVideos[0]?.home_video_selected_at?`動画記事の更新：${esc(fmtDate(expertVideos[0].home_video_selected_at))}`:'動画記事の更新を確認中'}</p></div>
     <p class="billing-help" role="status">${esc(videoRefreshNote)}</p>
-    <div class="expert-video-grid">${expertVideos.map(expertVideoCard).join('')}</div>
-  </section>`:'';
+    <div class="expert-video-grid">${expertVideos.map(expertVideoCard).join('')||'<p>前回と異なる発信者の動画を確認中です。過去の動画は分類ページから見られます。</p>'}</div>
+  </section>`;
   let html = `<section class="radar-overview ${cover?'has-daily-cover':''}" aria-label="${cover?'本日のトップニュース':'AIシグナル概要'}">
     <div class="hud-hex-field" aria-hidden="true"><span class="hud-hex h1"></span><span class="hud-hex h2"></span><span class="hud-hex h3"></span><span class="hud-hex h4"></span><span class="hud-hex h5"></span></div>
     <div class="overview-copy">${coverCopy}</div>
@@ -4900,6 +4901,7 @@ function patchPublishedArticleFields(target,it,tool){
     tool_id:tool.id,
     content_type:String(it.content_type||'article'),
     expert_id:String(it.expert_id||''),
+    expert_ids:Array.isArray(it.expert_ids)?it.expert_ids.map(String).filter(Boolean):[],
     expert_name:String(it.expert_name||''),
     expert_names:Array.isArray(it.expert_names)?it.expert_names.map(String).filter(Boolean):[],
     expert_role:String(it.expert_role||''),
@@ -5005,6 +5007,7 @@ async function performDataSync(renderChanges,allowPrune){
         ...importedContextSourceFields(it),
         content_type:String(it.content_type||'article'),
         expert_id:String(it.expert_id||''), expert_name:String(it.expert_name||''),
+        expert_ids:Array.isArray(it.expert_ids)?it.expert_ids.map(String).filter(Boolean):[],
         expert_names:Array.isArray(it.expert_names)?it.expert_names.map(String).filter(Boolean):[],
         expert_role:String(it.expert_role||''), expert_tier:String(it.expert_tier||''),
         platform:String(it.platform||''), video_id:String(it.video_id||''), source_trust:String(it.source_trust||''),

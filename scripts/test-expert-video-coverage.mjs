@@ -48,7 +48,7 @@ const homeVideoFixtures=[
   {content_type:"expert_video",video_id:"newer",expert_id:"expert-b",order:3},
   {content_type:"expert_video",video_id:"middle",expert_id:"expert-c",order:2}
 ];
-for(const item of homeVideoFixtures){item.source_date_status='published';item.source_published_at=new Date(Date.now()-86400000).toISOString();}
+for(const item of homeVideoFixtures){item.home_video_selected_at=new Date(Date.now()-3600000).toISOString();item.source_date_status='published';item.source_published_at=new Date(Date.now()-86400000).toISOString();}
 const homeFixturesBefore=JSON.stringify(homeVideoFixtures);
 assert.deepEqual(selectHomeVideos(homeVideoFixtures).map(item=>item.video_id),["newer","middle"],"異なる発信者をホームに2件表示する");
 assert.equal(JSON.stringify(homeVideoFixtures),homeFixturesBefore,"分類ページ用の動画を削除・並べ替えない");
@@ -57,6 +57,8 @@ assert.equal(selectHomeVideos([homeVideoFixtures[1],{...homeVideoFixtures[2],exp
 assert.equal(selectHomeVideos([homeVideoFixtures[1],{...homeVideoFixtures[2],video_id:'older'}]).length,1,'同じ動画を2枠に重複させない');
 assert.equal(selectHomeVideos([{...homeVideoFixtures[1],story_subject:'same'},{...homeVideoFixtures[2],story_subject:'same'}]).length,1,'同じ論点で2枠を埋めない');
 assert.equal(selectHomeVideos([]).length,0,"候補がないとき架空の動画を補充しない");
+assert.equal(selectHomeVideos([{...homeVideoFixtures[1],home_video_selected_at:''}]).length,0,"未選定のアーカイブ動画で前回の人を補充しない");
+assert.equal(selectHomeVideos([{...homeVideoFixtures[1],expert_ids:['expert-a','expert-b']},homeVideoFixtures[2]]).length,1,"共演者も含めて同じ人の動画を重複させない");
 assert.equal(selectHomeVideos([homeVideoFixtures[0]]).length,0,"通常記事を動画枠へ混ぜない");
 assert.equal(selectHomeVideos([{...homeVideoFixtures[1],source_published_at:new Date(Date.now()-11*86400000).toISOString()}]).length,0,"端末キャッシュに残っても投稿10日を超えた動画はホームへ戻さない");
 assert.equal(selectHomeVideos([{...homeVideoFixtures[1],source_date_status:'unknown'}]).length,0,"投稿日不明の動画はホームに出さない");
@@ -145,7 +147,7 @@ const selectionTime=Date.parse('2026-09-09T00:00:00Z');
 const edition=finalizeExpertVideoEdition(reviewFixture,priorVideo,selectionTime,{refreshDue:true,successfulSources:15});
 assert.notEqual(edition.state.featured_video_key,'a1','前日の動画を更新済みとして再掲載しない');
 assert.equal(edition.state.last_published_day_jst,'2026-09-09');
-assert.equal(edition.items.filter(item=>item.home_video_selected_at).length,2,'ホームの選定は異なる発信者から最大2件');
+assert.equal(edition.items.filter(item=>item.home_video_selected_at).length,1,'前回の発信者の別動画では残り枠を埋めない');
 const unchanged=finalizeExpertVideoEdition(reviewFixture,edition.state,selectionTime+3600000,{refreshDue:true});
 assert.equal(unchanged.state.featured_video_key,edition.state.featured_video_key,'同日二重更新を防ぐ');
 const pending=finalizeExpertVideoEdition([reviewFixture[0]],priorVideo,selectionTime,{refreshDue:true,successfulSources:15});
@@ -198,4 +200,5 @@ for(const item of data.filter(isExpertVideoItem)){
 await import('./test-morning-video-retry.mjs');
 await import('./test-video-discovery.mjs');
 await import('./test-learning-video-edition.mjs');
+await import('./test-video-creator-rotation.mjs');
 console.log("Expert video coverage tests passed.");

@@ -4,14 +4,18 @@ import {pathToFileURL} from 'node:url';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url);
 const {jstDayKey,isFreshExpertVideo,expertVideoKey,featuredVideoKeys,HOME_VIDEO_LIMIT}=require('./expert-video.cjs');
+const {creatorIds,rotationContext,allowedCreator}=require('./video-creator-rotation.cjs');
 
 export function videoPublishedToday(state,items,now=Date.now()){
   const today=jstDayKey(now);
   if(state?.status!=='published'||state.last_published_day_jst!==today||!Array.isArray(items))return false;
   const keys=featuredVideoKeys(state);
+  const rotation=rotationContext(state,items,now);
   const selected=items.filter(item=>keys.includes(expertVideoKey(item))&&isFreshExpertVideo(item,now)&&
     Number.isFinite(Date.parse(item.home_video_selected_at))&&jstDayKey(Date.parse(item.home_video_selected_at))===today);
-  return new Set(selected.map(expertVideoKey)).size===HOME_VIDEO_LIMIT&&new Set(selected.map(item=>item.expert_id)).size===HOME_VIDEO_LIMIT;
+  const people=selected.flatMap(creatorIds);
+  return selected.every(item=>allowedCreator(item,rotation))&&new Set(people).size===people.length&&
+    new Set(selected.map(expertVideoKey)).size===HOME_VIDEO_LIMIT&&new Set(selected.map(item=>item.expert_id)).size===HOME_VIDEO_LIMIT;
 }
 
 // Retry within the same morning run, before public data is committed.
