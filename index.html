@@ -2523,7 +2523,7 @@ function updateOperatorMetricsBadge(badge,metrics,status,statusLabel){
   badge.className='operator-metrics';
   badge.setAttribute('aria-label',metrics?`管理者統計。累計ユニーク閲覧者${metrics.uniqueVisitors}人、今日の総表示${metrics.dailyOpens==null?'未取得':`${metrics.dailyOpens}回`}。${statusLabel}`:`管理者統計。${statusLabel}`);
   badge.title=memberState.operatorMetricsError||statusLabel;
-  badge.innerHTML='<span>ユニーク <strong data-operator-visitors></strong>人</span><span>今日 <strong data-operator-daily-opens></strong>回</span><span class="operator-metrics-status" data-operator-metrics-status></span>';
+  badge.innerHTML='<span>ユニーク <strong data-operator-visitors></strong>人</span><span>今日 <strong data-operator-daily-opens></strong>回</span><span class="operator-metrics-status" data-operator-metrics-status></span><button type="button" class="operator-insights-link" onclick="go(\'operator\')">分析を見る</button>';
   badge.querySelector('[data-operator-visitors]').textContent=metrics?metrics.uniqueVisitors.toLocaleString('ja-JP'):'—';
   badge.querySelector('[data-operator-daily-opens]').textContent=metrics&&metrics.dailyOpens!==null?metrics.dailyOpens.toLocaleString('ja-JP'):'—';
   const badgeStatus=badge.querySelector('[data-operator-metrics-status]');
@@ -3602,7 +3602,7 @@ const PAGE_META = {
   tools:['フィード設定','興味のあるAI情報を選び、自分専用のレーダーを設定'],
   'tool-form':['情報テーマを編集',''],
   fetch:['取得実行','登録した情報テーマの最新ニュースを取得'],
-  operator:['運営者','運営者専用の利用状況確認'],
+  operator:['アクセス分析','流入元・時間帯・新規／リピーターを確認'],
   reviews:['利用者レビュー','AI進化レーダーを利用した方の感想'],
   support:['お問い合わせ','困ったこと・記事の誤りを運営へ連絡'],
   terms:['利用規約','サービス利用時の大切なルール'],
@@ -5248,12 +5248,8 @@ function renderOperator(v){
   }
   const isOperatorGrant=memberState.subscription?.access_source==='operator_grant';
   v.innerHTML=`<div class="account-page"><section class="account-panel">
-    <div class="account-head"><div class="pricing-eyebrow">OPERATOR DASHBOARD</div><h2>運営者ダッシュボード</h2><p>運営者本人だけが匿名の利用状況を確認できます。</p></div>
-    <div class="member-summary">
-      <div class="member-row"><span>メールアドレス</span><strong>${esc(memberState.user.email||'—')}</strong></div>
-      <div class="member-row"><span>運営者権限</span><strong>${isOperatorGrant?'確認済み':'確認できません'}</strong></div>
-      <div class="auth-actions"><button class="btn btn-primary" onclick="refreshOperatorMetrics()">${icon('shuffle')}利用状況を更新</button><button class="btn" onclick="sendPasswordReset()">${icon('edit')}パスワード再設定</button><button class="btn" onclick="signOutOperator()">${icon('arrowLeft')}ログアウト</button></div>
-    </div>
+    <div class="account-head"><div class="pricing-eyebrow">YOUR AUDIENCE</div><h2>アクセス分析</h2><p>このアプリでいつでも確認できます。管理者だけに表示され、毎分自動で再取得します。</p></div>
+    ${isOperatorGrant?'<section id="operatorInsights" class="operator-insights" aria-label="管理者専用アクセス分析"></section>':''}
     ${isOperatorGrant?`<section class="billing-panel" aria-labelledby="operatorBenefitTitle">
       <div class="billing-panel-head">
         <div><h3 id="operatorBenefitTitle">運営者向け利用状況</h3><p>運営者本人の認証が確認できた場合だけ、PC・スマホ共通で現在の実数を表示します。</p></div>
@@ -5264,11 +5260,15 @@ function renderOperator(v){
         <div class="operator-metric-card"><span>今日開かれた回数</span><strong data-operator-account-daily-opens>${displayedOperatorMetrics()?.dailyOpens!=null?`${displayedOperatorMetrics().dailyOpens.toLocaleString('ja-JP')}回`:'—'}</strong></div>
       </div>
       <div class="operator-metric-state ${memberState.operatorMetricsStatus==='live'?'is-live':memberState.operatorMetricsStatus==='stale'?'is-stale':memberState.operatorMetricsStatus==='error'?'is-error':''}" data-operator-metrics-state><span>${esc(operatorMetricsStatusLabel())}</span><button class="btn operator-metric-refresh" type="button" onclick="refreshOperatorMetrics()">今すぐ再取得</button></div>
-      <p class="billing-help">累計ユニークは同じ端末・ブラウザーを重複させない閲覧者数の概算です。今日の回数は、リピーターも含めてアプリ・公開記事を開いた時や、別のアプリから戻って表示した時に加算します。画面内の移動や通信の再試行では二重に加算しません。</p>
+      <details class="insights-help"><summary>人数・回数の数え方</summary><p class="billing-help">累計ユニークは同じ端末・ブラウザーを重複させない閲覧者数の概算です。今日の回数は、リピーターも含めてアプリ・公開記事を開いた時や、別のアプリから戻って表示した時に加算します。画面内の移動や通信の再試行では二重に加算しません。</p>
       <p class="billing-help">日本時間の当日中にサーバーへ記録された回数です。通信が途切れた記録は復旧後に反映されます。数値は毎分・再表示時に再取得し、取得に失敗した時は0回にせず最後の確認値と時刻を表示します。</p>
-      <p class="billing-help">運営者として確認済みのブラウザーからの閲覧は、今後の人数・回数に加算しません。ログアウト後も除外を維持します。別のブラウザーや端末では一度運営者としてログインしてください。過去の集計値は変更していません。</p>
+      <p class="billing-help">運営者として確認済みのブラウザーからの閲覧は、今後の人数・回数に加算しません。ログアウト後も除外を維持します。別のブラウザーや端末では一度運営者としてログインしてください。過去の集計値は変更していません。</p></details>
     </section>`:''}
-    ${isOperatorGrant?'<section id="operatorInsights" class="operator-insights" aria-label="管理者専用アクセス分析"></section>':''}
+    <details class="insights-help"><summary>ログイン情報・ログアウト</summary><div class="member-summary">
+      <div class="member-row"><span>メールアドレス</span><strong>${esc(memberState.user.email||'—')}</strong></div>
+      <div class="member-row"><span>運営者権限</span><strong>${isOperatorGrant?'確認済み':'確認できません'}</strong></div>
+      <div class="auth-actions"><button class="btn" onclick="sendPasswordReset()">${icon('edit')}パスワード再設定</button><button class="btn" onclick="signOutOperator()">${icon('arrowLeft')}ログアウト</button></div>
+    </div></details>
     <div class="account-security">表示されるのは匿名集計だけです。一般利用者の設定・保存内容や個人情報は表示しません。</div>
   </section></div>`;
   if(isOperatorGrant){

@@ -8,17 +8,20 @@ const sample=period=>({version:1,timezone:'Asia/Tokyo',period,from:'2026-09-11',
   sources:[{source:'youtube',opens:12,unique_browsers:5}],hourly:Array.from({length:24},(_,hour)=>({hour,opens:hour===10?12:0}))});
 const settle=()=>new Promise(r=>setImmediate(r));
 function setup(){
-  let allowed=true,result,blob,clicks=0;
+  let allowed=true,result,blob,clicks=0,copied='',copyFails=false;
   const timer=new Map();let id=0;
-  const elements={select:{},'[data-reload]':{},'[data-export]':{}};
-  const host={isConnected:true,innerHTML:'',replaceChildren(){this.innerHTML='';},querySelector:s=>elements[s]};
+  const copyButtons=[{dataset:{copyUrl:'https://reiki-ai-apps.github.io/AI-/?utm_source=x&utm_medium=social'}}];
+  const elements={select:{},'[data-reload]':{},'[data-export]':{},'.insights-copy-state':{isConnected:true,textContent:''}};
+  const host={isConnected:true,innerHTML:'',replaceChildren(){this.innerHTML='';},querySelector:s=>elements[s],querySelectorAll:()=>copyButtons};
   const window={dispatchEvent(){}};
   const document={visibilityState:'visible',addEventListener(){},createElement:()=>({click(){clicks++;}})};
   vm.runInNewContext(source,{window,document,Event,Blob,URL:{createObjectURL:b=>{blob=b;return 'blob:test';},revokeObjectURL(){}},
+    navigator:{clipboard:{writeText:async value=>{if(copyFails)throw Error('clipboard unavailable');copied=value;}}},
     setInterval:fn=>{timer.set(++id,fn);return id;},clearInterval:i=>timer.delete(i),setTimeout:()=>1});
   const rpc=async(_name,p)=>result===undefined?{data:sample(p.p_period)}:typeof result==='function'?await result(p):result;
   return {host,elements,api:window.aiRadarInsights,timer,setAllowed:v=>allowed=v,setResult:v=>result=v,
-    mount:()=>window.aiRadarInsights.mount(host,{rpc,isAllowed:()=>allowed}),blob:()=>blob,clicks:()=>clicks};
+    mount:()=>window.aiRadarInsights.mount(host,{rpc,isAllowed:()=>allowed}),blob:()=>blob,clicks:()=>clicks,
+    copy:()=>copyButtons[0].onclick(),copied:()=>copied,failCopy:()=>copyFails=true};
 }
 {
   const b=setup();b.setAllowed(false);b.mount();await settle();assert.equal(b.host.innerHTML,'');assert.equal(b.timer.size,0);
@@ -32,19 +35,48 @@ function setup(){
   b.elements['[data-reload]'].onclick();await settle();assert.equal(b.host.innerHTML,'');assert.equal(b.timer.size,0);
 }
 {
-  const b=setup();b.setResult({data:{...sample('7d'),summary:{opens:null}}});b.mount();await settle();
-  assert.match(b.host.innerHTML,/0件とは表示せず/);assert.ok(!b.host.innerHTML.includes('YouTube'));
+  const b=setup();b.setResult({data:{...sample('today'),summary:{opens:null}}});b.mount();await settle();
+  assert.match(b.host.innerHTML,/0件とは表示せず/);assert.match(b.host.innerHTML,/insights-source-number">—/);
+  assert.ok(!b.host.innerHTML.includes('insights-source-number">0'),'missing data is not zero source traffic');
 }
 {
   const b=setup();let resolve;
   b.setResult(()=>new Promise(r=>resolve=r));b.mount();await settle();
-  b.api.reset();resolve({data:sample('7d')});await settle();assert.equal(b.host.innerHTML,'','late response cannot restore logged-out data');
+  b.api.reset();resolve({data:sample('today')});await settle();assert.equal(b.host.innerHTML,'','late response cannot restore logged-out data');
 }
 {
   const b=setup();let first;
-  b.setResult(p=>p.p_period==='7d'?new Promise(r=>first=r):Promise.resolve({data:sample(p.p_period)}));b.mount();await settle();
-  b.elements.select.onchange({target:{value:'today'}});await settle();first({data:sample('7d')});await settle();
+  b.setResult(p=>p.p_period==='today'?new Promise(r=>first=r):Promise.resolve({data:sample(p.p_period)}));b.mount();await settle();
+  b.elements.select.onchange({target:{value:'7d'}});await settle();first({data:sample('today')});await settle();
+  assert.match(b.host.innerHTML,/<option value="7d" selected>/);
+  b.elements['[data-export]'].onclick();assert.match(await b.blob().text(),/"期間合計","7d"/);
+}
+{
+  const b=setup(),d=sample('today');d.details_started_at='2026-09-17T00:00:00Z';
+  d.sources=[['x',7],['youtube',4],['google',3],['bing',2],['yahoo',1],['duckduckgo',2],['brave',1],['direct_unknown',9],['unrecorded',11]].map(([source,opens])=>({source,opens,unique_browsers:1}));
+  b.setResult({data:d});b.mount();await settle();
+  for(const [key,value] of [['x',7],['youtube',4],['search',9]]){
+    assert.match(b.host.innerHTML,new RegExp('data-source="'+key+'"[^]*?insights-source-number">'+value+'<span>回'));
+  }
+  assert.ok(b.host.innerHTML.indexOf('data-source="x"')<b.host.innerHTML.indexOf('いつ見られた'));
+  assert.match(b.host.innerHTML,/utm_source=x&amp;utm_medium=social/);
+  assert.match(b.host.innerHTML,/utm_source=youtube&amp;utm_medium=video/);
   assert.match(b.host.innerHTML,/<option value="today" selected>/);
-  b.elements['[data-export]'].onclick();assert.match(await b.blob().text(),/"期間合計","today"/);
+  assert.match(b.host.innerHTML,/直接・不明（アプリへの復帰を含む）/);
+  await b.copy();assert.match(b.copied(),/utm_source=x/);
+  assert.match(b.elements['.insights-copy-state'].textContent,/コピーしました/);
+  b.failCopy();await b.copy();assert.match(b.elements['.insights-copy-state'].textContent,/コピーできません/);
+}
+{
+  const b=setup(),d=sample('today');d.sources=[{source:'unrecorded',opens:12,unique_browsers:0}];
+  b.setResult({data:d});b.mount();await settle();
+  assert.match(b.host.innerHTML,/insights-source-number">—/,'legacy-only data cannot invent historical source zeroes');
+}
+{
+  const html=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');
+  const operator=html.slice(html.indexOf('function renderOperator(v)'),html.indexOf('function exportUpdatesCsv'));
+  assert.ok(operator.indexOf('id="operatorInsights"')<operator.indexOf('id="operatorBenefitTitle"'),'source breakdown appears before older account details');
+  assert.ok(html.includes('class="operator-insights-link"'),'app counters provide a discoverable analysis entry');
+  assert.equal((operator.match(/id="operatorInsights"/g)||[]).length,1,'no duplicate mounts or timers');
 }
 console.log('Insights UI passed: private mount/export, SQL missing, offline stale values, malformed data, logout and stale-range races.');

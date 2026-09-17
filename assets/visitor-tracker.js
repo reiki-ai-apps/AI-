@@ -154,6 +154,9 @@
       const s=String(value||'').toLowerCase().replace(/^www\./,'');
       if(/^(google|google\.com|google\.co\.jp)$/.test(s))return 'google';
       if(/^(bing|bing\.com)$/.test(s))return 'bing';
+      if(/^(yahoo|search\.yahoo\.co\.jp|search\.yahoo\.com)$/.test(s))return 'yahoo';
+      if(/^(duckduckgo|duckduckgo\.com)$/.test(s))return 'duckduckgo';
+      if(/^(brave|search\.brave\.com)$/.test(s))return 'brave';
       if(/^(x|twitter|x\.com|twitter\.com|t\.co)$/.test(s))return 'x';
       if(/^(youtube|youtube\.com|m\.youtube\.com|youtu\.be)$/.test(s))return 'youtube';
       if(/^(note|note\.com)$/.test(s))return 'note';

@@ -34,7 +34,7 @@ begin
   -- Preserve offline opening time (up to 30 days). Never accept future timestamps.
   v_time := case when p_occurred_at between now()-interval '30 days' and now()+interval '5 minutes'
     then least(p_occurred_at,now()) else now() end;
-  v_source := case when p_source_group in ('google','bing','x','youtube','note','instagram','facebook','other','direct_unknown','internal','unrecorded')
+  v_source := case when p_source_group in ('google','bing','yahoo','duckduckgo','brave','x','youtube','note','instagram','facebook','other','direct_unknown','internal','unrecorded')
     then p_source_group else 'direct_unknown' end;
   if p_visitor_key_hash is not null then
     insert into public.unique_visitors(visitor_key_hash,first_seen_at) values(p_visitor_key_hash,v_time)

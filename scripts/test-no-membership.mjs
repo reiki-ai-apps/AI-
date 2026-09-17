@@ -18,7 +18,7 @@ const operator=section("function renderOperator\\(v\\)\\{","function exportUpdat
 const support=section("function renderSupport\\(v\\)\\{","function legalShell");
 
 for(const [pattern,label] of [
-  [/operator:\['運営者'/,"operator route exists outside public navigation"],
+  [/operator:\['アクセス分析'/,"operator analysis route exists outside public member navigation"],
   [/function signInOperator\(/,"operator-only sign-in action exists"],
   [/function signOutOperator\(/,"operator-only sign-out action exists"],
   [/一般利用者向けの登録・ログイン機能はありません/,"operator page explains the registration-free design"],

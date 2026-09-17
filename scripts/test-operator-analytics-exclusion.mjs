@@ -158,6 +158,14 @@ for(const [label,options,expected] of [
 }
 for(const [options,expected] of [
   [{referrer:'https://www.google.com/search?q=private'},'google'],
+  [{referrer:'https://www.bing.com/search?q=private'},'bing'],
+  [{referrer:'https://search.yahoo.co.jp/search?p=private'},'yahoo'],
+  [{referrer:'https://duckduckgo.com/?q=private'},'duckduckgo'],
+  [{referrer:'https://search.brave.com/search?q=private'},'brave'],
+  [{referrer:'https://google.com.evil.example/search?q=private'},'other'],
+  [{referrer:'https://search.yahoo.co.jp.evil.example/search'},'other'],
+  [{location:{href:'https://reiki-ai-apps.github.io/AI-/?utm_source=x&utm_medium=social'}},'x'],
+  [{referrer:'https://m.youtube.com/watch?v=test'},'youtube'],
   [{referrer:'https://t.co/private-token'},'x'],
   [{location:{href:'https://reiki-ai-apps.github.io/AI-/?utm_source=youtube&utm_campaign=secret'}},'youtube'],
   [{referrer:'https://reiki-ai-apps.github.io/AI-/articles/example/'},'internal'],
