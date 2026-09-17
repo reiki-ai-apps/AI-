@@ -7,57 +7,118 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-09-16T23:00:38.766Z",
-  "window_end": "2026-09-17T09:27:35.710Z",
-  "last_window_end": "2026-09-17T09:27:35.710Z",
-  "last_checked_at": "2026-09-17T09:32:15.648Z",
-  "last_published_at": "2026-09-17T09:32:15.648Z",
-  "home_content_changed_at": "2026-09-17T09:32:15.648Z",
+  "window_start": "2026-09-17T09:27:35.710Z",
+  "window_end": "2026-09-17T14:59:18.888Z",
+  "last_window_end": "2026-09-17T14:59:18.888Z",
+  "last_checked_at": "2026-09-17T15:03:06.285Z",
+  "last_published_at": "2026-09-17T15:03:06.285Z",
+  "home_content_changed_at": "2026-09-17T15:03:06.285Z",
   "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 1,
-  "update_health": "DEGRADED",
-  "update_health_reasons": [
-    "今回の新着掲載は0件です。前回の重要記事を継続表示しています"
-  ],
-  "edition_status": "NO_NEW_STORIES",
-  "candidate_count": 0,
-  "distinct_candidate_count": 0,
+  "consecutive_zero_candidate_editions": 0,
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
+  "edition_status": "NEW_STORIES",
+  "candidate_count": 4,
+  "distinct_candidate_count": 4,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 0,
-  "cross_edition_duplicate_count": 0,
-  "cross_edition_duplicate_groups": [],
+  "novel_candidate_count": 3,
+  "cross_edition_duplicate_count": 1,
+  "cross_edition_duplicate_groups": [
+    {
+      "representative_id": "article_32dbd776b8226dbd5298",
+      "duplicate_ids": [
+        "article_705e58731b112d2e403e"
+      ]
+    }
+  ],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 0,
-  "continued_selected_count": 5,
+  "new_selected_count": 3,
+  "continued_selected_count": 2,
   "tool_evolution_selected_count": 3,
-  "carried_forward": true,
-  "partially_carried_forward": false,
+  "carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_a2d6874657c147d0d7f2",
+    "article_2bf79b50897947357db6",
+    "article_af9be43e479c367103d7",
     "article_32dbd776b8226dbd5298",
-    "article_1c661d197f8cbdd4ee63",
-    "article_a5a6f7cedcd309167eb6",
-    "article_8a34d7e21a208face7f2",
-    "article_ed8f064aa97f02b879f7"
+    "article_1c661d197f8cbdd4ee63"
   ],
-  "new_article_ids": [],
+  "new_article_ids": [
+    "article_a2d6874657c147d0d7f2",
+    "article_2bf79b50897947357db6",
+    "article_af9be43e479c367103d7"
+  ],
   "continued_article_ids": [
     "article_32dbd776b8226dbd5298",
-    "article_1c661d197f8cbdd4ee63",
-    "article_a5a6f7cedcd309167eb6",
-    "article_8a34d7e21a208face7f2",
-    "article_ed8f064aa97f02b879f7"
+    "article_1c661d197f8cbdd4ee63"
   ],
   "continuation_sources": {
     "article_32dbd776b8226dbd5298": "previous_edition",
-    "article_1c661d197f8cbdd4ee63": "previous_edition",
-    "article_a5a6f7cedcd309167eb6": "previous_edition",
-    "article_8a34d7e21a208face7f2": "previous_edition",
-    "article_ed8f064aa97f02b879f7": "previous_edition"
+    "article_1c661d197f8cbdd4ee63": "previous_edition"
   },
   "scores": {
+    "article_a2d6874657c147d0d7f2": {
+      "article_id": "article_a2d6874657c147d0d7f2",
+      "total": 83,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 15,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 4,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-09-17T11:35:33.000Z"
+    },
+    "article_2bf79b50897947357db6": {
+      "article_id": "article_2bf79b50897947357db6",
+      "total": 62,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 17,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 5,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "重要な経営・研究体制"
+      ],
+      "published_at": "2026-09-17T12:05:00.000Z"
+    },
+    "article_af9be43e479c367103d7": {
+      "article_id": "article_af9be43e479c367103d7",
+      "total": 57,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 5,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 8,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-09-17T13:55:00.000Z"
+    },
     "article_32dbd776b8226dbd5298": {
       "article_id": "article_32dbd776b8226dbd5298",
       "total": 79,
@@ -98,141 +159,9 @@
         "重要な経営・研究体制"
       ],
       "published_at": "2026-09-14T21:51:02.000Z"
-    },
-    "article_a5a6f7cedcd309167eb6": {
-      "article_id": "article_a5a6f7cedcd309167eb6",
-      "total": 78,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 10,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-09-14T02:30:03.000Z"
-    },
-    "article_8a34d7e21a208face7f2": {
-      "article_id": "article_8a34d7e21a208face7f2",
-      "total": 73,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 17,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "制度・安全への影響",
-        "重要な経営・研究体制"
-      ],
-      "published_at": "2026-09-16T22:07:09.000Z"
-    },
-    "article_ed8f064aa97f02b879f7": {
-      "article_id": "article_ed8f064aa97f02b879f7",
-      "total": 64,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 20,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "制度・安全への影響",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-09-16T15:10:02.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_0dc8cdb130b208b721fe",
-      "story_id": "story_7652516550b3eb917c",
-      "title": "トランプ氏、AI規制強化論を退け対中国競争を優先する姿勢",
-      "primary_entity": "トランプ政権",
-      "story_subject": "AI規制論に対する米政権の姿勢",
-      "event_type": "policy",
-      "event_stage": "other",
-      "event_scope": "米国",
-      "story_entities": [
-        "トランプ大統領",
-        "AI規制",
-        "ai規制"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-14T09:57:20.941Z",
-      "edition_window_end": "2026-09-14T09:53:06.095Z"
-    },
-    {
-      "article_id": "article_e3d824af0b5116aabc09",
-      "story_id": "story_5ae4278c4f713dfa2f",
-      "title": "Canva、開発ポータル統合により9月21日から新規Integration登録を停止",
-      "primary_entity": "Canva",
-      "story_subject": "Canva開発者ポータル統合",
-      "event_type": "other",
-      "event_stage": "planned",
-      "event_scope": "Canva開発者向けIntegration",
-      "story_entities": [
-        "Canva",
-        "Integration",
-        "開発者ポータル",
-        "canva",
-        "integration"
-      ],
-      "fact_slots": [
-        {
-          "type": "date",
-          "scope": "新規Integration停止日",
-          "value": "2026-09-21",
-          "normalized_value": "2026-09-21"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-14T09:57:20.941Z",
-      "edition_window_end": "2026-09-14T09:53:06.095Z"
-    },
-    {
-      "article_id": "article_9c566c96687724b8253b_rev_5e6d9a49708e",
-      "story_id": "story_9b6eba0aaed2c2b4cb",
-      "title": "投資家マイケル・バリー氏、AdobeのAI事業を評価し「妙味のある投資先」と発言",
-      "primary_entity": "Michael Burry",
-      "story_subject": "Adobe株に関する投資分析",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "米国株式市場",
-      "story_entities": [
-        "Adobe",
-        "Michael Burry",
-        "Firefly",
-        "adobe",
-        "michaelburry"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-09-14T09:57:20.941Z",
-      "edition_window_end": "2026-09-14T09:53:06.095Z"
-    },
     {
       "article_id": "article_19ea4af7e50cbf5f4294",
       "story_id": "story_a70e600368b752e107",
@@ -658,6 +587,90 @@
       "previous_article_id": "",
       "selected_at": "2026-09-16T23:06:42.693Z",
       "edition_window_end": "2026-09-16T23:00:38.766Z"
+    },
+    {
+      "article_id": "article_a2d6874657c147d0d7f2",
+      "story_id": "story_b54b2eab77215e18a1",
+      "title": "Anthropic、ClaudeのチャットとCoworkを統合しDocsとSlidesツールを追加",
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude ChatとCoworkの統合およびDocs・Slidesツール",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Claudeアプリ全体",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "Cowork",
+        "anthropic",
+        "claude"
+      ],
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "Claude機能統合",
+          "value": "Claude ChatとCoworkの統合",
+          "normalized_value": "claudechatとcoworkの統合"
+        },
+        {
+          "type": "other",
+          "scope": "新機能",
+          "value": "DocsとSlidesツールの追加",
+          "normalized_value": "docsとslidesツールの追加"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-09-17T15:03:06.285Z",
+      "edition_window_end": "2026-09-17T14:59:18.888Z"
+    },
+    {
+      "article_id": "article_2bf79b50897947357db6",
+      "story_id": "story_f10bf3bae39a073f74",
+      "title": "世界ファブレス半導体トップ10が再編、AMDがクアルコムを逆転",
+      "primary_entity": "AMD",
+      "story_subject": "ファブレス半導体トップ10ランキング再編",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "世界",
+      "story_entities": [
+        "AMD",
+        "クアルコム",
+        "amd"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-17T15:03:06.285Z",
+      "edition_window_end": "2026-09-17T14:59:18.888Z"
+    },
+    {
+      "article_id": "article_af9be43e479c367103d7",
+      "story_id": "story_414d6cc70f0afcedb8",
+      "title": "OpenAI調査：AIによる職場タスク倍増が4カ月で発生",
+      "primary_entity": "OpenAI",
+      "story_subject": "OpenAI職場AI利用調査",
+      "event_type": "research",
+      "event_stage": "announced",
+      "event_scope": "職場全般(業種横断)",
+      "story_entities": [
+        "OpenAI",
+        "openai"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "AIが関わる職種横断タスク数の増加",
+          "value": "4カ月で2倍",
+          "normalized_value": "4"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-09-17T15:03:06.285Z",
+      "edition_window_end": "2026-09-17T14:59:18.888Z"
     }
   ]
 }
