@@ -42,12 +42,18 @@ jobs:
           node scripts/test-runtime-resilience.mjs
 
       - name: Test home news and expert video selection
+        # Includes measured editorial repair and video-only no-spend checks.
         run: |
           node scripts/test-expert-video-coverage.mjs
           node scripts/test-edition-publishing.mjs
 
       - name: Analyze with CodeQL
         uses: github/codeql-action/analyze@v4
+
+      - name: Test private aggregate SQL in isolated PostgreSQL
+        run: |
+          npm install --prefix "$RUNNER_TEMP/insights-tests" --no-save --package-lock=false --ignore-scripts @electric-sql/pglite@0.3.14
+          PGLITE_MODULE="$RUNNER_TEMP/insights-tests/node_modules/@electric-sql/pglite/dist/index.js" node scripts/test-access-insights-sql.mjs
 
   web-baseline:
     name: Monthly web vulnerability baseline

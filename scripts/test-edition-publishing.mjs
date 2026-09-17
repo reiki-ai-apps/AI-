@@ -136,7 +136,11 @@ assert.deepEqual(guarded.map(item=>item.article_id),["gemini-rich","runway-tool"
 
 const workflow=fs.readFileSync(".github/workflows/update.yml","utf8");
 const crons=[...workflow.matchAll(/cron:\s*["']([^"']+)["']/g)].map(match=>match[1]);
-assert.deepEqual(crons,["17 20 * * *","17 4 * * *","17 10 * * *"],"定期更新は日本時間の朝・昼・夜の3回だけ");
+const videoRecoveryCron='43 21-23,0-2 * * *';
+assert.deepEqual(crons.filter(x=>x!==videoRecoveryCron),["17 20 * * *","17 4 * * *","17 10 * * *"],"通常記事の定期更新は朝・昼・夜の3回だけ");
+assert.ok(crons.includes(videoRecoveryCron),'動画だけの朝の再確認がある');
+assert.ok(workflow.includes("AI_EXPERT_RETRY_ONLY: ${{ github.event.schedule == '"+videoRecoveryCron+"' && '1' || '0' }}"),'追加の実行は動画だけに限定する');
+assert.ok(workflow.includes("if [ '${{ github.event.schedule }}' != '"+videoRecoveryCron+"' ]; then node scripts/finalize-home-edition.mjs; fi"),'動画再確認は記事トップ5の更新窓を進めない');
 const validationIndex=workflow.indexOf("- name: validate published articles");
 const finalizeIndex=workflow.indexOf("node scripts/finalize-home-edition.mjs",validationIndex);
 const buildArticlesIndex=workflow.indexOf("node scripts/build-public-articles.mjs",validationIndex);

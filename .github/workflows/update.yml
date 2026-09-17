@@ -6,6 +6,7 @@ on:
     - cron: "17 20 * * *" # 05:17 JST: prepare the morning articles + daily expert video early
     - cron: "17 4 * * *"  # 13:17 JST
     - cron: "17 10 * * *" # 19:17 JST
+    - cron: "43 21-23,0-2 * * *" # 06:43-11:43 JST: video recovery only; no call after completion
   workflow_dispatch:
 
 permissions:
@@ -71,6 +72,7 @@ jobs:
         run: node scripts/run-scheduled-update.mjs
         env:
           AI_UPDATE_SCHEDULE: ${{ github.event.schedule }}
+          AI_EXPERT_RETRY_ONLY: ${{ github.event.schedule == '43 21-23,0-2 * * *' && '1' || '0' }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_MODEL: claude-sonnet-5
           AI_DAILY_BUDGET_USD: ${{ vars.AI_DAILY_BUDGET_USD }}
@@ -224,7 +226,7 @@ jobs:
       - name: build public article pages and growth checks
         run: |
           # 検証で除外された記事をトップ選定からも外し、残った候補で同じ更新回を再確定する。
-          node scripts/finalize-home-edition.mjs
+          if [ '${{ github.event.schedule }}' != '43 21-23,0-2 * * *' ]; then node scripts/finalize-home-edition.mjs; fi
           node scripts/build-public-articles.mjs
           node scripts/test-edition-publishing.mjs
           node scripts/test-expert-video-coverage.mjs

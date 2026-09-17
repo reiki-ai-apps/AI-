@@ -1,11 +1,13 @@
 // アプリシェルの構成を変えたときは日付を更新する。
 // 画像などの静的アセットも network-first なので、同名差し替えは次回通信時に反映される。
-const CACHE_NAME = "ai-radar-v5-20260916-learning-videos-v36";
+const CACHE_NAME = "ai-radar-v5-20260917-insights-video-recovery-v37";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
   "./assets/visitor-tracker.js",
+  "./assets/operator-insights.js",
+  "./assets/operator-insights.css",
   "./assets/ai-radar-icon.webp",
   "./assets/ai-radar-icon-192.png",
   "./assets/ai-radar-icon-512.png"

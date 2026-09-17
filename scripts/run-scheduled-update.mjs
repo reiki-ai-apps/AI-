@@ -17,7 +17,10 @@ export function videoPublishedToday(state,items,now=Date.now()){
 // Retry within the same morning run, before public data is committed.
 // Reuse update.js's persisted cache/usage ledger and existing daily spending caps.
 export async function runScheduledUpdate({run,readState,readItems,now=Date.now,
-  sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms)),log=console.log}){
+  videoOnly=false,sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms)),log=console.log}){
+  if(videoOnly&&videoPublishedToday(readState(),readItems(),now())){
+    log('Today has two verified videos; no extra AI call or article update.');return 0;
+  }
   let code=1;
   for(let attempt=1;attempt<=3;attempt++){
     code=await run(attempt);
@@ -29,14 +32,15 @@ export async function runScheduledUpdate({run,readState,readItems,now=Date.now,
     await sleep(60000);
   }
   log('::warning::No new verified morning video after 3 attempts. Keep the last verified video without changing its publication date; retry at the next scheduled run.');
-  return code;
+  return code||2;
 }
 
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
   const read=(file,fallback)=>{try{return JSON.parse(fs.readFileSync(file,'utf8'));}catch{return fallback;}};
   process.exitCode=await runScheduledUpdate({
+    videoOnly:process.env.AI_EXPERT_RETRY_ONLY==='1',
     run:attempt=>spawnSync(process.execPath,['update.js'],{stdio:'inherit',
-      env:{...process.env,AI_EXPERT_RETRY_ONLY:attempt>1?'1':'0'}}).status??1,
+      env:{...process.env,AI_EXPERT_RETRY_ONLY:process.env.AI_EXPERT_RETRY_ONLY==='1'||attempt>1?'1':'0'}}).status??1,
     readState:()=>read('.expert-video-state.json',{}),
     readItems:()=>read('data.json',[])
   });

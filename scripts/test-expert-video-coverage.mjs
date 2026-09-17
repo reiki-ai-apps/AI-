@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import './test-video-editorial-retry.mjs';
 import {createRequire} from "node:module";
 
 const require=createRequire(import.meta.url);

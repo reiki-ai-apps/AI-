@@ -60,3 +60,4 @@ if(failures.length){console.error(failures.join("\n"));process.exit(1);}
 console.log("Registration-free access and operator metrics contract passed.");
 await import('./test-operator-analytics-exclusion.mjs');
 await import('./test-operator-metrics-resilience.mjs');
+await import('./test-operator-insights-ui.mjs');

@@ -1,0 +1,13 @@
+.operator-insights{margin-top:28px;padding-top:24px;border-top:1px solid #285069;color:#cbd5e1;line-height:1.7;min-width:0}
+.operator-insights h3,.operator-insights h4{color:#f1f5f9;margin:20px 0 10px}
+.operator-insights p{font-size:13px;overflow-wrap:anywhere}
+.insights-controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.insights-controls select{padding:10px;background:#0c1c32;color:#f1f5f9;border:1px solid #438198;border-radius:8px;font-size:16px}
+.insights-controls button:disabled{opacity:.5;cursor:not-allowed}
+.insights-scroll{max-width:100%;overflow:auto;border:1px solid #285069;border-radius:10px}
+.insights-scroll table{border-collapse:collapse;width:100%;font-size:13px;white-space:nowrap}
+.insights-scroll th,.insights-scroll td{text-align:right;padding:10px 12px;border-bottom:1px solid #20354a}
+.insights-scroll th:first-child,.insights-scroll td:first-child{text-align:left}
+.insights-scroll th{color:#79e2e5;background:#0b1a2c}
+.insights-status{color:#9ce6e8}
+@media(max-width:600px){.operator-insights .operator-metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.operator-insights .operator-metric-card{min-width:0}.operator-insights .operator-metric-card span{font-size:11px}}

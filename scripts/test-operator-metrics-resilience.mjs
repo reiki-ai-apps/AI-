@@ -4,7 +4,7 @@ import vm from 'node:vm';
 
 const html=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');
 const section=(start,end)=>html.slice(html.indexOf(start),html.indexOf(end));
-const code=section('async function operatorRpc(name){','function updateOperatorMetricsBadge(');
+const code=section('async function operatorRpc(name,params){','function updateOperatorMetricsBadge(');
 const refresh=section('async function refreshOperatorMetrics(){','function startOperatorMetricsRefresh(){');
 const cacheKey='ai_radar_operator_metrics_snapshot_v1';
 function setup(){

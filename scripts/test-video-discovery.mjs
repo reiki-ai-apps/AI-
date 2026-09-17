@@ -41,9 +41,9 @@ assert.equal(result.items.length,1,"old cards cannot fill fresh slots; wrong cha
 assert.equal(result.items[0].video_id,"newvideo001");
 
 const selection=source.slice(source.indexOf("  const reused=[];"),source.indexOf("  fresh.sort((a,b)=>candidateScore(b)-candidateScore(a));")+ "  fresh.sort((a,b)=>candidateScore(b)-candidateScore(a));".length);
-const select=Function("expertRetryOnly","filteredOut","expertVideoState","cacheEntryFor","isExpertVideoItem","findReusablePrevious","previous","cache","PROMPT_VERSION","bootstrapCacheResult","candidateScore",selection+";return fresh;");
+const select=Function("expertRetryOnly","filteredOut","expertVideoState","cacheEntryFor","isExpertVideoItem","findReusablePrevious","previous","cache","PROMPT_VERSION","bootstrapCacheResult","candidateScore","RETRY_TTL_MS",selection+";return fresh;");
 const fixtures=[{video_id:"seen",content_type:"expert_video",status:"retry"},{video_id:"new",content_type:"expert_video",status:"retry"},{video_id:"rejected",content_type:"expert_video",status:"rejected"},{video_id:"article",status:"retry"}];
-const args=[fixtures,{featured_video_key:"seen"},x=>({status:x.status}),x=>x.content_type==="expert_video",()=>null,[],{},"v1",()=>{},()=>0];
+const args=[fixtures,{featured_video_key:"seen"},x=>({status:x.status,processed_at:new Date().toISOString()}),x=>x.content_type==="expert_video",()=>null,[],{},"v1",()=>{},()=>0,90*60000];
 assert.equal(select(false,...args).length,0);
 assert.deepEqual(select(true,...args).map(x=>x.video_id),["new"],"bounded morning retries bypass only transient expert retry cache, not rejections or already featured videos");
 console.log("Video discovery recovery passed: exact dates, missing RSS/page, fresh slots, official index and effective retries.");

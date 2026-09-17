@@ -1,0 +1,54 @@
+// Run with PGLITE_MODULE pointing to an isolated @electric-sql/pglite installation.
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {pathToFileURL} from 'node:url';
+const {PGlite}=await import(pathToFileURL(process.env.PGLITE_MODULE).href);
+const db=new PGlite();
+const sql=fs.readFileSync(new URL('../supabase/access-insights-2026-09-17.sql',import.meta.url),'utf8');
+await db.exec(`create role anon;create role authenticated;create role service_role;create schema auth;
+create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('test.uid',true),'')::uuid $$;
+create function public.get_my_membership() returns jsonb language sql stable as $$ select jsonb_build_object('access_source',current_setting('test.access',true)) $$;
+create table public.unique_visitors(visitor_key_hash text primary key,first_seen_at timestamptz not null default now());
+create table public.app_open_events(event_id uuid primary key,opened_at timestamptz not null default now());
+grant usage on schema auth to anon,authenticated;`);
+await db.exec(sql);await db.exec(sql); // idempotent migration
+const hash='a'.repeat(64),other='b'.repeat(64),owner='11111111-1111-4111-8111-111111111111';
+const id=n=>'22222222-2222-4222-8222-'+String(n).padStart(12,'0');
+const call=async(n,h,time,source='youtube')=>db.query('select public.record_app_open_v2($1,$2,$3,$4,$5)',[id(n),h,time,source,'app']);
+const {rows:[{now,start}]}=await db.query("select now()::text as now, (date_trunc('day',now() at time zone 'Asia/Tokyo') at time zone 'Asia/Tokyo')::text as start");
+await db.exec('set role anon');
+await assert.rejects(db.query("select * from public.app_open_events"),/permission denied/);
+await assert.rejects(db.query("select public.operator_access_insights('today')"),/permission denied/);
+await call(1,hash,now);await call(1,hash,now); // duplicate acknowledgements
+await call(2,hash,now,'x');await call(3,null,now);
+await db.exec('reset role');
+await db.query('insert into public.unique_visitors values($1,$2::timestamptz-interval \'1 day\')',[other,start]);
+await call(4,other,now,'google');
+// Old row has no identity/source. Backfill exactly one legacy event with SAME UUID.
+await db.query('insert into public.app_open_events(event_id,opened_at) values($1,$3),($2,$3)',[id(5),id(6),now]);
+await call(6,hash,now,'note');
+await db.exec('set role authenticated');
+await db.query("select set_config('test.uid',$1,false),set_config('test.access','none',false)",[owner]);
+await assert.rejects(db.query("select public.operator_access_insights('today')"),/operator access required/);
+await db.exec("select set_config('test.access','operator_grant',false)");
+assert.equal((await call(7,other,now)).rows[0].record_app_open_v2,false,'operator cannot record');
+const report=async period=>(await db.query('select public.operator_access_insights($1) as data',[period])).rows[0].data;
+const today=await report('today');
+assert.equal(today.summary.opens,6);assert.equal(today.summary.unique_browsers,2);
+assert.equal(today.summary.new_browsers,1);assert.equal(today.summary.returning_browsers,1);
+assert.equal(today.summary.unknown_opens,2);assert.equal(today.hourly.length,24);
+assert.equal(today.hourly.reduce((a,b)=>a+b.opens,0),6);assert.equal(today.sources.reduce((a,b)=>a+b.opens,0),6);
+assert.equal(today.sources.find(x=>x.source==='unrecorded').opens,1);
+await db.exec('reset role');
+await db.exec("select set_config('test.uid','',false)");
+// One second before JST midnight belongs to yesterday despite receipt today.
+await call(8,other,new Date(Date.parse(start)-1000).toISOString());
+await db.exec('set role authenticated');
+await db.query("select set_config('test.uid',$1,false)",[owner]);
+const yesterday=await report('yesterday');assert.equal(yesterday.summary.opens,1);
+assert.equal(yesterday.hourly[23].opens,1);
+const week=await report('7d');assert.equal(week.summary.unique_browsers,2);
+assert.equal(week.summary.new_browsers,2);assert.equal(week.summary.returning_browsers,0);
+assert.equal(week.totals.opens,7);assert.equal(week.totals.unique_browsers,2);
+await assert.rejects(report('bad'),/invalid period/);
+await db.close();console.log('Access SQL passed: real PostgreSQL, permissions, JST, new/returning, legacy gaps, idempotency, owner exclusion.');

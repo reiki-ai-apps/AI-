@@ -2257,6 +2257,8 @@
 <div id="modalRoot"></div>
 
 <script id="visitorTracker" defer src="./assets/visitor-tracker.js"></script>
+<script defer src="./assets/operator-insights.js"></script>
+<link rel="stylesheet" href="./assets/operator-insights.css">
 <script id="supabaseSdk" defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.100.0"></script>
 <script>
 /* 同一セッションの2回目以降の読み込み(スワイプ遷移によるスナップショット・
@@ -2462,9 +2464,9 @@ async function loadOperatorAccess(){
   }
   return safeFallback;
 }
-async function operatorRpc(name){
+async function operatorRpc(name,params){
   let timer;
-  try{return await Promise.race([memberClient.rpc(name),
+  try{return await Promise.race([memberClient.rpc(name,params),
     new Promise((_,reject)=>{timer=window.setTimeout(()=>reject(new Error('利用状況の取得が遅れています')),8000);})]);}
   finally{window.clearTimeout(timer);}
 }
@@ -2616,7 +2618,7 @@ async function refreshOperatorAccess(){
     memberState.subscription=candidate?.access_source==='operator_grant'?candidate:null;
     const isOperator=memberState.subscription?.access_source==='operator_grant';
     if(isOperator){startOperatorMetricsRefresh();await refreshOperatorMetrics();}
-    else{stopOperatorMetricsRefresh();memberState.operatorMetrics=null;renderOperatorMetrics();}
+    else{stopOperatorMetricsRefresh();memberState.operatorMetrics=null;window.aiRadarInsights?.reset();renderOperatorMetrics();}
     renderIfChanged();
     return isOperator;
   })().catch(()=>false).finally(()=>{operatorAccessRefreshInFlight=null;});
@@ -2643,6 +2645,7 @@ async function refreshOperatorState(session){
   const previousUserId=memberState.user?.id||'';
   const nextUserId=session?.user?.id||'';
   const sameUser=!!nextUserId&&previousUserId===nextUserId;
+  if(!sameUser)window.aiRadarInsights?.reset();
   const previousAccess=sameUser?memberState.subscription:cachedOperatorAccessForUser(nextUserId);
   const savedMetrics=cachedOperatorMetrics(nextUserId);
   const previousMetrics=sameUser?memberState.operatorMetrics:savedMetrics?.metrics||null;
@@ -3503,6 +3506,7 @@ const NAV = [
   ]},
 ];
 let route = {name:'home', param:null};
+window.addEventListener('ai-radar-insights-ready',()=>{if(route.name==='operator')render();});
 
 function isMobile(){ return window.innerWidth<=760; }
 let navHistory=[];
@@ -3924,8 +3928,12 @@ function renderHome(v){
     <button class="btn mobile-home-search" onclick="openAllUpdates()">${icon('category')}<span><strong>分類・キーワードから探す</strong><small>すべての記事を検索できます</small></span></button>
     ${mobileMediaHtml}
   </section>`;
+  const todayVideoDay=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
+  const currentVideoCount=expertVideos.filter(u=>Number.isFinite(Date.parse(u.home_video_selected_at))&&new Date(Date.parse(u.home_video_selected_at)+9*3600000).toISOString().slice(0,10)===todayVideoDay).length;
+  const videoRefreshNote=currentVideoCount>=2?'本日の2件を更新済み':`本日分を準備中（${currentVideoCount}/2件）。確認できた前回分を表示しています。`;
   const expertVideoHtml=expertVideos.length?`<section class="expert-video-section" aria-labelledby="expertVideoTitle">
     <div class="expert-video-head"><div><span class="expert-video-kicker">LEARN AI</span><h2 id="expertVideoTitle">AIを学ぶ動画</h2></div><p>毎朝更新・公開10日以内から2件。使い方や仕組みを学べる動画を、異なる発信者から選びます。${expertVideos[0]?.home_video_selected_at?`動画記事の更新：${esc(fmtDate(expertVideos[0].home_video_selected_at))}`:'動画記事の更新を確認中'}</p></div>
+    <p class="billing-help" role="status">${esc(videoRefreshNote)}</p>
     <div class="expert-video-grid">${expertVideos.map(expertVideoCard).join('')}</div>
   </section>`:'';
   let html = `<section class="radar-overview ${cover?'has-daily-cover':''}" aria-label="${cover?'本日のトップニュース':'AIシグナル概要'}">
@@ -5257,8 +5265,15 @@ function renderOperator(v){
       <p class="billing-help">日本時間の当日中にサーバーへ記録された回数です。通信が途切れた記録は復旧後に反映されます。数値は毎分・再表示時に再取得し、取得に失敗した時は0回にせず最後の確認値と時刻を表示します。</p>
       <p class="billing-help">運営者として確認済みのブラウザーからの閲覧は、今後の人数・回数に加算しません。ログアウト後も除外を維持します。別のブラウザーや端末では一度運営者としてログインしてください。過去の集計値は変更していません。</p>
     </section>`:''}
+    ${isOperatorGrant?'<section id="operatorInsights" class="operator-insights" aria-label="管理者専用アクセス分析"></section>':''}
     <div class="account-security">表示されるのは匿名集計だけです。一般利用者の設定・保存内容や個人情報は表示しません。</div>
   </section></div>`;
+  if(isOperatorGrant){
+    const userId=memberState.user.id;
+    window.aiRadarInsights?.mount(document.getElementById('operatorInsights'),{
+      userId,rpc:operatorRpc,isAllowed:()=>memberState.user?.id===userId&&memberState.subscription?.access_source==='operator_grant'
+    });
+  }
 }
 
 function exportUpdatesCsv(){
@@ -5372,8 +5387,8 @@ function renderTerms(v){
     <h3>7. 準拠法</h3><p>本規約は日本法に準拠します。紛争が生じた場合は、法令で認められる範囲で当社所在地を管轄する裁判所を第一審の専属的合意管轄とします。</p>`);
 }
 function renderPrivacy(v){
-  v.innerHTML=legalShell('プライバシーポリシー','2026年8月29日',`
-    <h3>取り扱う情報</h3><p>一般利用者の情報テーマ、保存、既読状態、閲覧履歴などは利用中のブラウザー内に保存され、運営者の利用状況画面には送信しません。レビューの重複投稿防止と累計ユニーク閲覧者の集計には、ブラウザー内のランダムな識別子を一方向ハッシュ化した値を使用します。1日の総表示回数には、ページを開くたびに生成するランダムなイベントIDと記録時刻だけを保存します。</p>
+  v.innerHTML=legalShell('プライバシーポリシー','2026年9月17日',`
+    <h3>取り扱う情報</h3><p>一般利用者の情報テーマ、保存、既読状態、閲覧履歴などは利用中のブラウザー内に保存され、運営者の利用状況画面には送信しません。レビューの重複投稿防止と利用状況の集計には、ブラウザー内のランダムな識別子を一方向ハッシュ化した値を使用します。開いた回数・新規／再訪の集計では、この匿名識別子、ランダムなイベントID、開いた日時、ページ種別（アプリ／公開記事）、流入元の大分類（Google・Xなど）を保存します。参照元URLの全文、検索語、IPアドレス、位置情報は本アプリの集計データには保存しません。通信失敗時は端末に一時保存し再送します。流入元が分からない場合は不明と扱い、運営者には集計値だけを表示します。</p>
     <h3>利用目的</h3><p>サービス提供、不正利用防止、個人を表示しない利用状況の集計、品質改善、法令対応のために利用します。</p>
     <h3>外部サービス</h3><p>匿名集計と公開レビューの保存、運営者本人の認証にSupabase、公開配信にGitHub Pagesを利用します。各事業者は業務に必要な範囲でデータを処理する場合があります。</p>
     <h3>第三者提供</h3><p>本人の同意がある場合、業務委託に必要な場合、法令に基づく場合を除き、個人データを第三者へ提供しません。</p>
