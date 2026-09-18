@@ -169,6 +169,12 @@ for(const [options,expected] of [
   [{referrer:'https://t.co/private-token'},'x'],
   [{location:{href:'https://reiki-ai-apps.github.io/AI-/?utm_source=youtube&utm_campaign=secret'}},'youtube'],
   ...['instagram','note','facebook'].map(source=>[{location:{href:'https://reiki-ai-apps.github.io/AI-/?utm_source='+source+'&utm_medium=social'}},source]),
+  // KIZASHI's existing Instagram bio uses Meta's short "ig" tag.
+  // It must work even when the in-app browser omits document.referrer.
+  [{location:{href:'https://reiki-ai-apps.github.io/AI-/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=private'}},'instagram'],
+  [{location:{href:'https://reiki-ai-apps.github.io/AI-/?utm_source=IG&utm_medium=social'}},'instagram'],
+  [{location:{href:'https://reiki-ai-apps.github.io/AI-/?utm_source=ig'},referrer:'https://unknown.example/private'},'instagram'],
+  [{location:{href:'https://reiki-ai-apps.github.io/AI-/?utm_source=ig.evil.example'}},'direct_unknown'],
   [{location:{href:'https://reiki-ai-apps.github.io/AI-/?utm_source=unrecognized'},referrer:'https://t.co/example'},'x'],
   [{location:{href:'https://reiki-ai-apps.github.io/AI-/?utm_source=unrecognized'}},'direct_unknown'],
   [{referrer:'https://reiki-ai-apps.github.io/AI-/articles/example/'},'internal'],

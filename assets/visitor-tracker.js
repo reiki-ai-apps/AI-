@@ -160,7 +160,8 @@
       if(/^(x|twitter|x\.com|twitter\.com|t\.co)$/.test(s))return 'x';
       if(/^(youtube|youtube\.com|m\.youtube\.com|youtu\.be)$/.test(s))return 'youtube';
       if(/^(note|note\.com)$/.test(s))return 'note';
-      if(/^(instagram|instagram\.com|l\.instagram\.com)$/.test(s))return 'instagram';
+      // Existing Instagram bio links use utm_source=ig, not only "instagram".
+      if(/^(ig|instagram|instagram\.com|l\.instagram\.com)$/.test(s))return 'instagram';
       if(/^(facebook|facebook\.com|m\.facebook\.com|l\.facebook\.com)$/.test(s))return 'facebook';
       return null;
     };
