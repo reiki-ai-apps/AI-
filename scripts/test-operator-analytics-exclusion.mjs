@@ -168,6 +168,9 @@ for(const [options,expected] of [
   [{referrer:'https://m.youtube.com/watch?v=test'},'youtube'],
   [{referrer:'https://t.co/private-token'},'x'],
   [{location:{href:'https://reiki-ai-apps.github.io/AI-/?utm_source=youtube&utm_campaign=secret'}},'youtube'],
+  ...['instagram','note','facebook'].map(source=>[{location:{href:'https://reiki-ai-apps.github.io/AI-/?utm_source='+source+'&utm_medium=social'}},source]),
+  [{location:{href:'https://reiki-ai-apps.github.io/AI-/?utm_source=unrecognized'},referrer:'https://t.co/example'},'x'],
+  [{location:{href:'https://reiki-ai-apps.github.io/AI-/?utm_source=unrecognized'}},'direct_unknown'],
   [{referrer:'https://reiki-ai-apps.github.io/AI-/articles/example/'},'internal'],
   [{referrer:'https://unknown.example/private'},'other'],[{},'direct_unknown']
 ]){

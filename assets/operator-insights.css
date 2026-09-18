@@ -11,6 +11,13 @@
 .insights-scroll th{color:#79e2e5;background:#0b1a2c}
 .insights-status{color:#9ce6e8}
 .insights-status{padding:12px 14px;border:1px solid #285069;border-radius:10px;background:#0b1c2c}
+.insights-attribution{padding:14px 16px;border:1px solid #438198;border-radius:14px;background:#102437}
+.operator-insights .insights-attribution h4{margin:0 0 10px;font-size:16px}
+.insights-attribution dl{margin:0}
+.insights-attribution dl>div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #34536b;font-size:13px}
+.insights-attribution dd{margin:0;white-space:nowrap;font-weight:800;color:#e6fdff}
+.insights-attribution p:last-child{margin-bottom:0}
+.insights-campaign-links{border-color:#438198}
 .insights-sources{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0 8px}
 .insights-source-card{min-width:0;padding:18px;border:1px solid #39718a;border-radius:16px;background:linear-gradient(145deg,#0d2940,#10152e)}
 .operator-insights .insights-source-card h4{font-size:16px;margin:0;color:#c1f6fa}

@@ -62,10 +62,29 @@ function setup(){
   assert.match(b.host.innerHTML,/utm_source=x&amp;utm_medium=social/);
   assert.match(b.host.innerHTML,/utm_source=youtube&amp;utm_medium=video/);
   assert.match(b.host.innerHTML,/<option value="today" selected>/);
-  assert.match(b.host.innerHTML,/直接・不明（アプリへの復帰を含む）/);
+  assert.match(b.host.innerHTML,/流入元を判別できない（直接起動・復帰など）/);
+  assert.match(b.host.innerHTML,/外部の流入元を判別できた<\/dt><dd>20回/);
+  assert.match(b.host.innerHTML,/流入元を判別できない<\/dt><dd>9回/);
+  assert.match(b.host.innerHTML,/既に載せている通常のURLも置き換える必要/);
+  assert.match(b.host.innerHTML,/別のSNSに転載されても元の印で集計/);
+  for(const key of ['instagram','note','facebook'])assert.match(b.host.innerHTML,new RegExp('utm_source='+key+'&amp;utm_medium=social'));
+  assert.equal((b.host.innerHTML.match(/data-copy-url=/g)||[]).length,5,'one copy link for each supported social placement');
+  assert.ok(b.host.innerHTML.indexOf('SNS別の計測リンクをコピー')<b.host.innerHTML.indexOf('data-source="x"'),'measurement links are discoverable near the top');
   await b.copy();assert.match(b.copied(),/utm_source=x/);
   assert.match(b.elements['.insights-copy-state'].textContent,/コピーしました/);
   b.failCopy();await b.copy();assert.match(b.elements['.insights-copy-state'].textContent,/コピーできません/);
+}
+{
+  const b=setup(),d=sample('today');
+  d.summary={opens:9,unique_browsers:4,new_browsers:3,returning_browsers:1,unknown_opens:0};
+  d.sources=[{source:'direct_unknown',opens:9,unique_browsers:4}];
+  b.setResult({data:d});b.mount();await settle();
+  assert.match(b.host.innerHTML,/外部の流入元を判別できた<\/dt><dd>0回/);
+  assert.match(b.host.innerHTML,/流入元を判別できない<\/dt><dd>9回/);
+  assert.match(b.host.innerHTML,/新規のアクセスでも、流入元の情報がなければ/);
+  assert.match(b.host.innerHTML,/今の記録だけでは、この内訳を分けられません/);
+  for(const key of ['x','youtube','search'])assert.match(b.host.innerHTML,new RegExp('data-source="'+key+'"[^]*?insights-source-number">0<span>回'));
+  assert.match(b.host.innerHTML,/初めて来た<\/span><strong>3<\/strong>/,'new browsers are not relabelled as referrals');
 }
 {
   const b=setup(),d=sample('today');d.sources=[{source:'unrecorded',opens:12,unique_browsers:0}];

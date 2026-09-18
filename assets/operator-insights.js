@@ -3,6 +3,7 @@
   'use strict';
   const sources={google:'Google検索',bing:'Bing検索',yahoo:'Yahoo!検索',duckduckgo:'DuckDuckGo検索',brave:'Brave検索',x:'X',youtube:'YouTube',note:'note',instagram:'Instagram',facebook:'Facebook',other:'その他の外部サイト',direct_unknown:'直接・流入元不明',internal:'アプリ内リンク',unrecorded:'過去の未記録'};
   const searchSources=['google','bing','yahoo','duckduckgo','brave'];
+  const externalSources=Object.keys(sources).filter(key=>!['direct_unknown','internal','unrecorded'].includes(key));
   const periods={today:'今日',yesterday:'昨日','7d':'7日間','30d':'30日間',all:'全期間'};
   const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const numeric=['opens','unique_browsers','new_browsers','returning_browsers','unknown_opens'];
@@ -26,6 +27,15 @@
   const stamp=()=>new Date(data.as_of).toLocaleString('ja-JP',{timeZone:'Asia/Tokyo'});
   const count=value=>value.toLocaleString('ja-JP');
   const sourceCount=keys=>(data?.sources||[]).filter(x=>keys.includes(x.source)).reduce((n,x)=>n+x.opens,0);
+  function attributionStatus(){
+    if(!data)return '';
+    return '<section class="insights-attribution" aria-label="流入元の判別状況"><h4>流入元はどこまで分かる？</h4>'+
+      '<dl><div><dt>外部の流入元を判別できた</dt><dd>'+count(sourceCount(externalSources))+'回</dd></div>'+
+      '<div><dt>流入元を判別できない</dt><dd>'+count(sourceCount(['direct_unknown']))+'回</dd></div></dl>'+
+      '<p>「初めて来た」はブラウザーの利用履歴です。新規のアクセスでも、流入元の情報がなければX経由かYouTube経由かは分かりません。</p>'+
+      (sourceCount(['direct_unknown'])?'<p>判別できない回数には、直接起動・アプリへの復帰・流入元を渡さない外部リンクが含まれます。今の記録だけでは、この内訳を分けられません。</p>':'')+
+      '<p>下の計測リンクをSNSのプロフィールや投稿に使うと、参照元が渡らない場合もリンクの印で区別できます。アプリ内リンクと過去の未記録は、上の2項目には含めていません。</p></section>';
+  }
   function trafficCards(){
     const measured=!!data&&(!!data.details_started_at||data.sources.some(x=>x.source!=='unrecorded'));
     return '<div class="insights-sources" aria-label="流入元ごとのアクセス回数">'+[
@@ -36,16 +46,16 @@
       '<p class="insights-caption">選択した期間に、流入元を判別できた回数です。リピーターのアクセスも含みます。</p>'+
       (data?'<div class="insights-source-other">'+[
         ['Instagram',sourceCount(['instagram'])],['note',sourceCount(['note'])],['Facebook',sourceCount(['facebook'])],
-        ['その他のサイト',sourceCount(['other'])],['直接・不明（アプリへの復帰を含む）',sourceCount(['direct_unknown'])],
+        ['その他のサイト',sourceCount(['other'])],['流入元を判別できない（直接起動・復帰など）',sourceCount(['direct_unknown'])],
         ['アプリ内リンク',sourceCount(['internal'])],['過去の未記録',sourceCount(['unrecorded'])]
       ].map(([label,n])=>'<div><span>'+label+'</span><strong>'+count(n)+'回</strong></div>').join('')+'</div>':'');
   }
   function campaignLinks(){
-    return '<details class="insights-help"><summary>X・YouTubeに貼る計測用リンク</summary><p>SNSアプリが流入元を渡さない場合も区別できるよう、投稿には次のリンクを使ってください。リンク先が開かれると、その流入元として記録します。</p>'+
-      [['x','X用'],['youtube','YouTube用']].map(([key,label])=>{
-        const url='https://reiki-ai-apps.github.io/AI-/?utm_source='+key+'&utm_medium='+(key==='x'?'social':'video');
+    return '<details class="insights-help insights-campaign-links"><summary>SNS別の計測リンクをコピー</summary><p>載せる場所に合ったリンクをコピーし、そのSNSのプロフィール・投稿・動画説明欄に貼ってください。既に載せている通常のURLも置き換える必要があります。アプリ側の修正だけでは、外部に載せたリンクは変わりません。</p>'+
+      [['x','X用','social'],['youtube','YouTube用','video'],['instagram','Instagram用','social'],['note','note用','social'],['facebook','Facebook用','social']].map(([key,label,medium])=>{
+        const url='https://reiki-ai-apps.github.io/AI-/?utm_source='+key+'&utm_medium='+medium;
         return '<label class="insights-share-link">'+label+'<input readonly aria-label="'+label+'の計測リンク" value="'+esc(url)+'"><button class="btn" data-copy-url="'+esc(url)+'">リンクをコピー</button></label>';
-      }).join('')+'<p class="insights-copy-state" aria-live="polite"></p><p>検索からのアクセスは参照元で判別します。情報が渡らない場合は「直接・不明」であり、推測で検索へ振り分けません。</p></details>';
+      }).join('')+'<p class="insights-copy-state" aria-live="polite"></p><p>計測リンクは、開いた時にURLの印が残っている場合に判別できます。別のSNSに転載されても元の印で集計されるので、載せる場所ごとに使い分けてください。復帰表示を元のSNSからの新たな流入として数え直すことはありません。</p><p>検索経由はブラウザーから渡る参照元で判別します。情報がないアクセスを推測で検索やSNSに振り分けたり、過去の流入元を復元したりはできません。</p></details>';
   }
   function timeChart(){
     const max=Math.max(1,...data.hourly.map(x=>x.opens));
@@ -56,17 +66,16 @@
     host.innerHTML='<h3>どこから見に来た？</h3><p>日本時間で集計。期間を変えると、日ごとの記録や累計も確認できます。</p>'+
       '<div class="insights-controls"><label>期間 <select aria-label="分析の集計期間">'+Object.entries(periods).map(([v,l])=>'<option value="'+v+'"'+(v===period?' selected':'')+'>'+l+'</option>').join('')+'</select></label><button class="btn" data-reload>再取得</button><button class="btn" data-export'+(!data?' disabled':'')+'>集計CSV</button></div>'+
       '<p role="status" class="insights-status">'+esc(message||(data?'最終確認：'+stamp():'集計を取得しています…'))+'</p>'+
-      (data?'<p>'+esc(data.from)+' 〜 '+esc(data.through)+'</p>':'')+trafficCards()+
+      (data?'<p>'+esc(data.from)+' 〜 '+esc(data.through)+'</p>':'')+attributionStatus()+campaignLinks()+trafficCards()+
       (data?'<details class="insights-help"><summary>流入元を詳しく見る</summary>'+table(['流入元','開いた回数','ユニーク'],data.sources.map(x=>[sources[x.source],x.opens,x.unique_browsers]))+'</details>'+
         '<h4>'+esc(periods[period])+'の利用状況</h4><div class="operator-metric-grid">'+
         [['開かれた回数',data.summary.opens,'回'],['ユニーク',data.summary.unique_browsers,'ブラウザー'],['初めて来た',data.summary.new_browsers,'ブラウザー'],['以前にも来た',data.summary.returning_browsers,'ブラウザー'],['累計の開かれた回数',data.totals.opens,'回'],['累計ユニーク',data.totals.unique_browsers,'ブラウザー']].map(([l,n,u])=>'<div class="operator-metric-card"><span>'+esc(l)+'</span><strong>'+count(n)+'</strong><small>'+u+'</small></div>').join('')+'</div>'+
         '<h4>いつ見られた？</h4>'+timeChart()+'<details class="insights-help"><summary>時間帯別の回数を見る</summary>'+table(['時間帯','開いた回数'],data.hourly.map(x=>[String(x.hour).padStart(2,'0')+'時台',x.opens]))+'</details>'+
         '<details class="insights-help"><summary>日別の推移を見る</summary>'+table(['日付','開いた回数','ユニーク','新規','再訪','判別不可'],data.daily.map(x=>[x.day,...numeric.map(k=>x[k])]))+'</details>':'')+
-      campaignLinks()+
       '<details class="insights-help"><summary>データの見方・計測の範囲</summary>'+
       (data?'<p>詳細計測の記録開始：'+(data.details_started_at?esc(new Date(data.details_started_at).toLocaleString('ja-JP',{timeZone:'Asia/Tokyo'})):'新形式の記録はまだありません')+'</p><p>新規／再訪を判別できない開き方：'+count(data.summary.unknown_opens)+'回。</p>':'')+
       '<p>ユニークは実人数ではなく匿名のブラウザー識別子の数です。端末変更や保存データの消去で別の訪問者になる場合があります。日別の新規はその日に初めて来たブラウザー、再訪は前日以前にも来たブラウザーです。期間の新規／再訪は期間開始日を基準にします。</p>'+
-      '<p>流入元別のユニークは重複するため合計できません。Web検索の大きなカードは回数だけを合算しています。直接・不明にはホーム画面からの起動やアプリへの復帰も含みます。流入元が渡らないアクセスや、過去の未記録分の内訳は復元できません。</p>'+
+      '<p>流入元別のユニークは重複するため合計できません。Web検索の大きなカードは回数だけを合算しています。「流入元を判別できない」にはホーム画面からの起動やアプリへの復帰も含みます。流入元が渡らないアクセスや、過去の未記録分の内訳は復元できません。</p>'+
       '<p>位置情報・IP・参照元の全文URLは保存しません。保存した履歴から集計するため、毎日の作業は不要です。詳細計測は開いた時刻、下の従来カウンターは受信時刻のため、遅延送信時には差が出ることがあります。運営者として確認済みのブラウザーは除外します。</p></details>';
     host.querySelector('select').onchange=e=>{period=e.target.value;data=null;generation++;busy=false;paint();void refresh();};
     host.querySelector('[data-reload]').onclick=()=>void refresh();
