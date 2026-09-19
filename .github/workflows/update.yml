@@ -225,6 +225,8 @@ jobs:
 
       - name: build public article pages and growth checks
         run: |
+          # 新着不足や検証による除外があっても、公開済みの2枠を1枠で上書きしない。
+          node scripts/finalize-video-edition.mjs
           # 検証で除外された記事をトップ選定からも外し、残った候補で同じ更新回を再確定する。
           if [ '${{ github.event.schedule }}' != '43 21-23,0-2 * * *' ]; then node scripts/finalize-home-edition.mjs; fi
           node scripts/build-public-articles.mjs

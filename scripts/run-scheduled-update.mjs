@@ -11,7 +11,7 @@ export function videoPublishedToday(state,items,now=Date.now()){
   if(state?.status!=='published'||state.last_published_day_jst!==today||!Array.isArray(items))return false;
   const keys=featuredVideoKeys(state);
   const rotation=rotationContext(state,items,now);
-  const selected=items.filter(item=>keys.includes(expertVideoKey(item))&&isFreshExpertVideo(item,now)&&
+  const selected=items.filter(item=>keys.includes(expertVideoKey(item))&&item.home_video_origin!=='continued'&&isFreshExpertVideo(item,now)&&
     Number.isFinite(Date.parse(item.home_video_selected_at))&&jstDayKey(Date.parse(item.home_video_selected_at))===today);
   const people=selected.flatMap(creatorIds);
   return selected.every(item=>allowedCreator(item,rotation))&&new Set(people).size===people.length&&

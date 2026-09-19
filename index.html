@@ -3625,7 +3625,7 @@ function renderSignature(){
       planUpdates.filter(u=>!isArticleRead(u)).length,
       planUpdates.filter(u=>u.status==='try_later').length,
       getUpdates().filter(u=>Number(u.home_top_rank)>0).map(u=>`${u.article_id||u.id}:${u.home_top_rank}:${u.home_selected_at||''}:${u.home_top_origin||''}`).sort().join(','),
-      planUpdates.filter(isExpertVideo).map(u=>`${u.article_id||u.id}:${u.expert_id||''}:${u.published_at||''}:${u.home_video_selected_at||''}`).sort().join(',')
+      planUpdates.filter(isExpertVideo).map(u=>`${u.article_id||u.id}:${u.expert_id||''}:${u.published_at||''}:${u.home_video_selected_at||''}:${u.home_video_origin||''}:${!!u.home_video_reserve}`).sort().join(',')
     ].join('|');
   }catch(_e){return 'sig-'+Date.now();}
 }
@@ -3843,23 +3843,38 @@ function homeTopUpdates(){
 function homeExpertVideos(items){
   const selected=[];const seenVideos=new Set();const seenExperts=new Set();const seenSubjects=new Set();
   const now=Date.now();
-  const fresh=(items||[]).filter(item=>isExpertVideo(item)&&Number.isFinite(Date.parse(item.home_video_selected_at))&&item.source_date_status==='published'&&
+  const fresh=(items||[]).filter(item=>isExpertVideo(item)&&(Number.isFinite(Date.parse(item.home_video_selected_at))||item.home_video_reserve===true)&&item.source_date_status==='published'&&
     Date.parse(item.source_published_at)<=now&&Date.parse(item.source_published_at)>=now-10*86400000);
-  for(const item of [...fresh].sort((a,b)=>(Date.parse(b.home_video_selected_at)||0)-(Date.parse(a.home_video_selected_at)||0)||byFeedOrder(a,b))){
+  const ranked=[...fresh].sort((a,b)=>Number(!!b.home_video_selected_at)-Number(!!a.home_video_selected_at)||
+    Number(a.home_video_origin==='continued')-Number(b.home_video_origin==='continued')||
+    (Date.parse(b.home_video_selected_at)||0)-(Date.parse(a.home_video_selected_at)||0)||byFeedOrder(a,b));
+  for(const item of ranked){
     const videoKey=String(item.video_id||item.source_url||item.article_id||item.id||'');
     const people=[item.expert_id||item.expert_name||item.source_name,...(item.expert_ids||[])].filter(Boolean);
     if(!videoKey||seenVideos.has(videoKey)||people.some(id=>seenExperts.has(id))||(item.story_subject&&seenSubjects.has(item.story_subject)))continue;
-    selected.push(item);seenVideos.add(videoKey);people.forEach(id=>seenExperts.add(id));
+    selected.push(item.home_video_selected_at?item:{...item,home_video_origin:'continued'});seenVideos.add(videoKey);people.forEach(id=>seenExperts.add(id));
     if(item.story_subject)seenSubjects.add(item.story_subject);
     if(selected.length>=2)break;
+  }
+  if(selected.length<2){
+    for(let i=0;i<ranked.length;i++)for(let j=i+1;j<ranked.length;j++){
+      const a=ranked[i],b=ranked[j];
+      const people=u=>[u.expert_id||u.expert_name||u.source_name,...(u.expert_ids||[])].filter(Boolean);
+      const key=u=>String(u.video_id||u.source_url||u.article_id||u.id||'');
+      if(key(a)&&key(b)&&key(a)!==key(b)&&!people(a).some(id=>people(b).includes(id))&&!(a.story_subject&&a.story_subject===b.story_subject))
+        return [a,b].map(u=>u.home_video_selected_at?u:{...u,home_video_origin:'continued'});
+    }
   }
   return selected;
 }
 function expertVideoCard(u){
   const summary=u.manual_summary||u.ai_summary||u.raw_excerpt||'この動画で学べることを確認できます。';
+  const today=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
+  const isNew=u.home_video_origin!=='continued'&&Number.isFinite(Date.parse(u.home_video_selected_at))&&new Date(Date.parse(u.home_video_selected_at)+9*3600000).toISOString().slice(0,10)===today;
   return `<article class="expert-video-card">
     <div class="expert-video-card-top">${contentTypeBadge(u)}${readProofBadge(u)}<span class="expert-video-platform">${esc(u.platform||'動画・講演')}</span></div>
     <div class="expert-video-person"><strong>${esc(u.expert_name||'専門家')}</strong><span>${esc(u.expert_role||'AIの専門家')}</span></div>
+    <p class="billing-help">${isNew?'本日の新着':'継続掲載'} · 動画公開 ${esc(fmtDate(u.source_published_at))}</p>
     <h3>${esc(u.title)}</h3><div class="expert-video-summary">${esc(summary)}</div>
     <div class="expert-video-actions"><a class="btn btn-primary" href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')">${icon('eye')}要点と背景</a>${u.source_url?`<button class="btn" onclick="openSourceArticle('${u.id}')">${icon('ext')}元動画を見る</button>`:''}</div>
   </article>`;
@@ -3930,10 +3945,12 @@ function renderHome(v){
     ${mobileMediaHtml}
   </section>`;
   const todayVideoDay=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
-  const currentVideoCount=expertVideos.filter(u=>Number.isFinite(Date.parse(u.home_video_selected_at))&&new Date(Date.parse(u.home_video_selected_at)+9*3600000).toISOString().slice(0,10)===todayVideoDay).length;
-  const videoRefreshNote=currentVideoCount>=2?'本日の2件を更新済み':`本日分を準備中（${currentVideoCount}/2件）。前回とは別の発信者を確認し、順次追加します。`;
+  const currentVideoCount=expertVideos.filter(u=>u.home_video_origin!=='continued'&&Number.isFinite(Date.parse(u.home_video_selected_at))&&new Date(Date.parse(u.home_video_selected_at)+9*3600000).toISOString().slice(0,10)===todayVideoDay).length;
+  const videoRefreshNote=currentVideoCount>=2?'本日の新着2件を更新済み':expertVideos.length>=2?
+    `2件掲載中（本日の新着${currentVideoCount}件・継続${expertVideos.length-currentVideoCount}件）。新しい候補を確認中も、審査済みの動画を読めます。`:
+    `新しい候補を確認中です。審査済みの動画から2件をそろえます。`;
   const expertVideoHtml=`<section class="expert-video-section" aria-labelledby="expertVideoTitle">
-    <div class="expert-video-head"><div><span class="expert-video-kicker">LEARN AI</span><h2 id="expertVideoTitle">AIを学ぶ動画</h2></div><p>毎朝更新・公開10日以内から2件。前回とは別の発信者から、使い方や仕組みを学べる動画を選びます。${expertVideos[0]?.home_video_selected_at?`動画記事の更新：${esc(fmtDate(expertVideos[0].home_video_selected_at))}`:'動画記事の更新を確認中'}</p></div>
+    <div class="expert-video-head"><div><span class="expert-video-kicker">LEARN AI</span><h2 id="expertVideoTitle">AIを学ぶ動画</h2></div><p>毎朝、新しい動画を確認。公開10日以内・異なる発信者の2件を掲載します。新着が不足するときは審査済みの動画を継続掲載し、前回とは別の発信者の新着がそろい次第、入れ替えます。</p></div>
     <p class="billing-help" role="status">${esc(videoRefreshNote)}</p>
     <div class="expert-video-grid">${expertVideos.map(expertVideoCard).join('')||'<p>前回と異なる発信者の動画を確認中です。過去の動画は分類ページから見られます。</p>'}</div>
   </section>`;
@@ -4888,6 +4905,8 @@ function patchTimelineFields(target,it){
 function importedContextSourceFields(it){
   return {
     home_video_selected_at:String(it.home_video_selected_at||''),
+    home_video_origin:it.home_video_origin==='continued'?'continued':it.home_video_origin==='new'?'new':'',
+    home_video_reserve:it.home_video_reserve===true,
     context_source_url:safeExternalUrl(it.context_source_url),
     context_source_name:String(it.context_source_name||''),
     context_source_note:String(it.context_source_note||'')
@@ -4978,6 +4997,7 @@ async function performDataSync(renderChanges,allowPrune){
       // The server is authoritative for the daily video too, including when
       // yesterday's item was removed from today's public dataset.
       if(update.home_video_selected_at){update.home_video_selected_at='';patched++;}
+      if(update.home_video_origin||update.home_video_reserve){update.home_video_origin='';update.home_video_reserve=false;patched++;}
       if(Number(update.home_top_rank)>0||update.home_selected_at){
         update.home_top_rank=0;update.home_top_score=0;update.home_score_breakdown=null;
         update.home_selection_reasons=[];update.home_selected_at='';update.home_window_start='';update.home_window_end='';

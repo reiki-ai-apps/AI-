@@ -18,8 +18,9 @@ assert.deepEqual(new Set(today.state.featured_expert_ids),new Set(['c','d']),'ha
 assert.equal(videoPublishedToday(today.state,today.items,now),true);
 assert.deepEqual(new Set(today.state.published_editions[0].expert_ids),new Set(['c','d']));
 const none=finalizeExpertVideoEdition(candidates.slice(0,2),old,now,{refreshDue:true});
-assert.equal(none.state.featured_video_keys.length,0,'never restore yesterday to fill empty slots');
-assert.equal(none.items.some(x=>x.home_video_selected_at),false);
+assert.equal(none.state.featured_video_keys.length,2,'reviewed carryovers protect both slots when a new pair is unavailable');
+assert.equal(none.items.filter(x=>x.home_video_origin==='continued').length,2);
+assert.equal(videoPublishedToday(none.state,none.items,now),false,'carryovers are not a successful daily refresh');
 assert.equal(shouldRefreshExpertVideos(none.state,now),true);
 const partial=finalizeExpertVideoEdition([candidates[2]],old,now,{refreshDue:true});
 const retried=finalizeExpertVideoEdition(candidates,partial.state,now+60000,{refreshDue:true});

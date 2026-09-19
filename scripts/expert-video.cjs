@@ -56,6 +56,25 @@ function pickDiverseVideos(candidates,initial=[],limit=HOME_VIDEO_LIMIT){
   return selected;
 }
 
+// Publication freshness and slot availability are different. A retry must not
+// erase a reviewed pair just because only one new video passed today's review.
+function fillVideoDisplay(candidates,preferred,state,rotation){
+  const keys=featuredVideoKeys(state);
+  const current=keys.map(key=>candidates.find(item=>expertVideoKey(item)===key)).filter(Boolean);
+  const rest=candidates.filter(item=>!current.includes(item));
+  const pool=[...current.filter(item=>allowedCreator(item,rotation)),
+    ...rest.filter(item=>allowedCreator(item,rotation)),...current,...rest];
+  const selected=pickDiverseVideos(pool,preferred);
+  if(selected.length===HOME_VIDEO_LIMIT)return selected;
+  // One co-presented video can conflict with every other candidate. If a valid
+  // pair exists, keep that pair on screen instead of forcing the blocking pick.
+  for(const first of pool){
+    const pair=pickDiverseVideos(pool,[first]);
+    if(pair.length===HOME_VIDEO_LIMIT)return pair;
+  }
+  return selected;
+}
+
 function finalizeExpertVideoEdition(items,state={},now=Date.now(),attempt={}){
   const today=jstDayKey(now), stamp=new Date(now).toISOString();
   const rotation=rotationContext(state,items,now);
@@ -67,7 +86,8 @@ function finalizeExpertVideoEdition(items,state={},now=Date.now(),attempt={}){
   const keys=featuredVideoKeys(state);
   for(const key of keys)seen.add(key);
   const enforceRotation=attempt.refreshDue||state.last_published_day_jst===today;
-  const current=candidates.filter(item=>keys.includes(expertVideoKey(item))&&(!enforceRotation||allowedCreator(item,rotation)));
+  const current=keys.map(key=>candidates.find(item=>expertVideoKey(item)===key))
+    .filter(item=>item&&(!enforceRotation||allowedCreator(item,rotation)));
   let selected=pickDiverseVideos(current);
   let next={...state,...(enforceRotation?rotation:{})};
   if(attempt.refreshDue){
@@ -77,23 +97,47 @@ function finalizeExpertVideoEdition(items,state={},now=Date.now(),attempt={}){
     const locked=state.last_published_day_jst===today?current.filter(item=>history.some(entry=>entry.day_jst===today&&entry.video_key===expertVideoKey(item))):[];
     const fresh=pickDiverseVideos(candidates.filter(item=>!seen.has(expertVideoKey(item))&&allowedCreator(item,rotation)),pickDiverseVideos(locked));
     const additions=fresh.filter(item=>!locked.includes(item));
-    selected=fresh; // Never backfill yesterday's people or yesterday's videos.
+    selected=fresh; // Only genuinely new picks count towards today's refresh.
     if(fresh.length){
       next={...next,status:fresh.length===HOME_VIDEO_LIMIT?'published':'partial',last_published_day_jst:today,
         last_published_at:additions.length?stamp:state.last_published_at,
-        published_history:[...history,...additions.map(item=>({day_jst:today,video_key:expertVideoKey(item),expert_id:item.expert_id,expert_ids:creatorIds(item)}))].slice(-60),
+        published_history:[...history,...additions.map(item=>({day_jst:today,selected_at:stamp,video_key:expertVideoKey(item),expert_id:item.expert_id,expert_ids:creatorIds(item)}))].slice(-60),
         published_editions:[...(state.published_editions||[]).filter(x=>x.day_jst!==today),{day_jst:today,video_keys:fresh.map(expertVideoKey),expert_ids:[...new Set(fresh.flatMap(creatorIds))]}].slice(-30)};
       if(fresh.length===HOME_VIDEO_LIMIT)Object.assign(next,{
         last_successful_refresh_day_jst:today,last_successful_refresh_at:stamp,
       });
     }else {next.status='pending_no_new_publishable_video';}
   }
+  const newKeys=new Set(selected.filter(item=>allowedCreator(item,rotation)&&
+    (next.published_history||[]).some(entry=>entry.day_jst===today&&entry.video_key===expertVideoKey(item))).map(expertVideoKey));
+  selected=fillVideoDisplay(candidates,selected,state,rotation);
+  next.fresh_selected_count=selected.filter(item=>newKeys.has(expertVideoKey(item))).length;
+  next.continued_count=selected.length-next.fresh_selected_count;
+  const displayedKeys=new Set(selected.map(expertVideoKey));
+  const oldHistoryKeys=new Set(history.map(entry=>entry.video_key));
+  next.published_history=(next.published_history||history).filter(entry=>oldHistoryKeys.has(entry.video_key)||displayedKeys.has(entry.video_key));
+  if(!next.fresh_selected_count){
+    next.last_published_day_jst=state.last_published_day_jst;
+    next.last_published_at=state.last_published_at;
+  }
+  if(enforceRotation&&next.fresh_selected_count<HOME_VIDEO_LIMIT){
+    next.status=next.fresh_selected_count?'partial':'pending_no_new_publishable_video';
+  }
+  // The next day's rotation is based on the people actually displayed, including
+  // explicitly labelled carryovers. Same-day retries still use frozen rotation.
+  if(enforceRotation&&selected.length){
+    next.published_editions=[...(next.published_editions||[]).filter(x=>x.day_jst!==today),
+      {day_jst:today,video_keys:selected.map(expertVideoKey),expert_ids:[...new Set(selected.flatMap(creatorIds))]}].slice(-30);
+  }
   next.featured_video_keys=selected.map(expertVideoKey);next.featured_video_key=next.featured_video_keys[0]||'';
   next.featured_expert_ids=[...new Set(selected.flatMap(creatorIds))];
-  next.version=4;next.max_age_days=EXPERT_VIDEO_MAX_AGE_DAYS;next.daily_target=HOME_VIDEO_LIMIT;
+  next.version=5;next.max_age_days=EXPERT_VIDEO_MAX_AGE_DAYS;next.daily_target=HOME_VIDEO_LIMIT;
+  const reserveKeys=new Set(candidates.map(expertVideoKey));
   return {state:next,items:items.map(item=>isExpertVideoItem(item)?{
     ...item,home_video_selected_at:next.featured_video_keys.includes(expertVideoKey(item))?
-      (item.home_video_selected_at||String(next.last_published_at||'')):''
+      (item.home_video_selected_at||String(next.last_published_at||stamp)):'',
+    home_video_origin:next.featured_video_keys.includes(expertVideoKey(item))?(newKeys.has(expertVideoKey(item))?'new':'continued'):'',
+    home_video_reserve:reserveKeys.has(expertVideoKey(item))
   }:item)};
 }
 
@@ -268,7 +312,8 @@ function selectDailyExpertVideoArchivePicks(items,state={},limit=3,now=Date.now(
   const current=all.filter(item=>keys.includes(expertVideoKey(item))&&allowedCreator(item,rotation));
   const locked=state.last_published_day_jst===jstDayKey(now)?current.filter(item=>(state.published_history||[]).some(entry=>entry.day_jst===jstDayKey(now)&&entry.video_key===expertVideoKey(item))):[];
   const preferred=shouldRefreshExpertVideos(state,now)?pickDiverseVideos(all.filter(item=>!seen.has(expertVideoKey(item))&&allowedCreator(item,rotation)),pickDiverseVideos(locked)):current;
-  return [...preferred,...current.filter(item=>!preferred.includes(item)),...all.filter(item=>!preferred.includes(item)&&!current.includes(item))].slice(0,limit);
+  const display=fillVideoDisplay(all,preferred,state,rotation);
+  return [...display,...all.filter(item=>!display.includes(item))].slice(0,limit);
 }
 
 function selectExpertVideoReviewCandidates(items,limit=6,maxPerExpert=2,now=Date.now(),state={}){

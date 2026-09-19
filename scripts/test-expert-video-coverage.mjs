@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import './test-video-editorial-retry.mjs';
 import './test-video-recovery-20260918.mjs';
+import './test-video-slot-availability.mjs';
 import {createRequire} from "node:module";
 
 const require=createRequire(import.meta.url);
@@ -148,7 +149,8 @@ const selectionTime=Date.parse('2026-09-09T00:00:00Z');
 const edition=finalizeExpertVideoEdition(reviewFixture,priorVideo,selectionTime,{refreshDue:true,successfulSources:15});
 assert.notEqual(edition.state.featured_video_key,'a1','前日の動画を更新済みとして再掲載しない');
 assert.equal(edition.state.last_published_day_jst,'2026-09-09');
-assert.equal(edition.items.filter(item=>item.home_video_selected_at).length,1,'前回の発信者の別動画では残り枠を埋めない');
+assert.equal(edition.items.filter(item=>item.home_video_selected_at).length,2,'新着不足でも審査済みの継続動画で2枠を維持する');
+assert.equal(edition.state.fresh_selected_count,1,'継続掲載を新着として数えない');
 const unchanged=finalizeExpertVideoEdition(reviewFixture,edition.state,selectionTime+3600000,{refreshDue:true});
 assert.equal(unchanged.state.featured_video_key,edition.state.featured_video_key,'同日二重更新を防ぐ');
 const pending=finalizeExpertVideoEdition([reviewFixture[0]],priorVideo,selectionTime,{refreshDue:true,successfulSources:15});
