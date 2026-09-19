@@ -65,33 +65,7 @@
     "dedupe_reasons": [
       "shared_entity",
       "same_subject"
-    ],
-    "home_top_rank": 3,
-    "home_top_score": 52,
-    "home_score_breakdown": {
-      "importance": 25,
-      "topicality": 15,
-      "scope": 10,
-      "authority": 5,
-      "freshness": 7,
-      "tool_evolution": 0,
-      "penalty": -10
-    },
-    "home_selection_reasons": [
-      "重要度B",
-      "主要AI企業・基盤",
-      "大きな製品・市場変化",
-      "未確認情報を減点"
-    ],
-    "home_selected_at": "2026-09-19T08:53:55.919Z",
-    "home_window_start": "2026-09-18T22:38:28.630Z",
-    "home_window_end": "2026-09-19T08:49:00.822Z",
-    "home_content_changed_at": "2026-09-19T08:53:55.919Z",
-    "home_update_health": "HEALTHY",
-    "home_consecutive_unchanged_editions": 0,
-    "home_top_origin": "new",
-    "home_edition_new_count": 3,
-    "home_edition_continued_count": 2
+    ]
   },
   {
     "tool": "Grok / xAI",
@@ -163,34 +137,111 @@
     "dedupe_decision": "new",
     "dedupe_reasons": [
       "no_previous_story"
+    ]
+  },
+  {
+    "tool": "Manus AI",
+    "content_type": "article",
+    "expert_id": "",
+    "expert_ids": [],
+    "expert_name": "",
+    "expert_names": [],
+    "expert_role": "",
+    "expert_tier": "",
+    "platform": "",
+    "video_id": "",
+    "source_trust": "",
+    "title": "AIエージェント企業Manusが5億ドル調達を目指す、評価額40億ドルで香港上場も視野",
+    "source_url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFB0TkFBMnRSNVFBWDc0TTNEbGlQOUQ2aXQzOHRVNDNGWjRIa1dnMEpjbjQ1UHV2dFRCTnZzSU5RcXBqZ3Jtd0gxd25Ud29mTFZjSEZaYy1QWWplQ1lJZUE0cTZR?oc=5",
+    "source_name": "Межа. Новини України.",
+    "is_official": false,
+    "published_at": "2026-09-18T17:06:21.000Z",
+    "source_published_at": "2026-09-18T17:06:21.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-09-19T13:55:29.464Z",
+    "event_at": "",
+    "event_status": "予定",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Manus",
+      "Manus AI",
+      "manus",
+      "manusai"
+    ],
+    "primary_entity": "Manus AI",
+    "story_subject": "Manusの資金調達・香港上場計画",
+    "event_type": "funding",
+    "event_stage": "planned",
+    "event_scope": "香港・グローバル",
+    "fact_slots": [
+      {
+        "type": "amount",
+        "scope": "目標調達額",
+        "value": "5億ドル",
+        "normalized_value": "500000000USD"
+      },
+      {
+        "type": "amount",
+        "scope": "想定評価額",
+        "value": "40億ドル",
+        "normalized_value": "4000000000USD"
+      }
+    ],
+    "new_facts": [
+      "Manusが評価額40億ドルで5億ドルの資金調達を目指している",
+      "Manusが香港での株式上場も検討している"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "AIエージェント企業Manusが評価額40億ドルで5億ドルの資金調達を目指しており、香港上場も検討していると報じられた。",
+    "detail": "AIエージェントを開発する企業Manusが、評価額40億ドルで5億ドルの資金調達を目指していると報じられた。評価額とは、その企業の価値がいくらとみなされているかを示す金額で、40億ドルという水準は成長中のAI企業として大きな規模といえる。あわせて、香港での株式上場も選択肢として検討していることが伝えられている。\n\n記事によれば、調達を目指す金額は5億ドル、想定される評価額は40億ドルとされている。これらはあくまで目標であり、実際に調達が成立したかどうかや、上場が正式に決定したかどうかはこの記事の抜粋からは確認できない。Manusは自律的に作業を進めるAIエージェントの分野で知られる企業とされ、資金調達が実現すれば事業拡大の原資になるとみられる。\n\nこの動きが実現すれば、AIエージェント分野への投資家の関心の高さを示す事例となる可能性がある。ただし、調達の完了時期や条件、香港上場の具体的な計画はまだ明らかにされておらず、今後の続報を確認する必要がある。",
+    "change_summary": "AIエージェント企業Manusが、評価額40億ドルで5億ドルの資金調達と香港上場を目指していることが新たに報じられた。",
+    "impact_summary": "AIエージェント分野への大型投資の動きとして、関連する日本企業や投資家の関心を集める可能性がある。",
+    "action_suggestion": "資金調達の成立時期や香港上場の正式決定はまだ発表されておらず、今後の公式発表を確認する必要がある。",
+    "importance": "A",
+    "related_categories": [
+      "企業・株式",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_3efca41875bcb3b31695",
+    "story_id": "story_f40deeb7dfaf92c7dc",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
     ],
     "home_top_rank": 1,
-    "home_top_score": 59,
+    "home_top_score": 66,
     "home_score_breakdown": {
-      "importance": 25,
-      "topicality": 15,
+      "importance": 45,
+      "topicality": 10,
       "scope": 6,
       "authority": 5,
       "freshness": 0,
-      "tool_evolution": 8,
+      "tool_evolution": 0,
       "penalty": 0
     },
     "home_selection_reasons": [
-      "重要度B",
-      "主要AI企業・基盤",
+      "重要度A",
       "大きな製品・市場変化",
-      "遅れて確認できた新着",
-      "AIツールの能力進化"
+      "遅れて確認できた新着"
     ],
-    "home_selected_at": "2026-09-19T08:53:55.919Z",
-    "home_window_start": "2026-09-18T22:38:28.630Z",
-    "home_window_end": "2026-09-19T08:49:00.822Z",
-    "home_content_changed_at": "2026-09-19T08:53:55.919Z",
+    "home_selected_at": "2026-09-19T14:00:24.853Z",
+    "home_window_start": "2026-09-19T08:49:00.822Z",
+    "home_window_end": "2026-09-19T13:55:29.464Z",
+    "home_content_changed_at": "2026-09-19T14:00:24.853Z",
     "home_update_health": "HEALTHY",
     "home_consecutive_unchanged_editions": 0,
     "home_top_origin": "new",
-    "home_edition_new_count": 3,
-    "home_edition_continued_count": 2
+    "home_edition_new_count": 1,
+    "home_edition_continued_count": 4
   },
   {
     "tool": "Claude / Claude Code",
@@ -336,34 +387,7 @@
     "dedupe_decision": "new",
     "dedupe_reasons": [
       "no_previous_story"
-    ],
-    "home_top_rank": 2,
-    "home_top_score": 53,
-    "home_score_breakdown": {
-      "importance": 25,
-      "topicality": 15,
-      "scope": 3,
-      "authority": 10,
-      "freshness": 0,
-      "tool_evolution": 0,
-      "penalty": 0
-    },
-    "home_selection_reasons": [
-      "重要度B",
-      "主要AI企業・基盤",
-      "制度・安全への影響",
-      "公式一次情報",
-      "遅れて確認できた新着"
-    ],
-    "home_selected_at": "2026-09-19T08:53:55.919Z",
-    "home_window_start": "2026-09-18T22:38:28.630Z",
-    "home_window_end": "2026-09-19T08:49:00.822Z",
-    "home_content_changed_at": "2026-09-19T08:53:55.919Z",
-    "home_update_health": "HEALTHY",
-    "home_consecutive_unchanged_editions": 0,
-    "home_top_origin": "new",
-    "home_edition_new_count": 3,
-    "home_edition_continued_count": 2
+    ]
   },
   {
     "tool": "専門家動画・発言",
@@ -721,7 +745,7 @@
     "dedupe_reasons": [
       "no_previous_story"
     ],
-    "home_top_rank": 5,
+    "home_top_rank": 4,
     "home_top_score": 77,
     "home_score_breakdown": {
       "importance": 45,
@@ -737,15 +761,15 @@
       "制度・安全への影響",
       "重要な経営・研究体制"
     ],
-    "home_selected_at": "2026-09-19T08:53:55.919Z",
-    "home_window_start": "2026-09-18T22:38:28.630Z",
-    "home_window_end": "2026-09-19T08:49:00.822Z",
-    "home_content_changed_at": "2026-09-19T08:53:55.919Z",
+    "home_selected_at": "2026-09-19T14:00:24.853Z",
+    "home_window_start": "2026-09-19T08:49:00.822Z",
+    "home_window_end": "2026-09-19T13:55:29.464Z",
+    "home_content_changed_at": "2026-09-19T14:00:24.853Z",
     "home_update_health": "HEALTHY",
     "home_consecutive_unchanged_editions": 0,
     "home_top_origin": "continued",
-    "home_edition_new_count": 3,
-    "home_edition_continued_count": 2
+    "home_edition_new_count": 1,
+    "home_edition_continued_count": 4
   },
   {
     "tool": "ChatGPT / OpenAI",
@@ -1033,7 +1057,32 @@
     "dedupe_decision": "new",
     "dedupe_reasons": [
       "no_previous_story"
-    ]
+    ],
+    "home_top_rank": 5,
+    "home_top_score": 75,
+    "home_score_breakdown": {
+      "importance": 45,
+      "topicality": 15,
+      "scope": 10,
+      "authority": 5,
+      "freshness": 0,
+      "tool_evolution": 0,
+      "penalty": 0
+    },
+    "home_selection_reasons": [
+      "重要度A",
+      "主要AI企業・基盤",
+      "大きな製品・市場変化"
+    ],
+    "home_selected_at": "2026-09-19T14:00:24.853Z",
+    "home_window_start": "2026-09-19T08:49:00.822Z",
+    "home_window_end": "2026-09-19T13:55:29.464Z",
+    "home_content_changed_at": "2026-09-19T14:00:24.853Z",
+    "home_update_health": "HEALTHY",
+    "home_consecutive_unchanged_editions": 0,
+    "home_top_origin": "continued",
+    "home_edition_new_count": 1,
+    "home_edition_continued_count": 4
   },
   {
     "tool": "ChatGPT / OpenAI",
@@ -1252,7 +1301,33 @@
       "same_subject",
       "same_event_type",
       "low_confidence_follow_up_demoted"
-    ]
+    ],
+    "home_top_rank": 3,
+    "home_top_score": 79,
+    "home_score_breakdown": {
+      "importance": 45,
+      "topicality": 15,
+      "scope": 6,
+      "authority": 5,
+      "freshness": 0,
+      "tool_evolution": 8,
+      "penalty": 0
+    },
+    "home_selection_reasons": [
+      "重要度A",
+      "主要AI企業・基盤",
+      "大きな製品・市場変化",
+      "AIツールの能力進化"
+    ],
+    "home_selected_at": "2026-09-19T14:00:24.853Z",
+    "home_window_start": "2026-09-19T08:49:00.822Z",
+    "home_window_end": "2026-09-19T13:55:29.464Z",
+    "home_content_changed_at": "2026-09-19T14:00:24.853Z",
+    "home_update_health": "HEALTHY",
+    "home_consecutive_unchanged_editions": 0,
+    "home_top_origin": "continued",
+    "home_edition_new_count": 1,
+    "home_edition_continued_count": 4
   },
   {
     "tool": "Canva",
@@ -1409,7 +1484,7 @@
       "material_fact_changed",
       "low_confidence_follow_up_demoted"
     ],
-    "home_top_rank": 4,
+    "home_top_rank": 2,
     "home_top_score": 83,
     "home_score_breakdown": {
       "importance": 45,
@@ -1426,15 +1501,15 @@
       "大きな製品・市場変化",
       "AIツールの能力進化"
     ],
-    "home_selected_at": "2026-09-19T08:53:55.919Z",
-    "home_window_start": "2026-09-18T22:38:28.630Z",
-    "home_window_end": "2026-09-19T08:49:00.822Z",
-    "home_content_changed_at": "2026-09-19T08:53:55.919Z",
+    "home_selected_at": "2026-09-19T14:00:24.853Z",
+    "home_window_start": "2026-09-19T08:49:00.822Z",
+    "home_window_end": "2026-09-19T13:55:29.464Z",
+    "home_content_changed_at": "2026-09-19T14:00:24.853Z",
     "home_update_health": "HEALTHY",
     "home_consecutive_unchanged_editions": 0,
     "home_top_origin": "continued",
-    "home_edition_new_count": 3,
-    "home_edition_continued_count": 2
+    "home_edition_new_count": 1,
+    "home_edition_continued_count": 4
   },
   {
     "tool": "AI業界・経営重要速報",
@@ -1613,135 +1688,6 @@
     "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
     "article_id": "article_ed8f064aa97f02b879f7",
     "story_id": "story_929447070840b5642f",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "AI政策・政府動向",
-    "content_type": "article",
-    "expert_id": "",
-    "expert_name": "",
-    "expert_names": [],
-    "expert_role": "",
-    "expert_tier": "",
-    "platform": "",
-    "video_id": "",
-    "source_trust": "",
-    "title": "Salesforce、OpenAIと提携し政府向けAI「Missionforce」を拡大",
-    "source_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPRXlvNVUyWjNyckUyTm4yMktLRDg4MEVEeFlSdXZ2UkNMbUpSSWUwQldVRVBsQUNkTk8tTlhodWpHX2d5OWN2REhiNVBEdTlYODhXZF95d1ZNNGZHYm5Gc3FjbDAtbm8wLVJIc0xYelNNaFU3WWw3QW1LR1FPVnlCV2pQam1VTWMwZUJMT0ZiVzNPU0RtVTNwSg?oc=5",
-    "source_name": "Unite.AI",
-    "is_official": false,
-    "published_at": "2026-09-16T12:33:17.000Z",
-    "source_published_at": "2026-09-16T12:33:17.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-09-16T23:00:38.766Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Salesforce",
-      "OpenAI",
-      "Missionforce",
-      "salesforce",
-      "openai"
-    ],
-    "primary_entity": "Salesforce",
-    "story_subject": "Missionforce(政府向けAIプラットフォーム)",
-    "event_type": "partnership",
-    "event_stage": "announced",
-    "event_scope": "政府機関向け",
-    "fact_slots": [],
-    "new_facts": [
-      "SalesforceがOpenAIと提携し、政府向けAIプラットフォーム「Missionforce」を拡大すると発表した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "SalesforceがOpenAIと提携し、政府機関向けAI活用プラットフォーム「Missionforce」を拡大すると発表した。",
-    "detail": "Salesforceが、AI企業のOpenAIと提携したと発表しました。これは、政府機関向けのAI活用プラットフォーム「Missionforce」を強化するための提携です。以前は、SalesforceのAI機能は自社開発のモデルが中心でしたが、今回OpenAIの技術を取り入れる形になります。\n\n記事では、提携の具体的な内容や導入時期などの数字は明らかにされていません。Missionforceは、政府機関が業務でAIを使うための専用サービスとされています。政府という慎重な扱いが求められる分野でOpenAIの技術が使われる点が注目されます。\n\n政府機関でAIを使う担当者にとっては、選べるAI技術の幅が広がる可能性があります。ただし、提携の詳細な条件やセキュリティ対策については、現時点でまだ発表されていません。今後、具体的な提供時期や対象国などが明らかになるか注目されます。",
-    "change_summary": "SalesforceとOpenAIが提携し、政府向けAIプラットフォームMissionforceを拡大すると発表した。",
-    "impact_summary": "政府機関向けのAI導入において、OpenAIの技術が使われる選択肢が広がる可能性がある。",
-    "action_suggestion": "提携の具体的な内容、導入時期、対象範囲は現時点で明らかにされておらず、続報が待たれる。",
-    "importance": "B",
-    "related_categories": [
-      "企業・株式",
-      "政策・行政"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_4a3783534204476ed4c3",
-    "story_id": "story_edb315cdcdd0cfb338",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "AI業界・経営重要速報",
-    "content_type": "article",
-    "expert_id": "",
-    "expert_name": "",
-    "expert_names": [],
-    "expert_role": "",
-    "expert_tier": "",
-    "platform": "",
-    "video_id": "",
-    "source_trust": "",
-    "title": "エヌビディアCEO、AI開発への「新たな規制は不要」と発言",
-    "source_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE82ZmtFS2o1cFJRRm1uLUtRdGNENk1adHQxcUlsWm1ORlZ4YTFWQ18tV2hHZnYyY2hTYnBYLTdaaWs4LXRENmFyVzY0SnJVR2FIbXZubGZEZGRTYVQyVTNj?oc=5",
-    "source_name": "news.web.nhk",
-    "is_official": false,
-    "published_at": "2026-09-16T10:22:11.000Z",
-    "source_published_at": "2026-09-16T10:22:11.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-09-16T14:58:28.150Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Nvidia",
-      "ジェンスン・フアン",
-      "nvidia",
-      "ジェンスンフアン"
-    ],
-    "primary_entity": "Nvidia",
-    "story_subject": "AI規制に関するCEO発言",
-    "event_type": "policy",
-    "event_stage": "other",
-    "event_scope": "米国・世界",
-    "fact_slots": [],
-    "new_facts": [
-      "Nvidiaのジェンスン・フアンCEOが、AI開発に新たな規制は必要ないと発言したと報じられた。"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "米Nvidiaのジェンスン・フアンCEOが、AI開発に新たな規制は必要ないとの見解を示したとNHKが報じた。",
-    "detail": "米半導体大手Nvidiaのジェンスン・フアン最高経営責任者(CEO)が、AI(人工知能)の開発に新たな規制は必要ないと発言したとNHKが報じた。簡単に言うと、AI企業向けの新しい法律や規則を今作る必要はないという主張。政府や研究者からAI規制を求める声が出ている中での発言という違いがある。\n\n記事はNHKの短いニュースで、発言の具体的な場面や文脈、規制反対の理由については本文から確認できない。フアン氏はAI業界を代表する立場の人物であり、その発言はAI企業側の規制に対する姿勢を示すものとして受け止められる。AI規制のあり方は各国政府の政策論議に直結するため、業界を代表する経営者の発言は注目される。\n\nこの発言により、AI企業側の規制反対の立場が改めて示された形になる。ただし発言の詳細な内容や、具体的にどの規制を念頭に置いているかは記事からは分からない。今後の各国の規制議論にどう影響するかはまだ発表されていない。",
-    "change_summary": "NvidiaのCEOが、AI開発に新たな規制は必要ないとの見解を示した。",
-    "impact_summary": "AI企業側の規制反対の主張が改めて示され、各国のAI政策議論に影響を与える可能性がある。",
-    "action_suggestion": "発言の具体的な文脈や規制対象の詳細は記事からは確認できず、今後の続報を確認する必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "政策・行政",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_0c888acc2e8839bcd4ac",
-    "story_id": "story_8c5856d1ca8b750d86",
     "story_sequence": 1,
     "relation_type": "new",
     "relation_confidence": 1,
@@ -3638,6 +3584,70 @@
   },
   {
     "tool": "AI業界・経営重要速報",
+    "content_type": "article",
+    "expert_id": "",
+    "expert_name": "",
+    "expert_names": [],
+    "expert_role": "",
+    "expert_tier": "",
+    "platform": "",
+    "video_id": "",
+    "source_trust": "",
+    "title": "Anthropicの研究者、「命を賭けた賭け」と警告し退社",
+    "source_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQUmZWNDUzTWJmU01GR1VsbHhFNnhtRmlZcWtGZUNBWHRiMFpEMklfM1hCZ2poYmlNMGFQaVFTTEpDZGJNSGhfajdPdllvdElrOEJkemZIMkw3bDJYdXpnTEkxVE9LTDBLZUdnZXlpZk1vQ1pxN282ZnRDYVlndnlEZW5haWNfdFNLemxfN2QxNXlhZ2k2RmpYekgxd1QtT2s4OFFrVWFKZWlrdFpteVZ4QzN30gGyAUFVX3lxTFBSZlY0NTNNYmZTTUZHVWxseEU2eG1GaVlxa0ZlQ0FYdGIwWkQySV8zWEJnamhiaU0wYVBpUVNMSkNkYk1IaF9qN092WW90SWs4QmR6ZkgyTDdsMlh1emdMSTFUT0tMMEtlR2dleWlmTW9DWnE3bzZmdENhWWd2eURlbmFpY190U0t6bF83ZDE1eWFnaTZGalh6SDF3VC1Pazg4UWtVYUplaWt0Wm15VnhDM3c?oc=5",
+    "source_name": "NBC4 Washington",
+    "is_official": false,
+    "published_at": "2026-09-09T21:37:39.000Z",
+    "source_published_at": "2026-09-09T21:37:39.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-09-10T00:17:53.192Z",
+    "event_at": "",
+    "event_status": "不明",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Anthropic",
+      "anthropic"
+    ],
+    "primary_entity": "Anthropic",
+    "story_subject": "Anthropic researcher resignation",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "Anthropic社内",
+    "fact_slots": [],
+    "new_facts": [
+      "Anthropicの研究者が退社した",
+      "退社にあたり「命を賭けた賭けをしている」との趣旨の警告を残した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Anthropicの研究者が、AI開発の進め方について「命を賭けた賭けをしている」と警告しながら会社を退社したと報じられた。",
+    "detail": "Anthropicに所属していた研究者が、会社を辞めるにあたって警告のメッセージを残した。簡単に言うと、AIの安全性に強い懸念を持つ研究者が、退社という形でその懸念を表明したという出来事。これまでもAI企業からは安全性を理由にした退社が報じられてきたが、今回も同様の動きとして注目されている。\n\n記事のタイトルによれば、この研究者は「Gambling with our lives(私たちの命を賭けている)」という表現で警告した。Anthropicは、AIの安全性を重視する姿勢を掲げてきた企業として知られる。研究者本人の具体的な名前や退社理由の詳細、警告の中身については、抜粋からは確認できない。\n\nこの出来事は、AI開発企業内部で安全性への懸念がどのように扱われているかを示す事例として受け止められる。ただし記事本文の詳細が抜粋には含まれておらず、研究者の氏名や具体的な主張内容、Anthropic側の反応は不明。続報の確認が必要になる。",
+    "change_summary": "Anthropicの研究者が、AI開発を「命を賭けた賭け」と警告して退社したと報じられた。",
+    "impact_summary": "AI業界における安全性を巡る内部の懸念が改めて表面化し、Anthropicの信頼性評価に影響しうる。",
+    "action_suggestion": "退社した研究者の氏名や具体的な警告内容、Anthropicの対応については記事抜粋からは確認できていない。",
+    "importance": "A",
+    "related_categories": [
+      "企業・株式",
+      "規制・法務"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_31383729563ed9e85888",
+    "story_id": "story_a09fdd5f386c82c0cc",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.5257142857142857,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "shared_entity",
+      "same_subject"
+    ]
+  },
+  {
+    "tool": "AI業界・経営重要速報",
     "title": "クアルコムとアマゾン、AI半導体で最大600億ドル規模の長期提携",
     "source_url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1PSE5Ed3RrY3VJUWJONDVESFlaT3AwMC14QllwNWJhQ0pRS0pia3F3MmRneDlvT3VYZ09PcF9wVmpBcUFrYXNMbld3UXdWVWozWlE?oc=5",
     "source_name": "東洋経済オンライン",
@@ -4022,6 +4032,68 @@
     "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
     "article_id": "article_029188fd947f722e6ee7",
     "story_id": "story_5d4731cfeac3edbe12",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "same_event_type",
+      "similar_title",
+      "same_url_content_changed"
+    ]
+  },
+  {
+    "tool": "Microsoft Copilot",
+    "title": "Microsoft Copilotに脆弱性、悪意あるリンクでメールや認証情報が自動窃取される恐れ",
+    "source_url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFB0NFVKRWdDcGN0RGVwbURkYWU4aHZJVnloNGNXNE1wUlhzYVoxa1p2YXFBcW84NU0xNEE5QzFiTFhHbDVXVm9EdXZR?oc=5",
+    "source_name": "news.aibase.com",
+    "is_official": false,
+    "published_at": "2026-08-19T03:28:40.000Z",
+    "source_published_at": "2026-08-19T03:28:40.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-08-19T09:50:11.051Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Microsoft Copilot",
+      "Microsoft",
+      "microsoftcopilot",
+      "microsoft",
+      "copilot"
+    ],
+    "primary_entity": "Microsoft",
+    "story_subject": "Microsoft Copilotの脆弱性",
+    "event_type": "security",
+    "event_stage": "investigating",
+    "event_scope": "Microsoft Copilot利用者全体",
+    "fact_slots": [],
+    "new_facts": [
+      "Microsoft Copilotに確認画面をすり抜ける脆弱性が見つかった",
+      "悪用されるとメール内容や認証情報が自動的に盗まれる恐れがある"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Microsoft Copilotに脆弱性が見つかり、悪意あるリンクを開くと確認画面を回避してメール内容や認証情報が自動的に盗まれる恐れがある。",
+    "detail": "セキュリティ研究者らが、Microsoft Copilotに脆弱性が見つかったと報告しました。Copilotは文章作成やメール処理を助けるAIアシスタント機能です。悪意あるリンクを開くと、本来必要な確認画面をすり抜けてしまう問題が確認されました。\n\nこの脆弱性を悪用されると、メールの内容やログインに使う認証情報が自動的に外部へ送信される恐れがあります。攻撃者は特殊なリンクをメールなどに仕込み、利用者にクリックさせることで情報を盗み出す仕組みだと報じられています。確認画面という安全装置が機能しないため、利用者が気づかないまま被害に遭う可能性がある点が問題視されています。\n\nCopilotを業務で使っている企業や個人は、修正パッチの適用状況を確認する必要があります。見慣れないリンクを不用意に開かないよう注意が必要です。記事では、Microsoftによる修正の有無や具体的な対応時期は明らかにされていません。",
+    "change_summary": "Microsoft Copilotで確認画面をすり抜けて情報を盗む新たな脆弱性が報告された。",
+    "impact_summary": "Copilotを業務利用する企業や個人が、メール内容や認証情報を盗まれる被害に遭う可能性がある。",
+    "action_suggestion": "Microsoftによる修正パッチの提供状況や対応時期を確認する必要がある。",
+    "importance": "A",
+    "related_categories": [
+      "セキュリティ",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_2b5ba0f1aa86decb4572",
+    "story_id": "story_1d09d535f43e4d0898",
     "story_sequence": 1,
     "relation_type": "new",
     "relation_confidence": 1,
