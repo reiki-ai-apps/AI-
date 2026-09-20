@@ -51,6 +51,194 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_b1500dd7dfa3ba9f97cf_rev_bb23befb259a",
+      "story_id": "story_830ea8796d2ec43561",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "生成AIニュース18選:GPTs廃止やClaude大型統合など週刊まとめ動画",
+      "source_published_at": "2026-09-20T06:00:06.000Z",
+      "published_at": "2026-09-20T06:00:06.000Z",
+      "fetched_at": "2026-09-20T07:03:05.791Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "生成AI解説者の池田朋弘氏が、OpenAIのGPTs廃止やClaudeの機能統合など週刊AIニュース18項目を紹介する動画を公開した。",
+      "source_name": "いけともch",
+      "source_url": "https://www.youtube.com/watch?v=Ubyr8F82i2I",
+      "story_entities": [
+        "OpenAI",
+        "Claude",
+        "Anthropic",
+        "openai",
+        "claude"
+      ],
+      "primary_entity": "いけともch(池田朋弘)",
+      "story_subject": "生成AI週刊ニュースまとめ動画(2026年8月31日〜9月6日分)",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "YouTube動画・週刊ニュースまとめ",
+      "fact_slots": [
+        {
+          "type": "date",
+          "scope": "対象期間",
+          "value": "2026-08-31~2026-09-06",
+          "normalized_value": "2026-08-31"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "similar_title",
+        "same_scope",
+        "same_url_content_changed"
+      ],
+      "change_summary": "OpenAIのGPTs廃止やClaudeの大型統合など、直近1週間の生成AIニュース18件が動画でまとめて紹介された。",
+      "detail": "いけともchの池田朋弘氏が、生成AI関連ニュースをまとめた動画を公開した。動画は2026年8月31日から9月6日までの1週間分のAI動向を扱う。ビジネスパーソン向けに主要な生成AIの動きを短時間で紹介する内容である。\n\nOpenAIはカスタムGPT機能を12月から段階的に廃止すると紹介された。Claudeのチャット・共同作業・デザイン機能を統合する刷新も紹介された。Anthropicの研究開発の26%をAIのClaudeが担うとの報告も紹介された。\n\n動画はチャプター一覧をもとに構成され、詳しい発言内容は本文から確認できない。そのため関心のある項目は公式発表など別の情報源で確認する必要がある。動画内容が今後のサービス変更にどうつながるかは明らかにされていない。",
+      "new_facts": [
+        "OpenAIはカスタムGPT機能『GPTs』を12月から段階的に廃止すると紹介された",
+        "Claudeのチャット・共同作業・デザイン機能を統合する刷新が紹介された",
+        "Anthropicの研究開発の26%をAIのClaudeが担っているとの報告が紹介された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_0d8e70c0780b7b26ef47",
+      "story_id": "story_24c1c1a906a602a8ae",
+      "story_sequence": 2,
+      "relation_type": "follow_up",
+      "relation_confidence": 0.9266666666666667,
+      "title": "OpenAI、ChatGPTのLinux向けアプリを公開",
+      "source_published_at": "2026-09-20T05:04:11.000Z",
+      "published_at": "2026-09-20T05:04:11.000Z",
+      "fetched_at": "2026-09-20T09:17:56.602Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "OpenAIがLinuxパソコン向けのChatGPT専用アプリを新たに公開したと報じられ、単純な会話機能以上の機能を持つとされる。",
+      "source_name": "thewincentral.com",
+      "source_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBCUkZPdmtwRVdRZ28wS0hBYWlxMlNaVHZQSVhyaEFNZ3p2RmJzTGxTZm1RU28tRzlkNnpuamVKVmFyQlh5bjduT1l1eFdQUGVvbzFIRUl4ZG9NMVNCUFJjbERXWHJ3d2RaU3Zz?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT",
+        "Linux",
+        "openai",
+        "chatgpt"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT Linux版アプリ",
+      "event_type": "release",
+      "event_stage": "other",
+      "event_scope": "Linuxデスクトップ",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "follow_up",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "same_scope"
+      ],
+      "change_summary": "OpenAIがLinux向けのChatGPTアプリを公開したと報じられた点が新しい。",
+      "detail": "OpenAIが、Linuxというパソコン向けの基本ソフトに対応したChatGPTの専用アプリを新しく公開したと報じられました。ChatGPTはこれまでWindowsやMacのパソコン向けにはアプリがありましたが、Linux版は用意されていませんでした。今回の報道では、単なる文字でのやり取り用アプリ以上の機能を持つとされています。\n\n報道によると、このアプリには追加の機能が備わっているとのことですが、具体的にどのような機能が加わったのかという詳しい説明は、今回の記事では示されていません。搭載機能の一覧や対応バージョンなどの数字も明らかになっていません。\n\nLinuxパソコンを使ってプログラミングなどの作業をしている人にとって、公式アプリが使えるようになれば作業がしやすくなる可能性があります。ただし、この情報を伝えている媒体の信頼性は高いとは言い切れず、OpenAIからの公式発表はまだ確認されていません。今後、公式サイトなどでの正式な案内が待たれます。",
+      "new_facts": [
+        "OpenAIがLinux向けのChatGPTアプリを公開したと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_8d11448b4e9c8ccb061c",
+      "story_id": "story_afe295a140bd71d39b",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5257142857142857,
+      "title": "Anthropic CEOがAI規制の強化を要求",
+      "source_published_at": "2026-09-20T00:21:49.000Z",
+      "published_at": "2026-09-20T00:21:49.000Z",
+      "fetched_at": "2026-09-20T09:17:56.602Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Anthropic CEOがABCニュースの独占取材に応じ、AIに対してより強い規制を導入するよう求めていることが明らかになった。",
+      "source_name": "ABC News - Breaking News, Latest News and Videos",
+      "source_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNTnFDeXdUaGRRY3FzRWFMbVpRbFBrVXVhOHNDWDRMaFQ1T1kzclBENEtWa3R5UDBDQktzb3Z3N0FYUjJsejBwZUY5eURuejdvaFg4eXJrSndRLWdvTGtDcVdwOFdXeHZlVWo4eXJDc3ZGWlg0aTZwak1ySWwtS3hkSzNmdVR3MEhGXzdGRDRjV3dpMzVTOFhDX0o1Z3FBSDBqamfSAacBQVVfeXFMTzVVZEpXZk9NbHhzV241am1weGozclJlMUV6WFd1VFFQSnhoLXhibFlnVnNQaGRsUm5QNjFtT2F4ZXdQUk9BN0VCbHgweEUySVhkMjRHZDROSmRoem1FUGwzTXVVd2wxZWkycDdWZld1RW5JaFJJd0tQMkx2VlkwNG9wS3Z6blByVkFpLV9lbEhjMjNSTDdoQzROTDhPbnlGbTdlRHJIUE0?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "AI規制",
+        "anthropic",
+        "ai規制"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "AnthropicCEOによるAI規制強化の要求",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "米国",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject"
+      ],
+      "change_summary": "Anthropic CEOがAI規制強化を公に求めたことが新たに報じられた。",
+      "detail": "AI企業「Anthropic(アンソロピック)」の最高経営責任者(CEO)が、ABCニュースの独占インタビューでAIに対する規制を強めるよう訴えました。Anthropicは対話AI「Claude(クロード)」を開発する米国企業です。これまでAI企業のトップは規制強化に慎重な発言をすることが多く、今回の発言はその流れとは異なる立場だと報じられています。\n\n記事ではCEOの発言内容の詳細な数字や具体的な規制案はまだ明らかにされていません。ただしAI企業のトップ自らが「規制を強めてほしい」と公に求めるのは珍しく、AI政策を検討する各国政府や議会にとって重要な材料になる可能性があります。\n\n今回の発言がすぐに新しい法律や規則につながるかどうかはまだ分かりません。AIサービスを使う私たちの生活に直接影響が出るまでには時間がかかるとみられます。具体的にどのような規制を求めているのか、対象範囲や実施時期などは記事の抜粋からは確認できません。",
+      "new_facts": [
+        "Anthropic CEOがABCニュースの独占取材でAIへの規制強化を求めたと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_96c5584c629be0cdcc13",
+      "story_id": "story_564c4ce725f92bedd2",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6215384615384616,
+      "title": "DeepSeek、約500億人民元の資金調達を検討 TencentとCATLが出資を検討",
+      "source_published_at": "2026-09-20T00:18:59.000Z",
+      "published_at": "2026-09-20T00:18:59.000Z",
+      "fetched_at": "2026-09-20T09:17:56.602Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "中国AI企業DeepSeekが約500億人民元の資金調達を目指しており、Tencent(騰訊)とCATL(寧徳時代)が出資を検討していると報じられた。",
+      "source_name": "Межа. Новини України.",
+      "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE56THBobXo5T1Z6QnJpaGx5UFRmdi1QM3d3azVCOGFzRE16XzBLdmc0OXBLaGNjSGFQZ241Tk0ycDFYMUhjajA4aXIyTFFDTG92dk9PRnNsUmZZNXhmc0JJNXp2RQ?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "Tencent",
+        "CATL",
+        "deepseek",
+        "tencent"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeekの資金調達(約500億人民元)",
+      "event_type": "funding",
+      "event_stage": "rumor",
+      "event_scope": "中国",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "DeepSeek資金調達目標額",
+          "value": "約500億人民元",
+          "normalized_value": "50000000000"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type",
+        "same_scope"
+      ],
+      "change_summary": "DeepSeekが約500億人民元の資金調達を目指し、TencentとCATLが出資を検討していることが判明した。",
+      "detail": "中国のAI企業DeepSeekが、新たに約500億人民元(中国の通貨)の資金調達を目指していることが報じられた。DeepSeekは、低コストで高性能なAIモデルを開発してきた企業として知られている。今回の調達は、これまでの資金規模に比べて非常に大きい点が特徴だ。\n\n記事によると、出資を検討している企業として、通信・ゲーム大手のTencent(騰訊)と、電池メーカーのCATL(寧徳時代)の名前が挙がっている。両社がどの程度の金額を出資するかなど、具体的な条件はまだ明らかになっていない。大手企業が相次いで出資を検討していることは、DeepSeekへの高い期待を示している。\n\n今回の資金調達が実現すれば、DeepSeekはさらに研究開発や事業拡大に資金を投じられるようになる。ただし、現時点では調達が正式に決まったわけではなく、交渉が続いている段階とみられる。TencentやCATLからの出資が実際に行われるかどうかは、今後の発表を待つ必要がある。",
+      "new_facts": [
+        "DeepSeekが約500億人民元の資金調達を目指していると報じられた",
+        "TencentとCATLが出資を検討していると報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_2946809607c22aa7f7e6",
       "story_id": "story_c8cec54503dee734be",
       "story_sequence": 1,
@@ -146,6 +334,47 @@
       "new_facts": [
         "落合陽一氏の対談動画で、続編が9月21日午前9時に公開予定と案内されている。",
         "動画は「知能コストゼロ」や探索行動、労働の在り方などを扱うテーマ構成になっている。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_9c5c0310db1a059d7d0a",
+      "story_id": "story_e02143fafc8cf903f9",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "テスラ車のGrok、音声でWebページを開く機能をオーナーが発見 公式発表なし",
+      "source_published_at": "2026-09-19T15:48:07.000Z",
+      "published_at": "2026-09-19T15:48:07.000Z",
+      "fetched_at": "2026-09-20T09:17:56.602Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "テスラ車に搭載されたAIアシスタント「Grok」が音声指示でWebページを開けることが、オーナーの投稿で判明した。テスラやxAIからの正式発表はない。",
+      "source_name": "財経新聞",
+      "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5aU0JWdWVUOFJtbVkxOHlPMnUtdU1mYVlPUktRS0NQNmhCWmFsLWYtazZ0QlNwQTlJS1YtU2pCRm1NLWxFcC10STlJYThYaXRPOXRZRW5BMU9HOFZEX093cTJsc9IBaEFVX3lxTFBKaVBmeDh2MlQ1bHVMT0NZdjRNSWtxQUlZazRZYjRMcVVtLVJ4Z0tFSXdKS2poU2NFY0w3aTBaUHl1OXpHRkRYMHVEYXNfa2V4SnZFdWtMeDZJbHRPNU04ZnVKalh1Z0I1?oc=5",
+      "story_entities": [
+        "Grok",
+        "Tesla",
+        "xAI",
+        "grok",
+        "tesla"
+      ],
+      "primary_entity": "xAI",
+      "story_subject": "テスラ車のGrok音声機能",
+      "event_type": "other",
+      "event_stage": "rumor",
+      "event_scope": "Tesla車内Grok機能",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "テスラ車のGrokに、音声指示でWebページを開く機能があることがオーナーの投稿で判明した。",
+      "detail": "テスラ車に搭載されているAI(人工知能)アシスタント「Grok」に、音声で話しかけるとWebページを開ける機能があることが分かった。分かったきっかけは、実際にテスラ車を持つオーナーがSNSに投稿した内容だった。これまでGrokは主に会話や質問応答に使われており、音声だけでWebページを開く機能は公式には案内されていなかった。\n\n今回の情報は、テスラやGrokを開発するxAIからの公式な発表ではなく、オーナーが実際に試して見つけたものだと報じられている。記事では、この機能がどの車種や地域で使えるのか、具体的な操作方法などの詳細は明らかにされていない。正式発表がない機能のため、今後仕様が変わる可能性もある。\n\nテスラ車を利用している人は、音声だけでWebページを開けるようになれば、運転中の操作がより簡単になる可能性がある。ただし公式な情報がないため、動作が安定しているかどうかは分からない。テスラやxAIが今後この機能について正式に説明するかどうかも、まだ発表されていない。",
+      "new_facts": [
+        "テスラ車のGrokに音声でWebページを開く機能があることがオーナーの投稿で判明した",
+        "テスラやxAIからの正式発表はない"
       ],
       "event_date_precision": "unknown"
     },
