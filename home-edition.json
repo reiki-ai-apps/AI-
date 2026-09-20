@@ -7,12 +7,12 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-09-19T22:21:04.451Z",
-  "window_end": "2026-09-20T09:17:56.602Z",
-  "last_window_end": "2026-09-20T09:17:56.602Z",
-  "last_checked_at": "2026-09-20T09:22:09.202Z",
-  "last_published_at": "2026-09-20T09:22:09.202Z",
-  "home_content_changed_at": "2026-09-20T09:22:09.202Z",
+  "window_start": "2026-09-20T09:17:56.602Z",
+  "window_end": "2026-09-20T14:13:27.804Z",
+  "last_window_end": "2026-09-20T14:13:27.804Z",
+  "last_checked_at": "2026-09-20T14:16:30.544Z",
+  "last_published_at": "2026-09-20T14:16:30.544Z",
+  "home_content_changed_at": "2026-09-20T14:16:30.544Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
@@ -22,46 +22,113 @@
   "distinct_candidate_count": 4,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 4,
-  "cross_edition_duplicate_count": 0,
-  "cross_edition_duplicate_groups": [],
+  "novel_candidate_count": 3,
+  "cross_edition_duplicate_count": 1,
+  "cross_edition_duplicate_groups": [
+    {
+      "representative_id": "article_f6ffabc59ee49acafd34",
+      "duplicate_ids": [
+        "article_9da3081f0814395565ec"
+      ]
+    }
+  ],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 4,
-  "continued_selected_count": 1,
+  "new_selected_count": 3,
+  "continued_selected_count": 2,
   "tool_evolution_selected_count": 1,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
+    "article_7d357b2d95ce8b4c3d24",
+    "article_c68cea6820d54b1013cf",
+    "article_8d5cd076f60e6e80675f",
     "article_8d11448b4e9c8ccb061c",
-    "article_96c5584c629be0cdcc13",
-    "article_0d8e70c0780b7b26ef47",
-    "article_9c5c0310db1a059d7d0a",
     "article_705e58731b112d2e403e"
   ],
   "new_article_ids": [
-    "article_8d11448b4e9c8ccb061c",
-    "article_96c5584c629be0cdcc13",
-    "article_0d8e70c0780b7b26ef47",
-    "article_9c5c0310db1a059d7d0a"
+    "article_7d357b2d95ce8b4c3d24",
+    "article_c68cea6820d54b1013cf",
+    "article_8d5cd076f60e6e80675f"
   ],
   "continued_article_ids": [
+    "article_8d11448b4e9c8ccb061c",
     "article_705e58731b112d2e403e"
   ],
   "continuation_sources": {
+    "article_8d11448b4e9c8ccb061c": "previous_edition",
     "article_705e58731b112d2e403e": "previous_edition"
   },
   "scores": {
+    "article_7d357b2d95ce8b4c3d24": {
+      "article_id": "article_7d357b2d95ce8b4c3d24",
+      "total": 95,
+      "breakdown": {
+        "importance": 60,
+        "topicality": 20,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度S",
+        "主要AI企業・基盤",
+        "制度・安全への影響",
+        "重要な経営・研究体制",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-09-20T02:00:00.000Z"
+    },
+    "article_c68cea6820d54b1013cf": {
+      "article_id": "article_c68cea6820d54b1013cf",
+      "total": 86,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 17,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 9,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "制度・安全への影響",
+        "重要な経営・研究体制"
+      ],
+      "published_at": "2026-09-20T13:38:24.000Z"
+    },
+    "article_8d5cd076f60e6e80675f": {
+      "article_id": "article_8d5cd076f60e6e80675f",
+      "total": 38,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 5,
+        "tool_evolution": 0,
+        "penalty": -10
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "未確認情報を減点"
+      ],
+      "published_at": "2026-09-20T11:58:14.000Z"
+    },
     "article_8d11448b4e9c8ccb061c": {
       "article_id": "article_8d11448b4e9c8ccb061c",
-      "total": 82,
+      "total": 80,
       "breakdown": {
         "importance": 45,
         "topicality": 20,
         "scope": 10,
         "authority": 5,
-        "freshness": 2,
+        "freshness": 0,
         "tool_evolution": 0,
         "penalty": 0
       },
@@ -72,64 +139,6 @@
         "重要な経営・研究体制"
       ],
       "published_at": "2026-09-20T00:21:49.000Z"
-    },
-    "article_96c5584c629be0cdcc13": {
-      "article_id": "article_96c5584c629be0cdcc13",
-      "total": 58,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 10,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 2,
-        "tool_evolution": 0,
-        "penalty": -10
-      },
-      "reasons": [
-        "重要度A",
-        "大きな製品・市場変化",
-        "未確認情報を減点"
-      ],
-      "published_at": "2026-09-20T00:18:59.000Z"
-    },
-    "article_0d8e70c0780b7b26ef47": {
-      "article_id": "article_0d8e70c0780b7b26ef47",
-      "total": 39,
-      "breakdown": {
-        "importance": 10,
-        "topicality": 15,
-        "scope": 3,
-        "authority": 5,
-        "freshness": 6,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度C",
-        "主要AI企業・基盤",
-        "大きな製品・市場変化"
-      ],
-      "published_at": "2026-09-20T05:04:11.000Z"
-    },
-    "article_9c5c0310db1a059d7d0a": {
-      "article_id": "article_9c5c0310db1a059d7d0a",
-      "total": 13,
-      "breakdown": {
-        "importance": 10,
-        "topicality": 5,
-        "scope": 3,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": -10
-      },
-      "reasons": [
-        "重要度C",
-        "主要AI企業・基盤",
-        "未確認情報を減点",
-        "遅れて確認できた新着"
-      ],
-      "published_at": "2026-09-19T15:48:07.000Z"
     },
     "article_705e58731b112d2e403e": {
       "article_id": "article_705e58731b112d2e403e",
@@ -667,6 +676,79 @@
       "previous_article_id": "",
       "selected_at": "2026-09-20T09:22:09.202Z",
       "edition_window_end": "2026-09-20T09:17:56.602Z"
+    },
+    {
+      "article_id": "article_7d357b2d95ce8b4c3d24",
+      "story_id": "story_bbb482fe50292c5db0",
+      "title": "アンソロピックCEO、AI開発の減速を要求 「自己改善」と「命令なき攻撃」を転機に",
+      "primary_entity": "Anthropic",
+      "story_subject": "AI開発の減速要求",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "世界",
+      "story_entities": [
+        "Anthropic",
+        "Dario Amodei",
+        "AI安全性",
+        "anthropic",
+        "darioamodei"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-20T14:16:30.544Z",
+      "edition_window_end": "2026-09-20T14:13:27.804Z"
+    },
+    {
+      "article_id": "article_c68cea6820d54b1013cf",
+      "story_id": "story_b994e85f10fa615f7e",
+      "title": "古川大臣、医療DXを医療AXへ 医療情報の2次利用は来年の通常国会目指す",
+      "primary_entity": "古川大臣(日本政府)",
+      "story_subject": "医療情報の2次利用に関する法整備",
+      "event_type": "policy",
+      "event_stage": "planned",
+      "event_scope": "日本",
+      "story_entities": [
+        "古川大臣",
+        "医療DX",
+        "医療AX",
+        "医療dx",
+        "医療ax"
+      ],
+      "fact_slots": [
+        {
+          "type": "date",
+          "scope": "医療情報2次利用の法案提出時期",
+          "value": "来年の通常国会",
+          "normalized_value": "来年の通常国会"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-20T14:16:30.544Z",
+      "edition_window_end": "2026-09-20T14:13:27.804Z"
+    },
+    {
+      "article_id": "article_8d5cd076f60e6e80675f",
+      "story_id": "story_99f35ffece34c91501",
+      "title": "Runway、AI動画生成をリアルタイムで操作できるライブストリーム化を計画",
+      "primary_entity": "Runway",
+      "story_subject": "AI動画生成のリアルタイムライブストリーム機能",
+      "event_type": "other",
+      "event_stage": "rumor",
+      "event_scope": "Runwayのサービス全体",
+      "story_entities": [
+        "Runway",
+        "runway"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-20T14:16:30.544Z",
+      "edition_window_end": "2026-09-20T14:13:27.804Z"
     }
   ]
 }
