@@ -7,12 +7,12 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-09-20T09:17:56.602Z",
-  "window_end": "2026-09-20T14:13:27.804Z",
-  "last_window_end": "2026-09-20T14:13:27.804Z",
-  "last_checked_at": "2026-09-20T14:16:30.544Z",
-  "last_published_at": "2026-09-20T14:16:30.544Z",
-  "home_content_changed_at": "2026-09-20T14:16:30.544Z",
+  "window_start": "2026-09-20T14:13:27.804Z",
+  "window_end": "2026-09-20T22:31:04.911Z",
+  "last_window_end": "2026-09-20T22:31:04.911Z",
+  "last_checked_at": "2026-09-20T22:37:07.067Z",
+  "last_published_at": "2026-09-20T22:37:07.067Z",
+  "home_content_changed_at": "2026-09-20T22:37:07.067Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
@@ -22,45 +22,113 @@
   "distinct_candidate_count": 4,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 3,
-  "cross_edition_duplicate_count": 1,
-  "cross_edition_duplicate_groups": [
-    {
-      "representative_id": "article_f6ffabc59ee49acafd34",
-      "duplicate_ids": [
-        "article_9da3081f0814395565ec"
-      ]
-    }
-  ],
+  "novel_candidate_count": 4,
+  "cross_edition_duplicate_count": 0,
+  "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 3,
-  "continued_selected_count": 2,
-  "tool_evolution_selected_count": 1,
+  "new_selected_count": 4,
+  "continued_selected_count": 1,
+  "tool_evolution_selected_count": 0,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
-    "article_7d357b2d95ce8b4c3d24",
-    "article_c68cea6820d54b1013cf",
-    "article_8d5cd076f60e6e80675f",
-    "article_8d11448b4e9c8ccb061c",
-    "article_705e58731b112d2e403e"
+    "article_5124037096088a2bcea8",
+    "article_46e9f8a9fc1508adce5e",
+    "article_0600db148b88eedafbe2",
+    "article_00a69d931035ed333e78",
+    "article_7d357b2d95ce8b4c3d24"
   ],
   "new_article_ids": [
-    "article_7d357b2d95ce8b4c3d24",
-    "article_c68cea6820d54b1013cf",
-    "article_8d5cd076f60e6e80675f"
+    "article_5124037096088a2bcea8",
+    "article_46e9f8a9fc1508adce5e",
+    "article_0600db148b88eedafbe2",
+    "article_00a69d931035ed333e78"
   ],
   "continued_article_ids": [
-    "article_8d11448b4e9c8ccb061c",
-    "article_705e58731b112d2e403e"
+    "article_7d357b2d95ce8b4c3d24"
   ],
   "continuation_sources": {
-    "article_8d11448b4e9c8ccb061c": "previous_edition",
-    "article_705e58731b112d2e403e": "previous_edition"
+    "article_7d357b2d95ce8b4c3d24": "previous_edition"
   },
   "scores": {
+    "article_5124037096088a2bcea8": {
+      "article_id": "article_5124037096088a2bcea8",
+      "total": 76,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 10,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "制度・安全への影響"
+      ],
+      "published_at": "2026-09-20T22:14:55.000Z"
+    },
+    "article_46e9f8a9fc1508adce5e": {
+      "article_id": "article_46e9f8a9fc1508adce5e",
+      "total": 68,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 20,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 8,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "制度・安全への影響",
+        "大きな製品・市場変化"
+      ],
+      "published_at": "2026-09-20T21:01:54.000Z"
+    },
+    "article_0600db148b88eedafbe2": {
+      "article_id": "article_0600db148b88eedafbe2",
+      "total": 63,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 20,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 7,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "重要な経営・研究体制"
+      ],
+      "published_at": "2026-09-20T19:40:00.000Z"
+    },
+    "article_00a69d931035ed333e78": {
+      "article_id": "article_00a69d931035ed333e78",
+      "total": 53,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 15,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 2,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤",
+        "制度・安全への影響"
+      ],
+      "published_at": "2026-09-20T15:55:50.000Z"
+    },
     "article_7d357b2d95ce8b4c3d24": {
       "article_id": "article_7d357b2d95ce8b4c3d24",
       "total": 95,
@@ -77,175 +145,12 @@
         "重要度S",
         "主要AI企業・基盤",
         "制度・安全への影響",
-        "重要な経営・研究体制",
-        "遅れて確認できた新着"
+        "重要な経営・研究体制"
       ],
       "published_at": "2026-09-20T02:00:00.000Z"
-    },
-    "article_c68cea6820d54b1013cf": {
-      "article_id": "article_c68cea6820d54b1013cf",
-      "total": 86,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 17,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 9,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "制度・安全への影響",
-        "重要な経営・研究体制"
-      ],
-      "published_at": "2026-09-20T13:38:24.000Z"
-    },
-    "article_8d5cd076f60e6e80675f": {
-      "article_id": "article_8d5cd076f60e6e80675f",
-      "total": 38,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 3,
-        "authority": 5,
-        "freshness": 5,
-        "tool_evolution": 0,
-        "penalty": -10
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化",
-        "未確認情報を減点"
-      ],
-      "published_at": "2026-09-20T11:58:14.000Z"
-    },
-    "article_8d11448b4e9c8ccb061c": {
-      "article_id": "article_8d11448b4e9c8ccb061c",
-      "total": 80,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 20,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "主要AI企業・基盤",
-        "制度・安全への影響",
-        "重要な経営・研究体制"
-      ],
-      "published_at": "2026-09-20T00:21:49.000Z"
-    },
-    "article_705e58731b112d2e403e": {
-      "article_id": "article_705e58731b112d2e403e",
-      "total": 83,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 15,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "主要AI企業・基盤",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-09-17T01:25:06.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_a2d6874657c147d0d7f2",
-      "story_id": "story_b54b2eab77215e18a1",
-      "title": "Anthropic、ClaudeのチャットとCoworkを統合しDocsとSlidesツールを追加",
-      "primary_entity": "Anthropic",
-      "story_subject": "Claude ChatとCoworkの統合およびDocs・Slidesツール",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "Claudeアプリ全体",
-      "story_entities": [
-        "Anthropic",
-        "Claude",
-        "Cowork",
-        "anthropic",
-        "claude"
-      ],
-      "fact_slots": [
-        {
-          "type": "other",
-          "scope": "Claude機能統合",
-          "value": "Claude ChatとCoworkの統合",
-          "normalized_value": "claudechatとcoworkの統合"
-        },
-        {
-          "type": "other",
-          "scope": "新機能",
-          "value": "DocsとSlidesツールの追加",
-          "normalized_value": "docsとslidesツールの追加"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-09-17T15:03:06.285Z",
-      "edition_window_end": "2026-09-17T14:59:18.888Z"
-    },
-    {
-      "article_id": "article_2bf79b50897947357db6",
-      "story_id": "story_f10bf3bae39a073f74",
-      "title": "世界ファブレス半導体トップ10が再編、AMDがクアルコムを逆転",
-      "primary_entity": "AMD",
-      "story_subject": "ファブレス半導体トップ10ランキング再編",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "世界",
-      "story_entities": [
-        "AMD",
-        "クアルコム",
-        "amd"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-17T15:03:06.285Z",
-      "edition_window_end": "2026-09-17T14:59:18.888Z"
-    },
-    {
-      "article_id": "article_af9be43e479c367103d7",
-      "story_id": "story_414d6cc70f0afcedb8",
-      "title": "OpenAI調査：AIによる職場タスク倍増が4カ月で発生",
-      "primary_entity": "OpenAI",
-      "story_subject": "OpenAI職場AI利用調査",
-      "event_type": "research",
-      "event_stage": "announced",
-      "event_scope": "職場全般(業種横断)",
-      "story_entities": [
-        "OpenAI",
-        "openai"
-      ],
-      "fact_slots": [
-        {
-          "type": "count",
-          "scope": "AIが関わる職種横断タスク数の増加",
-          "value": "4カ月で2倍",
-          "normalized_value": "4"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-09-17T15:03:06.285Z",
-      "edition_window_end": "2026-09-17T14:59:18.888Z"
-    },
     {
       "article_id": "article_7b6e0d672c2b0716d1ba",
       "story_id": "story_5a4c42775aed266351",
@@ -749,6 +654,102 @@
       "previous_article_id": "",
       "selected_at": "2026-09-20T14:16:30.544Z",
       "edition_window_end": "2026-09-20T14:13:27.804Z"
+    },
+    {
+      "article_id": "article_5124037096088a2bcea8",
+      "story_id": "story_9efd86cc7956811ec0",
+      "title": "Warner Music GroupとSunoが提携、ライセンス楽曲でAI音楽モデルを開発へ",
+      "primary_entity": "Warner Music Group",
+      "story_subject": "Warner Music GroupとSunoの提携",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "音楽業界",
+      "story_entities": [
+        "Warner Music Group",
+        "Suno",
+        "warnermusicgroup",
+        "suno",
+        "warner"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-20T22:37:07.067Z",
+      "edition_window_end": "2026-09-20T22:31:04.911Z"
+    },
+    {
+      "article_id": "article_46e9f8a9fc1508adce5e",
+      "story_id": "story_ad1ebff6aa9069762b",
+      "title": "日本とドイツ、AI・6G分野で連携強化へ",
+      "primary_entity": "日本政府",
+      "story_subject": "日本とドイツのAI・6G連携",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "日本・ドイツ間",
+      "story_entities": [
+        "ドイツ",
+        "広島AIプロセス",
+        "広島aiプロセス"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-20T22:37:07.067Z",
+      "edition_window_end": "2026-09-20T22:31:04.911Z"
+    },
+    {
+      "article_id": "article_0600db148b88eedafbe2",
+      "story_id": "story_485e049a7c8e0890a6",
+      "title": "NVIDIAのジェンスン・フアンCEO、AI開発を巡る「終末論」を否定",
+      "primary_entity": "NVIDIA",
+      "story_subject": "AI開発を巡る終末論への反論",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "AI業界全体",
+      "story_entities": [
+        "NVIDIA",
+        "ジェンスン・フアン",
+        "nvidia",
+        "ジェンスンフアン"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-20T22:37:07.067Z",
+      "edition_window_end": "2026-09-20T22:31:04.911Z"
+    },
+    {
+      "article_id": "article_00a69d931035ed333e78",
+      "story_id": "story_c8efc6a8b06f13f399",
+      "title": "OpenAIの脆弱性発見でClaude Opus 5を使った研究者に1億1500万ルピアの報奨金",
+      "primary_entity": "OpenAI",
+      "story_subject": "OpenAIのバグ報奨金プログラムとClaude Opus 5を使った脆弱性発見",
+      "event_type": "security",
+      "event_stage": "completed",
+      "event_scope": "OpenAIのバグ報奨金プログラム",
+      "story_entities": [
+        "OpenAI",
+        "Claude Opus 5",
+        "openai",
+        "claudeopus5",
+        "anthropic"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "研究者への報奨金",
+          "value": "115,000,000 IDR",
+          "normalized_value": "115000000"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-09-20T22:37:07.067Z",
+      "edition_window_end": "2026-09-20T22:31:04.911Z"
     }
   ]
 }
