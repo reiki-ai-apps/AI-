@@ -7,57 +7,80 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-09-20T22:31:04.911Z",
-  "window_end": "2026-09-21T09:57:27.752Z",
-  "last_window_end": "2026-09-21T09:57:27.752Z",
-  "last_checked_at": "2026-09-21T10:01:50.576Z",
-  "last_published_at": "2026-09-21T10:01:50.576Z",
-  "home_content_changed_at": "2026-09-21T10:01:50.576Z",
+  "window_start": "2026-09-21T09:57:27.752Z",
+  "window_end": "2026-09-21T16:28:19.986Z",
+  "last_window_end": "2026-09-21T16:28:19.986Z",
+  "last_checked_at": "2026-09-21T16:32:12.656Z",
+  "last_published_at": "2026-09-21T16:32:12.656Z",
+  "home_content_changed_at": "2026-09-21T16:32:12.656Z",
   "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 1,
-  "update_health": "DEGRADED",
-  "update_health_reasons": [
-    "今回の新着掲載は0件です。前回の重要記事を継続表示しています"
-  ],
-  "edition_status": "NO_NEW_STORIES",
-  "candidate_count": 0,
-  "distinct_candidate_count": 0,
+  "consecutive_zero_candidate_editions": 0,
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
+  "edition_status": "NEW_STORIES",
+  "candidate_count": 2,
+  "distinct_candidate_count": 2,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 0,
-  "cross_edition_duplicate_count": 0,
-  "cross_edition_duplicate_groups": [],
+  "novel_candidate_count": 1,
+  "cross_edition_duplicate_count": 1,
+  "cross_edition_duplicate_groups": [
+    {
+      "representative_id": "article_8d11448b4e9c8ccb061c",
+      "duplicate_ids": [
+        "article_b926fca07e1ce8e0804e"
+      ]
+    }
+  ],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 0,
-  "continued_selected_count": 5,
+  "new_selected_count": 1,
+  "continued_selected_count": 4,
   "tool_evolution_selected_count": 0,
-  "carried_forward": true,
-  "partially_carried_forward": false,
+  "carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_6bf5a155fb2e84eb4172",
     "article_7d357b2d95ce8b4c3d24",
     "article_8d11448b4e9c8ccb061c",
     "article_c68cea6820d54b1013cf",
-    "article_5124037096088a2bcea8",
-    "article_46e9f8a9fc1508adce5e"
+    "article_5124037096088a2bcea8"
   ],
-  "new_article_ids": [],
+  "new_article_ids": [
+    "article_6bf5a155fb2e84eb4172"
+  ],
   "continued_article_ids": [
     "article_7d357b2d95ce8b4c3d24",
     "article_8d11448b4e9c8ccb061c",
     "article_c68cea6820d54b1013cf",
-    "article_5124037096088a2bcea8",
-    "article_46e9f8a9fc1508adce5e"
+    "article_5124037096088a2bcea8"
   ],
   "continuation_sources": {
     "article_7d357b2d95ce8b4c3d24": "previous_edition",
     "article_8d11448b4e9c8ccb061c": "previous_edition",
     "article_c68cea6820d54b1013cf": "previous_edition",
-    "article_5124037096088a2bcea8": "previous_edition",
-    "article_46e9f8a9fc1508adce5e": "previous_edition"
+    "article_5124037096088a2bcea8": "previous_edition"
   },
   "scores": {
+    "article_6bf5a155fb2e84eb4172": {
+      "article_id": "article_6bf5a155fb2e84eb4172",
+      "total": 49,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 3,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化"
+      ],
+      "published_at": "2026-09-21T11:55:06.000Z"
+    },
     "article_7d357b2d95ce8b4c3d24": {
       "article_id": "article_7d357b2d95ce8b4c3d24",
       "total": 95,
@@ -134,55 +157,9 @@
         "制度・安全への影響"
       ],
       "published_at": "2026-09-20T22:14:55.000Z"
-    },
-    "article_46e9f8a9fc1508adce5e": {
-      "article_id": "article_46e9f8a9fc1508adce5e",
-      "total": 60,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 20,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "制度・安全への影響",
-        "大きな製品・市場変化"
-      ],
-      "published_at": "2026-09-20T21:01:54.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_1d26cbdb901753bcde65",
-      "story_id": "story_1ff4a0e902d2641136",
-      "title": "AIスタートアップManusの評価額が40億ドルに倍増、香港IPOの可能性も",
-      "primary_entity": "Manus",
-      "story_subject": "Manusの評価額倍増と香港IPO検討",
-      "event_type": "funding",
-      "event_stage": "rumor",
-      "event_scope": "香港・グローバル",
-      "story_entities": [
-        "Manus",
-        "manus"
-      ],
-      "fact_slots": [
-        {
-          "type": "amount",
-          "scope": "Manusの企業評価額",
-          "value": "約40億ドル",
-          "normalized_value": "4000000000USD"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-18T14:34:05.775Z",
-      "edition_window_end": "2026-09-18T14:31:04.761Z"
-    },
     {
       "article_id": "article_3e1f7ca92996207e325a",
       "story_id": "story_840e18a2ca777c4e15",
@@ -602,6 +579,27 @@
       "previous_article_id": "",
       "selected_at": "2026-09-20T22:37:07.067Z",
       "edition_window_end": "2026-09-20T22:31:04.911Z"
+    },
+    {
+      "article_id": "article_6bf5a155fb2e84eb4172",
+      "story_id": "story_135e2be1802ca1bd20",
+      "title": "インシリコ・メディシン、匿名のAI企業と提携し生物学向け基盤モデルを商用化へ",
+      "primary_entity": "インシリコ・メディシン",
+      "story_subject": "生物学向け基盤モデルの商用化提携",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "不明",
+      "story_entities": [
+        "インシリコ・メディシン",
+        "生物学向け基盤モデル",
+        "インシリコメディシン"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-21T16:32:12.656Z",
+      "edition_window_end": "2026-09-21T16:28:19.986Z"
     }
   ]
 }
