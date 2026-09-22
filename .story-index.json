@@ -2,6 +2,59 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_9a19196951af49cee0d3",
+      "story_id": "story_3d983a62c21de4fa32",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.82,
+      "title": "Anthropic、「Claude Opus 5.5」を公開 利用コストを4割削減",
+      "source_published_at": "2026-09-22T21:57:43.000Z",
+      "published_at": "2026-09-22T21:57:43.000Z",
+      "fetched_at": "2026-09-22T23:00:24.035Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Anthropicが新モデル「Claude Opus 5.5」を公開し、性能を維持しながら利用コストを4割削減したとITmediaが報じた。",
+      "source_name": "ITmedia",
+      "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1qeWFXSlpoQXAzbXBPZGtKcFZFUmdnSGRpTEhzeUp3RnJRb1BSUjNHYS1Pc0Z3cXFCUlpsTXN1NnNMaFdrN0I3UHBnZ05jLUh0UkxUZVdfbG9zSFhhOVQ2QThOazNMQjNrN0E?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude Opus 5.5",
+        "anthropic",
+        "claudeopus5.5",
+        "claude"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude Opus 5.5",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "API",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "利用コスト削減率",
+          "value": "40%減",
+          "normalized_value": "40%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "material_fact_changed",
+        "low_confidence_follow_up_demoted"
+      ],
+      "change_summary": "Claude Opus 5.5が公開され、同等の性能を保ちながら利用コストが4割削減された。",
+      "detail": "Anthropicは、AIモデルの新版「Claude Opus 5.5」を公開しました。これはチャットAI「Claude」シリーズの上位モデルの更新版にあたります。今回のポイントは、性能を落とさずに使う際の料金を大きく下げた点です。\n\n報道によると、Claude Opus 5.5は「Fable 5.1」という別モデルと同程度の性能を保ちながら、利用コストを4割削減したとされています。利用コストとは、AIを呼び出す際にかかる料金のことで、企業がAIを業務で使う際の負担に直結します。性能を維持したままコストだけを下げられれば、同じ予算でより多くの処理をAIにまかせられるようになります。\n\nAIを業務に取り入れている企業にとっては、同じ品質の応答をより安く得られる可能性があり、コスト計画の見直しにつながります。ただし記事では具体的な料金体系や提供開始時期、対応地域などは明記されておらず、詳細は今後の公式発表を確認する必要があります。",
+      "new_facts": [
+        "Claude Opus 5.5が公開された",
+        "Fable 5.1と同程度の性能とされる",
+        "利用コストが4割削減された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_d1ca0f72af66b65943f7",
       "story_id": "story_e63c589c0cce296032",
       "story_sequence": 1,
@@ -275,6 +328,60 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_da1b8ff08d625c6dbbd6",
+      "story_id": "story_fbd30234f2f835e240",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.82,
+      "title": "DeepSeek、資金調達交渉で評価額が200億ドルから450億ドルへ倍増",
+      "source_published_at": "2026-09-22T11:32:30.000Z",
+      "published_at": "2026-09-22T11:32:30.000Z",
+      "fetched_at": "2026-09-22T23:00:24.035Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "中国のAI企業DeepSeekが資金調達交渉中で、評価額が200億ドルから450億ドルへ倍増したと報じられた。",
+      "source_name": "Межа. Новини України.",
+      "source_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5fY1NJVzYxMjM2WXBsQUgwWTgwVklDRTdpS2ZkLTVRQmh1VlAxWi1PcTVpYXgtSENiZ25PRmZGcmVocGpTRGdfQVhiUnAwZkxsR3RRWV9rb2JWYm11TFFzZnpHZU9lNTZ4QmU3QW1R?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "deepseek"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeekの資金調達交渉",
+      "event_type": "funding",
+      "event_stage": "rumor",
+      "event_scope": "世界",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "DeepSeekの評価額(交渉前)",
+          "value": "200億USドル",
+          "normalized_value": "20000000000USD"
+        },
+        {
+          "type": "amount",
+          "scope": "DeepSeekの評価額(交渉後)",
+          "value": "450億USドル",
+          "normalized_value": "45000000000USD"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "material_fact_changed",
+        "low_confidence_follow_up_demoted"
+      ],
+      "change_summary": "DeepSeekの評価額が資金調達交渉で200億ドルから450億ドルへ倍増したと報じられた。",
+      "detail": "中国のAIスタートアップ企業DeepSeekが、新たな資金調達に向けて投資家と交渉していると報じられた。DeepSeekは、低コストで高性能なAIモデルを開発し話題になった企業である。今回の交渉では、企業価値を示す評価額が従来より大きく引き上げられている。\n\n報道によると、DeepSeekの評価額は当初の200億ドルから、今回の交渉ではおよそ450億ドルへ倍増したという。評価額は投資家が企業の将来性をどれだけ高く見積もっているかを示す指標だ。中国発のAI企業がこれほど短期間で評価額を倍増させた例は珍しく、AI業界への資金流入を示す動きとして注目されている。\n\n交渉が成立すれば、DeepSeekはより多くの資金を得て研究開発を加速できる可能性がある。ただし記事の時点では交渉は継続中で、出資する投資家名や最終合意の時期は明らかになっていない。契約が正式に成立するかどうかは今後の発表を待つ必要がある。",
+      "new_facts": [
+        "DeepSeekは資金調達交渉中で評価額が200億ドルから450億ドルへ倍増したと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_4def09c3a58347a071d5",
       "story_id": "story_49f6908400d3096be6",
       "story_sequence": 1,
@@ -369,6 +476,52 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_de027e2b53ac74e430f5",
+      "story_id": "story_58ccf4d534ca2e5524",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6648,
+      "title": "AMD、時価総額が1兆ドルを突破 AI半導体需要が押し上げ",
+      "source_published_at": "2026-09-21T23:52:30.000Z",
+      "published_at": "2026-09-21T23:52:30.000Z",
+      "fetched_at": "2026-09-22T23:00:24.035Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "半導体大手AMDの時価総額が1兆ドルを突破し、AI半導体需要の拡大が株価急伸の背景として報じられた。",
+      "source_name": "디지털투데이",
+      "source_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQTXdOWjF3U0dsTENKN2RkZWRXc2k5YWFpemxtQ1VPaHotdWNYaXJCMVEwQmdzdmhvVmxOUnB2VHFsLTI1SUlWUmVhUU9SLWVKNTM1c2s0MlVWUU5IOVdEX1FIN0VPdEZ1S3dWcFpoQmF6R1pOZHZXVUJyRUxZSDREaV9XLVZPTm0yVGY5UHA1TlR4RHFuOWQ3ZWw0c2lWNlJpUTVEeU9IVjJMUE5rbGZzZTVJT1dCMGs?oc=5",
+      "story_entities": [
+        "AMD",
+        "amd"
+      ],
+      "primary_entity": "AMD",
+      "story_subject": "AMDの時価総額1兆ドル突破",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "世界",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "AMDの時価総額",
+          "value": "1兆USドル",
+          "normalized_value": "1000000000000USD"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "AMDの時価総額が1兆ドルを突破し、AI半導体需要の拡大が株価上昇の背景として報じられた。",
+      "detail": "半導体大手のAMDが、株式市場で時価総額1兆ドルを突破したと報じられた。時価総額とは、株価に発行済み株式数を掛けた金額で、企業の市場での評価額を表す。AMDがこの節目を超えたのは、AI（人工知能）向け半導体への需要拡大が背景にあるとされる。\n\n報道によれば、AMDの株価はAI半導体需要の高まりを追い風に急伸し、時価総額が1兆ドルに達した。AI半導体は、AIの計算処理を高速に行うための専用チップで、データセンターなどで大量に導入されている。時価総額1兆ドルという水準は、これまで一部の巨大IT企業しか到達していない規模であり、AMDの成長を象徴する数字といえる。\n\nAMDの株価上昇は、AI関連銘柄への投資家の期待の高さを反映している。ただし記事の時点では、時価総額を押し上げた具体的な受注状況や今後の業績見通しについては明らかにされていない。株価は市場動向により変動するため、今後の推移を注視する必要がある。",
+      "new_facts": [
+        "AMDの時価総額が1兆ドルを突破したと報じられた",
+        "AI半導体需要の拡大が株価急伸の背景とされている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_85cb81b16969e6d61292",
       "story_id": "story_0e186cbfd9178ecda6",
       "story_sequence": 1,
@@ -411,6 +564,53 @@
       "new_facts": [
         "onsemiが異なる半導体をシリコン内に集積する技術EPPを発表した",
         "AI電源やEVの小型化への応用を目指すとされている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_85b649074391dd518d0d",
+      "story_id": "story_58ccf4d534ca2e5524",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AMD、時価総額が史上初めて1兆ドルを超える",
+      "source_published_at": "2026-09-21T22:17:55.000Z",
+      "published_at": "2026-09-21T22:17:55.000Z",
+      "fetched_at": "2026-09-22T23:00:24.035Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "半導体企業AMDの時価総額がAI半導体市場の成長を背景に史上初めて1兆ドルを突破したと報じられた。",
+      "source_name": "매일경제",
+      "source_url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE8yeFhtUGlmdEdaNENRWHZrdTZOUFlpZVl3cnh5ZmVrSkRMUFZKa1VaaERrOFllcHYyT0ZHTFZUbXJ0MExiMWVzbldkYw?oc=5",
+      "story_entities": [
+        "AMD",
+        "NVIDIA",
+        "amd",
+        "nvidia"
+      ],
+      "primary_entity": "AMD",
+      "story_subject": "AMDの時価総額1兆ドル突破",
+      "event_type": "other",
+      "event_stage": "completed",
+      "event_scope": "米国株式市場",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "AMDの時価総額",
+          "value": "1兆ドル",
+          "normalized_value": "1000000000000USD"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AMDの時価総額が史上初めて1兆ドルを超えたと報じられた。",
+      "detail": "半導体企業AMDの株価が上昇し、会社全体の価値を示す時価総額が史上初めて1兆ドルを超えたと報じられた。簡単にいうと、投資家がAMDの株式をこれまでより高く評価するようになったという内容である。これまでAI半導体市場ではNVIDIA（エヌビディア）が圧倒的な存在感を持っていたが、その状況に変化が生まれつつある。\n\n記事によると、AIを使うデータセンターへの投資が続く中で、これまでNVIDIAに集中していたAI半導体ブームの恩恵がAMDなど競合企業にも広がっているという。AI半導体とは、AIの計算を高速に処理するための専用の電子部品のことを指す。市場全体の成長がAMDの株価上昇を後押ししたとされている。\n\nAI関連の投資判断において、NVIDIA一強からの変化を示す動きとして注目される。ただし、具体的な株価の水準や達成した日時、他にどんな要因が影響したのかは記事に明記されていない。今後この流れが続くのか、他の半導体企業にも波及するのかはまだ分かっていない。",
+      "new_facts": [
+        "AMDの時価総額が史上初めて1兆ドルを超えた",
+        "AI半導体市場の成長がAMDの株価上昇を後押ししたとされている"
       ],
       "event_date_precision": "unknown"
     },
@@ -528,6 +728,133 @@
       "new_facts": [
         "インシリコ・メディシンが匿名のAI企業と提携すると発表した",
         "生物学向け基盤モデルの商用化を目指す"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_dec7f8d95d2a0ab78730",
+      "story_id": "story_7a0e17256766e25f52",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "OpenAI会長のシエラ、コールセンター向けAIエージェントを解説 日本統括が出演",
+      "source_published_at": "2026-09-21T10:00:02.000Z",
+      "published_at": "2026-09-21T10:00:02.000Z",
+      "fetched_at": "2026-09-22T23:00:24.035Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "OpenAI会長ブレット・テイラー氏率いるシエラの日本統括・森川馨太氏が、コールセンター向けAIエージェントの仕組みと導入事例を語った。",
+      "source_name": "TBS CROSS DIG with Bloomberg",
+      "source_url": "https://www.youtube.com/watch?v=q4WkxfqEcpo",
+      "story_entities": [
+        "Sierra",
+        "ブレット・テイラー",
+        "OPERA TECH",
+        "sierra",
+        "ブレットテイラー"
+      ],
+      "primary_entity": "Sierra",
+      "story_subject": "コールセンター向けAIエージェント",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "日本市場(コールセンター向けAIエージェント)",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "シエラの企業価値",
+          "value": "約2兆5000億円",
+          "normalized_value": "2000000000000JPY"
+        },
+        {
+          "type": "date",
+          "scope": "OPERA TECH買収",
+          "value": "2026年3月",
+          "normalized_value": "2026年3月"
+        },
+        {
+          "type": "other",
+          "scope": "顧客満足度",
+          "value": "93%",
+          "normalized_value": "93%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "シエラの日本統括者が、コールセンター向けAIエージェントの仕組みと具体的な導入事例を初めて詳しく解説する内容になっている。",
+      "detail": "TBSの番組「1on1 Tech」が、AI企業シエラの日本統括者に取材した。シエラは対話型AIでコールセンター対応を担う企業である。出演した森川馨太氏は、自身が創業したOPERA TECHがシエラに買収された経緯を語る。\n\nシエラの企業価値は約2兆5000億円とされ、ユニコーンを超える規模である。番組では、AIが本人確認から料金プラン変更まで対応する実演が紹介される。導入事例として顧客満足度93%という数値が示されている。\n\nソフトバンクの孫正義氏がこのAIを高く評価し、協業に至った経緯も語られる。コールセンター業務から人がいなくなるのかという論点も扱われる。具体的な契約条件や成果指標の詳細は、この時点では明らかにされていない。",
+      "new_facts": [
+        "シエラの企業価値は約2兆5000億円とされる",
+        "森川馨太氏が創業したOPERA TECHは2026年にシエラに買収された",
+        "導入事例として顧客満足度93%という数値が紹介されている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_dec7f8d95d2a0ab78730_rev_5ea559b0a512",
+      "story_id": "story_7a0e17256766e25f52",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "OpenAI会長のシエラ、コールセンター向けAIエージェントを解説 日本統括が出演",
+      "source_published_at": "2026-09-21T10:00:02.000Z",
+      "published_at": "2026-09-21T10:00:02.000Z",
+      "fetched_at": "2026-09-22T23:00:24.035Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "OpenAI会長ブレット・テイラー氏率いるシエラの日本統括・森川馨太氏が、コールセンター向けAIエージェントの仕組みと導入事例を語った。",
+      "source_name": "TBS CROSS DIG with Bloomberg",
+      "source_url": "https://www.youtube.com/watch?v=q4WkxfqEcpo",
+      "story_entities": [
+        "Sierra",
+        "ブレット・テイラー",
+        "OPERA TECH",
+        "sierra",
+        "ブレットテイラー"
+      ],
+      "primary_entity": "Sierra",
+      "story_subject": "コールセンター向けAIエージェント",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "日本市場(コールセンター向けAIエージェント)",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "シエラの企業価値",
+          "value": "約2兆5000億円",
+          "normalized_value": "2000000000000JPY"
+        },
+        {
+          "type": "date",
+          "scope": "OPERA TECH買収",
+          "value": "2026年3月",
+          "normalized_value": "2026年3月"
+        },
+        {
+          "type": "other",
+          "scope": "顧客満足度",
+          "value": "93%",
+          "normalized_value": "93%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "similar_title",
+        "same_scope",
+        "same_url_content_changed"
+      ],
+      "change_summary": "シエラの日本統括者が、コールセンター向けAIエージェントの仕組みと具体的な導入事例を初めて詳しく解説する内容になっている。",
+      "detail": "TBSの番組「1on1 Tech」が、AI企業シエラの日本統括者に取材した。シエラは対話型AIでコールセンター対応を担う企業である。出演した森川馨太氏は、自身が創業したOPERA TECHがシエラに買収された経緯を語る。\n\nシエラの企業価値は約2兆5000億円とされ、ユニコーンを超える規模である。番組では、AIが本人確認から料金プラン変更まで対応する実演が紹介される。導入事例として顧客満足度93%という数値が示されている。\n\nソフトバンクの孫正義氏がこのAIを高く評価し、協業に至った経緯も語られる。コールセンター業務から人がいなくなるのかという論点も扱われる。具体的な契約条件や成果指標の詳細は、この時点では明らかにされていない。",
+      "new_facts": [
+        "シエラの企業価値は約2兆5000億円とされる",
+        "森川馨太氏が創業したOPERA TECHは2026年にシエラに買収された",
+        "導入事例として顧客満足度93%という数値が紹介されている"
       ],
       "event_date_precision": "unknown"
     },
