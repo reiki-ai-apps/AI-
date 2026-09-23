@@ -2,6 +2,150 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_ed86eaa2912de3b1ea63",
+      "story_id": "story_dd60c3c3efe9ab6ec6",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Gravwellがセキュリティ運用チーム向けにAIエージェント5種類を発表",
+      "source_published_at": "2026-09-23T08:00:00.000Z",
+      "published_at": "2026-09-23T08:00:00.000Z",
+      "fetched_at": "2026-09-23T09:19:30.734Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "セキュリティ企業Gravwellが、企業のセキュリティ運用チームを支援する5種類のAIエージェントを新たに発表した。",
+      "source_name": "IT Brief UK",
+      "source_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxONjdPYXFJWjVEUHZ5elBsXzdueW80blJmV25TdGY5VnZ5czd1MTRLNW00WEktX2FmcXZEeUJHRVZoZXJNYzFTZFV5Wm4xN21MMEZkTG9BSWVJSzBtb2ZVekNrZFRLbkVCX1ZnTWUyRE9fOWt2NkJ5MTFVVHprWUFqUmZnaVU?oc=5",
+      "story_entities": [
+        "Gravwell",
+        "gravwell"
+      ],
+      "primary_entity": "Gravwell",
+      "story_subject": "5種類のAIエージェント",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "セキュリティチーム向け",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "発表されたAIエージェントの数",
+          "value": "5",
+          "normalized_value": "5"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Gravwellがセキュリティ運用チーム向けの新しいAIエージェントを5種類まとめて発表した。",
+      "detail": "セキュリティ企業のGravwellが、企業のセキュリティ担当チームを助けるためのAIエージェントを5種類発表しました。AIエージェントとは、人が指示した作業を自動で判断しながら進めるAIの仕組みのことです。これまで人が手作業で行っていたセキュリティ監視や対応の一部を、AIが代わりに担う狙いがあります。\n\n発表内容では、5種類のエージェントがそれぞれ異なる役割を持つとされていますが、詳細な機能や名称は記事内で明らかにされていません。セキュリティ業務は人手不足が課題になりやすい分野で、AIによる自動化はその負担を減らす手段として注目されています。\n\n企業のセキュリティ担当者にとっては、監視や初期対応の一部をAIに任せられる可能性があります。ただし、どの業務をどこまでAIに委ねられるか、導入条件や料金などはまだ公表されていません。今後の詳細発表を確認する必要があります。",
+      "new_facts": [
+        "Gravwellがセキュリティ運用チーム向けに5種類のAIエージェントを発表した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_d7f44eaaf0c74e1fa4c5",
+      "story_id": "story_3d983a62c21de4fa32",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.8457142857142858,
+      "title": "Anthropicが「Claude Opus 5.5」を発表、コスト40％減・処理速度30％以上向上",
+      "source_published_at": "2026-09-23T05:30:00.000Z",
+      "published_at": "2026-09-23T05:30:00.000Z",
+      "fetched_at": "2026-09-23T09:19:30.734Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "AnthropicがAIモデル「Claude Opus 5.5」を発表し、従来のOpus 5と比べてコストを40％削減し処理速度も30％以上向上させたと明らかにした。",
+      "source_name": "GIGAZINE",
+      "source_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1NOWt3UWhiX01xSFBXWFFxWEM3LVhGTVVNaTFOZEtOVnZZejBYTkY3c1BHT1ZPc3ljc1VIV09GQjdzaTZVajEzbm1BUFdJZmFKdlJOcXlXQmFwOXkyWTFYOA?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude Opus 5.5",
+        "Claude Opus 5",
+        "anthropic",
+        "claudeopus5.5"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude Opus 5.5",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "API・全世界",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "コスト削減率",
+          "value": "40%",
+          "normalized_value": "40%"
+        },
+        {
+          "type": "amount",
+          "scope": "処理速度向上率",
+          "value": "30%以上",
+          "normalized_value": "30%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "non_forward_stage_change"
+      ],
+      "change_summary": "Claude Opus 5.5が登場し、コストと処理速度、コーディング性能が改善された。",
+      "detail": "Anthropicが新しいAIモデル「Claude Opus 5.5」を発表しました。簡単に言うと、文章作成やプログラミングを助けるAIの新しいバージョンです。従来モデルの「Claude Opus 5」に比べて、利用にかかる費用や処理の速さが改善されたとされています。\n\n具体的には、Opus 5と比較してコストが40％減り、処理速度も30％以上速くなったと報じられています。プログラムのコードを書く性能も向上したとされています。AIモデルは費用と速さのバランスが利用者にとって重要な判断材料になるため、この改善は実際の利用場面に直結します。\n\nClaude Opus 5.5を使うユーザーは、これまでより安く速くAIを利用できるようになる可能性があります。ただし、記事では料金プランの詳しい適用時期や対応環境については明記されていません。今後の公式発表を確認する必要があります。",
+      "new_facts": [
+        "Anthropicが「Claude Opus 5.5」を発表した",
+        "Opus 5と比べてコストが40%減少した",
+        "処理速度が30%以上向上した",
+        "コーディング性能も向上したとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_3cc82dede5f41275056c",
+      "story_id": "story_775e4bcdfafb84f5e7",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "トランプ米大統領、AI新組織「AI Force」創設を表明",
+      "source_published_at": "2026-09-23T05:22:04.000Z",
+      "published_at": "2026-09-23T05:22:04.000Z",
+      "fetched_at": "2026-09-23T09:19:30.734Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "トランプ米大統領がAI政策を統括する新組織「AI Force」の創設を発表し、責任者となる「AI Czar」も近く発表されると述べた。",
+      "source_name": "Ledge.ai",
+      "source_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1rNzB3VXUwQXBRN2FRSmJ4UXd0dnAyZHJSdHZxZWhiMEZ5QUY3SHByQk9vaENBZ0tjMnA0bmR0Ni1HaWd2WlBxcWY0VzltZzlJMkt4NWYxbUloZVJD?oc=5",
+      "story_entities": [
+        "トランプ大統領",
+        "AI Force",
+        "AI Czar",
+        "aiforce",
+        "aiczar"
+      ],
+      "primary_entity": "トランプ政権",
+      "story_subject": "AI Force創設",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "米国",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "トランプ大統領がAI政策の司令塔となる新組織「AI Force」創設を発表し、責任者「AI Czar」も近く公表される。",
+      "detail": "トランプ米大統領が、AI政策を専門に扱う新しい政府組織「AI Force」を作ると発表しました。かんたんに言うと、AIに関する国の方針を一つの部署でまとめて決める仕組みです。これまでは複数の省庁がそれぞれAI関連の対応をしていたと見られ、今回のAI Force創設はその体制を変える動きになります。\n\n発表では、AI Forceの責任者となる「AI Czar」という役職も近いうちに公表されると伝えられています。「Czar」とは特定分野の政策を一人で統括する担当者を指す言葉で、AI版の司令塔役を意味します。誰が任命されるかはまだ明らかにされていません。\n\n米国のAI政策が一本化されれば、AI企業への規制や支援の方向性が今後変わる可能性があります。日本企業が米国でAI事業を展開する場合、新しい組織の方針を今後確認する必要があります。AI Czarの人選や具体的な権限、組織の詳しい業務範囲は今後の発表を待つ必要があります。",
+      "new_facts": [
+        "トランプ大統領がAI政策を統括する新組織「AI Force」の創設を発表した",
+        "AI政策の責任者となる「AI Czar」も近く発表される予定であると伝えられている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_9a19196951af49cee0d3",
       "story_id": "story_3d983a62c21de4fa32",
       "story_sequence": 1,
