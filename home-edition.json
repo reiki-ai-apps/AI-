@@ -7,99 +7,64 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-09-22T23:00:24.035Z",
-  "window_end": "2026-09-23T09:19:30.734Z",
-  "last_window_end": "2026-09-23T09:19:30.734Z",
-  "last_checked_at": "2026-09-23T09:23:50.942Z",
-  "last_published_at": "2026-09-23T09:23:50.942Z",
-  "home_content_changed_at": "2026-09-23T09:23:50.942Z",
+  "window_start": "2026-09-23T09:19:30.734Z",
+  "window_end": "2026-09-23T15:00:37.335Z",
+  "last_window_end": "2026-09-23T15:00:37.335Z",
+  "last_checked_at": "2026-09-23T15:04:15.117Z",
+  "last_published_at": "2026-09-23T15:04:15.117Z",
+  "home_content_changed_at": "2026-09-23T15:04:15.117Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
-  "update_health": "HEALTHY",
-  "update_health_reasons": [],
-  "edition_status": "NEW_STORIES",
-  "candidate_count": 3,
-  "distinct_candidate_count": 3,
+  "update_health": "DEGRADED",
+  "update_health_reasons": [
+    "今回の新着掲載は0件です。前回の重要記事を継続表示しています"
+  ],
+  "edition_status": "NO_NEW_STORIES",
+  "candidate_count": 1,
+  "distinct_candidate_count": 1,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 2,
+  "novel_candidate_count": 0,
   "cross_edition_duplicate_count": 1,
   "cross_edition_duplicate_groups": [
     {
-      "representative_id": "article_47a1ea1a3a062ead3b63",
+      "representative_id": "article_9a19196951af49cee0d3",
       "duplicate_ids": [
-        "article_d7f44eaaf0c74e1fa4c5"
+        "article_8fc61f69916fd637e338"
       ]
     }
   ],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 2,
-  "continued_selected_count": 3,
+  "new_selected_count": 0,
+  "continued_selected_count": 5,
   "tool_evolution_selected_count": 2,
-  "carried_forward": false,
-  "partially_carried_forward": true,
+  "carried_forward": true,
+  "partially_carried_forward": false,
   "article_ids": [
-    "article_3cc82dede5f41275056c",
-    "article_ed86eaa2912de3b1ea63",
     "article_7d357b2d95ce8b4c3d24",
     "article_9a19196951af49cee0d3",
-    "article_4f0f28f56015e3a7d514"
-  ],
-  "new_article_ids": [
     "article_3cc82dede5f41275056c",
+    "article_4f0f28f56015e3a7d514",
     "article_ed86eaa2912de3b1ea63"
   ],
+  "new_article_ids": [],
   "continued_article_ids": [
     "article_7d357b2d95ce8b4c3d24",
     "article_9a19196951af49cee0d3",
-    "article_4f0f28f56015e3a7d514"
+    "article_3cc82dede5f41275056c",
+    "article_4f0f28f56015e3a7d514",
+    "article_ed86eaa2912de3b1ea63"
   ],
   "continuation_sources": {
     "article_7d357b2d95ce8b4c3d24": "previous_edition",
     "article_9a19196951af49cee0d3": "previous_edition",
-    "article_4f0f28f56015e3a7d514": "previous_edition"
+    "article_3cc82dede5f41275056c": "previous_edition",
+    "article_4f0f28f56015e3a7d514": "previous_edition",
+    "article_ed86eaa2912de3b1ea63": "previous_edition"
   },
   "scores": {
-    "article_3cc82dede5f41275056c": {
-      "article_id": "article_3cc82dede5f41275056c",
-      "total": 76,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 10,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 6,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "制度・安全への影響"
-      ],
-      "published_at": "2026-09-23T05:22:04.000Z"
-    },
-    "article_ed86eaa2912de3b1ea63": {
-      "article_id": "article_ed86eaa2912de3b1ea63",
-      "total": 73,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 20,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 9,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "制度・安全への影響",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-09-23T08:00:00.000Z"
-    },
     "article_7d357b2d95ce8b4c3d24": {
       "article_id": "article_7d357b2d95ce8b4c3d24",
       "total": 95,
@@ -140,6 +105,24 @@
       ],
       "published_at": "2026-09-22T21:57:43.000Z"
     },
+    "article_3cc82dede5f41275056c": {
+      "article_id": "article_3cc82dede5f41275056c",
+      "total": 70,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 10,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "制度・安全への影響"
+      ],
+      "published_at": "2026-09-23T05:22:04.000Z"
+    },
     "article_4f0f28f56015e3a7d514": {
       "article_id": "article_4f0f28f56015e3a7d514",
       "total": 71,
@@ -158,180 +141,29 @@
         "制度・安全への影響"
       ],
       "published_at": "2026-09-22T13:35:00.000Z"
+    },
+    "article_ed86eaa2912de3b1ea63": {
+      "article_id": "article_ed86eaa2912de3b1ea63",
+      "total": 64,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 20,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "制度・安全への影響",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-09-23T08:00:00.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_8d11448b4e9c8ccb061c",
-      "story_id": "story_afe295a140bd71d39b",
-      "title": "Anthropic CEOがAI規制の強化を要求",
-      "primary_entity": "Anthropic",
-      "story_subject": "AnthropicCEOによるAI規制強化の要求",
-      "event_type": "policy",
-      "event_stage": "announced",
-      "event_scope": "米国",
-      "story_entities": [
-        "Anthropic",
-        "AI規制",
-        "anthropic",
-        "ai規制"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-09-20T09:22:09.202Z",
-      "edition_window_end": "2026-09-20T09:17:56.602Z"
-    },
-    {
-      "article_id": "article_96c5584c629be0cdcc13",
-      "story_id": "story_564c4ce725f92bedd2",
-      "title": "DeepSeek、約500億人民元の資金調達を検討 TencentとCATLが出資を検討",
-      "primary_entity": "DeepSeek",
-      "story_subject": "DeepSeekの資金調達(約500億人民元)",
-      "event_type": "funding",
-      "event_stage": "rumor",
-      "event_scope": "中国",
-      "story_entities": [
-        "DeepSeek",
-        "Tencent",
-        "CATL",
-        "deepseek",
-        "tencent"
-      ],
-      "fact_slots": [
-        {
-          "type": "amount",
-          "scope": "DeepSeek資金調達目標額",
-          "value": "約500億人民元",
-          "normalized_value": "50000000000"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-09-20T09:22:09.202Z",
-      "edition_window_end": "2026-09-20T09:17:56.602Z"
-    },
-    {
-      "article_id": "article_0d8e70c0780b7b26ef47",
-      "story_id": "story_24c1c1a906a602a8ae",
-      "title": "OpenAI、ChatGPTのLinux向けアプリを公開",
-      "primary_entity": "OpenAI",
-      "story_subject": "ChatGPT Linux版アプリ",
-      "event_type": "release",
-      "event_stage": "other",
-      "event_scope": "Linuxデスクトップ",
-      "story_entities": [
-        "OpenAI",
-        "ChatGPT",
-        "Linux",
-        "openai",
-        "chatgpt"
-      ],
-      "fact_slots": [],
-      "relation_type": "follow_up",
-      "dedupe_decision": "follow_up",
-      "previous_article_id": "article_6fdcb752e88bfc6af698",
-      "selected_at": "2026-09-20T09:22:09.202Z",
-      "edition_window_end": "2026-09-20T09:17:56.602Z"
-    },
-    {
-      "article_id": "article_9c5c0310db1a059d7d0a",
-      "story_id": "story_e02143fafc8cf903f9",
-      "title": "テスラ車のGrok、音声でWebページを開く機能をオーナーが発見 公式発表なし",
-      "primary_entity": "xAI",
-      "story_subject": "テスラ車のGrok音声機能",
-      "event_type": "other",
-      "event_stage": "rumor",
-      "event_scope": "Tesla車内Grok機能",
-      "story_entities": [
-        "Grok",
-        "Tesla",
-        "xAI",
-        "grok",
-        "tesla"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-20T09:22:09.202Z",
-      "edition_window_end": "2026-09-20T09:17:56.602Z"
-    },
-    {
-      "article_id": "article_7d357b2d95ce8b4c3d24",
-      "story_id": "story_bbb482fe50292c5db0",
-      "title": "アンソロピックCEO、AI開発の減速を要求 「自己改善」と「命令なき攻撃」を転機に",
-      "primary_entity": "Anthropic",
-      "story_subject": "AI開発の減速要求",
-      "event_type": "policy",
-      "event_stage": "other",
-      "event_scope": "世界",
-      "story_entities": [
-        "Anthropic",
-        "Dario Amodei",
-        "AI安全性",
-        "anthropic",
-        "darioamodei"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-20T14:16:30.544Z",
-      "edition_window_end": "2026-09-20T14:13:27.804Z"
-    },
-    {
-      "article_id": "article_c68cea6820d54b1013cf",
-      "story_id": "story_b994e85f10fa615f7e",
-      "title": "古川大臣、医療DXを医療AXへ 医療情報の2次利用は来年の通常国会目指す",
-      "primary_entity": "古川大臣(日本政府)",
-      "story_subject": "医療情報の2次利用に関する法整備",
-      "event_type": "policy",
-      "event_stage": "planned",
-      "event_scope": "日本",
-      "story_entities": [
-        "古川大臣",
-        "医療DX",
-        "医療AX",
-        "医療dx",
-        "医療ax"
-      ],
-      "fact_slots": [
-        {
-          "type": "date",
-          "scope": "医療情報2次利用の法案提出時期",
-          "value": "来年の通常国会",
-          "normalized_value": "来年の通常国会"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-20T14:16:30.544Z",
-      "edition_window_end": "2026-09-20T14:13:27.804Z"
-    },
-    {
-      "article_id": "article_8d5cd076f60e6e80675f",
-      "story_id": "story_99f35ffece34c91501",
-      "title": "Runway、AI動画生成をリアルタイムで操作できるライブストリーム化を計画",
-      "primary_entity": "Runway",
-      "story_subject": "AI動画生成のリアルタイムライブストリーム機能",
-      "event_type": "other",
-      "event_stage": "rumor",
-      "event_scope": "Runwayのサービス全体",
-      "story_entities": [
-        "Runway",
-        "runway"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-20T14:16:30.544Z",
-      "edition_window_end": "2026-09-20T14:13:27.804Z"
-    },
     {
       "article_id": "article_5124037096088a2bcea8",
       "story_id": "story_9efd86cc7956811ec0",

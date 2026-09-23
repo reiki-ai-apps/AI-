@@ -1,5 +1,95 @@
 [
   {
+    "tool": "Claude / Claude Code",
+    "content_type": "article",
+    "expert_id": "",
+    "expert_ids": [],
+    "expert_name": "",
+    "expert_names": [],
+    "expert_role": "",
+    "expert_tier": "",
+    "platform": "",
+    "video_id": "",
+    "source_trust": "",
+    "title": "Anthropic、「Claude Opus 5.5」を公開 出力速度3割向上・運用コスト4割減",
+    "source_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNd0Y4cEtJeElxa3RmSnRGd1o2d1JmTGRsWnNHM19FdVNqSTJ6aDByNTlNYnpTXzZHUEx1WlZCSTQ0Yld5RGpDMmx5Ym1kX2pRNWg5RkEyOERRTDBTQ3FDVk9sTWtaUGM3TFFCQ09sZVhkekVieTYwNU5NT0UyM2NvaDVpa0l3STIyTS1VQ1loUHBTSG1zSHNUZk1DaHZKckNvM3pqLW92NzFJTzhqclk5eUlYVllLWmJheGh1bGN3NnVMUVU?oc=5",
+    "source_name": "디지털투데이",
+    "is_official": false,
+    "published_at": "2026-09-23T11:40:01.000Z",
+    "source_published_at": "2026-09-23T11:40:01.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-09-23T15:00:37.335Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Anthropic",
+      "Claude Opus 5.5",
+      "anthropic",
+      "claudeopus5.5",
+      "claude"
+    ],
+    "primary_entity": "Anthropic",
+    "story_subject": "Claude Opus 5.5",
+    "event_type": "release",
+    "event_stage": "launched",
+    "event_scope": "不明",
+    "fact_slots": [
+      {
+        "type": "amount",
+        "scope": "出力速度向上率",
+        "value": "30%以上",
+        "normalized_value": "30%"
+      },
+      {
+        "type": "amount",
+        "scope": "運用コスト削減率",
+        "value": "40%",
+        "normalized_value": "40%"
+      },
+      {
+        "type": "version",
+        "scope": "モデルバージョン",
+        "value": "Claude Opus 5.5",
+        "normalized_value": "claudeopus5.5"
+      }
+    ],
+    "new_facts": [
+      "Anthropicが新モデル「Claude Opus 5.5」を公開した",
+      "出力速度が30%以上向上したと発表された",
+      "運用コストが4割程度削減されたと発表された"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Anthropicが新モデル「Claude Opus 5.5」を公開し、出力速度が30％以上向上、運用コストが4割下がったと発表した。",
+    "detail": "Anthropicという会社が、文章や作業を自動でこなすAI「Claude Opus 5.5」という新しいモデルを発表しました。モデルとは、AIが質問に答えたり作業を進めたりするための頭脳のような仕組みのことです。今回の発表では、答えを出すまでの速さである出力速度が30％以上速くなったとされています。\n\nさらに、このモデルを使い続けるための運用コストが4割ほど下がったことも明らかにされました。運用コストとは、AIを企業などが継続して利用する際にかかる費用のことです。速度が上がりながら費用が下がる組み合わせは、AIを日常的に使う企業にとって負担を減らす変化といえます。\n\nこの発表により、Claudeを業務で使っている企業や開発者は、より速く、より安く同じ作業をこなせる可能性があります。ただし、対応する利用開始日や提供地域、料金プランの詳細はまだ記事内では明確にされていません。",
+    "change_summary": "新モデル「Claude Opus 5.5」が公開され、速度向上とコスト削減が同時に発表された。",
+    "impact_summary": "AIを日常業務に使う企業や開発者にとって、処理速度の向上と利用コスト低下は導入コストの見直しにつながる可能性がある。",
+    "action_suggestion": "提供開始時期や具体的な料金体系など、詳細情報の続報を確認する必要がある。",
+    "importance": "A",
+    "related_categories": [
+      "AIツール・モデル",
+      "企業・株式"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_8fc61f69916fd637e338",
+    "story_id": "story_3d983a62c21de4fa32",
+    "story_sequence": 2,
+    "relation_type": "follow_up",
+    "relation_confidence": 0.8753846153846154,
+    "previous_article_id": "article_9a19196951af49cee0d3",
+    "previous_title": "Anthropic、「Claude Opus 5.5」を公開 利用コストを4割削減",
+    "previous_source_published_at": "2026-09-22T21:57:43.000Z",
+    "continuation_lead": "この話題の続報です。前回は「Anthropic、「Claude Opus 5.5」を公開 利用コストを4割削減」まで進んでいましたが、今回は新モデル「Claude Opus 5.5」が公開され、速度向上とコスト削減が同時に発表された。",
+    "dedupe_decision": "follow_up",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject",
+      "same_event_type",
+      "material_fact_changed"
+    ]
+  },
+  {
     "tool": "世界の新モデル・速報",
     "content_type": "article",
     "expert_id": "",
@@ -68,14 +158,14 @@
     "dedupe_reasons": [
       "no_previous_story"
     ],
-    "home_top_rank": 2,
-    "home_top_score": 73,
+    "home_top_rank": 5,
+    "home_top_score": 64,
     "home_score_breakdown": {
       "importance": 25,
       "topicality": 20,
       "scope": 6,
       "authority": 5,
-      "freshness": 9,
+      "freshness": 0,
       "tool_evolution": 8,
       "penalty": 0
     },
@@ -85,15 +175,15 @@
       "大きな製品・市場変化",
       "AIツールの能力進化"
     ],
-    "home_selected_at": "2026-09-23T09:23:50.942Z",
-    "home_window_start": "2026-09-22T23:00:24.035Z",
-    "home_window_end": "2026-09-23T09:19:30.734Z",
-    "home_content_changed_at": "2026-09-23T09:23:50.942Z",
-    "home_update_health": "HEALTHY",
+    "home_selected_at": "2026-09-23T15:04:15.117Z",
+    "home_window_start": "2026-09-23T09:19:30.734Z",
+    "home_window_end": "2026-09-23T15:00:37.335Z",
+    "home_content_changed_at": "2026-09-23T15:04:15.117Z",
+    "home_update_health": "DEGRADED",
     "home_consecutive_unchanged_editions": 0,
-    "home_top_origin": "new",
-    "home_edition_new_count": 2,
-    "home_edition_continued_count": 3
+    "home_top_origin": "continued",
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 5
   },
   {
     "tool": "Claude / Claude Code",
@@ -244,14 +334,14 @@
     "dedupe_reasons": [
       "no_previous_story"
     ],
-    "home_top_rank": 1,
-    "home_top_score": 76,
+    "home_top_rank": 3,
+    "home_top_score": 70,
     "home_score_breakdown": {
       "importance": 45,
       "topicality": 10,
       "scope": 10,
       "authority": 5,
-      "freshness": 6,
+      "freshness": 0,
       "tool_evolution": 0,
       "penalty": 0
     },
@@ -259,15 +349,15 @@
       "重要度A",
       "制度・安全への影響"
     ],
-    "home_selected_at": "2026-09-23T09:23:50.942Z",
-    "home_window_start": "2026-09-22T23:00:24.035Z",
-    "home_window_end": "2026-09-23T09:19:30.734Z",
-    "home_content_changed_at": "2026-09-23T09:23:50.942Z",
-    "home_update_health": "HEALTHY",
+    "home_selected_at": "2026-09-23T15:04:15.117Z",
+    "home_window_start": "2026-09-23T09:19:30.734Z",
+    "home_window_end": "2026-09-23T15:00:37.335Z",
+    "home_content_changed_at": "2026-09-23T15:04:15.117Z",
+    "home_update_health": "DEGRADED",
     "home_consecutive_unchanged_editions": 0,
-    "home_top_origin": "new",
-    "home_edition_new_count": 2,
-    "home_edition_continued_count": 3
+    "home_top_origin": "continued",
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 5
   },
   {
     "tool": "Claude / Claude Code",
@@ -347,7 +437,7 @@
       "material_fact_changed",
       "low_confidence_follow_up_demoted"
     ],
-    "home_top_rank": 4,
+    "home_top_rank": 2,
     "home_top_score": 79,
     "home_score_breakdown": {
       "importance": 45,
@@ -364,15 +454,15 @@
       "大きな製品・市場変化",
       "AIツールの能力進化"
     ],
-    "home_selected_at": "2026-09-23T09:23:50.942Z",
-    "home_window_start": "2026-09-22T23:00:24.035Z",
-    "home_window_end": "2026-09-23T09:19:30.734Z",
-    "home_content_changed_at": "2026-09-23T09:23:50.942Z",
-    "home_update_health": "HEALTHY",
+    "home_selected_at": "2026-09-23T15:04:15.117Z",
+    "home_window_start": "2026-09-23T09:19:30.734Z",
+    "home_window_end": "2026-09-23T15:00:37.335Z",
+    "home_content_changed_at": "2026-09-23T15:04:15.117Z",
+    "home_update_health": "DEGRADED",
     "home_consecutive_unchanged_editions": 0,
     "home_top_origin": "continued",
-    "home_edition_new_count": 2,
-    "home_edition_continued_count": 3
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 5
   },
   {
     "tool": "中国AI・基盤モデル",
@@ -506,7 +596,7 @@
     "dedupe_reasons": [
       "no_previous_story"
     ],
-    "home_top_rank": 5,
+    "home_top_rank": 4,
     "home_top_score": 71,
     "home_score_breakdown": {
       "importance": 45,
@@ -522,15 +612,15 @@
       "主要AI企業・基盤",
       "制度・安全への影響"
     ],
-    "home_selected_at": "2026-09-23T09:23:50.942Z",
-    "home_window_start": "2026-09-22T23:00:24.035Z",
-    "home_window_end": "2026-09-23T09:19:30.734Z",
-    "home_content_changed_at": "2026-09-23T09:23:50.942Z",
-    "home_update_health": "HEALTHY",
+    "home_selected_at": "2026-09-23T15:04:15.117Z",
+    "home_window_start": "2026-09-23T09:19:30.734Z",
+    "home_window_end": "2026-09-23T15:00:37.335Z",
+    "home_content_changed_at": "2026-09-23T15:04:15.117Z",
+    "home_update_health": "DEGRADED",
     "home_consecutive_unchanged_editions": 0,
     "home_top_origin": "continued",
-    "home_edition_new_count": 2,
-    "home_edition_continued_count": 3
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 5
   },
   {
     "tool": "Grok / xAI",
@@ -1496,83 +1586,8 @@
       "same_url_content_changed"
     ],
     "home_video_selected_at": "2026-09-22T23:00:24.035Z",
-    "home_video_origin": "new",
+    "home_video_origin": "continued",
     "home_video_reserve": true
-  },
-  {
-    "tool": "DeepSeek",
-    "content_type": "article",
-    "expert_id": "",
-    "expert_ids": [],
-    "expert_name": "",
-    "expert_names": [],
-    "expert_role": "",
-    "expert_tier": "",
-    "platform": "",
-    "video_id": "",
-    "source_trust": "",
-    "title": "DeepSeek-V4.1-Flash、KVキャッシュを約4分の1に圧縮し長文脈処理のメモリ負荷軽減",
-    "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5mWjhyTmZRdUZVWDZKZ0w1OGdCSHo1VDZyRWpDc0EydE40TEVOR256eFlxeFpCdzhtendTcGxDWVBPVUs3OWhmWGQ5SjRvRkhRZjh1aWpWOXIwWjFrSlJ6WTR1VdIBaEFVX3lxTE1SMVAycE9oOXgzUnhadm8yVEk0WnJEUDBLUWwwLXduc1Z0V3RJYk5zblNjdTljbm42dTJrME9PcUFLQTAta211UXA1LUgyeTh0X1psTmRfZEVKZU9xS2VKblExNnlLclVi?oc=5",
-    "source_name": "財経新聞",
-    "is_official": false,
-    "published_at": "2026-09-21T00:34:31.000Z",
-    "source_published_at": "2026-09-21T00:34:31.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-09-22T09:18:56.537Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "DeepSeek-V4.1-Flash",
-      "DeepSeek",
-      "deepseek-v4.1-flash",
-      "deepseek"
-    ],
-    "primary_entity": "DeepSeek",
-    "story_subject": "DeepSeek-V4.1-Flash",
-    "event_type": "release",
-    "event_stage": "announced",
-    "event_scope": "モデル全般",
-    "fact_slots": [
-      {
-        "type": "amount",
-        "scope": "KVキャッシュ圧縮率",
-        "value": "約4分の1",
-        "normalized_value": "4"
-      }
-    ],
-    "new_facts": [
-      "DeepSeek-V4.1-FlashはKVキャッシュを約4分の1に圧縮した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "DeepSeekが新モデル「DeepSeek-V4.1-Flash」を発表し、長文処理時に使うメモリ(KVキャッシュ)を従来の約4分の1に圧縮したと伝えられた。",
-    "detail": "DeepSeekが新しいAIモデル「DeepSeek-V4.1-Flash」を発表した。簡単に言うと、長い文章を一度に読み込んで処理するAIが使うメモリの量を大幅に減らす技術を搭載したモデルである。以前のモデルとの違いは、AIが文章を処理する際に一時的に情報を保存する仕組み「KVキャッシュ」のデータ量を約4分の1に圧縮した点にある。\n\n記事によると、このKVキャッシュの圧縮によって、長い文章を処理する際のメモリ負荷が軽減されるとしている。圧縮率は「約4分の1」とされているが、他の性能面の詳細な数値は記事内では明らかにされていない。メモリの使用量を減らせれば、同じ計算機の資源でより長い文章を処理できるようになり、AIの運用コストの削減につながる可能性がある。\n\n利用者にとっては、長い文書の要約や大量データの解析を低コストで行える可能性がある。注意点として、具体的な性能ベンチマークや利用開始時期は記事内で明示されていない。提供開始日や価格などの詳細はまだ発表されていない。",
-    "change_summary": "DeepSeek-V4.1-FlashがKVキャッシュを約4分の1に圧縮し、長文処理のメモリ負荷を軽減した。",
-    "impact_summary": "AIの運用コストが下がる可能性があり、長文書を扱う企業の業務効率に影響しうる。",
-    "action_suggestion": "提供開始日や価格など詳細はまだ発表されていない。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "研究・技術"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_81518da807c583b54d02",
-    "story_id": "story_577afde6ac25ed80cd",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 0.8200000000000001,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_primary_entity",
-      "same_subject",
-      "same_event_type",
-      "non_forward_stage_change"
-    ]
   },
   {
     "tool": "世界の新モデル・速報",
@@ -2070,7 +2085,7 @@
     "dedupe_reasons": [
       "no_previous_story"
     ],
-    "home_top_rank": 3,
+    "home_top_rank": 1,
     "home_top_score": 95,
     "home_score_breakdown": {
       "importance": 60,
@@ -2087,15 +2102,15 @@
       "制度・安全への影響",
       "重要な経営・研究体制"
     ],
-    "home_selected_at": "2026-09-23T09:23:50.942Z",
-    "home_window_start": "2026-09-22T23:00:24.035Z",
-    "home_window_end": "2026-09-23T09:19:30.734Z",
-    "home_content_changed_at": "2026-09-23T09:23:50.942Z",
-    "home_update_health": "HEALTHY",
+    "home_selected_at": "2026-09-23T15:04:15.117Z",
+    "home_window_start": "2026-09-23T09:19:30.734Z",
+    "home_window_end": "2026-09-23T15:00:37.335Z",
+    "home_content_changed_at": "2026-09-23T15:04:15.117Z",
+    "home_update_health": "DEGRADED",
     "home_consecutive_unchanged_editions": 0,
     "home_top_origin": "continued",
-    "home_edition_new_count": 2,
-    "home_edition_continued_count": 3
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 5
   },
   {
     "tool": "Midjourney",
