@@ -2,6 +2,240 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_5ea6167b2fa5cfd05cea",
+      "story_id": "story_b9273ff303153dda6c",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.625,
+      "title": "トランプ氏側近らがAnthropicのCEOを『AI悲観論』で新たに批判",
+      "source_published_at": "2026-09-24T09:02:18.000Z",
+      "published_at": "2026-09-24T09:02:18.000Z",
+      "fetched_at": "2026-09-24T09:19:24.586Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "Axiosによると、トランプ大統領の側近らがAnthropicのCEOに対しAIの危険性を強調する悲観論を理由に新たな批判を始めたと報じられた。",
+      "source_name": "Axios",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBCWU40OGxGYUZKQTZvcFNhWTVyemFmMmpnMzNHU2tEWkppTTFFSEpVVXQ5VEg5NTFGTFRjQXYyTzE3SllFMGxlMDc1LU1XUlRyN3BGZG5YRTJPNXNhYThINEhpZ282ZVJDUjR1cnNCVlpWT0FKZXlmUWlQSDhRTlE?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "トランプ大統領",
+        "anthropic",
+        "axios"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "AnthropicのCEOへの批判",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "米国",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type",
+        "same_scope"
+      ],
+      "change_summary": "トランプ大統領周辺の関係者がAnthropicのCEOへの批判を新たに始めたと報じられた。",
+      "detail": "米メディアAxiosが、トランプ大統領周辺の関係者らがAnthropicのCEOを新たに批判し始めたと報じました。批判の理由は、AIの危険性を過度に強調する「ドゥーマリズム(悲観論)」と呼ばれる考え方だとされています。AnthropicはAIの安全性を重視する開発方針で知られる企業です。\n\n記事の抜粋には、具体的な批判の内容や、誰がどのような場でこの批判を行ったかまでは書かれていません。AIの安全性を巡っては、リスクを強く訴える立場と、規制が行き過ぎることを懸念する立場の対立が続いているとされます。今回の動きは、その対立の一場面とみられます。\n\nこの批判がAnthropicの事業や、米国のAI政策の議論にどう影響するかは、記事からは分かりません。CEOの実名や批判の具体的な発言内容も、この抜粋だけでは確認できません。続報で詳細が明らかになるか注目されます。",
+      "new_facts": [
+        "トランプ大統領周辺の関係者がAnthropicのCEOをAIに関する悲観論を理由に新たに批判したと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_97f628543e63dd45e070",
+      "story_id": "story_70b8aa466b379b869d",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.82,
+      "title": "xAIが新モデル「Grok 4.7」を発表、コーディングと知識作業向けに価格半額・速度2倍",
+      "source_published_at": "2026-09-24T05:46:10.000Z",
+      "published_at": "2026-09-24T05:46:10.000Z",
+      "fetched_at": "2026-09-24T09:19:24.586Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "xAIが新モデル「Grok 4.7」を発表し、コーディングや知識作業向けに価格を半額、処理速度を2倍にしたとされる。",
+      "source_name": "株式会社インプレス",
+      "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5DX1RfQzVIakJqcnBoVEl4RDFoTktzZE9HQjdnWlUxYjQtTm82LTNQTUlXZDNWeWQ4TjRiYUl3cmlka21mZ0VGVEVnLThKUHBQbmR5LTRNRmxFdGpOYUNFd2JsQQ?oc=5",
+      "story_entities": [
+        "xAI",
+        "Grok 4.7",
+        "xai",
+        "grok4.7",
+        "grok"
+      ],
+      "primary_entity": "xAI",
+      "story_subject": "Grok 4.7",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "API",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "Grok 4.7",
+          "value": "従来比半額(詳細条件不明)",
+          "normalized_value": "従来比半額詳細条件不明"
+        },
+        {
+          "type": "other",
+          "scope": "Grok 4.7の処理速度",
+          "value": "従来比2倍(詳細条件不明)",
+          "normalized_value": "2"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "material_fact_changed",
+        "low_confidence_follow_up_demoted"
+      ],
+      "change_summary": "xAIがコーディングと知識作業向けに強化した新モデル「Grok 4.7」を発表した。",
+      "detail": "xAI(記事表記は「SpaceXAI」)が新しいAIモデル「Grok 4.7」を発表したと報じられました。Grokはイーロン・マスク氏が率いるxAIが開発している対話AIです。今回のGrok 4.7は、プログラムを書くコーディング作業や、調べ物などの知識作業向けに特化して性能を高めたとされています。\n\n記事によると、Grok 4.7は従来モデルに比べて価格が半額になり、処理速度は2倍になったとされています。価格が下がることで、より多くの企業や開発者が導入しやすくなります。処理速度の向上は、AIが答えを返すまでの待ち時間の短縮につながります。\n\nGrok 4.7を使う開発者や企業は、コストを抑えながら素早い応答を得られる可能性があります。ただし記事には、具体的な価格や速度の測定条件、提供開始日などの詳細は書かれていません。正式な価格表や利用開始時期は、今後の公式発表を確認する必要があります。",
+      "new_facts": [
+        "xAIが新モデル「Grok 4.7」を発表した",
+        "コーディングや知識作業向けに価格を半額、速度を2倍にしたとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_d9ccb8293be83e6ea865",
+      "story_id": "story_8de45f147e8a105659",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5,
+      "title": "OpenAI CEOが「AI政策の答えはIT企業だけでは出せない」と発言",
+      "source_published_at": "2026-09-24T05:29:00.000Z",
+      "published_at": "2026-09-24T05:29:00.000Z",
+      "fetched_at": "2026-09-24T09:19:24.586Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "OpenAIのCEOが、AI政策についてハイテク企業だけがすべての答えを持っているわけではないと述べたと報じられた。",
+      "source_name": "Al Jazeera",
+      "source_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOZXdGdGVQNTIwOGhhang0TkNjY1BhcENqMTNKbEtKRFVDREgwYUNHM1ExQzFnUXdCa2VwUnJMV2t1bXpBVm92Z0ZCcHpoYmR4aWxCZzNpcmVXUzVaU0hhTnB6Q2FUNkVsSDE3cDRod0p2eGpWbUp4VmU0ZDZYYWlRWU54bE9QSUhXTTZOLUUyTmZPajZEWlNRdnBOY1J0eGoxdWFxR0FYal9sdTdHWGdyQnZyUURzUdIBuwFBVV95cUxNenpybmxnSUVwU3dNdEY5T3ZrbEdHX3RCblVnSlpGRjR1eGpXU3BjWVNCazNZa0hYbW0yaU5ZT2ZrbXIyWC1mZUxldnUtRXV2VGxQQ0FSM3VUR2Z6elJBalg4c2wzTnpGN3BuMEhCZi1zZEJWZnJ4MEdqS05RbnlrXzduNkp4QzgwYXpyWkMwa0lXc1pRdUdldDRsb3F5TjVwZkVTUkpJSWFVYWZwQk52QTdrdWszOElwakUw?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "AI政策",
+        "openai",
+        "ai政策"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "AI政策に関するOpenAI CEOの発言",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "不明",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject"
+      ],
+      "change_summary": "OpenAIのCEOがAI政策について企業の限界を認める発言をしたと報じられた。",
+      "detail": "OpenAIのCEOであるサム・アルトマン氏が、AIの政策づくりについて発言したと報じられました。彼は、ハイテク企業だけがAIに関するすべての答えを持っているわけではないと述べています。以前は企業側が主導して規制のあり方を提案する場面が目立っていましたが、今回は自ら限界を認める発言となりました。\n\n記事の抜粋には、この発言の背景や具体的な政策の中身までは書かれていません。AI政策とは、AIをどう使い、どう規制するかを決める国のルールづくりのことです。企業のトップがこうした発言をすることは、政府や社会との対話を呼びかける意味を持つとみられます。\n\n今後、OpenAIがどのような形で政策議論に関わっていくかは、この記事だけでは分かりません。具体的な発言内容や場面、日付なども記事からは確認できません。続報があれば、AI規制のあり方に影響する可能性があります。",
+      "new_facts": [
+        "OpenAIのCEOがAI政策について、ハイテク企業だけがすべての答えを持っているわけではないと発言したと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_682d202139dc23a7c1a7",
+      "story_id": "story_4ffd5ab5efc75a6e24",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Adobe、Premiereモバイル版をAndroid向けに提供開始 4K編集とFirefly生成AIに対応",
+      "source_published_at": "2026-09-24T05:00:45.000Z",
+      "published_at": "2026-09-24T05:00:45.000Z",
+      "fetched_at": "2026-09-24T09:19:24.586Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "Adobeは動画編集アプリ「Premiere」のモバイル版をAndroid向けに提供開始し、4K編集や生成AI「Firefly」機能に対応した。",
+      "source_name": "pronews.com",
+      "source_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBqLXRsaWRCLUNrR1ZXSnhXUmd0Y1otSGlGdW9mOTRzZ1plUGE2MmRKSjFtRXJJS09EaGU1bzlXOFoyVnAzMl9UeGw0NFJBaXhmaFpZbFZDaHhWSF9ISUFjRQ?oc=5",
+      "story_entities": [
+        "Adobe",
+        "Premiere",
+        "Firefly",
+        "adobe",
+        "premiere"
+      ],
+      "primary_entity": "Adobe",
+      "story_subject": "Premiereモバイル版(Android)",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Android",
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "Premiereモバイル版",
+          "value": "Android向け提供開始",
+          "normalized_value": "android向け提供開始"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Premiereのモバイル版がAndroidに対応し、4K編集とFirefly生成AI機能が使えるようになった。",
+      "detail": "Adobeは動画編集アプリ「Premiere」のスマホ向けアプリをAndroid端末向けに提供開始したと発表した。簡単に言うと、パソコンで使う本格的な動画編集ソフトの一部機能をスマホでも使えるようにしたアプリのこと。対応する端末の種類が広がった点が今回の新しさである。\n\nこのアプリは4K画質での動画編集に対応しており、コンピューターが自動で画像を作る技術である生成AI「Firefly」の機能も使える。生成AIを使うと、文字の指示から画像や動画の素材を自動で作れるため、編集作業を助けてくれる。スマホだけで高画質な動画編集と素材生成が完結できる点が特徴となっている。\n\n動画編集をスマホで行いたい人にとって、Android端末でも同じ機能が使えるようになる。ただし、対応する具体的な機種や無料・有料の条件は記事内で明らかにされておらず、まだ発表されていない。",
+      "new_facts": [
+        "AdobeがPremiereモバイル版をAndroid向けに提供開始した",
+        "4K編集とFirefly生成AI機能に対応"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_93777a96b9ff83346075",
+      "story_id": "story_5992f031058eb2f67f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AIエージェントの安全な利活用検討会に企業代表が委員就任",
+      "source_published_at": "2026-09-24T02:00:02.000Z",
+      "published_at": "2026-09-24T02:00:02.000Z",
+      "fetched_at": "2026-09-24T09:19:24.586Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "経済産業省が新設したAIエージェントの安全な利活用に関する検討会に、ある企業代表の徳永氏が委員として就任した。",
+      "source_name": "PR TIMES",
+      "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE12amNENXI0ejJpZjh6ZTk5QklsMGF4dURTcTRhcE9uTjVXZjYzZW00clhmUmo4cDNnaGRoczE0TjYyWXRrcHF3UzRPOHNyRnVZcGNnNXpwTnVaUy16REhYY29aTHpDYkV6UWc?oc=5",
+      "story_entities": [
+        "経済産業省",
+        "AIエージェント",
+        "aiエージェント"
+      ],
+      "primary_entity": "経済産業省",
+      "story_subject": "AIエージェントの安全な利活用に関するサブワーキンググループ",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "日本",
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "委員会",
+          "value": "徳永氏が委員就任",
+          "normalized_value": "徳永氏が委員就任"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "経済産業省がAIエージェントの安全利用に関する新しい検討会を設置し、企業代表が委員に加わった。",
+      "detail": "経済産業省が「事業者におけるAIエージェントの安全な利活用に関するサブワーキンググループ」という新しい検討会を設置したことが分かりました。AIエージェントとは、人の指示を受けて自動でタスクをこなすAIの仕組みのことです。この検討会に、ある企業の代表を務める徳永氏が委員として参加することになりました。\n\n委員会では、企業がAIエージェントを安全に使うためのガイドライン、つまり守るべき指針づくりが進められる予定です。AIエージェントは人の代わりに判断や操作を行うため、誤作動や情報漏えいなどのリスク管理が課題とされています。国がルールづくりに乗り出す動きは、企業のAI活用のあり方に直接関わります。\n\n委員に加わった徳永氏の所属企業名やガイドラインの具体的な内容は、この記事からは確認できません。今後、サブワーキンググループでの議論を経てガイドラインがまとめられる見通しですが、公表時期などは不明です。企業がAIエージェントを導入する際の判断材料として、今後の議論の行方が注目されます。",
+      "new_facts": [
+        "経済産業省がAIエージェントの安全な利活用に関するサブワーキンググループを新設した",
+        "ある企業代表の徳永氏がこの委員会の委員に就任した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_9a7265ef968254fe8271",
       "story_id": "story_4eda1c2a7f6f905046",
       "story_sequence": 1,

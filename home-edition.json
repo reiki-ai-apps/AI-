@@ -7,41 +7,66 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-09-23T15:00:37.335Z",
-  "window_end": "2026-09-23T22:58:54.184Z",
-  "last_window_end": "2026-09-23T22:58:54.184Z",
-  "last_checked_at": "2026-09-23T23:03:51.929Z",
-  "last_published_at": "2026-09-23T23:03:51.929Z",
-  "home_content_changed_at": "2026-09-23T23:03:51.929Z",
+  "window_start": "2026-09-23T22:58:54.184Z",
+  "window_end": "2026-09-24T09:19:24.586Z",
+  "last_window_end": "2026-09-24T09:19:24.586Z",
+  "last_checked_at": "2026-09-24T09:23:43.563Z",
+  "last_published_at": "2026-09-24T09:23:43.563Z",
+  "home_content_changed_at": "2026-09-24T09:23:43.563Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 1,
-  "distinct_candidate_count": 1,
+  "candidate_count": 5,
+  "distinct_candidate_count": 5,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
   "novel_candidate_count": 1,
-  "cross_edition_duplicate_count": 0,
-  "cross_edition_duplicate_groups": [],
+  "cross_edition_duplicate_count": 4,
+  "cross_edition_duplicate_groups": [
+    {
+      "representative_id": "article_3cc82dede5f41275056c",
+      "duplicate_ids": [
+        "article_5ea6167b2fa5cfd05cea"
+      ]
+    },
+    {
+      "representative_id": "article_47a1ea1a3a062ead3b63",
+      "duplicate_ids": [
+        "article_97f628543e63dd45e070"
+      ]
+    },
+    {
+      "representative_id": "article_4f0f28f56015e3a7d514",
+      "duplicate_ids": [
+        "article_d9ccb8293be83e6ea865"
+      ]
+    },
+    {
+      "representative_id": "article_9bad7725981354081ea9",
+      "duplicate_ids": [
+        "article_93777a96b9ff83346075"
+      ]
+    }
+  ],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
   "new_selected_count": 1,
   "continued_selected_count": 4,
-  "tool_evolution_selected_count": 1,
+  "tool_evolution_selected_count": 2,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
-    "article_9a7265ef968254fe8271",
+    "article_682d202139dc23a7c1a7",
     "article_7d357b2d95ce8b4c3d24",
     "article_9a19196951af49cee0d3",
     "article_3cc82dede5f41275056c",
     "article_4f0f28f56015e3a7d514"
   ],
   "new_article_ids": [
-    "article_9a7265ef968254fe8271"
+    "article_682d202139dc23a7c1a7"
   ],
   "continued_article_ids": [
     "article_7d357b2d95ce8b4c3d24",
@@ -56,26 +81,24 @@
     "article_4f0f28f56015e3a7d514": "previous_edition"
   },
   "scores": {
-    "article_9a7265ef968254fe8271": {
-      "article_id": "article_9a7265ef968254fe8271",
-      "total": 63,
+    "article_682d202139dc23a7c1a7": {
+      "article_id": "article_682d202139dc23a7c1a7",
+      "total": 57,
       "breakdown": {
         "importance": 25,
-        "topicality": 20,
-        "scope": 6,
+        "topicality": 10,
+        "scope": 3,
         "authority": 5,
-        "freshness": 7,
-        "tool_evolution": 0,
+        "freshness": 6,
+        "tool_evolution": 8,
         "penalty": 0
       },
       "reasons": [
         "重要度B",
-        "主要AI企業・基盤",
-        "制度・安全への影響",
         "大きな製品・市場変化",
-        "重要な経営・研究体制"
+        "AIツールの能力進化"
       ],
-      "published_at": "2026-09-23T20:24:37.000Z"
+      "published_at": "2026-09-24T05:00:45.000Z"
     },
     "article_7d357b2d95ce8b4c3d24": {
       "article_id": "article_7d357b2d95ce8b4c3d24",
@@ -615,6 +638,36 @@
       "previous_article_id": "",
       "selected_at": "2026-09-23T23:03:51.929Z",
       "edition_window_end": "2026-09-23T22:58:54.184Z"
+    },
+    {
+      "article_id": "article_682d202139dc23a7c1a7",
+      "story_id": "story_4ffd5ab5efc75a6e24",
+      "title": "Adobe、Premiereモバイル版をAndroid向けに提供開始 4K編集とFirefly生成AIに対応",
+      "primary_entity": "Adobe",
+      "story_subject": "Premiereモバイル版(Android)",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Android",
+      "story_entities": [
+        "Adobe",
+        "Premiere",
+        "Firefly",
+        "adobe",
+        "premiere"
+      ],
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "Premiereモバイル版",
+          "value": "Android向け提供開始",
+          "normalized_value": "android向け提供開始"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-24T09:23:43.563Z",
+      "edition_window_end": "2026-09-24T09:19:24.586Z"
     }
   ]
 }
