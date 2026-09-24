@@ -7,46 +7,28 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-09-23T22:58:54.184Z",
-  "window_end": "2026-09-24T09:19:24.586Z",
-  "last_window_end": "2026-09-24T09:19:24.586Z",
-  "last_checked_at": "2026-09-24T09:23:43.563Z",
-  "last_published_at": "2026-09-24T09:23:43.563Z",
-  "home_content_changed_at": "2026-09-24T09:23:43.563Z",
+  "window_start": "2026-09-24T09:19:24.586Z",
+  "window_end": "2026-09-24T15:04:38.556Z",
+  "last_window_end": "2026-09-24T15:04:38.556Z",
+  "last_checked_at": "2026-09-24T15:08:29.528Z",
+  "last_published_at": "2026-09-24T15:08:29.528Z",
+  "home_content_changed_at": "2026-09-24T15:08:29.528Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 5,
-  "distinct_candidate_count": 5,
+  "candidate_count": 2,
+  "distinct_candidate_count": 2,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
   "novel_candidate_count": 1,
-  "cross_edition_duplicate_count": 4,
+  "cross_edition_duplicate_count": 1,
   "cross_edition_duplicate_groups": [
     {
-      "representative_id": "article_3cc82dede5f41275056c",
+      "representative_id": "article_9a7265ef968254fe8271",
       "duplicate_ids": [
-        "article_5ea6167b2fa5cfd05cea"
-      ]
-    },
-    {
-      "representative_id": "article_47a1ea1a3a062ead3b63",
-      "duplicate_ids": [
-        "article_97f628543e63dd45e070"
-      ]
-    },
-    {
-      "representative_id": "article_4f0f28f56015e3a7d514",
-      "duplicate_ids": [
-        "article_d9ccb8293be83e6ea865"
-      ]
-    },
-    {
-      "representative_id": "article_9bad7725981354081ea9",
-      "duplicate_ids": [
-        "article_93777a96b9ff83346075"
+        "article_8d66323bdb984a7ff9df"
       ]
     }
   ],
@@ -55,18 +37,18 @@
   "minimum_selected_count": 3,
   "new_selected_count": 1,
   "continued_selected_count": 4,
-  "tool_evolution_selected_count": 2,
+  "tool_evolution_selected_count": 1,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
-    "article_682d202139dc23a7c1a7",
+    "article_213d1c8aeeb93114ae5b",
     "article_7d357b2d95ce8b4c3d24",
     "article_9a19196951af49cee0d3",
     "article_3cc82dede5f41275056c",
     "article_4f0f28f56015e3a7d514"
   ],
   "new_article_ids": [
-    "article_682d202139dc23a7c1a7"
+    "article_213d1c8aeeb93114ae5b"
   ],
   "continued_article_ids": [
     "article_7d357b2d95ce8b4c3d24",
@@ -81,24 +63,24 @@
     "article_4f0f28f56015e3a7d514": "previous_edition"
   },
   "scores": {
-    "article_682d202139dc23a7c1a7": {
-      "article_id": "article_682d202139dc23a7c1a7",
+    "article_213d1c8aeeb93114ae5b": {
+      "article_id": "article_213d1c8aeeb93114ae5b",
       "total": 57,
       "breakdown": {
         "importance": 25,
-        "topicality": 10,
-        "scope": 3,
+        "topicality": 17,
+        "scope": 6,
         "authority": 5,
-        "freshness": 6,
-        "tool_evolution": 8,
+        "freshness": 4,
+        "tool_evolution": 0,
         "penalty": 0
       },
       "reasons": [
         "重要度B",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
+        "制度・安全への影響",
+        "重要な経営・研究体制"
       ],
-      "published_at": "2026-09-24T05:00:45.000Z"
+      "published_at": "2026-09-24T11:51:39.000Z"
     },
     "article_7d357b2d95ce8b4c3d24": {
       "article_id": "article_7d357b2d95ce8b4c3d24",
@@ -668,6 +650,28 @@
       "previous_article_id": "",
       "selected_at": "2026-09-24T09:23:43.563Z",
       "edition_window_end": "2026-09-24T09:19:24.586Z"
+    },
+    {
+      "article_id": "article_213d1c8aeeb93114ae5b",
+      "story_id": "story_6e9f0c56182b190c87",
+      "title": "パロアルトネットワークスCEO、AIがサイバー攻撃を高速・大規模化させると警告",
+      "primary_entity": "Palo Alto Networks",
+      "story_subject": "AIによるサイバー攻撃の高速化・大規模化",
+      "event_type": "security",
+      "event_stage": "other",
+      "event_scope": "サイバーセキュリティ業界全般",
+      "story_entities": [
+        "Palo Alto Networks",
+        "AIサイバー攻撃",
+        "paloaltonetworks",
+        "aiサイバー攻撃"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-24T15:08:29.528Z",
+      "edition_window_end": "2026-09-24T15:04:38.556Z"
     }
   ]
 }
