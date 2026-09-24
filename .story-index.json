@@ -82,6 +82,53 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_ab1181372523e297a460",
+      "story_id": "story_44b93bfee4ad92768e",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "松尾豊氏らがインターネット30年史からAI時代への教訓を語るPIVOT対談",
+      "source_published_at": "2026-09-24T11:00:19.000Z",
+      "published_at": "2026-09-24T11:00:19.000Z",
+      "fetched_at": "2026-09-24T23:14:46.940Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "東大教授でAI研究者の松尾豊氏がPIVOTの対談番組に出演し、ネット30年史からAI時代への教訓を議論する内容が扱われた。",
+      "source_name": "PIVOT 公式チャンネル",
+      "source_url": "https://www.youtube.com/watch?v=KaHahuWSeTg",
+      "story_entities": [
+        "松尾豊",
+        "川邊健太郎",
+        "安野貴博",
+        "pivot"
+      ],
+      "primary_entity": "松尾豊",
+      "story_subject": "インターネット30年史とAI時代への教訓",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "YouTube配信・ビジネス層向け",
+      "fact_slots": [
+        {
+          "type": "date",
+          "scope": "後編公開予定日",
+          "value": "2026-09-29",
+          "normalized_value": "2026-09-29"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AI研究者の松尾豊氏が、インターネット産業30年史を題材にAI時代への教訓を語る対談番組が公開された。",
+      "detail": "東京大学教授でAI研究者の松尾豊氏が、経済メディアPIVOTの対談番組に出演した。番組ではインターネット誕生から30年間の変化を振り返り、AI時代への教訓を探る構成になっている。同席したのは元LINEヤフー会長でAI起業家に転じた川邊健太郎氏と、参議院議員の安野貴博氏だった。\n\n番組はネット黎明期の起業家像やITバブル崩壊、ライブドア事件を振り返るテーマを扱っている。検索連動広告やスマートフォンの普及がビジネスをどう変えたかも議論の対象として挙げられている。日本と米国で規制への対応の違いが産業の勝敗を分けたという論点も取り上げられている。\n\n番組は前編と後編に分かれており、後編は9月29日20時に公開される予定である。公式の説明欄には章立てのみが示され、具体的な発言内容までは公開情報から分からない。出演者がAI時代について実際にどう結論づけたかは、この時点で明らかになっていない。",
+      "new_facts": [
+        "ゲストの川邊健太郎氏が2026年6月にLINEヤフー会長を退任し、AIソロプレナーとして起業したことが紹介されている",
+        "番組は前編と後編に分かれており、後編は9月29日20時に公開予定である"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_5ea6167b2fa5cfd05cea",
       "story_id": "story_b9273ff303153dda6c",
       "story_sequence": 1,
@@ -415,6 +462,66 @@
         "Anthropicが新モデル「Claude Opus 5.5」を公開した",
         "出力速度が30%以上向上したと発表された",
         "運用コストが4割程度削減されたと発表された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_b6a8f5c758c1dced03cb",
+      "story_id": "story_5b0c082b876bc9ab21",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "KEITO氏がClaude Opus 5.5とGPT-6 Sol、Fable 5.1を比較する動画を公開",
+      "source_published_at": "2026-09-23T10:00:00.000Z",
+      "published_at": "2026-09-23T10:00:00.000Z",
+      "fetched_at": "2026-09-24T23:14:46.940Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "AI解説者のKEITO氏が、Claude Opus 5.5やGPT-6 Sol、Fable 5.1という生成AIを価格や制作物の質で比較する動画を公開した。",
+      "source_name": "KEITO【AI&WEB ch】",
+      "source_url": "https://www.youtube.com/watch?v=goQkMiOa7kM",
+      "story_entities": [
+        "Claude Opus 5.5",
+        "GPT-6 Sol",
+        "Fable 5.1",
+        "claudeopus5.5",
+        "gpt-6sol"
+      ],
+      "primary_entity": "KEITO",
+      "story_subject": "Claude Opus 5.5とGPT-6 Sol、Fable 5.1の比較",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "YouTube動画",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "比較対象AIモデル",
+          "value": "Claude Opus 5.5",
+          "normalized_value": "claudeopus5.5"
+        },
+        {
+          "type": "version",
+          "scope": "比較対象AIモデル",
+          "value": "GPT-6 Sol",
+          "normalized_value": "gpt6sol"
+        },
+        {
+          "type": "version",
+          "scope": "比較対象AIモデル",
+          "value": "Fable 5.1",
+          "normalized_value": "fable5.1"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "KEITO氏がClaude Opus 5.5やGPT-6 Sol、Fable 5.1という新しいAIモデルを価格・性能・制作物の質で比較する動画を公開した。",
+      "detail": "AIツールの使い方を紹介するKEITO氏が新しい比較動画を公開した。動画では、Claude Opus 5.5とGPT-6 Sol、Fable 5.1という三つのAIを比べている。これらは文章や画像、動画などを作れる生成AIと呼ばれる技術の新しいモデルだ。\n\n動画ではまず各モデルの価格や性能、位置づけの違いを説明している。そのうえでアニメーションやデザイン、ゲームや映像、3D制作物の出来栄えを比較している。さらにウェブサイト制作などの成果物も見比べ、最後に総括の時間を設けている。\n\n用途に合わせてどのAIを選べばよいか判断する材料になる内容だ。ただし動画内でどのモデルが優れると結論づけたかは、この要約には含めていない。各モデルの正式な発表内容や提供開始時期は、記事からは確認できていない。",
+      "new_facts": [
+        "KEITO氏がClaude Opus 5.5とGPT-6 Sol、Fable 5.1を比較する動画を公開した",
+        "動画は価格・性能、デザイン、ゲーム・映像・3D制作、ウェブサイト制作の比較で構成されている"
       ],
       "event_date_precision": "unknown"
     },
