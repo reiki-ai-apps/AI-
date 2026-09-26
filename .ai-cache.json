@@ -124,63 +124,14 @@
     },
     "url:https://news.google.com/rss/articles/cbmix0fvx3lxte9abxz0eejnn0lrrkvwvxdstwvnr05yywjpd3pyahn3yxz0ymlldtm5rkvjwejiaunxvvlov1bklxfjynlrdk9pylhprle2amftbxjknlywaddja0jxrudj": {
       "canonical_url": "https://news.google.com/rss/articles/cbmix0fvx3lxte9abxz0eejnn0lrrkvwvxdstwvnr05yywjpd3pyahn3yxz0ymlldtm5rkvjwejiaunxvvlov1bklxfjynlrdk9pylhprle2amftbxjknlywaddja0jxrudj",
-      "content_hash": "ad077dc552f652315d1baf688e16304770dd890490e2fa69e8b65cf8fd0f5298",
+      "content_hash": "7bd12cbc708c393b4380b6c2eea92f809113ff1cb32bc32a5aaad94c294e6fc0",
       "story_key": "7215c6a53da62e2f51140bbaa447fee12b6bcfd33b3e41c732cad9437ea447ed",
-      "status": "enriched",
-      "processed_at": "2026-09-13T14:26:52.525Z",
+      "status": "retry",
+      "processed_at": "2026-09-26T09:24:50.327Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "",
-      "result": {
-        "tool": "NVIDIA・AI半導体",
-        "content_type": "article",
-        "expert_id": "",
-        "expert_name": "",
-        "expert_names": [],
-        "expert_role": "",
-        "expert_tier": "",
-        "platform": "",
-        "video_id": "",
-        "source_trust": "",
-        "title": "次世代AIサーバーが置けない日本のデータセンター",
-        "source_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9abXZ0eEJnN0lrRkVwVXdsTWVNR05yYWJPd3pyaHN3YXZ0YmlldTM5RkVJWEJiaUNXVVlOV1BkLXFJYnlRdk9PYlhpRlE2amFtbXJkNlYwaDdJa0JxRUdj?oc=5",
-        "source_name": "xtech.nikkei.com",
-        "is_official": false,
-        "published_at": "2026-09-13T10:20:14.000Z",
-        "source_published_at": "2026-09-13T10:20:14.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-09-13T14:22:10.780Z",
-        "event_at": "",
-        "event_status": "継続中",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "データセンター",
-          "AIサーバー",
-          "日本"
-        ],
-        "primary_entity": "日本のデータセンター事業者",
-        "story_subject": "次世代AIサーバーの設置制約",
-        "event_type": "other",
-        "event_stage": "other",
-        "event_scope": "日本",
-        "fact_slots": [],
-        "new_facts": [
-          "日本国内の一部データセンターが、電力供給や設備の制約で次世代AIサーバーを設置できない状況にあると報じられた。"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "日本国内の一部データセンターは、電力供給や設備の制約から次世代AIサーバーを設置できない状況にあると報じられた。",
-        "detail": "日本国内のデータセンターの一部で、最新の高性能AIサーバーを設置できない問題が起きていると報じられた。AIサーバーとは、AIの計算処理を行う専用のコンピューターのことで、近年は消費電力や発熱量が急増している。従来の設備では、こうした次世代サーバーの電力供給や冷却に対応できないケースが出ているという。\n\n記事によると、次世代AIサーバーは電力消費量や重量が従来機種より大幅に増えており、既存のデータセンターの電源容量や床の耐荷重が追いつかない場合があるという。これは、AI開発の競争が進む中で、計算資源を支えるインフラそのものが制約になっている状況を示している。\n\n企業がAIを使った事業を拡大しようとしても、日本国内でサーバーを置く場所が不足すれば、海外のデータセンターに頼らざるを得なくなる可能性がある。データセンター事業者にとっては、電力設備の増強や新設が急務となる。具体的にどの事業者がどの程度の投資を計画しているかは、記事では明らかにされていない。",
-        "change_summary": "日本のデータセンターの一部が、電力や耐荷重の制約で次世代AIサーバーを設置できない状況にあると報じられた。",
-        "impact_summary": "AI事業を拡大したい企業が国内でサーバーを確保しにくくなり、海外依存が進む可能性がある。",
-        "action_suggestion": "具体的な事業者名や投資計画の詳細は記事では明らかにされていない。",
-        "importance": "A",
-        "related_categories": [
-          "半導体・インフラ"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
-      }
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
     },
     "url:https://news.google.com/rss/articles/cbmif0fvx3lxtfbwcwjrmtdqqu5xaje2n3ftqjzuehvrtzfvmwnhzf9uwjdkdtbfvdutvk9su2f0rfa2aeh3smlfwvhramv3m3dey0hergnqmxjuqkvrzunhrzzwcwpnyvozu1pfvk9nedbht0d5uegxcjbxvjbqzktat0t6vxbwem8": {
       "canonical_url": "https://news.google.com/rss/articles/cbmif0fvx3lxtfbwcwjrmtdqqu5xaje2n3ftqjzuehvrtzfvmwnhzf9uwjdkdtbfvdutvk9su2f0rfa2aeh3smlfwvhramv3m3dey0hergnqmxjuqkvrzunhrzzwcwpnyvozu1pfvk9nedbht0d5uegxcjbxvjbqzktat0t6vxbwem8",
@@ -524,115 +475,6 @@
         "migration_replacement_of": "article_4915ebec8e834c03b1a4"
       }
     },
-    "url:https://news.google.com/rss/articles/cbmidefvx3lxte5tmgs0x1dymkhqm01tymldtwdoemxtnwf2ylu3wejjy0ltv0lrsjrncelyavhmcxfqa2tqodhwn2drxzroblvbcg11z0tmtkvnlu5wbllbyzbwmwltegp3zxm5bhjpyzfkslb1othqulhudllp": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte5tmgs0x1dymkhqm01tymldtwdoemxtnwf2ylu3wejjy0ltv0lrsjrncelyavhmcxfqa2tqodhwn2drxzroblvbcg11z0tmtkvnlu5wbllbyzbwmwltegp3zxm5bhjpyzfkslb1othqulhudllp",
-      "content_hash": "93d316e375250cc368a660b111147897d41c50b8eb11fc589f33bbf21e978a63",
-      "story_key": "1b491d5ec164723afec42dcafc34b709c9abba1e13d154d9ccb933bc382ecd68",
-      "status": "enriched",
-      "processed_at": "2026-08-26T02:01:01.401Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Gemini",
-        "title": "グーグルが法律事務所向け新製品「Gemini Enterprise for Legal」を発表",
-        "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5TMGs0X1dyMkhQM01tYmlDTWdoemxtNWF2YlU3WEJJY0lTV0lRSjRncElYaVhmcXFqa2tqODhWN2dRXzRoblVBcG11Z0tMTkVNLU5WbllBYzBWMWlTeGp3ZXM5bHJpYzFkSlB1OThQUlhudllp?oc=5",
-        "source_name": "BigGo ファイナンス",
-        "is_official": false,
-        "published_at": "2026-08-25T18:40:00.000Z",
-        "source_published_at": "2026-08-25T18:40:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T01:59:01.398Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Google",
-          "Gemini Enterprise for Legal"
-        ],
-        "primary_entity": "Google",
-        "story_subject": "Gemini Enterprise for Legal",
-        "event_type": "release",
-        "event_stage": "announced",
-        "event_scope": "法律事務所向け(業界特化)",
-        "fact_slots": [
-          {
-            "type": "other",
-            "scope": "対象業界",
-            "value": "法律事務所",
-            "normalized_value": "法律事務所"
-          }
-        ],
-        "new_facts": [
-          "グーグルが法律事務所向け製品「Gemini Enterprise for Legal」を発表した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "グーグルが法律事務所向けのAI活用需要を取り込む狙いで新製品「Gemini Enterprise for Legal」を発表した。価格や提供開始日など詳細は不明。",
-        "detail": "グーグルが法律事務所向けの生成AI製品「Gemini Enterprise for Legal」を発表した。法律業界ではAI導入への投資が増えており、同社はこの需要を取り込む狙いがあるとみられる。ただ現時点で公開されている情報は製品名と対象業界のみで、価格や提供開始時期、具体的な機能については明らかになっていない。今後、詳細な仕様や提供条件が公表される見通し。",
-        "change_summary": "グーグルが法律事務所向けに特化した新製品「Gemini Enterprise for Legal」を発表した。",
-        "impact_summary": "法律事務所などの法務業務でAI活用が進む可能性があるが、詳細不明のため導入検討には追加情報が必要。",
-        "action_suggestion": "価格や提供開始日など詳細は現時点で不明で、グーグルの公式発表を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "企業・株式"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmidefvx3lxte82dmxoykz4mu1yy3hbzlv6sgnxr2p0dtnpq0rzduk2mlzuefdty2hktutiz1blr0vny3i5qlzkcgporvnnvuvjrzjotdzbtc1kmelic2htb1bzzutwymvtyjhbr2g2nutseffzzmhfaxhpajbh": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte82dmxoykz4mu1yy3hbzlv6sgnxr2p0dtnpq0rzduk2mlzuefdty2hktutiz1blr0vny3i5qlzkcgporvnnvuvjrzjotdzbtc1kmelic2htb1bzzutwymvtyjhbr2g2nutseffzzmhfaxhpajbh",
-      "content_hash": "507e4eda5af3db88af04eb61902e65a5aa36045a4bc50ca115eaf27840847efe",
-      "story_key": "d99330b5b9cf07fd0af357437db91f48bb4916f1d21a8c5df001961e39c60e92",
-      "status": "enriched",
-      "processed_at": "2026-08-26T02:01:01.401Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "DeepSeek",
-        "title": "DeepSeek、コーディングと推論性能で競合超えを狙う新モデルをテスト中",
-        "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE82dmxOYkZ4MU1yY3hBZlV6SGNxR2p0dTNPQ0RzdUk2MlZueFdtY2hkTUtIZ1BLR0VNY3I5QlZKcGpoRVNnVUVjRzJOTDZBTC1kMElIc2htb1BzZUtWYmVtYjhBR2g2NUtseFFZZmhFaXhPajBH?oc=5",
-        "source_name": "BigGo ファイナンス",
-        "is_official": false,
-        "published_at": "2026-08-25T18:37:00.000Z",
-        "source_published_at": "2026-08-25T18:37:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T01:59:20.256Z",
-        "event_at": "",
-        "event_status": "継続中",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "DeepSeek",
-          "Fable 5"
-        ],
-        "primary_entity": "DeepSeek",
-        "story_subject": "新モデル(コーディング・推論性能強化)",
-        "event_type": "research",
-        "event_stage": "other",
-        "event_scope": "開発中・テスト中",
-        "fact_slots": [],
-        "new_facts": [
-          "DeepSeekがコーディングと推論性能で競合モデルを超える新モデルをテスト中であることが明らかになった"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "DeepSeekが、コーディングと推論の性能で他社モデル「Fable 5」を上回ることを目指す新モデルを開発中であることが分かった。",
-        "detail": "DeepSeekは、コーディング能力と推論能力の両面で競合とされる「Fable 5」を超えることを目標とした新しいAIモデルを現在テスト中であることが報じられた。具体的なモデル名や公開時期、性能の検証結果などは記事内では明らかにされていない。今後、テスト結果を踏まえた正式発表が行われるか注目される。",
-        "change_summary": "DeepSeekがコーディングと推論性能で競合モデルを上回ることを目指す新モデルの開発・テストを進めていることが明らかになった。",
-        "impact_summary": "AIモデルの性能競争が続くことで、開発者やビジネス利用者にとって選択肢や性能向上の恩恵が期待できる。",
-        "action_suggestion": "モデル名や公開時期など詳細は現時点で不明で、今後の公式発表を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "研究・技術"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
     "url:https://news.google.com/rss/articles/cbmitgfbvv95cuxpltlgekdby0h3c1q3se9lrzfhuupfx2n6wel5dffqzvuyrxrrdwpszm9zbdjuwmh1nut0tu41c0dvnlvlzkdzwwzfsu9oz3plt2lqn21fnjjcdwtrwkxgmjf4c0lamzbtzulmdxblbm9segfnemldsdd6dnm5t1psmldpa19sne1uamsyym5ulvzpc3bdz1bownfszk04b21dwkpcvjytwhmxvlvsc0fdmu9iuc0wzw": {
       "canonical_url": "https://news.google.com/rss/articles/cbmitgfbvv95cuxpltlgekdby0h3c1q3se9lrzfhuupfx2n6wel5dffqzvuyrxrrdwpszm9zbdjuwmh1nut0tu41c0dvnlvlzkdzwwzfsu9oz3plt2lqn21fnjjcdwtrwkxgmjf4c0lamzbtzulmdxblbm9segfnemldsdd6dnm5t1psmldpa19sne1uamsyym5ulvzpc3bdz1bownfszk04b21dwkpcvjytwhmxvlvsc0fdmu9iuc0wzw",
       "content_hash": "1ea7bdabef8d62d1ced299e904795c754982ab08c0de19ad2f230551353ab12a",
@@ -690,820 +532,6 @@
         ],
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
         "migration_replacement_of": "article_3cc14d809b65f8c4eb25"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmid0fvx3lxte0xav9px3r0dkxsdmi2yktoykxwvtlrbwzfu0v3b0xyqktlt1h4r0zstw43sjqxcmrpy2xwqmd2c1vyes1quufblvnen1jfvzzvqmhlsjlyng1wufhnvu9btkrlegv4axfywtbrnurgewjicjjywvpj": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmid0fvx3lxte0xav9px3r0dkxsdmi2yktoykxwvtlrbwzfu0v3b0xyqktlt1h4r0zstw43sjqxcmrpy2xwqmd2c1vyes1quufblvnen1jfvzzvqmhlsjlyng1wufhnvu9btkrlegv4axfywtbrnurgewjicjjywvpj",
-      "content_hash": "c80aa69ca68b9e66174b9a2053a36f0d7ae6f8c29fe8f53ccb24c8c95cfc1244",
-      "story_key": "fb4e7a7495fc80ea689219c93e49a3c9990f322f50dd8e6a5c3ae63f539755fb",
-      "status": "enriched",
-      "processed_at": "2026-08-26T02:01:01.401Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "ChatGPT / OpenAI",
-        "title": "OpenAI、ChatGPT WorkとCodex向けに管理者用プラグインを公開",
-        "source_url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE0xaV9pX3R0dkxSdmI2YktoYkxWVTlrbWZFU0V3b0xYQktlT1h4R0ZSTW43SjQxcmRpY2xWQmd2c1VYeS1qUUFBLVNEN1JfVzZvQmhlSjlyNG1WUFhnVU9BTkRLeGV4aXFYWTBRNURGeWJIcjJyWVpj?oc=5",
-        "source_name": "Investing.com - FX | 株式市場 | ファイナンス | 金融ニュース",
-        "is_official": false,
-        "published_at": "2026-08-25T17:46:00.000Z",
-        "source_published_at": "2026-08-25T17:46:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T01:58:58.462Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "OpenAI",
-          "ChatGPT Work",
-          "Codex"
-        ],
-        "primary_entity": "OpenAI",
-        "story_subject": "ChatGPT Work/Codex向け管理者プラグイン",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "企業向け管理機能",
-        "fact_slots": [],
-        "new_facts": [
-          "OpenAIがChatGPT WorkとCodex向けに管理者用プラグインを公開した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "OpenAIが、企業向けChatGPT WorkとCodexに管理者向けプラグイン機能を新たに公開した。",
-        "detail": "OpenAIは、法人向けサービス「ChatGPT Work」とコーディング支援サービス「Codex」向けに、管理者が利用できるプラグイン機能を公開した。これにより組織の管理者が両サービスの利用状況や設定をより細かく管理できるようになるとみられる。具体的な機能内容や対象プランなど詳細は記事内では明らかになっていない。",
-        "change_summary": "OpenAIがChatGPT WorkとCodexに管理者向けプラグイン機能を新たに追加した。",
-        "impact_summary": "企業でChatGPTやCodexを導入する情報システム部門にとって、利用管理や統制がしやすくなる可能性がある。",
-        "action_suggestion": "対象プランや機能の詳細は現時点で不明で、OpenAIの公式発表を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "企業・株式"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmix0fvx3lxte4tm1pum0pwby1oa2vbzdfjnkpdsnzia3diamhobda5vvpxevfibtnuyno0sgk0wtrlrhdjqlk0cxvxev9adfrzqwhsqzjmefdkvzbjvjizzzfvvnhvy1hv": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmix0fvx3lxte4tm1pum0pwby1oa2vbzdfjnkpdsnzia3diamhobda5vvpxevfibtnuyno0sgk0wtrlrhdjqlk0cxvxev9adfrzqwhsqzjmefdkvzbjvjizzzfvvnhvy1hv",
-      "content_hash": "8a583197a1de78b9ec54dc4439bb11449de347b85893ab54fe5e910e2af754ab",
-      "story_key": "09a83bb10eb6d0ac8a7ddaf4b84d9c6a04be75e5dc91868dafad6a5fb6744aa7",
-      "status": "enriched",
-      "processed_at": "2026-08-26T02:02:02.401Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Claude / Claude Code",
-        "title": "Anthropic、無料学習サイト「Claude Academy」を公開",
-        "source_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE4tM1puM0pWby1Oa2VBZDFjNkpDSnZia3diamhobDA5VVpxeVFibTNUYno0SGk0WTRlRHdjQlk0cXVxeV9adFRzQWhSQzJMeFdkVzBJVjIzZzFvVnhvY1hV?oc=5",
-        "source_name": "Ledge.ai",
-        "is_official": false,
-        "published_at": "2026-08-25T22:59:41.000Z",
-        "source_published_at": "2026-08-25T22:59:41.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T01:59:00.060Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Anthropic",
-          "Claude Academy",
-          "Claude Code"
-        ],
-        "primary_entity": "Anthropic",
-        "story_subject": "Claude Academy",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "オンライン・無料公開",
-        "fact_slots": [
-          {
-            "type": "availability",
-            "scope": "Claude Academy",
-            "value": "無料公開",
-            "normalized_value": "無料公開"
-          }
-        ],
-        "new_facts": [
-          "Anthropicが無料学習サイト「Claude Academy」を公開した",
-          "Claude CodeやMCP、AIの能力と限界について学べる内容が含まれる"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "AnthropicはClaude CodeやMCP、AIの能力と限界を学べる無料学習サイト「Claude Academy」を公開した。",
-        "detail": "Anthropicは開発者や利用者向けに、無料のオンライン学習サイト「Claude Academy」を公開した。サイトではAIコーディング支援ツール「Claude Code」や、AIモデルと外部ツールを連携させる標準規格「MCP（Model Context Protocol）」の使い方に加え、AIが得意なことと苦手なことといった能力の限界についても学べる内容が用意されている。開発初心者からClaudeを業務に活用したい人まで幅広く学習できる教材として提供された。",
-        "change_summary": "AnthropicがClaude Code、MCP、AIの能力と限界を扱う無料学習サイトを新たに公開した。",
-        "impact_summary": "日本の開発者や企業担当者もClaude CodeやMCPの使い方を体系的に学べるようになり、AI導入のハードルが下がる可能性がある。",
-        "action_suggestion": "Claude Academyのサイトにアクセスし、公開されている講座内容を確認できる。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "研究・技術"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://blog.google/innovation-and-ai/products/gemini-app/enable-intelligent-dictation-macos": {
-      "canonical_url": "https://blog.google/innovation-and-ai/products/gemini-app/enable-intelligent-dictation-macos",
-      "content_hash": "a0fa9351eaedf3c2240cac3ea7561498713365d7dae12644dfd32b22d7e2ba4c",
-      "story_key": "0cfb6c2e402affefbcdbb868d654a74582109b93f2f50a83e456c2e7c4eec8ca",
-      "status": "enriched",
-      "processed_at": "2026-08-26T02:02:02.401Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Gemini",
-        "title": "Google、Gemini for macOSに音声入力機能「インテリジェント・ディクテーション」を追加",
-        "source_url": "https://blog.google/innovation-and-ai/products/gemini-app/enable-intelligent-dictation-macos/",
-        "source_name": "blog.google",
-        "is_official": true,
-        "published_at": "2026-08-25T16:00:00.000Z",
-        "source_published_at": "2026-08-25T16:00:00.000Z",
-        "source_updated_at": "2026-08-25T15:42:19.361Z",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T01:59:01.398Z",
-        "event_at": "",
-        "event_status": "開始済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Google",
-          "Gemini",
-          "macOS"
-        ],
-        "primary_entity": "Google",
-        "story_subject": "Gemini for macOS インテリジェント・ディクテーション",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "macOS",
-        "fact_slots": [
-          {
-            "type": "availability",
-            "scope": "Gemini for macOS",
-            "value": "インテリジェント・ディクテーション機能",
-            "normalized_value": "インテリジェントディクテーション機能"
-          }
-        ],
-        "new_facts": [
-          "Gemini for macOSに音声を整形テキストに変換する機能が導入されている",
-          "発話の間投詞を自動除去し、文中の言い直しも認識する"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "GoogleはGemini for macOSに自然な発話を整形されたテキストに変換する音声入力機能を導入し、使い方を紹介する動画も公開した。",
-        "detail": "Googleは以前、Gemini for macOSアプリにデスクトップ上のあらゆるウィンドウで自然に話しかけるだけで文章の作成・編集・要約ができる「インテリジェント・ディクテーション」機能を導入していた。この機能は発話中の「あー」「えーと」といった間投詞を自動的に除去し、話しながらの言い直しも認識したうえで、整形済みのテキストをカーソル位置に即座に挿入する。今回の公式ブログでは、この機能の使い方と有効化方法を解説する動画が新たに公開された。",
-        "change_summary": "Gemini for macOSの音声入力機能の使い方を解説する動画が公式ブログで公開された。",
-        "impact_summary": "日本のMacユーザーもキーボード操作なしで文章作成や編集ができるようになり、業務効率化につながる可能性がある。",
-        "action_suggestion": "Gemini for macOSアプリの設定から機能を有効化でき、公式ブログ掲載の動画で使い方を確認できる。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmijgfbvv95cuxqszryugphszneekg5auhsthjbwe5zqvcyctzmdghfm3e5nwezx3q0q0pcnhnobmy2bnrsrjrvx1rhvzlamjnvauhxc1fowgxmrdjxujhievnzvtzna3a4vhzlogppd3noac1hy3jywvv3mw9id2rnde9tzznzdkjrmdbfswdqtgs0ze1lnel3": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmijgfbvv95cuxqszryugphszneekg5auhsthjbwe5zqvcyctzmdghfm3e5nwezx3q0q0pcnhnobmy2bnrsrjrvx1rhvzlamjnvauhxc1fowgxmrdjxujhievnzvtzna3a4vhzlogppd3noac1hy3jywvv3mw9id2rnde9tzznzdkjrmdbfswdqtgs0ze1lnel3",
-      "content_hash": "bd572a073f173ab4015452f8581fdc0b916bf161a09eda8ea2ed47292a67df4f",
-      "story_key": "36c410640578f2be41558183ec0322c2a9c2a744c7dc109ff85303e167beb205",
-      "status": "enriched",
-      "processed_at": "2026-08-26T02:02:02.401Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Adobe Firefly",
-        "title": "Adobe、Fireflyの音楽・音声・効果音生成機能を正式提供開始",
-        "source_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQSzRYUGpHSzNEekg5aUhsTHJBWE5zQVcycTZMdGhfM3E5NWEzX3Q0Q0pCNHNObmY2bnRSRjRVX1RHVzlaMjNvaUhxc1FoWGxMRDJXUjhieVNZVTZNa3A4VHZlOGppd3NoaC1hY3JyWVV3MW9id2RndE9tZzNzdkJRMDBFSWdQTGs0ZE1lNEl3?oc=5",
-        "source_name": "Yahoo!ニュース",
-        "is_official": false,
-        "published_at": "2026-08-24T06:01:27.000Z",
-        "source_published_at": "2026-08-24T06:01:27.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T01:59:17.378Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Adobe",
-          "Firefly",
-          "AIアシスタント"
-        ],
-        "primary_entity": "Adobe",
-        "story_subject": "Firefly 音楽・音声・効果音生成機能",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "Firefly全体",
-        "fact_slots": [
-          {
-            "type": "availability",
-            "scope": "Firefly 音楽・音声・効果音生成",
-            "value": "正式提供",
-            "normalized_value": "正式提供"
-          }
-        ],
-        "new_facts": [
-          "Adobe Fireflyが音楽・音声・効果音の生成機能を正式提供開始した",
-          "AdobeがFireflyのAIアシスタント機能も強化した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "AdobeはFireflyで音楽・音声・効果音を生成する機能を正式提供開始し、AIアシスタント機能も強化した。",
-        "detail": "AdobeはクリエイティブAIプラットフォーム「Firefly」において、これまでベータ等で試験提供していたとみられる音楽・音声・効果音の生成機能を正式にリリースした。あわせて、制作作業を支援するAIアシスタント機能も強化されたと報じられている。具体的な機能範囲や対応言語などの詳細は記事本文からは確認できないが、動画や音声コンテンツ制作に関わるクリエイターがFirefly上で音源制作まで一貫して行える環境が整った形だ。",
-        "change_summary": "Fireflyの音楽・音声・効果音生成機能が正式提供に移行し、AIアシスタントも強化された。",
-        "impact_summary": "動画制作者やマーケティング担当者が音楽・効果音制作の外注コストや時間を削減できる可能性がある。",
-        "action_suggestion": "Firefly上で新機能を利用開始できる状態にあり、詳細な仕様は公式情報の確認が必要。",
-        "importance": "B",
-        "related_categories": [
-          "音楽・クリエイティブ",
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxte5nq3nlm3vxrv9uztd1zxdyrkfqcwz2tfjjdmrgmxnsbgliztzed3jhn3pxwjc3yzuzas15vuntnnfpb25xt01pztuxnxjqulbwngtz": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxte5nq3nlm3vxrv9uztd1zxdyrkfqcwz2tfjjdmrgmxnsbgliztzed3jhn3pxwjc3yzuzas15vuntnnfpb25xt01pztuxnxjqulbwngtz",
-      "content_hash": "f9d55a607027ab562a5ec576b87596aad58fb8986ed6cb0df42cfa90c2bbfd54",
-      "story_key": "8dabe07460084048fae8b107a53ad1df7934aca699c3ac8113ffff386d8245ca",
-      "status": "enriched",
-      "processed_at": "2026-08-26T02:02:02.401Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Perplexity",
-        "title": "Perplexity、ローカルAIエージェント「Portable Computer」を発表",
-        "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5nQ3NLM3VxRV9UZTd1ZXdYRkFQcWZ2TFJJdmRGMXNSbGlIZTZEd3JhN3pXWjc3YzUzaS15VUNtNnFpb25XT01pZTUxNXJqUlBWNGtZ?oc=5",
-        "source_name": "ZDNET Japan",
-        "is_official": false,
-        "published_at": "2026-08-26T00:54:00.000Z",
-        "source_published_at": "2026-08-26T00:54:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T01:59:18.047Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Perplexity",
-          "Portable Computer"
-        ],
-        "primary_entity": "Perplexity",
-        "story_subject": "Portable Computer",
-        "event_type": "release",
-        "event_stage": "announced",
-        "event_scope": "不明",
-        "fact_slots": [
-          {
-            "type": "other",
-            "scope": "製品名",
-            "value": "Portable Computer",
-            "normalized_value": "portablecomputer"
-          }
-        ],
-        "new_facts": [
-          "Perplexityがローカルで動作するAIエージェント「Portable Computer」を発表した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "Perplexityはクラウド接続に依存しないローカルAIエージェント「Portable Computer」を新たに発表した。",
-        "detail": "検索エンジン企業のPerplexityは、ローカル環境で動作するAIエージェント「Portable Computer」を発表した。記事本文からは製品名と発表の事実以外の詳細は確認できず、具体的な機能内容や対応環境、提供時期などは不明である。Perplexityはこれまで検索やAIアシスタント分野で製品を展開してきており、今回の発表はその事業領域を広げる動きとみられる。",
-        "change_summary": "Perplexityがローカル動作型のAIエージェント「Portable Computer」を新たに発表した。",
-        "impact_summary": "クラウドに依存しないAIエージェントが実現すれば、企業のセキュリティやプライバシー要件に対応しやすくなる可能性がある。",
-        "action_suggestion": "現時点では発表段階であり、機能詳細や提供時期については続報の確認が必要。",
-        "importance": "A",
-        "related_categories": [
-          "AIツール・モデル",
-          "企業・株式"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiekfvx3lxte5bznixotj2ufyxafrbckcxdkdodgptvmhzr0lfohbzv2xiculksf90ofdmuwr0uvbquwq5a3lrrgfrytbotvowrkntyw1jukxxejlqm0dqywzbb2t6cwlsofj0tdlnmgp2cl9ywwe5lwxtynfyzlrultzr0ggoaufvx3lxtfbjzvjdbs1tqkzyrjzlrkr5qkfitfjwvmtmumm3dml1z3nncdrkrxjisufgx3zlc2vmrzntau1lb1vvbdhfbnruzw5juhatq09yotjgcunorfe5vjlraf9iodbttznxdjdjdm1esmvzmjq0svbaowk3v3vpa0zycwdkql9jszizuvvitgzxunc": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiekfvx3lxte5bznixotj2ufyxafrbckcxdkdodgptvmhzr0lfohbzv2xiculksf90ofdmuwr0uvbquwq5a3lrrgfrytbotvowrkntyw1jukxxejlqm0dqywzbb2t6cwlsofj0tdlnmgp2cl9ywwe5lwxtynfyzlrultzr0ggoaufvx3lxtfbjzvjdbs1tqkzyrjzlrkr5qkfitfjwvmtmumm3dml1z3nncdrkrxjisufgx3zlc2vmrzntau1lb1vvbdhfbnruzw5juhatq09yotjgcunorfe5vjlraf9iodbttznxdjdjdm1esmvzmjq0svbaowk3v3vpa0zycwdkql9jszizuvvitgzxunc",
-      "content_hash": "030bd66114afdfedcf0f54c5b3cab66a5ef3ca8980b7d79830af8eaa01484d90",
-      "story_key": "d1ae78bd161089b37a93696e5de3c29ed380ccb2601752ff77487a140b1758e1",
-      "status": "enriched",
-      "processed_at": "2026-08-26T04:05:50.901Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "AIセキュリティ",
-        "title": "LGエレクトロニクス幹部、AI攻撃の高度化に警鐘 最小権限と人的承認を提唱",
-        "source_url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5BZnIxOTJ2UFYxaFRBckcxdkdodGpTVmhZR0lFOHBZV2xIcUlKSF90OFdMUWR0UVBqUWQ5a3lRRGFrYTBOTVowRkNtYW1JUkxxejlQM0dqYWZBb2t6cWlSOFJ0TDlNMGp2cl9yWWE5LWxTYnFyZlRuLTZR0gGOAUFVX3lxTFBjZVJDbS1tQkZyRjZlRkR5QkFiTFJwVmtMUmM3dml1Z3NNcDRkRXJiSUFGX3Zlc2VmRzNTaU1Lb1VvbDhFbnRuZW5JUHAtQ09YOTJGcUNORFE5VjlRaF9iODBtTzNXdjdJdm1ESmVZMjQ0SVBaOWk3V3Vpa0ZycWdKQl9JSzIzUVVITGZxUnc?oc=5",
-        "source_name": "Chosunbiz",
-        "is_official": false,
-        "published_at": "2026-08-26T03:15:00.000Z",
-        "source_published_at": "2026-08-26T03:15:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T04:04:37.921Z",
-        "event_at": "",
-        "event_status": "不明",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "LGエレクトロニクス",
-          "AIセキュリティ"
-        ],
-        "primary_entity": "LGエレクトロニクス",
-        "story_subject": "AI攻撃の高度化と最小権限・人的承認の提唱",
-        "event_type": "security",
-        "event_stage": "other",
-        "event_scope": "不明",
-        "fact_slots": [],
-        "new_facts": [
-          "LGエレクトロニクスの任ヒョジュン氏がAI攻撃の高度化に警鐘を鳴らした",
-          "最小権限の原則と人による承認プロセスの重要性を提唱した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "LGエレクトロニクスの任ヒョジュン氏が、AIを悪用した攻撃の高度化に警鐘を鳴らし、権限最小化と人による承認プロセスの徹底を提唱した。",
-        "detail": "LGエレクトロニクスの任ヒョジュン氏が、AIを利用したサイバー攻撃が高度化している現状に警鐘を鳴らした。具体的には、AIエージェントやシステムに与える権限を必要最小限に抑える「最小権限の原則」を徹底し、重要な操作には必ず人間の承認プロセスを組み込むことの重要性を提唱した。記事はChosunbizによる報道で、講演等の具体的な日時や対象システムの詳細は明確でない。AIエージェント導入が進む企業に向けた防御策として、こうした原則が改めて指摘された形だ。",
-        "change_summary": "LGエレクトロニクス幹部がAI攻撃の高度化と対策(最小権限・人的承認)を提唱したことが新たに報じられた。",
-        "impact_summary": "企業がAIエージェントを業務に導入する際のセキュリティ設計の指針として、権限管理や人的承認プロセスの重要性が改めて示唆される。",
-        "action_suggestion": "記事からは具体的な発表日時や対象システムは確認できず、詳細は不明。",
-        "importance": "B",
-        "related_categories": [
-          "セキュリティ",
-          "企業・株式"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxte5plvhrbf9zewnnallxt0fyx2nxdwvxcldwaknsahnwdkzyz19suxnhdnmwohbyqmdyogpceenmql9mvunxc01stxj5tc1zuv9tv1zn": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxte5plvhrbf9zewnnallxt0fyx2nxdwvxcldwaknsahnwdkzyz19suxnhdnmwohbyqmdyogpceenmql9mvunxc01stxj5tc1zuv9tv1zn",
-      "content_hash": "101eae8e77e43a901571fe0e16f50fb5b19365f58cc721c2d576eef961724dab",
-      "story_key": "05f131ed0f6906bf2e8023712319f06b150b3eb896fcf4177cf649d39d9a8e84",
-      "status": "enriched",
-      "processed_at": "2026-08-26T04:05:50.901Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Perplexity",
-        "title": "Perplexityのローカル型AI端末「Portable Computer」、Nvidiaとの関係強化が話題に",
-        "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5PLVhRbF9ZeWNnallxT0FYX2NXdWVXcldWakNSaHNWdkZYZ19SUXNHdnMwOHByQmdyOGpCeENmQl9mVUNxc01STXJ5TC1ZUV9TV1Zn?oc=5",
-        "source_name": "innovaTopia",
-        "is_official": false,
-        "published_at": "2026-08-26T03:30:31.000Z",
-        "source_published_at": "2026-08-26T03:30:31.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T04:04:21.167Z",
-        "event_at": "",
-        "event_status": "不明",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Perplexity",
-          "Nvidia",
-          "Portable Computer"
-        ],
-        "primary_entity": "Perplexity",
-        "story_subject": "Portable Computer",
-        "event_type": "other",
-        "event_stage": "other",
-        "event_scope": "不明",
-        "fact_slots": [],
-        "new_facts": [
-          "PerplexityがローカルAI端末Portable Computerを手がけている",
-          "NvidiaとPerplexityの関係が急速に接近していると分析されている"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "Perplexityがローカルで動くAI端末「Portable Computer」を巡り、Nvidiaとの関係を急速に深めていることが注目されている。",
-        "detail": "Perplexityが手がけるローカル動作型のAI端末「Portable Computer」について、Nvidiaとの関係が急速に接近している点が話題となっている。記事はinnovaTopiaによる分析で、検索AIサービスを提供してきたPerplexityがハードウェア領域に進出し、Nvidiaとの連携を強めている背景や狙いを論じている。具体的な製品仕様や提携内容の詳細、発売時期などについては記事からは明確でない部分が多く、今後の動向が注目される。",
-        "change_summary": "Perplexityのローカル型AI端末「Portable Computer」を巡るNvidiaとの関係強化が新たに報じられた。",
-        "impact_summary": "検索AI企業がハードウェア分野に参入する動きは、AI業界における端末とクラウドの役割分担や競争構図に影響を与える可能性がある。",
-        "action_suggestion": "製品仕様や提携の具体的な内容、発売時期などは記事からは確認できず、続報の確認が必要。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "企業・株式",
-          "半導体・インフラ"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiekfvx3lxte5kngqyvtbozvvhzldkdloxntztsmq5mxr1cgj2rhq0bxdwvmpstnnfnxpochjvdfzuaepntmhka251ce55rjlrz0swrzblvmpfa1mtekcttnnjbe91dlvdq1lwa05hveriyk9hmxlyuxhouexstxpcvur30gf_qvvfexfmtjz5b3nfohhislpwanf5c1dimu04y1rfqxu2bxltawdfvvj6adfltvi5dxdbvnrkdghwtdbmnzuznw5knwjssnnpx2hpauxvrexnqjrmv2p1ctb5qljfm1vkodh5u0v2dw9hqnd0qwrcbtjqotbgyktloth5aejyuq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiekfvx3lxte5kngqyvtbozvvhzldkdloxntztsmq5mxr1cgj2rhq0bxdwvmpstnnfnxpochjvdfzuaepntmhka251ce55rjlrz0swrzblvmpfa1mtekcttnnjbe91dlvdq1lwa05hveriyk9hmxlyuxhouexstxpcvur30gf_qvvfexfmtjz5b3nfohhislpwanf5c1dimu04y1rfqxu2bxltawdfvvj6adfltvi5dxdbvnrkdghwtdbmnzuznw5knwjssnnpx2hpauxvrexnqjrmv2p1ctb5qljfm1vkodh5u0v2dw9hqnd0qwrcbtjqotbgyktloth5aejyuq",
-      "content_hash": "6231910ec7809a4ea27947ec4403632abecd2845cc28670ff33520ab2f0383ae",
-      "story_key": "f80e2928e7874a493c17db257a227001b8fb870bbefb2e9c76f5472e9fce853f",
-      "status": "enriched",
-      "processed_at": "2026-08-26T04:05:50.902Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "ChatGPT / OpenAI",
-        "title": "ChatGPT Work、ログインが必要なサイトも操作可能に パスワードは取得しない仕組み",
-        "source_url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5kNGQyVTBOZVVHZldKdloxNTZTSmQ5MXR1cGJ2RHQ0bXdwVmpSTnNfNXpOcHJvdFZuaEpnTmhka251cE55RjlrZ0swRzBlVmpFa1MtekctTnNJbE91dlVDQ1lwa05hVERiYk9HMXlyUXhOUExsTXpCVUR30gF_QVVfeXFMTjZ5b3NfOHhISlpwanF5c1dIMU04Y1RfQXU2bXltaWdfVVJ6aDFlTVI5dXdBVnRKdGhwTDBMNzUzNW5kNWJSSnNPX2hpaUxVRExnQjRMV2p1cTB5QlJfM1VkODh5U0V2dW9hQnd0QWRCbTJqOTBGYktlOTh5aEJYUQ?oc=5",
-        "source_name": "Infoseek",
-        "is_official": false,
-        "published_at": "2026-08-26T02:28:49.000Z",
-        "source_published_at": "2026-08-26T02:28:49.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T04:04:00.623Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "ChatGPT Work",
-          "OpenAI"
-        ],
-        "primary_entity": "OpenAI",
-        "story_subject": "ChatGPT Work",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "不明",
-        "fact_slots": [],
-        "new_facts": [
-          "ChatGPT Workがログイン必要なサイトの操作に対応した",
-          "パスワードは一切見ない設計であると説明されている"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "OpenAIのChatGPT Workがログイン必要なウェブサイトの操作に対応し、パスワードを一切取得しない設計であることが明らかになった。",
-        "detail": "OpenAIの企業向けサービス「ChatGPT Work」が、ログインを必要とするウェブサイトの操作にも対応したことが分かった。従来は認証が必要なサイトでの自動操作が難しかったが、今回の対応によりChatGPTがユーザーに代わってログイン後の作業を代行できるようになる。運営側は「パスワードは一切見ない」と説明しており、認証情報を直接扱わない仕組みを採用しているとみられる。記事はInfoseek配信で、詳細な技術的仕組みや対応開始時期については記事からは明確でない。",
-        "change_summary": "ChatGPT Workがログイン必要なサイトの操作に対応し、パスワードを取得しない設計であることが新たに示された。",
-        "impact_summary": "業務システムへのログインが必要な作業もAIに任せられるようになれば、企業のバックオフィス業務や定型作業の自動化がさらに進む可能性がある。",
-        "action_suggestion": "対応開始時期や具体的な仕組みの詳細は記事からは確認できず、公式発表の続報確認が必要。",
-        "importance": "A",
-        "related_categories": [
-          "AIツール・モデル",
-          "セキュリティ",
-          "アプリ開発・自動化"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmieefvx3lxte03dfc3qnotbfzoutn5azrfs0izlxdkx05smexomzjydjhzb1i3m2n5vg5wztv3d0ftvzbcvhzdrtn6di1wy3rqnhfpchdnn01mbnyyy1f1atbloddtqnl6cuj5wk5hahf2azk3cwfha3vumkh6afzowq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmieefvx3lxte03dfc3qnotbfzoutn5azrfs0izlxdkx05smexomzjydjhzb1i3m2n5vg5wztv3d0ftvzbcvhzdrtn6di1wy3rqnhfpchdnn01mbnyyy1f1atbloddtqnl6cuj5wk5hahf2azk3cwfha3vumkh6afzowq",
-      "content_hash": "417f352b0ebaa02ea531e4d57744ba585b13dbf7e0540cdb69e2c507dfb87e78",
-      "story_key": "087f33813df26bb3d653935e27012902df3b8ac6bd73d5d45cce58a05cadaea6",
-      "status": "enriched",
-      "processed_at": "2026-08-26T04:06:47.154Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Adobe Firefly",
-        "title": "Adobe Firefly、AIによる音楽・音声・効果音の生成に対応",
-        "source_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE03dFc3QnotbFZoUTN5azRFS0IzLXdKX05SMExoMzJydjhZb1I3M2N5VG5WZTV3d0FtVzBCVHZDRTN6di1WY3RQNHFPcHdnN01mbnYyY1F1aTBLODdTQnl6cUJ5Wk5HaHF2azk3cWFha3VUMkh6aFZoWQ?oc=5",
-        "source_name": "MobiGyaan",
-        "is_official": false,
-        "published_at": "2026-08-22T05:13:32.000Z",
-        "source_published_at": "2026-08-22T05:13:32.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T04:04:20.578Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Adobe Firefly"
-        ],
-        "primary_entity": "Adobe",
-        "story_subject": "Adobe Firefly 音声生成機能",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "Adobe Firefly全体",
-        "fact_slots": [],
-        "new_facts": [
-          "Adobe Fireflyが音楽・音声・効果音のAI生成機能を追加した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "Adobe Fireflyが新たに音楽・音声・効果音をAIで生成できる機能を追加したと報じられた。",
-        "detail": "Adobe Fireflyが新たに音楽・音声（スピーチ）・サウンドエフェクトをAIで生成できる機能を追加した、とMobiGyaanが報じた。これまでFireflyは画像や動画の生成が中心だったが、今回のアップデートで音声関連のクリエイティブ制作もカバーする範囲が広がったことになる。具体的な提供地域や価格体系、対応言語については記事に明記されておらず不明で、Adobeはクリエイティブツールの機能拡張を続けている段階にある。",
-        "change_summary": "Adobe FireflyにAIによる音楽・音声・効果音の生成機能が新たに追加された。",
-        "impact_summary": "動画制作や広告制作の現場で音声素材をAdobeのツール内で一括生成できるようになり、制作フローが効率化する可能性がある。",
-        "action_suggestion": "提供開始時期や対応言語などの詳細は記事に明記されていないため、Adobe公式の発表を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "音楽・クリエイティブ",
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmizefvx3lxte5tttdat0pdu2s5nzlptxlauw02uljxahlrc3dodvb0ae9togzhdvzartbubxn1ownedmnuvurgwld4tw0xn09jdhvjci1vc2xtuhbfrnpkal9da0w5bvpmnxn3elq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmizefvx3lxte5tttdat0pdu2s5nzlptxlauw02uljxahlrc3dodvb0ae9togzhdvzartbubxn1ownedmnuvurgwld4tw0xn09jdhvjci1vc2xtuhbfrnpkal9da0w5bvpmnxn3elq",
-      "content_hash": "edaa9fa10fe810317e9409193129f866dbf725a5de7c9391d3e4073b111788d1",
-      "story_key": "9a0beb60ac0e427f581464deabacadcec0dd2063c833a1e0c2073c1d9a6f9c77",
-      "status": "enriched",
-      "processed_at": "2026-08-26T04:06:47.154Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Perplexity",
-        "title": "Perplexity、NVIDIA DGX Spark向けにローカルAIエージェントを公開",
-        "source_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5TTTdaT0pDU2s5NzlPTXlaUW02UlJxaHlRc3dOdVB0aE9TOGZhdVZaRTBUbXN1OWNEdmNUVURGWld4TW0xN09JdHVjci1Vc2xtUHBFRnpKal9Da0w5bVpMNXN3elQ?oc=5",
-        "source_name": "XenoSpectrum",
-        "is_official": false,
-        "published_at": "2026-08-26T02:42:12.000Z",
-        "source_published_at": "2026-08-26T02:42:12.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T04:04:21.167Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Perplexity",
-          "NVIDIA DGX Spark"
-        ],
-        "primary_entity": "Perplexity",
-        "story_subject": "DGX Spark向けAIエージェント",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "NVIDIA DGX Spark",
-        "fact_slots": [],
-        "new_facts": [
-          "Perplexityがローカル実行を既定に変更した",
-          "NVIDIA DGX Spark向けのAIエージェントを公開した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "Perplexityがローカル実行を既定に切り替え、NVIDIAのDGX Spark向けAIエージェントを公開した。",
-        "detail": "Perplexityが検索や処理をローカル環境で行うことを既定の設定に変更し、NVIDIAの小型AIワークステーション「DGX Spark」向けに新たなAIエージェントを公開した、とXenoSpectrumが報じた。これまでクラウド処理が主流だったAIサービスの中で、ローカル実行を優先する方針転換は、データのプライバシー保護や処理速度の観点から注目される。記事では具体的な機能詳細や対応時期についての記述は限られているが、Perplexityがローカルファーストの戦略を強めている点が示されている。",
-        "change_summary": "Perplexityがローカル実行を既定にし、DGX Spark向けAIエージェントを新たに公開した。",
-        "impact_summary": "社内データを外部クラウドに送らずにAI処理を行いたい企業にとって、セキュリティやプライバシーの観点で選択肢が広がる。",
-        "action_suggestion": "DGX Sparkの対応要件や利用可能時期など詳細は記事に明記されていないため、公式発表を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "半導体・インフラ"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmixefvx3lxte1peuhowvpfunzhqurvu2vovmpfr1fqqzrmwkrnyll6luzovnq2bgtqnu1kyw9unxptuexkutfusm5zrg0wawdjuth6sunkavlmsepdt0fqrzgxnmp6": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmixefvx3lxte1peuhowvpfunzhqurvu2vovmpfr1fqqzrmwkrnyll6luzovnq2bgtqnu1kyw9unxptuexkutfusm5zrg0wawdjuth6sunkavlmsepdt0fqrzgxnmp6",
-      "content_hash": "1d51ea14d306598ab4ee41b1c8e2afc429cc55cbb8ad9691309a04976da53686",
-      "story_key": "c6a77014ba8d1d237fe0156775c2a361dd886600f9eb9888d7fbd8cce7709630",
-      "status": "enriched",
-      "processed_at": "2026-08-26T07:11:14.768Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Perplexity",
-        "title": "Perplexity、ローカル実行型AIエージェント「Portable Computer」をNVIDIAと共同開発",
-        "source_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1peUhoWVpFUnZHQURVU2VoVmpfR1FQQzRMWkRnYll6LUZOVnQ2bGtQNU1kYW9uNXptUExkUTFUSm5zRG0waWdjUTh6SUNKaVlMSEpDT0FQRzgxNmp6?oc=5",
-        "source_name": "マイナビニュース",
-        "is_official": false,
-        "published_at": "2026-08-25T21:36:50.000Z",
-        "source_published_at": "2026-08-25T21:36:50.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T07:09:58.029Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Perplexity",
-          "NVIDIA",
-          "Portable Computer"
-        ],
-        "primary_entity": "Perplexity",
-        "story_subject": "Portable Computer",
-        "event_type": "release",
-        "event_stage": "announced",
-        "event_scope": "全世界",
-        "fact_slots": [
-          {
-            "type": "other",
-            "scope": "共同開発企業",
-            "value": "NVIDIA",
-            "normalized_value": "nvidia"
-          }
-        ],
-        "new_facts": [
-          "PerplexityがローカルAIエージェント「Portable Computer」をNVIDIAと共同開発したと発表した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "Perplexityが端末上で動作するAIエージェント「Portable Computer」を発表し、NVIDIAと共同開発したことが明らかになった。",
-        "detail": "検索AI企業のPerplexityが、クラウドを介さず端末上でローカルに動作するAIエージェント「Portable Computer」を発表した。同製品は半導体大手NVIDIAと共同で開発されたとされる。ローカル実行型とすることで通信環境に左右されずに動作させられる点が特徴とみられるが、対応デバイスや具体的な提供開始時期、価格などの詳細は本文からは確認できない。今後、両社から追加の情報公開が見込まれる。",
-        "change_summary": "PerplexityがNVIDIAと共同でローカル実行型AIエージェント「Portable Computer」を新たに発表した。",
-        "impact_summary": "ローカル実行型AIエージェントが普及すれば、クラウド依存を減らしつつ高度なAI処理を端末上で完結できるようになり、企業のセキュリティやコスト運用に影響を与える可能性がある。",
-        "action_suggestion": "対応デバイスや提供開始時期など具体的な条件については、PerplexityおよびNVIDIAの公式発表の確認が必要。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "半導体・インフラ"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiiafbvv95cuxpru1yekw0wxriaflxrffmrmnmbk13rjjoqky5sxnjchvua3dwv2s5wgf2ngp3zgj5cmfut3hjmgc0s1dvs2etrzjbx2xnmwlkb1d6u0vvc2u3sjaxwvljyvdrx0ztlvvlylp4qk9evhbbcfrltflvamnosuc5dulpew96n0q0efm3": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiiafbvv95cuxpru1yekw0wxriaflxrffmrmnmbk13rjjoqky5sxnjchvua3dwv2s5wgf2ngp3zgj5cmfut3hjmgc0s1dvs2etrzjbx2xnmwlkb1d6u0vvc2u3sjaxwvljyvdrx0ztlvvlylp4qk9evhbbcfrltflvamnosuc5dulpew96n0q0efm3",
-      "content_hash": "89e50349a262f7fe85f0e2833511fc2550d37889c585ed870101edf17a273879",
-      "story_key": "8685bca2d700398bb2d054b82b0139070b0f9e7c8ab42e314d33a9782e500377",
-      "status": "enriched",
-      "processed_at": "2026-08-26T07:11:14.768Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Claude / Claude Code",
-        "title": "Claude、Cowork機能でチャット内容を記憶するように",
-        "source_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPRU1Yekw0WXRiaFlxRFFmRmNMbk13RjJoQkY5SXNjcHVUa3dwV2s5WGF2NGp3ZGJ5cmFuT3hJMGc0S1dVS2EtRzJBX2xnMWlKb1d6U0VVc2U3SjAxWVlJYVdrX0ZtLVVLYlp4Qk9EVHBBcFRlTFlvamNoSUc5dUlPeW96N0Q0eFM3?oc=5",
-        "source_name": "CXOToday.com",
-        "is_official": false,
-        "published_at": "2026-08-26T06:10:05.000Z",
-        "source_published_at": "2026-08-26T06:10:05.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T07:09:40.790Z",
-        "event_at": "",
-        "event_status": "不明",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Claude",
-          "Cowork",
-          "Anthropic"
-        ],
-        "primary_entity": "Anthropic",
-        "story_subject": "Claude Cowork",
-        "event_type": "release",
-        "event_stage": "other",
-        "event_scope": "不明",
-        "fact_slots": [],
-        "new_facts": [
-          "Claude Coworkがチャット内でユーザーが伝えた内容を記憶するようになったと報じられた"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "AnthropicのClaudeが持つ共同作業機能「Cowork」が、チャットでユーザーが伝えた内容を記憶するようになったと報じられた。",
-        "detail": "AnthropicのAIアシスタントClaudeが持つ共同作業機能「Cowork」について、チャット内でユーザーが伝えた情報を記憶するようになったと報じられた。これまでは会話内容が保持されず、都度同じ情報を伝え直す必要があったとみられるが、記憶機能の追加により作業の継続性が向上する可能性がある。具体的な提供時期や対応範囲、記憶される情報の種類などの詳細は本文からは確認できない。",
-        "change_summary": "Claude Coworkがチャットでの伝達内容を記憶する機能を新たに備えた。",
-        "impact_summary": "チャット内容を記憶する機能により、ユーザーは繰り返し同じ指示を伝える手間が減り、業務での継続的な共同作業がしやすくなる可能性がある。",
-        "action_suggestion": "機能の提供開始時期や利用条件については、Anthropicの公式発表の確認が必要。",
-        "importance": "C",
-        "related_categories": [
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiy0fvx3lxtfbzm2hlntvtu3jhm3fnsnfhodi3qy1cd3nhmvdnaehqberdmkswegs0y2lymnpbulhsymfsyzn5qxdsdff0y2zjsfbib0y2szk5ntzix3lznmdmsmf3chptcgpoma": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiy0fvx3lxtfbzm2hlntvtu3jhm3fnsnfhodi3qy1cd3nhmvdnaehqberdmkswegs0y2lymnpbulhsymfsyzn5qxdsdff0y2zjsfbib0y2szk5ntzix3lznmdmsmf3chptcgpoma",
-      "content_hash": "d00af1571a392acae04e80ac480ef54c73a0dd4ef8d024dc4290baad7cba117f",
-      "story_key": "9c6650a133ac3dbab4349f503594de65f1e6f5ccf5bf835c4ccee90182836837",
-      "status": "enriched",
-      "processed_at": "2026-08-26T07:12:32.674Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Gemini",
-        "title": "Google、法務業務をエージェント化する「Gemini Enterprise for Legal」を公開",
-        "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBzM2hlNTVTU3JhM3FNSnFhODI3Qy1Cd3NhMVdNaEhqbERDMksweGs0Y2lYMnpBUlhsYmFsYzN5QXdSdFF0Y2ZJSFBIb0Y2Szk5NTZiX3lZNmdmSmF3cHpTcGpoMA?oc=5",
-        "source_name": "XenoSpectrum",
-        "is_official": false,
-        "published_at": "2026-08-26T05:07:25.000Z",
-        "source_published_at": "2026-08-26T05:07:25.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T07:09:42.118Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Google",
-          "Gemini Enterprise for Legal"
-        ],
-        "primary_entity": "Google",
-        "story_subject": "Gemini Enterprise for Legal",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "法務・エンタープライズ向け",
-        "fact_slots": [],
-        "new_facts": [
-          "Googleが契約審査や法務調査をエージェント化する新製品「Gemini Enterprise for Legal」を公開した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "Googleが契約審査や法務調査をAIエージェントに任せる新製品「Gemini Enterprise for Legal」を公開した。",
-        "detail": "Googleは、企業向けAIプラットフォーム『Gemini Enterprise』の法務特化版として『Gemini Enterprise for Legal』を公開した。このツールは契約書のレビューや条項の抽出、判例・法令の調査といった法務部門の業務をAIエージェントが自動的に代行することを想定している。現時点で公開された情報は限定的で、対応言語や料金体系、提供地域などの詳細は明らかにされていない。今後、Google側からの追加発表や具体的な導入事例が公開されるかが注目される。",
-        "change_summary": "Googleが法務業務向けにエージェント機能を搭載した新製品「Gemini Enterprise for Legal」を新たに公開した。",
-        "impact_summary": "法務部門の契約審査や調査業務の効率化に活用できる可能性があるが、詳細な機能や日本語対応の有無は不明で、国内企業への影響はまだ見通せない。",
-        "action_suggestion": "現時点で公式な詳細発表は限られており、料金や提供地域などの続報を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "EC・業務活用"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiyafbvv95cuxos2lob2v6svpbatbxwurvqknmq1c0dhzqww5mnhffz0dzmzrrwmz2z1d3t3ryrxjkrhi5wuxiumv1dfdzmklkngpnd2swam55am1ddljsre5xvtqxvgtom2c0dvg2ynfot1npngq5v2d2dwfrvdzxtklxd1cwnwlrt1dinxe4vxdncdjzvxhtqvqzaevdd2larfkwtfrba3zqnxhuvkrwunjrb3mxy01zu3lvskjlzlvwvgzux3n0lvhobglrs1hiwg": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiyafbvv95cuxos2lob2v6svpbatbxwurvqknmq1c0dhzqww5mnhffz0dzmzrrwmz2z1d3t3ryrxjkrhi5wuxiumv1dfdzmklkngpnd2swam55am1ddljsre5xvtqxvgtom2c0dvg2ynfot1npngq5v2d2dwfrvdzxtklxd1cwnwlrt1dinxe4vxdncdjzvxhtqvqzaevdd2larfkwtfrba3zqnxhuvkrwunjrb3mxy01zu3lvskjlzlvwvgzux3n0lvhobglrs1hiwg",
-      "content_hash": "9983e4e225e19ada6d104e2d1f3704b4d89a0f64a155d308c43f3d9db53aec36",
-      "story_key": "3b61816718ee91808f16e5b5b4d7cb2cefecd65f5c2dc37d6539710142bca36d",
-      "status": "enriched",
-      "processed_at": "2026-08-26T07:12:32.675Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Perplexity",
-        "title": "エヌビディア、Perplexity AIへの追加出資を検討か",
-        "source_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOS2lob2V6SVpBaTBXWURVQkNMQ1c0dHZqWW5MNHFfZ0dzMzRRWmZ2Z1d3T3RYRXJKRHI5WUxiUmV1dFdZMklkNGpNd2swam55am1DdlJsRE5xVTQxVGtoM2c0dVg2YnFOT1NPNGQ5V2d2dWFrVDZxTklXd1cwNWlrT1dINXE4VXdncDJZVXhTQVQzaEVDd2laRFkwTFRBa3ZqNXhuVkRWUnJRb3MxY01ZU3lVSkJLZlVWVGZuX3N0LVhobGlrS1hiWg?oc=5",
-        "source_name": "RS Web Solutions",
-        "is_official": false,
-        "published_at": "2026-08-26T01:00:00.000Z",
-        "source_published_at": "2026-08-26T01:00:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T07:09:58.029Z",
-        "event_at": "",
-        "event_status": "不明",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Nvidia",
-          "Perplexity AI"
-        ],
-        "primary_entity": "Nvidia",
-        "story_subject": "Perplexity AIへの追加出資検討",
-        "event_type": "funding",
-        "event_stage": "rumor",
-        "event_scope": "米国スタートアップ投資",
-        "fact_slots": [],
-        "new_facts": [
-          "エヌビディアがPerplexity AIへの追加出資を検討していると報じられた"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "米報道によると、エヌビディアが検索AIスタートアップPerplexity AIへの出資拡大を検討していると伝えられた。",
-        "detail": "エヌビディアが、対話型検索AIを手がけるスタートアップPerplexity AIへの投資を拡大する可能性があると報じられた。エヌビディアは近年、AI関連スタートアップへの出資を積極化させており、既にPerplexityへの出資実績があるとされる。今回の報道では、追加出資の規模や条件など具体的な内容には触れられておらず、正式な発表もまだ行われていない。今後、両社からの公式なコメントや発表があるかが注目される。",
-        "change_summary": "エヌビディアがPerplexity AIへの追加出資を検討しているとの報道が新たに出た。",
-        "impact_summary": "AI検索市場への大手半導体企業の関与が強まれば、業界の資金調達動向や競争環境に影響を与える可能性がある。",
-        "action_suggestion": "現時点で正式発表はなく、両社の公式コメントなど続報の確認が必要な段階である。",
-        "importance": "B",
-        "related_categories": [
-          "企業・株式",
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiekfvx3lxte90mmtwwwlvqk1fnmxlsfv6buhkeudfzmsxnjnkmkpjzgjfwjrja0u5s2otc0n5ag9cyko4q3q4zxrjtmjon2ffbkrid0w1x3dmqvhfcmjprvlqvgq5x0dyehlhnnhusi1des1iskj3a2r5z0pvbwrcxzlb0ggoaufvx3lxte85dmfaal9tbljwrlpqzurtsxozrmffm0l5amxnswfplvnvtwdtthk0x3nxovjqblp2akx2vwfjukmywxe2zmnomzl4t3vzckhtdhr1b21orjzgtmz2ltzfyk1rdzcyzefethhmrlhwy1jtx19rrzzrnvzilxrmuvm4dtlfuhjkzs1kddvjzhc": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiekfvx3lxte90mmtwwwlvqk1fnmxlsfv6buhkeudfzmsxnjnkmkpjzgjfwjrja0u5s2otc0n5ag9cyko4q3q4zxrjtmjon2ffbkrid0w1x3dmqvhfcmjprvlqvgq5x0dyehlhnnhusi1des1iskj3a2r5z0pvbwrcxzlb0ggoaufvx3lxte85dmfaal9tbljwrlpqzurtsxozrmffm0l5amxnswfplvnvtwdtthk0x3nxovjqblp2akx2vwfjukmywxe2zmnomzl4t3vzckhtdhr1b21orjzgtmz2ltzfyk1rdzcyzefethhmrlhwy1jtx19rrzzrnvzilxrmuvm4dtlfuhjkzs1kddvjzhc",
-      "content_hash": "860ff342c8f3caf9c5906d1318f2bc65923844533ea6838185f16f37823e84f3",
-      "story_key": "548723e8229c9ed06e27c4d9e91ca62f776a1dc8eb2c7511f0fd02079e68694b",
-      "status": "enriched",
-      "processed_at": "2026-08-26T07:12:32.675Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Grok / xAI",
-        "title": "イーロン・マスク氏、Grokの開発遅延を認めAnthropicの先行を評価",
-        "source_url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE90MmtWWWlvQk1FNmxLSFV6bUhkeUdFZmsxNjNKMkpJZGJFWjRja0U5S2otc0N5aG9CYko4Q3Q4ZXRjTmJON2FFbkRid0w1X3dMQVhfcmJpRVlqVGQ5X0dyeHlHNnhUSi1DeS1ISkJ3a2R5Z0pVbWRCXzlB0gGOAUFVX3lxTE85dmFaal9tblJWRlpqZURtSXozRmFFM0l5amxnSWFpLVNvTWdTTHk0X3NxOVJqblp2akx2VWFJUkMyWXE2ZmNOMzl4T3VZckhTdHR1b21ORjZGTmZ2LTZfYk1rdzcyZEFETHhmRlhwY1JtX19RRzZrNVZiLXRMUVM4dTlFUHJkZS1KdDVjZHc?oc=5",
-        "source_name": "Chosunbiz",
-        "is_official": false,
-        "published_at": "2026-08-26T06:42:00.000Z",
-        "source_published_at": "2026-08-26T06:42:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T07:09:58.716Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Grok",
-          "xAI",
-          "Anthropic"
-        ],
-        "primary_entity": "xAI",
-        "story_subject": "Grok開発遅延に関するマスク氏の発言",
-        "event_type": "other",
-        "event_stage": "announced",
-        "event_scope": "xAI社内・業界全体",
-        "fact_slots": [],
-        "new_facts": [
-          "イーロン・マスク氏がGrokの開発の遅れを認め、Anthropicが先行していると評価した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "イーロン・マスク氏は自身のxAIが開発する対話AI「Grok」の開発が遅れていることを認め、Anthropicが先行していると述べた。",
-        "detail": "イーロン・マスク氏が、自らが率いるxAIの対話AI『Grok』の開発について、競合に対して遅れを取っていることを認める発言をした。マスク氏はこの中でAnthropicの取り組みが先行しているとの見方を示したとされる。生成AI開発競争が激化する中、大手各社のトップ自らが競合の優位性を公に認める発言は珍しく、xAIの今後の開発方針や巻き返し策が注目されている。現時点で具体的な追いつき策や新モデルの投入時期などは明らかにされていない。",
-        "change_summary": "マスク氏がGrokの開発遅延を公に認め、Anthropicが先行しているとの評価を示した点が新たな発言内容である。",
-        "impact_summary": "生成AI開発競争の序列に関する経営トップの発言であり、投資家やユーザーのAI企業評価に影響を与える可能性がある。",
-        "action_suggestion": "xAI側から今後の巻き返し策や新モデルの発表があるか、続報の確認が必要である。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "企業・株式"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
       }
     },
     "url:https://news.google.com/rss/articles/cbmie0fvx3lxte16uldsqvpun0fazlnqtdjxvmtumkxxt1y3yljtx1rqohdwvtlnx2p0yk9qttbqrwlbmu14etlzdzbcn25fy2vpvnvnt3vzr0vvxzb6dxgtz0tmehutblfubzbqsxdrzzzqckiys1nxrdrsytnjave5smr6uq": {
@@ -16692,17 +15720,6 @@
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
     },
-    "url:https://news.google.com/rss/articles/cbmiskfvx3lxte5rvtfhwkxkzxjuexpytu5ou0i0tktot0d5d3fqogs1suvqbdjseenhmtbvzs1svhryddlqbkhteljraddqvxbqn3dn": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiskfvx3lxte5rvtfhwkxkzxjuexpytu5ou0i0tktot0d5d3fqogs1suvqbdjseenhmtbvzs1svhryddlqbkhteljraddqvxbqn3dn",
-      "content_hash": "c8830d1c1d3894205fc91ecd4dde9cdfb27bab0d075904c4987b6822eaf4b449",
-      "story_key": "27377e27527a10911ebe41892f52444463390c204503c0d88ce403bf5f9e077b",
-      "status": "rejected",
-      "processed_at": "2026-09-24T05:27:19.392Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "expert",
-      "reason": "ai_skip: 具体的な発言内容や論点が確認できず要約不能"
-    },
     "url:https://news.google.com/rss/articles/cbmitgfbvv95cuxozxdgdgvqntiwoghhang0tknjy1bhcenqmtnkbetkrfvdregwyunhm1exqzfnuxdca2vwunjmv2t1bxpbvm92z0zcchpoymr4awxczznpcmvxuzvau0hhtnb6q2funkvssde3cdrod0p2egpwbup4vmu0zdzyywlrwu54be9qsuhxttzoluuytmzpajzewlnrdnboy1j0egoxdwfxr0fyal9sdtdhwgdyqnzyuurzudibuwfbvv95cuxnenpybmxnsuvwu3dndey5t3zrbedhx3rcblvnslpgrjr1egpxu3bjwvncaznza0hybw0yau5zt2zrbxiywc1mzuxldnutrxv2vgxqq0fsm3vur2z6eljbalg4c2wztnpgn3bumehczi1zzejwznj4medqs05rbnlrxzdunkp4qzgwyxpywkmwa0lxc1prdudlddrsb3f5tjvwzkvtukpjswfvywzwqk52qtdrdwszoelwakuw": {
       "canonical_url": "https://news.google.com/rss/articles/cbmitgfbvv95cuxozxdgdgvqntiwoghhang0tknjy1bhcenqmtnkbetkrfvdregwyunhm1exqzfnuxdca2vwunjmv2t1bxpbvm92z0zcchpoymr4awxczznpcmvxuzvau0hhtnb6q2funkvssde3cdrod0p2egpwbup4vmu0zdzyywlrwu54be9qsuhxttzoluuytmzpajzewlnrdnboy1j0egoxdwfxr0fyal9sdtdhwgdyqnzyuurzudibuwfbvv95cuxnenpybmxnsuvwu3dndey5t3zrbedhx3rcblvnslpgrjr1egpxu3bjwvncaznza0hybw0yau5zt2zrbxiywc1mzuxldnutrxv2vgxqq0fsm3vur2z6eljbalg4c2wztnpgn3bumehczi1zzejwznj4medqs05rbnlrxzdunkp4qzgwyxpywkmwa0lxc1prdudlddrsb3f5tjvwzkvtukpjswfvywzwqk52qtdrdwszoelwakuw",
       "content_hash": "e55530382f112f5cdbec00bbfd9159ea3a4728a06254e919cf384541b2291678",
@@ -16969,60 +15986,16 @@
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
     },
-    "url:https://news.google.com/rss/articles/cbmit0fvx3lxte1ecwrxsljknxdqvuxfdli0c3uxbk1rws1ueutwmmjqylbhtmszvzhcz3gznxjsqzfjzmrlqm90emxhmhjbzmnoswwtykt6bfe": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmit0fvx3lxte1ecwrxsljknxdqvuxfdli0c3uxbk1rws1ueutwmmjqylbhtmszvzhcz3gznxjsqzfjzmrlqm90emxhmhjbzmnoswwtykt6bfe",
-      "content_hash": "0d3a8f46a7836cbb1407a5f4f912cef3089b63cc829181e1bb196f552db56be1",
-      "story_key": "72c4b04dd219b7b92e8561fdef73029134dc2910f4ae797a812f881386f46e71",
-      "status": "rejected",
-      "processed_at": "2026-09-24T09:22:03.299Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 市場調査レポートの宣伝で具体的事実がない"
-    },
     "url:https://news.google.com/rss/articles/cbmiqkfvx3lxte9kcgnwmflstlzjagvttnjcmme3szlknk5awjb0ogziyuv4m1b1burtbtv2bk9ms2lmaktmvwfzblzmqq": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiqkfvx3lxte9kcgnwmflstlzjagvttnjcmme3szlknk5awjb0ogziyuv4m1b1burtbtv2bk9ms2lmaktmvwfzblzmqq",
-      "content_hash": "cae4822894eb5e33d00c620c08afe965359f97f5c0ee41c12450d2c3a629fea7",
+      "content_hash": "90704513333fb8a09291b68a56d23ee851f2acb14048a53ef2c03c108a7a0217",
       "story_key": "915fd1b6058d070329c749b3ccb8bc9b621f86c47a598560928aab1351b4d846",
       "status": "rejected",
-      "processed_at": "2026-09-25T23:22:35.447Z",
+      "processed_at": "2026-09-26T09:24:50.327Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
-      "reason": "ai_skip: 個人によるツール比較動画で専門性の裏付けがない"
-    },
-    "url:https://news.google.com/rss/articles/cbmidkfvx3lxte5mnglwq0g0etlfrk01rzbcvgewbexslu1vm0pvuu8zdwtpdnjymf9wrxhcohvfuhrpswdtnvvqefjlme5uzm5lvlfawudtck9dcllhedzkuedsx2j4ywjnyxkwthric2zit1cxadjpuek3m0zzrfe": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmidkfvx3lxte5mnglwq0g0etlfrk01rzbcvgewbexslu1vm0pvuu8zdwtpdnjymf9wrxhcohvfuhrpswdtnvvqefjlme5uzm5lvlfawudtck9dcllhedzkuedsx2j4ywjnyxkwthric2zit1cxadjpuek3m0zzrfe",
-      "content_hash": "5acc3fe330408314270cada258e0d9e3eb4dd9d02be4b1d188a6eb3d002116eb",
-      "story_key": "8d33c11cf7d6953ea57e6329ced8d46eb0eb8068d9925263989002eea9828932",
-      "status": "rejected",
-      "processed_at": "2026-09-24T09:22:46.328Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 具体的事実に乏しい比較記事型の宣伝的コンテンツ"
-    },
-    "url:https://news.google.com/rss/articles/cbmivefvx3lxte9wuwzaodhdwdfvdnplszzvd29uu2gzav8ycgg2rlo0mjbubentzep5m1j3q0dwmed4wm5qqufiexbmehp4cgnmym9va0tiwklwuur6tg": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmivefvx3lxte9wuwzaodhdwdfvdnplszzvd29uu2gzav8ycgg2rlo0mjbubentzep5m1j3q0dwmed4wm5qqufiexbmehp4cgnmym9va0tiwklwuur6tg",
-      "content_hash": "0d722f78086b06e507862c04a68d5c504fb1cd87791383955828b55eb923b7e0",
-      "story_key": "366392c1414068b3173b848e502d82e4d589f0eb19d87cd3d01e0a412f4c334a",
-      "status": "rejected",
-      "processed_at": "2026-09-24T09:22:46.328Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: アプリインストーラーの案内で具体的なAIニュースではない"
-    },
-    "url:https://news.google.com/rss/articles/cbmiw0fvx3lxte9penqyu1pkawjndux1zwhoq1zcehfqefr6x0thujmwtxm5wkfuteq2tg5suw9quv9yznberlfemnqxmg1ftefdz0t6anjnyy02rnbfzjq4tkf4v0e": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiw0fvx3lxte9penqyu1pkawjndux1zwhoq1zcehfqefr6x0thujmwtxm5wkfuteq2tg5suw9quv9yznberlfemnqxmg1ftefdz0t6anjnyy02rnbfzjq4tkf4v0e",
-      "content_hash": "44bba070324f0c9fde139b9c490a43ad7e4ae9302ce2172dcfe7809a90efc8c6",
-      "story_key": "4d85608310935b004f485676479dca2265f0bac0f285ef43b1797a1a32cab26a",
-      "status": "rejected",
-      "processed_at": "2026-09-24T09:22:46.328Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 書籍の期間限定無料公開を告知する宣伝記事のため除外"
+      "reason": "ai_skip: 個人動画で内容確認不可、公式チャプター無し"
     },
     "url:https://news.google.com/rss/articles/cbmiyefvx3lxtfbqlxrsawrclunrr1zxsnhxumd0y1otsglgdw9motrzz1pluge2mmrksjftrxjjs09eagu1bzlxofoyvnazml9uegw0nfjbaxhmafpzbfzdahhwsf9isufjrq": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiyefvx3lxtfbqlxrsawrclunrr1zxsnhxumd0y1otsglgdw9motrzz1pluge2mmrksjftrxjjs09eagu1bzlxofoyvnazml9uegw0nfjbaxhmafpzbfzdahhwsf9isufjrq",
@@ -18297,28 +17270,6 @@
       "lane": "regular",
       "reason": "ai_skip: 半導体特集の関連記事リンク集で新事実がない"
     },
-    "url:https://news.google.com/rss/articles/cbmie0fvx3lxte0wx19zv0m4tnnawuxjof9qzno2v0vlttzmsnfqow1mnxfqufbdmgtmtuvcvhdkzjbinwvecnfca201dhgyugtwr0pusnjtnfjqqvvxz1u5zkput1lvtzvsbhbndw0yn0p4denkcjnqwnkzsloxek83c19trq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmie0fvx3lxte0wx19zv0m4tnnawuxjof9qzno2v0vlttzmsnfqow1mnxfqufbdmgtmtuvcvhdkzjbinwvecnfca201dhgyugtwr0pusnjtnfjqqvvxz1u5zkput1lvtzvsbhbndw0yn0p4denkcjnqwnkzsloxek83c19trq",
-      "content_hash": "451aacdf174ddf2b076ef97f0c1f19cabcc7415e9caf299ba98516294bede556",
-      "story_key": "921de3411fa0426a6d90155fcdbcc0cc1c2dca4414ae8e635c0d01c1cd98fc68",
-      "status": "retry",
-      "processed_at": "2026-09-25T23:22:35.447Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmikwfbvv95cuxoawlbx3b2bgdgz2g5czneemhjm1rfddvuuejkwefwr1bzbehhdvdquhlhvnzya2jfz3j5d3i5cjk2ztdkrg14uxzbx05tyxdvykfyqxpkn0zbtlpavku4z0t4ugfyuzm1dlpmrxj0nhhpcdhgvwfawlfrdzzwt09wmdhfzwpenws2czvidmmzynozexm": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmikwfbvv95cuxoawlbx3b2bgdgz2g5czneemhjm1rfddvuuejkwefwr1bzbehhdvdquhlhvnzya2jfz3j5d3i5cjk2ztdkrg14uxzbx05tyxdvykfyqxpkn0zbtlpavku4z0t4ugfyuzm1dlpmrxj0nhhpcdhgvwfawlfrdzzwt09wmdhfzwpenws2czvidmmzynozexm",
-      "content_hash": "5ba045cfc5627dd0dff585abf94cac04a3ffcf5f46ca609778625139862ab303",
-      "story_key": "eda4e7a2d56ea2f1596c049c63f3c47107d15965903e9e3b5696bc22a4a854a1",
-      "status": "retry",
-      "processed_at": "2026-09-25T23:22:35.448Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
     "url:https://deepmind.google/models/veo": {
       "canonical_url": "https://deepmind.google/models/veo",
       "content_hash": "f60f6b49272f5abed657c2e445ba21cbbf0cadb66f65985ebc1ec506046e9bd5",
@@ -18425,26 +17376,228 @@
       "lane": "emergency",
       "reason": "ai_skip: 詳細不明な宣伝的製品提携発表で実質情報なし"
     },
-    "url:https://news.google.com/rss/articles/cbmidefvx3lxtfbnm1htdddxmhzuqmpns3lzbgncmwwtu1y3clbjwfa1eedwvuhszeuxvxvfoe11ohvecue4vu5pehjzx0rwsw5cnw1dtu96tk9bmfl2utrqrdrucjgxuu1onfjwbzd3wgnqz2w1mjgxnmx6rzjl": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxtfbnm1htdddxmhzuqmpns3lzbgncmwwtu1y3clbjwfa1eedwvuhszeuxvxvfoe11ohvecue4vu5pehjzx0rwsw5cnw1dtu96tk9bmfl2utrqrdrucjgxuu1onfjwbzd3wgnqz2w1mjgxnmx6rzjl",
-      "content_hash": "d0de7d887e89c99bbb9bd1b37796640aa85f234f9ba67d9df4c5d793f8e6e999",
-      "story_key": "0d96bf4ce76b4842b1236a54f1e618ae6e9ce786fefd9b14bbd2bcf343991097",
-      "status": "retry",
-      "processed_at": "2026-09-25T23:24:11.009Z",
+    "url:https://www.youtube.com/watch?v=qfj2lg4p3iu": {
+      "canonical_url": "https://www.youtube.com/watch?v=qfj2lg4p3iu",
+      "content_hash": "149defdb1ba48fc734251dbe3582bd138cb949d2f346e9334612f40ed53d7912",
+      "story_key": "32608dc66c36cebfad2218f841c54d2991d77e903dc9f8b2c3a28e5901f9e474",
+      "status": "enriched",
+      "processed_at": "2026-09-26T09:23:36.926Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
+      "lane": "expert",
+      "reason": "",
+      "result": {
+        "tool": "専門家動画・発言",
+        "content_type": "expert_video",
+        "expert_id": "daisuke-okanohara",
+        "expert_ids": [
+          "daisuke-okanohara"
+        ],
+        "expert_name": "岡野原大輔",
+        "expert_names": [
+          "岡野原大輔"
+        ],
+        "expert_role": "AI研究開発者・Preferred Networks代表取締役社長",
+        "expert_tier": "core_research_engineering",
+        "platform": "YouTube",
+        "video_id": "QFJ2lg4p3iU",
+        "source_trust": "trusted_host",
+        "title": "PFN岡野原大輔氏、AIと人間の違いと組織論を語る動画をPIVOTが公開",
+        "source_url": "https://www.youtube.com/watch?v=QFJ2lg4p3iU",
+        "source_name": "PIVOT 公式チャンネル",
+        "is_official": false,
+        "published_at": "2026-09-26T00:00:12.000Z",
+        "source_published_at": "2026-09-26T00:00:12.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-09-26T09:21:55.653Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "岡野原大輔",
+          "Preferred Networks",
+          "PIVOT"
+        ],
+        "primary_entity": "岡野原大輔",
+        "story_subject": "AIと人間の違い・AI時代の組織論",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "YouTube配信",
+        "fact_slots": [],
+        "new_facts": [
+          "動画のチャプターに「AIは過去に学んだことを失いやすい」という論点が示されている",
+          "「人間は抽象化が上手い」という論点も含まれる",
+          "後編は9月27日配信予定と案内されている"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "PIVOTがPFN代表の岡野原大輔氏に、AIと人間の違いや組織のあり方を聞く動画を公開し、後編は9月27日配信予定と案内した。",
+        "detail": "PIVOT公式チャンネルが、PFN代表の岡野原大輔氏に話を聞く動画を公開した。動画は、AIと人間の違いや、AI時代の組織のあり方について語る内容だ。チャプターには「AIと人間の違い、自由と責任」という論点が示されている。\n\n公式の目次には、AIは過去に学んだことを忘れやすいという論点がある。また、人間は物事を抽象化して考えるのが得意だという視点も扱われている。これらの違いから、自由と責任を担えるのは人間だけかを問いかけている。\n\n動画では、実行は分散し判断は集約されるという組織像も扱われている。具体的な発言の内容や結論は、公式のチャプター説明だけでは確認できない。後編は9月27日に配信予定だと案内されている。",
+        "change_summary": "PIVOTがPFN代表の岡野原大輔氏へのインタビュー動画を公開し、AIと人間の違いや組織論を論点として扱った。",
+        "impact_summary": "AIが広がる時代に、人間に何が残る役割かや組織の作り方を考える材料になる。",
+        "action_suggestion": "後編は9月27日に配信予定で、詳しい発言内容は本編の視聴で確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "研究・技術",
+          "その他"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmie0fvx3lxte0wx19zv0m4tnnawuxjof9qzno2v0vlttzmsnfqow1mnxfqufbdmgtmtuvcvhdkzjbinwvecnfca201dhgyugtwr0pusnjtnfjqqvvxz1u5zkput1lvtzvsbhbndw0yn0p4denkcjnqwnkzsloxek83c19trq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmie0fvx3lxte0wx19zv0m4tnnawuxjof9qzno2v0vlttzmsnfqow1mnxfqufbdmgtmtuvcvhdkzjbinwvecnfca201dhgyugtwr0pusnjtnfjqqvvxz1u5zkput1lvtzvsbhbndw0yn0p4denkcjnqwnkzsloxek83c19trq",
+      "content_hash": "451aacdf174ddf2b076ef97f0c1f19cabcc7415e9caf299ba98516294bede556",
+      "story_key": "921de3411fa0426a6d90155fcdbcc0cc1c2dca4414ae8e635c0d01c1cd98fc68",
+      "status": "enriched",
+      "processed_at": "2026-09-26T09:24:50.326Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "AIセキュリティ",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "オプティム、病院向けAIスマホ「OPTiM AI ホスピタルフォン」を2027年1月提供開始",
+        "source_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE0wX19ZV0M4TnNaWUxjOF9qZno2V0VLTTZMSnFqOW1mNXFqUFBDMGtmTUVCVHdKZjBiNWVEcnFCa201dHgyUGtWR0pUSnJtNFJqQVVXZ1U5ZkpuT1lvTzVSbHBNdW0yN0p4dENkcjNQWnkzSloxek83c19tRQ?oc=5",
+        "source_name": "ニコニコニュース",
+        "is_official": false,
+        "published_at": "2026-09-25T15:18:31.000Z",
+        "source_published_at": "2026-09-25T15:18:31.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-09-26T09:21:55.653Z",
+        "event_at": "",
+        "event_status": "予定",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "オプティム",
+          "OPTiM AI ホスピタルフォン"
+        ],
+        "primary_entity": "オプティム",
+        "story_subject": "OPTiM AI ホスピタルフォン",
+        "event_type": "release",
+        "event_stage": "planned",
+        "event_scope": "日本国内病院",
+        "fact_slots": [
+          {
+            "type": "date",
+            "scope": "提供開始時期",
+            "value": "2027年1月",
+            "normalized_value": "2027年1月"
+          }
+        ],
+        "new_facts": [
+          "オプティムが「OPTiM AI ホスピタルフォン」を2027年1月から提供開始する"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "オプティムが病院内スマホとAIを組み合わせた新サービスを発表し、医師・看護師の業務効率化を狙い2027年1月から提供を始める。",
+        "detail": "株式会社オプティムが、病院内で医師や看護師の業務を助けるスマートフォンとAIを組み合わせた新サービス「OPTiM AI ホスピタルフォン」を発表した。簡単に言うと、病院内で使う専用スマホにAI機能を搭載し、医師や看護師の仕事を楽にする仕組みだ。これまで紙やメールでのやり取りが多かった病院業務を、スマホとAIでまとめて扱える点が新しい。\n\n発表によると、このサービスは2027年1月から提供が始まる予定だ。具体的な機能の詳細はまだ公表されていないが、病院内のスマートフォンとAIを組み合わせて業務の効率化を図ることが目的とされている。医療現場は人手不足が課題となっており、AIを使った効率化は各地の病院で注目されている取り組みの一つだ。\n\n病院で働く医師や看護師にとっては、日々の連絡や記録作業がスマホとAIでまとめられる可能性がある。ただし現時点では料金や導入する病院の規模、具体的な機能内容などは明らかになっていない。提供開始とされる2027年1月に向けて、続報を確認する必要がある。",
+        "change_summary": "オプティムが病院向けにスマホとAIを組み合わせた「OPTiM AI ホスピタルフォン」を発表し、2027年1月から提供を始める。",
+        "impact_summary": "医療現場の人手不足解消に向けて、AIを使った業務効率化の選択肢が一つ増える。",
+        "action_suggestion": "2027年1月の提供開始に向けて、具体的な機能や価格などの続報を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "EC・業務活用"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmijafbvv95cuxqdznuq3rwowpsuvq5tjfyzu5flvjwcxlsb05rt0cyulbymtnodddjbw9owktnq1pfrgztndg3ahq5eenluvhknm5xyxjhugzxbxuwcjd6dgk5cxvwshzlawjnyjjbckfkwfrltth4n01qtje1q01dempmdetwyxdqvjc1ztffzu4zsereyw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmijafbvv95cuxqdznuq3rwowpsuvq5tjfyzu5flvjwcxlsb05rt0cyulbymtnodddjbw9owktnq1pfrgztndg3ahq5eenluvhknm5xyxjhugzxbxuwcjd6dgk5cxvwshzlawjnyjjbckfkwfrltth4n01qtje1q01dempmdetwyxdqvjc1ztffzu4zsereyw",
+      "content_hash": "dce9a23f8b6002d6464d22362278d73a78415ba32694a2a927e65032f431c8b1",
+      "story_key": "79a8365b87ade9357fc55c2f4dfd6b210ca0e4055d2079eb5711a5185997093f",
+      "status": "rejected",
+      "processed_at": "2026-09-26T09:24:50.327Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 宣伝色の強い中国語記事で実質情報が薄い"
+    },
+    "url:https://news.google.com/rss/articles/cbmikgfbvv95cuxoy2xzcxpuwxvwnznravcyeeltwus0uhpivziznjzpqwyzz3n5snjvus16z2xfqupvuunhbu5fbxf3vkkxzjdat0m5y0xmutvtr3drmzdewnlmqtdfrnlhvkxsoupuqvhzsveyzvlnrhbzq0lmc2ztc2lqdjewdemxvmdva3rauljur3e1wmk5cgdsz9iblwfbvv95cuxqbvzjnu9kvmxfbkxnu3fssfzebdrrmxloql9yt3vvowc2dhlkd01lnl9ibwrrt1vsoxnsbmlhcuhpnmdhmlfwz0dzqtninhjwwfvla2roav9uazbqq3qtqmtlnjnmqkxkr0dwuzetmendwxpmekfcq3rnn2lwemg1ltdmqndrv19nyxrctkt1zxdqee45n1hn": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmikgfbvv95cuxoy2xzcxpuwxvwnznravcyeeltwus0uhpivziznjzpqwyzz3n5snjvus16z2xfqupvuunhbu5fbxf3vkkxzjdat0m5y0xmutvtr3drmzdewnlmqtdfrnlhvkxsoupuqvhzsveyzvlnrhbzq0lmc2ztc2lqdjewdemxvmdva3rauljur3e1wmk5cgdsz9iblwfbvv95cuxqbvzjnu9kvmxfbkxnu3fssfzebdrrmxloql9yt3vvowc2dhlkd01lnl9ibwrrt1vsoxnsbmlhcuhpnmdhmlfwz0dzqtninhjwwfvla2roav9uazbqq3qtqmtlnjnmqkxkr0dwuzetmendwxpmekfcq3rnn2lwemg1ltdmqndrv19nyxrctkt1zxdqee45n1hn",
+      "content_hash": "2c5ef68a7562099066e7a26b3c9f63fa36778dffa7133acdb9fe3030dc301c9e",
+      "story_key": "414305e753d50caa423bbbd38ad177004b5efc82bbaa7d4eda9576af451d3939",
+      "status": "rejected",
+      "processed_at": "2026-09-26T09:24:50.327Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: AIと無関係な政治的話題で実質情報が薄い"
+    },
+    "url:https://news.google.com/rss/articles/cbmiaefvx3lxtfbwrmjqcwr3wxp6n2j6szb4m25pnesxme9rltvicgfpwkrkcgx5b3pxrnbjqmzmt0ctylpirgzncktzvuhiauvewmhmr1hev1rvzti0thc4am9rsno0ngrybkd3ehpbc2rj": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxtfbwrmjqcwr3wxp6n2j6szb4m25pnesxme9rltvicgfpwkrkcgx5b3pxrnbjqmzmt0ctylpirgzncktzvuhiauvewmhmr1hev1rvzti0thc4am9rsno0ngrybkd3ehpbc2rj",
+      "content_hash": "24384fc43da4f8dc21979abdf6fa8143b0983dffaf86299be0ddda5370bf6583",
+      "story_key": "27fd019e052b8b7450fa03edb207378ae13cebbeea0a0e95d43400f6d7e2b027",
+      "status": "retry",
+      "processed_at": "2026-09-26T09:24:50.327Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
       "reason": "missing_or_incomplete_ai_output"
     },
-    "url:https://news.google.com/rss/articles/cbmiowfbvv95cuxpquroeg1zy2pdmlfjuhu3zzjtnmzhslnxufq5rmfznfzxmvo1andbs2ryvehimtjsdzvavkffrgvev1rnc3cyq3lnzmv1m2hsegljekhtotjyveptcxbjcgzqcjh6vwvocwfwmc1cz0rhy2hqbm9reln2tlh5yux0t2tushlva0qzt3rpblpocmc0wkrcatfqcwljqun6s3pecmzj": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiowfbvv95cuxpquroeg1zy2pdmlfjuhu3zzjtnmzhslnxufq5rmfznfzxmvo1andbs2ryvehimtjsdzvavkffrgvev1rnc3cyq3lnzmv1m2hsegljekhtotjyveptcxbjcgzqcjh6vwvocwfwmc1cz0rhy2hqbm9reln2tlh5yux0t2tushlva0qzt3rpblpocmc0wkrcatfqcwljqun6s3pecmzj",
-      "content_hash": "20663a1f08f69506ee2fa9915da9a86a8cea3fa5077238c73e7f85a5605272a6",
-      "story_key": "aa2136e1647f67ad3570342d8ab6ad4c983cfdece384ed4da726d45383b0cdbf",
-      "status": "retry",
-      "processed_at": "2026-09-25T23:24:11.009Z",
+    "url:https://news.google.com/rss/articles/cbmidkfvx3lxte5mnglwq0g0etlfrk01rzbcvgewbexslu1vm0pvuu8zdwtpdnjymf9wrxhcohvfuhrpswdtnvvqefjlme5uzm5lvlfawudtck9dcllhedzkuedsx2j4ywjnyxkwthric2zit1cxadjpuek3m0zzrfe": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidkfvx3lxte5mnglwq0g0etlfrk01rzbcvgewbexslu1vm0pvuu8zdwtpdnjymf9wrxhcohvfuhrpswdtnvvqefjlme5uzm5lvlfawudtck9dcllhedzkuedsx2j4ywjnyxkwthric2zit1cxadjpuek3m0zzrfe",
+      "content_hash": "5acc3fe330408314270cada258e0d9e3eb4dd9d02be4b1d188a6eb3d002116eb",
+      "story_key": "8d33c11cf7d6953ea57e6329ced8d46eb0eb8068d9925263989002eea9828932",
+      "status": "rejected",
+      "processed_at": "2026-09-26T09:26:42.664Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
+      "lane": "regular",
+      "reason": "ai_skip: 低信頼サイトで真偽不明な見出しのみの記事"
+    },
+    "url:https://news.google.com/rss/articles/cbmiskfvx3lxte9gbvjhmxhtekfmdlr0d0phv01otv82qu03n2hite45mnuyngfzautpzgvqzln3whhdwmdws0jfdf9daw83wemwqnrr": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiskfvx3lxte9gbvjhmxhtekfmdlr0d0phv01otv82qu03n2hite45mnuyngfzautpzgvqzln3whhdwmdws0jfdf9daw83wemwqnrr",
+      "content_hash": "99f06e824bb91a895248549e05c483709500007003158c0b24ae1609f670b342",
+      "story_key": "b61c4334442171aecdd696ba06132989443377cc9c86fba7acef9d7f4b0d11b4",
+      "status": "rejected",
+      "processed_at": "2026-09-26T09:26:42.665Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 具体的な出来事のない一般的な利用規約解説記事"
+    },
+    "url:https://news.google.com/rss/articles/cbmimwfbvv95cuxpzwvqs1jpazfrdnlhq09hquiyrkmxzmr2r2uzcxrmmei1s0ytczrnos1mmvhcwgpyv3hvws1pbg94svb2tlb3ntuzcflgmnh1mnowt1dotvoxmmr1wudyn0nrmdfuwwhxzvpsm0zcbxyzvldzqnniakdqmw9ivgrtrlvgntlcwvu2yupvqva4n203df9xcjlttgdtrq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmimwfbvv95cuxpzwvqs1jpazfrdnlhq09hquiyrkmxzmr2r2uzcxrmmei1s0ytczrnos1mmvhcwgpyv3hvws1pbg94svb2tlb3ntuzcflgmnh1mnowt1dotvoxmmr1wudyn0nrmdfuwwhxzvpsm0zcbxyzvldzqnniakdqmw9ivgrtrlvgntlcwvu2yupvqva4n203df9xcjlttgdtrq",
+      "content_hash": "1f8e11fe6de02e908e3fc7efb3d682f6b329ec277aae958b5e139c2232365e71",
+      "story_key": "6dfbcec450b43724836fea88a2ad8326e9f83687714ba67dd104caf1762d6007",
+      "status": "retry",
+      "processed_at": "2026-09-26T09:26:42.665Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmijwfbvv95cuxqmgrfzxzpujr2vtrrnhbas1z1zejrb28yzzi3ck5eegnqdmzjt2y0t2y0d21rtwrrb1lzcedtyzlwakj4mzbrnnpdb3rtrwl5lxi2n0frwlz2ttvdrulpzghoqnhkaw1tcezqzwlcc3ruwhvnd1dqnggtsvzfavnwsepmcvljahpwuzvwbkjywq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmijwfbvv95cuxqmgrfzxzpujr2vtrrnhbas1z1zejrb28yzzi3ck5eegnqdmzjt2y0t2y0d21rtwrrb1lzcedtyzlwakj4mzbrnnpdb3rtrwl5lxi2n0frwlz2ttvdrulpzghoqnhkaw1tcezqzwlcc3ruwhvnd1dqnggtsvzfavnwsepmcvljahpwuzvwbkjywq",
+      "content_hash": "e429bd70b1aa3565a0af9f2ed53c35ea144b6521e4178bb7ae3cb3a174eb95df",
+      "story_key": "06b1fa079c38d037d652243821c24a2de2b428d382cf1ab5d66774355cc39601",
+      "status": "retry",
+      "processed_at": "2026-09-26T09:26:42.665Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmitkfvx3lxte4xuxrcodhrs0vlnzhinwpleu5uc09qyuwxdnu4qlbnunzmz3zyafg5wws3zk5dsgqxvhlqu0pxlvjzshppdknoug8wy0r3zw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmitkfvx3lxte4xuxrcodhrs0vlnzhinwpleu5uc09qyuwxdnu4qlbnunzmz3zyafg5wws3zk5dsgqxvhlqu0pxlvjzshppdknoug8wy0r3zw",
+      "content_hash": "9f107b6efda968c2454114e1bb9c35b2186aca2b1cd0620fbba0dcbd7fe036e4",
+      "story_key": "f0444e71a2d38e80a74b2eb6dd4a7c5db3f89594c50fe0a174b29a4768ec5548",
+      "status": "retry",
+      "processed_at": "2026-09-26T09:26:42.665Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
       "reason": "missing_or_incomplete_ai_output"
     },
     "url:https://news.google.com/rss/articles/cbmiw0fvx3lxtfbiehlyawlyn01psjzerezevkdttkt6bgx4qjvsdljntlr2aej0ctrxdge3zjrhzfdloxbuumgxs2ppqmhpwnlbrez4r2itrupxwdj3zeuxsej2mgc": {
@@ -18452,23 +17605,56 @@
       "content_hash": "f5545ca8cb678ffbcd9aad382381aa1d57497542c87a565bd01c794ce23fe53f",
       "story_key": "ce8f82af51c68f051cd0de372173bda81fa5bd9a0f6169fed5c8facb87f061f3",
       "status": "retry",
-      "processed_at": "2026-09-25T23:24:11.009Z",
+      "processed_at": "2026-09-26T09:26:42.665Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
+      "lane": "regular",
       "reason": "missing_or_incomplete_ai_output"
     },
-    "url:https://news.google.com/rss/articles/cbmihafbvv95cuxpcmpyenfwrhnpbflmnunha3lnqkt3nk1uv2f3tufusef4vxewnxpkmgxkcmtucndhb0zdujnfttrzodlfmkttawk5r3b2bmpps1vpv0xrtg94r092wudtzzvttdjeqtfotjn3n1zqakc1ofntbuizmwtrujlqetljv042skw": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmihafbvv95cuxpcmpyenfwrhnpbflmnunha3lnqkt3nk1uv2f3tufusef4vxewnxpkmgxkcmtucndhb0zdujnfttrzodlfmkttawk5r3b2bmpps1vpv0xrtg94r092wudtzzvttdjeqtfotjn3n1zqakc1ofntbuizmwtrujlqetljv042skw",
-      "content_hash": "9d3493d8a4be15c303a543998381602bfe50d5cf762f74185b9560aa690e7305",
-      "story_key": "3d0c6a00064a9f6972901157afa5fa8dfcf2fa9360fdc5f1023ea66c4cbbea00",
-      "status": "retry",
-      "processed_at": "2026-09-25T23:24:31.726Z",
+    "url:https://updates.midjourney.com": {
+      "canonical_url": "https://updates.midjourney.com",
+      "content_hash": "a42be33c32ee415f7ba8e84c535770309a41a365194d6b96849d2e53a69b8641",
+      "story_key": "707b99f0a4dc39c6f0d2b7f487574014ffd9cc36920d87d3caee94f73edffee9",
+      "status": "rejected",
+      "processed_at": "2026-09-26T09:27:20.093Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
+      "lane": "regular",
+      "reason": "ai_skip: 変更点の詳細が不明な単なる更新履歴の羅列"
+    },
+    "url:https://news.google.com/rss/articles/cbmiyafbvv95cuxnzhhus1rymw9obzhkmvy4r3ntdlrtq0pimnvkq2g0wmtivfd3rxjvx1bryvdncldmn3bhwlrkuwjdnhrtsmy2s0nfmkqta01om0d0afjxrjziv3vundhmwg1mlwn3othurnlnmez4suvmrs1pcgz6x0xvzflunki3annrsettzettakltm1p3cet3mlj3ouduzxryn19xctlqdhnzmndgahlhqtc0zfbomdldzej1ogdiyzatzlffc29zmdjvqwc4ug": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiyafbvv95cuxnzhhus1rymw9obzhkmvy4r3ntdlrtq0pimnvkq2g0wmtivfd3rxjvx1bryvdncldmn3bhwlrkuwjdnhrtsmy2s0nfmkqta01om0d0afjxrjziv3vundhmwg1mlwn3othurnlnmez4suvmrs1pcgz6x0xvzflunki3annrsettzettakltm1p3cet3mlj3ouduzxryn19xctlqdhnzmndgahlhqtc0zfbomdldzej1ogdiyzatzlffc29zmdjvqwc4ug",
+      "content_hash": "feeb7eb970a437bff10b9a7492877669edd49d8e2782dc9e5f69ea1146c444cd",
+      "story_key": "78c70678e348ef4dfa3840ce4fde86dd84207eb2fc78a81bfa49cc06a1ea13fd",
+      "status": "rejected",
+      "processed_at": "2026-09-26T09:27:20.093Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 具体的発表のない宣伝的な活用例紹介記事"
+    },
+    "url:https://news.google.com/rss/articles/cbmixefvx3lxte1ub190rkzkyunfbvpermdrudiyn0r6nk9krkxgvmtwodl2uxzgswzkrtredmtkakvfefzaqkvwwfnin21ucw85tkria2fmtm1mve43a0mxwda0cnl3": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmixefvx3lxte1ub190rkzkyunfbvpermdrudiyn0r6nk9krkxgvmtwodl2uxzgswzkrtredmtkakvfefzaqkvwwfnin21ucw85tkria2fmtm1mve43a0mxwda0cnl3",
+      "content_hash": "d66cf99d57459a7f950e4ecd661ddbf27d06e9e5bfc8334c072858c2c25f3058",
+      "story_key": "a86cb1d92075a3a8133a36d44fd141d16c993a4f190f3349830eb454a5e34985",
+      "status": "rejected",
+      "processed_at": "2026-09-26T09:27:20.094Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: エンタメ色の強いクリックベイト記事で実質的なニュース価値が乏しい"
+    },
+    "url:https://news.google.com/rss/articles/cbmiowfbvv95cuxpndrzv0r6b2swy3hfs2wttehacjzhqzrwvxdzdwtuofpea3npdm9dee0wrulhn09oznc5twfyddbdzdn0sjhlzlribzzonwjjyu9yegnsbvhgstzdajfeaktdlwtlshayuvvqvjnhbfq4ctuyrw1aev9ubxpjd21zz2xizfj4snbssehzbu51sunscmhbm2fvrhdrngjmtwzkx3hv0gfwqvvfexfmtzl5m0oxqxdkvxrydhhume5hzkrzcdhhbetpnjjjcek0dmvpmkkytmptednwmmvyz0f2tdlfquzqy1rnwg9ma2kwuwjrudfsagzdd1fnohc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiowfbvv95cuxpndrzv0r6b2swy3hfs2wttehacjzhqzrwvxdzdwtuofpea3npdm9dee0wrulhn09oznc5twfyddbdzdn0sjhlzlribzzonwjjyu9yegnsbvhgstzdajfeaktdlwtlshayuvvqvjnhbfq4ctuyrw1aev9ubxpjd21zz2xizfj4snbssehzbu51sunscmhbm2fvrhdrngjmtwzkx3hv0gfwqvvfexfmtzl5m0oxqxdkvxrydhhume5hzkrzcdhhbetpnjjjcek0dmvpmkkytmptednwmmvyz0f2tdlfquzqy1rnwg9ma2kwuwjrudfsagzdd1fnohc",
+      "content_hash": "c24212ea30b59622bf37725d06bd61f69272e54ffbef42176d7d3f5a0143b9bb",
+      "story_key": "3319bfcd84eade23e33c494cfb7ad4e1b05086b7f39efc0c77857493f45eeb26",
+      "status": "retry",
+      "processed_at": "2026-09-26T09:27:20.094Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
       "reason": "missing_or_incomplete_ai_output"
     }
   },
-  "updated_at": "2026-09-26T00:13:44.506Z"
+  "updated_at": "2026-09-26T09:27:20.094Z"
 }
