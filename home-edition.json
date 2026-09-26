@@ -7,92 +7,64 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-09-25T15:15:11.493Z",
-  "window_end": "2026-09-25T23:20:12.154Z",
-  "last_window_end": "2026-09-25T23:20:12.154Z",
-  "last_checked_at": "2026-09-25T23:24:38.968Z",
-  "last_published_at": "2026-09-25T23:24:38.968Z",
-  "home_content_changed_at": "2026-09-25T23:24:38.968Z",
+  "window_start": "2026-09-25T23:20:12.154Z",
+  "window_end": "2026-09-26T09:21:55.653Z",
+  "last_window_end": "2026-09-26T09:21:55.653Z",
+  "last_checked_at": "2026-09-26T09:27:27.124Z",
+  "last_published_at": "2026-09-26T09:27:27.124Z",
+  "home_content_changed_at": "2026-09-26T09:27:27.124Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
-  "update_health": "HEALTHY",
-  "update_health_reasons": [],
-  "edition_status": "NEW_STORIES",
-  "candidate_count": 2,
-  "distinct_candidate_count": 2,
+  "update_health": "DEGRADED",
+  "update_health_reasons": [
+    "今回の新着掲載は0件です。前回の重要記事を継続表示しています"
+  ],
+  "edition_status": "NO_NEW_STORIES",
+  "candidate_count": 1,
+  "distinct_candidate_count": 1,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 2,
-  "cross_edition_duplicate_count": 0,
-  "cross_edition_duplicate_groups": [],
+  "novel_candidate_count": 0,
+  "cross_edition_duplicate_count": 1,
+  "cross_edition_duplicate_groups": [
+    {
+      "representative_id": "article_596bf00cee02be1c057d",
+      "duplicate_ids": [
+        "article_ad169afdc282fa9a4d78"
+      ]
+    }
+  ],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 2,
-  "continued_selected_count": 3,
+  "new_selected_count": 0,
+  "continued_selected_count": 5,
   "tool_evolution_selected_count": 1,
-  "carried_forward": false,
-  "partially_carried_forward": true,
+  "carried_forward": true,
+  "partially_carried_forward": false,
   "article_ids": [
-    "article_2391bf8310dc68a8465d",
-    "article_df74c41924f0c83612b9",
     "article_7d357b2d95ce8b4c3d24",
-    "article_8d66323bdb984a7ff9df",
-    "article_97f628543e63dd45e070"
-  ],
-  "new_article_ids": [
     "article_2391bf8310dc68a8465d",
+    "article_8d66323bdb984a7ff9df",
+    "article_97f628543e63dd45e070",
     "article_df74c41924f0c83612b9"
   ],
+  "new_article_ids": [],
   "continued_article_ids": [
     "article_7d357b2d95ce8b4c3d24",
+    "article_2391bf8310dc68a8465d",
     "article_8d66323bdb984a7ff9df",
-    "article_97f628543e63dd45e070"
+    "article_97f628543e63dd45e070",
+    "article_df74c41924f0c83612b9"
   ],
   "continuation_sources": {
     "article_7d357b2d95ce8b4c3d24": "previous_edition",
+    "article_2391bf8310dc68a8465d": "previous_edition",
     "article_8d66323bdb984a7ff9df": "previous_edition",
-    "article_97f628543e63dd45e070": "previous_edition"
+    "article_97f628543e63dd45e070": "previous_edition",
+    "article_df74c41924f0c83612b9": "previous_edition"
   },
   "scores": {
-    "article_2391bf8310dc68a8465d": {
-      "article_id": "article_2391bf8310dc68a8465d",
-      "total": 80,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 20,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "主要AI企業・基盤",
-        "制度・安全への影響",
-        "大きな製品・市場変化"
-      ],
-      "published_at": "2026-09-25T15:18:00.000Z"
-    },
-    "article_df74c41924f0c83612b9": {
-      "article_id": "article_df74c41924f0c83612b9",
-      "total": 75,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 10,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 9,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "制度・安全への影響"
-      ],
-      "published_at": "2026-09-25T22:11:15.000Z"
-    },
     "article_7d357b2d95ce8b4c3d24": {
       "article_id": "article_7d357b2d95ce8b4c3d24",
       "total": 95,
@@ -112,6 +84,26 @@
         "重要な経営・研究体制"
       ],
       "published_at": "2026-09-20T02:00:00.000Z"
+    },
+    "article_2391bf8310dc68a8465d": {
+      "article_id": "article_2391bf8310dc68a8465d",
+      "total": 80,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 20,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "制度・安全への影響",
+        "大きな製品・市場変化"
+      ],
+      "published_at": "2026-09-25T15:18:00.000Z"
     },
     "article_8d66323bdb984a7ff9df": {
       "article_id": "article_8d66323bdb984a7ff9df",
@@ -153,6 +145,24 @@
         "AIツールの能力進化"
       ],
       "published_at": "2026-09-24T05:46:10.000Z"
+    },
+    "article_df74c41924f0c83612b9": {
+      "article_id": "article_df74c41924f0c83612b9",
+      "total": 66,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "制度・安全への影響"
+      ],
+      "published_at": "2026-09-25T22:11:15.000Z"
     }
   },
   "recent_story_history": [
