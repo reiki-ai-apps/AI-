@@ -7,64 +7,74 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-09-25T23:20:12.154Z",
-  "window_end": "2026-09-26T09:21:55.653Z",
-  "last_window_end": "2026-09-26T09:21:55.653Z",
-  "last_checked_at": "2026-09-26T09:27:27.124Z",
-  "last_published_at": "2026-09-26T09:27:27.124Z",
-  "home_content_changed_at": "2026-09-26T09:27:27.124Z",
+  "window_start": "2026-09-26T09:21:55.653Z",
+  "window_end": "2026-09-26T14:28:46.141Z",
+  "last_window_end": "2026-09-26T14:28:46.141Z",
+  "last_checked_at": "2026-09-26T14:34:12.813Z",
+  "last_published_at": "2026-09-26T14:34:12.813Z",
+  "home_content_changed_at": "2026-09-26T14:34:12.813Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
-  "update_health": "DEGRADED",
-  "update_health_reasons": [
-    "今回の新着掲載は0件です。前回の重要記事を継続表示しています"
-  ],
-  "edition_status": "NO_NEW_STORIES",
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
+  "edition_status": "NEW_STORIES",
   "candidate_count": 1,
   "distinct_candidate_count": 1,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 0,
-  "cross_edition_duplicate_count": 1,
-  "cross_edition_duplicate_groups": [
-    {
-      "representative_id": "article_596bf00cee02be1c057d",
-      "duplicate_ids": [
-        "article_ad169afdc282fa9a4d78"
-      ]
-    }
-  ],
+  "novel_candidate_count": 1,
+  "cross_edition_duplicate_count": 0,
+  "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 0,
-  "continued_selected_count": 5,
+  "new_selected_count": 1,
+  "continued_selected_count": 4,
   "tool_evolution_selected_count": 1,
-  "carried_forward": true,
-  "partially_carried_forward": false,
+  "carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_9aca9e28b14e29154d79",
     "article_7d357b2d95ce8b4c3d24",
     "article_2391bf8310dc68a8465d",
     "article_8d66323bdb984a7ff9df",
-    "article_97f628543e63dd45e070",
-    "article_df74c41924f0c83612b9"
+    "article_97f628543e63dd45e070"
   ],
-  "new_article_ids": [],
+  "new_article_ids": [
+    "article_9aca9e28b14e29154d79"
+  ],
   "continued_article_ids": [
     "article_7d357b2d95ce8b4c3d24",
     "article_2391bf8310dc68a8465d",
     "article_8d66323bdb984a7ff9df",
-    "article_97f628543e63dd45e070",
-    "article_df74c41924f0c83612b9"
+    "article_97f628543e63dd45e070"
   ],
   "continuation_sources": {
     "article_7d357b2d95ce8b4c3d24": "previous_edition",
     "article_2391bf8310dc68a8465d": "previous_edition",
     "article_8d66323bdb984a7ff9df": "previous_edition",
-    "article_97f628543e63dd45e070": "previous_edition",
-    "article_df74c41924f0c83612b9": "previous_edition"
+    "article_97f628543e63dd45e070": "previous_edition"
   },
   "scores": {
+    "article_9aca9e28b14e29154d79": {
+      "article_id": "article_9aca9e28b14e29154d79",
+      "total": 46,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "制度・安全への影響",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-09-26T01:27:19.000Z"
+    },
     "article_7d357b2d95ce8b4c3d24": {
       "article_id": "article_7d357b2d95ce8b4c3d24",
       "total": 95,
@@ -145,77 +155,9 @@
         "AIツールの能力進化"
       ],
       "published_at": "2026-09-24T05:46:10.000Z"
-    },
-    "article_df74c41924f0c83612b9": {
-      "article_id": "article_df74c41924f0c83612b9",
-      "total": 66,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 10,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "制度・安全への影響"
-      ],
-      "published_at": "2026-09-25T22:11:15.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_3cc82dede5f41275056c",
-      "story_id": "story_775e4bcdfafb84f5e7",
-      "title": "トランプ米大統領、AI新組織「AI Force」創設を表明",
-      "primary_entity": "トランプ政権",
-      "story_subject": "AI Force創設",
-      "event_type": "policy",
-      "event_stage": "announced",
-      "event_scope": "米国",
-      "story_entities": [
-        "トランプ大統領",
-        "AI Force",
-        "AI Czar",
-        "aiforce",
-        "aiczar"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-23T09:23:50.942Z",
-      "edition_window_end": "2026-09-23T09:19:30.734Z"
-    },
-    {
-      "article_id": "article_ed86eaa2912de3b1ea63",
-      "story_id": "story_dd60c3c3efe9ab6ec6",
-      "title": "Gravwellがセキュリティ運用チーム向けにAIエージェント5種類を発表",
-      "primary_entity": "Gravwell",
-      "story_subject": "5種類のAIエージェント",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "セキュリティチーム向け",
-      "story_entities": [
-        "Gravwell",
-        "gravwell"
-      ],
-      "fact_slots": [
-        {
-          "type": "count",
-          "scope": "発表されたAIエージェントの数",
-          "value": "5",
-          "normalized_value": "5"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-23T09:23:50.942Z",
-      "edition_window_end": "2026-09-23T09:19:30.734Z"
-    },
     {
       "article_id": "article_9a7265ef968254fe8271",
       "story_id": "story_4eda1c2a7f6f905046",
@@ -469,6 +411,28 @@
       "previous_article_id": "",
       "selected_at": "2026-09-25T23:24:38.968Z",
       "edition_window_end": "2026-09-25T23:20:12.154Z"
+    },
+    {
+      "article_id": "article_9aca9e28b14e29154d79",
+      "story_id": "story_b5b9050f56a75485fb",
+      "title": "Perplexityに音声アシスタントの起動ワード技術盗用疑惑で提訴",
+      "primary_entity": "Perplexity",
+      "story_subject": "Perplexityの音声アシスタント起動ワード技術盗用訴訟",
+      "event_type": "other",
+      "event_stage": "investigating",
+      "event_scope": "Perplexityの音声アシスタント製品",
+      "story_entities": [
+        "Perplexity",
+        "wake-word technology",
+        "perplexity",
+        "wake-wordtechnology"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-09-26T14:34:12.813Z",
+      "edition_window_end": "2026-09-26T14:28:46.141Z"
     }
   ]
 }
