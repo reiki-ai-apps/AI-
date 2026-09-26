@@ -122,17 +122,6 @@
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
     },
-    "url:https://news.google.com/rss/articles/cbmix0fvx3lxte9abxz0eejnn0lrrkvwvxdstwvnr05yywjpd3pyahn3yxz0ymlldtm5rkvjwejiaunxvvlov1bklxfjynlrdk9pylhprle2amftbxjknlywaddja0jxrudj": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmix0fvx3lxte9abxz0eejnn0lrrkvwvxdstwvnr05yywjpd3pyahn3yxz0ymlldtm5rkvjwejiaunxvvlov1bklxfjynlrdk9pylhprle2amftbxjknlywaddja0jxrudj",
-      "content_hash": "7bd12cbc708c393b4380b6c2eea92f809113ff1cb32bc32a5aaad94c294e6fc0",
-      "story_key": "7215c6a53da62e2f51140bbaa447fee12b6bcfd33b3e41c732cad9437ea447ed",
-      "status": "retry",
-      "processed_at": "2026-09-26T09:24:50.327Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
     "url:https://news.google.com/rss/articles/cbmif0fvx3lxtfbwcwjrmtdqqu5xaje2n3ftqjzuehvrtzfvmwnhzf9uwjdkdtbfvdutvk9su2f0rfa2aeh3smlfwvhramv3m3dey0hergnqmxjuqkvrzunhrzzwcwpnyvozu1pfvk9nedbht0d5uegxcjbxvjbqzktat0t6vxbwem8": {
       "canonical_url": "https://news.google.com/rss/articles/cbmif0fvx3lxtfbwcwjrmtdqqu5xaje2n3ftqjzuehvrtzfvmwnhzf9uwjdkdtbfvdutvk9su2f0rfa2aeh3smlfwvhramv3m3dey0hergnqmxjuqkvrzunhrzzwcwpnyvozu1pfvk9nedbht0d5uegxcjbxvjbqzktat0t6vxbwem8",
       "content_hash": "b0a845cd399e8c501dfd751dee831838c02028721ecfca68abe92f8869198d15",
@@ -532,234 +521,6 @@
         ],
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
         "migration_replacement_of": "article_3cc14d809b65f8c4eb25"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmie0fvx3lxte16uldsqvpun0fazlnqtdjxvmtumkxxt1y3yljtx1rqohdwvtlnx2p0yk9qttbqrwlbmu14etlzdzbcn25fy2vpvnvnt3vzr0vvxzb6dxgtz0tmehutblfubzbqsxdrzzzqckiys1nxrdrsytnjave5smr6uq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmie0fvx3lxte16uldsqvpun0fazlnqtdjxvmtumkxxt1y3yljtx1rqohdwvtlnx2p0yk9qttbqrwlbmu14etlzdzbcn25fy2vpvnvnt3vzr0vvxzb6dxgtz0tmehutblfubzbqsxdrzzzqckiys1nxrdrsytnjave5smr6uq",
-      "content_hash": "3eac2acabe8a1b82934084c0ca1bcb5da0bd6f3bf7a3c6a0c460fec0ece87fa9",
-      "story_key": "0f8136874d3560f52fbd0e92e6e687879f56fe1e9f81e7f42fa1bbceb4cfc097",
-      "status": "enriched",
-      "processed_at": "2026-08-26T10:00:05.173Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "AIセキュリティ",
-        "title": "エフサステクノロジーズとNTT西日本、オンプレミス生成AI基盤を発表",
-        "source_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE16UldsQVpUN0FaZlNQTDJxVmtUMkxXT1Y3YlJtX1RqOHdwVTlNX2p0Yk9qTTBQRWlBMU14eTlZdzBCN25fY2VpVnVnT3VZR0VVXzB6dXgtZ0tMeHUtblFubzBqSXdRZzZqckIyS1NXRDRSYTNJaVE5SmR6UQ?oc=5",
-        "source_name": "ニコニコニュース",
-        "is_official": false,
-        "published_at": "2026-08-26T09:21:30.000Z",
-        "source_published_at": "2026-08-26T09:21:30.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T09:59:03.900Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "エフサステクノロジーズ",
-          "NTT西日本",
-          "Private AI Platform"
-        ],
-        "primary_entity": "エフサステクノロジーズ",
-        "story_subject": "Private AI Platform",
-        "event_type": "partnership",
-        "event_stage": "announced",
-        "event_scope": "国内企業向け",
-        "fact_slots": [
-          {
-            "type": "other",
-            "scope": "製品名",
-            "value": "Private AI Platform",
-            "normalized_value": "privateaiplatform"
-          }
-        ],
-        "new_facts": [
-          "エフサステクノロジーズとNTT西日本がオンプレミス生成AI基盤「Private AI Platform」に関する取り組みを発表した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "エフサステクノロジーズとNTT西日本が、企業の自社設備内で稼働する生成AI基盤「Private AI Platform」に関する取り組みを発表した。",
-        "detail": "エフサステクノロジーズとNTT西日本は、企業内のデータセンターなど自社設備内で稼働させる生成AI基盤「Private AI Platform」に関する取り組みを発表した。クラウドではなく自社環境でAIモデルを運用できる「オンプレミス型」のため、外部への情報漏えいリスクを抑えられる点が特徴とみられる。両社の役割分担や提供開始時期、対象となる企業、価格などの詳細は記事から確認できない。",
-        "change_summary": "NTT西日本とエフサステクノロジーズが共同でオンプレミス型生成AI基盤を打ち出した点が新しい。",
-        "impact_summary": "データを外部に出さずに生成AIを使いたい企業にとって、セキュリティを重視した導入手段が増える可能性がある。",
-        "action_suggestion": "提供開始時期や対象企業、価格などの詳細は現時点で不明で、両社の今後の発表を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "セキュリティ",
-          "AIツール・モデル",
-          "企業・株式"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmix0fvx3lxte9vwlhfn2x5necwd0ffa2fttkdvmllouhrlq29fmxnuz0ztoeqwdjjinffvqwt5zu50due1eujgsmzht0lzetrxednfn2fsam9wt2taznnqq0niqtvtu3uw": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmix0fvx3lxte9vwlhfn2x5necwd0ffa2fttkdvmllouhrlq29fmxnuz0ztoeqwdjjinffvqwt5zu50due1eujgsmzht0lzetrxednfn2fsam9wt2taznnqq0niqtvtu3uw",
-      "content_hash": "fe7f2ae66ed2df4bb0a826378582235cf3d5da160b46566eee4d416b5c3c8ef4",
-      "story_key": "a27a1b33b0aa21ad9a0be56bbee37e3962bb99dd67520026d32b5f72ed2b43ec",
-      "status": "enriched",
-      "processed_at": "2026-08-26T10:00:05.173Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "世界の新モデル・速報",
-        "title": "ティアフォー、SDV向けCo-MLOpsとリファレンスE2E AIモデルを公開へ",
-        "source_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9vWlhFN2x5NEcwd0Ffa2FTTkdvMlloUHRlQ29FMXNUZ0ZtOEQwdjJiNFFVQWt5ZU50dUE1eUJGSmZhT0lzeTRxeDNfN2FSam9wT2taZnNQQ0NiQTVTU3Uw?oc=5",
-        "source_name": "レスポンス（Response.jp）",
-        "is_official": false,
-        "published_at": "2026-08-26T09:45:03.000Z",
-        "source_published_at": "2026-08-26T09:45:03.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T09:59:05.593Z",
-        "event_at": "",
-        "event_status": "予定",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "ティアフォー",
-          "Co-MLOps",
-          "オートモーティブワールド2026秋"
-        ],
-        "primary_entity": "ティアフォー",
-        "story_subject": "Co-MLOpsとリファレンスE2E AIモデル",
-        "event_type": "release",
-        "event_stage": "planned",
-        "event_scope": "自動車業界",
-        "fact_slots": [
-          {
-            "type": "other",
-            "scope": "発表内容",
-            "value": "Co-MLOpsとE2E AIモデル",
-            "normalized_value": "2"
-          }
-        ],
-        "new_facts": [
-          "ティアフォーが「オートモーティブワールド2026秋」でSDV向けCo-MLOpsとリファレンスE2E AIモデルを公開予定"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "自動運転技術のティアフォーが「オートモーティブワールド2026秋」で、ソフトウェア定義車両向けの開発基盤「Co-MLOps」とE2E型AIモデルを公開する。",
-        "detail": "自動運転技術を手がけるティアフォーは、「オートモーティブワールド2026秋」の展示会でソフトウェア定義車両(SDV)向けの新たな取り組みを公開する。発表内容は、複数の企業が協業して機械学習モデルを開発・運用する仕組み「Co-MLOps」と、参考実装となるエンドツーエンド(E2E)型のAIモデルの2つ。E2Eモデルはセンサー入力から車両制御までを一つのAIモデルで処理する方式で、自動運転技術の開発効率化を狙うとみられる。具体的な公開時期や対象企業などの詳細は記事から確認できない。",
-        "change_summary": "ティアフォーがSDV向けの協業基盤「Co-MLOps」とリファレンスE2E AIモデルを新たに公開する予定であることが明らかになった。",
-        "impact_summary": "自動車業界でAIモデル開発の協業基盤が整うことで、国内自動車メーカーやサプライヤーの自動運転・SDV開発の効率化につながる可能性がある。",
-        "action_suggestion": "「オートモーティブワールド2026秋」での正式発表内容を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "研究・技術"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxte9zbvfdvfezce1hx3ren2g2dnv3dy0wskdheda2m0lcvhl6wuk1cdnubxblt0dpu0hhetm2qmpkzufeb1qycldqumfxagttvwc1ujnr": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxte9zbvfdvfezce1hx3ren2g2dnv3dy0wskdheda2m0lcvhl6wuk1cdnubxblt0dpu0hhetm2qmpkzufeb1qycldqumfxagttvwc1ujnr",
-      "content_hash": "31f0b4c8c6543449694ef94145ed3653dd836fd8d75943d211c0ebba50afdc2f",
-      "story_key": "c2550a8fa59a612a48f0ce38161ef2642155c62c6f918fe379136ba3bfa1844d",
-      "status": "enriched",
-      "processed_at": "2026-08-26T10:01:17.878Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "emergency",
-      "reason": "",
-      "result": {
-        "tool": "AIセキュリティ",
-        "title": "エフサステクノロジーズとNTT西日本、純国産LLM「tsuzumi 2」でオンプレミス生成AI基盤を提供",
-        "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9zbVFDVFEzcE1hX3REN2g2dnV3dy0wSkdheDA2M0lCVHl6WUk1cDNubXBLT0dPU0hHeTM2QmpKZUFEb1QycldqUmFxaGttVWc1UjNR?oc=5",
-        "source_name": "ZDNET Japan",
-        "is_official": false,
-        "published_at": "2026-08-26T08:42:00.000Z",
-        "source_published_at": "2026-08-26T08:42:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T09:59:03.900Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "エフサステクノロジーズ",
-          "NTT西日本",
-          "tsuzumi 2"
-        ],
-        "primary_entity": "エフサステクノロジーズ",
-        "story_subject": "tsuzumi 2を用いたオンプレミス生成AI基盤",
-        "event_type": "release",
-        "event_stage": "announced",
-        "event_scope": "日本国内・オンプレミス",
-        "fact_slots": [
-          {
-            "type": "other",
-            "scope": "製品名",
-            "value": "tsuzumi 2",
-            "normalized_value": "2"
-          }
-        ],
-        "new_facts": [
-          "エフサステクノロジーズとNTT西日本が純国産LLM「tsuzumi 2」を用いたオンプレミス生成AI基盤の提供を発表した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "エフサステクノロジーズとNTT西日本は、NTT開発の純国産LLM「tsuzumi 2」を用いたオンプレミス型の生成AI基盤の提供を開始した。",
-        "detail": "エフサステクノロジーズとNTT西日本は、NTTが開発した純国産の大規模言語モデル「tsuzumi 2」を活用したオンプレミス型の生成AI基盤を企業向けに提供すると発表した。オンプレミスとは自社内にシステムを構築する方式で、クラウドを使わずに生成AIを運用したい企業や自治体などでの利用を想定した形とみられる。tsuzumiはNTTが手がける軽量な国産LLMで、日本語処理を強みとするとされる。両社は今回、このtsuzumi 2を基盤の中核に据え、企業の生成AI活用ニーズに応える構えだが、提供開始時期や価格、対象業種など詳細は記事中に明記されていない。",
-        "change_summary": "純国産LLM「tsuzumi 2」を用いたオンプレミス生成AI基盤を、エフサステクノロジーズとNTT西日本が新たに提供開始した。",
-        "impact_summary": "自社内でAI基盤を構築したい企業にとって国産LLMを使った選択肢が増え、セキュリティ要件の厳しい業種でも生成AI導入を検討しやすくなる可能性がある。",
-        "action_suggestion": "提供時期や価格、対象業種などの詳細は本文で確認できないため、両社の今後の発表を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "企業・株式"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmia0fvx3lxtfaymkjhvhvnukmya01sd0lvr1fezznzzgnnexvwswd4dfpyn0mzy042rjitevnhs3dhdjlkenk2au1mmzvuvklpwmuwcdk3bu9sz0towxvceemwdzltdez2wnnntjm4rk1wwxhv": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmia0fvx3lxtfaymkjhvhvnukmya01sd0lvr1fezznzzgnnexvwswd4dfpyn0mzy042rjitevnhs3dhdjlkenk2au1mmzvuvklpwmuwcdk3bu9sz0towxvceemwdzltdez2wnnntjm4rk1wwxhv",
-      "content_hash": "758f2c4a21f077971d3247f59ab1f9620c8bff08a6935d22ea665040156b26c0",
-      "story_key": "8219ce3f91f47ed1175d92e72293f92193d43e1a3040801879c6774a29b45c7f",
-      "status": "enriched",
-      "processed_at": "2026-08-26T10:01:17.878Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-04-v8-balanced-keep",
-      "lane": "emergency",
-      "reason": "",
-      "result": {
-        "tool": "世界の新モデル・速報",
-        "title": "生成AI資料をビジネス品質に整えるサービス「デザポ for 生成AI」提供開始",
-        "source_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFAyMkJHVHVNUkMya01Sd0lvR1FEZzNZZGNneXVWSWd4dFpyN0MzY042RjIteVNHS3dhdjlKenk2aU1mMzVuVklpWmUwcDk3bU9sZ0tOWXVCeEMwdzltdEZ2WnNNTjM4Rk1WWXhv?oc=5",
-        "source_name": "時事ドットコム",
-        "is_official": false,
-        "published_at": "2026-08-26T09:16:00.000Z",
-        "source_published_at": "2026-08-26T09:16:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-26T09:59:05.593Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "デザポ for 生成AI"
-        ],
-        "primary_entity": "デザポ for 生成AI 提供元",
-        "story_subject": "デザポ for 生成AI",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "不明",
-        "fact_slots": [],
-        "new_facts": [
-          "生成AI資料をビジネス品質に整えるサービス「デザポ for 生成AI」の提供が開始された"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "生成AIで作成した資料をビジネスで使える品質に仕上げるサービス「デザポ for 生成AI」の提供が始まった。",
-        "detail": "生成AIを使って作成した資料は体裁やデザインが整っていない場合があり、そのままではビジネスの場で使いにくいという課題があるとされる。こうした課題に対応するサービスとして「デザポ for 生成AI」の提供が開始された。生成AIが出力した資料をビジネス用途に耐える品質へ仕上げることを目的としたサービスとみられるが、具体的な機能や対象となる資料の種類、料金体系などの詳細は記事中に明記されていない。",
-        "change_summary": "生成AIで作った資料をビジネス品質に整えるサービス「デザポ for 生成AI」が新たに提供開始された。",
-        "impact_summary": "生成AIで作成した資料の見た目やクオリティに悩む企業の担当者にとって、資料作成にかかる手間を減らせる可能性がある。",
-        "action_suggestion": "料金や具体的な機能などの詳細は本文に記載がないため、提供元の発表を確認する必要がある。",
-        "importance": "C",
-        "related_categories": [
-          "AIツール・モデル",
-          "EC・業務活用"
-        ],
-        "enrichment_version": "ai-radar-2026-08-04-v8-balanced-keep"
       }
     },
     "url:https://news.google.com/rss/articles/cbmivkfvx3lxte5pvfgxdvixn202wmhiy2jwbu43zxf2btkyyu96zzl5y2dkr3gxadhwzdbbrnhdc2oxtjrtckvsmxdhafrfv3revve4zznka0ter0liagvb0gfwqvvfexfmtmluwdf1uje3btzaagjjylzttjdlcxztotjht3pnoxljz0phedfoohbkmefgeenzajfong1yrvixd0dovevxdervuthnm2rrs0rhsuhozue": {
@@ -8408,70 +8169,12 @@
       "canonical_url": "https://news.google.com/rss/articles/cbmi4wfbvv95cuxqeehfchr5zhg1vljoyi10z0tfbgznueo3wldozzflqw9xbeo2q0ixuhgyztfnblnowlv2zjjcvjrxnulqbvnqnnfydlhmcvfjcddsbfqtnvhpswrbv04tdws5zxjnrxrcwel5shryaej0bthtvg02wvznewyyztdkz3l5cc1zczhxcnvqc1dwal8ylxiwsvvhuflvcud6uxnzoxk4v1g4n01hourkylz1mw0yd2plmhp6d2c0ogtsbhmwwdyzy3fjdlphtvr1u0p2qzy0a3neafz0yy1ywdvbmze3ma",
       "content_hash": "e341ab3c63d5fdcadf2d7a143c6194bf2f06b3eae9473aecdd4d5bb4733f108d",
       "story_key": "d5b6632d7e971d1cf1a2b26dd51f59c488afea8546837a4024d93fd10d3334bd",
-      "status": "enriched",
-      "processed_at": "2026-09-13T09:38:07.326Z",
+      "status": "retry",
+      "processed_at": "2026-09-26T14:34:05.827Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Manus AI",
-        "content_type": "article",
-        "expert_id": "",
-        "expert_name": "",
-        "expert_names": [],
-        "expert_role": "",
-        "expert_tier": "",
-        "platform": "",
-        "video_id": "",
-        "source_trust": "",
-        "title": "Meta、Manus買収案(25億ドル)が北京の障害で破談と報道",
-        "source_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQeEhfcHR5ZHg1VlJoYi10Z0tFbGZnUEo3WldoZzFlQW9XbEo2Q0IxUHgyZTFnblNOWlV2ZjJCVjRXNUlqbVNqNnFYdlhmcVFjcDdSbFQtNVhpSWRBV04tdWs5ZXJNRXRCWEl5SHRYaEJ0bThTVG02WVZNeWYyZTdkZ3l5cC1ZczhxcnVQc1dwal8yLXIwSVVhUFlVcUd6UXNzOXk4V1g4N01hOURkYlZ1MW0yd2pLMHp6d2c0OGtsbHMwWDYzY3FJdlphTVR1U0p2QzY0a3NEaFZ0Yy1yWDVBMzE3MA?oc=5",
-        "source_name": "Stocktwits",
-        "is_official": false,
-        "published_at": "2026-09-12T19:07:24.000Z",
-        "source_published_at": "2026-09-12T19:07:24.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-09-13T09:34:05.981Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Meta",
-          "Manus"
-        ],
-        "primary_entity": "Meta",
-        "story_subject": "Manus買収案の破談",
-        "event_type": "acquisition",
-        "event_stage": "cancelled",
-        "event_scope": "米国・中国",
-        "fact_slots": [
-          {
-            "type": "amount",
-            "scope": "Manus買収額",
-            "value": "約25億ドル",
-            "normalized_value": "2500000000USD"
-          }
-        ],
-        "new_facts": [
-          "MetaによるManus買収案(約25億ドル)が破談と報じられた",
-          "破談の理由は北京当局による障害とされる",
-          "報道を受けMeta株が下落した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "Meta社によるAIスタートアップManusの買収案(約25億ドル)が中国当局の障害により破談になったと報じられ、Meta株価が下落した。",
-        "detail": "Meta社が進めていたAIスタートアップ「Manus」の買収案が、破談になったと報じられた。買収額は約25億ドル(日本円で数千億円規模)とされていた。Manusは中国発のAIエージェント、つまり自律的にタスクをこなすAIサービスを提供する企業として知られる。今回の報道では、買収が中国・北京当局による障害、つまり規制上の壁によって頓挫したとされている。\n\n記事によると、この買収破談の報道を受けてMeta株が取引開始前の時間帯で下落したという。買収額25億ドルという規模は、Metaが中国発のAI技術に大きな価値を見出していたことを示す。しかし、中国と米国の間での技術移転や企業買収には政治的・規制的な障壁があることが改めて浮き彫りになった形である。\n\nこの報道が事実であれば、米中間のAI企業買収や技術提携が地政学的な要因で難航する事例がまた一つ増えることになる。ただし、破談の詳細な理由や今後Metaが代替策を取るかどうかは、記事からは分からない。今後の続報が待たれる状況である。",
-        "change_summary": "Meta社によるManus買収案(約25億ドル)が北京当局の障害で破談になったと報じられた。",
-        "impact_summary": "米中間のAI企業買収が政治的要因で難航する事例として、今後の国際AI提携の動向に影響を与える可能性がある。",
-        "action_suggestion": "破談の詳細な経緯やMetaの今後の対応については、まだ発表されていない。",
-        "importance": "A",
-        "related_categories": [
-          "企業・株式",
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
-      }
+      "reason": "missing_or_incomplete_ai_output"
     },
     "url:https://news.google.com/rss/articles/cbmif0fvx3lxte0tn0txymj2adbpoet5afjrm1fzaxdsdmditvjzzf9frez5skplywj3bunmejrnvge1yueyx2l5wxnuuvd0uxnpbgzlmtlzehprdudnyjfbshv0c1ozvggtd21rchvyteoycvrfdzv3q2pfc2fiwtqwzelkcuflreu": {
       "canonical_url": "https://news.google.com/rss/articles/cbmif0fvx3lxte0tn0txymj2adbpoet5afjrm1fzaxdsdmditvjzzf9frez5skplywj3bunmejrnvge1yueyx2l5wxnuuvd0uxnpbgzlmtlzehprdudnyjfbshv0c1ozvggtd21rchvyteoycvrfdzv3q2pfc2fiwtqwzelkcuflreu",
@@ -16067,28 +15770,6 @@
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
     },
-    "url:https://news.google.com/rss/articles/cbmitefvx3lxte5ovdhxy2dfuxqzbjc5a0t3s0rqvmfru1rynll1vxj2ywg3b3jdb1fymmzjqxvrazdzatbdrtftqi0wnk02amvguzdicle": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmitefvx3lxte5ovdhxy2dfuxqzbjc5a0t3s0rqvmfru1rynll1vxj2ywg3b3jdb1fymmzjqxvrazdzatbdrtftqi0wnk02amvguzdicle",
-      "content_hash": "39dba9953c9bfb0b5fc3b363ac8626826e1492e9e1333ae8ed565e07ab148286",
-      "story_key": "42afcf170b7a4f1a5d39b604128eba949498110102415bfc597466391532c3ba",
-      "status": "rejected",
-      "processed_at": "2026-09-24T09:23:36.057Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 広告的なスパム記事で実質的な情報がない"
-    },
-    "url:https://news.google.com/rss/articles/cbmia0fvx3lxte9anloyelc1lxpzrnzrau1sv1bvwfl1tdjtywhbtk9felvhcnzhqlrwbnvhbf9owfjjmdzvd090efvzcg9swefmzjfvsda0nndtvkputy1lrfnjsk84vnphbuvjcvhpv09gqlfv": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmia0fvx3lxte9anloyelc1lxpzrnzrau1sv1bvwfl1tdjtywhbtk9felvhcnzhqlrwbnvhbf9owfjjmdzvd090efvzcg9swefmzjfvsda0nndtvkputy1lrfnjsk84vnphbuvjcvhpv09gqlfv",
-      "content_hash": "acaac1b0ea1fb508c50889a9effaa4fd2dfd3b48419daab666985d5c1bee2f33",
-      "story_key": "81798b3997104915e1d1da19ca92a5f6e82f9edc4e8ddb29c29ca95132360c53",
-      "status": "rejected",
-      "processed_at": "2026-09-24T09:23:36.057Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 内容不明な断片記事でGrok 4.7の実態が確認できない"
-    },
     "url:https://news.google.com/rss/articles/cbmilgfbvv95cuxpqjd6ou5hsxn5tw9nrnb0oghiwg1jnu9fnk5iq2rhnkhrbl9nsvc3rxbxcnjwzghpuzu2um8ta0nzou5xv2lgnuz3stbncxpbnlk2qnrhbdvxyxrzngs1sl9rrnnmslpmb3fovwnxmdv6vut2vklxbfn3zvl5szf4etrlrxpxbmjeavpxnufknutubmrfsee": {
       "canonical_url": "https://news.google.com/rss/articles/cbmilgfbvv95cuxpqjd6ou5hsxn5tw9nrnb0oghiwg1jnu9fnk5iq2rhnkhrbl9nsvc3rxbxcnjwzghpuzu2um8ta0nzou5xv2lgnuz3stbncxpbnlk2qnrhbdvxyxrzngs1sl9rrnnmslpmb3fovwnxmdv6vut2vklxbfn3zvl5szf4etrlrxpxbmjeavpxnufknutubmrfsee",
       "content_hash": "ec221e06a93850d2fd3b20894a5699956dab6db62a44153ea51299c85f70e0f4",
@@ -17534,17 +17215,6 @@
       "lane": "regular",
       "reason": "ai_skip: AIと無関係な政治的話題で実質情報が薄い"
     },
-    "url:https://news.google.com/rss/articles/cbmiaefvx3lxtfbwrmjqcwr3wxp6n2j6szb4m25pnesxme9rltvicgfpwkrkcgx5b3pxrnbjqmzmt0ctylpirgzncktzvuhiauvewmhmr1hev1rvzti0thc4am9rsno0ngrybkd3ehpbc2rj": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxtfbwrmjqcwr3wxp6n2j6szb4m25pnesxme9rltvicgfpwkrkcgx5b3pxrnbjqmzmt0ctylpirgzncktzvuhiauvewmhmr1hev1rvzti0thc4am9rsno0ngrybkd3ehpbc2rj",
-      "content_hash": "24384fc43da4f8dc21979abdf6fa8143b0983dffaf86299be0ddda5370bf6583",
-      "story_key": "27fd019e052b8b7450fa03edb207378ae13cebbeea0a0e95d43400f6d7e2b027",
-      "status": "retry",
-      "processed_at": "2026-09-26T09:24:50.327Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
     "url:https://news.google.com/rss/articles/cbmidkfvx3lxte5mnglwq0g0etlfrk01rzbcvgewbexslu1vm0pvuu8zdwtpdnjymf9wrxhcohvfuhrpswdtnvvqefjlme5uzm5lvlfawudtck9dcllhedzkuedsx2j4ywjnyxkwthric2zit1cxadjpuek3m0zzrfe": {
       "canonical_url": "https://news.google.com/rss/articles/cbmidkfvx3lxte5mnglwq0g0etlfrk01rzbcvgewbexslu1vm0pvuu8zdwtpdnjymf9wrxhcohvfuhrpswdtnvvqefjlme5uzm5lvlfawudtck9dcllhedzkuedsx2j4ywjnyxkwthric2zit1cxadjpuek3m0zzrfe",
       "content_hash": "5acc3fe330408314270cada258e0d9e3eb4dd9d02be4b1d188a6eb3d002116eb",
@@ -17566,50 +17236,6 @@
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
       "reason": "ai_skip: 具体的な出来事のない一般的な利用規約解説記事"
-    },
-    "url:https://news.google.com/rss/articles/cbmimwfbvv95cuxpzwvqs1jpazfrdnlhq09hquiyrkmxzmr2r2uzcxrmmei1s0ytczrnos1mmvhcwgpyv3hvws1pbg94svb2tlb3ntuzcflgmnh1mnowt1dotvoxmmr1wudyn0nrmdfuwwhxzvpsm0zcbxyzvldzqnniakdqmw9ivgrtrlvgntlcwvu2yupvqva4n203df9xcjlttgdtrq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmimwfbvv95cuxpzwvqs1jpazfrdnlhq09hquiyrkmxzmr2r2uzcxrmmei1s0ytczrnos1mmvhcwgpyv3hvws1pbg94svb2tlb3ntuzcflgmnh1mnowt1dotvoxmmr1wudyn0nrmdfuwwhxzvpsm0zcbxyzvldzqnniakdqmw9ivgrtrlvgntlcwvu2yupvqva4n203df9xcjlttgdtrq",
-      "content_hash": "1f8e11fe6de02e908e3fc7efb3d682f6b329ec277aae958b5e139c2232365e71",
-      "story_key": "6dfbcec450b43724836fea88a2ad8326e9f83687714ba67dd104caf1762d6007",
-      "status": "retry",
-      "processed_at": "2026-09-26T09:26:42.665Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmijwfbvv95cuxqmgrfzxzpujr2vtrrnhbas1z1zejrb28yzzi3ck5eegnqdmzjt2y0t2y0d21rtwrrb1lzcedtyzlwakj4mzbrnnpdb3rtrwl5lxi2n0frwlz2ttvdrulpzghoqnhkaw1tcezqzwlcc3ruwhvnd1dqnggtsvzfavnwsepmcvljahpwuzvwbkjywq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmijwfbvv95cuxqmgrfzxzpujr2vtrrnhbas1z1zejrb28yzzi3ck5eegnqdmzjt2y0t2y0d21rtwrrb1lzcedtyzlwakj4mzbrnnpdb3rtrwl5lxi2n0frwlz2ttvdrulpzghoqnhkaw1tcezqzwlcc3ruwhvnd1dqnggtsvzfavnwsepmcvljahpwuzvwbkjywq",
-      "content_hash": "e429bd70b1aa3565a0af9f2ed53c35ea144b6521e4178bb7ae3cb3a174eb95df",
-      "story_key": "06b1fa079c38d037d652243821c24a2de2b428d382cf1ab5d66774355cc39601",
-      "status": "retry",
-      "processed_at": "2026-09-26T09:26:42.665Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmitkfvx3lxte4xuxrcodhrs0vlnzhinwpleu5uc09qyuwxdnu4qlbnunzmz3zyafg5wws3zk5dsgqxvhlqu0pxlvjzshppdknoug8wy0r3zw": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmitkfvx3lxte4xuxrcodhrs0vlnzhinwpleu5uc09qyuwxdnu4qlbnunzmz3zyafg5wws3zk5dsgqxvhlqu0pxlvjzshppdknoug8wy0r3zw",
-      "content_hash": "9f107b6efda968c2454114e1bb9c35b2186aca2b1cd0620fbba0dcbd7fe036e4",
-      "story_key": "f0444e71a2d38e80a74b2eb6dd4a7c5db3f89594c50fe0a174b29a4768ec5548",
-      "status": "retry",
-      "processed_at": "2026-09-26T09:26:42.665Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmiw0fvx3lxtfbiehlyawlyn01psjzerezevkdttkt6bgx4qjvsdljntlr2aej0ctrxdge3zjrhzfdloxbuumgxs2ppqmhpwnlbrez4r2itrupxwdj3zeuxsej2mgc": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiw0fvx3lxtfbiehlyawlyn01psjzerezevkdttkt6bgx4qjvsdljntlr2aej0ctrxdge3zjrhzfdloxbuumgxs2ppqmhpwnlbrez4r2itrupxwdj3zeuxsej2mgc",
-      "content_hash": "f5545ca8cb678ffbcd9aad382381aa1d57497542c87a565bd01c794ce23fe53f",
-      "story_key": "ce8f82af51c68f051cd0de372173bda81fa5bd9a0f6169fed5c8facb87f061f3",
-      "status": "retry",
-      "processed_at": "2026-09-26T09:26:42.665Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
     },
     "url:https://updates.midjourney.com": {
       "canonical_url": "https://updates.midjourney.com",
@@ -17644,17 +17270,222 @@
       "lane": "regular",
       "reason": "ai_skip: エンタメ色の強いクリックベイト記事で実質的なニュース価値が乏しい"
     },
+    "url:https://news.google.com/rss/articles/cbmiogfbvv95cuxovdzcbmdrynpkqna3n1dns1y1rhphqnpyujftnthdltdqawh4y2nmmeppswzfumwyr2pnnddru1f4btfjdvdmrkhbthlebed0ss1jyukzagwtzlzlxy1ov0pfehetm2nobvljexj1m3zmbtlkwwloenzuvtzscwldd1hpsnd6yjh0nvj1lvrqaettngzoywxnbldqatnryti3bnc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiogfbvv95cuxovdzcbmdrynpkqna3n1dns1y1rhphqnpyujftnthdltdqawh4y2nmmeppswzfumwyr2pnnddru1f4btfjdvdmrkhbthlebed0ss1jyukzagwtzlzlxy1ov0pfehetm2nobvljexj1m3zmbtlkwwloenzuvtzscwldd1hpsnd6yjh0nvj1lvrqaettngzoywxnbldqatnryti3bnc",
+      "content_hash": "7a95eccba9e078e5da1b1f68aa39e9bec226f430597a6a72fba18b04dcba3ae2",
+      "story_key": "e84afad6d2ef764b54f5e659f81b766572e15c1c05f513bd580fed9c6290dc6b",
+      "status": "rejected",
+      "processed_at": "2026-09-26T14:31:24.499Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 見出しのみで具体的事実や主張が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmiy0fvx3lxte1yzw9rr3nduk1bnujnvuztnvvfqtlong42ahztoxa1z0znxznpb0xlue9ltkxbmvjftmfyrk5hm3zlvef3svnitkzinhhwa0gwnnqwblk0zvdzvxfavla0rlfmma": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiy0fvx3lxte1yzw9rr3nduk1bnujnvuztnvvfqtlong42ahztoxa1z0znxznpb0xlue9ltkxbmvjftmfyrk5hm3zlvef3svnitkzinhhwa0gwnnqwblk0zvdzvxfavla0rlfmma",
+      "content_hash": "2040e0f5aea91d7d05cc0a1094497643c0616414c6c9edac350746e9faf10d28",
+      "story_key": "89a723d843c7be53746c724a191096115d78ed1d40aed0c368193998bb67ddf6",
+      "status": "rejected",
+      "processed_at": "2026-09-26T14:31:24.499Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: タイトルのみで具体的な製品情報が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmizefvx3lxte5mejhxudc3z2hzqm9oqmrryi1wdtlsnjjirej4zkxlm2fzdjzbuermvglrvuvwanqtu05fmhjxrmzin2puu3uxa3fbalhzrm9qtehsdgxznzhtshbcoevtuvlecvc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmizefvx3lxte5mejhxudc3z2hzqm9oqmrryi1wdtlsnjjirej4zkxlm2fzdjzbuermvglrvuvwanqtu05fmhjxrmzin2puu3uxa3fbalhzrm9qtehsdgxznzhtshbcoevtuvlecvc",
+      "content_hash": "81dc2d56dc50d1deb84dfe4b5e65aa9b5f3d9b31c5be1f758bb899cc7672591d",
+      "story_key": "bbf9aa37e61d16aa6645002bfd34557f80ad851ce47e6abc7eb7c34ffaa6c8ed",
+      "status": "rejected",
+      "processed_at": "2026-09-26T14:31:24.499Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 具体的事実に乏しいツール比較記事で宣伝色が強い"
+    },
+    "url:https://news.google.com/rss/articles/cbmiaefvx3lxtfbwrmjqcwr3wxp6n2j6szb4m25pnesxme9rltvicgfpwkrkcgx5b3pxrnbjqmzmt0ctylpirgzncktzvuhiauvewmhmr1hev1rvzti0thc4am9rsno0ngrybkd3ehpbc2rj": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxtfbwrmjqcwr3wxp6n2j6szb4m25pnesxme9rltvicgfpwkrkcgx5b3pxrnbjqmzmt0ctylpirgzncktzvuhiauvewmhmr1hev1rvzti0thc4am9rsno0ngrybkd3ehpbc2rj",
+      "content_hash": "24384fc43da4f8dc21979abdf6fa8143b0983dffaf86299be0ddda5370bf6583",
+      "story_key": "27fd019e052b8b7450fa03edb207378ae13cebbeea0a0e95d43400f6d7e2b027",
+      "status": "retry",
+      "processed_at": "2026-09-26T14:31:24.499Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmiigfbvv95cuxoq1mycc1xbhcyak5lbnzidunua0zuugnjzgjqwjjbuunmr1rdqjbuu1vizy1jtuo2ykstnmvkyxntdudpz3dkbvpuz1psm3npzgnlnzboetjuaww1dxbmn0h4ty1uchhdstdkegp2oegzudjom2flc2vfvnnpqtnquk01zjm5s1jkave": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiigfbvv95cuxoq1mycc1xbhcyak5lbnzidunua0zuugnjzgjqwjjbuunmr1rdqjbuu1vizy1jtuo2ykstnmvkyxntdudpz3dkbvpuz1psm3npzgnlnzboetjuaww1dxbmn0h4ty1uchhdstdkegp2oegzudjom2flc2vfvnnpqtnquk01zjm5s1jkave",
+      "content_hash": "551ad8e58aad4c029a277a845dffdeac7cc1711ae2dd5ca8724c2a3dd6e85a2b",
+      "story_key": "15b6ea8cb08e4d4ce85428ba54db132aa050d8e63624ec51ccc6d3c913e07da2",
+      "status": "retry",
+      "processed_at": "2026-09-26T14:31:24.499Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbminwfbvv95cuxny0tnuxzdr3fttglxsnhzbkhjdmmyrgizt3btrmh3cnjytzu0dmfpq3fomhzfzdkwr0h1q3h5tmt4ajhjcujwtljxnk5snudamjjav1zulv85qmtqcxbys3hpmxrprukxedfqynrmoerebnbodnbyzk41ehvdvxa4nfjpt21fbwllyzq5dvf2qwptsgrrthf5qnd0u3y5ulnsazsbqvvfexfmuhjbc0d6oe0zedrinla0ulrythf1x1q1q2hdn0fkzxz2bdfys1jsswdbudniyu00rgn0bunwa1dhannpemlfvxpqem5dafnjsuetbhbjz1bedwfrteftm3l6bxnku2ntt2r0wc1xq1byc25mttrqm1f2uhvibmphexzxt3rzv3rtz0nkdhzttdnmnm1qvlrcwkzxzjq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbminwfbvv95cuxny0tnuxzdr3fttglxsnhzbkhjdmmyrgizt3btrmh3cnjytzu0dmfpq3fomhzfzdkwr0h1q3h5tmt4ajhjcujwtljxnk5snudamjjav1zulv85qmtqcxbys3hpmxrprukxedfqynrmoerebnbodnbyzk41ehvdvxa4nfjpt21fbwllyzq5dvf2qwptsgrrthf5qnd0u3y5ulnsazsbqvvfexfmuhjbc0d6oe0zedrinla0ulrythf1x1q1q2hdn0fkzxz2bdfys1jsswdbudniyu00rgn0bunwa1dhannpemlfvxpqem5dafnjsuetbhbjz1bedwfrteftm3l6bxnku2ntt2r0wc1xq1byc25mttrqm1f2uhvibmphexzxt3rzv3rtz0nkdhzttdnmnm1qvlrcwkzxzjq",
+      "content_hash": "65ca76443977c6242ae40a536b044557fd30de0f713b4ac2bec64e09468dfaa1",
+      "story_key": "48adbf6f9c63434e52baf0b76e4a02737829d96587debfaa5304c64a31c6bafe",
+      "status": "retry",
+      "processed_at": "2026-09-26T14:31:24.499Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmiw0fvx3lxtfbabw1hz2dvcxvmuvhhdmu3dkhnbg56qmoxnmrurexarfbsrwg0rflkz0gxoexzuefzlwfpnfdktmvwnvfvalc5ztrqrhvmnehzdlhsc0r2rwnlcmc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiw0fvx3lxtfbabw1hz2dvcxvmuvhhdmu3dkhnbg56qmoxnmrurexarfbsrwg0rflkz0gxoexzuefzlwfpnfdktmvwnvfvalc5ztrqrhvmnehzdlhsc0r2rwnlcmc",
+      "content_hash": "772a15c12a3dbf6f822d0209427c80296968471c32a629d6b6f3bf24c107c5ba",
+      "story_key": "7148f2fee484b8c5e46d7cc1fe0eab5aa6b7e849eb2f9da080885b1718ac53c6",
+      "status": "rejected",
+      "processed_at": "2026-09-26T14:32:38.071Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 空港滑走路の話でAIと無関係な誤ヒット"
+    },
+    "url:https://news.google.com/rss/articles/cbmifefvx3lxtfbsohllvdbhx1rloddsa0vdujbqd2y0dhlotvbpd1nmdm85rehzb00tehq1b3bzwep4wkdqou9jn0vkv2ftmtrpuxbradn4y2z1ykhwqi1pbnpsnulatndlmelnwjvwtuxpajc4wlduqzjyaznlr245v1n5tgy": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmifefvx3lxtfbsohllvdbhx1rloddsa0vdujbqd2y0dhlotvbpd1nmdm85rehzb00tehq1b3bzwep4wkdqou9jn0vkv2ftmtrpuxbradn4y2z1ykhwqi1pbnpsnulatndlmelnwjvwtuxpajc4wlduqzjyaznlr245v1n5tgy",
+      "content_hash": "8e0df1d295dbc949ad87f899f7c2af9a352f71fb7248dc648ad53ab189fb02b6",
+      "story_key": "7b2be1548d8ecad0009fc4c46914ae0baf1d2dd99d722bb7373aeec3bb5a8a40",
+      "status": "rejected",
+      "processed_at": "2026-09-26T14:32:38.072Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: デザインソフト新機能中心でAI要素が不明確な宣伝的記事"
+    },
+    "url:https://news.google.com/rss/articles/cbmitefvx3lxte5ovdhxy2dfuxqzbjc5a0t3s0rqvmfru1rynll1vxj2ywg3b3jdb1fymmzjqxvrazdzatbdrtftqi0wnk02amvguzdicle": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmitefvx3lxte5ovdhxy2dfuxqzbjc5a0t3s0rqvmfru1rynll1vxj2ywg3b3jdb1fymmzjqxvrazdzatbdrtftqi0wnk02amvguzdicle",
+      "content_hash": "39dba9953c9bfb0b5fc3b363ac8626826e1492e9e1333ae8ed565e07ab148286",
+      "story_key": "42afcf170b7a4f1a5d39b604128eba949498110102415bfc597466391532c3ba",
+      "status": "rejected",
+      "processed_at": "2026-09-26T14:32:38.072Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: アプリダウンロードを促す宣伝的なスパム記事"
+    },
+    "url:https://news.google.com/rss/articles/cbmiigfbvv95cuxolwvoafbxz0lnwdbouelhbgfnnllgwtf2a241skxstdheoe9qr0rtveldr0xxeuhfq0g2bhvinvjlx2juzxg3txzstmvmqu8xbmjkzjhdoevucepzuvvkn2ljmlp1bkmzcznusel5rkmwbwrbul9dqwptc3voblzkcgvymwhpa1jucve": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiigfbvv95cuxolwvoafbxz0lnwdbouelhbgfnnllgwtf2a241skxstdheoe9qr0rtveldr0xxeuhfq0g2bhvinvjlx2juzxg3txzstmvmqu8xbmjkzjhdoevucepzuvvkn2ljmlp1bkmzcznusel5rkmwbwrbul9dqwptc3voblzkcgvymwhpa1jucve",
+      "content_hash": "c890bf930bbb9895e4f5d93487b1e41f8501ca2e977964e17d4f4153ad6edf21",
+      "story_key": "837b291dfd32c49d8b85f03610c0a9fb36c3bb8c427626f96e2e8ec9cb49efc2",
+      "status": "retry",
+      "processed_at": "2026-09-26T14:32:38.072Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmilafbvv95cuxqvkzyzmdywvfkstnmvmutqxyyztfxwxhwvgjfaxf1n0hqsjdrmmh6u0xglujwm2qxazlizk54slnirly4vzvfajnnywh5bhlsruxaz2dzb1y2mwtcm2x3mwxrt0hrchvvvzzvruzienjfsnjgdzm1d3rqz1v1zuctoe9ymdbka0hluhfcykrtngqtu056": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmilafbvv95cuxqvkzyzmdywvfkstnmvmutqxyyztfxwxhwvgjfaxf1n0hqsjdrmmh6u0xglujwm2qxazlizk54slnirly4vzvfajnnywh5bhlsruxaz2dzb1y2mwtcm2x3mwxrt0hrchvvvzzvruzienjfsnjgdzm1d3rqz1v1zuctoe9ymdbka0hluhfcykrtngqtu056",
+      "content_hash": "5bc444ea1a76cf97835bc6a9996b4ef7a3727bd42ddef4151fb3f817c6743bb1",
+      "story_key": "c90ce45d7d6b277ed132b1232d078c61990a9fb9051007d6072291f6edd5e622",
+      "status": "retry",
+      "processed_at": "2026-09-26T14:32:38.072Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmiqkfvx3lxte9bme9lv0u5u3pmr2jxr01oz0divmv2oejxa2vhmmzqlu1hb0juc2zdq3bwndhuugtptkn0cmtiemdyzw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiqkfvx3lxte9bme9lv0u5u3pmr2jxr01oz0divmv2oejxa2vhmmzqlu1hb0juc2zdq3bwndhuugtptkn0cmtiemdyzw",
+      "content_hash": "bf6b40a664861ab5968fdec72b2ae5127efa3e590afffb5c4f52f8636508aa95",
+      "story_key": "78c8cad4bcae0418344c2bd4f606281423c01b93175a43c4464ff9a1b2263783",
+      "status": "retry",
+      "processed_at": "2026-09-26T14:32:38.072Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
     "url:https://news.google.com/rss/articles/cbmiowfbvv95cuxpndrzv0r6b2swy3hfs2wttehacjzhqzrwvxdzdwtuofpea3npdm9dee0wrulhn09oznc5twfyddbdzdn0sjhlzlribzzonwjjyu9yegnsbvhgstzdajfeaktdlwtlshayuvvqvjnhbfq4ctuyrw1aev9ubxpjd21zz2xizfj4snbssehzbu51sunscmhbm2fvrhdrngjmtwzkx3hv0gfwqvvfexfmtzl5m0oxqxdkvxrydhhume5hzkrzcdhhbetpnjjjcek0dmvpmkkytmptednwmmvyz0f2tdlfquzqy1rnwg9ma2kwuwjrudfsagzdd1fnohc": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiowfbvv95cuxpndrzv0r6b2swy3hfs2wttehacjzhqzrwvxdzdwtuofpea3npdm9dee0wrulhn09oznc5twfyddbdzdn0sjhlzlribzzonwjjyu9yegnsbvhgstzdajfeaktdlwtlshayuvvqvjnhbfq4ctuyrw1aev9ubxpjd21zz2xizfj4snbssehzbu51sunscmhbm2fvrhdrngjmtwzkx3hv0gfwqvvfexfmtzl5m0oxqxdkvxrydhhume5hzkrzcdhhbetpnjjjcek0dmvpmkkytmptednwmmvyz0f2tdlfquzqy1rnwg9ma2kwuwjrudfsagzdd1fnohc",
       "content_hash": "c24212ea30b59622bf37725d06bd61f69272e54ffbef42176d7d3f5a0143b9bb",
       "story_key": "3319bfcd84eade23e33c494cfb7ad4e1b05086b7f39efc0c77857493f45eeb26",
+      "status": "enriched",
+      "processed_at": "2026-09-26T14:34:05.827Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Perplexity",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "Perplexityに音声アシスタントの起動ワード技術盗用疑惑で提訴",
+        "source_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPNDRzV0R6b2swY3hfS2wtTEhacjZHQzRWVXdZdWtuOFpEa3Npdm9DeE0wRUlHN09oZnc5TWFydDBDZDN0SjhLZlRIbzZONWJJYU9YeGNsbVhGSTZDajFEaktDLWtLSHAyUVVQVjNhbFQ4cTUyRW1aeV9UbXpJd21zZ2xiZFJ4SnBSSEhzbU51SUNScmhBM2FVRHdrNGJMTWZkX3hV0gFWQVVfeXFMTzl5M0oxQXdkVXRYdHhuME5HZkRzcDhhbEtpNjJjcEk0dmVPMkkyTmpTeDNwMmVyZ0F2TDlfQUZQY1RNWG9ma2kwUWJRUDFsaGZDd1FNOHc?oc=5",
+        "source_name": "Law360",
+        "is_official": false,
+        "published_at": "2026-09-26T01:27:19.000Z",
+        "source_published_at": "2026-09-26T01:27:19.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-09-26T14:28:46.141Z",
+        "event_at": "",
+        "event_status": "不明",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Perplexity",
+          "wake-word technology",
+          "訴訟"
+        ],
+        "primary_entity": "Perplexity",
+        "story_subject": "Perplexityの音声アシスタント起動ワード技術盗用訴訟",
+        "event_type": "other",
+        "event_stage": "investigating",
+        "event_scope": "Perplexityの音声アシスタント製品",
+        "fact_slots": [],
+        "new_facts": [
+          "Perplexityが音声アシスタントの起動ワード技術盗用で提訴されたと米法律専門メディアLaw360が報じた"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "米AI検索企業Perplexityが、音声アシスタントの起動ワード技術を盗用したとして訴訟を起こされたと米法律専門メディアが報じた。",
+        "detail": "米国の法律専門メディアLaw360は、AI検索企業のPerplexityが訴訟を起こされたと報じました。訴えの内容は、音声アシスタントが使う『起動ワード』技術を盗用したというものです。起動ワードとは、機械に特定の言葉を話しかけるとAIが反応し始める仕組みのことです。これまで同社の音声機能の技術的な出所については詳しく知られていませんでした。\n\n報道によると、訴訟はPerplexityのAIアシスタント製品に関連する技術が対象とされています。ただし、原告や訴訟の具体的な経緯、賠償請求額などの詳細はまだ明らかになっていません。音声認識に関わる技術の権利争いは、AI企業が音声機能を拡大する中で増えている問題です。\n\nこの訴訟の行方によっては、Perplexityの音声アシスタント機能の提供方法に影響が出る可能性があります。現時点では訴訟の詳細な内容や双方の主張、今後の審理日程は公表されていません。続報を待つ必要があります。",
+        "change_summary": "Perplexityが音声アシスタントの起動ワード技術を盗用したとして提訴されたと報じられた点が新しい。",
+        "impact_summary": "AI企業の音声機能に関する権利争いが表面化し、他社の音声AI開発にも法的リスクへの注意が必要になる可能性がある。",
+        "action_suggestion": "訴訟の詳細な内容や原告情報、審理日程はまだ公表されておらず、今後の続報を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "規制・法務",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmi_wfbvv95cuxodw9lqnbyqnhlv2r4t3kxzw1osvzqvjnleenmy1jpohnxwjbyznpqwng3outhuu1vs2tlr0rsm2zhbdj6vzbilvdhn0i5q25yzhk5evjkcmnaafjpyxhqdzfmzlfdbfv6n1nengfqnhlysdjsdtdhrgxmt1e1sm1ox05hrvrvcgd3dfgyeddltlg5ufyxyjbucmfeb2derk9pz3bqehe5nmdjytn2ylpqeulhcfmxz1h0mwpxcxrbr21ja2fauwituwzimvjryjjzze9ucu5selh0wej3rzc0slprteizxzlhvnrgmgxpoxhobgy5beywqm14evhwthc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmi_wfbvv95cuxodw9lqnbyqnhlv2r4t3kxzw1osvzqvjnleenmy1jpohnxwjbyznpqwng3outhuu1vs2tlr0rsm2zhbdj6vzbilvdhn0i5q25yzhk5evjkcmnaafjpyxhqdzfmzlfdbfv6n1nengfqnhlysdjsdtdhrgxmt1e1sm1ox05hrvrvcgd3dfgyeddltlg5ufyxyjbucmfeb2derk9pz3bqehe5nmdjytn2ylpqeulhcfmxz1h0mwpxcxrbr21ja2fauwituwzimvjryjjzze9ucu5selh0wej3rzc0slprteizxzlhvnrgmgxpoxhobgy5beywqm14evhwthc",
+      "content_hash": "3b7d42a546ffd9f20e3c8c41e7f81f24a86a3a7b6e5ad54f94484d1483787a62",
+      "story_key": "2f46e4eeabf05aac2068769f7e9a112b5b70b872f590b8465ea78485bed40b80",
       "status": "retry",
-      "processed_at": "2026-09-26T09:27:20.094Z",
+      "processed_at": "2026-09-26T14:34:05.827Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmiy0fvx3lxte10m3fpngztefe0ewdodm5dowhqzvvjcmluouxlzev1s0dkugtzwk1zswrfru11ytjxmwryevhxnkvxc1mzn1a4stvowtnbuu5nujk1cl9gwvr3nc1jlwjratm2mnibaefvx3lxte8xdxzkcdjfqze3wgvlm0mwblyzof9zdxc2elpnthbjnmppx3yyd0w2a25gqwnkbs1fyxlrmvhfmlgysteyrgzja1piq2fjnwljzf94a1a2cfdnsmdhvhdqudvru1z5ulbr": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiy0fvx3lxte10m3fpngztefe0ewdodm5dowhqzvvjcmluouxlzev1s0dkugtzwk1zswrfru11ytjxmwryevhxnkvxc1mzn1a4stvowtnbuu5nujk1cl9gwvr3nc1jlwjratm2mnibaefvx3lxte8xdxzkcdjfqze3wgvlm0mwblyzof9zdxc2elpnthbjnmppx3yyd0w2a25gqwnkbs1fyxlrmvhfmlgysteyrgzja1piq2fjnwljzf94a1a2cfdnsmdhvhdqudvru1z5ulbr",
+      "content_hash": "d2f7b9ea18a2e8f9288dae7611991b8dad07e0c1e9ca0dc34550ee4f0b95bc9f",
+      "story_key": "34d526c1dece9004467d6ddab1e215b2f52846573a0a03b123d5646960582bd4",
+      "status": "retry",
+      "processed_at": "2026-09-26T14:34:05.827Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
       "reason": "missing_or_incomplete_ai_output"
     }
   },
-  "updated_at": "2026-09-26T09:27:20.094Z"
+  "updated_at": "2026-09-26T14:34:05.827Z"
 }
