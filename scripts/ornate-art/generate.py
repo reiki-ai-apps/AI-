@@ -13,6 +13,7 @@ Usage:
 import argparse, math, os, random, colorsys
 from PIL import Image, ImageDraw, ImageFilter, ImageChops
 import numpy as np
+import motifs
 
 # Palette sampled from the reference aesthetic: coral / cyan / gold / navy / magenta / mint
 PALETTES = {
@@ -261,6 +262,14 @@ class Gen:
             for _ in range(self.rng.randint(4, 9)):
                 ang = self.rng.uniform(-math.pi, math.pi)
                 self.vine(half, cx + self.rng.uniform(0, self.W*0.15)*math.cos(ang), y + self.rng.uniform(0, self.W*0.15)*math.sin(ang), ang, self.W*self.rng.uniform(0.12, 0.28), 4, self.ss*1.2)
+        # wonderland props orbiting the mandalas (mirrored -> heraldic pairs)
+        paper = self.bgc + (255,)
+        PL = self.layer()
+        for _ in range(self.rng.randint(3, 6)):
+            kind = self.rng.choice(motifs.PROPS)
+            px = cx - self.rng.uniform(self.W*0.12, self.W*0.42); py = self.rng.uniform(self.H*0.06, self.H*0.94)
+            motifs.prop(kind, PL, px, py, self.W*self.rng.uniform(0.04, 0.09), self.ink + (255,), paper, self.c(), self.c(), self.rng)
+        motifs.halo_composite(half, PL, paper, self.ss*3)
         # mirror: keep left half and flip
         left = half.crop((0, 0, self.W//2, self.H))
         mirrored = Image.new("RGBA", (self.W, self.H)); mirrored.paste(left, (0, 0)); mirrored.paste(left.transpose(Image.FLIP_LEFT_RIGHT), (self.W - self.W//2, 0))
@@ -288,6 +297,21 @@ class Gen:
             self.confetti(L, cx, y, self.W*0.25, self.rng.randint(400, 900))
         self.confetti(L, cx, self.H/2, self.W*0.45, 1500)
         self.needles(L, cx, ys[hero], self.W*0.05, self.W*0.6, 140, width=max(1, self.ss//2), alpha=110)
+        base.alpha_composite(L)
+
+        # 3b. the girl (never mirrored) + one large unmirrored prop
+        L = self.layer()
+        fh = self.H*self.rng.uniform(0.26, 0.36)
+        fx = cx + self.rng.choice([0, 0, -self.W*0.18, self.W*0.18]); fy = self.rng.uniform(self.H*0.62, self.H*0.97)
+        motifs.draw_girl(L, fx, fy, fh, self.ink + (255,), paper, self.c(), self.c(), self.rng, flip=self.rng.random() < 0.5,
+                         prop=self.rng.choice(["umbrella", "key", "teacup", "balloon"]))
+        kind = self.rng.choice(["cheshire", "rabbit", "watch", "moon"])
+        motifs.prop(kind, L, cx + self.rng.choice([-1, 1])*self.rng.uniform(self.W*0.2, self.W*0.36), self.rng.uniform(self.H*0.1, self.H*0.5),
+                    self.W*self.rng.uniform(0.09, 0.15), self.ink + (255,), paper, self.c(), self.c(), self.rng)
+        motifs.halo_composite(base, L, paper, self.ss*4)
+
+        # 3c. typography
+        L = self.layer(); motifs.typography_layer(L, self.W, self.H, self.ink, self.rng.choice(self.pal[:8]), self.rng, self.dark)
         base.alpha_composite(L)
 
         # 6. glitch, downsample, paper grain
