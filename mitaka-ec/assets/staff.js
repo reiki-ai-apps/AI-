@@ -325,7 +325,7 @@ $("#case-form").addEventListener("submit", async e => {
 function showIgText(c) {
   const url = new URL(`case.html`, location.href).href;
   const film = OPTIONS.films.find(f => f.id === (c.params || {}).film)?.label || "";
-  const text = [`施工事例 No.${c.no} ／ ${c.area || ""}`, `${c.title || ""}`, `間口${c.span}m × 奥行${c.length}m × ${c.count || 1}棟 ／ ${film}`, (c.equipment || []).join("・"), "", `自分の畑の大きさでの概算は、プロフィールのリンクから「${c.no}」を入力してください。`, "", "#ビニールハウス #パイプハウス #施工事例 #三高産業 #群馬 #農業"].join("\n");
+  const text = [`施工事例 No.${c.no} ／ ${c.area || ""}`, `${c.title || ""}`, `間口${c.span}m × 奥行${c.length}m × ${c.count || 1}棟 ／ ${film}`, (c.equipment || []).join("・"), "", `自分の畑の大きさでの概算は、プロフィールのリンクから「${c.no}」を入力してください。`, "", "#ビニールハウス #パイプハウス #施工事例 #イノウエグリーンハウス #群馬 #農業"].join("\n");
   $("#ig-card").hidden = false; $("#ig-text").textContent = text; $("#ig-link").textContent = url; $("#ig-open").href = `case.html?no=${encodeURIComponent(c.no)}`;
   $("#ig-copy").onclick = async () => toast((await copyText(text)) ? "投稿文をコピーしました" : "コピーできませんでした");
 }

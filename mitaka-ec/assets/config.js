@@ -1,6 +1,6 @@
 // サイト全体の設定。正式運用時はここだけ書き換えます。
 export const CONFIG = {
-  companyName: "三高産業株式会社",
+  companyName: "合同会社イノウエグリーンハウス",
   // 本番データベース(Supabase)。URLとanonキーを入れると、ブラウザ保存から本番保存に切り替わります。
   supabaseUrl: "",
   supabaseAnonKey: "",

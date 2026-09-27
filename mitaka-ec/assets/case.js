@@ -47,7 +47,7 @@ function renderCase(c) {
 
   const photos = (c.photos || []).filter(Boolean);
   const cover = photos[0] || "assets/photo/farm-dawn.jpg";
-  const note = c.demo ? "デモの事例です。写真はイメージです" : "写真は三高産業の施工現場です。施主様の許可を得て掲載しています";
+  const note = c.demo ? "デモの事例です。写真はイメージです" : "写真はイノウエグリーンハウスの施工現場です。施主様の許可を得て掲載しています";
   $("#cover").innerHTML = `<img src="${esc(cover)}" alt="${esc(c.title || "施工事例")}" decoding="async"><span class="tag">No.${esc(c.no)}</span><span class="photo-note">${esc(note)}</span>`;
   $("#c-eyebrow").textContent = `Case No.${c.no}${c.area ? " ・ " + c.area : ""}${c.builtOn ? " ・ " + c.builtOn.replace("-", "年") + "月 施工" : ""}`;
   $("#c-title").textContent = c.title || `${c.crop || "ハウス"}の施工事例`;
@@ -75,7 +75,7 @@ function renderCase(c) {
   else renderAdjust();
 
   $("#case").hidden = false;
-  document.title = `施工事例 No.${c.no} ${c.title || ""}｜三高産業 ハウスEC`;
+  document.title = `施工事例 No.${c.no} ${c.title || ""}｜イノウエグリーンハウス ハウスEC`;
   $("#case").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 

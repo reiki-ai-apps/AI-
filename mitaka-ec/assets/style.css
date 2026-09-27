@@ -1,4 +1,4 @@
-/* 三高産業 ハウスEC — デザイントークン「黒鉄(くろがね)」 2026-09-16 全面改訂
+/* イノウエグリーンハウス ハウスEC — デザイントークン「黒鉄(くろがね)」 2026-09-16 全面改訂
    考え方: 色で飾らない。色を引くほど、資材の写真と数字が前に出る。
    - 面は白(#fff)・薄墨(#F4F5F7)・黒(#0D0E10)の3つだけ。棚ごとの色分けはやめた。
    - 差し色(橙)は「押す所」と「金額」だけ。帯・見出し・アイコンには使わない。
@@ -358,3 +358,6 @@ label.field textarea { min-height: 130px; resize: vertical; }
   .site-header, .site-footer, .quote-fab, .drawer, .sekki, .no-print { display: none !important; }
   body { background: #fff; }
 }
+
+/* 社名が長くなった(2026-09-27 合同会社イノウエグリーンハウス)ので、狭い画面では印を外して文字を少し詰め、☰が2段目に落ちないようにする */
+@media (max-width: 480px) { .site-header .brand { gap: 0; } .site-header .brand-mark { display: none; } .site-header .brand-text .name { font-size: 0.9rem; letter-spacing: 0.01em; } }

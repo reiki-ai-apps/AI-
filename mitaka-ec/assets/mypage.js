@@ -28,7 +28,7 @@ function render(c, plots, houses, quotes = []) {
   $("#karte").hidden = false;
   try { localStorage.setItem("mitaka-karte-last", JSON.stringify({ code: c.code, token: c.karteToken, customerId: c.id, name: c.name, farmName: c.farmName, houses: houses.map(h => ({ id: h.id, name: h.name, params: h.params })) })); } catch {}
   logEc("karte_view", { customerId: c.id });
-  document.title = `${c.farmName || c.name} のマイページ｜三高産業 ハウスEC`;
+  document.title = `${c.farmName || c.name} のマイページ｜イノウエグリーンハウス ハウスEC`;
   $("#k-title").textContent = `${c.farmName ? c.farmName + " " : ""}${c.name} 様`;
   $("#k-sub").textContent = `${c.area || ""}${c.address ? " " + c.address : ""} / 主な作物: ${c.crop || "-"} / お客様コード ${c.code}${c.staff ? " / 担当: " + c.staff : ""}`;
   const line = $("#k-line");

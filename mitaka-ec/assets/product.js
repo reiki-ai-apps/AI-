@@ -18,7 +18,7 @@ const packM = (p.spec || "").match(/(\d+)(個|本|枚)入/); const pack = packM 
 const unitWord = ({ 本: "1本", 袋: "1袋", 箱: "1箱", 個: "1個", 台: "1台", 巻: "1巻", セット: "1セット", 組: "1組", m: "1m", "m²": "1m²", 式: "一式", か所: "1か所", 枚: "1枚" })[p.unit] || `1${p.unit}`;
 const incl = p.price != null ? Math.round(p.price * 1.1) : null;
 const per = incl && pack > 1 ? Math.round(incl / pack) : null;
-document.title = `${p.name}｜三高産業 ハウスEC`;
+document.title = `${p.name}｜イノウエグリーンハウス ハウスEC`;
 import("./store.js").then(m => m.logEc("product_view", { productCode: p.id })).catch(() => {});
 document.documentElement.style.setProperty("--shelf", shelf.color);
 
@@ -152,7 +152,7 @@ const comp = companions(p).slice(0, 3);
 $("#blk-with").innerHTML = comp.length ? `<h2>これと一緒に使うもの</h2><div class="with-list">${comp.map(q => `<label class="with-item"><input type="checkbox" checked data-with="${esc(q.id)}" aria-label="${esc(q.name)}をまとめて入れる">${figure(q)}<div><div class="nm"><a href="product.html?id=${esc(q.id)}">${esc(q.name)}</a></div><div class="sp">${esc(q.use || q.spec)}</div></div><div class="pr">${q.price != null ? yen(Math.round(q.price * 1.1)) + `<small class="muted"> 税込</small>` : `<span class="muted small">金額はご相談</span>`}</div></label>`).join("")}</div><button class="btn outline block with-all" type="button" id="with-all">チェックした品も、まとめてかごへ</button>` : "";
 $("#with-all")?.addEventListener("click", () => { const ids = [...document.querySelectorAll("[data-with]:checked")].map(x => x.dataset.with); addToQuoteList(item, qty); for (const wid of ids) { const q = PRODUCTS.find(x => x.id === wid); if (q) addToQuoteList({ ...q, name: `${q.name}${q.maker !== "generic" ? "(" + ((MAKERS.find(m => m.id === q.maker) || {}).label || "") + ")" : ""}` }, 1); } toast(`${1 + ids.length}点をかごに入れました ✓`); });
 const tip = tipFor(p);
-$("#blk-tip").innerHTML = tip ? `<h2>施工班のひとこと</h2><div class="tip-card">${esc(tip)}<span class="who">— 三高産業 施工班(下書き。担当者名を入れてください)</span></div>` : "";
+$("#blk-tip").innerHTML = tip ? `<h2>施工班のひとこと</h2><div class="tip-card">${esc(tip)}<span class="who">— イノウエグリーンハウス 施工班(下書き。担当者名を入れてください)</span></div>` : "";
 $("#blk-faq").innerHTML = `<h2>よくあるご質問</h2>
   <details><summary>いつ届きますか？</summary><p>${p.maker === "generic" ? "桐生の倉庫にあるものは、午前のご注文で当日お渡しできます。配達は群馬県内で翌日〜3日が目安です。" : "メーカー取り寄せです。3日〜7日ほど。急ぎのときは電話でご相談ください。"}</p></details>
   <details><summary>違うものを頼んでしまったら？</summary><p>開けていない袋・箱は、届いてから7日以内なら引き取ります。送料はご相談ください。「これで合っているか、担当に見てもらう」を押しておくと、注文前に担当が確認します。</p></details>
