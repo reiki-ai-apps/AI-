@@ -354,3 +354,14 @@ create or replace view cases_public as
 -- 公開の条件(アプリ側でも検査): 施主の consents に purpose='showcase' and granted=true があること。
 alter table quotes add column if not exists case_no integer;       -- 事例からの相談: 基準にした事例No.
 alter table quotes add column if not exists house_count integer;   -- 希望棟数
+
+-- 単価表の版(2026-09-27): 担当者画面「単価表」で保存。適用日が今日以前で最新の版を全ページの概算に使う。古い版は消さない(見積の再表示用)。
+create table if not exists pricing_versions (
+  id text primary key,
+  version text not null,                 -- 例「2026-10 正式単価」
+  effective_on date not null default current_date,
+  data jsonb not null,                   -- { taxRate, films:{id:{perSqm,life}}, unit:{...}, recover:{...} }
+  staff_id text, note text,
+  created_at timestamptz default now()
+);
+-- anon は select のみ(お客様画面は読むだけ)。insert/update は staff のみ。

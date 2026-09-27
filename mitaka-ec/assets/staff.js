@@ -1,11 +1,11 @@
 // 担当者コンソール: 今日やること / 電話メモ / お客様360 / カルテ登録 / データ
 import { CONFIG } from "./config.js";
 import { initSite, toast, copyText, esc } from "./site.js";
-import { OPTIONS, ridgeRange, normalizeParams, encodeParams, yen, PRICING_VERSION } from "./pricing.js";
+import { OPTIONS, ridgeRange, normalizeParams, encodeParams, yen, PRICING_VERSION, currentPricing, defaultPricing, applyPricing, PRICING_LABELS, PRICING_GROUPS, estimateRecover, estimate, defaultParams } from "./pricing.js";
 import { ICONS } from "./icons.js";
 import { attachVoiceSearch } from "./voice.js";
 import { initDisaster } from "./disaster.js";
-import { store, seedDemo, todayList, healthStats, houseStatus, addDays, normTel, normCaseNo,
+import { store, seedDemo, todayList, healthStats, houseStatus, addDays, normTel, normCaseNo, loadPricing, activePricing, pricingRows,
          CROPS, CONDITIONS, AREAS, TOPICS, CHANNELS, QUOTE_STATUS, TASK_KIND, CASE_STATUS } from "./store.js";
 import { PRODUCTS } from "./catalog-data.js";
 
@@ -32,6 +32,7 @@ document.querySelectorAll("[role=tab]").forEach(b => b.addEventListener("click",
   document.querySelectorAll(".pane-main").forEach(p => { p.hidden = p.id !== `pane-${b.dataset.tab}`; });
   if (b.dataset.tab === "phone") $("#tel").focus();
   if (b.dataset.tab === "case") refreshCases();
+  if (b.dataset.tab === "price") renderPricing();
   if (b.dataset.tab === "dz" && !dzReady) { dzReady = true; initDisaster().catch(err => console.error(err)); }
 }));
 
@@ -335,6 +336,70 @@ $("#case-list").addEventListener("click", async e => {
   const c = (await store.listCases(false)).find(x => x.id === id); if (!c) return;
   if (ed) { loadCaseForm(c, await store.getCasePrivate(c.id)); $("#case-form").scrollIntoView({ behavior: "smooth", block: "start" }); }
   else showIgText(c);
+});
+
+// ---------------- 単価表 ----------------
+// 単価の実体は pricing.js。ここは「版」を保存して applyPricing で当てるだけ。お客様画面は store.js の loadPricing() で同じ版を読む。
+const getPath = (o, path) => path.split(".").reduce((a, k) => (a == null ? undefined : a[k]), o);
+const setPath = (o, path, v) => { const ks = path.split("."); let t = o; for (const k of ks.slice(0, -1)) { t[k] = t[k] || {}; t = t[k]; } t[ks[ks.length - 1]] = v; };
+let priceDraft = null;
+function renderPriceForm() {
+  const d = priceDraft;
+  $("#pv-version").value = d.version || "";
+  $("#price-groups").innerHTML = PRICING_GROUPS.map(g => `<fieldset><legend>${esc(g.title)}${g.note ? ` <span class="muted small" style="font-weight:400">— ${esc(g.note)}</span>` : ""}</legend><div class="form-grid">${
+    g.films ? OPTIONS.films.map(f => `<label class="field">${esc(f.label)} 単価(円/m²)<input type="number" step="1" min="0" data-path="films.${f.id}.perSqm" value="${d.films[f.id].perSqm}"></label><label class="field">${esc(f.label)} 持ち年数(年)<input type="number" step="1" min="1" max="15" data-path="films.${f.id}.life" value="${d.films[f.id].life}"></label>`).join("")
+    : g.keys.map(k => `<label class="field">${esc(PRICING_LABELS[k] || k)}<input type="number" step="${/Rate/.test(k) ? "0.01" : "1"}" min="0" data-path="${k}" value="${getPath(d, k)}"></label>`).join("")
+  }</div></fieldset>`).join("");
+  renderPricePreview();
+}
+function readPriceForm() {
+  const d = JSON.parse(JSON.stringify(priceDraft));
+  d.version = $("#pv-version").value.trim();
+  $("#price-groups").querySelectorAll("[data-path]").forEach(i => { const v = Number(i.value); if (i.value !== "" && !isNaN(v)) setPath(d, i.dataset.path, v); });
+  return d;
+}
+function renderPricePreview() {
+  // いまの入力で、代表的な1棟(5.4m×30m 農PO)がいくらになるかを、保存前に見せる
+  const before = currentPricing(); const d = readPriceForm();
+  applyPricing(d);
+  const r = estimateRecover({ ...defaultParams(), span: 5.4, length: 30, film: "po015" }); const n = estimate({ ...defaultParams(), span: 5.4, length: 30 });
+  applyPricing(before);
+  const r0 = estimateRecover({ ...defaultParams(), span: 5.4, length: 30, film: "po015" }); const n0 = estimate({ ...defaultParams(), span: 5.4, length: 30 });
+  const diff = (a, b) => a === b ? "" : ` <span class="muted">(いまは ${yen(b)})</span>`;
+  $("#price-preview").innerHTML = `間口5.4m × 奥行30m の1棟: 農POの張り替え一式(税込) <b>${yen(r.total)}</b>${diff(r.total, r0.total)} ／ 新設 施工込み(税込) <b>${yen(n.total)}</b>${diff(n.total, n0.total)}`;
+}
+$("#price-groups").addEventListener("input", renderPricePreview);
+async function renderPricing() {
+  const rows = await store.listPricing();
+  const active = activePricing(rows);
+  const cur = currentPricing();
+  if (!priceDraft) { priceDraft = cur; $("#pv-date").value = new Date().toISOString().slice(0, 10); $("#pv-staff").value = localStorage.getItem("mitaka-staff-name") || ""; renderPriceForm(); }
+  $("#price-active").innerHTML = active
+    ? `<b>${esc(active.version)}</b><div class="small muted">適用日 ${esc(active.effectiveOn || "")} ・ 保存 ${esc(fmtDateTime(active.createdAt))}${active.staff ? ` ・ ${esc(active.staff)}` : ""}${active.note ? `<br>${esc(active.note)}` : ""}</div><div class="small mt-1">農PO ${active.data.films.po015.perSqm}円/m² ／ 張り替え施工 ${active.data.recover.laborPerSqm}円/m² ／ 新設施工 ${active.data.unit.installPerSqm}円/m² ／ 税 ${Math.round(active.data.taxRate * 100)}%</div>`
+    : `<b>${esc(PRICING_VERSION)}</b><div class="small muted">まだ担当者が保存した版はありません。プログラムに入っている仮単価を使っています。</div>`;
+  const future = pricingRows(rows, "9999-12-31").filter(r => r.effectiveOn > new Date().toISOString().slice(0, 10));
+  $("#price-history").innerHTML = rows.length ? rows.map(r => `<div class="pipe-row"><div><b>${esc(r.version)}</b>${active && r.id === active.id ? ` <span class="badge">使用中</span>` : future.some(f => f.id === r.id) ? ` <span class="badge gray">予約</span>` : ""}<div class="small muted">適用日 ${esc(r.effectiveOn || "")} ・ 保存 ${esc(fmtDateTime(r.createdAt))}${r.staff ? ` ・ ${esc(r.staff)}` : ""}${r.note ? ` ・ ${esc(r.note)}` : ""}</div></div><span class="flex"><button class="btn sm ghost" type="button" data-pv-load="${esc(r.id)}">この版を開く</button></span></div>`).join("") : `<p class="muted small">履歴はまだありません。</p>`;
+}
+$("#price-history").addEventListener("click", async e => {
+  const b = e.target.closest("[data-pv-load]"); if (!b) return;
+  const r = (await store.listPricing()).find(x => x.id === b.dataset.pvLoad); if (!r) return;
+  priceDraft = JSON.parse(JSON.stringify(r.data)); priceDraft.version = r.version; renderPriceForm();
+  $("#pv-note").value = `${r.version} を元に`; $("#pv-msg").textContent = `${r.version} の値をフォームに入れました。保存すると新しい版として適用されます。`;
+  $("#price-form").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+$("#pv-reset").addEventListener("click", () => { priceDraft = defaultPricing(); renderPriceForm(); $("#pv-msg").textContent = "初期値(プログラムの仮単価)をフォームに入れました。保存すると、この値の版が適用されます。"; });
+$("#price-form").addEventListener("submit", async e => {
+  e.preventDefault(); const msg = $("#pv-msg");
+  const d = readPriceForm();
+  if (!d.version) return (msg.textContent = "版の名前を入れてください(例: 2026-10 正式単価)");
+  if (!(d.taxRate >= 0 && d.taxRate < 1)) return (msg.textContent = "税率は 0.10 のように小数で入れてください");
+  msg.textContent = "保存中...";
+  try {
+    await store.savePricing({ version: d.version, effectiveOn: $("#pv-date").value || new Date().toISOString().slice(0, 10), data: d, staff: $("#pv-staff").value.trim(), note: $("#pv-note").value.trim() });
+    const row = await loadPricing();
+    msg.textContent = row && row.version === d.version ? `${d.version} を保存し、いまから全ページの概算に使います。` : `${d.version} を保存しました(適用日 ${$("#pv-date").value} から使われます)。`;
+    priceDraft = currentPricing(); renderPriceForm(); await renderPricing();
+  } catch (err) { console.error(err); msg.textContent = "保存に失敗しました: " + err.message; }
 });
 
 // ---------------- データ ----------------

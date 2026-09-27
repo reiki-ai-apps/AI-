@@ -74,6 +74,7 @@
       <button role="tab" data-tab="cust" aria-selected="false">お客様</button>
       <button role="tab" data-tab="reg" aria-selected="false">カルテ登録</button>
       <button role="tab" data-tab="case" aria-selected="false">施工事例</button>
+      <button role="tab" data-tab="price" aria-selected="false">単価表</button>
       <button role="tab" data-tab="dz" aria-selected="false">災害</button>
       <button role="tab" data-tab="data" aria-selected="false">データ</button>
     </div>
@@ -272,6 +273,38 @@
             <div class="flex"><button class="btn sm" type="button" id="ig-copy">この文をコピー</button><a class="btn sm ghost" id="ig-open" href="case.html" target="_blank">事例ページを開く</a></div>
             <p class="small muted mt-2">投稿本文にはリンクが貼れないので、プロフィール欄のリンクを <b id="ig-link"></b> にしておきます。番号だけでも探せます。</p>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 単価表(担当者だけが書き換える。お客様画面の概算は全部これを見る) -->
+    <div class="pane-main" id="pane-price" hidden>
+      <div class="today-grid">
+        <form class="card" id="price-form" autocomplete="off">
+          <h2>単価表</h2>
+          <p class="muted small">ここで保存した単価が、お客様の30秒診断・3Dシミュレーター・施工事例の概算・カルテの張り替え概算のすべてに使われます。古い版は消えず、見積の記録には作った時の版名が残ります。</p>
+          <div class="form-grid">
+            <label class="field">版の名前<span class="req">必須</span><input id="pv-version" placeholder="例: 2026-10 正式単価"></label>
+            <label class="field">適用日<input id="pv-date" type="date"><div class="help">この日から使われます。先の日付にすると予約できます。</div></label>
+            <label class="field">担当者<input id="pv-staff" placeholder="例: 山本"></label>
+            <label class="field">メモ<input id="pv-note" placeholder="例: メーカー値上げ分を反映"></label>
+          </div>
+          <div id="price-groups"></div>
+          <div class="card mt-3" style="background:var(--calm)">
+            <b>試算(保存前に確認)</b>
+            <div class="small" id="price-preview"></div>
+          </div>
+          <div class="flex mt-2">
+            <button class="btn accent" type="submit">この単価を保存して適用する</button>
+            <button class="btn ghost" type="button" id="pv-reset">初期値(仮単価)に戻す</button>
+          </div>
+          <p class="small muted mt-1" id="pv-msg"></p>
+        </form>
+        <div>
+          <h2>いま使っている版</h2>
+          <div class="card" id="price-active"></div>
+          <h2 class="mt-3">履歴</h2>
+          <div id="price-history"></div>
         </div>
       </div>
     </div>

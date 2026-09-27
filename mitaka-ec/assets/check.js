@@ -80,3 +80,4 @@ $("#save-form").addEventListener("submit", async e => {
 });
 
 renderChoices(); renderResult();
+document.addEventListener("pricing:change", () => { renderChoices(); renderResult(); });

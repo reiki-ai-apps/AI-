@@ -3,6 +3,7 @@ import { initSite, toast, copyText, esc } from "./site.js";
 import { OPTIONS, defaultParams, normalizeParams, estimate, encodeParams, decodeParams, ridgeRange, yen, PRICING_VERSION } from "./pricing.js";
 import { createViewer } from "./house3d.js";
 import { CONFIG } from "./config.js";
+import "./store.js";  // 単価表の版を当てる(store.js が読み込み時に applyPricing する)
 
 initSite();
 document.body.classList.add("has-sticky");
@@ -184,3 +185,5 @@ const fromUrl = decodeParams(location.search);
 if (fromUrl) ridgeTouched = true;
 applyParams(fromUrl || defaultParams());
 update({ refreshRidge: !fromUrl, immediate: true });
+
+document.addEventListener("pricing:change", () => { $("#pricing-version").textContent = PRICING_VERSION; try { update({ silent: true }); } catch (e) { console.warn(e); } });

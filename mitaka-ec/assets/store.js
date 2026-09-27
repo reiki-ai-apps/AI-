@@ -2,10 +2,10 @@
 // 中心は「顧客・圃場・ハウス」に加えて、接点ログ(interactions)・見積(quotes)・やること(tasks)。
 // 接点ログと同意とECイベントは追記型: 消さずに足す。
 import { CONFIG } from "./config.js";
-import { normalizeParams } from "./pricing.js";
+import { normalizeParams, FILM_LIFE, applyPricing } from "./pricing.js";
 
 const KEY = "mitaka-karte-v2";
-const EMPTY = { customers: [], plots: [], houses: [], interactions: [], quotes: [], tasks: [], events: [], consents: [], houseEvents: [], cases: [], casePrivate: [] };
+const EMPTY = { customers: [], plots: [], houses: [], interactions: [], quotes: [], tasks: [], events: [], consents: [], houseEvents: [], cases: [], casePrivate: [], pricing: [] };
 export const CROPS = ["トマト", "きゅうり", "いちご", "なす", "ほうれん草", "小松菜", "花き", "ぶどう", "その他"];
 export const CONDITIONS = ["良好", "要補修", "要相談"];
 export const AREAS = ["桐生市", "みどり市", "太田市", "伊勢崎市", "前橋市", "足利市", "館林市", "その他"];
@@ -72,6 +72,9 @@ class LocalStore {
   async saveCase(c) { if (!c.no) c.no = await this.nextCaseNo(); return this._put("cases", c, "cs_"); }
   async getCasePrivate(caseId) { return this._read().casePrivate.find(p => p.caseId === caseId) || null; }
   async saveCasePrivate(p) { const cur = await this.getCasePrivate(p.caseId); return this._put("casePrivate", { ...(cur || {}), ...p }, "cp_"); }
+  // ---- 単価表の版(担当者だけが保存。お客様画面は読むだけ) ----
+  async listPricing() { return this._read().pricing.sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || "")); }
+  async savePricing(r) { return this._put("pricing", r, "pv_"); }
   async exportAll() { return this._read(); }
   async importAll(json) { const db = this._read(); for (const k of Object.keys(EMPTY)) for (const r of (json[k] || [])) { const i = db[k].findIndex(x => x.id === r.id); i >= 0 ? db[k][i] = r : db[k].push(r); } this._write(db); }
   async clearAll() { localStorage.removeItem(KEY); document.dispatchEvent(new CustomEvent("karte:change")); }
@@ -128,12 +131,31 @@ class SupabaseStore {
   async saveCase(c) { c.id = c.id || uid("cs_"); c.no = c.no || await this.nextCaseNo(); c.updatedAt = now(); return fromRow(await this._upsert("cases", toRow(c, CASE_COLS)), CASE_COLS); }
   async getCasePrivate(caseId) { const r = await this._req(`case_private?case_id=eq.${encodeURIComponent(caseId)}&select=*`); return r[0] ? fromRow(r[0], CASE_PRIVATE_COLS) : null; }
   async saveCasePrivate(p) { p.id = p.id || uid("cp_"); p.updatedAt = now(); return fromRow(await this._upsert("case_private", toRow(p, CASE_PRIVATE_COLS)), CASE_PRIVATE_COLS); }
+  async listPricing() { return (await this._req("pricing_versions?select=*&order=created_at.desc&limit=100")).map(r => ({ id: r.id, version: r.version, effectiveOn: r.effective_on, data: r.data, staff: r.staff_id, note: r.note, createdAt: r.created_at })); }
+  async savePricing(r) { const row = { id: r.id || uid("pv_"), version: r.version, effective_on: r.effectiveOn || today(), data: r.data, staff_id: r.staff || null, note: r.note || null, created_at: r.createdAt || now() }; await this._upsert("pricing_versions", row); return { ...r, id: row.id, createdAt: row.created_at }; }
   async exportAll() { const [customers, plots, houses, interactions, quotes] = await Promise.all([this.listCustomers(), this._req("plots?select=*").then(r => r.map(x => fromRow(x, PLOT_COLS))), this.listAllHouses(), this.listInteractions(), this.listQuotes()]); return { customers, plots, houses, interactions, quotes }; }
   async importAll(json) { for (const c of json.customers || []) await this.saveCustomer(c); for (const p of json.plots || []) await this.savePlot(p); for (const h of json.houses || []) await this.saveHouse(h); }
   async clearAll() { throw new Error("本番DBの全削除は管理画面から行ってください"); }
 }
 
 export const store = CONFIG.supabaseUrl && CONFIG.supabaseAnonKey ? new SupabaseStore(CONFIG.supabaseUrl, CONFIG.supabaseAnonKey) : new LocalStore();
+
+// ---------------- 単価表の適用 ----------------
+// 担当者画面「単価表」で保存した最新の版を、全ページの計算に上書きする。
+// 端末内の写し(localStorage)を先に同期で当て、本番DBがあれば読み直して再適用し pricing:change を出す。
+export function pricingRows(rows, base = today()) { return (rows || []).filter(r => r.data && (!r.effectiveOn || r.effectiveOn <= base)).sort((a, b) => (b.effectiveOn || "").localeCompare(a.effectiveOn || "") || (b.createdAt || "").localeCompare(a.createdAt || "")); }
+export function activePricing(rows) { return pricingRows(rows)[0] || null; }
+try { const cached = JSON.parse(localStorage.getItem("mitaka-pricing-active") || "null"); if (cached) applyPricing(cached); } catch {}
+export async function loadPricing() {
+  try {
+    const row = activePricing(await store.listPricing());
+    if (row) { applyPricing(row.data); localStorage.setItem("mitaka-pricing-active", JSON.stringify(row.data)); }
+    else localStorage.removeItem("mitaka-pricing-active");
+    document.dispatchEvent(new CustomEvent("pricing:change", { detail: row }));
+    return row;
+  } catch (e) { console.warn("単価表を読めませんでした", e); return null; }
+}
+loadPricing();
 
 // ---------------- 災害時の被害度 ----------------
 export const DAMAGE = [
@@ -160,7 +182,7 @@ export async function logEc(type, extra = {}) {
 }
 
 // ---------------- ハウスの状態(張り替え時期) ----------------
-export const FILM_YEARS = { novi010: 2, po015: 3, po_multi: 5, po_diffuse: 4 };
+export const FILM_YEARS = FILM_LIFE;  // 単価表の版で書き換わる(pricing.js と同じ物)
 export function houseStatus(h, base = new Date()) {
   const y = base.getFullYear();
   const life = FILM_YEARS[h.params?.film] || 3;

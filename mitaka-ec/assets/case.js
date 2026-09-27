@@ -152,6 +152,8 @@ async function renderCards() {
 }
 $("#cards").addEventListener("click", e => { const a = e.target.closest("[data-no]"); if (a) { e.preventDefault(); openByNo(a.dataset.no); } });
 
+document.addEventListener("pricing:change", () => { if (current && current.params) renderAdjust(); });
+
 // ---------------- 起動 ----------------
 (async () => {
   await renderCards();

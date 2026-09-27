@@ -2,8 +2,12 @@
 // ※ ここにある単価はすべて「仮単価」です。実際の販売価格ではありません。
 //    正式運用時は UNIT / OPTIONS の値を自社の単価表に差し替えてください。
 
-export const PRICING_VERSION = "仮単価 2026-09 版";
-export const TAX_RATE = 0.10;
+export let PRICING_VERSION = "仮単価 2026-09 版";
+export let TAX_RATE = 0.10;
+// 被覆材の持ち年数(張り替え目安)。store.js の FILM_YEARS はこれと同じ物を指す
+export const FILM_LIFE = { novi010: 2, po015: 3, po_multi: 5, po_diffuse: 4 };
+// 張り替えだけの概算に使う単価
+export const RECOVER = { laborPerSqm: 380, laborBase: 25000, disposalPerSqm: 40, springRate: 0.3 };
 
 export const OPTIONS = {
   spans: [3.6, 4.5, 5.4, 6.0, 7.2],
@@ -74,6 +78,43 @@ export const UNIT = {
   installBase: 35000,           // 施工基本料(出張・機材)
   delivery: { gunma: 18000, neighbor: 35000, other: 0 }
 };
+
+// ---------------- 単価の差し替え(担当者画面「単価表」から) ----------------
+// 単価は1か所(このファイルの初期値)にあり、担当者画面で保存した版があればそれを上書きして使う。
+// 30秒診断・3Dシミュレーター・施工事例の概算・カルテの張り替え概算が全部ここを見る。
+const DEFAULTS = JSON.parse(JSON.stringify({ version: PRICING_VERSION, taxRate: TAX_RATE, films: Object.fromEntries(OPTIONS.films.map(f => [f.id, { perSqm: f.perSqm, life: FILM_LIFE[f.id] }])), unit: UNIT, recover: RECOVER }));
+export function currentPricing() {
+  return JSON.parse(JSON.stringify({ version: PRICING_VERSION, taxRate: TAX_RATE, films: Object.fromEntries(OPTIONS.films.map(f => [f.id, { perSqm: f.perSqm, life: FILM_LIFE[f.id] }])), unit: UNIT, recover: RECOVER }));
+}
+export function defaultPricing() { return JSON.parse(JSON.stringify(DEFAULTS)); }
+const num = (v, d) => (v === "" || v == null || isNaN(Number(v))) ? d : Number(v);
+export function applyPricing(d) {
+  if (!d) return;
+  if (d.version) PRICING_VERSION = String(d.version);
+  TAX_RATE = num(d.taxRate, TAX_RATE);
+  for (const f of OPTIONS.films) { const x = (d.films || {})[f.id]; if (x) { f.perSqm = num(x.perSqm, f.perSqm); FILM_LIFE[f.id] = num(x.life, FILM_LIFE[f.id]); } }
+  const merge = (target, src) => { for (const [k, v] of Object.entries(src || {})) { if (v && typeof v === "object" && !Array.isArray(v)) { if (typeof target[k] === "object") merge(target[k], v); } else if (k in target) target[k] = num(v, target[k]); } };
+  merge(UNIT, d.unit); merge(RECOVER, d.recover);
+}
+// 担当者画面の表示用ラベル(単価表の見出し)
+export const PRICING_LABELS = {
+  taxRate: "消費税率(0.10 = 10%)",
+  "unit.pipePerM.19.1": "パイプ φ19.1mm(円/m)", "unit.pipePerM.22.2": "パイプ φ22.2mm(円/m)", "unit.pipePerM.25.4": "パイプ φ25.4mm(円/m)", "unit.pipePerM.31.8": "パイプ φ31.8mm(円/m)",
+  "unit.fittingPerArch": "接合金具 アーチ1本あたり(円)", "unit.fittingPerPurlinCross": "接合金具 交点1か所(円)", "unit.anchorEach": "らせん杭 1本(円)", "unit.railPerM": "ビニペット+スプリング(円/m)",
+  "unit.doorEach": "妻面ドア 1か所(円)", "unit.sideVentBase.manual": "巻上機 手動 1側(円)", "unit.sideVentBase.motor": "巻上機 電動 1側(円)", "unit.sideVentPerM": "巻き上げパイプ・ガイド(円/m)",
+  "unit.roofVentBase": "天窓開閉装置(円)", "unit.roofVentPerM": "天窓(円/m)", "unit.curtainPerSqm": "内張カーテン資材(円/m²)", "unit.curtainDrive.manual": "カーテン開閉 手動(円)", "unit.curtainDrive.motor": "カーテン開閉 電動(円)",
+  "unit.insectNetPerSqm": "防虫ネット(円/m²)", "unit.dripPerM": "点滴チューブ(円/m)", "unit.dripHeader": "点滴ヘッダー一式(円)", "unit.mistPerSqm": "ミスト配管(円/m²)", "unit.mistHeader": "ミストヘッダー一式(円)",
+  "unit.snowFittingRate": "耐雪補強の金具割合(0.15 = 15%)", "unit.installPerSqm": "新設 施工費(円/m²)", "unit.installBase": "新設 施工基本料(円)",
+  "unit.delivery.gunma": "運搬費 群馬県内(円)", "unit.delivery.neighbor": "運搬費 隣接県(円)", "unit.delivery.other": "運搬費 その他(0=別途)",
+  "recover.laborPerSqm": "張り替え 施工費(円/m²)", "recover.laborBase": "張り替え 施工基本料(円)", "recover.disposalPerSqm": "旧フィルム処分(円/m²)", "recover.springRate": "金具の消耗分の割合(0.3 = 30%)"
+};
+export const PRICING_GROUPS = [
+  { title: "被覆材(フィルム)", note: "30秒診断の「フィルム代」と、張り替え目安の年数はここ", films: true },
+  { title: "張り替え一式", note: "30秒診断・カルテの「張り替え一式」に使う", keys: ["recover.laborPerSqm", "recover.laborBase", "recover.disposalPerSqm", "recover.springRate", "unit.railPerM"] },
+  { title: "新設の骨組・金具", keys: ["unit.pipePerM.19.1", "unit.pipePerM.22.2", "unit.pipePerM.25.4", "unit.pipePerM.31.8", "unit.fittingPerArch", "unit.fittingPerPurlinCross", "unit.anchorEach", "unit.snowFittingRate"] },
+  { title: "新設の設備", keys: ["unit.doorEach", "unit.sideVentBase.manual", "unit.sideVentBase.motor", "unit.sideVentPerM", "unit.roofVentBase", "unit.roofVentPerM", "unit.curtainPerSqm", "unit.curtainDrive.manual", "unit.curtainDrive.motor", "unit.insectNetPerSqm", "unit.dripPerM", "unit.dripHeader", "unit.mistPerSqm", "unit.mistHeader"] },
+  { title: "施工・運搬・税", keys: ["unit.installPerSqm", "unit.installBase", "unit.delivery.gunma", "unit.delivery.neighbor", "unit.delivery.other", "taxRate"] }
+];
 
 export function defaultParams() {
   return {
@@ -241,10 +282,10 @@ export function estimateRecover(rawParams, opts = {}) {
   const lines = [];
   const add = (key, label, detail, qty, unit, unitPrice, amount) => lines.push({ key, label, detail, qty: Math.round(qty * 10) / 10, unit, unitPrice, amount: Math.round(amount != null ? amount : qty * unitPrice), note: "" });
   add("film", `被覆材 ${film.label}`, "屋根・側面・妻面(ロス10%込)", g.coverArea, "m²", film.perSqm);
-  add("spring", "スプリング・パッカー交換", "固定金具の消耗分(約3割)", g.railLen * 0.3, "m", UNIT.railPerM);
+  add("spring", "スプリング・パッカー交換", `固定金具の消耗分(約${Math.round(RECOVER.springRate * 100)}%)`, g.railLen * RECOVER.springRate, "m", UNIT.railPerM);
   if (p.install === "full") {
-    add("labor", "張り替え施工費", `被覆面積 ${g.coverArea.toFixed(0)}m² + 基本料`, 1, "式", 0, g.coverArea * 380 + 25000);
-    add("disposal", "旧フィルム処分費", `${g.coverArea.toFixed(0)}m²`, g.coverArea, "m²", 40);
+    add("labor", "張り替え施工費", `被覆面積 ${g.coverArea.toFixed(0)}m² + 基本料`, 1, "式", 0, g.coverArea * RECOVER.laborPerSqm + RECOVER.laborBase);
+    add("disposal", "旧フィルム処分費", `${g.coverArea.toFixed(0)}m²`, g.coverArea, "m²", RECOVER.disposalPerSqm);
   }
   add("delivery", "運搬費", OPTIONS.regions.find(r => r.id === p.region).label, 1, "式", 0, UNIT.delivery[p.region]);
   const subtotal = lines.reduce((s, l) => s + l.amount, 0), tax = Math.round(subtotal * TAX_RATE);
