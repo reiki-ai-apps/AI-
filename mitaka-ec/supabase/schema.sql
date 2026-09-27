@@ -316,3 +316,41 @@ begin
     execute format('create trigger trg_audit after insert or update or delete on %I for each row execute function fn_audit()', t);
   end loop;
 end $$;
+
+
+-- ============================================================
+-- 施工事例(2026-09-27): Instagramの投稿とサイトで同じ「No.」を出す。
+-- 公開画面(case.html)は cases_public ビューだけを読む。施主・原価は case_private に分け、公開ビューには一切含めない。
+-- ============================================================
+create table if not exists cases (
+  id text primary key,
+  case_no integer unique not null,            -- 公開No.(3桁から。表記ゆれはアプリ側で吸収)
+  title text, area_public text,                -- 公開してよい地域(市町村まで)
+  house_type text, crop text,
+  span_m numeric, length_m numeric, house_count integer default 1, floor_area numeric,
+  pitch_m numeric, pipe_mm numeric, film_type text,
+  equipment jsonb default '[]'::jsonb,         -- 設備・特徴(文字列の配列)
+  parts jsonb default '[]'::jsonb,             -- 使った資材 [{id, qty}] → products
+  params jsonb,                                -- 概算の基準(pricing.js のパラメータ一式)。null なら「概算は電話で」
+  photos jsonb default '[]'::jsonb,            -- 写真のURL(Storage)。base64をDBに入れない
+  note_public text, built_on text,
+  status text not null default 'draft',        -- draft / public / closed
+  pricing_version text, is_demo boolean default false,
+  created_at timestamptz default now(), updated_at timestamptz default now()
+);
+create table if not exists case_private (
+  id text primary key,
+  case_id text not null unique references cases(id) on delete cascade,
+  customer_id text references customers(id) on delete set null,   -- 施主(カルテと結ぶ)
+  house_id text references houses(id) on delete set null,
+  cost numeric, staff_id text, memo text,
+  updated_at timestamptz default now()
+);
+-- 公開ビュー: 公開中だけ・社内列なし。anon はこのビューだけ select 可、cases / case_private 本体は staff のみ。
+create or replace view cases_public as
+  select id, case_no, title, area_public, house_type, crop, span_m, length_m, house_count, floor_area, pitch_m, pipe_mm, film_type,
+         equipment, parts, params, photos, note_public, built_on, status, pricing_version, is_demo, created_at, updated_at
+  from cases where status = 'public';
+-- 公開の条件(アプリ側でも検査): 施主の consents に purpose='showcase' and granted=true があること。
+alter table quotes add column if not exists case_no integer;       -- 事例からの相談: 基準にした事例No.
+alter table quotes add column if not exists house_count integer;   -- 希望棟数

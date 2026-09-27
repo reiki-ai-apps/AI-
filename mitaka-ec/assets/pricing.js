@@ -220,6 +220,19 @@ export function estimate(rawParams) {
   };
 }
 
+// 施工事例を基準にした概算(case.html / quote.html から使う)。
+// 棟数は「1棟の概算 × 棟数」。運搬費は1回分だけ(同じ畑に建てる前提)。
+export function estimateCase(params, count) {
+  const one = estimate(params);
+  const delivery = one.lines.find(l => l.key === "delivery")?.amount || 0;
+  const install = one.lines.find(l => l.key === "install")?.amount || 0;
+  const materials = one.materialsSubtotal * count;
+  const work = install * count + delivery;
+  const subtotal = materials + work;
+  const tax = Math.round(subtotal * TAX_RATE);
+  return { one, count, materials, work, delivery, install, subtotal, tax, total: subtotal + tax, unresolved: one.params.region === "other" };
+}
+
 // 被覆材の張り替えだけの概算(ハウスカルテから使う)
 export function estimateRecover(rawParams, opts = {}) {
   const p = normalizeParams(rawParams);

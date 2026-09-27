@@ -2,8 +2,8 @@
 // 送信先は config.js の mailTo / quoteEndpoint で設定します。
 import { CONFIG as SITE } from "./config.js";
 import { initSite, toast, copyText, getQuoteList, quoteListText, esc } from "./site.js";
-import { OPTIONS, decodeParams, estimate, summarize, encodeParams, estimateRecover, yen, PRICING_VERSION } from "./pricing.js";
-import { store, logEc, normTel } from "./store.js";
+import { OPTIONS, decodeParams, estimate, estimateCase, summarize, encodeParams, estimateRecover, yen, PRICING_VERSION } from "./pricing.js";
+import { store, logEc, normTel, addDays } from "./store.js";
 const CONFIG = { endpoint: SITE.quoteEndpoint, mailTo: SITE.mailTo };
 
 export function buildMail(subject, body) {
@@ -15,6 +15,13 @@ if (document.getElementById("quote-form")) (async () => {
   const sp = new URLSearchParams(location.search);
   const params = decodeParams(location.search);
   const est = params ? estimate(params) : null;
+  // 施工事例からの相談: 事例No.と変えた条件、棟数、概算を添える
+  let caseText = "", caseNo = sp.get("case") ? String(sp.get("case")) : "", caseCount = Math.max(1, Number(sp.get("count")) || 1), caseEst = null;
+  if (caseNo && est) {
+    caseEst = estimateCase(est.params, caseCount);
+    const money = caseEst.unresolved ? "運搬・施工は要確認(県外)" : `合計 ${yen(caseEst.total)}(税込・概算・現地確認前)`;
+    caseText = ["【施工事例から】", `基準: 施工事例 No.${caseNo}`, `希望: 間口${est.params.span}m × 奥行${est.params.length}m × ${caseCount}棟 / ${est.film.label} / ${(OPTIONS.installs.find(x => x.id === est.params.install) || {}).label || ""} / ${(OPTIONS.regions.find(x => x.id === est.params.region) || {}).label || ""}`, `概算: 本体と張るもの ${yen(caseEst.materials)} / 運搬・施工 ${caseEst.unresolved ? "要確認" : yen(caseEst.work)} / ${money}`, `単価の版: ${PRICING_VERSION}`].join("\n");
+  }
   const simBox = document.getElementById("sim-summary"), listBox = document.getElementById("list-summary"), emptyBox = document.getElementById("empty-summary");
   // ハウスカルテからの依頼: 対象ハウスと張り替え概算を添える
   let houseText = "";
@@ -35,7 +42,12 @@ if (document.getElementById("quote-form")) (async () => {
       }
     } catch (e) { console.warn(e); }
   }
-  if (est) {
+  if (est && caseText) {
+    simBox.hidden = false; simBox.querySelector("h3").textContent = `施工事例 No.${caseNo} をもとにした条件`;
+    simBox.querySelector("pre").textContent = caseText;
+    simBox.querySelector("a").href = `case.html?no=${encodeURIComponent(caseNo)}&count=${caseCount}&${encodeParams(est.params)}`; simBox.querySelector("a").textContent = "条件を変える";
+    const f = document.getElementById("quote-form"); f.message.value = `Instagramで見た施工事例 No.${caseNo} と同じようなハウスを考えています。`;
+  } else if (est) {
     simBox.hidden = false;
     simBox.querySelector("pre").textContent = summarize(est);
     simBox.querySelector("a").href = "simulator.html?" + encodeParams(est.params);
@@ -53,6 +65,7 @@ if (document.getElementById("quote-form")) (async () => {
     const d = new FormData(form);
     const parts = ["【見積依頼】", ...FIELDS.map(([k, n]) => `${k}: ${d.get(n) || ""}`), ""];
     if (houseText) parts.push(houseText, "");
+    if (caseText) parts.push(caseText, "");
     if (est) parts.push(summarize(est), `シミュレーターURL: ${location.origin}${location.pathname.replace(/quote\.html$/, "simulator.html")}?${encodeParams(est.params)}`, "");
     if (list.length) parts.push(quoteListText(list), "");
     parts.push(`送信日時: ${new Date().toLocaleString("ja-JP")}`);
@@ -77,14 +90,17 @@ if (document.getElementById("quote-form")) (async () => {
       else if (tel) customerId = (await store.saveCustomer({ name: d.name || "お名前未記入", farmName: d.farm || "", tel, address: d.place || "", crop: d.crop || "", status: "prospect" })).id;
       savedQuote = await store.saveQuote({
         customerId, houseId: sp.get("house") || null,
-        source: sp.get("house") ? "karte" : est ? "simulator" : list.length ? "catalog" : "form",
+        source: caseNo ? "case" : sp.get("house") ? "karte" : est ? "simulator" : list.length ? "catalog" : "form",
+        caseNo: caseNo || null, houseCount: caseNo ? caseCount : null,
         status: "requested", simParams: est ? est.params : null, pricingVersion: est ? PRICING_VERSION : null,
-        subtotal: est ? est.subtotal : list.reduce((s, x) => s + (x.price || 0) * x.qty, 0),
-        total: est ? est.total : null,
+        subtotal: caseEst ? caseEst.subtotal : est ? est.subtotal : list.reduce((s, x) => s + (x.price || 0) * x.qty, 0),
+        total: caseEst ? (caseEst.unresolved ? null : caseEst.total) : est ? est.total : null,
         name: d.name || "", tel, email: d.email || "", place: d.place || "",
-        message: (d.message || "").trim() || (houseText ? "カルテのハウスについて" : est ? `3Dで作成 間口${est.params.span}m×奥行${est.params.length}m` : list.length ? `かごの資材 ${list.length}点` : "お問い合わせ")
+        message: (d.message || "").trim() || (caseNo ? `施工事例 No.${caseNo} から相談` : houseText ? "カルテのハウスについて" : est ? `3Dで作成 間口${est.params.span}m×奥行${est.params.length}m` : list.length ? `かごの資材 ${list.length}点` : "お問い合わせ")
       });
-      if (customerId) await store.saveInteraction({ customerId, channel: "ec", topic: "見積", body: `ECから見積依頼(${savedQuote.quoteNo || ""})\n${d.message || ""}`.trim(), nextActionOn: null });
+      if (customerId) await store.saveInteraction({ customerId, channel: "ec", topic: "見積", body: `ECから見積依頼(${savedQuote.quoteNo || ""})${caseNo ? ` 施工事例No.${caseNo}` : ""}\n${d.message || ""}`.trim(), nextActionOn: null });
+      // 事例からの相談は「今日やること」に1件: 電話して現地確認の日を決める
+      if (caseNo) await store.saveTask({ customerId, quoteId: savedQuote.id, kind: "case_inquiry", title: `事例No.${caseNo}から相談(${est ? `${est.params.span}×${est.params.length}m×${caseCount}棟` : ""}): 電話して現地確認の日を決める`, dueOn: addDays(1) });
       await logEc("quote_request", { customerId, ref: savedQuote.quoteNo || "" });
     } catch (err) { console.warn("見積の保存に失敗", err); }
     if (CONFIG.endpoint) {

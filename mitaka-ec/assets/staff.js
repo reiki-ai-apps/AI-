@@ -1,12 +1,13 @@
 // 担当者コンソール: 今日やること / 電話メモ / お客様360 / カルテ登録 / データ
 import { CONFIG } from "./config.js";
 import { initSite, toast, copyText, esc } from "./site.js";
-import { OPTIONS, ridgeRange, normalizeParams, encodeParams, yen } from "./pricing.js";
+import { OPTIONS, ridgeRange, normalizeParams, encodeParams, yen, PRICING_VERSION } from "./pricing.js";
 import { ICONS } from "./icons.js";
 import { attachVoiceSearch } from "./voice.js";
 import { initDisaster } from "./disaster.js";
-import { store, seedDemo, todayList, healthStats, houseStatus, addDays, normTel,
-         CROPS, CONDITIONS, AREAS, TOPICS, CHANNELS, QUOTE_STATUS, TASK_KIND } from "./store.js";
+import { store, seedDemo, todayList, healthStats, houseStatus, addDays, normTel, normCaseNo,
+         CROPS, CONDITIONS, AREAS, TOPICS, CHANNELS, QUOTE_STATUS, TASK_KIND, CASE_STATUS } from "./store.js";
+import { PRODUCTS } from "./catalog-data.js";
 
 initSite();
 const $ = s => document.querySelector(s);
@@ -30,6 +31,7 @@ document.querySelectorAll("[role=tab]").forEach(b => b.addEventListener("click",
   document.querySelectorAll("[role=tab]").forEach(x => x.setAttribute("aria-selected", String(x === b)));
   document.querySelectorAll(".pane-main").forEach(p => { p.hidden = p.id !== `pane-${b.dataset.tab}`; });
   if (b.dataset.tab === "phone") $("#tel").focus();
+  if (b.dataset.tab === "case") refreshCases();
   if (b.dataset.tab === "dz" && !dzReady) { dzReady = true; initDisaster().catch(err => console.error(err)); }
 }));
 
@@ -39,7 +41,8 @@ async function renderToday() {
   $("#n-today").textContent = String(items.filter(i => i.level === "due").length);
   $("#todo-list").innerHTML = items.length ? items.slice(0, 30).map(i => {
     const who = i.who ? `${i.who.farmName || ""} ${i.who.name || ""}`.trim() : "";
-    const act = i.quoteId ? `<a class="btn sm" href="#" data-open-cust="${esc(i.customerId || "")}">見積を見る</a>`
+    const act = i.kind === "case_inquiry" ? `<a class="btn sm" href="#" data-open-cust="${esc(i.customerId || "")}">相談を見る</a>`
+      : i.quoteId ? `<a class="btn sm" href="#" data-open-cust="${esc(i.customerId || "")}">見積を見る</a>`
       : i.houseId ? `<a class="btn sm" href="#" data-open-cust="${esc(i.customerId || "")}">カルテ</a>`
       : `<a class="btn sm ghost" href="#" data-open-cust="${esc(i.customerId || "")}">開く</a>`;
     return `<div class="todo-row ${esc(i.level)}"><span class="dot"></span><div><div class="t">${esc(i.title)}</div><div class="s">${esc(who)}${i.due ? ` ・ ${fmtDate(i.due)}まで` : ""}</div></div><div class="acts">${act}${i.taskId ? `<button class="btn sm ghost" type="button" data-done="${esc(i.taskId)}">済</button>` : ""}</div></div>`;
@@ -228,6 +231,110 @@ $("#reg").addEventListener("submit", async e => {
     houses = []; renderHouses(); $("#k-agree").checked = false;
     await refreshAll(); $("#result").scrollIntoView({ behavior: "smooth" });
   } catch (err) { console.error(err); msg.textContent = "保存に失敗しました: " + err.message; }
+});
+
+// ---------------- 施工事例 ----------------
+// 公開データ(cases)と社内の控え(casePrivate)を分けて保存する。公開できるのは施主が事例掲載に同意している時だけ。
+const cs = id => $("#cs-" + id);
+fill(cs("area"), AREAS.map(a => [a, a])); fill(cs("crop"), CROPS.map(c => [c, c]));
+fill(cs("span"), OPTIONS.spans.map(v => [v, `${v} m`]), 5.4); fill(cs("pitch"), OPTIONS.pitches.map(v => [v, `${Math.round(v * 100)} cm`]), 0.5);
+fill(cs("pipe"), OPTIONS.pipes.map(x => [x.d, x.label]), 25.4); fill(cs("film"), OPTIONS.films.map(x => [x.id, x.label]), "po015");
+fill(cs("sidevent"), OPTIONS.sideVents.map(x => [x.id, x.label]), "both"); fill(cs("ventdrive"), OPTIONS.drives.map(x => [x.id, x.label]), "manual");
+fill(cs("curtain"), OPTIONS.curtains.map(x => [x.id, x.label]), "none"); fill(cs("irrigation"), OPTIONS.irrigations.map(x => [x.id, x.label]), "none");
+let editingCase = null, casePhotos = [], caseCustHouses = [];
+const showcaseOk = c => !!(c && c.consent && c.consent.showcaseOk);
+async function refreshCases() {
+  if (!customers.length) await refreshCustomers();
+  const keep = cs("cust").value;
+  fill(cs("cust"), [["", "選んでください"], ...customers.map(c => [c.id, `${c.farmName ? c.farmName + " " : ""}${c.name}${showcaseOk(c) ? "" : "(事例掲載の同意なし)"}`])], keep);
+  if (!editingCase && !cs("no").value) cs("no").value = await store.nextCaseNo();
+  await onCaseCustChange(false);
+  const list = await store.listCases(false);
+  $("#case-list").innerHTML = list.length ? list.map(c => `<div class="pipe-row"><div><b>No.${esc(c.no)}</b> ${esc(c.title || "")}<div class="small muted">${esc(c.area || "")} ${c.span}m×${c.length}m×${c.count || 1}棟 ・ ${esc(OPTIONS.films.find(f => f.id === (c.params || {}).film)?.label || "")}</div></div><span class="flex"><span class="st ${c.status === "public" ? "approved" : c.status === "closed" ? "lost" : "drafted"}">${esc((CASE_STATUS.find(s => s.id === c.status) || {}).label || c.status)}</span><button class="btn sm ghost" type="button" data-case-edit="${esc(c.id)}">開く</button>${c.status === "public" ? `<button class="btn sm ghost" type="button" data-case-ig="${esc(c.id)}">IG文</button>` : ""}</span></div>`).join("") : `<p class="muted small">まだ事例はありません。左のフォームから登録できます。</p>`;
+}
+async function onCaseCustChange(prefill = true) {
+  const c = customers.find(x => x.id === cs("cust").value);
+  $("#cs-consent-help").textContent = !c ? "" : showcaseOk(c) ? `事例掲載に同意あり(${c.consent.agreedAt || ""})。公開できます。` : "この方は事例掲載に同意していません。下書きまでは保存できますが、公開はできません。同意をいただいたら、カルテ登録から同意を更新してください。";
+  $("#cs-publish").disabled = !showcaseOk(c);
+  caseCustHouses = c ? await store.listHouses(c.id) : [];
+  const keep = cs("house").value;
+  fill(cs("house"), [["", "(選ぶと寸法・設備が入ります)"], ...caseCustHouses.map(h => [h.id, `${h.name} ${h.params.span}m×${h.params.length}m`])], keep);
+  if (prefill && c) { cs("area").value = AREAS.includes(c.area) ? c.area : "その他"; cs("crop").value = CROPS.includes(c.crop) ? c.crop : "その他"; }
+}
+cs("cust").addEventListener("change", () => onCaseCustChange(true));
+cs("house").addEventListener("change", () => {
+  const h = caseCustHouses.find(x => x.id === cs("house").value); if (!h) return;
+  const p = h.params;
+  cs("span").value = p.span; cs("length").value = p.length; cs("eave").value = p.eave; cs("ridge").value = p.ridge; cs("pitch").value = p.pitch; cs("pipe").value = p.pipe; cs("film").value = p.film;
+  cs("sidevent").value = p.sideVent; cs("ventdrive").value = p.ventDrive; cs("curtain").value = p.curtain; cs("irrigation").value = p.irrigation; cs("roofvent").checked = !!p.roofVent; cs("net").checked = !!p.insectNet; cs("snow").checked = !!p.snow;
+  if (h.crop) cs("crop").value = h.crop; if (h.builtYear) cs("built").value = `${h.builtYear}-04`;
+  const eq = [];
+  if (p.sideVent !== "none") eq.push(`${OPTIONS.drives.find(x => x.id === p.ventDrive).label}巻き上げ換気(${OPTIONS.sideVents.find(x => x.id === p.sideVent).label.replace(/\(.*\)/, "")})`);
+  if (p.roofVent) eq.push("天窓"); if (p.curtain !== "none") eq.push(`${OPTIONS.curtains.find(x => x.id === p.curtain).label.replace("開閉", "")}内張カーテン`);
+  if (p.insectNet) eq.push("防虫ネット"); if (p.irrigation !== "none") eq.push(OPTIONS.irrigations.find(x => x.id === p.irrigation).label); if (p.snow) eq.push("耐雪補強");
+  cs("equipment").value = eq.join("、");
+  if (h.photos && h.photos.length) { casePhotos = [...h.photos].slice(0, 6); renderCasePhotos(); }
+});
+function renderCasePhotos() { $("#cs-photo-strip").innerHTML = casePhotos.map((p, i) => `<span style="position:relative"><img src="${p}" alt="" style="width:72px;height:72px;object-fit:cover;border-radius:6px;border:1px solid var(--line)">${i === 0 ? `<span class="badge" style="position:absolute;left:2px;top:2px;font-size:.6rem">表紙</span>` : ""}<button type="button" data-rm-photo="${i}" style="position:absolute;right:-6px;top:-6px;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:.7rem;cursor:pointer">×</button></span>`).join(""); }
+cs("photos").addEventListener("change", async e => { for (const f of [...e.target.files].slice(0, 6 - casePhotos.length)) { try { casePhotos.push(await shrink(f)); } catch { toast("画像を読み込めませんでした"); } } renderCasePhotos(); e.target.value = ""; });
+$("#cs-photo-strip").addEventListener("click", e => { const b = e.target.closest("[data-rm-photo]"); if (b) { casePhotos.splice(Number(b.dataset.rmPhoto), 1); renderCasePhotos(); } });
+function parseParts(text) {
+  const out = [], bad = [];
+  for (const tok of String(text || "").split(/[,、\n]/).map(t => t.trim()).filter(Boolean)) {
+    const m = tok.match(/^([A-Za-z0-9\-]+)\s*[×x*]?\s*(\d+)?$/); const id = m ? m[1].toUpperCase() : tok;
+    if (PRODUCTS.some(p => p.id === id)) out.push({ id, qty: m && m[2] ? Number(m[2]) : null }); else bad.push(tok);
+  }
+  return { out, bad };
+}
+cs("parts").addEventListener("input", () => { const { out, bad } = parseParts(cs("parts").value); $("#cs-parts-help").textContent = [out.length ? `${out.length}品を商品ページに結びます` : "", bad.length ? `見つからない品番: ${bad.join(", ")}` : ""].filter(Boolean).join(" ／ "); });
+function readCaseForm(status) {
+  const params = normalizeParams({ span: cs("span").value, length: cs("length").value, eave: cs("eave").value, ridge: cs("ridge").value, pitch: cs("pitch").value, pipe: cs("pipe").value, film: cs("film").value, doors: 2, sideVent: cs("sidevent").value, ventDrive: cs("ventdrive").value, roofVent: cs("roofvent").checked, curtain: cs("curtain").value, insectNet: cs("net").checked, irrigation: cs("irrigation").value, snow: cs("snow").checked, install: "full", region: "gunma" });
+  return { ...(editingCase || {}), no: cs("no").value || undefined, title: cs("title").value.trim(), area: cs("area").value, houseType: cs("type").value.trim(), crop: cs("crop").value, span: params.span, length: params.length, count: Math.max(1, Number(cs("count").value) || 1), pitch: params.pitch, pipe: params.pipe, film: params.film,
+    equipment: cs("equipment").value.split(/[,、]/).map(t => t.trim()).filter(Boolean), parts: parseParts(cs("parts").value).out, params, photos: [...casePhotos], note: cs("note").value.trim(), builtOn: cs("built").value || null, status, pricingVersion: PRICING_VERSION, demo: false };
+}
+function loadCaseForm(c, priv) {
+  editingCase = c; casePhotos = [...(c.photos || [])]; renderCasePhotos();
+  $("#case-form-title").textContent = `施工事例 No.${c.no} を編集`;
+  cs("no").value = c.no; cs("title").value = c.title || ""; cs("area").value = c.area || AREAS[0]; cs("crop").value = c.crop || CROPS[0]; cs("type").value = c.houseType || ""; cs("count").value = c.count || 1; cs("built").value = c.builtOn || "";
+  const p = normalizeParams(c.params || {}); cs("span").value = p.span; cs("length").value = p.length; cs("eave").value = p.eave; cs("ridge").value = p.ridge; cs("pitch").value = p.pitch; cs("pipe").value = p.pipe; cs("film").value = p.film; cs("sidevent").value = p.sideVent; cs("ventdrive").value = p.ventDrive; cs("curtain").value = p.curtain; cs("irrigation").value = p.irrigation; cs("roofvent").checked = !!p.roofVent; cs("net").checked = !!p.insectNet; cs("snow").checked = !!p.snow;
+  cs("equipment").value = (c.equipment || []).join("、"); cs("parts").value = (c.parts || []).map(x => x.qty ? `${x.id}×${x.qty}` : x.id).join(", "); cs("note").value = c.note || "";
+  cs("cust").value = priv?.customerId || ""; cs("staff").value = priv?.staff || ""; cs("cost").value = priv?.cost ?? ""; cs("memo").value = priv?.memo || "";
+  onCaseCustChange(false).then(() => { cs("house").value = priv?.houseId || ""; });
+}
+function resetCaseForm() { editingCase = null; casePhotos = []; renderCasePhotos(); $("#case-form").reset(); $("#case-form-title").textContent = "施工事例を登録"; cs("no").value = ""; cs("type").value = "パイプハウス(単棟)"; cs("count").value = 1; cs("net").checked = true; $("#ig-card").hidden = true; refreshCases(); }
+$("#cs-new").addEventListener("click", resetCaseForm);
+let caseSaveMode = "draft";
+$("#case-form").querySelectorAll("[data-save]").forEach(b => b.addEventListener("click", () => { caseSaveMode = b.dataset.save; }));
+$("#case-form").addEventListener("submit", async e => {
+  e.preventDefault(); const msg = $("#cs-msg");
+  const c = customers.find(x => x.id === cs("cust").value);
+  if (!c) return (msg.textContent = "施主のお客様を選んでください(公開画面には出ません)");
+  if (!cs("title").value.trim()) return (msg.textContent = "見出しを入れてください");
+  if (caseSaveMode === "public" && !showcaseOk(c)) return (msg.textContent = "この方は事例掲載に同意していないため公開できません。下書きで保存してください");
+  if (caseSaveMode === "public" && !casePhotos.length) return (msg.textContent = "公開には写真が1枚以上要ります");
+  msg.textContent = "保存中...";
+  try {
+    const saved = await store.saveCase(readCaseForm(caseSaveMode));
+    await store.saveCasePrivate({ caseId: saved.id, customerId: c.id, houseId: cs("house").value || null, cost: cs("cost").value ? Number(cs("cost").value) : null, staff: cs("staff").value.trim(), memo: cs("memo").value.trim() });
+    await store.saveInteraction({ customerId: c.id, channel: "visit", topic: "雑談", body: `施工事例 No.${saved.no} を${caseSaveMode === "public" ? "公開" : "下書き保存"}`, staff: cs("staff").value.trim() });
+    editingCase = saved; cs("no").value = saved.no; $("#case-form-title").textContent = `施工事例 No.${saved.no} を編集`;
+    msg.textContent = caseSaveMode === "public" ? `No.${saved.no} を公開しました。右の「IG文」から投稿に貼る文を出せます。` : `No.${saved.no} を下書きで保存しました。`;
+    await refreshCases(); if (caseSaveMode === "public") showIgText(saved);
+  } catch (err) { console.error(err); msg.textContent = "保存に失敗しました: " + err.message; }
+});
+function showIgText(c) {
+  const url = new URL(`case.html`, location.href).href;
+  const film = OPTIONS.films.find(f => f.id === (c.params || {}).film)?.label || "";
+  const text = [`施工事例 No.${c.no} ／ ${c.area || ""}`, `${c.title || ""}`, `間口${c.span}m × 奥行${c.length}m × ${c.count || 1}棟 ／ ${film}`, (c.equipment || []).join("・"), "", `自分の畑の大きさでの概算は、プロフィールのリンクから「${c.no}」を入力してください。`, "", "#ビニールハウス #パイプハウス #施工事例 #三高産業 #群馬 #農業"].join("\n");
+  $("#ig-card").hidden = false; $("#ig-text").textContent = text; $("#ig-link").textContent = url; $("#ig-open").href = `case.html?no=${encodeURIComponent(c.no)}`;
+  $("#ig-copy").onclick = async () => toast((await copyText(text)) ? "投稿文をコピーしました" : "コピーできませんでした");
+}
+$("#case-list").addEventListener("click", async e => {
+  const ed = e.target.closest("[data-case-edit]"), ig = e.target.closest("[data-case-ig]");
+  const id = ed ? ed.dataset.caseEdit : ig ? ig.dataset.caseIg : null; if (!id) return;
+  const c = (await store.listCases(false)).find(x => x.id === id); if (!c) return;
+  if (ed) { loadCaseForm(c, await store.getCasePrivate(c.id)); $("#case-form").scrollIntoView({ behavior: "smooth", block: "start" }); }
+  else showIgText(c);
 });
 
 // ---------------- データ ----------------

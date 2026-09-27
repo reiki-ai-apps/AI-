@@ -183,3 +183,8 @@
 .shelf-banner h2 { margin: 0; font-size: clamp(1.6rem, 3.4vw, 2.6rem); font-weight: 800; color: #fff; line-height: 1.2; }
 .shelf-banner p { margin: 6px 0 0; color: rgba(255,255,255,0.72); font-size: 0.9rem; }
 @media (max-width: 600px) { .shelf-banner { aspect-ratio: 4 / 3; margin: 0 -16px 20px; } .shelf-banner .txt { padding: 48px 16px 18px; } .shelf-banner p { display: none; } }
+
+/* Instagramで見た事例の番号から(検索欄の下) */
+.case-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 12px; font-size: 0.86rem; color: var(--muted); }
+.case-row input { font: inherit; font-weight: 800; letter-spacing: 0.14em; font-variant-numeric: tabular-nums; text-align: center; width: 7.5em; min-height: 44px; padding: 6px 10px; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); }
+.case-row input:focus { border-color: var(--ink-900); outline: none; }

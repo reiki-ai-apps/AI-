@@ -73,6 +73,7 @@
       <button role="tab" data-tab="phone" aria-selected="false">電話メモ</button>
       <button role="tab" data-tab="cust" aria-selected="false">お客様</button>
       <button role="tab" data-tab="reg" aria-selected="false">カルテ登録</button>
+      <button role="tab" data-tab="case" aria-selected="false">施工事例</button>
       <button role="tab" data-tab="dz" aria-selected="false">災害</button>
       <button role="tab" data-tab="data" aria-selected="false">データ</button>
     </div>
@@ -208,6 +209,70 @@
         <p class="small" style="word-break:break-all"><a id="karte-link" href="#" target="_blank"></a></p>
         <div class="flex"><button class="btn sm" type="button" id="share-btn">LINE・メールで送る</button><button class="btn sm ghost" type="button" id="copy-link">URLをコピー</button><a class="btn sm outline" id="show3d" href="#" target="_blank">3Dで見せる</a></div>
         <p class="small muted mt-2">お客様コード: <b id="cust-code"></b>。QRを読み取ると、次回からお客様が自分のカルテを開けます。</p>
+      </div>
+    </div>
+
+    <!-- 施工事例(Instagram用のNo.と、事例ページ・概算の基準) -->
+    <div class="pane-main" id="pane-case" hidden>
+      <div class="today-grid">
+        <form class="card" id="case-form" autocomplete="off">
+          <h2 id="case-form-title">施工事例を登録</h2>
+          <p class="muted small">Instagramの投稿とサイトの両方に同じ「No.」を出します。公開できるのは、施主様が「事例掲載」に同意している現場だけです。</p>
+          <fieldset>
+            <legend>施主(社内だけ。公開画面には出ません)</legend>
+            <div class="form-grid">
+              <label class="field">施主のお客様<span class="req">必須</span><select id="cs-cust"><option value="">選んでください</option></select><div class="help" id="cs-consent-help"></div></label>
+              <label class="field">基準にするハウス<select id="cs-house"><option value="">(選ぶと寸法・設備が入ります)</option></select></label>
+              <label class="field">担当者<input id="cs-staff" placeholder="例: 山本"></label>
+              <label class="field">原価(円・社内メモ)<input id="cs-cost" type="number" inputmode="numeric" min="0" step="1000"></label>
+              <label class="field full">社内メモ<input id="cs-memo" placeholder="値引き・特記など。公開されません"></label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>公開する内容</legend>
+            <div class="form-grid">
+              <label class="field">公開No.<input id="cs-no" inputmode="numeric" readonly><div class="help">自動で付きます(3桁)。変えません。</div></label>
+              <label class="field">見出し<span class="req">必須</span><input id="cs-title" placeholder="例: いちご 高設栽培の連棟" required></label>
+              <label class="field">公開してよい地域(市町村まで)<select id="cs-area"></select></label>
+              <label class="field">作物<select id="cs-crop"></select></label>
+              <label class="field">ハウスの種類<input id="cs-type" placeholder="例: パイプハウス(単棟)" value="パイプハウス(単棟)"></label>
+              <label class="field">棟数<input id="cs-count" type="number" min="1" max="20" value="1"></label>
+              <label class="field">施工した年月<input id="cs-built" type="month"></label>
+              <label class="field">間口<select id="cs-span"></select></label>
+              <label class="field">奥行(m)<input id="cs-length" type="number" min="5" max="100" step="0.5" value="30"></label>
+              <label class="field">肩高(m)<input id="cs-eave" type="number" min="1.0" max="2.4" step="0.1" value="1.6"></label>
+              <label class="field">棟高(m)<input id="cs-ridge" type="number" step="0.1" value="3.0"></label>
+              <label class="field">アーチ間隔<select id="cs-pitch"></select></label>
+              <label class="field">パイプ径<select id="cs-pipe"></select></label>
+              <label class="field">被覆材<select id="cs-film"></select></label>
+              <label class="field">側面換気<select id="cs-sidevent"></select></label>
+              <label class="field">開閉<select id="cs-ventdrive"></select></label>
+              <label class="field">内張カーテン<select id="cs-curtain"></select></label>
+              <label class="field">潅水<select id="cs-irrigation"></select></label>
+              <div class="field full flex"><label class="check"><input type="checkbox" id="cs-roofvent"><span>天窓あり</span></label><label class="check"><input type="checkbox" id="cs-net" checked><span>防虫ネットあり</span></label><label class="check"><input type="checkbox" id="cs-snow"><span>耐雪補強あり</span></label></div>
+              <label class="field full">設備・特徴(読点で区切る)<input id="cs-equipment" placeholder="例: 電動巻き上げ換気、内張カーテン、点滴潅水"></label>
+              <label class="field full">使った主な資材(品番と数量。例: GN-FL-PO015×2, ST-CR-PC×12)<input id="cs-parts" placeholder="品番×数量 をカンマで区切る"><div class="help" id="cs-parts-help"></div></label>
+              <label class="field full">写真(最大6枚・1枚目が表紙)<input id="cs-photos" type="file" accept="image/*" multiple><div class="flex mt-1" id="cs-photo-strip"></div><div class="help">施主様の許可を得た写真だけ。人の顔・表札・車のナンバーが写っていないか確認してください。試作では端末内に保存します。</div></label>
+              <label class="field full">ひとこと(公開)<textarea id="cs-note" style="min-height:60px" placeholder="例: 散乱光POで葉焼けを抑え、高設ベンチに合わせて肩高1.8mにしています。"></textarea></label>
+            </div>
+          </fieldset>
+          <div class="flex mt-2">
+            <button class="btn" type="submit" data-save="draft">下書きで保存</button>
+            <button class="btn accent" type="submit" data-save="public" id="cs-publish">公開する</button>
+            <button class="btn ghost" type="button" id="cs-new">新しい事例</button>
+          </div>
+          <p class="small muted mt-1" id="cs-msg"></p>
+        </form>
+        <div>
+          <h2>登録済みの事例</h2>
+          <div id="case-list"></div>
+          <div class="card mt-3" id="ig-card" hidden>
+            <h3 style="margin:0 0 6px">Instagramの投稿に貼る文</h3>
+            <pre id="ig-text" style="white-space:pre-wrap;font-size:.85rem;line-height:1.6;margin:0 0 10px"></pre>
+            <div class="flex"><button class="btn sm" type="button" id="ig-copy">この文をコピー</button><a class="btn sm ghost" id="ig-open" href="case.html" target="_blank">事例ページを開く</a></div>
+            <p class="small muted mt-2">投稿本文にはリンクが貼れないので、プロフィール欄のリンクを <b id="ig-link"></b> にしておきます。番号だけでも探せます。</p>
+          </div>
+        </div>
       </div>
     </div>
 

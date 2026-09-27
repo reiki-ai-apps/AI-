@@ -5,7 +5,7 @@ import { CONFIG } from "./config.js";
 import { normalizeParams } from "./pricing.js";
 
 const KEY = "mitaka-karte-v2";
-const EMPTY = { customers: [], plots: [], houses: [], interactions: [], quotes: [], tasks: [], events: [], consents: [], houseEvents: [] };
+const EMPTY = { customers: [], plots: [], houses: [], interactions: [], quotes: [], tasks: [], events: [], consents: [], houseEvents: [], cases: [], casePrivate: [] };
 export const CROPS = ["トマト", "きゅうり", "いちご", "なす", "ほうれん草", "小松菜", "花き", "ぶどう", "その他"];
 export const CONDITIONS = ["良好", "要補修", "要相談"];
 export const AREAS = ["桐生市", "みどり市", "太田市", "伊勢崎市", "前橋市", "足利市", "館林市", "その他"];
@@ -18,13 +18,16 @@ export const QUOTE_STATUS = [
   { id: "requested", label: "依頼あり" }, { id: "drafted", label: "作成中" }, { id: "sent", label: "提出済" },
   { id: "approved", label: "受注" }, { id: "in_progress", label: "施工中" }, { id: "done", label: "完了" }, { id: "lost", label: "失注" }
 ];
-export const TASK_KIND = { self_reg: "本人が登録(電話して訪問日を決める)", film_due: "張り替え時期", quote_followup: "見積の追いかけ", inspection: "点検", callback: "折り返し", disaster_check: "災害後の確認" };
+export const TASK_KIND = { self_reg: "本人が登録(電話して訪問日を決める)", case_inquiry: "事例No.から相談(電話して現地確認の日を決める)", film_due: "張り替え時期", quote_followup: "見積の追いかけ", inspection: "点検", callback: "折り返し", disaster_check: "災害後の確認" };
 
 export function uid(prefix = "") { return prefix + Math.random().toString(36).slice(2, 8) + Date.now().toString(36).slice(-4); }
 export function customerCode() { const s = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; let c = ""; for (let i = 0; i < 6; i++) c += s[Math.floor(Math.random() * s.length)]; return c; }
 // カルテURL用のトークン。お客様コード(6桁)とは分ける: 6桁は総当たりできてしまうため
 export function karteToken() { const a = new Uint8Array(16); (globalThis.crypto || {}).getRandomValues?.(a); return [...a].map(v => v.toString(16).padStart(2, "0")).join("") || uid("t_") + uid(""); }
 export function normTel(t) { return String(t || "").replace(/[^\d]/g, ""); }
+// 施工事例No.の表記ゆれ吸収: "No.125" "no125" "１２５" "125" → "125"。数字が無ければ ""
+export function normCaseNo(v) { const d = String(v || "").replace(/[０-９]/g, c => String.fromCharCode(c.charCodeAt(0) - 0xFEE0)).replace(/[^\d]/g, ""); return d ? String(Number(d)) : ""; }
+export const CASE_STATUS = [{ id: "draft", label: "下書き" }, { id: "public", label: "公開中" }, { id: "closed", label: "取り下げ" }];
 const now = () => new Date().toISOString();
 const today = () => new Date().toISOString().slice(0, 10);
 export const addDays = (n, from = new Date()) => { const d = new Date(from); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); };
@@ -62,6 +65,13 @@ class LocalStore {
   async saveConsent(c) { return this._put("consents", { grantedOn: today(), ...c }, "s_"); }
   async listHouseEvents(houseId) { const all = this._read().houseEvents; return (houseId ? all.filter(e => e.houseId === houseId) : all).sort((a, b) => (b.occurredOn || "").localeCompare(a.occurredOn || "")); }
   async saveHouseEvent(e) { if (!e.occurredOn) e.occurredOn = today(); return this._put("houseEvents", e, "he_"); }
+  // ---- 施工事例(公開データ) と 社内だけの控え ----
+  async listCases(publicOnly = false) { const all = this._read().cases; return (publicOnly ? all.filter(c => c.status === "public") : all).sort((a, b) => Number(b.no) - Number(a.no)); }
+  async getCaseByNo(no) { const n = normCaseNo(no); if (!n) return null; return this._read().cases.find(c => String(Number(c.no)) === n) || null; }
+  async nextCaseNo() { const nos = this._read().cases.map(c => Number(c.no) || 0); return String(Math.max(100, ...nos) + 1); }
+  async saveCase(c) { if (!c.no) c.no = await this.nextCaseNo(); return this._put("cases", c, "cs_"); }
+  async getCasePrivate(caseId) { return this._read().casePrivate.find(p => p.caseId === caseId) || null; }
+  async saveCasePrivate(p) { const cur = await this.getCasePrivate(p.caseId); return this._put("casePrivate", { ...(cur || {}), ...p }, "cp_"); }
   async exportAll() { return this._read(); }
   async importAll(json) { const db = this._read(); for (const k of Object.keys(EMPTY)) for (const r of (json[k] || [])) { const i = db[k].findIndex(x => x.id === r.id); i >= 0 ? db[k][i] = r : db[k].push(r); } this._write(db); }
   async clearAll() { localStorage.removeItem(KEY); document.dispatchEvent(new CustomEvent("karte:change")); }
@@ -72,8 +82,10 @@ const CUSTOMER_COLS = { id: "id", code: "customer_code", karteToken: "karte_toke
 const HOUSE_COLS = { id: "id", customerId: "customer_id", plotId: "plot_id", name: "house_no", crop: "crop", area: "area_code", condition: "condition", status: "status", builtYear: "built_year", notes: "note", createdAt: "created_at", updatedAt: "updated_at" };
 const PLOT_COLS = { id: "id", customerId: "customer_id", name: "name", area: "area_code", lat: "lat", lng: "lng", note: "note" };
 const INTERACTION_COLS = { id: "id", customerId: "customer_id", houseId: "house_id", channel: "channel", topic: "topic_tag", occurredAt: "occurred_at", staff: "staff_id", body: "body", nextActionOn: "next_action_on" };
-const QUOTE_COLS = { id: "id", quoteNo: "quote_no", customerId: "customer_id", houseId: "house_id", source: "source", status: "status", pricingVersion: "pricing_version", subtotal: "subtotal", tax: "tax", total: "total", name: "contact_name", tel: "contact_tel", email: "contact_email", place: "place", message: "message", createdAt: "created_at", updatedAt: "updated_at" };
+const QUOTE_COLS = { id: "id", quoteNo: "quote_no", customerId: "customer_id", houseId: "house_id", source: "source", caseNo: "case_no", houseCount: "house_count", status: "status", pricingVersion: "pricing_version", subtotal: "subtotal", tax: "tax", total: "total", name: "contact_name", tel: "contact_tel", email: "contact_email", place: "place", message: "message", createdAt: "created_at", updatedAt: "updated_at" };
 const TASK_COLS = { id: "id", customerId: "customer_id", houseId: "house_id", quoteId: "quote_id", kind: "kind", title: "title", dueOn: "due_on", status: "status" };
+const CASE_COLS = { id: "id", no: "case_no", title: "title", area: "area_public", houseType: "house_type", crop: "crop", span: "span_m", length: "length_m", count: "house_count", floorArea: "floor_area", pitch: "pitch_m", pipe: "pipe_mm", film: "film_type", equipment: "equipment", parts: "parts", params: "params", photos: "photos", note: "note_public", builtOn: "built_on", status: "status", pricingVersion: "pricing_version", demo: "is_demo", createdAt: "created_at", updatedAt: "updated_at" };
+const CASE_PRIVATE_COLS = { id: "id", caseId: "case_id", customerId: "customer_id", houseId: "house_id", cost: "cost", staff: "staff_id", memo: "memo", updatedAt: "updated_at" };
 const toRow = (obj, cols, extra = {}) => { const r = { ...extra }; for (const [k, col] of Object.entries(cols)) if (obj[k] !== undefined) r[col] = obj[k]; return r; };
 const fromRow = (row, cols, extra = () => ({})) => { const o = { ...extra(row) }; for (const [k, col] of Object.entries(cols)) if (row[col] !== undefined && row[col] !== null) o[k] = row[col]; return o; };
 
@@ -109,6 +121,13 @@ class SupabaseStore {
   async saveConsent(c) { return this._upsert("consents", { id: c.id || uid("s_"), customer_id: c.customerId, purpose: c.purpose, granted: c.granted, granted_on: c.grantedOn || today() }); }
   async listHouseEvents(houseId) { const q = houseId ? `&house_id=eq.${encodeURIComponent(houseId)}` : ""; return (await this._req(`house_events?select=*${q}&order=occurred_on.desc&limit=500`)).map(r => ({ id: r.id, houseId: r.house_id, type: r.event_type, occurredOn: r.occurred_on, summary: r.summary, amount: r.amount, staff: r.staff_id })); }
   async saveHouseEvent(e) { const row = { id: e.id || uid("he_"), house_id: e.houseId, event_type: e.type, occurred_on: e.occurredOn || today(), summary: e.summary || null, amount: e.amount || null, staff_id: e.staff || null }; await this._upsert("house_events", row); return e; }
+  // 公開画面は cases_public ビュー(公開中だけ・社内列なし)しか読まない
+  async listCases(publicOnly = false) { const src = publicOnly ? "cases_public" : "cases"; return (await this._req(`${src}?select=*&order=case_no.desc&limit=200`)).map(r => fromRow(r, CASE_COLS)); }
+  async getCaseByNo(no) { const n = normCaseNo(no); if (!n) return null; const r = await this._req(`cases_public?case_no=eq.${encodeURIComponent(n)}&select=*`); if (r[0]) return fromRow(r[0], CASE_COLS); const all = await this._req(`cases?case_no=eq.${encodeURIComponent(n)}&select=id,case_no,status`).catch(() => []); return all[0] ? { id: all[0].id, no: all[0].case_no, status: all[0].status, hidden: true } : null; }
+  async nextCaseNo() { const r = await this._req("cases?select=case_no&order=case_no.desc&limit=1"); return String(Math.max(100, Number(r[0]?.case_no) || 0) + 1); }
+  async saveCase(c) { c.id = c.id || uid("cs_"); c.no = c.no || await this.nextCaseNo(); c.updatedAt = now(); return fromRow(await this._upsert("cases", toRow(c, CASE_COLS)), CASE_COLS); }
+  async getCasePrivate(caseId) { const r = await this._req(`case_private?case_id=eq.${encodeURIComponent(caseId)}&select=*`); return r[0] ? fromRow(r[0], CASE_PRIVATE_COLS) : null; }
+  async saveCasePrivate(p) { p.id = p.id || uid("cp_"); p.updatedAt = now(); return fromRow(await this._upsert("case_private", toRow(p, CASE_PRIVATE_COLS)), CASE_PRIVATE_COLS); }
   async exportAll() { const [customers, plots, houses, interactions, quotes] = await Promise.all([this.listCustomers(), this._req("plots?select=*").then(r => r.map(x => fromRow(x, PLOT_COLS))), this.listAllHouses(), this.listInteractions(), this.listQuotes()]); return { customers, plots, houses, interactions, quotes }; }
   async importAll(json) { for (const c of json.customers || []) await this.saveCustomer(c); for (const p of json.plots || []) await this.savePlot(p); for (const h of json.houses || []) await this.saveHouse(h); }
   async clearAll() { throw new Error("本番DBの全削除は管理画面から行ってください"); }
@@ -259,6 +278,24 @@ export async function seedDemo(force = false) {
     }
     for (const t of talks || []) await store.saveInteraction({ customerId: c.id, channel: t.channel, topic: t.topic, body: t.body, staff: c.staff, occurredAt: new Date(Date.now() + t.days * 86400000).toISOString(), nextActionOn: t.next ? addDays(t.next) : null });
     for (const q of quotes || []) await store.saveQuote({ customerId: c.id, source: q.source, status: q.status, total: q.total, subtotal: q.subtotal, message: q.message, items: q.items || null, name: c.name, tel: c.tel, createdAt: new Date(Date.now() + q.days * 86400000).toISOString() });
+  }
+  // 施工事例(デモ): 事例掲載に同意している DEMO02 のA棟を No.101 として公開。DEMO01 は同意なしなので下書きのまま(公開ボタンが押せない見本)
+  const all = await store.listCustomers();
+  const c2 = all.find(c => c.code === "DEMO02"), c1 = all.find(c => c.code === "DEMO01");
+  if (c2 && !(await store.getCaseByNo("101"))) {
+    const hs = await store.listHouses(c2.id); const h = hs[0];
+    const cs = await store.saveCase({ no: "101", title: "いちご 高設栽培の連棟", area: "みどり市", houseType: "パイプハウス(単棟×2)", crop: "いちご", span: 6.0, length: 50, count: 2, pitch: 0.5, pipe: 25.4, film: "po_diffuse",
+      equipment: ["電動巻き上げ換気(両側)", "電動内張カーテン", "防虫ネット", "点滴潅水"], parts: [{ id: "GN-FL-PO015S", qty: 4 }, { id: "ST-CR-PC", qty: 12 }, { id: "GN-IR-DRIP", qty: 3 }],
+      params: h ? h.params : normalizeParams({ span: 6.0, length: 50, film: "po_diffuse", sideVent: "both", ventDrive: "motor", curtain: "motor", insectNet: true, irrigation: "drip" }),
+      photos: ["assets/photo/strawberry.jpg", "assets/photo/tunnels-aerial.jpg"], note: "散乱光POで葉焼けを抑え、高設ベンチの高さに合わせて肩高1.8mにしています。", builtOn: "2018-03", status: "public", demo: true, pricingVersion: "仮単価 2026-09 版" });
+    await store.saveCasePrivate({ caseId: cs.id, customerId: c2.id, houseId: h ? h.id : null, cost: null, staff: "担当B", memo: "デモ。写真は本物の現場ではなくイメージ" });
+  }
+  if (c1 && !(await store.getCaseByNo("102"))) {
+    const hs = await store.listHouses(c1.id); const h = hs.find(x => x.name === "3号") || hs[0];
+    const cs = await store.saveCase({ no: "102", title: "トマト 耐雪仕様の単棟", area: "桐生市", houseType: "パイプハウス(単棟)", crop: "トマト", span: 7.2, length: 40, count: 1, pitch: 0.5, pipe: 31.8, film: "po_multi",
+      equipment: ["電動巻き上げ換気(両側)", "天窓", "電動内張カーテン", "点滴潅水", "耐雪補強"], parts: [], params: h ? h.params : normalizeParams({ span: 7.2, length: 40, film: "po_multi", snow: true }),
+      photos: ["assets/photo/tomatoes.jpg"], note: "", builtOn: "2021-05", status: "draft", demo: true, pricingVersion: "仮単価 2026-09 版" });
+    await store.saveCasePrivate({ caseId: cs.id, customerId: c1.id, houseId: h ? h.id : null, staff: "担当A", memo: "施主の事例掲載の同意が無いので公開できない(見本)" });
   }
   return true;
 }
