@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>注文書 印刷</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Yu Mincho", "MS Mincho", serif; color: #000; background: #e8ece9; }
+  .toolbar { position: sticky; top: 0; z-index: 5; display: flex; gap: 10px; justify-content: center; padding: 10px; background: #075c34; }
+  .toolbar button { min-height: 42px; padding: 0 22px; border: 0; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: Meiryo, sans-serif; }
+  .toolbar .primary { background: #fff; color: #075c34; }
+  .toolbar .ghost { background: rgba(255,255,255,.18); color: #fff; }
+  .sheet { width: 210mm; min-height: 296mm; margin: 14px auto; padding: 14mm 16mm; background: #fff; box-shadow: 0 8px 30px rgba(0,0,0,.18); font-size: 11.5pt; line-height: 1.55; }
+  .head-row { display: flex; justify-content: flex-end; }
+  .order-no { text-align: left; font-size: 11pt; }
+  .order-no .no { border-bottom: 1px solid #000; padding: 0 14px 1px 4px; }
+  h1 { margin: 6mm 0 7mm; text-align: center; font-size: 20pt; letter-spacing: .45em; font-weight: 600; }
+  .parties { display: flex; justify-content: space-between; gap: 8mm; align-items: flex-start; }
+  .to { width: 58%; }
+  .to .name { font-size: 14pt; border-bottom: 1px solid #000; padding-bottom: 1mm; margin-bottom: 3mm; }
+  .to p { font-size: 10.5pt; margin-bottom: 1.5mm; }
+  .from { width: 40%; font-size: 10.5pt; text-align: left; }
+  .from .stamps { display: flex; justify-content: flex-end; margin-top: 3mm; }
+  .stamp { width: 17mm; height: 19mm; border: 1px solid #000; border-left: none; text-align: center; font-size: 9pt; padding-top: 1mm; }
+  .stamp:first-child { border-left: 1px solid #000; }
+  .stamp .who { display: block; border-bottom: 1px solid #000; padding-bottom: .6mm; margin-bottom: 1mm; }
+  table { width: 100%; border-collapse: collapse; margin-top: 4mm; }
+  th, td { border: 1px solid #000; padding: 1.6mm 2.2mm; font-weight: 500; font-size: 10.5pt; }
+  th { background: #f2f2ee; text-align: center; font-weight: 700; }
+  .label { width: 34mm; background: #f2f2ee; text-align: center; }
+  .money { text-align: right; font-variant-numeric: tabular-nums; }
+  .content-table td.amount { width: 38mm; }
+  .section-title td { text-align: center; background: #f2f2ee; font-weight: 700; letter-spacing: .5em; }
+  .line-cell { height: 7.2mm; }
+  @media print {
+    .toolbar { display: none; }
+    body { background: #fff; }
+    .sheet { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; }
+    @page { size: A4 portrait; margin: 12mm; }
+  }
+.brand-art,.empty-illustration{display:none!important}</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="primary" onclick="window.print()">🖨 印刷する</button>
+    <button class="ghost" onclick="window.close()">閉じる</button>
+  </div>
+  <div class="sheet" id="sheet">読み込み中…</div>
+<script>window.__DEMO_META__ = {"fields": [{"key": "input_date", "label": "入力日", "type": "date", "required": true}, {"key": "staff", "label": "担当（入力者）", "type": "staff", "required": true}, {"key": "contractor", "label": "工事依頼先", "type": "contractor", "required": true}, {"key": "contractor_code", "label": "仕入先コード", "type": "text", "derived": true}, {"key": "customer_name", "label": "お客様名", "type": "text", "required": true}, {"key": "billing_to", "label": "請求先", "type": "text"}, {"key": "kubun_company", "label": "工事区分（請負元）", "type": "kubun"}, {"key": "kubun_cls", "label": "工事区分", "type": "text", "derived": true}, {"key": "site", "label": "工事場所（都道府県・市町村名）", "type": "text", "required": true}, {"key": "work_name", "label": "工事名", "type": "text", "required": true}, {"key": "work_type", "label": "工事種類", "type": "work_type"}, {"key": "work_type_cls", "label": "種別", "type": "text", "derived": true}, {"key": "industry", "label": "建設業種", "type": "industry"}, {"key": "industry_cls", "label": "業種種別", "type": "text", "derived": true}, {"key": "order_amount", "label": "受注金額（資材費含む総額・税抜）", "type": "money", "required": true}, {"key": "period_start", "label": "工期 開始", "type": "date"}, {"key": "period_end", "label": "工期 終了", "type": "date"}, {"key": "payment_amount", "label": "支払金額（税抜）", "type": "money"}, {"key": "sales_amount", "label": "売上金額（税抜）", "type": "money"}, {"key": "content_1", "label": "工事内容 1行目", "type": "line", "maxlen": 30}, {"key": "content_2", "label": "工事内容 2行目", "type": "line", "maxlen": 30}, {"key": "content_3", "label": "工事内容 3行目", "type": "line", "maxlen": 30}, {"key": "content_4", "label": "工事内容 4行目", "type": "line", "maxlen": 30}, {"key": "content_5", "label": "工事内容 5行目", "type": "line", "maxlen": 30}, {"key": "content_6", "label": "工事内容 6行目", "type": "line", "maxlen": 30}, {"key": "content_7", "label": "工事内容 7行目", "type": "line", "maxlen": 30}, {"key": "content_8", "label": "工事内容 8行目", "type": "line", "maxlen": 30}, {"key": "content_9", "label": "工事内容 9行目", "type": "line", "maxlen": 30}, {"key": "content_10", "label": "工事内容 10行目", "type": "line", "maxlen": 30}, {"key": "note_1", "label": "連絡事項 1行目", "type": "line", "maxlen": 40}, {"key": "note_2", "label": "連絡事項 2行目", "type": "line", "maxlen": 40}, {"key": "note_3", "label": "連絡事項 3行目", "type": "line", "maxlen": 40}, {"key": "note_4", "label": "連絡事項 4行目", "type": "line", "maxlen": 40}, {"key": "note_5", "label": "連絡事項 5行目", "type": "line", "maxlen": 40}, {"key": "note_6", "label": "連絡事項 6行目", "type": "line", "maxlen": 40}], "masters": {"contractors": [{"name": "見本ハウス 株式会社", "code": "0101", "contract_date": "2017-04-01"}, {"name": "サンプル工業", "code": "0102", "contract_date": "2019-08-01"}, {"name": "テスト設備 株式会社", "code": "0103", "contract_date": "2021-08-20"}, {"name": "当社施工", "code": "00022", "contract_date": ""}], "staff": [{"code": "001", "name": "営業 一郎", "short": "営業A"}, {"code": "002", "name": "営業 二郎", "short": "営業B"}, {"code": "003", "name": "営業 三郎", "short": "営業C"}], "work_types": [{"name": "ハウス新設", "cls": "新築"}, {"name": "他", "cls": "改修"}], "industries": [{"name": "新設・外張り張替", "cls": "とび土工"}, {"name": "解体", "cls": "解体"}, {"name": "カーテン張替・その他改修", "cls": "その他"}], "kubun": [{"code": "", "name": "元請", "cls": "元請"}, {"code": "900001", "name": "見本建設 株式会社", "cls": "下請"}, {"code": "900002", "name": "サンプル設備工業", "cls": "下請"}]}};</script>
+<script src="demo-api.js"></script>
+<script>
+const $id = new URLSearchParams(location.search).get("id");
+const esc = (v) => String(v ?? "").replace(/[&<>'"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
+const yen = (v) => { const n = Number(String(v ?? "").replace(/[^0-9-]/g, "")); return Number.isFinite(n) && String(v).trim() !== "" ? "¥" + n.toLocaleString("ja-JP") : ""; };
+const num = (v) => { const n = Number(String(v ?? "").replace(/[^0-9-]/g, "")); return Number.isFinite(n) && String(v).trim() !== "" ? n : null; };
+const jp = (iso) => { if (!iso) return ""; const [y, m, d] = String(iso).split("-").map(Number); return y ? `${y}年${m}月${d}日` : ""; };
+
+
+
+async function loadData() {
+  if (window.__EMBEDDED__) return window.__EMBEDDED__;
+  const [orderRes, metaRes] = await Promise.all([
+    fetch(`api/orders/${$id}`).then((r) => r.json()),
+    fetch("api/meta").then((r) => r.json()),
+  ]);
+  if (!orderRes.order) return {error: orderRes.error};
+  return {order: orderRes.order, masters: metaRes.masters};
+}
+
+async function main() {
+  const data = await loadData();
+  if (!data.order) { document.getElementById("sheet").textContent = data.error || "データが見つかりません。"; return; }
+  const f = data.order.fields;
+  const contractor = ((data.masters || {}).contractors || []).find((c) => c.name === f.contractor) || {};
+  const contractDate = /^\d{4}-\d{2}-\d{2}$/.test(contractor.contract_date || "") ? jp(contractor.contract_date) : "　　年　月　日";
+  const year = String(f.input_date || "").slice(0, 4) || new Date().getFullYear();
+  const pay = num(f.payment_amount);
+  const tax = pay == null ? null : Math.floor(pay * 0.1);
+  const total = pay == null ? null : pay + tax;
+  const contents = Array.from({length: 10}, (_, i) => f[`content_${i + 1}`] || "");
+  const notes = Array.from({length: 6}, (_, i) => f[`note_${i + 1}`] || "");
+  document.title = `注文書_${f.customer_name || ""}_${f.work_name || ""}`;
+  document.getElementById("sheet").innerHTML = `
+    <div class="head-row"><div class="order-no">注文番号　<span class="no">${esc(year)}－${esc(data.order.id)}</span><br><span style="display:inline-block;margin-top:1mm">${esc(jp(f.input_date))}</span></div></div>
+    <h1>工事注文書</h1>
+    <div class="parties">
+      <div class="to">
+        <div class="name">${esc(f.contractor || "")}　御中</div>
+        <p>${esc(contractDate)}付基本契約書第１条の規定に基づき下記のとおり注文いたします。</p>
+        <p>なお、注文をお引受の場合には、７日以内に口頭又はＦＡＸで御連絡下さい。</p>
+      </div>
+      <div class="from">
+        〇〇県〇〇市〇〇町１－２－３<br>
+        見本産業　株式会社<br>
+        代表取締役　　見本　太郎<br>
+        ＴＥＬ：０００－０００－００００<br>
+        ＦＡＸ：０００－０００－００００
+        <div class="stamps">
+          <div class="stamp"><span class="who">責任者</span></div>
+          <div class="stamp"><span class="who">担当者</span>${esc(f.staff || "")}</div>
+        </div>
+      </div>
+    </div>
+    <table>
+      <tr><td class="label">金額（消費税抜）</td><td class="money">${pay == null ? "" : yen(pay)}</td><td class="label">支払期日及び方法</td><td rowspan="3" style="width:52mm;text-align:center">月末締翌月１０日<br>振込支払</td></tr>
+      <tr><td class="label">消費税（10%）</td><td class="money">${tax == null ? "" : yen(tax)}</td><td rowspan="2" style="border-bottom:1px solid #000"></td></tr>
+      <tr><td class="label">金額（消費税込）</td><td class="money"><strong>${total == null ? "" : yen(total)}</strong></td></tr>
+    </table>
+    <table>
+      <tr><td class="label">お客様名</td><td>${esc(f.customer_name || "")}　様</td></tr>
+      <tr><td class="label">工事場所</td><td>${esc(f.site || "")}</td></tr>
+      <tr><td class="label">工事名</td><td>${esc(f.work_name || "")}</td></tr>
+      <tr><td class="label">工期</td><td>${esc(jp(f.period_start))}　～　${esc(jp(f.period_end))}</td></tr>
+    </table>
+    <table class="content-table">
+      <tr><th>工　　事　　内　　容</th><th style="width:38mm">金　　額</th></tr>
+      ${contents.map((line, i) => `<tr><td class="line-cell">${esc(line)}</td><td class="line-cell amount money">${i === 0 && pay != null ? yen(pay) : ""}</td></tr>`).join("")}
+      <tr><td style="text-align:center;font-weight:700">計</td><td class="amount money"><strong>${pay == null ? "" : yen(pay)}</strong></td></tr>
+    </table>
+    <table>
+      <tr class="section-title"><td>その他連絡事項</td></tr>
+      ${notes.map((line) => `<tr><td class="line-cell">${esc(line)}</td></tr>`).join("")}
+    </table>`;
+}
+main().catch((e) => { document.getElementById("sheet").textContent = "読み込みに失敗しました: " + e.message; });
+</script>
+</body>
+</html>

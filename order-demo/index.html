@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>見本産業 工事注文書</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="brand-header">
+      <div class="brand-copy">
+        <div class="brand-eyebrow">CONSTRUCTION ORDER</div>
+        <h1>見本産業 工事注文書</h1>
+        <p>営業が入力、事務が印刷して郵送。台帳はここに残ります。</p>
+      </div>
+      <div class="brand-art" aria-hidden="true"></div>
+      <div class="header-actions">
+        <div class="header-status"><span class="status-dot"></span> ローカル保存</div>
+        <button class="header-exit" id="whats-new-button" type="button">💬 今回の更新</button>
+        <a class="header-exit" id="mobile-link" href="mobile.html">スマホ用画面</a>
+        <button class="header-exit" id="shutdown-button" type="button">ツールを終了</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-heading">
+        <div>
+          <p class="section-kicker">ORDER LEDGER</p>
+          <h2><span id="current-staff">全体</span>の工事注文一覧</h2>
+          <p class="page-subtitle">一覧の各行から「工事注文書」と「注文書」を印刷できます。郵送したら「郵送済み」を押してください。</p>
+        </div>
+        <div class="summary-cards" aria-label="集計">
+          <div class="summary-card"><span>全件</span><strong id="count-all">0</strong></div>
+          <div class="summary-card warning"><span>未郵送</span><strong id="count-new">0</strong></div>
+          <div class="summary-card success"><span>郵送済み</span><strong id="count-mailed">0</strong></div>
+        </div>
+      </section>
+
+      <section class="toolbar" aria-label="一覧操作">
+        <div class="toolbar-left">
+          <label class="control select-control">
+            <span class="sr-only">年</span>
+            <select id="year-select"></select>
+          </label>
+          <label class="control select-control">
+            <span class="sr-only">担当</span>
+            <select id="staff-select"></select>
+          </label>
+          <label class="control search-control">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+            <input id="search-input" type="search" placeholder="お客様名・工事名・場所で検索">
+          </label>
+        </div>
+        <div class="toolbar-actions">
+          <button class="button secondary" id="csv-button" type="button">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+            CSV出力
+          </button>
+          <button class="button primary" id="add-button" type="button">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg>
+            新規入力
+          </button>
+        </div>
+      </section>
+
+      <section class="ledger-card">
+        <div class="table-wrap" id="table-wrap">
+          <table class="ledger-table">
+            <thead id="ledger-head"></thead>
+            <tbody id="ledger-body"></tbody>
+          </table>
+          <div class="empty-state" id="empty-state" hidden>
+            <div class="empty-illustration" aria-hidden="true"></div>
+            <div>
+              <span class="empty-badge">入力 → 印刷 → 郵送</span>
+              <h3>この年の工事注文はまだありません</h3>
+              <p>右上の「新規入力」から登録すると、一覧に載り、工事注文書・注文書を印刷できます。</p>
+              <button class="button primary" id="empty-add-button" type="button">最初の1件を入力</button>
+            </div>
+          </div>
+        </div>
+        <footer class="ledger-footer">
+          <span id="record-count">0件・入力日順</span>
+          <span>入力事項の全項目をCSVに出力</span>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="modal review-modal" id="entry-dialog">
+    <div class="modal-header review-header">
+      <div>
+        <p class="section-kicker">ORDER ENTRY</p>
+        <h2 id="entry-title">新規入力</h2>
+        <p id="entry-summary">入力事項シートと同じ項目です。※印は必須。金額はすべて消費税抜。</p>
+      </div>
+      <button class="icon-button" data-close="entry-dialog" aria-label="閉じる">×</button>
+    </div>
+    <div id="entry-error" class="modal-error" hidden></div>
+    <form class="entry-form" id="entry-form"></form>
+    <details class="audit-details" id="audit-wrap" hidden>
+      <summary>変更履歴</summary>
+      <div id="audit-list"></div>
+    </details>
+    <div class="modal-actions sticky-actions">
+      <span class="save-note" id="entry-note">保存すると一覧に載り、印刷できるようになります</span>
+      <button class="button ghost" data-close="entry-dialog" type="button">キャンセル</button>
+      <button class="button primary" id="save-button" type="button">保存する</button>
+    </div>
+  </dialog>
+
+  <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+  <script>window.__DEMO_META__ = {"fields": [{"key": "input_date", "label": "入力日", "type": "date", "required": true}, {"key": "staff", "label": "担当（入力者）", "type": "staff", "required": true}, {"key": "contractor", "label": "工事依頼先", "type": "contractor", "required": true}, {"key": "contractor_code", "label": "仕入先コード", "type": "text", "derived": true}, {"key": "customer_name", "label": "お客様名", "type": "text", "required": true}, {"key": "billing_to", "label": "請求先", "type": "text"}, {"key": "kubun_company", "label": "工事区分（請負元）", "type": "kubun"}, {"key": "kubun_cls", "label": "工事区分", "type": "text", "derived": true}, {"key": "site", "label": "工事場所（都道府県・市町村名）", "type": "text", "required": true}, {"key": "work_name", "label": "工事名", "type": "text", "required": true}, {"key": "work_type", "label": "工事種類", "type": "work_type"}, {"key": "work_type_cls", "label": "種別", "type": "text", "derived": true}, {"key": "industry", "label": "建設業種", "type": "industry"}, {"key": "industry_cls", "label": "業種種別", "type": "text", "derived": true}, {"key": "order_amount", "label": "受注金額（資材費含む総額・税抜）", "type": "money", "required": true}, {"key": "period_start", "label": "工期 開始", "type": "date"}, {"key": "period_end", "label": "工期 終了", "type": "date"}, {"key": "payment_amount", "label": "支払金額（税抜）", "type": "money"}, {"key": "sales_amount", "label": "売上金額（税抜）", "type": "money"}, {"key": "content_1", "label": "工事内容 1行目", "type": "line", "maxlen": 30}, {"key": "content_2", "label": "工事内容 2行目", "type": "line", "maxlen": 30}, {"key": "content_3", "label": "工事内容 3行目", "type": "line", "maxlen": 30}, {"key": "content_4", "label": "工事内容 4行目", "type": "line", "maxlen": 30}, {"key": "content_5", "label": "工事内容 5行目", "type": "line", "maxlen": 30}, {"key": "content_6", "label": "工事内容 6行目", "type": "line", "maxlen": 30}, {"key": "content_7", "label": "工事内容 7行目", "type": "line", "maxlen": 30}, {"key": "content_8", "label": "工事内容 8行目", "type": "line", "maxlen": 30}, {"key": "content_9", "label": "工事内容 9行目", "type": "line", "maxlen": 30}, {"key": "content_10", "label": "工事内容 10行目", "type": "line", "maxlen": 30}, {"key": "note_1", "label": "連絡事項 1行目", "type": "line", "maxlen": 40}, {"key": "note_2", "label": "連絡事項 2行目", "type": "line", "maxlen": 40}, {"key": "note_3", "label": "連絡事項 3行目", "type": "line", "maxlen": 40}, {"key": "note_4", "label": "連絡事項 4行目", "type": "line", "maxlen": 40}, {"key": "note_5", "label": "連絡事項 5行目", "type": "line", "maxlen": 40}, {"key": "note_6", "label": "連絡事項 6行目", "type": "line", "maxlen": 40}], "masters": {"contractors": [{"name": "見本ハウス 株式会社", "code": "0101", "contract_date": "2017-04-01"}, {"name": "サンプル工業", "code": "0102", "contract_date": "2019-08-01"}, {"name": "テスト設備 株式会社", "code": "0103", "contract_date": "2021-08-20"}, {"name": "当社施工", "code": "00022", "contract_date": ""}], "staff": [{"code": "001", "name": "営業 一郎", "short": "営業A"}, {"code": "002", "name": "営業 二郎", "short": "営業B"}, {"code": "003", "name": "営業 三郎", "short": "営業C"}], "work_types": [{"name": "ハウス新設", "cls": "新築"}, {"name": "他", "cls": "改修"}], "industries": [{"name": "新設・外張り張替", "cls": "とび土工"}, {"name": "解体", "cls": "解体"}, {"name": "カーテン張替・その他改修", "cls": "その他"}], "kubun": [{"code": "", "name": "元請", "cls": "元請"}, {"code": "900001", "name": "見本建設 株式会社", "cls": "下請"}, {"code": "900002", "name": "サンプル設備工業", "cls": "下請"}]}};</script>
+<script src="demo-api.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
