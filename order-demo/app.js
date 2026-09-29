@@ -53,7 +53,9 @@ async function initialize() {
   await loadOrders();
   let seen = false;
   try { seen = localStorage.getItem("order_demo_notes_v1") === "seen"; } catch (e) {}
-  if (!seen) showUpdateNotes();
+  // 吹き出しの案内はパソコンの広い画面向け。スマホでは画面からはみ出すので出さない
+  const wideScreen = Math.min(window.screen.width || 9999, window.outerWidth || 9999) >= 900;
+  if (!seen && wideScreen) showUpdateNotes();
 }
 
 function renderYearOptions() {
