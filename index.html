@@ -2258,6 +2258,7 @@
 
 <script id="visitorTracker" defer src="./assets/visitor-tracker.js"></script>
 <script defer src="./assets/operator-insights.js"></script>
+<script defer src="./assets/update-status.js"></script>
 <link rel="stylesheet" href="./assets/operator-insights.css">
 <script id="supabaseSdk" defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.100.0"></script>
 <script>
@@ -3934,6 +3935,7 @@ function renderHome(v){
     </div>
   </section>`;
   const homeSecondaryHtml=`<section class="home-secondary" aria-label="記事以外の案内">
+    <p class="billing-help" data-update-health role="status" hidden></p>
     <div class="quick-stats">
       <span class="signal-count">注目ニュース ${list.length}件・新着 ${newCount}件${continuedCount?`・継続 ${continuedCount}件`:''}・更新確認 ${latest}</span>
       ${newCount===0?'<p class="muted">今回は新しい記事の掲載はありません。前回の重要記事を継続表示しています。</p>':''}
@@ -3963,7 +3965,7 @@ function renderHome(v){
 
   if(!list.length){
     html+=emptyState('今回の重要ニュースを確認中です','「記事を探す」では、これまでの記事をカテゴリから探せます。')+expertVideoHtml+homeSecondaryHtml+`</div>`;
-    v.innerHTML=html; return;
+    v.innerHTML=html; window.aiRadarUpdateStatus?.refresh(); return;
   }
 
   // 日付ごとの見出し（今日・昨日…）でグループ表示
@@ -3982,6 +3984,7 @@ function renderHome(v){
   html+=expertVideoHtml+homeSecondaryHtml+`</div>`;
 
   v.innerHTML=html;
+  window.aiRadarUpdateStatus?.refresh();
 }
 function byPub(a,b){ return validArticleDate(articleTimelineAt(b))-validArticleDate(articleTimelineAt(a)); }
 function byFeedOrder(a,b){
@@ -5411,7 +5414,7 @@ function renderTerms(v){
 }
 function renderPrivacy(v){
   v.innerHTML=legalShell('プライバシーポリシー','2026年9月17日',`
-    <h3>取り扱う情報</h3><p>一般利用者の情報テーマ、保存、既読状態、閲覧履歴などは利用中のブラウザー内に保存され、運営者の利用状況画面には送信しません。レビューの重複投稿防止と利用状況の集計には、ブラウザー内のランダムな識別子を一方向ハッシュ化した値を使用します。開いた回数・新規／再訪の集計では、この匿名識別子、ランダムなイベントID、開いた日時、ページ種別（アプリ／公開記事）、流入元の大分類（Google・Xなど）を保存します。参照元URLの全文、検索語、IPアドレス、位置情報は本アプリの集計データには保存しません。通信失敗時は端末に一時保存し再送します。流入元が分からない場合は不明と扱い、運営者には集計値だけを表示します。</p>
+    <h3>取り扱う情報</h3><p>一般利用者の情報テーマ、保存、既読状態などは利用中のブラウザー内に保存され、運営者の利用状況画面には送信しません。レビューの重複投稿防止と利用状況の集計には、ブラウザー内のランダムな識別子を一方向ハッシュ化した値を使用します。開いた回数・新規／再訪の集計では、この匿名識別子、ランダムなイベントID、開いた日時、ページ種別（アプリ／公開記事）、流入元の大分類（Google・Xなど）を保存します。投稿の効果を確認するため、所定の形式の投稿IDと、開いた記事IDも保存し、翌日以降の再訪を匿名集計します。参照元URLの全文、検索語、IPアドレス、位置情報は本アプリの集計データには保存しません。通信失敗時は端末に一時保存し再送します。流入元が分からない場合は不明と扱い、運営者には集計値だけを表示します。</p>
     <h3>利用目的</h3><p>サービス提供、不正利用防止、個人を表示しない利用状況の集計、品質改善、法令対応のために利用します。</p>
     <h3>外部サービス</h3><p>匿名集計と公開レビューの保存、運営者本人の認証にSupabase、公開配信にGitHub Pagesを利用します。各事業者は業務に必要な範囲でデータを処理する場合があります。</p>
     <h3>第三者提供</h3><p>本人の同意がある場合、業務委託に必要な場合、法令に基づく場合を除き、個人データを第三者へ提供しません。</p>

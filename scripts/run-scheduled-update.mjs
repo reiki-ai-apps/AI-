@@ -20,7 +20,7 @@ export function videoPublishedToday(state,items,now=Date.now()){
 
 // Retry within the same morning run, before public data is committed.
 // Reuse update.js's persisted cache/usage ledger and existing daily spending caps.
-export async function runScheduledUpdate({run,readState,readItems,now=Date.now,
+export async function runScheduledUpdate({run,readState,readItems,now=Date.now,shouldRetry=()=>true,
   videoOnly=false,sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms)),log=console.log}){
   if(videoOnly&&videoPublishedToday(readState(),readItems(),now())){
     log('Today has two verified videos; no extra AI call or article update.');return 0;
@@ -28,6 +28,10 @@ export async function runScheduledUpdate({run,readState,readItems,now=Date.now,
   let code=1;
   for(let attempt=1;attempt<=3;attempt++){
     code=await run(attempt);
+    if(!shouldRetry()){
+      log('::warning::AI service needs owner action; do not repeat requests in this run.');
+      return code||1;
+    }
     const time=now(),day=jstDayKey(time);
     const inMorning=time>=Date.parse(day+'T05:17:00+09:00')&&time<Date.parse(day+'T12:00:00+09:00');
     if(!inMorning||videoPublishedToday(readState(),readItems(),time))return code;
@@ -41,11 +45,22 @@ export async function runScheduledUpdate({run,readState,readItems,now=Date.now,
 
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
   const read=(file,fallback)=>{try{return JSON.parse(fs.readFileSync(file,'utf8'));}catch{return fallback;}};
+  const {classifyUpdateFailure,makeUpdateHealth}=await import('./update-health.mjs');
+  let failure='';
   process.exitCode=await runScheduledUpdate({
     videoOnly:process.env.AI_EXPERT_RETRY_ONLY==='1',
-    run:attempt=>spawnSync(process.execPath,['update.js'],{stdio:'inherit',
-      env:{...process.env,AI_EXPERT_RETRY_ONLY:process.env.AI_EXPERT_RETRY_ONLY==='1'||attempt>1?'1':'0'}}).status??1,
+    run:attempt=>{
+      const result=spawnSync(process.execPath,['update.js'],{encoding:'utf8',maxBuffer:32*1024*1024,
+        env:{...process.env,AI_EXPERT_RETRY_ONLY:process.env.AI_EXPERT_RETRY_ONLY==='1'||attempt>1?'1':'0'}});
+      process.stdout.write(result.stdout||'');process.stderr.write(result.stderr||'');
+      failure=classifyUpdateFailure((result.stdout||'')+'\n'+(result.stderr||''));
+      return result.status??1;
+    },
+    shouldRetry:()=>!['credit_required','credentials_required'].includes(failure),
     readState:()=>read('.expert-video-state.json',{}),
     readItems:()=>read('data.json',[])
   });
+  fs.writeFileSync('update-health.json',JSON.stringify(makeUpdateHealth({
+    code:process.exitCode,failure,edition:read('home-edition.json',{}),video:read('.expert-video-state.json',{})
+  }),null,2)+'\n');
 }

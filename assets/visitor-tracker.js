@@ -103,9 +103,13 @@
         try{
           const hash=await getHash();
           if(excluded()){excludeBrowser();return;}
-          if(await rpc('record_app_open_v2',{p_event_id:item.id,p_visitor_key_hash:hash,
+          const payload={p_event_id:item.id,p_visitor_key_hash:hash,
             p_occurred_at:new Date(item.createdAt).toISOString(),p_source_group:item.source||'unrecorded',
-            p_page_kind:item.page||'app'})!==true)throw new Error('opening not acknowledged');
+            p_page_kind:item.page||'app'};
+          let acknowledged;
+          try{acknowledged=await rpc('record_app_open_v3',{...payload,p_campaign:item.campaign||'',p_landing:item.landing||''});}
+          catch(error){if(error.status!==404)throw error;acknowledged=await rpc('record_app_open_v2',payload);}
+          if(acknowledged!==true)throw new Error('opening not acknowledged');
           forget(item.id);continue;
         }catch(error){
           // Only a missing function warrants legacy fallback, not an arbitrary server error.
@@ -143,12 +147,20 @@
     active=true;
     if(!isPublicPage()||excluded()){if(excluded())excludeBrowser();return;}
     const item={id:crypto.randomUUID(),createdAt:Date.now(),source:firstOpening?sourceGroup():'direct_unknown',
-      page:location.pathname.includes('/articles/')?'article':'app'};
+      page:/\/(articles|guides)\//.test(location.pathname)?'article':'app',...campaignContext(firstOpening)};
     firstOpening=false;
     memory.set(item.id,item);put(PREFIX+item.id,JSON.stringify(item));
     void flush();
   }
   function visibility(){if(document.visibilityState==='hidden')active=false;else onVisible();}
+  function campaignContext(initial){
+    const url=new URL(location.href);
+    const value=initial?url.searchParams.get('utm_campaign')||'':'';
+    const campaign=/^kizashi-[a-z0-9-]{1,64}$/.test(value)?value:'';
+    const article=url.pathname.match(/\/articles\/(article_[A-Za-z0-9_-]{8,90})\//)?.[1];
+    const guide=url.pathname.match(/\/guides\/([a-z0-9-]{1,64})\//)?.[1];
+    return {campaign,landing:article||(guide?'guide-'+guide:'home')};
+  }
   function sourceGroup(){
     const classify=value=>{
       const s=String(value||'').toLowerCase().replace(/^www\./,'');

@@ -38,7 +38,7 @@ function browser(options={}){
       const name=url.split('/').at(-1),body=JSON.parse(request.body);
       calls.push({name,body});
       if(options.respond){const result=await options.respond(name,body);if(result!==undefined)return result;}
-      if(name==='record_app_open_v2'||name==='record_app_open')opens.add(body.p_event_id);
+      if(name==='record_app_open_v3'||name==='record_app_open_v2'||name==='record_app_open')opens.add(body.p_event_id);
       if(name==='register_unique_visitor')uniques.add(body.p_visitor_key_hash);
       return {ok:true,json:async()=>name==='get_my_membership'?{access_source:'none'}:true};
     }
@@ -113,12 +113,12 @@ for(const [label,options,expected] of [
 {
   const opens=new Set();let fail=true;
   const b=browser({opens,respond:async(name,body)=>{
-    if(name==='record_app_open_v2'&&fail){opens.add(body.p_event_id);throw Error('acknowledgement lost');}
+    if(name==='record_app_open_v3'&&fail){opens.add(body.p_event_id);throw Error('acknowledgement lost');}
   }});
   await b.settle();assert.equal(b.queue().length,1);fail=false;
   await b.fire(4000);
   assert.equal(opens.size,1,'server commit followed by retry cannot double count');
-  const ids=b.calls.filter(c=>c.name==='record_app_open_v2').map(c=>c.body.p_event_id);
+  const ids=b.calls.filter(c=>c.name==='record_app_open_v3').map(c=>c.body.p_event_id);
   assert.equal(new Set(ids).size,1);
 }
 {
@@ -129,7 +129,7 @@ for(const [label,options,expected] of [
 }
 {
   let fail=true;
-  const b=browser({respond:async name=>name==='record_app_open_v2'&&fail?{ok:true,json:async()=>false}:undefined});
+  const b=browser({respond:async name=>name==='record_app_open_v3'&&fail?{ok:true,json:async()=>false}:undefined});
   await b.settle();assert.equal(b.queue().length,1,'false acknowledgement retains pending event');
   fail=false;b.emit('window','online');await b.settle();assert.equal(b.opens.size,1);
 }
@@ -181,23 +181,23 @@ for(const [options,expected] of [
   [{referrer:'https://unknown.example/private'},'other'],[{},'direct_unknown']
 ]){
   const b=browser(options);await b.settle();
-  const event=b.calls.find(c=>c.name==='record_app_open_v2').body;
+  const event=b.calls.find(c=>c.name==='record_app_open_v3').body;
   assert.equal(event.p_source_group,expected);assert.match(event.p_visitor_key_hash,/^[0-9a-f]{64}$/);
   assert.ok(Number.isFinite(Date.parse(event.p_occurred_at)));
   assert.ok(!JSON.stringify(event).includes('secret')&&!JSON.stringify(event).includes('private'));
   await b.visible(false);await b.visible(true);
-  assert.equal(b.calls.filter(c=>c.name==='record_app_open_v2').at(-1).body.p_source_group,'direct_unknown','resume is not another original campaign referral');
+  assert.equal(b.calls.filter(c=>c.name==='record_app_open_v3').at(-1).body.p_source_group,'direct_unknown','resume is not another original campaign referral');
 }
 {
   const storage=new Map(),opens=new Set();
-  const b=browser({storage,opens,respond:async name=>name==='record_app_open_v2'?{ok:false,status:404}:undefined});
+  const b=browser({storage,opens,respond:async name=>(name==='record_app_open_v3'||name==='record_app_open_v2')?{ok:false,status:404}:undefined});
   await b.settle();assert.equal(opens.size,1,'legacy total works before SQL migration');
   assert.equal(b.queue().length,1,'details retained for later migration');
   const first=JSON.parse(storage.get(b.queue()[0]));assert.equal(first.legacy,true);
   const restored=browser({storage,opens});await restored.settle();
   assert.equal(opens.size,2,'enrich old UUID and record new opening, never duplicate the fallback');
   assert.equal(restored.queue().length,0);
-  assert.ok(restored.calls.some(c=>c.name==='record_app_open_v2'&&c.body.p_event_id===first.id));
+  assert.ok(restored.calls.some(c=>c.name==='record_app_open_v3'&&c.body.p_event_id===first.id));
 }
 {
   const storage=new Map(),opens=new Set();
@@ -205,7 +205,26 @@ for(const [options,expected] of [
     const id=webcrypto.randomUUID();opens.add(id);
     storage.set(prefix+id,JSON.stringify({id,createdAt:Date.now()-60000-i,legacy:true}));
   }
-  const b=browser({storage,opens,respond:async name=>name==='record_app_open_v2'?{ok:false,status:404}:undefined});
+  const b=browser({storage,opens,respond:async name=>(name==='record_app_open_v3'||name==='record_app_open_v2')?{ok:false,status:404}:undefined});
   await b.settle();assert.equal(opens.size,61,'old migration backlog cannot block the new daily counter');
 }
-console.log('Shared analytics passed: PWA/BFCache, idempotent offline/migration retries, private source classification, owner exclusion and blocked storage.');
+{
+  const b=browser({location:{href:'https://reiki-ai-apps.github.io/AI-/guides/meeting-notes/?utm_source=x&utm_campaign=kizashi-20260930-minutes-x-01',pathname:'/AI-/guides/meeting-notes/'}});
+  await b.settle();
+  const event=b.calls.find(c=>c.name==='record_app_open_v3').body;
+  assert.equal(event.p_campaign,'kizashi-20260930-minutes-x-01');
+  assert.equal(event.p_landing,'guide-meeting-notes');assert.equal(event.p_page_kind,'article');
+  await b.visible(false);await b.visible(true);
+  assert.equal(b.calls.filter(c=>c.name==='record_app_open_v3').at(-1).body.p_campaign,'','resume is not another post click');
+}
+{
+  const b=browser({respond:async name=>name==='record_app_open_v3'?{ok:false,status:404}:undefined});
+  await b.settle();assert.equal(b.opens.size,1);assert.equal(b.queue().length,0);
+  assert.ok(b.calls.some(c=>c.name==='record_app_open_v2'),'rolling migration uses v2 if v3 is missing');
+}
+{
+  const b=browser({respond:async name=>name==='record_app_open_v3'?{ok:false,status:500}:undefined});
+  await b.settle();assert.equal(b.queue().length,1);
+  assert.ok(!b.calls.some(c=>c.name==='record_app_open_v2'),'server errors must not discard campaign metadata');
+}
+console.log('Shared analytics passed: v3 campaign privacy, resume exclusion, v2 compatibility, idempotent offline retries and operator exclusion.');

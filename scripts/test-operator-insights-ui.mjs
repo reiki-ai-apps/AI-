@@ -8,7 +8,7 @@ const sample=period=>({version:1,timezone:'Asia/Tokyo',period,from:'2026-09-11',
   sources:[{source:'youtube',opens:12,unique_browsers:5}],hourly:Array.from({length:24},(_,hour)=>({hour,opens:hour===10?12:0}))});
 const settle=()=>new Promise(r=>setImmediate(r));
 function setup(){
-  let allowed=true,result,blob,clicks=0,copied='',copyFails=false;
+  let allowed=true,result,blob,clicks=0,copied='',copyFails=false,campaignResult={data:{version:1,days:14,timezone:'Asia/Tokyo',from:'2026-09-17',through:'2026-09-30',as_of:'2026-09-30T08:00:00Z',campaigns:[]}};
   const timer=new Map();let id=0;
   const copyButtons=[{dataset:{copyUrl:'https://reiki-ai-apps.github.io/AI-/?utm_source=x&utm_medium=social'}}];
   const elements={select:{},'[data-reload]':{},'[data-export]':{},'.insights-copy-state':{isConnected:true,textContent:''}};
@@ -18,10 +18,10 @@ function setup(){
   vm.runInNewContext(source,{window,document,Event,Blob,URL:{createObjectURL:b=>{blob=b;return 'blob:test';},revokeObjectURL(){}},
     navigator:{clipboard:{writeText:async value=>{if(copyFails)throw Error('clipboard unavailable');copied=value;}}},
     setInterval:fn=>{timer.set(++id,fn);return id;},clearInterval:i=>timer.delete(i),setTimeout:()=>1});
-  const rpc=async(_name,p)=>result===undefined?{data:sample(p.p_period)}:typeof result==='function'?await result(p):result;
+  const rpc=async(name,p)=>name==='operator_campaign_insights'?campaignResult:result===undefined?{data:sample(p.p_period)}:typeof result==='function'?await result(p):result;
   return {host,elements,api:window.aiRadarInsights,timer,setAllowed:v=>allowed=v,setResult:v=>result=v,
     mount:()=>window.aiRadarInsights.mount(host,{rpc,isAllowed:()=>allowed}),blob:()=>blob,clicks:()=>clicks,
-    copy:()=>copyButtons[0].onclick(),copied:()=>copied,failCopy:()=>copyFails=true};
+    copy:()=>copyButtons[0].onclick(),copied:()=>copied,failCopy:()=>copyFails=true,setCampaignResult:r=>campaignResult=r};
 }
 {
   const b=setup();b.setAllowed(false);b.mount();await settle();assert.equal(b.host.innerHTML,'');assert.equal(b.timer.size,0);
@@ -98,4 +98,13 @@ function setup(){
   assert.ok(html.includes('class="operator-insights-link"'),'app counters provide a discoverable analysis entry');
   assert.equal((operator.match(/id="operatorInsights"/g)||[]).length,1,'no duplicate mounts or timers');
 }
-console.log('Insights UI passed: private mount/export, SQL missing, offline stale values, malformed data, logout and stale-range races.');
+{
+  const b=setup();b.setCampaignResult({data:{version:1,days:14,timezone:'Asia/Tokyo',from:'2026-09-17',through:'2026-09-30',as_of:'2026-09-30T08:00:00Z',
+    campaigns:[{campaign:'kizashi-minutes-x-01',source:'x',landing:'guide-meeting-notes',opens:7,unique_browsers:5,new_browsers:4,returned_browsers:2}]}});
+  b.mount();await settle();assert.match(b.host.innerHTML,/minutes-x-01/);assert.match(b.host.innerHTML,/後日再訪/);
+  b.elements['[data-export]'].onclick();assert.match(await b.blob().text(),/"kizashi-minutes-x-01","X","guide-meeting-notes",7|"kizashi-minutes-x-01","X","guide-meeting-notes","7"/);
+  b.setCampaignResult({error:{message:'offline'}});b.elements['[data-reload]'].onclick();await settle();
+  assert.match(b.host.innerHTML,/投稿別データの再取得に失敗/);assert.match(b.host.innerHTML,/minutes-x-01/);
+  b.api.reset();assert.equal(b.host.innerHTML,'');
+}
+console.log('Insights UI passed: campaign 14-day report/CSV, private mount, failure visibility, logout and stale-range races.');

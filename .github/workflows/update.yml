@@ -32,7 +32,9 @@ jobs:
         run: node scripts/test-dedupe.mjs
 
       - name: test AI cache, protected slots, and reuse rules
-        run: node scripts/test-ai-operations.mjs
+        run: |
+          node scripts/test-ai-operations.mjs
+          node scripts/test-update-health.mjs
 
       - name: test featured tool research coverage
         run: node scripts/test-tool-research-coverage.mjs
@@ -83,7 +85,7 @@ jobs:
 
       - name: report validated existing-data fallback
         if: steps.build_data.outcome == 'failure'
-        run: echo "::warning::AI enrichment is unavailable; reuse the existing data.json only if the following validation and growth checks pass."
+        run: echo "::warning::AI enrichment is unavailable. Preserve the published edition without claiming freshness; persist update-health.json for readers and operator monitoring."
 
       - name: persist charged AI operations ledger
         if: always()
@@ -91,6 +93,7 @@ jobs:
           files=()
           [ -f .ai-cache.json ] && files+=(.ai-cache.json)
           [ -f .ai-usage.json ] && files+=(.ai-usage.json)
+          [ -f update-health.json ] && files+=(update-health.json)
           if [ ${#files[@]} -eq 0 ]; then
             echo "No AI ledger files to persist"
             exit 0
@@ -112,6 +115,7 @@ jobs:
           exit 1
 
       - name: validate published articles
+        if: steps.build_data.outcome == 'success'
         run: |
           node - <<'NODE'
           const fs = require("fs");
@@ -224,6 +228,7 @@ jobs:
           NODE
 
       - name: build public article pages and growth checks
+        if: steps.build_data.outcome == 'success'
         run: |
           # 新着不足や検証による除外があっても、公開済みの2枠を1枠で上書きしない。
           node scripts/finalize-video-edition.mjs
@@ -239,6 +244,7 @@ jobs:
           node scripts/test-dark-theme.mjs
 
       - name: persist validated public data
+        if: steps.build_data.outcome == 'success'
         run: |
           git config user.name "ai-radar-bot"
           git config user.email "actions@users.noreply.github.com"
