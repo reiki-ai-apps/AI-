@@ -99,6 +99,12 @@
       save(db);
       return json(200, {order});
     }
+    if ((match = path.match(/^\/api\/orders\/(\d+)\/delete$/)) && method === "POST") {
+      const id = Number(match[1]);
+      db.orders = db.orders.filter((o) => o.id !== id);
+      save(db);
+      return json(200, {deleted: id});
+    }
     if ((match = path.match(/^\/api\/orders\/(\d+)\/audit$/))) {
       const logs = db.audit.filter((a) => a.order_id === Number(match[1])).reverse();
       return json(200, {logs});

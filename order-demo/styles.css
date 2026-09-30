@@ -120,6 +120,15 @@ main { padding: 26px 28px 40px; }
 .update-ring { position: fixed; border: 3px solid #ffd76a; border-radius: 12px; box-shadow: 0 0 0 3px rgba(255,215,106,.35); pointer-events: none; }
 
 /* 工事注文書ツール（入力フォーム・一覧） */
+#entry-dialog { width: min(1100px, calc(100vw - 36px)) !important; height: calc(100vh - 34px); flex-direction: column; }
+#entry-dialog[open] { display: flex; }
+#entry-dialog .modal-header { position: static; flex: 0 0 auto; }
+#entry-dialog .modal-error { flex: 0 0 auto; }
+#entry-dialog .entry-form { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 16px 26px 24px; -webkit-overflow-scrolling: touch; }
+#entry-dialog .audit-details { flex: 0 0 auto; margin: 0 26px 12px; }
+#entry-dialog .sticky-actions { flex: 0 0 auto; }
+.button.danger { color: var(--red, #b42318); margin-right: auto; }
+.button.danger[hidden] { display: none; }
 .entry-form { display: grid; gap: 18px; padding: 4px 2px 12px; }
 .form-section { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px 16px; background: #fbfdfb; }
 .form-section legend { padding: 0 8px; font-weight: 800; color: var(--green-900); font-size: 13px; }

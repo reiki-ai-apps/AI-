@@ -165,6 +165,7 @@ function bindEvents() {
     toast("一覧のCSVを作成しました。");
   });
   $("#save-button").addEventListener("click", saveEntry);
+  $("#delete-button").addEventListener("click", deleteEntry);
   $("#shutdown-button").addEventListener("click", shutdownTool);
   $("#whats-new-button").addEventListener("click", showUpdateNotes);
   $$('[data-close]').forEach((button) => button.addEventListener("click", () => document.getElementById(button.dataset.close).close()));
@@ -276,6 +277,7 @@ function openNew() {
   $("#entry-note").textContent = "保存すると一覧に載り、印刷できるようになります";
   $("#entry-error").hidden = true;
   $("#audit-wrap").hidden = true;
+  $("#delete-button").hidden = true;
   renderForm({input_date: todayIso(), staff: state.staff});
   $("#entry-dialog").showModal();
 }
@@ -287,6 +289,7 @@ async function openEdit(orderId) {
     $("#entry-title").textContent = `内容の確認・修正（No.${orderId}）`;
     $("#entry-note").textContent = "修正して保存すると、印刷にもすぐ反映されます";
     $("#entry-error").hidden = true;
+    $("#delete-button").hidden = false;
     renderForm(response.order.fields);
     const audit = await api(`api/orders/${orderId}/audit`);
     $("#audit-wrap").hidden = false;
@@ -333,6 +336,19 @@ async function saveEntry() {
   } finally {
     button.disabled = false;
   }
+}
+
+async function deleteEntry() {
+  if (!state.editing || state.editing.id == null) return;
+  const name = $('#entry-form [name="customer_name"]')?.value || "";
+  if (!window.confirm(`No.${state.editing.id}「${name}」を削除します。元に戻せません。よろしいですか？`)) return;
+  try {
+    await api(`api/orders/${state.editing.id}/delete`, {method: "POST", body: JSON.stringify({actor: "利用者"})});
+    $("#entry-dialog").close();
+    state.editing = null;
+    toast("削除しました。");
+    await loadOrders();
+  } catch (error) { toast(error.message, "error"); }
 }
 
 async function setStatus(orderId, next) {
