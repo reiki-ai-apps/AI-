@@ -1108,6 +1108,12 @@ function expertVideoRecord(expert,source,video,fetchedAt){
 }
 
 function matchedVideoExperts(video,source,registry){
+  // A guest's biography can name their former teacher without that teacher
+  // appearing in the video. Prefer explicit guest name/role lines when present.
+  const guestBlock=String(video.description||'').match(/[＜<]ゲスト[＞>]\s*([\s\S]*?)(?=\n[＜<][^\n]+[＞>]|$)/)?.[1];
+  const guestNames=guestBlock?.split(/\r?\n/).filter(line=>/^[^｜|\n]{1,60}[｜|]/.test(line.trim()))
+    .map(line=>line.trim().split(/[｜|]/)[0]).join(' ');
+  if(guestNames&&!source.expert_id)return matchedExpertsForSource(guestNames,source,registry);
   const description=source.attribution_scope==="title_and_chapters"?extractVideoChapters(video.description):video.description||"";
   return matchedExpertsForSource(video.title+" "+description,source,registry);
 }

@@ -22,6 +22,9 @@ const guestRegistry={experts:[{id:'anno',name:'安野貴博'}]};
 const guestSource={allowed_experts:['anno'],attribution_scope:'title_and_chapters'};
 assert.equal(context.matchedVideoExperts({title:'他の人のAI解説',description:'チャンネル代表：安野貴博'},guestSource,guestRegistry).length,0,'channel boilerplate is not evidence that a person appears');
 assert.equal(context.matchedVideoExperts({title:'安野貴博がAIを解説',description:''},guestSource,guestRegistry).length,1);
+const guestBioRegistry={experts:[{id:'matsuo',name:'松尾豊'},{id:'anno',name:'安野貴博'},{id:'imai',name:'今井翔太'}]};
+assert.equal(JSON.stringify(context.matchedVideoExperts({title:'AI時代の対談',description:'＜ゲスト＞\n川邊健太郎｜起業家\n\n安野貴博｜AIエンジニア\n東京大学工学部（松尾豊研究室）卒。\n\n＜MC＞\n司会者｜編集長\n＜参考書籍＞\n今井翔太の著書'}, {allowed_experts:['*']},guestBioRegistry).map(x=>x.id)),JSON.stringify(['anno']),'guest biographies and book references are not additional speakers');
+assert.equal(context.matchedVideoExperts({title:'AI対談',description:'＜ゲスト＞\n松尾豊｜研究者\n安野貴博｜AIエンジニア'}, {allowed_experts:['*']},guestBioRegistry).length,2,'actual co-presenters remain eligible');
 const expert={id:"test-expert",name:"専門家",tier:"core_research",official_sources:[{platform:"youtube",channel_id:"trusted",trust:"primary"}]};
 const registry={experts:[expert],trusted_hosts:[],web_discovery:{enabled:false}};
 context.fetchText=async url=>{
