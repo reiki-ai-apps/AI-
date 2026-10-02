@@ -2,6 +2,286 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_8978db2d74a138e3ae78",
+      "story_id": "story_e3e38ac6116c45ce27",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.82,
+      "title": "Anthropic、「Claude Sonnet 5.5」の提供を開始",
+      "source_published_at": "2026-10-02T06:33:56.000Z",
+      "published_at": "2026-10-02T06:33:56.000Z",
+      "fetched_at": "2026-10-02T10:31:12.035Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Anthropicは新モデル「Claude Sonnet 5.5」の提供を始め、処理速度が30%以上速くなり利用コストも最大30%下がったと発表した。",
+      "source_name": "AIsmiley",
+      "source_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBZUFpidF9LMkF4OEZqZUlvck1kclZ0V2YtTjRzRmNIOGI4VUlYWTRkMURBQzBoYVR4ZHh2VEt6a3F5aV9RSHVjbFVlblFVSmc2TFFqU3hmUnJkbkFsbEE?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude Sonnet 5.5",
+        "anthropic",
+        "claudesonnet5.5",
+        "claude"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude Sonnet 5.5",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "API",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "処理速度向上率",
+          "value": "30%以上",
+          "normalized_value": "30%"
+        },
+        {
+          "type": "price",
+          "scope": "コスト削減率",
+          "value": "最大30%削減",
+          "normalized_value": "30%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "material_fact_changed",
+        "low_confidence_follow_up_demoted"
+      ],
+      "change_summary": "新モデル「Claude Sonnet 5.5」が提供開始され、速度30%以上向上・コスト最大30%削減が発表された。",
+      "detail": "Anthropicが新しいAIモデル「Claude Sonnet 5.5」の提供を始めた。これは文章作成や会話に使われるAIモデルの新しいバージョンにあたる。前のモデルと比べて処理の速さと料金の面で改善があった点が、今回の主な変化だ。\n\n発表によると、処理速度は30%以上速くなり、利用にかかる料金は最大30%安くなったという。どの作業を基準にした数値なのか、対応言語や利用できるプランといった詳しい条件は元記事では确认できない。\n\n企業や開発者がこのモデルを使う場合、同じ作業をより速く、より安いコストで済ませられる可能性がある。ただし実際の体感速度や料金は使い方によって変わるため注意が必要だ。提供開始の具体的な日付や対象地域はまだ明らかになっていない。",
+      "new_facts": [
+        "Anthropicが「Claude Sonnet 5.5」の提供を開始した",
+        "処理速度が30%以上向上したと発表された",
+        "利用コストが最大30%下がったと発表された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_25669e84fa8b5fb17a04",
+      "story_id": "story_d34ca4ff29a9e70f3a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6175609756097561,
+      "title": "Google、Gemini Liveに視覚サポート機能「シンプルガイド」をAndroid向けに提供開始",
+      "source_published_at": "2026-10-02T03:46:10.000Z",
+      "published_at": "2026-10-02T03:46:10.000Z",
+      "fetched_at": "2026-10-02T10:31:12.035Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "Googleは音声AIアシスタント「Gemini Live」の新機能「シンプルガイド」をAndroid向けに提供開始し、カメラ越しに周囲の様子を音声で説明できるようにした。",
+      "source_name": "HelenTech",
+      "source_url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9mNnoxelhTcHVWRVNoZjJWRWJzVzhHS2pzZEpwVXN3TnFzeWJPbUlOUWhqS1FESXAtV3VGRTdlOEJNaVRqTzNFV1VJclhxV2QwRnJSYzVLaVkyTGYxbUZMZHpHYm50OHFMbmM3ZTBwcVVkZms?oc=5",
+      "story_entities": [
+        "Google",
+        "Gemini Live",
+        "Android",
+        "google",
+        "geminilive"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "Gemini Live シンプルガイド",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Android",
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "対応OS",
+          "value": "Android",
+          "normalized_value": "android"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Gemini Liveにカメラ映像を音声で説明する「シンプルガイド」機能がAndroid向けに追加された。",
+      "detail": "Googleが音声で会話できるAIアシスタント「Gemini Live」に、新しい機能「シンプルガイド」を追加した。これはスマートフォンのカメラを使い、周りの様子をAIが声で説明してくれる機能だ。これまでのGemini Liveはテキストや音声でのやり取りが中心だったが、カメラの映像をもとに周囲の状況を伝える点が新しい変化だ。\n\nこの機能はAndroidのスマートフォン向けに提供が始まった。カメラを周囲に向けると、AIがその場にある物や様子を音声で説明してくれる仕組みだ。目で周囲を確認しにくい人が使う場面を想定していると考えられる。\n\n利用者はスマートフォンのカメラを向けるだけで、周囲の状況を音声で知ることができるようになる。ただし対応機種や対応言語、提供開始の具体的な日付までは元記事では确认できない。iPhoneなど他の端末への対応があるかも分かっていない。",
+      "new_facts": [
+        "Googleが「Gemini Live」に新機能「シンプルガイド」を追加した",
+        "シンプルガイドはカメラ越しに周囲を音声で説明する機能である",
+        "Android向けに提供が始まった"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_21cedd9b85b73879e36c",
+      "story_id": "story_ca2342431204805ff6",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6257142857142857,
+      "title": "OpenAI、ChatGPTの新機能「Space」を発表",
+      "source_published_at": "2026-10-02T03:35:13.000Z",
+      "published_at": "2026-10-02T03:35:13.000Z",
+      "fetched_at": "2026-10-02T10:31:12.035Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIはChatGPTの新機能「Space」を発表し、チームメンバーとAIの共同作業を一つの場所にまとめられるようにした。",
+      "source_name": "PlusWeb3",
+      "source_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5SVE1va3d3Nmw4Y1hXREJScHBpM1c2anVMYXR1MUdrbGVkSXBJdlpHVlM5RjFQX2NkemZUQTJ6OGZ1UHptSDNBRVlkZktya2dQMFVmSXNPdjFKb2lTZmIw?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT",
+        "ChatGPT Space",
+        "openai",
+        "chatgpt"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT Space",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "ChatGPT",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "ChatGPTにチーム共同作業向けの新機能「Space」が追加されたと発表された。",
+      "detail": "OpenAIが新しいChatGPTの機能「Space」を発表した。これはチームのメンバーとAIが一緒に作業する場所を一つにまとめる仕組みだ。これまでのChatGPTは個人同士のやり取りが中心だったが、Spaceではチームで共有しながらAIを使える点が新しい変化といえる。\n\n現時点で确认できる情報は「チームとAIの共同作業を一元化する」という発表内容だけで、具体的にどんな画面や操作でチーム作業ができるのかは元記事では分からない。対応するプランや利用料金、提供開始の具体的な日付についても記載がない。\n\n利用者にとっては、会社やグループでの資料づくりやタスク管理にAIを組み込みやすくなる可能性がある。ただし価格や対応地域、提供時期は不明なままだ。今後OpenAIから詳しい説明が出るかが注目される。",
+      "new_facts": [
+        "OpenAIがChatGPTの新機能「Space」を発表した",
+        "SpaceはチームとAIの共同作業を一元化する機能とされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_6113f7c1e8e8c3575c1c",
+      "story_id": "story_cbbf35bd4ed8295321",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.82,
+      "title": "Anthropic、米連邦政府機関向け『Claude for Government』を正式提供",
+      "source_published_at": "2026-10-01T23:48:52.000Z",
+      "published_at": "2026-10-01T23:48:52.000Z",
+      "fetched_at": "2026-10-02T10:31:12.035Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Anthropicが米連邦政府機関向けAIサービス『Claude for Government』の提供を正式に始めたと発表した。料金や対象省庁の詳細は不明。",
+      "source_name": "디지털투데이",
+      "source_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPTGFPY0pWclRPa2FtWWVKTmNrYVVYSkFlWGxzaTc2TllMTjZURE54c0pNdWdsbnBzaWtKR2hZbUlUcUxIYWxkeDhUdE5RQlJiUVRBc3JSUVZtc1Z0OURLbEdhb0tMVlBYNjVXM2duY2VBODg5WW1STlZ4TWsxckpwUjZ3WEZZNmRDVUpld1FtRlFwRC1OUXQyLXM2dWFfNHBEU2tXTnZfY3I5U0JGUjg0b3VUanJTZXh5VWYtbQ?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude for Government",
+        "米連邦政府",
+        "anthropic",
+        "claudeforgovernment"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude for Government",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "米連邦政府機関",
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "Claude for Government",
+          "value": "米連邦政府機関向け提供開始",
+          "normalized_value": "米連邦政府機関向け提供開始"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "material_fact_changed",
+        "low_confidence_follow_up_demoted"
+      ],
+      "change_summary": "Anthropicが米連邦政府機関専用のAI提供プランを新たに開始した。",
+      "detail": "Anthropicは米連邦政府機関向けにAIチャットサービス『Claude for Government』の提供を正式に始めたと発表しました。これは米国の政府職員が業務でAnthropicのAIモデル『Claude』を使えるようにする専用プランです。これまでは企業や開発者向けの提供が中心でしたが、今回は政府機関に特化した窓口を新たに設けた形になります。\n\n記事の抜粋には、提供開始の具体的な日付や料金、対象となる省庁の範囲までは書かれていません。Anthropicはこれまでも法人向けにClaudeを提供してきましたが、政府機関向けにはセキュリティ基準や契約形態を別に整える必要があったとみられます。生成AIを政府の業務システムに組み込む動きは各国で広がっています。\n\n米政府機関の職員が公式業務でAIを選べる選択肢が一つ増えることになります。情報管理やセキュリティの具体的な基準がどう設定されているかは、現時点では公表されていません。料金や対象範囲の詳細は今後の発表を待つ必要があります。",
+      "new_facts": [
+        "Anthropicが米連邦政府機関向けAIサービス『Claude for Government』の提供を正式に開始した。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_54d39d6701966a425bc4",
+      "story_id": "story_eea44b4cd90315b271",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "建設業特化のAIエージェント「現場Hub AI」提供開始",
+      "source_published_at": "2026-10-01T23:21:49.000Z",
+      "published_at": "2026-10-01T23:21:49.000Z",
+      "fetched_at": "2026-10-01T23:56:39.933Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "建設業に特化したAIエージェント「現場Hub AI」の提供が始まったことが分かった。",
+      "source_name": "ニコニコニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBmWVVveVZPYUY4Mk5sNjdKZm95RkZZMWF3RkVIczFJbElXYk55ZzBRRFVxOXlMUE5jdFg3d1c5bFVvWGQzejlLYWlMaUdHdlVubUlLWFpjcEVxanA4WW9BSlR6UmJBcllaVGh1enNtOV9GNG40WGZjRUNtSQ?oc=5",
+      "story_entities": [
+        "現場Hub AI",
+        "建設業",
+        "現場hubai"
+      ],
+      "primary_entity": "現場Hub AI提供企業(不明)",
+      "story_subject": "現場Hub AI",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "建設業",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "建設業に特化したAIエージェント「現場Hub AI」の提供開始が新たに発表された。",
+      "detail": "建設業に特化したAIエージェント「現場Hub AI」の提供が始まった。AIエージェントとは、人に代わって自動で作業を進めるAIプログラムのことだ。これまで建設現場の業務は人手による管理が中心だったが、AIが現場の作業を支援する専用サービスが新たに登場した形になる。\n\n「現場Hub AI」は建設業向けという特定の業界に絞って作られている点が特徴とされる。記事の時点では、提供元の企業名や具体的な機能、料金、対応エリアなど詳しい内容は明らかにされていない。\n\n建設業で働く人にとっては、現場管理や事務作業の一部をAIが担う可能性が出てくる。ただし実際にどの業務を代行できるのか、導入にどのくらいの費用がかかるのかはまだ分かっていない。今後、サービスの詳細が公表されるか注目される。",
+      "new_facts": [
+        "建設業特化のAIエージェント「現場Hub AI」の提供が始まった"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_987293370abf0e38e582",
+      "story_id": "story_e928d3e2c6d01f9385",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "マイクロソフト、リンクトインCEOロスランスキー氏退任へ AI主導の経営刷新続く",
+      "source_published_at": "2026-10-01T18:15:43.000Z",
+      "published_at": "2026-10-01T18:15:43.000Z",
+      "fetched_at": "2026-10-01T23:56:39.933Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "マイクロソフト傘下リンクトインのCEOライアン・ロスランスキー氏が退任することが分かり、AI推進に伴う経営刷新が続いているとされる。",
+      "source_name": "Yahoo Finance",
+      "source_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNNlk5c1lVM09rWFZIN2xEQmk5NjZrN3hYU0RSSmRDclpIMER6U3JVNnJKUFlCSVhTeUVvWE5UY2JwbmVBTVA5UUpmd0ktU3gwQXg1OC1KX2o1OVpZU0lFQjZMcXVfZ2xhYjBlTDJ3dFdsSHZDNmtKdWJpdjA3QldaNE9LOG9RYVBleTFJeXprbHFVZHJnZGlpTklJWWlibXM?oc=5",
+      "story_entities": [
+        "マイクロソフト",
+        "リンクトイン",
+        "ライアン・ロスランスキー",
+        "ライアンロスランスキー",
+        "microsoft"
+      ],
+      "primary_entity": "マイクロソフト",
+      "story_subject": "リンクトインCEO交代",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "リンクトイン経営体制",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "マイクロソフト傘下リンクトインのCEOロスランスキー氏の退任が新たに明らかになった。",
+      "detail": "マイクロソフト傘下のビジネスSNS「リンクトイン」のCEOライアン・ロスランスキー氏が退任することになった。簡単に言うと、AI推進を背景にした経営陣の入れ替えが、リンクトインのトップにも及んだということだ。マイクロソフトでは近年、AI関連の事業を強化する動きの中で幹部人事の刷新が続いているとされる。\n\nロスランスキー氏はリンクトインを長く率いてきた人物で、その退任は同社にとって大きな節目となる。記事の時点では、後任の人物や退任の具体的な時期、退任理由の詳細は明らかにされていない。マイクロソフト全体でAIを軸にした組織再編が進んでいることが背景にあるとみられる。\n\nリンクトインを採用活動や営業に使っている企業にとっては、サービスの方向性が今後変わる可能性がある。ただし現時点でサービス内容そのものに変更が発表されたわけではない。今後、新体制の詳細やリンクトインの事業方針がどう示されるかが注目される。",
+      "new_facts": [
+        "リンクトインCEOのライアン・ロスランスキー氏が退任することが分かった"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_65a6e5d252ddbeecde7e",
       "story_id": "story_04fa67e17bbd4bfc72",
       "story_sequence": 1,
@@ -44,6 +324,57 @@
       "detail": "日本政府は成長戦略会議を開催し、国産AIや半導体など17の重点分野へ集中的に投資する方針を発表した。簡単に言うと、国がこれからの経済成長を支える技術分野にまとまったお金を投じる計画を示したということだ。これまでは個別の省庁がばらばらに予算を配分してきたが、今回は成長戦略会議という場で一括して方向性を決めた点が新しい。\n\n記事では国産AIや半導体を含む17の戦略分野が投資対象として挙げられている。会議で決まった具体的な予算額や実施時期は記事からは分からない。政府が国産AI技術と半導体産業を同じ会議で重点分野として並べたことは、AIを動かすための計算資源である半導体の確保が国の成長戦略の柱になっていることを示している。\n\n国内のAI関連企業や半導体メーカーにとっては、今後の政府支援や予算配分の対象になる可能性がある。ただし具体的な予算規模や対象企業、実施スケジュールはまだ明らかにされていない。今後の会議資料や予算案の発表を確認する必要がある。",
       "new_facts": [
         "政府の成長戦略会議が国産AIや半導体を含む17の戦略分野への集中投資方針を示した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_65a6e5d252ddbeecde7e_rev_2c86077dcd0c",
+      "story_id": "story_a9cd3dcf5b1d65adf2",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.8527272727272728,
+      "title": "政府、国産AIや半導体など戦略17分野に集中投資へ 成長戦略会議",
+      "source_published_at": "2026-10-01T15:00:07.000Z",
+      "published_at": "2026-10-01T15:00:07.000Z",
+      "fetched_at": "2026-10-01T23:56:39.933Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "政府の成長戦略会議が、国産AIや半導体など17の戦略分野へ集中的に投資する方針を示した。",
+      "source_name": "Yahoo!ニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5FeE85eXREWUtrenRkV1ZfUWc5ZWJINjNwNElxdWVMcFprQ3JUYkxHeld0TVZEZDBKcTBTUjRQbm9uLTRBbTE4eHNRNEgwdzdRdDZsbGZkdmJJeENHLThwaEg4NU8zRXBDSVB4TEpUSDllZjUxaFJHSDZTRFRkcHM?oc=5",
+      "story_entities": [
+        "成長戦略会議",
+        "国産AI",
+        "半導体",
+        "国産ai"
+      ],
+      "primary_entity": "日本政府",
+      "story_subject": "成長戦略会議の17戦略分野集中投資方針",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "日本",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "戦略分野数",
+          "value": "17分野",
+          "normalized_value": "17"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type",
+        "same_scope",
+        "same_url_content_changed"
+      ],
+      "change_summary": "政府が国産AIや半導体など17の戦略分野を対象にした集中投資方針を新たに示した。",
+      "detail": "政府が成長戦略会議を開き、国産AIや半導体など17の戦略分野に集中投資する方針を示した。簡単に言うと、国が重要な技術分野へまとめて資金を投じる計画を発表したということだ。これまでは分野ごとの支援が中心だったが、17分野を束ねて集中投資する枠組みは新しい動きとされる。\n\n対象分野には国産の人工知能や半導体が含まれる。人工知能とは、人間のように学習や判断をするコンピューターの技術のことだ。半導体は電子機器の頭脳となる部品で、AIの計算にも欠かせない。これらに資金を集中させることで、海外に頼らない技術基盤をつくる狙いがあるとみられる。\n\n関連企業にとっては、対象分野に入れば支援を受けられる可能性が出てくる。ただし具体的な投資額や対象企業、実施時期は記事の時点では明らかになっていない。今後、会議の詳細な決定内容が発表されるかが注目される。",
+      "new_facts": [
+        "政府の成長戦略会議が国産AIや半導体など17分野への集中投資方針を示した"
       ],
       "event_date_precision": "unknown"
     },
@@ -292,6 +623,60 @@
       "dedupe_decision": "new",
       "dedupe_reasons": [
         "no_previous_story"
+      ],
+      "change_summary": "フランス政府がAI基盤に公開型(オープンウェイト)モデルを採用している実態と、その理由を安野氏が取材で明らかにしました。",
+      "detail": "安野貴博氏は、フランス・パリで26回の取材を行いました。動画は、フランス政府が採用するAI基盤の背景を伝えます。これまで、米国製の非公開型AIが主流とされてきました。\n\nフランス政府は、仕組みが公開された「オープンウェイトモデル」を使っています。具体的には、中国発の生成AIであるDeepSeekを採用しているといいます。背景には、自国でAIを管理する「主権性」を重視する考えがあるとのことです。\n\n動画は、技術に慎重とされるフランスがこの選択をした理由を探ります。詳しい内容は、安野氏のnote記事で公開されています。動画内での具体的な結論や数値の詳細は、まだ明らかにされていません。",
+      "new_facts": [
+        "安野貴博氏はフランス・パリで計26回のインタビューを実施しました。",
+        "フランス政府はAI基盤にオープンウェイトモデルを採用しているとされています。",
+        "動画では、フランスがDeepSeekなど非米国製モデルを選ぶ理由として「主権性」が挙げられています。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_330f77d45b730fd34984_rev_581d9a47ef88",
+      "story_id": "story_40a8e67abfd99a5a6d",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "安野貴博氏、フランス政府のDeepSeek採用理由を解説",
+      "source_published_at": "2026-09-30T10:18:21.000Z",
+      "published_at": "2026-09-30T10:18:21.000Z",
+      "fetched_at": "2026-10-01T23:56:39.933Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "安野貴博氏はパリでの取材をもとに、フランス政府がなぜ米国製ではなく公開型AIのDeepSeekを使うかを解説しました。",
+      "source_name": "安野貴博の自由研究",
+      "source_url": "https://www.youtube.com/watch?v=FRiNwdXSXGw",
+      "story_entities": [
+        "安野貴博",
+        "フランス政府",
+        "DeepSeek",
+        "deepseek"
+      ],
+      "primary_entity": "安野貴博",
+      "story_subject": "フランス政府のAI主権政策とDeepSeek採用",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "フランス",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "インタビュー回数",
+          "value": "26回",
+          "normalized_value": "26"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "similar_title",
+        "same_scope",
+        "same_url_content_changed"
       ],
       "change_summary": "フランス政府がAI基盤に公開型(オープンウェイト)モデルを採用している実態と、その理由を安野氏が取材で明らかにしました。",
       "detail": "安野貴博氏は、フランス・パリで26回の取材を行いました。動画は、フランス政府が採用するAI基盤の背景を伝えます。これまで、米国製の非公開型AIが主流とされてきました。\n\nフランス政府は、仕組みが公開された「オープンウェイトモデル」を使っています。具体的には、中国発の生成AIであるDeepSeekを採用しているといいます。背景には、自国でAIを管理する「主権性」を重視する考えがあるとのことです。\n\n動画は、技術に慎重とされるフランスがこの選択をした理由を探ります。詳しい内容は、安野氏のnote記事で公開されています。動画内での具体的な結論や数値の詳細は、まだ明らかにされていません。",
