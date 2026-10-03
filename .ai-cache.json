@@ -16960,7 +16960,241 @@
           "same_url_content_changed"
         ]
       }
+    },
+    "url:https://news.google.com/rss/articles/cbmiuafbvv95cuxpvlhtzzzkskdeulzrm1lhslfcbtjvu1bpovrmx0rgeglkwgu2rtbczzdoqwjstdlfy1g4q1prrfa2avlasditavpuac1znurkufh1tlbzs3vqqu91q0nqv254nxphog1otepwutvwvza1sxvwbzvyrhvfwlbstxv2mzlxv0dfltzzz2veq1qtmdfba2ozwmw0zephuwl6bnb3oxnlu3jwnfu3mzjwcv96vfjhtwvfqwnr": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiuafbvv95cuxpvlhtzzzkskdeulzrm1lhslfcbtjvu1bpovrmx0rgeglkwgu2rtbczzdoqwjstdlfy1g4q1prrfa2avlasditavpuac1znurkufh1tlbzs3vqqu91q0nqv254nxphog1otepwutvwvza1sxvwbzvyrhvfwlbstxv2mzlxv0dfltzzz2veq1qtmdfba2ozwmw0zephuwl6bnb3oxnlu3jwnfu3mzjwcv96vfjhtwvfqwnr",
+      "content_hash": "6fd3a3308e1dd542cd35df7d83b8a5ea37a7b96572a1fffaede85e74c1217b5f",
+      "story_key": "3242583871e68d5b7bbe17e558ef8f0dd4a54b4dba048f28b7ebbff4073b87f1",
+      "status": "enriched",
+      "processed_at": "2026-10-03T09:54:41.619Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "AI業界・経営重要速報",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "米当局、Nvidia製AIチップ3億ドル相当を中国へ密輸したとして技術企業CEOを逮捕",
+        "source_url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPVlhTZzZkSkdEUlZRM1lhSlFCbTJvU1BPOVRmX0RGeGlkWGU2RTBCZzdOQWJsTDlFY1g4Q1pRRFA2aVlaSDItaVpUaC1zNURkUFh1TlBzS3VqQU91Q0NqV254NXphOG1OTEpWUTVwVzA1SXVWbzVYRHVfWlBSTXV2MzlxV0dFLTZzZ2VEQ1QtMDFBa2ozWmw0ZEphUWl6bnB3OXNLU3JWNFU3MzJwcV96VFJhTWVfQWNr?oc=5",
+        "source_name": "Ars Technica",
+        "is_official": false,
+        "published_at": "2026-10-02T18:39:36.000Z",
+        "source_published_at": "2026-10-02T18:39:36.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-03T09:52:54.383Z",
+        "event_at": "",
+        "event_status": "継続中",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Nvidia",
+          "米司法当局",
+          "輸出規制"
+        ],
+        "primary_entity": "米司法当局",
+        "story_subject": "Nvidia製AIチップの中国密輸事件",
+        "event_type": "security",
+        "event_stage": "investigating",
+        "event_scope": "米国・中国間の半導体輸出",
+        "fact_slots": [
+          {
+            "type": "amount",
+            "scope": "密輸されたとされるNvidia製チップの総額",
+            "value": "3億ドル",
+            "normalized_value": "300000000USD"
+          }
+        ],
+        "new_facts": [
+          "米当局がNvidia製AIチップ約3億ドル相当を中国へ密輸したとして技術企業CEOを逮捕した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "米当局は、Nvidia製AI半導体を約3億ドル分不正に中国へ輸出したとして、ある技術企業のCEOを逮捕したと発表した。",
+        "detail": "アメリカの当局が、ある技術企業のCEOを逮捕したと発表しました。容疑は、AI開発に使われる半導体メーカーNvidia(エヌビディア)製のチップを、アメリカの輸出規制に違反して中国へ密輸したというものです。半導体とは、AIの計算処理を行うコンピューターの中心部品のことです。\n\n密輸されたとされるチップの総額は約3億ドル、日本円でおよそ450億円規模にあたります。アメリカは安全保障上の理由から、高性能なAI向け半導体を中国へ輸出することを厳しく制限しており、今回の逮捕はその規制に違反した疑いで行われました。具体的な企業名やCEOの氏名、逮捕された時期の詳細は、本文の抜粋からは確認できません。\n\nこの事件は、AI向け半導体をめぐる米中間の緊張が実際の摘発にまで及んでいることを示しています。半導体の国際的な流通に関わる企業にとっては、輸出規制の順守がこれまで以上に重視される可能性があります。捜査の詳細や今後の裁判の行方については、まだ明らかになっていません。",
+        "change_summary": "Nvidia製AIチップの中国への不正輸出をめぐり、技術企業CEOの逮捕という具体的な摘発事例が報じられた。",
+        "impact_summary": "半導体の輸出入に関わる企業や投資家にとって、米国の対中輸出規制の執行が強化されている実例として注視される。",
+        "action_suggestion": "逮捕された企業名や人物名、容疑の詳細、裁判の進行状況について続報の確認が必要な状況。",
+        "importance": "A",
+        "related_categories": [
+          "半導体・インフラ",
+          "規制・法務"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmix0fvx3lxte9ob04yqjfqd0tvykfbnvdoqupsywu2yzndtk1jahbvwelzqty2dmnxugtyovbjrezws29xwxc5nwjmempvv2tjc0p6d2zjwkhpd2f1vff5sk5zzdd3bktj": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmix0fvx3lxte9ob04yqjfqd0tvykfbnvdoqupsywu2yzndtk1jahbvwelzqty2dmnxugtyovbjrezws29xwxc5nwjmempvv2tjc0p6d2zjwkhpd2f1vff5sk5zzdd3bktj",
+      "content_hash": "3559e1023a850e87e14eb7f723b3f8d3796e0e54ff452b0f2d59532416bafb6f",
+      "story_key": "5d6d74b44911fc281ae3dee490771743911c9bda119a77164811254f36ea7b11",
+      "status": "rejected",
+      "processed_at": "2026-10-03T09:54:41.620Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 具体的な機能や数字がなく体験談の言い換えに留まる"
+    },
+    "url:https://news.google.com/rss/articles/cbmidefvx3lxte5xq3jjv05fv2xnweflagl2z3ryotniq1mtm0fmbzflwvfjvfhemdjqalvjtevkakzuy3eyd1jpae9orhlgm1nfulezbklfclqyty1kr0u1ulbeegphmvfkeelasm44ektalupmnej2wjfzmvro": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte5xq3jjv05fv2xnweflagl2z3ryotniq1mtm0fmbzflwvfjvfhemdjqalvjtevkakzuy3eyd1jpae9orhlgm1nfulezbklfclqyty1kr0u1ulbeegphmvfkeelasm44ektalupmnej2wjfzmvro",
+      "content_hash": "adc15bab744cf3189bc26ff11b496b19cbeca8398eca5b31c553d650200f79b4",
+      "story_key": "909606e57a9f6bb3025e29642b5b92ba4b9048cdc366eef79aba2724fec0359d",
+      "status": "rejected",
+      "processed_at": "2026-10-03T09:54:41.620Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 発言内容の具体的根拠が抜粋になくタイトルの言い換えになる"
+    },
+    "url:https://news.google.com/rss/articles/cbmikgfbvv95cuxqazu1cxvgy19rrjk2r3u2qjl5ofdcahjrchbgu3d3wlyzu2tou19sz0ttrjeztxz6nl9pddfqufh4nfpfbm94chp4owm5b3luzfnxrwltts1irlfezuzrn29jbkk4u3blz05bbu5hzvqwqxj6mnr0qjvdvjvmyunpxzbntkvbqu5krfjwmmhbrmthqq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmikgfbvv95cuxqazu1cxvgy19rrjk2r3u2qjl5ofdcahjrchbgu3d3wlyzu2tou19sz0ttrjeztxz6nl9pddfqufh4nfpfbm94chp4owm5b3luzfnxrwltts1irlfezuzrn29jbkk4u3blz05bbu5hzvqwqxj6mnr0qjvdvjvmyunpxzbntkvbqu5krfjwmmhbrmthqq",
+      "content_hash": "3a8b683ec93cd336fac7fc9837e3f09e17aa204c088eb03c2e83c650e99f60ed",
+      "story_key": "163e82bc976b0ccbe47dcbb8aa7cc47676810f6b00e3791ac37fa145414f552b",
+      "status": "rejected",
+      "processed_at": "2026-10-03T09:54:41.620Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: インタビュー内容の具体的事実が抜粋に含まれていない"
+    },
+    "url:https://klingai.com/global": {
+      "canonical_url": "https://klingai.com/global",
+      "content_hash": "56d780c4cd4703b0bc05351e39ea264bbf1681a0a0cda36d8e7ea15bf73afbf5",
+      "story_key": "7c79a9f2c1bf100b005d04c52824f2cac18896b8d5b7fc17a5ca706ae4473e88",
+      "status": "rejected",
+      "processed_at": "2026-10-03T09:54:41.620Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 製品ページの紹介文で新規発表事実が確認できない広告的内容"
+    },
+    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte5mtgh6a3picfbmmuzowthhuefootlpzkvvugjewlbuefb2mzjwszlluhveahrgejlnvw5mtucwcjdtyuzfnvvft1zuc1jksgn6rdj3zezyt0fvmvbfagrqnkjkdkrsdjqybwc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte5mtgh6a3picfbmmuzowthhuefootlpzkvvugjewlbuefb2mzjwszlluhveahrgejlnvw5mtucwcjdtyuzfnvvft1zuc1jksgn6rdj3zezyt0fvmvbfagrqnkjkdkrsdjqybwc",
+      "content_hash": "3873c75b707fa5ab101b16dadd2ce2d759af6c1b3ebd7c3d478fa45d32c34c3f",
+      "story_key": "9dce7d8b96a44ff0f667713c9ab3ae72f3992b1ac40089fb15f0549e4c56c43a",
+      "status": "retry",
+      "processed_at": "2026-10-03T09:54:41.620Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmixkfvx3lxte9sukgynfvdyvqtqlzkdxpmbgtkq0fcv0pmavd1n0mwstrunndubng4ugzld3druzniympjvxcztmrrr2p0znzkdxvjelf6vme4ng5hqzfzm09kykngyke": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmixkfvx3lxte9sukgynfvdyvqtqlzkdxpmbgtkq0fcv0pmavd1n0mwstrunndubng4ugzld3druzniympjvxcztmrrr2p0znzkdxvjelf6vme4ng5hqzfzm09kykngyke",
+      "content_hash": "aeba32229098aea6b98d9e3882dcf1d2a448b63fdf0e6950ab2481431ea09dc5",
+      "story_key": "a711ebb124157204e3ff7acef48829df9900dacf390113dd140666ef162ad9d4",
+      "status": "rejected",
+      "processed_at": "2026-10-03T09:55:46.798Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 具体的な事実がなく見出しのみの短い告知"
+    },
+    "url:https://news.google.com/rss/articles/cbmihafbvv95cuxoqnbswmiza2hhy253vzreqw5foe5vagsxbkvyz0g4y29yzklds1jeyznyrkhccwcwv1ffs2lrtnnzsmpuuly4mhjqejlnetzqyk41bzbstecxnwctbwtuvgxbc0zmef9eeetkd24wx3jswdlrytnbsk52swxfqjrzrhzyyla": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmihafbvv95cuxoqnbswmiza2hhy253vzreqw5foe5vagsxbkvyz0g4y29yzklds1jeyznyrkhccwcwv1ffs2lrtnnzsmpuuly4mhjqejlnetzqyk41bzbstecxnwctbwtuvgxbc0zmef9eeetkd24wx3jswdlrytnbsk52swxfqjrzrhzyyla",
+      "content_hash": "27d1e3de93242b9585372c7c2c65d8c212bca6830954e09fea257c2c3541ac7e",
+      "story_key": "20cb21374f3bd360ea4f258b98c0f4859073866a1a8754611cd6054aef0a15ed",
+      "status": "rejected",
+      "processed_at": "2026-10-03T09:55:46.798Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: ランニング大会の記事でAIと無関係な誤ヒット"
+    },
+    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxte1yrxkyqtyyzk9qazg4ys1fchfnrvl6avhkwg5yn1jkwmzyoegxcuvkrhlatdnyqndjqxhna0wzu3nlylhozgzvt2pczdq4bnhrbwk0": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxte1yrxkyqtyyzk9qazg4ys1fchfnrvl6avhkwg5yn1jkwmzyoegxcuvkrhlatdnyqndjqxhna0wzu3nlylhozgzvt2pczdq4bnhrbwk0",
+      "content_hash": "2fe651ed556ebf4c044b0246a76753e00904eb0335d3a22f98e9be7d69171b68",
+      "story_key": "1a5814b2fdec82d8cf9a369e9f50f1104f4abfea41347dcd2be576643e9e782c",
+      "status": "rejected",
+      "processed_at": "2026-10-03T09:55:46.798Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 出所不明なSEO的記事で具体的な事実が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmigafbvv95cuxnxzzmvllhd3zislatuezsa0xkaexzz1rfnl9lu2dgzudiu0xnb1flzlnlmldsc2pfwnfvbehpbdrkbg50bxlnvvrqcepouel0vtdhzxpabfg0n29fbxvmylm5tlvsu1hdzfu1nuxnd2n3sznvb0dvmlrqbmjtsnvdcq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmigafbvv95cuxnxzzmvllhd3zislatuezsa0xkaexzz1rfnl9lu2dgzudiu0xnb1flzlnlmldsc2pfwnfvbehpbdrkbg50bxlnvvrqcepouel0vtdhzxpabfg0n29fbxvmylm5tlvsu1hdzfu1nuxnd2n3sznvb0dvmlrqbmjtsnvdcq",
+      "content_hash": "0c4071e786ee0485ab51687bca2b0c84d6b21960a166d23c08335d0390b6ae42",
+      "story_key": "006a039f37318825dd19b2d159d00777b4c8218de8dc35ecf12e05775f3f968c",
+      "status": "retry",
+      "processed_at": "2026-10-03T09:55:46.798Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-september-2026": {
+      "canonical_url": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-september-2026",
+      "content_hash": "55798045ac5e7adc42377f5e87a9356c307ec081caef4081c7b5d045a99df27a",
+      "story_key": "07d073dda044bdf4e113f69dfc3e8cbeed39379269499dabaf67d880e8cff1e2",
+      "status": "retry",
+      "processed_at": "2026-10-03T09:55:46.798Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmiyefvx3lxte9nbglfnelvue90tkvilxz1c0zua0tjdtnbq2vlmgx5s3dytejfrgjyrgeywwlhsg16bfljrddkwnhxwle0uu8yqutimvrlnzvregliyzrjuzazu2v4mxr1utibzkfvx3lxte80c3h4anu2bzhvslpuoxhha3vxrtf5tgngyuxnufhpm2tvbkmydtdncxjndmjumkzimexvevjmrhrltfhcme9vznpsvxgxqwuzdgrlahi5rvh1v21brenvrglnnwzfuq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiyefvx3lxte9nbglfnelvue90tkvilxz1c0zua0tjdtnbq2vlmgx5s3dytejfrgjyrgeywwlhsg16bfljrddkwnhxwle0uu8yqutimvrlnzvregliyzrjuzazu2v4mxr1utibzkfvx3lxte80c3h4anu2bzhvslpuoxhha3vxrtf5tgngyuxnufhpm2tvbkmydtdncxjndmjumkzimexvevjmrhrltfhcme9vznpsvxgxqwuzdgrlahi5rvh1v21brenvrglnnwzfuq",
+      "content_hash": "576149e4e4ac9247995ad8efa8373bba87e54f0cc194201b383c1ea2806ac0c1",
+      "story_key": "cd7cdf8b8689a516e37a67f2c142031cb87e0605efc9cfedcb69607677ee8ed9",
+      "status": "retry",
+      "processed_at": "2026-10-03T09:55:46.798Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbminwfbvv95cuxqvm43wjnwmthfy0dpne8wtendtedrsflxyuh2ow5pze5sr2pga0nktjb3adbubxjhb0zhmlbiegxnbnnxohvvrtjhdm9vthrrymdxafjumv9hexhomevvnje0cvdyd25vlxrtdlb5as14dwg3lwzkmghxrwfpwkfpzva0vtewedzdmm5qrhlsztnhmhblmux0szhny0z0c2c": {
+      "canonical_url": "https://news.google.com/rss/articles/cbminwfbvv95cuxqvm43wjnwmthfy0dpne8wtendtedrsflxyuh2ow5pze5sr2pga0nktjb3adbubxjhb0zhmlbiegxnbnnxohvvrtjhdm9vthrrymdxafjumv9hexhomevvnje0cvdyd25vlxrtdlb5as14dwg3lwzkmghxrwfpwkfpzva0vtewedzdmm5qrhlsztnhmhblmux0szhny0z0c2c",
+      "content_hash": "52e8f10a26c6404de46e3d0024cccbd81a994dd4bbf89c961f05f0884ba63e9a",
+      "story_key": "df42df866f1fbc892b437d3b40f16e4ad3c14f9cb8f4385a6f67de07e6516b7a",
+      "status": "rejected",
+      "processed_at": "2026-10-03T09:56:18.448Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: AI機能は一部で主にスマホ仕様紹介の宣伝的記事"
+    },
+    "url:https://news.google.com/rss/articles/cbmiwkfvx3lxte9haml3m21envlzdhnacflozhjvdklzlvjqwnzuek55rtdfuk5qqnh1ampyzmrwqtuxum5mxzd6rghcquzbwglzvgn4nxjwulvxzhzoqi1jlwowqq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiwkfvx3lxte9haml3m21envlzdhnacflozhjvdklzlvjqwnzuek55rtdfuk5qqnh1ampyzmrwqtuxum5mxzd6rghcquzbwglzvgn4nxjwulvxzhzoqi1jlwowqq",
+      "content_hash": "f2d47de7aff5037eaacb1a3ecccb4e53486943295d594722d7033cfad57b31bc",
+      "story_key": "fd187706f0833fd202e599d2690f4b337c0e56b37cfcf0d507a37c59db4eb8ae",
+      "status": "rejected",
+      "processed_at": "2026-10-03T09:56:18.448Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 複数話題の週刊まとめで具体的事実が乏しい"
+    },
+    "url:https://news.google.com/rss/articles/cbmitkfvx3lxtfbpq2datk5runfvwvg2b19dblcwogvnu1rzn0nsuvvhaerzq3bqckt1ndjenmjpbty4welkadbzblpjrtbvz0v6cjhbwhoydw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmitkfvx3lxtfbpq2datk5runfvwvg2b19dblcwogvnu1rzn0nsuvvhaerzq3bqckt1ndjenmjpbty4welkadbzblpjrtbvz0v6cjhbwhoydw",
+      "content_hash": "8a008d21c1706ae453f614f2dcbefe70d14d8f637225672080dd74484dc998f7",
+      "story_key": "7f8ba7da7883e893e5344608b6c6407beb62efbfc2eae313bce210cbdf8a0baa",
+      "status": "rejected",
+      "processed_at": "2026-10-03T09:56:18.448Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 投稿コンテストの告知であり宣伝的な内容"
+    },
+    "url:https://news.google.com/rss/articles/cbmifefvx3lxtfbpu05ncun4sexosm8wu1rqrzdrmevpuhm5oerxudm4a25kdmr3muzybdl6cfjrndzhsxvtzem5wnvywjfkv1e4burhnxrenupkvfbuvgxprvjpmgnxdfv5nktgt29bwvvwrwxoeefry3ftstq3rtlhduvuv1e": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmifefvx3lxtfbpu05ncun4sexosm8wu1rqrzdrmevpuhm5oerxudm4a25kdmr3muzybdl6cfjrndzhsxvtzem5wnvywjfkv1e4burhnxrenupkvfbuvgxprvjpmgnxdfv5nktgt29bwvvwrwxoeefry3ftstq3rtlhduvuv1e",
+      "content_hash": "f9687dcddaaa501a01bef4bd824fa6a12afded65efb4f851c0b8e8878948e0fc",
+      "story_key": "2811854ba6c45f5f3687ed79cdf2ce09bd5c74cecf0fb689140418387d58f935",
+      "status": "retry",
+      "processed_at": "2026-10-03T09:56:18.448Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
     }
   },
-  "updated_at": "2026-10-03T07:07:16.208Z"
+  "updated_at": "2026-10-03T09:56:18.448Z"
 }
