@@ -7,57 +7,112 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-02T10:31:12.035Z",
-  "window_end": "2026-10-02T16:16:01.528Z",
-  "last_window_end": "2026-10-02T16:16:01.528Z",
-  "last_checked_at": "2026-10-02T16:19:01.621Z",
-  "last_published_at": "2026-10-02T16:19:01.621Z",
-  "home_content_changed_at": "2026-10-02T16:19:01.621Z",
+  "window_start": "2026-10-02T16:16:01.528Z",
+  "window_end": "2026-10-03T09:52:54.383Z",
+  "last_window_end": "2026-10-03T09:52:54.383Z",
+  "last_checked_at": "2026-10-03T09:56:22.327Z",
+  "last_published_at": "2026-10-03T09:56:22.327Z",
+  "home_content_changed_at": "2026-10-03T09:56:22.327Z",
   "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 1,
-  "update_health": "DEGRADED",
-  "update_health_reasons": [
-    "今回の新着掲載は0件です。前回の重要記事を継続表示しています"
-  ],
-  "edition_status": "NO_NEW_STORIES",
-  "candidate_count": 0,
-  "distinct_candidate_count": 0,
+  "consecutive_zero_candidate_editions": 0,
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
+  "edition_status": "NEW_STORIES",
+  "candidate_count": 3,
+  "distinct_candidate_count": 3,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 0,
+  "novel_candidate_count": 3,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 0,
-  "continued_selected_count": 5,
+  "new_selected_count": 3,
+  "continued_selected_count": 2,
   "tool_evolution_selected_count": 2,
-  "carried_forward": true,
-  "partially_carried_forward": false,
+  "carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_bbb8cf92d84d9b273985",
+    "article_be95873b33aa61bd0e37",
+    "article_7f4b14a4c1f2df675fa3",
     "article_6113f7c1e8e8c3575c1c",
-    "article_7d357b2d95ce8b4c3d24",
-    "article_65a6e5d252ddbeecde7e_rev_2c86077dcd0c",
-    "article_987293370abf0e38e582",
-    "article_d6a603e3a115703f9bb1"
+    "article_7d357b2d95ce8b4c3d24"
   ],
-  "new_article_ids": [],
+  "new_article_ids": [
+    "article_bbb8cf92d84d9b273985",
+    "article_be95873b33aa61bd0e37",
+    "article_7f4b14a4c1f2df675fa3"
+  ],
   "continued_article_ids": [
     "article_6113f7c1e8e8c3575c1c",
-    "article_7d357b2d95ce8b4c3d24",
-    "article_65a6e5d252ddbeecde7e_rev_2c86077dcd0c",
-    "article_987293370abf0e38e582",
-    "article_d6a603e3a115703f9bb1"
+    "article_7d357b2d95ce8b4c3d24"
   ],
   "continuation_sources": {
     "article_6113f7c1e8e8c3575c1c": "previous_edition",
-    "article_7d357b2d95ce8b4c3d24": "previous_edition",
-    "article_65a6e5d252ddbeecde7e_rev_2c86077dcd0c": "previous_edition",
-    "article_987293370abf0e38e582": "previous_edition",
-    "article_d6a603e3a115703f9bb1": "previous_edition"
+    "article_7d357b2d95ce8b4c3d24": "previous_edition"
   },
   "scores": {
+    "article_bbb8cf92d84d9b273985": {
+      "article_id": "article_bbb8cf92d84d9b273985",
+      "total": 77,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 20,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 1,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "制度・安全への影響",
+        "大きな製品・市場変化",
+        "重要な経営・研究体制"
+      ],
+      "published_at": "2026-10-02T18:39:36.000Z"
+    },
+    "article_be95873b33aa61bd0e37": {
+      "article_id": "article_be95873b33aa61bd0e37",
+      "total": 62,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 20,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 2,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "制度・安全への影響",
+        "大きな製品・市場変化"
+      ],
+      "published_at": "2026-10-02T20:00:00.000Z"
+    },
+    "article_7f4b14a4c1f2df675fa3": {
+      "article_id": "article_7f4b14a4c1f2df675fa3",
+      "total": 51,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-09-30T14:20:41.000Z"
+    },
     "article_6113f7c1e8e8c3575c1c": {
       "article_id": "article_6113f7c1e8e8c3575c1c",
       "total": 88,
@@ -98,104 +153,9 @@
         "重要な経営・研究体制"
       ],
       "published_at": "2026-09-20T02:00:00.000Z"
-    },
-    "article_65a6e5d252ddbeecde7e_rev_2c86077dcd0c": {
-      "article_id": "article_65a6e5d252ddbeecde7e_rev_2c86077dcd0c",
-      "total": 80,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 20,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "制度・安全への影響",
-        "大きな製品・市場変化"
-      ],
-      "published_at": "2026-10-01T15:00:07.000Z"
-    },
-    "article_987293370abf0e38e582": {
-      "article_id": "article_987293370abf0e38e582",
-      "total": 68,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 12,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "主要AI企業・基盤",
-        "重要な経営・研究体制"
-      ],
-      "published_at": "2026-10-01T18:15:43.000Z"
-    },
-    "article_d6a603e3a115703f9bb1": {
-      "article_id": "article_d6a603e3a115703f9bb1",
-      "total": 68,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 20,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "主要AI企業・基盤",
-        "制度・安全への影響",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-09-29T23:22:18.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_9f6c87c077c6f6ba6505",
-      "story_id": "story_4b23a1474561944435",
-      "title": "動画生成AI「Kling 4.0」、10月に正式リリースへ",
-      "primary_entity": "Kling AI",
-      "story_subject": "Kling 4.0",
-      "event_type": "release",
-      "event_stage": "planned",
-      "event_scope": "全世界",
-      "story_entities": [
-        "Kling 4.0",
-        "Kling Flash",
-        "kling4.0",
-        "klingflash",
-        "kling"
-      ],
-      "fact_slots": [
-        {
-          "type": "other",
-          "scope": "Kling 4.0本編の動画生成時間",
-          "value": "30秒",
-          "normalized_value": "30"
-        },
-        {
-          "type": "other",
-          "scope": "Kling 4.0 Flash版の動画生成時間",
-          "value": "20秒",
-          "normalized_value": "20"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-09-30T08:31:38.696Z",
-      "edition_window_end": "2026-09-30T08:26:50.970Z"
-    },
     {
       "article_id": "article_36d30bc75750d291cadc",
       "story_id": "story_1417f3677200b90fa0",
@@ -498,6 +458,105 @@
       "previous_article_id": "",
       "selected_at": "2026-10-02T10:35:14.754Z",
       "edition_window_end": "2026-10-02T10:31:12.035Z"
+    },
+    {
+      "article_id": "article_bbb8cf92d84d9b273985",
+      "story_id": "story_75838a83a5c2bdbdae",
+      "title": "米当局、Nvidia製AIチップ3億ドル相当を中国へ密輸したとして技術企業CEOを逮捕",
+      "primary_entity": "米司法当局",
+      "story_subject": "Nvidia製AIチップの中国密輸事件",
+      "event_type": "security",
+      "event_stage": "investigating",
+      "event_scope": "米国・中国間の半導体輸出",
+      "story_entities": [
+        "Nvidia",
+        "米司法当局",
+        "輸出規制",
+        "nvidia"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "密輸されたとされるNvidia製チップの総額",
+          "value": "3億ドル",
+          "normalized_value": "300000000USD"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-03T09:56:22.327Z",
+      "edition_window_end": "2026-10-03T09:52:54.383Z"
+    },
+    {
+      "article_id": "article_be95873b33aa61bd0e37",
+      "story_id": "story_da220ba21d4a9b246f",
+      "title": "台湾詣でする日本の自治体、AI半導体成長見据え提携180件に",
+      "primary_entity": "日本の自治体",
+      "story_subject": "自治体と台湾企業の産業提携",
+      "event_type": "partnership",
+      "event_stage": "other",
+      "event_scope": "日本・台湾",
+      "story_entities": [
+        "AI半導体",
+        "自治体",
+        "ai半導体"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "自治体と台湾の提携件数",
+          "value": "約180件",
+          "normalized_value": "180"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-03T09:56:22.327Z",
+      "edition_window_end": "2026-10-03T09:52:54.383Z"
+    },
+    {
+      "article_id": "article_7f4b14a4c1f2df675fa3",
+      "story_id": "story_9f939a8ed67afc9296",
+      "title": "Kling 4.0、30秒4K動画を予告 放送レベルの対応は10月に",
+      "primary_entity": "Kling AI",
+      "story_subject": "Kling 4.0動画生成モデル",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "動画生成サービス",
+      "story_entities": [
+        "Kling 4.0",
+        "Kling AI",
+        "kling4.0",
+        "klingai",
+        "kling"
+      ],
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "生成可能な動画の長さ",
+          "value": "30秒",
+          "normalized_value": "30"
+        },
+        {
+          "type": "other",
+          "scope": "生成画質",
+          "value": "4K",
+          "normalized_value": "4000"
+        },
+        {
+          "type": "date",
+          "scope": "放送スペック対応の提供時期",
+          "value": "2026年10月",
+          "normalized_value": "2026年10月"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-03T09:56:22.327Z",
+      "edition_window_end": "2026-10-03T09:52:54.383Z"
     }
   ]
 }
