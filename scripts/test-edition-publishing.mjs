@@ -159,6 +159,8 @@ const secondaryRenderIndex=expertRenderIndex;
 assert.ok(feedRenderIndex>=0&&secondaryRenderIndex>feedRenderIndex,"トップ5の記事カードを統計・アーカイブ・公式SNSより先に描画する");
 assert.ok(expertRenderIndex>feedRenderIndex,"専門家動画は記事トップ5の後に描画する");
 assert.match(renderHomeSource,/const homeSecondaryHtml=`<section class="home-secondary"/,"記事以外の案内を後半ブロックとして固定する");
+assert.match(renderHomeSource,/home-review-link" onclick="go\('reviews'\)"/,"ホーム後半に控えめなレビュー案内を置く");
+assert.ok(renderHomeSource.indexOf('home-review-link')>renderHomeSource.indexOf('const homeSecondaryHtml='),"レビュー案内は記事より後の補助ブロック内に置く");
 assert.match(html,/const allArticles=getUpdates\(\)/,"分類・検索はテーマ設定前の全記事を使う");
 assert.match(html,/\.archive-intro \+ \.filterbar\{display:grid;grid-template-columns:1fr\}/,"スマホの分類・検索を1列で操作できる");
 const navSource=html.slice(html.indexOf("const NAV = ["),html.indexOf("let route ="));

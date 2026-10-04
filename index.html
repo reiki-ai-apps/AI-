@@ -873,6 +873,11 @@
   .quick-stats .signal-count{font-size:12px;color:var(--text-mute);margin-right:3px}
   .mobile-home-search{display:none}
   .home-secondary{margin-top:30px;padding-top:22px;border-top:1px solid rgba(111,153,205,.14)}
+  .home-review-link{display:flex;align-items:center;gap:11px;width:100%;min-height:58px;margin-top:14px;padding:11px 14px;border:1px solid rgba(83,208,219,.27);border-left:3px solid #59dce4;border-radius:12px;background:linear-gradient(105deg,rgba(21,75,91,.23),rgba(13,24,49,.58));color:#e9f8fb;text-align:left;cursor:pointer;transition:border-color .18s,background .18s,transform .18s}
+  .home-review-link:hover,.home-review-link:focus-visible{border-color:rgba(92,227,234,.65);background:linear-gradient(105deg,rgba(28,98,113,.32),rgba(20,34,65,.7));transform:translateY(-1px)}
+  .home-review-link:focus-visible{outline:2px solid #71e6ec;outline-offset:2px}
+  .home-review-link-icon{display:grid;flex:0 0 32px;width:32px;height:32px;place-items:center;border-radius:9px;background:rgba(79,216,225,.12);color:#67dce3}
+  .home-review-link-icon svg{width:18px;height:18px}.home-review-link-copy{display:grid;flex:1;min-width:0;gap:2px}.home-review-link-copy strong{font-size:13px;line-height:1.4}.home-review-link-copy small{color:#92adbf;font-size:10.5px;line-height:1.5}.home-review-link-arrow{color:#67dce3;font-size:22px;line-height:1}
   .mini-chip{min-height:34px;padding:5px 12px;border-radius:9px;font-size:11.5px;background:rgba(99,131,193,.08);border-color:rgba(127,158,214,.18);color:#b9c8e4}
   .mini-chip:hover{background:rgba(99,131,193,.14)}
   .day-head{margin:27px 0 12px;font-size:12px;letter-spacing:.08em;color:#aebbd2}
@@ -2046,6 +2051,9 @@
   .light-media-theme .bottom-nav{border-color:#d9e2ec!important;background:rgba(255,255,255,.97)!important;box-shadow:0 14px 38px rgba(35,53,80,.16)!important}
   .light-media-theme .bottom-item{color:#7a8799!important}
   .light-media-theme .bottom-item.active{color:#287c89!important;background:#edf8f9!important}
+  .light-media-theme .home-review-link{border-color:#c8e2e6!important;border-left-color:#39b8c5!important;background:linear-gradient(105deg,#effafb,#f7f9fc)!important;color:#203449!important}
+  .light-media-theme .home-review-link:hover,.light-media-theme .home-review-link:focus-visible{border-color:#5bc5cf!important;background:#e8f7f9!important}
+  .light-media-theme .home-review-link-icon{background:#dcf3f5!important;color:#168d9b!important}.light-media-theme .home-review-link-copy small{color:#587184!important}.light-media-theme .home-review-link-arrow{color:#168d9b!important}
   .light-media-theme .mobile-media-hub{border-color:#cbe2e8!important;background:linear-gradient(135deg,#fff,#f0f7fb 65%,#f2effd)!important;box-shadow:0 10px 28px rgba(43,61,89,.08)!important}
   .light-media-theme .mobile-media-hub-title b{color:#1d2a3e!important}.light-media-theme .mobile-media-hub-title span{color:#197f8c!important}.light-media-theme .mobile-media-hub-note{color:#738197!important}
   .light-media-theme .mobile-media-hub .official-media-link{border-color:#d7e2ec!important;background:#fff!important;color:#35465d!important}
@@ -3948,6 +3956,7 @@ function renderHome(v){
       ${tryLater?`<button class="mini-chip" onclick="go('try-list')">後で見る ${tryLater}</button>`:''}
     </div>
     <button class="btn mobile-home-search" onclick="openAllUpdates()">${icon('category')}<span><strong>分類・キーワードから探す</strong><small>すべての記事を検索できます</small></span></button>
+    <button class="home-review-link" onclick="go('reviews')" aria-label="利用者レビューを読む・書く"><span class="home-review-link-icon">${icon('eye')}</span><span class="home-review-link-copy"><strong>使ってみた感想を聞かせてください</strong><small>点数なし・ログイン不要。公開中の感想も読めます</small></span><span class="home-review-link-arrow" aria-hidden="true">›</span></button>
     ${mobileMediaHtml}
   </section>`;
   const todayVideoDay=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
