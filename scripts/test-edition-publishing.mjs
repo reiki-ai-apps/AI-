@@ -166,7 +166,7 @@ assert.doesNotMatch(navSource,/id:'updates'/,"全記事と分類の重複ナビ�
 assert.match(navSource,/id:'categories',label:'記事を探す'/,"分類・検索を記事探索の正本にする");
 assert.match(html,/function canonicalRouteName\(name\)\{ return name==='updates'\?'categories':name; \}/,"旧全記事URLは分類・検索へ互換転送する");
 assert.doesNotMatch(html,/go\('updates'\)/,"画面内導線は旧全記事ルートを使わない");
-assert.match(html,/\.bottom-nav\{[^}]*grid-template-columns:repeat\(4,1fr\)/,"スマホナビは統合後の4項目で均等表示する");
+assert.match(html,/\.bottom-nav\{[^}]*grid-template-columns:repeat\(5,minmax\(0,1fr\)\)/,"スマホナビはレビューを含む5項目で均等表示する");
 assert.match(html,/function renderCategories\(v\)\{\s*renderUpdates\(v\);\s*\}/,"分類ページへ検索と全記事一覧を統合する");
 assert.match(html,/const categoryTiles=`<section class="category-browser"/,"分類ページに件数付きカテゴリ選択を置く");
 assert.match(html,/function isArticleRead\(u\)/,"読了状態を保存・活用ステータスと分けて判定する");
