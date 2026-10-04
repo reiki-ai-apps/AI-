@@ -16,6 +16,14 @@ for(const match of index.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)){
   }
 }
 
+const mobileNav=section("const mobileItems=\\[","const bottom=document.getElementById");
+expect(mobileNav.includes("{id:'reviews',label:'レビュー'"),"mobile navigation exposes the review page");
+expect(/\.bottom-nav\{[^}]*grid-template-columns:repeat\(5,minmax\(0,1fr\)\)/.test(index),"mobile navigation has room for five tabs");
+expect(index.includes("reviews:['利用者レビュー'"),"direct review links resolve to the review route");
+const reviewSubmit=section("async function submitPublicReview\\(\\)\\{","function renderSupport");
+expect(reviewSubmit.includes("if(!ensureMemberClient())throw new Error('review sdk unavailable')"),"review submission shows a connection error instead of silently returning");
+expect(reviewSubmit.includes("reviewSubmitting=true")&&reviewSubmit.includes("button?.isConnected"),"review submission prevents duplicate taps and re-enables its button");
+
 const metricsValidator=section("function validOperatorMetrics\\(data\\)\\{","async function loadOperatorMetrics");
 expect(Boolean(metricsValidator),"operator metrics validator exists");
 if(metricsValidator){

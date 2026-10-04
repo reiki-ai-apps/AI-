@@ -944,7 +944,7 @@
     .ai-label{display:none}
     .ucard-footer{display:block}.ucard-meta{margin-bottom:11px}.card-actions{justify-content:flex-end}
     .card-open{flex:1;max-width:150px}
-    .bottom-nav{position:fixed;display:grid;grid-template-columns:repeat(4,1fr);left:10px;right:10px;bottom:calc(9px + env(safe-area-inset-bottom));z-index:70;min-height:62px;padding:6px;border:1px solid rgba(134,164,216,.22);border-radius:17px;background:rgba(8,13,27,.97);box-shadow:0 18px 50px rgba(0,0,0,.48)}
+    .bottom-nav{position:fixed;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));left:10px;right:10px;bottom:calc(9px + env(safe-area-inset-bottom));z-index:70;min-height:62px;padding:6px;border:1px solid rgba(134,164,216,.22);border-radius:17px;background:rgba(8,13,27,.97);box-shadow:0 18px 50px rgba(0,0,0,.48)}
     .bottom-item{position:relative;border:0;background:transparent;color:#77849e;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:9px;font-weight:700;min-width:0}
     .bottom-item svg{width:18px;height:18px}.bottom-item.active{color:#dffaff;background:linear-gradient(140deg,rgba(37,201,232,.16),rgba(103,99,240,.13))}.bottom-item .badge{position:absolute;top:2px;right:14%;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#6571ec;color:#fff;font-size:8px;display:flex;align-items:center;justify-content:center}
     .toast-wrap{bottom:90px;left:14px;right:14px}.toast{max-width:none;width:100%}
@@ -2731,8 +2731,12 @@ async function loadPublishedReviews(){
   const {data,error}=await memberClient.rpc('get_published_reviews',{p_limit:100});
   if(!error){
     memberState.reviews=Array.isArray(data)?data:[];
-    if(route.name==='reviews')render();
+    if(route.name==='reviews'&&!reviewSubmitting&&!reviewDraftActive())render();
   }
+}
+let reviewSubmitting=false;
+function reviewDraftActive(){
+  return !!(document.getElementById('reviewName')?.value?.trim()||document.getElementById('reviewBody')?.value?.trim());
 }
 const PUBLIC_REVIEWER_KEY='ai_radar_public_reviewer_v1';
 let transientReviewerKey='';
@@ -2758,7 +2762,10 @@ async function loadReviewStatus(){
   if(!memberClient){memberState.reviewStatus=null;return;}
   const reviewerHash=await publicReviewerHash();
   const {data,error}=await memberClient.rpc('public_review_status',{p_reviewer_key_hash:reviewerHash});
-  if(!error)memberState.reviewStatus=data||null;
+  if(!error){
+    memberState.reviewStatus=data||null;
+    if(route.name==='reviews'&&!reviewSubmitting&&!reviewDraftActive())render();
+  }
 }
 function setAuthMessage(message,isError){
   memberState.message=message||'';memberState.error=!!isError;
@@ -3588,6 +3595,7 @@ function renderNav(){
     {id:'categories',label:'記事',icon:'category',badge:total},
     {id:'try-list',label:'保存',icon:'flask',badge:tryN},
     {id:'tools',label:'設定',icon:'tools'},
+    {id:'reviews',label:'レビュー',icon:'eye'},
   ];
   const bottom=document.getElementById('bottomNav');
   if(bottom) bottom.innerHTML=mobileItems.map(it=>{
@@ -5366,7 +5374,7 @@ function setReviewRating(value){
   if(text)text.textContent=`${rating} / 5`;
 }
 async function submitPublicReview(){
-  if(!memberClient)return;
+  if(reviewSubmitting)return;
   const displayName=(document.getElementById('reviewName')?.value||'').trim();
   const body=(document.getElementById('reviewBody')?.value||'').trim();
   const rating=Number(document.getElementById('reviewRating')?.value||0);
@@ -5377,12 +5385,26 @@ async function submitPublicReview(){
   }
   if(website){box.textContent='投稿を受け付けられませんでした。';box.className='auth-message show error';return;}
   box.textContent='投稿しています…';box.className='auth-message show';
-  const reviewerHash=await publicReviewerHash();
-  const {error}=await memberClient.rpc('submit_public_review',{p_reviewer_key_hash:reviewerHash,p_display_name:displayName,p_rating:rating,p_body:body});
-  if(error){box.textContent=String(error.message||'').includes('already submitted')?'このブラウザからはすでにレビューを投稿済みです。':'投稿できませんでした。時間をおいてもう一度お試しください。';box.className='auth-message show error';return;}
-  await Promise.all([loadReviewStatus(),loadPublishedReviews()]);
-  toast('レビューを公開しました。ありがとうございます。','ok');
-  render();
+  reviewSubmitting=true;
+  const button=box.nextElementSibling;
+  if(button)button.disabled=true;
+  try{
+    await waitForSupabaseSdk();
+    if(!ensureMemberClient())throw new Error('review sdk unavailable');
+    const reviewerHash=await publicReviewerHash();
+    const {error}=await memberClient.rpc('submit_public_review',{p_reviewer_key_hash:reviewerHash,p_display_name:displayName,p_rating:rating,p_body:body});
+    if(error)throw error;
+    memberState.reviewStatus={has_review:true};
+    await Promise.allSettled([loadReviewStatus(),loadPublishedReviews()]);
+    toast('レビューを公開しました。ありがとうございます。','ok');
+    render();
+  }catch(error){
+    box.textContent=String(error.message||'').includes('already submitted')?'このブラウザからはすでにレビューを投稿済みです。':String(error.message||'').includes('review sdk unavailable')?'接続の準備ができませんでした。通信を確認して、もう一度お試しください。':'投稿できませんでした。時間をおいてもう一度お試しください。';
+    box.className='auth-message show error';
+  }finally{
+    reviewSubmitting=false;
+    if(button?.isConnected)button.disabled=false;
+  }
 }
 
 function renderSupport(v){
