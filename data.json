@@ -62,31 +62,7 @@
     "dedupe_decision": "new",
     "dedupe_reasons": [
       "no_previous_story"
-    ],
-    "home_top_rank": 2,
-    "home_top_score": 55,
-    "home_score_breakdown": {
-      "importance": 25,
-      "topicality": 10,
-      "scope": 6,
-      "authority": 5,
-      "freshness": 9,
-      "tool_evolution": 0,
-      "penalty": 0
-    },
-    "home_selection_reasons": [
-      "重要度B",
-      "制度・安全への影響"
-    ],
-    "home_selected_at": "2026-10-03T23:12:37.604Z",
-    "home_window_start": "2026-10-03T14:43:30.324Z",
-    "home_window_end": "2026-10-03T23:08:07.138Z",
-    "home_content_changed_at": "2026-10-03T23:12:37.604Z",
-    "home_update_health": "HEALTHY",
-    "home_consecutive_unchanged_editions": 0,
-    "home_top_origin": "new",
-    "home_edition_new_count": 2,
-    "home_edition_continued_count": 3
+    ]
   },
   {
     "tool": "Claude / Claude Code",
@@ -219,32 +195,7 @@
     "dedupe_decision": "new",
     "dedupe_reasons": [
       "no_previous_story"
-    ],
-    "home_top_rank": 1,
-    "home_top_score": 59,
-    "home_score_breakdown": {
-      "importance": 25,
-      "topicality": 17,
-      "scope": 6,
-      "authority": 5,
-      "freshness": 6,
-      "tool_evolution": 0,
-      "penalty": 0
-    },
-    "home_selection_reasons": [
-      "重要度B",
-      "制度・安全への影響",
-      "重要な経営・研究体制"
-    ],
-    "home_selected_at": "2026-10-03T23:12:37.604Z",
-    "home_window_start": "2026-10-03T14:43:30.324Z",
-    "home_window_end": "2026-10-03T23:08:07.138Z",
-    "home_content_changed_at": "2026-10-03T23:12:37.604Z",
-    "home_update_health": "HEALTHY",
-    "home_consecutive_unchanged_editions": 0,
-    "home_top_origin": "new",
-    "home_edition_new_count": 2,
-    "home_edition_continued_count": 3
+    ]
   },
   {
     "tool": "ChatGPT / OpenAI",
@@ -373,7 +324,7 @@
       "AIツール・モデル"
     ],
     "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_975f3f51854053c79781",
+    "article_id": "article_975f3f51854053c79781_rev_6e23169bee7e",
     "story_id": "story_051e4c47f0ddf0f874",
     "story_sequence": 1,
     "relation_type": "new",
@@ -382,9 +333,14 @@
     "previous_title": "",
     "previous_source_published_at": "",
     "continuation_lead": "",
-    "dedupe_decision": "new",
+    "dedupe_decision": "uncertain",
     "dedupe_reasons": [
-      "no_previous_story"
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "similar_title",
+      "same_scope",
+      "same_url_content_changed"
     ],
     "home_video_selected_at": "2026-10-03T23:08:07.138Z",
     "home_video_origin": "new",
@@ -452,7 +408,7 @@
     "dedupe_reasons": [
       "no_previous_story"
     ],
-    "home_top_rank": 5,
+    "home_top_rank": 3,
     "home_top_score": 75,
     "home_score_breakdown": {
       "importance": 45,
@@ -468,15 +424,15 @@
       "主要AI企業・基盤",
       "大きな製品・市場変化"
     ],
-    "home_selected_at": "2026-10-03T23:12:37.604Z",
-    "home_window_start": "2026-10-03T14:43:30.324Z",
-    "home_window_end": "2026-10-03T23:08:07.138Z",
-    "home_content_changed_at": "2026-10-03T23:12:37.604Z",
-    "home_update_health": "HEALTHY",
+    "home_selected_at": "2026-10-04T10:39:31.940Z",
+    "home_window_start": "2026-10-03T23:08:07.138Z",
+    "home_window_end": "2026-10-04T10:36:26.658Z",
+    "home_content_changed_at": "2026-10-04T10:39:31.940Z",
+    "home_update_health": "DEGRADED",
     "home_consecutive_unchanged_editions": 0,
     "home_top_origin": "continued",
-    "home_edition_new_count": 2,
-    "home_edition_continued_count": 3
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 5
   },
   {
     "tool": "専門家動画・発言",
@@ -711,7 +667,34 @@
     "dedupe_decision": "new",
     "dedupe_reasons": [
       "no_previous_story"
-    ]
+    ],
+    "home_top_rank": 4,
+    "home_top_score": 76,
+    "home_score_breakdown": {
+      "importance": 45,
+      "topicality": 20,
+      "scope": 6,
+      "authority": 5,
+      "freshness": 0,
+      "tool_evolution": 0,
+      "penalty": 0
+    },
+    "home_selection_reasons": [
+      "重要度A",
+      "主要AI企業・基盤",
+      "制度・安全への影響",
+      "大きな製品・市場変化",
+      "重要な経営・研究体制"
+    ],
+    "home_selected_at": "2026-10-04T10:39:31.940Z",
+    "home_window_start": "2026-10-03T23:08:07.138Z",
+    "home_window_end": "2026-10-04T10:36:26.658Z",
+    "home_content_changed_at": "2026-10-04T10:39:31.940Z",
+    "home_update_health": "DEGRADED",
+    "home_consecutive_unchanged_editions": 0,
+    "home_top_origin": "continued",
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 5
   },
   {
     "tool": "AI政策・政府動向",
@@ -783,7 +766,31 @@
     "dedupe_decision": "new",
     "dedupe_reasons": [
       "no_previous_story"
-    ]
+    ],
+    "home_top_rank": 5,
+    "home_top_score": 70,
+    "home_score_breakdown": {
+      "importance": 45,
+      "topicality": 10,
+      "scope": 10,
+      "authority": 5,
+      "freshness": 0,
+      "tool_evolution": 0,
+      "penalty": 0
+    },
+    "home_selection_reasons": [
+      "重要度A",
+      "制度・安全への影響"
+    ],
+    "home_selected_at": "2026-10-04T10:39:31.940Z",
+    "home_window_start": "2026-10-03T23:08:07.138Z",
+    "home_window_end": "2026-10-04T10:36:26.658Z",
+    "home_content_changed_at": "2026-10-04T10:39:31.940Z",
+    "home_update_health": "DEGRADED",
+    "home_consecutive_unchanged_editions": 0,
+    "home_top_origin": "continued",
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 5
   },
   {
     "tool": "専門家動画・発言",
@@ -1170,7 +1177,7 @@
       "material_fact_changed",
       "low_confidence_follow_up_demoted"
     ],
-    "home_top_rank": 3,
+    "home_top_rank": 1,
     "home_top_score": 88,
     "home_score_breakdown": {
       "importance": 45,
@@ -1188,15 +1195,15 @@
       "大きな製品・市場変化",
       "AIツールの能力進化"
     ],
-    "home_selected_at": "2026-10-03T23:12:37.604Z",
-    "home_window_start": "2026-10-03T14:43:30.324Z",
-    "home_window_end": "2026-10-03T23:08:07.138Z",
-    "home_content_changed_at": "2026-10-03T23:12:37.604Z",
-    "home_update_health": "HEALTHY",
+    "home_selected_at": "2026-10-04T10:39:31.940Z",
+    "home_window_start": "2026-10-03T23:08:07.138Z",
+    "home_window_end": "2026-10-04T10:36:26.658Z",
+    "home_content_changed_at": "2026-10-04T10:39:31.940Z",
+    "home_update_health": "DEGRADED",
     "home_consecutive_unchanged_editions": 0,
     "home_top_origin": "continued",
-    "home_edition_new_count": 2,
-    "home_edition_continued_count": 3
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 5
   },
   {
     "tool": "世界の新モデル・速報",
@@ -1406,146 +1413,6 @@
     ]
   },
   {
-    "tool": "ChatGPT / OpenAI",
-    "content_type": "article",
-    "expert_id": "",
-    "expert_ids": [],
-    "expert_name": "",
-    "expert_names": [],
-    "expert_role": "",
-    "expert_tier": "",
-    "platform": "",
-    "video_id": "",
-    "source_trust": "",
-    "title": "OpenAI、年次開発者会議「DevDay 2026」で新機能を発表",
-    "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1GQURGLTVlVHoxRVB2Ty1ZRVBGVkhab0hxQUh6a3ZhS1NwTHRWWUpVNTZSeHk2RGFNak9jSE55a3VWbkJJMTJEWFhDMktqTFZyRWU2Vm9GcU10Q3NmaXVwcHFVRy0xVEV4?oc=5",
-    "source_name": "窓の杜",
-    "is_official": false,
-    "published_at": "2026-10-01T09:17:00.000Z",
-    "source_published_at": "2026-10-01T09:17:00.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-01T10:58:08.262Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "OpenAI",
-      "dots",
-      "ChatGPT Space",
-      "openai",
-      "chatgptspace"
-    ],
-    "primary_entity": "OpenAI",
-    "story_subject": "DevDay 2026での新機能発表",
-    "event_type": "release",
-    "event_stage": "announced",
-    "event_scope": "ChatGPT/開発者向け",
-    "fact_slots": [
-      {
-        "type": "other",
-        "scope": "イベント名",
-        "value": "DevDay 2026",
-        "normalized_value": "2026"
-      }
-    ],
-    "new_facts": [
-      "OpenAIが「DevDay 2026」を開催した",
-      "常時稼働型の仕組み「dots」が発表された",
-      "新機能「ChatGPT Space」が発表された"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "OpenAIが「DevDay 2026」を開催し、常時稼働するAIの仕組み「dots」と新機能「ChatGPT Space」を発表した。",
-    "detail": "OpenAIは、開発者向けの年次イベント「DevDay 2026」を開催しました。この場で、人が指示しなくても動き続けるAIの仕組み「dots」と、新機能「ChatGPT Space」が発表されました。これまでのChatGPTは利用者が毎回指示を出す形でしたが、dotsは裏側で作業を続けられる点が新しいとされています。\n\n発表の詳しい仕組みや対応範囲は、現時点では詳しく分かっていません。常時稼働するAIという考え方は、人が見ていない間にも作業を進められることが特徴とされています。こうした仕組みが実際に広まれば、仕事の進め方そのものに影響が出る可能性があります。\n\n利用者にとっては、ChatGPTを使った作業が今より自動化される可能性があります。ただし今回の報道は発表内容の紹介にとどまり、提供時期や料金、対応地域などの詳細はまだ明らかになっていません。今後の公式発表を確認する必要があります。",
-    "change_summary": "常時稼働するAIの仕組み「dots」と新機能「ChatGPT Space」が新たに発表された。",
-    "impact_summary": "自動化が進めば、日々の作業でAIに任せられる範囲が広がる可能性がある。",
-    "action_suggestion": "提供時期や対応環境など具体的な詳細は現時点で明らかになっておらず、今後の公式発表の確認が必要。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_88ec656b75ac1d9bce86",
-    "story_id": "story_c73c5c949080d8b547",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "AI業界・経営重要速報",
-    "content_type": "article",
-    "expert_id": "",
-    "expert_ids": [],
-    "expert_name": "",
-    "expert_names": [],
-    "expert_role": "",
-    "expert_tier": "",
-    "platform": "",
-    "video_id": "",
-    "source_trust": "",
-    "title": "フォードCEO、AIが表計算業務の仕事を奪いつつあると発言 ロボット修理にはまだ人が必要",
-    "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBiR2lyUFFMOXctX1BlQUpsR1lhWi13alAxUHY1WGhkQWZQSGhsaTJJc3ZZZmpDTnJpdDcxMnFBay13ak5FYU9COUxJZmhlLWxrZ1Y2RFBxWC1rNmtFMmFhb2l1czNyVy1rYTlYc1piQWZOYjhk?oc=5",
-    "source_name": "Business Insider",
-    "is_official": false,
-    "published_at": "2026-10-01T09:01:17.000Z",
-    "source_published_at": "2026-10-01T09:01:17.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-01T10:58:08.262Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Ford",
-      "ford",
-      "business",
-      "insider"
-    ],
-    "primary_entity": "Ford",
-    "story_subject": "AIによる雇用への影響に関するCEO発言",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "フォード社内・自動車業界",
-    "fact_slots": [],
-    "new_facts": [
-      "フォードCEOが、AIが表計算を使う事務作業を代替しつつあると発言した",
-      "同CEOは、ロボットの修理には依然として人間が必要だと述べた"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "フォードCEOが、AIが表計算ソフトを使う仕事を代替しつつある一方、ロボットの修理には依然として人間が必要だと述べたとBusiness Insiderが報じた。",
-    "detail": "米自動車大手フォードの最高経営責任者(CEO)が、AIと雇用についての考えを述べた。簡単に言うと、パソコンの表計算ソフトを使うような事務作業は、AIに置き換わりつつあるという発言だ。一方で、工場のロボットが壊れたときの修理は、まだ人間の手が必要だと説明した。\n\n記事では、フォードCEOの発言として、AIが得意とする仕事と苦手とする仕事の違いが紹介されている。表計算など数字を扱うデスクワークはAIが代わりにこなせるようになってきた一方、ロボットの故障対応のような物理的な作業は、現時点では人間にしかできないという内容だ。\n\nオフィスで事務作業をしている人にとっては、仕事の内容がAIによって変わる可能性がある発言だ。一方で、工場などで機械の保守を担う仕事は、当面なくならない可能性を示している。ただし、この発言はフォードCEO個人の見解であり、フォード社内で具体的にどのような変化が起きているかの数字などは記事からは分からない。",
-    "change_summary": "フォードCEOが、AIによる事務作業の代替とロボット修理には人手が必要という考えを示した。",
-    "impact_summary": "事務職の仕事内容がAIで変わる一方、機械の保守・修理の仕事は当面残る可能性がある。",
-    "action_suggestion": "フォード社内でのAI活用の具体的な範囲や影響規模については、今後の追加情報を確認する必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "企業・株式",
-      "その他"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_7328fca9fb66e0f5e41c",
-    "story_id": "story_3273166a7ddf1fa364",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
     "tool": "DeepSeek",
     "content_type": "article",
     "expert_id": "",
@@ -1598,71 +1465,6 @@
     "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
     "article_id": "article_7ed5211621549c9e8c89",
     "story_id": "story_1bb409e9ff09dd8e95",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "AI業界・経営重要速報",
-    "content_type": "article",
-    "expert_id": "",
-    "expert_ids": [],
-    "expert_name": "",
-    "expert_names": [],
-    "expert_role": "",
-    "expert_tier": "",
-    "platform": "",
-    "video_id": "",
-    "source_trust": "",
-    "title": "NXHDとJAL、AI・半導体輸送の増加を受けアジア・米国間の周回輸送で提携",
-    "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFB4aVZuT3JnVUEtU1Y1SUpkWDZHWnBMcUo2TTU4eVlVQW5kR2dXNzhQVnlINFpGT1hYN3lNV1g1WHFKd2ljcGhLVzVQTk1nOTlCZzYwazc3eFFMYzBZWmNrcVBrRnkxUk9sUHhvZg?oc=5",
-    "source_name": "日本経済新聞",
-    "is_official": false,
-    "published_at": "2026-10-01T08:38:56.000Z",
-    "source_published_at": "2026-10-01T08:38:56.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-01T10:58:08.262Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "NXHD",
-      "JAL",
-      "nxhd",
-      "jal"
-    ],
-    "primary_entity": "NXHD",
-    "story_subject": "アジア・米国間周回輸送の提携",
-    "event_type": "partnership",
-    "event_stage": "announced",
-    "event_scope": "アジア・米国間の航空輸送",
-    "fact_slots": [],
-    "new_facts": [
-      "NXHDとJALがAIや半導体輸送の増加を受けアジア・米国間の周回輸送で提携した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "NXHDとJALが、AIや半導体関連の輸送量増加に対応するため、アジアと米国を結ぶ周回輸送で業務提携したと日本経済新聞が報じた。",
-    "detail": "NXHD(エヌエックスホールディングス)と日本航空(JAL)が、新しい物流の提携を発表した。簡単に言うと、荷物を運ぶ飛行機の通り道を工夫して、アジアと米国を周回するように結ぶ仕組みを作るという話だ。背景には、AI関連の機器や半導体部品を運ぶ荷物が増えていることがある。\n\n記事によると、この提携はアジアと米国を結ぶ「周回輸送」と呼ばれる方式で行われる。周回輸送とは、行きと帰りで荷物を積み替えながら効率よく運ぶ輸送方法のことだ。AIサーバーや半導体はサイズが大きく壊れやすいため、安定した輸送網の確保が重要になっている。\n\nAIシステムを導入する日本企業や、半導体を使うメーカーにとっては、国際輸送がより安定する可能性がある。ただし、具体的な輸送量や開始時期など詳細はまだ記事からは分からない。今後、正式な提携内容や運用開始時期の発表を確認する必要がある。",
-    "change_summary": "NXHDとJALがAI・半導体関連の輸送量増加に対応し、アジア・米国間の周回輸送で提携した。",
-    "impact_summary": "半導体やAI機器を扱う企業にとって、国際物流の安定確保につながる可能性がある。",
-    "action_suggestion": "提携の具体的な運用開始時期や輸送規模については今後の発表を確認する必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "半導体・インフラ",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_6f087952d470fbe70b63",
-    "story_id": "story_0de8e42d7b310de250",
     "story_sequence": 1,
     "relation_type": "new",
     "relation_confidence": 1,
@@ -3591,6 +3393,218 @@
     ]
   },
   {
+    "tool": "AI政策・政府動向",
+    "content_type": "article",
+    "expert_id": "",
+    "expert_ids": [],
+    "expert_name": "",
+    "expert_names": [],
+    "expert_role": "",
+    "expert_tier": "",
+    "platform": "",
+    "video_id": "",
+    "source_trust": "",
+    "title": "トランプ米大統領、AI新組織「AI Force」創設を表明",
+    "source_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1rNzB3VXUwQXBRN2FRSmJ4UXd0dnAyZHJSdHZxZWhiMEZ5QUY3SHByQk9vaENBZ0tjMnA0bmR0Ni1HaWd2WlBxcWY0VzltZzlJMkt4NWYxbUloZVJD?oc=5",
+    "source_name": "Ledge.ai",
+    "is_official": false,
+    "published_at": "2026-09-23T05:22:04.000Z",
+    "source_published_at": "2026-09-23T05:22:04.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-09-23T09:19:30.734Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "トランプ大統領",
+      "AI Force",
+      "AI Czar",
+      "aiforce",
+      "aiczar"
+    ],
+    "primary_entity": "トランプ政権",
+    "story_subject": "AI Force創設",
+    "event_type": "policy",
+    "event_stage": "announced",
+    "event_scope": "米国",
+    "fact_slots": [],
+    "new_facts": [
+      "トランプ大統領がAI政策を統括する新組織「AI Force」の創設を発表した",
+      "AI政策の責任者となる「AI Czar」も近く発表される予定であると伝えられている"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "トランプ米大統領がAI政策を統括する新組織「AI Force」の創設を発表し、責任者となる「AI Czar」も近く発表されると述べた。",
+    "detail": "トランプ米大統領が、AI政策を専門に扱う新しい政府組織「AI Force」を作ると発表しました。かんたんに言うと、AIに関する国の方針を一つの部署でまとめて決める仕組みです。これまでは複数の省庁がそれぞれAI関連の対応をしていたと見られ、今回のAI Force創設はその体制を変える動きになります。\n\n発表では、AI Forceの責任者となる「AI Czar」という役職も近いうちに公表されると伝えられています。「Czar」とは特定分野の政策を一人で統括する担当者を指す言葉で、AI版の司令塔役を意味します。誰が任命されるかはまだ明らかにされていません。\n\n米国のAI政策が一本化されれば、AI企業への規制や支援の方向性が今後変わる可能性があります。日本企業が米国でAI事業を展開する場合、新しい組織の方針を今後確認する必要があります。AI Czarの人選や具体的な権限、組織の詳しい業務範囲は今後の発表を待つ必要があります。",
+    "change_summary": "トランプ大統領がAI政策の司令塔となる新組織「AI Force」創設を発表し、責任者「AI Czar」も近く公表される。",
+    "impact_summary": "米国のAI政策が一元化されれば、米国でAI事業を行う企業の規制対応方針に影響が及ぶ可能性がある。",
+    "action_suggestion": "AI Czarの人選や「AI Force」の具体的な権限・業務範囲について、今後の米政府発表を確認する必要がある。",
+    "importance": "A",
+    "related_categories": [
+      "政策・行政"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_3cc82dede5f41275056c",
+    "story_id": "story_775e4bcdfafb84f5e7",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "Claude / Claude Code",
+    "content_type": "article",
+    "expert_id": "",
+    "expert_ids": [],
+    "expert_name": "",
+    "expert_names": [],
+    "expert_role": "",
+    "expert_tier": "",
+    "platform": "",
+    "video_id": "",
+    "source_trust": "",
+    "title": "Anthropic、「Claude Opus 5.5」を公開 利用コストを4割削減",
+    "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1qeWFXSlpoQXAzbXBPZGtKcFZFUmdnSGRpTEhzeUp3RnJRb1BSUjNHYS1Pc0Z3cXFCUlpsTXN1NnNMaFdrN0I3UHBnZ05jLUh0UkxUZVdfbG9zSFhhOVQ2QThOazNMQjNrN0E?oc=5",
+    "source_name": "ITmedia",
+    "is_official": false,
+    "published_at": "2026-09-22T21:57:43.000Z",
+    "source_published_at": "2026-09-22T21:57:43.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-09-22T23:00:24.035Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Anthropic",
+      "Claude Opus 5.5",
+      "anthropic",
+      "claudeopus5.5",
+      "claude"
+    ],
+    "primary_entity": "Anthropic",
+    "story_subject": "Claude Opus 5.5",
+    "event_type": "release",
+    "event_stage": "launched",
+    "event_scope": "API",
+    "fact_slots": [
+      {
+        "type": "price",
+        "scope": "利用コスト削減率",
+        "value": "40%減",
+        "normalized_value": "40%"
+      }
+    ],
+    "new_facts": [
+      "Claude Opus 5.5が公開された",
+      "Fable 5.1と同程度の性能とされる",
+      "利用コストが4割削減された"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Anthropicが新モデル「Claude Opus 5.5」を公開し、性能を維持しながら利用コストを4割削減したとITmediaが報じた。",
+    "detail": "Anthropicは、AIモデルの新版「Claude Opus 5.5」を公開しました。これはチャットAI「Claude」シリーズの上位モデルの更新版にあたります。今回のポイントは、性能を落とさずに使う際の料金を大きく下げた点です。\n\n報道によると、Claude Opus 5.5は「Fable 5.1」という別モデルと同程度の性能を保ちながら、利用コストを4割削減したとされています。利用コストとは、AIを呼び出す際にかかる料金のことで、企業がAIを業務で使う際の負担に直結します。性能を維持したままコストだけを下げられれば、同じ予算でより多くの処理をAIにまかせられるようになります。\n\nAIを業務に取り入れている企業にとっては、同じ品質の応答をより安く得られる可能性があり、コスト計画の見直しにつながります。ただし記事では具体的な料金体系や提供開始時期、対応地域などは明記されておらず、詳細は今後の公式発表を確認する必要があります。",
+    "change_summary": "Claude Opus 5.5が公開され、同等の性能を保ちながら利用コストが4割削減された。",
+    "impact_summary": "AIを業務利用する企業は、同じ性能をより安いコストで使える可能性が出てくる。",
+    "action_suggestion": "具体的な料金体系や提供開始時期、対応地域は記事に明記されておらず、Anthropicの公式発表での確認が必要。",
+    "importance": "A",
+    "related_categories": [
+      "AIツール・モデル",
+      "企業・株式"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_9a19196951af49cee0d3",
+    "story_id": "story_3d983a62c21de4fa32",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.82,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject",
+      "same_event_type",
+      "material_fact_changed",
+      "low_confidence_follow_up_demoted"
+    ]
+  },
+  {
+    "tool": "中国AI・基盤モデル",
+    "content_type": "article",
+    "expert_id": "",
+    "expert_ids": [],
+    "expert_name": "",
+    "expert_names": [],
+    "expert_role": "",
+    "expert_tier": "",
+    "platform": "",
+    "video_id": "",
+    "source_trust": "",
+    "title": "中国大規模言語モデル企業、商業化競争が激化 Moonshot AIはIPOへ、MiniMaxは新モデル待ち",
+    "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5HdmVnR2JfMmhEY2s4Zmk4SXNmVmxJemYzZHFLV3VMdUNYUTNJejNLYUpwc2hZSk5hb1VUek8wTV9YTE8tOUxXQ0dYQUc3RmdlTTIwZUY0U3RzZzJBVTczbkpNelROVnN2S0RVX010TE55czJR?oc=5",
+    "source_name": "BigGo ファイナンス",
+    "is_official": false,
+    "published_at": "2026-09-22T14:05:00.000Z",
+    "source_published_at": "2026-09-22T14:05:00.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-09-22T14:51:47.767Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Moonshot AI",
+      "MiniMax",
+      "moonshotai",
+      "minimax",
+      "moonshot-ai"
+    ],
+    "primary_entity": "Moonshot AI",
+    "story_subject": "中国AI企業の商業化・IPO動向",
+    "event_type": "funding",
+    "event_stage": "planned",
+    "event_scope": "中国",
+    "fact_slots": [],
+    "new_facts": [
+      "Moonshot AIがIPOに向けて動いていると報じられた。",
+      "MiniMaxは新モデルの投入を控えている状況とされる。"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "中国のAI企業各社が事業の収益化を急ぐ中、Moonshot AIが新規株式公開を目指す一方、MiniMaxは新モデルの投入を待つ姿勢と報じられた。",
+    "detail": "中国の大規模言語モデル(LLM、大量の文章を学習した対話AI)を手がける企業各社が、事業の収益化を急いでいると報じられた。簡単に言うと、これまで技術開発を優先してきた企業が、稼ぐ仕組みづくりに本腰を入れ始めたということだ。記事では、この状況を「補習」という言葉で表現している。\n\n具体的には、Moonshot AIが新規株式公開(IPO、株式を証券取引所に上場させて資金を集めること)に向けて動いていると伝えられている。一方、MiniMaxは新しいモデルの投入を控えている状況とされる。中国のAI企業は、米国企業との競争や投資家からの収益化圧力にさらされており、事業を安定させる必要に迫られている。\n\n中国AI業界への投資判断を行う投資家や、これらの企業のサービスを利用する企業は、各社の収益化戦略の進展を注視する必要がある。ただしIPOの具体的な時期や、MiniMaxの新モデルの詳細については、記事内で明らかにされていない。",
+    "change_summary": "中国のLLM企業各社が収益化を急いでおり、Moonshot AIがIPOを目指す動きが報じられた。",
+    "impact_summary": "中国AI企業の収益化競争が進むことで、グローバルなAI市場での価格競争や投資動向に影響する可能性がある。",
+    "action_suggestion": "Moonshot AIのIPO時期やMiniMaxの新モデルの詳細については、続報の確認が必要。",
+    "importance": "A",
+    "related_categories": [
+      "企業・株式",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_d1ca0f72af66b65943f7",
+    "story_id": "story_e63c589c0cce296032",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
     "tool": "Runway",
     "content_type": "article",
     "expert_id": "",
@@ -3719,7 +3733,7 @@
     "dedupe_reasons": [
       "no_previous_story"
     ],
-    "home_top_rank": 4,
+    "home_top_rank": 2,
     "home_top_score": 95,
     "home_score_breakdown": {
       "importance": 60,
@@ -3736,15 +3750,15 @@
       "制度・安全への影響",
       "重要な経営・研究体制"
     ],
-    "home_selected_at": "2026-10-03T23:12:37.604Z",
-    "home_window_start": "2026-10-03T14:43:30.324Z",
-    "home_window_end": "2026-10-03T23:08:07.138Z",
-    "home_content_changed_at": "2026-10-03T23:12:37.604Z",
-    "home_update_health": "HEALTHY",
+    "home_selected_at": "2026-10-04T10:39:31.940Z",
+    "home_window_start": "2026-10-03T23:08:07.138Z",
+    "home_window_end": "2026-10-04T10:36:26.658Z",
+    "home_content_changed_at": "2026-10-04T10:39:31.940Z",
+    "home_update_health": "DEGRADED",
     "home_consecutive_unchanged_editions": 0,
     "home_top_origin": "continued",
-    "home_edition_new_count": 2,
-    "home_edition_continued_count": 3
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 5
   },
   {
     "tool": "Midjourney",
