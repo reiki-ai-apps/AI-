@@ -59,7 +59,7 @@ create table if not exists public.reviews (
   user_id uuid not null unique references auth.users(id) on delete cascade,
   display_name text not null default '利用者'
     check (char_length(display_name) between 1 and 40),
-  rating smallint not null
+  rating smallint
     check (rating between 1 and 5),
   body text not null
     check (char_length(body) between 20 and 600),
@@ -113,6 +113,8 @@ create index if not exists app_events_name_received_at_idx on public.app_events 
 -- Public visitors are identified only by a one-way browser key hash. Existing
 -- member reviews keep their user_id; new public reviews may omit it.
 alter table public.reviews alter column user_id drop not null;
+-- Scores on historical reviews are retained, but new public feedback is text-only.
+alter table public.reviews alter column rating drop not null;
 alter table public.reviews add column if not exists reviewer_key_hash text;
 create unique index if not exists reviews_reviewer_key_hash_key
   on public.reviews (reviewer_key_hash)
@@ -305,9 +307,7 @@ begin
   if v_hash !~ '^[0-9a-f]{64}$' then
     raise exception 'invalid reviewer key';
   end if;
-  if p_rating < 1 or p_rating > 5 then
-    raise exception 'rating must be between 1 and 5';
-  end if;
+  -- p_rating remains in the RPC signature for older cached clients; ignore it.
   if char_length(trim(coalesce(p_body, ''))) < 20
      or char_length(trim(coalesce(p_body, ''))) > 600 then
     raise exception 'review body must be between 20 and 600 characters';
@@ -350,7 +350,7 @@ begin
       v_user,
       v_hash,
       left(coalesce(nullif(trim(p_display_name), ''), '利用者'), 40),
-      p_rating,
+      null,
       trim(p_body),
       coalesce(v_plan, 'free')
     )

@@ -23,6 +23,12 @@ expect(index.includes("reviews:['利用者レビュー'"),"direct review links r
 const reviewSubmit=section("async function submitPublicReview\\(\\)\\{","function renderSupport");
 expect(reviewSubmit.includes("if(!ensureMemberClient())throw new Error('review sdk unavailable')"),"review submission shows a connection error instead of silently returning");
 expect(reviewSubmit.includes("reviewSubmitting=true")&&reviewSubmit.includes("button?.isConnected"),"review submission prevents duplicate taps and re-enables its button");
+const reviewPage=section("function reviewCardsHtml\\(reviews,limit\\)\\{","function renderSupport");
+expect(!/reviewRating|review-stars|setReviewRating|ratingAverage|星5段階評価/.test(reviewPage),"public reviews collect and show comments without scores");
+expect(reviewSubmit.includes("p_rating:null"),"public review requests do not send a score");
+const reviewSchema=fs.readFileSync(path.join(root,"supabase","schema.sql"),"utf8");
+expect(reviewSchema.includes("alter table public.reviews alter column rating drop not null"),"database accepts score-free reviews");
+expect(/p_rating remains in the RPC signature[\s\S]*?\) values \([\s\S]*?null,\s*trim\(p_body\)/.test(reviewSchema),"public review RPC ignores legacy scores and stores null");
 
 const metricsValidator=section("function validOperatorMetrics\\(data\\)\\{","async function loadOperatorMetrics");
 expect(Boolean(metricsValidator),"operator metrics validator exists");
