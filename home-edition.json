@@ -7,82 +7,126 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-05T11:30:24.850Z",
-  "window_end": "2026-10-05T19:17:40.643Z",
-  "last_window_end": "2026-10-05T19:17:40.643Z",
-  "last_checked_at": "2026-10-05T19:21:30.672Z",
-  "last_published_at": "2026-10-05T19:21:30.672Z",
-  "home_content_changed_at": "2026-10-05T19:21:30.672Z",
+  "window_start": "2026-10-05T19:17:40.643Z",
+  "window_end": "2026-10-06T01:19:47.267Z",
+  "last_window_end": "2026-10-06T01:19:47.267Z",
+  "last_checked_at": "2026-10-06T01:27:13.293Z",
+  "last_published_at": "2026-10-06T01:27:13.293Z",
+  "home_content_changed_at": "2026-10-06T01:27:13.293Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 7,
-  "distinct_candidate_count": 6,
-  "duplicate_candidate_count": 1,
-  "duplicate_groups": [
-    {
-      "representative_id": "article_d2b5b29b4c8155256199",
-      "duplicate_ids": [
-        "article_25dc03fa9df0270f423c"
-      ]
-    }
-  ],
-  "novel_candidate_count": 5,
-  "cross_edition_duplicate_count": 1,
-  "cross_edition_duplicate_groups": [
-    {
-      "representative_id": "article_09061addb6f26cf91d78",
-      "duplicate_ids": [
-        "article_528b8fa0be4eeaf3e52b"
-      ]
-    }
-  ],
+  "candidate_count": 4,
+  "distinct_candidate_count": 4,
+  "duplicate_candidate_count": 0,
+  "duplicate_groups": [],
+  "novel_candidate_count": 4,
+  "cross_edition_duplicate_count": 0,
+  "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 5,
-  "continued_selected_count": 0,
+  "new_selected_count": 4,
+  "continued_selected_count": 1,
   "tool_evolution_selected_count": 1,
   "carried_forward": false,
-  "partially_carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
-    "article_d2b5b29b4c8155256199",
-    "article_92194218876e4b0c661b",
-    "article_db04ea9f31949455eb34",
-    "article_fe86162211362962d066",
-    "article_a6b2bd456b6c00ce6147"
+    "article_e794cdd10217cc0a568b",
+    "article_5137bf257625ea109dc8",
+    "article_1f1e1bc988d15e8f1e80",
+    "article_6df22d88f60ff9f75916",
+    "article_92194218876e4b0c661b"
   ],
   "new_article_ids": [
-    "article_d2b5b29b4c8155256199",
-    "article_92194218876e4b0c661b",
-    "article_db04ea9f31949455eb34",
-    "article_fe86162211362962d066",
-    "article_a6b2bd456b6c00ce6147"
+    "article_e794cdd10217cc0a568b",
+    "article_5137bf257625ea109dc8",
+    "article_1f1e1bc988d15e8f1e80",
+    "article_6df22d88f60ff9f75916"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continued_article_ids": [
+    "article_92194218876e4b0c661b"
+  ],
+  "continuation_sources": {
+    "article_92194218876e4b0c661b": "previous_edition"
+  },
   "scores": {
-    "article_d2b5b29b4c8155256199": {
-      "article_id": "article_d2b5b29b4c8155256199",
-      "total": 80,
+    "article_e794cdd10217cc0a568b": {
+      "article_id": "article_e794cdd10217cc0a568b",
+      "total": 77,
       "breakdown": {
         "importance": 45,
-        "topicality": 15,
-        "scope": 6,
-        "authority": 10,
-        "freshness": 4,
+        "topicality": 12,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 5,
         "tool_evolution": 0,
         "penalty": 0
       },
       "reasons": [
         "重要度A",
         "主要AI企業・基盤",
-        "制度・安全への影響",
-        "公式一次情報"
+        "重要な経営・研究体制"
       ],
-      "published_at": "2026-10-05T15:00:00.000Z"
+      "published_at": "2026-10-05T22:07:16.000Z"
+    },
+    "article_5137bf257625ea109dc8": {
+      "article_id": "article_5137bf257625ea109dc8",
+      "total": 70,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 10,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "制度・安全への影響",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-10-05T18:57:00.000Z"
+    },
+    "article_1f1e1bc988d15e8f1e80": {
+      "article_id": "article_1f1e1bc988d15e8f1e80",
+      "total": 65,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 7,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-10-05T23:30:17.000Z"
+    },
+    "article_6df22d88f60ff9f75916": {
+      "article_id": "article_6df22d88f60ff9f75916",
+      "total": 54,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 4,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "制度・安全への影響"
+      ],
+      "published_at": "2026-10-05T21:40:45.000Z"
     },
     "article_92194218876e4b0c661b": {
       "article_id": "article_92194218876e4b0c661b",
@@ -100,68 +144,9 @@
         "重要度A",
         "制度・安全への影響",
         "大きな製品・市場変化",
-        "重要な経営・研究体制",
-        "遅れて確認できた新着"
+        "重要な経営・研究体制"
       ],
       "published_at": "2026-10-05T10:57:00.000Z"
-    },
-    "article_db04ea9f31949455eb34": {
-      "article_id": "article_db04ea9f31949455eb34",
-      "total": 71,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 15,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "主要AI企業・基盤",
-        "大きな製品・市場変化",
-        "遅れて確認できた新着"
-      ],
-      "published_at": "2026-10-05T06:35:00.000Z"
-    },
-    "article_fe86162211362962d066": {
-      "article_id": "article_fe86162211362962d066",
-      "total": 61,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 15,
-        "scope": 3,
-        "authority": 5,
-        "freshness": 5,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "主要AI企業・基盤",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-10-05T15:36:00.000Z"
-    },
-    "article_a6b2bd456b6c00ce6147": {
-      "article_id": "article_a6b2bd456b6c00ce6147",
-      "total": 56,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 6,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化"
-      ],
-      "published_at": "2026-10-05T16:12:57.000Z"
     }
   },
   "recent_story_history": [
@@ -573,6 +558,94 @@
       "previous_article_id": "",
       "selected_at": "2026-10-05T19:21:30.672Z",
       "edition_window_end": "2026-10-05T19:17:40.643Z"
+    },
+    {
+      "article_id": "article_e794cdd10217cc0a568b",
+      "story_id": "story_3c22273e250be8bd2e",
+      "title": "OpenAIのアルトマンCEO「AIの恩恵のためには悪い面も受け入れる必要がある」",
+      "primary_entity": "サム・アルトマン",
+      "story_subject": "AIの恩恵とリスクに関する発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "story_entities": [
+        "OpenAI",
+        "サム・アルトマン",
+        "openai",
+        "サムアルトマン"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-06T01:27:13.293Z",
+      "edition_window_end": "2026-10-06T01:19:47.267Z"
+    },
+    {
+      "article_id": "article_5137bf257625ea109dc8",
+      "story_id": "story_e35efaa1070bdd9cc1",
+      "title": "米大統領、AI政策の司令塔「AIフォース」創設を発表",
+      "primary_entity": "米国政府",
+      "story_subject": "AI政策司令塔組織の創設",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "アメリカ全土",
+      "story_entities": [
+        "AIフォース",
+        "米国政府",
+        "AI政策",
+        "aiフォース",
+        "ai政策"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-06T01:27:13.293Z",
+      "edition_window_end": "2026-10-06T01:19:47.267Z"
+    },
+    {
+      "article_id": "article_1f1e1bc988d15e8f1e80",
+      "story_id": "story_ccbb9defc2601180dc",
+      "title": "米Reflection、オープンウェイトAI「Beam」を発表 推論効率で中国製モデルに対抗",
+      "primary_entity": "Reflection",
+      "story_subject": "Beam(オープンウェイトAIモデル)",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "全世界",
+      "story_entities": [
+        "Reflection",
+        "Beam",
+        "reflection",
+        "beam"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-06T01:27:13.293Z",
+      "edition_window_end": "2026-10-06T01:19:47.267Z"
+    },
+    {
+      "article_id": "article_6df22d88f60ff9f75916",
+      "story_id": "story_d7b2efcdffa3622a2f",
+      "title": "ホワイトハウスのAIタスクフォース、専門人材確保や連携に課題",
+      "primary_entity": "ホワイトハウス",
+      "story_subject": "AIタスクフォースの運営課題",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "アメリカ",
+      "story_entities": [
+        "ホワイトハウス",
+        "AIタスクフォース",
+        "aiタスクフォース"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-06T01:27:13.293Z",
+      "edition_window_end": "2026-10-06T01:19:47.267Z"
     }
   ]
 }
