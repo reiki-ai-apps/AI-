@@ -7,24 +7,37 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-06T23:52:55.814Z",
-  "window_end": "2026-10-07T11:05:18.269Z",
-  "last_window_end": "2026-10-07T11:05:18.269Z",
-  "last_checked_at": "2026-10-07T11:09:40.567Z",
-  "last_published_at": "2026-10-07T11:09:40.567Z",
-  "home_content_changed_at": "2026-10-07T11:09:40.567Z",
+  "window_start": "2026-10-07T11:05:18.269Z",
+  "window_end": "2026-10-07T17:25:30.102Z",
+  "last_window_end": "2026-10-07T17:25:30.102Z",
+  "last_checked_at": "2026-10-07T17:28:34.175Z",
+  "last_published_at": "2026-10-07T17:28:34.175Z",
+  "home_content_changed_at": "2026-10-07T17:28:34.175Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 1,
-  "distinct_candidate_count": 1,
+  "candidate_count": 3,
+  "distinct_candidate_count": 3,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
   "novel_candidate_count": 1,
-  "cross_edition_duplicate_count": 0,
-  "cross_edition_duplicate_groups": [],
+  "cross_edition_duplicate_count": 2,
+  "cross_edition_duplicate_groups": [
+    {
+      "representative_id": "article_fe86162211362962d066",
+      "duplicate_ids": [
+        "article_d1bdf72ce31f7be5d8ab"
+      ]
+    },
+    {
+      "representative_id": "article_910cdeb9df871209d2fa_rev_569a1e23b178",
+      "duplicate_ids": [
+        "article_50d9180c7df3382fe1cb"
+      ]
+    }
+  ],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
@@ -34,14 +47,14 @@
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
-    "article_910cdeb9df871209d2fa_rev_569a1e23b178",
+    "article_85ff04c48054066e5198",
     "article_6113f7c1e8e8c3575c1c",
     "article_56e576affa9b4e146a09",
     "article_92194218876e4b0c661b",
     "article_d2b5b29b4c8155256199"
   ],
   "new_article_ids": [
-    "article_910cdeb9df871209d2fa_rev_569a1e23b178"
+    "article_85ff04c48054066e5198"
   ],
   "continued_article_ids": [
     "article_6113f7c1e8e8c3575c1c",
@@ -56,8 +69,8 @@
     "article_d2b5b29b4c8155256199": "previous_edition"
   },
   "scores": {
-    "article_910cdeb9df871209d2fa_rev_569a1e23b178": {
-      "article_id": "article_910cdeb9df871209d2fa_rev_569a1e23b178",
+    "article_85ff04c48054066e5198": {
+      "article_id": "article_85ff04c48054066e5198",
       "total": 66,
       "breakdown": {
         "importance": 45,
@@ -70,9 +83,10 @@
       },
       "reasons": [
         "重要度A",
-        "制度・安全への影響"
+        "大きな製品・市場変化",
+        "遅れて確認できた新着"
       ],
-      "published_at": "2026-10-04T20:19:46.000Z"
+      "published_at": "2026-10-06T23:25:07.000Z"
     },
     "article_6113f7c1e8e8c3575c1c": {
       "article_id": "article_6113f7c1e8e8c3575c1c",
@@ -611,6 +625,33 @@
       "previous_article_id": "",
       "selected_at": "2026-10-07T11:09:40.567Z",
       "edition_window_end": "2026-10-07T11:05:18.269Z"
+    },
+    {
+      "article_id": "article_85ff04c48054066e5198",
+      "story_id": "story_f9d3e86261689d9936",
+      "title": "DeepSeek、資金調達目標を最大1000億元に倍増検討",
+      "primary_entity": "DeepSeek",
+      "story_subject": "資金調達計画",
+      "event_type": "funding",
+      "event_stage": "planned",
+      "event_scope": "中国",
+      "story_entities": [
+        "DeepSeek",
+        "deepseek"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "資金調達目標上限",
+          "value": "最大1000億元(人民元)",
+          "normalized_value": "100000000000"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-07T17:28:34.175Z",
+      "edition_window_end": "2026-10-07T17:25:30.102Z"
     }
   ]
 }
