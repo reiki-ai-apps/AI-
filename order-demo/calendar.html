@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>工事カレンダー｜見本産業</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .cal-shell { padding: 22px 28px 40px; }
+    .cal-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
+    .cal-head h2 { margin: 0; font-size: 26px; }
+    .cal-nav { display: flex; align-items: center; gap: 8px; }
+    .cal-nav button, .cal-nav select { min-height: 42px; padding: 0 14px; border: 1px solid #cad5cd; border-radius: 9px; background: #fff; font-size: 14px; font-weight: 700; color: var(--ink); cursor: pointer; }
+    .cal-nav .month { min-width: 150px; text-align: center; font-size: 18px; font-weight: 800; }
+    .cal-card { overflow: auto; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
+    table.gantt { border-collapse: separate; border-spacing: 0; min-width: 100%; }
+    table.gantt th, table.gantt td { border-right: 1px solid #edf1ee; border-bottom: 1px solid #e5ebe7; }
+    table.gantt th { position: sticky; top: 0; z-index: 3; background: #f3f7f4; font-size: 11px; font-weight: 700; color: #3b493f; padding: 6px 0 4px; min-width: 30px; text-align: center; }
+    table.gantt th.sat { color: #175ea6; } table.gantt th.sun { color: #b42318; }
+    table.gantt th.today { background: #ddf3e4; }
+    table.gantt th.name, table.gantt td.name { position: sticky; left: 0; z-index: 4; min-width: 190px; max-width: 240px; padding: 10px 12px; text-align: left; background: #fff; font-size: 13px; font-weight: 800; box-shadow: 3px 0 8px rgba(13,59,37,.05); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    table.gantt th.name { z-index: 5; background: #f3f7f4; }
+    table.gantt td.day { height: 54px; position: relative; padding: 0; }
+    table.gantt td.day.weekend { background: #fafbfa; }
+    table.gantt td.day.today { background: #f0faf3; }
+    .lanes { position: relative; }
+    .bar { position: absolute; height: 22px; line-height: 22px; border-radius: 6px; padding: 0 8px; font-size: 12px; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,.18); }
+    .bar:hover { filter: brightness(1.08); }
+    .legend { display: flex; gap: 14px; flex-wrap: wrap; margin: 10px 2px 0; font-size: 12px; color: #536158; }
+    .empty { padding: 44px; text-align: center; color: #536158; }
+    .list-card { margin-top: 18px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); overflow: auto; }
+    .list-card h3 { margin: 0; padding: 12px 16px; font-size: 14px; border-bottom: 1px solid var(--line); }
+    .detail-row { display: grid; grid-template-columns: 2fr 2fr 2fr 1.4fr 1.2fr; gap: 12px; padding: 10px 16px; border-bottom: 1px solid #edf1ee; font-size: 13px; align-items: center; }
+    .detail-row.head { background: #f3f7f4; font-weight: 700; font-size: 12px; }
+    .detail-row .money { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+    .header-user { font-size: 12px; color: #d0e9d8; margin-right: 6px; }
+    @media (max-width: 720px) { .cal-shell { padding: 14px; } .detail-row { grid-template-columns: 1fr 1fr; } }
+  .brand-art,.empty-illustration{display:none!important}</style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="brand-header">
+      <div class="brand-copy">
+        <div class="brand-eyebrow">WORK CALENDAR</div>
+        <h1>工事カレンダー</h1>
+        <p id="subtitle">承認済みの工事が、工事会社ごとに並びます。</p>
+      </div>
+      <div class="brand-art" aria-hidden="true"></div>
+      <div class="header-actions">
+        <span class="header-user" id="user-label"></span>
+        <a class="header-exit" id="back-link" href="index.html">注文一覧へ</a>
+        <button class="header-exit" id="logout-button" type="button">ログアウト</button>
+      </div>
+    </header>
+    <main class="cal-shell">
+      <div class="cal-head">
+        <h2 id="title">工事の予定</h2>
+        <div class="cal-nav">
+          <button id="prev" type="button">◀ 前の月</button>
+          <span class="month" id="month-label">—</span>
+          <button id="next" type="button">次の月 ▶</button>
+          <button id="today" type="button">今月</button>
+          <select id="contractor-filter" hidden><option value="">全部の工事会社</option></select>
+        </div>
+      </div>
+      <div class="cal-card"><div id="grid"></div></div>
+      <div class="legend" id="legend"></div>
+      <div class="list-card" id="list-card" hidden>
+        <h3 id="list-title">この月の工事</h3>
+        <div id="list"></div>
+      </div>
+    </main>
+  </div>
+  <div class="toast-stack" id="toast-stack"></div>
+  <script>window.__DEMO_META__ = {"fields": [{"key": "input_date", "label": "入力日", "type": "date", "required": true}, {"key": "staff", "label": "担当（入力者）", "type": "staff", "required": true}, {"key": "contractor", "label": "工事依頼先", "type": "contractor", "required": true}, {"key": "contractor_code", "label": "仕入先コード", "type": "text", "derived": true}, {"key": "customer_name", "label": "お客様名", "type": "text", "required": true}, {"key": "billing_to", "label": "請求先", "type": "text"}, {"key": "kubun_company", "label": "工事区分（請負元）", "type": "kubun"}, {"key": "kubun_cls", "label": "工事区分", "type": "text", "derived": true}, {"key": "site", "label": "工事場所（都道府県・市町村名）", "type": "text", "required": true}, {"key": "work_name", "label": "工事名", "type": "text", "required": true}, {"key": "work_type", "label": "工事種類", "type": "work_type"}, {"key": "work_type_cls", "label": "種別", "type": "text", "derived": true}, {"key": "industry", "label": "建設業種", "type": "industry"}, {"key": "industry_cls", "label": "業種種別", "type": "text", "derived": true}, {"key": "order_amount", "label": "受注金額（資材費含む総額・税抜）", "type": "money", "required": true}, {"key": "period_start", "label": "工期 開始", "type": "date"}, {"key": "period_end", "label": "工期 終了", "type": "date"}, {"key": "payment_amount", "label": "支払金額（税抜）", "type": "money"}, {"key": "sales_amount", "label": "売上金額（税抜）", "type": "money"}, {"key": "content_1", "label": "工事内容 1行目", "type": "line", "maxlen": 30}, {"key": "content_2", "label": "工事内容 2行目", "type": "line", "maxlen": 30}, {"key": "content_3", "label": "工事内容 3行目", "type": "line", "maxlen": 30}, {"key": "content_4", "label": "工事内容 4行目", "type": "line", "maxlen": 30}, {"key": "content_5", "label": "工事内容 5行目", "type": "line", "maxlen": 30}, {"key": "content_6", "label": "工事内容 6行目", "type": "line", "maxlen": 30}, {"key": "content_7", "label": "工事内容 7行目", "type": "line", "maxlen": 30}, {"key": "content_8", "label": "工事内容 8行目", "type": "line", "maxlen": 30}, {"key": "content_9", "label": "工事内容 9行目", "type": "line", "maxlen": 30}, {"key": "content_10", "label": "工事内容 10行目", "type": "line", "maxlen": 30}, {"key": "note_1", "label": "連絡事項 1行目", "type": "line", "maxlen": 40}, {"key": "note_2", "label": "連絡事項 2行目", "type": "line", "maxlen": 40}, {"key": "note_3", "label": "連絡事項 3行目", "type": "line", "maxlen": 40}, {"key": "note_4", "label": "連絡事項 4行目", "type": "line", "maxlen": 40}, {"key": "note_5", "label": "連絡事項 5行目", "type": "line", "maxlen": 40}, {"key": "note_6", "label": "連絡事項 6行目", "type": "line", "maxlen": 40}], "masters": {"contractors": [{"name": "見本ハウス 株式会社", "code": "0101", "contract_date": "2017-04-01"}, {"name": "サンプル工業", "code": "0102", "contract_date": "2019-08-01"}, {"name": "テスト設備 株式会社", "code": "0103", "contract_date": "2021-08-20"}, {"name": "当社施工", "code": "00022", "contract_date": ""}], "staff": [{"code": "001", "name": "営業 一郎", "short": "営業A"}, {"code": "002", "name": "営業 二郎", "short": "営業B"}, {"code": "003", "name": "営業 三郎", "short": "営業C"}], "work_types": [{"name": "ハウス新設", "cls": "新築"}, {"name": "他", "cls": "改修"}], "industries": [{"name": "新設・外張り張替", "cls": "とび土工"}, {"name": "解体", "cls": "解体"}, {"name": "カーテン張替・その他改修", "cls": "その他"}], "kubun": [{"code": "", "name": "元請", "cls": "元請"}, {"code": "900001", "name": "見本建設 株式会社", "cls": "下請"}, {"code": "900002", "name": "サンプル設備工業", "cls": "下請"}]}};</script>
+<script src="demo-api.js"></script>
+<script>
+    const $ = (s) => document.querySelector(s);
+    const state = { year: new Date().getFullYear(), month: new Date().getMonth() + 1, user: null, contractor: "", data: null };
+    const COLORS = ["#087a42", "#175ea6", "#b26a00", "#7a3fa6", "#b42318", "#0b7285", "#5c7a1f", "#8a4b2a"];
+    const esc = (v) => String(v ?? "").replace(/[&<>'"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
+    const yen = (v) => { const n = Number(String(v ?? "").replace(/[^0-9-]/g, "")); return String(v ?? "").trim() !== "" && Number.isFinite(n) ? "¥" + n.toLocaleString("ja-JP") : "—"; };
+    const jp = (iso) => { if (!iso) return ""; const [y, m, d] = iso.split("-").map(Number); return `${m}/${d}`; };
+
+    async function api(path, options = {}) {
+      const res = await fetch(path, {...options, headers: {"Content-Type": "application/json", ...(options.headers || {})}});
+      if (res.status === 401) { location.href = "login.html?next=" + encodeURIComponent(location.pathname + location.search); throw new Error("ログインしてください。"); }
+      const body = await res.json();
+      if (!res.ok) throw new Error(body.error || `HTTP ${res.status}`);
+      return body;
+    }
+
+    function colorFor(name, contractors) {
+      const index = Math.max(0, contractors.indexOf(name));
+      return COLORS[index % COLORS.length];
+    }
+
+    function render() {
+      const d = state.data;
+      const year = d.year, month = d.month;
+      const days = new Date(year, month, 0).getDate();
+      const todayIso = new Date().toISOString().slice(0, 10);
+      $("#month-label").textContent = `${year}年${month}月`;
+      const grid = $("#grid");
+      if (!d.items.length) {
+        grid.innerHTML = `<div class="empty">${year}年${month}月に、承認済みの工事はありません。</div>`;
+        $("#legend").innerHTML = "";
+        $("#list-card").hidden = true;
+        return;
+      }
+      const contractors = d.contractors;
+      let head = `<tr><th class="name">工事会社</th>`;
+      for (let day = 1; day <= days; day++) {
+        const dt = new Date(year, month - 1, day);
+        const iso = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+        const w = dt.getDay();
+        head += `<th class="${w === 6 ? "sat" : ""}${w === 0 ? "sun" : ""} ${iso === todayIso ? "today" : ""}">${day}<br><small>${"日月火水木金土"[w]}</small></th>`;
+      }
+      head += `</tr>`;
+      const rows = contractors.map((name) => {
+        const items = d.items.filter((it) => it.contractor === name);
+        // 重なる工事は段を分ける
+        const lanes = [];
+        items.forEach((it) => {
+          const s = it.period_start, e = it.period_end;
+          let lane = lanes.findIndex((busy) => busy.every((b) => e < b.s || s > b.e));
+          if (lane === -1) { lanes.push([]); lane = lanes.length - 1; }
+          lanes[lane].push({s, e});
+          it._lane = lane;
+        });
+        const laneCount = Math.max(1, lanes.length);
+        let cells = "";
+        for (let day = 1; day <= days; day++) {
+          const dt = new Date(year, month - 1, day);
+          const iso = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+          const w = dt.getDay();
+          cells += `<td class="day ${w === 0 || w === 6 ? "weekend" : ""} ${iso === todayIso ? "today" : ""}" style="height:${12 + laneCount * 28}px"></td>`;
+        }
+        return `<tr data-contractor="${esc(name)}"><td class="name" title="${esc(name)}">${esc(name)}</td>${cells}</tr>`;
+      }).join("");
+      grid.innerHTML = `<table class="gantt"><thead>${head}</thead><tbody>${rows}</tbody></table>`;
+
+      // バーを日付セルの上に重ねる
+      const table = grid.querySelector("table");
+      const monthStart = `${year}-${String(month).padStart(2, "0")}-01`;
+      const monthEnd = `${year}-${String(month).padStart(2, "0")}-${String(days).padStart(2, "0")}`;
+      contractors.forEach((name) => {
+        const tr = grid.querySelector(`tr[data-contractor="${CSS.escape(name)}"]`);
+        const cellsEl = [...tr.querySelectorAll("td.day")];
+        d.items.filter((it) => it.contractor === name).forEach((it) => {
+          const s = it.period_start < monthStart ? monthStart : it.period_start;
+          const e = it.period_end > monthEnd ? monthEnd : it.period_end;
+          const startIdx = Number(s.slice(8, 10)) - 1;
+          const endIdx = Number(e.slice(8, 10)) - 1;
+          const first = cellsEl[startIdx], last = cellsEl[endIdx];
+          const bar = document.createElement("div");
+          bar.className = "bar";
+          bar.style.background = colorFor(name, contractors);
+          const label = state.user.role === "contractor"
+            ? `${it.work_name}　${it.customer_name}様　${yen(it.payment_amount)}`
+            : `${it.customer_name}様　${it.work_name}`;
+          bar.textContent = label;
+          bar.title = `${label}\n${it.period_start}〜${it.period_end}${it.site ? "\n" + it.site : ""}`;
+          bar.style.left = `${first.offsetLeft + 2}px`;
+          bar.style.width = `${last.offsetLeft + last.offsetWidth - first.offsetLeft - 4}px`;
+          bar.style.top = `${tr.offsetTop + 6 + it._lane * 28}px`;
+          if (state.user.role !== "contractor") bar.addEventListener("click", () => { location.href = `index.html?open=${it.id}`; });
+          grid.style.position = "relative";
+          grid.append(bar);
+        });
+      });
+      $("#legend").innerHTML = contractors.map((name) => `<span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${colorFor(name, contractors)};vertical-align:-1px;margin-right:5px"></span>${esc(name)}</span>`).join("");
+
+      // 下の一覧
+      $("#list-card").hidden = false;
+      const isContractor = state.user.role === "contractor";
+      $("#list-title").textContent = `${year}年${month}月の工事（${d.items.length}件）`;
+      const headRow = isContractor
+        ? `<div class="detail-row head"><span>工事名</span><span>お客様名・場所</span><span>工期</span><span>担当</span><span class="money">委託金額（税別）</span></div>`
+        : `<div class="detail-row head"><span>工事会社</span><span>お客様名・工事名</span><span>工期</span><span>担当</span><span class="money">委託金額（税別）</span></div>`;
+      $("#list").innerHTML = headRow + d.items.map((it) => isContractor
+        ? `<div class="detail-row"><span>${esc(it.work_name)}</span><span>${esc(it.customer_name)}様<br><small>${esc(it.site)}</small></span><span>${jp(it.period_start)}〜${jp(it.period_end)}</span><span>${esc(it.staff)}</span><span class="money">${yen(it.payment_amount)}</span></div>`
+        : `<div class="detail-row"><span>${esc(it.contractor)}</span><span>${esc(it.customer_name)}様<br><small>${esc(it.work_name)}</small></span><span>${jp(it.period_start)}〜${jp(it.period_end)}</span><span>${esc(it.staff)}</span><span class="money">${yen(it.payment_amount)}</span></div>`
+      ).join("");
+    }
+
+    async function load() {
+      const query = `year=${state.year}&month=${state.month}` + (state.contractor ? `&contractor=${encodeURIComponent(state.contractor)}` : "");
+      state.data = await api(`api/calendar?${query}`);
+      state.user = state.data.user;
+      render();
+    }
+
+    function shift(delta) {
+      let m = state.month + delta, y = state.year;
+      if (m < 1) { m = 12; y -= 1; }
+      if (m > 12) { m = 1; y += 1; }
+      state.year = y; state.month = m;
+      load().catch((e) => alert(e.message));
+    }
+
+    async function init() {
+      const me = await api("api/me");
+      if (!me.user) { location.href = "login.html?next=/calendar"; return; }
+      state.user = me.user;
+      $("#user-label").textContent = `${me.user.display_name}（${me.user.role_label}）`;
+      if (me.user.role === "contractor") {
+        $("#back-link").hidden = true;
+        $("#title").textContent = `${me.user.contractor} 様の工事予定`;
+        $("#subtitle").textContent = "承認された工事の予定と、委託金額（税別）を表示しています。";
+      } else {
+        const meta = await api("api/meta");
+        const select = $("#contractor-filter");
+        select.hidden = false;
+        meta.masters.contractors.forEach((c) => { const o = document.createElement("option"); o.value = c.name; o.textContent = c.name; select.append(o); });
+        select.addEventListener("change", () => { state.contractor = select.value; load().catch((e) => alert(e.message)); });
+      }
+      $("#prev").addEventListener("click", () => shift(-1));
+      $("#next").addEventListener("click", () => shift(1));
+      $("#today").addEventListener("click", () => { state.year = new Date().getFullYear(); state.month = new Date().getMonth() + 1; load(); });
+      $("#logout-button").addEventListener("click", async () => { await api("api/logout", {method: "POST", body: "{}"}); location.href = "login.html"; });
+      window.addEventListener("resize", () => { if (state.data) render(); });
+      await load();
+    }
+    init().catch((e) => { $("#grid").innerHTML = `<div class="empty">${esc(e.message)}</div>`; });
+  </script>
+</body>
+</html>

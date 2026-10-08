@@ -1,8 +1,11 @@
 // お試し版（URLを開くだけ版）: サーバーの代わりに、このブラウザの中だけにデータを保存する。
+// ログインは「管理者」として入った状態を再現する（お試し版では誰でも管理者）。
 (function () {
   const META = window.__DEMO_META__;
-  const KEY = "order_demo_v1";
+  const KEY = "order_demo_v2";
   const realFetch = window.fetch.bind(window);
+  const DEMO_USER = {id: 1, username: "demo", display_name: "お試し管理者", role: "admin", role_label: "管理者", contractor: ""};
+  const ROLES = {admin: "管理者", manager: "管理職", staff: "営業・事務", contractor: "工事会社"};
 
   function load() {
     try { return JSON.parse(localStorage.getItem(KEY)) || {seq: 0, orders: [], audit: []}; }
@@ -11,7 +14,6 @@
   function save(db) {
     try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {}
   }
-  if (!window.__demoMemory) window.__demoMemory = null;
 
   function derive(fields) {
     const m = META.masters;
@@ -58,7 +60,10 @@
     const db = load();
     let match;
 
-    if (path === "/api/meta") return json(200, {...META, current_year: new Date().getFullYear()});
+    if (path === "/api/me") return json(200, {user: DEMO_USER});
+    if (path === "/api/login") return json(200, {user: DEMO_USER, next: "index.html"});
+    if (path === "/api/logout") return json(200, {message: "お試し版ではログアウトしても同じ画面に戻ります。"});
+    if (path === "/api/meta") return json(200, {...META, current_year: new Date().getFullYear(), user: DEMO_USER, roles: ROLES});
     if (path === "/api/orders" && method === "GET") {
       return json(200, {orders: listOrders(db, url.searchParams.get("staff") || "", Number(url.searchParams.get("year")), url.searchParams.get("q"))});
     }
@@ -69,9 +74,9 @@
       const errors = validate(fields);
       if (errors.length) return json(422, {error: errors.join("\n"), code: "validation"});
       db.seq += 1;
-      const order = {id: db.seq, staff: fields.staff, year: yearOf(fields), status: "new", fields, version: 1, created_at: now(), updated_at: now()};
+      const order = {id: db.seq, staff: fields.staff, year: yearOf(fields), status: "new", approved: 0, approved_by: "", approved_at: "", fields, version: 1, created_at: now(), updated_at: now()};
       db.orders.push(order);
-      db.audit.push({order_id: order.id, action: "create", actor: "利用者", reason: "新規入力", created_at: now()});
+      db.audit.push({order_id: order.id, action: "create", actor: "お試し管理者", reason: "新規入力", created_at: now()});
       save(db);
       return json(201, {order});
     }
@@ -85,7 +90,7 @@
         const errors = validate(fields);
         if (errors.length) return json(422, {error: errors.join("\n"), code: "validation"});
         Object.assign(order, {fields, staff: fields.staff, year: yearOf(fields), version: order.version + 1, updated_at: now()});
-        db.audit.push({order_id: order.id, action: "update", actor: "利用者", reason: "内容を修正", created_at: now()});
+        db.audit.push({order_id: order.id, action: "update", actor: "お試し管理者", reason: "内容を修正", created_at: now()});
         save(db);
         return json(200, {order});
       }
@@ -95,7 +100,23 @@
       if (!order) return json(404, {error: "データが見つかりません。"});
       order.status = body.status === "mailed" ? "mailed" : "new";
       order.version += 1;
-      db.audit.push({order_id: order.id, action: "status", actor: "利用者", reason: order.status === "mailed" ? "郵送済みにした" : "未郵送に戻した", created_at: now()});
+      db.audit.push({order_id: order.id, action: "status", actor: "お試し管理者", reason: order.status === "mailed" ? "郵送済みにした" : "未郵送に戻した", created_at: now()});
+      save(db);
+      return json(200, {order});
+    }
+    if ((match = path.match(/^\/api\/orders\/(\d+)\/approve$/)) && method === "POST") {
+      const order = db.orders.find((o) => o.id === Number(match[1]));
+      if (!order) return json(404, {error: "データが見つかりません。"});
+      const approved = body.approved !== false;
+      if (approved) {
+        const missing = [["contractor", "工事依頼先"], ["period_start", "工期 開始"], ["period_end", "工期 終了"]].filter(([k]) => !String(order.fields[k] || "").trim()).map(([, l]) => l);
+        if (missing.length) return json(422, {error: "承認するには「" + missing.join("」「") + "」が必要です（カレンダーに載せるため）。", code: "validation"});
+      }
+      order.approved = approved ? 1 : 0;
+      order.approved_by = approved ? "お試し管理者" : "";
+      order.approved_at = approved ? now() : "";
+      order.version += 1;
+      db.audit.push({order_id: order.id, action: "approval", actor: "お試し管理者", reason: approved ? "承認した" : "承認を取り消した", created_at: now()});
       save(db);
       return json(200, {order});
     }
@@ -109,6 +130,24 @@
       const logs = db.audit.filter((a) => a.order_id === Number(match[1])).reverse();
       return json(200, {logs});
     }
+    if (path === "/api/calendar") {
+      const year = Number(url.searchParams.get("year")) || new Date().getFullYear();
+      const month = Number(url.searchParams.get("month")) || new Date().getMonth() + 1;
+      const contractor = url.searchParams.get("contractor") || "";
+      const start = `${year}-${String(month).padStart(2, "0")}-01`;
+      const end = `${year}-${String(month).padStart(2, "0")}-${String(new Date(year, month, 0).getDate()).padStart(2, "0")}`;
+      const items = db.orders.filter((o) => o.approved && o.fields.period_start && o.fields.period_end && o.fields.period_start <= end && o.fields.period_end >= start && (!contractor || o.fields.contractor === contractor))
+        .sort((a, b) => a.fields.contractor.localeCompare(b.fields.contractor) || a.fields.period_start.localeCompare(b.fields.period_start))
+        .map((o) => ({id: o.id, contractor: o.fields.contractor, customer_name: o.fields.customer_name, work_name: o.fields.work_name, site: o.fields.site, staff: o.fields.staff, period_start: o.fields.period_start, period_end: o.fields.period_end, payment_amount: o.fields.payment_amount, order_amount: o.fields.order_amount, sales_amount: o.fields.sales_amount, status: o.status}));
+      const contractors = [...new Set(items.map((it) => it.contractor))];
+      return json(200, {start, end, year, month, months: 1, contractors, items, user: DEMO_USER});
+    }
+    if (path === "/api/users" && method === "GET") {
+      return json(200, {users: [{id: 1, username: "demo", display_name: "お試し管理者", role: "admin", contractor: "", active: 1}], contractors: META.masters.contractors.map((c) => c.name), roles: ROLES});
+    }
+    if (path === "/api/users" && method === "POST") return json(400, {error: "お試し版ではIDの発行はできません（本物のツールでは管理者が発行できます）。"});
+    if (path === "/api/logs") return json(200, {logs: [{username: "demo", role: "admin", event: "success", ip: "お試し", user_agent: "", created_at: now()}]});
+    if (path === "/api/change-password") return json(400, {error: "お試し版では変更できません。"});
     return json(404, {error: "お試し版では使えない機能です。"});
   }
 
@@ -121,9 +160,9 @@
 
   window.demoExportCsv = function (staff, year) {
     const db = load();
-    const rows = [["No", "状態", ...META.fields.map((f) => f.label)]];
+    const rows = [["No", "承認", "状態", ...META.fields.map((f) => f.label)]];
     listOrders(db, staff, year, "").forEach((o) => {
-      rows.push([o.id, o.status === "mailed" ? "郵送済み" : "未郵送", ...META.fields.map((f) => o.fields[f.key] ?? "")]);
+      rows.push([o.id, o.approved ? "承認済み" : "未承認", o.status === "mailed" ? "郵送済み" : "未郵送", ...META.fields.map((f) => o.fields[f.key] ?? "")]);
     });
     const text = rows.map((r) => r.map((v) => /[",\r\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v)).join(",")).join("\r\n");
     const link = document.createElement("a");
@@ -136,11 +175,13 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     const bar = document.createElement("div");
-    bar.textContent = "お試し版：入力した内容は、この端末のこのブラウザの中だけに保存されます（他の人には見えません）";
+    bar.textContent = "お試し版：管理者として入った状態です。入力した内容は、この端末のこのブラウザの中だけに保存されます";
     bar.style.cssText = "background:#fff3d6;color:#6b4a00;font:700 12px/1.6 Meiryo,sans-serif;padding:6px 14px;text-align:center;border-bottom:1px solid #ecd9a0";
     bar.className = "demo-bar";
     document.body.prepend(bar);
     const exit = document.getElementById("shutdown-button");
     if (exit) exit.style.display = "none";
+    const logout = document.getElementById("logout-button");
+    if (logout) logout.style.display = "none";
   });
 })();

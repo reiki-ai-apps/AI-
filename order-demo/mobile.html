@@ -62,6 +62,7 @@
 
     async function api(path) {
       const res = await fetch(path);
+      if (res.status === 401) { location.href = "login.html?next=/mobile"; throw new Error("ログインしてください。"); }
       const body = await res.json();
       if (!res.ok) throw new Error(body.error || ("HTTP " + res.status));
       return body;

@@ -16,9 +16,12 @@
       </div>
       <div class="brand-art" aria-hidden="true"></div>
       <div class="header-actions">
-        <div class="header-status"><span class="status-dot"></span> ローカル保存</div>
+        <span class="header-user" id="user-label"></span>
         <button class="header-exit" id="whats-new-button" type="button">💬 今回の更新</button>
+        <a class="header-exit" id="calendar-link" href="calendar.html">📅 カレンダー</a>
+        <a class="header-exit" id="admin-link" href="admin.html" hidden>⚙ 設定</a>
         <a class="header-exit" id="mobile-link" href="mobile.html">スマホ用画面</a>
+        <button class="header-exit" id="logout-button" type="button">ログアウト</button>
         <button class="header-exit" id="shutdown-button" type="button">ツールを終了</button>
       </div>
     </header>
@@ -32,7 +35,8 @@
         </div>
         <div class="summary-cards" aria-label="集計">
           <div class="summary-card"><span>全件</span><strong id="count-all">0</strong></div>
-          <div class="summary-card warning"><span>未郵送</span><strong id="count-new">0</strong></div>
+          <div class="summary-card warning"><span>未承認</span><strong id="count-unapproved">0</strong></div>
+          <div class="summary-card"><span>未郵送</span><strong id="count-new">0</strong></div>
           <div class="summary-card success"><span>郵送済み</span><strong id="count-mailed">0</strong></div>
         </div>
       </section>
@@ -98,6 +102,7 @@
       <button class="icon-button" data-close="entry-dialog" aria-label="閉じる">×</button>
     </div>
     <div id="entry-error" class="modal-error" hidden></div>
+    <div id="entry-locked" class="locked-note" hidden>この案件は<strong>承認済み</strong>です。修正できるのは管理者だけです。直す必要があれば、管理職が承認を取り消すか、管理者に依頼してください。</div>
     <form class="entry-form" id="entry-form"></form>
     <details class="audit-details" id="audit-wrap" hidden>
       <summary>変更履歴</summary>

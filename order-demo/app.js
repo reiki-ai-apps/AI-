@@ -14,6 +14,10 @@ async function api(path, options = {}) {
     ...options,
     headers: {"Content-Type": "application/json", ...(options.headers || {})},
   });
+  if (response.status === 401) {
+    location.href = "login.html?next=" + encodeURIComponent(location.pathname + location.search);
+    throw new Error("ログインしてください。");
+  }
   const isJson = (response.headers.get("content-type") || "").includes("application/json");
   const body = isJson ? await response.json() : await response.text();
   if (!response.ok) {
@@ -44,15 +48,31 @@ function formatMoney(value) {
   return Number.isFinite(number) ? `¥${number.toLocaleString("ja-JP")}` : value;
 }
 
+function canApprove() {
+  return ["admin", "manager"].includes(state.user?.role);
+}
+function isAdmin() {
+  return state.user?.role === "admin";
+}
+
 async function initialize() {
   state.meta = await api("api/meta");
+  state.user = state.meta.user;
+  $("#user-label").textContent = `${state.user.display_name}（${state.user.role_label}）`;
+  $("#admin-link").hidden = !isAdmin();
   renderYearOptions();
   renderStaffOptions();
   renderTableHeader();
   bindEvents();
   await loadOrders();
+  const openId = new URLSearchParams(location.search).get("open");
+  if (openId) {
+    history.replaceState(null, "", "index.html");
+    await openEdit(Number(openId));
+    return;
+  }
   let seen = false;
-  try { seen = localStorage.getItem("order_demo_notes_v1") === "seen"; } catch (e) {}
+  try { seen = localStorage.getItem("order_demo_notes_v2") === "seen"; } catch (e) {}
   // 吹き出しの案内はパソコンの広い画面向け。スマホでは画面からはみ出すので出さない
   const wideScreen = Math.min(window.screen.width || 9999, window.outerWidth || 9999) >= 900;
   if (!seen && wideScreen) showUpdateNotes();
@@ -93,7 +113,7 @@ function renderTableHeader() {
     const stickyClass = index === 0 ? "sticky sticky-1" : "";
     return `<th class="${stickyClass}">${escapeHtml(col.label)}</th>`;
   }).join("");
-  $("#ledger-head").innerHTML = `<tr><th>状態</th>${labels}<th>印刷</th><th>編集</th></tr>`;
+  $("#ledger-head").innerHTML = `<tr><th>承認</th><th>状態</th>${labels}<th>印刷</th><th>編集</th></tr>`;
 }
 
 async function loadOrders() {
@@ -123,7 +143,11 @@ function renderRows() {
     const statusChip = order.status === "mailed"
       ? `<span class="status-chip ready">郵送済み</span><button class="mini-link" data-status-id="${order.id}" data-next="new">戻す</button>`
       : `<span class="status-chip needs_review">未郵送</span><button class="mini-link strong" data-status-id="${order.id}" data-next="mailed">郵送済みにする</button>`;
+    const approveCell = order.approved
+      ? `<span class="approve-chip yes">承認済み</span>${canApprove() ? `<button class="mini-link" data-approve-id="${order.id}" data-next="0">取り消す</button>` : ""}`
+      : `<span class="approve-chip no">未承認</span>${canApprove() ? `<button class="mini-link strong" data-approve-id="${order.id}" data-next="1">承認する</button>` : ""}`;
     return `<tr>
+      <td class="status-cell">${approveCell}</td>
       <td class="status-cell">${statusChip}</td>
       ${cells}
       <td class="print-cell">
@@ -135,7 +159,9 @@ function renderRows() {
   }).join("");
   body.querySelectorAll("[data-edit-id]").forEach((button) => button.addEventListener("click", () => openEdit(Number(button.dataset.editId))));
   body.querySelectorAll("[data-status-id]").forEach((button) => button.addEventListener("click", () => setStatus(Number(button.dataset.statusId), button.dataset.next)));
+  body.querySelectorAll("[data-approve-id]").forEach((button) => button.addEventListener("click", () => setApproval(Number(button.dataset.approveId), button.dataset.next === "1")));
   const mailed = state.orders.filter((item) => item.status === "mailed").length;
+  $("#count-unapproved").textContent = state.orders.filter((item) => !item.approved).length;
   $("#count-all").textContent = state.orders.length;
   $("#count-new").textContent = state.orders.length - mailed;
   $("#count-mailed").textContent = mailed;
@@ -167,6 +193,10 @@ function bindEvents() {
   $("#save-button").addEventListener("click", saveEntry);
   $("#delete-button").addEventListener("click", deleteEntry);
   $("#shutdown-button").addEventListener("click", shutdownTool);
+  $("#logout-button").addEventListener("click", async () => {
+    try { await api("api/logout", {method: "POST", body: "{}"}); } catch (e) {}
+    location.href = "login.html";
+  });
   $("#whats-new-button").addEventListener("click", showUpdateNotes);
   $$('[data-close]').forEach((button) => button.addEventListener("click", () => document.getElementById(button.dataset.close).close()));
 }
@@ -278,6 +308,7 @@ function openNew() {
   $("#entry-error").hidden = true;
   $("#audit-wrap").hidden = true;
   $("#delete-button").hidden = true;
+  setLocked(false);
   renderForm({input_date: todayIso(), staff: state.staff});
   $("#entry-dialog").showModal();
 }
@@ -289,8 +320,14 @@ async function openEdit(orderId) {
     $("#entry-title").textContent = `内容の確認・修正（No.${orderId}）`;
     $("#entry-note").textContent = "修正して保存すると、印刷にもすぐ反映されます";
     $("#entry-error").hidden = true;
-    $("#delete-button").hidden = false;
+    const locked = Boolean(response.order.approved) && !isAdmin();
+    $("#delete-button").hidden = locked;
     renderForm(response.order.fields);
+    setLocked(locked);
+    if (response.order.approved) {
+      $("#entry-title").textContent = `内容の確認（No.${orderId}・承認済み）`;
+      $("#entry-note").textContent = isAdmin() ? "承認済みですが、管理者なので修正できます" : "承認済みのため、閲覧のみです";
+    }
     const audit = await api(`api/orders/${orderId}/audit`);
     $("#audit-wrap").hidden = false;
     $("#audit-list").innerHTML = audit.logs.length
@@ -351,6 +388,24 @@ async function deleteEntry() {
   } catch (error) { toast(error.message, "error"); }
 }
 
+function setLocked(locked) {
+  $("#entry-locked").hidden = !locked;
+  $("#entry-form").classList.toggle("readonly", locked);
+  $("#save-button").hidden = locked;
+}
+
+async function setApproval(orderId, approved) {
+  const message = approved
+    ? `No.${orderId} を承認しますか？\n承認すると工事カレンダーに載り、工事会社からも予定が見えるようになります。`
+    : `No.${orderId} の承認を取り消しますか？\nカレンダーから外れ、修正できる状態に戻ります。`;
+  if (!window.confirm(message)) return;
+  try {
+    await api(`api/orders/${orderId}/approve`, {method: "POST", body: JSON.stringify({approved})});
+    toast(approved ? "承認しました。カレンダーに載りました。" : "承認を取り消しました。");
+    await loadOrders();
+  } catch (error) { toast(error.message, "error"); }
+}
+
 async function setStatus(orderId, next) {
   try {
     await api(`api/orders/${orderId}/status`, {method: "POST", body: JSON.stringify({status: next, actor: "利用者"})});
@@ -362,10 +417,10 @@ async function setStatus(orderId, next) {
 // ---- 今回の更新（吹き出し） ----
 
 const UPDATE_NOTES = [
-  {selector: "#add-button", text: "PDF読み取りを廃止し、Excelの「入力事項」と同じ項目をここから直接入力する方式にしました。リスト選択で仕入先コード・元請/下請なども自動で決まります。"},
-  {selector: "#table-wrap", text: "一覧の各行に「工事注文書」「注文書」の印刷ボタンが付きました。事務の方はここから印刷して郵送してください。"},
-  {selector: "#staff-select", text: "担当（入力者）はｺｰﾄﾞ表の担当者リストから選びます。ここで担当ごとの絞り込みもできます。"},
-  {selector: ".summary-cards", text: "郵送したら行の「郵送済みにする」を押すと、未郵送／郵送済みが一目で分かります。"},
+  {selector: "#table-wrap", text: "一覧に「承認」の列が付きました。管理職か管理者が「承認する」を押すと、工事カレンダーに予定が載ります。承認済みの案件は管理者以外は修正できません。"},
+  {selector: "#calendar-link", text: "「カレンダー」で、どの工事会社がいつ工事に入るかが月ごとに一目で分かります。工事会社のIDでログインすると、その会社の予定と委託金額だけが見えます。"},
+  {selector: "#user-label", text: "ログインが必要になりました。役割（管理者・管理職・営業事務・工事会社）で見える物と押せるボタンが変わります。ログインの記録は設定画面に残ります。"},
+  {selector: ".summary-cards", text: "「未承認」の件数が増えました。管理職は、ここが0になるように承認してください。"},
 ];
 
 function showUpdateNotes() {
@@ -373,8 +428,8 @@ function showUpdateNotes() {
   const overlay = document.createElement("div");
   overlay.className = "update-overlay";
   overlay.innerHTML = `<div class="update-intro">
-      <strong>💬 今回の更新（作り直し）</strong>
-      <p>PDF読み取り版から「入力→印刷→郵送」の工事注文書ツールに生まれ変わりました。右上の「💬 今回の更新」でいつでも見返せます。</p>
+      <strong>💬 今回の更新（承認・カレンダー・ログイン）</strong>
+      <p>工事注文書の承認、工事会社ごとのカレンダー、IDでのログインが加わりました。右上の「💬 今回の更新」でいつでも見返せます。</p>
       <button class="button primary" id="update-close" type="button">わかりました（閉じる）</button>
     </div>`;
   const items = UPDATE_NOTES.map((note, index) => {
@@ -425,7 +480,7 @@ function showUpdateNotes() {
   const close = () => {
     window.removeEventListener("resize", onResize);
     overlay.remove();
-    try { localStorage.setItem("order_demo_notes_v1", "seen"); } catch (e) {}
+    try { localStorage.setItem("order_demo_notes_v2", "seen"); } catch (e) {}
   };
   overlay.querySelector("#update-close").addEventListener("click", close);
   overlay.addEventListener("click", (event) => { if (event.target === overlay) close(); });

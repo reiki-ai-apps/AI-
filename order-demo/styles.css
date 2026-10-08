@@ -128,6 +128,13 @@ main { padding: 26px 28px 40px; }
 #entry-dialog .audit-details { flex: 0 0 auto; margin: 0 26px 12px; }
 #entry-dialog .sticky-actions { flex: 0 0 auto; }
 .button.danger { color: var(--red, #b42318); margin-right: auto; }
+.header-user { padding: 7px 4px; color: #d0e9d8; font-size: 12px; white-space: nowrap; }
+[hidden] { display: none !important; }
+.approve-chip { display: inline-block; padding: 4px 8px; border-radius: 6px; font-weight: 800; font-size: 12px; white-space: nowrap; }
+.approve-chip.yes { color: #086c37; background: #ddf3e4; }
+.approve-chip.no { color: #8a6100; background: #fff3d6; }
+.locked-note { margin: 14px 26px 0; padding: 11px 14px; border-radius: 9px; background: #fff3d6; color: #6b4a00; font-size: 13px; line-height: 1.6; }
+.entry-form.readonly input, .entry-form.readonly select { background: #f3f5f3; color: #526057; pointer-events: none; }
 .button.danger[hidden] { display: none; }
 .entry-form { display: grid; gap: 18px; padding: 4px 2px 12px; }
 .form-section { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px 16px; background: #fbfdfb; }

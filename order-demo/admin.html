@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>設定｜利用者とログイン記録</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .admin-shell { padding: 22px 28px 40px; display: grid; gap: 22px; }
+    .panel { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
+    .panel h2 { margin: 0; padding: 14px 18px; font-size: 16px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+    .panel .body { padding: 14px 18px; }
+    table.plain { width: 100%; border-collapse: collapse; font-size: 13px; }
+    table.plain th, table.plain td { padding: 8px 10px; border-bottom: 1px solid #edf1ee; text-align: left; vertical-align: middle; }
+    table.plain th { background: #f3f7f4; font-size: 12px; }
+    .form-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; align-items: end; }
+    .form-row label { display: grid; gap: 4px; font-size: 12px; font-weight: 700; }
+    .form-row input, .form-row select { min-height: 40px; padding: 0 10px; border: 1px solid #cad5cd; border-radius: 8px; font-size: 14px; }
+    .mini { padding: 5px 10px; border: 1px solid var(--line); border-radius: 7px; background: #fff; font-size: 12px; cursor: pointer; margin-right: 4px; }
+    .mini.danger { color: #b42318; }
+    .chip { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; background: #eef2ef; }
+    .chip.admin { background: #ddf3e4; color: #086c37; } .chip.manager { background: #e6effb; color: #255b9a; } .chip.contractor { background: #fff0dc; color: #a25300; }
+    .chip.off { background: #fdecec; color: #b42318; }
+    .ev-success { color: #086c37; font-weight: 700; } .ev-failure, .ev-locked { color: #b42318; font-weight: 700; } .ev-logout { color: #536158; }
+    .msg { margin-top: 10px; font-size: 13px; color: #b42318; white-space: pre-line; }
+    .note { font-size: 12px; color: #536158; margin-bottom: 10px; line-height: 1.7; }
+  .brand-art,.empty-illustration{display:none!important}</style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="brand-header">
+      <div class="brand-copy">
+        <div class="brand-eyebrow">SETTINGS</div>
+        <h1>設定（管理者）</h1>
+        <p>利用者のID発行と、ログインの記録</p>
+      </div>
+      <div class="brand-art" aria-hidden="true"></div>
+      <div class="header-actions">
+        <a class="header-exit" href="index.html">注文一覧へ</a>
+        <a class="header-exit" href="calendar.html">カレンダー</a>
+        <button class="header-exit" id="logout-button" type="button">ログアウト</button>
+      </div>
+    </header>
+    <main class="admin-shell">
+      <section class="panel">
+        <h2>利用者（ID）</h2>
+        <div class="body">
+          <p class="note">役割：<strong>管理者</strong>＝すべて（承認済みの修正・ID発行・記録の閲覧）／<strong>管理職</strong>＝承認・取り消し、未承認の入力修正／<strong>営業・事務</strong>＝入力・修正・印刷・郵送管理／<strong>工事会社</strong>＝自社の予定と委託金額の閲覧だけ（他社の予定・総額は見えません）。</p>
+          <div class="form-row">
+            <label>ID<input id="u-username" autocapitalize="off"></label>
+            <label>表示名<input id="u-display" placeholder="例：山田、○○工業 様"></label>
+            <label>役割<select id="u-role"><option value="staff">営業・事務</option><option value="manager">管理職</option><option value="admin">管理者</option><option value="contractor">工事会社</option></select></label>
+            <label id="u-contractor-wrap" hidden>工事依頼先<select id="u-contractor"></select></label>
+            <label>パスワード（6文字以上）<input id="u-password" type="text" autocomplete="off"></label>
+            <button class="button primary" id="u-add" type="button">IDを発行</button>
+          </div>
+          <div class="msg" id="u-msg"></div>
+          <table class="plain" style="margin-top:14px"><thead><tr><th>ID</th><th>表示名</th><th>役割</th><th>工事依頼先</th><th>状態</th><th>操作</th></tr></thead><tbody id="users"></tbody></table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>ログインの記録 <button class="mini" id="reload-logs" type="button">更新</button></h2>
+        <div class="body">
+          <p class="note">誰が・いつ・どこから入ったかの記録です（直近500件）。同じ内容が data\ログ\ログイン記録.txt にも残ります。必要な時だけ見てください。</p>
+          <table class="plain"><thead><tr><th>日時</th><th>ID</th><th>役割</th><th>結果</th><th>接続元</th></tr></thead><tbody id="logs"></tbody></table>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>window.__DEMO_META__ = {"fields": [{"key": "input_date", "label": "入力日", "type": "date", "required": true}, {"key": "staff", "label": "担当（入力者）", "type": "staff", "required": true}, {"key": "contractor", "label": "工事依頼先", "type": "contractor", "required": true}, {"key": "contractor_code", "label": "仕入先コード", "type": "text", "derived": true}, {"key": "customer_name", "label": "お客様名", "type": "text", "required": true}, {"key": "billing_to", "label": "請求先", "type": "text"}, {"key": "kubun_company", "label": "工事区分（請負元）", "type": "kubun"}, {"key": "kubun_cls", "label": "工事区分", "type": "text", "derived": true}, {"key": "site", "label": "工事場所（都道府県・市町村名）", "type": "text", "required": true}, {"key": "work_name", "label": "工事名", "type": "text", "required": true}, {"key": "work_type", "label": "工事種類", "type": "work_type"}, {"key": "work_type_cls", "label": "種別", "type": "text", "derived": true}, {"key": "industry", "label": "建設業種", "type": "industry"}, {"key": "industry_cls", "label": "業種種別", "type": "text", "derived": true}, {"key": "order_amount", "label": "受注金額（資材費含む総額・税抜）", "type": "money", "required": true}, {"key": "period_start", "label": "工期 開始", "type": "date"}, {"key": "period_end", "label": "工期 終了", "type": "date"}, {"key": "payment_amount", "label": "支払金額（税抜）", "type": "money"}, {"key": "sales_amount", "label": "売上金額（税抜）", "type": "money"}, {"key": "content_1", "label": "工事内容 1行目", "type": "line", "maxlen": 30}, {"key": "content_2", "label": "工事内容 2行目", "type": "line", "maxlen": 30}, {"key": "content_3", "label": "工事内容 3行目", "type": "line", "maxlen": 30}, {"key": "content_4", "label": "工事内容 4行目", "type": "line", "maxlen": 30}, {"key": "content_5", "label": "工事内容 5行目", "type": "line", "maxlen": 30}, {"key": "content_6", "label": "工事内容 6行目", "type": "line", "maxlen": 30}, {"key": "content_7", "label": "工事内容 7行目", "type": "line", "maxlen": 30}, {"key": "content_8", "label": "工事内容 8行目", "type": "line", "maxlen": 30}, {"key": "content_9", "label": "工事内容 9行目", "type": "line", "maxlen": 30}, {"key": "content_10", "label": "工事内容 10行目", "type": "line", "maxlen": 30}, {"key": "note_1", "label": "連絡事項 1行目", "type": "line", "maxlen": 40}, {"key": "note_2", "label": "連絡事項 2行目", "type": "line", "maxlen": 40}, {"key": "note_3", "label": "連絡事項 3行目", "type": "line", "maxlen": 40}, {"key": "note_4", "label": "連絡事項 4行目", "type": "line", "maxlen": 40}, {"key": "note_5", "label": "連絡事項 5行目", "type": "line", "maxlen": 40}, {"key": "note_6", "label": "連絡事項 6行目", "type": "line", "maxlen": 40}], "masters": {"contractors": [{"name": "見本ハウス 株式会社", "code": "0101", "contract_date": "2017-04-01"}, {"name": "サンプル工業", "code": "0102", "contract_date": "2019-08-01"}, {"name": "テスト設備 株式会社", "code": "0103", "contract_date": "2021-08-20"}, {"name": "当社施工", "code": "00022", "contract_date": ""}], "staff": [{"code": "001", "name": "営業 一郎", "short": "営業A"}, {"code": "002", "name": "営業 二郎", "short": "営業B"}, {"code": "003", "name": "営業 三郎", "short": "営業C"}], "work_types": [{"name": "ハウス新設", "cls": "新築"}, {"name": "他", "cls": "改修"}], "industries": [{"name": "新設・外張り張替", "cls": "とび土工"}, {"name": "解体", "cls": "解体"}, {"name": "カーテン張替・その他改修", "cls": "その他"}], "kubun": [{"code": "", "name": "元請", "cls": "元請"}, {"code": "900001", "name": "見本建設 株式会社", "cls": "下請"}, {"code": "900002", "name": "サンプル設備工業", "cls": "下請"}]}};</script>
+<script src="demo-api.js"></script>
+<script>
+    const $ = (s) => document.querySelector(s);
+    const esc = (v) => String(v ?? "").replace(/[&<>'"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
+    let roles = {};
+    async function api(path, options = {}) {
+      const res = await fetch(path, {...options, headers: {"Content-Type": "application/json"}});
+      if (res.status === 401) { location.href = "login.html?next=/admin"; throw new Error("ログインしてください。"); }
+      const body = await res.json();
+      if (!res.ok) throw new Error(body.error || `HTTP ${res.status}`);
+      return body;
+    }
+    const EVENT = {success: "ログイン", failure: "失敗", locked: "ロック中", logout: "ログアウト"};
+    async function loadUsers() {
+      const data = await api("api/users");
+      roles = data.roles;
+      const select = $("#u-contractor");
+      if (!select.options.length) data.contractors.forEach((name) => { const o = document.createElement("option"); o.value = name; o.textContent = name; select.append(o); });
+      $("#users").innerHTML = data.users.map((u) => `<tr>
+        <td><strong>${esc(u.username)}</strong></td><td>${esc(u.display_name)}</td>
+        <td><span class="chip ${u.role}">${esc(roles[u.role] || u.role)}</span></td><td>${esc(u.contractor || "—")}</td>
+        <td>${u.active ? "有効" : '<span class="chip off">停止中</span>'}</td>
+        <td><button class="mini" data-pw="${u.id}">パスワード変更</button>${u.active ? `<button class="mini danger" data-off="${u.id}">停止</button>` : `<button class="mini" data-on="${u.id}">再開</button>`}</td>
+      </tr>`).join("");
+      $("#users").querySelectorAll("[data-pw]").forEach((b) => b.addEventListener("click", async () => {
+        const pw = prompt("新しいパスワード（6文字以上）を入力してください。");
+        if (!pw) return;
+        try { await api(`api/users/${b.dataset.pw}`, {method: "PATCH", body: JSON.stringify({password: pw})}); alert("変更しました。"); } catch (e) { alert(e.message); }
+      }));
+      $("#users").querySelectorAll("[data-off]").forEach((b) => b.addEventListener("click", async () => {
+        if (!confirm("このIDを停止しますか？（ログインできなくなります。再開できます）")) return;
+        try { await api(`api/users/${b.dataset.off}`, {method: "PATCH", body: JSON.stringify({active: false})}); await loadUsers(); } catch (e) { alert(e.message); }
+      }));
+      $("#users").querySelectorAll("[data-on]").forEach((b) => b.addEventListener("click", async () => {
+        try { await api(`api/users/${b.dataset.on}`, {method: "PATCH", body: JSON.stringify({active: true})}); await loadUsers(); } catch (e) { alert(e.message); }
+      }));
+    }
+    async function loadLogs() {
+      const data = await api("api/logs?limit=500");
+      $("#logs").innerHTML = data.logs.map((l) => `<tr><td>${esc(new Date(l.created_at).toLocaleString("ja-JP"))}</td><td>${esc(l.username)}</td><td>${esc(roles[l.role] || l.role || "—")}</td><td class="ev-${esc(l.event)}">${esc(EVENT[l.event] || l.event)}</td><td>${esc(l.ip)}</td></tr>`).join("") || `<tr><td colspan="5">記録はまだありません。</td></tr>`;
+    }
+    $("#u-role").addEventListener("change", () => { $("#u-contractor-wrap").hidden = $("#u-role").value !== "contractor"; });
+    $("#u-add").addEventListener("click", async () => {
+      $("#u-msg").textContent = "";
+      try {
+        await api("api/users", {method: "POST", body: JSON.stringify({username: $("#u-username").value, display_name: $("#u-display").value, role: $("#u-role").value, contractor: $("#u-contractor").value, password: $("#u-password").value})});
+        $("#u-username").value = ""; $("#u-display").value = ""; $("#u-password").value = "";
+        await loadUsers();
+      } catch (e) { $("#u-msg").textContent = e.message; }
+    });
+    $("#reload-logs").addEventListener("click", () => loadLogs().catch((e) => alert(e.message)));
+    $("#logout-button").addEventListener("click", async () => { await api("api/logout", {method: "POST", body: "{}"}); location.href = "login.html"; });
+    loadUsers().then(loadLogs).catch((e) => { $("#u-msg").textContent = e.message; });
+  </script>
+</body>
+</html>
