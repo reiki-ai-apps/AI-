@@ -2,14 +2,48 @@
 // ログインは「管理者」として入った状態を再現する（お試し版では誰でも管理者）。
 (function () {
   const META = window.__DEMO_META__;
-  const KEY = "order_demo_v2";
+  const KEY = "order_demo_v3";
   const realFetch = window.fetch.bind(window);
   const DEMO_USER = {id: 1, username: "demo", display_name: "お試し管理者", role: "admin", role_label: "管理者", contractor: ""};
   const ROLES = {admin: "管理者", manager: "管理職", staff: "営業・事務", contractor: "工事会社"};
 
+  // 最初に開いた時に入っている見本データ（会社名・人名・場所はすべて架空）
+  const SEED_BASE = {input_date: "2026-10-01", kubun_company: "元請", work_type: "他", industry: "新設・外張り張替"};
+  const SEED = [
+    {approved: true, mailed: true, fields: {staff: "担当A", contractor: "見本建設 株式会社", customer_name: "見本農園", site: "見本市 北町", work_name: "パイプハウス新設工事", work_type: "ハウス新設", order_amount: "1500000", payment_amount: "850000", sales_amount: "1600000", period_start: "2026-10-13", period_end: "2026-10-17", content_1: "パイプハウス 1棟 新設一式"}},
+    {approved: true, fields: {staff: "担当B", contractor: "見本建設 株式会社", customer_name: "サンプル牧場", site: "見本市 南町", work_name: "外張り張替工事", order_amount: "700000", payment_amount: "400000", sales_amount: "750000", period_start: "2026-10-26", period_end: "2026-10-30", content_1: "外張りフィルム張替 2棟"}},
+    {approved: true, mailed: true, fields: {staff: "担当A", contractor: "サンプル工業", customer_name: "テスト園芸", site: "例示町 東", work_name: "カーテン張替工事", industry: "カーテン張替・その他改修", order_amount: "500000", payment_amount: "300000", sales_amount: "520000", period_start: "2026-10-14", period_end: "2026-10-16", content_1: "内張りカーテン張替 1棟"}},
+    {approved: true, fields: {staff: "担当C", contractor: "サンプル工業", customer_name: "みほんファーム", site: "例示町 西", work_name: "ハウス補修工事", industry: "カーテン張替・その他改修", order_amount: "350000", payment_amount: "200000", sales_amount: "360000", period_start: "2026-10-21", period_end: "2026-10-23", content_1: "妻面補修・扉交換"}},
+    {approved: true, fields: {staff: "担当B", contractor: "テスト設備 株式会社", customer_name: "例示農場", site: "見本市 中央", work_name: "自動換気装置取付工事", industry: "カーテン張替・その他改修", order_amount: "800000", payment_amount: "450000", sales_amount: "820000", period_start: "2026-10-19", period_end: "2026-10-22", content_1: "自動換気装置 2台 取付"}},
+    {approved: true, fields: {staff: "担当B", contractor: "テスト設備 株式会社", customer_name: "見本農園", site: "見本市 北町", work_name: "制御盤交換工事", industry: "カーテン張替・その他改修", order_amount: "300000", payment_amount: "180000", sales_amount: "310000", period_start: "2026-11-02", period_end: "2026-11-04", content_1: "制御盤 1面 交換"}},
+    {approved: true, mailed: true, fields: {staff: "担当C", contractor: "みほん造園 株式会社", customer_name: "サンプル花き", site: "例示町 北", work_name: "旧ハウス解体工事", industry: "解体", order_amount: "900000", payment_amount: "600000", sales_amount: "950000", period_start: "2026-10-15", period_end: "2026-10-20", content_1: "旧ハウス 2棟 解体・撤去"}},
+    {approved: true, mailed: true, fields: {staff: "担当C", contractor: "みほん造園 株式会社", customer_name: "テスト園芸", site: "例示町 東", work_name: "基礎撤去工事", industry: "解体", order_amount: "250000", payment_amount: "150000", sales_amount: "260000", period_start: "2026-10-08", period_end: "2026-10-10", content_1: "基礎コンクリート撤去"}},
+    {approved: true, fields: {staff: "担当A", contractor: "例示ハウス工業", customer_name: "みほんファーム", site: "例示町 西", work_name: "連棟ハウス新設工事", work_type: "ハウス新設", order_amount: "2400000", payment_amount: "1200000", sales_amount: "2500000", period_start: "2026-10-27", period_end: "2026-11-06", content_1: "連棟パイプハウス 3連 新設"}},
+    {approved: true, mailed: true, fields: {staff: "担当A", contractor: "例示ハウス工業", customer_name: "例示農場", site: "見本市 中央", work_name: "育苗ハウス改修工事", order_amount: "600000", payment_amount: "350000", sales_amount: "620000", period_start: "2026-10-05", period_end: "2026-10-09", content_1: "育苗ハウス 外張り・骨組み補修"}},
+    {approved: false, fields: {staff: "担当B", contractor: "サンプル工業", customer_name: "見本農園", site: "見本市 北町", work_name: "カーテン張替工事", industry: "カーテン張替・その他改修", order_amount: "400000", payment_amount: "240000", sales_amount: "410000", period_start: "2026-11-10", period_end: "2026-11-12", content_1: "内張りカーテン張替", note_1: "承認待ちの例です"}},
+  ];
+
+  function seeded() {
+    const db = {seq: 0, orders: [], audit: []};
+    const t = now();
+    SEED.forEach((s) => {
+      const fields = {};
+      META.fields.forEach((f) => { fields[f.key] = s.fields[f.key] ?? SEED_BASE[f.key] ?? ""; });
+      derive(fields);
+      db.seq += 1;
+      db.orders.push({id: db.seq, staff: fields.staff, year: yearOf(fields), status: s.mailed ? "mailed" : "new", approved: s.approved ? 1 : 0, approved_by: s.approved ? "お試し管理者" : "", approved_at: s.approved ? t : "", fields, version: 1, created_at: t, updated_at: t});
+      db.audit.push({order_id: db.seq, action: "create", actor: "お試し管理者", reason: "見本データ", created_at: t});
+    });
+    save(db);
+    return db;
+  }
+
   function load() {
-    try { return JSON.parse(localStorage.getItem(KEY)) || {seq: 0, orders: [], audit: []}; }
-    catch (e) { return {seq: 0, orders: [], audit: []}; }
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) return JSON.parse(raw) || seeded();
+    } catch (e) {}
+    return seeded();
   }
   function save(db) {
     try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {}

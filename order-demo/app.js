@@ -55,7 +55,22 @@ function isAdmin() {
   return state.user?.role === "admin";
 }
 
+function shouldUseMobile() {
+  // スマホで開いたら自動でスマホ用画面へ。「パソコン用の画面を開く」を押した時だけ、そのタブでは止める
+  let forced = false;
+  try { forced = sessionStorage.getItem("order_force_desktop") === "1"; } catch (e) {}
+  if (forced) return false;
+  const phoneAgent = /Android.+Mobile|iPhone|iPod/i.test(navigator.userAgent);
+  const narrowTouch = (window.innerWidth || 9999) <= 760 && window.matchMedia("(pointer: coarse)").matches;
+  return phoneAgent || narrowTouch;
+}
+
 async function initialize() {
+  if (shouldUseMobile()) {
+    const openId = new URLSearchParams(location.search).get("open");
+    location.replace("mobile.html" + (openId ? `?open=${encodeURIComponent(openId)}` : ""));
+    return;
+  }
   state.meta = await api("api/meta");
   state.user = state.meta.user;
   $("#user-label").textContent = `${state.user.display_name}（${state.user.role_label}）`;
