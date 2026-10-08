@@ -60,6 +60,11 @@ async function initialize() {
   state.user = state.meta.user;
   $("#user-label").textContent = `${state.user.display_name}（${state.user.role_label}）`;
   $("#admin-link").hidden = !isAdmin();
+  const companyName = (state.meta.company || {}).name || "";
+  if (companyName) {
+    $("#brand-title").textContent = `${companyName} 工事注文書`;
+    document.title = `${companyName} 工事注文書`;
+  }
   renderYearOptions();
   renderStaffOptions();
   renderTableHeader();
@@ -72,7 +77,7 @@ async function initialize() {
     return;
   }
   let seen = false;
-  try { seen = localStorage.getItem("order_demo_notes_v2") === "seen"; } catch (e) {}
+  try { seen = localStorage.getItem("order_demo_notes_v3") === "seen"; } catch (e) {}
   // 吹き出しの案内はパソコンの広い画面向け。スマホでは画面からはみ出すので出さない
   const wideScreen = Math.min(window.screen.width || 9999, window.outerWidth || 9999) >= 900;
   if (!seen && wideScreen) showUpdateNotes();
@@ -421,6 +426,7 @@ const UPDATE_NOTES = [
   {selector: "#calendar-link", text: "「カレンダー」で、どの工事会社がいつ工事に入るかが月ごとに一目で分かります。工事会社のIDでログインすると、その会社の予定と委託金額だけが見えます。"},
   {selector: "#user-label", text: "ログインが必要になりました。役割（管理者・管理職・営業事務・工事会社）で見える物と押せるボタンが変わります。ログインの記録は設定画面に残ります。"},
   {selector: ".summary-cards", text: "「未承認」の件数が増えました。管理職は、ここが0になるように承認してください。"},
+  {selector: "#admin-link", text: "「設定」で、会社情報（注文書の差出人欄）と、工事依頼先・担当者・工事区分のリストを登録します。ツールには見本の名前しか入っていないので、最初に管理者が入力してください。"},
 ];
 
 function showUpdateNotes() {
@@ -434,7 +440,7 @@ function showUpdateNotes() {
     </div>`;
   const items = UPDATE_NOTES.map((note, index) => {
     const target = document.querySelector(note.selector);
-    if (!target) return null;
+    if (!target || target.hidden) return null;
     const bubble = document.createElement("div");
     bubble.className = "update-bubble";
     bubble.innerHTML = `<span class="update-num">${index + 1}</span><p>${escapeHtml(note.text)}</p>`;
@@ -480,7 +486,7 @@ function showUpdateNotes() {
   const close = () => {
     window.removeEventListener("resize", onResize);
     overlay.remove();
-    try { localStorage.setItem("order_demo_notes_v2", "seen"); } catch (e) {}
+    try { localStorage.setItem("order_demo_notes_v3", "seen"); } catch (e) {}
   };
   overlay.querySelector("#update-close").addEventListener("click", close);
   overlay.addEventListener("click", (event) => { if (event.target === overlay) close(); });

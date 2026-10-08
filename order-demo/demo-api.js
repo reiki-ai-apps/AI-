@@ -148,6 +148,10 @@
     if (path === "/api/users" && method === "POST") return json(400, {error: "お試し版ではIDの発行はできません（本物のツールでは管理者が発行できます）。"});
     if (path === "/api/logs") return json(200, {logs: [{username: "demo", role: "admin", event: "success", ip: "お試し", user_agent: "", created_at: now()}]});
     if (path === "/api/change-password") return json(400, {error: "お試し版では変更できません。"});
+    if (path === "/api/settings" && method === "GET") return json(200, {company: META.company, archive_dir: ""});
+    if (path === "/api/settings") return json(400, {error: "お試し版では会社情報は変えられません（本物のツールでは管理者が登録します）。"});
+    if (path === "/api/masters" && method === "GET") return json(200, {masters: META.masters});
+    if (path === "/api/masters") return json(400, {error: "お試し版ではリストは変えられません（本物のツールでは管理者が登録します）。"});
     return json(404, {error: "お試し版では使えない機能です。"});
   }
 
