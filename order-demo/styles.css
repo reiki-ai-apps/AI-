@@ -45,7 +45,7 @@ button { cursor: pointer; }
 .brand-eyebrow, .section-kicker { margin: 0 0 4px; color: #a9daba; font-size: 11px; font-weight: 800; letter-spacing: .18em; }
 .brand-copy h1 { margin: 0; font-size: 25px; letter-spacing: .05em; }
 .brand-copy p { margin: 5px 0 0; color: #d0e9d8; font-size: 13px; }
-.brand-art { position: absolute; right: 92px; top: -84px; width: 620px; height: 280px; background: url('assets/cover.jpg') center/cover; opacity: .25; filter: saturate(.8); }
+.brand-art { position: absolute; right: 92px; top: -84px; width: 620px; height: 280px; border-radius: 50%; background: radial-gradient(circle at 40% 50%, rgba(255,255,255,.55), rgba(255,255,255,.08) 55%, transparent 72%); opacity: .35; }
 .header-actions { position: absolute; right: 30px; top: 21px; z-index: 3; display: flex; align-items: center; gap: 8px; }
 .header-status { padding: 7px 11px; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; background: rgba(0,0,0,.18); font-size: 12px; }
 .header-exit { padding: 7px 11px; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; color: #fff; background: rgba(0,0,0,.22); font-size: 12px; cursor: pointer; text-decoration: none; }
@@ -162,7 +162,7 @@ main { padding: 26px 28px 40px; }
 
 .empty-state { min-height: 400px; display: flex; align-items: center; justify-content: center; gap: 34px; padding: 40px; }
 .empty-state[hidden] { display: none; }
-.empty-illustration { width: 310px; height: 210px; flex: 0 0 auto; border-radius: 18px; background: linear-gradient(90deg, rgba(255,255,255,.02), rgba(255,255,255,.88)), url('assets/cover.jpg') center/cover; box-shadow: inset 0 0 0 1px rgba(8,122,66,.08); }
+.empty-illustration { width: 310px; height: 210px; flex: 0 0 auto; border-radius: 18px; background: linear-gradient(135deg, #e3f2e8, #f6fbf7 60%, #dbeee2); box-shadow: inset 0 0 0 1px rgba(8,122,66,.08); }
 .empty-state h3 { margin: 8px 0; font-size: 22px; }
 .empty-state p { max-width: 470px; margin: 0 0 20px; color: var(--muted); line-height: 1.8; }
 .empty-badge { color: var(--green-700); font-size: 11px; font-weight: 900; letter-spacing: .16em; }
