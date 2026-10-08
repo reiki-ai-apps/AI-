@@ -13,13 +13,13 @@
     .cal-nav button, .cal-nav select { min-height: 42px; padding: 0 14px; border: 1px solid #cad5cd; border-radius: 9px; background: #fff; font-size: 14px; font-weight: 700; color: var(--ink); cursor: pointer; }
     .cal-nav .month { min-width: 150px; text-align: center; font-size: 18px; font-weight: 800; }
     .cal-card { overflow: auto; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
-    table.gantt { border-collapse: separate; border-spacing: 0; min-width: 100%; }
+    table.gantt { border-collapse: separate; border-spacing: 0; width: 100%; table-layout: fixed; }
     table.gantt th, table.gantt td { border-right: 1px solid #edf1ee; border-bottom: 1px solid #e5ebe7; }
-    table.gantt th { position: sticky; top: 0; z-index: 3; background: #f3f7f4; font-size: 11px; font-weight: 700; color: #3b493f; padding: 6px 0 4px; min-width: 30px; text-align: center; }
+    table.gantt th { position: sticky; top: 0; z-index: 3; background: #f3f7f4; font-size: 11px; font-weight: 700; color: #3b493f; padding: 6px 0 4px; min-width: 25px; text-align: center; }
     table.gantt th.sat { color: #175ea6; } table.gantt th.sun { color: #b42318; }
     table.gantt th.today { background: #ddf3e4; }
-    table.gantt th.name, table.gantt td.name { position: sticky; left: 0; z-index: 4; min-width: 190px; max-width: 240px; padding: 10px 12px; text-align: left; background: #fff; font-size: 13px; font-weight: 800; box-shadow: 3px 0 8px rgba(13,59,37,.05); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    table.gantt th.name { z-index: 5; background: #f3f7f4; }
+    table.gantt th.name, table.gantt td.name { position: sticky; left: 0; z-index: 4; min-width: 150px; max-width: 200px; padding: 10px 10px; text-align: left; background: #fff; font-size: 13px; font-weight: 800; box-shadow: 3px 0 8px rgba(13,59,37,.05); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    table.gantt th.name { z-index: 5; background: #f3f7f4; width: 150px; }
     table.gantt td.day { height: 54px; position: relative; padding: 0; }
     table.gantt td.day.weekend { background: #fafbfa; }
     table.gantt td.day.today { background: #f0faf3; }
