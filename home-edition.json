@@ -7,49 +7,144 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-08T11:22:51.729Z",
-  "window_end": "2026-10-08T17:23:47.070Z",
-  "last_window_end": "2026-10-08T17:23:47.070Z",
-  "last_checked_at": "2026-10-08T17:28:39.483Z",
-  "last_published_at": "2026-10-08T17:28:39.483Z",
-  "home_content_changed_at": "2026-10-08T17:28:39.483Z",
+  "window_start": "2026-10-08T17:23:47.070Z",
+  "window_end": "2026-10-09T11:20:20.314Z",
+  "last_window_end": "2026-10-09T11:20:20.314Z",
+  "last_checked_at": "2026-10-09T11:24:10.341Z",
+  "last_published_at": "2026-10-09T11:24:10.341Z",
+  "home_content_changed_at": "2026-10-09T11:24:10.341Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 8,
-  "distinct_candidate_count": 8,
+  "candidate_count": 5,
+  "distinct_candidate_count": 5,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 8,
-  "cross_edition_duplicate_count": 0,
-  "cross_edition_duplicate_groups": [],
+  "novel_candidate_count": 3,
+  "cross_edition_duplicate_count": 2,
+  "cross_edition_duplicate_groups": [
+    {
+      "representative_id": "article_56e576affa9b4e146a09",
+      "duplicate_ids": [
+        "article_2f849a3a4095e1cab1fc"
+      ]
+    },
+    {
+      "representative_id": "article_4a72a5b090eb849e8366",
+      "duplicate_ids": [
+        "article_25ad8bfa1fb8ab567f09"
+      ]
+    }
+  ],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 5,
-  "continued_selected_count": 0,
-  "tool_evolution_selected_count": 1,
+  "new_selected_count": 3,
+  "continued_selected_count": 2,
+  "tool_evolution_selected_count": 2,
   "carried_forward": false,
-  "partially_carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
-    "article_f45d98e2f91b7f9d833b",
-    "article_01d32cf6ce38ce327181",
-    "article_7de41592c6343eb6256d",
-    "article_d9b1a691036befc3fc7b",
-    "article_aad3a0c802deee1215e0"
+    "article_ccf7d1fafa261d075c8f",
+    "article_284cd85a182e04e8a974",
+    "article_d1569baf237ac64247e1",
+    "article_56e576affa9b4e146a09",
+    "article_f45d98e2f91b7f9d833b"
   ],
   "new_article_ids": [
-    "article_f45d98e2f91b7f9d833b",
-    "article_01d32cf6ce38ce327181",
-    "article_7de41592c6343eb6256d",
-    "article_d9b1a691036befc3fc7b",
-    "article_aad3a0c802deee1215e0"
+    "article_ccf7d1fafa261d075c8f",
+    "article_284cd85a182e04e8a974",
+    "article_d1569baf237ac64247e1"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continued_article_ids": [
+    "article_56e576affa9b4e146a09",
+    "article_f45d98e2f91b7f9d833b"
+  ],
+  "continuation_sources": {
+    "article_56e576affa9b4e146a09": "previous_edition",
+    "article_f45d98e2f91b7f9d833b": "previous_edition"
+  },
   "scores": {
+    "article_ccf7d1fafa261d075c8f": {
+      "article_id": "article_ccf7d1fafa261d075c8f",
+      "total": 51,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "遅れて確認できた新着",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-10-08T04:00:21.000Z"
+    },
+    "article_284cd85a182e04e8a974": {
+      "article_id": "article_284cd85a182e04e8a974",
+      "total": 51,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "遅れて確認できた新着",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-10-07T18:19:52.000Z"
+    },
+    "article_d1569baf237ac64247e1": {
+      "article_id": "article_d1569baf237ac64247e1",
+      "total": 49,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 3,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "制度・安全への影響"
+      ],
+      "published_at": "2026-10-08T21:54:00.000Z"
+    },
+    "article_56e576affa9b4e146a09": {
+      "article_id": "article_56e576affa9b4e146a09",
+      "total": 80,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 20,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "重要な経営・研究体制"
+      ],
+      "published_at": "2026-10-06T12:46:44.000Z"
+    },
     "article_f45d98e2f91b7f9d833b": {
       "article_id": "article_f45d98e2f91b7f9d833b",
       "total": 70,
@@ -64,338 +159,12 @@
       },
       "reasons": [
         "重要度A",
-        "大きな製品・市場変化",
-        "遅れて確認できた新着"
-      ],
-      "published_at": "2026-10-08T05:25:00.000Z"
-    },
-    "article_01d32cf6ce38ce327181": {
-      "article_id": "article_01d32cf6ce38ce327181",
-      "total": 69,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 20,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 9,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "制度・安全への影響",
         "大きな製品・市場変化"
       ],
-      "published_at": "2026-10-08T17:02:29.000Z"
-    },
-    "article_7de41592c6343eb6256d": {
-      "article_id": "article_7de41592c6343eb6256d",
-      "total": 58,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 8,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "制度・安全への影響"
-      ],
-      "published_at": "2026-10-08T16:28:04.000Z"
-    },
-    "article_d9b1a691036befc3fc7b": {
-      "article_id": "article_d9b1a691036befc3fc7b",
-      "total": 56,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 17,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 3,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化",
-        "重要な経営・研究体制"
-      ],
-      "published_at": "2026-10-08T13:26:15.000Z"
-    },
-    "article_aad3a0c802deee1215e0": {
-      "article_id": "article_aad3a0c802deee1215e0",
-      "total": 56,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 15,
-        "scope": 3,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "主要AI企業・基盤",
-        "大きな製品・市場変化",
-        "遅れて確認できた新着",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-10-08T06:09:48.000Z"
+      "published_at": "2026-10-08T05:25:00.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_d2b5b29b4c8155256199",
-      "story_id": "story_4b2e90b1363bf2b3a4",
-      "title": "OpenAI、EUの文章透かしルールへの対応方針を公表",
-      "primary_entity": "OpenAI",
-      "story_subject": "EU向け文章の透かし(provenance)ルールへの対応",
-      "event_type": "policy",
-      "event_stage": "announced",
-      "event_scope": "EU",
-      "story_entities": [
-        "OpenAI",
-        "ChatGPT",
-        "openai",
-        "chatgpt"
-      ],
-      "fact_slots": [
-        {
-          "type": "availability",
-          "scope": "透かし検出ツールの提供対象",
-          "value": "研究者限定",
-          "normalized_value": "研究者限定"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-05T19:21:30.672Z",
-      "edition_window_end": "2026-10-05T19:17:40.643Z"
-    },
-    {
-      "article_id": "article_92194218876e4b0c661b",
-      "story_id": "story_fe337d6bbdecc40d4e",
-      "title": "トランプ氏、政府のAI政策責任者を発表",
-      "primary_entity": "米国政府",
-      "story_subject": "米政府のAI政策責任者人事",
-      "event_type": "policy",
-      "event_stage": "announced",
-      "event_scope": "米国",
-      "story_entities": [
-        "トランプ",
-        "米政府AI政策",
-        "米政府ai政策"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-05T19:21:30.672Z",
-      "edition_window_end": "2026-10-05T19:17:40.643Z"
-    },
-    {
-      "article_id": "article_db04ea9f31949455eb34",
-      "story_id": "story_2dcd97fa9fdf1e8d87",
-      "title": "DeepSeekがAnthropicと同等性能、米中AI格差が3%に縮小と分析",
-      "primary_entity": "DeepSeek",
-      "story_subject": "DeepSeekとAnthropicの性能比較",
-      "event_type": "research",
-      "event_stage": "other",
-      "event_scope": "米中AIモデル比較",
-      "story_entities": [
-        "DeepSeek",
-        "Anthropic",
-        "deepseek",
-        "anthropic"
-      ],
-      "fact_slots": [
-        {
-          "type": "amount",
-          "scope": "米中AI性能差",
-          "value": "3%",
-          "normalized_value": "3%"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-10-05T19:21:30.672Z",
-      "edition_window_end": "2026-10-05T19:17:40.643Z"
-    },
-    {
-      "article_id": "article_fe86162211362962d066",
-      "story_id": "story_74d11ddd0b34435258",
-      "title": "Google、スマホ版Geminiアプリに地図ツールを追加",
-      "primary_entity": "Google",
-      "story_subject": "Geminiアプリの地図ツール",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "スマートフォン版Geminiアプリ",
-      "story_entities": [
-        "Google",
-        "Gemini",
-        "google",
-        "gemini",
-        "google-gemini"
-      ],
-      "fact_slots": [
-        {
-          "type": "availability",
-          "scope": "Gemini地図ツール",
-          "value": "スマートフォン向け",
-          "normalized_value": "スマートフォン向け"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-10-05T19:21:30.672Z",
-      "edition_window_end": "2026-10-05T19:17:40.643Z"
-    },
-    {
-      "article_id": "article_a6b2bd456b6c00ce6147",
-      "story_id": "story_81f351c672d09afaeb",
-      "title": "Clockwork.io、AI計算資源の無駄削減技術で31億円調達",
-      "primary_entity": "Clockwork.io",
-      "story_subject": "GPU無駄削減技術の資金調達",
-      "event_type": "funding",
-      "event_stage": "announced",
-      "event_scope": "全世界",
-      "story_entities": [
-        "Clockwork.io",
-        "GPU",
-        "clockwork.io",
-        "gpu"
-      ],
-      "fact_slots": [
-        {
-          "type": "amount",
-          "scope": "資金調達額",
-          "value": "3100万ドル",
-          "normalized_value": "31000000USD"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-05T19:21:30.672Z",
-      "edition_window_end": "2026-10-05T19:17:40.643Z"
-    },
-    {
-      "article_id": "article_e794cdd10217cc0a568b",
-      "story_id": "story_3c22273e250be8bd2e",
-      "title": "OpenAIのアルトマンCEO「AIの恩恵のためには悪い面も受け入れる必要がある」",
-      "primary_entity": "サム・アルトマン",
-      "story_subject": "AIの恩恵とリスクに関する発言",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "全世界",
-      "story_entities": [
-        "OpenAI",
-        "サム・アルトマン",
-        "openai",
-        "サムアルトマン"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-06T01:27:13.293Z",
-      "edition_window_end": "2026-10-06T01:19:47.267Z"
-    },
-    {
-      "article_id": "article_5137bf257625ea109dc8",
-      "story_id": "story_e35efaa1070bdd9cc1",
-      "title": "米大統領、AI政策の司令塔「AIフォース」創設を発表",
-      "primary_entity": "米国政府",
-      "story_subject": "AI政策司令塔組織の創設",
-      "event_type": "policy",
-      "event_stage": "announced",
-      "event_scope": "アメリカ全土",
-      "story_entities": [
-        "AIフォース",
-        "米国政府",
-        "AI政策",
-        "aiフォース",
-        "ai政策"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-06T01:27:13.293Z",
-      "edition_window_end": "2026-10-06T01:19:47.267Z"
-    },
-    {
-      "article_id": "article_1f1e1bc988d15e8f1e80",
-      "story_id": "story_ccbb9defc2601180dc",
-      "title": "米Reflection、オープンウェイトAI「Beam」を発表 推論効率で中国製モデルに対抗",
-      "primary_entity": "Reflection",
-      "story_subject": "Beam(オープンウェイトAIモデル)",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "全世界",
-      "story_entities": [
-        "Reflection",
-        "Beam",
-        "reflection",
-        "beam"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-06T01:27:13.293Z",
-      "edition_window_end": "2026-10-06T01:19:47.267Z"
-    },
-    {
-      "article_id": "article_6df22d88f60ff9f75916",
-      "story_id": "story_d7b2efcdffa3622a2f",
-      "title": "ホワイトハウスのAIタスクフォース、専門人材確保や連携に課題",
-      "primary_entity": "ホワイトハウス",
-      "story_subject": "AIタスクフォースの運営課題",
-      "event_type": "policy",
-      "event_stage": "other",
-      "event_scope": "アメリカ",
-      "story_entities": [
-        "ホワイトハウス",
-        "AIタスクフォース",
-        "aiタスクフォース"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-06T01:27:13.293Z",
-      "edition_window_end": "2026-10-06T01:19:47.267Z"
-    },
-    {
-      "article_id": "article_dad478dc29ab036c2c17",
-      "story_id": "story_8b7ad9981e1da9448f",
-      "title": "V-Key、サイバーセキュリティ企業CloudsineAIに過半数出資",
-      "primary_entity": "V-Key",
-      "story_subject": "CloudsineAIへの戦略的過半数出資",
-      "event_type": "acquisition",
-      "event_stage": "announced",
-      "event_scope": "AI安全性・セキュリティ分野",
-      "story_entities": [
-        "V-Key",
-        "CloudsineAI",
-        "v-key",
-        "cloudsineai"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-06T11:20:19.200Z",
-      "edition_window_end": "2026-10-06T11:17:25.647Z"
-    },
     {
       "article_id": "article_56e576affa9b4e146a09",
       "story_id": "story_c3678b3fe9448aab6d",
@@ -800,6 +569,85 @@
       "previous_article_id": "",
       "selected_at": "2026-10-08T17:28:39.483Z",
       "edition_window_end": "2026-10-08T17:23:47.070Z"
+    },
+    {
+      "article_id": "article_ccf7d1fafa261d075c8f",
+      "story_id": "story_020eb527d10012c858",
+      "title": "Shopify、AIと対話しながらネットショップを作れる新しい編集画面「Canvas」を発表",
+      "primary_entity": "Shopify",
+      "story_subject": "新編集画面Canvas",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "Shopifyストア運営者",
+      "story_entities": [
+        "Shopify",
+        "Canvas",
+        "shopify",
+        "canvas"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-09T11:24:10.341Z",
+      "edition_window_end": "2026-10-09T11:20:20.314Z"
+    },
+    {
+      "article_id": "article_284cd85a182e04e8a974",
+      "story_id": "story_ff337d20e79a039635",
+      "title": "Perplexity、ColBERT方式の検索モデルをMITライセンスで公開",
+      "primary_entity": "Perplexity",
+      "story_subject": "ColBERTスタイル検索モデルのオープンソース化",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "検索モデル・開発者向け公開",
+      "story_entities": [
+        "Perplexity",
+        "ColBERT",
+        "perplexity",
+        "colbert"
+      ],
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "ライセンス形式",
+          "value": "MITライセンス",
+          "normalized_value": "mitライセンス"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-09T11:24:10.341Z",
+      "edition_window_end": "2026-10-09T11:20:20.314Z"
+    },
+    {
+      "article_id": "article_d1569baf237ac64247e1",
+      "story_id": "story_4dec6451a6d6e43710",
+      "title": "米海軍、滑走路不要のAI操縦戦闘機に1億5000万ドルを投資",
+      "primary_entity": "米海軍",
+      "story_subject": "AI操縦戦闘機開発計画",
+      "event_type": "funding",
+      "event_stage": "planned",
+      "event_scope": "米海軍艦船運用",
+      "story_entities": [
+        "米海軍",
+        "AI操縦戦闘機",
+        "ai操縦戦闘機"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "投資額",
+          "value": "1億5000万ドル",
+          "normalized_value": "100000000USD"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-09T11:24:10.341Z",
+      "edition_window_end": "2026-10-09T11:20:20.314Z"
     }
   ]
 }
