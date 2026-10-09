@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>工事ごとの依頼金額｜工事注文書ツール</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { min-width: 0; } /* 工事会社はスマホで見るので、横スクロールにしない */
+    .amt-shell { padding: 22px 28px 40px; }
+    .amt-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
+    .amt-head h2 { margin: 0; font-size: 24px; }
+    .amt-nav { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .amt-nav select { min-height: 42px; padding: 0 14px; border: 1px solid #cad5cd; border-radius: 9px; background: #fff; font-size: 14px; font-weight: 700; color: var(--ink); }
+    .totals { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+    .totals div { min-width: 170px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 12px; background: #fff; box-shadow: var(--shadow); }
+    .totals span { display: block; font-size: 11px; color: var(--muted); }
+    .totals strong { font-size: 24px; color: #075c34; font-variant-numeric: tabular-nums; }
+    .card { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); margin-bottom: 14px; overflow: hidden; }
+    .card h3 { margin: 0; padding: 12px 16px; font-size: 14px; background: #f3f7f4; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 10px; }
+    .card h3 .money { font-variant-numeric: tabular-nums; }
+    .row { display: grid; grid-template-columns: 1.2fr 2.8fr 1.3fr 1.4fr; gap: 12px; padding: 10px 16px; border-bottom: 1px solid #edf1ee; font-size: 13px; align-items: center; }
+    .row.head { background: #fbfcfb; font-weight: 700; font-size: 12px; color: #3b493f; }
+    .row .money { text-align: right; font-variant-numeric: tabular-nums; font-weight: 800; font-size: 15px; }
+    .row.is-done { color: #7a867d; }
+    .row small { color: #536158; }
+    .crow { display: grid; grid-template-columns: 2fr 1fr 1.4fr; gap: 12px; padding: 9px 16px; border-bottom: 1px solid #edf1ee; font-size: 13px; }
+    .crow .money { text-align: right; font-variant-numeric: tabular-nums; font-weight: 800; }
+    .crow.head { background: #fbfcfb; font-weight: 700; font-size: 12px; }
+    .empty { padding: 44px; text-align: center; color: #536158; }
+    .note { font-size: 12px; color: #536158; margin: -6px 0 14px; }
+    .header-user { font-size: 12px; color: #d0e9d8; margin-right: 6px; }
+    @media (max-width: 720px) {
+      .amt-shell { padding: 12px; }
+      .amt-head h2 { font-size: 20px; }
+      .totals div { min-width: 0; flex: 1 1 45%; }
+      .row.head { display: none; }
+      .row { grid-template-columns: 1fr auto; grid-template-areas: "a d" "b b" "c c"; gap: 4px 10px; padding: 12px 14px; }
+      .row span:nth-child(1) { grid-area: a; color: #536158; }
+      .row span:nth-child(2) { grid-area: b; font-weight: 700; }
+      .row span:nth-child(3) { grid-area: c; }
+      .row span:nth-child(4) { grid-area: d; font-size: 17px; }
+      .crow { grid-template-columns: 1.6fr 0.8fr 1.2fr; }
+    }
+  .brand-art,.empty-illustration{display:none!important}</style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="brand-header">
+      <div class="brand-copy">
+        <div class="brand-eyebrow">PAYMENT BY WORK</div>
+        <h1>工事ごとの依頼金額</h1>
+        <p id="subtitle">承認された工事の委託金額（税別）を、工事ごと・月ごとに表示します。</p>
+      </div>
+      <div class="brand-art" aria-hidden="true"></div>
+      <div class="header-actions">
+        <span class="header-user" id="user-label"></span>
+        <a class="header-exit" id="back-link" href="index.html">注文一覧へ</a>
+        <a class="header-exit" href="calendar.html">📅 カレンダー</a>
+        <button class="header-exit" id="logout-button" type="button">ログアウト</button>
+      </div>
+    </header>
+    <main class="amt-shell">
+      <div class="amt-head">
+        <h2 id="title">依頼金額（税別）</h2>
+        <div class="amt-nav">
+          <select id="year-select" aria-label="年"></select>
+          <select id="contractor-filter" hidden><option value="">全部の工事会社</option></select>
+          <select id="progress-filter" aria-label="進捗"><option value="">進捗：すべて</option><option value="open">未完了だけ</option><option value="done">完了だけ</option></select>
+        </div>
+      </div>
+      <p class="note">金額は注文書の「金額（消費税抜）」です。月は工期の開始月で分けています。</p>
+      <div class="totals" id="totals"></div>
+      <div id="by-contractor"></div>
+      <div id="months"></div>
+    </main>
+  </div>
+  <script>window.__DEMO_META__ = {"fields": [{"key": "input_date", "label": "入力日", "type": "date", "required": true}, {"key": "staff", "label": "担当（入力者）", "type": "staff", "required": true}, {"key": "contractor", "label": "工事依頼先", "type": "contractor", "required": true}, {"key": "contractor_code", "label": "仕入先コード", "type": "text", "derived": true}, {"key": "customer_name", "label": "お客様名", "type": "text", "required": true}, {"key": "billing_to", "label": "請求先", "type": "text"}, {"key": "kubun_company", "label": "工事区分（請負元）", "type": "kubun"}, {"key": "kubun_cls", "label": "工事区分", "type": "text", "derived": true}, {"key": "site", "label": "工事場所（都道府県・市町村名）", "type": "text", "required": true}, {"key": "work_name", "label": "工事名", "type": "text", "required": true}, {"key": "work_type", "label": "工事種類", "type": "work_type"}, {"key": "work_type_cls", "label": "種別", "type": "text", "derived": true}, {"key": "industry", "label": "建設業種", "type": "industry"}, {"key": "industry_cls", "label": "業種種別", "type": "text", "derived": true}, {"key": "order_amount", "label": "受注金額（資材費含む総額・税抜）", "type": "money", "required": true}, {"key": "period_start", "label": "工期 開始", "type": "date"}, {"key": "period_end", "label": "工期 終了", "type": "date"}, {"key": "payment_amount", "label": "支払金額（税抜）", "type": "money"}, {"key": "sales_amount", "label": "売上金額（税抜）", "type": "money"}, {"key": "content_1", "label": "工事内容 1行目", "type": "line", "maxlen": 30}, {"key": "content_2", "label": "工事内容 2行目", "type": "line", "maxlen": 30}, {"key": "content_3", "label": "工事内容 3行目", "type": "line", "maxlen": 30}, {"key": "content_4", "label": "工事内容 4行目", "type": "line", "maxlen": 30}, {"key": "content_5", "label": "工事内容 5行目", "type": "line", "maxlen": 30}, {"key": "content_6", "label": "工事内容 6行目", "type": "line", "maxlen": 30}, {"key": "content_7", "label": "工事内容 7行目", "type": "line", "maxlen": 30}, {"key": "content_8", "label": "工事内容 8行目", "type": "line", "maxlen": 30}, {"key": "content_9", "label": "工事内容 9行目", "type": "line", "maxlen": 30}, {"key": "content_10", "label": "工事内容 10行目", "type": "line", "maxlen": 30}, {"key": "note_1", "label": "連絡事項 1行目", "type": "line", "maxlen": 40}, {"key": "note_2", "label": "連絡事項 2行目", "type": "line", "maxlen": 40}, {"key": "note_3", "label": "連絡事項 3行目", "type": "line", "maxlen": 40}, {"key": "note_4", "label": "連絡事項 4行目", "type": "line", "maxlen": 40}, {"key": "note_5", "label": "連絡事項 5行目", "type": "line", "maxlen": 40}, {"key": "note_6", "label": "連絡事項 6行目", "type": "line", "maxlen": 40}], "masters": {"contractors": [{"name": "見本建設 株式会社", "code": "0001", "contract_date": "2020-04-01", "tel": "", "fax": ""}, {"name": "サンプル工業", "code": "0002", "contract_date": "2021-04-01", "tel": "", "fax": ""}, {"name": "テスト設備 株式会社", "code": "0003", "contract_date": "", "tel": "", "fax": ""}, {"name": "当社施工", "code": "0000", "contract_date": "", "tel": "", "fax": ""}, {"name": "みほん造園 株式会社", "code": "0004", "contract_date": "2019-10-01", "tel": "", "fax": ""}, {"name": "例示ハウス工業", "code": "0005", "contract_date": "2022-06-15", "tel": "", "fax": ""}], "staff": [{"code": "001", "name": "担当A", "short": "担当A"}, {"code": "002", "name": "担当B", "short": "担当B"}, {"code": "003", "name": "担当C", "short": "担当C"}], "work_types": [{"name": "ハウス新設", "cls": "新築"}, {"name": "他", "cls": "改修"}], "industries": [{"name": "新設・外張り張替", "cls": "とび土工"}, {"name": "解体", "cls": "解体"}, {"name": "カーテン張替・その他改修", "cls": "その他"}], "kubun": [{"code": "", "name": "元請", "cls": "元請"}, {"code": "900001", "name": "見本建設 株式会社", "cls": "下請"}, {"code": "900002", "name": "サンプル設備工業", "cls": "下請"}]}, "company": {"name": "見本産業　株式会社", "postal": "000-0000", "address": "〇〇県〇〇市〇〇町１－２－３", "representative": "代表取締役　見本　太郎", "tel": "000-000-0000", "fax": "000-000-0000", "payment_terms": "月末締翌月１０日\n振込支払"}};</script>
+<script src="demo-api.js"></script>
+<script>
+    const $ = (s) => document.querySelector(s);
+    const state = { year: new Date().getFullYear(), contractor: "", progress: "", user: null, orders: [] };
+    const esc = (v) => String(v ?? "").replace(/[&<>'"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
+    const num = (v) => { const n = Number(String(v ?? "").replace(/[^0-9-]/g, "")); return String(v ?? "").trim() !== "" && Number.isFinite(n) ? n : 0; };
+    const yen = (n) => "¥" + Number(n || 0).toLocaleString("ja-JP");
+    const jp = (iso) => { if (!iso) return ""; const [y, m, d] = String(iso).split("-").map(Number); return y ? `${m}/${d}` : ""; };
+    const todayIso = () => { const n = new Date(); return `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, "0")}-${String(n.getDate()).padStart(2, "0")}`; };
+
+    function progressOf(o) {
+      const f = o.fields || {};
+      if (o.completed) return {key: "done", label: "完了"};
+      const today = todayIso();
+      if (f.period_start && today < f.period_start) return {key: "before", label: "工事前"};
+      if (f.period_end && today > f.period_end) return {key: "overdue", label: "予定日超過"};
+      return {key: "working", label: "工事中"};
+    }
+
+    async function api(path, options = {}) {
+      const res = await fetch(path, {...options, headers: {"Content-Type": "application/json", ...(options.headers || {})}});
+      if (res.status === 401) { location.href = "login.html?next=" + encodeURIComponent(location.pathname + location.search); throw new Error("ログインしてください。"); }
+      const body = await res.json();
+      if (!res.ok) throw new Error(body.error || `HTTP ${res.status}`);
+      return body;
+    }
+
+    function render() {
+      const isContractor = state.user.role === "contractor";
+      let items = state.orders.filter((o) => o.approved);
+      if (state.contractor) items = items.filter((o) => o.fields.contractor === state.contractor);
+      if (state.progress === "open") items = items.filter((o) => !o.completed);
+      if (state.progress === "done") items = items.filter((o) => o.completed);
+      const total = items.reduce((s, o) => s + num(o.fields.payment_amount), 0);
+      const doneTotal = items.filter((o) => o.completed).reduce((s, o) => s + num(o.fields.payment_amount), 0);
+      $("#totals").innerHTML = `
+        <div><span>${state.year}年の合計（税別）</span><strong>${yen(total)}</strong></div>
+        <div><span>件数</span><strong>${items.length}件</strong></div>
+        <div><span>うち工事完了の分</span><strong>${yen(doneTotal)}</strong></div>`;
+
+      // 社内の人には、工事会社ごとの合計も出す
+      if (!isContractor && !state.contractor) {
+        const byName = new Map();
+        items.forEach((o) => { const k = o.fields.contractor || "（未設定）"; const cur = byName.get(k) || {count: 0, sum: 0}; cur.count += 1; cur.sum += num(o.fields.payment_amount); byName.set(k, cur); });
+        const rows = [...byName.entries()].sort((a, b) => b[1].sum - a[1].sum)
+          .map(([name, v]) => `<div class="crow"><span>${esc(name)}</span><span>${v.count}件</span><span class="money">${yen(v.sum)}</span></div>`).join("");
+        $("#by-contractor").innerHTML = rows ? `<div class="card"><h3>工事会社ごとの合計</h3><div class="crow head"><span>工事会社</span><span>件数</span><span class="money">委託金額（税別）</span></div>${rows}</div>` : "";
+      } else {
+        $("#by-contractor").innerHTML = "";
+      }
+
+      if (!items.length) { $("#months").innerHTML = `<div class="card"><div class="empty">${state.year}年に、この条件の工事はありません。</div></div>`; return; }
+      const groups = new Map();
+      items.forEach((o) => {
+        const base = o.fields.period_start || o.fields.input_date || "";
+        const key = base.slice(0, 7) || "日付なし";
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(o);
+      });
+      const monthLabel = (key) => { const [y, m] = key.split("-").map(Number); return y ? `${y}年${m}月` : key; };
+      $("#months").innerHTML = [...groups.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([key, list]) => {
+        const sum = list.reduce((s, o) => s + num(o.fields.payment_amount), 0);
+        list.sort((a, b) => String(a.fields.period_start).localeCompare(String(b.fields.period_start)) || a.id - b.id);
+        const rows = list.map((o) => {
+          const f = o.fields;
+          const p = progressOf(o);
+          const who = isContractor ? "" : `<small>${esc(f.contractor)}</small><br>`;
+          return `<div class="row ${o.completed ? "is-done" : ""}">
+            <span>${jp(f.period_start)}〜${jp(f.period_end)}</span>
+            <span>${who}${esc(f.customer_name)}様　${esc(f.work_name)}<br><small>${esc(f.site)}</small></span>
+            <span><span class="done-chip ${p.key}">${p.key === "done" ? "✔ " : ""}${esc(p.label)}</span></span>
+            <span class="money">${yen(num(f.payment_amount))}</span>
+          </div>`;
+        }).join("");
+        return `<div class="card"><h3><span>${monthLabel(key)}（${list.length}件）</span><span class="money">${yen(sum)}</span></h3>
+          <div class="row head"><span>工期</span><span>${isContractor ? "お客様名・工事名" : "工事会社／お客様名・工事名"}</span><span>進捗</span><span class="money">委託金額（税別）</span></div>${rows}</div>`;
+      }).join("");
+    }
+
+    async function load() {
+      const res = await api(`api/orders?year=${state.year}`);
+      state.orders = res.orders;
+      render();
+    }
+
+    async function init() {
+      const meta = await api("api/meta");
+      state.user = meta.user;
+      $("#user-label").textContent = `${meta.user.display_name}（${meta.user.role_label}）`;
+      const y = meta.current_year;
+      $("#year-select").innerHTML = [y - 2, y - 1, y, y + 1].map((v) => `<option value="${v}" ${v === state.year ? "selected" : ""}>${v}年</option>`).join("");
+      if (meta.user.role === "contractor") {
+        $("#back-link").hidden = true;
+        $("#title").textContent = `${meta.user.contractor} 様への依頼金額（税別）`;
+        $("#subtitle").textContent = "承認された工事ごとの委託金額です。消費税は別です。";
+      } else {
+        const select = $("#contractor-filter");
+        select.hidden = false;
+        meta.masters.contractors.forEach((c) => { const o = document.createElement("option"); o.value = c.name; o.textContent = c.name; select.append(o); });
+        select.addEventListener("change", () => { state.contractor = select.value; render(); });
+      }
+      $("#year-select").addEventListener("change", (e) => { state.year = Number(e.target.value); load().catch((err) => alert(err.message)); });
+      $("#progress-filter").addEventListener("change", (e) => { state.progress = e.target.value; render(); });
+      $("#logout-button").addEventListener("click", async () => { await api("api/logout", {method: "POST", body: "{}"}); location.href = "login.html"; });
+      await load();
+    }
+    init().catch((e) => { $("#months").innerHTML = `<div class="card"><div class="empty">${esc(e.message)}</div></div>`; });
+  </script>
+</body>
+</html>

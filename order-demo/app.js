@@ -2,6 +2,7 @@ const state = {
   meta: null,
   staff: "",
   year: new Date().getFullYear(),
+  progress: "", // "" すべて / open 未完了 / done 完了
   orders: [],
   editing: null, // null=閉 / {id:null}=新規 / {id,version}=編集
 };
@@ -48,6 +49,17 @@ function formatMoney(value) {
   return Number.isFinite(number) ? `¥${number.toLocaleString("ja-JP")}` : value;
 }
 
+// 工事の進み具合。承認→（注文書郵送）→工事前／工事中／予定日超過→完了
+function progressOf(order) {
+  const f = order.fields || {};
+  if (order.completed) return {key: "done", label: "完了", step: 3};
+  if (!order.approved) return {key: "pending", label: "承認待ち", step: 0};
+  const today = todayIso();
+  if (f.period_start && today < f.period_start) return {key: "before", label: "工事前", step: 1};
+  if (f.period_end && today > f.period_end) return {key: "overdue", label: "予定日超過", step: 2};
+  return {key: "working", label: "工事中", step: 2};
+}
+
 function canApprove() {
   return ["admin", "manager"].includes(state.user?.role);
 }
@@ -92,7 +104,7 @@ async function initialize() {
     return;
   }
   let seen = false;
-  try { seen = localStorage.getItem("order_demo_notes_v3") === "seen"; } catch (e) {}
+  try { seen = localStorage.getItem("order_demo_notes_v4") === "seen"; } catch (e) {}
   // 吹き出しの案内はパソコンの広い画面向け。スマホでは画面からはみ出すので出さない
   const wideScreen = Math.min(window.screen.width || 9999, window.outerWidth || 9999) >= 900;
   if (!seen && wideScreen) showUpdateNotes();
@@ -133,7 +145,7 @@ function renderTableHeader() {
     const stickyClass = index === 0 ? "sticky sticky-1" : "";
     return `<th class="${stickyClass}">${escapeHtml(col.label)}</th>`;
   }).join("");
-  $("#ledger-head").innerHTML = `<tr><th>承認</th><th>状態</th>${labels}<th>印刷</th><th>編集</th></tr>`;
+  $("#ledger-head").innerHTML = `<tr><th>承認</th><th>注文書</th><th>工事</th>${labels}<th>印刷</th><th>編集</th></tr>`;
 }
 
 async function loadOrders() {
@@ -146,8 +158,15 @@ async function loadOrders() {
 
 function renderRows() {
   const body = $("#ledger-body");
-  body.innerHTML = state.orders.map((order) => {
+  const visible = state.orders.filter((order) => state.progress === "" || (state.progress === "done" ? order.completed : !order.completed));
+  body.innerHTML = visible.map((order) => {
     const f = order.fields;
+    const progress = progressOf(order);
+    const doneCell = order.completed
+      ? `<span class="done-chip done">✔ 完了</span><button class="mini-link" data-complete-id="${order.id}" data-next="0">戻す</button>`
+      : order.approved
+        ? `<span class="done-chip ${progress.key}">${escapeHtml(progress.label)}</span><button class="mini-link strong" data-complete-id="${order.id}" data-next="1">工事完了にする</button>`
+        : `<span class="done-chip pending">承認待ち</span>`;
     const cells = LIST_COLUMNS.map((col, index) => {
       const stickyClass = index === 0 ? "sticky sticky-1" : "";
       let content;
@@ -166,9 +185,10 @@ function renderRows() {
     const approveCell = order.approved
       ? `<span class="approve-chip yes">承認済み</span>${canApprove() ? `<button class="mini-link" data-approve-id="${order.id}" data-next="0">取り消す</button>` : ""}`
       : `<span class="approve-chip no">未承認</span>${canApprove() ? `<button class="mini-link strong" data-approve-id="${order.id}" data-next="1">承認する</button>` : ""}`;
-    return `<tr>
+    return `<tr class="${order.completed ? "row-done" : ""}">
       <td class="status-cell">${approveCell}</td>
       <td class="status-cell">${statusChip}</td>
+      <td class="status-cell">${doneCell}</td>
       ${cells}
       <td class="print-cell">
         <a class="print-link" href="print-koji.html?id=${order.id}" target="_blank">工事注文書</a>
@@ -180,12 +200,15 @@ function renderRows() {
   body.querySelectorAll("[data-edit-id]").forEach((button) => button.addEventListener("click", () => openEdit(Number(button.dataset.editId))));
   body.querySelectorAll("[data-status-id]").forEach((button) => button.addEventListener("click", () => setStatus(Number(button.dataset.statusId), button.dataset.next)));
   body.querySelectorAll("[data-approve-id]").forEach((button) => button.addEventListener("click", () => setApproval(Number(button.dataset.approveId), button.dataset.next === "1")));
+  body.querySelectorAll("[data-complete-id]").forEach((button) => button.addEventListener("click", () => setCompleted(Number(button.dataset.completeId), button.dataset.next === "1")));
   const mailed = state.orders.filter((item) => item.status === "mailed").length;
   $("#count-unapproved").textContent = state.orders.filter((item) => !item.approved).length;
   $("#count-all").textContent = state.orders.length;
   $("#count-new").textContent = state.orders.length - mailed;
   $("#count-mailed").textContent = mailed;
-  $("#record-count").textContent = `${state.orders.length}件・入力日順`;
+  $("#count-working").textContent = state.orders.filter((item) => progressOf(item).step === 2).length;
+  $("#count-done").textContent = state.orders.filter((item) => item.completed).length;
+  $("#record-count").textContent = state.progress ? `${visible.length}件を表示（全${state.orders.length}件）・入力日順` : `${state.orders.length}件・入力日順`;
   $("#empty-state").hidden = state.orders.length !== 0;
   $(".ledger-table").hidden = state.orders.length === 0;
   $("#csv-button").disabled = state.orders.length === 0;
@@ -199,6 +222,10 @@ function bindEvents() {
   $("#staff-select").addEventListener("change", async (event) => {
     state.staff = event.target.value;
     await loadOrders();
+  });
+  $("#progress-select").addEventListener("change", (event) => {
+    state.progress = event.target.value;
+    renderRows();
   });
   let searchTimer;
   $("#search-input").addEventListener("input", () => {
@@ -426,6 +453,15 @@ async function setApproval(orderId, approved) {
   } catch (error) { toast(error.message, "error"); }
 }
 
+async function setCompleted(orderId, completed) {
+  if (completed && !window.confirm(`No.${orderId} を「工事完了」にしますか？\nカレンダーと工事会社の画面に、完了として表示されます。`)) return;
+  try {
+    await api(`api/orders/${orderId}/complete`, {method: "POST", body: JSON.stringify({completed})});
+    toast(completed ? "工事完了にしました。" : "完了を取り消しました。");
+    await loadOrders();
+  } catch (error) { toast(error.message, "error"); }
+}
+
 async function setStatus(orderId, next) {
   try {
     await api(`api/orders/${orderId}/status`, {method: "POST", body: JSON.stringify({status: next, actor: "利用者"})});
@@ -437,8 +473,9 @@ async function setStatus(orderId, next) {
 // ---- 今回の更新（吹き出し） ----
 
 const UPDATE_NOTES = [
-  {selector: "#table-wrap", text: "一覧に「承認」の列が付きました。管理職か管理者が「承認する」を押すと、工事カレンダーに予定が載ります。承認済みの案件は管理者以外は修正できません。"},
-  {selector: "#calendar-link", text: "「カレンダー」で、どの工事会社がいつ工事に入るかが月ごとに一目で分かります。工事会社のIDでログインすると、その会社の予定と委託金額だけが見えます。"},
+  {selector: "#table-wrap", text: "一覧に「承認」と「工事」の列が付きました。管理職が「承認する」と工事カレンダーに載り、工事が終わったら「工事完了にする」を押します。完了はカレンダーと工事会社の画面にも出ます。"},
+  {selector: "#progress-select", text: "「進捗」で、未完了の工事だけ・完了した工事だけに絞れます。"},
+  {selector: "#calendar-link", text: "「カレンダー」は予定と進み具合（承認→注文書郵送→工事中→完了）。工事会社のIDで入ると自社の予定だけが見え、工事ごとの委託金額は別の「依頼金額」の画面で見ます。"},
   {selector: "#user-label", text: "ログインが必要になりました。役割（管理者・管理職・営業事務・工事会社）で見える物と押せるボタンが変わります。ログインの記録は設定画面に残ります。"},
   {selector: ".summary-cards", text: "「未承認」の件数が増えました。管理職は、ここが0になるように承認してください。"},
   {selector: "#admin-link", text: "「設定」で、会社情報（注文書の差出人欄）と、工事依頼先・担当者・工事区分のリストを登録します。ツールには見本の名前しか入っていないので、最初に管理者が入力してください。"},
@@ -449,8 +486,8 @@ function showUpdateNotes() {
   const overlay = document.createElement("div");
   overlay.className = "update-overlay";
   overlay.innerHTML = `<div class="update-intro">
-      <strong>💬 今回の更新（承認・カレンダー・ログイン）</strong>
-      <p>工事注文書の承認、工事会社ごとのカレンダー、IDでのログインが加わりました。右上の「💬 今回の更新」でいつでも見返せます。</p>
+      <strong>💬 今回の更新（承認・工事完了・カレンダー・ログイン）</strong>
+      <p>工事注文書の承認と工事完了の印、工事会社ごとのカレンダー、IDでのログインが加わりました。右上の「💬 今回の更新」でいつでも見返せます。</p>
       <button class="button primary" id="update-close" type="button">わかりました（閉じる）</button>
     </div>`;
   const items = UPDATE_NOTES.map((note, index) => {
@@ -501,7 +538,7 @@ function showUpdateNotes() {
   const close = () => {
     window.removeEventListener("resize", onResize);
     overlay.remove();
-    try { localStorage.setItem("order_demo_notes_v3", "seen"); } catch (e) {}
+    try { localStorage.setItem("order_demo_notes_v4", "seen"); } catch (e) {}
   };
   overlay.querySelector("#update-close").addEventListener("click", close);
   overlay.addEventListener("click", (event) => { if (event.target === overlay) close(); });

@@ -25,6 +25,13 @@
     .chip.new { color: #8a6100; background: #fff3d6; }
     .chip.approved { color: #255b9a; background: #e6effb; }
     .chip.pending { color: #b42318; background: #fdecec; }
+    .chip.done { color: #086c37; background: #ddf3e4; }
+    .chip.working { color: #255b9a; background: #e6effb; }
+    .chip.before { color: #536158; background: #eef2ef; }
+    .chip.overdue { color: #b42318; background: #fdecec; }
+    .card.is-done { opacity: .72; }
+    .done-btn { margin-top: 10px; min-height: 40px; width: 100%; border: 1px solid #b9d8c5; border-radius: 9px; background: #fff; color: #087a42; font-size: 13px; font-weight: 800; cursor: pointer; }
+    .done-btn.ghost { color: #536158; border-color: #cad5cd; }
     .card h2 { font-size: 16px; line-height: 1.5; margin-bottom: 2px; }
     .card .customer { font-size: 13px; color: #38433c; margin-bottom: 8px; }
     .card .amount { font-size: 22px; font-weight: 800; color: #075c34; font-variant-numeric: tabular-nums; }
@@ -77,6 +84,16 @@
       return String(v ?? "").replace(/[&<>'"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
     }
     const jp = (iso) => { if (!iso) return ""; const [y, m, d] = String(iso).split("-").map(Number); return y ? `${m}/${d}` : ""; };
+    const todayIso = () => { const n = new Date(); return `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, "0")}-${String(n.getDate()).padStart(2, "0")}`; };
+    function progressOf(o) {
+      const f = o.fields || {};
+      if (o.completed) return {key: "done", label: "✔ 完了"};
+      if (!o.approved) return null;
+      const today = todayIso();
+      if (f.period_start && today < f.period_start) return {key: "before", label: "工事前"};
+      if (f.period_end && today > f.period_end) return {key: "overdue", label: "予定日超過"};
+      return {key: "working", label: "工事中"};
+    }
 
     async function api(path, options = {}) {
       const res = await fetch(path, options);
@@ -90,21 +107,35 @@
       const f = o.fields;
       const approval = o.approved ? '<span class="chip approved">承認済み</span>' : '<span class="chip pending">未承認</span>';
       const mailed = o.status === "mailed" ? '<span class="chip mailed">郵送済み</span>' : '<span class="chip new">未郵送</span>';
+      const prog = progressOf(o);
+      const progChip = prog ? `<span class="chip ${prog.key}">${esc(prog.label)}</span>` : "";
+      const doneButton = !o.approved ? "" : (o.completed
+        ? `<button class="done-btn ghost" type="button" data-complete="${esc(o.id)}" data-next="0">完了を戻す</button>`
+        : `<button class="done-btn" type="button" data-complete="${esc(o.id)}" data-next="1">✔ 工事完了にする</button>`);
       const period = f.period_start || f.period_end ? `工期：${esc(jp(f.period_start))}〜${esc(jp(f.period_end))}` : "工期：未定";
       const contents = Array.from({length: 10}, (_, i) => f[`content_${i + 1}`] || "").filter(Boolean);
       const notes = Array.from({length: 6}, (_, i) => f[`note_${i + 1}`] || "").filter(Boolean);
       const detail = contents.length || notes.length
         ? `<details><summary>工事内容・連絡事項を見る</summary><div>${esc(contents.join("\n"))}${notes.length ? "\n―― 連絡事項 ――\n" + esc(notes.join("\n")) : ""}</div></details>`
         : "";
-      return `<article class="card" id="order-${esc(o.id)}">
-        <div class="top"><span class="no">No.${esc(o.id)}　${esc(f.contractor || "")}</span><span>${approval}${mailed}</span></div>
+      return `<article class="card ${o.completed ? "is-done" : ""}" id="order-${esc(o.id)}">
+        <div class="top"><span class="no">No.${esc(o.id)}　${esc(f.contractor || "")}</span><span>${approval}${mailed}${progChip}</span></div>
         <h2>${esc(f.work_name || "（工事名なし）")}</h2>
         <div class="customer">${esc(f.customer_name || "")}　様　／　${esc(f.site || "")}</div>
         <div class="amount"><small>受注</small>${money(f.order_amount)}</div>
         <div class="sub">支払（委託）${money(f.payment_amount)}　／　売上 ${money(f.sales_amount)}</div>
         <div class="meta">担当：${esc(f.staff || "")}　${period}<br>入力：${esc(f.input_date || "—")}</div>
         ${detail}
+        ${doneButton}
       </article>`;
+    }
+
+    async function setCompleted(id, completed) {
+      if (completed && !confirm(`No.${id} を「工事完了」にしますか？`)) return;
+      try {
+        await api(`api/orders/${id}/complete`, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({completed})});
+        await load();
+      } catch (e) { alert(e.message); }
     }
 
     async function load() {
@@ -113,6 +144,7 @@
       $("#count").textContent = orders.length + "件（受注金額は税別）";
       $("#empty").hidden = orders.length !== 0;
       $("#list").innerHTML = orders.map(cardHtml).join("");
+      $("#list").querySelectorAll("[data-complete]").forEach((b) => b.addEventListener("click", () => setCompleted(Number(b.dataset.complete), b.dataset.next === "1")));
     }
 
     async function init() {

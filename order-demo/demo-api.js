@@ -17,9 +17,9 @@
     {approved: true, fields: {staff: "担当B", contractor: "テスト設備 株式会社", customer_name: "例示農場", site: "見本市 中央", work_name: "自動換気装置取付工事", industry: "カーテン張替・その他改修", order_amount: "800000", payment_amount: "450000", sales_amount: "820000", period_start: "2026-10-19", period_end: "2026-10-22", content_1: "自動換気装置 2台 取付"}},
     {approved: true, fields: {staff: "担当B", contractor: "テスト設備 株式会社", customer_name: "見本農園", site: "見本市 北町", work_name: "制御盤交換工事", industry: "カーテン張替・その他改修", order_amount: "300000", payment_amount: "180000", sales_amount: "310000", period_start: "2026-11-02", period_end: "2026-11-04", content_1: "制御盤 1面 交換"}},
     {approved: true, mailed: true, fields: {staff: "担当C", contractor: "みほん造園 株式会社", customer_name: "サンプル花き", site: "例示町 北", work_name: "旧ハウス解体工事", industry: "解体", order_amount: "900000", payment_amount: "600000", sales_amount: "950000", period_start: "2026-10-15", period_end: "2026-10-20", content_1: "旧ハウス 2棟 解体・撤去"}},
-    {approved: true, mailed: true, fields: {staff: "担当C", contractor: "みほん造園 株式会社", customer_name: "テスト園芸", site: "例示町 東", work_name: "基礎撤去工事", industry: "解体", order_amount: "250000", payment_amount: "150000", sales_amount: "260000", period_start: "2026-10-08", period_end: "2026-10-10", content_1: "基礎コンクリート撤去"}},
+    {approved: true, mailed: true, completed: true, fields: {staff: "担当C", contractor: "みほん造園 株式会社", customer_name: "テスト園芸", site: "例示町 東", work_name: "基礎撤去工事", industry: "解体", order_amount: "250000", payment_amount: "150000", sales_amount: "260000", period_start: "2026-10-08", period_end: "2026-10-10", content_1: "基礎コンクリート撤去"}},
     {approved: true, fields: {staff: "担当A", contractor: "例示ハウス工業", customer_name: "みほんファーム", site: "例示町 西", work_name: "連棟ハウス新設工事", work_type: "ハウス新設", order_amount: "2400000", payment_amount: "1200000", sales_amount: "2500000", period_start: "2026-10-27", period_end: "2026-11-06", content_1: "連棟パイプハウス 3連 新設"}},
-    {approved: true, mailed: true, fields: {staff: "担当A", contractor: "例示ハウス工業", customer_name: "例示農場", site: "見本市 中央", work_name: "育苗ハウス改修工事", order_amount: "600000", payment_amount: "350000", sales_amount: "620000", period_start: "2026-10-05", period_end: "2026-10-09", content_1: "育苗ハウス 外張り・骨組み補修"}},
+    {approved: true, mailed: true, completed: true, fields: {staff: "担当A", contractor: "例示ハウス工業", customer_name: "例示農場", site: "見本市 中央", work_name: "育苗ハウス改修工事", order_amount: "600000", payment_amount: "350000", sales_amount: "620000", period_start: "2026-10-05", period_end: "2026-10-09", content_1: "育苗ハウス 外張り・骨組み補修"}},
     {approved: false, fields: {staff: "担当B", contractor: "サンプル工業", customer_name: "見本農園", site: "見本市 北町", work_name: "カーテン張替工事", industry: "カーテン張替・その他改修", order_amount: "400000", payment_amount: "240000", sales_amount: "410000", period_start: "2026-11-10", period_end: "2026-11-12", content_1: "内張りカーテン張替", note_1: "承認待ちの例です"}},
   ];
 
@@ -31,7 +31,7 @@
       META.fields.forEach((f) => { fields[f.key] = s.fields[f.key] ?? SEED_BASE[f.key] ?? ""; });
       derive(fields);
       db.seq += 1;
-      db.orders.push({id: db.seq, staff: fields.staff, year: yearOf(fields), status: s.mailed ? "mailed" : "new", approved: s.approved ? 1 : 0, approved_by: s.approved ? "お試し管理者" : "", approved_at: s.approved ? t : "", fields, version: 1, created_at: t, updated_at: t});
+      db.orders.push({id: db.seq, staff: fields.staff, year: yearOf(fields), status: s.mailed ? "mailed" : "new", approved: s.approved ? 1 : 0, approved_by: s.approved ? "お試し管理者" : "", approved_at: s.approved ? t : "", completed: s.completed ? 1 : 0, completed_by: s.completed ? "お試し管理者" : "", completed_at: s.completed ? t : "", fields, version: 1, created_at: t, updated_at: t});
       db.audit.push({order_id: db.seq, action: "create", actor: "お試し管理者", reason: "見本データ", created_at: t});
     });
     save(db);
@@ -149,8 +149,22 @@
       order.approved = approved ? 1 : 0;
       order.approved_by = approved ? "お試し管理者" : "";
       order.approved_at = approved ? now() : "";
+      if (!approved) { order.completed = 0; order.completed_by = ""; order.completed_at = ""; }
       order.version += 1;
       db.audit.push({order_id: order.id, action: "approval", actor: "お試し管理者", reason: approved ? "承認した" : "承認を取り消した", created_at: now()});
+      save(db);
+      return json(200, {order});
+    }
+    if ((match = path.match(/^\/api\/orders\/(\d+)\/complete$/)) && method === "POST") {
+      const order = db.orders.find((o) => o.id === Number(match[1]));
+      if (!order) return json(404, {error: "データが見つかりません。"});
+      const completed = body.completed !== false;
+      if (completed && !order.approved) return json(422, {error: "承認されていない案件は工事完了にできません。先に管理職の承認が必要です。", code: "validation"});
+      order.completed = completed ? 1 : 0;
+      order.completed_by = completed ? "お試し管理者" : "";
+      order.completed_at = completed ? now() : "";
+      order.version += 1;
+      db.audit.push({order_id: order.id, action: "complete", actor: "お試し管理者", reason: completed ? "工事完了にした" : "工事完了を取り消した", created_at: now()});
       save(db);
       return json(200, {order});
     }
@@ -172,7 +186,7 @@
       const end = `${year}-${String(month).padStart(2, "0")}-${String(new Date(year, month, 0).getDate()).padStart(2, "0")}`;
       const items = db.orders.filter((o) => o.approved && o.fields.period_start && o.fields.period_end && o.fields.period_start <= end && o.fields.period_end >= start && (!contractor || o.fields.contractor === contractor))
         .sort((a, b) => a.fields.contractor.localeCompare(b.fields.contractor) || a.fields.period_start.localeCompare(b.fields.period_start))
-        .map((o) => ({id: o.id, contractor: o.fields.contractor, customer_name: o.fields.customer_name, work_name: o.fields.work_name, site: o.fields.site, staff: o.fields.staff, period_start: o.fields.period_start, period_end: o.fields.period_end, payment_amount: o.fields.payment_amount, order_amount: o.fields.order_amount, sales_amount: o.fields.sales_amount, status: o.status}));
+        .map((o) => ({id: o.id, contractor: o.fields.contractor, customer_name: o.fields.customer_name, work_name: o.fields.work_name, site: o.fields.site, staff: o.fields.staff, period_start: o.fields.period_start, period_end: o.fields.period_end, status: o.status, completed: o.completed || 0, completed_at: o.completed_at || ""}));
       const contractors = [...new Set(items.map((it) => it.contractor))];
       return json(200, {start, end, year, month, months: 1, contractors, items, user: DEMO_USER});
     }

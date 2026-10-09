@@ -6,6 +6,7 @@
   <title>工事カレンダー｜工事注文書ツール</title>
   <link rel="stylesheet" href="styles.css">
   <style>
+    body { min-width: 0; } /* 工事会社はスマホで見るので、横スクロールにしない */
     .cal-shell { padding: 22px 28px 40px; }
     .cal-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
     .cal-head h2 { margin: 0; font-size: 26px; }
@@ -26,11 +27,13 @@
     .lanes { position: relative; }
     .bar { position: absolute; height: 22px; line-height: 22px; border-radius: 6px; padding: 0 8px; font-size: 12px; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,.18); }
     .bar:hover { filter: brightness(1.08); }
+    .bar.done { opacity: .5; }
     .legend { display: flex; gap: 14px; flex-wrap: wrap; margin: 10px 2px 0; font-size: 12px; color: #536158; }
     .empty { padding: 44px; text-align: center; color: #536158; }
     .list-card { margin-top: 18px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); overflow: auto; }
     .list-card h3 { margin: 0; padding: 12px 16px; font-size: 14px; border-bottom: 1px solid var(--line); }
-    .detail-row { display: grid; grid-template-columns: 2fr 2fr 2fr 1.4fr 1.2fr; gap: 12px; padding: 10px 16px; border-bottom: 1px solid #edf1ee; font-size: 13px; align-items: center; }
+    .detail-row { display: grid; grid-template-columns: 2fr 2.2fr 1.3fr 0.9fr 2.6fr; gap: 12px; padding: 10px 16px; border-bottom: 1px solid #edf1ee; font-size: 13px; align-items: center; }
+    .detail-row.is-done { color: #7a867d; }
     .detail-row.head { background: #f3f7f4; font-weight: 700; font-size: 12px; }
     .detail-row .money { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
     .header-user { font-size: 12px; color: #d0e9d8; margin-right: 6px; }
@@ -39,6 +42,8 @@
       .cal-head h2 { font-size: 20px; }
       .cal-nav button, .cal-nav select { min-height: 40px; padding: 0 10px; font-size: 13px; }
       .cal-nav .month { min-width: 110px; font-size: 16px; }
+      /* 月の表は横にスクロール（日付の列を潰さない）。工事会社の列は固定 */
+      table.gantt { width: 880px; }
       table.gantt th.name, table.gantt td.name { min-width: 104px; max-width: 120px; font-size: 12px; padding: 8px 6px; }
       /* 一覧はカード型に（見出し行は消し、金額を大きく） */
       .detail-row.head { display: none; }
@@ -47,7 +52,7 @@
       .detail-row span:nth-child(2) { grid-area: b; }
       .detail-row span:nth-child(3) { grid-area: c; color: #536158; }
       .detail-row span:nth-child(4) { grid-area: d; text-align: right; color: #536158; }
-      .detail-row span:nth-child(5) { grid-area: e; font-size: 17px; color: #075c34; }
+      .detail-row span:nth-child(5) { grid-area: e; }
     }
   .brand-art,.empty-illustration{display:none!important}</style>
 </head>
@@ -63,6 +68,7 @@
       <div class="header-actions">
         <span class="header-user" id="user-label"></span>
         <a class="header-exit" id="back-link" href="index.html">注文一覧へ</a>
+        <a class="header-exit" id="amounts-link" href="amounts.html">💴 依頼金額</a>
         <button class="header-exit" id="logout-button" type="button">ログアウト</button>
       </div>
     </header>
@@ -95,6 +101,22 @@
     const esc = (v) => String(v ?? "").replace(/[&<>'"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
     const yen = (v) => { const n = Number(String(v ?? "").replace(/[^0-9-]/g, "")); return String(v ?? "").trim() !== "" && Number.isFinite(n) ? "¥" + n.toLocaleString("ja-JP") : "—"; };
     const jp = (iso) => { if (!iso) return ""; const [y, m, d] = iso.split("-").map(Number); return `${m}/${d}`; };
+    const todayIso = () => { const n = new Date(); return `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, "0")}-${String(n.getDate()).padStart(2, "0")}`; };
+
+    // 進み具合: 承認済みの工事が、工事前／工事中／予定日超過／完了のどこにあるか
+    function progressOf(it) {
+      if (it.completed) return {key: "done", step: 3, text: `完了（${jp(String(it.completed_at || "").slice(0, 10)) || "日付なし"}）`};
+      const today = todayIso();
+      if (it.period_start && today < it.period_start) return {key: "before", step: 1, text: `工事前（${jp(it.period_start)}開始）`};
+      if (it.period_end && today > it.period_end) return {key: "overdue", step: 2, text: `予定日を過ぎています（${jp(it.period_end)}まで）`};
+      return {key: "working", step: 2, text: `工事中（〜${jp(it.period_end)}）`};
+    }
+    function trackerHtml(it) {
+      const p = progressOf(it);
+      const mailed = it.status === "mailed";
+      const working = p.step === 3 ? "on" : (p.key === "overdue" ? "late" : (p.step === 2 ? "now" : ""));
+      return `<span class="progress"><span class="steps"><i class="on">承認</i><i class="${mailed ? "on" : ""}">注文書郵送</i><i class="${working}">工事中</i><i class="${p.step === 3 ? "on" : ""}">完了</i></span><small class="plabel ${p.key}">${esc(p.text)}</small></span>`;
+    }
 
     async function api(path, options = {}) {
       const res = await fetch(path, {...options, headers: {"Content-Type": "application/json", ...(options.headers || {})}});
@@ -170,11 +192,12 @@
           const bar = document.createElement("div");
           bar.className = "bar";
           bar.style.background = colorFor(name, contractors);
-          const label = state.user.role === "contractor"
-            ? `${it.work_name}　${it.customer_name}様　${yen(it.payment_amount)}`
-            : `${it.customer_name}様　${it.work_name}`;
+          const label = (it.completed ? "✔ " : "") + (state.user.role === "contractor"
+            ? `${it.work_name}　${it.customer_name}様`
+            : `${it.customer_name}様　${it.work_name}`);
+          if (it.completed) bar.classList.add("done");
           bar.textContent = label;
-          bar.title = `${label}\n${it.period_start}〜${it.period_end}${it.site ? "\n" + it.site : ""}`;
+          bar.title = `${label}\n${it.period_start}〜${it.period_end}\n${progressOf(it).text}${it.site ? "\n" + it.site : ""}`;
           bar.style.left = `${first.offsetLeft + 2}px`;
           bar.style.width = `${last.offsetLeft + last.offsetWidth - first.offsetLeft - 4}px`;
           bar.style.top = `${tr.offsetTop + 6 + it._lane * 28}px`;
@@ -183,18 +206,19 @@
           grid.append(bar);
         });
       });
-      $("#legend").innerHTML = contractors.map((name) => `<span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${colorFor(name, contractors)};vertical-align:-1px;margin-right:5px"></span>${esc(name)}</span>`).join("");
+      $("#legend").innerHTML = contractors.map((name) => `<span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${colorFor(name, contractors)};vertical-align:-1px;margin-right:5px"></span>${esc(name)}</span>`).join("") + `<span>✔＝工事完了（薄い色）</span>`;
 
-      // 下の一覧
+      // 下の一覧は「進み具合」。金額は「依頼金額」の画面で見る
       $("#list-card").hidden = false;
       const isContractor = state.user.role === "contractor";
-      $("#list-title").textContent = `${year}年${month}月の工事（${d.items.length}件）`;
+      const doneCount = d.items.filter((it) => it.completed).length;
+      $("#list-title").textContent = `${year}年${month}月の工事の進み具合（${d.items.length}件・うち完了 ${doneCount}件）`;
       const headRow = isContractor
-        ? `<div class="detail-row head"><span>工事名</span><span>お客様名・場所</span><span>工期</span><span>担当</span><span class="money">委託金額（税別）</span></div>`
-        : `<div class="detail-row head"><span>工事会社</span><span>お客様名・工事名</span><span>工期</span><span>担当</span><span class="money">委託金額（税別）</span></div>`;
+        ? `<div class="detail-row head"><span>工事名</span><span>お客様名・場所</span><span>工期</span><span>担当</span><span>進捗</span></div>`
+        : `<div class="detail-row head"><span>工事会社</span><span>お客様名・工事名</span><span>工期</span><span>担当</span><span>進捗</span></div>`;
       $("#list").innerHTML = headRow + d.items.map((it) => isContractor
-        ? `<div class="detail-row"><span>${esc(it.work_name)}</span><span>${esc(it.customer_name)}様<br><small>${esc(it.site)}</small></span><span>${jp(it.period_start)}〜${jp(it.period_end)}</span><span>${esc(it.staff)}</span><span class="money">${yen(it.payment_amount)}</span></div>`
-        : `<div class="detail-row"><span>${esc(it.contractor)}</span><span>${esc(it.customer_name)}様<br><small>${esc(it.work_name)}</small></span><span>${jp(it.period_start)}〜${jp(it.period_end)}</span><span>${esc(it.staff)}</span><span class="money">${yen(it.payment_amount)}</span></div>`
+        ? `<div class="detail-row ${it.completed ? "is-done" : ""}"><span>${esc(it.work_name)}</span><span>${esc(it.customer_name)}様<br><small>${esc(it.site)}</small></span><span>${jp(it.period_start)}〜${jp(it.period_end)}</span><span>${esc(it.staff)}</span><span>${trackerHtml(it)}</span></div>`
+        : `<div class="detail-row ${it.completed ? "is-done" : ""}"><span>${esc(it.contractor)}</span><span>${esc(it.customer_name)}様<br><small>${esc(it.work_name)}</small></span><span>${jp(it.period_start)}〜${jp(it.period_end)}</span><span>${esc(it.staff)}</span><span>${trackerHtml(it)}</span></div>`
       ).join("");
     }
 
@@ -221,7 +245,7 @@
       if (me.user.role === "contractor") {
         $("#back-link").hidden = true;
         $("#title").textContent = `${me.user.contractor} 様の工事予定`;
-        $("#subtitle").textContent = "承認された工事の予定と、委託金額（税別）を表示しています。";
+        $("#subtitle").textContent = "承認された工事の予定と進み具合です。工事ごとの金額は「依頼金額」で見られます。";
       } else {
         const meta = await api("api/meta");
         const select = $("#contractor-filter");
