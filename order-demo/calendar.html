@@ -40,11 +40,16 @@
     @media (max-width: 720px) {
       .cal-shell { padding: 12px; }
       .cal-head h2 { font-size: 20px; }
-      .cal-nav button, .cal-nav select { min-height: 40px; padding: 0 10px; font-size: 13px; }
-      .cal-nav .month { min-width: 110px; font-size: 16px; }
-      /* 月の表は横にスクロール（日付の列を潰さない）。工事会社の列は固定 */
-      table.gantt { width: 880px; }
-      table.gantt th.name, table.gantt td.name { min-width: 104px; max-width: 120px; font-size: 12px; padding: 8px 6px; }
+      .cal-head { gap: 8px; }
+      .cal-nav { width: 100%; flex-wrap: wrap; gap: 6px; }
+      .cal-nav button, .cal-nav select { min-height: 38px; padding: 0 10px; font-size: 13px; white-space: nowrap; }
+      .cal-nav .month { min-width: 0; flex: 1; font-size: 15px; }
+      .cal-nav select { width: 100%; }
+      /* スマホでは工程を見たい。工事会社の列は細くして（名前は2行に折り返し）、日付の列に幅を渡す。表は横スクロール */
+      table.gantt { width: 840px; }
+      table.gantt th.name, table.gantt td.name { min-width: 64px; max-width: 72px; width: 68px; font-size: 10px; line-height: 1.25; padding: 4px 4px; white-space: normal; overflow: hidden; text-overflow: clip; word-break: break-all; }
+      table.gantt th { font-size: 10px; }
+      .bar { font-size: 11px; height: 20px; line-height: 20px; padding: 0 5px; }
       /* 一覧はカード型に（見出し行は消し、金額を大きく） */
       .detail-row.head { display: none; }
       .detail-row { grid-template-columns: 1fr 1fr; grid-template-areas: "a a" "b b" "c d" "e e"; gap: 4px 10px; padding: 12px 14px; }
