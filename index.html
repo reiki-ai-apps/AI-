@@ -2201,6 +2201,26 @@
   @media(max-width:760px){
     body{background-attachment:scroll!important}
   }
+
+  /* 今日の1つ（2026-10-09）: Shortsを見た人が昼に貼って使う文。一面の一番上。 */
+  .today-one{margin:0 0 18px;padding:18px 18px 14px;border-radius:18px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm)}
+  .today-one-kicker{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.14em;font-weight:700;color:var(--accent,#2f7cf6);text-transform:uppercase}
+  .today-one-kicker small{letter-spacing:0;font-weight:500;color:var(--muted,#6b7280);text-transform:none}
+  .today-one h2{margin:8px 0 2px;font-size:22px;line-height:1.3}
+  .today-one .today-one-action{margin:0 0 12px;font-size:15px;color:var(--muted,#6b7280)}
+  .today-one .today-one-action b{color:inherit;font-weight:700}
+  .today-one-paste{position:relative;margin:0;padding:14px 14px 48px;border-radius:14px;background:var(--surface-2,#f1f5fa);border:1px dashed var(--border);font:14px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word}
+  .today-one-copy{position:absolute;right:10px;bottom:10px;padding:8px 14px;border-radius:999px;border:0;background:var(--accent,#2f7cf6);color:#fff;font-weight:700;font-size:13px;cursor:pointer}
+  .today-one-copy[data-done="1"]{background:#1f9d6b}
+  .today-one-links{display:flex;flex-wrap:wrap;gap:8px 16px;margin:10px 0 0;font-size:13px}
+  .today-one-links a{color:var(--accent,#2f7cf6);text-decoration:none}
+  .today-one-past{margin:12px 0 0;padding:10px 0 0;border-top:1px solid var(--border)}
+  .today-one-past summary{cursor:pointer;font-size:13px;color:var(--muted,#6b7280)}
+  .today-one-past ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
+  .today-one-past li{display:flex;gap:10px;align-items:baseline;font-size:14px}
+  .today-one-past li span{flex:0 0 auto;color:var(--muted,#6b7280);font-size:12px}
+  .today-one-past li button{background:none;border:0;padding:0;color:inherit;font:inherit;text-align:left;cursor:pointer;text-decoration:underline dotted}
+  @media(max-width:600px){.today-one{padding:14px 14px 12px;border-radius:14px}.today-one h2{font-size:19px}.today-one-paste{font-size:13px}}
 </style>
 </head>
 <body>
@@ -3969,7 +3989,8 @@ function renderHome(v){
     <p class="billing-help" role="status">${esc(videoRefreshNote)}</p>
     <div class="expert-video-grid">${expertVideos.map(expertVideoCard).join('')||'<p>前回と異なる発信者の動画を確認中です。過去の動画は分類ページから見られます。</p>'}</div>
   </section>`;
-  let html = `<section class="radar-overview ${cover?'has-daily-cover':''}" aria-label="${cover?'本日のトップニュース':'AIシグナル概要'}">
+  let html = `<section class="today-one" id="todayOne" aria-label="今日の1つ" hidden></section>
+  <section class="radar-overview ${cover?'has-daily-cover':''}" aria-label="${cover?'本日のトップニュース':'AIシグナル概要'}">
     <div class="hud-hex-field" aria-hidden="true"><span class="hud-hex h1"></span><span class="hud-hex h2"></span><span class="hud-hex h3"></span><span class="hud-hex h4"></span><span class="hud-hex h5"></span></div>
     <div class="overview-copy">${coverCopy}</div>
     <div class="radar-orb" aria-label="注目ニュース${list.length}件、新着${newCount}件"><strong>${list.length}</strong><small>TOP STORIES</small></div>
@@ -3978,7 +3999,7 @@ function renderHome(v){
 
   if(!list.length){
     html+=emptyState('今回の重要ニュースを確認中です','「記事を探す」では、これまでの記事をカテゴリから探せます。')+expertVideoHtml+homeSecondaryHtml+`</div>`;
-    v.innerHTML=html; window.aiRadarUpdateStatus?.refresh(); return;
+    v.innerHTML=html; window.aiRadarUpdateStatus?.refresh(); loadTodayOne(); return;
   }
 
   // 日付ごとの見出し（今日・昨日…）でグループ表示
@@ -3998,6 +4019,50 @@ function renderHome(v){
 
   v.innerHTML=html;
   window.aiRadarUpdateStatus?.refresh();
+  loadTodayOne();
+}
+/* 今日の1つ（2026-10-09）: today-one.json（KIZASHIの各回の「明日やる1つ」と、貼って使う文）を一面の一番上に出す。
+   取得できない時は枠ごと出さない（空の箱や推測の文は出さない）。 */
+let todayOneCache=null;
+async function loadTodayOne(){
+  const host=document.getElementById('todayOne'); if(!host)return;
+  try{
+    if(!todayOneCache){
+      const res=await fetch('./today-one.json',{cache:'no-store'});
+      if(!res.ok)return;
+      const data=await res.json();
+      if(!Array.isArray(data?.items)||!data.items.length)return;
+      todayOneCache=data;
+    }
+    renderTodayOne(host,todayOneCache,0);
+  }catch{ /* 無ければ出さない */ }
+}
+function renderTodayOne(host,data,idx){
+  const items=data.items.filter(x=>x&&x.title&&x.paste);
+  const it=items[idx]||items[0]; if(!it)return;
+  const day=(d=>{const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(d||'');return m?`${Number(m[2])}/${Number(m[3])}`:'';})(it.date);
+  const past=items.filter(x=>x!==it).slice(0,7);
+  host.hidden=false;
+  host.innerHTML=`
+    <div class="today-one-kicker">今日の1つ<small>${esc(day)}${it.mark?`・${esc(it.mark)}`:''} 朝のShortsの「明日やる1つ」。昼に貼って使う文です</small></div>
+    <h2>${esc(it.title)}</h2>
+    <p class="today-one-action"><b>${esc(it.action)}</b>${it.catch?`　— ${esc(it.catch)}`:''}</p>
+    <pre class="today-one-paste" id="todayOnePaste">${esc(it.paste)}<button type="button" class="today-one-copy" onclick="copyTodayOne(this)">文をコピー</button></pre>
+    <div class="today-one-links">
+      ${it.shorts?`<a href="${esc(it.shorts)}" target="_blank" rel="noopener noreferrer">27秒の動画で見る</a>`:''}
+      ${it.source?`<a href="${esc(it.source)}" target="_blank" rel="noopener noreferrer">出典（${esc((it.stamp||'').replace(/^\S+\s+/,'')||'公式')}）</a>`:''}
+      <a href="https://www.youtube.com/@kizashi_jp?sub_confirmation=1" target="_blank" rel="noopener noreferrer">毎朝7:31に次の1つ（登録）</a>
+    </div>
+    ${past.length?`<details class="today-one-past"><summary>これまでの1つ（${past.length}件）</summary><ul>${past.map((p,i)=>`<li><span>${esc((p.date||'').slice(5).replace('-','/'))}</span><button type="button" onclick="renderTodayOne(document.getElementById('todayOne'),todayOneCache,${items.indexOf(p)})">${esc(p.title)}</button></li>`).join('')}</ul></details>`:''}`;
+}
+async function copyTodayOne(btn){
+  const pre=btn.closest('.today-one-paste'); if(!pre)return;
+  const text=[...pre.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent).join('').trim();
+  try{
+    if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(text);}
+    else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}
+    btn.dataset.done='1';btn.textContent='コピーしました';setTimeout(()=>{btn.dataset.done='';btn.textContent='文をコピー';},2500);
+  }catch{ toast('コピーできませんでした。文を長押しで選んでください','warn'); }
 }
 function byPub(a,b){ return validArticleDate(articleTimelineAt(b))-validArticleDate(articleTimelineAt(a)); }
 function byFeedOrder(a,b){
