@@ -4050,6 +4050,7 @@ function renderTodayOne(host,data,idx){
     <pre class="today-one-paste" id="todayOnePaste">${esc(it.paste)}<button type="button" class="today-one-copy" onclick="copyTodayOne(this)">文をコピー</button></pre>
     <div class="today-one-links">
       ${it.shorts?`<a href="${esc(it.shorts)}" target="_blank" rel="noopener noreferrer">27秒の動画で見る</a>`:''}
+      ${it.playlist?`<a href="${esc(it.playlist)}" target="_blank" rel="noopener noreferrer">同じ種類の1つを続けて見る（${esc(it.playlist_name||'再生リスト')}）</a>`:''}
       ${it.source?`<a href="${esc(it.source)}" target="_blank" rel="noopener noreferrer">出典（${esc((it.stamp||'').replace(/^\S+\s+/,'')||'公式')}）</a>`:''}
       <a href="https://www.youtube.com/@kizashi_jp?sub_confirmation=1" target="_blank" rel="noopener noreferrer">毎朝7:31に次の1つ（登録）</a>
     </div>
