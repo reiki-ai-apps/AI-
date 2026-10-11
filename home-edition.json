@@ -7,12 +7,12 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-10T15:52:00.419Z",
-  "window_end": "2026-10-11T10:50:04.416Z",
-  "last_window_end": "2026-10-11T10:50:04.416Z",
-  "last_checked_at": "2026-10-11T10:55:00.203Z",
-  "last_published_at": "2026-10-11T10:55:00.203Z",
-  "home_content_changed_at": "2026-10-11T10:55:00.203Z",
+  "window_start": "2026-10-11T10:50:04.416Z",
+  "window_end": "2026-10-11T16:19:03.714Z",
+  "last_window_end": "2026-10-11T16:19:03.714Z",
+  "last_checked_at": "2026-10-11T16:22:01.435Z",
+  "last_published_at": "2026-10-11T16:22:01.435Z",
+  "home_content_changed_at": "2026-10-11T16:22:01.435Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
@@ -34,47 +34,48 @@
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
-    "article_68357eaa903886f64694",
+    "article_0d80dee06aa5f58b5eae",
     "article_56e576affa9b4e146a09",
     "article_6efc4014e326162a23f2",
     "article_c1c0b9216fe3c8b2e442",
-    "article_8d1b4a5cc9c81459633d"
+    "article_68357eaa903886f64694"
   ],
   "new_article_ids": [
-    "article_68357eaa903886f64694"
+    "article_0d80dee06aa5f58b5eae"
   ],
   "continued_article_ids": [
     "article_56e576affa9b4e146a09",
     "article_6efc4014e326162a23f2",
     "article_c1c0b9216fe3c8b2e442",
-    "article_8d1b4a5cc9c81459633d"
+    "article_68357eaa903886f64694"
   ],
   "continuation_sources": {
     "article_56e576affa9b4e146a09": "previous_edition",
     "article_6efc4014e326162a23f2": "previous_edition",
     "article_c1c0b9216fe3c8b2e442": "previous_edition",
-    "article_8d1b4a5cc9c81459633d": "previous_edition"
+    "article_68357eaa903886f64694": "previous_edition"
   },
   "scores": {
-    "article_68357eaa903886f64694": {
-      "article_id": "article_68357eaa903886f64694",
-      "total": 72,
+    "article_0d80dee06aa5f58b5eae": {
+      "article_id": "article_0d80dee06aa5f58b5eae",
+      "total": 65,
       "breakdown": {
-        "importance": 25,
-        "topicality": 20,
-        "scope": 6,
+        "importance": 45,
+        "topicality": 15,
+        "scope": 10,
         "authority": 5,
-        "freshness": 8,
-        "tool_evolution": 8,
-        "penalty": 0
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": -10
       },
       "reasons": [
-        "重要度B",
-        "制度・安全への影響",
+        "重要度A",
+        "主要AI企業・基盤",
         "大きな製品・市場変化",
-        "AIツールの能力進化"
+        "未確認情報を減点",
+        "遅れて確認できた新着"
       ],
-      "published_at": "2026-10-11T06:20:21.000Z"
+      "published_at": "2026-10-11T03:22:56.000Z"
     },
     "article_56e576affa9b4e146a09": {
       "article_id": "article_56e576affa9b4e146a09",
@@ -133,149 +134,28 @@
       ],
       "published_at": "2026-10-09T20:02:53.000Z"
     },
-    "article_8d1b4a5cc9c81459633d": {
-      "article_id": "article_8d1b4a5cc9c81459633d",
-      "total": 66,
+    "article_68357eaa903886f64694": {
+      "article_id": "article_68357eaa903886f64694",
+      "total": 64,
       "breakdown": {
-        "importance": 45,
-        "topicality": 10,
+        "importance": 25,
+        "topicality": 20,
         "scope": 6,
         "authority": 5,
         "freshness": 0,
-        "tool_evolution": 0,
+        "tool_evolution": 8,
         "penalty": 0
       },
       "reasons": [
-        "重要度A",
-        "大きな製品・市場変化"
+        "重要度B",
+        "制度・安全への影響",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
       ],
-      "published_at": "2026-10-09T18:50:45.000Z"
+      "published_at": "2026-10-11T06:20:21.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_57f15bb55c3e2189a995",
-      "story_id": "story_f9f4a0b94914af338d",
-      "title": "米財務省、中国AI投資を無申告だった米企業に初の制裁金",
-      "primary_entity": "米財務省",
-      "story_subject": "中国AI投資の無申告に対する制裁金",
-      "event_type": "policy",
-      "event_stage": "enacted",
-      "event_scope": "米国",
-      "story_entities": [
-        "米財務省",
-        "中国AI投資",
-        "中国ai投資"
-      ],
-      "fact_slots": [
-        {
-          "type": "amount",
-          "scope": "制裁金額",
-          "value": "20万米ドル",
-          "normalized_value": "200000USD"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-08T11:28:38.512Z",
-      "edition_window_end": "2026-10-08T11:22:51.729Z"
-    },
-    {
-      "article_id": "article_f7fa820056e795edd9f6",
-      "story_id": "story_d341e49b63fa6b4029",
-      "title": "Anthropic、「Claude Haiku 5.5」を発表 API料金を最大90%引き下げ",
-      "primary_entity": "Anthropic",
-      "story_subject": "Claude Haiku 5.5",
-      "event_type": "pricing",
-      "event_stage": "announced",
-      "event_scope": "API",
-      "story_entities": [
-        "Anthropic",
-        "Claude Haiku 5.5",
-        "anthropic",
-        "claudehaiku5.5",
-        "claude"
-      ],
-      "fact_slots": [
-        {
-          "type": "price",
-          "scope": "API利用料金",
-          "value": "最大90%引き下げ",
-          "normalized_value": "90%"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-10-08T11:28:38.512Z",
-      "edition_window_end": "2026-10-08T11:22:51.729Z"
-    },
-    {
-      "article_id": "article_4a72a5b090eb849e8366",
-      "story_id": "story_70b8aa466b379b869d",
-      "title": "xAIの新AI『Grok 4.7』、コーディング性能向上も価格の安さに注意喚起",
-      "primary_entity": "xAI",
-      "story_subject": "Grok 4.7",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "AIモデル",
-      "story_entities": [
-        "xAI",
-        "Grok 4.7",
-        "xai",
-        "grok4.7",
-        "grok"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-10-08T11:28:38.512Z",
-      "edition_window_end": "2026-10-08T11:22:51.729Z"
-    },
-    {
-      "article_id": "article_443187ba1ceab6fd155a",
-      "story_id": "story_af429068b9304c032b",
-      "title": "「デジタル化・AI導入補助金」採択者が発表",
-      "primary_entity": "デジタル化・AI導入補助金事務局",
-      "story_subject": "デジタル化・AI導入補助金",
-      "event_type": "other",
-      "event_stage": "completed",
-      "event_scope": "日本",
-      "story_entities": [
-        "デジタル化・AI導入補助金",
-        "中小企業庁",
-        "デジタル化ai導入補助金"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-08T11:28:38.512Z",
-      "edition_window_end": "2026-10-08T11:22:51.729Z"
-    },
-    {
-      "article_id": "article_1c3fa681a0c94a8ad9b1",
-      "story_id": "story_c4eace3cb2c88540d9",
-      "title": "AI半導体、2027年にかけ推論向けシフトが加速 独自チップ台頭・製造でサムスンが存在感",
-      "primary_entity": "サムスン電子",
-      "story_subject": "AI半導体の推論シフトと製造競争",
-      "event_type": "research",
-      "event_stage": "other",
-      "event_scope": "世界のAI半導体市場",
-      "story_entities": [
-        "サムスン電子",
-        "AI半導体",
-        "ai半導体"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-08T11:28:38.512Z",
-      "edition_window_end": "2026-10-08T11:22:51.729Z"
-    },
     {
       "article_id": "article_f45d98e2f91b7f9d833b",
       "story_id": "story_bd8062e7b3da4131da",
@@ -675,6 +555,29 @@
       "previous_article_id": "",
       "selected_at": "2026-10-11T10:55:00.203Z",
       "edition_window_end": "2026-10-11T10:50:04.416Z"
+    },
+    {
+      "article_id": "article_0d80dee06aa5f58b5eae",
+      "story_id": "story_5b655932dfadfe67ef",
+      "title": "NVIDIA、DeepSeek対抗で動画生成AI「Reflection」の買収を検討か",
+      "primary_entity": "Nvidia",
+      "story_subject": "Reflection AI買収交渉",
+      "event_type": "acquisition",
+      "event_stage": "rumor",
+      "event_scope": "全世界",
+      "story_entities": [
+        "Nvidia",
+        "Reflection AI",
+        "DeepSeek",
+        "nvidia",
+        "reflectionai"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-11T16:22:01.435Z",
+      "edition_window_end": "2026-10-11T16:19:03.714Z"
     }
   ]
 }
