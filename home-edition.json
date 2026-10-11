@@ -7,12 +7,12 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-10T10:37:19.788Z",
-  "window_end": "2026-10-10T15:52:00.419Z",
-  "last_window_end": "2026-10-10T15:52:00.419Z",
-  "last_checked_at": "2026-10-10T15:56:42.355Z",
-  "last_published_at": "2026-10-10T15:56:42.355Z",
-  "home_content_changed_at": "2026-10-10T15:56:42.355Z",
+  "window_start": "2026-10-10T15:52:00.419Z",
+  "window_end": "2026-10-11T10:50:04.416Z",
+  "last_window_end": "2026-10-11T10:50:04.416Z",
+  "last_checked_at": "2026-10-11T10:55:00.203Z",
+  "last_published_at": "2026-10-11T10:55:00.203Z",
+  "home_content_changed_at": "2026-10-11T10:55:00.203Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
@@ -30,18 +30,18 @@
   "minimum_selected_count": 3,
   "new_selected_count": 1,
   "continued_selected_count": 4,
-  "tool_evolution_selected_count": 0,
+  "tool_evolution_selected_count": 1,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
-    "article_2e2a2e1f3b381358cab9",
+    "article_68357eaa903886f64694",
     "article_56e576affa9b4e146a09",
     "article_6efc4014e326162a23f2",
     "article_c1c0b9216fe3c8b2e442",
     "article_8d1b4a5cc9c81459633d"
   ],
   "new_article_ids": [
-    "article_2e2a2e1f3b381358cab9"
+    "article_68357eaa903886f64694"
   ],
   "continued_article_ids": [
     "article_56e576affa9b4e146a09",
@@ -56,24 +56,25 @@
     "article_8d1b4a5cc9c81459633d": "previous_edition"
   },
   "scores": {
-    "article_2e2a2e1f3b381358cab9": {
-      "article_id": "article_2e2a2e1f3b381358cab9",
-      "total": 66,
+    "article_68357eaa903886f64694": {
+      "article_id": "article_68357eaa903886f64694",
+      "total": 72,
       "breakdown": {
-        "importance": 45,
-        "topicality": 10,
+        "importance": 25,
+        "topicality": 20,
         "scope": 6,
         "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
+        "freshness": 8,
+        "tool_evolution": 8,
         "penalty": 0
       },
       "reasons": [
-        "重要度A",
+        "重要度B",
         "制度・安全への影響",
-        "遅れて確認できた新着"
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
       ],
-      "published_at": "2026-10-09T16:16:00.000Z"
+      "published_at": "2026-10-11T06:20:21.000Z"
     },
     "article_56e576affa9b4e146a09": {
       "article_id": "article_56e576affa9b4e146a09",
@@ -152,33 +153,6 @@
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_85ff04c48054066e5198",
-      "story_id": "story_f9d3e86261689d9936",
-      "title": "DeepSeek、資金調達目標を最大1000億元に倍増検討",
-      "primary_entity": "DeepSeek",
-      "story_subject": "資金調達計画",
-      "event_type": "funding",
-      "event_stage": "planned",
-      "event_scope": "中国",
-      "story_entities": [
-        "DeepSeek",
-        "deepseek"
-      ],
-      "fact_slots": [
-        {
-          "type": "amount",
-          "scope": "資金調達目標上限",
-          "value": "最大1000億元(人民元)",
-          "normalized_value": "100000000000"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-07T17:28:34.175Z",
-      "edition_window_end": "2026-10-07T17:25:30.102Z"
-    },
     {
       "article_id": "article_57f15bb55c3e2189a995",
       "story_id": "story_f9f4a0b94914af338d",
@@ -671,6 +645,36 @@
       "previous_article_id": "",
       "selected_at": "2026-10-10T15:56:42.355Z",
       "edition_window_end": "2026-10-10T15:52:00.419Z"
+    },
+    {
+      "article_id": "article_68357eaa903886f64694",
+      "story_id": "story_603f29ade0ec21a5d0",
+      "title": "OrcaRouter、100万トークン対応のサイバーセキュリティAI「OrcaCyber Zero 1.5」公開",
+      "primary_entity": "OrcaRouter",
+      "story_subject": "OrcaCyber Zero 1.5",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "AIモデル",
+      "story_entities": [
+        "OrcaRouter",
+        "OrcaCyber Zero 1.5",
+        "orcarouter",
+        "orcacyberzero1.5",
+        "orcacyber"
+      ],
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "コンテキスト長",
+          "value": "100万トークン",
+          "normalized_value": "1000000"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-11T10:55:00.203Z",
+      "edition_window_end": "2026-10-11T10:50:04.416Z"
     }
   ]
 }
