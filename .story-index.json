@@ -2,6 +2,142 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_09e7da99ff93c5e6101b",
+      "story_id": "story_29ad6f08023c0e8b3e",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.8427027027027028,
+      "title": "Anthropic、重要インフラとオープンソースを守る「Cyber Mission」を発表",
+      "source_published_at": "2026-10-14T08:00:12.000Z",
+      "published_at": "2026-10-14T08:00:12.000Z",
+      "fetched_at": "2026-10-14T09:31:46.163Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Anthropicは重要インフラやオープンソースソフトウェアの防御を強化する「Cyber Mission」を発表し、日立など11社が参加、無料の脆弱性スキャンも提供する。",
+      "source_name": "Ledge.ai",
+      "source_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBVc2dzc0NrV1NycU4tcUtEX2ZqbC1xbnhWY2hJOFlYSDV1dWlIVEVBZnk1Mjd4QVBLbUh1UlRmT2RZd2hGMEtUNU5hQ0hXSGRicTIyNFZLQVpvVWRuOGc?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "日立製作所",
+        "Cyber Mission",
+        "anthropic",
+        "cybermission"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Cyber Mission",
+      "event_type": "security",
+      "event_stage": "announced",
+      "event_scope": "重要インフラ・OSS、参加11社",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "参加企業数",
+          "value": "11社",
+          "normalized_value": "11"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "material_fact_changed",
+        "low_confidence_follow_up_demoted"
+      ],
+      "change_summary": "AnthropicがCyber Missionという名称で、重要インフラとOSSを守るための企業連合と無料脆弱性スキャンを発表した。",
+      "detail": "Anthropicは、重要インフラや誰でも無料で使えるオープンソースソフトウェア（OSS）を、サイバー攻撃から守る取り組み「Cyber Mission」を発表した。簡単に言うと、AIの技術を使ってシステムの弱点を見つけ、早めに直す仕組みづくりの計画だ。これまでは個別の企業がそれぞれセキュリティ対策を行っていたが、今回は複数の企業が共同で取り組む点が新しい。\n\nこの取り組みには日立製作所を含む11社が参加すると発表された。参加企業は、無料の脆弱性スキャン（システムの弱点を自動で探す検査）を受けられるという。AIを使ってセキュリティの検査を効率化することで、人手だけでは見つけにくい弱点も発見しやすくなる狙いがある。\n\n企業のシステム管理者やOSSの開発者にとって、無料で弱点チェックを受けられる機会が増える可能性がある。ただし、どの程度の範囲まで無料スキャンが提供されるのか、具体的な対象システムや開始時期など詳細は記事内で明らかにされていない。",
+      "new_facts": [
+        "Anthropicが重要インフラとOSSを守る「Cyber Mission」を発表",
+        "日立製作所を含む11社がこの取り組みに参加",
+        "参加企業は無料の脆弱性スキャンを受けられる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_4f1e10531452d562df29",
+      "story_id": "story_e1993d3447067abbca",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6009090909090908,
+      "title": "KEITO氏、新AI「Gemini 4 Argon」をClaude Opus 5.5・GPT 6.1と比較検証",
+      "source_published_at": "2026-10-14T06:58:56.000Z",
+      "published_at": "2026-10-14T06:58:56.000Z",
+      "fetched_at": "2026-10-14T09:31:46.163Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "AI解説者KEITO氏が新モデル「Gemini 4 Argon」をClaude Opus 5.5やGPT 6.1と比較し、性能や料金を検証する動画を公開した。",
+      "source_name": "KEITO【AI&WEB ch】",
+      "source_url": "https://www.youtube.com/watch?v=uNSx7NCNbzw",
+      "story_entities": [
+        "Gemini 4 Argon",
+        "Claude Opus 5.5",
+        "GPT 6.1",
+        "gemini4argon",
+        "claudeopus5.5"
+      ],
+      "primary_entity": "KEITO",
+      "story_subject": "Gemini 4 Argonの性能比較検証",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "YouTube動画",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject",
+        "same_scope"
+      ],
+      "change_summary": "新しいAI「Gemini 4 Argon」が登場し、他社の最新モデルと並べて実践的に比較検証された。",
+      "detail": "KEITO氏が「Gemini 4 Argon」という新しいAIを紹介する動画を公開した。これは対話型AIで、文章や画像、プログラムなどを作る道具とされる。従来モデル「Gemini 3.8 Flash」より新しい世代として扱われている。\n\n動画では新しい画面デザインやロゴ生成機能、基本仕様を確認している。複数の性能評価方法で旧モデルとの違いを調べる検証も行っている。他社の最新AIとされるClaude Opus 5.5やGPT 6.1とも作業を比べた。\n\nウェブサイト制作やアニメーション、3D制作、ゲーム開発で実力を試した。料金体系も動画内で触れられているが、詳細な金額は本文で未確認である。各社の公式発表や正式な性能数値は、この動画だけでは裏付けられていない。",
+      "new_facts": [
+        "KEITO氏がGemini 4 ArgonをClaude Opus 5.5やGPT 6.1と比較する動画を公開した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_200a5d3dd39c6bfb7a20",
+      "story_id": "story_87da9ead1f5570a46d",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5684615384615385,
+      "title": "OpenAI、EU企業の自律型AI活用に関する分析を公開",
+      "source_published_at": "2026-10-14T00:00:00.000Z",
+      "published_at": "2026-10-14T00:00:00.000Z",
+      "fetched_at": "2026-10-14T09:31:46.163Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIは、EUの企業や中小企業で自分で作業を進める「エージェント型AI」の利用が広がっているとする分析を公開した。",
+      "source_name": "openai.com",
+      "source_url": "https://openai.com/index/the-eus-next-chapter-in-ai-is-agentic",
+      "story_entities": [
+        "OpenAI",
+        "エージェントAI",
+        "openai",
+        "エージェントai"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "EU企業におけるエージェント型AI導入分析",
+      "event_type": "research",
+      "event_stage": "other",
+      "event_scope": "EU",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type"
+      ],
+      "change_summary": "OpenAIがEU企業・中小企業におけるエージェント型AIの導入状況をまとめた分析を新たに公開した。",
+      "detail": "OpenAIが新しい分析を発表した。これは、人からの指示を受けて複数の作業を自分で進めていく「エージェント型AI」が、EU(欧州連合)の会社でどれくらい使われているかを調べたもの。以前ははっきりした利用実態が公表されていなかったが、今回企業規模ごとの傾向が示された点が新しい。\n\n分析によると、エージェント型AIの導入は大企業だけでなく中小企業にも広がりつつあるとされている。さらに、まだ十分に使いこなされていない部分があり、使い方を深めればより大きな効果を得られる可能性があると指摘されている。ただし、調査対象の数や具体的な数値は元記事からは確認できない。\n\n企業の経営者や担当者にとっては、自律型AIをどこまで業務に取り入れるかを検討する材料になる。注意点として、今回の分析の詳しい調査方法やデータの出どころはまだ公開情報から読み取れない。追加の詳細データが今後公表されるかどうかも不明である。",
+      "new_facts": [
+        "OpenAIがEUの企業・中小企業におけるエージェント型AI導入に関する分析を公開した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_0fb93469c59695e27852",
       "story_id": "story_75b5d70aa0b84e5572",
       "story_sequence": 1,
@@ -39,6 +175,53 @@
         "イーロン・マスク氏が「カジノで泣くな」と反応した。"
       ],
       "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_0fc9d6ec3100726acba4",
+      "story_id": "story_8c8f7b9c435021710a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "控訴裁判所、アマゾンによるパープレキシティ差し止め要求を再び却下",
+      "source_published_at": "2026-10-13T16:34:39.000Z",
+      "published_at": "2026-10-13T16:34:39.000Z",
+      "fetched_at": "2026-10-14T09:31:46.163Z",
+      "event_at": "2026-09-11",
+      "event_status": "発表済み",
+      "raw_excerpt": "米控訴裁判所がアマゾンのパープレキシティに対する差し止め要求を再度退けたと報じられ、法廷闘争が続いている。",
+      "source_name": "MediaPost",
+      "source_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOV0ZvTFpDejhVLWVQSlZndEdnUXJUSEMtdlFNVHBtRUxFTUEwRWJOb2lLeFhUYjgwYU1pdy1hWEQtd2s0MVhRVF9wLTcwTXk2NERSZ3Z2WDNQNEYza0hfcXFZSkxuQ1JKNVl4UnMtX0VkR0l1Z2N6NngtU3QxU1ZqZ0piMFpVSVZsUEVuU3ZqZ2ZNZXpQNEUtWmhUdFpUaWxxQU95cFVLQXBhazBCRGc?oc=5",
+      "story_entities": [
+        "Amazon",
+        "Perplexity",
+        "控訴裁判所",
+        "amazon",
+        "perplexity"
+      ],
+      "primary_entity": "Amazon",
+      "story_subject": "アマゾンによるパープレキシティ差し止め要求の控訴審",
+      "event_type": "policy",
+      "event_stage": "denied",
+      "event_scope": "米国",
+      "fact_slots": [
+        {
+          "type": "date",
+          "scope": "控訴裁判所の却下判断",
+          "value": "2026-09-11",
+          "normalized_value": "2026-09-11"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "控訴裁判所がアマゾンのパープレキシティ差し止め要求を二度目も却下したことが新たに報じられた。",
+      "detail": "米国の控訴裁判所が、アマゾンがパープレキシティの活動を止めようとした申し立てを、再び退けたと報じられた。簡単に言うと、AIを使った検索や情報整理のサービスを巡ってアマゾンとパープレキシティが争っており、アマゾン側の訴えが二度目も通らなかったということ。以前にも一度却下されており、今回はその控訴審での再度の判断とみられる。\n\n記事からは、具体的にどのような行為を巡る争いなのか、裁判所がどんな理由で却下したのかは明らかにされていない。分かっているのは、アマゾンが控訴し、裁判所が改めてアマゾンの主張を認めなかったという事実のみ。パープレキシティはAIを使ったサービスを提供しており、大手ECサイトとの間で利用を巡る法的な緊張が続いているとみられる。\n\nAIサービスが大手ネット通販の情報やシステムをどこまで利用できるかという線引きは、今後の業界ルールにも関わる話題になる。アマゾンがさらに上級の裁判所に訴えるかどうかや、争いの具体的な中身については、現時点ではまだ分かっていない。",
+      "new_facts": [
+        "控訴裁判所がアマゾンのパープレキシティに対する差し止め要求を再び却下した"
+      ],
+      "event_date_precision": "day"
     },
     {
       "article_id": "article_21e132e05aed8e470048",
