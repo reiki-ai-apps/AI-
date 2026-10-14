@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>営業スケジュール｜工事注文書ツール</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { min-width: 0; }
+    .cal-shell { padding: 18px 28px 40px; }
+    .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+    .tab { min-height: 40px; padding: 0 18px; border: 1px solid #cad5cd; border-radius: 999px; background: #fff; font-size: 14px; font-weight: 800; color: #38433c; cursor: pointer; }
+    .tab.on { background: #087a42; border-color: #087a42; color: #fff; }
+    .cal-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+    .cal-nav { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .cal-nav button, .cal-nav select { min-height: 40px; padding: 0 12px; border: 1px solid #cad5cd; border-radius: 9px; background: #fff; font-size: 14px; font-weight: 700; color: var(--ink); cursor: pointer; }
+    .cal-nav .month { min-width: 130px; text-align: center; font-size: 18px; font-weight: 800; }
+    .cal-nav button.on { background: #e6effb; border-color: #9fbbe0; }
+    .legend { display: flex; gap: 12px; flex-wrap: wrap; margin: 8px 2px 0; font-size: 12px; color: #536158; }
+    .legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 4px; }
+
+    /* 月の様式 */
+    .month-card { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); overflow: hidden; }
+    table.month { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    table.month th { padding: 7px 0; font-size: 12px; background: #f3f7f4; color: #3b493f; border-bottom: 1px solid #cad5cd; border-right: 1px solid #edf1ee; }
+    table.month th.sat { color: #175ea6; } table.month th.sun { color: #b42318; }
+    table.month td { vertical-align: top; height: 104px; padding: 4px 4px 6px; border-right: 1px solid #edf1ee; border-bottom: 1px solid #e5ebe7; cursor: pointer; }
+    table.month td:hover { background: #f6faf7; }
+    table.month td.other { background: #fafbfa; color: #9aa59e; }
+    table.month td.today { background: #f0faf3; }
+    .dn { font-size: 12px; font-weight: 800; margin-bottom: 3px; display: flex; justify-content: space-between; }
+    .dn .sat { color: #175ea6; } .dn .sun { color: #b42318; }
+    .dn .add { font-weight: 400; color: #8a968e; font-size: 14px; line-height: 1; }
+    .chip { display: block; margin: 2px 0; padding: 2px 5px; border-radius: 5px; font-size: 11px; line-height: 1.35; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .chip.done { opacity: .5; }
+    .chip.plan { background: #fff; color: #175ea6; border: 1px solid #9fbbe0; }
+    .chip.report { background: #f1f3f1; color: #38433c; border: 1px solid #d5ddd7; }
+    .chip.more { background: transparent; color: #536158; font-weight: 700; }
+
+    /* 会社ごとの帯（従来の表） */
+    .cal-card { overflow: auto; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
+    table.gantt { border-collapse: separate; border-spacing: 0; width: 100%; table-layout: fixed; }
+    table.gantt th, table.gantt td { border-right: 1px solid #edf1ee; border-bottom: 1px solid #e5ebe7; }
+    table.gantt th { position: sticky; top: 0; z-index: 3; background: #f3f7f4; font-size: 11px; font-weight: 700; color: #3b493f; padding: 6px 0 4px; min-width: 25px; text-align: center; }
+    table.gantt th.sat { color: #175ea6; } table.gantt th.sun { color: #b42318; }
+    table.gantt th.today { background: #ddf3e4; }
+    table.gantt th.name, table.gantt td.name { position: sticky; left: 0; z-index: 4; min-width: 150px; max-width: 200px; padding: 10px 10px; text-align: left; background: #fff; font-size: 13px; font-weight: 800; box-shadow: 3px 0 8px rgba(13,59,37,.05); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    table.gantt th.name { z-index: 5; background: #f3f7f4; width: 150px; }
+    table.gantt td.day { height: 54px; position: relative; padding: 0; }
+    table.gantt td.day.weekend { background: #fafbfa; }
+    table.gantt td.day.today { background: #f0faf3; }
+    .bar { position: absolute; height: 22px; line-height: 22px; border-radius: 6px; padding: 0 8px; font-size: 12px; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,.18); }
+    .bar.done { opacity: .5; }
+    .empty { padding: 44px; text-align: center; color: #536158; }
+
+    /* 下の一覧 */
+    .list-card { margin-top: 18px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); overflow: auto; }
+    .list-card h3 { margin: 0; padding: 12px 16px; font-size: 14px; border-bottom: 1px solid var(--line); }
+    .detail-row { display: grid; grid-template-columns: 2fr 2.2fr 1.3fr 0.9fr 2.6fr; gap: 12px; padding: 10px 16px; border-bottom: 1px solid #edf1ee; font-size: 13px; align-items: center; }
+    .detail-row.head { background: #f3f7f4; font-weight: 700; font-size: 12px; }
+    .detail-row.is-done { color: #7a867d; }
+    .header-user { font-size: 12px; color: #d0e9d8; margin-right: 6px; }
+
+    /* 日の詳細（下から出る板） */
+    .sheet-bg { position: fixed; inset: 0; background: rgba(10,30,20,.45); z-index: 50; display: none; }
+    .sheet-bg.on { display: block; }
+    .day-sheet { position: fixed; left: 50%; bottom: 0; transform: translateX(-50%); width: min(720px, 100%); max-height: 86vh; overflow: auto; background: #fff; border-radius: 16px 16px 0 0; box-shadow: 0 -10px 40px rgba(0,0,0,.25); z-index: 51; display: none; }
+    .day-sheet.on { display: block; }
+    .ds-head { position: sticky; top: 0; background: #075c34; color: #fff; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; }
+    .ds-head h3 { margin: 0; font-size: 16px; }
+    .ds-head button { border: 0; background: rgba(255,255,255,.2); color: #fff; border-radius: 999px; width: 34px; height: 34px; font-size: 18px; cursor: pointer; }
+    .ds-body { padding: 12px 16px 20px; }
+    .ds-body h4 { margin: 12px 0 6px; font-size: 13px; color: #536158; }
+    .ds-item { display: flex; justify-content: space-between; gap: 10px; align-items: center; padding: 8px 10px; border: 1px solid #e5ebe7; border-radius: 10px; margin-bottom: 6px; font-size: 13px; }
+    .ds-item .t { font-weight: 700; }
+    .ds-item small { color: #536158; display: block; font-weight: 400; }
+    .ds-item .acts { display: flex; gap: 4px; flex-shrink: 0; }
+    .mini { padding: 5px 9px; border: 1px solid #cad5cd; border-radius: 7px; background: #fff; font-size: 12px; cursor: pointer; white-space: nowrap; }
+    .mini.strong { color: var(--green-800); border-color: #b9d8c5; font-weight: 700; }
+    .mini.danger { color: #b42318; }
+    .ds-actions { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 12px; }
+    .ds-actions button { min-height: 44px; border: 1px solid #b9d8c5; border-radius: 10px; background: #fff; color: #087a42; font-weight: 800; font-size: 13px; cursor: pointer; }
+    .ds-actions button.primary { background: #087a42; color: #fff; border-color: #087a42; }
+    .ev-form { margin-top: 10px; padding: 10px; border: 1px solid #cad5cd; border-radius: 10px; background: #f6faf7; display: grid; gap: 6px; }
+    .ev-form label { font-size: 12px; font-weight: 700; display: grid; gap: 3px; }
+    .ev-form input, .ev-form select, .ev-form textarea { min-height: 40px; padding: 6px 10px; border: 1px solid #cad5cd; border-radius: 8px; font-size: 14px; font-family: inherit; }
+    .ev-form textarea { min-height: 70px; resize: vertical; }
+    .ev-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .ev-form .btns { display: flex; gap: 6px; justify-content: flex-end; }
+
+    @media (max-width: 720px) {
+      .cal-shell { padding: 10px; }
+      .tabs { gap: 4px; }
+      .tab { min-height: 34px; padding: 0 12px; font-size: 12px; }
+      .cal-nav button, .cal-nav select { min-height: 36px; padding: 0 9px; font-size: 12px; white-space: nowrap; }
+      .cal-nav .month { min-width: 0; flex: 1; font-size: 15px; }
+      table.month th { font-size: 10px; padding: 5px 0; }
+      table.month td { height: 74px; padding: 2px 2px 4px; }
+      .dn { font-size: 11px; }
+      .dn .add { display: none; }
+      .chip { font-size: 9px; padding: 1px 3px; margin: 1px 0; border-radius: 3px; }
+      table.gantt { width: 840px; }
+      table.gantt th.name, table.gantt td.name { min-width: 64px; max-width: 72px; width: 68px; font-size: 10px; line-height: 1.25; padding: 4px 4px; white-space: normal; word-break: break-all; }
+      .detail-row.head { display: none; }
+      .detail-row { grid-template-columns: 1fr 1fr; grid-template-areas: "a a" "b b" "c d" "e e"; gap: 4px 10px; padding: 12px 14px; }
+      .detail-row span:nth-child(1) { grid-area: a; font-weight: 800; }
+      .detail-row span:nth-child(2) { grid-area: b; }
+      .detail-row span:nth-child(3) { grid-area: c; color: #536158; }
+      .detail-row span:nth-child(4) { grid-area: d; text-align: right; color: #536158; }
+      .detail-row span:nth-child(5) { grid-area: e; }
+      .ds-actions { grid-template-columns: 1fr; }
+    }
+  .brand-art,.empty-illustration{display:none!important}</style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="brand-header">
+      <div class="brand-copy">
+        <div class="brand-eyebrow">SALES SCHEDULE</div>
+        <h1>営業スケジュール</h1>
+        <p id="subtitle">担当ごとの予定・日報と、承認済みの工事。日付を押すと、その日の予定の追加、工事注文書の新規入力、工事完了ができます。</p>
+      </div>
+      <div class="brand-art" aria-hidden="true"></div>
+      <div class="header-actions">
+        <span class="header-user" id="user-label"></span>
+        <a class="header-exit" id="back-link" href="index.html">注文一覧へ</a>
+        <a class="header-exit" href="calendar.html">📅 工事カレンダー</a>
+        <button class="header-exit" id="logout-button" type="button">ログアウト</button>
+      </div>
+    </header>
+    <main class="cal-shell">
+      <div class="tabs" id="tabs"></div>
+      <div class="cal-head">
+        <div class="cal-nav">
+          <button id="prev" type="button">◀ 前の月</button>
+          <span class="month" id="month-label">—</span>
+          <button id="next" type="button">次の月 ▶</button>
+          <button id="today" type="button">今月</button>
+        </div>
+      </div>
+      <div class="month-card" id="month-card"><div id="month-grid"></div></div>
+      <div class="legend" id="legend"></div>
+    </main>
+  </div>
+
+  <div class="sheet-bg" id="sheet-bg"></div>
+  <div class="day-sheet" id="day-sheet" role="dialog" aria-modal="true">
+    <div class="ds-head"><h3 id="ds-title">—</h3><button type="button" id="ds-close" aria-label="閉じる">×</button></div>
+    <div class="ds-body" id="ds-body"></div>
+  </div>
+  <div class="toast-stack" id="toast-stack"></div>
+  <script>window.__DEMO_META__ = {"fields": [{"key": "input_date", "label": "入力日", "type": "date", "required": true}, {"key": "staff", "label": "担当（入力者）", "type": "staff", "required": true}, {"key": "contractor", "label": "工事依頼先", "type": "contractor", "required": true}, {"key": "contractor_code", "label": "仕入先コード", "type": "text", "derived": true}, {"key": "customer_name", "label": "お客様名", "type": "text", "required": true}, {"key": "billing_to", "label": "請求先", "type": "text"}, {"key": "kubun_company", "label": "工事区分（請負元）", "type": "kubun"}, {"key": "kubun_cls", "label": "工事区分", "type": "text", "derived": true}, {"key": "site", "label": "工事場所（都道府県・市町村名）", "type": "text", "required": true}, {"key": "work_name", "label": "工事名", "type": "text", "required": true}, {"key": "work_type", "label": "工事種類", "type": "work_type"}, {"key": "work_type_cls", "label": "種別", "type": "text", "derived": true}, {"key": "industry", "label": "建設業種", "type": "industry"}, {"key": "industry_cls", "label": "業種種別", "type": "text", "derived": true}, {"key": "order_amount", "label": "受注金額（資材費含む総額・税抜）", "type": "money", "required": true}, {"key": "period_start", "label": "工期 開始", "type": "date"}, {"key": "period_end", "label": "工期 終了", "type": "date"}, {"key": "payment_amount", "label": "支払金額（税抜）", "type": "money"}, {"key": "sales_amount", "label": "売上金額（税抜）", "type": "money"}, {"key": "content_1", "label": "工事内容 1行目", "type": "line", "maxlen": 30}, {"key": "content_2", "label": "工事内容 2行目", "type": "line", "maxlen": 30}, {"key": "content_3", "label": "工事内容 3行目", "type": "line", "maxlen": 30}, {"key": "content_4", "label": "工事内容 4行目", "type": "line", "maxlen": 30}, {"key": "content_5", "label": "工事内容 5行目", "type": "line", "maxlen": 30}, {"key": "content_6", "label": "工事内容 6行目", "type": "line", "maxlen": 30}, {"key": "content_7", "label": "工事内容 7行目", "type": "line", "maxlen": 30}, {"key": "content_8", "label": "工事内容 8行目", "type": "line", "maxlen": 30}, {"key": "content_9", "label": "工事内容 9行目", "type": "line", "maxlen": 30}, {"key": "content_10", "label": "工事内容 10行目", "type": "line", "maxlen": 30}, {"key": "note_1", "label": "連絡事項 1行目", "type": "line", "maxlen": 40}, {"key": "note_2", "label": "連絡事項 2行目", "type": "line", "maxlen": 40}, {"key": "note_3", "label": "連絡事項 3行目", "type": "line", "maxlen": 40}, {"key": "note_4", "label": "連絡事項 4行目", "type": "line", "maxlen": 40}, {"key": "note_5", "label": "連絡事項 5行目", "type": "line", "maxlen": 40}, {"key": "note_6", "label": "連絡事項 6行目", "type": "line", "maxlen": 40}], "masters": {"contractors": [{"name": "見本建設 株式会社", "code": "0001", "contract_date": "2020-04-01", "tel": "", "fax": ""}, {"name": "サンプル工業", "code": "0002", "contract_date": "2021-04-01", "tel": "", "fax": ""}, {"name": "テスト設備 株式会社", "code": "0003", "contract_date": "", "tel": "", "fax": ""}, {"name": "当社施工", "code": "0000", "contract_date": "", "tel": "", "fax": ""}, {"name": "みほん造園 株式会社", "code": "0004", "contract_date": "2019-10-01", "tel": "", "fax": ""}, {"name": "例示ハウス工業", "code": "0005", "contract_date": "2022-06-15", "tel": "", "fax": ""}], "staff": [{"code": "001", "name": "担当A", "short": "担当A"}, {"code": "002", "name": "担当B", "short": "担当B"}, {"code": "003", "name": "担当C", "short": "担当C"}], "work_types": [{"name": "ハウス新設", "cls": "新築"}, {"name": "他", "cls": "改修"}], "industries": [{"name": "新設・外張り張替", "cls": "とび土工"}, {"name": "解体", "cls": "解体"}, {"name": "カーテン張替・その他改修", "cls": "その他"}], "kubun": [{"code": "", "name": "元請", "cls": "元請"}, {"code": "900001", "name": "見本建設 株式会社", "cls": "下請"}, {"code": "900002", "name": "サンプル設備工業", "cls": "下請"}]}, "company": {"name": "見本産業　株式会社", "postal": "000-0000", "address": "〇〇県〇〇市〇〇町１－２－３", "representative": "代表取締役　見本　太郎", "tel": "000-000-0000", "fax": "000-000-0000", "payment_terms": "月末締翌月１０日\n振込支払"}};</script>
+<script src="demo-api.js"></script>
+<script>
+    const $ = (s) => document.querySelector(s);
+    const state = { year: new Date().getFullYear(), month: new Date().getMonth() + 1, user: null, staff: "", contractor: "", view: "month", data: null, day: null, editing: null };
+    const COLORS = ["#087a42", "#175ea6", "#b26a00", "#7a3fa6", "#b42318", "#0b7285", "#5c7a1f", "#8a4b2a"];
+    const esc = (v) => String(v ?? "").replace(/[&<>'"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
+    const jp = (iso) => { if (!iso) return ""; const [y, m, d] = iso.split("-").map(Number); return `${m}/${d}`; };
+    const pad = (n) => String(n).padStart(2, "0");
+    const isoOf = (y, m, d) => `${y}-${pad(m)}-${pad(d)}`;
+    const todayIso = () => { const n = new Date(); return isoOf(n.getFullYear(), n.getMonth() + 1, n.getDate()); };
+    const WD = "日月火水木金土";
+
+    async function api(path, options = {}) {
+      const res = await fetch(path, {...options, headers: {"Content-Type": "application/json", ...(options.headers || {})}});
+      if (res.status === 401) { location.href = "login.html?next=" + encodeURIComponent(location.pathname + location.search); throw new Error("ログインしてください。"); }
+      const body = await res.json();
+      if (!res.ok) throw new Error(body.error || `HTTP ${res.status}`);
+      return body;
+    }
+    function toast(message, kind = "success") {
+      const item = document.createElement("div"); item.className = `toast ${kind}`; item.textContent = message;
+      $("#toast-stack").append(item); setTimeout(() => item.remove(), 4000);
+    }
+    function colorFor(name) { const list = state.data.contractors; return COLORS[Math.max(0, list.indexOf(name)) % COLORS.length]; }
+
+    // 進み具合
+    function progressOf(it) {
+      if (it.completed) return {key: "done", step: 3, text: `完了（${jp(String(it.completed_at || "").slice(0, 10)) || "日付なし"}）`};
+      const today = todayIso();
+      if (it.period_start && today < it.period_start) return {key: "before", step: 1, text: `工事前（${jp(it.period_start)}開始）`};
+      if (it.period_end && today > it.period_end) return {key: "overdue", step: 2, text: `予定日を過ぎています（${jp(it.period_end)}まで）`};
+      return {key: "working", step: 2, text: `工事中（〜${jp(it.period_end)}）`};
+    }
+    function trackerHtml(it) {
+      const p = progressOf(it);
+      const mailed = it.status === "mailed";
+      const working = p.step === 3 ? "on" : (p.key === "overdue" ? "late" : (p.step === 2 ? "now" : ""));
+      return `<span class="progress"><span class="steps"><i class="on">承認</i><i class="${mailed ? "on" : ""}">注文書郵送</i><i class="${working}">工事中</i><i class="${p.step === 3 ? "on" : ""}">完了</i></span><small class="plabel ${p.key}">${esc(p.text)}</small></span>`;
+    }
+
+    // ---- 担当タブ ----
+    function renderTabs() {
+      const names = state.data.staff || [];
+      $("#tabs").innerHTML = [`<button class="tab ${state.staff === "" ? "on" : ""}" data-staff="">全体</button>`]
+        .concat(names.map((n) => `<button class="tab ${state.staff === n ? "on" : ""}" data-staff="${esc(n)}">${esc(n)}</button>`)).join("");
+      $("#tabs").querySelectorAll(".tab").forEach((b) => b.addEventListener("click", () => { state.staff = b.dataset.staff; load(); }));
+    }
+
+    // ---- 月の様式 ----
+    function renderMonth() {
+      const d = state.data;
+      const year = d.year, month = d.month;
+      const days = new Date(year, month, 0).getDate();
+      const first = new Date(year, month - 1, 1).getDay();
+      const today = todayIso();
+      const byDay = {};
+      const push = (iso, chip) => { (byDay[iso] = byDay[iso] || []).push(chip); };
+      d.items.forEach((it) => {
+        for (let day = 1; day <= days; day++) {
+          const iso = isoOf(year, month, day);
+          if (iso >= it.period_start && iso <= it.period_end) {
+            const label = (iso === it.period_start ? "▶ " : "") + (it.completed ? "✔ " : "") + `${it.customer_name}様 ${it.work_name}`;
+            push(iso, `<span class="chip ${it.completed ? "done" : ""}" style="background:${colorFor(it.contractor)}" title="${esc(it.contractor)}">${esc(label)}</span>`);
+          }
+        }
+      });
+      (d.events || []).forEach((ev) => {
+        push(ev.date, `<span class="chip ${ev.kind}" title="${esc(ev.staff)}">${ev.kind === "plan" ? "予定" : "日報"}${state.staff ? "" : "・" + esc(ev.staff)}: ${esc(ev.title)}</span>`);
+      });
+      let html = `<table class="month"><thead><tr>${WD.split("").map((w, i) => `<th class="${i === 0 ? "sun" : i === 6 ? "sat" : ""}">${w}</th>`).join("")}</tr></thead><tbody>`;
+      let cell = 0;
+      const prevDays = new Date(year, month - 1, 0).getDate();
+      for (let row = 0; row < 6; row++) {
+        html += "<tr>";
+        for (let col = 0; col < 7; col++) {
+          const idx = row * 7 + col;
+          const dayNum = idx - first + 1;
+          if (dayNum < 1 || dayNum > days) {
+            const n = dayNum < 1 ? prevDays + dayNum : dayNum - days;
+            html += `<td class="other"><div class="dn"><span>${n}</span></div></td>`;
+          } else {
+            const iso = isoOf(year, month, dayNum);
+            const chips = byDay[iso] || [];
+            const shown = chips.slice(0, 4).join("") + (chips.length > 4 ? `<span class="chip more">＋${chips.length - 4}件</span>` : "");
+            html += `<td class="${iso === today ? "today" : ""}" data-date="${iso}"><div class="dn"><span class="${col === 0 ? "sun" : col === 6 ? "sat" : ""}">${dayNum}</span><span class="add">＋</span></div>${shown}</td>`;
+          }
+          cell++;
+        }
+        html += "</tr>";
+        if ((row + 1) * 7 >= first + days) break;
+      }
+      html += "</tbody></table>";
+      $("#month-grid").innerHTML = html;
+      $("#month-grid").querySelectorAll("td[data-date]").forEach((td) => td.addEventListener("click", () => openDay(td.dataset.date)));
+    }
+
+    function renderLegend() {
+      const d = state.data;
+      $("#legend").innerHTML = d.contractors.map((name) => `<span><span class="sw" style="background:${colorFor(name)}"></span>${esc(name)}</span>`).join("")
+        + `<span><span class="sw" style="background:#fff;border:1px solid #9fbbe0"></span>予定</span><span><span class="sw" style="background:#f1f3f1;border:1px solid #d5ddd7"></span>日報</span><span>✔＝工事完了　▶＝工事の初日</span>`;
+    }
+
+    function render() {
+      const d = state.data;
+      $("#month-label").textContent = `${d.year}年${d.month}月`;
+      renderTabs();
+      renderMonth();
+      renderLegend();
+    }
+
+    // ---- 日の詳細 ----
+    function openDay(iso) {
+      state.day = iso; state.editing = null;
+      renderDay();
+      $("#sheet-bg").classList.add("on"); $("#day-sheet").classList.add("on");
+    }
+    function closeDay() { $("#sheet-bg").classList.remove("on"); $("#day-sheet").classList.remove("on"); state.day = null; }
+    function renderDay() {
+      const iso = state.day, d = state.data;
+      const [y, m, dd] = iso.split("-").map(Number);
+      $("#ds-title").textContent = `${y}年${m}月${dd}日（${WD[new Date(y, m - 1, dd).getDay()]}）${state.staff ? "　" + state.staff : ""}`;
+      const works = d.items.filter((it) => iso >= it.period_start && iso <= it.period_end);
+      const evs = (d.events || []).filter((ev) => ev.date === iso);
+      let html = `<h4>工事（${works.length}件）</h4>`;
+      html += works.length ? works.map((it) => `<div class="ds-item"><div><span class="t" style="color:${colorFor(it.contractor)}">${esc(it.customer_name)}様　${esc(it.work_name)}</span><small>${esc(it.contractor)}　${jp(it.period_start)}〜${jp(it.period_end)}　担当 ${esc(it.staff)}　${esc(progressOf(it).text)}</small></div><div class="acts"><button class="mini" data-open="${it.id}">開く</button>${it.completed ? `<button class="mini" data-undone="${it.id}">完了を戻す</button>` : `<button class="mini strong" data-done="${it.id}">工事完了</button>`}</div></div>`).join("") : `<div class="ds-item"><small>この日の工事はありません。</small></div>`;
+      html += `<h4>予定・日報（${evs.length}件）</h4>`;
+      html += evs.length ? evs.map((ev) => `<div class="ds-item"><div><span class="t">${ev.kind === "plan" ? "予定" : "日報"}　${esc(ev.title)}</span><small>${esc(ev.staff)}${ev.note ? "　" + esc(ev.note) : ""}</small></div><div class="acts"><button class="mini" data-edit="${ev.id}">直す</button><button class="mini danger" data-del="${ev.id}">消す</button></div></div>`).join("") : `<div class="ds-item"><small>まだありません。</small></div>`;
+      html += `<div class="ds-actions"><button type="button" data-new="plan">＋ 予定を入れる</button><button type="button" data-new="report">＋ 日報を書く</button><button type="button" class="primary" id="ds-neworder">＋ 工事注文書を新規入力</button></div><div id="ev-form-wrap"></div>`;
+      const body = $("#ds-body");
+      body.innerHTML = html;
+      body.querySelectorAll("[data-open]").forEach((b) => b.addEventListener("click", () => { location.href = `index.html?open=${b.dataset.open}`; }));
+      body.querySelectorAll("[data-done]").forEach((b) => b.addEventListener("click", () => setCompleted(Number(b.dataset.done), true)));
+      body.querySelectorAll("[data-undone]").forEach((b) => b.addEventListener("click", () => setCompleted(Number(b.dataset.undone), false)));
+      body.querySelectorAll("[data-new]").forEach((b) => b.addEventListener("click", () => showEventForm({kind: b.dataset.new, date: iso, staff: state.staff || defaultStaff()})));
+      body.querySelectorAll("[data-edit]").forEach((b) => b.addEventListener("click", () => showEventForm(evs.find((e) => e.id === Number(b.dataset.edit)))));
+      body.querySelectorAll("[data-del]").forEach((b) => b.addEventListener("click", () => deleteEvent(Number(b.dataset.del))));
+      $("#ds-neworder").addEventListener("click", () => { location.href = `index.html?new=${iso}${state.staff ? "&staff=" + encodeURIComponent(state.staff) : ""}`; });
+      if (state.editing) showEventForm(state.editing, true);
+    }
+    function defaultStaff() {
+      const names = state.data.staff || [];
+      const mine = names.find((n) => state.user && state.user.display_name && (state.user.display_name.includes(n) || n.includes(state.user.display_name)));
+      return mine || names[0] || "";
+    }
+    function showEventForm(ev, keep = false) {
+      if (!keep) state.editing = {...ev};
+      const e = state.editing;
+      const names = state.data.staff || [];
+      $("#ev-form-wrap").innerHTML = `<form class="ev-form" id="ev-form">
+        <div class="row"><label>種類<select name="kind"><option value="plan" ${e.kind === "plan" ? "selected" : ""}>予定</option><option value="report" ${e.kind === "report" ? "selected" : ""}>日報（行動記録）</option></select></label>
+        <label>担当<select name="staff">${names.map((n) => `<option value="${esc(n)}" ${n === e.staff ? "selected" : ""}>${esc(n)}</option>`).join("")}</select></label></div>
+        <div class="row"><label>日付<input type="date" name="date" value="${esc(e.date)}"></label><label>内容（1行）<input name="title" value="${esc(e.title || "")}" placeholder="例：〇〇様 現地確認 10時" required></label></div>
+        <label>メモ（任意）<textarea name="note">${esc(e.note || "")}</textarea></label>
+        <div class="btns"><button type="button" class="mini" id="ev-cancel">やめる</button><button type="submit" class="mini strong">${e.id ? "保存する" : "追加する"}</button></div>
+      </form>`;
+      $("#ev-cancel").addEventListener("click", () => { state.editing = null; $("#ev-form-wrap").innerHTML = ""; });
+      $("#ev-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const fd = new FormData(event.target);
+        const payload = {kind: fd.get("kind"), staff: fd.get("staff"), date: fd.get("date"), title: fd.get("title"), note: fd.get("note")};
+        try {
+          if (e.id) await api(`api/events/${e.id}`, {method: "PATCH", body: JSON.stringify(payload)});
+          else await api("api/events", {method: "POST", body: JSON.stringify(payload)});
+          state.editing = null;
+          toast(e.id ? "保存しました。" : "追加しました。");
+          await load(true);
+        } catch (err) { toast(err.message, "error"); }
+      });
+      $("#ev-form").scrollIntoView({block: "nearest"});
+    }
+    async function deleteEvent(id) {
+      if (!confirm("この予定・日報を消しますか？")) return;
+      try { await api(`api/events/${id}/delete`, {method: "POST", body: "{}"}); toast("消しました。"); await load(true); } catch (err) { toast(err.message, "error"); }
+    }
+    async function setCompleted(id, completed) {
+      if (completed && !confirm(`No.${id} を「工事完了」にしますか？`)) return;
+      try { await api(`api/orders/${id}/complete`, {method: "POST", body: JSON.stringify({completed})}); toast(completed ? "工事完了にしました。" : "完了を取り消しました。"); await load(true); } catch (err) { toast(err.message, "error"); }
+    }
+
+    async function load(keepDay = false) {
+      const query = `year=${state.year}&month=${state.month}` + (state.contractor ? `&contractor=${encodeURIComponent(state.contractor)}` : "") + (state.staff ? `&staff=${encodeURIComponent(state.staff)}` : "");
+      state.data = await api(`api/calendar?${query}`);
+      state.user = state.data.user;
+      render();
+      if (keepDay && state.day) renderDay();
+    }
+    function shift(delta) {
+      let m = state.month + delta, y = state.year;
+      if (m < 1) { m = 12; y -= 1; }
+      if (m > 12) { m = 1; y += 1; }
+      state.year = y; state.month = m;
+      load().catch((e) => toast(e.message, "error"));
+    }
+
+    async function init() {
+      const me = await api("api/me");
+      if (!me.user) { location.href = "login.html?next=/schedule"; return; }
+      state.user = me.user;
+      $("#user-label").textContent = `${me.user.display_name}（${me.user.role_label}）`;
+      const params = new URLSearchParams(location.search);
+      if (params.get("staff")) state.staff = params.get("staff");
+      $("#prev").addEventListener("click", () => shift(-1));
+      $("#next").addEventListener("click", () => shift(1));
+      $("#today").addEventListener("click", () => { state.year = new Date().getFullYear(); state.month = new Date().getMonth() + 1; load(); });
+      $("#sheet-bg").addEventListener("click", closeDay);
+      $("#ds-close").addEventListener("click", closeDay);
+      $("#logout-button").addEventListener("click", async () => { await api("api/logout", {method: "POST", body: "{}"}); location.href = "login.html"; });
+      await load();
+    }
+    init().catch((e) => { $("#month-grid").innerHTML = `<div class="empty">${esc(e.message)}</div>`; });
+  </script>
+</body>
+</html>
