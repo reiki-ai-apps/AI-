@@ -18410,7 +18410,503 @@
           "no_previous_story"
         ]
       }
+    },
+    "url:https://www.youtube.com/watch?v=unsx7ncnbzw": {
+      "canonical_url": "https://www.youtube.com/watch?v=unsx7ncnbzw",
+      "content_hash": "fa7b4ee67a0cb786eb6fe1519b4216c97e18d285abad2bad9490d5091971c9d6",
+      "story_key": "816c64d114f1760453d30a65258a1783c59d3fe8e3ff9efb1cbdd00cd6fc6883",
+      "status": "enriched",
+      "processed_at": "2026-10-14T09:33:45.647Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "",
+      "result": {
+        "tool": "専門家動画・発言",
+        "content_type": "expert_video",
+        "expert_id": "keito-aiweb",
+        "expert_ids": [
+          "keito-aiweb"
+        ],
+        "expert_name": "KEITO",
+        "expert_names": [
+          "KEITO"
+        ],
+        "expert_role": "AIツールの使い方・検証を発信する解説者",
+        "expert_tier": "practical_ai_educator",
+        "platform": "YouTube",
+        "video_id": "uNSx7NCNbzw",
+        "source_trust": "primary",
+        "title": "KEITO氏、新AI「Gemini 4 Argon」をClaude Opus 5.5・GPT 6.1と比較検証",
+        "source_url": "https://www.youtube.com/watch?v=uNSx7NCNbzw",
+        "source_name": "KEITO【AI&WEB ch】",
+        "is_official": true,
+        "published_at": "2026-10-14T06:58:56.000Z",
+        "source_published_at": "2026-10-14T06:58:56.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-14T09:31:46.163Z",
+        "event_at": "",
+        "event_status": "不明",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Gemini 4 Argon",
+          "Claude Opus 5.5",
+          "GPT 6.1"
+        ],
+        "primary_entity": "KEITO",
+        "story_subject": "Gemini 4 Argonの性能比較検証",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "YouTube動画",
+        "fact_slots": [],
+        "new_facts": [
+          "KEITO氏がGemini 4 ArgonをClaude Opus 5.5やGPT 6.1と比較する動画を公開した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "AI解説者KEITO氏が新モデル「Gemini 4 Argon」をClaude Opus 5.5やGPT 6.1と比較し、性能や料金を検証する動画を公開した。",
+        "detail": "KEITO氏が「Gemini 4 Argon」という新しいAIを紹介する動画を公開した。これは対話型AIで、文章や画像、プログラムなどを作る道具とされる。従来モデル「Gemini 3.8 Flash」より新しい世代として扱われている。\n\n動画では新しい画面デザインやロゴ生成機能、基本仕様を確認している。複数の性能評価方法で旧モデルとの違いを調べる検証も行っている。他社の最新AIとされるClaude Opus 5.5やGPT 6.1とも作業を比べた。\n\nウェブサイト制作やアニメーション、3D制作、ゲーム開発で実力を試した。料金体系も動画内で触れられているが、詳細な金額は本文で未確認である。各社の公式発表や正式な性能数値は、この動画だけでは裏付けられていない。",
+        "change_summary": "新しいAI「Gemini 4 Argon」が登場し、他社の最新モデルと並べて実践的に比較検証された。",
+        "impact_summary": "仕事でAIツールを使う人は、用途別の性能差を知って使い分けの参考にできる。",
+        "action_suggestion": "Gemini 4 Argonの正式な性能・料金に関する各社公式発表は、本文からは確認できていない。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://www.youtube.com/watch?v=3ocmhg1_okw": {
+      "canonical_url": "https://www.youtube.com/watch?v=3ocmhg1_okw",
+      "content_hash": "b1b978fde81338b9c465ac764997552dfeff3a38e13b6a0ad681aa00f1968392",
+      "story_key": "ef81a6e4aade37544b093b98ce78d6efd060504ac19c1f7e1508460cc6e165e0",
+      "status": "rejected",
+      "processed_at": "2026-10-14T09:33:45.647Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "ai_skip: AI内容薄く株式相場予測が中心の市況解説動画のため"
+    },
+    "url:https://www.youtube.com/watch?v=hmmcdomly_e": {
+      "canonical_url": "https://www.youtube.com/watch?v=hmmcdomly_e",
+      "content_hash": "f6849faa0cfb2d30ef05c5259f3f96491c1a14e2f52d6675198868425b222fc4",
+      "story_key": "b7c77aacb0bf42121690db6e98e0a95a4f30db1e86cf78fcd568c5f412429291",
+      "status": "retry",
+      "processed_at": "2026-10-14T09:34:13.369Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "missing_or_incomplete_ai_output",
+      "editorial_revision": {
+        "draft": {
+          "i": 0,
+          "title_ja": "OpenAIの新機能「Decisions API」と「インテリジェントUI」をKEITO氏が解説",
+          "summary_ja": "AI活用解説者KEITO氏が、OpenAIの判定機能「Decisions API」と画面自動生成「インテリジェントUI」の使い方を動画で紹介した。",
+          "detail_paragraphs": [
+            [
+              "AI活用を解説するKEITO氏が、OpenAIの新機能を紹介する動画を公開した。",
+              "画像や文章を高速で判定する「Decisions API」を解説している。",
+              "ChatGPT上で操作画面を自動生成する「インテリジェントUI」も紹介した。"
+            ],
+            [
+              "動画ではDecisions APIの仕組みと料金体系を説明している。",
+              "画像とテキストを使った判定の実演も収録されている。",
+              "インテリジェントUIでは活用事例を12個紹介している。"
+            ],
+            [
+              "視聴者は新機能を業務にどう活かせるか具体的に学べる。",
+              "表示設定の方法や業務活用の観点も動画内で扱われている。",
+              "OpenAI公式の発表内容そのものは本記事からは確認できない。"
+            ]
+          ],
+          "change_ja": "OpenAIの判定用API「Decisions API」と、ChatGPT上で操作画面を生成する「インテリジェントUI」の使い方を実演付きで解説する動画。",
+          "impact_ja": "業務で画像やテキストの自動判定、ChatGPT上での対話型UI作成を検討する人にとって、具体的な操作手順と活用事例の参考になる。",
+          "action_ja": "動画内で紹介されたDecisions APIの料金体系やインテリジェントUIの表示設定は、実際に試す前に動画本編で確認が必要。",
+          "event_date": "",
+          "event_status": "不明",
+          "story_entities": [
+            "OpenAI",
+            "Decisions API",
+            "ChatGPT"
+          ],
+          "importance": "B",
+          "categories": [
+            "AIツール・モデル",
+            "アプリ開発・自動化"
+          ],
+          "primary_entity": "KEITO",
+          "story_subject": "OpenAIの「Decisions API」と「インテリジェントUI」",
+          "event_type": "other",
+          "event_stage": "other",
+          "event_scope": "ChatGPT・OpenAI API",
+          "fact_slots": [
+            {
+              "type": "other",
+              "scope": "インテリジェントUIの活用事例数",
+              "value": "12件"
+            }
+          ],
+          "new_facts_ja": [
+            "OpenAIが画像・文章を高速判定する「Decisions API」とChatGPT上で操作画面を生成する「インテリジェントUI」の2つの新機能を提供している（動画内で紹介）",
+            "動画ではDecisions APIの概要・料金体系・画像/テキスト判定の実演・業務活用を解説している",
+            "インテリジェントUIについては活用事例12選と表示設定の方法を紹介している"
+          ]
+        },
+        "issues": [
+          "専門語「API」に説明がありません"
+        ],
+        "measured": {
+          "characters": 282,
+          "paragraphs": 3,
+          "sentences": 9
+        }
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmixkfvx3lxtfbvc2dzc0nrv1nycu4tcutex2zqbc1xbnhwy2hjoflysdv1dwlivevbznk1mjd4qvblbuh1ulrmt2rzd2hgmetunu5hq0hxsgrictiynfzlqvpvvwruogc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmixkfvx3lxtfbvc2dzc0nrv1nycu4tcutex2zqbc1xbnhwy2hjoflysdv1dwlivevbznk1mjd4qvblbuh1ulrmt2rzd2hgmetunu5hq0hxsgrictiynfzlqvpvvwruogc",
+      "content_hash": "e4dfb50d4af4932c188154f044bf5ea6886f1ed3f3782f20d88e579f41eebc68",
+      "story_key": "92a13447649fc72a4f1f95a01293e7bb8c2741a90451b504baad7444f55e769f",
+      "status": "enriched",
+      "processed_at": "2026-10-14T09:35:56.860Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Claude / Claude Code",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "Anthropic、重要インフラとオープンソースを守る「Cyber Mission」を発表",
+        "source_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBVc2dzc0NrV1NycU4tcUtEX2ZqbC1xbnhWY2hJOFlYSDV1dWlIVEVBZnk1Mjd4QVBLbUh1UlRmT2RZd2hGMEtUNU5hQ0hXSGRicTIyNFZLQVpvVWRuOGc?oc=5",
+        "source_name": "Ledge.ai",
+        "is_official": false,
+        "published_at": "2026-10-14T08:00:12.000Z",
+        "source_published_at": "2026-10-14T08:00:12.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-14T09:31:46.163Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Anthropic",
+          "日立製作所",
+          "Cyber Mission"
+        ],
+        "primary_entity": "Anthropic",
+        "story_subject": "Cyber Mission",
+        "event_type": "security",
+        "event_stage": "announced",
+        "event_scope": "重要インフラ・OSS、参加11社",
+        "fact_slots": [
+          {
+            "type": "count",
+            "scope": "参加企業数",
+            "value": "11社",
+            "normalized_value": "11"
+          }
+        ],
+        "new_facts": [
+          "Anthropicが重要インフラとOSSを守る「Cyber Mission」を発表",
+          "日立製作所を含む11社がこの取り組みに参加",
+          "参加企業は無料の脆弱性スキャンを受けられる"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Anthropicは重要インフラやオープンソースソフトウェアの防御を強化する「Cyber Mission」を発表し、日立など11社が参加、無料の脆弱性スキャンも提供する。",
+        "detail": "Anthropicは、重要インフラや誰でも無料で使えるオープンソースソフトウェア（OSS）を、サイバー攻撃から守る取り組み「Cyber Mission」を発表した。簡単に言うと、AIの技術を使ってシステムの弱点を見つけ、早めに直す仕組みづくりの計画だ。これまでは個別の企業がそれぞれセキュリティ対策を行っていたが、今回は複数の企業が共同で取り組む点が新しい。\n\nこの取り組みには日立製作所を含む11社が参加すると発表された。参加企業は、無料の脆弱性スキャン（システムの弱点を自動で探す検査）を受けられるという。AIを使ってセキュリティの検査を効率化することで、人手だけでは見つけにくい弱点も発見しやすくなる狙いがある。\n\n企業のシステム管理者やOSSの開発者にとって、無料で弱点チェックを受けられる機会が増える可能性がある。ただし、どの程度の範囲まで無料スキャンが提供されるのか、具体的な対象システムや開始時期など詳細は記事内で明らかにされていない。",
+        "change_summary": "AnthropicがCyber Missionという名称で、重要インフラとOSSを守るための企業連合と無料脆弱性スキャンを発表した。",
+        "impact_summary": "日立など日本企業も参加しており、国内の重要インフラ事業者がAIを使ったセキュリティ対策を導入する動きにつながる可能性がある。",
+        "action_suggestion": "無料脆弱性スキャンの対象範囲や申込方法など、詳細は現時点で記事に明記されていない。",
+        "importance": "A",
+        "related_categories": [
+          "セキュリティ",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmixefvx3lxte1vm2dvb3hguxmwavhivnduckzimkxdwgdfee9mwkhvee8xqjlreefwttk2edf4cdrioxmwyxzkafllnl8xbkdzn1owtljjenvavfrzmm9pmlzuefzm": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmixefvx3lxte1vm2dvb3hguxmwavhivnduckzimkxdwgdfee9mwkhvee8xqjlreefwttk2edf4cdrioxmwyxzkafllnl8xbkdzn1owtljjenvavfrzmm9pmlzuefzm",
+      "content_hash": "8496111c4ab195a1e54e8f8677688e02091c415e2bc2e62d0a16b3898bfb9d0d",
+      "story_key": "2180483f5b49830412af41d1a4175d9a8e0059a7ce7764b8800301aed7f48579",
+      "status": "rejected",
+      "processed_at": "2026-10-14T09:35:56.860Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: AI生成楽曲のミュージックビデオで、宣伝・娯楽コンテンツのため除外"
+    },
+    "url:https://arxiv.org/abs/2610.14118": {
+      "canonical_url": "https://arxiv.org/abs/2610.14118",
+      "content_hash": "51458744dc31a0785f8543f3f337b8c4c7fd403e8aadf24777cdf8850365d373",
+      "story_key": "e2b0815165d1adb0812c3dd4c0abab837977597d27d08112e1a6f08274c54b5d",
+      "status": "retry",
+      "processed_at": "2026-10-14T09:35:56.860Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmibefvx3lxte1svuruyzbyx3hbutbmzmv4rvz6b2xgenzmvgpbcmxrc2vyuehbnnhwrtbeaetlrfk5tnpyuvrrzexacmz1cs1yntvzwjlwtkm3ovbsdgh0bnfnluqyv3bneevjt1dwevpjsldung": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmibefvx3lxte1svuruyzbyx3hbutbmzmv4rvz6b2xgenzmvgpbcmxrc2vyuehbnnhwrtbeaetlrfk5tnpyuvrrzexacmz1cs1yntvzwjlwtkm3ovbsdgh0bnfnluqyv3bneevjt1dwevpjsldung",
+      "content_hash": "36cd439252952c3772543a84703d5a656a6ee85fd0ab07f1d6ffab03c98b8c60",
+      "story_key": "cd88f7c3371818b2adb9031586e3cd74d38d911563022e6cd37c33bd3aef5f2a",
+      "status": "retry",
+      "processed_at": "2026-10-14T09:35:56.860Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmidefvx3lxte1eqlfazwz3amg2mzlmu2z5d2vrcnaywwxzshjvdnbrn3vou3gzr2tksutunjzlx1vzn1dpodg1ehf6u1jqbtn5swjrbgzfvkl1ymw3uw9qcutiewtfewf1avbpa2l4d3hwrk5nwhbdel96beni": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte1eqlfazwz3amg2mzlmu2z5d2vrcnaywwxzshjvdnbrn3vou3gzr2tksutunjzlx1vzn1dpodg1ehf6u1jqbtn5swjrbgzfvkl1ymw3uw9qcutiewtfewf1avbpa2l4d3hwrk5nwhbdel96beni",
+      "content_hash": "34867a598cd2702c4db3cd25b85bb13efd8af6867ee601fe1394625f727a6180",
+      "story_key": "cf20dce78c2c9d6479aafa9e52abdd8f9ede68c7dd7466be2f4270e66f723d3c",
+      "status": "retry",
+      "processed_at": "2026-10-14T09:35:56.860Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmihwfbvv95cuxnd3vss2lhy2pnsmvkmi00mnlmckdjmtfwtfzslu5vdejbm2dbb25obzzzburzu25fbudnvlhxmzldbi1mzlvrvdrdwvy0me9psnnvtzjac2zvynldbe50m3vzwv9mag9wn0zwsexjbdhgnfbkujdkdtlmn1zaovppnnnsytdvuta": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmihwfbvv95cuxnd3vss2lhy2pnsmvkmi00mnlmckdjmtfwtfzslu5vdejbm2dbb25obzzzburzu25fbudnvlhxmzldbi1mzlvrvdrdwvy0me9psnnvtzjac2zvynldbe50m3vzwv9mag9wn0zwsexjbdhgnfbkujdkdtlmn1zaovppnnnsytdvuta",
+      "content_hash": "018a29fb86b98d6de2627b841f16db5fff14fd401a61319b120b35305f4eaea8",
+      "story_key": "d5383cfc72c2a809f917331f8571c3948d45c9878f5dea5aa5751fa47ed48a6b",
+      "status": "retry",
+      "processed_at": "2026-10-14T09:35:56.860Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://openai.com/index/the-eus-next-chapter-in-ai-is-agentic": {
+      "canonical_url": "https://openai.com/index/the-eus-next-chapter-in-ai-is-agentic",
+      "content_hash": "fa39158e542c5c30ef64f6167921548d50609db39b5b6d74e188a0e818f149d9",
+      "story_key": "cafe7c146b7853af7fc8969ba3c6e7603f6a52ce8c70851d29f83c77c333e651",
+      "status": "enriched",
+      "processed_at": "2026-10-14T09:36:50.959Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "ChatGPT / OpenAI",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "OpenAI、EU企業の自律型AI活用に関する分析を公開",
+        "source_url": "https://openai.com/index/the-eus-next-chapter-in-ai-is-agentic",
+        "source_name": "openai.com",
+        "is_official": true,
+        "published_at": "2026-10-14T00:00:00.000Z",
+        "source_published_at": "2026-10-14T00:00:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-14T09:31:46.163Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "OpenAI",
+          "EU",
+          "エージェントAI"
+        ],
+        "primary_entity": "OpenAI",
+        "story_subject": "EU企業におけるエージェント型AI導入分析",
+        "event_type": "research",
+        "event_stage": "other",
+        "event_scope": "EU",
+        "fact_slots": [],
+        "new_facts": [
+          "OpenAIがEUの企業・中小企業におけるエージェント型AI導入に関する分析を公開した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "OpenAIは、EUの企業や中小企業で自分で作業を進める「エージェント型AI」の利用が広がっているとする分析を公開した。",
+        "detail": "OpenAIが新しい分析を発表した。これは、人からの指示を受けて複数の作業を自分で進めていく「エージェント型AI」が、EU(欧州連合)の会社でどれくらい使われているかを調べたもの。以前ははっきりした利用実態が公表されていなかったが、今回企業規模ごとの傾向が示された点が新しい。\n\n分析によると、エージェント型AIの導入は大企業だけでなく中小企業にも広がりつつあるとされている。さらに、まだ十分に使いこなされていない部分があり、使い方を深めればより大きな効果を得られる可能性があると指摘されている。ただし、調査対象の数や具体的な数値は元記事からは確認できない。\n\n企業の経営者や担当者にとっては、自律型AIをどこまで業務に取り入れるかを検討する材料になる。注意点として、今回の分析の詳しい調査方法やデータの出どころはまだ公開情報から読み取れない。追加の詳細データが今後公表されるかどうかも不明である。",
+        "change_summary": "OpenAIがEU企業・中小企業におけるエージェント型AIの導入状況をまとめた分析を新たに公開した。",
+        "impact_summary": "EUで事業を行う企業にとって、自律型AIの導入度合いが今後の競争力に関わる可能性を示す材料になる。",
+        "action_suggestion": "元記事には分析の詳細な数値や調査手法が示されておらず、詳細情報の追加公開を待つ必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "政策・行政",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmid0fvx3lxte13cmzrsw9wnenfeg04wg1fd3llstutc0jialposnbks0zry1nmttjcdee2wgrivhj2ak5zymdzawpqmvfuqw5mejffq09krdc1atjjy2rtcklgmxlvqwjbrfzsu1f4awt5vfd0mwt3b0nfzjlezevv": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmid0fvx3lxte13cmzrsw9wnenfeg04wg1fd3llstutc0jialposnbks0zry1nmttjcdee2wgrivhj2ak5zymdzawpqmvfuqw5mejffq09krdc1atjjy2rtcklgmxlvqwjbrfzsu1f4awt5vfd0mwt3b0nfzjlezevv",
+      "content_hash": "816fcb7d933fa01ceeb5b2a245cd3362e8d9e5f99d7ccbc33ab8ae1144b5980d",
+      "story_key": "742d6365f86630725ee9838bf4338c47916228832aac76c18ad0f4254cec7607",
+      "status": "rejected",
+      "processed_at": "2026-10-14T09:36:50.959Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 具体的事実がない比較記事で内容確認不可"
+    },
+    "url:https://news.google.com/rss/articles/cbmiqkfvx3lxtfbibk5emxnythzks2tptknisdr4uhm1owznys1fzxzjwgnrsk43ue5avnhmegjpyxhytwzaddh0agqwuq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiqkfvx3lxtfbibk5emxnythzks2tptknisdr4uhm1owznys1fzxzjwgnrsk43ue5avnhmegjpyxhytwzaddh0agqwuq",
+      "content_hash": "d565e5d14c9e0e0f71ca7a4c563591920c98cf12336d9852504e37f6b9311e79",
+      "story_key": "99039214040c6973a72d36244e2d710c457891e476e1e5fdd7457a875b6349a5",
+      "status": "rejected",
+      "processed_at": "2026-10-14T09:36:50.959Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 出典不明・未確認の機種名でクリックベイトの疑い"
+    },
+    "url:https://news.google.com/rss/articles/cbmifkfvx3lxte00ekxxquuxzuzvs05gazdwvkxtteposwtld3n5zwndulvzd0vaehuwamjazenmvhzhq2drnxzka0g4snreu3ziz2yzbhdzv01rnhhtx25gdfp4x3lrekhocznzmvu1a1vqzy1fzutgmldlynrhbm9powphww82qq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmifkfvx3lxte00ekxxquuxzuzvs05gazdwvkxtteposwtld3n5zwndulvzd0vaehuwamjazenmvhzhq2drnxzka0g4snreu3ziz2yzbhdzv01rnhhtx25gdfp4x3lrekhocznzmvu1a1vqzy1fzutgmldlynrhbm9powphww82qq",
+      "content_hash": "34af6f7ed24ce04733a3b43bd3c321688a678de5f720cf03869070b43a977d26",
+      "story_key": "9063b8a58d8e633f79251814f70bf036b3ea544a077d9f2f555f3c2b0f4eec20",
+      "status": "rejected",
+      "processed_at": "2026-10-14T09:36:50.959Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 空港滑走路計画の話題でAIと無関係"
+    },
+    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxte5fshbta3nwqlrjq3vst1y2cnbyqky2vvpxzjryttatuu9sczgyvvyzdjh6q0n2dejvujnccjzqedfjv2tksksyes01vkrkn3bbnhjv": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxte5fshbta3nwqlrjq3vst1y2cnbyqky2vvpxzjryttatuu9sczgyvvyzdjh6q0n2dejvujnccjzqedfjv2tksksyes01vkrkn3bbnhjv",
+      "content_hash": "eebd0c6ed5da7c445fdcaa728f30a7a6c4652721aabc48c996f87f27f10d0427",
+      "story_key": "9a80c39e5e0bfc9021c6d8bd465d1479e83eb2b852d3011f97915ee54f4ce602",
+      "status": "rejected",
+      "processed_at": "2026-10-14T09:36:50.960Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: ダウンロード案内の広告的なSEO記事"
+    },
+    "url:https://news.google.com/rss/articles/cbmif0fvx3lxte9gq0czadzjuv9nbfdyvzbpmml4ywz6lxpbagn0a2tjzv9jtjhqumxvuffrb2h4mevlcv9yqzrnzmpnqwhwaxbxu2vlwkr3stflm0ozduzub3rirk1kqjczcnzsrnvjouzyvw85ulpvunv6szznafnqehhpbdhpc0e": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmif0fvx3lxte9gq0czadzjuv9nbfdyvzbpmml4ywz6lxpbagn0a2tjzv9jtjhqumxvuffrb2h4mevlcv9yqzrnzmpnqwhwaxbxu2vlwkr3stflm0ozduzub3rirk1kqjczcnzsrnvjouzyvw85ulpvunv6szznafnqehhpbdhpc0e",
+      "content_hash": "7c1938e8ed6b25b660ac54f56269bcfce60f050e47a2f2cfff16253d43f5e2c3",
+      "story_key": "87d91e74ae945daebef82806a9f393dabc61766fa2a0477811b65a2a64d534dc",
+      "status": "retry",
+      "processed_at": "2026-10-14T09:36:50.960Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmirgfbvv95cuxov0zvtfpdejhvlwvqslzndednuxjusemtdlfnvhbtruxftuewrwjob2llefhuyjgwyu1pdy1hweqtd2s0mvhrvf9wltcwtxk2nersz3z2wdnqneyza0hfcxfzskxuq1jknvl4unmtx0vkr0l1z2n6nngtu3qxu1zqz0pimfpvsvzsuevuu3zqz2znzxpqneutwmhudfpuawxxqu95cfvlqxbhazbcrgc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmirgfbvv95cuxov0zvtfpdejhvlwvqslzndednuxjusemtdlfnvhbtruxftuewrwjob2llefhuyjgwyu1pdy1hweqtd2s0mvhrvf9wltcwtxk2nersz3z2wdnqneyza0hfcxfzskxuq1jknvl4unmtx0vkr0l1z2n6nngtu3qxu1zqz0pimfpvsvzsuevuu3zqz2znzxpqneutwmhudfpuawxxqu95cfvlqxbhazbcrgc",
+      "content_hash": "cba2a35a8d45842e50744d66cb9dfcfd0ff9f1ff443593bdb335a6cf8bccc413",
+      "story_key": "6f01e6ae0cf0eb166d00714f5adacacc533de3dfc6761cb6f28c34d2db823efe",
+      "status": "enriched",
+      "processed_at": "2026-10-14T09:37:54.142Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Perplexity",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "控訴裁判所、アマゾンによるパープレキシティ差し止め要求を再び却下",
+        "source_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOV0ZvTFpDejhVLWVQSlZndEdnUXJUSEMtdlFNVHBtRUxFTUEwRWJOb2lLeFhUYjgwYU1pdy1hWEQtd2s0MVhRVF9wLTcwTXk2NERSZ3Z2WDNQNEYza0hfcXFZSkxuQ1JKNVl4UnMtX0VkR0l1Z2N6NngtU3QxU1ZqZ0piMFpVSVZsUEVuU3ZqZ2ZNZXpQNEUtWmhUdFpUaWxxQU95cFVLQXBhazBCRGc?oc=5",
+        "source_name": "MediaPost",
+        "is_official": false,
+        "published_at": "2026-10-13T16:34:39.000Z",
+        "source_published_at": "2026-10-13T16:34:39.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-14T09:31:46.163Z",
+        "event_at": "2026-09-11",
+        "event_status": "発表済み",
+        "event_date_precision": "day",
+        "story_entities": [
+          "Amazon",
+          "Perplexity",
+          "控訴裁判所"
+        ],
+        "primary_entity": "Amazon",
+        "story_subject": "アマゾンによるパープレキシティ差し止め要求の控訴審",
+        "event_type": "policy",
+        "event_stage": "denied",
+        "event_scope": "米国",
+        "fact_slots": [
+          {
+            "type": "date",
+            "scope": "控訴裁判所の却下判断",
+            "value": "2026-09-11",
+            "normalized_value": "2026-09-11"
+          }
+        ],
+        "new_facts": [
+          "控訴裁判所がアマゾンのパープレキシティに対する差し止め要求を再び却下した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "米控訴裁判所がアマゾンのパープレキシティに対する差し止め要求を再度退けたと報じられ、法廷闘争が続いている。",
+        "detail": "米国の控訴裁判所が、アマゾンがパープレキシティの活動を止めようとした申し立てを、再び退けたと報じられた。簡単に言うと、AIを使った検索や情報整理のサービスを巡ってアマゾンとパープレキシティが争っており、アマゾン側の訴えが二度目も通らなかったということ。以前にも一度却下されており、今回はその控訴審での再度の判断とみられる。\n\n記事からは、具体的にどのような行為を巡る争いなのか、裁判所がどんな理由で却下したのかは明らかにされていない。分かっているのは、アマゾンが控訴し、裁判所が改めてアマゾンの主張を認めなかったという事実のみ。パープレキシティはAIを使ったサービスを提供しており、大手ECサイトとの間で利用を巡る法的な緊張が続いているとみられる。\n\nAIサービスが大手ネット通販の情報やシステムをどこまで利用できるかという線引きは、今後の業界ルールにも関わる話題になる。アマゾンがさらに上級の裁判所に訴えるかどうかや、争いの具体的な中身については、現時点ではまだ分かっていない。",
+        "change_summary": "控訴裁判所がアマゾンのパープレキシティ差し止め要求を二度目も却下したことが新たに報じられた。",
+        "impact_summary": "AIサービスと大手ECサイトとの間の利用を巡る法的対立の行方は、今後のAI企業と既存プラットフォームとの関係に影響しうる。",
+        "action_suggestion": "争いの具体的な内容や裁判所の判断理由、アマゾンが上訴するかどうかは今後の報道の確認が必要。",
+        "importance": "B",
+        "related_categories": [
+          "規制・法務",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmitkfvx3lxte9qskhzzdutb1a0a3dxync0zdhjqvhbwvnhc0xiahzxsvjlvdk5n0txtjb1t1zvn0pbbgvssljqwkrsvhrnmvfcnnfkawlqdw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmitkfvx3lxte9qskhzzdutb1a0a3dxync0zdhjqvhbwvnhc0xiahzxsvjlvdk5n0txtjb1t1zvn0pbbgvssljqwkrsvhrnmvfcnnfkawlqdw",
+      "content_hash": "f097d40f2bcedae8e347cee9665d0ca3ea2474ff33a997c329f91a6217586838",
+      "story_key": "e4463f2d687d174957484a211529bd6f3b73a468066b4f9462f1c8a7ded38279",
+      "status": "rejected",
+      "processed_at": "2026-10-14T09:37:54.142Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 具体的事実のない宣伝目的のSEO記事のため除外"
+    },
+    "url:https://news.google.com/rss/articles/cbmisgfbvv95cuxnavztmjvuvdmtajllneviaezjcwdywufisdhmowffddfxtu1csuhvznuznzrzctnnnfjiywjpwdm1zw1xndjay0xttzbucedlrufeaxrnbtvkoe02xzrgtw40vzfndlfwmepknzhiczy1zfvpwnrfunrfoum1tktbmdzism01d3bba281othmzthkek5rvf9kchdlem91rgjcof9wa1qyuu5kcvvyrlltvehn": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmisgfbvv95cuxnavztmjvuvdmtajllneviaezjcwdywufisdhmowffddfxtu1csuhvznuznzrzctnnnfjiywjpwdm1zw1xndjay0xttzbucedlrufeaxrnbtvkoe02xzrgtw40vzfndlfwmepknzhiczy1zfvpwnrfunrfoum1tktbmdzism01d3bba281othmzthkek5rvf9kchdlem91rgjcof9wa1qyuu5kcvvyrlltvehn",
+      "content_hash": "0ac9fcee6125aeca4770648ef6c16180119ef7ec4fe4a7aaf578134c85712ed9",
+      "story_key": "79a5de9a852afed98fb0324369dec446785cb9c956d0f5524001970525d4b396",
+      "status": "rejected",
+      "processed_at": "2026-10-14T09:37:54.142Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 具体的内容のない宣伝的ハウツー記事のため除外"
+    },
+    "url:https://news.google.com/rss/articles/cbmiykfvx3lxte82vth5sm5ouvn6uk43addwb3d6m3j6egtfluc4n0owmxbpahjzdujsrvy5se9jrhzmtzdpt2jsr3o1tehtrnzwr3zvawrjavvpsktsem9drvh5m3q1skwzq2xb": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiykfvx3lxte82vth5sm5ouvn6uk43addwb3d6m3j6egtfluc4n0owmxbpahjzdujsrvy5se9jrhzmtzdpt2jsr3o1tehtrnzwr3zvawrjavvpsktsem9drvh5m3q1skwzq2xb",
+      "content_hash": "7ab7b13b5d9aee5e4a8d7bc8f155bf58e9f429504fc19330d5b095aad6cb39c8",
+      "story_key": "a06a793a32f07f32611942454e4a99ee17d370f9f61b26b6cafd42bf5a555099",
+      "status": "retry",
+      "processed_at": "2026-10-14T09:37:54.142Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
     }
   },
-  "updated_at": "2026-10-14T05:25:51.017Z"
+  "updated_at": "2026-10-14T09:37:54.142Z"
 }
