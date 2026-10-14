@@ -12,13 +12,14 @@
       <div class="brand-copy">
         <div class="brand-eyebrow">CONSTRUCTION ORDER</div>
         <h1 id="brand-title">工事注文書ツール</h1>
-        <p>営業が入力、事務が印刷して郵送。台帳はここに残ります。</p>
+        <p>営業が入力、管理職が承認、事務が印刷して郵送。終わったら工事完了。台帳はここに残ります。</p>
       </div>
       <div class="brand-art" aria-hidden="true"></div>
       <div class="header-actions">
         <span class="header-user" id="user-label"></span>
         <button class="header-exit" id="whats-new-button" type="button">💬 今回の更新</button>
         <a class="header-exit" id="calendar-link" href="calendar.html">📅 カレンダー</a>
+        <a class="header-exit" id="amounts-link" href="amounts.html">💴 依頼金額</a>
         <a class="header-exit" id="admin-link" href="admin.html" hidden>⚙ 設定</a>
         <a class="header-exit" id="mobile-link" href="mobile.html">スマホ用画面</a>
         <button class="header-exit" id="logout-button" type="button">ログアウト</button>
@@ -54,12 +55,24 @@
             <select id="staff-select"></select>
           </label>
           <label class="control select-control">
+            <span class="sr-only">工事依頼先</span>
+            <select id="contractor-select"></select>
+          </label>
+          <label class="control select-control">
             <span class="sr-only">進捗</span>
             <select id="progress-select">
               <option value="">進捗：すべて</option>
               <option value="open">未完了の工事だけ</option>
+              <option value="pending">承認待ち</option>
+              <option value="before">工事前</option>
+              <option value="working">工事中</option>
+              <option value="overdue">予定日超過</option>
               <option value="done">完了した工事だけ</option>
             </select>
+          </label>
+          <label class="control select-control">
+            <span class="sr-only">月別</span>
+            <select id="month-select"></select>
           </label>
           <label class="control search-control">
             <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
@@ -96,7 +109,7 @@
         </div>
         <footer class="ledger-footer">
           <span id="record-count">0件・入力日順</span>
-          <span>入力事項の全項目をCSVに出力</span>
+          <span id="totals"></span>
         </footer>
       </section>
     </main>

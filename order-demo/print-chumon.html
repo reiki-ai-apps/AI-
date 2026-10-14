@@ -92,7 +92,7 @@ async function main() {
   const notes = Array.from({length: 6}, (_, i) => f[`note_${i + 1}`] || "");
   document.title = `注文書_${f.customer_name || ""}_${f.work_name || ""}`;
   document.getElementById("sheet").innerHTML = `
-    <div class="head-row"><div class="order-no">注文番号　<span class="no">${esc(year)}－${esc(data.order.id)}</span><br><span style="display:inline-block;margin-top:1mm">${esc(jp(f.input_date))}</span></div></div>
+    <div class="head-row"><div class="order-no">注文番号　<span class="no">${esc(data.order.approval_no || (year + "－" + data.order.id))}</span><br><span style="display:inline-block;margin-top:1mm">${esc(jp(f.input_date))}</span></div></div>
     <h1>工事注文書</h1>
     <div class="parties">
       <div class="to">

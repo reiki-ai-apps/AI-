@@ -43,7 +43,7 @@
     .card details div { margin-top: 6px; padding: 8px 10px; background: #f6faf7; border-radius: 8px; line-height: 1.6; white-space: pre-wrap; }
     .empty { padding: 60px 20px; text-align: center; color: #536158; font-size: 14px; }
     .error { margin: 16px; padding: 14px; border-radius: 12px; background: #fdecec; color: #a02020; font-size: 13px; }
-    nav.bottom { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); background: #fff; border-top: 1px solid #dde6df; }
+    nav.bottom { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 5px; padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); background: #fff; border-top: 1px solid #dde6df; }
     nav.bottom a, nav.bottom button { min-height: 46px; display: flex; align-items: center; justify-content: center; border: 1px solid #cad5cd; border-radius: 10px; background: #fff; color: #1c2822; font-size: 13px; font-weight: 700; text-decoration: none; cursor: pointer; }
     nav.bottom a.primary { background: #087a42; border-color: #087a42; color: #fff; }
   .brand-art,.empty-illustration{display:none!important}</style>
@@ -66,6 +66,7 @@
   <div class="empty" id="empty" hidden>この条件の工事注文はありません。</div>
   <nav class="bottom">
     <a class="primary" href="calendar.html">📅 カレンダー</a>
+    <button id="new-btn" type="button">＋ 新規入力</button>
     <button id="desktop-btn" type="button">🖥 パソコン用</button>
     <button id="logout-btn" type="button">ログアウト</button>
   </nav>
@@ -119,7 +120,7 @@
         ? `<details><summary>工事内容・連絡事項を見る</summary><div>${esc(contents.join("\n"))}${notes.length ? "\n―― 連絡事項 ――\n" + esc(notes.join("\n")) : ""}</div></details>`
         : "";
       return `<article class="card ${o.completed ? "is-done" : ""}" id="order-${esc(o.id)}">
-        <div class="top"><span class="no">No.${esc(o.id)}　${esc(f.contractor || "")}</span><span>${approval}${mailed}${progChip}</span></div>
+        <div class="top"><span class="no">No.${esc(o.approval_no || o.id)}　${esc(f.contractor || "")}</span><span>${approval}${mailed}${progChip}</span></div>
         <h2>${esc(f.work_name || "（工事名なし）")}</h2>
         <div class="customer">${esc(f.customer_name || "")}　様　／　${esc(f.site || "")}</div>
         <div class="amount"><small>受注</small>${money(f.order_amount)}</div>
@@ -160,6 +161,10 @@
         $("#person-select").addEventListener("change", (e) => { state.staff = e.target.value; load(); });
         let timer = null;
         $("#search").addEventListener("input", (e) => { clearTimeout(timer); timer = setTimeout(() => { state.q = e.target.value.trim(); load(); }, 250); });
+        $("#new-btn").addEventListener("click", () => {
+          try { sessionStorage.setItem("order_force_desktop", "1"); } catch (e) {}
+          location.href = "index.html?new=" + todayIso();
+        });
         $("#desktop-btn").addEventListener("click", () => {
           try { sessionStorage.setItem("order_force_desktop", "1"); } catch (e) {}
           location.href = "index.html";

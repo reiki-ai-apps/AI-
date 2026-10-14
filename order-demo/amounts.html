@@ -50,7 +50,7 @@
       <div class="brand-copy">
         <div class="brand-eyebrow">PAYMENT BY WORK</div>
         <h1>工事ごとの依頼金額</h1>
-        <p id="subtitle">承認された工事の委託金額（税別）を、工事ごと・月ごとに表示します。</p>
+        <p id="subtitle">承認された工事の委託金額（税別）を、工事会社ごと・月ごとに集計します。</p>
       </div>
       <div class="brand-art" aria-hidden="true"></div>
       <div class="header-actions">
@@ -167,16 +167,10 @@
       $("#user-label").textContent = `${meta.user.display_name}（${meta.user.role_label}）`;
       const y = meta.current_year;
       $("#year-select").innerHTML = [y - 2, y - 1, y, y + 1].map((v) => `<option value="${v}" ${v === state.year ? "selected" : ""}>${v}年</option>`).join("");
-      if (meta.user.role === "contractor") {
-        $("#back-link").hidden = true;
-        $("#title").textContent = `${meta.user.contractor} 様への依頼金額（税別）`;
-        $("#subtitle").textContent = "承認された工事ごとの委託金額です。消費税は別です。";
-      } else {
-        const select = $("#contractor-filter");
-        select.hidden = false;
-        meta.masters.contractors.forEach((c) => { const o = document.createElement("option"); o.value = c.name; o.textContent = c.name; select.append(o); });
-        select.addEventListener("change", () => { state.contractor = select.value; render(); });
-      }
+      const select = $("#contractor-filter");
+      select.hidden = false;
+      meta.masters.contractors.forEach((c) => { const o = document.createElement("option"); o.value = c.name; o.textContent = c.name; select.append(o); });
+      select.addEventListener("change", () => { state.contractor = select.value; render(); });
       $("#year-select").addEventListener("change", (e) => { state.year = Number(e.target.value); load().catch((err) => alert(err.message)); });
       $("#progress-filter").addEventListener("change", (e) => { state.progress = e.target.value; render(); });
       $("#logout-button").addEventListener("click", async () => { await api("api/logout", {method: "POST", body: "{}"}); location.href = "login.html"; });

@@ -2,7 +2,9 @@ const state = {
   meta: null,
   staff: "",
   year: new Date().getFullYear(),
-  progress: "", // "" すべて / open 未完了 / done 完了
+  progress: "", // "" すべて / open 未完了 / done 完了 / before 工事前 / working 工事中 / overdue 予定超過 / pending 未承認
+  contractor: "",
+  month: "", // 工期の開始月 "2026-10"
   orders: [],
   editing: null, // null=閉 / {id:null}=新規 / {id,version}=編集
 };
@@ -78,8 +80,9 @@ function shouldUseMobile() {
 }
 
 async function initialize() {
-  if (shouldUseMobile()) {
-    const openId = new URLSearchParams(location.search).get("open");
+  const params = new URLSearchParams(location.search);
+  if (!params.get("new") && shouldUseMobile()) {
+    const openId = params.get("open");
     location.replace("mobile.html" + (openId ? `?open=${encodeURIComponent(openId)}` : ""));
     return;
   }
@@ -94,17 +97,25 @@ async function initialize() {
   }
   renderYearOptions();
   renderStaffOptions();
+  renderContractorOptions();
   renderTableHeader();
   bindEvents();
+  if (params.get("staff")) { state.staff = params.get("staff"); $("#staff-select").value = state.staff; }
   await loadOrders();
-  const openId = new URLSearchParams(location.search).get("open");
+  const openId = params.get("open");
   if (openId) {
     history.replaceState(null, "", "index.html");
     await openEdit(Number(openId));
     return;
   }
+  const newDate = params.get("new");
+  if (newDate) {
+    history.replaceState(null, "", "index.html");
+    openNew(newDate);
+    return;
+  }
   let seen = false;
-  try { seen = localStorage.getItem("order_demo_notes_v4") === "seen"; } catch (e) {}
+  try { seen = localStorage.getItem("order_demo_notes_v5") === "seen"; } catch (e) {}
   // 吹き出しの案内はパソコンの広い画面向け。スマホでは画面からはみ出すので出さない
   const wideScreen = Math.min(window.screen.width || 9999, window.outerWidth || 9999) >= 900;
   if (!seen && wideScreen) showUpdateNotes();
@@ -115,6 +126,11 @@ function renderYearOptions() {
   $("#year-select").innerHTML = [current - 2, current - 1, current, current + 1]
     .map((year) => `<option value="${year}" ${year === state.year ? "selected" : ""}>${year}年</option>`)
     .join("");
+}
+
+function renderContractorOptions() {
+  const options = state.meta.masters.contractors.map((c) => `<option value="${escapeHtml(c.name)}">${escapeHtml(c.name)}</option>`).join("");
+  $("#contractor-select").innerHTML = `<option value="">工事依頼先：全部</option>` + options;
 }
 
 function renderStaffOptions() {
@@ -145,7 +161,7 @@ function renderTableHeader() {
     const stickyClass = index === 0 ? "sticky sticky-1" : "";
     return `<th class="${stickyClass}">${escapeHtml(col.label)}</th>`;
   }).join("");
-  $("#ledger-head").innerHTML = `<tr><th>承認</th><th>注文書</th><th>工事</th>${labels}<th>印刷</th><th>編集</th></tr>`;
+  $("#ledger-head").innerHTML = `<tr><th>承認</th><th>承認番号</th><th>注文書</th><th>工事</th>${labels}<th>印刷</th><th>編集</th></tr>`;
 }
 
 async function loadOrders() {
@@ -158,7 +174,16 @@ async function loadOrders() {
 
 function renderRows() {
   const body = $("#ledger-body");
-  const visible = state.orders.filter((order) => state.progress === "" || (state.progress === "done" ? order.completed : !order.completed));
+  const visible = state.orders.filter((order) => {
+    const p = progressOf(order).key;
+    if (state.progress === "open" && order.completed) return false;
+    if (state.progress === "done" && !order.completed) return false;
+    if (["before", "working", "overdue", "pending"].includes(state.progress) && p !== state.progress) return false;
+    if (state.contractor && order.fields.contractor !== state.contractor) return false;
+    if (state.month && String(order.fields.period_start || order.fields.input_date || "").slice(0, 7) !== state.month) return false;
+    return true;
+  });
+  renderMonthOptions();
   body.innerHTML = visible.map((order) => {
     const f = order.fields;
     const progress = progressOf(order);
@@ -187,6 +212,7 @@ function renderRows() {
       : `<span class="approve-chip no">未承認</span>${canApprove() ? `<button class="mini-link strong" data-approve-id="${order.id}" data-next="1">承認する</button>` : ""}`;
     return `<tr class="${order.completed ? "row-done" : ""}">
       <td class="status-cell">${approveCell}</td>
+      <td class="status-cell"><strong>${escapeHtml(order.approval_no || "—")}</strong></td>
       <td class="status-cell">${statusChip}</td>
       <td class="status-cell">${doneCell}</td>
       ${cells}
@@ -208,7 +234,10 @@ function renderRows() {
   $("#count-mailed").textContent = mailed;
   $("#count-working").textContent = state.orders.filter((item) => progressOf(item).step === 2).length;
   $("#count-done").textContent = state.orders.filter((item) => item.completed).length;
-  $("#record-count").textContent = state.progress ? `${visible.length}件を表示（全${state.orders.length}件）・入力日順` : `${state.orders.length}件・入力日順`;
+  const filtered = state.progress || state.contractor || state.month;
+  $("#record-count").textContent = filtered ? `${visible.length}件を表示（全${state.orders.length}件）・入力日順` : `${state.orders.length}件・入力日順`;
+  const sum = (key) => visible.reduce((s, o) => s + (Number(String(o.fields[key] || "").replace(/[^0-9-]/g, "")) || 0), 0);
+  $("#totals").innerHTML = `表示分の合計（税別）　受注 <strong>${formatMoney(sum("order_amount"))}</strong>　／　支払（依頼金額）<strong>${formatMoney(sum("payment_amount"))}</strong>　／　売上 <strong>${formatMoney(sum("sales_amount"))}</strong>　<a class="print-link" href="amounts.html">工事会社ごとの依頼金額の合計を見る</a>`;
   $("#empty-state").hidden = state.orders.length !== 0;
   $(".ledger-table").hidden = state.orders.length === 0;
   $("#csv-button").disabled = state.orders.length === 0;
@@ -227,12 +256,20 @@ function bindEvents() {
     state.progress = event.target.value;
     renderRows();
   });
+  $("#contractor-select").addEventListener("change", (event) => {
+    state.contractor = event.target.value;
+    renderRows();
+  });
+  $("#month-select").addEventListener("change", (event) => {
+    state.month = event.target.value;
+    renderRows();
+  });
   let searchTimer;
   $("#search-input").addEventListener("input", () => {
     clearTimeout(searchTimer);
     searchTimer = setTimeout(loadOrders, 250);
   });
-  [$("#add-button"), $("#empty-add-button")].forEach((button) => button.addEventListener("click", openNew));
+  [$("#add-button"), $("#empty-add-button")].forEach((button) => button.addEventListener("click", () => openNew()));
   $("#csv-button").addEventListener("click", () => {
     window.demoExportCsv(state.staff, state.year);
     toast("一覧のCSVを作成しました。");
@@ -348,7 +385,15 @@ function todayIso() {
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
 }
 
-function openNew() {
+function renderMonthOptions() {
+  const select = $("#month-select");
+  const months = [...new Set(state.orders.map((o) => String(o.fields.period_start || o.fields.input_date || "").slice(0, 7)).filter(Boolean))].sort();
+  const current = select.value;
+  select.innerHTML = `<option value="">月別：すべて</option>` + months.map((m) => `<option value="${m}">${m.replace("-", "年")}月</option>`).join("");
+  if (months.includes(current)) select.value = current; else state.month = "";
+}
+
+function openNew(dateIso) {
   state.editing = {id: null};
   $("#entry-title").textContent = "新規入力";
   $("#entry-note").textContent = "保存すると一覧に載り、印刷できるようになります";
@@ -356,7 +401,7 @@ function openNew() {
   $("#audit-wrap").hidden = true;
   $("#delete-button").hidden = true;
   setLocked(false);
-  renderForm({input_date: todayIso(), staff: state.staff});
+  renderForm({input_date: typeof dateIso === "string" ? dateIso : todayIso(), staff: state.staff});
   $("#entry-dialog").showModal();
 }
 
@@ -443,7 +488,7 @@ function setLocked(locked) {
 
 async function setApproval(orderId, approved) {
   const message = approved
-    ? `No.${orderId} を承認しますか？\n承認すると工事カレンダーに載り、工事会社からも予定が見えるようになります。`
+    ? `No.${orderId} を承認しますか？\n承認すると通し番号が付き、工事カレンダーに載ります。`
     : `No.${orderId} の承認を取り消しますか？\nカレンダーから外れ、修正できる状態に戻ります。`;
   if (!window.confirm(message)) return;
   try {
@@ -454,7 +499,7 @@ async function setApproval(orderId, approved) {
 }
 
 async function setCompleted(orderId, completed) {
-  if (completed && !window.confirm(`No.${orderId} を「工事完了」にしますか？\nカレンダーと工事会社の画面に、完了として表示されます。`)) return;
+  if (completed && !window.confirm(`No.${orderId} を「工事完了」にしますか？\nカレンダーと一覧に、完了として表示されます。`)) return;
   try {
     await api(`api/orders/${orderId}/complete`, {method: "POST", body: JSON.stringify({completed})});
     toast(completed ? "工事完了にしました。" : "完了を取り消しました。");
@@ -475,8 +520,9 @@ async function setStatus(orderId, next) {
 const UPDATE_NOTES = [
   {selector: "#table-wrap", text: "一覧に「承認」と「工事」の列が付きました。管理職が「承認する」と工事カレンダーに載り、工事が終わったら「工事完了にする」を押します。完了はカレンダーと工事会社の画面にも出ます。"},
   {selector: "#progress-select", text: "「進捗」で、未完了の工事だけ・完了した工事だけに絞れます。"},
-  {selector: "#calendar-link", text: "「カレンダー」は予定と進み具合（承認→注文書郵送→工事中→完了）。工事会社のIDで入ると自社の予定だけが見え、工事ごとの委託金額は別の「依頼金額」の画面で見ます。"},
-  {selector: "#user-label", text: "ログインが必要になりました。役割（管理者・管理職・営業事務・工事会社）で見える物と押せるボタンが変わります。ログインの記録は設定画面に残ります。"},
+  {selector: "#calendar-link", text: "「カレンダー」は月の様式になりました。担当ごとのタブで切り替えられ、日付を押すと予定・日報の入力、工事注文書の新規入力、工事完了ができます。"},
+  {selector: "#totals", text: "表示している分の受注・支払（依頼金額）・売上の合計がここに出ます。工事依頼先や月で絞ると合計も変わります。"},
+  {selector: "#user-label", text: "ログインが必要になりました。役割（管理者・管理職・営業事務）で見える物と押せるボタンが変わります。ログインの記録は設定画面に残ります。"},
   {selector: ".summary-cards", text: "「未承認」の件数が増えました。管理職は、ここが0になるように承認してください。"},
   {selector: "#admin-link", text: "「設定」で、会社情報（注文書の差出人欄）と、工事依頼先・担当者・工事区分のリストを登録します。ツールには見本の名前しか入っていないので、最初に管理者が入力してください。"},
 ];
@@ -538,7 +584,7 @@ function showUpdateNotes() {
   const close = () => {
     window.removeEventListener("resize", onResize);
     overlay.remove();
-    try { localStorage.setItem("order_demo_notes_v4", "seen"); } catch (e) {}
+    try { localStorage.setItem("order_demo_notes_v5", "seen"); } catch (e) {}
   };
   overlay.querySelector("#update-close").addEventListener("click", close);
   overlay.addEventListener("click", (event) => { if (event.target === overlay) close(); });

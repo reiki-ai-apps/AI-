@@ -2,10 +2,19 @@
 // ログインは「管理者」として入った状態を再現する（お試し版では誰でも管理者）。
 (function () {
   const META = window.__DEMO_META__;
-  const KEY = "order_demo_v3";
+  const KEY = "order_demo_v4";
   const realFetch = window.fetch.bind(window);
-  const DEMO_USER = {id: 1, username: "demo", display_name: "お試し管理者", role: "admin", role_label: "管理者", contractor: ""};
-  const ROLES = {admin: "管理者", manager: "管理職", staff: "営業・事務", contractor: "工事会社"};
+  const DEMO_USER = {id: 1, username: "demo", display_name: "お試し管理者", role: "admin", role_label: "管理者"};
+  const ROLES = {admin: "管理者", manager: "管理職", staff: "営業・事務"};
+  const STAFF = () => META.masters.staff.filter((s) => s.short).map((s) => s.short);
+  // 営業の予定・日報の見本
+  const SEED_EVENTS = [
+    {staff: "担当A", date: "2026-10-13", kind: "plan", title: "見本農園様 着工立会い 9時", note: ""},
+    {staff: "担当A", date: "2026-10-15", kind: "report", title: "見本農園様 進捗確認、資材追加の相談", note: "パイプ追加 20本 見積へ"},
+    {staff: "担当B", date: "2026-10-16", kind: "plan", title: "サンプル牧場様 現地採寸 13時", note: ""},
+    {staff: "担当C", date: "2026-10-14", kind: "report", title: "みほんファーム様 補修の打合せ", note: "扉交換は10/21に"},
+    {staff: "担当B", date: "2026-10-20", kind: "plan", title: "例示農場様 換気装置の試運転", note: ""},
+  ];
 
   // 最初に開いた時に入っている見本データ（会社名・人名・場所はすべて架空）
   const SEED_BASE = {input_date: "2026-10-01", kubun_company: "元請", work_type: "他", industry: "新設・外張り張替"};
@@ -24,16 +33,19 @@
   ];
 
   function seeded() {
-    const db = {seq: 0, orders: [], audit: []};
+    const db = {seq: 0, orders: [], audit: [], events: [], eseq: 0};
     const t = now();
+    let approvalSeq = 0;
     SEED.forEach((s) => {
       const fields = {};
       META.fields.forEach((f) => { fields[f.key] = s.fields[f.key] ?? SEED_BASE[f.key] ?? ""; });
       derive(fields);
       db.seq += 1;
-      db.orders.push({id: db.seq, staff: fields.staff, year: yearOf(fields), status: s.mailed ? "mailed" : "new", approved: s.approved ? 1 : 0, approved_by: s.approved ? "お試し管理者" : "", approved_at: s.approved ? t : "", completed: s.completed ? 1 : 0, completed_by: s.completed ? "お試し管理者" : "", completed_at: s.completed ? t : "", fields, version: 1, created_at: t, updated_at: t});
+      const approvalNo = s.approved ? `${yearOf(fields)}-${String(++approvalSeq).padStart(4, "0")}` : "";
+      db.orders.push({id: db.seq, approval_no: approvalNo, staff: fields.staff, year: yearOf(fields), status: s.mailed ? "mailed" : "new", approved: s.approved ? 1 : 0, approved_by: s.approved ? "お試し管理者" : "", approved_at: s.approved ? t : "", completed: s.completed ? 1 : 0, completed_by: s.completed ? "お試し管理者" : "", completed_at: s.completed ? t : "", fields, version: 1, created_at: t, updated_at: t});
       db.audit.push({order_id: db.seq, action: "create", actor: "お試し管理者", reason: "見本データ", created_at: t});
     });
+    SEED_EVENTS.forEach((e) => { db.eseq += 1; db.events.push({id: db.eseq, ...e, order_id: null, created_by: "お試し管理者", created_at: t, updated_at: t}); });
     save(db);
     return db;
   }
@@ -147,6 +159,7 @@
         if (missing.length) return json(422, {error: "承認するには「" + missing.join("」「") + "」が必要です（カレンダーに載せるため）。", code: "validation"});
       }
       order.approved = approved ? 1 : 0;
+      if (approved && !order.approval_no) { const y = order.year; const used = db.orders.map((o) => o.approval_no).filter((n) => n && n.startsWith(y + "-")).map((n) => Number(n.split("-")[1])); order.approval_no = `${y}-${String((used.length ? Math.max(...used) : 0) + 1).padStart(4, "0")}`; }
       order.approved_by = approved ? "お試し管理者" : "";
       order.approved_at = approved ? now() : "";
       if (!approved) { order.completed = 0; order.completed_by = ""; order.completed_at = ""; }
@@ -182,16 +195,37 @@
       const year = Number(url.searchParams.get("year")) || new Date().getFullYear();
       const month = Number(url.searchParams.get("month")) || new Date().getMonth() + 1;
       const contractor = url.searchParams.get("contractor") || "";
+      const staffF = url.searchParams.get("staff") || "";
       const start = `${year}-${String(month).padStart(2, "0")}-01`;
       const end = `${year}-${String(month).padStart(2, "0")}-${String(new Date(year, month, 0).getDate()).padStart(2, "0")}`;
-      const items = db.orders.filter((o) => o.approved && o.fields.period_start && o.fields.period_end && o.fields.period_start <= end && o.fields.period_end >= start && (!contractor || o.fields.contractor === contractor))
+      const items = db.orders.filter((o) => o.approved && o.fields.period_start && o.fields.period_end && o.fields.period_start <= end && o.fields.period_end >= start && (!contractor || o.fields.contractor === contractor) && (!staffF || o.fields.staff === staffF))
         .sort((a, b) => a.fields.contractor.localeCompare(b.fields.contractor) || a.fields.period_start.localeCompare(b.fields.period_start))
-        .map((o) => ({id: o.id, contractor: o.fields.contractor, customer_name: o.fields.customer_name, work_name: o.fields.work_name, site: o.fields.site, staff: o.fields.staff, period_start: o.fields.period_start, period_end: o.fields.period_end, status: o.status, completed: o.completed || 0, completed_at: o.completed_at || ""}));
+        .map((o) => ({id: o.id, approval_no: o.approval_no || "", contractor: o.fields.contractor, customer_name: o.fields.customer_name, work_name: o.fields.work_name, site: o.fields.site, staff: o.fields.staff, period_start: o.fields.period_start, period_end: o.fields.period_end, status: o.status, completed: o.completed || 0, completed_at: o.completed_at || ""}));
       const contractors = [...new Set(items.map((it) => it.contractor))];
-      return json(200, {start, end, year, month, months: 1, contractors, items, user: DEMO_USER});
+      const events = (db.events || []).filter((e) => e.date >= start && e.date <= end && (!staffF || e.staff === staffF)).sort((a, b) => a.date.localeCompare(b.date) || a.id - b.id);
+      return json(200, {start, end, year, month, months: 1, contractors, items, events, staff: STAFF(), user: DEMO_USER});
+    }
+    if (path === "/api/events" && method === "GET") {
+      const s = url.searchParams.get("start") || "", e = url.searchParams.get("end") || "", st = url.searchParams.get("staff") || "";
+      return json(200, {events: (db.events || []).filter((x) => x.date >= s && x.date <= e && (!st || x.staff === st))});
+    }
+    if (path === "/api/events" && method === "POST") {
+      if (!String(body.title || "").trim()) return json(400, {error: "内容を入力してください。", code: "validation"});
+      db.events = db.events || []; db.eseq = (db.eseq || 0) + 1;
+      const ev = {id: db.eseq, staff: body.staff || "", date: body.date, kind: body.kind === "report" ? "report" : "plan", title: String(body.title).trim(), note: String(body.note || ""), order_id: null, created_by: "お試し管理者", created_at: now(), updated_at: now()};
+      db.events.push(ev); save(db); return json(201, {event: ev});
+    }
+    if ((match = path.match(/^\/api\/events\/(\d+)$/)) && method === "PATCH") {
+      const ev = (db.events || []).find((x) => x.id === Number(match[1]));
+      if (!ev) return json(404, {error: "予定が見つかりません。"});
+      ["staff", "date", "kind", "title", "note"].forEach((k) => { if (body[k] != null) ev[k] = String(body[k]); });
+      ev.updated_at = now(); save(db); return json(200, {event: ev});
+    }
+    if ((match = path.match(/^\/api\/events\/(\d+)\/delete$/)) && method === "POST") {
+      db.events = (db.events || []).filter((x) => x.id !== Number(match[1])); save(db); return json(200, {deleted: Number(match[1])});
     }
     if (path === "/api/users" && method === "GET") {
-      return json(200, {users: [{id: 1, username: "demo", display_name: "お試し管理者", role: "admin", contractor: "", active: 1}], contractors: META.masters.contractors.map((c) => c.name), roles: ROLES});
+      return json(200, {users: [{id: 1, username: "demo", display_name: "お試し管理者", role: "admin", active: 1}], roles: ROLES});
     }
     if (path === "/api/users" && method === "POST") return json(400, {error: "お試し版ではIDの発行はできません（本物のツールでは管理者が発行できます）。"});
     if (path === "/api/logs") return json(200, {logs: [{username: "demo", role: "admin", event: "success", ip: "お試し", user_agent: "", created_at: now()}]});
