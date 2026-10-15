@@ -154,10 +154,14 @@ assert.match(html,/function homeOriginBadge\(u\)/,"ホーム記事を新着と�
 assert.match(html,/注目ニュース \$\{list\.length\}件・新着 \$\{newCount\}件/,"合計件数と本当の新着件数を分けて表示する");
 const renderHomeSource=html.slice(html.indexOf("function renderHome(v)"),html.indexOf("function byPub(a,b)"));
 const feedRenderIndex=renderHomeSource.indexOf("feedList.forEach");
-const expertRenderIndex=renderHomeSource.indexOf("html+=expertVideoHtml+homeSecondaryHtml",feedRenderIndex);
+const expertRenderIndex=renderHomeSource.indexOf("html+=expertVideoHtml+homeSecondaryHtml+todayOneHtml",feedRenderIndex);
 const secondaryRenderIndex=expertRenderIndex;
 assert.ok(feedRenderIndex>=0&&secondaryRenderIndex>feedRenderIndex,"トップ5の記事カードを統計・アーカイブ・公式SNSより先に描画する");
 assert.ok(expertRenderIndex>feedRenderIndex,"専門家動画は記事トップ5の後に描画する");
+assert.match(renderHomeSource,/let html = `<section class="radar-overview/,"ホームはニュースの見出しから始める");
+assert.match(renderHomeSource,/html\+=expertVideoHtml\+homeSecondaryHtml\+todayOneHtml/,"今日試せる1つは動画と補助案内の後に置く");
+assert.match(renderHomeSource,/emptyState\([^\n]+\+expertVideoHtml\+homeSecondaryHtml\+todayOneHtml/,"トップ記事がない時も今日試せる1つは最後に置く");
+assert.match(renderHomeSource,/いま注目のAIニュース · 新着\$\{newCount\}件 · 更新確認 \$\{latest\}/,"見出しに新着件数と最終確認時刻を示す");
 assert.match(renderHomeSource,/const homeSecondaryHtml=`<section class="home-secondary"/,"記事以外の案内を後半ブロックとして固定する");
 assert.match(renderHomeSource,/home-review-link" onclick="go\('reviews'\)"/,"ホーム後半に控えめなレビュー案内を置く");
 assert.ok(renderHomeSource.indexOf('home-review-link')>renderHomeSource.indexOf('const homeSecondaryHtml='),"レビュー案内は記事より後の補助ブロック内に置く");
