@@ -7,28 +7,34 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-14T09:31:46.163Z",
-  "window_end": "2026-10-14T15:07:08.131Z",
-  "last_window_end": "2026-10-14T15:07:08.131Z",
-  "last_checked_at": "2026-10-14T15:10:55.571Z",
-  "last_published_at": "2026-10-14T15:10:55.571Z",
-  "home_content_changed_at": "2026-10-14T15:10:55.571Z",
+  "window_start": "2026-10-14T15:07:08.131Z",
+  "window_end": "2026-10-15T09:09:30.913Z",
+  "last_window_end": "2026-10-15T09:09:30.913Z",
+  "last_checked_at": "2026-10-15T09:14:47.332Z",
+  "last_published_at": "2026-10-15T09:14:47.332Z",
+  "home_content_changed_at": "2026-10-15T09:14:47.332Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 2,
-  "distinct_candidate_count": 2,
+  "candidate_count": 3,
+  "distinct_candidate_count": 3,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
   "novel_candidate_count": 1,
-  "cross_edition_duplicate_count": 1,
+  "cross_edition_duplicate_count": 2,
   "cross_edition_duplicate_groups": [
     {
-      "representative_id": "article_2fa70d052aaa89a418dc",
+      "representative_id": "article_b678cd9864bc2dc86a28",
       "duplicate_ids": [
-        "article_3b9b2d69dbae9b54dd1c"
+        "article_0ff762a220908824c96e"
+      ]
+    },
+    {
+      "representative_id": "article_cfdb003015cdc84658bc",
+      "duplicate_ids": [
+        "article_17ae61e152b2215a73d3"
       ]
     }
   ],
@@ -41,14 +47,14 @@
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
-    "article_3062fb286cc5d9133a75",
+    "article_42bf9adb3b948464d1b0",
     "article_f011a557bcbb7c058c66",
     "article_4ec7e6233601f6e8a494",
     "article_21e132e05aed8e470048",
     "article_affab45a22c3a088a1f7"
   ],
   "new_article_ids": [
-    "article_3062fb286cc5d9133a75"
+    "article_42bf9adb3b948464d1b0"
   ],
   "continued_article_ids": [
     "article_f011a557bcbb7c058c66",
@@ -63,22 +69,22 @@
     "article_affab45a22c3a088a1f7": "previous_edition"
   },
   "scores": {
-    "article_3062fb286cc5d9133a75": {
-      "article_id": "article_3062fb286cc5d9133a75",
-      "total": 58,
+    "article_42bf9adb3b948464d1b0": {
+      "article_id": "article_42bf9adb3b948464d1b0",
+      "total": 21,
       "breakdown": {
-        "importance": 45,
+        "importance": 10,
         "topicality": 0,
         "scope": 6,
         "authority": 5,
-        "freshness": 2,
+        "freshness": 0,
         "tool_evolution": 0,
         "penalty": 0
       },
       "reasons": [
-        "重要度A"
+        "重要度C"
       ],
-      "published_at": "2026-10-14T10:47:46.000Z"
+      "published_at": "2026-10-12T07:00:00.000Z"
     },
     "article_f011a557bcbb7c058c66": {
       "article_id": "article_f011a557bcbb7c058c66",
@@ -156,29 +162,6 @@
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_0d80dee06aa5f58b5eae",
-      "story_id": "story_5b655932dfadfe67ef",
-      "title": "NVIDIA、DeepSeek対抗で動画生成AI「Reflection」の買収を検討か",
-      "primary_entity": "Nvidia",
-      "story_subject": "Reflection AI買収交渉",
-      "event_type": "acquisition",
-      "event_stage": "rumor",
-      "event_scope": "全世界",
-      "story_entities": [
-        "Nvidia",
-        "Reflection AI",
-        "DeepSeek",
-        "nvidia",
-        "reflectionai"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-11T16:22:01.435Z",
-      "edition_window_end": "2026-10-11T16:19:03.714Z"
-    },
     {
       "article_id": "article_f011a557bcbb7c058c66",
       "story_id": "story_8d4032d977b37045af",
@@ -634,6 +617,29 @@
       "previous_article_id": "",
       "selected_at": "2026-10-14T15:10:55.571Z",
       "edition_window_end": "2026-10-14T15:07:08.131Z"
+    },
+    {
+      "article_id": "article_42bf9adb3b948464d1b0",
+      "story_id": "story_394cedb86cc99e449a",
+      "title": "映画監督キム・ソンス氏、動画生成AI「Kling AI」を映画制作の新道具として活用",
+      "primary_entity": "Kling AI",
+      "story_subject": "キム・ソンス監督によるKling AI活用",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "映画制作",
+      "story_entities": [
+        "Kling AI",
+        "キム・ソンス",
+        "klingai",
+        "キムソンス",
+        "kling"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-15T09:14:47.332Z",
+      "edition_window_end": "2026-10-15T09:09:30.913Z"
     }
   ]
 }
