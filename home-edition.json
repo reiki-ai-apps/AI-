@@ -7,54 +7,41 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-14T15:07:08.131Z",
-  "window_end": "2026-10-15T09:09:30.913Z",
-  "last_window_end": "2026-10-15T09:09:30.913Z",
-  "last_checked_at": "2026-10-15T09:14:47.332Z",
-  "last_published_at": "2026-10-15T09:14:47.332Z",
-  "home_content_changed_at": "2026-10-15T09:14:47.332Z",
+  "window_start": "2026-10-15T09:09:30.913Z",
+  "window_end": "2026-10-15T15:00:04.197Z",
+  "last_window_end": "2026-10-15T15:00:04.197Z",
+  "last_checked_at": "2026-10-15T15:04:04.316Z",
+  "last_published_at": "2026-10-15T15:04:04.316Z",
+  "home_content_changed_at": "2026-10-15T15:04:04.316Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 3,
-  "distinct_candidate_count": 3,
+  "candidate_count": 1,
+  "distinct_candidate_count": 1,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
   "novel_candidate_count": 1,
-  "cross_edition_duplicate_count": 2,
-  "cross_edition_duplicate_groups": [
-    {
-      "representative_id": "article_b678cd9864bc2dc86a28",
-      "duplicate_ids": [
-        "article_0ff762a220908824c96e"
-      ]
-    },
-    {
-      "representative_id": "article_cfdb003015cdc84658bc",
-      "duplicate_ids": [
-        "article_17ae61e152b2215a73d3"
-      ]
-    }
-  ],
+  "cross_edition_duplicate_count": 0,
+  "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
   "new_selected_count": 1,
   "continued_selected_count": 4,
-  "tool_evolution_selected_count": 0,
+  "tool_evolution_selected_count": 1,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
-    "article_42bf9adb3b948464d1b0",
+    "article_a60f4a701f887ae8f46b",
     "article_f011a557bcbb7c058c66",
     "article_4ec7e6233601f6e8a494",
     "article_21e132e05aed8e470048",
     "article_affab45a22c3a088a1f7"
   ],
   "new_article_ids": [
-    "article_42bf9adb3b948464d1b0"
+    "article_a60f4a701f887ae8f46b"
   ],
   "continued_article_ids": [
     "article_f011a557bcbb7c058c66",
@@ -69,22 +56,26 @@
     "article_affab45a22c3a088a1f7": "previous_edition"
   },
   "scores": {
-    "article_42bf9adb3b948464d1b0": {
-      "article_id": "article_42bf9adb3b948464d1b0",
-      "total": 21,
+    "article_a60f4a701f887ae8f46b": {
+      "article_id": "article_a60f4a701f887ae8f46b",
+      "total": 56,
       "breakdown": {
         "importance": 10,
-        "topicality": 0,
+        "topicality": 15,
         "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
+        "authority": 10,
+        "freshness": 7,
+        "tool_evolution": 8,
         "penalty": 0
       },
       "reasons": [
-        "重要度C"
+        "重要度C",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "公式一次情報",
+        "AIツールの能力進化"
       ],
-      "published_at": "2026-10-12T07:00:00.000Z"
+      "published_at": "2026-10-15T13:00:00.000Z"
     },
     "article_f011a557bcbb7c058c66": {
       "article_id": "article_f011a557bcbb7c058c66",
@@ -162,102 +153,6 @@
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_f011a557bcbb7c058c66",
-      "story_id": "story_8d4032d977b37045af",
-      "title": "OpenAIが数学論文722本を一挙公開、数学界から技術独占への批判も",
-      "primary_entity": "OpenAI",
-      "story_subject": "数学論文722本の一括公開",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "数学研究分野",
-      "story_entities": [
-        "OpenAI",
-        "数学論文722本",
-        "openai"
-      ],
-      "fact_slots": [
-        {
-          "type": "count",
-          "scope": "OpenAIが公開した数学論文の本数",
-          "value": "722本",
-          "normalized_value": "722"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-12T12:06:01.267Z",
-      "edition_window_end": "2026-10-12T12:00:29.675Z"
-    },
-    {
-      "article_id": "article_d5e48fd964309fc0bb97",
-      "story_id": "story_ae1e1c3a574d537e6d",
-      "title": "Anthropic、電力網保護の「Cyber Mission」と無料OSSスキャナーを発表",
-      "primary_entity": "Anthropic",
-      "story_subject": "Cyber Missionと無料OSSスキャナー",
-      "event_type": "security",
-      "event_stage": "announced",
-      "event_scope": "電力網インフラ",
-      "story_entities": [
-        "Anthropic",
-        "Cyber Mission",
-        "OSS Scanner",
-        "anthropic",
-        "cybermission"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-12T12:06:01.267Z",
-      "edition_window_end": "2026-10-12T12:00:29.675Z"
-    },
-    {
-      "article_id": "article_1c0c1ffd6606630d25c2",
-      "story_id": "story_8a628b028c5aa19bd9",
-      "title": "OpenAIのアルトマンCEO、「AIの特異点はすでに到来した」と発言",
-      "primary_entity": "OpenAI",
-      "story_subject": "サム・アルトマンCEOの特異点発言",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "AI業界全般",
-      "story_entities": [
-        "OpenAI",
-        "サム・アルトマン",
-        "AI singularity",
-        "openai",
-        "サムアルトマン"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-12T12:06:01.267Z",
-      "edition_window_end": "2026-10-12T12:00:29.675Z"
-    },
-    {
-      "article_id": "article_b678cd9864bc2dc86a28",
-      "story_id": "story_c31bb652e32644f3d6",
-      "title": "OpenAI、ChatGPTの「何でも同意する」性格を改善へ",
-      "primary_entity": "OpenAI",
-      "story_subject": "ChatGPTの過剰同調傾向の改善",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "ChatGPT全般",
-      "story_entities": [
-        "OpenAI",
-        "ChatGPT",
-        "openai",
-        "chatgpt"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-10-12T12:06:01.267Z",
-      "edition_window_end": "2026-10-12T12:00:29.675Z"
-    },
     {
       "article_id": "article_7384f7802df5b766bd09",
       "story_id": "story_fa592e30cc2409953b",
@@ -640,6 +535,36 @@
       "previous_article_id": "",
       "selected_at": "2026-10-15T09:14:47.332Z",
       "edition_window_end": "2026-10-15T09:09:30.913Z"
+    },
+    {
+      "article_id": "article_a60f4a701f887ae8f46b",
+      "story_id": "story_68f0fe363a78a6adb0",
+      "title": "OpenAI、教育者向けAI学習教材をブラジルポルトガル語に対応",
+      "primary_entity": "OpenAI",
+      "story_subject": "AI for Educators(ブラジルポルトガル語対応)/Study Mode",
+      "event_type": "release",
+      "event_stage": "expanded",
+      "event_scope": "ブラジル(ポルトガル語圏)",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT",
+        "Study Mode",
+        "openai",
+        "chatgpt"
+      ],
+      "fact_slots": [
+        {
+          "type": "region",
+          "scope": "AI for Educators対応言語",
+          "value": "ブラジルポルトガル語",
+          "normalized_value": "ブラジルポルトガル語"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-15T15:04:04.316Z",
+      "edition_window_end": "2026-10-15T15:00:04.197Z"
     }
   ]
 }
