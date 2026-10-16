@@ -7,131 +7,76 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-15T15:00:04.197Z",
-  "window_end": "2026-10-16T09:02:18.026Z",
-  "last_window_end": "2026-10-16T09:02:18.026Z",
-  "last_checked_at": "2026-10-16T09:07:07.332Z",
-  "last_published_at": "2026-10-16T09:07:07.332Z",
-  "home_content_changed_at": "2026-10-16T09:07:07.332Z",
+  "window_start": "2026-10-16T09:02:18.026Z",
+  "window_end": "2026-10-16T14:50:26.880Z",
+  "last_window_end": "2026-10-16T14:50:26.880Z",
+  "last_checked_at": "2026-10-16T14:55:32.802Z",
+  "last_published_at": "2026-10-16T14:55:32.802Z",
+  "home_content_changed_at": "2026-10-16T14:55:32.802Z",
   "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 0,
-  "update_health": "HEALTHY",
-  "update_health_reasons": [],
-  "edition_status": "NEW_STORIES",
-  "candidate_count": 6,
-  "distinct_candidate_count": 5,
-  "duplicate_candidate_count": 1,
-  "duplicate_groups": [
-    {
-      "representative_id": "article_e72fa88d20c16450725b",
-      "duplicate_ids": [
-        "article_1f30bd2760aaf1d183a9"
-      ]
-    }
+  "consecutive_zero_candidate_editions": 1,
+  "update_health": "DEGRADED",
+  "update_health_reasons": [
+    "今回の新着掲載は0件です。前回の重要記事を継続表示しています"
   ],
-  "novel_candidate_count": 3,
-  "cross_edition_duplicate_count": 2,
-  "cross_edition_duplicate_groups": [
-    {
-      "representative_id": "article_a60f4a701f887ae8f46b",
-      "duplicate_ids": [
-        "article_3bf06082b2ce4c66e394"
-      ]
-    },
-    {
-      "representative_id": "article_bf9aac9a3c8df323133a",
-      "duplicate_ids": [
-        "article_b8a1e0386dcf9fd2e5a6"
-      ]
-    }
-  ],
+  "edition_status": "NO_NEW_STORIES",
+  "candidate_count": 0,
+  "distinct_candidate_count": 0,
+  "duplicate_candidate_count": 0,
+  "duplicate_groups": [],
+  "novel_candidate_count": 0,
+  "cross_edition_duplicate_count": 0,
+  "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 3,
-  "continued_selected_count": 2,
+  "new_selected_count": 0,
+  "continued_selected_count": 5,
   "tool_evolution_selected_count": 2,
-  "carried_forward": false,
-  "partially_carried_forward": true,
+  "carried_forward": true,
+  "partially_carried_forward": false,
   "article_ids": [
-    "article_d2f20a8cdacf04e96c2d",
-    "article_e72fa88d20c16450725b",
-    "article_8c54b5b274243d125690",
+    "article_3bf06082b2ce4c66e394",
     "article_f011a557bcbb7c058c66",
-    "article_4ec7e6233601f6e8a494"
-  ],
-  "new_article_ids": [
+    "article_4ec7e6233601f6e8a494",
     "article_d2f20a8cdacf04e96c2d",
-    "article_e72fa88d20c16450725b",
-    "article_8c54b5b274243d125690"
+    "article_21e132e05aed8e470048"
   ],
+  "new_article_ids": [],
   "continued_article_ids": [
+    "article_3bf06082b2ce4c66e394",
     "article_f011a557bcbb7c058c66",
-    "article_4ec7e6233601f6e8a494"
+    "article_4ec7e6233601f6e8a494",
+    "article_d2f20a8cdacf04e96c2d",
+    "article_21e132e05aed8e470048"
   ],
   "continuation_sources": {
+    "article_3bf06082b2ce4c66e394": "previous_edition",
     "article_f011a557bcbb7c058c66": "previous_edition",
-    "article_4ec7e6233601f6e8a494": "previous_edition"
+    "article_4ec7e6233601f6e8a494": "previous_edition",
+    "article_d2f20a8cdacf04e96c2d": "previous_edition",
+    "article_21e132e05aed8e470048": "previous_edition"
   },
   "scores": {
-    "article_d2f20a8cdacf04e96c2d": {
-      "article_id": "article_d2f20a8cdacf04e96c2d",
-      "total": 64,
+    "article_3bf06082b2ce4c66e394": {
+      "article_id": "article_3bf06082b2ce4c66e394",
+      "total": 79,
       "breakdown": {
-        "importance": 25,
-        "topicality": 20,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "制度・安全への影響",
-        "大きな製品・市場変化",
-        "遅れて確認できた新着",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-10-15T00:00:00.000Z"
-    },
-    "article_e72fa88d20c16450725b": {
-      "article_id": "article_e72fa88d20c16450725b",
-      "total": 56,
-      "breakdown": {
-        "importance": 25,
+        "importance": 45,
         "topicality": 15,
-        "scope": 3,
+        "scope": 6,
         "authority": 5,
         "freshness": 0,
         "tool_evolution": 8,
         "penalty": 0
       },
       "reasons": [
-        "重要度B",
+        "重要度A",
         "主要AI企業・基盤",
-        "大きな製品・市場変化",
+        "制度・安全への影響",
         "AIツールの能力進化"
       ],
-      "published_at": "2026-10-07T17:59:00.000Z"
-    },
-    "article_8c54b5b274243d125690": {
-      "article_id": "article_8c54b5b274243d125690",
-      "total": 46,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 5,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 5,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "主要AI企業・基盤"
-      ],
-      "published_at": "2026-10-16T00:46:23.000Z"
+      "published_at": "2026-10-16T08:05:06.000Z"
     },
     "article_f011a557bcbb7c058c66": {
       "article_id": "article_f011a557bcbb7c058c66",
@@ -170,127 +115,47 @@
         "大きな製品・市場変化"
       ],
       "published_at": "2026-10-13T08:27:42.000Z"
+    },
+    "article_d2f20a8cdacf04e96c2d": {
+      "article_id": "article_d2f20a8cdacf04e96c2d",
+      "total": 64,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 20,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "制度・安全への影響",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-10-15T00:00:00.000Z"
+    },
+    "article_21e132e05aed8e470048": {
+      "article_id": "article_21e132e05aed8e470048",
+      "total": 66,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "大きな製品・市場変化"
+      ],
+      "published_at": "2026-10-13T16:14:06.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_4ec7e6233601f6e8a494",
-      "story_id": "story_805adb04dacf863c4a",
-      "title": "AI投資「カジノ」懸念で韓国株急落、世界的に半導体株売りが拡大",
-      "primary_entity": "韓国株式市場",
-      "story_subject": "AI投資バブル懸念による株価下落",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "韓国・世界",
-      "story_entities": [
-        "韓国株式市場",
-        "半導体株"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-13T11:54:36.603Z",
-      "edition_window_end": "2026-10-13T11:49:21.894Z"
-    },
-    {
-      "article_id": "article_3d25fe23366cc95f9c35",
-      "story_id": "story_43d65f80baa320405b",
-      "title": "IMF、AI市場の調整が世界的な金融混乱を招く恐れと警告",
-      "primary_entity": "IMF",
-      "story_subject": "AI市場の調整と金融安定リスク",
-      "event_type": "policy",
-      "event_stage": "announced",
-      "event_scope": "世界",
-      "story_entities": [
-        "IMF",
-        "AI市場",
-        "imf",
-        "ai市場"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-13T11:54:36.603Z",
-      "edition_window_end": "2026-10-13T11:49:21.894Z"
-    },
-    {
-      "article_id": "article_2fa70d052aaa89a418dc",
-      "story_id": "story_9b58947a077d0bfbbd",
-      "title": "イーロン・マスク氏、ブロードコムCEOのAI投資警告に反論",
-      "primary_entity": "Elon Musk",
-      "story_subject": "Broadcom CEOのAI投資警告への反論",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "世界",
-      "story_entities": [
-        "Elon Musk",
-        "Broadcom",
-        "Hock Tan",
-        "elonmusk",
-        "broadcom"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-13T11:54:36.603Z",
-      "edition_window_end": "2026-10-13T11:49:21.894Z"
-    },
-    {
-      "article_id": "article_c17f043f95027f919229",
-      "story_id": "story_d6a5501b9880a4ab7d",
-      "title": "インテルCEO、中国のDeepSeekやKimiを「十分良い」と評価",
-      "primary_entity": "Intel",
-      "story_subject": "DeepSeekとKimiなど中国オープンウェイトAIモデルの評価",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "世界",
-      "story_entities": [
-        "Intel",
-        "DeepSeek",
-        "Kimi",
-        "intel",
-        "deepseek"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-13T11:54:36.603Z",
-      "edition_window_end": "2026-10-13T11:49:21.894Z"
-    },
-    {
-      "article_id": "article_bf9aac9a3c8df323133a",
-      "story_id": "story_d34ca4ff29a9e70f3a",
-      "title": "Google、高齢者向け音声サポート機能「Gemini Live シンプルガイド」を提供開始",
-      "primary_entity": "Google",
-      "story_subject": "Gemini Live シンプルガイド",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "高齢者向け機能",
-      "story_entities": [
-        "Google",
-        "Gemini Live",
-        "google",
-        "geminilive",
-        "google-gemini"
-      ],
-      "fact_slots": [
-        {
-          "type": "availability",
-          "scope": "Gemini Liveシンプルガイド",
-          "value": "提供開始",
-          "normalized_value": "提供開始"
-        }
-      ],
-      "relation_type": "follow_up",
-      "dedupe_decision": "follow_up",
-      "previous_article_id": "article_25669e84fa8b5fb17a04",
-      "selected_at": "2026-10-13T11:54:36.603Z",
-      "edition_window_end": "2026-10-13T11:49:21.894Z"
-    },
     {
       "article_id": "article_21e132e05aed8e470048",
       "story_id": "story_bfca7adbc978fee819",

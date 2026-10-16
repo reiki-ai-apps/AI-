@@ -70,7 +70,33 @@
     "dedupe_reasons": [
       "same_primary_entity",
       "same_subject"
-    ]
+    ],
+    "home_top_rank": 1,
+    "home_top_score": 79,
+    "home_score_breakdown": {
+      "importance": 45,
+      "topicality": 15,
+      "scope": 6,
+      "authority": 5,
+      "freshness": 0,
+      "tool_evolution": 8,
+      "penalty": 0
+    },
+    "home_selection_reasons": [
+      "重要度A",
+      "主要AI企業・基盤",
+      "制度・安全への影響",
+      "AIツールの能力進化"
+    ],
+    "home_selected_at": "2026-10-16T14:55:32.802Z",
+    "home_window_start": "2026-10-16T09:02:18.026Z",
+    "home_window_end": "2026-10-16T14:50:26.880Z",
+    "home_content_changed_at": "2026-10-16T14:55:32.802Z",
+    "home_update_health": "DEGRADED",
+    "home_consecutive_unchanged_editions": 0,
+    "home_top_origin": "continued",
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 5
   },
   {
     "tool": "Gemini",
@@ -222,31 +248,7 @@
     "dedupe_reasons": [
       "same_primary_entity",
       "same_subject"
-    ],
-    "home_top_rank": 3,
-    "home_top_score": 46,
-    "home_score_breakdown": {
-      "importance": 25,
-      "topicality": 5,
-      "scope": 6,
-      "authority": 5,
-      "freshness": 5,
-      "tool_evolution": 0,
-      "penalty": 0
-    },
-    "home_selection_reasons": [
-      "重要度B",
-      "主要AI企業・基盤"
-    ],
-    "home_selected_at": "2026-10-16T09:07:07.332Z",
-    "home_window_start": "2026-10-15T15:00:04.197Z",
-    "home_window_end": "2026-10-16T09:02:18.026Z",
-    "home_content_changed_at": "2026-10-16T09:07:07.332Z",
-    "home_update_health": "HEALTHY",
-    "home_consecutive_unchanged_editions": 0,
-    "home_top_origin": "new",
-    "home_edition_new_count": 3,
-    "home_edition_continued_count": 2
+    ]
   },
   {
     "tool": "Grok / xAI",
@@ -541,7 +543,7 @@
     "dedupe_reasons": [
       "no_previous_story"
     ],
-    "home_top_rank": 1,
+    "home_top_rank": 4,
     "home_top_score": 64,
     "home_score_breakdown": {
       "importance": 25,
@@ -556,18 +558,17 @@
       "重要度B",
       "制度・安全への影響",
       "大きな製品・市場変化",
-      "遅れて確認できた新着",
       "AIツールの能力進化"
     ],
-    "home_selected_at": "2026-10-16T09:07:07.332Z",
-    "home_window_start": "2026-10-15T15:00:04.197Z",
-    "home_window_end": "2026-10-16T09:02:18.026Z",
-    "home_content_changed_at": "2026-10-16T09:07:07.332Z",
-    "home_update_health": "HEALTHY",
+    "home_selected_at": "2026-10-16T14:55:32.802Z",
+    "home_window_start": "2026-10-16T09:02:18.026Z",
+    "home_window_end": "2026-10-16T14:50:26.880Z",
+    "home_content_changed_at": "2026-10-16T14:55:32.802Z",
+    "home_update_health": "DEGRADED",
     "home_consecutive_unchanged_editions": 0,
-    "home_top_origin": "new",
-    "home_edition_new_count": 3,
-    "home_edition_continued_count": 2
+    "home_top_origin": "continued",
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 5
   },
   {
     "tool": "世界の新モデル・速報",
@@ -1361,79 +1362,31 @@
     "dedupe_decision": "new",
     "dedupe_reasons": [
       "no_previous_story"
-    ]
-  },
-  {
-    "tool": "AIセキュリティ",
-    "content_type": "article",
-    "expert_id": "",
-    "expert_ids": [],
-    "expert_name": "",
-    "expert_names": [],
-    "expert_role": "",
-    "expert_tier": "",
-    "platform": "",
-    "video_id": "",
-    "source_trust": "",
-    "title": "チェック・ポイント・リサーチ、2026年9月のサイバー脅威動向を発表",
-    "source_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9FM1U3bWcyQndhTVlWMmluUlhBb0x0UEpWSURfZ3Y3bFlYQzB2bzhab1VlTWpxLUc4MFdqSkpMR2JYZFVQSS1FRDI2aUhsaVN1RWc0VEpWS1FDbmhuTEU2aG9iYmw4ZXF2VnFQUzd3TnljU28wUWg5OFJNWQ?oc=5",
-    "source_name": "ニコニコニュース",
-    "is_official": false,
-    "published_at": "2026-10-13T12:00:23.000Z",
-    "source_published_at": "2026-10-13T12:00:23.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-13T17:35:20.124Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "チェック・ポイント・リサーチ",
-      "サイバー攻撃",
-      "生成AI",
-      "チェックポイントリサーチ",
-      "生成ai"
     ],
-    "primary_entity": "チェック・ポイント・リサーチ",
-    "story_subject": "2026年9月のサイバー脅威レポート",
-    "event_type": "security",
-    "event_stage": "other",
-    "event_scope": "世界",
-    "fact_slots": [
-      {
-        "type": "amount",
-        "scope": "サイバー攻撃件数の前年比増加率",
-        "value": "約1.5倍",
-        "normalized_value": "1.5"
-      }
+    "home_top_rank": 5,
+    "home_top_score": 66,
+    "home_score_breakdown": {
+      "importance": 45,
+      "topicality": 10,
+      "scope": 6,
+      "authority": 5,
+      "freshness": 0,
+      "tool_evolution": 0,
+      "penalty": 0
+    },
+    "home_selection_reasons": [
+      "重要度A",
+      "大きな製品・市場変化"
     ],
-    "new_facts": [
-      "2026年9月のサイバー攻撃件数が前年同月比で約1.5倍に急増したとチェック・ポイント・リサーチが発表した。"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "セキュリティ企業チェック・ポイント・リサーチが2026年9月の主要サイバー脅威を発表し、攻撃件数が前年同月比約1.5倍に急増したと報告した。",
-    "detail": "チェック・ポイント・リサーチというセキュリティ企業が、2026年9月の主要なサイバー脅威に関する月次報告を発表した。簡単に言うと、世界中で起きたサイバー攻撃の動向をまとめた報告書である。以前の月と比べて攻撃件数が大きく増えた点が新しい内容になっている。\n\n報告書によると、2026年9月のサイバー攻撃件数は前年同月比で約1.5倍に急増したという。攻撃の中には、生成AI(文章や画像を自動で作る人工知能)が関わっている事例も含まれるとされている。攻撃の具体的な手口や対象業種については、記事本文に詳細な記載がない。生成AIが攻撃者側にも使われ始めている可能性を示す報告として重要とみられる。\n\n企業のセキュリティ担当者は、生成AIを使った攻撃への備えを見直す必要が出てくる可能性がある。ただし記事では具体的な攻撃手法や対策方法は明らかにされていない。レポートの詳しい内容や公開場所についても本文からは確認できない。",
-    "change_summary": "2026年9月のサイバー攻撃件数が前年同月比で約1.5倍に急増したと報告された。",
-    "impact_summary": "企業のセキュリティ担当者は、生成AIが関与する攻撃への警戒を強める必要が出てくる可能性がある。",
-    "action_suggestion": "チェック・ポイント・リサーチの詳細なレポート内容は、本文からはまだ確認できない。",
-    "importance": "B",
-    "related_categories": [
-      "セキュリティ"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_b5a26f1ac81d17541e29",
-    "story_id": "story_162b5b8464698254ee",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
+    "home_selected_at": "2026-10-16T14:55:32.802Z",
+    "home_window_start": "2026-10-16T09:02:18.026Z",
+    "home_window_end": "2026-10-16T14:50:26.880Z",
+    "home_content_changed_at": "2026-10-16T14:55:32.802Z",
+    "home_update_health": "DEGRADED",
+    "home_consecutive_unchanged_editions": 0,
+    "home_top_origin": "continued",
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 5
   },
   {
     "tool": "AI規制・著作権",
@@ -1511,71 +1464,6 @@
     "platform": "",
     "video_id": "",
     "source_trust": "",
-    "title": "イーロン・マスク氏、ブロードコムCEOのAI投資警告に反論",
-    "source_url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNVUZUU0xhOXBROVE4Mk9peWdIY1hDYVNPRjlzRjBnRUJKWk92UjdYYXhzRVFRbnctdjlOazVJU3VFV1JYZ1A0TVZrU1lIY3c0dUI3N21jSmlqWG9wSG1jbmRPQlc3MWdSU2NXLWRnRHpWaERnNEVsUDREcUtldnI4czFUc3ZpTnp5ZlhIOU5XUUVDTUNTS2cxS1hDRDhfNC1Uam5hWGVBN2xhUDFNeDVCajlWZGtIMUlKS0hVQVkzaW1aZV9GcmRYYmtZc1UtTVY3Y2pZUjJ3cUVLSHBGaUE?oc=5",
-    "source_name": "Benzinga",
-    "is_official": false,
-    "published_at": "2026-10-13T10:12:08.000Z",
-    "source_published_at": "2026-10-13T10:12:08.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-13T11:49:21.894Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Elon Musk",
-      "Broadcom",
-      "Hock Tan",
-      "elonmusk",
-      "broadcom"
-    ],
-    "primary_entity": "Elon Musk",
-    "story_subject": "Broadcom CEOのAI投資警告への反論",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "世界",
-    "fact_slots": [],
-    "new_facts": [
-      "イーロン・マスク氏がブロードコムCEOホック・タン氏のAI投資への警告に反論した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "イーロン・マスク氏が、ブロードコムのホック・タンCEOによるAI投資への警告発言に「カジノで泣き言を言うな」と反論したと報じられた。",
-    "detail": "実業家イーロン・マスク氏が、半導体大手ブロードコムのホック・タンCEOによるAI投資への警告発言に反論した。タン氏は、現在のAI投資ブームを「カジノ」にたとえて注意を促したとみられ、マスク氏はこれに対し「カジノで泣き言を言うな」と切り返したという。\n\nこの応酬は、AI関連企業への巨額投資が本当に見合うリターンを生むのかという業界内の議論が激しくなっていることを示している。半導体業界のトップ経営者であるタン氏の警告は、AIブームの持続可能性に対する懸念を代表する声の一つとみられる。一方マスク氏の反論は、AI投資への強気な姿勢を崩さない立場を示したものといえる。\n\nAI関連企業や投資家にとっては、業界トップの間で投資リスクへの見方が分かれていることを知る材料になる。ただし両者の発言の詳しい文脈や、具体的にどの投資案件を指しているのかは記事から明らかではない。今後、他の経営者からも同様の見解が示されるか注目される。",
-    "change_summary": "AI投資ブームの是非をめぐり、著名経営者同士が公に応酬した点が新しい。",
-    "impact_summary": "AI関連企業に関わる投資家や経営者にとって、業界内の意見対立を把握する材料になる。",
-    "action_suggestion": "両者の発言の詳しい文脈や対象とする投資案件は、まだ明らかになっていない。",
-    "importance": "B",
-    "related_categories": [
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_2fa70d052aaa89a418dc",
-    "story_id": "story_9b58947a077d0bfbbd",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ]
-  },
-  {
-    "tool": "AI業界・経営重要速報",
-    "content_type": "article",
-    "expert_id": "",
-    "expert_ids": [],
-    "expert_name": "",
-    "expert_names": [],
-    "expert_role": "",
-    "expert_tier": "",
-    "platform": "",
-    "video_id": "",
-    "source_trust": "",
     "title": "AI投資「カジノ」懸念で韓国株急落、世界的に半導体株売りが拡大",
     "source_url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9NX1B1NXA0aUNxUE03YVZQZmFvQ05fT0hsUHhkSFZtUDh3bEFaSThTcWxNUWVVVVpIU1RtaFJQaE01a09JQ2VNM1lZbnJoLTlyaXNCN3p2MEV2UTI0dEtVS19oZEEteV9DMU1UbzlQWFA0MGptM2Z3?oc=5",
     "source_name": "Bloomberg.com",
@@ -1627,7 +1515,7 @@
     "dedupe_reasons": [
       "no_previous_story"
     ],
-    "home_top_rank": 5,
+    "home_top_rank": 3,
     "home_top_score": 70,
     "home_score_breakdown": {
       "importance": 45,
@@ -1642,15 +1530,15 @@
       "重要度A",
       "大きな製品・市場変化"
     ],
-    "home_selected_at": "2026-10-16T09:07:07.332Z",
-    "home_window_start": "2026-10-15T15:00:04.197Z",
-    "home_window_end": "2026-10-16T09:02:18.026Z",
-    "home_content_changed_at": "2026-10-16T09:07:07.332Z",
-    "home_update_health": "HEALTHY",
+    "home_selected_at": "2026-10-16T14:55:32.802Z",
+    "home_window_start": "2026-10-16T09:02:18.026Z",
+    "home_window_end": "2026-10-16T14:50:26.880Z",
+    "home_content_changed_at": "2026-10-16T14:55:32.802Z",
+    "home_update_health": "DEGRADED",
     "home_consecutive_unchanged_editions": 0,
     "home_top_origin": "continued",
-    "home_edition_new_count": 3,
-    "home_edition_continued_count": 2
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 5
   },
   {
     "tool": "AI規制・著作権",
@@ -1916,19 +1804,23 @@
       "アプリ開発・自動化"
     ],
     "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_3a53c8c197e27b814b23",
+    "article_id": "article_3a53c8c197e27b814b23_rev_bc53b4bf7ab7",
     "story_id": "story_cf813f62872b24f20b",
     "story_sequence": 1,
     "relation_type": "new",
-    "relation_confidence": 0.5191489361702127,
+    "relation_confidence": 1,
     "previous_article_id": "",
     "previous_title": "",
     "previous_source_published_at": "",
     "continuation_lead": "",
     "dedupe_decision": "uncertain",
     "dedupe_reasons": [
-      "shared_entity",
-      "same_subject"
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "similar_title",
+      "same_scope",
+      "same_url_content_changed"
     ],
     "home_video_selected_at": "2026-10-16T09:02:18.026Z",
     "home_video_origin": "new",
@@ -2166,7 +2058,7 @@
     "dedupe_reasons": [
       "no_previous_story"
     ],
-    "home_top_rank": 4,
+    "home_top_rank": 2,
     "home_top_score": 76,
     "home_score_breakdown": {
       "importance": 45,
@@ -2183,15 +2075,15 @@
       "制度・安全への影響",
       "大きな製品・市場変化"
     ],
-    "home_selected_at": "2026-10-16T09:07:07.332Z",
-    "home_window_start": "2026-10-15T15:00:04.197Z",
-    "home_window_end": "2026-10-16T09:02:18.026Z",
-    "home_content_changed_at": "2026-10-16T09:07:07.332Z",
-    "home_update_health": "HEALTHY",
+    "home_selected_at": "2026-10-16T14:55:32.802Z",
+    "home_window_start": "2026-10-16T09:02:18.026Z",
+    "home_window_end": "2026-10-16T14:50:26.880Z",
+    "home_content_changed_at": "2026-10-16T14:55:32.802Z",
+    "home_update_health": "DEGRADED",
     "home_consecutive_unchanged_editions": 0,
     "home_top_origin": "continued",
-    "home_edition_new_count": 3,
-    "home_edition_continued_count": 2
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 5
   },
   {
     "tool": "AI業界・経営重要速報",
@@ -3612,33 +3504,7 @@
       "same_event_type",
       "material_fact_changed",
       "low_confidence_follow_up_demoted"
-    ],
-    "home_top_rank": 2,
-    "home_top_score": 56,
-    "home_score_breakdown": {
-      "importance": 25,
-      "topicality": 15,
-      "scope": 3,
-      "authority": 5,
-      "freshness": 0,
-      "tool_evolution": 8,
-      "penalty": 0
-    },
-    "home_selection_reasons": [
-      "重要度B",
-      "主要AI企業・基盤",
-      "大きな製品・市場変化",
-      "AIツールの能力進化"
-    ],
-    "home_selected_at": "2026-10-16T09:07:07.332Z",
-    "home_window_start": "2026-10-15T15:00:04.197Z",
-    "home_window_end": "2026-10-16T09:02:18.026Z",
-    "home_content_changed_at": "2026-10-16T09:07:07.332Z",
-    "home_update_health": "HEALTHY",
-    "home_consecutive_unchanged_editions": 0,
-    "home_top_origin": "new",
-    "home_edition_new_count": 3,
-    "home_edition_continued_count": 2
+    ]
   },
   {
     "tool": "専門家動画・発言",
@@ -3720,6 +3586,155 @@
     "home_video_selected_at": "",
     "home_video_origin": "",
     "home_video_reserve": true
+  },
+  {
+    "tool": "Gemini",
+    "content_type": "article",
+    "expert_id": "",
+    "expert_ids": [],
+    "expert_name": "",
+    "expert_names": [],
+    "expert_role": "",
+    "expert_tier": "",
+    "platform": "",
+    "video_id": "",
+    "source_trust": "",
+    "title": "Google、新モデル「Gemini 4 Argon」発表 出力トークン上限を100万に拡大",
+    "source_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1KdEwxSmdtOElxVjlaRVg0NjVCMmhXS0tBN1V3UUl0UGRPZWhnQkFoeHJ4VnVkTW5pSTZmaUZ3aWI5UVhKUm5QdnZWYU44Qlowb3F6bHB1RDhSUjluZ2hLVkV5QjZucmlaM05pYWZn?oc=5",
+    "source_name": "AIsmiley",
+    "is_official": false,
+    "published_at": "2026-10-07T08:34:05.000Z",
+    "source_published_at": "2026-10-07T08:34:05.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-10-07T17:25:30.102Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Google",
+      "Gemini 4 Argon",
+      "google",
+      "gemini4argon",
+      "google-gemini"
+    ],
+    "primary_entity": "Google",
+    "story_subject": "Gemini 4 Argon",
+    "event_type": "release",
+    "event_stage": "announced",
+    "event_scope": "API・複雑なワークフロー対応",
+    "fact_slots": [
+      {
+        "type": "count",
+        "scope": "出力トークン上限",
+        "value": "100万トークン",
+        "normalized_value": "1000000"
+      }
+    ],
+    "new_facts": [
+      "Googleが新モデル「Gemini 4 Argon」を発表した",
+      "出力トークンの上限が100万に拡大された"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "Googleが新モデル「Gemini 4 Argon」を発表し、1回の応答で出せる文章量の上限を100万単位に広げ、複雑な作業に対応させた。",
+    "detail": "Googleが新しいAIモデル「Gemini 4 Argon」を発表しました。これはAIが一度に作り出せる文章の量である出力トークンの上限を、従来よりも大きい100万まで広げたモデルです。トークンとは文章を区切る単位のことで、この上限が大きいほど一度に長い回答や複雑な作業結果を出力できます。\n\n今回の発表で確認できる具体的な事実は、出力トークンの上限が100万に拡大されたという点です。これにより、長い文書の作成や、複数の手順が絡む複雑な作業の処理を、途中で区切らずに一度に進められるようになります。AIが扱える作業の規模が広がることは、業務での使いやすさに直結するため重要な変化です。\n\n利用者にとっては、長文の報告書作成や複雑な自動処理をこれまでより少ない手間で任せられる可能性があります。ただし料金や提供開始時期、対応する利用環境など、詳細はまだ発表されていません。",
+    "change_summary": "出力トークンの上限が100万に拡大された新モデルが発表された。",
+    "impact_summary": "長文作成や複雑な業務の自動化を一度の処理でまとめて任せられる可能性が広がる。",
+    "action_suggestion": "料金や提供開始時期などの詳細は記事内で明らかにされておらず、今後の続報の確認が必要。",
+    "importance": "A",
+    "related_categories": [
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_d1bdf72ce31f7be5d8ab",
+    "story_id": "story_36bf79278c521401a1",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 0.82,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_primary_entity",
+      "same_subject",
+      "same_event_type",
+      "stage_changed",
+      "material_fact_changed",
+      "low_confidence_follow_up_demoted"
+    ]
+  },
+  {
+    "tool": "DeepSeek",
+    "content_type": "article",
+    "expert_id": "",
+    "expert_ids": [],
+    "expert_name": "",
+    "expert_names": [],
+    "expert_role": "",
+    "expert_tier": "",
+    "platform": "",
+    "video_id": "",
+    "source_trust": "",
+    "title": "DeepSeek、資金調達目標を最大1000億元に倍増検討",
+    "source_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQcGZLajdOM3hKV256elVoNFFNQlZoTHZIVG5DbEJiSml5WnF2YWRCV1c1c1doSUdPM0k5VEVLRFVMUGo2dDkyMEs1b2pVMkFhSGlLMHk0dkZPNFdCZFJTT2ZKeDNBT25TNGNTQlYzLXRLbmt5NkxmeUJwZGNPVVBWTHJENy12bFNDNW53czE1WEpISWlUQ2VpbkQtODBVVHhWdkQxSnZ5d01HdnduVzlKa1k2OXdGNUtNRnc?oc=5",
+    "source_name": "디지털투데이",
+    "is_official": false,
+    "published_at": "2026-10-06T23:25:07.000Z",
+    "source_published_at": "2026-10-06T23:25:07.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-10-07T17:25:30.102Z",
+    "event_at": "",
+    "event_status": "予定",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "DeepSeek",
+      "deepseek"
+    ],
+    "primary_entity": "DeepSeek",
+    "story_subject": "資金調達計画",
+    "event_type": "funding",
+    "event_stage": "planned",
+    "event_scope": "中国",
+    "fact_slots": [
+      {
+        "type": "amount",
+        "scope": "資金調達目標上限",
+        "value": "最大1000億元(人民元)",
+        "normalized_value": "100000000000"
+      }
+    ],
+    "new_facts": [
+      "DeepSeekが資金調達目標を最大1000億元に引き上げることを検討していると報じられた",
+      "これは従来の目標額のおよそ2倍にあたる"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "中国のAI企業DeepSeekが、資金調達の上限目標を従来の2倍となる最大1000億元に引き上げることを検討していると報じられた。",
+    "detail": "中国のAI企業DeepSeekが、資金調達計画の見直しを検討していると報じられた。簡単に言うと、AIモデルを開発する企業が、これまでより多くの資金を集めようとしている話である。新しい目標額は、従来発表されていた目標のおよそ2倍にあたるとされる。\n\n記事によると、新しい調達目標は最大1000億元(人民元)に設定される可能性があるという。これは従来の目標金額のおよそ2倍の規模にあたる。資金の具体的な使い道や、出資を検討している企業・投資家については、記事の抜粋では明らかにされていない。\n\nAI企業への資金の集まり方は、業界全体の競争や開発の勢いを示す材料として注目されている。注意点として、今回の情報は「検討している」段階であり、正式な契約や最終金額はまだ確定していない。今後、実際の調達額や出資者が公表されるかが注目点となる。",
+    "change_summary": "DeepSeekが資金調達の上限目標を従来の約2倍に引き上げる検討に入ったと報じられた。",
+    "impact_summary": "AI開発競争における資金の規模感が変わり、関連する投資家や競合企業の動きに影響する可能性がある。",
+    "action_suggestion": "現時点では検討段階であり、最終的な調達金額や出資者はまだ確定・公表されていない。",
+    "importance": "A",
+    "related_categories": [
+      "企業・株式",
+      "半導体・インフラ"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_85ff04c48054066e5198",
+    "story_id": "story_f9d3e86261689d9936",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
   },
   {
     "tool": "Microsoft Copilot",
