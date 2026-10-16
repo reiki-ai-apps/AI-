@@ -7,75 +7,131 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-15T09:09:30.913Z",
-  "window_end": "2026-10-15T15:00:04.197Z",
-  "last_window_end": "2026-10-15T15:00:04.197Z",
-  "last_checked_at": "2026-10-15T15:04:04.316Z",
-  "last_published_at": "2026-10-15T15:04:04.316Z",
-  "home_content_changed_at": "2026-10-15T15:04:04.316Z",
+  "window_start": "2026-10-15T15:00:04.197Z",
+  "window_end": "2026-10-16T09:02:18.026Z",
+  "last_window_end": "2026-10-16T09:02:18.026Z",
+  "last_checked_at": "2026-10-16T09:07:07.332Z",
+  "last_published_at": "2026-10-16T09:07:07.332Z",
+  "home_content_changed_at": "2026-10-16T09:07:07.332Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 1,
-  "distinct_candidate_count": 1,
-  "duplicate_candidate_count": 0,
-  "duplicate_groups": [],
-  "novel_candidate_count": 1,
-  "cross_edition_duplicate_count": 0,
-  "cross_edition_duplicate_groups": [],
+  "candidate_count": 6,
+  "distinct_candidate_count": 5,
+  "duplicate_candidate_count": 1,
+  "duplicate_groups": [
+    {
+      "representative_id": "article_e72fa88d20c16450725b",
+      "duplicate_ids": [
+        "article_1f30bd2760aaf1d183a9"
+      ]
+    }
+  ],
+  "novel_candidate_count": 3,
+  "cross_edition_duplicate_count": 2,
+  "cross_edition_duplicate_groups": [
+    {
+      "representative_id": "article_a60f4a701f887ae8f46b",
+      "duplicate_ids": [
+        "article_3bf06082b2ce4c66e394"
+      ]
+    },
+    {
+      "representative_id": "article_bf9aac9a3c8df323133a",
+      "duplicate_ids": [
+        "article_b8a1e0386dcf9fd2e5a6"
+      ]
+    }
+  ],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 1,
-  "continued_selected_count": 4,
-  "tool_evolution_selected_count": 1,
+  "new_selected_count": 3,
+  "continued_selected_count": 2,
+  "tool_evolution_selected_count": 2,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
-    "article_a60f4a701f887ae8f46b",
+    "article_d2f20a8cdacf04e96c2d",
+    "article_e72fa88d20c16450725b",
+    "article_8c54b5b274243d125690",
     "article_f011a557bcbb7c058c66",
-    "article_4ec7e6233601f6e8a494",
-    "article_21e132e05aed8e470048",
-    "article_affab45a22c3a088a1f7"
+    "article_4ec7e6233601f6e8a494"
   ],
   "new_article_ids": [
-    "article_a60f4a701f887ae8f46b"
+    "article_d2f20a8cdacf04e96c2d",
+    "article_e72fa88d20c16450725b",
+    "article_8c54b5b274243d125690"
   ],
   "continued_article_ids": [
     "article_f011a557bcbb7c058c66",
-    "article_4ec7e6233601f6e8a494",
-    "article_21e132e05aed8e470048",
-    "article_affab45a22c3a088a1f7"
+    "article_4ec7e6233601f6e8a494"
   ],
   "continuation_sources": {
     "article_f011a557bcbb7c058c66": "previous_edition",
-    "article_4ec7e6233601f6e8a494": "previous_edition",
-    "article_21e132e05aed8e470048": "previous_edition",
-    "article_affab45a22c3a088a1f7": "previous_edition"
+    "article_4ec7e6233601f6e8a494": "previous_edition"
   },
   "scores": {
-    "article_a60f4a701f887ae8f46b": {
-      "article_id": "article_a60f4a701f887ae8f46b",
-      "total": 56,
+    "article_d2f20a8cdacf04e96c2d": {
+      "article_id": "article_d2f20a8cdacf04e96c2d",
+      "total": 64,
       "breakdown": {
-        "importance": 10,
-        "topicality": 15,
+        "importance": 25,
+        "topicality": 20,
         "scope": 6,
-        "authority": 10,
-        "freshness": 7,
+        "authority": 5,
+        "freshness": 0,
         "tool_evolution": 8,
         "penalty": 0
       },
       "reasons": [
-        "重要度C",
-        "主要AI企業・基盤",
+        "重要度B",
+        "制度・安全への影響",
         "大きな製品・市場変化",
-        "公式一次情報",
+        "遅れて確認できた新着",
         "AIツールの能力進化"
       ],
-      "published_at": "2026-10-15T13:00:00.000Z"
+      "published_at": "2026-10-15T00:00:00.000Z"
+    },
+    "article_e72fa88d20c16450725b": {
+      "article_id": "article_e72fa88d20c16450725b",
+      "total": 56,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 15,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-10-07T17:59:00.000Z"
+    },
+    "article_8c54b5b274243d125690": {
+      "article_id": "article_8c54b5b274243d125690",
+      "total": 46,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 5,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 5,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤"
+      ],
+      "published_at": "2026-10-16T00:46:23.000Z"
     },
     "article_f011a557bcbb7c058c66": {
       "article_id": "article_f011a557bcbb7c058c66",
@@ -114,113 +170,9 @@
         "大きな製品・市場変化"
       ],
       "published_at": "2026-10-13T08:27:42.000Z"
-    },
-    "article_21e132e05aed8e470048": {
-      "article_id": "article_21e132e05aed8e470048",
-      "total": 66,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 10,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "大きな製品・市場変化"
-      ],
-      "published_at": "2026-10-13T16:14:06.000Z"
-    },
-    "article_affab45a22c3a088a1f7": {
-      "article_id": "article_affab45a22c3a088a1f7",
-      "total": 66,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 10,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "制度・安全への影響"
-      ],
-      "published_at": "2026-10-13T11:00:00.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_7384f7802df5b766bd09",
-      "story_id": "story_fa592e30cc2409953b",
-      "title": "Meta、新AIモデル「Muse Wonder」シリーズを発表",
-      "primary_entity": "Meta",
-      "story_subject": "Muse Wonderシリーズ",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "全世界",
-      "story_entities": [
-        "Meta",
-        "Muse Wonder",
-        "meta",
-        "musewonder",
-        "muse"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-12T19:51:33.620Z",
-      "edition_window_end": "2026-10-12T19:48:02.242Z"
-    },
-    {
-      "article_id": "article_cfdb003015cdc84658bc",
-      "story_id": "story_f86de02b4244cb0031",
-      "title": "Googleが企業向けAI「Gemini agent」を発表",
-      "primary_entity": "Google",
-      "story_subject": "Gemini agent(企業向けAIエージェント)",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "企業向け",
-      "story_entities": [
-        "Google",
-        "Gemini agent",
-        "google",
-        "geminiagent",
-        "google-gemini"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-10-12T19:51:33.620Z",
-      "edition_window_end": "2026-10-12T19:48:02.242Z"
-    },
-    {
-      "article_id": "article_011177563283a3712c5b",
-      "story_id": "story_144ec2255a34b8febe",
-      "title": "英国政府、AIリスク対策パッケージを発表 サイバー防衛の試験事業を拡大",
-      "primary_entity": "英国政府",
-      "story_subject": "AIリスク対策パッケージ",
-      "event_type": "policy",
-      "event_stage": "announced",
-      "event_scope": "英国",
-      "story_entities": [
-        "英国政府",
-        "AIリスク対策パッケージ",
-        "サイバー防衛",
-        "aiリスク対策パッケージ"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-12T19:51:33.620Z",
-      "edition_window_end": "2026-10-12T19:48:02.242Z"
-    },
     {
       "article_id": "article_4ec7e6233601f6e8a494",
       "story_id": "story_805adb04dacf863c4a",
@@ -565,6 +517,108 @@
       "previous_article_id": "",
       "selected_at": "2026-10-15T15:04:04.316Z",
       "edition_window_end": "2026-10-15T15:00:04.197Z"
+    },
+    {
+      "article_id": "article_d2f20a8cdacf04e96c2d",
+      "story_id": "story_c18d3610df65040371",
+      "title": "アステリア、AI開発基盤に「AI自動テスト」と「AI脆弱性チェック」機能を追加",
+      "primary_entity": "アステリア",
+      "story_subject": "Platio Canvas AI/Bakusoku.AI",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Platio Canvas AI/Bakusoku.AI",
+      "story_entities": [
+        "アステリア",
+        "Platio Canvas AI",
+        "Bakusoku.AI",
+        "platiocanvasai",
+        "bakusoku.ai"
+      ],
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "新機能",
+          "value": "AI自動テスト機能、AI脆弱性チェック機能",
+          "normalized_value": "ai自動テスト機能ai脆弱性チェック機能"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-16T09:07:07.332Z",
+      "edition_window_end": "2026-10-16T09:02:18.026Z"
+    },
+    {
+      "article_id": "article_e72fa88d20c16450725b",
+      "story_id": "story_8defa5c18af201dd85",
+      "title": "Grok Bot、Claude Opus 5.5に切り替えMidjourneyとSunoを追加",
+      "primary_entity": "xAI",
+      "story_subject": "Grok Bot",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "X(旧Twitter)",
+      "story_entities": [
+        "Grok",
+        "Claude Opus 5.5",
+        "Midjourney",
+        "grok",
+        "claudeopus5.5"
+      ],
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "Grok Botが使用するモデル",
+          "value": "Claude Opus 5.5",
+          "normalized_value": "claudeopus5.5"
+        },
+        {
+          "type": "other",
+          "scope": "追加機能",
+          "value": "Midjourney, Suno",
+          "normalized_value": "midjourneysuno"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-16T09:07:07.332Z",
+      "edition_window_end": "2026-10-16T09:02:18.026Z"
+    },
+    {
+      "article_id": "article_8c54b5b274243d125690",
+      "story_id": "story_604dca6f7af631eca2",
+      "title": "Claude Haiku 5.5のコスパを3つの日本語タスクで検証",
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude Haiku 5.5",
+      "event_type": "research",
+      "event_stage": "other",
+      "event_scope": "日本語タスク",
+      "story_entities": [
+        "Claude Haiku 5.5",
+        "Anthropic",
+        "claudehaiku5.5",
+        "anthropic",
+        "claude"
+      ],
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "検証対象モデル",
+          "value": "Claude Haiku 5.5",
+          "normalized_value": "claudehaiku5.5"
+        },
+        {
+          "type": "count",
+          "scope": "検証タスク数",
+          "value": "3タスク",
+          "normalized_value": "3"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-16T09:07:07.332Z",
+      "edition_window_end": "2026-10-16T09:02:18.026Z"
     }
   ]
 }
