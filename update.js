@@ -2128,6 +2128,19 @@ function bootstrapCacheResult(cache,source,result) {
   };
 }
 
+function prepareExpertRetryPublication(previous,final,state,now) {
+  const articles=previous.filter(item=>!isExpertVideoItem(item));
+  if(articles.length>AI_MAX)throw new Error("Retained articles exceed the publication cap: "+articles.length);
+  // The capped final pool may have fewer news articles than the previous edition.
+  // Reserve those unchanged articles first, then fit videos into the remaining
+  // slots, keeping the reviewed display pair ahead of other archive candidates.
+  const videos=final.filter(isExpertVideoItem);
+  const remaining=AI_MAX-articles.length;
+  const selected=new Set(videos.length>remaining
+    ?selectDailyExpertVideoArchivePicks(videos,state,remaining,now):videos);
+  return [...articles,...videos.filter(item=>selected.has(item)).map(upgradeFriendlyExplanationItem)];
+}
+
 (async () => {
   // 更新区間の終点は処理完了時ではなく実行開始時に固定する。
   // 処理中に公開された記事は次回へ回り、更新区間の隙間を作らない。
@@ -2406,7 +2419,7 @@ function bootstrapCacheResult(cache,source,result) {
   // Morning retries spend only the expert allowance and preserve the already
   // prepared article edition byte-for-byte at the item level.
   const publicationReadyFinal=expertRetryOnly
-    ?[...previous.filter(item=>!isExpertVideoItem(item)),...final.filter(isExpertVideoItem).map(upgradeFriendlyExplanationItem)]
+    ?prepareExpertRetryPublication(previous,final,expertVideoState,editionNow)
     :final.map(upgradeFriendlyExplanationItem);
   const safelyExpanded=publicationReadyFinal.filter((item,index)=>item!==final[index]).length;
   const homeEdition=expertRetryOnly?previousEdition:buildHomeEdition(publicationReadyFinal,previousEdition,{windowEnd:editionWindowEnd});
