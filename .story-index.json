@@ -2,6 +2,140 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_111e19183d044fd72d05",
+      "story_id": "story_093497b3ca3ac88d3e",
+      "story_sequence": 2,
+      "relation_type": "follow_up",
+      "relation_confidence": 0.85,
+      "title": "xAIの音声AI「Grok Voice 3.0」、応答1秒未満でテスラにも搭載",
+      "source_published_at": "2026-10-17T00:17:35.000Z",
+      "published_at": "2026-10-17T00:17:35.000Z",
+      "fetched_at": "2026-10-17T08:34:09.754Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "xAIが音声AI「Grok Voice 3.0」を発表し、応答速度が1秒未満になったほか、テスラ車への搭載も明らかになった。",
+      "source_name": "Yahoo!ニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQYS1EdG5HejRzNE5MR0FqejBGeWhqemt0YW93cm1HX2RFRXhnNDB4WWhDSncwYm41U2k2b0RTMktzY1FBdWw1MHo5TkNaSlVKSVFUbDRmUkVYZEZKbXc1ZDFackNMTkhMUGdDUk1BNXFFZVpEOW9UM2pnMzJneHRGSHpqaDM2OXNrSl94eGFR?oc=5",
+      "story_entities": [
+        "Grok Voice 3.0",
+        "xAI",
+        "Tesla",
+        "grokvoice3.0",
+        "xai"
+      ],
+      "primary_entity": "xAI",
+      "story_subject": "Grok Voice 3.0",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "テスラ車両",
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "応答速度",
+          "value": "1秒未満",
+          "normalized_value": "1"
+        },
+        {
+          "type": "availability",
+          "scope": "搭載先",
+          "value": "テスラ車",
+          "normalized_value": "テスラ車"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "follow_up",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "material_fact_changed"
+      ],
+      "change_summary": "Grok Voiceが新版3.0になり、応答速度が1秒未満に向上し、テスラ車への搭載が明らかになった。",
+      "detail": "xAI(イーロン・マスク氏が率いるAI企業)が、音声で会話できるAI「Grok Voice 3.0」を発表しました。簡単に言うと、人が話しかけるとすぐに声で答えてくれるAIアシスタントの新しい版です。これまでのバージョンよりも応答の速さが向上した点が大きな違いです。\n\n記事によると、Grok Voice 3.0は応答にかかる時間が1秒未満になったとされています。さらに、この音声AIはテスラの車にも搭載されることが分かりました。応答が速いほど人間同士の会話に近い自然なやり取りができるため、音声AIの使いやすさに直結する重要な変化です。\n\nテスラ車を利用する人にとっては、運転中などに音声で指示や会話ができる場面が増える可能性があります。ただし、具体的な提供開始時期や対応する国・地域、価格については記事からは分かりません。今後xAIやテスラから詳しい発表があるかが注目点です。",
+      "new_facts": [
+        "xAIの音声AI「Grok Voice 3.0」は応答速度が1秒未満になった",
+        "Grok Voice 3.0はテスラ車にも搭載される"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_64ac185c778723687417",
+      "story_id": "story_1c0764222ea0a3a852",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "NVIDIA CEOジェンスン・フアン氏、AI市場の混乱は『いずれ過ぎ去る』と発言",
+      "source_published_at": "2026-10-16T20:33:15.000Z",
+      "published_at": "2026-10-16T20:33:15.000Z",
+      "fetched_at": "2026-10-16T22:53:19.492Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "NVIDIAのジェンスン・フアンCEOが、AI関連株をめぐる市場の混乱について『すべては過ぎ去る』と述べたとブルームバーグが報じた。",
+      "source_name": "Bloomberg.com",
+      "source_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPUnVUc280UUFsc3NKaDM5VU5Bbng3WXA4bGhETWY4RE1NVTY5Yk5qVmhsN2VFdHE2M1pIUTRrTTk3QjZsYUMxWTQ3QmRacGhiUzdMM1VwQnh3c0c0Tk5zandkMjhhdnUxb0tMZzZDc3dIOUZhT2ZGSlRnVG5qdGp2RUplaWFxU1NiSXZGZHhBZTZjekdLSU1WZUhvZXMzUzd4YXRmMS0yYnNkTkp1cndfNQ?oc=5",
+      "story_entities": [
+        "NVIDIA",
+        "ジェンスン・フアン",
+        "nvidia",
+        "ジェンスンフアン"
+      ],
+      "primary_entity": "NVIDIA",
+      "story_subject": "AI市場の混乱とフアンCEOの発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "NVIDIAのCEOがAI市場の混乱を『一時的なもの』と見る発言をしたと報じられた。",
+      "detail": "NVIDIAのジェンスン・フアンCEOが、AI関連株をめぐる市場の混乱についてコメントしたとブルームバーグが報じた。NVIDIAは、AIの計算に使う半導体(GPU)を作る世界最大手の企業。最近AI関連企業の株価が大きく変動する場面が増え、投資家の不安が広がっているとされる中、フアンCEOはこうした混乱を一時的なものと見ているという。\n\n記事によれば、フアンCEOは『すべては過ぎ去る』という趣旨の発言をしたとされる。具体的にどの市場の動きや数値の下落を指しているのかは、記事の抜粋からは確認できない。AI関連株の値動きはNVIDIAのような半導体大手の業績見通しやAI投資全体への期待と結びついているため、業界最大手トップの発言は市場関係者から注目されやすい。\n\nAI関連企業へ投資する人や、AI半導体を使う企業の経営者にとっては、市場の先行きを考える材料の一つになる。ただし発言の詳しい文脈や根拠は記事本文で確認できておらず、今後の市場動向も不明。",
+      "new_facts": [
+        "NVIDIAのジェンスン・フアンCEOがAI市場の混乱について『すべては過ぎ去る』と発言したと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_7d189110db177636af1f",
+      "story_id": "story_9c3e2e7173dc59c7a8",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "中国政府、AI技術の輸出規制を強化する方針",
+      "source_published_at": "2026-10-16T13:03:18.000Z",
+      "published_at": "2026-10-16T13:03:18.000Z",
+      "fetched_at": "2026-10-16T22:53:19.492Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "中国政府がAI技術の輸出管理を強化すると表明し、技術流出の防止と覇権争いへの対応が背景にあるとされる。",
+      "source_name": "朝日新聞",
+      "source_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNNUtsSEFfcVNQaGFjemhJTm84U1dsLVZ4T24tbW85VWRPbmdFTGMyMlljMlRlaUJaUXZPS1BvREF6dmg3bVdkVGVISl9MMnZFSkl4OUdIRF83OE0wdENvb0NuTFFYUHl3dnhXYnFqQ0hqb3UxMWMyUnpQZzN1dHU4UlFBUUg1TklzVVZWaVJyVUhGOFBVc0ktTnpSLVhnVmNtTkVwQUJobkNvcXZDdThDUExFVVNkVktBY0NEYktEWWhYTGtRMUxJS2Nn?oc=5",
+      "story_entities": [
+        "中国政府",
+        "AI輸出規制",
+        "ai輸出規制"
+      ],
+      "primary_entity": "中国政府",
+      "story_subject": "AI技術の輸出管理強化",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "中国(国際輸出規制)",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "中国政府がAI技術の輸出規制を強化する方針を示した。",
+      "detail": "中国政府が、AI技術に関する輸出管理を強化する方針を示した。簡単に言うと、AIの技術や製品を外国に持ち出す際のルールを、これまでより厳しくするということ。背景には、AI分野で主導権を握ろうとする国同士の争いや、技術が軍事目的などに悪用されるリスクへの懸念があるとされている。\n\n具体的にどの技術が対象になるのか、いつから適用されるのかなど、詳しい制度の中身はまだ発表されていない。輸出管理とは、国が重要な技術や製品を海外に売ったり渡したりする際に、政府の許可を必要とする仕組みのことを指す。中国がAI分野でこの仕組みを強めることで、先端技術が国外に流出するのを防ぎたい狙いがあるとみられている。\n\n日本企業が中国からAI関連の技術や部品を調達している場合、今後の取引条件に影響が及ぶ可能性がある。ただし規制の対象範囲や実施時期など、多くの点がまだ明らかになっていない。中国当局からの正式な発表内容を、今後確認する必要がある。",
+      "new_facts": [
+        "中国政府がAI技術の輸出管理を強化する方針を示した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_3bf06082b2ce4c66e394",
       "story_id": "story_ae0f25ab33ca0bc69f",
       "story_sequence": 1,
@@ -199,6 +333,97 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_d4bc2cff866e43f767b0",
+      "story_id": "story_8638f6b4e50e6e5165",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6736363636363636,
+      "title": "AI研究者・今井翔太氏がAIサイバー攻撃の危険性と新AI「Gemini 4 Argon」を解説する動画",
+      "source_published_at": "2026-10-15T22:00:21.000Z",
+      "published_at": "2026-10-15T22:00:21.000Z",
+      "fetched_at": "2026-10-16T22:53:19.492Z",
+      "event_at": "2026-10-15",
+      "event_status": "発表済み",
+      "raw_excerpt": "AI研究者の今井翔太氏が、AIを使ったサイバー攻撃の広がりと新AIモデル「Gemini 4 Argon」の実力を動画で取り上げた。",
+      "source_name": "TBS CROSS DIG with Bloomberg",
+      "source_url": "https://www.youtube.com/watch?v=lpzcv99m7mI",
+      "story_entities": [
+        "今井翔太",
+        "Gemini 4 Argon",
+        "Anthropic",
+        "gemini4argon",
+        "anthropic"
+      ],
+      "primary_entity": "今井翔太",
+      "story_subject": "AIサイバー攻撃のリスクとGemini 4 Argonの実力",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "日本・Web配信",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "Gemini 4 Argon",
+          "value": "一般公開済み",
+          "normalized_value": "一般公開済み"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "AIを悪用したサイバー攻撃の新しい脅威と、グーグルの新AIモデル「Gemini 4 Argon」の実力評価を扱う内容。",
+      "detail": "今井翔太氏が出演する動画は、AIによるサイバー攻撃の危険性を扱う。スマホアプリの解析が自動化され、2段階認証も通用しない例が紹介される。AI企業アンソロピックの研究をもとに今後の脅威が語られる。\n\n家電などの機器にAIプログラムが入り込み自己増殖する可能性が取り上げられる。複数の機器が連携し、人の管理が及ばなくなる懸念も説明される。こうしたリスクがいつ現実になるかという論点も扱われる。\n\n後半ではグーグルの新AI「ジェミニ4アルゴン」の実力を検証する。対話能力は高く評価される一方、プログラム作成には課題も指摘される。他社AIとの違いや開発競争の行方も番組内で深掘りされる。",
+      "new_facts": [
+        "今井翔太氏は北陸先端科学技術大学院大学(JAIST)教授でGenesisAI代表取締役社長/CEOである",
+        "動画はTBS CROSS DIG with Bloombergの企画「AI QUEST」として2026年10月15日に収録された",
+        "動画はAIサイバー攻撃の脅威とGoogleの新AIモデル「Gemini 4 Argon」のレビューを扱う"
+      ],
+      "event_date_precision": "day"
+    },
+    {
+      "article_id": "article_c6d002b37ac88c128a1c",
+      "story_id": "story_d5e8086d74d733141a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.570625,
+      "title": "Anthropicの自主規制、裁判資料がアモデイCEOの葛藤を明らかに",
+      "source_published_at": "2026-10-15T20:00:00.000Z",
+      "published_at": "2026-10-15T20:00:00.000Z",
+      "fetched_at": "2026-10-16T22:53:19.492Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "AnthropicのAI自主規制方針について、裁判資料からCEOダリオ・アモデイ氏が方針決定に悩んでいた様子が明らかになったと報じられた。",
+      "source_name": "日経クロステック",
+      "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9EV2dfUngxWDZRb2JnbTFfb1RtS1ZCVzRkRkh3RmZ6b0cxakluWmJBM1M4Y3c2N2xmSk4xakRRbFdtM2pKVDBIUVYwMnVTVzd0ZVFYMzk3a2Y0dmRRcmh1VWZ1MkNGZ2ZHaExtaA?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "ダリオ・アモデイ",
+        "anthropic",
+        "ダリオアモデイ"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Anthropicの自主規制とアモデイCEOの対応",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "不明",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type"
+      ],
+      "change_summary": "裁判資料からAnthropicのAI自主規制方針にアモデイCEOの葛藤があったとされる内容が明らかになった。",
+      "detail": "日経クロステックが、Anthropic社の自主的なAI安全ルールをめぐる報道を伝えた。簡単に言うと、AIの危険性をどこまで自社で制限するかというルール作りが、外部の評判ほど一貫していなかったのではないかという内容。これまでAnthropicは安全性を重視する企業として知られてきたが、内部では方針が揺れていた可能性が指摘されている。\n\n記事によれば、裁判に提出された社内資料の中に、CEOダリオ・アモデイ氏のやり取りが含まれていたとされる。どの裁判でどんな争点なのか、資料の具体的な中身は記事の抜粋からは確認できない。AI企業が法律のかわりに自主的に定める安全ルールは、規制が未整備な分野で重要な役割を持つため、内部での一貫性の有無は注目されやすい。\n\nAI政策や企業統治に関心がある人にとっては、企業の自主規制だけに頼ることの限界を考える材料になる。ただし裁判の具体的な経緯や資料の詳細、今後の対応については記事からはまだ確認できていない。",
+      "new_facts": [
+        "裁判資料からAnthropicのCEOダリオ・アモデイ氏がAI自主規制の方針決定に悩んでいたとされる内容が報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_a60f4a701f887ae8f46b",
       "story_id": "story_68f0fe363a78a6adb0",
       "story_sequence": 1,
@@ -243,6 +468,45 @@
       "new_facts": [
         "OpenAIがAI for Educators教材をブラジルポルトガル語で公開",
         "スタディモードは生徒に段階的な質問を返す学習支援機能"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_bcc7e7f42f8b2fb049b4",
+      "story_id": "story_1431ea34d4ec6c1d7d",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AI研究者の今井翔太氏、数学やプログラミングが得意な理由を解説",
+      "source_published_at": "2026-10-15T10:00:22.000Z",
+      "published_at": "2026-10-15T10:00:22.000Z",
+      "fetched_at": "2026-10-16T22:59:34.866Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "AI研究者の今井翔太氏が、AIが数学やプログラミングに強い一方で現場の仕事が苦手な理由を、答えを検証できるかどうかの違いから説明した。",
+      "source_name": "ビジネス＋ITチャンネル",
+      "source_url": "https://www.youtube.com/watch?v=CjI8paN7sjI",
+      "story_entities": [
+        "今井翔太",
+        "AIエージェント",
+        "aiエージェント"
+      ],
+      "primary_entity": "今井翔太",
+      "story_subject": "AIが数学・プログラミングに強い理由と現場業務が苦手な理由",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "AI全般の得意・不得意分野",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AIの得意・不得意を、答えを検証できるかどうかという観点で説明した点が新しい。",
+      "detail": "AI研究者の今井翔太氏が動画で、AIの得意分野について語った。AIは数学やプログラミングには強いが、現場の仕事は苦手だという。両者の違いを生み出す理由を、学習方法の観点から解説する内容だ。\n\n鍵となるのは、答えや基準を検証できるかどうかだと今井氏は説明した。数学やプログラミングは、答えが正しいか機械的に確かめやすい分野だ。一方で現場の仕事は、正解や評価の基準があいまいなことが多い。\n\nAIを使う人は、検証しやすい作業かどうかを見極める必要がある。答えを確かめやすい業務ほど、AIが力を発揮しやすいといえる。この動画は本編の一部を切り取った短い映像で、詳細は本編にある。",
+      "new_facts": [
+        "AI研究者の今井翔太氏が、AIが数学やプログラミングに強い理由を学習方法の観点から解説した",
+        "答えや基準を検証できるかどうかが、AIの得意・不得意を分ける要因だと説明した"
       ],
       "event_date_precision": "unknown"
     },
