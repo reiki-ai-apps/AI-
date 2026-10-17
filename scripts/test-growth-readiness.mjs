@@ -56,7 +56,8 @@ for(const id of ids){
   if(!page.includes(expectedCta))failures.push(`記事から一覧への導線がありません: ${id}`);
   if(!page.includes(expectedHeading))failures.push(`記事に内容別のやさしい解説がありません: ${id}`);
   if((page.match(/<\/p><p>/g)||[]).length<2)failures.push(`やさしい解説の3段落が保持されていません: ${id}`);
-  if(!page.includes('class="article-image"')||!page.includes('class="related"'))failures.push(`記事画像または内部リンクがありません: ${id}`);
+  if(!page.includes('class="related"'))failures.push(`内部リンクがありません: ${id}`);
+  if(!page.includes('class="article-image"')&&page.includes('話題のイメージ画像'))failures.push(`記事に無関係な代替画像があります: ${id}`);
   if(page.includes('#update-detail/'))failures.push(`保存期間後に切れる記事詳細リンクがあります: ${id}`);
 }
 if(index.includes('3分'))failures.push('意味の不明確な3分訴求がアプリ画面に残っています');

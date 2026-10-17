@@ -1,19 +1,25 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {createRequire} from 'node:module';
+const require=createRequire(import.meta.url);
+const {sourceImage,videoThumbnail,extractSourceImage}=require('./source-image.cjs');
 const html=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');
-const source=html.slice(html.indexOf('const ART_VARIANTS='),html.indexOf('function updateCard(u)'));
-assert.ok(source.startsWith('const ART_VARIANTS=')&&source.includes('function articleArtClass(u)'),
-  'artwork selector is shared by the headline and article cards');
-const select=Function('toolById',`${source};return articleArtClass;`)(()=>({name:'AI news'}));
-assert.match(select({title:'AIセキュリティの攻撃を防ぐ',id:'security-1'}),/^art-(cyber|legal|quantum|cloud)$/);
-assert.match(select({title:'AI動画生成の新機能',id:'video-1'}),/^art-(creative|city|quantum)$/);
-const stable={title:'AI動画生成の新機能',id:'stable-1',published_at:'2026-10-17T00:00:00Z'};
-assert.equal(select(stable),select(stable),'the same article keeps the same image');
-assert.doesNotMatch(source,/dailySalt|new Date\(\)/,'artwork does not rotate by date');
-for(const name of [...source.matchAll(/'art-([a-z]+)'/g)].map(match=>match[1])){
-  assert.ok(fs.existsSync(new URL(`../assets/ai-card-${name}.webp`,import.meta.url)),`missing artwork: ${name}`);
-}
-assert.match(html,/class="daily-cover-image"><img src="\$\{coverArtSrc\}"/,'lead story has a visible image');
-assert.match(html,/class="ucard-image"><img src="\$\{artSrc\}"[^>]+loading="lazy"/,'article cards have lazy-loaded images');
-assert.match(html,/話題のイメージ画像/,'illustrations are clearly labelled, not presented as source photos');
-console.log('Article artwork passed: relevant local images, stable mapping, labelled hero and cards.');
+const publisher='https://openai.com/index/test-article';
+const image='https://cdn.openai.com/images/article-photo.webp';
+const item={content_type:'article',source_url:publisher,source_image_page_url:publisher,source_image_url:image};
+assert.equal(sourceImage(item),image,'verified source-bound image is displayed');
+assert.equal(sourceImage({...item,source_image_page_url:'https://openai.com/index/other'}),'','image cannot be borrowed from another article');
+assert.equal(sourceImage({...item,source_url:'https://news.google.com/rss/articles/123'}),'','Google News redirect is not an image source');
+assert.equal(sourceImage({...item,source_image_url:'javascript:alert(1)'}),'','unsafe image URL is hidden');
+assert.equal(sourceImage({content_type:'article',source_url:publisher}),'','article without verified image has no decorative fallback');
+const video={content_type:'expert_video',video_id:'abcDEF12345'};
+assert.equal(videoThumbnail(video),'https://i.ytimg.com/vi/abcDEF12345/hqdefault.jpg');
+assert.equal(sourceImage(video),videoThumbnail(video));
+assert.equal(videoThumbnail({...video,video_id:'invalid'}),'');
+assert.equal(extractSourceImage(`<meta property="og:url" content="${publisher}/"><meta content="${image}" property="og:image">`,publisher),image);
+assert.equal(extractSourceImage(`<meta property="og:url" content="https://openai.com/index/other"><meta property="og:image" content="${image}">`,publisher),'');
+assert.match(html,/function articleMedia\(u\)/);
+assert.match(html,/mediaSrc\?`<div class="ucard-image"/);
+assert.match(html,/coverMediaSrc\?`<div class="daily-cover-image"/);
+assert.doesNotMatch(html,/話題のイメージ画像/);
+console.log('Source images passed: same-article publisher images and YouTube thumbnails only; no unrelated fallback.');

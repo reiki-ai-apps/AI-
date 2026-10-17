@@ -1,6 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import {fileURLToPath} from "node:url";
+import {createRequire} from "node:module";
+const require=createRequire(import.meta.url);
+const {sourceImage}=require('./source-image.cjs');
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
 const data=JSON.parse(fs.readFileSync(path.join(root,"data.json"),"utf8"));
@@ -36,23 +39,6 @@ function paragraph(label,value){
   const parts=text.split(/\n{2,}/).map(part=>clean(part,4000)).filter(Boolean);
   return parts.length?`<section><h2>${esc(label)}</h2>${parts.map(part=>`<p>${esc(part)}</p>`).join("")}</section>`:"";
 }
-function articleImage(item){
-  const text=[item.title,item.easy_summary,item.impact_summary,...(item.related_categories||[])].join(" ").toLowerCase();
-  const rules=[
-    [/(security|vulnerability|attack|privacy|セキュリティ|脆弱|攻撃|情報漏えい)/,"ai-card-cyber.webp"],
-    [/(price|cost|investment|market|stock|料金|価格|投資|市場|株式)/,"ai-card-finance.webp"],
-    [/(factory|manufactur|automation|工場|製造|自動化)/,"ai-card-factory.webp"],
-    [/(law|regulation|copyright|policy|法律|規制|著作権|政策)/,"ai-card-legal.webp"],
-    [/(education|school|learning|教育|学校|学習)/,"ai-card-education.webp"],
-    [/(video|image|music|design|creative|動画|画像|音楽|デザイン)/,"ai-card-creative.webp"],
-    [/(health|medical|bio|drug|医療|健康|生命|創薬)/,"ai-card-bio.webp"],
-    [/(cloud|server|datacenter|infrastructure|クラウド|サーバー|データセンター|基盤)/,"ai-card-cloud.webp"],
-    [/(robot|agent|assistant|ロボット|エージェント|アシスタント)/,"ai-card-robot.webp"],
-    [/(mobility|vehicle|driving|自動車|車両|モビリティ|自動運転)/,"ai-card-mobility.webp"],
-  ];
-  const file=(rules.find(([pattern])=>pattern.test(text))||[])[1]||"ai-radar-human-hero.webp";
-  return `${baseUrl}assets/${file}`;
-}
 function relatedArticles(item,id,pool,limit=3){
   const categories=new Set(item.related_categories||[]);
   const entity=clean(item.primary_entity||item.tool_name||"",80).toLowerCase();
@@ -73,14 +59,15 @@ function page(item,id,related=[]){
   const description=clean(item.easy_summary||item.raw_excerpt||item.detail,180)||(expertVideo?"AI進化レーダーが動画で学べることと背景を整理した解説です。":"AI進化レーダーが重要度と仕事への影響を整理したAIニュースです。");
   const published=isoDate(item.source_published_at||item.published_at||item.fetched_at);
   const updated=isoDate(item.source_updated_at||item.fetched_at||item.published_at);
-  const image=articleImage(item);
+  const image=sourceImage(item);
+  const socialImage=image||`${baseUrl}assets/ai-radar-icon-512.png`;
   const articleLd={
     "@type":expertVideo?"Article":"NewsArticle",
     "@id":`${canonical}#article`,
     headline:title,
     about:expertVideo&&item.expert_name?{"@type":"Person",name:clean(item.expert_name,80)}:undefined,
     description,
-    image:[image],
+    image:image?[image]:undefined,
     datePublished:published||undefined,
     dateModified:updated||published||undefined,
     mainEntityOfPage:canonical,
@@ -110,9 +97,9 @@ function page(item,id,related=[]){
 <link rel="canonical" href="${canonical}">
 <meta property="og:type" content="article"><meta property="og:site_name" content="AI進化レーダー">
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}">
-<meta property="og:url" content="${canonical}"><meta property="og:image" content="${image}">
+<meta property="og:url" content="${canonical}"><meta property="og:image" content="${esc(socialImage)}">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}">
-<meta name="twitter:description" content="${esc(description)}"><meta name="twitter:image" content="${image}">
+<meta name="twitter:description" content="${esc(description)}"><meta name="twitter:image" content="${esc(socialImage)}">
 <script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g,"\\u003c")}</script>
 <script defer src="${baseUrl}assets/visitor-tracker.js"></script>
 <style>
@@ -120,7 +107,7 @@ function page(item,id,related=[]){
 </style></head><body><main>
 <a class="brand" href="${baseUrl}"><img src="${baseUrl}assets/ai-radar-icon-192.png" alt="">AI進化レーダー</a>
 <article class="hero"><div class="meta"><span class="rank">${expertVideo?'AI学習動画':'重要度'+esc(String(item.importance||"B").toUpperCase())}</span>${expertVideo&&item.expert_name?`${esc(item.expert_name)}・${esc(item.expert_role||'AIの専門家')}｜`:''}${esc(item.source_name||"情報元確認済み")}・${esc(displayDate(item.source_published_at||item.published_at||item.fetched_at))}</div><h1>${esc(title)}</h1><p class="lead">${esc(description)}</p>
-<img class="article-image" src="${image}" alt="${esc(title)}の内容を表すイメージ" width="1200" height="675">
+${image?`<img class="article-image" src="${esc(image)}" alt="${expertVideo?'元動画のサムネイル':'情報元の記事画像'}" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:''}
 <p class="byline">KIZASHI編集部｜${expertVideo?'発言者の見解と確認済み事実を分け、主張・理由・影響・未確定点を整理しています。':'公開情報を整理し、変化・仕事への影響・次の確認事項を明示しています。'}</p>
 <div class="actions"><a class="button" href="${appUrl}">${expertVideo?'動画の内容をやさしい要約で確認':'AI最新ニュースをやさしい要約で確認'}</a>${expertVideo&&sourceUrl?`<a class="button secondary" href="${esc(sourceUrl)}" target="_blank" rel="noopener noreferrer">元の動画・講演を見る</a>`:''}</div></article>
 ${paragraph(expertVideo?"動画のやさしい解説":"やさしい解説",item.detail||item.easy_summary)}${safeHttpUrl(item.context_source_url)?`\n<section><h2>解説の確認元</h2><p>${esc(item.context_source_note||'')}</p><a class="button secondary" href="${esc(safeHttpUrl(item.context_source_url))}" target="_blank" rel="noopener noreferrer">${esc(item.context_source_name||'補足資料を読む')}</a></section>`:''}

@@ -1424,12 +1424,11 @@
     background-image:
       linear-gradient(100deg,rgba(3,13,30,.995) 0%,rgba(4,14,31,.98) 48%,rgba(4,12,28,.76) 72%,rgba(3,8,20,.46) 100%),
       repeating-linear-gradient(90deg,transparent 0 41px,rgba(47,211,231,.022) 42px 43px),
-      radial-gradient(circle at 88% 42%,rgba(66,74,229,.13),transparent 38%),
-      var(--card-art,var(--art-quantum))!important;
+      radial-gradient(circle at 88% 42%,rgba(66,74,229,.13),transparent 38%)!important;
     background-repeat:no-repeat!important;
-    background-position:center,center,center,right center!important;
-    background-size:auto,auto,auto,cover!important;
-    background-blend-mode:normal,screen,screen,normal!important;
+    background-position:center!important;
+    background-size:auto!important;
+    background-blend-mode:normal,screen,screen!important;
   }
   .ucard.art-robot{--card-art:var(--art-robot)}
   .ucard.art-city{--card-art:var(--art-city)}
@@ -2190,6 +2189,7 @@
   .expert-video-head{display:flex;align-items:flex-end;gap:18px;margin-bottom:16px}.expert-video-head>div{display:grid;gap:4px}.expert-video-kicker{color:#72eff1;font-size:9px;font-weight:900;letter-spacing:.16em}.expert-video-head h2{margin:0;color:#f3fbff;font-size:21px}.expert-video-head p{margin:0 0 1px auto;max-width:470px;color:#9fb1c7;font-size:11px;line-height:1.7;text-align:right}
   .expert-video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .expert-video-card{display:flex;min-width:0;min-height:0;flex-direction:column;padding:13px;border:1px solid rgba(111,172,221,.26);border-radius:14px;background:linear-gradient(150deg,rgba(9,29,51,.98),rgba(10,15,40,.98));box-shadow:0 12px 26px rgba(0,0,0,.24)}
+  .expert-video-thumb{overflow:hidden;height:118px;margin:9px 0 3px;border-radius:10px;background:#071425}.expert-video-thumb img{display:block;width:100%;height:100%;object-fit:cover}
   .expert-video-card-top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.expert-video-platform{margin-left:auto;color:#8fa5be;font-size:9px;font-weight:800}.expert-video-person{display:grid;gap:2px;margin:8px 0 6px}.expert-video-person strong{color:#f3fbff;font-size:14px}.expert-video-person span{color:#83cfd8;font-size:10px;line-height:1.5}.expert-video-card h3{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;margin:0;color:#eef7ff;font-size:15px;line-height:1.55}.expert-video-summary{display:-webkit-box;margin:9px 0 15px;overflow:hidden;color:#adbed1;font-size:11px;line-height:1.75;-webkit-box-orient:vertical;-webkit-line-clamp:2}.expert-video-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}.expert-video-actions .btn{width:100%;min-height:40px;font-size:10px}
   .expert-video-card .read-proof{margin-left:0}
   .light-media-theme .expert-video-section{border-color:#c9dfe8!important;background:linear-gradient(145deg,#fff,#f4f7fb 70%,#f2effd)!important;box-shadow:0 14px 34px rgba(41,60,89,.09)!important}.light-media-theme .expert-video-head h2,.light-media-theme .expert-video-card h3,.light-media-theme .expert-video-person strong{color:#1d2c42!important}.light-media-theme .expert-video-head p,.light-media-theme .expert-video-summary{color:#52647b!important}.light-media-theme .expert-video-card{border-color:#cfdae7!important;background:#fff!important;box-shadow:0 8px 22px rgba(39,57,86,.08)!important}
@@ -2202,16 +2202,17 @@
     body{background-attachment:scroll!important}
   }
 
-  /* 記事の話題に合わせた自前素材。情報元の写真や実画面とは誤認させない。 */
+  /* 情報元で確認できた画像だけを記事に添える。 */
   .ucard-image{position:relative;overflow:hidden;height:154px;border:1px solid rgba(101,182,210,.24);border-radius:12px;background:#071425}
-  .ucard-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:72% center;filter:saturate(1.08)}
+  .ucard-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
   .ucard-image::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(3,13,30,.18),transparent 48%)}
   .ucard-image span{position:absolute;z-index:1;right:8px;bottom:8px;padding:3px 7px;border:1px solid rgba(214,240,251,.32);border-radius:999px;background:rgba(5,16,32,.78);color:#e2f2fa;font-size:9px;font-weight:700}
   @media(max-width:620px){.ucard-image{height:118px;border-radius:10px}}
   .daily-cover-image{position:relative;overflow:hidden;width:min(100%,650px);height:166px;margin:13px 0 10px;border:1px solid rgba(112,213,235,.3);border-radius:12px;background:#071425;box-shadow:0 10px 28px rgba(2,8,24,.25)}
-  .daily-cover-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:70% center}
+  .daily-cover-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
   .daily-cover-image span{position:absolute;right:9px;bottom:9px;padding:3px 7px;border-radius:999px;background:rgba(5,16,32,.8);color:#e2f2fa;font-size:9px;font-weight:700}
   @media(max-width:620px){.daily-cover-image{height:126px;margin:10px 0 8px}}
+  .radar-overview.has-daily-cover,.light-media-theme .radar-overview.has-daily-cover{background:linear-gradient(135deg,#07192b,#0b1630 68%,#111a38)!important}
 
   /* 今日試せる1つはニュースと動画を読み終えた後の実践枠。 */
   .today-one{margin:30px 0 0;padding:18px 18px 14px;border-radius:18px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm)}
@@ -3753,50 +3754,31 @@ function homeOriginBadge(u){
 }
 function catChips(cats,max){ cats=cats||[]; const shown=max?cats.slice(0,max):cats; let h=shown.map(c=>`<span class="chip cat">${esc(c)}</span>`).join(''); if(max&&cats.length>max)h+=`<span class="chip more">ほか${cats.length-max}件</span>`; return h; }
 
-const ART_VARIANTS=['art-quantum','art-robot','art-city','art-space','art-cyber','art-bio','art-factory','art-finance','art-creative','art-cloud','art-mobility','art-energy','art-agriculture','art-education','art-legal','art-logistics','art-architecture','art-ocean'];
-
-function articleArtClass(u){
-  const tool=toolById(u.tool_id);
-  const artKey=((tool&&tool.name)||u.tool_id||u.title||'').toLowerCase();
-  const storyKey=(u.title||'').toLowerCase();
-  // 同じニュースの画像を毎日入れ替えず、話題に合う既存の自前素材へ固定する。
-  const artSeed=[...(storyKey+artKey+(u.id||'')+(u.published_at||''))].reduce((total,char)=>total+char.charCodeAt(0),0);
-  const allArt=ART_VARIANTS;
-  let artPool=allArt;
-  if(/(cloud|server|datacenter|infrastructure|compute|クラウド|サーバー|データセンター|基盤|計算資源)/.test(storyKey))artPool=['art-cloud','art-quantum','art-cyber','art-space'];
-  else if(/(security|secure|privacy|attack|hack|risk|セキュリティ|攻撃|脆弱|個人情報|リスク)/.test(storyKey))artPool=['art-cyber','art-legal','art-quantum','art-cloud'];
-  else if(/(car|vehicle|mobility|driving|transport|automotive|自動車|車両|モビリティ|自動運転|交通|輸送)/.test(storyKey))artPool=['art-mobility','art-city','art-robot','art-logistics'];
-  else if(/(energy|power|electric|battery|fusion|solar|wind|エネルギー|電力|電池|核融合|太陽光|風力)/.test(storyKey))artPool=['art-energy','art-ocean','art-space','art-factory'];
-  else if(/(agriculture|farm|food|crop|greenhouse|農業|農場|食品|作物|温室)/.test(storyKey))artPool=['art-agriculture','art-bio','art-factory','art-ocean'];
-  else if(/(education|school|student|learning|study|training|教育|学校|学生|学習|研修)/.test(storyKey))artPool=['art-education','art-city','art-creative','art-space'];
-  else if(/(legal|law|contract|compliance|regulation|copyright|法律|契約|コンプライアンス|規制|著作権)/.test(storyKey))artPool=['art-legal','art-cyber','art-finance','art-city'];
-  else if(/(logistics|supply|warehouse|delivery|shipping|port|物流|倉庫|配送|海運|港)/.test(storyKey))artPool=['art-logistics','art-factory','art-mobility','art-city'];
-  else if(/(architecture|building|construction|digital twin|real estate|建築|ビル|建設|デジタルツイン|不動産)/.test(storyKey))artPool=['art-architecture','art-city','art-factory','art-education'];
-  else if(/(ocean|marine|climate|environment|weather|water|海洋|海|気候|環境|天気|水)/.test(storyKey))artPool=['art-ocean','art-energy','art-agriculture','art-space'];
-  else if(/(health|medical|bio|science|brain|drug|医療|健康|生命|科学|脳|創薬)/.test(storyKey))artPool=['art-bio','art-robot','art-quantum'];
-  else if(/(space|satellite|earth|global|宇宙|衛星|地球|世界)/.test(storyKey))artPool=['art-space','art-city','art-quantum'];
-  else if(/(price|pricing|cost|enterprise|business|work|market|sales|料金|価格|業務|企業|市場|売上)/.test(storyKey))artPool=['art-finance','art-city','art-quantum'];
-  else if(/(video|image|music|design|creative|movie|動画|画像|音楽|デザイン|映画|クリエイティブ)/.test(storyKey))artPool=['art-creative','art-city','art-quantum'];
-  else if(/(factory|manufactur|industry|automation|工場|製造|産業|自動化)/.test(storyKey))artPool=['art-factory','art-robot','art-quantum'];
-  else if(/(agent|assistant|robot|エージェント|アシスタント|ロボット)/.test(storyKey))artPool=['art-robot','art-factory','art-quantum','art-cyber'];
-  else if(/(model|code|api|developer|fable|モデル|コード|開発|生成)/.test(storyKey))artPool=['art-quantum','art-robot','art-cyber','art-creative'];
-  const artDeck=[...artPool,...allArt.filter(art=>!artPool.includes(art))];
-  const artClass=artDeck[(artSeed%artPool.length)%artDeck.length];
-  return artClass;
+function articleMedia(u){
+  if(isExpertVideo(u)){
+    const id=String(u.video_id||'');
+    return /^[A-Za-z0-9_-]{11}$/.test(id)?`https://i.ytimg.com/vi/${id}/hqdefault.jpg`:'';
+  }
+  try{
+    const source=new URL(u.source_url||'');
+    const image=safeExternalUrl(u.source_image_url);
+    const official=['openai.com','www.openai.com','anthropic.com','www.anthropic.com','blog.google','deepmind.google','about.google','blogs.microsoft.com','developer.microsoft.com','www.microsoft.com','nvidia.com','www.nvidia.com','blog.youtube','huggingface.co'];
+    return source.protocol==='https:'&&official.includes(source.hostname)&&
+      u.source_image_page_url===u.source_url?image:'';
+  }catch{return '';}
 }
 function updateCard(u){
   const tool=toolById(u.tool_id);
   const expertVideo=isExpertVideo(u);
   const color=toolColor(u.tool_id);
   const sum=u.manual_summary||u.ai_summary||u.raw_excerpt||'要約はまだありません。';
-  const artClass=articleArtClass(u);
-  const artSrc=`./assets/ai-card-${artClass.slice(4)}.webp`;
-  return `<article class="ucard ${isArticleRead(u)?'':'is-new'} ${expertVideo?'is-expert-video':''} ${artClass}">
+  const mediaSrc=articleMedia(u);
+  return `<article class="ucard ${isArticleRead(u)?'':'is-new'} ${expertVideo?'is-expert-video':''}">
     <div class="ucard-top">
       <div class="ucard-tool"><span class="tool-dot" style="background:${color};color:${color}"></span><span>${esc(tool?tool.name:'不明')}</span>${contentTypeBadge(u)}</div>
       <div class="ucard-top-meta">${rankBadge(u.rank)}${homeOriginBadge(u)}${u.relation_type==='follow_up'?`<span class="followup-badge">続報 ${storySequence(u)}</span>`:''}${u.relation_type==='correction'?`<span class="followup-badge is-correction">訂正・状況変更</span>`:''}${readProofBadge(u)}${!['unread','read'].includes(u.status)?statusBadge(u.status):''}</div>
     </div>
-    <div class="ucard-image"><img src="${artSrc}" alt="" loading="lazy" decoding="async"><span>話題のイメージ画像</span></div>
+    ${mediaSrc?`<div class="ucard-image"><img src="${esc(mediaSrc)}" alt="${expertVideo?'元動画のサムネイル':'情報元の記事画像'}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"><span>${expertVideo?'元動画のサムネイル':'情報元の記事画像'}</span></div>`:''}
     ${expertVideo?`<div class="expert-video-person"><strong>${esc(u.expert_name||'専門家')}</strong><span>${esc(u.expert_role||'AIの専門家')}</span></div>`:''}
     <a class="ucard-title-link" href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')" aria-label="${esc(u.title)}の要約をアプリ内で見る"><h3>${esc(u.title)}</h3></a>
     ${timelineMeta(u)}
@@ -3920,10 +3902,12 @@ function homeExpertVideos(items){
 }
 function expertVideoCard(u){
   const summary=u.manual_summary||u.ai_summary||u.raw_excerpt||'この動画で学べることを確認できます。';
+  const thumbnail=articleMedia(u);
   const today=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
   const isNew=u.home_video_origin!=='continued'&&Number.isFinite(Date.parse(u.home_video_selected_at))&&new Date(Date.parse(u.home_video_selected_at)+9*3600000).toISOString().slice(0,10)===today;
   return `<article class="expert-video-card">
     <div class="expert-video-card-top">${contentTypeBadge(u)}${readProofBadge(u)}<span class="expert-video-platform">${esc(u.platform||'動画・講演')}</span></div>
+    ${thumbnail?`<div class="expert-video-thumb"><img src="${esc(thumbnail)}" alt="元動画のサムネイル" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"></div>`:''}
     <div class="expert-video-person"><strong>${esc(u.expert_name||'専門家')}</strong><span>${esc(u.expert_role||'AIの専門家')}</span></div>
     <p class="billing-help">${isNew?'本日の新着':'継続掲載'} · 動画公開 ${esc(fmtDate(u.source_published_at))}</p>
     <h3>${esc(u.title)}</h3><div class="expert-video-summary">${esc(summary)}</div>
@@ -3960,13 +3944,13 @@ function renderHome(v){
   activeTopStoryId=String(cover?.id||'');
   const coverSummary=cover?(cover.manual_summary||cover.ai_summary||cover.raw_excerpt||'要約を確認できます。'):'';
   const coverTool=cover?toolById(cover.tool_id):null;
-  const coverArtSrc=cover?`./assets/ai-card-${articleArtClass(cover).slice(4)}.webp`:'';
+  const coverMediaSrc=cover?articleMedia(cover):'';
   const coverEditionNote=cover?.home_top_origin==='continued'
     ?'直近の重要記事から重複なく継続掲載'
     :`今回の新着${newCount?` ${newCount}件`:''}を話題性・重要性で審査`;
   const coverCopy=cover?`
       <div class="live-line"><span class="live-dot"></span>いま注目のAIニュース · 新着${newCount}件 · 更新確認 ${latest}</div>
-      <div class="daily-cover-image"><img src="${coverArtSrc}" alt="" decoding="async" fetchpriority="high"><span>話題のイメージ画像</span></div>
+      ${coverMediaSrc?`<div class="daily-cover-image"><img src="${esc(coverMediaSrc)}" alt="情報元の記事画像" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"><span>情報元の記事画像</span></div>`:''}
       <div class="daily-cover-meta">${rankBadge(cover.rank)}${homeOriginBadge(cover)}${readProofBadge(cover)}<span class="daily-cover-source"><b>情報元</b>${esc(cover.source_name||coverTool?.name||'確認中')}・${esc(sourcePublishedLabel(cover))}</span></div>
       <h2>${esc(cover.title)}</h2>
       <p>${esc(coverSummary)}</p>
@@ -5032,6 +5016,8 @@ function patchPublishedArticleFields(target,it,tool){
     source_trust:String(it.source_trust||''),
     title:String(it.title||''),
     source_url:safeExternalUrl(it.source_url),
+    source_image_url:safeExternalUrl(it.source_image_url),
+    source_image_page_url:safeExternalUrl(it.source_image_page_url),
     ...importedContextSourceFields(it),
     published_at:publishedAt,
     fetched_at:it.fetched_at||target.fetched_at||nowISO(),
