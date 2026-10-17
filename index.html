@@ -2207,6 +2207,8 @@
   .ucard-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
   .ucard-image::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(3,13,30,.18),transparent 48%)}
   .ucard-image span{position:absolute;z-index:1;right:8px;bottom:8px;padding:3px 7px;border:1px solid rgba(214,240,251,.32);border-radius:999px;background:rgba(5,16,32,.78);color:#e2f2fa;font-size:9px;font-weight:700}
+  .ucard-image.is-brand,.daily-cover-image.is-brand{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#111b29,#172b3a)}
+  .ucard-image.is-brand img,.daily-cover-image.is-brand img{width:min(45%,190px);height:auto;max-height:70px;object-fit:contain}
   @media(max-width:620px){.ucard-image{height:118px;border-radius:10px}}
   .daily-cover-image{position:relative;overflow:hidden;width:min(100%,650px);height:166px;margin:13px 0 10px;border:1px solid rgba(112,213,235,.3);border-radius:12px;background:#071425;box-shadow:0 10px 28px rgba(2,8,24,.25)}
   .daily-cover-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
@@ -3767,18 +3769,32 @@ function articleMedia(u){
       u.source_image_page_url===u.source_url?image:'';
   }catch{return '';}
 }
+function articleVisual(u){
+  const actual=articleMedia(u);
+  if(actual)return {url:actual,kind:isExpertVideo(u)?'video':'source',label:isExpertVideo(u)?'元動画のサムネイル':'情報元の記事画像'};
+  if(isExpertVideo(u))return null;
+  const entity=String(u.primary_entity||'').trim();
+  const title=String(u.title||'');
+  if(entity==='OpenAI'||(!entity&&/\bOpenAI\b/i.test(title)))
+    return {url:'./assets/brand-openai-white-wordmark.png',kind:'brand',label:'OpenAIの企業ロゴ（記事写真ではありません）'};
+  if(/脆弱性|セキュリティ|サイバー|不正アクセス|AI自動テスト/.test(title))
+    return {url:'./assets/ai-card-cyber.webp',kind:'topic',label:'セキュリティの関連イメージ'};
+  if(/半導体株|株価|株式市場|投資|決算|売上高/.test(title))
+    return {url:'./assets/ai-card-finance.webp',kind:'topic',label:'市場・投資の関連イメージ'};
+  return null;
+}
 function updateCard(u){
   const tool=toolById(u.tool_id);
   const expertVideo=isExpertVideo(u);
   const color=toolColor(u.tool_id);
   const sum=u.manual_summary||u.ai_summary||u.raw_excerpt||'要約はまだありません。';
-  const mediaSrc=articleMedia(u);
+  const visual=articleVisual(u);
   return `<article class="ucard ${isArticleRead(u)?'':'is-new'} ${expertVideo?'is-expert-video':''}">
     <div class="ucard-top">
       <div class="ucard-tool"><span class="tool-dot" style="background:${color};color:${color}"></span><span>${esc(tool?tool.name:'不明')}</span>${contentTypeBadge(u)}</div>
       <div class="ucard-top-meta">${rankBadge(u.rank)}${homeOriginBadge(u)}${u.relation_type==='follow_up'?`<span class="followup-badge">続報 ${storySequence(u)}</span>`:''}${u.relation_type==='correction'?`<span class="followup-badge is-correction">訂正・状況変更</span>`:''}${readProofBadge(u)}${!['unread','read'].includes(u.status)?statusBadge(u.status):''}</div>
     </div>
-    ${mediaSrc?`<div class="ucard-image"><img src="${esc(mediaSrc)}" alt="${expertVideo?'元動画のサムネイル':'情報元の記事画像'}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"><span>${expertVideo?'元動画のサムネイル':'情報元の記事画像'}</span></div>`:''}
+    ${visual?`<div class="ucard-image${visual.kind==='brand'?' is-brand':''}"><img src="${esc(visual.url)}" alt="${esc(visual.label)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"><span>${esc(visual.label)}</span></div>`:''}
     ${expertVideo?`<div class="expert-video-person"><strong>${esc(u.expert_name||'専門家')}</strong><span>${esc(u.expert_role||'AIの専門家')}</span></div>`:''}
     <a class="ucard-title-link" href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')" aria-label="${esc(u.title)}の要約をアプリ内で見る"><h3>${esc(u.title)}</h3></a>
     ${timelineMeta(u)}
@@ -3944,13 +3960,13 @@ function renderHome(v){
   activeTopStoryId=String(cover?.id||'');
   const coverSummary=cover?(cover.manual_summary||cover.ai_summary||cover.raw_excerpt||'要約を確認できます。'):'';
   const coverTool=cover?toolById(cover.tool_id):null;
-  const coverMediaSrc=cover?articleMedia(cover):'';
+  const coverVisual=cover?articleVisual(cover):null;
   const coverEditionNote=cover?.home_top_origin==='continued'
     ?'直近の重要記事から重複なく継続掲載'
     :`今回の新着${newCount?` ${newCount}件`:''}を話題性・重要性で審査`;
   const coverCopy=cover?`
       <div class="live-line"><span class="live-dot"></span>いま注目のAIニュース · 新着${newCount}件 · 更新確認 ${latest}</div>
-      ${coverMediaSrc?`<div class="daily-cover-image"><img src="${esc(coverMediaSrc)}" alt="情報元の記事画像" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"><span>情報元の記事画像</span></div>`:''}
+      ${coverVisual?`<div class="daily-cover-image${coverVisual.kind==='brand'?' is-brand':''}"><img src="${esc(coverVisual.url)}" alt="${esc(coverVisual.label)}" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"><span>${esc(coverVisual.label)}</span></div>`:''}
       <div class="daily-cover-meta">${rankBadge(cover.rank)}${homeOriginBadge(cover)}${readProofBadge(cover)}<span class="daily-cover-source"><b>情報元</b>${esc(cover.source_name||coverTool?.name||'確認中')}・${esc(sourcePublishedLabel(cover))}</span></div>
       <h2>${esc(cover.title)}</h2>
       <p>${esc(coverSummary)}</p>
@@ -4977,6 +4993,7 @@ function importedTimelineFields(it){
     source_published_at:sourcePublished,
     source_updated_at:String(it?.source_updated_at||''),
     source_date_status:String(it?.source_date_status||(sourcePublished?'published':'unknown')),
+    primary_entity:String(it?.primary_entity||''),
     story_entities:Array.isArray(it?.story_entities)?it.story_entities.map(String).filter(Boolean):[]
   };
 }

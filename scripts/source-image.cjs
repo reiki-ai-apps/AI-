@@ -26,6 +26,21 @@ function sourceImage(item){
   return source&&image&&bound===String(item.source_url)&&OFFICIAL_HOSTS.has(source.hostname)
     ?image.toString():'';
 }
+const ASSET_BASE='https://reiki-ai-apps.github.io/AI-/assets/';
+function articleVisual(item){
+  const actual=sourceImage(item);
+  if(actual)return {url:actual,kind:String(item?.content_type||'')==='expert_video'?'video':'source',label:String(item?.content_type||'')==='expert_video'?'元動画のサムネイル':'情報元の記事画像'};
+  if(String(item?.content_type||'article')==='expert_video')return null;
+  const entity=String(item?.primary_entity||'').trim();
+  const title=String(item?.title||'');
+  if(entity==='OpenAI'||(!entity&&/\bOpenAI\b/i.test(title)))
+    return {url:`${ASSET_BASE}brand-openai-white-wordmark.png`,kind:'brand',label:'OpenAIの企業ロゴ（記事写真ではありません）'};
+  if(/脆弱性|セキュリティ|サイバー|不正アクセス|AI自動テスト/.test(title))
+    return {url:`${ASSET_BASE}ai-card-cyber.webp`,kind:'topic',label:'セキュリティの関連イメージ'};
+  if(/半導体株|株価|株式市場|投資|決算|売上高/.test(title))
+    return {url:`${ASSET_BASE}ai-card-finance.webp`,kind:'topic',label:'市場・投資の関連イメージ'};
+  return null;
+}
 function attrs(tag){
   const result={};
   for(const match of tag.matchAll(/([\w:-]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/g)){
@@ -57,4 +72,4 @@ function extractSourceImage(html,pageUrl){
   if(width&&width<300||height&&height<150)return '';
   return image.toString();
 }
-module.exports={OFFICIAL_HOSTS,sourceImage,videoThumbnail,extractSourceImage,httpUrl};
+module.exports={OFFICIAL_HOSTS,sourceImage,articleVisual,videoThumbnail,extractSourceImage,httpUrl};
