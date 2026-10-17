@@ -65,6 +65,9 @@ assert.equal(videoPublishedToday(state,[{...item,source_published_at:'2026-09-01
   const finalized=finalizeExpertVideoEdition(ready,selectedState,morning,{refreshDue:false});
   assert.equal(finalized.items.length,60,'video finalization must not exceed the publication cap');
   assert.deepEqual(new Set(finalized.state.featured_video_keys),new Set(['video-10','video-11']));
+  const {capPublishedEdition}=createRequire(import.meta.url)('./publication-cap.cjs');
+  const bounded=capPublishedEdition(finalized.items,{featuredVideoKeys:finalized.state.featured_video_keys});
+  assert.equal(bounded.dropped.length,0,'the final safety cap must not need to delete prepared news on a video retry');
   assert.equal(prepare(finalized.items,finalized.items,true,finalized.state).length,60,'repeated retries remain capped');
 
   const regular=prepare(articles(60),[...articles(48),...candidates],false);
@@ -87,4 +90,4 @@ for(const [label,time,succeedAt,expected] of [
   assert.equal(calls,expected,label);assert.equal(waits,expected-1,label);
   assert.equal(result,calls>=succeedAt?0:1);
 }
-console.log('Morning video retry tests passed: early start, bounded same-run recovery, verified publication and no false success.');
+console.log('Morning video retry tests passed: early start, bounded same-run recovery, 60-item publication cap, unchanged news and verified video pair.');
