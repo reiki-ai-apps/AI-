@@ -2206,13 +2206,13 @@
   .ucard-image{position:relative;overflow:hidden;height:154px;border:1px solid rgba(101,182,210,.24);border-radius:12px;background:#071425}
   .ucard-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
   .ucard-image::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(3,13,30,.18),transparent 48%)}
-  .ucard-image span{position:absolute;z-index:1;right:8px;bottom:8px;padding:3px 7px;border:1px solid rgba(214,240,251,.32);border-radius:999px;background:rgba(5,16,32,.78);color:#e2f2fa;font-size:9px;font-weight:700}
+  .ucard-image span,.ucard-image a{position:absolute;z-index:1;right:8px;bottom:8px;padding:3px 7px;border:1px solid rgba(214,240,251,.32);border-radius:999px;background:rgba(5,16,32,.82);color:#e2f2fa;font-size:9px;font-weight:700;text-decoration:none}
   .ucard-image.is-brand,.daily-cover-image.is-brand{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#111b29,#172b3a)}
   .ucard-image.is-brand img,.daily-cover-image.is-brand img{width:min(45%,190px);height:auto;max-height:70px;object-fit:contain}
   @media(max-width:620px){.ucard-image{height:118px;border-radius:10px}}
   .daily-cover-image{position:relative;overflow:hidden;width:min(100%,650px);height:166px;margin:13px 0 10px;border:1px solid rgba(112,213,235,.3);border-radius:12px;background:#071425;box-shadow:0 10px 28px rgba(2,8,24,.25)}
   .daily-cover-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
-  .daily-cover-image span{position:absolute;right:9px;bottom:9px;padding:3px 7px;border-radius:999px;background:rgba(5,16,32,.8);color:#e2f2fa;font-size:9px;font-weight:700}
+  .daily-cover-image span,.daily-cover-image a{position:absolute;right:9px;bottom:9px;padding:3px 7px;border-radius:999px;background:rgba(5,16,32,.82);color:#e2f2fa;font-size:9px;font-weight:700;text-decoration:none}
   @media(max-width:620px){.daily-cover-image{height:126px;margin:10px 0 8px}}
   .radar-overview.has-daily-cover,.light-media-theme .radar-overview.has-daily-cover{background:linear-gradient(135deg,#07192b,#0b1630 68%,#111a38)!important}
 
@@ -3775,6 +3775,21 @@ function articleVisual(u){
   if(isExpertVideo(u))return null;
   const entity=String(u.primary_entity||'').trim();
   const title=String(u.title||'');
+  const commons='https://commons.wikimedia.org/wiki/File:';
+  const photos=[
+    {match:/ジェンスン・フアン|Jensen Huang/i,file:'photo-jensen.jpg',label:'ジェンスン・フアン氏の資料写真（今回の発言時ではありません）',credit:'Anders Eidesvik / CC BY-SA 4.0',page:`${commons}Jensen_huang_stanford_2026-04-30_010.jpg`,license:'https://creativecommons.org/licenses/by-sa/4.0/'},
+    {match:/Anthropic.*アモデイ|アモデイ.*Anthropic/i,file:'photo-anthropic-visit.jpg',label:'Anthropic訪問時の資料写真（本件の裁判資料とは無関係）',credit:'Alecsandra Dragoi / DSIT / CC BY 2.0',page:`${commons}Secretary_of_State_Peter_Kyle_visits_Anthropic_in_San_Francisco._(54098999333).jpg`,license:'https://creativecommons.org/licenses/by/2.0/'},
+    {match:/Grok Voice.*テスラ|テスラ.*Grok Voice/i,file:'photo-tesla.jpg',label:'テスラ車の資料写真（Grok Voiceの画面ではありません）',credit:'Rostyslav Lutsenko / CC0',page:`${commons}Tesla_Model_3_(2016).jpg`},
+    {match:/中国政府.*輸出規制|中国.*AI技術.*輸出規制/,file:'photo-china-flag.jpg',label:'中国の国旗の資料写真（発表現場ではありません）',credit:'Daderot / Public domain',page:`${commons}Chinese_flag_(Beijing)_-_IMG_1104.jpg`},
+    {match:/提訴|訴訟|裁判|司法長官/,file:'photo-courthouse.jpg',label:'米国の裁判所の資料写真（本件の現場ではありません）',credit:'Roc0ast3r / CC0',page:`${commons}Sevier_County_Courthouse_with_flag_of_the_United_States_-_1.jpg`},
+    {match:/数学|数論|未解決問題|定理|証明/,file:'photo-math-board.jpg',label:'数学の資料写真（記事の研究とは別）',credit:'David Malone / CC BY 4.0',page:`${commons}Mathematics_(cryptography)_on_a_blackboard.jpg`,license:'https://creativecommons.org/licenses/by/4.0/'},
+    {match:/脆弱性|セキュリティ|サイバー|不正アクセス|AI自動テスト|アプリ開発|プログラミング/,file:'photo-code-screen.jpg',label:'ソフト開発の資料写真（当該製品の画面ではありません）',credit:'Slashme / CC0',page:`${commons}RustCodeOnScreen.jpg`},
+    {match:/韓国株|KOSPI/,file:'photo-stockmarket.jpg',label:'株価表示の資料写真（韓国市場の当日写真ではありません）',credit:'AhmadArdity / CC0',page:`${commons}Stockmarket.jpg`},
+    {match:/半導体|GPU|チップ|メモリー/,file:'photo-wafer.jpg',label:'半導体ウエハーの資料写真（記事の製品ではありません）',credit:'ISCIX-Ex / CC0',page:`${commons}Wafer300mm-LargeIC-testset.jpg`},
+    {match:/株価|株式|市場|投資|決算|売上高/,file:'photo-stockmarket.jpg',label:'株価表示の資料写真（当日の市場ではありません）',credit:'AhmadArdity / CC0',page:`${commons}Stockmarket.jpg`}
+  ];
+  const photo=photos.find(rule=>rule.match.test(title));
+  if(photo)return {url:`./assets/${photo.file}`,kind:'photo',label:photo.label,credit:photo.credit,creditUrl:photo.page,licenseUrl:photo.license||''};
   if(entity==='OpenAI'||(!entity&&/\bOpenAI\b/i.test(title)))
     return {url:'./assets/brand-openai-white-wordmark.png',kind:'brand',label:'OpenAIの企業ロゴ（記事写真ではありません）'};
   if(/脆弱性|セキュリティ|サイバー|不正アクセス|AI自動テスト/.test(title))
@@ -3794,7 +3809,7 @@ function updateCard(u){
       <div class="ucard-tool"><span class="tool-dot" style="background:${color};color:${color}"></span><span>${esc(tool?tool.name:'不明')}</span>${contentTypeBadge(u)}</div>
       <div class="ucard-top-meta">${rankBadge(u.rank)}${homeOriginBadge(u)}${u.relation_type==='follow_up'?`<span class="followup-badge">続報 ${storySequence(u)}</span>`:''}${u.relation_type==='correction'?`<span class="followup-badge is-correction">訂正・状況変更</span>`:''}${readProofBadge(u)}${!['unread','read'].includes(u.status)?statusBadge(u.status):''}</div>
     </div>
-    ${visual?`<div class="ucard-image${visual.kind==='brand'?' is-brand':''}"><img src="${esc(visual.url)}" alt="${esc(visual.label)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"><span>${esc(visual.label)}</span></div>`:''}
+    ${visual?`<div class="ucard-image${visual.kind==='brand'?' is-brand':''}"><img src="${esc(visual.url)}" alt="${esc(visual.label)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentElement.remove()">${visual.kind==='photo'?`<a href="${esc(visual.creditUrl)}" target="_blank" rel="noopener noreferrer" title="${esc(visual.label)} · ${esc(visual.credit)}">資料写真 · ${esc(visual.credit)}</a>`:`<span>${esc(visual.label)}</span>`}</div>`:''}
     ${expertVideo?`<div class="expert-video-person"><strong>${esc(u.expert_name||'専門家')}</strong><span>${esc(u.expert_role||'AIの専門家')}</span></div>`:''}
     <a class="ucard-title-link" href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')" aria-label="${esc(u.title)}の要約をアプリ内で見る"><h3>${esc(u.title)}</h3></a>
     ${timelineMeta(u)}
@@ -3966,7 +3981,7 @@ function renderHome(v){
     :`今回の新着${newCount?` ${newCount}件`:''}を話題性・重要性で審査`;
   const coverCopy=cover?`
       <div class="live-line"><span class="live-dot"></span>いま注目のAIニュース · 新着${newCount}件 · 更新確認 ${latest}</div>
-      ${coverVisual?`<div class="daily-cover-image${coverVisual.kind==='brand'?' is-brand':''}"><img src="${esc(coverVisual.url)}" alt="${esc(coverVisual.label)}" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"><span>${esc(coverVisual.label)}</span></div>`:''}
+      ${coverVisual?`<div class="daily-cover-image${coverVisual.kind==='brand'?' is-brand':''}"><img src="${esc(coverVisual.url)}" alt="${esc(coverVisual.label)}" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" onerror="this.parentElement.remove()">${coverVisual.kind==='photo'?`<a href="${esc(coverVisual.creditUrl)}" target="_blank" rel="noopener noreferrer" title="${esc(coverVisual.label)} · ${esc(coverVisual.credit)}">資料写真 · ${esc(coverVisual.credit)}</a>`:`<span>${esc(coverVisual.label)}</span>`}</div>`:''}
       <div class="daily-cover-meta">${rankBadge(cover.rank)}${homeOriginBadge(cover)}${readProofBadge(cover)}<span class="daily-cover-source"><b>情報元</b>${esc(cover.source_name||coverTool?.name||'確認中')}・${esc(sourcePublishedLabel(cover))}</span></div>
       <h2>${esc(cover.title)}</h2>
       <p>${esc(coverSummary)}</p>

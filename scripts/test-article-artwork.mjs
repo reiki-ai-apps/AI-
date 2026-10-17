@@ -15,8 +15,11 @@ assert.equal(sourceImage({content_type:'article',source_url:publisher}),'','arti
 assert.deepEqual(articleVisual(item),{url:image,kind:'source',label:'情報元の記事画像'},'original image takes priority');
 assert.equal(articleVisual({...item,source_image_url:'',primary_entity:'OpenAI'}).kind,'brand','OpenAI story uses its official logo');
 assert.equal(articleVisual({title:'OpenAIと競争する他社',primary_entity:'他社'}),null,'mention alone must not borrow OpenAI logo');
-assert.equal(articleVisual({title:'半導体株が下落',primary_entity:'半導体業界'}).kind,'topic');
-assert.equal(articleVisual({title:'AI脆弱性チェックを追加',primary_entity:'アステリア'}).label,'セキュリティの関連イメージ');
+assert.equal(articleVisual({title:'半導体株が下落',primary_entity:'半導体業界'}).kind,'photo');
+assert.equal(articleVisual({title:'AI脆弱性チェックを追加',primary_entity:'アステリア'}).url.endsWith('/photo-code-screen.jpg'),true);
+assert.equal(articleVisual({title:'米8州がOpenAIを提訴',primary_entity:'OpenAI'}).url.endsWith('/photo-courthouse.jpg'),true,'a matched photograph precedes the logo');
+assert.equal(articleVisual({title:'数学論文を発表'}).credit,'David Malone / CC BY 4.0','attribution is retained');
+assert.equal(articleVisual({title:'Anthropicの自主規制、裁判資料がアモデイCEOの葛藤を明らかに'}).url.endsWith('/photo-anthropic-visit.jpg'),true,'a person/organization photo precedes generic court imagery');
 const video={content_type:'expert_video',video_id:'abcDEF12345'};
 assert.equal(videoThumbnail(video),'https://i.ytimg.com/vi/abcDEF12345/hqdefault.jpg');
 assert.equal(sourceImage(video),videoThumbnail(video));
@@ -34,4 +37,10 @@ const updates=Array.isArray(data)?data:data.updates||data.items||[];
 const top=updates.filter(u=>Number(u.home_top_rank)>0);
 assert.equal(top.length,5,'current top 5 is present');
 assert.equal(top.filter(u=>articleVisual(u)).length,5,'all current top 5 have relevant visuals');
-console.log('Article visuals passed: source image first, official matched logo or labelled topic visual; current top 5 covered.');
+assert.equal(top.filter(u=>articleVisual(u).kind==='photo').length,5,'all current top 5 have real, labelled topic photographs');
+for(const item of top){
+  const visual=articleVisual(item);
+  assert.ok(fs.existsSync(new URL(`../assets/${visual.url.split('/').pop()}`,import.meta.url)),`bundled photo exists: ${item.title}`);
+  assert.ok(visual.creditUrl?.startsWith('https://commons.wikimedia.org/wiki/File:'),'photo provenance is public');
+}
+console.log('Article visuals passed: source image first, attributed real photographs before logos; current top 5 covered.');
