@@ -29,7 +29,10 @@ jobs:
           node-version: "24"
 
       - name: test story deduplication
-        run: node scripts/test-dedupe.mjs
+        run: |
+          node scripts/test-dedupe.mjs
+          node scripts/test-publication-cap.mjs
+          node scripts/test-article-artwork.mjs
 
       - name: test AI cache, protected slots, and reuse rules
         run: |
