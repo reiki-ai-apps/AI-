@@ -8,6 +8,7 @@
 const fs = require("fs");
 const crypto = require("crypto");
 const {upgradeFriendlyExplanationItem}=require("./scripts/friendly-explanation.cjs");
+const {capPublishedEdition}=require("./scripts/publication-cap.cjs");
 const {friendlyExplanationIssues,publicationTextIssues}=require("./scripts/publication-quality.cjs");
 const {parsePlayerMetadata,mergeChannelVideos,parseOfficialEpisodeLinks}=require("./scripts/youtube-publication.cjs");
 const {MAX_HOME_ARTICLES,buildHomeEdition,applyHomeEdition}=require("./scripts/home-edition.cjs");
@@ -2427,7 +2428,10 @@ function prepareExpertRetryPublication(previous,final,state,now) {
     refreshDue:expertRefreshDue,attemptedSources:expertVideoCollection.attemptedSources,
     successfulSources:expertVideoCollection.successfulSources,candidateCount:expertVideoCandidates.length
   });
-  const editionReadyFinal=videoEdition.items;
+  const boundedEdition=capPublishedEdition(videoEdition.items,{limit:AI_MAX,
+    featuredVideoKeys:videoEdition.state.featured_video_keys});
+  if(boundedEdition.dropped.length)console.error(`PUBLISH CAP: removed ${boundedEdition.dropped.length} unfeatured archive item(s) after video selection`);
+  const editionReadyFinal=boundedEdition.items;
   writeJsonFile("data.json",editionReadyFinal);
   if(!expertRetryOnly)writeJsonFile(HOME_EDITION_PATH,homeEdition);
   writeJsonFile(STORY_INDEX_PATH,updateStoryIndex(storyIndex,editionReadyFinal));

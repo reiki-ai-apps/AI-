@@ -2202,6 +2202,17 @@
     body{background-attachment:scroll!important}
   }
 
+  /* 記事の話題に合わせた自前素材。情報元の写真や実画面とは誤認させない。 */
+  .ucard-image{position:relative;overflow:hidden;height:154px;border:1px solid rgba(101,182,210,.24);border-radius:12px;background:#071425}
+  .ucard-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:72% center;filter:saturate(1.08)}
+  .ucard-image::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(3,13,30,.18),transparent 48%)}
+  .ucard-image span{position:absolute;z-index:1;right:8px;bottom:8px;padding:3px 7px;border:1px solid rgba(214,240,251,.32);border-radius:999px;background:rgba(5,16,32,.78);color:#e2f2fa;font-size:9px;font-weight:700}
+  @media(max-width:620px){.ucard-image{height:118px;border-radius:10px}}
+  .daily-cover-image{position:relative;overflow:hidden;width:min(100%,650px);height:166px;margin:13px 0 10px;border:1px solid rgba(112,213,235,.3);border-radius:12px;background:#071425;box-shadow:0 10px 28px rgba(2,8,24,.25)}
+  .daily-cover-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:70% center}
+  .daily-cover-image span{position:absolute;right:9px;bottom:9px;padding:3px 7px;border-radius:999px;background:rgba(5,16,32,.8);color:#e2f2fa;font-size:9px;font-weight:700}
+  @media(max-width:620px){.daily-cover-image{height:126px;margin:10px 0 8px}}
+
   /* 今日試せる1つはニュースと動画を読み終えた後の実践枠。 */
   .today-one{margin:30px 0 0;padding:18px 18px 14px;border-radius:18px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm)}
   .today-one-kicker{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;white-space:nowrap;font-size:12px;letter-spacing:.14em;font-weight:700;color:var(--accent,#2f7cf6);text-transform:uppercase}
@@ -3744,15 +3755,12 @@ function catChips(cats,max){ cats=cats||[]; const shown=max?cats.slice(0,max):ca
 
 const ART_VARIANTS=['art-quantum','art-robot','art-city','art-space','art-cyber','art-bio','art-factory','art-finance','art-creative','art-cloud','art-mobility','art-energy','art-agriculture','art-education','art-legal','art-logistics','art-architecture','art-ocean'];
 
-function updateCard(u){
+function articleArtClass(u){
   const tool=toolById(u.tool_id);
-  const expertVideo=isExpertVideo(u);
-  const color=toolColor(u.tool_id);
-  const sum=u.manual_summary||u.ai_summary||u.raw_excerpt||'要約はまだありません。';
   const artKey=((tool&&tool.name)||u.tool_id||u.title||'').toLowerCase();
   const storyKey=(u.title||'').toLowerCase();
-  const dailySalt=new Date().toISOString().slice(0,10);
-  const artSeed=[...(storyKey+artKey+(u.id||'')+(u.published_at||'')+dailySalt)].reduce((total,char)=>total+char.charCodeAt(0),0);
+  // 同じニュースの画像を毎日入れ替えず、話題に合う既存の自前素材へ固定する。
+  const artSeed=[...(storyKey+artKey+(u.id||'')+(u.published_at||''))].reduce((total,char)=>total+char.charCodeAt(0),0);
   const allArt=ART_VARIANTS;
   let artPool=allArt;
   if(/(cloud|server|datacenter|infrastructure|compute|クラウド|サーバー|データセンター|基盤|計算資源)/.test(storyKey))artPool=['art-cloud','art-quantum','art-cyber','art-space'];
@@ -3774,11 +3782,21 @@ function updateCard(u){
   else if(/(model|code|api|developer|fable|モデル|コード|開発|生成)/.test(storyKey))artPool=['art-quantum','art-robot','art-cyber','art-creative'];
   const artDeck=[...artPool,...allArt.filter(art=>!artPool.includes(art))];
   const artClass=artDeck[(artSeed%artPool.length)%artDeck.length];
+  return artClass;
+}
+function updateCard(u){
+  const tool=toolById(u.tool_id);
+  const expertVideo=isExpertVideo(u);
+  const color=toolColor(u.tool_id);
+  const sum=u.manual_summary||u.ai_summary||u.raw_excerpt||'要約はまだありません。';
+  const artClass=articleArtClass(u);
+  const artSrc=`./assets/ai-card-${artClass.slice(4)}.webp`;
   return `<article class="ucard ${isArticleRead(u)?'':'is-new'} ${expertVideo?'is-expert-video':''} ${artClass}">
     <div class="ucard-top">
       <div class="ucard-tool"><span class="tool-dot" style="background:${color};color:${color}"></span><span>${esc(tool?tool.name:'不明')}</span>${contentTypeBadge(u)}</div>
       <div class="ucard-top-meta">${rankBadge(u.rank)}${homeOriginBadge(u)}${u.relation_type==='follow_up'?`<span class="followup-badge">続報 ${storySequence(u)}</span>`:''}${u.relation_type==='correction'?`<span class="followup-badge is-correction">訂正・状況変更</span>`:''}${readProofBadge(u)}${!['unread','read'].includes(u.status)?statusBadge(u.status):''}</div>
     </div>
+    <div class="ucard-image"><img src="${artSrc}" alt="" loading="lazy" decoding="async"><span>話題のイメージ画像</span></div>
     ${expertVideo?`<div class="expert-video-person"><strong>${esc(u.expert_name||'専門家')}</strong><span>${esc(u.expert_role||'AIの専門家')}</span></div>`:''}
     <a class="ucard-title-link" href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')" aria-label="${esc(u.title)}の要約をアプリ内で見る"><h3>${esc(u.title)}</h3></a>
     ${timelineMeta(u)}
@@ -3942,11 +3960,13 @@ function renderHome(v){
   activeTopStoryId=String(cover?.id||'');
   const coverSummary=cover?(cover.manual_summary||cover.ai_summary||cover.raw_excerpt||'要約を確認できます。'):'';
   const coverTool=cover?toolById(cover.tool_id):null;
+  const coverArtSrc=cover?`./assets/ai-card-${articleArtClass(cover).slice(4)}.webp`:'';
   const coverEditionNote=cover?.home_top_origin==='continued'
     ?'直近の重要記事から重複なく継続掲載'
     :`今回の新着${newCount?` ${newCount}件`:''}を話題性・重要性で審査`;
   const coverCopy=cover?`
       <div class="live-line"><span class="live-dot"></span>いま注目のAIニュース · 新着${newCount}件 · 更新確認 ${latest}</div>
+      <div class="daily-cover-image"><img src="${coverArtSrc}" alt="" decoding="async" fetchpriority="high"><span>話題のイメージ画像</span></div>
       <div class="daily-cover-meta">${rankBadge(cover.rank)}${homeOriginBadge(cover)}${readProofBadge(cover)}<span class="daily-cover-source"><b>情報元</b>${esc(cover.source_name||coverTool?.name||'確認中')}・${esc(sourcePublishedLabel(cover))}</span></div>
       <h2>${esc(cover.title)}</h2>
       <p>${esc(coverSummary)}</p>
