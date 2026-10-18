@@ -30,7 +30,7 @@ function setup(t,connected=false){
   const w=dom.window,d=w.document,$=s=>d.querySelector(s),read=()=>JSON.parse(w.localStorage.getItem(KEY));
   const click=s=>{assert.ok($(s),s);$(s).click()};
   const edit=id=>{click('[data-tab="all"]');click(`[data-edit-id="${id}"]`)};
-  const alarm=(slot,value)=>{const suffix=slot===1?'':'2',sel=$('#taskAlarmAt'+suffix+'Mode');sel.value=value?'scheduled':'none';sel.dispatchEvent(new w.Event('change',{bubbles:true}));$('#taskAlarmAt'+suffix).value=value};
+  const alarm=(slot,value)=>{const suffix=slot===1?'':'2',input=$('#taskAlarmAt'+suffix);input.value=value;input.dispatchEvent(new w.Event('change',{bubbles:true}))};
   const save=()=>click('#saveTask');
   const saved=()=>assert.ok($('#modalRoot').classList.contains('is-hidden'),$('#formMessage')?.textContent);
   return {w,$,click,read,edit,alarm,save,saved,requests};
@@ -57,12 +57,15 @@ test('editing a title with two unchanged past alarms keeps dates, unknown fields
 test('one old alarm may remain while the other is set in the future',t=>{
   const h=setup(t);h.edit('past');h.alarm(2,'2099-01-05T10:00');h.save();h.saved();const r=h.read()[0];assert.equal(r.alarm,records[0].alarm);assert.equal(r.alarm2,'日時指定|2099-01-05T10:00');
 });
-test('unset cancels only the selected alarm, and clear alarms preserves calendar date',t=>{
-  const h=setup(t);h.edit('past');h.alarm(1,'');h.save();h.saved();assert.equal(h.read()[0].alarm,'なし');assert.equal(h.read()[0].alarm2,records[0].alarm2);
-  h.edit('past');h.click('[data-action="clear-alarms"]');assert.equal(h.$('#taskCalendarDate').value,'2027-12-20');h.save();h.saved();assert.equal(h.read()[0].alarm2,'なし');assert.equal(h.read()[0].calendarDate,'2027-12-20');
+test('an empty field cancels only that alarm, and the inline clear control preserves the calendar date',t=>{
+  const h=setup(t);h.edit('past');h.click('[data-target="taskAlarmAt"]');h.save();h.saved();assert.equal(h.read()[0].alarm,'なし');assert.equal(h.read()[0].alarm2,records[0].alarm2);
+  h.edit('past');h.click('[data-target="taskAlarmAt2"]');assert.equal(h.$('#taskCalendarDate').value,'2027-12-20');h.save();h.saved();assert.equal(h.read()[0].alarm2,'なし');assert.equal(h.read()[0].calendarDate,'2027-12-20');
 });
 test('blank date-time and entirely undated tasks can be saved',t=>{
-  const h=setup(t);h.click('#headerAdd');h.$('#taskTitle').value='未定';const sel=h.$('#taskAlarmAtMode');sel.value='scheduled';sel.dispatchEvent(new h.w.Event('change',{bubbles:true}));h.save();h.saved();const item=h.read().find(x=>x.title==='未定');assert.equal(item.alarm,'なし');assert.equal(item.calendarDate,null);
+  const h=setup(t);h.click('#headerAdd');h.$('#taskTitle').value='未定';assert.equal(h.$('#taskAlarmAt').value,'');assert.equal(h.$('#taskAlarmAt2').value,'');assert.equal(h.$('#taskAlarmAtMode'),null);assert.equal(h.$('#taskForm [data-action="clear-alarms"]'),null);assert.equal(h.$('#taskForm [data-action="clear-timing"]'),null);h.save();h.saved();const item=h.read().find(x=>x.title==='未定');assert.equal(item.alarm,'なし');assert.equal(item.alarm2,'なし');assert.equal(item.calendarDate,null);
+});
+test('existing calendar date can be cleared without changing either alarm',t=>{
+  const h=setup(t);h.edit('past');h.click('[data-target="taskCalendarDate"]');h.save();h.saved();const item=h.read()[0];assert.equal(item.calendarDate,null);assert.equal(item.alarm,records[0].alarm);assert.equal(item.alarm2,records[0].alarm2);
 });
 test('new past alarms and duplicate future alarms report errors without changing saved records',t=>{
   const h=setup(t);h.edit('future');h.alarm(1,'2020-01-01T10:00');h.save();assert.match(h.$('#formMessage').textContent,/未来/);assert.equal(h.w.localStorage.getItem(KEY),raw);
@@ -73,6 +76,6 @@ test('backup failure blocks changes rather than overwriting data',t=>{
   h.save();assert.match(h.$('#formMessage').textContent,/変更はしていません/);assert.equal(h.w.localStorage.getItem(KEY),raw);
 });
 test('sync keeps every record and cleared alarm values (mock endpoint only)',async t=>{
-  const h=setup(t,true);h.edit('past');h.click('[data-action="clear-alarms"]');h.save();h.saved();await new Promise(r=>setTimeout(r,0));
+  const h=setup(t,true);h.edit('past');h.click('[data-target="taskAlarmAt"]');h.click('[data-target="taskAlarmAt2"]');h.save();h.saved();await new Promise(r=>setTimeout(r,0));
   assert.equal(h.requests.length,1);const snapshot=h.requests[0].snapshot.tasks;assert.equal(snapshot.length,records.length);assert.equal(snapshot.find(x=>x.id==='past').alarm,'なし');assert.equal(snapshot.find(x=>x.id==='memo').memo,'大切な本文');assert.equal(h.w.localStorage.getItem('white-shelf.sync-key'),'synthetic-test-only');
 });
