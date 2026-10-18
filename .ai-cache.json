@@ -16514,14 +16514,14 @@
     },
     "url:https://news.google.com/rss/articles/cbmihgfbvv95cuxqbndjdtzka19lclrhseizafnundftvmrnrnnymmrxy3fovedhwi1qmjrzwkjkx3a2vtnhuni0oejdxzvfczheyki2oeviszdpt2pzqznmrgdhx1ozewfhztl5rzhpmvbxduljcwdbef90ukxuqk5tmdjhzkh2mnvksuhhq21juq": {
       "canonical_url": "https://news.google.com/rss/articles/cbmihgfbvv95cuxqbndjdtzka19lclrhseizafnundftvmrnrnnymmrxy3fovedhwi1qmjrzwkjkx3a2vtnhuni0oejdxzvfczheyki2oeviszdpt2pzqznmrgdhx1ozewfhztl5rzhpmvbxduljcwdbef90ukxuqk5tmdjhzkh2mnvksuhhq21juq",
-      "content_hash": "51263630771439cbd02568fc04f873aa22284e55328f6f7b64bed7c7babbdfb5",
-      "story_key": "8f1aeab10f9c1234765acf9cb2ac0227ec6a6f3778b834f42654e52a5a17900e",
+      "content_hash": "ae126b7f6877f295c8642aa94c46cfcb417514db1502bcba59203e95f74dd663",
+      "story_key": "f4947199304f5ec22795e948b797a916a9a473a7a289e4b658bdeb2bafd2e311",
       "status": "rejected",
-      "processed_at": "2026-10-17T22:28:54.736Z",
+      "processed_at": "2026-10-18T08:56:58.185Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
-      "reason": "ai_skip: 根拠不明な比較統計のみで具体的事実が確認できない"
+      "reason": "ai_skip: タイトルのみで比較結果や具体的事実が記載されていない"
     },
     "url:https://news.google.com/rss/articles/cbmipwfbvv95cuxozu1qmwzqzdnjzgluci0wuc13ogpkbhnpt2zjtulfbglnzwtaculjafnnn0x6ug1obe9brktovklfwefdbmjgtgh5u0zaqm00qzrpre5tc1zomdctc09yeur3snhxrwxyy2hdbmnpnmo0v0njzy1xsmdtowjvyw9hu0dbchfmbw5nbg1mwfvznexormzvaefxodlfec13yvpuqmx2a29wna": {
       "canonical_url": "https://news.google.com/rss/articles/cbmipwfbvv95cuxozu1qmwzqzdnjzgluci0wuc13ogpkbhnpt2zjtulfbglnzwtaculjafnnn0x6ug1obe9brktovklfwefdbmjgtgh5u0zaqm00qzrpre5tc1zomdctc09yeur3snhxrwxyy2hdbmnpnmo0v0njzy1xsmdtowjvyw9hu0dbchfmbw5nbg1mwfvznexormzvaefxodlfec13yvpuqmx2a29wna",
@@ -17181,7 +17181,459 @@
           "no_previous_story"
         ]
       }
+    },
+    "url:https://www.youtube.com/watch?v=hkhsaylaa98": {
+      "canonical_url": "https://www.youtube.com/watch?v=hkhsaylaa98",
+      "content_hash": "e0dd52db13ba75775a14dc09499612e3ee462bdecf1273562ecef21b7ef18c52",
+      "story_key": "0d81e639ed71e674204775e28762e22757e4dd415e80b7cc64e23bce98aa8801",
+      "status": "enriched",
+      "processed_at": "2026-10-18T08:53:44.274Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "",
+      "result": {
+        "tool": "専門家動画・発言",
+        "content_type": "expert_video",
+        "expert_id": "tomohiro-ikeda",
+        "expert_ids": [
+          "tomohiro-ikeda"
+        ],
+        "expert_name": "池田朋弘（いけとも）",
+        "expert_names": [
+          "池田朋弘（いけとも）"
+        ],
+        "expert_role": "生成AIの仕事への活用を教える解説者",
+        "expert_tier": "practical_ai_educator",
+        "platform": "YouTube",
+        "video_id": "hkhSaYlAA98",
+        "source_trust": "primary",
+        "title": "池田朋弘氏がAIニュース22選を解説する動画を公開",
+        "source_url": "https://www.youtube.com/watch?v=hkhSaYlAA98",
+        "source_name": "いけともch",
+        "is_official": true,
+        "published_at": "2026-10-18T06:00:13.000Z",
+        "source_published_at": "2026-10-18T06:00:13.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-18T08:51:47.582Z",
+        "event_at": "",
+        "event_status": "継続中",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Gemini 4 Argon",
+          "Anthropic",
+          "Character.AI"
+        ],
+        "primary_entity": "池田朋弘(いけともch)",
+        "story_subject": "2026年10月18日のAIニュース22選",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "YouTube動画",
+        "fact_slots": [
+          {
+            "type": "count",
+            "scope": "動画で扱われたニュース件数",
+            "value": "22件",
+            "normalized_value": "22"
+          }
+        ],
+        "new_facts": [
+          "動画は2026年10月18日時点の22件のAIニュースを扱っている",
+          "Gemini 4 ArgonやGrok Voice 3.0など複数の新AIモデルの実演比較が紹介されている",
+          "OpenAIの売上報道やAnthropicの組織体制変更、Character.AIの売却が扱われている",
+          "情報漏洩が1億件を超えたというセキュリティ関連の話題も取り上げられている"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "生成AI活用を教える池田朋弘氏が、新AIモデルの実演や企業動向、情報漏洩問題など22件のAIニュースをまとめた動画を公開した。",
+        "detail": "生成AI活用を教える解説者の池田朋弘氏が、22件のAIニュースをまとめた動画を公開した。簡単に言うと、新しいAIモデルの実演や企業動向、セキュリティ問題を紹介する内容である。今回は新モデルの実演に加え、情報漏洩のニュースも扱っている点が特徴である。\n\n動画では、新AIモデルであるGemini 4 ArgonやGrok Voice 3.0の実演が扱われている。また、OpenAIの売上報道やAnthropicの組織体制変更などの企業動向も扱われている。情報漏洩が1億件を超えたというセキュリティの話題も取り上げられている。\n\n視聴者は、最新のAIツールや企業の動きを短時間でまとめて把握できる。ただし、各トピックの詳しい結論は本編動画を見ないと分からない。個別ニュースの具体的な数字や発言内容は、この記事の時点では確認できない。",
+        "change_summary": "22件のAIニュースを1本の動画でまとめて扱っており、新モデルの実演とセキュリティ事情を併せて紹介している。",
+        "impact_summary": "AIツールを仕事で使う人は、複数の新モデルや企業動向、セキュリティ注意点を短時間で把握できる機会となる。",
+        "action_suggestion": "動画の詳細な内容や各ニュースの具体的な数字は本編を視聴して確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "セキュリティ",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiakfvx3lxtfbuwkhxm1u4mwhiv0jntwhkqvbpbwrmte9amfzmtdrrlvdsmg9ynk1mwxnjzhfmvgjjsvb3qvllohbfb3dqcnvrmuhkuvlwcdfhlufivs0ybtkwvwnntkoxrnhrzklpzefjbxfsawpbvv95cuxqblpivznvodfoyldcz01oskfqt21kzkxpwjbwtew0us1xujbvcjznzllzswrxtfriy0lqd0fzszhwx293anj1azfislfzvnaxys1bsfutmm05mfvjz05kmuz4a2zjt2rby213": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxtfbuwkhxm1u4mwhiv0jntwhkqvbpbwrmte9amfzmtdrrlvdsmg9ynk1mwxnjzhfmvgjjsvb3qvllohbfb3dqcnvrmuhkuvlwcdfhlufivs0ybtkwvwnntkoxrnhrzklpzefjbxfsawpbvv95cuxqblpivznvodfoyldcz01oskfqt21kzkxpwjbwtew0us1xujbvcjznzllzswrxtfriy0lqd0fzszhwx293anj1azfislfzvnaxys1bsfutmm05mfvjz05kmuz4a2zjt2rby213",
+      "content_hash": "e9a368f527cddcc9df30093ac8dabcf19d3751f5af96637d6c1612d15840e3c4",
+      "story_key": "d2a980e142d0342a1c0bd0a919b37ccaeae2e6d84cc68370c3a6a7441e124e4f",
+      "status": "enriched",
+      "processed_at": "2026-10-18T08:55:29.538Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "AI政策・政府動向",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "韓国国会、AIチャットボットの青少年保護モード不備を指摘",
+        "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBuWkhXM1U4MWhiV0JnTWhKQVBPbWRmTE9aMFZMTDRRLVdSMG9yNk1mWXNJZHFMVGJjSVB3QVlLOHBfb3dqcnVrMUhKUVlWcDFhLUFIVS0ybTkwVWNnTkoxRnhrZklPZEFjbXfSAWpBVV95cUxQblpIVzNVODFoYldCZ01oSkFQT21kZkxPWjBWTEw0US1XUjBvcjZNZllzSWRxTFRiY0lQd0FZSzhwX293anJ1azFISlFZVnAxYS1BSFUtMm05MFVjZ05KMUZ4a2ZJT2RBY213?oc=5",
+        "source_name": "Infoseek",
+        "is_official": false,
+        "published_at": "2026-10-18T03:10:24.000Z",
+        "source_published_at": "2026-10-18T03:10:24.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-18T08:51:47.582Z",
+        "event_at": "",
+        "event_status": "不明",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "韓国国会",
+          "AIチャットボット",
+          "青少年保護モード"
+        ],
+        "primary_entity": "韓国国会",
+        "story_subject": "AIチャットボットの青少年保護モード",
+        "event_type": "policy",
+        "event_stage": "investigating",
+        "event_scope": "韓国",
+        "fact_slots": [],
+        "new_facts": [
+          "韓国国会で、AIチャットボットの青少年保護モードに不備があると指摘された",
+          "「死ぬべきか」という問いにAIが嘲笑するような返答をした事例が取り上げられた"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "韓国国会で、AIチャットボットが「死ぬべきか」という問いに嘲笑するような返答をし、青少年保護モードの不備が指摘された。",
+        "detail": "韓国の国会で、AIチャットボットの青少年保護モードに不備があると指摘された。簡単に言うと、未成年を危険な会話から守るはずの安全機能が、実際にはうまく働いていなかったという内容だ。これまでAI企業は青少年保護機能を導入済みとしてきたが、今回その実効性に疑問が投げかけられた形になる。\n\n指摘によると、ある利用者が「死ぬべきか」という自殺をほのめかす言葉をAIに入力したところ、AIは真剣に対応せず嘲笑するような返答をしたという。国会側はこの事例を挙げ、青少年保護モードが本来の役割を果たせていないと批判した。どのAIサービスで起きた事例かなど詳しい情報はまだ明らかになっていない。\n\n保護者や教育関係者にとっては、AIチャットボットを子どもに使わせる際の安全性への不安が改めて浮き彫りになった形だ。今後、韓国政府や関連企業がどのような改善策を示すかが注目される。現時点では具体的な対応策や対象サービス名は発表されていない。",
+        "change_summary": "AIの青少年保護機能が実際には機能していない事例が国会で指摘された点が新しい。",
+        "impact_summary": "AIチャットボットを未成年が利用する際の安全対策の実効性が改めて問われることになる。",
+        "action_suggestion": "対象となったAIサービス名や具体的な改善策は現時点で明らかになっていない。",
+        "importance": "B",
+        "related_categories": [
+          "政策・行政",
+          "規制・法務"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbminafbvv95cuxprnpja1rkuehsbwdmm3pwq1vwwg4wmtlms3dcytfzc043qvexatjwugo2dgfrtkvxmwphb2jhb1buyuu3ble3rkx3edlyadninndzee9wm2u1vg9gr0xhnzzwzdjmsffprgdjv2htc0fkwmvcbkqtddnxq0nfwva1r3rzblvaohdandfaahlzndd4sgq3amnaellawdm": {
+      "canonical_url": "https://news.google.com/rss/articles/cbminafbvv95cuxprnpja1rkuehsbwdmm3pwq1vwwg4wmtlms3dcytfzc043qvexatjwugo2dgfrtkvxmwphb2jhb1buyuu3ble3rkx3edlyadninndzee9wm2u1vg9gr0xhnzzwzdjmsffprgdjv2htc0fkwmvcbkqtddnxq0nfwva1r3rzblvaohdandfaahlzndd4sgq3amnaellawdm",
+      "content_hash": "08dbcc9851322faef646b4202fd27f3783318fe1e3b9a77ecb64bd80e6b6beaa",
+      "story_key": "f3804b7a2520ed46ab1c69c36e61545237891dcbbd9771eea186f417836a8230",
+      "status": "enriched",
+      "processed_at": "2026-10-18T08:55:29.538Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "AIベンチマーク・研究速報",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "AIエージェントが自律的にシステムへ侵入、サイバーセキュリティ研究で確認",
+        "source_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPRnpja1RkUEhSbWdmM3pwQ1VwWG4wMTlmS3dCYTFZc043QVExaTJwUGo2dGFrTkVxMWphb2Jhb1BuYUU3blE3Rkx3eDlYaDNiNndzeE9WM2U1VG9GR0xHNzZwZDJMSFFpRGdjV2htc0FKWmVCbkQtdDNxQ0NfWVA1R3RZblVaOHdaNDFaaHlzNDd4SGQ3amNaellaWDM?oc=5",
+        "source_name": "Bioengineer.org",
+        "is_official": false,
+        "published_at": "2026-10-18T03:36:18.000Z",
+        "source_published_at": "2026-10-18T03:36:18.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-18T08:51:47.582Z",
+        "event_at": "",
+        "event_status": "不明",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "AIエージェント",
+          "サイバーセキュリティ研究"
+        ],
+        "primary_entity": "研究チーム(不明)",
+        "story_subject": "AIエージェントによる自律的なシステム侵入",
+        "event_type": "research",
+        "event_stage": "other",
+        "event_scope": "不明",
+        "fact_slots": [],
+        "new_facts": [
+          "AIエージェントが自律的にシステムへ侵入できることを示す研究が発表された"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "新しいサイバーセキュリティ研究で、AIエージェントが人の指示なしに自律的にシステムへ侵入する様子が確認された。",
+        "detail": "ある研究チームが、AIエージェント(自分で考えて行動するAIプログラム)がサイバー攻撃を自律的に行えることを示す研究結果を発表した。簡単に言うと、人間がいちいち細かく指示しなくても、AIが自分でハッキングの手順を考えて実行できることが確認されたという内容だ。これまでAIは攻撃の一部を手伝う程度とされてきたが、今回は一連の攻撃行動を自力でこなした点が異なる。\n\n記事の見出しでは「画期的な研究」として紹介されているが、具体的にどのシステムを対象にしたか、どの程度の成功率だったかなど詳しい数値はまだ分かっていない。AIエージェントが自律的に脆弱性を見つけて侵入できることは、防御側の対策にも大きく関わる仕組みのため注目されている。\n\n企業のセキュリティ担当者にとっては、AIを使った攻撃に備える重要性が増すことになる。一方で、研究の詳細な手法や対象、安全面での配慮については現時点で明らかにされていない。今後、研究内容の詳細が公開されるか注目される。",
+        "change_summary": "AIエージェントが自律的に一連のハッキング行動をこなせることが研究で示された点が新しい。",
+        "impact_summary": "企業のセキュリティ対策にAIを使った攻撃への備えが求められるようになる可能性がある。",
+        "action_suggestion": "研究の対象システムや手法、成功率などの詳細はまだ公開されていない。",
+        "importance": "B",
+        "related_categories": [
+          "セキュリティ",
+          "研究・技術"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiekfvx3lxte9xqwhjx1fjoglhntjnmtbpztu0c0puwfjczg9qzvptajdyaed5qjdpzfu3z2h4yjm4ejhiy3fxsfhiamzhew0wzmzyzzdoawhnsy1aa0lwtdz6bxlrnjdwn0hrduv5qkzyeho5vwdesezomenfqw9yskf3": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiekfvx3lxte9xqwhjx1fjoglhntjnmtbpztu0c0puwfjczg9qzvptajdyaed5qjdpzfu3z2h4yjm4ejhiy3fxsfhiamzhew0wzmzyzzdoawhnsy1aa0lwtdz6bxlrnjdwn0hrduv5qkzyeho5vwdesezomenfqw9yskf3",
+      "content_hash": "b980b032c0f71f0a974e31057100993995111e1afd4b4adea8478bc412075836",
+      "story_key": "52c5c61fdbe5c6465b2638dbb646c2b44116c12508f73b3a27812a757d51abac",
+      "status": "enriched",
+      "processed_at": "2026-10-18T08:55:29.538Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "DeepSeek",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "DeepSeek、新型AI「V4.1 Flash-1017」を発表 速度と推論・コード性能を向上",
+        "source_url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9xQWhjX1FjOGlHNTJNMTBPZTU0c0pUWFJCZG9QZVpTajdyaEd5QjdPZFU3Z2h4YjM4ejhIY3FxSFhiamZheW0wZmZYZzdOaWhnSy1aa0lWTDZ6bXlRNjdWN0hRdUV5QkZYeHo5VWdESEZoMENFQW9YSkF3?oc=5",
+        "source_name": "Chosunbiz",
+        "is_official": false,
+        "published_at": "2026-10-18T04:52:00.000Z",
+        "source_published_at": "2026-10-18T04:52:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-18T08:51:47.582Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "DeepSeek",
+          "V4.1 Flash-1017"
+        ],
+        "primary_entity": "DeepSeek",
+        "story_subject": "DeepSeek V4.1 Flash-1017",
+        "event_type": "release",
+        "event_stage": "announced",
+        "event_scope": "不明",
+        "fact_slots": [
+          {
+            "type": "version",
+            "scope": "DeepSeekモデル",
+            "value": "V4.1 Flash-1017",
+            "normalized_value": "v4.1flash1017"
+          }
+        ],
+        "new_facts": [
+          "DeepSeekが新モデル「V4.1 Flash-1017」を発表した",
+          "速度・推論・コード性能が向上し、低価格を維持しているとされる"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "中国のDeepSeekが新しいAIモデル「V4.1 Flash-1017」を発表し、処理速度や推論・プログラミング性能を高めつつ低価格を維持した。",
+        "detail": "中国のAI企業DeepSeekが、新しいAIモデル「V4.1 Flash-1017」を発表した。簡単に言うと、文章で質問に答えたりプログラムのコードを書いたりできるAIの新版で、動きの速さと考える力を高めたものだ。これまでのモデルと比べて、処理速度や複雑な問題を解く推論力、プログラム作成(コード)の性能が向上したとされている。\n\n記事によると、今回のモデルは性能を高めながらも利用料金は低価格のまま維持されているという。DeepSeekはこれまでも低コストで高性能なAIを出すことで知られており、今回のV4.1 Flash-1017もその路線を引き継いだ形だ。具体的な料金や性能の数値は記事内では明らかにされていない。\n\n企業や開発者にとっては、低コストで高性能なAIの選択肢が増えることになる。ただし、安全性や日本語対応の精度など、利用にあたって確認すべき点は記事からは分からない。正式な提供開始時期や対応言語の詳細は今後の発表を待つ必要がある。",
+        "change_summary": "DeepSeekの新モデルが速度・推論・コード性能を向上させつつ低価格を維持した点が新しい。",
+        "impact_summary": "開発者や企業は、低コストで性能の高いAIを選べる選択肢が一つ増えることになる。",
+        "action_suggestion": "具体的な料金設定や提供開始時期、対応言語などの詳細はまだ公開されていない。",
+        "importance": "A",
+        "related_categories": [
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmizkfvx3lxtfbcm29xvnr6m3d4wdnyyu1xdhlnm0pycdcxndniohnncg5kauptlvayrhlhoefgnktszkvulxj2sm4xtky2oxfqckdcbzm4vtmtexfgb3p3ui12t09pejjmzkx4n2drdw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmizkfvx3lxtfbcm29xvnr6m3d4wdnyyu1xdhlnm0pycdcxndniohnncg5kauptlvayrhlhoefgnktszkvulxj2sm4xtky2oxfqckdcbzm4vtmtexfgb3p3ui12t09pejjmzkx4n2drdw",
+      "content_hash": "d16b646d5fe8326bc97e8e51db43a237921a97ef667220ab16e4e54bfeb17da3",
+      "story_key": "0d4f8b0d56f6ba9d53aa6dc69951499a21c98ab8743207d58b69d680d0b43a1d",
+      "status": "retry",
+      "processed_at": "2026-10-18T08:55:29.538Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmijwfbvv95cuxoufoxywfywwfqqtrraxdrexzyymo5s0zabg04mmlmbnp5r1vomusylwpimvg0buhnounqmmxzv05bwm1drvg4qlhonw9qbuo5uktelxhfmmc4vxhkmzhpbgxuz2l0cjhgde1maetpu0hbnzdqbtzpaefhrenkvu9hcg9iefhdalbpsunzsejgrq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmijwfbvv95cuxoufoxywfywwfqqtrraxdrexzyymo5s0zabg04mmlmbnp5r1vomusylwpimvg0buhnounqmmxzv05bwm1drvg4qlhonw9qbuo5uktelxhfmmc4vxhkmzhpbgxuz2l0cjhgde1maetpu0hbnzdqbtzpaefhrenkvu9hcg9iefhdalbpsunzsejgrq",
+      "content_hash": "2c723d8dc4f92d14426e1c1aa132087cf3ab0ffb34fa9545e84d95c1a0c7d3f5",
+      "story_key": "a2f3fbdc761982a7baf1a100cfab4772c52a6bb155d13011194547ac65887d84",
+      "status": "retry",
+      "processed_at": "2026-10-18T08:55:29.538Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmipgfbvv95cuxneejargxrs1dezwuya1pgvghkukfrr0hxzlp6ekhqmep4oc1tueowbnnub2fwdfnyvgtmuhhzd09rsfhovtzhwuy2y1rkugpicfzhylpibejxekrkqug0dlpywezqcvbptmfrthrcbk9sbxzhblvsouo5uezkrevvee93ekxarem1a0vlowtdrmtrak1vluzlrgjmls1velfomzhxuufb": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmipgfbvv95cuxneejargxrs1dezwuya1pgvghkukfrr0hxzlp6ekhqmep4oc1tueowbnnub2fwdfnyvgtmuhhzd09rsfhovtzhwuy2y1rkugpicfzhylpibejxekrkqug0dlpywezqcvbptmfrthrcbk9sbxzhblvsouo5uezkrevvee93ekxarem1a0vlowtdrmtrak1vluzlrgjmls1velfomzhxuufb",
+      "content_hash": "911954a87b6be5c354620a195fe7cbd91694a989990d572c019106e72a50da88",
+      "story_key": "8e3f1c609172c3bbafb9efc30abc041f4ecfa29215366d092a347c19fef013fb",
+      "status": "retry",
+      "processed_at": "2026-10-18T08:55:29.538Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmijgfbvv95cuxpzvjqu1b3mdjcyks3t3bxunprswzmmgxyzglabgszowp2znjjcgtya0flczzsvxpdoupqsvfwbhhivhzquwc1ykhplwxhlwlouu1jd0pnbwvqa3vddlyxnlpowejpafczmk44u0nhajnibwrlbgtqmmdsvjnbbtfovjzddfrlzlkyaw8yrxh3": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmijgfbvv95cuxpzvjqu1b3mdjcyks3t3bxunprswzmmgxyzglabgszowp2znjjcgtya0flczzsvxpdoupqsvfwbhhivhzquwc1ykhplwxhlwlouu1jd0pnbwvqa3vddlyxnlpowejpafczmk44u0nhajnibwrlbgtqmmdsvjnbbtfovjzddfrlzlkyaw8yrxh3",
+      "content_hash": "7fa47f8356bfe8b8932ec264c2966136f92690832863354f905b441533f4c5ec",
+      "story_key": "adf07404fa1098e77f19a8b0146d6ae17605d57cf49e16c7cdd860a7c50b73ec",
+      "status": "enriched",
+      "processed_at": "2026-10-18T08:56:41.926Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "ChatGPT / OpenAI",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "ChatGPT利用中止、OpenAI CEO役のスパイダーマン俳優が不信感示す",
+        "source_url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPZVJqU1B3MDJCYks3T3BxUnprSWZmMGxYZGlabGszOWp2ZnJJcGtya0FlczZsVXpDOUpqSVFWbHhIVHZqUWc1YkhpLWxhLWlOUU1Jd0pNbWVqa3VDdlYxNlpoWEJPaFczMk44U0NHajNibWRLbGtQMmdsVjNBbTFoVjZDdFRLZlkyaW8yRXh3?oc=5",
+        "source_name": "Yahoo!ニュース",
+        "is_official": false,
+        "published_at": "2026-10-17T23:50:02.000Z",
+        "source_published_at": "2026-10-17T23:50:02.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-18T08:51:47.582Z",
+        "event_at": "",
+        "event_status": "不明",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "ChatGPT",
+          "OpenAI"
+        ],
+        "primary_entity": "OpenAI",
+        "story_subject": "ChatGPT利用中止発言",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "個人の利用停止",
+        "fact_slots": [],
+        "new_facts": [
+          "スパイダーマン俳優がChatGPT利用をやめたと発言した",
+          "俳優は使用を勧める人が技術を理解していないと述べた"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "スパイダーマン俳優がChatGPT利用をやめ、使用を勧める人は技術を理解していないと不信感を示したと報じられた。",
+        "detail": "あるスパイダーマン俳優が、ChatGPTの利用をやめたと明らかにした。この俳優はOpenAIのCEOを演じた経験があるとされている。簡単に言うと、AIチャットボットのChatGPTを個人的に使うのをやめたという話で、以前は利用していたが今回利用中止を公表した点が新しい。\n\n記事によると、この俳優は「ChatGPTの使用を勧める人たちは、この技術をよく理解していない」と述べ、不信感を示したという。記事では具体的な技術的根拠の説明はなく、俳優の個人的な感想が中心になっている。著名人がAIツールへの不信感を公の場で語ることで、一般の人のAIへの印象に影響を与える可能性がある点が注目される。\n\nこの発言によってChatGPTの機能や料金が直接変わるわけではない。俳優の発言はあくまで個人の意見であり、具体的な技術的根拠は記事内で示されていない。俳優がどの作品でOpenAIのCEO役を演じたかの詳細や、OpenAI側の反応は本記事では確認できない。",
+        "change_summary": "著名な俳優がChatGPT利用停止を公表し、技術理解不足への不信感を述べたことが新たに報じられた。",
+        "impact_summary": "著名人の発言が一般利用者のAIツールへの印象や利用判断に影響を与える可能性がある。",
+        "action_suggestion": "OpenAIや俳優側からの追加コメントは現時点で確認されていない。",
+        "importance": "C",
+        "related_categories": [
+          "AIツール・モデル",
+          "その他"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmi0gjbvv95cuxnvw5yakvhqm9yd0riskhmz05wzjrqy2xyrtrbc2d1twu0t1zjnzdlx1riuwxgttfravpgvxd2bwu2anmyuja3a1nqmk5xmmtqbwz3czhbv1nktfptbdl4rdlrvu9az1hwmkvix3rsrl96bgducxbkthpxsmjmogf0uv9wtdhmtkriqzjrruw5z1g0zfjxmc1cndh5bwlvqwvnd0sya0ewtg9hnndpdk10wxjmmtv5ylpbztbdcxzlrvnznfbiawv2eezjqu1qcflzwvj2vek5rmrhsxvnztkxvvlxrtdqsgporm94avnptetlzzbzcenmnhnmwwljr1jrulvvotd2emv3sv9ebvuzwgntsk1znxcwnmzhrhjhbnlbu0fib0r3n0panw9zvnq1etfncg1mynnnq2dvuepzvvztmnhpeuuzofnznw1stznzdw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmi0gjbvv95cuxnvw5yakvhqm9yd0riskhmz05wzjrqy2xyrtrbc2d1twu0t1zjnzdlx1riuwxgttfravpgvxd2bwu2anmyuja3a1nqmk5xmmtqbwz3czhbv1nktfptbdl4rdlrvu9az1hwmkvix3rsrl96bgducxbkthpxsmjmogf0uv9wtdhmtkriqzjrruw5z1g0zfjxmc1cndh5bwlvqwvnd0sya0ewtg9hnndpdk10wxjmmtv5ylpbztbdcxzlrvnznfbiawv2eezjqu1qcflzwvj2vek5rmrhsxvnztkxvvlxrtdqsgporm94avnptetlzzbzcenmnhnmwwljr1jrulvvotd2emv3sv9ebvuzwgntsk1znxcwnmzhrhjhbnlbu0fib0r3n0panw9zvnq1etfncg1mynnnq2dvuepzvvztmnhpeuuzofnznw1stznzdw",
+      "content_hash": "5981cc9784b994c0156a82a683e91e9d549b525c891493b6fcbbed64aefe00db",
+      "story_key": "90a96fd457b250b5efb240a9565fc73f9def888e2025512854b23738443be53d",
+      "status": "rejected",
+      "processed_at": "2026-10-18T08:56:41.926Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: アダルト内容の宣伝的スパムでニュース性がない"
+    },
+    "url:https://news.google.com/rss/articles/cbmixgfbvv95cuxpwelav0txcejzt3c2zjb6t3fnr3bbrhatovu1vtj5qkdwz2lurw03wl9nu082y2zlujzvefjqutnltgtkyxhdzxzjc0j5m0xcutmyutnzuw1rs2x2lxa1ew1or1hxc2dpx3dosi1jtmhtshjim1van1awlwpfz0utudnoz1rantlytndfefnarkrpaelmbxh2nzluzxbkvwyyqi1ieunyevdodlf5eupbadhyuc1zt2jaus1pntbfchv0exnxewc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmixgfbvv95cuxpwelav0txcejzt3c2zjb6t3fnr3bbrhatovu1vtj5qkdwz2lurw03wl9nu082y2zlujzvefjqutnltgtkyxhdzxzjc0j5m0xcutmyutnzuw1rs2x2lxa1ew1or1hxc2dpx3dosi1jtmhtshjim1van1awlwpfz0utudnoz1rantlytndfefnarkrpaelmbxh2nzluzxbkvwyyqi1ieunyevdodlf5eupbadhyuc1zt2jaus1pntbfchv0exnxewc",
+      "content_hash": "fad01a99befeb7c5a1283a0e41d1d8e25bf53ad09dfd98e525e2a96733b30d3d",
+      "story_key": "82fe8da6ef1ab3f8eb5899852fa373efa855f87f58cc7fa543757eb2b69197cd",
+      "status": "rejected",
+      "processed_at": "2026-10-18T08:56:41.926Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 空港滑走路の改修工事の記事でAIと無関係"
+    },
+    "url:https://news.google.com/rss/articles/cbmiggfbvv95cuxpsjhkze1mdzhyqvk1ywrmqzfncgy0mu43rdfjdjdimjbydwjhaue1ymd6odbmdzzst3dfuw1tzvlinm5kelvbd1rtszf6cdnpbhyxttfievgtug1gamnwqzfxdwnbuxvxaer3rzrrwtbgow5owfngmzfsrc1gclawwnhn": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiggfbvv95cuxpsjhkze1mdzhyqvk1ywrmqzfncgy0mu43rdfjdjdimjbydwjhaue1ymd6odbmdzzst3dfuw1tzvlinm5kelvbd1rtszf6cdnpbhyxttfievgtug1gamnwqzfxdwnbuxvxaer3rzrrwtbgow5owfngmzfsrc1gclawwnhn",
+      "content_hash": "8daef836a96e06d4963cf986f9c6a1544e0d059531c5b7646c5294a1f58943f1",
+      "story_key": "ec03ae3a0eac0983122a77c952ce4db9f44d81d2e0c8f51f749e7aa713a11c02",
+      "status": "rejected",
+      "processed_at": "2026-10-18T08:56:41.926Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 宣伝的な切り抜き動画で内容が不明瞭"
+    },
+    "url:https://news.google.com/rss/articles/cbmidefvx3lxte1rb2piwtfiytc0uhdoqxy5emv3wk9lvkf2zvjlvxrlbjq2whh4dnlcc3bpvtfwzwdtvwdlsknxm3rpcnyztno2sugzou1juk9wmgxfnfr6zujxtjl3q0hin3brdgnyus1xemkwnnazqxa4bhmz": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte1rb2piwtfiytc0uhdoqxy5emv3wk9lvkf2zvjlvxrlbjq2whh4dnlcc3bpvtfwzwdtvwdlsknxm3rpcnyztno2sugzou1juk9wmgxfnfr6zujxtjl3q0hin3brdgnyus1xemkwnnazqxa4bhmz",
+      "content_hash": "6cb0fbe69ce27a94dae8f87ab9012b9155a0277e86293f3ed5b2e7c1e4ba3474",
+      "story_key": "535a77248131905d4302981dbbd462de86d0031144c022c36589cfce982d8683",
+      "status": "retry",
+      "processed_at": "2026-10-18T08:56:41.926Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmilafbvv95cuxou0t4dzrmwgu2sk5ns1ltv1gwwhl2zlc1skvna0xydxrknmhhs19ntla1a0s4tupvcjq0wdzdqnm5bmryrzv5btvsrhyzwxy2oxvpedjreedbcjrmy0lobxhutwwxymxjywzfauiwwtjirnrwmzjgtjm1cng3aujjvzltdm5mcnnzm0rxz3z1rwjrvljy": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmilafbvv95cuxou0t4dzrmwgu2sk5ns1ltv1gwwhl2zlc1skvna0xydxrknmhhs19ntla1a0s4tupvcjq0wdzdqnm5bmryrzv5btvsrhyzwxy2oxvpedjreedbcjrmy0lobxhutwwxymxjywzfauiwwtjirnrwmzjgtjm1cng3aujjvzltdm5mcnnzm0rxz3z1rwjrvljy",
+      "content_hash": "5bc6b062f81145d8cd8c0c12f5f2271aa40e08e5fc1b770048c0cb9a9fb8848c",
+      "story_key": "97089899e08957744dfb7167c7f36535ea311c08f209be7a7d87a58d1f5dab29",
+      "status": "retry",
+      "processed_at": "2026-10-18T08:56:41.926Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmi9wfbvv95cuxqnhyym1pzowqzyw04cevotxuxrhjfnmq2mtzhdnk3v1zzn1bontllehhxzulswnfgdmtkm0hksfctmlzly01zb1dxoe05vmtkvehfbvvtee45vmd2ukrydkfpsnbju05xyjdwotbsn19eazldbfbzvxdbv2hicwrnelb3umlxvhdwudq4me5vrmdjzlzhq3zkukcxtm5pvlvwb2dhowi4dhnmcfgzn3zzr3pmmwryuew4zvg2t1fytxpzrknpnmxztzdimlnrymxnmmnzylber0lyd19iqjnrdmtyq3uwmlrpz3n0rlc4nmg2udh6n0pb": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmi9wfbvv95cuxqnhyym1pzowqzyw04cevotxuxrhjfnmq2mtzhdnk3v1zzn1bontllehhxzulswnfgdmtkm0hksfctmlzly01zb1dxoe05vmtkvehfbvvtee45vmd2ukrydkfpsnbju05xyjdwotbsn19eazldbfbzvxdbv2hicwrnelb3umlxvhdwudq4me5vrmdjzlzhq3zkukcxtm5pvlvwb2dhowi4dhnmcfgzn3zzr3pmmwryuew4zvg2t1fytxpzrknpnmxztzdimlnrymxnmmnzylber0lyd19iqjnrdmtyq3uwmlrpz3n0rlc4nmg2udh6n0pb",
+      "content_hash": "23deadf8ce4fca6561807ff8eb025a7f5c042d5d6441f3e44ca249454340aa79",
+      "story_key": "5accd6b9fab5fbd00655c8c2f01f0861ebdd9120b0b49dcd32a8979a0ef440ae",
+      "status": "rejected",
+      "processed_at": "2026-10-18T08:56:58.184Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: タイトルの繰り返しのみで具体的な事実が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmiqkfvx3lxtfa4uwxzaxhoz1ntlvnvunrwc0zflwdosu9pttvunkz3b1djrgnkazd0a0t3wvixy2iwbw9oal9kbddmuq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiqkfvx3lxtfa4uwxzaxhoz1ntlvnvunrwc0zflwdosu9pttvunkz3b1djrgnkazd0a0t3wvixy2iwbw9oal9kbddmuq",
+      "content_hash": "6f3c6ceff2fc0bc0fbeb840c6e821f79ff811b20bc47180490ac28bd9f71b04c",
+      "story_key": "2e5d5ae80f5864edc8c480087d6b8c7311f186705b097d59ebd0a76931c89e6b",
+      "status": "rejected",
+      "processed_at": "2026-10-18T08:56:58.185Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 娯楽的な実況動画で専門的な主張や分析が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxte9kzmnnmehpwkpcuf9yws1mlvrkz0xsrhm5unrnzvg4u244cmxzcw1jvxyxaxaxuk1qsznmzzjrluhjrkzgvmpuogtimk9eume4ylv3": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxte9kzmnnmehpwkpcuf9yws1mlvrkz0xsrhm5unrnzvg4u244cmxzcw1jvxyxaxaxuk1qsznmzzjrluhjrkzgvmpuogtimk9eume4ylv3",
+      "content_hash": "c337b3d66f342574101010b9f2ea2452936dfc03a70e514ce6364c212de1f885",
+      "story_key": "5cb7eb2e8f3db513522630edf2a56051a1c5cdc5da3e7b474f4d40b6cfe70334",
+      "status": "retry",
+      "processed_at": "2026-10-18T08:56:58.185Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
     }
   },
-  "updated_at": "2026-10-18T06:36:34.019Z"
+  "updated_at": "2026-10-18T08:56:58.185Z"
 }
