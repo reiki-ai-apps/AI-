@@ -7,12 +7,12 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-18T08:51:47.582Z",
-  "window_end": "2026-10-19T09:55:00.425Z",
-  "last_window_end": "2026-10-19T09:55:00.425Z",
-  "last_checked_at": "2026-10-19T09:58:25.294Z",
-  "last_published_at": "2026-10-19T09:58:25.294Z",
-  "home_content_changed_at": "2026-10-19T09:58:25.294Z",
+  "window_start": "2026-10-19T09:55:00.425Z",
+  "window_end": "2026-10-19T16:58:32.794Z",
+  "last_window_end": "2026-10-19T16:58:32.794Z",
+  "last_checked_at": "2026-10-19T17:02:53.439Z",
+  "last_published_at": "2026-10-19T17:02:53.439Z",
+  "home_content_changed_at": "2026-10-19T17:02:53.439Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
@@ -22,46 +22,109 @@
   "distinct_candidate_count": 4,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 4,
-  "cross_edition_duplicate_count": 0,
-  "cross_edition_duplicate_groups": [],
+  "novel_candidate_count": 3,
+  "cross_edition_duplicate_count": 1,
+  "cross_edition_duplicate_groups": [
+    {
+      "representative_id": "article_111e19183d044fd72d05",
+      "duplicate_ids": [
+        "article_62dfa4827ea292d80cc5"
+      ]
+    }
+  ],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 4,
-  "continued_selected_count": 1,
+  "new_selected_count": 3,
+  "continued_selected_count": 2,
   "tool_evolution_selected_count": 2,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
+    "article_23ca248f6e33386f6082",
+    "article_0b3543e642fc5b0d56ac",
+    "article_a3a2ccae68af08d5b354",
     "article_dc5a7163f86d81315196",
-    "article_0c4b025559b507f530a9",
-    "article_a5737cac9c514943311a",
-    "article_38ea5a28f99c91dfc84a",
     "article_64ac185c778723687417"
   ],
   "new_article_ids": [
-    "article_dc5a7163f86d81315196",
-    "article_0c4b025559b507f530a9",
-    "article_a5737cac9c514943311a",
-    "article_38ea5a28f99c91dfc84a"
+    "article_23ca248f6e33386f6082",
+    "article_0b3543e642fc5b0d56ac",
+    "article_a3a2ccae68af08d5b354"
   ],
   "continued_article_ids": [
+    "article_dc5a7163f86d81315196",
     "article_64ac185c778723687417"
   ],
   "continuation_sources": {
+    "article_dc5a7163f86d81315196": "previous_edition",
     "article_64ac185c778723687417": "previous_edition"
   },
   "scores": {
+    "article_23ca248f6e33386f6082": {
+      "article_id": "article_23ca248f6e33386f6082",
+      "total": 81,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 10,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 3,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-10-19T12:00:12.000Z"
+    },
+    "article_0b3543e642fc5b0d56ac": {
+      "article_id": "article_0b3543e642fc5b0d56ac",
+      "total": 80,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 10,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 10,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "制度・安全への影響"
+      ],
+      "published_at": "2026-10-19T16:47:00.000Z"
+    },
+    "article_a3a2ccae68af08d5b354": {
+      "article_id": "article_a3a2ccae68af08d5b354",
+      "total": 68,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 2,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "大きな製品・市場変化"
+      ],
+      "published_at": "2026-10-19T11:38:19.000Z"
+    },
     "article_dc5a7163f86d81315196": {
       "article_id": "article_dc5a7163f86d81315196",
-      "total": 93,
+      "total": 83,
       "breakdown": {
         "importance": 45,
         "topicality": 15,
         "scope": 10,
         "authority": 5,
-        "freshness": 10,
+        "freshness": 0,
         "tool_evolution": 8,
         "penalty": 0
       },
@@ -72,61 +135,6 @@
         "AIツールの能力進化"
       ],
       "published_at": "2026-10-19T08:50:06.000Z"
-    },
-    "article_0c4b025559b507f530a9": {
-      "article_id": "article_0c4b025559b507f530a9",
-      "total": 59,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 12,
-        "scope": 3,
-        "authority": 5,
-        "freshness": 6,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "主要AI企業・基盤",
-        "重要な経営・研究体制",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-10-19T00:55:36.000Z"
-    },
-    "article_a5737cac9c514943311a": {
-      "article_id": "article_a5737cac9c514943311a",
-      "total": 55,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 9,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化"
-      ],
-      "published_at": "2026-10-19T07:55:00.000Z"
-    },
-    "article_38ea5a28f99c91dfc84a": {
-      "article_id": "article_38ea5a28f99c91dfc84a",
-      "total": 38,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 0,
-        "scope": 3,
-        "authority": 5,
-        "freshness": 5,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B"
-      ],
-      "published_at": "2026-10-18T22:34:35.000Z"
     },
     "article_64ac185c778723687417": {
       "article_id": "article_64ac185c778723687417",
@@ -427,6 +435,95 @@
       "previous_article_id": "",
       "selected_at": "2026-10-19T09:58:25.294Z",
       "edition_window_end": "2026-10-19T09:55:00.425Z"
+    },
+    {
+      "article_id": "article_23ca248f6e33386f6082",
+      "story_id": "story_3b71d839b5e355f85b",
+      "title": "DeepSeek、新しいAIモデルを公開 開発コストを米国勢の10分の1以下に抑制",
+      "primary_entity": "DeepSeek",
+      "story_subject": "新AIモデルの公開とコスト削減",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "全世界",
+      "story_entities": [
+        "DeepSeek",
+        "deepseek"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "開発コストの比較",
+          "value": "米国勢の10分の1以下",
+          "normalized_value": "10"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-19T17:02:53.439Z",
+      "edition_window_end": "2026-10-19T16:58:32.794Z"
+    },
+    {
+      "article_id": "article_0b3543e642fc5b0d56ac",
+      "story_id": "story_3452748409da9e335f",
+      "title": "トランプ政権がDeepSeekの全面禁止方針、機密情報流出を懸念",
+      "primary_entity": "アメリカ政府(トランプ政権)",
+      "story_subject": "DeepSeek全面禁止方針",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "アメリカ",
+      "story_entities": [
+        "DeepSeek",
+        "トランプ政権",
+        "deepseek"
+      ],
+      "fact_slots": [
+        {
+          "type": "status",
+          "scope": "DeepSeek利用規制",
+          "value": "全面禁止方針",
+          "normalized_value": "全面禁止方針"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-19T17:02:53.439Z",
+      "edition_window_end": "2026-10-19T16:58:32.794Z"
+    },
+    {
+      "article_id": "article_a3a2ccae68af08d5b354",
+      "story_id": "story_d4c4629d8da473331d",
+      "title": "Salesforce、スペインに10億ドルを投資しAI分野での主導権強化へ",
+      "primary_entity": "Salesforce",
+      "story_subject": "スペインへの10億ドル投資",
+      "event_type": "funding",
+      "event_stage": "announced",
+      "event_scope": "スペイン",
+      "story_entities": [
+        "Salesforce",
+        "スペイン",
+        "salesforce"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "投資額",
+          "value": "10億ドル",
+          "normalized_value": "1000000000USD"
+        },
+        {
+          "type": "region",
+          "scope": "投資対象国",
+          "value": "スペイン",
+          "normalized_value": "スペイン"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-19T17:02:53.439Z",
+      "edition_window_end": "2026-10-19T16:58:32.794Z"
     }
   ]
 }
