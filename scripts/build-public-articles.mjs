@@ -50,7 +50,7 @@ function relatedArticles(item,id,pool,limit=3){
     return {...candidate,score:shared*2+entityMatch,date};
   }).sort((a,b)=>b.score-a.score||b.date-a.date).slice(0,limit);
 }
-function page(item,id,related=[]){
+function page(item,id,related=[],peers=[]){
   const expertVideo=String(item.content_type||"").toLowerCase()==="expert_video";
   const sourceUrl=safeHttpUrl(item.source_url);
   const canonical=`${baseUrl}articles/${encodeURIComponent(id)}/`;
@@ -59,9 +59,8 @@ function page(item,id,related=[]){
   const description=clean(item.easy_summary||item.raw_excerpt||item.detail,180)||(expertVideo?"AI進化レーダーが動画で学べることと背景を整理した解説です。":"AI進化レーダーが重要度と仕事への影響を整理したAIニュースです。");
   const published=isoDate(item.source_published_at||item.published_at||item.fetched_at);
   const updated=isoDate(item.source_updated_at||item.fetched_at||item.published_at);
-  const image=sourceImage(item);
-  const visual=articleVisual(item);
-  const socialImage=image||`${baseUrl}assets/ai-radar-icon-512.png`;
+  const image=sourceImage(item,peers);
+  const visual=articleVisual(item,peers);
   const articleLd={
     "@type":expertVideo?"Article":"NewsArticle",
     "@id":`${canonical}#article`,
@@ -98,9 +97,9 @@ function page(item,id,related=[]){
 <link rel="canonical" href="${canonical}">
 <meta property="og:type" content="article"><meta property="og:site_name" content="AI進化レーダー">
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}">
-<meta property="og:url" content="${canonical}"><meta property="og:image" content="${esc(socialImage)}">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}">
-<meta name="twitter:description" content="${esc(description)}"><meta name="twitter:image" content="${esc(socialImage)}">
+<meta property="og:url" content="${canonical}">${image?`<meta property="og:image" content="${esc(image)}">`:''}
+<meta name="twitter:card" content="${image?'summary_large_image':'summary'}"><meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(description)}">${image?`<meta name="twitter:image" content="${esc(image)}">`:''}
 <script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g,"\\u003c")}</script>
 <script defer src="${baseUrl}assets/visitor-tracker.js"></script>
 <style>
@@ -128,10 +127,11 @@ for(const item of data){
   const id=safeId(item);
   if(id)valid.push({id,item});
 }
+const sourceImagePeers=valid.map(entry=>entry.item);
 for(const {id,item} of valid){
   const dir=path.join(outRoot,id);
   fs.mkdirSync(dir,{recursive:true});
-  fs.writeFileSync(path.join(dir,"index.html"),page(item,id,relatedArticles(item,id,valid)),"utf8");
+  fs.writeFileSync(path.join(dir,"index.html"),page(item,id,relatedArticles(item,id,valid),sourceImagePeers),"utf8");
 }
 
 const sitemap=[
