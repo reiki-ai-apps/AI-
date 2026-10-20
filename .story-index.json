@@ -2,6 +2,94 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_5cb15942902e5d9ffca6",
+      "story_id": "story_552273ee42c4d5c831",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "DeepSeekが自社推論エンジン「DeepInfer」を公開",
+      "source_published_at": "2026-10-20T12:27:42.000Z",
+      "published_at": "2026-10-20T12:27:42.000Z",
+      "fetched_at": "2026-10-20T15:03:32.750Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "中国のAI企業DeepSeekが、自社モデルを提供するための推論エンジン「DeepInfer」を公開した。",
+      "source_name": "Pasquale Pillitteri",
+      "source_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPTjQzR3NQY1lOXzNYWFBxZXg4bTJ6SHkxX2Z0d0dtZjhuWFZpOXZsVUQ0aFVwZUZFazlzYW1iZEREY3FoamZVWFJyY0lBWFIzM1NlSXBuVFRHWkVNYnFjQ2xtNGxSTG14R3pwalBwNFJVWFNkNjlMVHpkSTJkdHVHQkJyT0NFUEdDeWc?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "DeepInfer",
+        "deepseek",
+        "deepinfer"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepInfer",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "DeepSeekモデル提供基盤",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "DeepSeekが自社モデル提供用の推論エンジン「DeepInfer」を新たに公開した。",
+      "detail": "中国のAI企業DeepSeek(ディープシーク)が、推論エンジン「DeepInfer」を公開した。推論エンジンとは、学習済みのAIモデルに質問や指示を入力して答えを計算させるための土台となるソフトウェアのことである。これまでDeepSeekは他社の基盤を使ってモデルを提供することが多かったが、今回は自社製の提供基盤を用意した形になる。\n\nDeepInferは、DeepSeek自身のAIモデルを動かし、利用者に提供するための基盤として位置づけられている。具体的な処理速度や対応するモデルの種類、公開範囲など詳しい数値は記事からは確認できない。自社で推論エンジンを持つことで、モデルの提供や運用を自社でコントロールしやすくなるとみられる。\n\nDeepSeekのモデルを利用する開発者や企業にとっては、今後の提供方法や利用条件に変化が出る可能性がある。ただし価格や利用開始時期、サービスの詳細はまだ発表されていない。",
+      "new_facts": [
+        "DeepSeekが自社モデル提供用の推論エンジン「DeepInfer」を公開した。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_4da1da22bfadf6a24386",
+      "story_id": "story_98d2e6573368b6cf39",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.7490322580645161,
+      "title": "ドイツとNVIDIAがAI提携を拡大、100億ドル規模の投資を約束",
+      "source_published_at": "2026-10-20T12:24:52.000Z",
+      "published_at": "2026-10-20T12:24:52.000Z",
+      "fetched_at": "2026-10-20T15:03:32.750Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "ドイツ政府とNVIDIAがAI分野の提携を拡大し、100億ドル規模の投資を約束したと報じられた。",
+      "source_name": "Yahoo Finance",
+      "source_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxON09XNXR0RGl6ckxmV3I3STVkSW9vVTk5d21NZ3Jfa1huT1RtTU1GVFZoZlplTTNYUWVfVHpBT2diRmszSm5wSDloZ0tiRXdIUGZ1WU5uZkVYc3plazJKbDJqckhZMkRjV29aUEI5NXZGY0xwWXFqaWwzV1Zid1BTVG5Qb1lWMFY1VXlYQ0RxdnoyNWJCUzR1UHlKZU9qTUsteHc?oc=5",
+      "story_entities": [
+        "ドイツ",
+        "NVIDIA",
+        "nvidia"
+      ],
+      "primary_entity": "NVIDIA",
+      "story_subject": "ドイツとNVIDIAのAI提携拡大",
+      "event_type": "partnership",
+      "event_stage": "expanded",
+      "event_scope": "ドイツ",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "ドイツとNVIDIAのAI提携投資額",
+          "value": "100億米ドル",
+          "normalized_value": "10000000000USD"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject",
+        "same_event_type",
+        "same_scope",
+        "non_forward_stage_change"
+      ],
+      "change_summary": "ドイツとNVIDIAがAI提携を拡大し、100億ドル規模の投資を約束した。",
+      "detail": "ドイツ政府とNVIDIA(エヌビディア)が、AI分野での提携を拡大し、100億ドル規模の投資を約束したと報じられた。わかりやすく言うと、ドイツがAI用の計算基盤づくりをNVIDIAと一緒に進めるため、大きなお金を投じるという話である。これは既存の提携関係をさらに広げる形での発表とされる。\n\n報じられた投資規模は100億ドル。データセンター建設なのか、AI計算に使う半導体(コンピューターの頭脳となる部品)の供給なのかなど、具体的な使い道の内訳は記事からは確認できない。国レベルでAI基盤に巨額投資をする動きは、他国の政策判断にも影響を与えうる。\n\n日本企業にとっても、各国がAI基盤整備に巨額を投じる流れは国際競争の激化を示す材料になる。ただし投資の実施時期や具体的なプロジェクトの中身、完了時期などはまだ明らかになっていない。",
+      "new_facts": [
+        "ドイツ政府とNVIDIAがAI分野の提携を拡大し、100億ドル規模の投資を約束した。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_d8b4af2bba47742e538e",
       "story_id": "story_252e3f43be2845b238",
       "story_sequence": 1,
@@ -132,6 +220,53 @@
       "dedupe_decision": "new",
       "dedupe_reasons": [
         "no_previous_story"
+      ],
+      "change_summary": "AIが実装まで担うことで、技術者の働き方が時間給型から成果報酬型へ変わりつつあるという見解が示された。",
+      "detail": "ソフトウェア技術者の中島聡氏が、AI時代の働き方について動画で語った。取り上げたのは、顧客の課題を理解してAIで実装まで行う「FDE」という仕事。FDEとは、依頼主の現場に入り込んで働く技術者を指す言葉だという。\n\n動画では、米国でFDEと呼ばれる新しい職種が急速に広がっていると紹介された。FDEは、顧客企業の悩みを理解したうえで、AIを使って解決策を作り上げる役割を担う。これまで主流だった、働いた時間に応じて料金を決める方式が変わりつつあるという話もある。\n\n技術者にとっては、作業時間でなく生み出した成果が評価される働き方に近づく可能性がある。ただしこの内容は中島聡氏個人の見解であり、具体的な裏付け資料は示されていない。生産性の向上幅や削減効果の詳しい算出方法は、この動画からは確認できない。",
+      "new_facts": [
+        "米国でFDEと呼ばれる新職種が急速に広がっていると中島聡氏が紹介した",
+        "FDEは顧客企業の課題を理解しAIを使って実装まで担う役割とされる",
+        "ソフトウェア業界で時間ベースの料金体系から成果ベースへの変化が語られた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_25a05c99553860940d9b_rev_dec97be46587",
+      "story_id": "story_c966cc0d0a3c283b64",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "中島聡氏が語る「FDE」という新職種とAI時代の働き方の変化",
+      "source_published_at": "2026-10-20T08:00:15.000Z",
+      "published_at": "2026-10-20T08:00:15.000Z",
+      "fetched_at": "2026-10-20T09:26:20.937Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "ソフトウェア技術者の中島聡氏が動画で、AIで顧客の課題解決まで担う新職種「FDE」と成果報酬型への働き方の変化を語った。",
+      "source_name": "ビジネス＋ITチャンネル",
+      "source_url": "https://www.youtube.com/watch?v=HejILbNPsyo",
+      "story_entities": [
+        "中島聡",
+        "FDE",
+        "ビジネス+IT",
+        "fde",
+        "ビジネスit"
+      ],
+      "primary_entity": "中島聡",
+      "story_subject": "FDE(顧客課題をAIで実装まで担う新職種)とソフトウェアの成果報酬型ビジネスへの変化",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "米国・ソフトウェア業界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "similar_title",
+        "same_scope",
+        "same_url_content_changed"
       ],
       "change_summary": "AIが実装まで担うことで、技術者の働き方が時間給型から成果報酬型へ変わりつつあるという見解が示された。",
       "detail": "ソフトウェア技術者の中島聡氏が、AI時代の働き方について動画で語った。取り上げたのは、顧客の課題を理解してAIで実装まで行う「FDE」という仕事。FDEとは、依頼主の現場に入り込んで働く技術者を指す言葉だという。\n\n動画では、米国でFDEと呼ばれる新しい職種が急速に広がっていると紹介された。FDEは、顧客企業の悩みを理解したうえで、AIを使って解決策を作り上げる役割を担う。これまで主流だった、働いた時間に応じて料金を決める方式が変わりつつあるという話もある。\n\n技術者にとっては、作業時間でなく生み出した成果が評価される働き方に近づく可能性がある。ただしこの内容は中島聡氏個人の見解であり、具体的な裏付け資料は示されていない。生産性の向上幅や削減効果の詳しい算出方法は、この動画からは確認できない。",
@@ -341,6 +476,54 @@
       "new_facts": [
         "DeepSeekが新しいAIモデルを公開した",
         "コード生成性能でAnthropicのOpus 5を上回る可能性があると報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_c79b90537d390e19bfc0",
+      "story_id": "story_94ef5bb6ebba5dda64",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Claude Mythosの無料ツール「OSS Scanner」が11日間で脆弱性880件をAI判定",
+      "source_published_at": "2026-10-20T02:30:03.000Z",
+      "published_at": "2026-10-20T02:30:03.000Z",
+      "fetched_at": "2026-10-20T15:03:32.750Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "無料セキュリティツール「OSS Scanner」が公開から11日間でオープンソースの緊急・重要脆弱性880件をAIで判定し、近年最悪級のcurl脆弱性も発見した。",
+      "source_name": "Yahoo!ニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE4xME1kNjJ4eFlveXk3U0YzemdBOXZsbk9PdzkwZTdCcFd1TVNoLVdkRTRQVUtwdHRWenJyWGtoYTVlQm1vVGN2ZDdHdXByS2N4Mm5FNENjNVkxcjlTQXJHWWxaVElZOWxYdTVIM0FYVl9jajhhZ2NJeFVjblJLcGs?oc=5",
+      "story_entities": [
+        "Claude Mythos",
+        "OSS Scanner",
+        "curl",
+        "claudemythos",
+        "ossscanner"
+      ],
+      "primary_entity": "Claude Mythos",
+      "story_subject": "OSS Scanner",
+      "event_type": "security",
+      "event_stage": "launched",
+      "event_scope": "オープンソースソフトウェア全般",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "11日間で判定された緊急・重要脆弱性件数",
+          "value": "880件",
+          "normalized_value": "880"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "無料ツール「OSS Scanner」が11日間で880件の脆弱性をAI判定し、curlの重大な欠陥も発見した。",
+      "detail": "Claude Mythosが提供する無料ツール「OSS Scanner」が、公開されているソフトウェア(オープンソースソフトウェア)の脆弱性をAIで自動検査すると発表した。わかりやすく言うと、誰でも使われている無料プログラムの弱点を、AIが代わりに探してくれる仕組みである。これまでは人の手による点検が中心だったが、AIを使うことで短期間に大量のチェックができるようになった。\n\n公開から11日間で、緊急・重要度の脆弱性を合わせて880件AIが判定したことが分かっている。この中には、近年最悪級とされるcurl(インターネット通信に広く使われる基本ソフト)の脆弱性も含まれていた。curlは多くのシステムで使われているため、影響範囲が大きいとされる。このツールは無料で利用できる点も特徴である。\n\nソフトウェア開発者やセキュリティ担当者は、このツールを使うことで脆弱性の早期発見がしやすくなる可能性がある。ただしAI判定の精度や誤検知の有無、今後の運用体制などの詳しい情報はまだ確認できない。",
+      "new_facts": [
+        "OSS Scannerが公開から11日間で緊急・重要脆弱性880件をAI判定した。",
+        "近年最悪級とされるcurlの脆弱性も発見された。"
       ],
       "event_date_precision": "unknown"
     },
