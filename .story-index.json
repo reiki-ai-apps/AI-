@@ -2,6 +2,435 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_d8b4af2bba47742e538e",
+      "story_id": "story_252e3f43be2845b238",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6257142857142857,
+      "title": "ChatGPTの利用枠が予告なしに再びリセット、15日間で5回目",
+      "source_published_at": "2026-10-20T08:52:46.000Z",
+      "published_at": "2026-10-20T08:52:46.000Z",
+      "fetched_at": "2026-10-20T09:26:20.937Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "OpenAIがChatGPTの利用上限を予告なしに変更し、15日間で5回目の調整になったと報じられた。",
+      "source_name": "PC Watch",
+      "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBGQkJFZkw1NFFlTHFSU0Z3OFhWZXNWd2kwX2M1LU9EdzVJVGswODY4SkpZOGd2dlJZb2RYcm9rQm8tVUdFQjlpNlhLVndsc0RCaE5iZEZiMkhzeVQ2MzYxRml0WQ?oc=5",
+      "story_entities": [
+        "ChatGPT",
+        "OpenAI",
+        "chatgpt",
+        "openai"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT利用枠リセット",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "ChatGPT全プラン(詳細不明)",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "利用枠リセット回数",
+          "value": "15日間で5回",
+          "normalized_value": "15"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "ChatGPTの利用枠が15日間で5回も予告なしに変更された点が新しい。",
+      "detail": "ChatGPTを提供するOpenAIが、利用できる回数の上限を示す「利用枠」を予告なしに変更したと伝えられました。利用枠とは、一定期間内に使える機能の回数を制限する仕組みのことです。今回の変更は15日間で5回目であり、利用者への事前の告知はなかったとされています。\n\nこれまでも利用枠の調整はありましたが、短期間で頻繁に変わる点が今回の特徴です。記事では具体的な上限の数値や対象プランは明記されていません。なぜ変更が繰り返されるのかについて、OpenAIからの説明は記事内では確認できません。\n\n利用者は突然使える回数が減ったり増えたりする可能性があり、作業の計画に影響が出る恐れがあります。今後、公式な説明や利用枠の詳細が発表されるかどうかは、現時点では不明です。",
+      "new_facts": [
+        "ChatGPTの利用枠が予告なしにリセットされ、15日間で5回目となった"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_a6c989e1866d8b356c79",
+      "story_id": "story_97699e3b0caf298ff2",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Anthropic、AIモデル停止の基準を『被害10億ドル超か死者50人超』に限る法案を提案",
+      "source_published_at": "2026-10-20T08:02:38.000Z",
+      "published_at": "2026-10-20T08:02:38.000Z",
+      "fetched_at": "2026-10-20T09:26:20.937Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "AnthropicはAIモデルの強制停止条件を被害額10億ドル超または死者50人超の場合に限定する法案を提案したと報じられた。",
+      "source_name": "Pasquale Pillitteri",
+      "source_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNTHpyV1dEam9ZMmYxRWZ1LVh5WFBOdzV2RDkyb3BYWkZiZjBqUHdzdkpSVk1IbGxfVXlkVU9rdGhrNG9mRnVkQWZ5clBVY25XX0JDMFhzSGVncHBsUDFNZ2xLSGkyMW5wczhqT1Q3eDB5S0xDcTNheDhkSXFOX1FfMmxEcVEyeDlISlV5YU94RXlXbnM?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "anthropic",
+        "claude"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "AIモデル強制停止基準に関する法案",
+      "event_type": "policy",
+      "event_stage": "proposed",
+      "event_scope": "不明",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "停止基準となる被害額",
+          "value": "10億ドル超",
+          "normalized_value": "1000000000USD"
+        },
+        {
+          "type": "count",
+          "scope": "停止基準となる死者数",
+          "value": "50人超",
+          "normalized_value": "50"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AIモデルの強制停止条件を被害額10億ドル超または死者50人超に限定する案をAnthropicが示した。",
+      "detail": "AI企業のAnthropicが、AIモデルを政府などが強制的に止められる条件を定める法案を提案したと報じられました。これまで止める基準がはっきりしていなかった分野に、具体的な数値の目安を示した点が新しい動きです。\n\n提案の内容は、被害額が10億ドルを超えるか、死者が50人を超える場合に限ってAIモデルの停止を認めるというものです。基準をはっきりさせることで、企業側が予想しやすいルール作りを目指しているとみられます。AIの安全規制をめぐっては、どこまで厳しくするかが世界的な議論になっており、具体的な数値基準の提案は今後の規制論議に影響を与える可能性があります。\n\nAI開発企業にとっては、規制がどこまで及ぶかの見通しが立てやすくなる可能性があります。ただしこの法案はまだ提案段階であり、議会での審議や可決、実際の施行がされたかどうかは記事からは分かりません。今後の審議の行方が注目されます。",
+      "new_facts": [
+        "Anthropicが、AIモデルの強制停止条件を被害額10億ドル超または死者50人超に限定する法案を提案した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_25a05c99553860940d9b",
+      "story_id": "story_c966cc0d0a3c283b64",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "中島聡氏が語る「FDE」という新職種とAI時代の働き方の変化",
+      "source_published_at": "2026-10-20T08:00:15.000Z",
+      "published_at": "2026-10-20T08:00:15.000Z",
+      "fetched_at": "2026-10-20T09:26:20.937Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "ソフトウェア技術者の中島聡氏が動画で、AIで顧客の課題解決まで担う新職種「FDE」と成果報酬型への働き方の変化を語った。",
+      "source_name": "ビジネス＋ITチャンネル",
+      "source_url": "https://www.youtube.com/watch?v=HejILbNPsyo",
+      "story_entities": [
+        "中島聡",
+        "FDE",
+        "ビジネス+IT",
+        "fde",
+        "ビジネスit"
+      ],
+      "primary_entity": "中島聡",
+      "story_subject": "FDE(顧客課題をAIで実装まで担う新職種)とソフトウェアの成果報酬型ビジネスへの変化",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "米国・ソフトウェア業界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AIが実装まで担うことで、技術者の働き方が時間給型から成果報酬型へ変わりつつあるという見解が示された。",
+      "detail": "ソフトウェア技術者の中島聡氏が、AI時代の働き方について動画で語った。取り上げたのは、顧客の課題を理解してAIで実装まで行う「FDE」という仕事。FDEとは、依頼主の現場に入り込んで働く技術者を指す言葉だという。\n\n動画では、米国でFDEと呼ばれる新しい職種が急速に広がっていると紹介された。FDEは、顧客企業の悩みを理解したうえで、AIを使って解決策を作り上げる役割を担う。これまで主流だった、働いた時間に応じて料金を決める方式が変わりつつあるという話もある。\n\n技術者にとっては、作業時間でなく生み出した成果が評価される働き方に近づく可能性がある。ただしこの内容は中島聡氏個人の見解であり、具体的な裏付け資料は示されていない。生産性の向上幅や削減効果の詳しい算出方法は、この動画からは確認できない。",
+      "new_facts": [
+        "米国でFDEと呼ばれる新職種が急速に広がっていると中島聡氏が紹介した",
+        "FDEは顧客企業の課題を理解しAIを使って実装まで担う役割とされる",
+        "ソフトウェア業界で時間ベースの料金体系から成果ベースへの変化が語られた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_603e94648a6d32968c61",
+      "story_id": "story_aaaed4691709ac5454",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "RunwayのCEO、AIが俳優を代替する可能性に言及",
+      "source_published_at": "2026-10-20T07:39:00.000Z",
+      "published_at": "2026-10-20T07:39:00.000Z",
+      "fetched_at": "2026-10-20T09:26:20.937Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "動画生成AI企業RunwayのCEOが、View Conferenceで「AIは人間の俳優を完全に代替できる」と述べたと報じられた。",
+      "source_name": "Variety",
+      "source_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxONy1BUXVtaW5sZ09tX2ZRMklYQjlPRlBqQjVfY3Z0OTVKS0JsODJJdk56a3FJTXk2ZzliMUp1Vkw4QUhCcU1QU3Q3NkhScHg3M1A2Y1ZQVFR5VDRERDVzcldKSDBxWkVIc0tFTDJWM1NXZXFoSzUzZFF2a19NRlNUME9wblFVYUQ2dFhMUDRHTTJSWXVFRml5dGtuUW9OQTNCTWlQMQ?oc=5",
+      "story_entities": [
+        "Runway",
+        "View Conference",
+        "runway",
+        "viewconference",
+        "view"
+      ],
+      "primary_entity": "Runway",
+      "story_subject": "AIによる俳優代替発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "映像業界全般",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "RunwayのCEOが、AIによる俳優の完全代替は『絶対にあり得る』と公の場で発言した点が新しい。",
+      "detail": "動画生成AIを手がける企業RunwayのCEOが、映像業界のイベントView Conferenceで発言しました。動画生成AIとは、文章や画像から動画を自動で作り出す技術のことです。CEOは、AIが人間の俳優を完全に置き換えることが「絶対にあり得る」と述べたと伝えられています。\n\nこの発言は、生成AIが映画やドラマの制作にどこまで入り込むかという議論の中で出たものです。Runwayはすでに映像制作会社向けにAI動画生成ツールを提供しており、今回の発言は自社技術への自信を示したものとみられます。記事では発言の詳しい文脈や具体的な根拠までは示されていません。\n\n俳優や映像制作に関わる人にとって、AIが仕事を奪う可能性について改めて議論を呼ぶ発言です。ただし、これはあくまでCEO個人の見解であり、実際にAIが俳優の仕事を代替する具体的な計画が発表されたわけではありません。今後、この発言に対する業界の反応や反論が出るかは不明です。",
+      "new_facts": [
+        "RunwayのCEOがView ConferenceでAIが俳優を完全代替し得ると述べた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_9a6719a838fdd2594b1b",
+      "story_id": "story_45166ff0a8a71b3dd5",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "ドイツ政府、ベルリン投資サミットでNvidiaとAI分野の提携に署名",
+      "source_published_at": "2026-10-20T07:14:39.000Z",
+      "published_at": "2026-10-20T07:14:39.000Z",
+      "fetched_at": "2026-10-20T09:26:20.937Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "ドイツ政府はベルリンで開かれた投資サミットで、半導体大手NvidiaとAI分野の協力に関する提携に署名した。",
+      "source_name": "The Next Web",
+      "source_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5BbUNtMzdxU1lfV0ttdXh3dTQtdnNmcFE0bHhUQWFjdlplcFF3S1JrZ0J0UTVvUEhod3V1aUlQa3FIUnJsSnlPcGdtY19YRHEycEJoQkE5S1ZJWTZia3dJRVRoekE4LUlPdkFrWno4QzBLdWFOQTZvWThBdw?oc=5",
+      "story_entities": [
+        "ドイツ政府",
+        "Nvidia",
+        "nvidia"
+      ],
+      "primary_entity": "ドイツ政府",
+      "story_subject": "ドイツとNvidiaのAI分野提携",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "ドイツ",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "ドイツ政府がベルリン投資サミットでNvidiaとAI分野の提携に新たに署名した。",
+      "detail": "ドイツ政府が、ベルリンで開催された投資サミットの場でNvidiaとAI分野の提携に署名したと報じられました。Nvidiaは、AIの計算処理に欠かせない半導体(GPUと呼ばれる処理装置)を作る世界最大手の企業です。今回の提携は、国の政府が直接Nvidiaと協力関係を結んだという点が新しい動きです。\n\n署名が行われたのはベルリンの投資サミットという場で、ドイツ国内でのAI関連の産業育成や投資促進を目的としているとみられます。ただし提携の具体的な内容、投資額や対象となる分野の詳細については記事からは分かりません。AIを動かすための半導体の確保や投資は各国の経済・産業政策にとって重要な課題となっており、政府とNvidiaの提携はその一環として注目されます。\n\nドイツ国内のAI関連産業や企業にとっては、今後の投資や技術協力の動きに影響する可能性があります。ただし提携の具体的な成果や実施時期については記事からは確認できません。今後の詳しい発表内容が注目されます。",
+      "new_facts": [
+        "ドイツ政府がベルリン投資サミットでNvidiaとAI分野の提携に署名した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_e67cf3b80d614e034aea",
+      "story_id": "story_28388eb8bc765b6305",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "SB C&Sと東京都北区、Canva活用で業務効率化の実証協定を締結",
+      "source_published_at": "2026-10-20T04:40:56.000Z",
+      "published_at": "2026-10-20T04:40:56.000Z",
+      "fetched_at": "2026-10-20T09:26:20.937Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "SB C&Sと東京都北区がデザインツール「Canva」を使った行政のデザイン作成業務の効率化に向け協定を結んだ。",
+      "source_name": "Dellows News",
+      "source_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBqYU0yMVZHdndOZGVrVERiMWl6ZzQxb3o2TW9vTWNDREdkSENnVVJUZk1lTVNvRERNMFZJbTlQTlotYVhqWU01dFFJQnl0WTVOa0g2QnFBVWVteXZuZE1lZXFGNkc?oc=5",
+      "story_entities": [
+        "SB C&S",
+        "東京都北区",
+        "Canva",
+        "sbcs",
+        "canva"
+      ],
+      "primary_entity": "SB C&S",
+      "story_subject": "Canva活用実証協定",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "東京都北区",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "SB C&Sと東京都北区が、Canvaを使ったデザイン業務効率化の実証に向け新たに協定を結んだ。",
+      "detail": "IT商社のSB C&Sと東京都北区が、業務協定を締結したと発表しました。この協定は、デザイン作成ツール「Canva」を使って、区役所内でのチラシやポスターなどのデザイン作成業務を効率化できるかを試す取り組みです。これまで職員が専門ソフトなしで行っていたデザイン作業を、簡単な操作で行えるようにする狙いがあります。\n\nCanvaは、テンプレートを選んで写真や文字を入れるだけでデザインを作れるツールで、近年はAIによる自動デザイン提案機能も備えています。今回の協定では、北区の職員が実際にCanvaを使い、作業時間の短縮やデザインの質の向上を検証します。自治体がAIを活用したデザインツールを導入する実証例として注目されます。\n\n北区の職員は今後、資料作成の際にCanvaを使う機会が増える見込みです。ただし、実証の具体的な期間や、検証後に正式導入するかどうかは記事内では明らかにされていません。効果測定の結果が公表されるかどうかも、現時点では不明です。",
+      "new_facts": [
+        "SB C&Sと東京都北区がCanva活用の実証に向け協定を締結した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_7cf01e4de93192f3f1db",
+      "story_id": "story_3621d1e4cceadb335b",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "xAIが電話対応AIを公開、StarlinkとTeslaで稼働中と報道",
+      "source_published_at": "2026-10-20T03:01:16.000Z",
+      "published_at": "2026-10-20T03:01:16.000Z",
+      "fetched_at": "2026-10-20T09:26:20.937Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "米xAIが電話に応答するAIを公開し、StarlinkとTeslaのサービス内で稼働していると報じられた。",
+      "source_name": "Yahoo!ニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNUEo2MmppUW1HeFJfRUR2NWxQZHlSTS1JZVlhZ0p5cDZaaTdkdGdlckFPcjJOZXNMbkUxTjB1ckF3eW1MVVVQeGQwQ2J1R3d4aWVRc3Q2emliUllOWTZheWdvZUE4S3AyZkRPQ1V1eC1rTVdVb2VYTXZhb1dmeU90UVlYQjQ1RW8x?oc=5",
+      "story_entities": [
+        "xAI",
+        "Starlink",
+        "Tesla",
+        "xai",
+        "starlink"
+      ],
+      "primary_entity": "xAI",
+      "story_subject": "電話対応AI",
+      "event_type": "release",
+      "event_stage": "other",
+      "event_scope": "Starlink・Tesla内のサービス",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "xAIが電話応対AIを公開し、StarlinkとTeslaで稼働していると報じられた。",
+      "detail": "米xAIが電話に応答するAIを公開したと報じられています。簡単に言うと、電話をかけると人の代わりにAIが応対してくれる仕組みです。これまでxAIは対話型AI「Grok」を中心に展開してきましたが、電話応対に特化した機能は新しい取り組みとされています。\n\n記事によると、このAIはイーロン・マスク氏が率いる衛星通信サービス「Starlink」と電気自動車メーカー「Tesla」の中で稼働しているとされています。具体的な処理の仕組みや利用開始時期などは記事からは確認できていません。電話対応をAIが担うことで、企業の問い合わせ窓口の人手不足を補える可能性があります。\n\n利用者にとっては、電話をかけた際に人ではなくAIが応対する場面が増えるかもしれません。ただし本記事では対応言語や精度、利用できる地域などの詳細は明らかにされていません。正式な提供範囲や開始時期についてはxAIから改めての発表が待たれます。",
+      "new_facts": [
+        "xAIの電話対応AIがStarlinkとTeslaで稼働していると報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_0d257d0126ae66c8f9b2",
+      "story_id": "story_4612d538806cddfe68",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.625,
+      "title": "DeepSeekが新AIモデルを公開、コード性能でOpus 5を上回るとの報告も",
+      "source_published_at": "2026-10-20T02:59:00.000Z",
+      "published_at": "2026-10-20T02:59:00.000Z",
+      "fetched_at": "2026-10-20T09:26:20.937Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "中国のDeepSeekが新しいAIモデルを公開し、コード生成の性能でAnthropicのOpus 5を上回るとの報告が出ている。",
+      "source_name": "PlusWeb3",
+      "source_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9SSnVEYnhyellwdzItTlctdnFPSmR0cTd5QkoySzF3ZWctWnBsTGEyWkJ1cFVIOTN4MVJTZ1FfdDhNTFQwTkRxdmR6bUVhRDZaLTNQa0FnVFFkazFaOThZ?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "Opus 5",
+        "deepseek",
+        "opus5",
+        "anthropic"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek新AIモデル",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "不明",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type",
+        "same_scope"
+      ],
+      "change_summary": "DeepSeekが新AIモデルを公開し、コード生成性能でOpus 5を上回る可能性があると報じられた。",
+      "detail": "中国のAI企業DeepSeekが新しいAIモデルを公開したと報じられました。簡単に言うと、文章を理解したり作成したりできる大規模なAIの新しい版です。これまでのモデルと比べて、プログラムのコードを書く能力が特に強化されたとみられています。\n\n報道では、このコード生成の性能においてAnthropicの「Opus 5」というモデルを上回る可能性があるとされています。ただし新モデルの具体的な名称や、どのような測定方法で性能を比べたのかは記事からは分かりません。DeepSeekはこれまでも低コストで高性能なモデルを公開して世界のAI業界に影響を与えてきた企業であり、新モデルの実力次第では開発競争の構図が変わる可能性があります。\n\nプログラム開発者やAIを業務に使う人にとっては、選べるモデルの選択肢が増えることになります。ただし性能比較の詳細な数値や、実際に一般利用できる時期・条件については記事からは確認できません。今後の詳しい発表が待たれます。",
+      "new_facts": [
+        "DeepSeekが新しいAIモデルを公開した",
+        "コード生成性能でAnthropicのOpus 5を上回る可能性があると報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_918ac333456b267346f9",
+      "story_id": "story_d0cfc28fa7ccf0360f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6848275862068965,
+      "title": "独メルツ首相、Nvidiaとの契約を前にAI投資拡大を呼びかけ",
+      "source_published_at": "2026-10-19T22:07:30.000Z",
+      "published_at": "2026-10-19T22:07:30.000Z",
+      "fetched_at": "2026-10-19T23:46:27.857Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "ドイツのメルツ首相が、半導体大手Nvidiaとの新たな契約を控え、国内企業にAIへの投資拡大を呼びかけたと報じられた。",
+      "source_name": "Investing.com",
+      "source_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOMmJGTW5aWHNlc0RTQkxmTXBZazlWUllTTkUxUWFPMF9Ub215NzQzQzhTU2MxeXlIaEpmV2ZQWXZWV1hYRFZfVzYydGJmWUtrZUdjbFd4bjlYRlRvZk83RzN3akJUeDNtSnAtR00wbmpsLWhIWDRyd3NCMEkwanNjY1lpMWYyeE1LLTZYMXU2dVpmRklZNHpEMnFHZ2Ewc3VUbFFfQ0dRVWpOYm1tLXdqNw?oc=5",
+      "story_entities": [
+        "Nvidia",
+        "メルツ首相",
+        "ドイツ",
+        "nvidia"
+      ],
+      "primary_entity": "フリードリヒ・メルツ(ドイツ首相)",
+      "story_subject": "独政府とNvidiaの契約",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "ドイツ",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject",
+        "same_event_type"
+      ],
+      "change_summary": "ドイツのメルツ首相が、Nvidiaとの契約を前に国内企業へAI投資拡大を呼びかけた。",
+      "detail": "ドイツのメルツ首相が、半導体大手Nvidiaとの新たな契約を控え、国内企業にAIへの投資拡大を呼びかけたと報じられた。簡単に言うと、AIを動かすための高性能半導体を手がけるNvidiaとの取引を前に、ドイツ企業がAI分野への投資を増やすよう促す発言をしたということ。記事からは、具体的にどのような契約が結ばれるのか、呼びかけの詳しい内容までは確認できない。\n\n記事で確認できるのは、メルツ首相がNvidiaとの契約を前にAI投資を呼びかけたという事実のみである。契約の規模や対象分野、ドイツ政府が何らかの支援策を伴うのかどうかは記事からは分からない。Nvidiaとの契約がドイツ国内のAI関連投資にどうつながるのか、具体的な仕組みは示されていない。\n\nドイツ企業にとっては、今回の呼びかけをきっかけにAI投資が広がるかどうかが注目される。ただし呼びかけの具体的な効果や、Nvidiaとの契約の詳細はまだ明らかになっていない。今後、契約内容やドイツ政府の追加施策が発表されるかが焦点となる。",
+      "new_facts": [
+        "ドイツのメルツ首相がNvidiaとの契約を前にAI投資拡大を呼びかけたと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_d71f18ab74cb8a333adc",
+      "story_id": "story_feb97bedb411e0a651",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "米国土安全保障省、連邦民間機関でDeepSeekの使用を禁止",
+      "source_published_at": "2026-10-19T16:59:28.000Z",
+      "published_at": "2026-10-19T16:59:28.000Z",
+      "fetched_at": "2026-10-19T23:46:27.857Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "米国土安全保障省（DHS）が、連邦政府の軍以外の省庁（民間機関）でDeepSeekの利用を禁止したと報じられた。",
+      "source_name": "Engadget",
+      "source_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxObHJrdV9IRmp3RUlqVGxzOTBiM0JtdzhhVklScGxQRFdtd2RHUzR5cHlWM2U4QjZFcGEzUWZrbUkwamZfeHFOdEd2QnNPSV9GVGh2ZjJ2NXM5VEd3N2pEMEhGWFF6UTY4Zi1zYXhtaU1ZUmsyZk40cEp5RkNBdGNGaFJ0OXZNajNyRU9yTks2dzJCUUlMdTRfTXdWVmxFQXM?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "米国土安全保障省",
+        "deepseek"
+      ],
+      "primary_entity": "米国土安全保障省(DHS)",
+      "story_subject": "DeepSeek使用禁止措置",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "米連邦民間機関",
+      "fact_slots": [
+        {
+          "type": "status",
+          "scope": "DeepSeek使用禁止の対象",
+          "value": "連邦民間機関",
+          "normalized_value": "連邦民間機関"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "米国土安全保障省が、連邦政府の民間機関でDeepSeekの使用を禁止したと報じられた。",
+      "detail": "米国土安全保障省(DHS)が、連邦政府の民間機関（軍以外の省庁）でDeepSeekの使用を禁止したと報じられた。DeepSeekは中国企業が開発した生成AIサービスで、文章による会話ができるチャットボットとして世界的に利用が広がっていた。今回の禁止により、対象となる連邦機関の職員は業務でDeepSeekを使えなくなる。\n\n記事で確認できるのは「連邦民間機関でDeepSeekの使用を禁止した」という事実のみである。禁止に至った具体的な理由や、実施される開始時期、違反時の扱いなど詳しい内容は記事からは確認できない。DeepSeekを巡っては安全保障上の懸念が各国で議論されてきた分野であり、今回の措置はその流れに位置づけられる動きとみられる。\n\n対象となる連邦民間機関の職員は、業務でDeepSeekを使えなくなる点が直接の変化となる。ただし禁止の対象範囲が他の種類の機関にも広がるかどうかは不明である。今後、禁止の詳細な運用方法や対象拡大の有無が発表されるかが注目される。",
+      "new_facts": [
+        "米国土安全保障省(DHS)が連邦民間機関でのDeepSeek使用を禁止したと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_0b3543e642fc5b0d56ac",
       "story_id": "story_3452748409da9e335f",
       "story_sequence": 1,
@@ -302,6 +731,43 @@
         "AI投資への懸念からAI・半導体関連株が下落した"
       ],
       "event_date_precision": "day"
+    },
+    {
+      "article_id": "article_e0e2e3e8833ee191a921",
+      "story_id": "story_ab752929e63336456d",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "生成AI悪用対策のセキュリティサービス「Securiy」提供開始",
+      "source_published_at": "2026-10-19T02:15:44.000Z",
+      "published_at": "2026-10-19T02:15:44.000Z",
+      "fetched_at": "2026-10-19T23:46:27.857Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "生成AIによるハッキングや個人情報流出を防ぐセキュリティソリューション「Securiy(セキュリー)」の提供が始まったと発表された。",
+      "source_name": "ニコニコニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5OX1NPQ1RhN1BYWDFySTlPN0hvS01kVTVfTXVBcHZWRkh1bE56elVxdHFRZHREYk1XSTRjeVZMNy1UcXpydG5NZW00eXh2NmxhVGdnNw?oc=5",
+      "story_entities": [
+        "Securiy",
+        "securiy"
+      ],
+      "primary_entity": "Securiy(セキュリー)運営会社",
+      "story_subject": "生成AI対策セキュリティサービスSecuriyの提供開始",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "生成AI悪用対策に特化したセキュリティサービス「Securiy」の提供が新たに始まった。",
+      "detail": "ある企業が、生成AIを悪用したハッキングや個人情報の流出を防ぐためのセキュリティサービス「Securiy(セキュリー)」の提供を始めたと発表しました。生成AIとは、文章や画像などを自動で作り出すAIのことです。近年、生成AIを悪用した不正アクセスや情報漏えいの被害が増えていることが背景にあるとみられます。これまで専用の対策サービスが少なかった分野に向けた新しい製品です。\n\n記事では、サービス名や提供開始という事実は示されていますが、具体的な機能や料金、提供企業の詳細は明記されていません。生成AIが攻撃の手段として使われるケースが増える中、防御側の対策サービスが登場した点が今回のニュースの核心です。\n\n企業の情報システム担当者にとっては、生成AI時代の新たなセキュリティ対策の選択肢が増えることになります。ただし、具体的な導入方法や対象企業、価格などはまだ公表されていません。今後、提供企業からの詳しい発表を確認する必要があります。",
+      "new_facts": [
+        "生成AIによるハッキング・個人情報流出を防ぐセキュリティサービス「Securiy」の提供が開始された"
+      ],
+      "event_date_precision": "unknown"
     },
     {
       "article_id": "article_0c4b025559b507f530a9",
