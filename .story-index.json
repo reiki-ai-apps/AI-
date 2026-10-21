@@ -2,6 +2,95 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_6119b35d01a4adcc2150",
+      "story_id": "story_e4b4d3362ab25794a6",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "米国、DeepSeekを政府ITから排除しGoogle技術窃取で中国5団体に制裁",
+      "source_published_at": "2026-10-21T22:04:38.000Z",
+      "published_at": "2026-10-21T22:04:38.000Z",
+      "fetched_at": "2026-10-21T23:25:31.716Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "米国政府が中国AI企業DeepSeekを政府の情報システムから排除し、Google技術を盗んだとして中国5団体に制裁を科したと報じられた。",
+      "source_name": "innovaTopia",
+      "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9LcE9lQUNIUFFaUTkyRmhNQkx5TVNEQkRkOVk1TFA1WjQ0OUpkRkFmMkgzcjJGcWotLTY5N2M2Yk00WW10eU1MOER4UTN4cmQ5RHh3?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "Google",
+        "米国政府",
+        "deepseek",
+        "google"
+      ],
+      "primary_entity": "米国政府",
+      "story_subject": "DeepSeekの政府調達排除と中国5団体への制裁",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "米国政府機関",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "制裁対象の中国団体数",
+          "value": "5団体",
+          "normalized_value": "5"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "米政府がDeepSeekを政府IT調達から排除し、Google技術窃取を理由に中国5団体へ制裁を科した。",
+      "detail": "米国政府が、中国のAI企業DeepSeek(ディープシーク)が開発した生成AIを、政府機関の情報システムから排除する方針を決めた。これは、DeepSeekのAIサービスを政府が使う業務システムでは使わせないようにする措置とみられる。これまで米国内で広く使われてきたDeepSeekのAIが、政府調達から締め出される形になる。\n\n同時に米国は、グーグルの技術を不正に盗んだとして、中国の5つの団体に制裁を科した。この制裁は、AI開発に関わる技術の不正取得を理由にしたものとされる。中国企業・団体が米国の先端技術を利用してAI開発を進めることへの警戒が背景にあるとみられる。\n\n米政府機関や取引先企業は、DeepSeek関連ツールの利用継続可否を確認する必要が出てくる可能性がある。制裁対象となった中国の団体や、取引のある企業は影響を受ける見込み。制裁対象団体の具体名や排除の実施時期など詳細はまだ明らかになっていない。",
+      "new_facts": [
+        "米国政府がDeepSeekを政府の情報システムから排除する方針を決めた",
+        "米国がGoogle技術窃取を理由に中国5団体に制裁を科した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_aeeda7023f5a40de65ae",
+      "story_id": "story_4cf51b8942d956c681",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6482926829268293,
+      "title": "AnthropicがClaude Securityを更新しコードを継続的にスキャン",
+      "source_published_at": "2026-10-21T21:13:37.000Z",
+      "published_at": "2026-10-21T21:13:37.000Z",
+      "fetched_at": "2026-10-21T23:25:31.716Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "AnthropicがセキュリティツールClaude Securityを更新し、コードを継続的にスキャンできるようにしたと報じられた。",
+      "source_name": "Crypto Briefing",
+      "source_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9jSmdoalE0cmtyUVdWcmxvcDNVUVN3bHNxSGcwclJlcEhhbFV4VXotdjNXellCZlNjTmFZVFQ3SW1VRXEwNFhCRnFSV19sQ2Rja05HaGJRMDFuejhBaXVLZzREYUVsQTgtOHBNbnVFVExOY0dzQXBCSlFoalgyZw?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude Security",
+        "Claude Code",
+        "anthropic",
+        "claudesecurity"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude Securityのコード継続スキャン機能",
+      "event_type": "security",
+      "event_stage": "launched",
+      "event_scope": "Claude Code利用者",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Claude Securityがコードを一時点だけでなく継続的に監視する機能へ更新された。",
+      "detail": "AI企業アンソロピックは、自社のセキュリティ機能「Claude Security」を更新し、コードを継続的にスキャンできるようにしたと発表したとされる。これは、プログラムの不具合や脆弱性(弱点)を、開発が進む間ずっと自動でチェックし続ける仕組みとみられる。これまでは一時点でのチェックが中心だったとみられ、常時監視へ変わった点が異なる。\n\n具体的な対象は、AIにプログラムを書かせる機能「Claude Code」などに関連するとみられる。継続的にスキャンすることで、コードに新しい問題が生まれてもすぐに気づける。セキュリティの不備を早期に見つけられる点が重要とされる。\n\nClaudeを使って開発する人は、コードの安全確認を自動でより細かく受けられるようになる可能性がある。更新の対象範囲や料金への影響など詳細は記事からは分からない。今後、アンソロピックから追加の情報が出るか注目される。",
+      "new_facts": [
+        "AnthropicがClaude Securityを更新し、コードを継続的にスキャンする機能を追加した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_45267ebaef048ca35584",
       "story_id": "story_da09ab7450248a656c",
       "story_sequence": 1,
@@ -564,6 +653,60 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_9ccb1444a6014f2339bf",
+      "story_id": "story_55903c6977ce3dd65f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "中島聡氏、米国で広がる新職種「FDE」とAIによる生産性向上を語る",
+      "source_published_at": "2026-10-20T08:00:15.000Z",
+      "published_at": "2026-10-20T08:00:15.000Z",
+      "fetched_at": "2026-10-21T23:25:31.716Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "ソフトウェア技術者の中島聡氏が、米国で増える新職種「FDE」や、AIで生産性が10倍になった事例などを動画で紹介した。",
+      "source_name": "YouTube",
+      "source_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9jSDA1aW5mVmRGOTZHdUozTks3Tk9lOTdlQ2pjb2UwQW5RVXRrc19VUUR2Q2FUUm1wb3cwOFp4WWNtV1BxX21tbm5TM252M0dlbnlCSzA4SHZYN0li?oc=5",
+      "story_entities": [
+        "中島聡",
+        "FDE",
+        "fde"
+      ],
+      "primary_entity": "中島聡",
+      "story_subject": "FDE(現場常駐型エンジニア)という新職種とAIによる生産性向上",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "米国の働き方・エンジニア職",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "コスト削減例",
+          "value": "年間10億円",
+          "normalized_value": "1000000000JPY"
+        },
+        {
+          "type": "amount",
+          "scope": "生産性向上",
+          "value": "10倍",
+          "normalized_value": "10"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AIを使って現場に入り込んで成果を出す「FDE」という働き方が米国で広がっていると紹介されている。",
+      "detail": "中島聡氏がYouTube動画で、米国の新しい働き方について話している。FDEとは、企業の現場に入り込んで働く技術者を指す新しい職種だという。これまでのプログラマーの働き方とは違う形が広がっていると紹介している。\n\n動画では、年間10億円のコスト削減につながった例が取り上げられている。中島氏自身も、40年間書いてきたコードの作成をAIに任せた経験を語っている。その結果、仕事の生産性が10倍になったという内容が含まれている。\n\n動画は、AIを使った新しい働き方に関心がある人向けの内容となっている。ただし、具体的な数字の裏付けや細かい条件は本文からは確認できない。今後どの企業や分野に広がるかは、現時点では発表されていない。",
+      "new_facts": [
+        "米国でFDEと呼ばれる新職種が急拡大しているとされる",
+        "年間10億円のコスト削減につながった例が紹介されている",
+        "中島聡氏が40年書いてきたコードの作成をAIに任せたと語っている",
+        "その結果生産性が10倍になったとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_603e94648a6d32968c61",
       "story_id": "story_aaaed4691709ac5454",
       "story_sequence": 1,
@@ -942,6 +1085,46 @@
       "new_facts": [
         "トランプ政権がDeepSeekの全面禁止方針を示した",
         "機密情報流出への懸念が理由とされている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_774f72042cf1060b5671",
+      "story_id": "story_41e634b223d0aaea2f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "企業100代表の田村慶氏、AI開発ツールLovableの東京City Leadに就任",
+      "source_published_at": "2026-10-19T15:04:50.000Z",
+      "published_at": "2026-10-19T15:04:50.000Z",
+      "fetched_at": "2026-10-21T23:25:31.716Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "スタートアップ100の代表を務める田村慶氏が、AI開発ツールLovableの東京地域責任者に就任したと発表された。",
+      "source_name": "Dellows News",
+      "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9QLUEtNVEweG5hTFBUSFJ2Ri1FQ2hGY0ZYR25sMklKUi1Xal9QZkZ2aXd4c1c1QlBKVFEwNU5YbjdVRngzb0o1WmFndDdydkxuNFpwX2hyTkNFZmxxdUwtUTQ5SjNuOXd1?oc=5",
+      "story_entities": [
+        "Lovable",
+        "田村慶",
+        "企業100",
+        "lovable",
+        "city"
+      ],
+      "primary_entity": "Lovable",
+      "story_subject": "Lovable東京City Lead就任",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "日本・東京",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Lovableが東京のCity Leadとして田村慶氏を起用したと発表された。",
+      "detail": "スタートアップ企業100の代表を務める田村慶氏が、AI開発ツール「Lovable」の東京City Lead(東京地域の責任者)に就任したと発表された。Lovableは、文章で指示するだけでアプリやサービスを作れるAI開発ツールとされる。これは、Lovableが日本市場での体制を強化する動きの一環とみられる。\n\n田村氏は、企業100の代表としての立場と兼ねて、Lovableの東京における地域代表の役割を担うとされる。具体的な業務内容や今後の活動計画は記事からは確認できない。海外AIツールが日本向けの拠点代表を置くことは、日本市場開拓を重視している表れとみられる。\n\n日本でLovableを使う企業や個人にとって、国内の窓口や情報発信が増える可能性がある。ただし、具体的なサービス内容の変化や支援体制の詳細はまだ公表されていない。今後の発表を待つ必要がある。",
+      "new_facts": [
+        "企業100代表の田村慶氏がLovableの東京City Leadに就任した"
       ],
       "event_date_precision": "unknown"
     },
