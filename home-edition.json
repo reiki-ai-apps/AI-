@@ -7,57 +7,74 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-20T15:03:32.750Z",
-  "window_end": "2026-10-20T23:13:40.644Z",
-  "last_window_end": "2026-10-20T23:13:40.644Z",
-  "last_checked_at": "2026-10-20T23:18:24.899Z",
-  "last_published_at": "2026-10-20T23:18:24.899Z",
-  "home_content_changed_at": "2026-10-20T23:18:24.899Z",
+  "window_start": "2026-10-20T23:13:40.644Z",
+  "window_end": "2026-10-21T09:22:38.224Z",
+  "last_window_end": "2026-10-21T09:22:38.224Z",
+  "last_checked_at": "2026-10-21T09:26:22.672Z",
+  "last_published_at": "2026-10-21T09:26:22.672Z",
+  "home_content_changed_at": "2026-10-21T09:26:22.672Z",
   "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 1,
-  "update_health": "DEGRADED",
-  "update_health_reasons": [
-    "今回の新着掲載は0件です。前回の重要記事を継続表示しています"
-  ],
-  "edition_status": "NO_NEW_STORIES",
-  "candidate_count": 0,
-  "distinct_candidate_count": 0,
+  "consecutive_zero_candidate_editions": 0,
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
+  "edition_status": "NEW_STORIES",
+  "candidate_count": 1,
+  "distinct_candidate_count": 1,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 0,
+  "novel_candidate_count": 1,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 0,
-  "continued_selected_count": 5,
+  "new_selected_count": 1,
+  "continued_selected_count": 4,
   "tool_evolution_selected_count": 3,
-  "carried_forward": true,
-  "partially_carried_forward": false,
+  "carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_a89e497a3df111b0edbc",
     "article_dc5a7163f86d81315196",
     "article_23ca248f6e33386f6082",
     "article_a6c989e1866d8b356c79",
-    "article_c79b90537d390e19bfc0",
-    "article_e73c486c3cfca1a985d8"
+    "article_c79b90537d390e19bfc0"
   ],
-  "new_article_ids": [],
+  "new_article_ids": [
+    "article_a89e497a3df111b0edbc"
+  ],
   "continued_article_ids": [
     "article_dc5a7163f86d81315196",
     "article_23ca248f6e33386f6082",
     "article_a6c989e1866d8b356c79",
-    "article_c79b90537d390e19bfc0",
-    "article_e73c486c3cfca1a985d8"
+    "article_c79b90537d390e19bfc0"
   ],
   "continuation_sources": {
     "article_dc5a7163f86d81315196": "previous_edition",
     "article_23ca248f6e33386f6082": "previous_edition",
     "article_a6c989e1866d8b356c79": "previous_edition",
-    "article_c79b90537d390e19bfc0": "previous_edition",
-    "article_e73c486c3cfca1a985d8": "previous_edition"
+    "article_c79b90537d390e19bfc0": "previous_edition"
   },
   "scores": {
+    "article_a89e497a3df111b0edbc": {
+      "article_id": "article_a89e497a3df111b0edbc",
+      "total": 66,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 8,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-10-21T07:50:04.000Z"
+    },
     "article_dc5a7163f86d81315196": {
       "article_id": "article_dc5a7163f86d81315196",
       "total": 83,
@@ -134,101 +151,9 @@
         "制度・安全への影響"
       ],
       "published_at": "2026-10-20T02:30:03.000Z"
-    },
-    "article_e73c486c3cfca1a985d8": {
-      "article_id": "article_e73c486c3cfca1a985d8",
-      "total": 74,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 10,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-10-18T04:52:00.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_e73c486c3cfca1a985d8",
-      "story_id": "story_8df09e54b250aeea12",
-      "title": "DeepSeek、新型AI「V4.1 Flash-1017」を発表 速度と推論・コード性能を向上",
-      "primary_entity": "DeepSeek",
-      "story_subject": "DeepSeek V4.1 Flash-1017",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "不明",
-      "story_entities": [
-        "DeepSeek",
-        "V4.1 Flash-1017",
-        "deepseek",
-        "v4.1flash-1017",
-        "v4.1"
-      ],
-      "fact_slots": [
-        {
-          "type": "version",
-          "scope": "DeepSeekモデル",
-          "value": "V4.1 Flash-1017",
-          "normalized_value": "v4.1flash1017"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-18T08:57:03.596Z",
-      "edition_window_end": "2026-10-18T08:51:47.582Z"
-    },
-    {
-      "article_id": "article_a0dee65d696d6f7fcbb7",
-      "story_id": "story_336170726e53c41e5a",
-      "title": "韓国国会、AIチャットボットの青少年保護モード不備を指摘",
-      "primary_entity": "韓国国会",
-      "story_subject": "AIチャットボットの青少年保護モード",
-      "event_type": "policy",
-      "event_stage": "investigating",
-      "event_scope": "韓国",
-      "story_entities": [
-        "韓国国会",
-        "AIチャットボット",
-        "青少年保護モード",
-        "aiチャットボット"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-18T08:57:03.596Z",
-      "edition_window_end": "2026-10-18T08:51:47.582Z"
-    },
-    {
-      "article_id": "article_121183a984d1d8c333ae",
-      "story_id": "story_70bfa653658deb42cb",
-      "title": "AIエージェントが自律的にシステムへ侵入、サイバーセキュリティ研究で確認",
-      "primary_entity": "研究チーム(不明)",
-      "story_subject": "AIエージェントによる自律的なシステム侵入",
-      "event_type": "research",
-      "event_stage": "other",
-      "event_scope": "不明",
-      "story_entities": [
-        "AIエージェント",
-        "サイバーセキュリティ研究",
-        "aiエージェント"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-18T08:57:03.596Z",
-      "edition_window_end": "2026-10-18T08:51:47.582Z"
-    },
     {
       "article_id": "article_dc5a7163f86d81315196",
       "story_id": "story_3f48825416bfdca3dc",
@@ -594,6 +519,26 @@
       "previous_article_id": "",
       "selected_at": "2026-10-20T15:07:39.362Z",
       "edition_window_end": "2026-10-20T15:03:32.750Z"
+    },
+    {
+      "article_id": "article_a89e497a3df111b0edbc",
+      "story_id": "story_abf3bbb9cb1dece574",
+      "title": "DeepSeekが推論効率を高めるソフトウエアを公開",
+      "primary_entity": "DeepSeek",
+      "story_subject": "推論効率化ソフトウエア",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "中国/世界",
+      "story_entities": [
+        "DeepSeek",
+        "deepseek"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-21T09:26:22.672Z",
+      "edition_window_end": "2026-10-21T09:22:38.224Z"
     }
   ]
 }
