@@ -2418,7 +2418,18 @@ function bootstrapCacheResult(cache,source,result) {
   const boundedEdition=capPublishedEdition(videoEdition.items,{limit:AI_MAX,
     featuredVideoKeys:videoEdition.state.featured_video_keys});
   if(boundedEdition.dropped.length)console.error(`PUBLISH CAP: removed ${boundedEdition.dropped.length} unfeatured archive item(s) after video selection`);
-  const editionReadyFinal=boundedEdition.items;
+  // 既存記事が再要約されても、その記事に固有の画像情報は失わない。
+  // 異なるタイトル・情報元に画像を持ち越さないため、同じ記事IDだけでなく内容も照合する。
+  const previousById=new Map(previous.map(item=>[item.article_id,item]));
+  const visualFields=['editorial_image_url','editorial_image_alt','commons_image_url','commons_image_page_url',
+    'commons_image_license','commons_image_license_url','commons_image_credit','commons_image_subject'];
+  const editionReadyFinal=boundedEdition.items.map(item=>{
+    const prior=previousById.get(item.article_id);
+    if(!prior||prior.title!==item.title||prior.source_url!==item.source_url)return item;
+    const enriched={...item};
+    for(const field of visualFields)if(!enriched[field]&&prior[field])enriched[field]=prior[field];
+    return enriched;
+  });
   writeJsonFile("data.json",editionReadyFinal);
   if(!expertRetryOnly)writeJsonFile(HOME_EDITION_PATH,homeEdition);
   writeJsonFile(STORY_INDEX_PATH,updateStoryIndex(storyIndex,editionReadyFinal));

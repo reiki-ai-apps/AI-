@@ -1,4 +1,5 @@
-const {storyVisualUrl}=require('./story-visual.cjs');
+const fs=require('node:fs');
+const path=require('node:path');
 const OFFICIAL_HOSTS=new Set([
   'openai.com','www.openai.com','anthropic.com','www.anthropic.com',
   'blog.google','deepmind.google','about.google','blogs.microsoft.com',
@@ -29,11 +30,29 @@ function sourceImage(item,peers=[]){
   return source&&image&&image.toString()!==source.toString()&&bound===String(item.source_url)&&OFFICIAL_HOSTS.has(source.hostname)
     ?image.toString():'';
 }
+function editorialImage(item){
+  const id=String(item?.article_id||'');
+  const local=`assets/story-photos/${id}.png`;
+  if(!/^article_[A-Za-z0-9_-]{8,90}$/.test(id)||item?.editorial_image_url!==local)return '';
+  const absolute=path.resolve(__dirname,'..',local);
+  return fs.existsSync(absolute)?`https://reiki-ai-apps.github.io/AI-/${local}`:'';
+}
+function commonsImage(item,peers=[]){
+  const image=httpUrl(item?.commons_image_url);
+  const page=httpUrl(item?.commons_image_page_url);
+  if(!image||!page||!['upload.wikimedia.org','thumb.wikimedia.org','commons.wikimedia.org'].includes(image.hostname)||
+    page.hostname!=='commons.wikimedia.org'||!item?.commons_image_subject||
+    peers.some(other=>other?.article_id!==item?.article_id&&other?.commons_image_page_url===item?.commons_image_page_url))return null;
+  return {url:image.toString(),kind:'photo',label:'記事テーマの関連画像（出来事そのものの写真ではありません）',
+    alt:`${String(item.commons_image_subject)}に関連する資料画像`,credit:String(item.commons_image_credit||'Wikimedia Commons'),
+    creditUrl:page.toString(),licenseUrl:httpUrl(item.commons_image_license_url)?.toString()||''};
+}
 function articleVisual(item,peers=[]){
   const actual=sourceImage(item,peers);
   if(actual)return {url:actual,kind:String(item?.content_type||'')==='expert_video'?'video':'source',label:String(item?.content_type||'')==='expert_video'?'元動画のサムネイル':'情報元の記事画像'};
-  const graphic=storyVisualUrl(item);
-  return graphic?{url:graphic,kind:'graphic',label:'この記事専用の図解画像（写真ではありません）'}:null;
+  const editorial=editorialImage(item);
+  if(editorial)return {url:editorial,kind:'editorial',label:'AI制作のイメージ画像（実際の場面の写真ではありません）',alt:String(item.editorial_image_alt||item.title||'記事のイメージ画像')};
+  return commonsImage(item,peers);
 }
 function attrs(tag){
   const result={};
@@ -67,4 +86,4 @@ function extractSourceImage(html,pageUrl){
   if(width&&width<300||height&&height<150)return '';
   return image.toString();
 }
-module.exports={OFFICIAL_HOSTS,sourceImage,articleVisual,videoThumbnail,extractSourceImage,httpUrl};
+module.exports={OFFICIAL_HOSTS,sourceImage,editorialImage,commonsImage,articleVisual,videoThumbnail,extractSourceImage,httpUrl};

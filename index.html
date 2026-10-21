@@ -2202,18 +2202,18 @@
     body{background-attachment:scroll!important}
   }
 
-  /* 情報元で確認できた画像だけを記事に添える。 */
-  .ucard-image{position:relative;overflow:hidden;height:154px;border:1px solid rgba(101,182,210,.24);border-radius:12px;background:#071425}
+  /* 記事に結びつく情報元の画像か、明示した個別のイメージ画像を載せる。 */
+  .ucard-image{position:relative;overflow:hidden;height:192px;border:1px solid rgba(101,182,210,.24);border-radius:12px;background:#071425}
   .ucard-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
   .ucard-image::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(3,13,30,.18),transparent 48%)}
   .ucard-image span,.ucard-image a{position:absolute;z-index:1;right:8px;bottom:8px;padding:3px 7px;border:1px solid rgba(214,240,251,.32);border-radius:999px;background:rgba(5,16,32,.82);color:#e2f2fa;font-size:9px;font-weight:700;text-decoration:none}
   .ucard-image.is-brand,.daily-cover-image.is-brand{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#111b29,#172b3a)}
   .ucard-image.is-brand img,.daily-cover-image.is-brand img{width:min(45%,190px);height:auto;max-height:70px;object-fit:contain}
-  @media(max-width:620px){.ucard-image{height:118px;border-radius:10px}}
-  .daily-cover-image{position:relative;overflow:hidden;width:min(100%,650px);height:166px;margin:13px 0 10px;border:1px solid rgba(112,213,235,.3);border-radius:12px;background:#071425;box-shadow:0 10px 28px rgba(2,8,24,.25)}
+  @media(max-width:620px){.ucard-image{height:164px;border-radius:10px}}
+  .daily-cover-image{position:relative;overflow:hidden;width:min(100%,650px);height:236px;margin:13px 0 10px;border:1px solid rgba(112,213,235,.3);border-radius:12px;background:#071425;box-shadow:0 10px 28px rgba(2,8,24,.25)}
   .daily-cover-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
   .daily-cover-image span,.daily-cover-image a{position:absolute;right:9px;bottom:9px;padding:3px 7px;border-radius:999px;background:rgba(5,16,32,.82);color:#e2f2fa;font-size:9px;font-weight:700;text-decoration:none}
-  @media(max-width:620px){.daily-cover-image{height:126px;margin:10px 0 8px}}
+  @media(max-width:620px){.daily-cover-image{height:198px;margin:10px 0 8px}}
   .radar-overview.has-daily-cover,.light-media-theme .radar-overview.has-daily-cover{background:linear-gradient(135deg,#07192b,#0b1630 68%,#111a38)!important}
 
   /* 今日試せる1つはニュースと動画を読み終えた後の実践枠。 */
@@ -3775,8 +3775,18 @@ function articleVisual(u){
   const actual=articleMedia(u);
   if(actual)return {url:actual,kind:isExpertVideo(u)?'video':'source',label:isExpertVideo(u)?'元動画のサムネイル':'情報元の記事画像'};
   const id=String(u.article_id||'');
-  return !isExpertVideo(u)&&/^article_[A-Za-z0-9_-]{8,90}$/.test(id)
-    ?{url:`./assets/story-visuals/${id}.svg`,kind:'graphic',label:'この記事専用の図解画像（写真ではありません）'}:null;
+  const local=`assets/story-photos/${id}.png`;
+  if(!isExpertVideo(u)&&/^article_[A-Za-z0-9_-]{8,90}$/.test(id)&&u.editorial_image_url===local)
+    return {url:`./${local}`,kind:'editorial',label:'AI制作イメージ',alt:String(u.editorial_image_alt||u.title||'記事のイメージ画像')};
+  try{
+    const image=new URL(safeExternalUrl(u.commons_image_url));
+    const page=new URL(safeExternalUrl(u.commons_image_page_url));
+    if(['upload.wikimedia.org','thumb.wikimedia.org','commons.wikimedia.org'].includes(image.hostname)&&page.hostname==='commons.wikimedia.org'&&
+      u.commons_image_subject&&!getUpdates().some(other=>other.article_id!==id&&other.commons_image_page_url===u.commons_image_page_url))
+      return {url:image.href,kind:'photo',label:'関連画像',alt:`${u.commons_image_subject}に関連する資料画像`,
+        credit:String(u.commons_image_credit||'Wikimedia Commons'),creditUrl:page.href,licenseUrl:safeExternalUrl(u.commons_image_license_url)};
+  }catch{}
+  return null;
 }
 function updateCard(u){
   const tool=toolById(u.tool_id);
@@ -3789,7 +3799,7 @@ function updateCard(u){
       <div class="ucard-tool"><span class="tool-dot" style="background:${color};color:${color}"></span><span>${esc(tool?tool.name:'不明')}</span>${contentTypeBadge(u)}</div>
       <div class="ucard-top-meta">${rankBadge(u.rank)}${homeOriginBadge(u)}${u.relation_type==='follow_up'?`<span class="followup-badge">続報 ${storySequence(u)}</span>`:''}${u.relation_type==='correction'?`<span class="followup-badge is-correction">訂正・状況変更</span>`:''}${readProofBadge(u)}${!['unread','read'].includes(u.status)?statusBadge(u.status):''}</div>
     </div>
-    ${visual?`<div class="ucard-image${visual.kind==='brand'?' is-brand':''}"><img src="${esc(visual.url)}" alt="${esc(visual.label)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentElement.remove()">${visual.kind==='photo'?`<a href="${esc(visual.creditUrl)}" target="_blank" rel="noopener noreferrer" title="${esc(visual.label)} · ${esc(visual.credit)}">資料写真 · ${esc(visual.credit)}</a>`:`<span>${esc(visual.label)}</span>`}</div>`:''}
+    ${visual?`<div class="ucard-image${visual.kind==='brand'?' is-brand':''}"><img src="${esc(visual.url)}" alt="${esc(visual.alt||visual.label)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentElement.remove()">${visual.kind==='photo'?`<a href="${esc(visual.creditUrl)}" target="_blank" rel="noopener noreferrer" title="${esc(visual.label)} · ${esc(visual.credit)}">資料写真 · ${esc(visual.credit)}</a>`:`<span>${esc(visual.label)}</span>`}</div>`:''}
     ${expertVideo?`<div class="expert-video-person"><strong>${esc(u.expert_name||'専門家')}</strong><span>${esc(u.expert_role||'AIの専門家')}</span></div>`:''}
     <a class="ucard-title-link" href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')" aria-label="${esc(u.title)}の要約をアプリ内で見る"><h3>${esc(u.title)}</h3></a>
     ${timelineMeta(u)}
@@ -3961,7 +3971,7 @@ function renderHome(v){
     :`今回の新着${newCount?` ${newCount}件`:''}を話題性・重要性で審査`;
   const coverCopy=cover?`
       <div class="live-line"><span class="live-dot"></span>いま注目のAIニュース · 新着${newCount}件 · 更新確認 ${latest}</div>
-      ${coverVisual?`<div class="daily-cover-image${coverVisual.kind==='brand'?' is-brand':''}"><img src="${esc(coverVisual.url)}" alt="${esc(coverVisual.label)}" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" onerror="this.parentElement.remove()">${coverVisual.kind==='photo'?`<a href="${esc(coverVisual.creditUrl)}" target="_blank" rel="noopener noreferrer" title="${esc(coverVisual.label)} · ${esc(coverVisual.credit)}">資料写真 · ${esc(coverVisual.credit)}</a>`:`<span>${esc(coverVisual.label)}</span>`}</div>`:''}
+      ${coverVisual?`<div class="daily-cover-image${coverVisual.kind==='brand'?' is-brand':''}"><img src="${esc(coverVisual.url)}" alt="${esc(coverVisual.alt||coverVisual.label)}" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" onerror="this.parentElement.remove()">${coverVisual.kind==='photo'?`<a href="${esc(coverVisual.creditUrl)}" target="_blank" rel="noopener noreferrer" title="${esc(coverVisual.label)} · ${esc(coverVisual.credit)}">資料写真 · ${esc(coverVisual.credit)}</a>`:`<span>${esc(coverVisual.label)}</span>`}</div>`:''}
       <div class="daily-cover-meta">${rankBadge(cover.rank)}${homeOriginBadge(cover)}${readProofBadge(cover)}<span class="daily-cover-source"><b>情報元</b>${esc(cover.source_name||coverTool?.name||'確認中')}・${esc(sourcePublishedLabel(cover))}</span></div>
       <h2>${esc(cover.title)}</h2>
       <p>${esc(coverSummary)}</p>
@@ -5030,6 +5040,13 @@ function patchPublishedArticleFields(target,it,tool){
     source_url:safeExternalUrl(it.source_url),
     source_image_url:safeExternalUrl(it.source_image_url),
     source_image_page_url:safeExternalUrl(it.source_image_page_url),
+    editorial_image_url:String(it.editorial_image_url||''),
+    editorial_image_alt:String(it.editorial_image_alt||''),
+    commons_image_url:safeExternalUrl(it.commons_image_url),
+    commons_image_page_url:safeExternalUrl(it.commons_image_page_url),
+    commons_image_license_url:safeExternalUrl(it.commons_image_license_url),
+    commons_image_credit:String(it.commons_image_credit||''),
+    commons_image_subject:String(it.commons_image_subject||''),
     ...importedContextSourceFields(it),
     published_at:publishedAt,
     fetched_at:it.fetched_at||target.fetched_at||nowISO(),

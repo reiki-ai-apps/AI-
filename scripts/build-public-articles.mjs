@@ -3,8 +3,7 @@ import path from "node:path";
 import {fileURLToPath} from "node:url";
 import {createRequire} from "node:module";
 const require=createRequire(import.meta.url);
-const {sourceImage,articleVisual}=require('./source-image.cjs');
-const {writeStoryVisuals}=require('./story-visual.cjs');
+const {sourceImage,editorialImage,commonsImage,articleVisual}=require('./source-image.cjs');
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
 const data=JSON.parse(fs.readFileSync(path.join(root,"data.json"),"utf8"));
@@ -60,7 +59,7 @@ function page(item,id,related=[],peers=[]){
   const description=clean(item.easy_summary||item.raw_excerpt||item.detail,180)||(expertVideo?"AI進化レーダーが動画で学べることと背景を整理した解説です。":"AI進化レーダーが重要度と仕事への影響を整理したAIニュースです。");
   const published=isoDate(item.source_published_at||item.published_at||item.fetched_at);
   const updated=isoDate(item.source_updated_at||item.fetched_at||item.published_at);
-  const image=sourceImage(item,peers);
+  const image=sourceImage(item,peers)||editorialImage(item)||commonsImage(item,peers)?.url||'';
   const visual=articleVisual(item,peers);
   const articleLd={
     "@type":expertVideo?"Article":"NewsArticle",
@@ -108,7 +107,7 @@ function page(item,id,related=[],peers=[]){
 </style><style>.article-visual figcaption a{color:#9fdfea}</style></head><body><main>
 <a class="brand" href="${baseUrl}"><img src="${baseUrl}assets/ai-radar-icon-192.png" alt="">AI進化レーダー</a>
 <article class="hero"><div class="meta"><span class="rank">${expertVideo?'AI学習動画':'重要度'+esc(String(item.importance||"B").toUpperCase())}</span>${expertVideo&&item.expert_name?`${esc(item.expert_name)}・${esc(item.expert_role||'AIの専門家')}｜`:''}${esc(item.source_name||"情報元確認済み")}・${esc(displayDate(item.source_published_at||item.published_at||item.fetched_at))}</div><h1>${esc(title)}</h1><p class="lead">${esc(description)}</p>
-${visual?`<figure class="article-visual${visual.kind==='brand'?' is-brand':''}"><img class="article-image" src="${esc(visual.url)}" alt="${esc(visual.label)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"><figcaption>${esc(visual.label)}${visual.kind==='photo'?` · 写真: <a href="${esc(visual.creditUrl)}" target="_blank" rel="noopener noreferrer">${esc(visual.credit)}</a>${visual.licenseUrl?`（<a href="${esc(visual.licenseUrl)}" target="_blank" rel="noopener noreferrer">利用条件</a>）`:''} · 画面上でトリミング表示`:''}</figcaption></figure>`:''}
+${visual?`<figure class="article-visual${visual.kind==='brand'?' is-brand':''}"><img class="article-image" src="${esc(visual.url)}" alt="${esc(visual.alt||visual.label)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"><figcaption>${esc(visual.label)}${visual.kind==='photo'?` · 写真: <a href="${esc(visual.creditUrl)}" target="_blank" rel="noopener noreferrer">${esc(visual.credit)}</a>${visual.licenseUrl?`（<a href="${esc(visual.licenseUrl)}" target="_blank" rel="noopener noreferrer">利用条件</a>）`:''} · 画面上でトリミング表示`:''}</figcaption></figure>`:''}
 <p class="byline">KIZASHI編集部｜${expertVideo?'発言者の見解と確認済み事実を分け、主張・理由・影響・未確定点を整理しています。':'公開情報を整理し、変化・仕事への影響・次の確認事項を明示しています。'}</p>
 <div class="actions"><a class="button" href="${appUrl}">${expertVideo?'動画の内容をやさしい要約で確認':'AI最新ニュースをやさしい要約で確認'}</a>${expertVideo&&sourceUrl?`<a class="button secondary" href="${esc(sourceUrl)}" target="_blank" rel="noopener noreferrer">元の動画・講演を見る</a>`:''}</div></article>
 ${paragraph(expertVideo?"動画のやさしい解説":"やさしい解説",item.detail||item.easy_summary)}${safeHttpUrl(item.context_source_url)?`\n<section><h2>解説の確認元</h2><p>${esc(item.context_source_note||'')}</p><a class="button secondary" href="${esc(safeHttpUrl(item.context_source_url))}" target="_blank" rel="noopener noreferrer">${esc(item.context_source_name||'補足資料を読む')}</a></section>`:''}
@@ -129,7 +128,6 @@ for(const item of data){
   if(id)valid.push({id,item});
 }
 const sourceImagePeers=valid.map(entry=>entry.item);
-const generatedVisuals=writeStoryVisuals(sourceImagePeers,root);
 for(const {id,item} of valid){
   const dir=path.join(outRoot,id);
   fs.mkdirSync(dir,{recursive:true});
@@ -148,4 +146,4 @@ const sitemap=[
 ].join("\n");
 fs.writeFileSync(path.join(root,"sitemap.xml"),sitemap,"utf8");
 fs.writeFileSync(path.join(root,"robots.txt"),`User-agent: *\nAllow: /\nSitemap: ${baseUrl}sitemap.xml\n`,"utf8");
-console.log(`Built ${valid.length} public article pages; ${generatedVisuals} article-specific visuals updated.`);
+console.log(`Built ${valid.length} public article pages with article-specific imagery where verified.`);

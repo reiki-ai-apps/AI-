@@ -32,7 +32,7 @@ if(index.includes('複数事業やチームで'))failures.push('未提供のチ�
 if(/signUpMember|renderAccount|go\('account'\)|data-operator-users|syncMemberAppStateFromCloud/.test(index))failures.push('廃止した会員制度の画面または処理が残っています');
 
 for(const text of ['create table if not exists public.app_open_events','function public.record_app_open','daily_opens','Asia/Tokyo','alter table public.app_open_events enable row level security','revoke all on table public.app_open_events from anon, authenticated'])requireText(schema,text);
-for(const text of ['node scripts/build-public-articles.mjs','data.json home-edition.json .story-index.json index.html articles assets/story-visuals sitemap.xml robots.txt'])requireText(workflow,text);
+for(const text of ['node scripts/build-public-articles.mjs','data.json home-edition.json .story-index.json index.html articles assets/story-photos sitemap.xml robots.txt'])requireText(workflow,text);
 
 const ids=data.map(item=>String(item.article_id||item.id||'')).filter(id=>/^[A-Za-z0-9_-]{8,100}$/.test(id));
 const itemsById=new Map(data.map(item=>[String(item.article_id||item.id||''),item]));
@@ -57,9 +57,9 @@ for(const id of ids){
   if(!page.includes(expectedHeading))failures.push(`記事に内容別のやさしい解説がありません: ${id}`);
   if((page.match(/<\/p><p>/g)||[]).length<2)failures.push(`やさしい解説の3段落が保持されていません: ${id}`);
   if(!page.includes('class="related"'))failures.push(`内部リンクがありません: ${id}`);
-  if(!expertVideo){
-    const visual=path.join(root,'assets','story-visuals',`${id}.svg`);
-    if(!fs.existsSync(visual))failures.push(`記事専用サムネイルがありません: ${id}`);
+  if(!expertVideo&&item.editorial_image_url){
+    const expected=`assets/story-photos/${id}.png`;
+    if(item.editorial_image_url!==expected||!fs.existsSync(path.join(root,expected)))failures.push(`記事専用画像がありません: ${id}`);
     if(!page.includes('class="article-image"'))failures.push(`記事画像が表示されません: ${id}`);
   }
   if(!page.includes('class="article-image"')&&page.includes('話題のイメージ画像'))failures.push(`記事に無関係な代替画像があります: ${id}`);
