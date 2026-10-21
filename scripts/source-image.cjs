@@ -1,3 +1,4 @@
+const {storyVisualUrl}=require('./story-visual.cjs');
 const OFFICIAL_HOSTS=new Set([
   'openai.com','www.openai.com','anthropic.com','www.anthropic.com',
   'blog.google','deepmind.google','about.google','blogs.microsoft.com',
@@ -30,7 +31,9 @@ function sourceImage(item,peers=[]){
 }
 function articleVisual(item,peers=[]){
   const actual=sourceImage(item,peers);
-  return actual?{url:actual,kind:String(item?.content_type||'')==='expert_video'?'video':'source',label:String(item?.content_type||'')==='expert_video'?'元動画のサムネイル':'情報元の記事画像'}:null;
+  if(actual)return {url:actual,kind:String(item?.content_type||'')==='expert_video'?'video':'source',label:String(item?.content_type||'')==='expert_video'?'元動画のサムネイル':'情報元の記事画像'};
+  const graphic=storyVisualUrl(item);
+  return graphic?{url:graphic,kind:'graphic',label:'この記事専用の図解画像（写真ではありません）'}:null;
 }
 function attrs(tag){
   const result={};

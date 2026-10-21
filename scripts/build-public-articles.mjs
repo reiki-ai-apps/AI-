@@ -4,6 +4,7 @@ import {fileURLToPath} from "node:url";
 import {createRequire} from "node:module";
 const require=createRequire(import.meta.url);
 const {sourceImage,articleVisual}=require('./source-image.cjs');
+const {writeStoryVisuals}=require('./story-visual.cjs');
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
 const data=JSON.parse(fs.readFileSync(path.join(root,"data.json"),"utf8"));
@@ -128,6 +129,7 @@ for(const item of data){
   if(id)valid.push({id,item});
 }
 const sourceImagePeers=valid.map(entry=>entry.item);
+const generatedVisuals=writeStoryVisuals(sourceImagePeers,root);
 for(const {id,item} of valid){
   const dir=path.join(outRoot,id);
   fs.mkdirSync(dir,{recursive:true});
@@ -146,4 +148,4 @@ const sitemap=[
 ].join("\n");
 fs.writeFileSync(path.join(root,"sitemap.xml"),sitemap,"utf8");
 fs.writeFileSync(path.join(root,"robots.txt"),`User-agent: *\nAllow: /\nSitemap: ${baseUrl}sitemap.xml\n`,"utf8");
-console.log(`Built ${valid.length} public article pages.`);
+console.log(`Built ${valid.length} public article pages; ${generatedVisuals} article-specific visuals updated.`);

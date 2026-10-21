@@ -3773,7 +3773,10 @@ function articleMedia(u){
 }
 function articleVisual(u){
   const actual=articleMedia(u);
-  return actual?{url:actual,kind:isExpertVideo(u)?'video':'source',label:isExpertVideo(u)?'元動画のサムネイル':'情報元の記事画像'}:null;
+  if(actual)return {url:actual,kind:isExpertVideo(u)?'video':'source',label:isExpertVideo(u)?'元動画のサムネイル':'情報元の記事画像'};
+  const id=String(u.article_id||'');
+  return !isExpertVideo(u)&&/^article_[A-Za-z0-9_-]{8,90}$/.test(id)
+    ?{url:`./assets/story-visuals/${id}.svg`,kind:'graphic',label:'この記事専用の図解画像（写真ではありません）'}:null;
 }
 function updateCard(u){
   const tool=toolById(u.tool_id);

@@ -252,7 +252,7 @@ jobs:
         run: |
           git config user.name "ai-radar-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data.json home-edition.json .story-index.json index.html articles sitemap.xml robots.txt .expert-video-state.json
+          git add data.json home-edition.json .story-index.json index.html articles assets/story-visuals sitemap.xml robots.txt .expert-video-state.json
           if git diff --staged --quiet; then
             echo "Published data is already current"
             exit 0
