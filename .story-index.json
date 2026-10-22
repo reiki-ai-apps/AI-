@@ -2,6 +2,146 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_cb8f94d0739aac6d9f81",
+      "story_id": "story_36bf79278c521401a1",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.8552941176470589,
+      "title": "Google、サイバー防衛特化の新AIモデル『Gemini 4 Argon』を先行提供開始",
+      "source_published_at": "2026-10-22T09:30:00.000Z",
+      "published_at": "2026-10-22T09:30:00.000Z",
+      "fetched_at": "2026-10-22T15:15:37.125Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "Googleはサイバー防衛に特化した新モデル『Gemini 4 Argon』の先行提供を始め、出力上限が従来モデルの15倍に拡大したと発表した。",
+      "source_name": "Infoseek",
+      "source_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9hT1FteWpZc0l4OG5wZWp2c3YxRENlWTNKcTFUTTVQUWVrM1BwVVE4QzB4dDdkZWRrSlVZbE10enp5UkJQaW5SVVlSaF9WalgwV0I3NkJFVV83d3JxNUVkWQ?oc=5",
+      "story_entities": [
+        "Google",
+        "Gemini 4 Argon",
+        "google",
+        "gemini4argon",
+        "google-gemini"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "Gemini 4 Argon",
+      "event_type": "release",
+      "event_stage": "beta",
+      "event_scope": "先行提供",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "出力上限の拡大",
+          "value": "従来の15倍",
+          "normalized_value": "15"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "non_forward_stage_change"
+      ],
+      "change_summary": "サイバー防衛専用に調整された点と、出力上限が従来の15倍に拡大した点が新しい。",
+      "detail": "Googleはサイバー防衛に特化した新しいAIモデル「Gemini 4 Argon」の先行提供を始めたと発表した。簡単に言うと、コンピューターを攻撃から守る作業を助けるために作られた専用のAIだ。これまでの汎用的なGeminiモデルと違い、セキュリティ業務向けに調整されている点が新しい。\n\n記事によると、Gemini 4 Argonは一度に出力できる文章量の上限が、従来のモデルと比べて15倍に広がったとされる。出力上限とは、AIが一回の回答で生成できる文章の長さの限界のことだ。出力できる量が増えることで、長い解析結果や詳しい報告書を一度にまとめて出せるようになると考えられる。\n\nサイバー防衛を担当する企業や組織にとっては、より詳細な分析をAIに任せやすくなる可能性がある。ただし先行提供の段階であり、一般向けの正式な提供時期や料金は記事からは確認できない。対象となる利用者の範囲についても、まだ発表されていない。",
+      "new_facts": [
+        "Googleがサイバー防衛特化の新モデル『Gemini 4 Argon』の先行提供を開始した",
+        "出力上限が従来モデルの15倍に拡大した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_af631ad14236ec8a08d1",
+      "story_id": "story_1e8fcc8d6a165c9ab2",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.7825,
+      "title": "Anthropic、先回り操作型AIエージェント『Claude Duet』を発表",
+      "source_published_at": "2026-10-22T09:20:00.000Z",
+      "published_at": "2026-10-22T09:20:00.000Z",
+      "fetched_at": "2026-10-22T15:15:37.125Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Anthropicは、Claude Opus 5.5を基盤にした能動型AIエージェント『Claude Duet』を発表し、ユーザーの操作を先回りして実行する機能を搭載した。",
+      "source_name": "Real Sound｜リアルサウンド",
+      "source_url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBocGdId1BTTmFHSlBsUERtV1pDNS1ibjdlZUkyY0RuSWVZMEZieFdHejlrSWVOSnJuUEhidzJYdnliNWR3R2tXUVRxbFpTUlFrRjctN1YyYWVYd3VWaUFsamYyZEZZZ9IBZkFVX3lxTFBocGdId1BTTmFHSlBsUERtV1pDNS1ibjdlZUkyY0RuSWVZMEZieFdHejlrSWVOSnJuUEhidzJYdnliNWR3R2tXUVRxbFpTUlFrRjctN1YyYWVYd3VWaUFsamYyZEZZZw?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "Claude Duet",
+        "Claude Opus 5.5",
+        "anthropic",
+        "claudeduet"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude Duet",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "不明",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "基盤モデル",
+          "value": "Claude Opus 5.5",
+          "normalized_value": "claudeopus5.5"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "non_forward_stage_change"
+      ],
+      "change_summary": "指示を待たずに先回りして操作する「能動型」エージェントという動作方式が導入された点が新しい。",
+      "detail": "Anthropicは新しいAIエージェント「Claude Duet」を発表した。簡単に言うと、使う人が指示を出す前に次の作業を予測して自動で動くAIの仕組みだ。これまでのAIエージェントは指示を受けてから動くのが普通だったが、Claude Duetは先回りして操作する点が新しい。\n\nClaude DuetはAnthropicの新しい大規模言語モデル「Claude Opus 5.5」を基盤にしている。大規模言語モデルとは、大量の文章データを学習して人間のような応答を作るAIの仕組みを指す。この基盤モデルの能力を使い、利用者の意図を先読みして関連作業を自動で進める点が特徴とされている。\n\n利用者にとっては、細かく指示を出さなくても作業が進む可能性がある。ただし先回りして操作する分、意図しない動作が起きるリスクも考えられる。具体的な提供時期や対象ユーザー、料金などはまだ発表されていない。",
+      "new_facts": [
+        "Anthropicが能動型AIエージェント『Claude Duet』を発表した",
+        "Claude DuetはClaude Opus 5.5を基盤としている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_fd5e0b5378633689b973",
+      "story_id": "story_0fc15b43bda5ec42f5",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Canvaで資料作成するZ世代大学生、内容を説明できない実態に教員が懸念",
+      "source_published_at": "2026-10-22T06:46:00.000Z",
+      "published_at": "2026-10-22T06:46:00.000Z",
+      "fetched_at": "2026-10-22T15:15:37.125Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "Canvaなどのツールで見栄えの良い発表資料を作る大学生が増える一方、内容を自分で説明できない学生が目立つと教員が指摘している。",
+      "source_name": "ｄメニューニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOUUlIcTdmWVAzZDZpcGN1NklkR0lnU2E5VUdjS1BuTExmNkxoV3ZFSHJHQUx0WWFfMjV4TkZCdXpxUU5NWUZtY3NHNHhFRnVjTmJwRTlKWmFZSG5IR1RERVlQdUdzcEx3S25nWUZzWmxKWkhncDJOWmVySGRueDlTX1dUbmNwUdIBggFBVV95cUxORGVuMjE0a2dpSG42Nl85R2pDYXhsU0lPTGxwMHMxTFhINml0bklxZUlHMTV5bWJHZ2dQamFaVC1hYXo3SFVla0N1NVN5OWp3a1ozX0QwenpVdFBGTE81XzZkTXJ1UXhEYjBZbEx4LWZxRk04Si1sTGJ0c3FMTWxLRWx3?oc=5",
+      "story_entities": [
+        "Canva",
+        "大学教育",
+        "canva"
+      ],
+      "primary_entity": "Canva",
+      "story_subject": "Canvaを使った大学生の資料作成",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "日本の大学",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "見た目重視の資料作成が進む一方、内容説明力の不足が教員から指摘された点が新しい。",
+      "detail": "ｄメニューニュースの記事は、デザインツール「Canva」を使って発表資料を作る大学生の実態を取り上げた。簡単に言うと、見た目はきれいでもその中身を自分の言葉で説明できない学生が増えているという話だ。手作業で資料を作っていた以前と比べ、ツールに任せる部分が増えたことで中身の理解が追いつかない点が指摘されている。\n\n記事では、教員が「自分の資料を説明できない」学生の存在に懸念を示している。Canvaは文章や画像を自動で作る機能を備えたデザインツールで、短時間で見栄えの良いスライドを作れる。便利さの一方で、資料作成の過程で内容を深く考える機会が減っている可能性があるという指摘だ。\n\n学生にとっては、ツールを使いこなす技術と、内容を理解し説明する力の両方が求められる状況になっている。記事からは、具体的な大学名や調査人数などの詳しい数字は確認できない。教育現場でどのような対策が取られるかは、まだ発表されていない。",
+      "new_facts": [
+        "教員がCanvaで作った資料の内容を学生自身が説明できない実態を懸念している"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_f39979dbad0f71c91c2a",
       "story_id": "story_4b23a1474561944435",
       "story_sequence": 1,
