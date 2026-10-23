@@ -2,6 +2,124 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_faae624300a8e67b770e",
+      "story_id": "story_48bd5cd9e94f72edfb",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "米財務省、対外技術投資規制の拡大に向けた規則案を提示",
+      "source_published_at": "2026-10-23T01:36:07.000Z",
+      "published_at": "2026-10-23T01:36:07.000Z",
+      "fetched_at": "2026-10-23T09:21:38.947Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "米財務省が、海外の先端技術分野への投資を制限する規制の対象を広げる規則案を示したと報じられたが、詳細は不明。",
+      "source_name": "Unite.AI",
+      "source_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPYUd5N0ozc09mYXZfbWxnSHI4VVNJelNGZGt2LWtpbjRxc2RpT19ZTzdqekR6M1I4dnZrWE5pMWNNUzlvS3BoSGNndE05UE5HN3ZSR18tNFNkWUp0VzUzR1cwcXZvdTl4M3BHLXhJOGJhU2FFVHVSdUdSMFY3Zm9xdEhrLWhhMEh2RWcxRnlua2xXQUk?oc=5",
+      "story_entities": [
+        "米財務省",
+        "対外投資規制"
+      ],
+      "primary_entity": "米財務省",
+      "story_subject": "対外技術投資規制の拡大",
+      "event_type": "policy",
+      "event_stage": "proposed",
+      "event_scope": "アメリカ、海外投資",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "対外技術投資を制限する規制の対象範囲を広げる規則案が検討されていると報じられた。",
+      "detail": "アメリカの財務省が、海外への先端技術投資を制限する規則の対象を広げる案を示したと報じられました。これは『対外投資規制』と呼ばれる制度で、米国の企業や投資家が海外の特定分野の技術に出資することを制限する仕組みです。これまでも半導体や人工知能など安全保障に関わる分野を対象にした規制がありましたが、今回はその対象をさらに広げる内容とされています。\n\n具体的にどの技術分野が追加されるのか、施行時期がいつになるのかは、現時点では明らかにされていません。対外投資規制は、アメリカの資金や技術が安全保障上のリスクがある国の技術発展を後押ししないようにする目的で設けられている制度です。規則が拡大されれば、米国の投資家やファンドが対象国への投資判断を見直す必要が出てきます。\n\n今回の報道では規則案の全体像や対象国・分野などの詳細が明らかになっていません。今後、正式な規則案の公表や意見募集の手続きが行われるかどうかが注目されます。",
+      "new_facts": [
+        "米財務省が対外技術投資規制の対象拡大に向けた規則を提案したと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_f8b78636455861b9a4d3",
+      "story_id": "story_6cf90b8a313a11cc16",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "1Password、AIエージェント向けにパスワードを渡さず認証を代行する新機能を公開",
+      "source_published_at": "2026-10-22T22:27:24.000Z",
+      "published_at": "2026-10-22T22:27:24.000Z",
+      "fetched_at": "2026-10-22T23:26:35.493Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "1Passwordは、AIエージェントがパスワードを直接受け取らずに認証を代行できる新機能を発表した。",
+      "source_name": "shiritomo",
+      "source_url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE1vYUI4Mk5TWUxsZnZHNFZ2UndRTmdxUzV0aURSWDIzbkpDeXk4RnNVeXAwZHBUU25yRW9rN0VPMF9LUQ?oc=5",
+      "story_entities": [
+        "1Password",
+        "1password",
+        "password"
+      ],
+      "primary_entity": "1Password",
+      "story_subject": "AIエージェント向け認証代行機能",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "1Passwordサービス全般",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AIエージェントにパスワードそのものを渡さずに認証を代行できる新機能が公開された。",
+      "detail": "パスワード管理サービスの1Passwordが、AIエージェント(人に代わって作業を自動で行うAIプログラム)向けの新機能を公開した。簡単に言うと、AIに直接パスワードを教えなくても、AIが本人の代わりにログイン認証を行えるようにする仕組みである。これまではAIにログインを任せる場合、パスワードそのものを渡す必要があり、情報漏えいの懸念があった。\n\n新機能では、AIエージェントがパスワードを直接受け取らずに認証を代行できる。記事からは具体的な技術の仕組みや対応するサービスの範囲までは確認できない。パスワードを外部に渡さずに済むため、AIを使った自動化作業でも情報漏えいのリスクを抑えられる点が特徴とされる。\n\n企業や個人がAIに作業を任せる際、パスワードの管理をより安全に行えるようになる可能性がある。ただし提供時期や対応環境、料金などの詳細は記事に明記されていない。利用を検討する場合は今後の公式発表を確認する必要がある。",
+      "new_facts": [
+        "1PasswordがAIエージェント向けの新機能を公開した",
+        "パスワードを渡さずに認証を代行できる仕組みとされている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_891b7e0bbf66f86d27b7",
+      "story_id": "story_8782f35e9019f7391f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5536170212765957,
+      "title": "OpenAIが新API「Decisions API」を発表",
+      "source_published_at": "2026-10-22T19:00:00.000Z",
+      "published_at": "2026-10-22T19:00:00.000Z",
+      "fetched_at": "2026-10-22T23:26:35.493Z",
+      "event_at": "2026-10-22",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIは、あらゆるアプリに高速・低コストで判断機能を組み込める「Decisions API」を発表した。",
+      "source_name": "openai.com",
+      "source_url": "https://openai.com/index/decisions-api",
+      "story_entities": [
+        "OpenAI",
+        "Decisions API",
+        "openai",
+        "decisionsapi",
+        "decisions"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "Decisions API",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "API",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject"
+      ],
+      "change_summary": "OpenAIが、アプリに判断機能を組み込める新API「Decisions API」を発表した。",
+      "detail": "OpenAIが、公式サイトで新しい仕組み「Decisions API」を発表しました。これは、アプリの中にすばやく判断を下す機能を組み込むための窓口のことです。APIとは、ソフトウェア同士が情報をやり取りするための接続の仕組みを指します。\n\n公式の説明文では、この新しい仕組みについて「どんなアプリにも使える、速くて的を絞った低コストの判断機能」と紹介されています。今回の発表文からは、具体的な料金や対応言語、提供開始の時期など詳しい条件はまだ分かっていません。それでも、アプリ開発者が自分のサービスの中にAIによる判断処理を手軽に取り入れられる新しい選択肢が増えたことは確かです。\n\nこの機能を使う開発者にとっては、複雑な判断ロジックを自前で作らなくても済む可能性があります。ただし現時点では料金体系や利用条件、具体的な性能の詳細は公式発表で明らかになっていません。今後OpenAIから追加の説明やドキュメントが公開されるかが注目されます。",
+      "new_facts": [
+        "OpenAIが「Decisions API」という新しいAPIを公式発表した",
+        "このAPIはアプリに高速・低コストの判断機能を組み込むためのものと説明されている"
+      ],
+      "event_date_precision": "day"
+    },
+    {
       "article_id": "article_cb8f94d0739aac6d9f81",
       "story_id": "story_36bf79278c521401a1",
       "story_sequence": 1,
@@ -138,6 +256,135 @@
       "detail": "ｄメニューニュースの記事は、デザインツール「Canva」を使って発表資料を作る大学生の実態を取り上げた。簡単に言うと、見た目はきれいでもその中身を自分の言葉で説明できない学生が増えているという話だ。手作業で資料を作っていた以前と比べ、ツールに任せる部分が増えたことで中身の理解が追いつかない点が指摘されている。\n\n記事では、教員が「自分の資料を説明できない」学生の存在に懸念を示している。Canvaは文章や画像を自動で作る機能を備えたデザインツールで、短時間で見栄えの良いスライドを作れる。便利さの一方で、資料作成の過程で内容を深く考える機会が減っている可能性があるという指摘だ。\n\n学生にとっては、ツールを使いこなす技術と、内容を理解し説明する力の両方が求められる状況になっている。記事からは、具体的な大学名や調査人数などの詳しい数字は確認できない。教育現場でどのような対策が取られるかは、まだ発表されていない。",
       "new_facts": [
         "教員がCanvaで作った資料の内容を学生自身が説明できない実態を懸念している"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_88acccc14905a2bb85cb",
+      "story_id": "story_fa72a8f2608360ec8f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AIがPHPの大規模な脆弱性を発見、GPT-5.6 SolとGemini 4 Argonが関与",
+      "source_published_at": "2026-10-22T06:45:00.000Z",
+      "published_at": "2026-10-22T06:45:00.000Z",
+      "fetched_at": "2026-10-22T23:26:35.493Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "AIモデルのGPT-5.6 SolとGemini 4 Argonが、ウェブ言語PHPで「史上最大級」とされる脆弱性を発見したと報じられた。",
+      "source_name": "Yahoo!ニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1RRDE2U09ReTZETEs4M0dvajhfVF90Rk1oMWVrZXM2VWh4dU5vaWZzWHVoQUNjSTZycjBLWVVGNWxZS1RkcDRtWWRUMkVlWWRZckd6VmhsZHJ4cW5aTGJGbi1Pa2dIT2oyQVBuaVNET1RCcVh3bEpXUlhwMm1zVkU?oc=5",
+      "story_entities": [
+        "PHP",
+        "GPT-5.6 Sol",
+        "Gemini 4 Argon",
+        "php",
+        "gpt-5.6sol"
+      ],
+      "primary_entity": "PHP",
+      "story_subject": "PHPの脆弱性発見",
+      "event_type": "security",
+      "event_stage": "investigating",
+      "event_scope": "PHPを使用するウェブサイト全般",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AIがPHPの大規模な脆弱性を発見したと報じられた。",
+      "detail": "AIモデル「GPT-5.6 Sol」と「Gemini 4 Argon」が、多くのウェブサイトで使われているプログラム言語PHPの弱点(脆弱性)を見つけ出したと報じられた。簡単に言うと、AIがコンピュータプログラムの欠陥を自動で探し当てたということである。これまで人間のセキュリティ専門家が時間をかけて調べていた作業を、AIが担った点が新しい。\n\n記事ではこの脆弱性が「ウェブ史上最大級」と表現されている。ただし脆弱性の具体的な内容や影響範囲、発見された時期などの詳細は記事からは確認できない。PHPは世界中の多くのウェブサイトの裏側で動く言語であるため、欠陥が見つかれば影響は広範囲に及ぶ可能性がある。\n\nウェブサイトを運営する企業や個人は、今後修正プログラム(パッチ)が公開されるかを確認する必要がある。現時点では脆弱性の技術的な詳細や対応状況は公表されておらず、AIがどのような手順で発見したかも不明である。",
+      "new_facts": [
+        "GPT-5.6 SolとGemini 4 ArgonというAIがPHPの脆弱性を発見したと報じられた",
+        "脆弱性は「ウェブ史上最大級」と表現されている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_3fd153529de55ca192b0",
+      "story_id": "story_783de87769ce41098a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6281249999999999,
+      "title": "Google、政府機関向けにGeminiの試験提供を開始",
+      "source_published_at": "2026-10-22T03:11:34.000Z",
+      "published_at": "2026-10-22T03:11:34.000Z",
+      "fetched_at": "2026-10-22T23:26:35.493Z",
+      "event_at": "",
+      "event_status": "予定",
+      "raw_excerpt": "Googleは行政機関向けにAIモデル「Gemini」の試験提供を始め、行政業務のAI活用を進めると報じられた。",
+      "source_name": "PlusWeb3",
+      "source_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBiYjRlVjJ2QTlrRmVNdTVqbkFnbFJLOE9sV0x6VUo5ZEJhTkVYMHlJYUVqa0lkMkUwLVdsOFVxcm14Nk8ta1ZBeWtNeC1pX3MyblJoZGktcm9nUVg1Uzg0?oc=5",
+      "story_entities": [
+        "Google",
+        "Gemini",
+        "google",
+        "gemini",
+        "google-gemini"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "政府向けGemini試験提供",
+      "event_type": "release",
+      "event_stage": "beta",
+      "event_scope": "政府機関・行政向け",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Googleが政府機関向けにGeminiの試験提供を始めた。",
+      "detail": "Googleは、政府機関向けに自社のAI「Gemini」を試験的に提供し始めたと報じられた。簡単に言うと、各国や自治体などの行政機関がGeminiを試しに使えるようにする取り組みである。これまで行政機関向けのAI導入は限定的だったが、今回Googleが専用の試験提供という形で後押しする点が新しい。\n\n記事では「行政業務のAI化へ」との見出しで、Googleが政府向けにGeminiを試験提供することが伝えられている。ただし対象となる国や自治体、具体的な提供時期、利用できる機能の範囲などの詳細は本文からは確認できない。行政機関にAIを取り入れることで、書類作成や問い合わせ対応など多くの業務を効率化できる可能性がある。\n\n公務員や行政サービスを利用する住民にとって、行政手続きの対応が今後変わる可能性がある。ただし試験提供の具体的な対象範囲や成果、正式導入の予定については記事に明記されていない。今後の正式発表や試験結果の公表を確認する必要がある。",
+      "new_facts": [
+        "Googleが政府機関向けにGeminiの試験提供を始めたと報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_3f1ff185fef15031a97f",
+      "story_id": "story_0b693267a4152c57fb",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "動画生成AI「Kling 4.0」、Runway「Gen-4.5」との比較テストで6割超のスコア",
+      "source_published_at": "2026-10-22T00:41:36.000Z",
+      "published_at": "2026-10-22T00:41:36.000Z",
+      "fetched_at": "2026-10-23T09:21:38.947Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "動画生成AIのKling 4.0が、Runway Gen-4.5との比較テストで61%の割合で高評価を得たと報じられた。",
+      "source_name": "OrcaRouter",
+      "source_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5yN0F1OWZqMXhDVWR5TzdMV3VTNlBzZ1o4akNCczhITjdMV1RTRXlQM1V0eTlmQjBVejBPelhfWE5aTk5Xb1Rncy1jMXhYVzFKQkFtUm9aaUxLR3BNRU9JUFBaMm0xQ2xxblR2dUd3?oc=5",
+      "story_entities": [
+        "Kling 4.0",
+        "Runway Gen-4.5",
+        "kling4.0",
+        "runwaygen-4.5",
+        "runway"
+      ],
+      "primary_entity": "Kling AI",
+      "story_subject": "Kling 4.0とRunway Gen-4.5の比較",
+      "event_type": "research",
+      "event_stage": "other",
+      "event_scope": "動画生成AI分野",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "比較テストでの勝率",
+          "value": "61%",
+          "normalized_value": "61%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Kling 4.0がRunway Gen-4.5との比較テストで61%の割合で高評価を得たと報じられた。",
+      "detail": "AIで動画を作る『Kling』の最新版『Kling 4.0』と、同じく動画生成AIの『Runway』の『Gen-4.5』を比較したテスト結果が報じられました。動画生成AIとは、文章や画像をもとにAIが自動で映像を作り出す技術のことです。比較の結果、Kling 4.0がテスト全体の61%で高いスコアを獲得したとされています。\n\n記事では、具体的にどのような基準でテストを行ったのか、何本の動画を比較したのかといった詳細は示されていません。それでも、動画生成AIの分野では複数の企業が高画質・高精度を競っており、今回のような比較結果は開発者や利用者がどのサービスを選ぶかの参考材料になります。\n\n動画制作にAIを活用する企業やクリエイターにとって、性能の優劣は作業の効率や完成度に直結します。ただし、テストの条件や評価方法次第で結果が変わる可能性もあるため、今回の61%という数字だけで優劣を断定することはできません。詳しいテスト条件や第三者による検証結果はまだ明らかになっていません。",
+      "new_facts": [
+        "Kling 4.0がRunway Gen-4.5との比較テストで61%の割合で高いスコアを得たと報じられた"
       ],
       "event_date_precision": "unknown"
     },
