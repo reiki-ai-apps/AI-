@@ -153,6 +153,54 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_74624479261c7c63b920_rev_f6ef330486df",
+      "story_id": "story_946071478380278f90",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AIコーディング利用者向けセキュリティ対策解説（KEITO氏）",
+      "source_published_at": "2026-10-23T12:00:24.000Z",
+      "published_at": "2026-10-23T12:00:24.000Z",
+      "fetched_at": "2026-10-23T23:19:09.712Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "YouTuberのKEITO氏が、AIにコードを書かせる人向けにPHP確認や1Password導入などの対策をまとめて解説した。",
+      "source_name": "KEITO【AI&WEB ch】",
+      "source_url": "https://www.youtube.com/watch?v=wUeDaCeMrdM",
+      "story_entities": [
+        "KEITO",
+        "1Password",
+        "Claude Code",
+        "keito",
+        "1password"
+      ],
+      "primary_entity": "KEITO",
+      "story_subject": "AIコーディングツール利用時のセキュリティ対策",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "個人開発者・AIコーディングツール利用者向け",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "similar_title",
+        "same_scope",
+        "same_url_content_changed"
+      ],
+      "change_summary": "PHP確認からAIによる点検、1Password導入まで対策を一通りまとめて紹介した点が新しい。",
+      "detail": "YouTuberのKEITO氏が、AIにコードを書かせる人向けの動画を公開した。動画は、サーバーで使うPHPやWordPressの状態確認から始まる。複数の対策を一度にまとめて確認できる内容になっている。\n\n動画では、Node.jsやChromeなど基本ソフトの更新も呼びかけている。AIを使った点検方法や、自作チェックツールの配布も紹介している。指示だけで自動的に作業するプログラム『AIエージェント』への権限管理も説明した。\n\nKEITO氏はパスワード管理アプリ『1Password』導入の理由も語った。ソフト同士をつなぐ合言葉『APIキー』やパスキーの管理法も扱った。ただし紹介が中心で、各手順の詳しい効果までは示されていない。",
+      "new_facts": [
+        "動画ではPHP・WordPressの確認やNode.jsの更新手順が紹介されている",
+        "AIによる点検方法や自作チェックツールの配布が案内されている",
+        "KEITO氏がパスワード管理アプリ1Password導入の理由を説明している",
+        "APIキーやパスキー、2段階認証の設定についても触れている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_faae624300a8e67b770e",
       "story_id": "story_48bd5cd9e94f72edfb",
       "story_sequence": 1,
@@ -684,6 +732,56 @@
       "detail": "AI企業アンソロピックは、自社のセキュリティ機能「Claude Security」を更新し、コードを継続的にスキャンできるようにしたと発表したとされる。これは、プログラムの不具合や脆弱性(弱点)を、開発が進む間ずっと自動でチェックし続ける仕組みとみられる。これまでは一時点でのチェックが中心だったとみられ、常時監視へ変わった点が異なる。\n\n具体的な対象は、AIにプログラムを書かせる機能「Claude Code」などに関連するとみられる。継続的にスキャンすることで、コードに新しい問題が生まれてもすぐに気づける。セキュリティの不備を早期に見つけられる点が重要とされる。\n\nClaudeを使って開発する人は、コードの安全確認を自動でより細かく受けられるようになる可能性がある。更新の対象範囲や料金への影響など詳細は記事からは分からない。今後、アンソロピックから追加の情報が出るか注目される。",
       "new_facts": [
         "AnthropicがClaude Securityを更新し、コードを継続的にスキャンする機能を追加した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_17939d26e5fa4b270fea",
+      "story_id": "story_3bee0845159725916b",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.556734693877551,
+      "title": "Perplexity、Mac版「Perplexity Computer」に完全ローカルAIを追加",
+      "source_published_at": "2026-10-21T18:18:11.000Z",
+      "published_at": "2026-10-21T18:18:11.000Z",
+      "fetched_at": "2026-10-24T08:53:10.252Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Perplexityが、Mac向けアプリ「Perplexity Computer」に完全ローカルで動くAI機能を加え、クラウド利用を任意にできるようにした。",
+      "source_name": "remio",
+      "source_url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQcFVzREh3VTVBelpjXzM4dXd2M0F2Q1NvUUFKSkVxNk5aV01TLVNLem95TWc4R01jMVJaVFJaaXdnR2ZGakZNSm9NamZ1bnRzZWNvcnl2R2pFR3V2UFdZaWUwc1JNRGFNdjhfbVUyZlYyM0lldV8zaHNDaTRJSjNLYVd1S05sWHllazhBRFYyNUViaDBidkxUWUFQaXN0Y2xWSVMyeHVLX0g?oc=5",
+      "story_entities": [
+        "Perplexity",
+        "Perplexity Computer",
+        "Mac",
+        "perplexity",
+        "perplexitycomputer"
+      ],
+      "primary_entity": "Perplexity",
+      "story_subject": "Perplexity Computerのローカルマイアイ機能",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Mac",
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "Perplexity ComputerのローカルAI機能",
+          "value": "Mac版に追加、クラウド利用は任意",
+          "normalized_value": "mac版に追加クラウド利用は任意"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type"
+      ],
+      "change_summary": "Mac版「Perplexity Computer」にクラウド接続なしで動くローカルAIが新たに加わった。",
+      "detail": "Perplexityは、Mac向けの自社アプリ「Perplexity Computer」に新しい機能を加えました。それは、インターネット上のサーバー(クラウド)を使わずに、Mac本体だけで動くAI機能です。これまではクラウドのAIを使うことが前提でしたが、今回からは使うかどうかを選べるようになりました。\n\n記事によると、追加されたのは「完全ローカルAI」と呼ばれる仕組みで、ネットに繋がなくてもAIの機能が使える点が特徴です。クラウドへのアクセスは必須ではなく、任意で選択できる形に変わりました。ネットワークを介さずに処理が完結するため、データが外部に送られにくくなる可能性があります。\n\n使う人にとっては、通信環境がない場所でもAI機能を使える選択肢が増えることになります。ただし、対応するMacの条件や機能の制限、提供開始時期などの詳細はこの記事からは確認できません。今後の公式発表で詳しい条件が示されるか注目されます。",
+      "new_facts": [
+        "Mac版「Perplexity Computer」に完全ローカルで動くAI機能が追加された",
+        "クラウドへのアクセスは任意で選べるようになった"
       ],
       "event_date_precision": "unknown"
     },
@@ -1911,6 +2009,50 @@
       "dedupe_decision": "new",
       "dedupe_reasons": [
         "no_previous_story"
+      ],
+      "change_summary": "業務効率化が自動的に利益向上へつながるとは限らないという視点を今井翔太氏が示した。",
+      "detail": "AI研究者の今井翔太氏が、動画で業務効率化と利益の関係について指摘した。作業時間が半分になっても、会社の利益が増えるとは限らないという話だ。AIで効率化すれば自動的に会社が儲かるという単純な考え方とは異なる指摘だ。\n\n今井氏は、時間が空いた後に取り組む仕事の中身が重要だと述べた。空いた時間に、お金を生み出す新しい仕事が残っているかが鍵だという。これは業種ごとの仕事の性質にも左右されると今井氏は説明している。\n\nAIで時短を進める企業にとって、経営判断の参考になる視点だといえる。この動画はビジネス＋ITチャンネルが配信した本編からの短い切り抜きだ。具体的な業界名や数字など詳しい説明は、この切り抜きには含まれていない。",
+      "new_facts": [
+        "今井翔太氏は、作業時間が半分になっても利益が増えるとは限らないと指摘した",
+        "空いた時間に収益を生む仕事が残っているかが業界の性質にも関わると述べた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_644dee56d703fd98e153_rev_cc1dbc6530ac",
+      "story_id": "story_b5df61b11858d1be0f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "AIで時短しても利益は増えない、今井翔太氏が指摘",
+      "source_published_at": "2026-10-19T10:00:03.000Z",
+      "published_at": "2026-10-19T10:00:03.000Z",
+      "fetched_at": "2026-10-23T23:19:09.712Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "AI研究者の今井翔太氏が、作業時間を半分にしても会社の利益が増えるとは限らず、空いた時間に収益を生む仕事があるかが重要だと指摘した。",
+      "source_name": "ビジネス＋ITチャンネル",
+      "source_url": "https://www.youtube.com/watch?v=xpRtmRTmr44",
+      "story_entities": [
+        "今井翔太",
+        "ビジネス+ITチャンネル",
+        "ビジネスitチャンネル"
+      ],
+      "primary_entity": "今井翔太",
+      "story_subject": "AIによる業務効率化と企業利益の関係",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "動画配信(切り抜き)",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "similar_title",
+        "same_scope",
+        "same_url_content_changed"
       ],
       "change_summary": "業務効率化が自動的に利益向上へつながるとは限らないという視点を今井翔太氏が示した。",
       "detail": "AI研究者の今井翔太氏が、動画で業務効率化と利益の関係について指摘した。作業時間が半分になっても、会社の利益が増えるとは限らないという話だ。AIで効率化すれば自動的に会社が儲かるという単純な考え方とは異なる指摘だ。\n\n今井氏は、時間が空いた後に取り組む仕事の中身が重要だと述べた。空いた時間に、お金を生み出す新しい仕事が残っているかが鍵だという。これは業種ごとの仕事の性質にも左右されると今井氏は説明している。\n\nAIで時短を進める企業にとって、経営判断の参考になる視点だといえる。この動画はビジネス＋ITチャンネルが配信した本編からの短い切り抜きだ。具体的な業界名や数字など詳しい説明は、この切り抜きには含まれていない。",
