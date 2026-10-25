@@ -2,6 +2,144 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_1140525ec2c0bd12ae98",
+      "story_id": "story_9d5fa8954888ecb02f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "グーグル元CEO、「AI競争で中国は米国に6カ月遅れだが戦略次第で逆転も」と発言",
+      "source_published_at": "2026-10-25T03:30:00.000Z",
+      "published_at": "2026-10-25T03:30:00.000Z",
+      "fetched_at": "2026-10-25T09:09:49.504Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "グーグルの元CEOは、AI開発競争で中国は米国に約6カ月遅れているとしつつ、特定の戦略により中国が逆転する可能性があると述べた。",
+      "source_name": "Yahoo Finance",
+      "source_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQaDZuc1ZxQ3Q2bEE2Ri1zZ25iYmlVN2x1d3YxOEJPd3JVU2szRW56cGQ0VE5iSUNuZklxbDhTaklHcTVmTjBSUzEwdV9TT1I2U2QyaU5jSERrcFNYN2xBdEtkdVFocTJFSk5CQjhlblZ1Znh4dkNmVUNTbVpqbnpSWnRjWHV4M2J3M3l6ZUhTOVlnZw?oc=5",
+      "story_entities": [
+        "グーグル",
+        "グーグル元CEO",
+        "グーグル元ceo"
+      ],
+      "primary_entity": "グーグル元CEO",
+      "story_subject": "米中AI開発競争に関する発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "米国・中国",
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "中国のAI開発の遅れ",
+          "value": "約6カ月",
+          "normalized_value": "6"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "グーグルの元CEOが、AI開発で中国は米国に6カ月遅れているが、戦略次第で逆転しうるとの見方を示した。",
+      "detail": "グーグルの元CEOが、米国と中国のAI開発競争について発言しました。簡単に言うと、中国の技術力は米国より少し遅れているものの、戦略次第で追い抜く可能性があるという指摘です。これまでも米中のAI競争は話題になってきましたが、具体的な遅れの期間や逆転の可能性について元トップ経営者が言及した点が注目されます。\n\n記事によると、この元CEOは中国のAI開発が米国より約6カ月遅れているとの見方を示しました。一方で、中国が採用しているある戦略によって、この差を縮めたり逆転したりする可能性があるとも述べています。さらに「我々はすでに負けつつある」とも発言したとされています。\n\nこの発言は、AI開発における国際競争の見方を示すものとして受け止められます。ただし、具体的にどのような戦略を指しているのか、記事の抜粋からは詳細が分かりません。発言の根拠や裏付けとなるデータについても、今後の情報を確認する必要があります。",
+      "new_facts": [
+        "グーグルの元CEOが、中国のAI開発は米国に約6カ月遅れていると発言した",
+        "同氏は、中国が特定の戦略により逆転する可能性があるとも述べた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_6234f13ae37b9313e66f",
+      "story_id": "story_de9e41362362f633cc",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6211428571428572,
+      "title": "中国DeepSeek、2兆円超を資金調達しOpenAIなどを追い上げ",
+      "source_published_at": "2026-10-25T02:00:00.000Z",
+      "published_at": "2026-10-25T02:00:00.000Z",
+      "fetched_at": "2026-10-25T09:09:49.504Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "中国のAI企業DeepSeekが2兆円を超える資金調達を実施したと報じられ、米国大手AI企業への対抗姿勢を強めている。",
+      "source_name": "TBS NEWS DIG",
+      "source_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPelhwNExocF9EUHhFSVhvU09uTTJmVzh4THJsMlI2SVFzYkYxZWZBQTM4TldWY2JqcjdOMXpMU0dIWlB4N1JJRHQzc3BvNm5QZ1FRVVo5VjNPOWRCWjk4cjdLTk9TamtMcGZ6TklSZjhkdzR0YzUydm1feDBxM25CLW5YSG5lelE?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "OpenAI",
+        "deepseek",
+        "openai"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeekの大型資金調達",
+      "event_type": "funding",
+      "event_stage": "announced",
+      "event_scope": "中国、グローバル",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "資金調達額",
+          "value": "2兆円超",
+          "normalized_value": "2000000000000JPY"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type",
+        "same_scope"
+      ],
+      "change_summary": "DeepSeekが2兆円超という巨額の資金調達を実施したと報じられた点が新しい動きです。",
+      "detail": "中国のAI企業DeepSeekが、2兆円を超える金額の資金調達を実施したと報じられました。DeepSeekは中国発の人工知能（AI）開発企業で、比較的低いコストで高性能なAIモデルを開発してきたことで知られています。今回の巨額の資金調達により、資金力の面でも米国の大手AI企業に対抗する姿勢を強めた形になります。\n\n報道によると、調達額は2兆円を超える規模とされ、これはOpenAIなど世界的に知られるAI大手企業に匹敵する水準だとされています。調達の具体的な方法や出資した企業・投資家については、記事本文では明らかにされていません。こうした巨額の資金は、AIモデルの開発や、計算処理に必要な半導体・サーバーなどの設備投資に使われるとみられます。\n\n今後、DeepSeekがこの資金をどのように使い、OpenAIなど競合企業との技術開発競争がどう進んでいくかが注目されます。現時点では、調達が完了した正確な時期や、出資した投資家の詳しい内訳など、発表されていない情報も多く残っています。",
+      "new_facts": [
+        "DeepSeekが2兆円超の資金調達を実施したと報じられた",
+        "調達規模はOpenAIなど世界的なAI大手企業に匹敵する水準とされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_c5350e7541e0788d92f5",
+      "story_id": "story_7df1a7220930c939b1",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.7062857142857143,
+      "title": "月之暗面がKimi K3.1 Proを発表、世界トップ級の性能も算力・会員枠に物議",
+      "source_published_at": "2026-10-24T21:04:34.000Z",
+      "published_at": "2026-10-24T21:04:34.000Z",
+      "fetched_at": "2026-10-24T22:33:04.071Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "中国の月之暗面がKimi K3.1 Proを発表、性能は世界トップ級に近づいたが算力と会員利用枠を巡り不満の声が出ている。",
+      "source_name": "虎嗅网",
+      "source_url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE0xeHY3OVVwNDlLQ1FoMmh2U3RPX3NnYnIwei1JNUxBVXZ1dzZid2RQbTNDdnBLa0RjemJncEVoNk96MzVNZGRGVXlUM2FCN21Ya0hESw?oc=5",
+      "story_entities": [
+        "Kimi K3.1 Pro",
+        "月之暗面",
+        "Moonshot AI",
+        "kimik3.1pro",
+        "moonshotai"
+      ],
+      "primary_entity": "月之暗面(Moonshot AI)",
+      "story_subject": "Kimi K3.1 Pro",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "中国",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject",
+        "same_event_type"
+      ],
+      "change_summary": "月之暗面がKimi K3.1 Proを発表し、性能は世界トップ級に近づいたとされる一方、算力と会員枠に不満の声が出ている。",
+      "detail": "中国のAI企業・月之暗面（Moonshot AI）が、新しいAIモデル「Kimi K3.1 Pro」を発表したと虎嗅网が報じました。簡単に言うと、文章の作成や質問への回答などをこなす対話型AIの新バージョンです。記事によると、その性能は世界トップクラスのAIモデルに近づいたとされています。\n\n一方で、この発表には算力（AIを動かすための計算能力）や有料会員の利用枠をめぐる物議も浮上しています。ユーザーからは、サービスを使うための計算資源の割り当てや、会員プランごとの利用上限について不満の声が出ているとされています。性能向上と利用制限が同時に話題になっている点が、この発表の特徴です。\n\n利用者にとっては、新モデルで回答の質が上がる一方、会員プランの利用枠が厳しくなる可能性があります。中国国内外のAI競争において、月之暗面がどの立ち位置を占めるかも注目されます。会員プランの具体的な変更内容や、算力問題への対応策はまだ明らかになっていません。",
+      "new_facts": [
+        "月之暗面がKimi K3.1 Proを発表し、算力と会員利用枠を巡り物議が生じている。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_4363ed6a8a73c54c0dca",
       "story_id": "story_66ad133f367ae83a49",
       "story_sequence": 1,
@@ -38,6 +176,52 @@
       "detail": "中国のAI企業Moonshotが明らかにした計画についての記事です。モデルの重みとは、AIが学習して得た内部の数値データのことで、これを公開すると他の開発者が自由にそのAIを動かせるようになります。今回は、当初予定していたテストの規模を縮小したうえで、新モデル「Kimi K3.1 Pro」の重みを公開する予定だと報じられました。\n\n記事で確認できる事実は、Kimi K3.1 Proという新モデルについて、テストを縮小したあとに重みを公開するという計画がある、という点です。中国発の大規模言語モデル（文章を理解・生成するAIの基盤技術）が無料や低コストで公開されると、世界中の開発者が利用や改良をしやすくなり、AI開発競争に影響を与えます。\n\n研究者や企業がこのモデルを自分たちのサービスに組み込んだり、改良したりできるようになる可能性があります。ただし、具体的な公開時期や性能、公開形式についての詳細はまだ明らかになっていません。正式な公開日も記事本文では示されていません。",
       "new_facts": [
         "Moonshotはテスト規模を縮小した後にKimi K3.1 Proの重みを公開する予定であると報じられた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_6731fb305f1c3dc43716",
+      "story_id": "story_86603f7f1145ed48a7",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "エヌビディアCEO、半導体担保にAI向け5000億ドル調達を提案",
+      "source_published_at": "2026-10-24T12:05:00.000Z",
+      "published_at": "2026-10-24T12:05:00.000Z",
+      "fetched_at": "2026-10-25T09:09:49.504Z",
+      "event_at": "",
+      "event_status": "予定",
+      "raw_excerpt": "エヌビディアのジェンスン・フアンCEOは、AI関連施設の建設資金として5000億ドルを調達するため、自社の半導体を融資の担保にする案を提案した。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE15S2RUNmNobDktSTRQbzdWbVFBT01CeEJZd2I2UTVFa3NENDN1VXpwZUJNMGNyWlp0RUhfbERPVXNXYjNOcWxhN3lnUG53RzdhaTNSRGpTMmM3dnRsU29SVDRBWTl5dndZQkd6REhDZGRwQUVZ?oc=5",
+      "story_entities": [
+        "エヌビディア",
+        "ジェンスン・フアン",
+        "ジェンスンフアン"
+      ],
+      "primary_entity": "エヌビディア",
+      "story_subject": "AI構築資金5000億ドル調達案",
+      "event_type": "funding",
+      "event_stage": "proposed",
+      "event_scope": "世界",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "調達目標額",
+          "value": "5000億ドル",
+          "normalized_value": "500000000000USD"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "エヌビディアCEOが、半導体を担保にした融資でAI構築資金5000億ドルを調達する案を提案した。",
+      "detail": "エヌビディアのジェンスン・フアンCEOが、AIを作るための資金を集める新しい方法を提案しました。簡単に言うと、自社が作る半導体というコンピューターの頭脳となる部品を、銀行などからお金を借りる際の担保として使う案です。これまでAI関連の巨額投資は企業の信用や株式を元に資金調達されることが多く、半導体そのものを担保にする発想は一般的ではありませんでした。\n\n記事によると、この提案で調達を目指す金額は5000億ドルとされています。仕組みとしては、エヌビディア製の半導体を担保に差し出すことで、金融機関から融資を受けやすくするという考え方です。AIを動かすデータセンターの建設には巨額の費用がかかるため、新しい資金調達の方法が注目されています。\n\nこの提案が実現すれば、AI関連企業がより大きな資金を集めやすくなる可能性があります。ただし、具体的にどの金融機関が参加するのか、融資の条件や実施時期など、詳しいことはまだ記事からは分かりません。今後の進展を確認する必要があります。",
+      "new_facts": [
+        "エヌビディアのフアンCEOが半導体を担保にした融資を提案した",
+        "調達目標は5000億ドルとされる"
       ],
       "event_date_precision": "unknown"
     },
@@ -90,6 +274,49 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_bf7150d0b8c6caa3bb94_rev_75c040fcc1f3",
+      "story_id": "story_c12b32a73b19bd26ad",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.905,
+      "title": "次世代AIサーバーが置けない日本のデータセンター問題",
+      "source_published_at": "2026-10-24T08:03:16.000Z",
+      "published_at": "2026-10-24T08:03:16.000Z",
+      "fetched_at": "2026-10-24T22:33:04.071Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "日経クロステックが、日本国内のデータセンターに次世代AIサーバーを設置できないという問題を取り上げた。",
+      "source_name": "日経クロステック",
+      "source_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9abXZ0eEJnN0lrRkVwVXdsTWVNR05yYWJPd3pyaHN3YXZ0YmlldTM5RkVJWEJiaUNXVVlOV1BkLXFJYnlRdk9PYlhpRlE2amFtbXJkNlYwaDdJa0JxRUdj?oc=5",
+      "story_entities": [
+        "データセンター",
+        "AIサーバー",
+        "aiサーバー"
+      ],
+      "primary_entity": "日本のデータセンター業界",
+      "story_subject": "次世代AIサーバーの設置問題",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "日本",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "shared_entity",
+        "same_subject",
+        "similar_title",
+        "same_scope",
+        "same_url_content_changed"
+      ],
+      "change_summary": "日本国内のデータセンターで次世代AIサーバーを設置できない問題が報じられた。",
+      "detail": "日経クロステックが、日本国内のデータセンターに次世代のAIサーバーを設置できないという問題を取り上げました。簡単に言うと、最新のAI計算用コンピューターが、既存のデータセンター設備にそのまま収まらないケースが出ているという内容です。これまでのデータセンターは、現行世代のサーバーを前提に建てられてきたため、次世代機への切り替えに課題が生じていると考えられます。\n\n記事タイトルからは、次世代AIサーバーの導入が日本国内で思うように進んでいない状況が示されています。詳しい原因や具体的な設備条件については、今回確認できた情報の中では明らかにされていません。\n\nデータセンター運営会社やAIサービスを提供する企業にとっては、今後の設備投資や施設改修の必要性を検討する材料になります。日本国内でAIを使ったサービスを拡大したい企業にとっても、計算資源の確保状況は注目点です。記事本文の詳細な数値や具体的な解決策は、現時点ではまだ明らかになっていません。",
+      "new_facts": [
+        "日本国内で次世代AIサーバーをデータセンターに設置できない問題が報じられた。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_dad121eb3d658c20c964",
       "story_id": "story_8b6b64b6a97e8a7fdb",
       "story_sequence": 1,
@@ -127,6 +354,49 @@
       "detail": "Claude Codeというプログラムのコード作成を助けるAIツールの開発に関わっていた人物が、Anthropicからの退職を発表した。簡単に言うと、人気のAI開発支援ツールを作った人が会社を去るという話。退職の具体的な時期や本人の名前、次にどこへ向かうのかは記事からは分からない。\n\n記事は、退職者が「次なる挑戦」に進むと伝えているが、転職先や新しい取り組みの内容は明らかにされていない。AI業界では主要企業の開発者や研究者が移籍する動きが相次いでおり、人材の流れが活発になっている。\n\n利用者にとっては、Claude Codeの今後の開発体制がどう変わるか気になるところ。後任の体制や製品への影響について、公式な説明はまだ出ていない。続報を待つ必要がある。",
       "new_facts": [
         "Claude Codeの開発に携わっていた人物がAnthropicからの退職を発表した。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_8d11448b4e9c8ccb061c_rev_061eb55dae7b",
+      "story_id": "story_5e85e69743bb2d3353",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.7200000000000001,
+      "title": "AnthropicのCEO、AIへのより強い規制を求める発言",
+      "source_published_at": "2026-10-24T04:29:24.000Z",
+      "published_at": "2026-10-24T04:29:24.000Z",
+      "fetched_at": "2026-10-24T22:33:04.071Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "AnthropicのCEOがABCニュースの独占取材で、AIに対するより強い規制の必要性を訴えたと報じられた。",
+      "source_name": "ABC News - Breaking News, Latest News and Videos",
+      "source_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNTnFDeXdUaGRRY3FzRWFMbVpRbFBrVXVhOHNDWDRMaFQ1T1kzclBENEtWa3R5UDBDQktzb3Z3N0FYUjJsejBwZUY5eURuejdvaFg4eXJrSndRLWdvTGtDcVdwOFdXeHZlVWo4eXJDc3ZGWlg0aTZwak1ySWwtS3hkSzNmdVR3MEhGXzdGRDRjV3dpMzVTOFhDX0o1Z3FBSDBqamfSAacBQVVfeXFMTzVVZEpXZk9NbHhzV241am1weGozclJlMUV6WFd1VFFQSnhoLXhibFlnVnNQaGRsUm5QNjFtT2F4ZXdQUk9BN0VCbHgweEUySVhkMjRHZDROSmRoem1FUGwzTXVVd2wxZWkycDdWZld1RW5JaFJJd0tQMkx2VlkwNG9wS3Z6blByVkFpLV9lbEhjMjNSTDdoQzROTDhPbnlGbTdlRHJIUE0?oc=5",
+      "story_entities": [
+        "Anthropic",
+        "ABC News",
+        "anthropic",
+        "abcnews"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "AI規制強化への呼びかけ",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "米国",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type",
+        "same_url_content_changed"
+      ],
+      "change_summary": "AnthropicのCEOがABCニュースの独占取材で、AIへのより強い規制を求める発言をした。",
+      "detail": "AnthropicのCEOが、AIに対するより強い規制を求めたとABCニュースの独占取材で明らかにした。簡単に言うと、AIを作る会社のトップ自身が「もっと厳しいルールが必要」と訴えたという話である。これまでAI企業は規制に慎重な姿勢を見せることが多かったため、今回の発言は異例といえる。\n\n記事ではCEOの発言の詳しい内容までは明らかにされていない。ABCニュースの独占取材という形で報じられたことだけが確認できる事実で、具体的にどんな規制を求めているかは本文からはわからない。AI企業のトップが自ら規制強化を訴えることは、業界全体の方向性に影響する可能性がある。\n\nAIを使う人や企業にとっては、今後のAIに関するルール作りの議論が進む可能性がある。ただし、具体的にどんな規制内容が提案されたのか、いつ実現するのかはまだ発表されていない。",
+      "new_facts": [
+        "AnthropicのCEOがABCニュースの独占取材でAIへのより強い規制を求める発言をしたことが報じられた"
       ],
       "event_date_precision": "unknown"
     },
@@ -323,6 +593,59 @@
       "event_date_precision": "day"
     },
     {
+      "article_id": "article_6c0750b50151ea4a7afc_rev_d1d979dc5938",
+      "story_id": "story_77535fdb0e6d01d354",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "チームみらいがAI時代のサイバー攻撃対策の緊急提言を政府に提出",
+      "source_published_at": "2026-10-23T12:06:18.000Z",
+      "published_at": "2026-10-23T12:06:18.000Z",
+      "fetched_at": "2026-10-24T22:33:04.071Z",
+      "event_at": "2026-10-23",
+      "event_status": "予定",
+      "raw_excerpt": "チームみらいの安野貴博氏らが情報漏洩対策の緊急提言を古川大臣に提出し、7つの柱を示す配信を行った。",
+      "source_name": "チームみらい【公式】",
+      "source_url": "https://www.youtube.com/watch?v=WfUy35SELqk",
+      "story_entities": [
+        "チームみらい",
+        "安野貴博",
+        "古川俊治"
+      ],
+      "primary_entity": "チームみらい",
+      "story_subject": "AI時代のサイバー攻撃と情報漏洩対策の緊急提言",
+      "event_type": "policy",
+      "event_stage": "proposed",
+      "event_scope": "日本",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "提言の柱の数",
+          "value": "7",
+          "normalized_value": "7"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "similar_title",
+        "same_scope",
+        "same_url_content_changed"
+      ],
+      "change_summary": "チームみらいがPHPの脆弱性に起因する情報漏洩の連続発生を受け、AIによる防御を含む7つの政策提言を政府に提出した。",
+      "detail": "政治団体「チームみらい」党首の安野貴博氏らが緊急配信を行いました。AI時代のサイバー攻撃と情報漏洩対策について政府に提言書を渡しました。提言はデジタル庁を担当する古川俊治大臣に直接手渡されました。\n\n配信ではPHPというプログラムの弱点が原因で深刻な情報漏洩が相次いでいると説明されました。政府に求める対応として国の防御力底上げなど7つの柱が示されました。柱には個人情報を持ちすぎない仕組みや漏洩被害者支援も含まれています。\n\n個人が今すぐできる対策についても動画内で紹介されました。提言は今後の国会審議で取り上げられる予定だと説明されています。提言が実際の制度にどこまで反映されるかはまだ分かっていません。",
+      "new_facts": [
+        "チームみらいが古川俊治デジタル担当大臣にAI時代のサイバー攻撃対策の緊急提言を手交した",
+        "提言はPHPの脆弱性に起因する情報漏洩の相次ぐ発生を背景としている",
+        "政府に求める対応として国の防御力底上げから被害者支援まで7つの柱が示された"
+      ],
+      "event_date_precision": "day"
+    },
+    {
       "article_id": "article_74624479261c7c63b920",
       "story_id": "story_946071478380278f90",
       "story_sequence": 1,
@@ -451,6 +774,59 @@
       "dedupe_decision": "new",
       "dedupe_reasons": [
         "no_previous_story"
+      ],
+      "change_summary": "人型ロボットボクシング世界王者であるEmplifAI代表の大曽根宏幸氏が、安野貴博氏と自社ロボット開発や起業の経緯を語った。",
+      "detail": "安野貴博氏がロボット開発企業EmplifAIの代表取締役、大曽根宏幸氏と対談した。動画では人型ロボットによるボクシング競技「REK」の世界大会について語られた。大曽根氏は自社製ロボットの購入や起業の経緯も紹介した。\n\n対談では大曽根氏が約1000万円のロボットを購入して起業した経緯が語られた。人型ロボットがボクシングで戦う競技REKでの世界優勝の裏話も紹介された。双腕で作業できるロボット「OpenShell」の開発経緯や会社経営の話も扱われた。\n\n視聴者は人型のロボット開発の最新動向を知ることができる。動画では最近のAIロボット事情やヒューマノイドロボットの将来展望も話題になった。具体的な技術仕様や製品化時期についてはまだ発表されていない。",
+      "new_facts": [
+        "大曽根宏幸氏はヒューマノイドボクシング世界大会「REK2」の世界チャンピオンである",
+        "大曽根氏は約1000万円のロボットを購入して起業した",
+        "EmplifAIは自社製双腕モバイルマニピュレーター「OpenShell」を開発している"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_f3738f03f2dae77dbbce_rev_f1604c18335d",
+      "story_id": "story_038bad0303e68acd2a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "安野貴博氏、ヒューマノイドボクシング世界王者の大曽根宏幸氏とロボット開発を語る",
+      "source_published_at": "2026-10-23T11:00:12.000Z",
+      "published_at": "2026-10-23T11:00:12.000Z",
+      "fetched_at": "2026-10-24T22:39:31.619Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "安野貴博氏がロボット企業EmplifAI代表の大曽根宏幸氏と対談し、人型ロボットボクシングや自社ロボット開発の経緯を語った。",
+      "source_name": "安野貴博の自由研究",
+      "source_url": "https://www.youtube.com/watch?v=Rin-wrEeA7w",
+      "story_entities": [
+        "安野貴博",
+        "大曽根宏幸",
+        "EmplifAI",
+        "emplifai"
+      ],
+      "primary_entity": "安野貴博",
+      "story_subject": "ヒューマノイドロボットボクシングとEmplifAIのロボット開発",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "動画・対談",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "大曽根氏が購入したロボットの価格",
+          "value": "約1000万円",
+          "normalized_value": "10000000JPY"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "similar_title",
+        "same_scope",
+        "same_url_content_changed"
       ],
       "change_summary": "人型ロボットボクシング世界王者であるEmplifAI代表の大曽根宏幸氏が、安野貴博氏と自社ロボット開発や起業の経緯を語った。",
       "detail": "安野貴博氏がロボット開発企業EmplifAIの代表取締役、大曽根宏幸氏と対談した。動画では人型ロボットによるボクシング競技「REK」の世界大会について語られた。大曽根氏は自社製ロボットの購入や起業の経緯も紹介した。\n\n対談では大曽根氏が約1000万円のロボットを購入して起業した経緯が語られた。人型ロボットがボクシングで戦う競技REKでの世界優勝の裏話も紹介された。双腕で作業できるロボット「OpenShell」の開発経緯や会社経営の話も扱われた。\n\n視聴者は人型のロボット開発の最新動向を知ることができる。動画では最近のAIロボット事情やヒューマノイドロボットの将来展望も話題になった。具体的な技術仕様や製品化時期についてはまだ発表されていない。",
