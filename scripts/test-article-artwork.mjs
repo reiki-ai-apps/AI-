@@ -17,7 +17,8 @@ assert.equal(sourceImage(item,[item,{...item}]),image,'the same source article m
 assert.equal(sourceImage({content_type:'article',source_url:publisher}),'','article without verified image has no decorative fallback');
 assert.deepEqual(articleVisual(item),{url:image,kind:'source',label:'情報元の記事画像'},'original image takes priority');
 const current=require('../data.json').filter(entry=>entry.editorial_image_url);
-assert.equal(current.length,5,'five current home stories have unique editorial images');
+// 2026-10-25: ホームは毎日入れ替わり、古い記事は60件の保管枠から順に外れる。件数ではなく「使い回しが無いこと」を守る。
+assert.ok(current.length<=5,'at most the five stories with hand-made editorial images remain');
 assert.equal(new Set(current.map(entry=>entry.editorial_image_url)).size,current.length,'no editorial image is reused');
 for(const entry of current){
   assert.equal(articleVisual(entry).kind,'editorial','article-specific imagery is used');
