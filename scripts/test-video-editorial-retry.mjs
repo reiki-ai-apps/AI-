@@ -22,10 +22,13 @@ delete draft.detail_ja;
 const repaired=await c.aiEnrichBatch([{...candidate,editorial_revision:revision}]);
 assert.equal(repaired.items.length,1);assert.ok(prompt.includes('短い解説です。')&&prompt.includes('measured'));
 assert.equal(repaired.items[0].detail,reviewed.detail);assert.equal(repaired.usage.output_tokens,456);
-// No false success when the process exits 0 but two new videos were not published.
+// 2026-10-25: two new videos missing must not throw away today's prepared articles.
+// The video state itself stays partial/pending, so the video refresh is never claimed as done.
 const now=()=>Date.parse('2026-09-17T00:00:00Z');let calls=0;
-assert.equal(await runScheduledUpdate({run:async()=>{calls++;return 0;},readState:()=>({}),readItems:()=>[],now,sleep:async()=>{},log:()=>{}}),2);
-assert.equal(calls,3);
+assert.equal(await runScheduledUpdate({run:async()=>{calls++;return 0;},readState:()=>({}),readItems:()=>[],now,sleep:async()=>{},log:()=>{}}),0);
+assert.equal(calls,3,'the morning video is still retried within the run');
+calls=0;
+assert.equal(await runScheduledUpdate({run:async()=>{calls++;return 1;},readState:()=>({}),readItems:()=>[],now,sleep:async()=>{},log:()=>{}}),1,'a failed article build is never reported as success');
 const items=['a','b'].map((expert_id,i)=>({content_type:'expert_video',expert_id,video_id:expert_id,source_date_status:'published',source_published_at:'2026-09-16T00:00:00Z',home_video_selected_at:'2026-09-17T00:00:00Z'}));
 calls=0;
 assert.equal(await runScheduledUpdate({videoOnly:true,run:async()=>{calls++;return 0;},readState:()=>({status:'published',last_published_day_jst:'2026-09-17',featured_video_keys:['a','b']}),readItems:()=>items,now,log:()=>{}}),0);

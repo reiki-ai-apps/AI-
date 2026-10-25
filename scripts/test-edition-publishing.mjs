@@ -95,7 +95,7 @@ assert.equal(filledEdition.update_health,"HEALTHY","異なる記事を最低3件
 assert.equal(new Set(filledEdition.article_ids).size,5,"補充後も記事IDを重複させない");
 const filledItems=applyHomeEdition([...candidates,oneFresh],filledEdition).filter(item=>item.home_top_rank);
 assert.equal(filledItems.filter(item=>item.home_top_origin==="new").length,1,"新着記事を公開データで識別できる");
-assert.equal(filledItems.filter(item=>item.home_top_origin==="continued").length,4,"継続掲載を新着と分けて公開データへ記録する");
+assert.equal(filledItems.filter(item=>item.home_top_origin==="same_day").length,4,"同じ日の前の版で載せた記事は「本日掲載」として新着と分けて記録する");
 for(let left=0;left<filledItems.length;left++){
   for(let right=left+1;right<filledItems.length;right++){
     assert.equal(sameEditionStory(filledItems[left],filledItems[right]),false,"継続掲載を加えても同じ出来事を2枠へ入れない");
@@ -130,6 +130,42 @@ const staleTwice=buildHomeEdition([priorGemini],staleOnce,{windowStart:end+12*36
 assert.equal(staleTwice.update_health,"DEGRADED","24時間不変または候補0件の連続を異常として見える化する");
 assert.ok(staleTwice.update_health_reasons.length>=1,"更新停止の理由を監査できる");
 
+// 2026-10-25 本人「毎日必ず内容を入れ替えて、同じ記事が続くのはやめて。絶対に崩さないで」:
+// 前の日（日本時間）に載せた記事は、翌日のホームへ二度と出さない。
+const dayOneEnd=Date.parse("2026-09-02T12:00:00.000Z");
+const dayOne=buildHomeEdition(candidates,{}, {windowStart:start,windowEnd:dayOneEnd,checkedAt:dayOneEnd});
+assert.equal(dayOne.edition_day_jst,"2026-09-02","版の日は日本時間で決める");
+assert.ok(dayOne.article_ids.length>=3);
+assert.ok(dayOne.article_ids.every(id=>dayOne.home_shown_days[id]==="2026-09-02"),"載せた記事に初めて載せた日を記録する");
+const dayTwoEnd=Date.parse("2026-09-02T21:00:00.000Z");
+const dayTwoFresh=base("day2-fresh","2026-09-02T20:00:00.000Z",{importance:"A",title:"新しい翻訳AIを公開",primary_entity:"翻訳社",story_subject:"翻訳AI",event_type:"release",event_stage:"launched"});
+const dayTwo=buildHomeEdition([...candidates,dayTwoFresh],dayOne,{windowStart:dayOneEnd,windowEnd:dayTwoEnd,checkedAt:dayTwoEnd});
+assert.equal(dayTwo.edition_day_jst,"2026-09-03");
+assert.ok(dayTwo.article_ids.every(id=>!dayOne.article_ids.includes(id)),"前の日に載せた記事は翌日のホームへ出さない");
+assert.deepEqual(dayTwo.repeated_from_previous_day_ids,[],"前の日からの持ち越しは0件");
+assert.ok(dayTwo.article_ids.includes("day2-fresh"),"翌日の新着は載せる");
+const dayTwoItems=applyHomeEdition([...candidates,dayTwoFresh],dayTwo).filter(item=>item.home_top_rank);
+assert.ok(dayTwoItems.every(item=>["new","same_day","first_time"].includes(item.home_top_origin)),"翌日の記事は新着・本日掲載・初掲載のどれか");
+assert.ok(dayTwoItems.every(item=>!dayOne.article_ids.includes(item.article_id)),"公開データにも前の日の記事は無い");
+const sameDayLater=buildHomeEdition([...candidates,dayTwoFresh],dayTwo,{windowStart:dayTwoEnd,windowEnd:dayTwoEnd+6*3600000,checkedAt:dayTwoEnd+6*3600000});
+assert.ok(dayTwo.article_ids.every(id=>sameDayLater.article_ids.includes(id))||sameDayLater.article_ids.length===5,"同じ日の昼・夜の版では、その日に載せた記事を残してよい");
+const allShown=Object.fromEntries([...candidates,dayTwoFresh].map(item=>[item.article_id,"2026-09-02"]));
+const dayThreeEnd=Date.parse("2026-09-03T21:00:00.000Z");
+const nothingNew=buildHomeEdition([...candidates,dayTwoFresh],{...dayTwo,home_shown_days:allShown},{windowStart:dayTwoEnd,windowEnd:dayThreeEnd,checkedAt:dayThreeEnd});
+assert.deepEqual(nothingNew.article_ids,[],"載せる記事が無い日も、前の日の記事で埋めない");
+assert.equal(nothingNew.update_health,"DEGRADED","前の日と重ならない記事が足りない日は異常として知らせる");
+const tampered={...dayTwo,article_ids:[dayOne.article_ids[0],...dayTwo.article_ids]};
+assert.ok(!applyHomeEdition([...candidates,dayTwoFresh],tampered).some(item=>item.home_top_rank&&dayOne.article_ids.includes(item.article_id)),"公開直前にも前の日の記事を落とす");
+const sameEventNextDay=base("gemini-same-event-next-day","2026-09-02T20:30:00.000Z",{...geminiCopy,article_id:"gemini-same-event-next-day",source_published_at:"2026-09-02T20:30:00.000Z",fetched_at:"2026-09-02T20:30:00.000Z"});
+const geminiDayOne=buildHomeEdition([geminiRich],{}, {windowStart:start,windowEnd:dayOneEnd,checkedAt:dayOneEnd});
+const geminiDayTwo=buildHomeEdition([geminiRich,sameEventNextDay],geminiDayOne,{windowStart:dayOneEnd,windowEnd:dayTwoEnd,checkedAt:dayTwoEnd});
+assert.ok(!geminiDayTwo.article_ids.includes("gemini-same-event-next-day")&&!geminiDayTwo.article_ids.includes("gemini-rich"),"別の媒体でも同じ出来事の記事は翌日に繰り返さない");
+const weekLaterEnd=dayOneEnd+5*24*3600000;
+const sameEventWeekLater={...sameEventNextDay,article_id:"gemini-same-event-week-later",source_published_at:new Date(weekLaterEnd-3600000).toISOString(),fetched_at:new Date(weekLaterEnd-3600000).toISOString()};
+const geminiWeekLater=buildHomeEdition([geminiRich,sameEventWeekLater],{...geminiDayOne,recent_story_history:[]},{windowStart:weekLaterEnd-6*3600000,windowEnd:weekLaterEnd,checkedAt:weekLaterEnd});
+assert.ok(!geminiWeekLater.article_ids.includes("gemini-same-event-week-later"),"72時間を過ぎても、14日以内に載せた出来事は別の媒体の記事で繰り返さない");
+assert.ok(Array.isArray(geminiDayTwo.home_shown_story_log)&&geminiDayTwo.home_shown_story_log.some(entry=>entry.article_id==="gemini-rich"),"載せた記事を14日分の記録へ残す");
+
 const unsafeEdition={...firstEdition,article_ids:["gemini-rich","gemini-copy","runway-tool"],scores:{}};
 const guarded=applyHomeEdition(distinctPool,unsafeEdition).filter(item=>item.home_top_rank).sort((a,b)=>a.home_top_rank-b.home_top_rank);
 assert.deepEqual(guarded.map(item=>item.article_id),["gemini-rich","runway-tool"],"公開直前にも同じ出来事の2件目を落とす");
@@ -139,15 +175,18 @@ const crons=[...workflow.matchAll(/cron:\s*["']([^"']+)["']/g)].map(match=>match
 const videoRecoveryCron='43 21-23,0-2 * * *';
 assert.deepEqual(crons.filter(x=>x!==videoRecoveryCron),["17 20 * * *","17 4 * * *","17 10 * * *"],"通常記事の定期更新は朝・昼・夜の3回だけ");
 assert.ok(crons.includes(videoRecoveryCron),'動画だけの朝の再確認がある');
-assert.ok(workflow.includes("AI_EXPERT_RETRY_ONLY: ${{ github.event.schedule == '"+videoRecoveryCron+"' && '1' || '0' }}"),'追加の実行は動画だけに限定する');
-assert.ok(workflow.includes("if [ '${{ github.event.schedule }}' != '"+videoRecoveryCron+"' ]; then node scripts/finalize-home-edition.mjs; fi"),'動画再確認は記事トップ5の更新窓を進めない');
+assert.ok(workflow.includes("AI_EXPERT_RETRY_ONLY: ${{ github.event.schedule == '"+videoRecoveryCron+"' && '1' || '0' }}"),'追加の実行は原則動画だけ');
+assert.ok(workflow.includes("if [ '${{ steps.build_data.outputs.full_update }}' = 'true' ]; then node scripts/finalize-home-edition.mjs; fi"),'記事を作った回だけトップ5を確定し直す');
+const runner=fs.readFileSync("scripts/run-scheduled-update.mjs","utf8");
+assert.match(runner,/!articlesDueToday\(read\('home-edition\.json',\{\}\)\)/,"その日の記事の版が無ければ、動画の再確認の回でも記事を作る");
+assert.match(runner,/full_update=/,"記事を作ったかを後の手順へ渡す");
 const validationIndex=workflow.indexOf("- name: validate published articles");
 const finalizeIndex=workflow.indexOf("node scripts/finalize-home-edition.mjs",validationIndex);
 const buildArticlesIndex=workflow.indexOf("node scripts/build-public-articles.mjs",validationIndex);
 assert.ok(validationIndex>=0&&finalizeIndex>validationIndex&&buildArticlesIndex>finalizeIndex,"記事検証後にトップ選定を作り直してから公開ページを生成する");
 
 const html=fs.readFileSync("index.html","utf8");
-assert.ok(html.includes('newCount===0?')&&html.includes('今回は新しい記事の掲載はありません。前回の重要記事を継続表示しています。'),"新着0件を読者へ明示する");
+assert.ok(html.includes('newCount===0?')&&html.includes('今回の更新で新しい記事はありません。今日まだ載せていない記事だけを表示しています（前の日の記事は出しません）。'),"新着0件を読者へ明示する");
 assert.match(html,/function homeTopUpdates\(\)/,"ホーム専用の選定を使う");
 assert.match(html,/const list=homeTopUpdates\(\)/,"ホームは選定済みトップ記事だけを描画する");
 assert.match(html,/function homeOriginBadge\(u\)/,"ホーム記事を新着と継続掲載に分けて表示する");
@@ -190,12 +229,16 @@ assert.match(update,/const baseFinal=\[\.\.\.editionPicks,\.\.\.expertPicks,\.\.
 
 const data=JSON.parse(fs.readFileSync("data.json","utf8"));
 const publicTop=data.filter(item=>Number(item.home_top_rank)>0).sort((a,b)=>a.home_top_rank-b.home_top_rank);
-assert.ok(publicTop.length>=3&&publicTop.length<=5,"公開データのホーム指定は常に3〜5件");
+assert.ok(publicTop.length<=5,"公開データのホーム指定は最大5件");
+{
+  const current=JSON.parse(fs.readFileSync("home-edition.json","utf8"));
+  if(publicTop.length<3)assert.ok(current.update_health==="DEGRADED"&&current.update_health_reasons.some(reason=>reason.includes("前の日と重ならない")),"前の日の記事を出さないため3件未満になった日は、異常として知らせる（前の日の記事で埋めない）");
+}
 assert.deepEqual(publicTop.map(item=>item.home_top_rank),Array.from({length:publicTop.length},(_,index)=>index+1),"公開順位は1から連続する");
 for(const item of publicTop){
   assert.ok(item.home_selected_at&&item.home_window_start&&item.home_window_end,"選定記事に更新時刻と対象期間がある");
   assert.ok(Number.isFinite(Number(item.home_top_score)),"選定記事に審査点がある");
-  assert.ok(["new","continued"].includes(item.home_top_origin),"選定記事に新着または継続掲載の区分がある");
+  assert.ok(["new","same_day","first_time"].includes(item.home_top_origin),"選定記事は新着・本日掲載・初掲載のどれかで、前の日からの継続は無い");
 }
 for(let left=0;left<publicTop.length;left++){
   for(let right=left+1;right<publicTop.length;right++){
@@ -205,7 +248,13 @@ for(let left=0;left<publicTop.length;left++){
 
 const edition=JSON.parse(fs.readFileSync("home-edition.json","utf8"));
 assert.deepEqual(edition.article_ids,publicTop.map(item=>item.article_id),"選定正本と公開データのID順が一致する");
-assert.equal(edition.selection_version,"home-value-continuation-v5-article-only","最低3件・目標5件と過去72時間の重複統合を使い、記事だけを選ぶ版である");
+assert.equal(edition.selection_version,"home-daily-unique-v6-article-only","前の日の記事を二度と載せず、最低3件・目標5件と過去72時間の重複統合を使い、記事だけを選ぶ版である");
+assert.deepEqual(edition.repeated_from_previous_day_ids||[],[],"公開中のホームに前の日から持ち越した記事は無い");
+assert.ok(/^\d{4}-\d{2}-\d{2}$/.test(edition.edition_day_jst||""),"選定正本に版の日（日本時間）がある");
+for(const item of publicTop){
+  const day=(edition.home_shown_days||{})[item.article_id];
+  assert.equal(day,edition.edition_day_jst,`公開中のホームの記事（${item.article_id}）は、この版の日に初めて載った記事だけ`);
+}
 assert.equal(edition.distinct_candidate_count,edition.candidate_count-edition.duplicate_candidate_count,"候補URL数と異なる出来事件数を監査できる");
 assert.equal(edition.novel_candidate_count,edition.distinct_candidate_count-edition.cross_edition_duplicate_count,"過去回との重複を除いた本当の新着件数を監査できる");
 assert.ok(Array.isArray(edition.recent_story_history),"過去72時間の掲載履歴を次回の重複判定へ引き継ぐ");

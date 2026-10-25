@@ -1,206 +1,737 @@
 {
   "version": 1,
-  "selection_version": "home-value-continuation-v5-article-only",
+  "selection_version": "home-daily-unique-v6-article-only",
   "timezone": "Asia/Tokyo",
   "schedule_jst": [
     "05:17",
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-24T08:53:10.252Z",
-  "window_end": "2026-10-24T14:00:22.003Z",
-  "last_window_end": "2026-10-24T14:00:22.003Z",
-  "last_checked_at": "2026-10-24T14:04:17.757Z",
-  "last_published_at": "2026-10-24T14:04:17.757Z",
-  "home_content_changed_at": "2026-10-24T14:04:17.757Z",
+  "window_start": "2026-10-24T14:00:22.003Z",
+  "window_end": "2026-10-25T08:47:33.444Z",
+  "last_window_end": "2026-10-25T08:47:33.444Z",
+  "last_checked_at": "2026-10-25T08:47:33.444Z",
+  "last_published_at": "2026-10-25T08:47:33.444Z",
+  "home_content_changed_at": "2026-10-25T08:47:33.444Z",
   "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 0,
-  "update_health": "HEALTHY",
-  "update_health_reasons": [],
-  "edition_status": "NEW_STORIES",
-  "candidate_count": 4,
-  "distinct_candidate_count": 4,
+  "consecutive_zero_candidate_editions": 1,
+  "update_health": "DEGRADED",
+  "update_health_reasons": [
+    "今回の新着掲載は0件です。前の日までに載せた記事は出さず、今日まだ載せていない記事だけを表示しています",
+    "前の日と重ならない検証済み記事が3件未満です"
+  ],
+  "edition_status": "NO_NEW_STORIES",
+  "candidate_count": 0,
+  "distinct_candidate_count": 0,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 3,
-  "cross_edition_duplicate_count": 1,
-  "cross_edition_duplicate_groups": [
-    {
-      "representative_id": "article_aeeda7023f5a40de65ae",
-      "duplicate_ids": [
-        "article_dad121eb3d658c20c964"
-      ]
-    }
-  ],
-  "selected_count": 5,
+  "novel_candidate_count": 0,
+  "cross_edition_duplicate_count": 0,
+  "cross_edition_duplicate_groups": [],
+  "selected_count": 2,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 3,
+  "new_selected_count": 0,
   "continued_selected_count": 2,
-  "tool_evolution_selected_count": 4,
-  "carried_forward": false,
-  "partially_carried_forward": true,
+  "tool_evolution_selected_count": 0,
+  "carried_forward": true,
+  "partially_carried_forward": false,
   "article_ids": [
-    "article_730c1e906529abdc4a62",
-    "article_4363ed6a8a73c54c0dca",
-    "article_f287dafe117b702c1b25",
-    "article_f8b78636455861b9a4d3",
-    "article_cb8f94d0739aac6d9f81"
+    "article_4da1da22bfadf6a24386",
+    "article_603e94648a6d32968c61"
   ],
-  "new_article_ids": [
-    "article_730c1e906529abdc4a62",
-    "article_4363ed6a8a73c54c0dca",
-    "article_f287dafe117b702c1b25"
-  ],
+  "new_article_ids": [],
   "continued_article_ids": [
-    "article_f8b78636455861b9a4d3",
-    "article_cb8f94d0739aac6d9f81"
+    "article_4da1da22bfadf6a24386",
+    "article_603e94648a6d32968c61"
   ],
   "continuation_sources": {
-    "article_f8b78636455861b9a4d3": "previous_edition",
-    "article_cb8f94d0739aac6d9f81": "previous_edition"
+    "article_4da1da22bfadf6a24386": "previous_edition",
+    "article_603e94648a6d32968c61": "previous_edition"
   },
-  "scores": {
-    "article_730c1e906529abdc4a62": {
-      "article_id": "article_730c1e906529abdc4a62",
-      "total": 71,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 15,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "主要AI企業・基盤",
-        "制度・安全への影響",
-        "遅れて確認できた新着"
-      ],
-      "published_at": "2026-10-24T02:30:03.000Z"
-    },
-    "article_4363ed6a8a73c54c0dca": {
-      "article_id": "article_4363ed6a8a73c54c0dca",
-      "total": 68,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 10,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-10-24T13:50:34.000Z"
-    },
-    "article_f287dafe117b702c1b25": {
-      "article_id": "article_f287dafe117b702c1b25",
-      "total": 58,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化",
-        "遅れて確認できた新着",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-10-24T08:21:38.000Z"
-    },
-    "article_f8b78636455861b9a4d3": {
-      "article_id": "article_f8b78636455861b9a4d3",
-      "total": 84,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 20,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "制度・安全への影響",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-10-22T22:27:24.000Z"
-    },
-    "article_cb8f94d0739aac6d9f81": {
-      "article_id": "article_cb8f94d0739aac6d9f81",
-      "total": 84,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 20,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "主要AI企業・基盤",
-        "制度・安全への影響",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-10-22T09:30:00.000Z"
-    }
+  "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
+  "edition_day_jst": "2026-10-25",
+  "same_day_article_ids": [
+    "article_4da1da22bfadf6a24386",
+    "article_603e94648a6d32968c61"
+  ],
+  "first_time_article_ids": [],
+  "repeated_from_previous_day_ids": [],
+  "blocked_previous_day_count": 41,
+  "home_shown_days": {
+    "article_730c1e906529abdc4a62": "2026-10-24",
+    "article_4363ed6a8a73c54c0dca": "2026-10-24",
+    "article_f287dafe117b702c1b25": "2026-10-24",
+    "article_f8b78636455861b9a4d3": "2026-10-23",
+    "article_cb8f94d0739aac6d9f81": "2026-10-23",
+    "article_17939d26e5fa4b270fea": "2026-10-24",
+    "article_cd54a3c5bab0cb20aec5": "2026-10-24",
+    "article_dd72b45783120f60b6e4": "2026-10-24",
+    "article_af631ad14236ec8a08d1": "2026-10-23",
+    "article_88acccc14905a2bb85cb": "2026-10-23",
+    "article_891b7e0bbf66f86d27b7": "2026-10-23",
+    "article_faae624300a8e67b770e": "2026-10-23",
+    "article_3f1ff185fef15031a97f": "2026-10-23",
+    "article_fd5e0b5378633689b973": "2026-10-23",
+    "article_dc5a7163f86d81315196": "2026-10-19",
+    "article_23ca248f6e33386f6082": "2026-10-20",
+    "article_f39979dbad0f71c91c2a": "2026-10-22",
+    "article_a6c989e1866d8b356c79": "2026-10-20",
+    "article_c79b90537d390e19bfc0": "2026-10-21",
+    "article_aeeda7023f5a40de65ae": "2026-10-22",
+    "article_774f72042cf1060b5671": "2026-10-22",
+    "article_827c03df834635606904": "2026-10-22",
+    "article_45267ebaef048ca35584": "2026-10-22",
+    "article_a89e497a3df111b0edbc": "2026-10-21",
+    "article_e73c486c3cfca1a985d8": "2026-10-18",
+    "article_5cb15942902e5d9ffca6": "2026-10-21",
+    "article_9a6719a838fdd2594b1b": "2026-10-20",
+    "article_e0e2e3e8833ee191a921": "2026-10-20",
+    "article_918ac333456b267346f9": "2026-10-20",
+    "article_7cf01e4de93192f3f1db": "2026-10-20",
+    "article_0b3543e642fc5b0d56ac": "2026-10-20",
+    "article_a3a2ccae68af08d5b354": "2026-10-20",
+    "article_64ac185c778723687417": "2026-10-17",
+    "article_0c4b025559b507f530a9": "2026-10-19",
+    "article_a5737cac9c514943311a": "2026-10-19",
+    "article_38ea5a28f99c91dfc84a": "2026-10-19",
+    "article_a0dee65d696d6f7fcbb7": "2026-10-18",
+    "article_121183a984d1d8c333ae": "2026-10-18",
+    "article_3bf06082b2ce4c66e394": "2026-10-16",
+    "article_c6d002b37ac88c128a1c": "2026-10-17",
+    "article_111e19183d044fd72d05": "2026-10-17",
+    "article_7d189110db177636af1f": "2026-10-17",
+    "article_f011a557bcbb7c058c66": "2026-10-12",
+    "article_4ec7e6233601f6e8a494": "2026-10-13",
+    "article_d2f20a8cdacf04e96c2d": "2026-10-16",
+    "article_21e132e05aed8e470048": "2026-10-14",
+    "article_e72fa88d20c16450725b": "2026-10-16",
+    "article_8c54b5b274243d125690": "2026-10-16",
+    "article_a60f4a701f887ae8f46b": "2026-10-16",
+    "article_affab45a22c3a088a1f7": "2026-10-14",
+    "article_42bf9adb3b948464d1b0": "2026-10-15",
+    "article_3062fb286cc5d9133a75": "2026-10-15",
+    "article_200a5d3dd39c6bfb7a20": "2026-10-14",
+    "article_0fc9d6ec3100726acba4": "2026-10-14",
+    "article_0fb93469c59695e27852": "2026-10-14",
+    "article_b5a26f1ac81d17541e29": "2026-10-14",
+    "article_3d25fe23366cc95f9c35": "2026-10-13",
+    "article_2fa70d052aaa89a418dc": "2026-10-13",
+    "article_c17f043f95027f919229": "2026-10-13",
+    "article_bf9aac9a3c8df323133a": "2026-10-13",
+    "article_7384f7802df5b766bd09": "2026-10-13",
+    "article_cfdb003015cdc84658bc": "2026-10-13",
+    "article_011177563283a3712c5b": "2026-10-13",
+    "article_d5e48fd964309fc0bb97": "2026-10-12",
+    "article_1c0c1ffd6606630d25c2": "2026-10-12",
+    "article_b678cd9864bc2dc86a28": "2026-10-12",
+    "article_56e576affa9b4e146a09": "2026-10-07",
+    "article_0d80dee06aa5f58b5eae": "2026-10-12",
+    "article_6efc4014e326162a23f2": "2026-10-10",
+    "article_c1c0b9216fe3c8b2e442": "2026-10-10",
+    "article_68357eaa903886f64694": "2026-10-11",
+    "article_8d1b4a5cc9c81459633d": "2026-10-10",
+    "article_2e2a2e1f3b381358cab9": "2026-10-11",
+    "article_dc99cae8274c02f9e859": "2026-10-10",
+    "article_57f15bb55c3e2189a995": "2026-10-08",
+    "article_f7fa820056e795edd9f6": "2026-10-08",
+    "article_f45d98e2f91b7f9d833b": "2026-10-09",
+    "article_b764c11fd0ef51393905": "2026-10-10",
+    "article_ccf7d1fafa261d075c8f": "2026-10-09",
+    "article_284cd85a182e04e8a974": "2026-10-09",
+    "article_d1569baf237ac64247e1": "2026-10-09",
+    "article_01d32cf6ce38ce327181": "2026-10-09",
+    "article_7de41592c6343eb6256d": "2026-10-09",
+    "article_d9b1a691036befc3fc7b": "2026-10-09",
+    "article_aad3a0c802deee1215e0": "2026-10-09",
+    "article_4a72a5b090eb849e8366": "2026-10-08",
+    "article_443187ba1ceab6fd155a": "2026-10-08",
+    "article_1c3fa681a0c94a8ad9b1": "2026-10-08",
+    "article_85ff04c48054066e5198": "2026-10-08",
+    "article_6113f7c1e8e8c3575c1c": "2026-10-02",
+    "article_92194218876e4b0c661b": "2026-10-06",
+    "article_d2b5b29b4c8155256199": "2026-10-06",
+    "article_910cdeb9df871209d2fa_rev_569a1e23b178": "2026-10-07",
+    "article_15b5d91535c322c74113": "2026-10-05",
+    "article_ddcc59f690574e1f2374": "2026-10-07",
+    "article_665c69b5273c1b7f7a12": "2026-10-07",
+    "article_08b15c7fa854837ae177": "2026-10-07",
+    "article_dad478dc29ab036c2c17": "2026-10-06",
+    "article_e794cdd10217cc0a568b": "2026-10-06",
+    "article_5137bf257625ea109dc8": "2026-10-06",
+    "article_1f1e1bc988d15e8f1e80": "2026-10-06",
+    "article_6df22d88f60ff9f75916": "2026-10-06",
+    "article_db04ea9f31949455eb34": "2026-10-06",
+    "article_fe86162211362962d066": "2026-10-06",
+    "article_a6b2bd456b6c00ce6147": "2026-10-06",
+    "article_ddb31a1f816069b09912": "2026-10-05",
+    "article_09061addb6f26cf91d78": "2026-10-05",
+    "article_7d357b2d95ce8b4c3d24": "2026-09-20",
+    "article_ba289e0ee998d0ed63bd": "2026-10-03",
+    "article_bbb8cf92d84d9b273985": "2026-10-03",
+    "article_5d703af36f17e7fef441": "2026-10-03",
+    "article_eb7f31b65b396560b156": "2026-10-04",
+    "article_72094410beaaea7fb564": "2026-10-04",
+    "article_be95873b33aa61bd0e37": "2026-10-03",
+    "article_7f4b14a4c1f2df675fa3": "2026-10-03",
+    "article_65a6e5d252ddbeecde7e_rev_2c86077dcd0c": "2026-10-03",
+    "article_987293370abf0e38e582": "2026-10-02",
+    "article_d6a603e3a115703f9bb1": "2026-10-01",
+    "article_54d39d6701966a425bc4": "2026-10-02",
+    "article_65a6e5d252ddbeecde7e": "2026-10-02",
+    "article_ed917d8264e5ed062d8e": "2026-10-02",
+    "article_7ed5211621549c9e8c89": "2026-10-02",
+    "article_8d11448b4e9c8ccb061c_rev_737016b87de2": "2026-09-28",
+    "article_88ec656b75ac1d9bce86": "2026-10-01",
+    "article_6f087952d470fbe70b63": "2026-10-01",
+    "article_7328fca9fb66e0f5e41c": "2026-10-01",
+    "article_7286dc793fe8f6a6cb9c": "2026-10-01",
+    "article_2391bf8310dc68a8465d": "2026-09-26",
+    "article_36d30bc75750d291cadc": "2026-09-30",
+    "article_fc74f4645ac31b9f0c8f": "2026-09-28",
+    "article_9f6c87c077c6f6ba6505": "2026-09-30",
+    "article_b72d95e6097bb369d4b1": "2026-09-28",
+    "article_df74c41924f0c83612b9": "2026-09-26",
+    "article_685495127c82d4b4e0ee": "2026-09-27",
+    "article_e4f52e021f4dbb4716fa": "2026-09-27",
+    "article_ccdc5cc901a415f36eaf": "2026-09-27",
+    "article_f0990fe7807e6df34aa7": "2026-09-27",
+    "article_78a14b360501e558d7f7": "2026-09-27",
+    "article_8d66323bdb984a7ff9df": "2026-09-25",
+    "article_97f628543e63dd45e070": "2026-09-26",
+    "article_9aca9e28b14e29154d79": "2026-09-26",
+    "article_db85fee8a1fa5fc02adb": "2026-09-26",
+    "article_9a19196951af49cee0d3": "2026-09-23",
+    "article_596bf00cee02be1c057d": "2026-09-25",
+    "article_2b4fd00891c89f92e5ac": "2026-09-25",
+    "article_17a230267f3134b80c40": "2026-09-25",
+    "article_e9d23cf707ca74370a63": "2026-09-25",
+    "article_3cc82dede5f41275056c": "2026-09-23",
+    "article_4f0f28f56015e3a7d514": "2026-09-22",
+    "article_213d1c8aeeb93114ae5b": "2026-09-25",
+    "article_682d202139dc23a7c1a7": "2026-09-24",
+    "article_9a7265ef968254fe8271": "2026-09-24",
+    "article_ed86eaa2912de3b1ea63": "2026-09-23",
+    "article_85b649074391dd518d0d": "2026-09-23",
+    "article_da1b8ff08d625c6dbbd6": "2026-09-23",
+    "article_fba21fd2e19d1f082eef": "2026-09-22",
+    "article_d1ca0f72af66b65943f7": "2026-09-22",
+    "article_47a1ea1a3a062ead3b63": "2026-09-22",
+    "article_dd90708207a158b7bee0": "2026-09-22",
+    "article_d5155ed08efacf41fd70": "2026-09-22",
+    "article_4def09c3a58347a071d5": "2026-09-22",
+    "article_9bad7725981354081ea9": "2026-09-22",
+    "article_f720d07c1900e4224fb8": "2026-09-22",
+    "article_81518da807c583b54d02": "2026-09-22",
+    "article_8d11448b4e9c8ccb061c": "2026-09-20",
+    "article_705e58731b112d2e403e": "2026-09-18",
+    "article_c68cea6820d54b1013cf": "2026-09-20",
+    "article_5124037096088a2bcea8": "2026-09-21",
+    "article_6bf5a155fb2e84eb4172": "2026-09-22",
+    "article_46e9f8a9fc1508adce5e": "2026-09-21",
+    "article_0600db148b88eedafbe2": "2026-09-21",
+    "article_00a69d931035ed333e78": "2026-09-21",
+    "article_8d5cd076f60e6e80675f": "2026-09-20",
+    "article_96c5584c629be0cdcc13": "2026-09-20",
+    "article_0d8e70c0780b7b26ef47": "2026-09-20",
+    "article_9c5c0310db1a059d7d0a": "2026-09-20",
+    "article_d9786fec8d648c332a4f": "2026-09-20",
+    "article_a2d6874657c147d0d7f2": "2026-09-18",
+    "article_8cfd7d2e19c44be69561": "2026-09-18",
+    "article_a1a48ce4215f73956bf3": "2026-09-18",
+    "article_3efca41875bcb3b31695": "2026-09-19",
+    "article_3e1f7ca92996207e325a": "2026-09-19",
+    "article_a00923bf4ddda7153647": "2026-09-19",
+    "article_f6ffabc59ee49acafd34": "2026-09-19",
+    "article_a5a6f7cedcd309167eb6": "2026-09-17",
+    "article_1d26cbdb901753bcde65": "2026-09-18",
+    "article_ef47d9d9afe01df537ef": "2026-09-18",
+    "article_b16e77ce7e33c8536ac5": "2026-09-18",
+    "article_31a9f7d764e94fc874fc": "2026-09-18",
+    "article_7b6e0d672c2b0716d1ba": "2026-09-18",
+    "article_1c661d197f8cbdd4ee63": "2026-09-15",
+    "article_2bf79b50897947357db6": "2026-09-18",
+    "article_af9be43e479c367103d7": "2026-09-18",
+    "article_32dbd776b8226dbd5298": "2026-09-17",
+    "article_8a34d7e21a208face7f2": "2026-09-17",
+    "article_ed8f064aa97f02b879f7": "2026-09-17",
+    "article_f4f8dcd0b51125696492": "2026-09-17",
+    "article_4a3783534204476ed4c3": "2026-09-17",
+    "article_0c888acc2e8839bcd4ac": "2026-09-17",
+    "article_0ff16eee0fabb1ce0425": "2026-09-17",
+    "article_3eb3e9557eb7038ef8ad": "2026-09-10",
+    "article_42c44577e2c4ce9554eb": "2026-09-16",
+    "article_cb9bfdb48b023e26cf52": "2026-09-16",
+    "article_66834f9e29d7b88462a2": "2026-09-13",
+    "article_05f3dd72c5b09d360dae": "2026-09-16",
+    "article_8552ca13e8f5f6600b1f": "2026-09-13",
+    "article_51aed0f61f114faf1217": "2026-09-16",
+    "article_9673ea1fc22609ab3de8": "2026-09-16",
+    "article_a8e364c94685c71a94c1": "2026-09-15",
+    "article_19ea4af7e50cbf5f4294": "2026-09-15",
+    "article_178396cd426c6b8a581d": "2026-09-15",
+    "article_d301f420290a48d09e9a": "2026-09-15",
+    "article_0dc8cdb130b208b721fe": "2026-09-14",
+    "article_e3d824af0b5116aabc09": "2026-09-14",
+    "article_9c566c96687724b8253b_rev_5e6d9a49708e": "2026-09-14",
+    "article_afbdb48a7bf379ede645": "2026-09-13",
+    "article_bf7150d0b8c6caa3bb94_rev_81d30f4acf93": "2026-09-13",
+    "article_4327bae709ea5d0f9024": "2026-09-13",
+    "article_59adcb771edaf24cd2b0": "2026-09-13",
+    "article_cf790ba7a87ce817d41c": "2026-09-13",
+    "article_ea659d541fec86dd33d8": "2026-09-06",
+    "article_6d05b99579974e339e14": "2026-09-09",
+    "article_51a1dcc15975fbda30af": "2026-09-10",
+    "article_e4451136b58bd1da44fd": "2026-09-10",
+    "article_a563106bdc087dc1f1bb": "2026-09-11",
+    "article_4ab6d23614c53ebf3fb9": "2026-09-11",
+    "article_2b3f945904e150501ccd": "2026-09-11",
+    "article_6b87c39b68ff07692d36": "2026-09-08",
+    "article_11a9e76d51cf6bef0a83": "2026-09-10",
+    "article_0f265f8adfcf2846d84f": "2026-09-10",
+    "article_175fc28203d74f6b3273": "2026-09-10",
+    "article_31383729563ed9e85888": "2026-09-10",
+    "article_cfb61628203d78b2b0cd": "2026-09-10",
+    "article_2c2847e7803d3cf44d49": "2026-09-10",
+    "article_255f62e3f95af2a82b99": "2026-09-09",
+    "article_bb5ccdf300b0b3ebe6cc": "2026-09-09",
+    "article_aaca925db239422466fe": "2026-09-09",
+    "article_76db2e9b91116d827eb0": "2026-09-05",
+    "article_7818fcbdada02214fafc": "2026-09-08",
+    "article_542ae9d3478a62e614fe": "2026-09-09",
+    "article_a23b3061bdb02fab45e4": "2026-09-08",
+    "article_3c98595f4e549f62a81d": "2026-09-08",
+    "article_7e470af8b46483a1b6ec": "2026-09-08",
+    "article_438b94b100e1407eee74": "2026-09-08",
+    "article_f46a9bcaa59060942588": "2026-09-08",
+    "article_e395cc94ecffb60ed55f": "2026-09-08",
+    "article_1d6575b4f76d46b3395e": "2026-09-08",
+    "article_073b13b14ae0138b1424": "2026-09-08",
+    "article_b0c414332d0a83cc1ea2": "2026-09-08",
+    "article_4095707576cd8c2892fe": "2026-09-07",
+    "article_b99f9a81fbf9754cff5b": "2026-09-07",
+    "article_f1123800a9bdadd1171a": "2026-09-06",
+    "article_1633d31715fa1d55c46b_rev_49b5f95d1c4e": "2026-09-06",
+    "article_1633d31715fa1d55c46b": "2026-09-06",
+    "article_b8ffde79a7b77951c58e": "2026-09-06",
+    "article_693aee3eb2d960dda939": "2026-09-06",
+    "article_a4f5b3dacd643d64f3db": "2026-09-06",
+    "article_9a17b34088c600fc6370": "2026-09-05",
+    "article_522bb55ba0658cf6749c": "2026-09-05",
+    "article_96eea21d7926d8678133": "2026-09-05",
+    "article_8b3d3c8741cf3be9a915": "2026-09-05",
+    "article_e6739d620986ab8a6e11": "2026-09-05",
+    "article_a9e6a2ebfc51e0ec9d4c": "2026-09-04",
+    "article_70cbda0ac4e11ca60471": "2026-09-04",
+    "article_9eebc1e1c272d9faa4d2": "2026-09-04",
+    "article_da2843eeeb62516f0efc": "2026-09-03",
+    "article_f87103a4fdcc5ce973a2": "2026-09-03",
+    "article_6012fcb8d0c57ea9afaf": "2026-09-03",
+    "article_e045221c306967404ad4": "2026-09-03",
+    "article_2faf9eaf28288b64ec30": "2026-09-03",
+    "article_5460e2e6e130cd09a9d0": "2026-09-03",
+    "article_235da8665b45fe41df9e": "2026-09-02",
+    "article_cf6967f8f11e0c156ac6": "2026-09-02",
+    "article_f98b4692edb2b816e724": "2026-09-02",
+    "article_074af19ac7b172ed8d4d": "2026-09-02",
+    "article_d7526e3419960d102356": "2026-09-02",
+    "article_c1d53f0537494007284c": "2026-09-02",
+    "article_9bb3975f3cfa780437ce": "2026-09-02",
+    "article_cdbd3ffaaa7b46fa1ee8": "2026-09-02",
+    "article_e1d6af7028e91376d093": "2026-09-02",
+    "article_f5149bffafde1b18c9a5": "2026-09-02",
+    "article_0d257d0126ae66c8f9b2": "2026-10-25",
+    "article_4da1da22bfadf6a24386": "2026-10-25",
+    "article_6119b35d01a4adcc2150": "2026-10-25",
+    "article_62dfa4827ea292d80cc5": "2026-10-25",
+    "article_603e94648a6d32968c61": "2026-10-25"
   },
-  "recent_story_history": [
+  "home_shown_story_log": [
     {
-      "article_id": "article_827c03df834635606904",
-      "story_id": "story_32f5d8ada1e3886e41",
-      "title": "デジタル庁、ガバメントAI「源内」を発表",
-      "primary_entity": "デジタル庁",
-      "story_subject": "ガバメントAI「源内」",
-      "event_type": "policy",
-      "event_stage": "announced",
-      "event_scope": "日本",
+      "article_id": "article_4363ed6a8a73c54c0dca",
+      "story_id": "story_66ad133f367ae83a49",
+      "title": "中国Moonshot、新モデル「Kimi K3.1 Pro」の重みを公開予定",
+      "primary_entity": "Moonshot AI",
+      "story_subject": "Kimi K3.1 Pro",
+      "event_type": "release",
+      "event_stage": "planned",
+      "event_scope": "全世界",
       "story_entities": [
-        "デジタル庁"
+        "Moonshot AI",
+        "Kimi K3.1 Pro",
+        "moonshotai",
+        "kimik3.1pro",
+        "moonshot-ai"
       ],
       "fact_slots": [],
       "relation_type": "new",
       "dedupe_decision": "new",
       "previous_article_id": "",
-      "selected_at": "2026-10-21T15:17:21.229Z",
-      "edition_window_end": "2026-10-21T15:13:36.912Z"
+      "selected_at": "2026-10-24T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-24"
     },
     {
-      "article_id": "article_45267ebaef048ca35584",
-      "story_id": "story_da09ab7450248a656c",
-      "title": "生成AI企業のCEO、AIが俳優に取って代わると発言",
-      "primary_entity": "生成AI企業(不明)",
-      "story_subject": "AIによる俳優代替発言",
+      "article_id": "article_f287dafe117b702c1b25",
+      "story_id": "story_57988697f94b1b9248",
+      "title": "Canva、自社開発AI「Canva Craft」を発表 画像生成ランキング世界2位に",
+      "primary_entity": "Canva",
+      "story_subject": "Canva Craft",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "Canvaサービス",
+      "story_entities": [
+        "Canva",
+        "Canva Craft",
+        "canva",
+        "canvacraft",
+        "craft"
+      ],
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "画像生成ランキング",
+          "value": "世界2位",
+          "normalized_value": "2"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-24T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-24"
+    },
+    {
+      "article_id": "article_730c1e906529abdc4a62",
+      "story_id": "story_4093e64a3d3ff1da1f",
+      "title": "OpenAI、訓練中の最先端AIをネットから遮断すると発表",
+      "primary_entity": "OpenAI",
+      "story_subject": "最先端AIモデルの訓練環境のネットワーク遮断",
+      "event_type": "security",
+      "event_stage": "announced",
+      "event_scope": "AIモデル訓練環境",
+      "story_entities": [
+        "OpenAI",
+        "openai"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-24T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-24"
+    },
+    {
+      "article_id": "article_dd72b45783120f60b6e4",
+      "story_id": "story_a2c44c470bcb15c590",
+      "title": "Meta、AIエージェント「Muse」を日本でiOS・Android向けに提供開始",
+      "primary_entity": "Meta",
+      "story_subject": "AIエージェントアプリMuseの日本展開",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本、iOS、Android",
+      "story_entities": [
+        "Meta",
+        "Muse",
+        "iOS",
+        "meta",
+        "muse"
+      ],
+      "fact_slots": [
+        {
+          "type": "date",
+          "scope": "提供開始日",
+          "value": "2026-10-23",
+          "normalized_value": "2026-10-23"
+        },
+        {
+          "type": "availability",
+          "scope": "対応OS",
+          "value": "iOS・Android",
+          "normalized_value": "iosandroid"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-24T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-24"
+    },
+    {
+      "article_id": "article_cd54a3c5bab0cb20aec5",
+      "story_id": "story_718a6ad15994830805",
+      "title": "DeepSeekが約150億ドルの大型資金調達、米政府禁止後も上海上場視野に",
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeekの約150億ドル資金調達",
+      "event_type": "funding",
+      "event_stage": "announced",
+      "event_scope": "中国・グローバル",
+      "story_entities": [
+        "DeepSeek",
+        "上海市場",
+        "米国政府の禁止措置",
+        "deepseek"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "資金調達額",
+          "value": "約150億USD",
+          "normalized_value": "15000000000USD"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-24T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-24"
+    },
+    {
+      "article_id": "article_faae624300a8e67b770e",
+      "story_id": "story_48bd5cd9e94f72edfb",
+      "title": "米財務省、対外技術投資規制の拡大に向けた規則案を提示",
+      "primary_entity": "米財務省",
+      "story_subject": "対外技術投資規制の拡大",
+      "event_type": "policy",
+      "event_stage": "proposed",
+      "event_scope": "アメリカ、海外投資",
+      "story_entities": [
+        "米財務省",
+        "対外投資規制"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-23T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-23"
+    },
+    {
+      "article_id": "article_f8b78636455861b9a4d3",
+      "story_id": "story_6cf90b8a313a11cc16",
+      "title": "1Password、AIエージェント向けにパスワードを渡さず認証を代行する新機能を公開",
+      "primary_entity": "1Password",
+      "story_subject": "AIエージェント向け認証代行機能",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "1Passwordサービス全般",
+      "story_entities": [
+        "1Password",
+        "1password",
+        "password"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-23T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-23"
+    },
+    {
+      "article_id": "article_891b7e0bbf66f86d27b7",
+      "story_id": "story_8782f35e9019f7391f",
+      "title": "OpenAIが新API「Decisions API」を発表",
+      "primary_entity": "OpenAI",
+      "story_subject": "Decisions API",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "API",
+      "story_entities": [
+        "OpenAI",
+        "Decisions API",
+        "openai",
+        "decisionsapi",
+        "decisions"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-23T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-23"
+    },
+    {
+      "article_id": "article_cb8f94d0739aac6d9f81",
+      "story_id": "story_36bf79278c521401a1",
+      "title": "Google、サイバー防衛特化の新AIモデル『Gemini 4 Argon』を先行提供開始",
+      "primary_entity": "Google",
+      "story_subject": "Gemini 4 Argon",
+      "event_type": "release",
+      "event_stage": "beta",
+      "event_scope": "先行提供",
+      "story_entities": [
+        "Google",
+        "Gemini 4 Argon",
+        "google",
+        "gemini4argon",
+        "google-gemini"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "出力上限の拡大",
+          "value": "従来の15倍",
+          "normalized_value": "15"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-23T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-23"
+    },
+    {
+      "article_id": "article_af631ad14236ec8a08d1",
+      "story_id": "story_1e8fcc8d6a165c9ab2",
+      "title": "Anthropic、先回り操作型AIエージェント『Claude Duet』を発表",
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude Duet",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "不明",
+      "story_entities": [
+        "Anthropic",
+        "Claude Duet",
+        "Claude Opus 5.5",
+        "anthropic",
+        "claudeduet"
+      ],
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "基盤モデル",
+          "value": "Claude Opus 5.5",
+          "normalized_value": "claudeopus5.5"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-23T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-23"
+    },
+    {
+      "article_id": "article_fd5e0b5378633689b973",
+      "story_id": "story_0fc15b43bda5ec42f5",
+      "title": "Canvaで資料作成するZ世代大学生、内容を説明できない実態に教員が懸念",
+      "primary_entity": "Canva",
+      "story_subject": "Canvaを使った大学生の資料作成",
       "event_type": "other",
       "event_stage": "other",
-      "event_scope": "映画・エンタメ業界",
+      "event_scope": "日本の大学",
       "story_entities": [
-        "生成AI企業",
-        "生成ai企業"
+        "Canva",
+        "大学教育",
+        "canva"
       ],
       "fact_slots": [],
       "relation_type": "new",
       "dedupe_decision": "new",
       "previous_article_id": "",
-      "selected_at": "2026-10-21T15:17:21.229Z",
-      "edition_window_end": "2026-10-21T15:13:36.912Z"
+      "selected_at": "2026-10-23T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-23"
+    },
+    {
+      "article_id": "article_88acccc14905a2bb85cb",
+      "story_id": "story_fa72a8f2608360ec8f",
+      "title": "AIがPHPの大規模な脆弱性を発見、GPT-5.6 SolとGemini 4 Argonが関与",
+      "primary_entity": "PHP",
+      "story_subject": "PHPの脆弱性発見",
+      "event_type": "security",
+      "event_stage": "investigating",
+      "event_scope": "PHPを使用するウェブサイト全般",
+      "story_entities": [
+        "PHP",
+        "GPT-5.6 Sol",
+        "Gemini 4 Argon",
+        "php",
+        "gpt-5.6sol"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-23T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-23"
+    },
+    {
+      "article_id": "article_3f1ff185fef15031a97f",
+      "story_id": "story_0b693267a4152c57fb",
+      "title": "動画生成AI「Kling 4.0」、Runway「Gen-4.5」との比較テストで6割超のスコア",
+      "primary_entity": "Kling AI",
+      "story_subject": "Kling 4.0とRunway Gen-4.5の比較",
+      "event_type": "research",
+      "event_stage": "other",
+      "event_scope": "動画生成AI分野",
+      "story_entities": [
+        "Kling 4.0",
+        "Runway Gen-4.5",
+        "kling4.0",
+        "runwaygen-4.5",
+        "runway"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "比較テストでの勝率",
+          "value": "61%",
+          "normalized_value": "61%"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-23T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-23"
+    },
+    {
+      "article_id": "article_f39979dbad0f71c91c2a",
+      "story_id": "story_4b23a1474561944435",
+      "title": "Kling 4.0がアプリで公開、APIはまだ早期アクセス",
+      "primary_entity": "Kling AI",
+      "story_subject": "Kling 4.0",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "アプリ(一般公開)、API(早期アクセス)",
+      "story_entities": [
+        "Kling 4.0",
+        "Kling AI",
+        "kling4.0",
+        "klingai",
+        "kling"
+      ],
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "アプリ版Kling 4.0",
+          "value": "一般公開",
+          "normalized_value": "一般公開"
+        },
+        {
+          "type": "status",
+          "scope": "API版Kling 4.0",
+          "value": "早期アクセス",
+          "normalized_value": "早期アクセス"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-22T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-22"
     },
     {
       "article_id": "article_aeeda7023f5a40de65ae",
@@ -222,8 +753,160 @@
       "relation_type": "new",
       "dedupe_decision": "uncertain",
       "previous_article_id": "",
-      "selected_at": "2026-10-21T23:31:02.730Z",
-      "edition_window_end": "2026-10-21T23:25:31.716Z"
+      "selected_at": "2026-10-22T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-22"
+    },
+    {
+      "article_id": "article_17939d26e5fa4b270fea",
+      "story_id": "story_3bee0845159725916b",
+      "title": "Perplexity、Mac版「Perplexity Computer」に完全ローカルAIを追加",
+      "primary_entity": "Perplexity",
+      "story_subject": "Perplexity Computerのローカルマイアイ機能",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Mac",
+      "story_entities": [
+        "Perplexity",
+        "Perplexity Computer",
+        "Mac",
+        "perplexity",
+        "perplexitycomputer"
+      ],
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "Perplexity ComputerのローカルAI機能",
+          "value": "Mac版に追加、クラウド利用は任意",
+          "normalized_value": "mac版に追加クラウド利用は任意"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-24T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-24"
+    },
+    {
+      "article_id": "article_a6c989e1866d8b356c79",
+      "story_id": "story_97699e3b0caf298ff2",
+      "title": "Anthropic、AIモデル停止の基準を『被害10億ドル超か死者50人超』に限る法案を提案",
+      "primary_entity": "Anthropic",
+      "story_subject": "AIモデル強制停止基準に関する法案",
+      "event_type": "policy",
+      "event_stage": "proposed",
+      "event_scope": "不明",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "anthropic",
+        "claude"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "停止基準となる被害額",
+          "value": "10億ドル超",
+          "normalized_value": "1000000000USD"
+        },
+        {
+          "type": "count",
+          "scope": "停止基準となる死者数",
+          "value": "50人超",
+          "normalized_value": "50"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-20T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-20"
+    },
+    {
+      "article_id": "article_7cf01e4de93192f3f1db",
+      "story_id": "story_3621d1e4cceadb335b",
+      "title": "xAIが電話対応AIを公開、StarlinkとTeslaで稼働中と報道",
+      "primary_entity": "xAI",
+      "story_subject": "電話対応AI",
+      "event_type": "release",
+      "event_stage": "other",
+      "event_scope": "Starlink・Tesla内のサービス",
+      "story_entities": [
+        "xAI",
+        "Starlink",
+        "Tesla",
+        "xai",
+        "starlink"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-20T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-20"
+    },
+    {
+      "article_id": "article_c79b90537d390e19bfc0",
+      "story_id": "story_94ef5bb6ebba5dda64",
+      "title": "Claude Mythosの無料ツール「OSS Scanner」が11日間で脆弱性880件をAI判定",
+      "primary_entity": "Claude Mythos",
+      "story_subject": "OSS Scanner",
+      "event_type": "security",
+      "event_stage": "launched",
+      "event_scope": "オープンソースソフトウェア全般",
+      "story_entities": [
+        "Claude Mythos",
+        "OSS Scanner",
+        "curl",
+        "claudemythos",
+        "ossscanner"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "11日間で判定された緊急・重要脆弱性件数",
+          "value": "880件",
+          "normalized_value": "880"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-21T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-21"
+    },
+    {
+      "article_id": "article_0b3543e642fc5b0d56ac",
+      "story_id": "story_3452748409da9e335f",
+      "title": "トランプ政権がDeepSeekの全面禁止方針、機密情報流出を懸念",
+      "primary_entity": "アメリカ政府(トランプ政権)",
+      "story_subject": "DeepSeek全面禁止方針",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "アメリカ",
+      "story_entities": [
+        "DeepSeek",
+        "トランプ政権",
+        "deepseek"
+      ],
+      "fact_slots": [
+        {
+          "type": "status",
+          "scope": "DeepSeek利用規制",
+          "value": "全面禁止方針",
+          "normalized_value": "全面禁止方針"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-20T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-20"
     },
     {
       "article_id": "article_774f72042cf1060b5671",
@@ -245,9 +928,321 @@
       "relation_type": "new",
       "dedupe_decision": "new",
       "previous_article_id": "",
-      "selected_at": "2026-10-21T23:31:02.730Z",
-      "edition_window_end": "2026-10-21T23:25:31.716Z"
+      "selected_at": "2026-10-22T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-22"
     },
+    {
+      "article_id": "article_23ca248f6e33386f6082",
+      "story_id": "story_3b71d839b5e355f85b",
+      "title": "DeepSeek、新しいAIモデルを公開 開発コストを米国勢の10分の1以下に抑制",
+      "primary_entity": "DeepSeek",
+      "story_subject": "新AIモデルの公開とコスト削減",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "全世界",
+      "story_entities": [
+        "DeepSeek",
+        "deepseek"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "開発コストの比較",
+          "value": "米国勢の10分の1以下",
+          "normalized_value": "10"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-20T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-20"
+    },
+    {
+      "article_id": "article_a3a2ccae68af08d5b354",
+      "story_id": "story_d4c4629d8da473331d",
+      "title": "Salesforce、スペインに10億ドルを投資しAI分野での主導権強化へ",
+      "primary_entity": "Salesforce",
+      "story_subject": "スペインへの10億ドル投資",
+      "event_type": "funding",
+      "event_stage": "announced",
+      "event_scope": "スペイン",
+      "story_entities": [
+        "Salesforce",
+        "スペイン",
+        "salesforce"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "投資額",
+          "value": "10億ドル",
+          "normalized_value": "1000000000USD"
+        },
+        {
+          "type": "region",
+          "scope": "投資対象国",
+          "value": "スペイン",
+          "normalized_value": "スペイン"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-20T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-20"
+    },
+    {
+      "article_id": "article_dc5a7163f86d81315196",
+      "story_id": "story_3f48825416bfdca3dc",
+      "title": "Google、新モデル「Gemini 4 Argon」をグローバル提供開始",
+      "primary_entity": "Google",
+      "story_subject": "Gemini 4 Argon",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "全世界",
+      "story_entities": [
+        "Google",
+        "Gemini 4 Argon",
+        "google",
+        "gemini4argon",
+        "google-gemini"
+      ],
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "Gemini 4 Argon",
+          "value": "グローバル提供開始",
+          "normalized_value": "グローバル提供開始"
+        }
+      ],
+      "relation_type": "follow_up",
+      "dedupe_decision": "follow_up",
+      "previous_article_id": "article_db85fee8a1fa5fc02adb",
+      "selected_at": "2026-10-19T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-19"
+    },
+    {
+      "article_id": "article_e73c486c3cfca1a985d8",
+      "story_id": "story_8df09e54b250aeea12",
+      "title": "DeepSeek、新型AI「V4.1 Flash-1017」を発表 速度と推論・コード性能を向上",
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek V4.1 Flash-1017",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "不明",
+      "story_entities": [
+        "DeepSeek",
+        "V4.1 Flash-1017",
+        "deepseek",
+        "v4.1flash-1017",
+        "v4.1"
+      ],
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "DeepSeekモデル",
+          "value": "V4.1 Flash-1017",
+          "normalized_value": "v4.1flash1017"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-18T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-18"
+    },
+    {
+      "article_id": "article_64ac185c778723687417",
+      "story_id": "story_1c0764222ea0a3a852",
+      "title": "NVIDIA CEOジェンスン・フアン氏、AI市場の混乱は『いずれ過ぎ去る』と発言",
+      "primary_entity": "NVIDIA",
+      "story_subject": "AI市場の混乱とフアンCEOの発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "story_entities": [
+        "NVIDIA",
+        "ジェンスン・フアン",
+        "nvidia",
+        "ジェンスンフアン"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-17T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-17"
+    },
+    {
+      "article_id": "article_3bf06082b2ce4c66e394",
+      "story_id": "story_ae0f25ab33ca0bc69f",
+      "title": "米8州がOpenAIを提訴、ChatGPTによる被害を主張",
+      "primary_entity": "OpenAI",
+      "story_subject": "米8州によるOpenAI提訴",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "米国8州",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT",
+        "openai",
+        "chatgpt"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "OpenAIを提訴した州の数",
+          "value": "8州",
+          "normalized_value": "8"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-16T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-16"
+    },
+    {
+      "article_id": "article_e72fa88d20c16450725b",
+      "story_id": "story_8defa5c18af201dd85",
+      "title": "Grok Bot、Claude Opus 5.5に切り替えMidjourneyとSunoを追加",
+      "primary_entity": "xAI",
+      "story_subject": "Grok Bot",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "X(旧Twitter)",
+      "story_entities": [
+        "Grok",
+        "Claude Opus 5.5",
+        "Midjourney",
+        "grok",
+        "claudeopus5.5"
+      ],
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "Grok Botが使用するモデル",
+          "value": "Claude Opus 5.5",
+          "normalized_value": "claudeopus5.5"
+        },
+        {
+          "type": "other",
+          "scope": "追加機能",
+          "value": "Midjourney, Suno",
+          "normalized_value": "midjourneysuno"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-16T03:00:00.000Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-16"
+    },
+    {
+      "article_id": "article_4da1da22bfadf6a24386",
+      "story_id": "story_98d2e6573368b6cf39",
+      "title": "ドイツとNVIDIAがAI提携を拡大、100億ドル規模の投資を約束",
+      "primary_entity": "NVIDIA",
+      "story_subject": "ドイツとNVIDIAのAI提携拡大",
+      "event_type": "partnership",
+      "event_stage": "expanded",
+      "event_scope": "ドイツ",
+      "story_entities": [
+        "ドイツ",
+        "NVIDIA",
+        "nvidia"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "ドイツとNVIDIAのAI提携投資額",
+          "value": "100億米ドル",
+          "normalized_value": "10000000000USD"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-25T08:47:33.444Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-25"
+    },
+    {
+      "article_id": "article_603e94648a6d32968c61",
+      "story_id": "story_aaaed4691709ac5454",
+      "title": "RunwayのCEO、AIが俳優を代替する可能性に言及",
+      "primary_entity": "Runway",
+      "story_subject": "AIによる俳優代替発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "映像業界全般",
+      "story_entities": [
+        "Runway",
+        "View Conference",
+        "runway",
+        "viewconference",
+        "view"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-25T08:47:33.444Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z",
+      "shown_day": "2026-10-25"
+    }
+  ],
+  "scores": {
+    "article_4da1da22bfadf6a24386": {
+      "article_id": "article_4da1da22bfadf6a24386",
+      "total": 80,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 20,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "制度・安全への影響",
+        "大きな製品・市場変化"
+      ],
+      "published_at": "2026-10-20T12:24:52.000Z"
+    },
+    "article_603e94648a6d32968c61": {
+      "article_id": "article_603e94648a6d32968c61",
+      "total": 33,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 7,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": -10
+      },
+      "reasons": [
+        "重要度B",
+        "重要な経営・研究体制",
+        "未確認情報を減点"
+      ],
+      "published_at": "2026-10-20T07:39:00.000Z"
+    }
+  },
+  "recent_story_history": [
     {
       "article_id": "article_f39979dbad0f71c91c2a",
       "story_id": "story_4b23a1474561944435",
@@ -649,6 +1644,57 @@
       "previous_article_id": "",
       "selected_at": "2026-10-24T14:04:17.757Z",
       "edition_window_end": "2026-10-24T14:00:22.003Z"
+    },
+    {
+      "article_id": "article_4da1da22bfadf6a24386",
+      "story_id": "story_98d2e6573368b6cf39",
+      "title": "ドイツとNVIDIAがAI提携を拡大、100億ドル規模の投資を約束",
+      "primary_entity": "NVIDIA",
+      "story_subject": "ドイツとNVIDIAのAI提携拡大",
+      "event_type": "partnership",
+      "event_stage": "expanded",
+      "event_scope": "ドイツ",
+      "story_entities": [
+        "ドイツ",
+        "NVIDIA",
+        "nvidia"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "ドイツとNVIDIAのAI提携投資額",
+          "value": "100億米ドル",
+          "normalized_value": "10000000000USD"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-25T08:47:33.444Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z"
+    },
+    {
+      "article_id": "article_603e94648a6d32968c61",
+      "story_id": "story_aaaed4691709ac5454",
+      "title": "RunwayのCEO、AIが俳優を代替する可能性に言及",
+      "primary_entity": "Runway",
+      "story_subject": "AIによる俳優代替発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "映像業界全般",
+      "story_entities": [
+        "Runway",
+        "View Conference",
+        "runway",
+        "viewconference",
+        "view"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-25T08:47:33.444Z",
+      "edition_window_end": "2026-10-25T08:47:33.444Z"
     }
   ]
 }

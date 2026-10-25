@@ -19,7 +19,7 @@ for(const marker of [
   "const selected=getUpdates().filter(item=>!isExpertVideo(item)&&Number(item.home_top_rank)>=1",
   "const list=homeTopUpdates();",
   "今回の新着${newCount?` ${newCount}件`:''}を話題性・重要性で審査",
-  "直近の重要記事から重複なく継続掲載",
+  "前の日までに載せていない記事から選定",
   "const feedList=cover?list.filter(item=>item.id!==cover.id).slice(0,4):list.slice(0,5)",
   "const nextId=String(homeTopUpdates()[0]?.id||'')"
 ]){
@@ -31,7 +31,12 @@ if(!/selected\.has\(u\.tool_id\)\|\|rankFromImportance\(u\.importance\)==='S'/.t
 }
 
 const selected=data.filter(item=>Number(item.home_top_rank)>0).sort((a,b)=>a.home_top_rank-b.home_top_rank);
-if(selected.length<3||selected.length>5)throw new Error(`home edition must contain 3-5 stories, got ${selected.length}`);
+// 2026-10-25: 前の日の記事を出さないため、足りない日は3件未満になってよい。その代わり異常として必ず知らせる。
+if(selected.length>5)throw new Error(`home edition must contain at most 5 stories, got ${selected.length}`);
+if(selected.length<3&&!(edition.update_health==="DEGRADED"&&(edition.update_health_reasons||[]).some(reason=>reason.includes("前の日と重ならない")))){
+  throw new Error(`home edition has ${selected.length} stories without a DEGRADED no-repeat warning`);
+}
+if((edition.repeated_from_previous_day_ids||[]).length)throw new Error("home edition repeats a previous-day article");
 if(new Set(selected.map(item=>item.article_id)).size!==selected.length)throw new Error("home edition contains duplicate article IDs");
 if(selected.some((item,index)=>item.home_top_rank!==index+1))throw new Error("home edition ranks are not consecutive from 1");
 if(JSON.stringify(selected.map(item=>item.article_id))!==JSON.stringify(edition.article_ids)){
@@ -40,8 +45,8 @@ if(JSON.stringify(selected.map(item=>item.article_id))!==JSON.stringify(edition.
 if(selected.some(item=>!item.home_selected_at||!item.home_window_start||!item.home_window_end)){
   throw new Error("a selected story is missing its auditable edition window");
 }
-if(selected.some(item=>!["new","continued"].includes(item.home_top_origin))){
-  throw new Error("a selected story is missing its new/continued label");
+if(selected.some(item=>!["new","same_day","first_time"].includes(item.home_top_origin))){
+  throw new Error("a selected story is missing its new/same_day/first_time label (no previous-day carryover)");
 }
 if(selected.some(item=>item.content_type==="expert_video")){
   throw new Error("expert videos must never consume an article top-five slot");

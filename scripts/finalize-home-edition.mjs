@@ -20,9 +20,12 @@ if(previous.last_window_end){
 
 fs.writeFileSync("data.json",JSON.stringify(applyHomeEdition(data,edition),null,2)+"\n");
 fs.writeFileSync("home-edition.json",JSON.stringify(edition,null,2)+"\n");
+if((edition.repeated_from_previous_day_ids||[]).length){
+  throw new Error(`Home publication held: previous-day articles selected again: ${edition.repeated_from_previous_day_ids.join(", ")}`);
+}
 const outcome=edition.new_selected_count>0
-  ?`新着 ${edition.new_selected_count}件を掲載・継続 ${edition.continued_selected_count}件`
-  :`新着掲載0件・前回の重要記事 ${edition.continued_selected_count}件を継続表示（新規更新ではありません）`;
+  ?`新着 ${edition.new_selected_count}件を掲載・今日まだ載せていない記事 ${edition.continued_selected_count}件`
+  :`新着掲載0件・前の日までに載せていない記事 ${edition.continued_selected_count}件を表示（前の日の記事は出しません）`;
 console.log(`Home edition: ${outcome}`);
 if(edition.new_selected_count===0)console.log(`::warning::${outcome}`);
 if(process.env.GITHUB_STEP_SUMMARY){

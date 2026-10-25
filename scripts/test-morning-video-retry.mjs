@@ -47,4 +47,16 @@ for(const [label,time,succeedAt,expected] of [
   assert.equal(calls,expected,label);assert.equal(waits,expected-1,label);
   assert.equal(result,calls>=succeedAt?0:1);
 }
-console.log('Morning video retry tests passed: early start, bounded same-run recovery, verified publication and no false success.');
+{
+  // 2026-10-25: 記事は作れたのに朝の動画が見つからない時も、その日の記事を捨てずに公開する。
+  let calls=0;
+  const result=await runScheduledUpdate({run:async()=>{calls++;return 0;},readState:()=>({status:'pending_no_new_publishable_video'}),
+    readItems:()=>[],now:()=>morning,sleep:async()=>{},log:()=>{}});
+  assert.equal(calls,3,'still retries the video within the morning');
+  assert.equal(result,0,'publishes the prepared articles even when no new video is found');
+  const {articlesDueToday}=await import('./run-scheduled-update.mjs');
+  assert.equal(articlesDueToday({edition_day_jst:'2026-09-12'},morning+3600000),true,'a new day with no edition needs articles');
+  assert.equal(articlesDueToday({edition_day_jst:'2026-09-13'},morning+3600000),false,'the day already has an edition');
+  assert.equal(articlesDueToday({last_checked_at:'2026-09-12T14:04:00Z'},Date.parse('2026-09-12T22:00:00Z')),true,'legacy edition from the previous JST day');
+}
+console.log('Morning video retry tests passed: early start, bounded same-run recovery, verified publication, articles kept without a video, and same-day article recovery.');

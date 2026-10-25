@@ -1,6 +1,8 @@
 "use strict";
 
-const EDITION_VERSION="home-value-continuation-v5-article-only";
+// 2026-10-25 本人「毎日必ず内容を入れ替えて、同じ記事が続くのはやめて。絶対に崩さないで」:
+// 前の日（日本時間）までにホームへ載せた記事は、二度とホームへ載せない。同じ日の朝・昼・夜の版の間だけ残してよい。
+const EDITION_VERSION="home-daily-unique-v6-article-only";
 const MAX_HOME_ARTICLES=5;
 const MIN_HOME_ARTICLES=3;
 const LATE_ARRIVAL_HOURS=48;
@@ -8,6 +10,10 @@ const FUTURE_TOLERANCE_MS=15*60*1000;
 const RECENT_STORY_WINDOW_MS=72*60*60*1000;
 const CONTINUATION_WINDOW_MS=7*24*60*60*1000;
 const MAX_RECENT_STORY_HISTORY=45;
+const SHOWN_DAYS_KEEP=60;
+const FIRST_TIME_EMERGENCY_MS=14*24*60*60*1000;
+const SHOWN_STORY_LOG_DAYS=14;
+const MAX_SHOWN_STORY_LOG=300;
 const TOOL_EVOLUTION_TARGET=2;
 const MIN_TOOL_EVOLUTION_SCORE=40;
 const TOOL_CATEGORIES=new Set([
@@ -19,6 +25,28 @@ const TOOL_STAGES=new Set(["announced","planned","beta","launched","expanded"]);
 function validTime(value){
   const time=new Date(value||"").getTime();
   return Number.isFinite(time)?time:0;
+}
+
+function jstDay(time){
+  const value=validTime(time)||Date.now();
+  return new Date(value+9*3600000).toISOString().slice(0,10);
+}
+
+// 記事IDごとに「ホームへ初めて載せた日（日本時間）」を持つ。旧版の正本には無いので、直前の版の記事はその版の日で補う。
+function homeShownDays(previous={}){
+  const days={};
+  const stored=previous&&typeof previous.home_shown_days==="object"&&previous.home_shown_days?previous.home_shown_days:{};
+  for(const [id,day] of Object.entries(stored)){
+    if(id&&/^\d{4}-\d{2}-\d{2}$/.test(String(day||"")))days[String(id)]=String(day);
+  }
+  const previousDay=jstDay(previous?.edition_day_jst?Date.parse(previous.edition_day_jst+"T12:00:00+09:00"):(previous?.last_checked_at||previous?.home_content_changed_at||previous?.last_published_at));
+  if(previous&&(previous.last_checked_at||previous.edition_day_jst)){
+    for(const id of previous.article_ids||[]){
+      const key=String(id||"");
+      if(key&&!days[key])days[key]=previousDay;
+    }
+  }
+  return days;
 }
 
 function articleId(item){
@@ -363,7 +391,7 @@ function selectContinuationArticles(items,{freshIds=[],previousIds=[],history=[]
     const emergency=editorialItems.filter(item=>{
       const id=articleId(item);
       const knownAt=firstSeenTime(item)||publishedTime(item);
-      return id&&!selectedIds.has(id)&&knownAt>0&&knownAt<=start+FUTURE_TOLERANCE_MS;
+      return id&&!selectedIds.has(id)&&knownAt>0&&knownAt<=start+FUTURE_TOLERANCE_MS&&knownAt>=end-FIRST_TIME_EMERGENCY_MS;
     }).map(makeRecord).sort((a,b)=>b.total-a.total||b.time-a.time||a.id.localeCompare(b.id));
     for(const record of emergency){
       if(selected.length>=min)break;
@@ -448,14 +476,37 @@ function buildHomeEdition(items,previous={},options={}){
     :history;
   const max=options.max||MAX_HOME_ARTICLES;
   const min=Math.min(options.min||MIN_HOME_ARTICLES,max);
-  const selection=selectTopArticles(editorialItems,{
+  // 毎日入れ替え: 前の日までにホームへ載せた記事と、その記事と同じ出来事の記事は候補から外す。
+  const editionDay=jstDay(windowEnd);
+  const shownDays=homeShownDays(previous);
+  // 同じ出来事を別の媒体が書いた記事も、前の日に載せたものは出さない。72時間の履歴に加え、14日分の掲載記録で照らす。
+  const storedLog=Array.isArray(previous?.home_shown_story_log)?previous.home_shown_story_log:[];
+  const logIds=new Set(storedLog.map(articleId));
+  const seededLog=editorialItems.filter(item=>shownDays[articleId(item)]&&shownDays[articleId(item)]<editionDay&&!logIds.has(articleId(item)))
+    .map(item=>({...storyHistoryEntry(item,Date.parse(shownDays[articleId(item)]+"T12:00:00+09:00"),windowEnd),shown_day:shownDays[articleId(item)]}));
+  const shownStoryLog=[...storedLog,...seededLog];
+  const priorDayStories=[...history.filter(entry=>{
+    const id=articleId(entry);
+    const day=shownDays[id]||jstDay(entry?.selected_at);
+    return day<editionDay;
+  }),...shownStoryLog.filter(entry=>String(entry?.shown_day||"")<editionDay)];
+  const shownBeforeToday=item=>{
+    const day=shownDays[articleId(item)];
+    if(day&&day<editionDay)return true;
+    return priorDayStories.some(entry=>articleId(entry)!==articleId(item)&&sameEditionStory(entry,item));
+  };
+  const blockedIds=editorialItems.filter(shownBeforeToday).map(articleId);
+  const blocked=new Set(blockedIds);
+  const eligibleItems=editorialItems.filter(item=>!blocked.has(articleId(item)));
+  const sameDayHistory=history.filter(entry=>!blocked.has(articleId(entry))&&(shownDays[articleId(entry)]||jstDay(entry?.selected_at))===editionDay);
+  const selection=selectTopArticles(eligibleItems,{
     windowStart,windowEnd,max,excludeStories:exclusionHistory
   });
-  const liveIds=new Set(editorialItems.map(articleId));
-  const previousIds=distinctArticleIds(editorialItems,(previous.article_ids||[]).filter(id=>liveIds.has(String(id))),MAX_HOME_ARTICLES);
-  const selectedIds=distinctArticleIds(editorialItems,selection.selected.map(record=>record.score.article_id),max);
-  const continuation=selectContinuationArticles(editorialItems,{
-    freshIds:selectedIds,previousIds,history,windowStart,windowEnd,max,min
+  const liveIds=new Set(eligibleItems.map(articleId));
+  const previousIds=distinctArticleIds(eligibleItems,(previous.article_ids||[]).filter(id=>liveIds.has(String(id))),MAX_HOME_ARTICLES);
+  const selectedIds=distinctArticleIds(eligibleItems,selection.selected.map(record=>record.score.article_id),max);
+  const continuation=selectContinuationArticles(eligibleItems,{
+    freshIds:selectedIds,previousIds,history:sameDayHistory,windowStart,windowEnd,max,min
   });
   const continuedIds=continuation.continuationIds;
   const articleIds=[...selectedIds,...continuedIds].slice(0,max);
@@ -474,22 +525,42 @@ function buildHomeEdition(items,previous={},options={}){
     :0;
   const staleHours=Math.max(0,(validTime(selectedAt)-validTime(homeContentChangedAt))/3600000);
   const healthReasons=[];
-  if(selectedIds.length===0)healthReasons.push("今回の新着掲載は0件です。前回の重要記事を継続表示しています");
+  if(selectedIds.length===0)healthReasons.push("今回の新着掲載は0件です。前の日までに載せた記事は出さず、今日まだ載せていない記事だけを表示しています");
   if(staleHours>=24)healthReasons.push("トップ記事の内容が24時間以上変わっていません");
   if(zeroCandidateEditions>=2)healthReasons.push("新着候補0件が2回以上続いています");
-  if(articleIds.length<min)healthReasons.push(`ホーム掲載可能な異なる検証済み記事が${min}件未満です`);
+  if(articleIds.length<min)healthReasons.push(`前の日と重ならない検証済み記事が${min}件未満です`);
   const updateHealth=healthReasons.length?"DEGRADED":"HEALTHY";
 
   if(rebuildingSameWindow){
     history=history.filter(entry=>validTime(entry?.edition_window_end)!==windowEnd);
   }
-  if(selectedIds.length){
+  if(articleIds.length){
+    // 表示した記事は新着でも補充でも履歴へ残す。翌日の「同じ出来事」の判定に使う。
     const byId=new Map(editorialItems.map(item=>[articleId(item),item]));
-    for(const id of selectedIds){
+    const recorded=new Set(history.map(articleId));
+    for(const id of articleIds){
       const item=byId.get(id);
-      if(item)history.push(storyHistoryEntry(item,selectedAt,windowEnd));
+      if(item&&(selectedIds.includes(id)||!recorded.has(id)))history.push(storyHistoryEntry(item,selectedAt,windowEnd));
     }
   }
+  const nextShownDays={};
+  const keepFrom=jstDay(windowEnd-SHOWN_DAYS_KEEP*24*3600000);
+  for(const [id,day] of Object.entries(shownDays)){
+    if(day>=keepFrom)nextShownDays[id]=day;
+  }
+  for(const id of articleIds){
+    if(!nextShownDays[id])nextShownDays[id]=editionDay;
+  }
+  const logFrom=jstDay(windowEnd-SHOWN_STORY_LOG_DAYS*24*3600000);
+  const nextStoryLog=shownStoryLog.filter(entry=>String(entry?.shown_day||"")>=logFrom);
+  const nextLogIds=new Set(nextStoryLog.map(articleId));
+  const itemById=new Map(editorialItems.map(item=>[articleId(item),item]));
+  for(const id of articleIds){
+    const item=itemById.get(id);
+    if(item&&!nextLogIds.has(id))nextStoryLog.push({...storyHistoryEntry(item,selectedAt,windowEnd),shown_day:nextShownDays[id]||editionDay});
+  }
+  const sameDayIds=continuedIds.filter(id=>continuation.continuationSources[id]==="previous_edition"||continuation.continuationSources[id]==="recent_home_history");
+  const firstTimeIds=continuedIds.filter(id=>!sameDayIds.includes(id));
   const historyCutoff=windowEnd-RECENT_STORY_WINDOW_MS;
   const historyByArticle=new Map();
   for(const entry of history){
@@ -541,15 +612,28 @@ function buildHomeEdition(items,previous={},options={}){
     new_article_ids:selectedIds,
     continued_article_ids:continuedIds,
     continuation_sources:continuation.continuationSources,
+    daily_unique_rule:"前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
+    edition_day_jst:editionDay,
+    same_day_article_ids:sameDayIds,
+    first_time_article_ids:firstTimeIds,
+    repeated_from_previous_day_ids:articleIds.filter(id=>(shownDays[id]||editionDay)<editionDay),
+    blocked_previous_day_count:blockedIds.length,
+    home_shown_days:nextShownDays,
+    home_shown_story_log:nextStoryLog.slice(-MAX_SHOWN_STORY_LOG),
     scores,
     recent_story_history:recentHistory
   };
 }
 
 function applyHomeEdition(items,edition){
-  const safeIds=distinctArticleIds((items||[]).filter(isEditorialArticle),edition.article_ids||[],MAX_HOME_ARTICLES);
+  // 公開直前の守り: 前の日までに初めて載った記事は、選定正本に残っていてもホームへ出さない。
+  const editionDay=String(edition.edition_day_jst||"");
+  const shownDays=edition.home_shown_days&&typeof edition.home_shown_days==="object"?edition.home_shown_days:{};
+  const notRepeated=id=>!editionDay||!shownDays[String(id)]||shownDays[String(id)]>=editionDay;
+  const safeIds=distinctArticleIds((items||[]).filter(isEditorialArticle),(edition.article_ids||[]).filter(notRepeated),MAX_HOME_ARTICLES);
   const rankById=new Map(safeIds.map((id,index)=>[String(id),index+1]));
   const newIds=new Set((edition.new_article_ids||[]).map(String));
+  const sameDayIds=new Set((edition.same_day_article_ids||[]).map(String));
   return (items||[]).map(item=>{
     const copy={...item};
     delete copy.home_top_rank;
@@ -579,7 +663,7 @@ function applyHomeEdition(items,edition){
     copy.home_content_changed_at=edition.home_content_changed_at;
     copy.home_update_health=edition.update_health;
     copy.home_consecutive_unchanged_editions=edition.consecutive_unchanged_editions;
-    copy.home_top_origin=newIds.has(id)?"new":"continued";
+    copy.home_top_origin=newIds.has(id)?"new":sameDayIds.has(id)?"same_day":"first_time";
     copy.home_edition_new_count=Number(edition.new_selected_count)||0;
     copy.home_edition_continued_count=Number(edition.continued_selected_count)||0;
     return copy;
@@ -587,7 +671,7 @@ function applyHomeEdition(items,edition){
 }
 
 module.exports={
-  EDITION_VERSION,MAX_HOME_ARTICLES,MIN_HOME_ARTICLES,RECENT_STORY_WINDOW_MS,CONTINUATION_WINDOW_MS,validTime,articleId,isEditorialArticle,publishedTime,firstSeenTime,
+  EDITION_VERSION,MAX_HOME_ARTICLES,MIN_HOME_ARTICLES,RECENT_STORY_WINDOW_MS,CONTINUATION_WINDOW_MS,validTime,jstDay,homeShownDays,articleId,isEditorialArticle,publishedTime,firstSeenTime,
   candidateStatus,isToolEvolutionCandidate,scoreArticle,sameEditionStory,distinctArticleIds,
   selectTopArticles,selectContinuationArticles,buildHomeEdition,applyHomeEdition
 };

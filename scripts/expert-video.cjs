@@ -33,6 +33,20 @@ function shouldRefreshExpertVideos(state,now=Date.now(),schedule=""){
 }
 
 function expertVideoKey(item){return String(item?.video_id||item?.source_url||item?.article_id||"");}
+// 2026-10-25 本人「毎日必ず内容を入れ替えて、同じものが続くのはやめて。絶対に崩さないで」:
+// 前の日（日本時間）までにホームへ載せた動画は、二度とホームへ載せない。同じ日の再試行の間だけ残してよい。
+const VIDEO_SHOWN_DAYS_KEEP=60;
+function shownBeforeTodayKeys(state={},today=jstDayKey()){
+  const keys=new Set();
+  for(const [key,day] of Object.entries(state?.video_shown_days||{}))if(key&&day&&String(day)<today)keys.add(String(key));
+  for(const entry of state?.published_history||[])if(entry?.video_key&&entry.day_jst&&String(entry.day_jst)<today)keys.add(String(entry.video_key));
+  for(const edition of state?.published_editions||[])if(edition?.day_jst&&String(edition.day_jst)<today)for(const key of edition.video_keys||[])if(key)keys.add(String(key));
+  return keys;
+}
+function notShownBeforeToday(items,state,today){
+  const shown=shownBeforeTodayKeys(state,today);
+  return (items||[]).filter(item=>!shown.has(expertVideoKey(item)));
+}
 function featuredVideoKeys(state={}){return [...new Set([...(state.featured_video_keys||[]),state.featured_video_key].filter(Boolean))];}
 function videoPersonKey(item){return String(item.expert_id||item.expert_name||item.source_name||expertVideoKey(item));}
 function isLearningVideo(item){return item.expert_tier==="practical_ai_educator"||/(?:使い方|使い道|活用|手順|入門|講座|実演|プロンプト|コツ)/.test(item.title||"");}
@@ -78,7 +92,8 @@ function fillVideoDisplay(candidates,preferred,state,rotation){
 function finalizeExpertVideoEdition(items,state={},now=Date.now(),attempt={}){
   const today=jstDayKey(now), stamp=new Date(now).toISOString();
   const rotation=rotationContext(state,items,now);
-  const candidates=dailyVideoCandidates(items,state,now);
+  // 候補は「前の日までに一度もホームへ載っていない動画」だけ。足りない日は枠を空けたままにする。
+  const candidates=notShownBeforeToday(dailyVideoCandidates(items,state,now),state,today);
   const byKey=new Map(items.filter(isExpertVideoItem).map(item=>[expertVideoKey(item),item]));
   const history=(Array.isArray(state.published_history)?state.published_history:[]).map(entry=>({...entry,
     expert_id:entry.expert_id||byKey.get(entry.video_key)?.expert_id||""}));
@@ -108,14 +123,29 @@ function finalizeExpertVideoEdition(items,state={},now=Date.now(),attempt={}){
       });
     }else {next.status='pending_no_new_publishable_video';}
   }
-  const newKeys=new Set(selected.filter(item=>allowedCreator(item,rotation)&&
-    (next.published_history||[]).some(entry=>entry.day_jst===today&&entry.video_key===expertVideoKey(item))).map(expertVideoKey));
   selected=fillVideoDisplay(candidates,selected,state,rotation);
-  next.fresh_selected_count=selected.filter(item=>newKeys.has(expertVideoKey(item))).length;
-  next.continued_count=selected.length-next.fresh_selected_count;
   const displayedKeys=new Set(selected.map(expertVideoKey));
   const oldHistoryKeys=new Set(history.map(entry=>entry.video_key));
   next.published_history=(next.published_history||history).filter(entry=>oldHistoryKeys.has(entry.video_key)||displayedKeys.has(entry.video_key));
+  // 表示した動画はすべて「今日載せた動画」として記録する。翌日はこの記録で候補から外れる。
+  const recordedToday=new Set((next.published_history||[]).filter(entry=>entry.day_jst===today).map(entry=>entry.video_key));
+  const fills=selected.filter(item=>!recordedToday.has(expertVideoKey(item)));
+  if(fills.length){
+    next.published_history=[...(next.published_history||[]),...fills.map(item=>({day_jst:today,selected_at:stamp,video_key:expertVideoKey(item),expert_id:item.expert_id,expert_ids:creatorIds(item)}))].slice(-60);
+    next.last_published_day_jst=today;next.last_published_at=stamp;
+  }
+  const shownDays={};
+  const keepFrom=jstDayKey(now-VIDEO_SHOWN_DAYS_KEEP*86400000);
+  for(const [key,day] of Object.entries(state.video_shown_days||{}))if(String(day)>=keepFrom)shownDays[key]=String(day);
+  for(const entry of next.published_history||[])if(entry.video_key&&entry.day_jst&&!shownDays[entry.video_key]&&String(entry.day_jst)>=keepFrom&&(String(entry.day_jst)<today||displayedKeys.has(entry.video_key)))shownDays[entry.video_key]=String(entry.day_jst);
+  for(const item of selected)if(!shownDays[expertVideoKey(item)])shownDays[expertVideoKey(item)]=today;
+  next.video_shown_days=shownDays;
+  const newKeys=displayedKeys;
+  // 今日の入れ替えとして数えるのは、前回と別の発信者の動画だけ（同じ発信者の未掲載動画は空き枠の補充）。
+  next.fresh_selected_count=selected.filter(item=>allowedCreator(item,rotation)).length;
+  next.today_displayed_count=selected.length;
+  next.continued_count=0;
+  next.repeated_from_previous_day_keys=selected.map(expertVideoKey).filter(key=>shownBeforeTodayKeys(state,today).has(key));
   if(!next.fresh_selected_count){
     next.last_published_day_jst=state.last_published_day_jst;
     next.last_published_at=state.last_published_at;
@@ -135,7 +165,7 @@ function finalizeExpertVideoEdition(items,state={},now=Date.now(),attempt={}){
   const reserveKeys=new Set(candidates.map(expertVideoKey));
   return {state:next,items:items.map(item=>isExpertVideoItem(item)?{
     ...item,home_video_selected_at:next.featured_video_keys.includes(expertVideoKey(item))?
-      (item.home_video_selected_at||String(next.last_published_at||stamp)):'',
+      (item.home_video_selected_at&&jstDayKey(Date.parse(item.home_video_selected_at))===today?item.home_video_selected_at:String((next.published_history||[]).find(entry=>entry.day_jst===today&&entry.video_key===expertVideoKey(item))?.selected_at||stamp)):'',
     home_video_origin:next.featured_video_keys.includes(expertVideoKey(item))?(newKeys.has(expertVideoKey(item))?'new':'continued'):'',
     home_video_reserve:reserveKeys.has(expertVideoKey(item))
   }:item)};
@@ -305,7 +335,9 @@ function selectExpertVideoArchivePicks(items,limit=12,now=Date.now()){
 }
 
 function selectDailyExpertVideoArchivePicks(items,state={},limit=3,now=Date.now()){
-  const all=dailyVideoCandidates(items,state,now);
+  const archive=dailyVideoCandidates(items,state,now);
+  // ホームの2枠の候補は前の日に載せていない動画だけ。載せた動画は分類ページ用の保管に回す。
+  const all=notShownBeforeToday(archive,state,jstDayKey(now));
   const rotation=rotationContext(state,items,now);
   const seen=new Set((state.published_history||[]).map(entry=>entry.video_key));
   const keys=featuredVideoKeys(state);for(const key of keys)seen.add(key);
@@ -313,7 +345,7 @@ function selectDailyExpertVideoArchivePicks(items,state={},limit=3,now=Date.now(
   const locked=state.last_published_day_jst===jstDayKey(now)?current.filter(item=>(state.published_history||[]).some(entry=>entry.day_jst===jstDayKey(now)&&entry.video_key===expertVideoKey(item))):[];
   const preferred=shouldRefreshExpertVideos(state,now)?pickDiverseVideos(all.filter(item=>!seen.has(expertVideoKey(item))&&allowedCreator(item,rotation)),pickDiverseVideos(locked)):current;
   const display=fillVideoDisplay(all,preferred,state,rotation);
-  return [...display,...all.filter(item=>!display.includes(item))].slice(0,limit);
+  return [...display,...archive.filter(item=>!display.includes(item))].slice(0,limit);
 }
 
 function selectExpertVideoReviewCandidates(items,limit=6,maxPerExpert=2,now=Date.now(),state={}){

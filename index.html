@@ -3751,8 +3751,10 @@ function statusBadge(s){ return `<span class="status ${s}">${STATUS_LABELS[s]||s
 function readProofBadge(u){ return isArticleRead(u)?`<span class="read-proof" aria-label="読了済み">${icon('check')}読了済み</span>`:''; }
 function homeOriginBadge(u){
   if(Number(u?.home_top_rank)<=0)return '';
-  const continued=u.home_top_origin==='continued';
-  return `<span class="home-origin-badge${continued?' is-continued':''}">${continued?'継続掲載':'新着'}</span>`;
+  // 2026-10-25 前の日の記事は載せない。同じ日の前の版の記事は「本日掲載」、まだ一度も載せていない少し前の記事は「初掲載」。
+  const origin=String(u.home_top_origin||'');
+  const label=origin==='same_day'?'本日掲載':origin==='first_time'?'初掲載':origin==='continued'?'継続掲載':'新着';
+  return `<span class="home-origin-badge${origin&&origin!=='new'?' is-continued':''}">${label}</span>`;
 }
 function catChips(cats,max){ cats=cats||[]; const shown=max?cats.slice(0,max):cats; let h=shown.map(c=>`<span class="chip cat">${esc(c)}</span>`).join(''); if(max&&cats.length>max)h+=`<span class="chip more">ほか${cats.length-max}件</span>`; return h; }
 
@@ -3900,13 +3902,13 @@ function homeExpertVideos(items){
   const fresh=(items||[]).filter(item=>isExpertVideo(item)&&(Number.isFinite(Date.parse(item.home_video_selected_at))||item.home_video_reserve===true)&&item.source_date_status==='published'&&
     Date.parse(item.source_published_at)<=now&&Date.parse(item.source_published_at)>=now-10*86400000);
   const ranked=[...fresh].sort((a,b)=>Number(!!b.home_video_selected_at)-Number(!!a.home_video_selected_at)||
-    Number(a.home_video_origin==='continued')-Number(b.home_video_origin==='continued')||
+    Number(a.home_video_origin==='reserve')-Number(b.home_video_origin==='reserve')||
     (Date.parse(b.home_video_selected_at)||0)-(Date.parse(a.home_video_selected_at)||0)||byFeedOrder(a,b));
   for(const item of ranked){
     const videoKey=String(item.video_id||item.source_url||item.article_id||item.id||'');
     const people=[item.expert_id||item.expert_name||item.source_name,...(item.expert_ids||[])].filter(Boolean);
     if(!videoKey||seenVideos.has(videoKey)||people.some(id=>seenExperts.has(id))||(item.story_subject&&seenSubjects.has(item.story_subject)))continue;
-    selected.push(item.home_video_selected_at?item:{...item,home_video_origin:'continued'});seenVideos.add(videoKey);people.forEach(id=>seenExperts.add(id));
+    selected.push(item.home_video_selected_at?item:{...item,home_video_origin:'reserve'});seenVideos.add(videoKey);people.forEach(id=>seenExperts.add(id));
     if(item.story_subject)seenSubjects.add(item.story_subject);
     if(selected.length>=2)break;
   }
@@ -3916,7 +3918,7 @@ function homeExpertVideos(items){
       const people=u=>[u.expert_id||u.expert_name||u.source_name,...(u.expert_ids||[])].filter(Boolean);
       const key=u=>String(u.video_id||u.source_url||u.article_id||u.id||'');
       if(key(a)&&key(b)&&key(a)!==key(b)&&!people(a).some(id=>people(b).includes(id))&&!(a.story_subject&&a.story_subject===b.story_subject))
-        return [a,b].map(u=>u.home_video_selected_at?u:{...u,home_video_origin:'continued'});
+        return [a,b].map(u=>u.home_video_selected_at?u:{...u,home_video_origin:'reserve'});
     }
   }
   return selected;
@@ -3930,7 +3932,7 @@ function expertVideoCard(u){
     <div class="expert-video-card-top">${contentTypeBadge(u)}${readProofBadge(u)}<span class="expert-video-platform">${esc(u.platform||'動画・講演')}</span></div>
     ${thumbnail?`<div class="expert-video-thumb"><img src="${esc(thumbnail)}" alt="元動画のサムネイル" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"></div>`:''}
     <div class="expert-video-person"><strong>${esc(u.expert_name||'専門家')}</strong><span>${esc(u.expert_role||'AIの専門家')}</span></div>
-    <p class="billing-help">${isNew?'本日の新着':'継続掲載'} · 動画公開 ${esc(fmtDate(u.source_published_at))}</p>
+    <p class="billing-help">${isNew?'本日の新着':u.home_video_origin==='reserve'?'初掲載':'前回の更新'} · 動画公開 ${esc(fmtDate(u.source_published_at))}</p>
     <h3>${esc(u.title)}</h3><div class="expert-video-summary">${esc(summary)}</div>
     <div class="expert-video-actions"><a class="btn btn-primary" href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')">${icon('eye')}要点と背景</a>${u.source_url?`<button class="btn" onclick="openSourceArticle('${u.id}')">${icon('ext')}元動画を見る</button>`:''}</div>
   </article>`;
@@ -3952,8 +3954,10 @@ function renderHome(v){
   const tryLater=allUpdates.filter(u=>u.status==='try_later').length;
   // ホームは各更新回で選ばれたトップ5専用。既読・テーマ設定で選定を変えない。
   const list=homeTopUpdates();
-  const newCount=list.filter(item=>item.home_top_origin!=='continued').length;
+  const newCount=list.filter(item=>!['continued','same_day','first_time'].includes(item.home_top_origin)).length;
   const continuedCount=Math.max(0,list.length-newCount);
+  const sameDayCount=list.filter(item=>item.home_top_origin==='same_day').length;
+  const firstTimeCount=list.filter(item=>item.home_top_origin==='first_time').length;
 
   document.getElementById('topActions').innerHTML =
     `<button class="btn btn-sm" onclick="openAllUpdates()">${icon('category')}分類から記事を探す</button>`;
@@ -3966,8 +3970,8 @@ function renderHome(v){
   const coverSummary=cover?(cover.manual_summary||cover.ai_summary||cover.raw_excerpt||'要約を確認できます。'):'';
   const coverTool=cover?toolById(cover.tool_id):null;
   const coverVisual=cover?articleVisual(cover):null;
-  const coverEditionNote=cover?.home_top_origin==='continued'
-    ?'直近の重要記事から重複なく継続掲載'
+  const coverEditionNote=['continued','same_day','first_time'].includes(cover?.home_top_origin)
+    ?'前の日までに載せていない記事から選定'
     :`今回の新着${newCount?` ${newCount}件`:''}を話題性・重要性で審査`;
   const coverCopy=cover?`
       <div class="live-line"><span class="live-dot"></span>いま注目のAIニュース · 新着${newCount}件 · 更新確認 ${latest}</div>
@@ -3994,8 +3998,8 @@ function renderHome(v){
   const homeSecondaryHtml=`<section class="home-secondary" aria-label="記事以外の案内">
     <p class="billing-help" data-update-health role="status" hidden></p>
     <div class="quick-stats">
-      <span class="signal-count">注目ニュース ${list.length}件・新着 ${newCount}件${continuedCount?`・継続 ${continuedCount}件`:''}・更新確認 ${latest}</span>
-      ${newCount===0?'<p class="muted">今回は新しい記事の掲載はありません。前回の重要記事を継続表示しています。</p>':''}
+      <span class="signal-count">注目ニュース ${list.length}件・新着 ${newCount}件${sameDayCount?`・本日掲載 ${sameDayCount}件`:''}${firstTimeCount?`・初掲載 ${firstTimeCount}件`:''}・更新確認 ${latest}</span>
+      ${newCount===0?'<p class="muted">今回の更新で新しい記事はありません。今日まだ載せていない記事だけを表示しています（前の日の記事は出しません）。</p>':''}
       <button class="mini-chip" onclick="openUpdatesFiltered({type:'article'})">公開記事 ${articleUpdates.length}</button>
       ${expertVideos.length?`<button class="mini-chip" onclick="openUpdatesFiltered({type:'expert_video'})">AI学習動画 ${allUpdates.filter(isExpertVideo).length}</button>`:''}
       ${tryLater?`<button class="mini-chip" onclick="go('try-list')">後で見る ${tryLater}</button>`:''}
@@ -4005,12 +4009,13 @@ function renderHome(v){
     ${mobileMediaHtml}
   </section>`;
   const todayVideoDay=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
-  const currentVideoCount=expertVideos.filter(u=>u.home_video_origin!=='continued'&&Number.isFinite(Date.parse(u.home_video_selected_at))&&new Date(Date.parse(u.home_video_selected_at)+9*3600000).toISOString().slice(0,10)===todayVideoDay).length;
-  const videoRefreshNote=currentVideoCount>=2?'本日の新着2件を更新済み':expertVideos.length>=2?
-    `2件掲載中（本日の新着${currentVideoCount}件・継続${expertVideos.length-currentVideoCount}件）。新しい候補を確認中も、審査済みの動画を読めます。`:
-    `新しい候補を確認中です。審査済みの動画から2件をそろえます。`;
+  const currentVideoCount=expertVideos.filter(u=>!['continued','reserve'].includes(u.home_video_origin)&&Number.isFinite(Date.parse(u.home_video_selected_at))&&new Date(Date.parse(u.home_video_selected_at)+9*3600000).toISOString().slice(0,10)===todayVideoDay).length;
+  const videoRefreshNote=currentVideoCount>=2?'本日の新着2件を更新済み':currentVideoCount===1?
+    '本日の新着1件を掲載中。2件目は新しい動画がそろい次第、追加します（前の日の動画は載せません）。':expertVideos.length?
+    '前回の更新の動画です。今日の新しい動画を確認中です。':
+    '今日の新しい動画を確認中です。前の日までの動画は分類ページから見られます。';
   const expertVideoHtml=`<section class="expert-video-section" aria-labelledby="expertVideoTitle">
-    <div class="expert-video-head"><div><span class="expert-video-kicker">LEARN AI</span><h2 id="expertVideoTitle">AIを学ぶ動画</h2></div><p>毎朝、新しい動画を確認。公開10日以内・異なる発信者の2件を掲載します。新着が不足するときは審査済みの動画を継続掲載し、前回とは別の発信者の新着がそろい次第、入れ替えます。</p></div>
+    <div class="expert-video-head"><div><span class="expert-video-kicker">LEARN AI</span><h2 id="expertVideoTitle">AIを学ぶ動画</h2></div><p>毎朝、新しい動画を確認。公開10日以内・異なる発信者の2件を掲載します。前の日までに載せた動画は二度と載せません。新着が2件そろわない日は、その日の新着だけを載せます。</p></div>
     <p class="billing-help" role="status">${esc(videoRefreshNote)}</p>
     <div class="expert-video-grid">${expertVideos.map(expertVideoCard).join('')||'<p>前回と異なる発信者の動画を確認中です。過去の動画は分類ページから見られます。</p>'}</div>
   </section>`;

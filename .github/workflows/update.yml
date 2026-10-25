@@ -6,7 +6,7 @@ on:
     - cron: "17 20 * * *" # 05:17 JST: prepare the morning articles + daily expert video early
     - cron: "17 4 * * *"  # 13:17 JST
     - cron: "17 10 * * *" # 19:17 JST
-    - cron: "43 21-23,0-2 * * *" # 06:43-11:43 JST: video recovery only; no call after completion
+    - cron: "43 21-23,0-2 * * *" # 06:43-11:43 JST: video recovery; also builds today's articles if the day's edition is still missing
   workflow_dispatch:
 
 permissions:
@@ -236,7 +236,7 @@ jobs:
           # 新着不足や検証による除外があっても、公開済みの2枠を1枠で上書きしない。
           node scripts/finalize-video-edition.mjs
           # 検証で除外された記事をトップ選定からも外し、残った候補で同じ更新回を再確定する。
-          if [ '${{ github.event.schedule }}' != '43 21-23,0-2 * * *' ]; then node scripts/finalize-home-edition.mjs; fi
+          if [ '${{ steps.build_data.outputs.full_update }}' = 'true' ]; then node scripts/finalize-home-edition.mjs; fi
           node scripts/enrich-source-images.mjs
           node scripts/enrich-commons-images.mjs
           node scripts/build-public-articles.mjs
