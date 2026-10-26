@@ -7,17 +7,18 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-25T09:09:49.504Z",
-  "window_end": "2026-10-26T01:43:41.185Z",
-  "last_window_end": "2026-10-26T01:43:41.185Z",
-  "last_checked_at": "2026-10-26T01:47:06.293Z",
+  "window_start": "2026-10-26T01:43:41.185Z",
+  "window_end": "2026-10-26T10:08:39.124Z",
+  "last_window_end": "2026-10-26T10:08:39.124Z",
+  "last_checked_at": "2026-10-26T10:12:12.346Z",
   "last_published_at": "2026-10-26T01:47:06.293Z",
   "home_content_changed_at": "2026-10-26T01:47:06.293Z",
-  "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 1,
+  "consecutive_unchanged_editions": 1,
+  "consecutive_zero_candidate_editions": 2,
   "update_health": "DEGRADED",
   "update_health_reasons": [
-    "今回の新着掲載は0件です。前の日までに載せた記事は出さず、今日まだ載せていない記事だけを表示しています"
+    "今回の新着掲載は0件です。前の日までに載せた記事は出さず、今日まだ載せていない記事だけを表示しています",
+    "新着候補0件が2回以上続いています"
   ],
   "edition_status": "NO_NEW_STORIES",
   "candidate_count": 0,
@@ -47,18 +48,18 @@
     "article_dad121eb3d658c20c964"
   ],
   "continuation_sources": {
-    "article_3fd153529de55ca192b0": "recent_archive",
-    "article_bf7150d0b8c6caa3bb94_rev_75c040fcc1f3": "recent_archive",
-    "article_dad121eb3d658c20c964": "recent_archive"
+    "article_3fd153529de55ca192b0": "previous_edition",
+    "article_bf7150d0b8c6caa3bb94_rev_75c040fcc1f3": "previous_edition",
+    "article_dad121eb3d658c20c964": "previous_edition"
   },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-10-26",
-  "same_day_article_ids": [],
-  "first_time_article_ids": [
+  "same_day_article_ids": [
     "article_3fd153529de55ca192b0",
     "article_bf7150d0b8c6caa3bb94_rev_75c040fcc1f3",
     "article_dad121eb3d658c20c964"
   ],
+  "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
   "blocked_previous_day_count": 40,
   "home_shown_days": {
@@ -1514,123 +1515,6 @@
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_f8b78636455861b9a4d3",
-      "story_id": "story_6cf90b8a313a11cc16",
-      "title": "1Password、AIエージェント向けにパスワードを渡さず認証を代行する新機能を公開",
-      "primary_entity": "1Password",
-      "story_subject": "AIエージェント向け認証代行機能",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "1Passwordサービス全般",
-      "story_entities": [
-        "1Password",
-        "1password",
-        "password"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-23T09:26:54.511Z",
-      "edition_window_end": "2026-10-23T09:21:38.947Z"
-    },
-    {
-      "article_id": "article_88acccc14905a2bb85cb",
-      "story_id": "story_fa72a8f2608360ec8f",
-      "title": "AIがPHPの大規模な脆弱性を発見、GPT-5.6 SolとGemini 4 Argonが関与",
-      "primary_entity": "PHP",
-      "story_subject": "PHPの脆弱性発見",
-      "event_type": "security",
-      "event_stage": "investigating",
-      "event_scope": "PHPを使用するウェブサイト全般",
-      "story_entities": [
-        "PHP",
-        "GPT-5.6 Sol",
-        "Gemini 4 Argon",
-        "php",
-        "gpt-5.6sol"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-23T09:26:54.511Z",
-      "edition_window_end": "2026-10-23T09:21:38.947Z"
-    },
-    {
-      "article_id": "article_891b7e0bbf66f86d27b7",
-      "story_id": "story_8782f35e9019f7391f",
-      "title": "OpenAIが新API「Decisions API」を発表",
-      "primary_entity": "OpenAI",
-      "story_subject": "Decisions API",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "API",
-      "story_entities": [
-        "OpenAI",
-        "Decisions API",
-        "openai",
-        "decisionsapi",
-        "decisions"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-10-23T09:26:54.511Z",
-      "edition_window_end": "2026-10-23T09:21:38.947Z"
-    },
-    {
-      "article_id": "article_faae624300a8e67b770e",
-      "story_id": "story_48bd5cd9e94f72edfb",
-      "title": "米財務省、対外技術投資規制の拡大に向けた規則案を提示",
-      "primary_entity": "米財務省",
-      "story_subject": "対外技術投資規制の拡大",
-      "event_type": "policy",
-      "event_stage": "proposed",
-      "event_scope": "アメリカ、海外投資",
-      "story_entities": [
-        "米財務省",
-        "対外投資規制"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-23T09:26:54.511Z",
-      "edition_window_end": "2026-10-23T09:21:38.947Z"
-    },
-    {
-      "article_id": "article_3f1ff185fef15031a97f",
-      "story_id": "story_0b693267a4152c57fb",
-      "title": "動画生成AI「Kling 4.0」、Runway「Gen-4.5」との比較テストで6割超のスコア",
-      "primary_entity": "Kling AI",
-      "story_subject": "Kling 4.0とRunway Gen-4.5の比較",
-      "event_type": "research",
-      "event_stage": "other",
-      "event_scope": "動画生成AI分野",
-      "story_entities": [
-        "Kling 4.0",
-        "Runway Gen-4.5",
-        "kling4.0",
-        "runwaygen-4.5",
-        "runway"
-      ],
-      "fact_slots": [
-        {
-          "type": "amount",
-          "scope": "比較テストでの勝率",
-          "value": "61%",
-          "normalized_value": "61%"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-23T09:26:54.511Z",
-      "edition_window_end": "2026-10-23T09:21:38.947Z"
-    },
     {
       "article_id": "article_dd72b45783120f60b6e4",
       "story_id": "story_a2c44c470bcb15c590",
