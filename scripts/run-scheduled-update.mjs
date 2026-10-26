@@ -20,9 +20,12 @@ export function videoPublishedToday(state,items,now=Date.now()){
 
 // 2026-10-25 本人「毎日必ず内容を入れ替えて…絶対に崩さないで」: その日（日本時間）の記事の版がまだ無ければ、
 // 動画だけの再確認の回でも記事を作る。GitHub が朝・昼の定期実行を飛ばした日も、その日のうちに入れ替える。
+// 2026-10-27: 夜中の回が今日の版を0件で作ると、朝の見回りの回が「今日の版はある」と見て記事を作らず、朝のホームが空のままだった。
+// 今日の版でも3件に満たなければ、見回りの回でも記事を探し直す（前の日の記事で埋めない決まりはそのまま）。
 export function articlesDueToday(edition,now=Date.now()){
   const editionDay=String(edition?.edition_day_jst||'')||(Number.isFinite(Date.parse(edition?.last_checked_at))?jstDayKey(Date.parse(edition.last_checked_at)):'');
-  return editionDay!==jstDayKey(now);
+  if(editionDay!==jstDayKey(now))return true;
+  return Array.isArray(edition?.article_ids)&&edition.article_ids.length<3;
 }
 
 // Retry within the same morning run, before public data is committed.

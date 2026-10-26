@@ -58,5 +58,8 @@ for(const [label,time,succeedAt,expected] of [
   assert.equal(articlesDueToday({edition_day_jst:'2026-09-12'},morning+3600000),true,'a new day with no edition needs articles');
   assert.equal(articlesDueToday({edition_day_jst:'2026-09-13'},morning+3600000),false,'the day already has an edition');
   assert.equal(articlesDueToday({last_checked_at:'2026-09-12T14:04:00Z'},Date.parse('2026-09-12T22:00:00Z')),true,'legacy edition from the previous JST day');
+  assert.equal(articlesDueToday({edition_day_jst:'2026-09-13',article_ids:[]},morning+3600000),true,'today has an edition but it is empty: look for articles again');
+  assert.equal(articlesDueToday({edition_day_jst:'2026-09-13',article_ids:['a','b']},morning+3600000),true,'fewer than three articles today: look again');
+  assert.equal(articlesDueToday({edition_day_jst:'2026-09-13',article_ids:['a','b','c']},morning+3600000),false,'three or more articles today: video-only recovery');
 }
 console.log('Morning video retry tests passed: early start, bounded same-run recovery, verified publication, articles kept without a video, and same-day article recovery.');
