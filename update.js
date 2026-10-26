@@ -2422,7 +2422,7 @@ function bootstrapCacheResult(cache,source,result) {
   // 異なるタイトル・情報元に画像を持ち越さないため、同じ記事IDだけでなく内容も照合する。
   const previousById=new Map(previous.map(item=>[item.article_id,item]));
   const visualFields=['editorial_image_url','editorial_image_alt','commons_image_url','commons_image_page_url',
-    'commons_image_license','commons_image_license_url','commons_image_credit','commons_image_subject'];
+    'commons_image_license','commons_image_license_url','commons_image_credit','commons_image_subject','commons_image_review_version'];
   const editionReadyFinal=boundedEdition.items.map(item=>{
     const prior=previousById.get(item.article_id);
     if(!prior||prior.title!==item.title||prior.source_url!==item.source_url)return item;

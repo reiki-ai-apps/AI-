@@ -240,6 +240,7 @@ jobs:
           node scripts/enrich-source-images.mjs
           node scripts/enrich-commons-images.mjs
           node scripts/build-public-articles.mjs
+          node scripts/test-home-article-images.mjs
           node scripts/test-edition-publishing.mjs
           node scripts/test-expert-video-coverage.mjs
           node scripts/test-growth-readiness.mjs

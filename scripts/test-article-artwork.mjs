@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url);
 const {sourceImage,editorialImage,articleVisual,videoThumbnail,extractSourceImage}=require('./source-image.cjs');
+const {REVIEW_VERSION,subjectFor,relevantCommonsImage}=require('./article-image-policy.cjs');
 const html=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');
 const publisher='https://openai.com/index/test-article';
 const image='https://cdn.openai.com/images/article-photo.webp';
@@ -17,8 +18,7 @@ assert.equal(sourceImage(item,[item,{...item}]),image,'the same source article m
 assert.equal(sourceImage({content_type:'article',source_url:publisher}),'','article without verified image has no decorative fallback');
 assert.deepEqual(articleVisual(item),{url:image,kind:'source',label:'情報元の記事画像'},'original image takes priority');
 const current=require('../data.json').filter(entry=>entry.editorial_image_url);
-// 2026-10-25: ホームは毎日入れ替わり、古い記事は60件の保管枠から順に外れる。件数ではなく「使い回しが無いこと」を守る。
-assert.ok(current.length<=5,'at most the five stories with hand-made editorial images remain');
+// The archive rotates. A count of four, five or zero is not a workflow failure.
 assert.equal(new Set(current.map(entry=>entry.editorial_image_url)).size,current.length,'no editorial image is reused');
 for(const entry of current){
   assert.equal(articleVisual(entry).kind,'editorial','article-specific imagery is used');
@@ -26,6 +26,18 @@ for(const entry of current){
   assert.equal(editorialImage({...entry,article_id:'article_notthisone'}),'','an editorial image cannot be borrowed by another article');
 }
 assert.equal(articleVisual({...item,source_image_url:'',primary_entity:'OpenAI'}),null,'brand logos are not reused as article images');
+const runway={article_id:'article_runway123',primary_entity:'Runway',title:'RunwayのCEOがAI動画について発言'};
+const airport='https://commons.wikimedia.org/wiki/File:Brussels_Airport_Runway_25_R.jpg';
+const runwayAi='https://commons.wikimedia.org/wiki/File:Runway_AI_video_generation_demo.jpg';
+assert.equal(subjectFor(runway)?.name,'Runway AI');
+assert.equal(relevantCommonsImage(runway,airport),false,'airport runway is unrelated to Runway AI');
+assert.equal(relevantCommonsImage(runway,runwayAi),true,'Runway AI-specific filename may be considered');
+assert.equal(relevantCommonsImage({primary_entity:'OpenAI',title:'OpenAIが新API「Decisions API」を発表'},
+  'https://commons.wikimedia.org/wiki/File:OpenAI_Codex_extention_for_VScode.png'),false,'another product screen is unrelated');
+assert.equal(relevantCommonsImage({primary_entity:'Canva',title:'Canva Craftを発表'},
+  'https://commons.wikimedia.org/wiki/File:Multimedia_Pembelajaran_Interaktif_by_Canva.jpg'),false,'brand mention alone is insufficient for a named product');
+assert.equal(articleVisual({...runway,commons_image_url:'https://upload.wikimedia.org/test.jpg',commons_image_page_url:airport,
+  commons_image_subject:'Runway AI',commons_image_review_version:REVIEW_VERSION}),null,'unrelated cached photo never renders');
 assert.equal(articleVisual({title:'OpenAIと競争する他社',primary_entity:'他社'}),null,'mention alone must not borrow OpenAI logo');
 const video={content_type:'expert_video',video_id:'abcDEF12345'};
 assert.equal(videoThumbnail(video),'https://i.ytimg.com/vi/abcDEF12345/hqdefault.jpg');

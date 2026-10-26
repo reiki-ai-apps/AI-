@@ -3784,7 +3784,8 @@ function articleVisual(u){
     const image=new URL(safeExternalUrl(u.commons_image_url));
     const page=new URL(safeExternalUrl(u.commons_image_page_url));
     if(['upload.wikimedia.org','thumb.wikimedia.org','commons.wikimedia.org'].includes(image.hostname)&&page.hostname==='commons.wikimedia.org'&&
-      u.commons_image_subject&&!getUpdates().some(other=>other.article_id!==id&&other.commons_image_page_url===u.commons_image_page_url))
+      u.commons_image_subject&&u.commons_image_review_version==='subject-v1'&&
+      !getUpdates().some(other=>other.article_id!==id&&other.commons_image_page_url===u.commons_image_page_url))
       return {url:image.href,kind:'photo',label:'関連画像',alt:`${u.commons_image_subject}に関連する資料画像`,
         credit:String(u.commons_image_credit||'Wikimedia Commons'),creditUrl:page.href,licenseUrl:safeExternalUrl(u.commons_image_license_url)};
   }catch{}
@@ -5052,6 +5053,7 @@ function patchPublishedArticleFields(target,it,tool){
     commons_image_license_url:safeExternalUrl(it.commons_image_license_url),
     commons_image_credit:String(it.commons_image_credit||''),
     commons_image_subject:String(it.commons_image_subject||''),
+    commons_image_review_version:String(it.commons_image_review_version||''),
     ...importedContextSourceFields(it),
     published_at:publishedAt,
     fetched_at:it.fetched_at||target.fetched_at||nowISO(),

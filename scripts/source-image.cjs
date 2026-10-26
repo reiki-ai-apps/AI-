@@ -1,5 +1,6 @@
 const fs=require('node:fs');
 const path=require('node:path');
+const {REVIEW_VERSION,relevantCommonsImage}=require('./article-image-policy.cjs');
 const OFFICIAL_HOSTS=new Set([
   'openai.com','www.openai.com','anthropic.com','www.anthropic.com',
   'blog.google','deepmind.google','about.google','blogs.microsoft.com',
@@ -42,6 +43,7 @@ function commonsImage(item,peers=[]){
   const page=httpUrl(item?.commons_image_page_url);
   if(!image||!page||!['upload.wikimedia.org','thumb.wikimedia.org','commons.wikimedia.org'].includes(image.hostname)||
     page.hostname!=='commons.wikimedia.org'||!item?.commons_image_subject||
+    item.commons_image_review_version!==REVIEW_VERSION||!relevantCommonsImage(item,page.toString())||
     peers.some(other=>other?.article_id!==item?.article_id&&other?.commons_image_page_url===item?.commons_image_page_url))return null;
   return {url:image.toString(),kind:'photo',label:'記事テーマの関連画像（出来事そのものの写真ではありません）',
     alt:`${String(item.commons_image_subject)}に関連する資料画像`,credit:String(item.commons_image_credit||'Wikimedia Commons'),
