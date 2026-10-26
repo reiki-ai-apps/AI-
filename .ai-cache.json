@@ -15644,73 +15644,71 @@
       "canonical_url": "https://www.youtube.com/watch?v=cwnuhbxvweq",
       "content_hash": "3fd32d9750b448d7d0e6b6d94cbb9c99f290e34d952c562a8f2b607ed4fa9bef",
       "story_key": "b6ad2cdb1a2a855719dcf05cd7616c14b724a6467071aa07d619966035bfded8",
-      "status": "retry",
-      "processed_at": "2026-10-25T09:11:20.007Z",
+      "status": "enriched",
+      "processed_at": "2026-10-26T08:08:47.251Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "expert",
-      "reason": "missing_or_incomplete_ai_output",
-      "editorial_revision": {
-        "draft": {
-          "i": 0,
-          "title_ja": "Museアプリ日本上陸と常駐AIエージェント競争、週刊AIニュース23選を解説",
-          "summary_ja": "池田朋弘氏がYouTube動画で、Meta社Museアプリの日本上陸や常駐型AIエージェント競争など週刊AIニュース23件を紹介した。",
-          "detail_paragraphs": [
-            [
-              "池田朋弘氏がYouTubeチャンネル「いけともch」で週刊AIニュース動画を公開した。",
-              "Meta社のMuseアプリが日本で使えるようになったことなどをまとめている。",
-              "常に手元で働き続けるAIエージェントの競争が目立つ回になっている。"
-            ],
-            [
-              "動画ではClaude DuetやMercury 3など23件のAIニュースが紹介されている。",
-              "文章を少しずつ作っていく「拡散型」という方式のMercury 3や、作業履歴を分析するAgentsViewの実演もある。",
-              "DeepSeekやKimiなど中国発AIモデルの新版も扱われ、世界的な開発競争の様子が分かる。"
-            ],
-            [
-              "仕事でAIを使う人は、常駐型エージェントや新しい生成AIツールの選択肢が増えたことを知っておける。",
-              "PHPというプログラム言語の弱点や情報流出についても触れられ、AI利用時の安全対策の話題もある。",
-              "各ツールの具体的な価格や提供範囲は、この動画の説明だけでは分からない部分がある。"
-            ]
-          ],
-          "change_ja": "Museアプリの日本上陸や常駐型AIエージェント、拡散型LLMなど多数の最新AI動向がまとめて紹介された。",
-          "impact_ja": "業務でAIツールを選ぶ人にとって、常駐型エージェントや新しい生成AIの選択肢が増えている状況を把握できる。",
-          "action_ja": "各ツールの価格や正式な提供地域などの詳細は、この動画内では明らかにされていない。",
-          "event_date": "",
-          "event_status": "継続中",
-          "story_entities": [
-            "Meta Muse",
-            "Claude Duet",
-            "DeepSeek V4.1",
-            "AgentsView"
-          ],
-          "importance": "B",
-          "categories": [
-            "AIツール・モデル",
-            "研究・技術",
-            "セキュリティ"
-          ],
-          "primary_entity": "いけともch（池田朋弘）",
-          "story_subject": "週刊AIニュース解説（Museアプリ日本上陸ほか23件）",
-          "event_type": "other",
-          "event_stage": "other",
-          "event_scope": "YouTube配信・グローバルAIツール動向",
-          "fact_slots": [],
-          "new_facts_ja": [
-            "Meta社のMuseアプリが日本で利用できるようになったと紹介された",
-            "Claude Duetなど常駐型AIエージェントの動きが解説された",
-            "Mercury 3という拡散型の文章生成方式が取り上げられた",
-            "DeepSeek V4.1 Flash 1017やKimi K3.1 Proなど新モデルが紹介された",
-            "PHPの脆弱性や情報流出への備えについても解説された"
-          ]
-        },
-        "issues": [
-          "専門語「AIエージェント」に説明がありません"
+      "reason": "",
+      "result": {
+        "tool": "専門家動画・発言",
+        "content_type": "expert_video",
+        "expert_id": "tomohiro-ikeda",
+        "expert_ids": [
+          "tomohiro-ikeda"
         ],
-        "measured": {
-          "characters": 401,
-          "paragraphs": 3,
-          "sentences": 9
-        }
+        "expert_name": "池田朋弘（いけとも）",
+        "expert_names": [
+          "池田朋弘（いけとも）"
+        ],
+        "expert_role": "生成AIの仕事への活用を教える解説者",
+        "expert_tier": "practical_ai_educator",
+        "platform": "YouTube",
+        "video_id": "cWnuhBXVWeQ",
+        "source_trust": "primary",
+        "title": "Museアプリ日本上陸と常駐型AIエージェント競争、週刊AIニュース23選を解説",
+        "source_url": "https://www.youtube.com/watch?v=cWnuhBXVWeQ",
+        "source_name": "いけともch",
+        "is_official": true,
+        "published_at": "2026-10-25T06:00:32.000Z",
+        "source_published_at": "2026-10-25T06:00:32.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-26T08:07:43.660Z",
+        "event_at": "",
+        "event_status": "継続中",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Meta Muse",
+          "Claude Duet",
+          "DeepSeek V4.1"
+        ],
+        "primary_entity": "いけともch(池田朋弘)",
+        "story_subject": "週刊AIニュース解説(Museアプリ日本上陸ほか23件)",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "YouTube配信・グローバルAIツール動向",
+        "fact_slots": [],
+        "new_facts": [
+          "Meta社のMuseアプリが日本で利用できるようになったと紹介された",
+          "Claude Duetなど常駐型AIエージェントの動きが解説された",
+          "Mercury 3という拡散型の文章生成方式が取り上げられた",
+          "DeepSeek V4.1 Flash 1017やKimi K3.1 Proなど新モデルが紹介された",
+          "PHPの脆弱性や情報流出への備えについても解説された"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "池田朋弘氏がYouTube動画で、Meta社Museアプリの日本上陸や常駐型AIエージェント競争など週刊AIニュース23件を紹介した。",
+        "detail": "池田朋弘氏がYouTube番組で週刊のAIニュースをまとめて解説した。Meta社の対話アプリ「Muse」が日本でも使えるようになったと紹介された。指示をすると人の代わりに作業を続ける「AIエージェント」競争が目立つ回だった。\n\n動画ではClaude DuetやMercury 3など23件のAIニュースが紹介された。文章を少しずつ作る「拡散型」の仕組みを使うMercury 3や、作業履歴を分析するAgentsViewの実演もあった。DeepSeekやKimiなど中国発AIモデルの新版も扱われ、世界的な開発競争が分かる。\n\n仕事でAIを使う人は、常駐型AIエージェントや新しいツールの選択肢が増えたと分かる。プログラム言語PHPの弱点や情報流出への備えも取り上げられ、安全対策の話題もあった。各ツールの正式な価格や提供地域は、この動画の説明だけでは分からない。",
+        "change_summary": "Museアプリの日本上陸や常駐型AIエージェント、拡散型の文章生成方式など多数の最新AI動向がまとめて紹介された。",
+        "impact_summary": "業務でAIツールを選ぶ人にとって、常駐型エージェントや新しい生成AIの選択肢が増えている状況を把握できる。",
+        "action_suggestion": "各ツールの価格や正式な提供地域などの詳細は、この動画内では明らかにされていない。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "研究・技術",
+          "セキュリティ"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
     },
     "url:https://news.google.com/rss/articles/cbmidefvx3lxte15s2runmnobdktstrqbzdwbvfbt01ceejzd2i2utvfa3nendn1vxpwzujnmgnywlp0ruhfberpvxnxyjnocwxhn3lnug53rzdhatnsrgptmmm3dnrsu29svdrbwtl5dndzqkd6rehdzgrwquvz": {
@@ -16139,17 +16137,6 @@
       "lane": "regular",
       "reason": "ai_skip: 宗教団体向けイベントの意見記事で具体的なAI発表がない"
     },
-    "url:https://news.google.com/rss/articles/cbmib0fvx3lxte5ud0fhmufoztvsn29mug1nvvliagx0njjsrud4qtr3rezvvxbktghrewpxlvftze9gsvhnughqwnv1clo1mnfrwwxlv0p3qxbhbu5nv2u3yjvsv0hnzddqvuvhogjpu2zus0r3y2visq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmib0fvx3lxte5ud0fhmufoztvsn29mug1nvvliagx0njjsrud4qtr3rezvvxbktghrewpxlvftze9gsvhnughqwnv1clo1mnfrwwxlv0p3qxbhbu5nv2u3yjvsv0hnzddqvuvhogjpu2zus0r3y2visq",
-      "content_hash": "39a4a82aa2ff182ba1b4156a99b4063990d544d7f2220c31dc953af369d7f75f",
-      "story_key": "2d8440a405c93d99b7c5af871413ccd8e2a8dec489f300a5fc79579eb6253578",
-      "status": "retry",
-      "processed_at": "2026-10-26T01:45:35.732Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
     "url:https://news.google.com/rss/articles/cbmiiafbvv95cuxocwdwdjnusdjwrw55z1rvutlnrs0tuzfqz0xvekg0zzbys09mtvruexnhvdfzv0qxowlqdg9ebw9uwwfiqxa4s0eytdjqck5htlrfnkzva1rgutd2dwr3cm9cngzvv1h6qzfoqjjxy0vmmlpqalnzrxrmww52budlalbqutllym9o": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiiafbvv95cuxocwdwdjnusdjwrw55z1rvutlnrs0tuzfqz0xvekg0zzbys09mtvruexnhvdfzv0qxowlqdg9ebw9uwwfiqxa4s0eytdjqck5htlrfnkzva1rgutd2dwr3cm9cngzvv1h6qzfoqjjxy0vmmlpqalnzrxrmww52budlalbqutllym9o",
       "content_hash": "cb2a1cdd8b53195b31966f2e75f9cff95df0f9f1791de40076e1216360335e8f",
@@ -16193,28 +16180,6 @@
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
       "reason": "ai_skip: 料金比較の宣伝的リスト記事で具体的な情報が少ない"
-    },
-    "url:https://news.google.com/rss/articles/cbmiekfvx3lxte9wqm5lvw1sexfwcxbfdfrycetfylvfu3dkdwlqbu9jz2hyovhwvkttt1o3m0xhnm4xynfkdfztt05xswdfmnv0nux5s2t3mkfgc1dkmfnbbwzlluxqbxnlahozamnvwnzhzgnma2d4m1pzd1bstdu5q3hb": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiekfvx3lxte9wqm5lvw1sexfwcxbfdfrycetfylvfu3dkdwlqbu9jz2hyovhwvkttt1o3m0xhnm4xynfkdfztt05xswdfmnv0nux5s2t3mkfgc1dkmfnbbwzlluxqbxnlahozamnvwnzhzgnma2d4m1pzd1bstdu5q3hb",
-      "content_hash": "2a140bbcee85d4d606ece7685f4d00fe7efb9c8c262e7c08dfe70d2c4a6af2c7",
-      "story_key": "c5883d7ad34ca455c1b50e53d82ad885ff2c4a8c19bd0fce6e32d948de829afa",
-      "status": "retry",
-      "processed_at": "2026-10-26T01:46:55.094Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmiekfvx3lxte9cz185z3zneufkve0ysc12t3nilw5hvtn6u080egn0rudydfnfbhhjbjcytw8yb0drtthvbtdwdtlytxgwn1n3re5tswq5mwzuztdom2hjagpxngpvdzrpsur3c1utrk54ufnns3nkmed1tnrwu1f3n2h30ggoaufvx3lxte0tcdcyewdwqjbjbjvzemfud1luyuzeevprtxq0u1u5rzhfrxdvyjjqnutwam9omxlqzexxbxnebu5oznctedrqs2yywlnhzvroeu43ywfru2zzdvfwqllhmjz1vtjgsmi2dgtrbjfsui1tzvlxbjnnznrcchewvuncawizwi1mx0plvwlwzwc": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiekfvx3lxte9cz185z3zneufkve0ysc12t3nilw5hvtn6u080egn0rudydfnfbhhjbjcytw8yb0drtthvbtdwdtlytxgwn1n3re5tswq5mwzuztdom2hjagpxngpvdzrpsur3c1utrk54ufnns3nkmed1tnrwu1f3n2h30ggoaufvx3lxte0tcdcyewdwqjbjbjvzemfud1luyuzeevprtxq0u1u5rzhfrxdvyjjqnutwam9omxlqzexxbxnebu5oznctedrqs2yywlnhzvroeu43ywfru2zzdvfwqllhmjz1vtjgsmi2dgtrbjfsui1tzvlxbjnnznrcchewvuncawizwi1mx0plvwlwzwc",
-      "content_hash": "5d272064e14957b472edb4081487528023445e1e00a29407397b12414c933cf9",
-      "story_key": "38e2d156a77c6643ece17426b6347ab72f147b996f09c3b7a8ce82120827e5cc",
-      "status": "retry",
-      "processed_at": "2026-10-26T01:46:55.094Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
     },
     "url:https://updates.midjourney.com": {
       "canonical_url": "https://updates.midjourney.com",
@@ -17055,7 +17020,151 @@
           "no_previous_story"
         ]
       }
+    },
+    "url:https://www.youtube.com/watch?v=mfky46zi8d4": {
+      "canonical_url": "https://www.youtube.com/watch?v=mfky46zi8d4",
+      "content_hash": "0921b873d50d7db3334ab028e5c91a601d8125ecf59c1e5f6d3a36ca22fc982f",
+      "story_key": "fc27e5fcb548c30de1ecbfcc33ae36e5ca72e07ea610e337ee807b07f3ce342e",
+      "status": "enriched",
+      "processed_at": "2026-10-26T08:08:47.251Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "",
+      "result": {
+        "tool": "専門家動画・発言",
+        "content_type": "expert_video",
+        "expert_id": "keito-aiweb",
+        "expert_ids": [
+          "keito-aiweb"
+        ],
+        "expert_name": "KEITO",
+        "expert_names": [
+          "KEITO"
+        ],
+        "expert_role": "AIツールの使い方・検証を発信する解説者",
+        "expert_tier": "practical_ai_educator",
+        "platform": "YouTube",
+        "video_id": "MFKY46zi8d4",
+        "source_trust": "primary",
+        "title": "GoogleのAIゲーム制作サービス「Playground」を実演レビュー",
+        "source_url": "https://www.youtube.com/watch?v=MFKY46zi8d4",
+        "source_name": "KEITO【AI&WEB ch】",
+        "is_official": true,
+        "published_at": "2026-10-25T09:00:13.000Z",
+        "source_published_at": "2026-10-25T09:00:13.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-26T08:07:43.660Z",
+        "event_at": "",
+        "event_status": "開始済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Google Playground",
+          "Unity Spark",
+          "KEITO"
+        ],
+        "primary_entity": "KEITO【AI&WEB ch】",
+        "story_subject": "Google Playground(AIゲーム制作プラットフォーム)",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "YouTube動画・Google Playgroundサービス全般",
+        "fact_slots": [],
+        "new_facts": [
+          "GoogleのAIゲーム制作サービス「Playground」が紹介された",
+          "文字指示だけでゲームを作り、そのまま公開できる機能が実演された",
+          "2Dや3Dのゲーム制作、複数人で同時に遊べる機能が確認できる",
+          "Unity Sparkで作られたゲームの紹介や動作検証が行われた",
+          "利用料金や制限、今後の収益化についても解説された"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "KEITO氏がGoogleのAIゲーム制作サービス「Playground」を使い、指示だけでゲームを作って公開する流れを動画で検証した。",
+        "detail": "KEITO氏がGoogleのAIゲーム制作サービス「Playground」を実際に使って検証した。文字で指示を出すだけでゲームを作り、そのまま公開できる仕組みだと紹介された。動画のタイトルでは「ゲーム版YouTube」とも表現されている。\n\n動画では2Dや3Dのゲーム制作や、複数人で同時に遊べる機能について解説された。利用料金や制限、今後の収益化の仕組みについても触れられている。Unity Sparkという別のツールで作られたゲームの紹介や動作確認も行われた。\n\nゲーム制作に興味がある人は、専門知識なしで作品を作れる可能性を知れる。動画では既存のゲーム配信サービスとの違いや今後の可能性も比較されている。正式な料金や収益化の詳しい条件は、この動画だけでは確定していない。",
+        "change_summary": "GoogleのAIゲーム制作サービス「Playground」が、指示だけでゲームを作り公開できる仕組みとして紹介された。",
+        "impact_summary": "ゲーム制作の専門知識がない人でも、AIの指示だけで作品を公開できる可能性が広がる。",
+        "action_suggestion": "正式な料金体系や収益化の詳細条件は、この動画時点では明らかにされていない。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "アプリ開発・自動化"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://www.youtube.com/watch?v=pzzo0bqczlu": {
+      "canonical_url": "https://www.youtube.com/watch?v=pzzo0bqczlu",
+      "content_hash": "c180ab029cacfc2e9b6a1ba0baf892054277e37329f8d95586b521c44cafc047",
+      "story_key": "ee405d9e04af04c734a661a788d66e0c25aa36ceab49c1a7d5021732cf8aad86",
+      "status": "enriched",
+      "processed_at": "2026-10-26T08:09:19.756Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "",
+      "result": {
+        "tool": "専門家動画・発言",
+        "content_type": "expert_video",
+        "expert_id": "keito-aiweb",
+        "expert_ids": [
+          "keito-aiweb"
+        ],
+        "expert_name": "KEITO",
+        "expert_names": [
+          "KEITO"
+        ],
+        "expert_role": "AIツールの使い方・検証を発信する解説者",
+        "expert_tier": "practical_ai_educator",
+        "platform": "YouTube",
+        "video_id": "pZZo0bqcZLU",
+        "source_trust": "primary",
+        "title": "Gemini in Chromeの使い方を検証、KEITOが8つの実践例を紹介",
+        "source_url": "https://www.youtube.com/watch?v=pZZo0bqcZLU",
+        "source_name": "KEITO【AI&WEB ch】",
+        "is_official": true,
+        "published_at": "2026-10-22T09:00:34.000Z",
+        "source_published_at": "2026-10-22T09:00:34.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-26T08:07:43.660Z",
+        "event_at": "",
+        "event_status": "継続中",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Gemini in Chrome",
+          "Google Chrome",
+          "KEITO"
+        ],
+        "primary_entity": "KEITO",
+        "story_subject": "Gemini in Chrome",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "Google Chromeブラウザ全般",
+        "fact_slots": [
+          {
+            "type": "availability",
+            "scope": "Gemini in Chromeの利用条件",
+            "value": "拡張機能の追加・課金不要で利用可能",
+            "normalized_value": "拡張機能の追加課金不要で利用可能"
+          }
+        ],
+        "new_facts": [
+          "Gemini in ChromeはGoogle Chromeに標準搭載されており、拡張機能や課金なしで使える",
+          "動画ではページ要約、海外ドキュメント解説、タブ横断比較、動画要約、予定登録、画像加工、画面認識など8つの検証を行っている",
+          "動画にはGoogle Chromeとの協力企画であることを示す表記がある"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "AI解説者KEITOが、Chrome標準搭載のGemini in Chromeについて、使い方と8つの実践的な検証結果を動画で紹介した。",
+        "detail": "AI活用を解説するKEITOが、Gemini in Chromeの使い方をまとめた動画を公開した。これはGoogle Chromeに標準で組み込まれたAI機能のことである。拡張機能を追加したり料金を払ったりしなくても、すぐに使える点が特徴である。\n\n動画ではタブグループやメモリセーバーなど、Chrome本体の便利機能も紹介している。そのうえでGemini in Chromeの始め方と利用条件を説明している。ページ要約、海外ドキュメントの日本語解説、複数タブの比較、動画要約とメール下書き作成、予定表への登録、画像の加工、画面に映る物の名前の認識という8つの検証を行っている。\n\n視聴者は紹介されたやり取りの文章をそのまま自分のパソコンで試せる構成になっている。動画には案件であることを示す表記があり、Google Chromeとの協力企画として作られている。各検証でどのような結果が出たかという具体的な評価は、この記事の時点ではわかっていない。",
+        "change_summary": "Chromeに標準搭載されたGemini in Chromeの使い方について、8つの具体的な活用例を通じて紹介する内容。",
+        "impact_summary": "Chromeを仕事で使う人は、資料の要約や比較表作り、画像編集などを追加費用なしで試せる可能性がある。",
+        "action_suggestion": "Gemini in Chromeの開始方法や利用条件は動画内で示されており、紹介されたやり取り文はそのまま試せる形で公開されている。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
     }
   },
-  "updated_at": "2026-10-26T01:50:25.937Z"
+  "updated_at": "2026-10-26T08:09:19.756Z"
 }
