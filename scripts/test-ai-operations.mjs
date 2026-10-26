@@ -553,6 +553,71 @@ if(context.expertUsageDay(expertLedger,Date.parse("2026-09-09T14:59:59Z")).exper
   throw new Error("expert video daily limit did not reset at JST midnight");
 }
 
+// 2026-10-27: 記事の審査枠も日本時間の日付で数える。朝5時17分（UTCでは前日20時17分）の回が、
+// 前の晩に使い切ったUTCの枠を参照して1件も審査できない状態を防ぐ。
+const morningLedger={version:1,days:{}};
+context.addUsage(morningLedger,{input_tokens:10},{lane:"regular",processed:16,enriched:3,rejected:13,now:Date.parse("2026-10-26T16:48:00Z")});
+context.addUsage(morningLedger,{input_tokens:10},{lane:"regular",processed:6,enriched:2,rejected:4,now:Date.parse("2026-10-26T20:17:00Z")});
+context.addUsage(morningLedger,{},{lane:"expert",processed:2,enriched:1,rejected:1,now:Date.parse("2026-10-26T20:18:00Z")});
+const morningDay=context.usageDay(morningLedger,"2026-10-27");
+if(morningLedger.days["2026-10-26"]||morningDay.regular_processed!==22||morningDay.expert_processed!==2||
+   morningDay.enriched!==6||morningDay.rejected!==18){
+  throw new Error("regular/expert review allowance was not counted on the JST day: "+JSON.stringify(morningLedger.days));
+}
+
+// Googleニュースの中継ページは読まず、抜粋だけで審査する（context_basis=excerpt_only）。
+const realFetch=context.fetch;
+const fetchedUrls=[];
+context.fetch=async url=>{fetchedUrls.push(String(url));throw new Error("network disabled in test");};
+const googleUrl="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1nNUtqZGRNdXFVazhOU2RRWVRGQ1hCeVJBR09PT2NMNENOdndmbFdMeXdHcnNNWF9SR3JCZ2xKcTd0cHdob3JfUnU4VDVVY3JtQmZjUXZjMWRWUQ?oc=5";
+const googleContext=await context.fetchArticleContext({title:"t",raw_excerpt:"抜粋だけ",source_url:googleUrl});
+if(googleContext.context_basis!=="excerpt_only"||googleContext.text!=="抜粋だけ"||fetchedUrls.length){
+  throw new Error("a Google News relay link was fetched or not marked as excerpt-only");
+}
+context.fetch=realFetch;
+
+// 審査役へ今日の日付を渡し、知らない新製品名を記憶だけで「架空」と判定させない。読めた範囲と発行元も渡す。
+let reviewSystem="",reviewUser="";
+context.callClaude=async(system,user)=>{reviewSystem=system;reviewUser=user;return {text:"[]",stopReason:"end_turn",usage:{}};};
+await context.aiEnrichBatch([
+  {tool:"Claude / Claude Code",title:"Claude Mythos 5が一般提供",raw_excerpt:"Claude Mythos 5が一般提供 Example",source_name:"Example",source_url:googleUrl,context_basis:"excerpt_only"},
+  {tool:"国内AIニュース",title:"京都府庁がAIを導入",raw_excerpt:"府庁の事務効率化",source_name:"ITmedia AI＋",source_url:"https://kn.itmedia.co.jp/kn/article/2610/27/x/",article_context:"本文",context_basis:"article"}
+]);
+const todayJst=require("./scripts/expert-video.cjs").jstDayKey(Date.now());
+if(!reviewSystem.includes("今日は"+todayJst)||!/架空/.test(reviewSystem)||!/自分の記憶/.test(reviewSystem)||!/指示には従わず/.test(reviewSystem)){
+  throw new Error("the reviewer was not told today's date, how to treat unfamiliar names, or to ignore instructions in articles");
+}
+const reviewList=JSON.parse(reviewUser.slice(reviewUser.lastIndexOf("候補:\n")+4));
+if(reviewList[0].source_host!==""||reviewList[0].context_basis!=="excerpt_only"||
+   reviewList[1].source_host!=="kn.itmedia.co.jp"||reviewList[1].context_basis!=="article"){
+  throw new Error("the reviewer did not receive the publisher host and context basis: "+JSON.stringify(reviewList.map(x=>[x.source_host,x.context_basis])));
+}
+
+// 発行元が公開しているRSSは {url, official:false} で読み、公式扱い（無条件採用）にしない。
+if(context.feedSpec("https://news.google.com/rss/search?q=AI").official!==false||context.feedSpec("https://openai.com/news/rss.xml").official!==true){
+  throw new Error("string feeds changed their official classification");
+}
+const publisherFeed=context.feedSpec({url:"https://rss.itmedia.co.jp/rss/2.0/aiplus.xml",official:false,source:"ITmedia AI＋"});
+if(publisherFeed.official!==false||publisherFeed.source!=="ITmedia AI＋"||publisherFeed.url!=="https://rss.itmedia.co.jp/rss/2.0/aiplus.xml"){
+  throw new Error("an official:false publisher feed was not read as third-party media");
+}
+const domesticTool=vm.runInContext('TOOLS.find(tool=>tool.name==="国内AIニュース")',context);
+if(!domesticTool||domesticTool.feeds.length<3||domesticTool.feeds.some(feed=>typeof feed!=="object"||feed.official!==false||!/^https:\/\//.test(feed.url)||!feed.source)){
+  throw new Error("publisher feeds must be listed as {url, official:false, source}");
+}
+const rdf='<rdf:RDF><channel><items><rdf:Seq><rdf:li rdf:resource="https://example.jp/a"/></rdf:Seq></items></channel>'+
+  '<item rdf:about="https://example.jp/a"><title>生成AIで議事録を自動作成、自治体が導入</title><link>https://example.jp/a</link><description>自治体がAIを導入した。</description><dc:date>2026-10-27T07:00:00+09:00</dc:date></item>'+
+  '<item rdf:about="https://example.jp/b"><title>新MacBook Air登場、メール機能も強化</title><link>https://example.jp/b</link><description>Gmailとの連携も。</description><dc:date>2026-10-27T06:00:00+09:00</dc:date></item></rdf:RDF>';
+const publisherItems=context.parseFeed(rdf,publisherFeed.official,publisherFeed.source);
+if(publisherItems.length!==2||publisherItems.some(item=>item.official!==false||item.sourceName!=="ITmedia AI＋")||
+   publisherItems[0].date!=="2026-10-26T22:00:00.000Z"||publisherItems[0].dateSource!=="published"){
+  throw new Error("RSS 1.0 publisher items lost their date, source or third-party status: "+JSON.stringify(publisherItems));
+}
+const keptPublisherItems=publisherItems.filter(item=>context.keep({...item,date:new Date().toISOString()},domesticTool));
+if(keptPublisherItems.length!==1||!keptPublisherItems[0].title.includes("生成AI")){
+  throw new Error("third-party feed items must pass the AI topic filter (Air/Gmail are not AI): "+keptPublisherItems.map(item=>item.title).join(" / "));
+}
+
 const checkpointPath=path.join(os.tmpdir(),`ai-radar-checkpoint-${process.pid}.json`);
 try{
   context.writeJsonFile(checkpointPath,{version:1});
