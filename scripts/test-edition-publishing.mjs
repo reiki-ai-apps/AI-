@@ -3,7 +3,7 @@ import fs from "node:fs";
 import {createRequire} from "node:module";
 
 const require=createRequire(import.meta.url);
-const {candidateStatus,isToolEvolutionCandidate,sameEditionStory,selectTopArticles,buildHomeEdition,applyHomeEdition}=require("./home-edition.cjs");
+const {candidateStatus,isToolEvolutionCandidate,sameEditionStory,sameEventStory,selectTopArticles,buildHomeEdition,applyHomeEdition}=require("./home-edition.cjs");
 
 const start=Date.parse("2026-09-02T00:00:00.000Z");
 const end=Date.parse("2026-09-02T06:00:00.000Z");
@@ -165,6 +165,33 @@ const sameEventWeekLater={...sameEventNextDay,article_id:"gemini-same-event-week
 const geminiWeekLater=buildHomeEdition([geminiRich,sameEventWeekLater],{...geminiDayOne,recent_story_history:[]},{windowStart:weekLaterEnd-6*3600000,windowEnd:weekLaterEnd,checkedAt:weekLaterEnd});
 assert.ok(!geminiWeekLater.article_ids.includes("gemini-same-event-week-later"),"72時間を過ぎても、14日以内に載せた出来事は別の媒体の記事で繰り返さない");
 assert.ok(Array.isArray(geminiDayTwo.home_shown_story_log)&&geminiDayTwo.home_shown_story_log.some(entry=>entry.article_id==="gemini-rich"),"載せた記事を14日分の記録へ残す");
+
+// 2026-10-26: 日をまたぐ比較は「同じ出来事」だけ。同じ会社名が文中に出るだけの別の話まで外すと、ホームが0件になった（実際の記事の組で確かめる）。
+const ev=(id,extra)=>base(id,"2026-10-24T08:00:00.000Z",extra);
+const deepseekFundA=ev("ds-fund-a",{title:"DeepSeekが約150億ドルの大型資金調達、上海上場も視野に",primary_entity:"DeepSeek",story_subject:"DeepSeekの約150億ドル資金調達",event_type:"funding",event_stage:"announced",story_entities:["DeepSeek"]});
+const deepseekFundB=ev("ds-fund-b",{title:"中国DeepSeek、2兆円超を資金調達しOpenAIなどを追い上げ",primary_entity:"DeepSeek",story_subject:"DeepSeekの大型資金調達",event_type:"funding",event_stage:"announced",story_entities:["DeepSeek","OpenAI"]});
+const openaiSuit=ev("openai-suit",{title:"米8州がOpenAIを提訴、ChatGPTによる被害を主張",primary_entity:"OpenAI",story_subject:"米8州によるOpenAI提訴",event_type:"other",event_stage:"announced",story_entities:["OpenAI","ChatGPT"]});
+const banPolicy=ev("ds-ban-policy",{title:"トランプ政権がDeepSeekの全面禁止方針",primary_entity:"アメリカ政府(トランプ政権)",story_subject:"DeepSeek全面禁止方針",event_type:"policy",event_stage:"announced",story_entities:["DeepSeek","トランプ政権"]});
+const banDhs=ev("ds-ban-dhs",{title:"米国土安全保障省、連邦民間機関でDeepSeekの使用を禁止",primary_entity:"米国土安全保障省(DHS)",story_subject:"DeepSeek使用禁止措置",event_type:"policy",event_stage:"announced",story_entities:["DeepSeek","米国土安全保障省"]});
+const claudeDuet=ev("claude-duet",{title:"Anthropic、先回り操作型AIエージェント『Claude Duet』を発表",primary_entity:"Anthropic",story_subject:"Claude Duet",event_type:"release",event_stage:"announced",story_entities:["Anthropic","Claude Duet","Claude Opus 5.5"]});
+const claudeLeave=ev("claude-leave",{title:"Claude Code開発者がAnthropicを退職",primary_entity:"Anthropic",story_subject:"Claude Code開発者の退職",event_type:"other",event_stage:"announced",story_entities:["Anthropic","Claude Code","claude"]});
+const dcInvest=ev("dc-invest",{title:"日本のデータセンター、8年で10兆円投資し規模4倍へ",primary_entity:"日本のデータセンター業界",story_subject:"データセンター投資の拡大",event_type:"other",event_stage:"other",story_entities:["データセンター"]});
+const dcProblem=ev("dc-problem",{title:"次世代AIサーバーが置けない日本のデータセンター問題",primary_entity:"日本のデータセンター業界",story_subject:"次世代AIサーバーの設置問題",event_type:"other",event_stage:"other",story_entities:["データセンター","AIサーバー"]});
+const kimiPlan=ev("kimi-plan",{title:"中国Moonshot、新モデル「Kimi K3.1 Pro」の重みを公開予定",primary_entity:"Moonshot AI",story_subject:"Kimi K3.1 Pro",event_type:"release",event_stage:"planned",story_entities:["Moonshot AI","Kimi K3.1 Pro"]});
+const kimiOut=ev("kimi-out",{title:"中国Moonshot AIが新モデル「Kimi K3.1 Pro」を発表",primary_entity:"Moonshot AI",story_subject:"Kimi K3.1 Pro",event_type:"release",event_stage:"announced",story_entities:["Moonshot AI","Kimi K3.1 Pro"]});
+assert.equal(sameEventStory(deepseekFundA,deepseekFundB),true,"金額の表記が違っても、同じ相手の同じ資金調達は同じ出来事");
+assert.equal(sameEventStory(banPolicy,banDhs),true,"同じ相手への同じ種類の規制は、発表した機関が違っても同じ出来事");
+assert.equal(sameEventStory(kimiPlan,kimiOut),true,"同じ製品の発表は、予定と発表で書き方が違っても同じ出来事");
+assert.equal(sameEventStory(deepseekFundB,openaiSuit),false,"文中に同じ会社名が出るだけの別の話は、別の出来事");
+assert.equal(sameEventStory(claudeDuet,claudeLeave),false,"同じ会社の新製品と人の退職は、別の出来事");
+assert.equal(sameEventStory(dcInvest,dcProblem),false,"同じ分野でも、投資の話と設置できない問題は別の出来事");
+const shownDayOne={home_shown_days:{"ds-fund-a":"2026-10-24","openai-suit":"2026-10-24","claude-duet":"2026-10-24","dc-invest":"2026-10-24","kimi-plan":"2026-10-24","ds-ban-policy":"2026-10-24"},
+  home_shown_story_log:[deepseekFundA,openaiSuit,claudeDuet,dcInvest,kimiPlan,banPolicy].map(item=>({...item,shown_day:"2026-10-24"}))};
+const nextDayEnd=Date.parse("2026-10-26T01:43:00.000Z");
+const realPool=[deepseekFundA,deepseekFundB,openaiSuit,banPolicy,banDhs,claudeDuet,claudeLeave,dcInvest,dcProblem,kimiPlan,kimiOut];
+const realNext=buildHomeEdition(realPool,shownDayOne,{windowStart:nextDayEnd-16*3600000,windowEnd:nextDayEnd,checkedAt:nextDayEnd});
+assert.deepEqual([...realNext.article_ids].sort(),["claude-leave","dc-problem"],"前の日と同じ出来事（資金調達・規制・製品）だけを外し、同じ会社名が出るだけの別の話は載せる");
+assert.deepEqual(realNext.repeated_from_previous_day_ids,[],"前の日の記事は1件も出ない");
 
 const unsafeEdition={...firstEdition,article_ids:["gemini-rich","gemini-copy","runway-tool"],scores:{}};
 const guarded=applyHomeEdition(distinctPool,unsafeEdition).filter(item=>item.home_top_rank).sort((a,b)=>a.home_top_rank-b.home_top_rank);

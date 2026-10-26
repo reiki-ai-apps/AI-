@@ -244,6 +244,34 @@ function sameEditionStory(a,b){
   return samePrimary&&sameType&&titleSimilarity(a?.title,b?.title)>=0.72&&!materialProgression(a,b);
 }
 
+// 日をまたぐ比較は「同じ出来事」だけを外す（2026-10-26）。上の sameEditionStory は同じ版の中で話題を散らすための広い判定で、
+// 文中に同じ会社名・分野名が出るだけで一致する。14日分の記録に当てると「DeepSeekの資金調達」と「OpenAI提訴」まで同じ扱いになり、ホームが0件になった。
+function sameEventStory(a,b){
+  if(!a||!b)return false;
+  if(articleId(a)&&articleId(a)===articleId(b))return true;
+  const idA=articleId(a),idB=articleId(b);
+  const storyA=String(a?.story_id||"").trim();
+  const storyB=String(b?.story_id||"").trim();
+  const linked=(storyA&&storyA===storyB)||String(a?.previous_article_id||"")===idB||String(b?.previous_article_id||"")===idA;
+  if(materialProgression(a,b))return false;
+  if(linked)return true;
+  const subjectA=compactText(a?.story_subject),subjectB=compactText(b?.story_subject);
+  if(subjectA&&subjectB){
+    const shorter=subjectA.length<=subjectB.length?subjectA:subjectB;
+    const longer=shorter===subjectA?subjectB:subjectA;
+    const nameOnly=[entityKey(a),entityKey(b)].includes(shorter);
+    if(shorter.length>=6&&!nameOnly&&longer.includes(shorter))return true;
+  }
+  // 資金調達・規制などは、同じ相手について同じ種類の出来事なら、書き方や金額の表記が違っても同じ話（例: 約150億ドルと2兆円超）。
+  const type=eventType(a);
+  if(type===eventType(b)&&!["other","release","research",""].includes(type)&&subjectA&&subjectB){
+    const names=[a?.primary_entity,b?.primary_entity,...(a?.story_entities||[]),...(b?.story_entities||[])].map(compactText).filter(name=>name.length>=3);
+    if(names.some(name=>subjectA.includes(name)&&subjectB.includes(name)))return true;
+  }
+  const samePrimary=entityKey(a)&&entityKey(a)===entityKey(b);
+  return titleSimilarity(a?.title,b?.title)>=(samePrimary?0.5:0.72);
+}
+
 function collapseRankedStories(ranked){
   const distinctRanked=[];
   const duplicateGroups=[];
@@ -418,7 +446,7 @@ function selectTopArticles(items,{windowStart,windowEnd,max=MAX_HOME_ARTICLES,ex
   const novelRanked=[];
   const crossEditionDuplicateGroups=[];
   for(const record of distinctRanked){
-    const previousMatch=(excludeStories||[]).find(entry=>sameEditionStory(entry,record.item));
+    const previousMatch=(excludeStories||[]).find(entry=>sameEventStory(entry,record.item));
     if(!previousMatch){novelRanked.push(record);continue;}
     crossEditionDuplicateGroups.push({
       representative_id:articleId(previousMatch),
@@ -493,7 +521,7 @@ function buildHomeEdition(items,previous={},options={}){
   const shownBeforeToday=item=>{
     const day=shownDays[articleId(item)];
     if(day&&day<editionDay)return true;
-    return priorDayStories.some(entry=>articleId(entry)!==articleId(item)&&sameEditionStory(entry,item));
+    return priorDayStories.some(entry=>articleId(entry)!==articleId(item)&&sameEventStory(entry,item));
   };
   const blockedIds=editorialItems.filter(shownBeforeToday).map(articleId);
   const blocked=new Set(blockedIds);
@@ -673,5 +701,5 @@ function applyHomeEdition(items,edition){
 module.exports={
   EDITION_VERSION,MAX_HOME_ARTICLES,MIN_HOME_ARTICLES,RECENT_STORY_WINDOW_MS,CONTINUATION_WINDOW_MS,validTime,jstDay,homeShownDays,articleId,isEditorialArticle,publishedTime,firstSeenTime,
   candidateStatus,isToolEvolutionCandidate,scoreArticle,sameEditionStory,distinctArticleIds,
-  selectTopArticles,selectContinuationArticles,buildHomeEdition,applyHomeEdition
+  sameEventStory,selectTopArticles,selectContinuationArticles,buildHomeEdition,applyHomeEdition
 };

@@ -63,4 +63,4 @@ for(const marker of [
   if(!html.includes(marker))throw new Error(`periodic edition refresh safeguard missing: ${marker}`);
 }
 
-console.log(`Global top-five selection and industry leadership coverage passed. Current #1: ${selected[0].title}`);
+console.log(`Global top-five selection and industry leadership coverage passed. Current #1: ${selected[0]?.title||'なし（前の日と重ならない記事が無い日）'}`);
