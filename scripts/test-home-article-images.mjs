@@ -39,6 +39,16 @@ assert.deepEqual(audit([sourceFixture,editorialFixture],{article_ids:[sourceFixt
   {covered:2,total:2},'two distinct story images render on a populated home');
 assert.deepEqual(audit([{...editorialFixture,home_top_rank:1},{...sourceFixture,home_top_rank:2}],
   {article_ids:[editorialId,sourceFixture.article_id]}),{covered:2,total:2},'rotation keeps image/article binding');
+assert.throws(()=>audit([sourceFixture],{article_ids:[sourceFixture.article_id,'article_missing']}),
+  /visible home ranks/,'a removed article cannot remain in the selection checkpoint');
+assert.throws(()=>audit([{...sourceFixture,home_top_rank:2},{...editorialFixture,home_top_rank:1}],
+  {article_ids:[sourceFixture.article_id,editorialId]}),/visible home ranks/,'a populated home cannot retain the wrong rank order');
+const copiedImageFixture={article_id:'article_fixture_copy',home_top_rank:2,content_type:'article',
+  source_url:'https://openai.com/index/other-story',source_image_page_url:'https://openai.com/index/other-story',
+  source_image_url:sourceFixture.source_image_url};
+assert.deepEqual(audit([sourceFixture,copiedImageFixture],
+  {article_ids:[sourceFixture.article_id,copiedImageFixture.article_id]}),
+  {covered:0,total:2},'the same publisher photo is not credited as two distinct story images');
 assert.deepEqual(audit([], {article_ids:[]}),{covered:0,total:0},'empty selection is recognized, not counted as image coverage');
 assert.throws(()=>audit([{...sourceFixture,home_top_rank:5}],{article_ids:[]}),
   /visible home ranks/,'stale rank cannot masquerade as a selected story');

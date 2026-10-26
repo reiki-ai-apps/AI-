@@ -33,6 +33,7 @@ jobs:
           node scripts/test-dedupe.mjs
           node scripts/test-publication-cap.mjs
           node scripts/test-article-artwork.mjs
+          node scripts/test-home-edition-sync.mjs
 
       - name: test AI cache, protected slots, and reuse rules
         run: |
