@@ -17,6 +17,14 @@ assert.equal(sourceImage(item,[item,{...item,source_url:'https://openai.com/inde
 assert.equal(sourceImage(item,[item,{...item}]),image,'the same source article may show its own image in more than one view');
 assert.equal(sourceImage({content_type:'article',source_url:publisher}),'','article without verified image has no decorative fallback');
 assert.deepEqual(articleVisual(item),{url:image,kind:'source',label:'情報元の記事画像'},'original image takes priority');
+// This positive case is independent of today's rotating data.json contents.
+const editorialFixtureId='article_c79b90537d390e19bfc0';
+const editorialFixture={article_id:editorialFixtureId,
+  editorial_image_url:`assets/story-photos/${editorialFixtureId}.png`};
+assert.equal(articleVisual(editorialFixture)?.kind,'editorial','a matching story-specific photo is adopted');
+assert.ok(editorialImage(editorialFixture).endsWith(editorialFixture.editorial_image_url));
+assert.equal(editorialImage({...editorialFixture,article_id:'article_wrong_fixture'}),'',
+  'the story-specific photo cannot be borrowed by a different article');
 const current=require('../data.json').filter(entry=>entry.editorial_image_url);
 // The archive rotates. A count of four, five or zero is not a workflow failure.
 assert.equal(new Set(current.map(entry=>entry.editorial_image_url)).size,current.length,'no editorial image is reused');
