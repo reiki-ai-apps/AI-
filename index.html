@@ -2438,9 +2438,10 @@ const SUPABASE_URL='https://ncosmmesecpqhzfikpmn.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_9nyRtwzYeaArcNKiZtVVVA_2ji4eK6G';
 const AUTH_RETURN_URL='https://reiki-ai-apps.github.io/AI-/';
 // supabase-jsはdefer読み込みのため、SDK到着後に遅延生成する(CDN不達でもアプリ本体は起動する)。
-let memberClient=window.supabase?.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY)||null;
+const MEMBER_AUTH_OPTIONS={auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}};
+let memberClient=window.supabase?.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,MEMBER_AUTH_OPTIONS)||null;
 function ensureMemberClient(){
-  if(!memberClient&&window.supabase)memberClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+  if(!memberClient&&window.supabase)memberClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,MEMBER_AUTH_OPTIONS);
   return memberClient;
 }
 function waitForSupabaseSdk(timeoutMs=6000){
@@ -2462,6 +2463,9 @@ let operatorMetricsRefreshInFlight=null;
 let operatorAccessRefreshTimer=null;
 let operatorAccessRefreshInFlight=null;
 let lastAuthUserId='';
+let operatorAuthInitInFlight=null;
+let operatorAuthListenerAttached=false;
+let operatorAuthRetryTimer=null;
 let toolFormDirty=false;
 const freeTopicPreview=new Set();
 const SOCIAL_PROOF_MIN_REVIEWS=3;
@@ -2771,30 +2775,60 @@ function restoreOperatorSnapshot(){
     renderOperatorMetrics();
   }catch(_error){}
 }
+function scheduleOperatorAuthRetry(){
+  if(operatorAuthRetryTimer!==null)return;
+  operatorAuthRetryTimer=window.setTimeout(()=>{
+    operatorAuthRetryTimer=null;
+    void initOperatorAuth();
+  },3000);
+}
 async function initOperatorAuth(){
+  if(operatorAuthInitInFlight)return operatorAuthInitInFlight;
+  operatorAuthInitInFlight=initializeOperatorAuth().finally(()=>{operatorAuthInitInFlight=null;});
+  return operatorAuthInitInFlight;
+}
+async function initializeOperatorAuth(){
   restoreOperatorSnapshot();
   await waitForSupabaseSdk();
   ensureMemberClient();
-  if(!memberClient){memberState.ready=true;return;}
+  if(!memberClient){memberState.ready=true;scheduleOperatorAuthRetry();return;}
   // 公開レビューは運営者認証とは独立して取得する。
   const loadNonCritical=()=>Promise.allSettled([loadPublishedReviews(),loadReviewStatus()]);
   if('requestIdleCallback' in window)requestIdleCallback(loadNonCritical,{timeout:1800});
   else window.setTimeout(loadNonCritical,650);
-  const {data}=await memberClient.auth.getSession();
-  lastAuthUserId=data.session?.user?.id||'';
-  // Register the listener before the initial network work. On a phone waking
-  // from sleep, TOKEN_REFRESHED can arrive while that first refresh is running.
-  memberClient.auth.onAuthStateChange((event,session)=>{
-    if(event==='PASSWORD_RECOVERY')memberState.recovery=true;
-    const nextUserId=session?.user?.id||'';
-    // INITIAL_SESSIONだけはgetSession直後の重複なので省く。TOKEN_REFRESHEDは
-    // スマホのスリープ復帰後に失敗した運営者判定を回復するため必ず再取得する。
-    if(event==='INITIAL_SESSION'&&nextUserId===lastAuthUserId)return;
-    lastAuthUserId=nextUserId;
-    window.setTimeout(async()=>{await queueOperatorRefresh(session);if(memberState.recovery)go('operator');},0);
-  });
-  await queueOperatorRefresh(data.session);
+  if(!operatorAuthListenerAttached){
+    operatorAuthListenerAttached=true;
+    // スリープ復帰後の更新も受け取る。重複登録は同じ更新を何度も走らせるため避ける。
+    memberClient.auth.onAuthStateChange((event,session)=>{
+      if(event==='PASSWORD_RECOVERY')memberState.recovery=true;
+      const nextUserId=session?.user?.id||'';
+      if(event==='INITIAL_SESSION'&&nextUserId===lastAuthUserId)return;
+      lastAuthUserId=nextUserId;
+      window.setTimeout(async()=>{await queueOperatorRefresh(session);if(memberState.recovery)go('operator');},0);
+    });
+  }
+  let sessionTimeout=null;
+  try{
+    const {data,error}=await Promise.race([
+      memberClient.auth.getSession(),
+      new Promise((_,reject)=>{sessionTimeout=window.setTimeout(()=>reject(new Error('認証の復元が遅れています')),7000);})
+    ]);
+    if(error)throw error;
+    lastAuthUserId=data.session?.user?.id||'';
+    await queueOperatorRefresh(data.session);
+  }catch(error){
+    // 通信失敗をログアウトと誤認せず、保存済みの表示を保って自動復旧する。
+    console.warn('operator session restoration will retry',error);
+    memberState.ready=true;
+    scheduleOperatorAuthRetry();
+  }finally{
+    if(sessionTimeout!==null)window.clearTimeout(sessionTimeout);
+  }
 }
+const supabaseSdkElement=document.getElementById('supabaseSdk');
+supabaseSdkElement?.addEventListener('load',()=>{if(!memberState.user)void initOperatorAuth();});
+window.addEventListener('online',()=>{if(knownOperatorBrowser())void initOperatorAuth();});
+window.addEventListener('pageshow',()=>{if(knownOperatorBrowser()&&!memberState.user)void initOperatorAuth();});
 async function loadPublishedReviews(){
   if(!memberClient)return;
   const {data,error}=await memberClient.rpc('get_published_reviews',{p_limit:100});
