@@ -134,7 +134,7 @@ if (/grant execute on function public\.registered_user_count\(\) to (?:anon|auth
 if (!/function public\.register_unique_visitor\(p_visitor_key_hash text\)\s*returns boolean/i.test(schema)) {
   findings.push("supabase/schema.sql: unique visitor RPC must not return a total count");
 }
-if (!/operatorRpc\('operator_metrics'\)/.test(html) || !/access_source==='operator_grant'[\s\S]{0,180}refreshOperatorMetrics\(\)/.test(html)) {
+if (!/operatorRpc\('operator_access_insights',\{p_period:'today'\}\)/.test(html) || !/access_source==='operator_grant'[\s\S]{0,180}refreshOperatorMetrics\(\)/.test(html)) {
   findings.push("index.html: operator-only metrics loading is missing");
 }
 if (/\.operator-metrics\{display:none\}/.test(html)) {
@@ -148,7 +148,7 @@ if (!/id="operatorMetrics" class="operator-metrics" hidden/.test(html) ||
     /function renderOperatorMetrics\(\)[\s\S]{0,900}\.remove\(\)/.test(html)) {
   findings.push("index.html: stable desktop and mobile operator metric mounts are missing");
 }
-if (!/data-operator-account-visitors/.test(html) || !/data-operator-daily-opens/.test(html)) {
+if (!/data-operator-account-visitors/.test(html) || !/data-operator-daily-visitors/.test(html) || !/data-operator-account-daily-opens/.test(html)) {
   findings.push("index.html: one or more operator metric fields are missing");
 }
 if (/data-operator-users|data-operator-account-users|registeredUsers/.test(html)) {

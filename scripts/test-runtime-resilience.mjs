@@ -67,14 +67,14 @@ expect(!/catch\(error\)\{[\s\S]*?memberState\.operatorMetrics=null/.test(metrics
 
 for(const [needle,label] of [
   ["data-operator-account-visitors","operator page keeps unique visitors"],
-  ["data-operator-daily-opens","desktop and mobile badge keeps daily opens"],
+  ["data-operator-daily-visitors","desktop and mobile badge keeps today's identified browsers"],
   ["id=\"operatorMetrics\" class=\"operator-metrics\" hidden","desktop operator badge has a permanent mount"],
   ["id=\"mobileOperatorMetricsSlot\" class=\"mobile-operator-metrics-slot\" hidden","mobile has a permanent operator mount"],
   ["id=\"mobileOperatorMetrics\" class=\"operator-metrics\" hidden","mobile badge cannot be deleted by route redraw"],
   [".operator-metrics[hidden],.mobile-operator-metrics-slot[hidden]{display:none!important}","operator badges stay hidden for ordinary visitors"],
   [".mobile-operator-metrics-slot .operator-metrics","mobile badge has an explicit visible layout"],
   [".mobile-operator-metrics-slot[hidden]{display:none!important}","mobile mount is hidden for ordinary visitors"],
-  ["if(!isOperator){desktopBadge.replaceChildren();mobileBadge.replaceChildren();return;}","ordinary visitors cannot retain operator counts"],
+  ["else{desktopBadge.replaceChildren();mobileBadge.replaceChildren();}","ordinary visitors cannot retain operator counts"],
   ["operatorAccessRefreshTimer=window.setInterval(refreshOperatorAccess,90000)","operator access is periodically rechecked"],
   ["window.addEventListener('focus',()=>{if(memberState.user)refreshOperatorAccess();})","phone resume rechecks operator access"],
   ["if(memberState.user)refreshOperatorAccess();","network recovery rechecks operator access"],

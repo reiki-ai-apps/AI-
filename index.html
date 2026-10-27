@@ -255,6 +255,8 @@
   .operator-metrics{display:inline-flex;align-items:center;gap:10px;padding:7px 12px;border:1px solid rgba(66,219,231,.34);border-radius:999px;background:rgba(7,28,48,.88);color:#a9f6fb;font-size:12px;font-weight:800;white-space:nowrap;box-shadow:0 0 18px rgba(35,205,220,.1)}
   .operator-metrics::before{content:"ADMIN";color:#59e4ed;font-size:8px;letter-spacing:.12em}
   .operator-metrics strong{color:#fff;font-size:16px}
+  .operator-metrics small{color:#b5ced8;font-size:9px;margin-left:3px}
+  .operator-metrics-login{border:0;background:none;color:#a9f6fb;font:inherit;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
   .operator-metrics-status{display:inline-flex;align-items:center;gap:4px;padding-left:7px;border-left:1px solid rgba(116,224,232,.2);color:#9ba9bc;font-size:8.5px;font-weight:800}
   .operator-metrics-status::before{content:"";width:6px;height:6px;border-radius:50%;background:#f0b94c;box-shadow:0 0 8px rgba(240,185,76,.5)}
   .operator-metrics-status.is-live{color:#71e5bf}.operator-metrics-status.is-live::before{background:#45e0aa;box-shadow:0 0 8px rgba(69,224,170,.65)}
@@ -2518,7 +2520,13 @@ function validOperatorMetrics(data){
   if(rawDailyOpens!=null&&!validCount(rawDailyOpens))return null;
   const dailyOpens=rawDailyOpens==null?null:Number(rawDailyOpens);
   if(dailyOpens!==null&&(!Number.isFinite(dailyOpens)||dailyOpens<0))return null;
-  return {uniqueVisitors,dailyOpens,dailyOpensDate:String(data?.daily_opens_date||new Date(Date.now()+9*3600000).toISOString().slice(0,10))};
+  const rawDailyVisitors=data?.daily_unique_browsers;
+  const rawUnknownOpens=data?.daily_unknown_opens;
+  if(rawDailyVisitors!=null&&!validCount(rawDailyVisitors))return null;
+  if(rawUnknownOpens!=null&&!validCount(rawUnknownOpens))return null;
+  return {uniqueVisitors,dailyOpens,dailyUniqueBrowsers:rawDailyVisitors==null?null:Number(rawDailyVisitors),
+    dailyUnknownOpens:rawUnknownOpens==null?null:Number(rawUnknownOpens),
+    dailyOpensDate:String(data?.daily_opens_date||new Date(Date.now()+9*3600000).toISOString().slice(0,10))};
 }
 const OPERATOR_METRICS_CACHE_KEY='ai_radar_operator_metrics_snapshot_v1';
 function cachedOperatorMetrics(userId){
@@ -2526,21 +2534,29 @@ function cachedOperatorMetrics(userId){
   try{
     const snapshot=JSON.parse(localStorage.getItem(OPERATOR_METRICS_CACHE_KEY)||'null');
     if(snapshot?.userId!==userId||!Number.isFinite(Date.parse(snapshot?.updatedAt)))return null;
-    const metrics=validOperatorMetrics({unique_visitors:snapshot.metrics?.uniqueVisitors,daily_opens:snapshot.metrics?.dailyOpens,daily_opens_date:snapshot.metrics?.dailyOpensDate});
+    const metrics=validOperatorMetrics({unique_visitors:snapshot.metrics?.uniqueVisitors,daily_opens:snapshot.metrics?.dailyOpens,
+      daily_unique_browsers:snapshot.metrics?.dailyUniqueBrowsers,daily_unknown_opens:snapshot.metrics?.dailyUnknownOpens,
+      daily_opens_date:snapshot.metrics?.dailyOpensDate});
     return metrics?{metrics,updatedAt:snapshot.updatedAt}:null;
   }catch(_error){return null;}
 }
 function displayedOperatorMetrics(){
   const metrics=memberState.operatorMetrics;
   const today=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
-  return metrics&&metrics.dailyOpensDate&&metrics.dailyOpensDate!==today?{...metrics,dailyOpens:null}:metrics;
+  return metrics&&metrics.dailyOpensDate&&metrics.dailyOpensDate!==today
+    ?{...metrics,dailyOpens:null,dailyUniqueBrowsers:null,dailyUnknownOpens:null}:metrics;
 }
 async function loadOperatorMetrics(){
   if(!memberClient||!memberState.user||memberState.subscription?.access_source!=='operator_grant')return null;
-  const result=await operatorRpc('operator_metrics');
+  const result=await operatorRpc('operator_access_insights',{p_period:'today'});
   const {data,error}=result;
   if(error)throw error;
-  const metrics=validOperatorMetrics(data);
+  const today=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
+  if(data?.version!==1||data?.period!=='today'||data?.timezone!=='Asia/Tokyo'||data?.from!==today)
+    throw new Error('invalid today access insights');
+  const metrics=validOperatorMetrics({unique_visitors:data?.totals?.unique_browsers,
+    daily_opens:data?.summary?.opens,daily_unique_browsers:data?.summary?.unique_browsers,
+    daily_unknown_opens:data?.summary?.unknown_opens,daily_opens_date:data.from});
   if(!metrics)throw new Error('invalid operator metrics');
   return metrics;
 }
@@ -2560,13 +2576,23 @@ function operatorMetricsStatusLabel(){
 }
 function updateOperatorMetricsBadge(badge,metrics,status,statusLabel){
   badge.className='operator-metrics';
-  badge.setAttribute('aria-label',`運営者専用。今日のアクセス${metrics?.dailyOpens==null?'未取得':`${metrics.dailyOpens}回`}。${statusLabel}`);
+  const unknown=metrics?.dailyUnknownOpens;
+  badge.setAttribute('aria-label',`運営者専用。今日の識別できたアクセス者${metrics?.dailyUniqueBrowsers==null?'未取得':`${metrics.dailyUniqueBrowsers}ブラウザー`}。${unknown?`識別できないアクセス${unknown}回。`:''}${statusLabel}`);
   badge.title=memberState.operatorMetricsError||statusLabel;
-  badge.innerHTML='<span>今日のアクセス <strong data-operator-daily-opens></strong>回</span><span class="operator-metrics-status" data-operator-metrics-status></span>';
-  badge.querySelector('[data-operator-daily-opens]').textContent=metrics&&metrics.dailyOpens!==null?metrics.dailyOpens.toLocaleString('ja-JP'):'—';
+  badge.innerHTML='<span>今日のアクセス者 <strong data-operator-daily-visitors></strong><small>ブラウザー</small></span><span class="operator-metrics-status" data-operator-metrics-status></span>';
+  badge.querySelector('[data-operator-daily-visitors]').textContent=metrics?.dailyUniqueBrowsers!=null?metrics.dailyUniqueBrowsers.toLocaleString('ja-JP'):'—';
   const badgeStatus=badge.querySelector('[data-operator-metrics-status]');
   badgeStatus.className=`operator-metrics-status ${status==='live'?'is-live':status==='stale'?'is-stale':status==='error'?'is-error':''}`;
-  badgeStatus.textContent=status==='live'?operatorMetricsTimeLabel(memberState.operatorMetricsUpdatedAt):status==='stale'?'再取得待ち':status==='error'?'エラー':'確認中';
+  badgeStatus.textContent=status==='live'?(unknown?`未識別 ${unknown}回`:operatorMetricsTimeLabel(memberState.operatorMetricsUpdatedAt)):status==='stale'?'再取得待ち':status==='error'?'エラー':'確認中';
+}
+function knownOperatorBrowser(){
+  try{return localStorage.getItem('ai_radar_exclude_operator_browser_v1')==='1';}catch(_error){return false;}
+}
+function updateOperatorLoginBadge(badge){
+  badge.className='operator-metrics';
+  badge.setAttribute('aria-label','今日のアクセス者数を見るには運営者としてログインしてください');
+  badge.title='この端末の運営者ログインが切れています';
+  badge.innerHTML='<button type="button" class="operator-metrics-login" onclick="go(\'operator\')">今日のアクセス者数を見る・ログイン</button>';
 }
 function renderOperatorMetrics(){
   const desktopBadge=document.getElementById('operatorMetrics');
@@ -2574,16 +2600,22 @@ function renderOperatorMetrics(){
   const mobileSlot=document.getElementById('mobileOperatorMetricsSlot');
   const metrics=displayedOperatorMetrics();
   const isOperator=memberState.subscription?.access_source==='operator_grant';
+  const needsLogin=!isOperator&&knownOperatorBrowser();
   if(!desktopBadge||!mobileBadge||!mobileSlot)return;
-  desktopBadge.hidden=!isOperator;
-  mobileBadge.hidden=!isOperator;
-  mobileSlot.hidden=!isOperator;
-  if(!isOperator){desktopBadge.replaceChildren();mobileBadge.replaceChildren();return;}
+  desktopBadge.hidden=!(isOperator||needsLogin);
+  mobileBadge.hidden=!(isOperator||needsLogin);
+  mobileSlot.hidden=!(isOperator||needsLogin);
+  if(!isOperator){
+    if(needsLogin){updateOperatorLoginBadge(desktopBadge);updateOperatorLoginBadge(mobileBadge);}
+    else{desktopBadge.replaceChildren();mobileBadge.replaceChildren();}
+    return;
+  }
   const status=memberState.operatorMetricsStatus;
   const statusLabel=operatorMetricsStatusLabel();
   updateOperatorMetricsBadge(desktopBadge,metrics,status,statusLabel);
   updateOperatorMetricsBadge(mobileBadge,metrics,status,statusLabel);
   document.querySelectorAll('[data-operator-account-visitors]').forEach(el=>{el.textContent=metrics?`${metrics.uniqueVisitors.toLocaleString('ja-JP')}人`:'—';});
+  document.querySelectorAll('[data-operator-account-daily-visitors]').forEach(el=>{el.textContent=metrics?.dailyUniqueBrowsers!=null?`${metrics.dailyUniqueBrowsers.toLocaleString('ja-JP')}ブラウザー`:'—';});
   document.querySelectorAll('[data-operator-account-daily-opens]').forEach(el=>{el.textContent=metrics&&metrics.dailyOpens!==null?`${metrics.dailyOpens.toLocaleString('ja-JP')}回`:'—';});
   document.querySelectorAll('[data-operator-metrics-state]').forEach(el=>{el.className=`operator-metric-state ${status==='live'?'is-live':status==='stale'?'is-stale':status==='error'?'is-error':''}`;el.querySelector('span').textContent=statusLabel;});
 }
@@ -5399,6 +5431,7 @@ function renderOperator(v){
         <span class="billing-badge">管理者のみ表示</span>
       </div>
       <div class="operator-metric-grid" aria-label="管理者だけに表示される現在の実数">
+        <div class="operator-metric-card"><span>今日のアクセス者（識別できたブラウザー）</span><strong data-operator-account-daily-visitors>${displayedOperatorMetrics()?.dailyUniqueBrowsers!=null?`${displayedOperatorMetrics().dailyUniqueBrowsers.toLocaleString('ja-JP')}ブラウザー`:'—'}</strong></div>
         <div class="operator-metric-card"><span>累計ユニーク閲覧者</span><strong data-operator-account-visitors>${memberState.operatorMetrics?`${memberState.operatorMetrics.uniqueVisitors.toLocaleString('ja-JP')}人`:'—'}</strong></div>
         <div class="operator-metric-card"><span>今日開かれた回数</span><strong data-operator-account-daily-opens>${displayedOperatorMetrics()?.dailyOpens!=null?`${displayedOperatorMetrics().dailyOpens.toLocaleString('ja-JP')}回`:'—'}</strong></div>
       </div>
