@@ -16016,6 +16016,125 @@
       "lane": "regular",
       "reason": "ai_skip: 創業者の過去談の人物紹介で新規事実が確認できない"
     },
+    "url:https://www.youtube.com/watch?v=zwkfdguyfl0": {
+      "canonical_url": "https://www.youtube.com/watch?v=zwkfdguyfl0",
+      "content_hash": "d652ee4b0e10276f9b42dd3cff39e6bcbd40c2f242f23e7ef3d24ff40f4eb232",
+      "story_key": "8b35148945686b700dedbc487ee0d050030273655c3dac0ac63bc4ba9a6cc0de",
+      "status": "enriched",
+      "processed_at": "2026-10-27T00:51:34.378Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "",
+      "result": {
+        "tool": "専門家動画・発言",
+        "content_type": "expert_video",
+        "expert_id": "takahiro-anno",
+        "expert_ids": [
+          "takahiro-anno"
+        ],
+        "expert_name": "安野貴博",
+        "expert_names": [
+          "安野貴博"
+        ],
+        "expert_role": "AIエンジニア・起業家・政策当事者",
+        "expert_tier": "core_engineering_policy",
+        "platform": "YouTube",
+        "video_id": "zWKFdgUyFL0",
+        "source_trust": "institutional",
+        "title": "チームみらい、AI失業対策提言を官房長官に提出",
+        "source_url": "https://www.youtube.com/watch?v=zWKFdgUyFL0",
+        "source_name": "チームみらい【公式】",
+        "is_official": true,
+        "published_at": "2026-10-26T10:24:53.000Z",
+        "source_published_at": "2026-10-26T10:24:53.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-27T00:50:25.301Z",
+        "event_at": "2026-10-26",
+        "event_status": "発表済み",
+        "event_date_precision": "day",
+        "story_entities": [
+          "チームみらい",
+          "安野貴博",
+          "AI失業対策提言"
+        ],
+        "primary_entity": "チームみらい",
+        "story_subject": "AI失業対策提言",
+        "event_type": "policy",
+        "event_stage": "proposed",
+        "event_scope": "日本",
+        "fact_slots": [
+          {
+            "type": "date",
+            "scope": "提言提出日",
+            "value": "2026-10-26",
+            "normalized_value": "2026-10-26"
+          },
+          {
+            "type": "count",
+            "scope": "AIインタビュー対象者数",
+            "value": "582人",
+            "normalized_value": "582"
+          },
+          {
+            "type": "amount",
+            "scope": "米国若手ソフトウェア開発職の雇用減少率",
+            "value": "約20%",
+            "normalized_value": "20%"
+          }
+        ],
+        "new_facts": [
+          "チームみらいの安野貴博氏らが2026年10月26日に木原稔官房長官へ「AI失業対策提言」を手交した",
+          "提言は米国の若手ソフトウェア開発職の雇用が約20%減少したとするデータに言及している",
+          "提言作成にあたり582人へのAIインタビューを実施した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "チームみらいの安野貴博氏らが2026年10月26日、AI失業への備えを求める提言書を木原稔官房長官に手交した。",
+        "detail": "チームみらいの安野貴博氏と古川あおい氏、高山聡史氏が提言書を提出した。木原稔官房長官に2026年10月26日、AI失業への対策を求める文書を手渡した。AIの普及で仕事を失う「AI失業」に備える制度づくりを求める内容である。\n\n提言は、米国の若手ソフトウェア開発職の雇用が約20%減ったとする調査結果に触れている。提言づくりのため、582人にAIについて聞き取るインタビューを実施した。社会の変化に合わせて法律を見直す「法律のリファクタリング」という考え方も示された。\n\n提言は、制度を先回りして整える点と、働く人を支援する点の2つを柱としている。動画では相談窓口や支援制度についても案内し、困っている人への窓口を紹介した。提言が実際の政策にどう反映されるかはまだ明らかになっていない。",
+        "change_summary": "政治団体チームみらいが、AIによる失業リスクへの備えを求める具体的な提言書を政府に提出した。",
+        "impact_summary": "AIの普及で雇用が急に失われる可能性に対し、国の制度整備や働く人への支援策が議論される動きが出てきた。",
+        "action_suggestion": "提言の全文はチームみらいの公式サイトとnoteで公開されており、政府の今後の対応が確認事項となる。",
+        "importance": "A",
+        "related_categories": [
+          "政策・行政"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://www.youtube.com/watch?v=jy-ifnq5c68": {
+      "canonical_url": "https://www.youtube.com/watch?v=jy-ifnq5c68",
+      "content_hash": "abca04a4cd5a66d10156f275c90b7f883e5bd7625908f2563f836f135db8261e",
+      "story_key": "072b5a86c6cc987ed8bf0281d57dcea41645bedd4fb260af4db9842693a305b7",
+      "status": "rejected",
+      "processed_at": "2026-10-27T00:51:34.378Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "ai_skip: 具体的根拠のない短い切り抜きティザーで内容が薄い"
+    },
+    "url:https://www.youtube.com/watch?v=c6ukaz-hy0k": {
+      "canonical_url": "https://www.youtube.com/watch?v=c6ukaz-hy0k",
+      "content_hash": "5b6d7d3289a47b51f0d5d83f074613b5ac914b166b43863f1733d3e6b7f933b1",
+      "story_key": "efd750704e5875b30f485c3ccb98b5627369e5c0842db5eda0baab95fd144a71",
+      "status": "rejected",
+      "processed_at": "2026-10-27T00:51:47.611Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "ai_skip: ゲスト紹介のみで具体的な議論内容が確認できない"
+    },
+    "url:https://www.youtube.com/watch?v=paeivfloxsg": {
+      "canonical_url": "https://www.youtube.com/watch?v=paeivfloxsg",
+      "content_hash": "7f123b81f47d516ad6551615ebc1c9b4422d2921790c5a086399e8544a8ccd91",
+      "story_key": "f3125a3c0c3e7bbc22aeb9d1c23e8b81ab715640a8eff273ff6638292db0854f",
+      "status": "rejected",
+      "processed_at": "2026-10-27T00:51:47.611Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "ai_skip: 本編への導入的な短い切り抜きで主張の具体性が乏しい"
+    },
     "url:https://news.google.com/rss/articles/cbmiyefvx3lxtfbqlxrsawrclunrr1zxsnhxumd0y1otsglgdw9motrzz1pluge2mmrksjftrxjjs09eagu1bzlxofoyvnazml9uegw0nfjbaxhmafpzbfzdahhwsf9isufjrq": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiyefvx3lxtfbqlxrsawrclunrr1zxsnhxumd0y1otsglgdw9motrzz1pluge2mmrksjftrxjjs09eagu1bzlxofoyvnazml9uegw0nfjbaxhmafpzbfzdahhwsf9isufjrq",
       "content_hash": "abcfcef2c1af1faeb647c226c4647be043d8a61e3fb57c20509954dd4a5eec36",
@@ -16811,7 +16930,107 @@
           "no_previous_story"
         ]
       }
+    },
+    "url:https://www.youtube.com/watch?v=y1pbd-bfvdc": {
+      "canonical_url": "https://www.youtube.com/watch?v=y1pbd-bfvdc",
+      "content_hash": "837cd19c1ca661f34d1504f5346d4d3c6698205bfcaeccb012d2802eb7eecb2d",
+      "story_key": "d839f677001b7d65b20828fa2b50285ac7ebd96b5d19ef1dcc2b772440eaba22",
+      "status": "enriched",
+      "processed_at": "2026-10-27T00:53:48.178Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "",
+      "result": {
+        "tool": "専門家動画・発言",
+        "content_type": "expert_video",
+        "expert_id": "shota-imai",
+        "expert_ids": [
+          "shota-imai"
+        ],
+        "expert_name": "今井翔太",
+        "expert_names": [
+          "今井翔太"
+        ],
+        "expert_role": "AI研究者・解説者",
+        "expert_tier": "core_research",
+        "platform": "YouTube",
+        "video_id": "y1PbD-bFvDc",
+        "source_trust": "trusted_host",
+        "title": "中国製AIモデル、使うべきか 今井翔太氏が性能と活用法を解説",
+        "source_url": "https://www.youtube.com/watch?v=y1PbD-bFvDc",
+        "source_name": "ビジネス＋ITチャンネル",
+        "is_official": false,
+        "published_at": "2026-10-24T10:00:05.000Z",
+        "source_published_at": "2026-10-24T10:00:05.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-27T00:52:53.048Z",
+        "event_at": "",
+        "event_status": "継続中",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "今井翔太",
+          "中国製AIモデル",
+          "オープンモデル"
+        ],
+        "primary_entity": "今井翔太",
+        "story_subject": "中国製オープンAIモデルの活用方法",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "企業・開発者の利用環境全般",
+        "fact_slots": [],
+        "new_facts": [
+          "今井翔太氏が中国製オープンAIモデルの活用について外部ネットワーク遮断による運用を提案した",
+          "性能面だけでなく利用者の心理的・政治的事情も論点として挙げられた"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "AI研究者の今井翔太氏が、高性能な中国製オープンAIモデルの活用について、外部ネット遮断などの技術対策と心理・政治的要因を語った。",
+        "detail": "AI研究者の今井翔太氏が動画で中国製AIモデルの使い方を語った。中国企業が公開している性能の高いAIモデルをどう扱うかという話題である。高性能でも中国製という理由で避ける動きがある中、活用法を論じた点が新しい。\n\n今井氏は外部ネットワークから切り離した環境で動かす対策を挙げた。インターネットにつながない状態で使えば情報流出の心配を減らせるという考え方である。性能の高さと安全性への不安という相反する課題にどう向き合うかが論点となる。\n\n企業や開発者は性能だけでなく運用環境も含めて選択を迫られる。動画は短い切り抜きで、詳しい説明は本編に委ねられている。具体的にどのモデルを指すか、本編でどこまで語られたかは明らかでない。",
+        "change_summary": "今井翔太氏が中国製高性能AIモデルの活用法として、外部遮断運用と心理・政治的事情の両面を指摘した点が新しい。",
+        "impact_summary": "企業がAIモデルを選ぶ際、性能だけでなく運用環境や社会的受け止めも考慮する必要性が増す。",
+        "action_suggestion": "詳しい内容は本編動画（後編）で語られているため、今井氏の説明を確認することが望ましい。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "セキュリティ"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://www.youtube.com/watch?v=hseodriwhlw": {
+      "canonical_url": "https://www.youtube.com/watch?v=hseodriwhlw",
+      "content_hash": "09809946b2403c8e6cfc2d937e011e58b105f0e3e9c6b64f5a11edad80dbb942",
+      "story_key": "abd183f0eaf7b7c918df0b104013f360e72793c663203bc084dbe0785870ca8a",
+      "status": "rejected",
+      "processed_at": "2026-10-27T00:53:48.178Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "ai_skip: 大半が税制・党運営等の政治内容でAI要素は一部のみ"
+    },
+    "url:https://www.youtube.com/watch?v=er7-yrgxwoc": {
+      "canonical_url": "https://www.youtube.com/watch?v=er7-yrgxwoc",
+      "content_hash": "4facd65d3e43c443de726e8e8266551002fd339f9b5fbbdebbd25b42f12ce8c6",
+      "story_key": "eb1de046be83ac4ea3c30f65df0c587114c3f54aa59d5ca1caae7648018dffb7",
+      "status": "rejected",
+      "processed_at": "2026-10-27T00:54:00.076Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "ai_skip: 政治家の人物紹介ポッドキャストで、AI専門的内容が薄い"
+    },
+    "url:https://www.youtube.com/watch?v=f9aamxzbwws": {
+      "canonical_url": "https://www.youtube.com/watch?v=f9aamxzbwws",
+      "content_hash": "385207fe374bc4320d52010d83e364412514c3ce5b074ea645a60d0ae60cc6ec",
+      "story_key": "528403e26cceb4bf9c9195ffa76a5e4e0ca4a44f089ea047cf9817ecd44bac13",
+      "status": "rejected",
+      "processed_at": "2026-10-27T00:54:00.076Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "ai_skip: 本編からの短い切り抜きで具体的論点が確認できない"
     }
   },
-  "updated_at": "2026-10-27T00:04:44.195Z"
+  "updated_at": "2026-10-27T00:54:00.076Z"
 }
