@@ -2444,6 +2444,16 @@ function ensureMemberClient(){
   if(!memberClient&&window.supabase)memberClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,MEMBER_AUTH_OPTIONS);
   return memberClient;
 }
+let supabaseFallbackStarted=false;
+function startSupabaseFallback(){
+  if(window.supabase||supabaseFallbackStarted)return;
+  supabaseFallbackStarted=true;
+  const script=document.createElement('script');
+  script.async=true;
+  script.src='https://unpkg.com/@supabase/supabase-js@2.100.0/dist/umd/supabase.js';
+  script.addEventListener('load',()=>window.dispatchEvent(new Event('supabaseSdkReady')),{once:true});
+  document.head.appendChild(script);
+}
 function waitForSupabaseSdk(timeoutMs=6000){
   if(window.supabase)return Promise.resolve();
   const el=document.getElementById('supabaseSdk');
@@ -2452,7 +2462,9 @@ function waitForSupabaseSdk(timeoutMs=6000){
     let settled=false;
     const done=()=>{if(!settled){settled=true;resolve();}};
     el.addEventListener('load',done,{once:true});
-    el.addEventListener('error',done,{once:true});
+    el.addEventListener('error',startSupabaseFallback,{once:true});
+    window.addEventListener('supabaseSdkReady',done,{once:true});
+    window.setTimeout(startSupabaseFallback,2500);
     window.setTimeout(done,timeoutMs);
   });
 }
@@ -2827,6 +2839,7 @@ async function initializeOperatorAuth(){
 }
 const supabaseSdkElement=document.getElementById('supabaseSdk');
 supabaseSdkElement?.addEventListener('load',()=>{if(!memberState.user)void initOperatorAuth();});
+window.addEventListener('supabaseSdkReady',()=>{if(!memberState.user)void initOperatorAuth();});
 window.addEventListener('online',()=>{if(knownOperatorBrowser())void initOperatorAuth();});
 window.addEventListener('pageshow',()=>{if(knownOperatorBrowser()&&!memberState.user)void initOperatorAuth();});
 async function loadPublishedReviews(){

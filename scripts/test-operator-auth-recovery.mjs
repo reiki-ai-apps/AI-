@@ -45,3 +45,29 @@ await new Promise(resolve=>setImmediate(resolve));
 assert.equal(authListeners,1,'retries never duplicate auth event listeners');
 assert.equal(refreshes,2,'online retry checks the existing session');
 console.log('Operator auth recovery passed: late SDK, transient session failure, automatic restoration, single listener.');
+
+{
+  const sdkCode=html.slice(html.indexOf('let supabaseFallbackStarted=false;'),html.indexOf('const memberState='));
+  const sdkTimers=new Map(),sdkEvents={},primaryEvents={},fallbackEvents={};
+  let timerId=0,appended=null,resolved=false;
+  const sdkContext=vm.createContext({
+    Event:class{constructor(type){this.type=type;}},
+    document:{getElementById:()=>({addEventListener:(name,fn)=>{primaryEvents[name]=fn;}}),
+      createElement:()=>({addEventListener:(name,fn)=>{fallbackEvents[name]=fn;}}),
+      head:{appendChild:script=>{appended=script;}}},
+    window:{supabase:null,addEventListener:(name,fn)=>{sdkEvents[name]=fn;},
+      dispatchEvent:event=>sdkEvents[event.type]?.(),
+      setTimeout:(fn,delay)=>{sdkTimers.set(++timerId,{fn,delay});return timerId;}}
+  });
+  vm.runInContext(sdkCode,sdkContext);
+  const pending=sdkContext.waitForSupabaseSdk().then(()=>{resolved=true;});
+  const fallbackTimer=[...sdkTimers.values()].find(timer=>timer.delay===2500);
+  fallbackTimer.fn();
+  assert.match(appended.src,/unpkg\.com\/@supabase\/supabase-js@2\.100\.0\/dist\/umd\/supabase\.js/);
+  sdkContext.window.supabase={createClient(){}};
+  fallbackEvents.load();
+  await pending;
+  assert.equal(resolved,true,'second CDN restores auth SDK without closing the app');
+  primaryEvents.error?.();
+  assert.equal(appended.src.includes('unpkg.com'),true,'an error cannot start duplicate downloads');
+}
