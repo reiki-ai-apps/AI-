@@ -252,9 +252,9 @@
   .mark-read svg{width:13px;height:13px}
   .auto-status{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--brand-ink);background:var(--brand-soft);border:1px solid #dcdcff;border-radius:999px;padding:5px 12px;white-space:nowrap}
   .auto-status .spin{width:13px;height:13px;border:2px solid #c7c5ff;border-top-color:var(--brand);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
-  .operator-metrics{display:inline-flex;align-items:center;gap:8px;padding:6px 11px;border:1px solid rgba(66,219,231,.34);border-radius:999px;background:rgba(7,28,48,.88);color:#a9f6fb;font-size:10.5px;font-weight:800;white-space:nowrap;box-shadow:0 0 18px rgba(35,205,220,.1)}
+  .operator-metrics{display:inline-flex;align-items:center;gap:10px;padding:7px 12px;border:1px solid rgba(66,219,231,.34);border-radius:999px;background:rgba(7,28,48,.88);color:#a9f6fb;font-size:12px;font-weight:800;white-space:nowrap;box-shadow:0 0 18px rgba(35,205,220,.1)}
   .operator-metrics::before{content:"ADMIN";color:#59e4ed;font-size:8px;letter-spacing:.12em}
-  .operator-metrics strong{color:#fff;font-size:11px}
+  .operator-metrics strong{color:#fff;font-size:16px}
   .operator-metrics-status{display:inline-flex;align-items:center;gap:4px;padding-left:7px;border-left:1px solid rgba(116,224,232,.2);color:#9ba9bc;font-size:8.5px;font-weight:800}
   .operator-metrics-status::before{content:"";width:6px;height:6px;border-radius:50%;background:#f0b94c;box-shadow:0 0 8px rgba(240,185,76,.5)}
   .operator-metrics-status.is-live{color:#71e5bf}.operator-metrics-status.is-live::before{background:#45e0aa;box-shadow:0 0 8px rgba(69,224,170,.65)}
@@ -928,9 +928,9 @@
     .topbar>.operator-metrics{display:none!important}
     .mobile-operator-metrics-slot{display:block;position:sticky;top:70px;z-index:64;padding:6px 10px 0;background:rgba(3,6,17,.97);pointer-events:none}
     .mobile-operator-metrics-slot:empty{display:none}
-    .mobile-operator-metrics-slot .operator-metrics{display:grid;grid-template-columns:repeat(3,auto) minmax(62px,1fr);position:static;width:100%;min-height:34px;align-items:center;justify-content:center;gap:6px;padding:6px 8px;font-size:9px;box-shadow:0 8px 24px rgba(35,53,80,.16),0 0 18px rgba(35,205,220,.12);pointer-events:auto}
+    .mobile-operator-metrics-slot .operator-metrics{display:flex;position:static;width:100%;min-height:38px;align-items:center;justify-content:space-between;gap:8px;padding:6px 12px;font-size:12px;box-shadow:0 8px 24px rgba(35,53,80,.16),0 0 18px rgba(35,205,220,.12);pointer-events:auto}
     .operator-metrics::before{display:none}.operator-funnel-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .operator-metrics strong{font-size:10px}
+    .operator-metrics strong{font-size:17px}
     .operator-metrics-status{justify-self:end;padding-left:5px;font-size:7.5px}
     .operator-metric-grid{grid-template-columns:1fr}
     .content{padding:16px 14px calc(92px + env(safe-area-inset-bottom))}
@@ -2560,10 +2560,9 @@ function operatorMetricsStatusLabel(){
 }
 function updateOperatorMetricsBadge(badge,metrics,status,statusLabel){
   badge.className='operator-metrics';
-  badge.setAttribute('aria-label',metrics?`管理者統計。累計ユニーク閲覧者${metrics.uniqueVisitors}人、今日の総表示${metrics.dailyOpens==null?'未取得':`${metrics.dailyOpens}回`}。${statusLabel}`:`管理者統計。${statusLabel}`);
+  badge.setAttribute('aria-label',`運営者専用。今日のアクセス${metrics?.dailyOpens==null?'未取得':`${metrics.dailyOpens}回`}。${statusLabel}`);
   badge.title=memberState.operatorMetricsError||statusLabel;
-  badge.innerHTML='<span>ユニーク <strong data-operator-visitors></strong>人</span><span>今日 <strong data-operator-daily-opens></strong>回</span><span class="operator-metrics-status" data-operator-metrics-status></span><button type="button" class="operator-insights-link" onclick="go(\'operator\')">分析を見る</button>';
-  badge.querySelector('[data-operator-visitors]').textContent=metrics?metrics.uniqueVisitors.toLocaleString('ja-JP'):'—';
+  badge.innerHTML='<span>今日のアクセス <strong data-operator-daily-opens></strong>回</span><span class="operator-metrics-status" data-operator-metrics-status></span>';
   badge.querySelector('[data-operator-daily-opens]').textContent=metrics&&metrics.dailyOpens!==null?metrics.dailyOpens.toLocaleString('ja-JP'):'—';
   const badgeStatus=badge.querySelector('[data-operator-metrics-status]');
   badgeStatus.className=`operator-metrics-status ${status==='live'?'is-live':status==='stale'?'is-stale':status==='error'?'is-error':''}`;

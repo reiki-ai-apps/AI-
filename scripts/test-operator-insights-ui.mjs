@@ -95,7 +95,7 @@ function setup(){
   const html=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');
   const operator=html.slice(html.indexOf('function renderOperator(v)'),html.indexOf('function exportUpdatesCsv'));
   assert.ok(operator.indexOf('id="operatorInsights"')<operator.indexOf('id="operatorBenefitTitle"'),'source breakdown appears before older account details');
-  assert.ok(html.includes('class="operator-insights-link"'),'app counters provide a discoverable analysis entry');
+  assert.ok(html.includes('今日のアクセス <strong data-operator-daily-opens'),'the always-visible operator badge prioritizes the daily access count');
   assert.equal((operator.match(/id="operatorInsights"/g)||[]).length,1,'no duplicate mounts or timers');
 }
 {

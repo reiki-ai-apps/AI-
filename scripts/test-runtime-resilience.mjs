@@ -66,7 +66,7 @@ for(const [needle,label] of [
 expect(!/catch\(error\)\{[\s\S]*?memberState\.operatorMetrics=null/.test(metricsRefresh),"metrics catch path never deletes verified counts");
 
 for(const [needle,label] of [
-  ["data-operator-visitors","desktop and mobile badge keeps unique visitors"],
+  ["data-operator-account-visitors","operator page keeps unique visitors"],
   ["data-operator-daily-opens","desktop and mobile badge keeps daily opens"],
   ["id=\"operatorMetrics\" class=\"operator-metrics\" hidden","desktop operator badge has a permanent mount"],
   ["id=\"mobileOperatorMetricsSlot\" class=\"mobile-operator-metrics-slot\" hidden","mobile has a permanent operator mount"],

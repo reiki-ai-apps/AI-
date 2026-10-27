@@ -148,7 +148,7 @@ if (!/id="operatorMetrics" class="operator-metrics" hidden/.test(html) ||
     /function renderOperatorMetrics\(\)[\s\S]{0,900}\.remove\(\)/.test(html)) {
   findings.push("index.html: stable desktop and mobile operator metric mounts are missing");
 }
-if (!/data-operator-visitors/.test(html) || !/data-operator-daily-opens/.test(html)) {
+if (!/data-operator-account-visitors/.test(html) || !/data-operator-daily-opens/.test(html)) {
   findings.push("index.html: one or more operator metric fields are missing");
 }
 if (/data-operator-users|data-operator-account-users|registeredUsers/.test(html)) {
