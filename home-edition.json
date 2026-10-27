@@ -7,38 +7,42 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-26T10:08:39.124Z",
-  "window_end": "2026-10-26T16:47:07.830Z",
-  "last_window_end": "2026-10-26T16:47:07.830Z",
-  "last_checked_at": "2026-10-26T16:51:25.197Z",
-  "last_published_at": "2026-10-26T16:51:25.197Z",
-  "home_content_changed_at": "2026-10-26T16:51:25.197Z",
+  "window_start": "2026-10-26T16:47:07.830Z",
+  "window_end": "2026-10-26T23:56:09.654Z",
+  "last_window_end": "2026-10-26T23:56:09.654Z",
+  "last_checked_at": "2026-10-27T00:01:41.231Z",
+  "last_published_at": "2026-10-27T00:01:41.231Z",
+  "home_content_changed_at": "2026-10-27T00:01:41.231Z",
   "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 3,
-  "update_health": "DEGRADED",
-  "update_health_reasons": [
-    "今回の新着掲載は0件です。前の日までに載せた記事は出さず、今日まだ載せていない記事だけを表示しています",
-    "新着候補0件が2回以上続いています",
-    "前の日と重ならない検証済み記事が3件未満です"
-  ],
-  "edition_status": "NO_NEW_STORIES",
-  "candidate_count": 0,
-  "distinct_candidate_count": 0,
+  "consecutive_zero_candidate_editions": 0,
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
+  "edition_status": "NEW_STORIES",
+  "candidate_count": 3,
+  "distinct_candidate_count": 3,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 0,
+  "novel_candidate_count": 3,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 0,
+  "selected_count": 3,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 0,
+  "new_selected_count": 3,
   "continued_selected_count": 0,
-  "tool_evolution_selected_count": 0,
+  "tool_evolution_selected_count": 3,
   "carried_forward": false,
   "partially_carried_forward": false,
-  "article_ids": [],
-  "new_article_ids": [],
+  "article_ids": [
+    "article_bc674cdaab8f67af378d",
+    "article_17eb1601d2ebc9b6b20c",
+    "article_d00c5358ee0291a9ff37"
+  ],
+  "new_article_ids": [
+    "article_bc674cdaab8f67af378d",
+    "article_17eb1601d2ebc9b6b20c",
+    "article_d00c5358ee0291a9ff37"
+  ],
   "continued_article_ids": [],
   "continuation_sources": {},
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
@@ -46,7 +50,7 @@
   "same_day_article_ids": [],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 43,
+  "blocked_previous_day_count": 40,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -339,7 +343,10 @@
     "article_8d11448b4e9c8ccb061c_rev_061eb55dae7b": "2026-10-25",
     "article_3fd153529de55ca192b0": "2026-10-26",
     "article_bf7150d0b8c6caa3bb94_rev_75c040fcc1f3": "2026-10-26",
-    "article_dad121eb3d658c20c964": "2026-10-26"
+    "article_dad121eb3d658c20c964": "2026-10-26",
+    "article_bc674cdaab8f67af378d": "2026-10-27",
+    "article_17eb1601d2ebc9b6b20c": "2026-10-27",
+    "article_d00c5358ee0291a9ff37": "2026-10-27"
   },
   "home_shown_story_log": [
     {
@@ -1437,75 +1444,150 @@
       "selected_at": "2026-10-26T01:47:06.293Z",
       "edition_window_end": "2026-10-26T01:43:41.185Z",
       "shown_day": "2026-10-26"
-    }
-  ],
-  "scores": {},
-  "recent_story_history": [
+    },
     {
-      "article_id": "article_dd72b45783120f60b6e4",
-      "story_id": "story_a2c44c470bcb15c590",
-      "title": "Meta、AIエージェント「Muse」を日本でiOS・Android向けに提供開始",
-      "primary_entity": "Meta",
-      "story_subject": "AIエージェントアプリMuseの日本展開",
+      "article_id": "article_bc674cdaab8f67af378d",
+      "story_id": "story_28c4a281ebdaa8c4e3",
+      "title": "OpenAIが「GPT-6.1 Terra」を発表、視覚推論やパソコン操作機能を改善",
+      "primary_entity": "OpenAI",
+      "story_subject": "GPT-6.1 Terra",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "不明",
+      "story_entities": [
+        "OpenAI",
+        "GPT-6.1 Terra",
+        "openai",
+        "gpt-6.1terra",
+        "gpt-6.1"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-27T00:01:41.231Z",
+      "edition_window_end": "2026-10-26T23:56:09.654Z",
+      "shown_day": "2026-10-27"
+    },
+    {
+      "article_id": "article_17eb1601d2ebc9b6b20c",
+      "story_id": "story_668a002238dd27e383",
+      "title": "Runwayが新サービス「App Studio」を発表",
+      "primary_entity": "Runway",
+      "story_subject": "App Studio",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "不明",
+      "story_entities": [
+        "Runway",
+        "App Studio",
+        "runway",
+        "appstudio",
+        "studio"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-27T00:01:41.231Z",
+      "edition_window_end": "2026-10-26T23:56:09.654Z",
+      "shown_day": "2026-10-27"
+    },
+    {
+      "article_id": "article_d00c5358ee0291a9ff37",
+      "story_id": "story_b8e53fda062b1d7596",
+      "title": "マスク氏予告の「オデッセイ」映画、Grokのエピソードとして7分動画で公開",
+      "primary_entity": "xAI",
+      "story_subject": "Grokのオデッセイエピソード",
       "event_type": "release",
       "event_stage": "launched",
-      "event_scope": "日本、iOS、Android",
+      "event_scope": "Grokプラットフォーム",
       "story_entities": [
-        "Meta",
-        "Muse",
-        "iOS",
-        "meta",
-        "muse"
+        "Grok",
+        "xAI",
+        "イーロン・マスク",
+        "grok",
+        "xai"
       ],
       "fact_slots": [
         {
-          "type": "date",
-          "scope": "提供開始日",
-          "value": "2026-10-23",
-          "normalized_value": "2026-10-23"
-        },
-        {
-          "type": "availability",
-          "scope": "対応OS",
-          "value": "iOS・Android",
-          "normalized_value": "iosandroid"
+          "type": "other",
+          "scope": "動画の長さ",
+          "value": "7分",
+          "normalized_value": "7"
         }
       ],
       "relation_type": "new",
-      "dedupe_decision": "uncertain",
+      "dedupe_decision": "new",
       "previous_article_id": "",
-      "selected_at": "2026-10-23T23:18:09.545Z",
-      "edition_window_end": "2026-10-23T23:12:32.330Z"
-    },
-    {
-      "article_id": "article_cd54a3c5bab0cb20aec5",
-      "story_id": "story_718a6ad15994830805",
-      "title": "DeepSeekが約150億ドルの大型資金調達、米政府禁止後も上海上場視野に",
-      "primary_entity": "DeepSeek",
-      "story_subject": "DeepSeekの約150億ドル資金調達",
-      "event_type": "funding",
-      "event_stage": "announced",
-      "event_scope": "中国・グローバル",
-      "story_entities": [
-        "DeepSeek",
-        "上海市場",
-        "米国政府の禁止措置",
-        "deepseek"
+      "selected_at": "2026-10-27T00:01:41.231Z",
+      "edition_window_end": "2026-10-26T23:56:09.654Z",
+      "shown_day": "2026-10-27"
+    }
+  ],
+  "scores": {
+    "article_bc674cdaab8f67af378d": {
+      "article_id": "article_bc674cdaab8f67af378d",
+      "total": 65,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 15,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 9,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
       ],
-      "fact_slots": [
-        {
-          "type": "amount",
-          "scope": "資金調達額",
-          "value": "約150億USD",
-          "normalized_value": "15000000000USD"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-10-23T23:18:09.545Z",
-      "edition_window_end": "2026-10-23T23:12:32.330Z"
+      "published_at": "2026-10-26T23:30:03.000Z"
     },
+    "article_17eb1601d2ebc9b6b20c": {
+      "article_id": "article_17eb1601d2ebc9b6b20c",
+      "total": 58,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 4,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-10-26T19:37:18.000Z"
+    },
+    "article_d00c5358ee0291a9ff37": {
+      "article_id": "article_d00c5358ee0291a9ff37",
+      "total": 56,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 15,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "遅れて確認できた新着",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-10-26T08:20:50.000Z"
+    }
+  },
+  "recent_story_history": [
     {
       "article_id": "article_17939d26e5fa4b270fea",
       "story_id": "story_3bee0845159725916b",
@@ -1804,6 +1886,82 @@
       "previous_article_id": "",
       "selected_at": "2026-10-26T01:47:06.293Z",
       "edition_window_end": "2026-10-26T01:43:41.185Z"
+    },
+    {
+      "article_id": "article_bc674cdaab8f67af378d",
+      "story_id": "story_28c4a281ebdaa8c4e3",
+      "title": "OpenAIが「GPT-6.1 Terra」を発表、視覚推論やパソコン操作機能を改善",
+      "primary_entity": "OpenAI",
+      "story_subject": "GPT-6.1 Terra",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "不明",
+      "story_entities": [
+        "OpenAI",
+        "GPT-6.1 Terra",
+        "openai",
+        "gpt-6.1terra",
+        "gpt-6.1"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-27T00:01:41.231Z",
+      "edition_window_end": "2026-10-26T23:56:09.654Z"
+    },
+    {
+      "article_id": "article_17eb1601d2ebc9b6b20c",
+      "story_id": "story_668a002238dd27e383",
+      "title": "Runwayが新サービス「App Studio」を発表",
+      "primary_entity": "Runway",
+      "story_subject": "App Studio",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "不明",
+      "story_entities": [
+        "Runway",
+        "App Studio",
+        "runway",
+        "appstudio",
+        "studio"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-27T00:01:41.231Z",
+      "edition_window_end": "2026-10-26T23:56:09.654Z"
+    },
+    {
+      "article_id": "article_d00c5358ee0291a9ff37",
+      "story_id": "story_b8e53fda062b1d7596",
+      "title": "マスク氏予告の「オデッセイ」映画、Grokのエピソードとして7分動画で公開",
+      "primary_entity": "xAI",
+      "story_subject": "Grokのオデッセイエピソード",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Grokプラットフォーム",
+      "story_entities": [
+        "Grok",
+        "xAI",
+        "イーロン・マスク",
+        "grok",
+        "xai"
+      ],
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "動画の長さ",
+          "value": "7分",
+          "normalized_value": "7"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-27T00:01:41.231Z",
+      "edition_window_end": "2026-10-26T23:56:09.654Z"
     }
   ]
 }
