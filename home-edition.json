@@ -7,12 +7,12 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-26T16:47:07.830Z",
-  "window_end": "2026-10-26T23:56:09.654Z",
-  "last_window_end": "2026-10-26T23:56:09.654Z",
-  "last_checked_at": "2026-10-27T00:01:41.231Z",
-  "last_published_at": "2026-10-27T00:01:41.231Z",
-  "home_content_changed_at": "2026-10-27T00:01:41.231Z",
+  "window_start": "2026-10-26T23:56:09.654Z",
+  "window_end": "2026-10-27T09:49:29.413Z",
+  "last_window_end": "2026-10-27T09:49:29.413Z",
+  "last_checked_at": "2026-10-27T09:54:05.865Z",
+  "last_published_at": "2026-10-27T09:54:05.865Z",
+  "home_content_changed_at": "2026-10-27T09:54:05.865Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
@@ -25,32 +25,43 @@
   "novel_candidate_count": 3,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 3,
+  "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
   "new_selected_count": 3,
-  "continued_selected_count": 0,
-  "tool_evolution_selected_count": 3,
+  "continued_selected_count": 2,
+  "tool_evolution_selected_count": 4,
   "carried_forward": false,
-  "partially_carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_936d770c8be71f7edd3a",
+    "article_e5c0a56242bb223d3ef4",
+    "article_67332e5e2fc83b8675e9",
     "article_bc674cdaab8f67af378d",
-    "article_17eb1601d2ebc9b6b20c",
     "article_d00c5358ee0291a9ff37"
   ],
   "new_article_ids": [
+    "article_936d770c8be71f7edd3a",
+    "article_e5c0a56242bb223d3ef4",
+    "article_67332e5e2fc83b8675e9"
+  ],
+  "continued_article_ids": [
     "article_bc674cdaab8f67af378d",
-    "article_17eb1601d2ebc9b6b20c",
     "article_d00c5358ee0291a9ff37"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continuation_sources": {
+    "article_bc674cdaab8f67af378d": "previous_edition",
+    "article_d00c5358ee0291a9ff37": "previous_edition"
+  },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-10-27",
-  "same_day_article_ids": [],
+  "same_day_article_ids": [
+    "article_bc674cdaab8f67af378d",
+    "article_d00c5358ee0291a9ff37"
+  ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 40,
+  "blocked_previous_day_count": 37,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -346,7 +357,10 @@
     "article_dad121eb3d658c20c964": "2026-10-26",
     "article_bc674cdaab8f67af378d": "2026-10-27",
     "article_17eb1601d2ebc9b6b20c": "2026-10-27",
-    "article_d00c5358ee0291a9ff37": "2026-10-27"
+    "article_d00c5358ee0291a9ff37": "2026-10-27",
+    "article_936d770c8be71f7edd3a": "2026-10-27",
+    "article_e5c0a56242bb223d3ef4": "2026-10-27",
+    "article_67332e5e2fc83b8675e9": "2026-10-27"
   },
   "home_shown_story_log": [
     {
@@ -1523,18 +1537,162 @@
       "selected_at": "2026-10-27T00:01:41.231Z",
       "edition_window_end": "2026-10-26T23:56:09.654Z",
       "shown_day": "2026-10-27"
+    },
+    {
+      "article_id": "article_936d770c8be71f7edd3a",
+      "story_id": "story_27581c690730873a11",
+      "title": "xAIがGrok・Cursor・Xの有料特典をまとめた月額30ドルプランを発表",
+      "primary_entity": "xAI",
+      "story_subject": "Grok・Cursor・Xの一括契約プラン",
+      "event_type": "pricing",
+      "event_stage": "announced",
+      "event_scope": "Grok・Cursor・Xの利用者",
+      "story_entities": [
+        "xAI",
+        "Grok",
+        "Cursor",
+        "xai",
+        "grok"
+      ],
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "一括契約プランの月額料金",
+          "value": "30ドル/月",
+          "normalized_value": "30USD"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-27T09:54:05.865Z",
+      "edition_window_end": "2026-10-27T09:49:29.413Z",
+      "shown_day": "2026-10-27"
+    },
+    {
+      "article_id": "article_e5c0a56242bb223d3ef4",
+      "story_id": "story_110958b27043cb48c8",
+      "title": "「Gemini」アプリから「Gemini Notebook」を直接操作可能に",
+      "primary_entity": "Google",
+      "story_subject": "Gemini Notebook",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Geminiアプリ",
+      "story_entities": [
+        "Gemini",
+        "Gemini Notebook",
+        "Google",
+        "gemini",
+        "gemininotebook"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-27T09:54:05.865Z",
+      "edition_window_end": "2026-10-27T09:49:29.413Z",
+      "shown_day": "2026-10-27"
+    },
+    {
+      "article_id": "article_67332e5e2fc83b8675e9",
+      "story_id": "story_338286248d5f5b2856",
+      "title": "Perplexityが無料のMac向け判断支援AI「Decider for Mac」を発表",
+      "primary_entity": "Perplexity",
+      "story_subject": "Decider for Mac",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "Mac",
+      "story_entities": [
+        "Perplexity",
+        "Decider for Mac",
+        "perplexity",
+        "deciderformac",
+        "decider"
+      ],
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "Decider for Macの利用料金",
+          "value": "無料",
+          "normalized_value": "無料"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-27T09:54:05.865Z",
+      "edition_window_end": "2026-10-27T09:49:29.413Z",
+      "shown_day": "2026-10-27"
     }
   ],
   "scores": {
-    "article_bc674cdaab8f67af378d": {
-      "article_id": "article_bc674cdaab8f67af378d",
-      "total": 65,
+    "article_936d770c8be71f7edd3a": {
+      "article_id": "article_936d770c8be71f7edd3a",
+      "total": 75,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 15,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 4,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化"
+      ],
+      "published_at": "2026-10-27T03:56:15.000Z"
+    },
+    "article_e5c0a56242bb223d3ef4": {
+      "article_id": "article_e5c0a56242bb223d3ef4",
+      "total": 66,
       "breakdown": {
         "importance": 25,
         "topicality": 15,
         "scope": 3,
         "authority": 5,
-        "freshness": 9,
+        "freshness": 10,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-10-27T09:39:00.000Z"
+    },
+    "article_67332e5e2fc83b8675e9": {
+      "article_id": "article_67332e5e2fc83b8675e9",
+      "total": 54,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-10-24T18:08:39.000Z"
+    },
+    "article_bc674cdaab8f67af378d": {
+      "article_id": "article_bc674cdaab8f67af378d",
+      "total": 56,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 15,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 0,
         "tool_evolution": 8,
         "penalty": 0
       },
@@ -1545,25 +1703,6 @@
         "AIツールの能力進化"
       ],
       "published_at": "2026-10-26T23:30:03.000Z"
-    },
-    "article_17eb1601d2ebc9b6b20c": {
-      "article_id": "article_17eb1601d2ebc9b6b20c",
-      "total": 58,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 4,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-10-26T19:37:18.000Z"
     },
     "article_d00c5358ee0291a9ff37": {
       "article_id": "article_d00c5358ee0291a9ff37",
@@ -1581,43 +1720,12 @@
         "重要度B",
         "主要AI企業・基盤",
         "大きな製品・市場変化",
-        "遅れて確認できた新着",
         "AIツールの能力進化"
       ],
       "published_at": "2026-10-26T08:20:50.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_17939d26e5fa4b270fea",
-      "story_id": "story_3bee0845159725916b",
-      "title": "Perplexity、Mac版「Perplexity Computer」に完全ローカルAIを追加",
-      "primary_entity": "Perplexity",
-      "story_subject": "Perplexity Computerのローカルマイアイ機能",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "Mac",
-      "story_entities": [
-        "Perplexity",
-        "Perplexity Computer",
-        "Mac",
-        "perplexity",
-        "perplexitycomputer"
-      ],
-      "fact_slots": [
-        {
-          "type": "availability",
-          "scope": "Perplexity ComputerのローカルAI機能",
-          "value": "Mac版に追加、クラウド利用は任意",
-          "normalized_value": "mac版に追加クラウド利用は任意"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-10-24T08:56:47.766Z",
-      "edition_window_end": "2026-10-24T08:53:10.252Z"
-    },
     {
       "article_id": "article_730c1e906529abdc4a62",
       "story_id": "story_4093e64a3d3ff1da1f",
@@ -1962,6 +2070,89 @@
       "previous_article_id": "",
       "selected_at": "2026-10-27T00:01:41.231Z",
       "edition_window_end": "2026-10-26T23:56:09.654Z"
+    },
+    {
+      "article_id": "article_936d770c8be71f7edd3a",
+      "story_id": "story_27581c690730873a11",
+      "title": "xAIがGrok・Cursor・Xの有料特典をまとめた月額30ドルプランを発表",
+      "primary_entity": "xAI",
+      "story_subject": "Grok・Cursor・Xの一括契約プラン",
+      "event_type": "pricing",
+      "event_stage": "announced",
+      "event_scope": "Grok・Cursor・Xの利用者",
+      "story_entities": [
+        "xAI",
+        "Grok",
+        "Cursor",
+        "xai",
+        "grok"
+      ],
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "一括契約プランの月額料金",
+          "value": "30ドル/月",
+          "normalized_value": "30USD"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-27T09:54:05.865Z",
+      "edition_window_end": "2026-10-27T09:49:29.413Z"
+    },
+    {
+      "article_id": "article_e5c0a56242bb223d3ef4",
+      "story_id": "story_110958b27043cb48c8",
+      "title": "「Gemini」アプリから「Gemini Notebook」を直接操作可能に",
+      "primary_entity": "Google",
+      "story_subject": "Gemini Notebook",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Geminiアプリ",
+      "story_entities": [
+        "Gemini",
+        "Gemini Notebook",
+        "Google",
+        "gemini",
+        "gemininotebook"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-27T09:54:05.865Z",
+      "edition_window_end": "2026-10-27T09:49:29.413Z"
+    },
+    {
+      "article_id": "article_67332e5e2fc83b8675e9",
+      "story_id": "story_338286248d5f5b2856",
+      "title": "Perplexityが無料のMac向け判断支援AI「Decider for Mac」を発表",
+      "primary_entity": "Perplexity",
+      "story_subject": "Decider for Mac",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "Mac",
+      "story_entities": [
+        "Perplexity",
+        "Decider for Mac",
+        "perplexity",
+        "deciderformac",
+        "decider"
+      ],
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "Decider for Macの利用料金",
+          "value": "無料",
+          "normalized_value": "無料"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-27T09:54:05.865Z",
+      "edition_window_end": "2026-10-27T09:49:29.413Z"
     }
   ]
 }
