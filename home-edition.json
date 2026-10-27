@@ -7,37 +7,40 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-27T09:49:29.413Z",
-  "window_end": "2026-10-27T15:52:31.977Z",
-  "last_window_end": "2026-10-27T15:52:31.977Z",
-  "last_checked_at": "2026-10-27T15:55:23.834Z",
-  "last_published_at": "2026-10-27T15:55:23.834Z",
-  "home_content_changed_at": "2026-10-27T15:55:23.834Z",
+  "window_start": "2026-10-27T15:52:31.977Z",
+  "window_end": "2026-10-27T23:50:07.939Z",
+  "last_window_end": "2026-10-27T23:50:07.939Z",
+  "last_checked_at": "2026-10-27T23:54:46.550Z",
+  "last_published_at": "2026-10-27T23:54:46.550Z",
+  "home_content_changed_at": "2026-10-27T23:54:46.550Z",
   "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 1,
+  "consecutive_zero_candidate_editions": 0,
   "update_health": "DEGRADED",
   "update_health_reasons": [
-    "今回の新着掲載は0件です。前の日までに載せた記事は出さず、今日まだ載せていない記事だけを表示しています",
     "前の日と重ならない検証済み記事が3件未満です"
   ],
-  "edition_status": "NO_NEW_STORIES",
-  "candidate_count": 0,
-  "distinct_candidate_count": 0,
+  "edition_status": "NEW_STORIES",
+  "candidate_count": 1,
+  "distinct_candidate_count": 1,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 0,
+  "novel_candidate_count": 1,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 0,
+  "selected_count": 1,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 0,
+  "new_selected_count": 1,
   "continued_selected_count": 0,
-  "tool_evolution_selected_count": 0,
+  "tool_evolution_selected_count": 1,
   "carried_forward": false,
   "partially_carried_forward": false,
-  "article_ids": [],
-  "new_article_ids": [],
+  "article_ids": [
+    "article_7f90117e9434de73b0e2"
+  ],
+  "new_article_ids": [
+    "article_7f90117e9434de73b0e2"
+  ],
   "continued_article_ids": [],
   "continuation_sources": {},
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
@@ -45,7 +48,7 @@
   "same_day_article_ids": [],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 43,
+  "blocked_previous_day_count": 42,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -344,7 +347,8 @@
     "article_d00c5358ee0291a9ff37": "2026-10-27",
     "article_936d770c8be71f7edd3a": "2026-10-27",
     "article_e5c0a56242bb223d3ef4": "2026-10-27",
-    "article_67332e5e2fc83b8675e9": "2026-10-27"
+    "article_67332e5e2fc83b8675e9": "2026-10-27",
+    "article_7f90117e9434de73b0e2": "2026-10-28"
   },
   "home_shown_story_log": [
     {
@@ -1607,9 +1611,53 @@
       "selected_at": "2026-10-27T09:54:05.865Z",
       "edition_window_end": "2026-10-27T09:49:29.413Z",
       "shown_day": "2026-10-27"
+    },
+    {
+      "article_id": "article_7f90117e9434de73b0e2",
+      "story_id": "story_28013983e8c2d2864c",
+      "title": "LINEヤフー、法人向けAIエージェント「Agent i Biz」提供開始",
+      "primary_entity": "LINEヤフー",
+      "story_subject": "Agent i Biz",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本・法人向け",
+      "story_entities": [
+        "LINEヤフー",
+        "Agent i Biz",
+        "lineヤフー",
+        "agentibiz",
+        "line"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-27T23:54:46.550Z",
+      "edition_window_end": "2026-10-27T23:50:07.939Z",
+      "shown_day": "2026-10-28"
     }
   ],
-  "scores": {},
+  "scores": {
+    "article_7f90117e9434de73b0e2": {
+      "article_id": "article_7f90117e9434de73b0e2",
+      "total": 64,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 10,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-10-27T23:30:00.000Z"
+    }
+  },
   "recent_story_history": [
     {
       "article_id": "article_4da1da22bfadf6a24386",
@@ -1965,6 +2013,29 @@
       "previous_article_id": "",
       "selected_at": "2026-10-27T09:54:05.865Z",
       "edition_window_end": "2026-10-27T09:49:29.413Z"
+    },
+    {
+      "article_id": "article_7f90117e9434de73b0e2",
+      "story_id": "story_28013983e8c2d2864c",
+      "title": "LINEヤフー、法人向けAIエージェント「Agent i Biz」提供開始",
+      "primary_entity": "LINEヤフー",
+      "story_subject": "Agent i Biz",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本・法人向け",
+      "story_entities": [
+        "LINEヤフー",
+        "Agent i Biz",
+        "lineヤフー",
+        "agentibiz",
+        "line"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-27T23:54:46.550Z",
+      "edition_window_end": "2026-10-27T23:50:07.939Z"
     }
   ]
 }
