@@ -2,6 +2,57 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_a8198282a90d6142ed3e",
+      "story_id": "story_28c4a281ebdaa8c4e3",
+      "story_sequence": 2,
+      "relation_type": "follow_up",
+      "relation_confidence": 0.865,
+      "title": "OpenAIが新モデル「GPT-6.1 Terra」を発表、パソコン操作が得意で低価格",
+      "source_published_at": "2026-10-27T14:35:06.000Z",
+      "published_at": "2026-10-27T14:35:06.000Z",
+      "fetched_at": "2026-10-27T15:52:31.977Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIはパソコン操作が得意な新モデル「GPT-6.1 Terra」を発表し、入力は100万トークンあたり1ドルで利用できる。",
+      "source_name": "Yahoo!ニュース",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE4zazI1N0ZFWV90S05BV1Vhc2hVTHFaSHFiNnUxRnJWTmUyb3k3dXVnVFpZd3M3blJsaTJxdDhTT1Y1akRUU2J2Vi0ya0NoVWpnZEFKeDRkbTBmWm8wMjlCWEhFaUVWNi1XWE9JUGN0NmNheUtlNW5tdzA3cE05c2s?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "GPT-6.1 Terra",
+        "openai",
+        "gpt-6.1terra",
+        "gpt-6.1"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "GPT-6.1 Terra",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "API",
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "入力トークン価格",
+          "value": "100万トークンあたり1ドル",
+          "normalized_value": "1000000USD"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "follow_up",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "material_fact_changed"
+      ],
+      "change_summary": "パソコン操作に強い新モデル「GPT-6.1 Terra」が発表され、入力価格が100万トークンあたり1ドルとされた。",
+      "detail": "OpenAIは新しいAIモデル「GPT-6.1 Terra」を発表しました。トークンとは文章をAIが処理する際の最小単位のことです。このモデルはパソコンの画面を見て操作を行う作業に強いとされています。\n\n記事によると、入力は100万トークンあたり1ドルという価格設定になっています。これは大量の文章や資料を読み込ませても比較的安く済むことを意味します。ただし本文が未取得のため、詳しい性能や従来モデルとの違いは確認できていません。\n\n企業がパソコン作業を自動化する目的でAIを使う場合、選択肢が増えることになります。価格や性能の詳細、提供開始時期などは今後の続報を確認する必要があります。",
+      "new_facts": [
+        "OpenAIがパソコン操作に強い新モデル「GPT-6.1 Terra」を発表した",
+        "入力価格は100万トークンあたり1ドルとされている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_e5c0a56242bb223d3ef4",
       "story_id": "story_110958b27043cb48c8",
       "story_sequence": 1,
@@ -36,7 +87,7 @@
         "same_subject",
         "same_event_type",
         "no_material_change",
-        "stale_duplicate_kept_as_uncertain"
+        "published_item_protected"
       ],
       "change_summary": "GeminiアプリからGemini Notebookの機能を直接呼び出して操作できるようになった。",
       "detail": "Googleは「Gemini」アプリの中から、資料を整理してまとめる機能「Gemini Notebook」を直接操作できるようにしました。Gemini Notebookは、文章や資料を読み込んでAIに要約させたり質問したりできる機能です。これまでは別のサービスとして個別に開く必要がありましたが、今回の更新でGeminiアプリの中から呼び出して使えるようになりました。\n\n窓の杜の報道によると、Geminiアプリ内からNotebookの機能に直接アクセスできるようになったとのことです。これにより、普段使っているチャット画面を離れずに資料整理の機能を使えるようになります。アプリを切り替える手間が減ることで、作業の流れがスムーズになります。\n\n使う人にとっては、資料の読み込みや要約の作業をひとつのアプリで完結できるようになります。ただし記事からは対応地域や対象ユーザー、提供開始の正確な時期など詳細は分かっていません。",
