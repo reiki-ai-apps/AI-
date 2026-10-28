@@ -2,6 +2,117 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_aa8f7955ae21b2b25c74",
+      "story_id": "story_28c4a281ebdaa8c4e3",
+      "story_sequence": 2,
+      "relation_type": "follow_up",
+      "relation_confidence": 0.8757142857142857,
+      "title": "OpenAI、「GPT-6.1 Terra」提供開始 画像理解とPC操作を強化した中価格帯AIモデル",
+      "source_published_at": "2026-10-28T10:14:29.000Z",
+      "published_at": "2026-10-28T10:14:29.000Z",
+      "fetched_at": "2026-10-28T16:37:50.286Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIが新モデル「GPT-6.1 Terra」の提供を開始し、画像理解とパソコン操作機能を強化した中価格帯AIと発表した。",
+      "source_name": "NOVAIST",
+      "source_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1ZbmZYZDh3ZW1Wcy1fSThmb0JvcklaMG1VcGs3UzdDVlk4QkZtdVdIS3ZvNUdiSnRyR2xkdk42Wng0N0lUNFB1UmVNOGtRMmIzaXdlMG05SlZmR2JsS0E?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "GPT-6.1 Terra",
+        "openai",
+        "gpt-6.1terra",
+        "gpt-6.1"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "GPT-6.1 Terra",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "不明",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "OpenAIモデル",
+          "value": "GPT-6.1 Terra",
+          "normalized_value": "gpt6.1terra"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "follow_up",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "same_scope",
+        "stage_changed",
+        "material_fact_changed"
+      ],
+      "change_summary": "OpenAIが画像理解とパソコン操作機能を強化した中価格帯の新モデルを公開したとされる。",
+      "detail": "OpenAIは新しいAIモデル「GPT-6.1 Terra」の提供を始めたと発表しました。このモデルは、文章だけでなく画像の内容を理解したり、パソコンの操作を代わりに行ったりする機能を持つAIです。価格は最上位モデルより安く、普及しやすい中価格帯に位置づけられている点が新しい特徴とされています。\n\n発表では、画像理解とパソコン操作の機能が強化されたことが示されています。画像理解とは、写真や画面の内容を読み取って説明や判断に役立てる仕組みです。パソコン操作の機能は、AIが人の代わりにソフトを動かしたり作業を進めたりする仕組みを指し、費用を抑えつつ実務で使える性能を備えたモデルとして位置づけられています。\n\nこのモデルを使う人は、より安い費用で画像を使った作業やパソコン操作の自動化を試せるようになる可能性があります。ただし、提供開始の具体的な時期や料金、対応地域などの詳細はまだ記事では明らかになっていません。今後、公式からより詳しい仕様や利用条件が示されるか注目されます。",
+      "new_facts": [
+        "OpenAIが「GPT-6.1 Terra」の提供を開始したと発表した",
+        "画像理解とパソコン操作の機能を強化した中価格帯モデルとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_9845328ac620daf5476d",
+      "story_id": "story_699004332dc00b062a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.82,
+      "title": "Canva、自社初の画像生成AIモデル「Craft」公開",
+      "source_published_at": "2026-10-28T07:00:04.000Z",
+      "published_at": "2026-10-28T07:00:04.000Z",
+      "fetched_at": "2026-10-28T16:37:50.286Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Canvaが自社開発の画像生成AIモデル「Craft」を公開し、構図を先に計画してから2K画質で画像を出力する仕組みを導入した。",
+      "source_name": "Media Innovation",
+      "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9VZFNaeG12ZDRJMm05aVdBODhZcmZNRFhIM3RQMTRaVFRwanNpa3FlOFc4ZFJabVkwTnFoOUJyMno2QXNuY3h5RUszTkdEcmRlTEZpSjRzWTNHNjk0aEZZWWZPNlhpRjBiR1E?oc=5",
+      "story_entities": [
+        "Canva",
+        "Craft",
+        "canva",
+        "craft"
+      ],
+      "primary_entity": "Canva",
+      "story_subject": "Craft",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Canva内",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "画像生成AIモデル",
+          "value": "Craft",
+          "normalized_value": "craft"
+        },
+        {
+          "type": "other",
+          "scope": "出力解像度",
+          "value": "2K",
+          "normalized_value": "2000"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "stage_changed",
+        "material_fact_changed",
+        "low_confidence_follow_up_demoted"
+      ],
+      "change_summary": "Canvaが外部AIに頼らず自社開発の画像生成モデルを初めて公開した。",
+      "detail": "Canvaは、自社で開発した初めての画像生成AIモデル「Craft」を公開しました。画像生成AIとは、文章の指示から絵や写真のような画像を自動で作る技術です。これまでCanvaは他社が作ったAIモデルを組み合わせて使ってきましたが、Craftは自社製という点が新しい特徴です。\n\nCraftの大きな特徴は、画像をいきなり描き始めるのではなく、先に構図、つまり絵の中で何をどこに配置するかという設計図を計画してから描く仕組みです。この手順により、仕上がりの完成度を高めやすくなるとされています。出力される画像の解像度は2K、つまり横の画素数がおよそ2000程度の高精細な画質に対応しています。\n\nデザインツールを使う人にとっては、Canva内で高画質な画像を自社製AIで作れる選択肢が増えることになります。ただし、料金プランへの組み込み方や提供開始の具体的な日付、対応言語などの詳細はまだ記事で明らかになっていません。今後の公式発表で詳しい利用条件が示されるか注目されます。",
+      "new_facts": [
+        "Canvaが自社初の画像生成AIモデル「Craft」を公開した",
+        "構図を先に計画してから2K画質で画像を出力する仕組みを採用している"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_7f90117e9434de73b0e2",
       "story_id": "story_28013983e8c2d2864c",
       "story_sequence": 3,
@@ -49,7 +160,7 @@
     {
       "article_id": "article_3a9b547d79b3fb4dac0f",
       "story_id": "story_28013983e8c2d2864c",
-      "story_sequence": 2,
+      "story_sequence": 4,
       "relation_type": "follow_up",
       "relation_confidence": 1,
       "title": "LINEヤフー、法人向けAIエージェント「Agent i Biz」提供開始",
