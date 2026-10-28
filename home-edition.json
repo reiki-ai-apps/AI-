@@ -7,48 +7,62 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-27T15:52:31.977Z",
-  "window_end": "2026-10-27T23:50:07.939Z",
-  "last_window_end": "2026-10-27T23:50:07.939Z",
-  "last_checked_at": "2026-10-27T23:54:46.550Z",
-  "last_published_at": "2026-10-27T23:54:46.550Z",
-  "home_content_changed_at": "2026-10-27T23:54:46.550Z",
+  "window_start": "2026-10-27T23:50:07.939Z",
+  "window_end": "2026-10-28T00:44:26.602Z",
+  "last_window_end": "2026-10-28T00:44:26.602Z",
+  "last_checked_at": "2026-10-28T00:49:23.565Z",
+  "last_published_at": "2026-10-28T00:49:23.565Z",
+  "home_content_changed_at": "2026-10-28T00:49:23.565Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
-  "update_health": "DEGRADED",
-  "update_health_reasons": [
-    "前の日と重ならない検証済み記事が3件未満です"
-  ],
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 1,
-  "distinct_candidate_count": 1,
+  "candidate_count": 3,
+  "distinct_candidate_count": 3,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 1,
-  "cross_edition_duplicate_count": 0,
-  "cross_edition_duplicate_groups": [],
-  "selected_count": 1,
+  "novel_candidate_count": 2,
+  "cross_edition_duplicate_count": 1,
+  "cross_edition_duplicate_groups": [
+    {
+      "representative_id": "article_7f90117e9434de73b0e2",
+      "duplicate_ids": [
+        "article_3a9b547d79b3fb4dac0f"
+      ]
+    }
+  ],
+  "selected_count": 3,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 1,
-  "continued_selected_count": 0,
+  "new_selected_count": 2,
+  "continued_selected_count": 1,
   "tool_evolution_selected_count": 1,
   "carried_forward": false,
-  "partially_carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_24952a542435f862ad4c",
+    "article_096a3acd473ccb6ffb26",
     "article_7f90117e9434de73b0e2"
   ],
   "new_article_ids": [
+    "article_24952a542435f862ad4c",
+    "article_096a3acd473ccb6ffb26"
+  ],
+  "continued_article_ids": [
     "article_7f90117e9434de73b0e2"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continuation_sources": {
+    "article_7f90117e9434de73b0e2": "previous_edition"
+  },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-10-28",
-  "same_day_article_ids": [],
+  "same_day_article_ids": [
+    "article_7f90117e9434de73b0e2"
+  ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 42,
+  "blocked_previous_day_count": 39,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -348,7 +362,9 @@
     "article_936d770c8be71f7edd3a": "2026-10-27",
     "article_e5c0a56242bb223d3ef4": "2026-10-27",
     "article_67332e5e2fc83b8675e9": "2026-10-27",
-    "article_7f90117e9434de73b0e2": "2026-10-28"
+    "article_7f90117e9434de73b0e2": "2026-10-28",
+    "article_24952a542435f862ad4c": "2026-10-28",
+    "article_096a3acd473ccb6ffb26": "2026-10-28"
   },
   "home_shown_story_log": [
     {
@@ -1635,18 +1651,113 @@
       "selected_at": "2026-10-27T23:54:46.550Z",
       "edition_window_end": "2026-10-27T23:50:07.939Z",
       "shown_day": "2026-10-28"
+    },
+    {
+      "article_id": "article_24952a542435f862ad4c",
+      "story_id": "story_8cd8fb96ce9ccab10e",
+      "title": "生成AIのデータ透明性策、グーグルなど5社が日本政府に回答",
+      "primary_entity": "日本政府",
+      "story_subject": "生成AIデータの透明性確保策への企業回答",
+      "event_type": "policy",
+      "event_stage": "completed",
+      "event_scope": "日本",
+      "story_entities": [
+        "グーグル",
+        "日本政府",
+        "生成AI",
+        "生成ai"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "回答した企業数",
+          "value": "5社",
+          "normalized_value": "5"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-28T00:49:23.565Z",
+      "edition_window_end": "2026-10-28T00:44:26.602Z",
+      "shown_day": "2026-10-28"
+    },
+    {
+      "article_id": "article_096a3acd473ccb6ffb26",
+      "story_id": "story_fd3b9d166b1398ea8a",
+      "title": "DeepSeekの週間トークン消費量が世界首位に",
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeekの週間トークン消費量急増",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "世界",
+      "story_entities": [
+        "DeepSeek",
+        "deepseek"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "週間トークン消費量の前週比増加率",
+          "value": "801%",
+          "normalized_value": "801%"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-28T00:49:23.565Z",
+      "edition_window_end": "2026-10-28T00:44:26.602Z",
+      "shown_day": "2026-10-28"
     }
   ],
   "scores": {
+    "article_24952a542435f862ad4c": {
+      "article_id": "article_24952a542435f862ad4c",
+      "total": 70,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 10,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "制度・安全への影響",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-10-27T15:00:00.000Z"
+    },
+    "article_096a3acd473ccb6ffb26": {
+      "article_id": "article_096a3acd473ccb6ffb26",
+      "total": 40,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 0,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-10-27T09:30:27.000Z"
+    },
     "article_7f90117e9434de73b0e2": {
       "article_id": "article_7f90117e9434de73b0e2",
-      "total": 64,
+      "total": 54,
       "breakdown": {
         "importance": 25,
         "topicality": 10,
         "scope": 6,
         "authority": 5,
-        "freshness": 10,
+        "freshness": 0,
         "tool_evolution": 8,
         "penalty": 0
       },
@@ -2036,6 +2147,62 @@
       "previous_article_id": "",
       "selected_at": "2026-10-27T23:54:46.550Z",
       "edition_window_end": "2026-10-27T23:50:07.939Z"
+    },
+    {
+      "article_id": "article_24952a542435f862ad4c",
+      "story_id": "story_8cd8fb96ce9ccab10e",
+      "title": "生成AIのデータ透明性策、グーグルなど5社が日本政府に回答",
+      "primary_entity": "日本政府",
+      "story_subject": "生成AIデータの透明性確保策への企業回答",
+      "event_type": "policy",
+      "event_stage": "completed",
+      "event_scope": "日本",
+      "story_entities": [
+        "グーグル",
+        "日本政府",
+        "生成AI",
+        "生成ai"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "回答した企業数",
+          "value": "5社",
+          "normalized_value": "5"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-28T00:49:23.565Z",
+      "edition_window_end": "2026-10-28T00:44:26.602Z"
+    },
+    {
+      "article_id": "article_096a3acd473ccb6ffb26",
+      "story_id": "story_fd3b9d166b1398ea8a",
+      "title": "DeepSeekの週間トークン消費量が世界首位に",
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeekの週間トークン消費量急増",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "世界",
+      "story_entities": [
+        "DeepSeek",
+        "deepseek"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "週間トークン消費量の前週比増加率",
+          "value": "801%",
+          "normalized_value": "801%"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-28T00:49:23.565Z",
+      "edition_window_end": "2026-10-28T00:44:26.602Z"
     }
   ]
 }
