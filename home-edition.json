@@ -7,58 +7,56 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-27T23:50:07.939Z",
-  "window_end": "2026-10-28T00:44:26.602Z",
-  "last_window_end": "2026-10-28T00:44:26.602Z",
-  "last_checked_at": "2026-10-28T00:49:23.565Z",
-  "last_published_at": "2026-10-28T00:49:23.565Z",
-  "home_content_changed_at": "2026-10-28T00:49:23.565Z",
+  "window_start": "2026-10-28T00:44:26.602Z",
+  "window_end": "2026-10-28T10:35:38.593Z",
+  "last_window_end": "2026-10-28T10:35:38.593Z",
+  "last_checked_at": "2026-10-28T10:37:02.255Z",
+  "last_published_at": "2026-10-28T10:37:02.255Z",
+  "home_content_changed_at": "2026-10-28T10:37:02.255Z",
   "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 0,
-  "update_health": "HEALTHY",
-  "update_health_reasons": [],
-  "edition_status": "NEW_STORIES",
-  "candidate_count": 3,
-  "distinct_candidate_count": 3,
+  "consecutive_zero_candidate_editions": 1,
+  "update_health": "DEGRADED",
+  "update_health_reasons": [
+    "今回の新着掲載は0件です。前の日までに載せた記事は出さず、今日まだ載せていない記事だけを表示しています"
+  ],
+  "edition_status": "NO_NEW_STORIES",
+  "candidate_count": 0,
+  "distinct_candidate_count": 0,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 2,
-  "cross_edition_duplicate_count": 1,
-  "cross_edition_duplicate_groups": [
-    {
-      "representative_id": "article_7f90117e9434de73b0e2",
-      "duplicate_ids": [
-        "article_3a9b547d79b3fb4dac0f"
-      ]
-    }
-  ],
+  "novel_candidate_count": 0,
+  "cross_edition_duplicate_count": 0,
+  "cross_edition_duplicate_groups": [],
   "selected_count": 3,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 2,
-  "continued_selected_count": 1,
+  "new_selected_count": 0,
+  "continued_selected_count": 3,
   "tool_evolution_selected_count": 1,
-  "carried_forward": false,
-  "partially_carried_forward": true,
+  "carried_forward": true,
+  "partially_carried_forward": false,
   "article_ids": [
     "article_24952a542435f862ad4c",
-    "article_096a3acd473ccb6ffb26",
-    "article_7f90117e9434de73b0e2"
-  ],
-  "new_article_ids": [
-    "article_24952a542435f862ad4c",
+    "article_7f90117e9434de73b0e2",
     "article_096a3acd473ccb6ffb26"
   ],
+  "new_article_ids": [],
   "continued_article_ids": [
-    "article_7f90117e9434de73b0e2"
+    "article_24952a542435f862ad4c",
+    "article_7f90117e9434de73b0e2",
+    "article_096a3acd473ccb6ffb26"
   ],
   "continuation_sources": {
-    "article_7f90117e9434de73b0e2": "previous_edition"
+    "article_24952a542435f862ad4c": "previous_edition",
+    "article_7f90117e9434de73b0e2": "previous_edition",
+    "article_096a3acd473ccb6ffb26": "previous_edition"
   },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-10-28",
   "same_day_article_ids": [
-    "article_7f90117e9434de73b0e2"
+    "article_24952a542435f862ad4c",
+    "article_7f90117e9434de73b0e2",
+    "article_096a3acd473ccb6ffb26"
   ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
@@ -1726,28 +1724,9 @@
       },
       "reasons": [
         "重要度A",
-        "制度・安全への影響",
-        "遅れて確認できた新着"
+        "制度・安全への影響"
       ],
       "published_at": "2026-10-27T15:00:00.000Z"
-    },
-    "article_096a3acd473ccb6ffb26": {
-      "article_id": "article_096a3acd473ccb6ffb26",
-      "total": 40,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 0,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "遅れて確認できた新着"
-      ],
-      "published_at": "2026-10-27T09:30:27.000Z"
     },
     "article_7f90117e9434de73b0e2": {
       "article_id": "article_7f90117e9434de73b0e2",
@@ -1767,138 +1746,26 @@
         "AIツールの能力進化"
       ],
       "published_at": "2026-10-27T23:30:00.000Z"
+    },
+    "article_096a3acd473ccb6ffb26": {
+      "article_id": "article_096a3acd473ccb6ffb26",
+      "total": 40,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 0,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B"
+      ],
+      "published_at": "2026-10-27T09:30:27.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_4da1da22bfadf6a24386",
-      "story_id": "story_98d2e6573368b6cf39",
-      "title": "ドイツとNVIDIAがAI提携を拡大、100億ドル規模の投資を約束",
-      "primary_entity": "NVIDIA",
-      "story_subject": "ドイツとNVIDIAのAI提携拡大",
-      "event_type": "partnership",
-      "event_stage": "expanded",
-      "event_scope": "ドイツ",
-      "story_entities": [
-        "ドイツ",
-        "NVIDIA",
-        "nvidia"
-      ],
-      "fact_slots": [
-        {
-          "type": "amount",
-          "scope": "ドイツとNVIDIAのAI提携投資額",
-          "value": "100億米ドル",
-          "normalized_value": "10000000000USD"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-10-25T08:47:33.444Z",
-      "edition_window_end": "2026-10-25T08:47:33.444Z"
-    },
-    {
-      "article_id": "article_603e94648a6d32968c61",
-      "story_id": "story_aaaed4691709ac5454",
-      "title": "RunwayのCEO、AIが俳優を代替する可能性に言及",
-      "primary_entity": "Runway",
-      "story_subject": "AIによる俳優代替発言",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "映像業界全般",
-      "story_entities": [
-        "Runway",
-        "View Conference",
-        "runway",
-        "viewconference",
-        "view"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-25T08:47:33.444Z",
-      "edition_window_end": "2026-10-25T08:47:33.444Z"
-    },
-    {
-      "article_id": "article_6731fb305f1c3dc43716",
-      "story_id": "story_86603f7f1145ed48a7",
-      "title": "エヌビディアCEO、半導体担保にAI向け5000億ドル調達を提案",
-      "primary_entity": "エヌビディア",
-      "story_subject": "AI構築資金5000億ドル調達案",
-      "event_type": "funding",
-      "event_stage": "proposed",
-      "event_scope": "世界",
-      "story_entities": [
-        "エヌビディア",
-        "ジェンスン・フアン",
-        "ジェンスンフアン"
-      ],
-      "fact_slots": [
-        {
-          "type": "amount",
-          "scope": "調達目標額",
-          "value": "5000億ドル",
-          "normalized_value": "500000000000USD"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-25T09:14:44.064Z",
-      "edition_window_end": "2026-10-25T09:09:49.504Z"
-    },
-    {
-      "article_id": "article_1140525ec2c0bd12ae98",
-      "story_id": "story_9d5fa8954888ecb02f",
-      "title": "グーグル元CEO、「AI競争で中国は米国に6カ月遅れだが戦略次第で逆転も」と発言",
-      "primary_entity": "グーグル元CEO",
-      "story_subject": "米中AI開発競争に関する発言",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "米国・中国",
-      "story_entities": [
-        "グーグル",
-        "グーグル元CEO",
-        "グーグル元ceo"
-      ],
-      "fact_slots": [
-        {
-          "type": "other",
-          "scope": "中国のAI開発の遅れ",
-          "value": "約6カ月",
-          "normalized_value": "6"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-25T09:14:44.064Z",
-      "edition_window_end": "2026-10-25T09:09:49.504Z"
-    },
-    {
-      "article_id": "article_8d11448b4e9c8ccb061c_rev_061eb55dae7b",
-      "story_id": "story_5e85e69743bb2d3353",
-      "title": "AnthropicのCEO、AIへのより強い規制を求める発言",
-      "primary_entity": "Anthropic",
-      "story_subject": "AI規制強化への呼びかけ",
-      "event_type": "policy",
-      "event_stage": "announced",
-      "event_scope": "米国",
-      "story_entities": [
-        "Anthropic",
-        "ABC News",
-        "anthropic",
-        "abcnews"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-10-25T09:14:44.064Z",
-      "edition_window_end": "2026-10-25T09:09:49.504Z"
-    },
     {
       "article_id": "article_3fd153529de55ca192b0",
       "story_id": "story_783de87769ce41098a",

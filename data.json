@@ -54,18 +54,22 @@
     "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
     "article_id": "article_7f90117e9434de73b0e2",
     "story_id": "story_28013983e8c2d2864c",
-    "story_sequence": 1,
-    "relation_type": "new",
+    "story_sequence": 3,
+    "relation_type": "follow_up",
     "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
+    "previous_article_id": "article_3a9b547d79b3fb4dac0f",
+    "previous_title": "LINEヤフー、法人向けAIエージェント「Agent i Biz」提供開始",
+    "previous_source_published_at": "2026-10-27T23:30:00.000Z",
+    "continuation_lead": "この話題の続報です。前回は「LINEヤフー、法人向けAIエージェント「Agent i Biz」提供開始」まで進んでいましたが、今回はLINEヤフーが法人向け広告・販促支援AIエージェント「Agent i Biz」を新たに提供開始した。",
+    "dedupe_decision": "follow_up",
     "dedupe_reasons": [
-      "no_previous_story"
+      "same_primary_entity",
+      "same_subject",
+      "same_event_type",
+      "similar_title",
+      "same_scope"
     ],
-    "home_top_rank": 3,
+    "home_top_rank": 2,
     "home_top_score": 54,
     "home_score_breakdown": {
       "importance": 25,
@@ -81,15 +85,15 @@
       "大きな製品・市場変化",
       "AIツールの能力進化"
     ],
-    "home_selected_at": "2026-10-28T00:49:23.565Z",
-    "home_window_start": "2026-10-27T23:50:07.939Z",
-    "home_window_end": "2026-10-28T00:44:26.602Z",
-    "home_content_changed_at": "2026-10-28T00:49:23.565Z",
-    "home_update_health": "HEALTHY",
+    "home_selected_at": "2026-10-28T10:37:02.255Z",
+    "home_window_start": "2026-10-28T00:44:26.602Z",
+    "home_window_end": "2026-10-28T10:35:38.593Z",
+    "home_content_changed_at": "2026-10-28T10:37:02.255Z",
+    "home_update_health": "DEGRADED",
     "home_consecutive_unchanged_editions": 0,
     "home_top_origin": "same_day",
-    "home_edition_new_count": 2,
-    "home_edition_continued_count": 1
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 3
   },
   {
     "tool": "世界の新モデル・速報",
@@ -254,18 +258,17 @@
     },
     "home_selection_reasons": [
       "重要度A",
-      "制度・安全への影響",
-      "遅れて確認できた新着"
+      "制度・安全への影響"
     ],
-    "home_selected_at": "2026-10-28T00:49:23.565Z",
-    "home_window_start": "2026-10-27T23:50:07.939Z",
-    "home_window_end": "2026-10-28T00:44:26.602Z",
-    "home_content_changed_at": "2026-10-28T00:49:23.565Z",
-    "home_update_health": "HEALTHY",
+    "home_selected_at": "2026-10-28T10:37:02.255Z",
+    "home_window_start": "2026-10-28T00:44:26.602Z",
+    "home_window_end": "2026-10-28T10:35:38.593Z",
+    "home_content_changed_at": "2026-10-28T10:37:02.255Z",
+    "home_update_health": "DEGRADED",
     "home_consecutive_unchanged_editions": 0,
-    "home_top_origin": "new",
-    "home_edition_new_count": 2,
-    "home_edition_continued_count": 1
+    "home_top_origin": "same_day",
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 3
   },
   {
     "tool": "ChatGPT / OpenAI",
@@ -342,6 +345,86 @@
       "same_event_type",
       "material_fact_changed"
     ]
+  },
+  {
+    "tool": "専門家動画・発言",
+    "content_type": "expert_video",
+    "expert_id": "keito-aiweb",
+    "expert_ids": [
+      "keito-aiweb"
+    ],
+    "expert_name": "KEITO",
+    "expert_names": [
+      "KEITO"
+    ],
+    "expert_role": "AIツールの使い方・検証を発信する解説者",
+    "expert_tier": "practical_ai_educator",
+    "platform": "YouTube",
+    "video_id": "kuRFAngTJsU",
+    "source_trust": "primary",
+    "title": "WordPressサイトをCloudflareのEmDashへ移行しAIで更新する手順を実演",
+    "source_url": "https://www.youtube.com/watch?v=kuRFAngTJsU",
+    "source_name": "KEITO【AI&WEB ch】",
+    "is_official": true,
+    "published_at": "2026-10-27T10:00:03.000Z",
+    "source_published_at": "2026-10-27T10:00:03.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-10-28T07:25:50.482Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "EmDash",
+      "WordPress",
+      "Cloudflare",
+      "emdash",
+      "wordpress"
+    ],
+    "primary_entity": "KEITO",
+    "story_subject": "EmDashへのサイト移行手順の実演",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "Web制作・個人/法人サイト",
+    "fact_slots": [],
+    "new_facts": [
+      "KEITOがWordPressサイトをCloudflareのEmDashへ本番のまま移行する手順を実演した",
+      "移行後はClaudeとMCPを使いAIでサイトを更新する運用方法を紹介した",
+      "スマートフォンからAIに指示して記事を作成・公開する例を示した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "KEITO氏が、WordPressサイトをCloudflareの新サービスEmDashへ本番のまま移行し、AIで更新する運用方法を動画で実演した。",
+    "detail": "KEITO氏がWordPressサイトをEmDashへ移行する手順を解説した。EmDashはCloudflareが提供する、AIと組み合わせて使う新しいサイト運用の仕組みである。従来のWordPress運用と違い、AIに話しかけるだけで更新できる点が特徴とされる。\n\n動画では本番のWordPressサイトを公式移行ツールでEmDashへ移す手順を実演している。移行後はAIのClaudeと、ツール連携の仕組みMCPを使う更新方法も示された。スマートフォンからAIに指示して記事を作成し公開する運用例も説明されている。\n\n会社サイトを運営する人は、AIに任せた更新作業へ切り替える選択肢を検討できる。移行にはドメインやDNSの切り替え作業も伴うため、事前準備が必要とされる。効果や費用面の具体的な数字は動画内で明示されておらず、不明な点が残る。",
+    "change_summary": "WordPressサイトをCloudflareの新サービスEmDashへ本番のまま移行し、AIで更新する運用方法を実演した点が新しい。",
+    "impact_summary": "自社サイトをWordPressで運営する企業や個人が、AI活用型の更新体制へ切り替える選択肢を検討できる。",
+    "action_suggestion": "移行ツールの詳細や相談窓口は動画概要欄のリンクから確認できる状態で、費用や対応範囲は本文に明記されていない。",
+    "importance": "B",
+    "related_categories": [
+      "アプリ開発・自動化",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_45346b8e95843f3b1102_rev_1d10ec53871b",
+    "story_id": "story_fe004f8689803267d6",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "similar_title",
+      "same_scope",
+      "same_url_content_changed"
+    ],
+    "home_video_selected_at": "2026-10-28T07:25:50.482Z",
+    "home_video_origin": "new",
+    "home_video_reserve": true
   },
   {
     "tool": "Gemini",
@@ -495,7 +578,7 @@
     "commons_image_credit": "Unknown author Unknown author",
     "commons_image_subject": "DeepSeek",
     "commons_image_review_version": "subject-v1",
-    "home_top_rank": 2,
+    "home_top_rank": 3,
     "home_top_score": 40,
     "home_score_breakdown": {
       "importance": 25,
@@ -507,18 +590,17 @@
       "penalty": 0
     },
     "home_selection_reasons": [
-      "重要度B",
-      "遅れて確認できた新着"
+      "重要度B"
     ],
-    "home_selected_at": "2026-10-28T00:49:23.565Z",
-    "home_window_start": "2026-10-27T23:50:07.939Z",
-    "home_window_end": "2026-10-28T00:44:26.602Z",
-    "home_content_changed_at": "2026-10-28T00:49:23.565Z",
-    "home_update_health": "HEALTHY",
+    "home_selected_at": "2026-10-28T10:37:02.255Z",
+    "home_window_start": "2026-10-28T00:44:26.602Z",
+    "home_window_end": "2026-10-28T10:35:38.593Z",
+    "home_content_changed_at": "2026-10-28T10:37:02.255Z",
+    "home_update_health": "DEGRADED",
     "home_consecutive_unchanged_editions": 0,
-    "home_top_origin": "new",
-    "home_edition_new_count": 2,
-    "home_edition_continued_count": 1
+    "home_top_origin": "same_day",
+    "home_edition_new_count": 0,
+    "home_edition_continued_count": 3
   },
   {
     "tool": "Grok / xAI",
@@ -658,6 +740,104 @@
     "dedupe_reasons": [
       "no_previous_story"
     ]
+  },
+  {
+    "tool": "専門家動画・発言",
+    "content_type": "expert_video",
+    "expert_id": "takahiro-anno",
+    "expert_ids": [
+      "takahiro-anno"
+    ],
+    "expert_name": "安野貴博",
+    "expert_names": [
+      "安野貴博"
+    ],
+    "expert_role": "AIエンジニア・起業家・政策当事者",
+    "expert_tier": "core_engineering_policy",
+    "platform": "YouTube",
+    "video_id": "zWKFdgUyFL0",
+    "source_trust": "institutional",
+    "title": "チームみらい、AI失業対策提言を官房長官に提出",
+    "source_url": "https://www.youtube.com/watch?v=zWKFdgUyFL0",
+    "source_name": "チームみらい【公式】",
+    "is_official": true,
+    "published_at": "2026-10-26T10:24:53.000Z",
+    "source_published_at": "2026-10-26T10:24:53.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-10-27T00:50:25.301Z",
+    "event_at": "2026-10-26",
+    "event_status": "発表済み",
+    "event_date_precision": "day",
+    "story_entities": [
+      "チームみらい",
+      "安野貴博",
+      "AI失業対策提言",
+      "ai失業対策提言"
+    ],
+    "primary_entity": "チームみらい",
+    "story_subject": "AI失業対策提言",
+    "event_type": "policy",
+    "event_stage": "proposed",
+    "event_scope": "日本",
+    "fact_slots": [
+      {
+        "type": "date",
+        "scope": "提言提出日",
+        "value": "2026-10-26",
+        "normalized_value": "2026-10-26"
+      },
+      {
+        "type": "count",
+        "scope": "AIインタビュー対象者数",
+        "value": "582人",
+        "normalized_value": "582"
+      },
+      {
+        "type": "amount",
+        "scope": "米国若手ソフトウェア開発職の雇用減少率",
+        "value": "約20%",
+        "normalized_value": "20%"
+      }
+    ],
+    "new_facts": [
+      "チームみらいの安野貴博氏らが2026年10月26日に木原稔官房長官へ「AI失業対策提言」を手交した",
+      "提言は米国の若手ソフトウェア開発職の雇用が約20%減少したとするデータに言及している",
+      "提言作成にあたり582人へのAIインタビューを実施した"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "チームみらいの安野貴博氏らが2026年10月26日、AI失業への備えを求める提言書を木原稔官房長官に手交した。",
+    "detail": "チームみらいの安野貴博氏と古川あおい氏、高山聡史氏が提言書を提出した。木原稔官房長官に2026年10月26日、AI失業への対策を求める文書を手渡した。AIの普及で仕事を失う「AI失業」に備える制度づくりを求める内容である。\n\n提言は、米国の若手ソフトウェア開発職の雇用が約20%減ったとする調査結果に触れている。提言づくりのため、582人にAIについて聞き取るインタビューを実施した。社会の変化に合わせて法律を見直す「法律のリファクタリング」という考え方も示された。\n\n提言は、制度を先回りして整える点と、働く人を支援する点の2つを柱としている。動画では相談窓口や支援制度についても案内し、困っている人への窓口を紹介した。提言が実際の政策にどう反映されるかはまだ明らかになっていない。",
+    "change_summary": "政治団体チームみらいが、AIによる失業リスクへの備えを求める具体的な提言書を政府に提出した。",
+    "impact_summary": "AIの普及で雇用が急に失われる可能性に対し、国の制度整備や働く人への支援策が議論される動きが出てきた。",
+    "action_suggestion": "提言の全文はチームみらいの公式サイトとnoteで公開されており、政府の今後の対応が確認事項となる。",
+    "importance": "A",
+    "related_categories": [
+      "政策・行政"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_41f6397ecd3ef4cffe55_rev_2e13930bf235",
+    "story_id": "story_cc0776a369e1f8e773",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "same_event_type",
+      "similar_title",
+      "same_scope",
+      "same_url_content_changed"
+    ],
+    "home_video_selected_at": "",
+    "home_video_origin": "",
+    "home_video_reserve": false
   },
   {
     "tool": "Grok / xAI",
@@ -818,65 +998,67 @@
     ]
   },
   {
-    "tool": "AI業界・経営重要速報",
-    "content_type": "article",
-    "expert_id": "",
-    "expert_ids": [],
-    "expert_name": "",
-    "expert_names": [],
-    "expert_role": "",
-    "expert_tier": "",
-    "platform": "",
-    "video_id": "",
-    "source_trust": "",
-    "title": "グーグル元CEO、「AI競争で中国は米国に6カ月遅れだが戦略次第で逆転も」と発言",
-    "source_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQaDZuc1ZxQ3Q2bEE2Ri1zZ25iYmlVN2x1d3YxOEJPd3JVU2szRW56cGQ0VE5iSUNuZklxbDhTaklHcTVmTjBSUzEwdV9TT1I2U2QyaU5jSERrcFNYN2xBdEtkdVFocTJFSk5CQjhlblZ1Znh4dkNmVUNTbVpqbnpSWnRjWHV4M2J3M3l6ZUhTOVlnZw?oc=5",
-    "source_name": "Yahoo Finance",
-    "is_official": false,
-    "published_at": "2026-10-25T03:30:00.000Z",
-    "source_published_at": "2026-10-25T03:30:00.000Z",
+    "tool": "専門家動画・発言",
+    "content_type": "expert_video",
+    "expert_id": "keito-aiweb",
+    "expert_ids": [
+      "keito-aiweb"
+    ],
+    "expert_name": "KEITO",
+    "expert_names": [
+      "KEITO"
+    ],
+    "expert_role": "AIツールの使い方・検証を発信する解説者",
+    "expert_tier": "practical_ai_educator",
+    "platform": "YouTube",
+    "video_id": "MFKY46zi8d4",
+    "source_trust": "primary",
+    "title": "GoogleのAIゲーム制作サービス「Playground」を実演レビュー",
+    "source_url": "https://www.youtube.com/watch?v=MFKY46zi8d4",
+    "source_name": "KEITO【AI&WEB ch】",
+    "is_official": true,
+    "published_at": "2026-10-25T09:00:13.000Z",
+    "source_published_at": "2026-10-25T09:00:13.000Z",
     "source_updated_at": "",
     "source_date_status": "published",
-    "fetched_at": "2026-10-25T09:09:49.504Z",
+    "fetched_at": "2026-10-26T08:07:43.660Z",
     "event_at": "",
-    "event_status": "発表済み",
+    "event_status": "開始済み",
     "event_date_precision": "unknown",
     "story_entities": [
-      "グーグル",
-      "グーグル元CEO",
-      "グーグル元ceo"
+      "Google Playground",
+      "Unity Spark",
+      "KEITO",
+      "googleplayground",
+      "unityspark"
     ],
-    "primary_entity": "グーグル元CEO",
-    "story_subject": "米中AI開発競争に関する発言",
+    "primary_entity": "KEITO【AI&WEB ch】",
+    "story_subject": "Google Playground(AIゲーム制作プラットフォーム)",
     "event_type": "other",
     "event_stage": "other",
-    "event_scope": "米国・中国",
-    "fact_slots": [
-      {
-        "type": "other",
-        "scope": "中国のAI開発の遅れ",
-        "value": "約6カ月",
-        "normalized_value": "6"
-      }
-    ],
+    "event_scope": "YouTube動画・Google Playgroundサービス全般",
+    "fact_slots": [],
     "new_facts": [
-      "グーグルの元CEOが、中国のAI開発は米国に約6カ月遅れていると発言した",
-      "同氏は、中国が特定の戦略により逆転する可能性があるとも述べた"
+      "GoogleのAIゲーム制作サービス「Playground」が紹介された",
+      "文字指示だけでゲームを作り、そのまま公開できる機能が実演された",
+      "2Dや3Dのゲーム制作、複数人で同時に遊べる機能が確認できる",
+      "Unity Sparkで作られたゲームの紹介や動作検証が行われた",
+      "利用料金や制限、今後の収益化についても解説された"
     ],
     "structured_complete": true,
-    "raw_excerpt": "グーグルの元CEOは、AI開発競争で中国は米国に約6カ月遅れているとしつつ、特定の戦略により中国が逆転する可能性があると述べた。",
-    "detail": "グーグルの元CEOが、米国と中国のAI開発競争について発言しました。簡単に言うと、中国の技術力は米国より少し遅れているものの、戦略次第で追い抜く可能性があるという指摘です。これまでも米中のAI競争は話題になってきましたが、具体的な遅れの期間や逆転の可能性について元トップ経営者が言及した点が注目されます。\n\n記事によると、この元CEOは中国のAI開発が米国より約6カ月遅れているとの見方を示しました。一方で、中国が採用しているある戦略によって、この差を縮めたり逆転したりする可能性があるとも述べています。さらに「我々はすでに負けつつある」とも発言したとされています。\n\nこの発言は、AI開発における国際競争の見方を示すものとして受け止められます。ただし、具体的にどのような戦略を指しているのか、記事の抜粋からは詳細が分かりません。発言の根拠や裏付けとなるデータについても、今後の情報を確認する必要があります。",
-    "change_summary": "グーグルの元CEOが、AI開発で中国は米国に6カ月遅れているが、戦略次第で逆転しうるとの見方を示した。",
-    "impact_summary": "米中のAI開発競争に関する見方は、各国の投資判断や政策の方向性に影響を与える可能性がある。",
-    "action_suggestion": "発言の根拠となる具体的な戦略の内容など、詳細情報はまだ確認できていない。",
+    "raw_excerpt": "KEITO氏がGoogleのAIゲーム制作サービス「Playground」を使い、指示だけでゲームを作って公開する流れを動画で検証した。",
+    "detail": "KEITO氏がGoogleのAIゲーム制作サービス「Playground」を実際に使って検証した。文字で指示を出すだけでゲームを作り、そのまま公開できる仕組みだと紹介された。動画のタイトルでは「ゲーム版YouTube」とも表現されている。\n\n動画では2Dや3Dのゲーム制作や、複数人で同時に遊べる機能について解説された。利用料金や制限、今後の収益化の仕組みについても触れられている。Unity Sparkという別のツールで作られたゲームの紹介や動作確認も行われた。\n\nゲーム制作に興味がある人は、専門知識なしで作品を作れる可能性を知れる。動画では既存のゲーム配信サービスとの違いや今後の可能性も比較されている。正式な料金や収益化の詳しい条件は、この動画だけでは確定していない。",
+    "change_summary": "GoogleのAIゲーム制作サービス「Playground」が、指示だけでゲームを作り公開できる仕組みとして紹介された。",
+    "impact_summary": "ゲーム制作の専門知識がない人でも、AIの指示だけで作品を公開できる可能性が広がる。",
+    "action_suggestion": "正式な料金体系や収益化の詳細条件は、この動画時点では明らかにされていない。",
     "importance": "B",
     "related_categories": [
-      "企業・株式",
-      "政策・行政"
+      "AIツール・モデル",
+      "アプリ開発・自動化"
     ],
     "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_1140525ec2c0bd12ae98",
-    "story_id": "story_9d5fa8954888ecb02f",
+    "article_id": "article_f2d57e570b519aff3f9e_rev_2981238f0e17",
+    "story_id": "story_4e91b280bfbff1e1d0",
     "story_sequence": 1,
     "relation_type": "new",
     "relation_confidence": 1,
@@ -884,10 +1066,101 @@
     "previous_title": "",
     "previous_source_published_at": "",
     "continuation_lead": "",
-    "dedupe_decision": "new",
+    "dedupe_decision": "uncertain",
     "dedupe_reasons": [
-      "no_previous_story"
-    ]
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "similar_title",
+      "same_scope",
+      "same_url_content_changed"
+    ],
+    "home_video_selected_at": "",
+    "home_video_origin": "",
+    "home_video_reserve": false
+  },
+  {
+    "tool": "専門家動画・発言",
+    "content_type": "expert_video",
+    "expert_id": "tomohiro-ikeda",
+    "expert_ids": [
+      "tomohiro-ikeda"
+    ],
+    "expert_name": "池田朋弘（いけとも）",
+    "expert_names": [
+      "池田朋弘（いけとも）"
+    ],
+    "expert_role": "生成AIの仕事への活用を教える解説者",
+    "expert_tier": "practical_ai_educator",
+    "platform": "YouTube",
+    "video_id": "cWnuhBXVWeQ",
+    "source_trust": "primary",
+    "title": "Museアプリ日本上陸と常駐型AIエージェント競争、週刊AIニュース23選を解説",
+    "source_url": "https://www.youtube.com/watch?v=cWnuhBXVWeQ",
+    "source_name": "いけともch",
+    "is_official": true,
+    "published_at": "2026-10-25T06:00:32.000Z",
+    "source_published_at": "2026-10-25T06:00:32.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-10-26T08:07:43.660Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Meta Muse",
+      "Claude Duet",
+      "DeepSeek V4.1",
+      "metamuse",
+      "claudeduet"
+    ],
+    "primary_entity": "いけともch(池田朋弘)",
+    "story_subject": "週刊AIニュース解説(Museアプリ日本上陸ほか23件)",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "YouTube配信・グローバルAIツール動向",
+    "fact_slots": [],
+    "new_facts": [
+      "Meta社のMuseアプリが日本で利用できるようになったと紹介された",
+      "Claude Duetなど常駐型AIエージェントの動きが解説された",
+      "Mercury 3という拡散型の文章生成方式が取り上げられた",
+      "DeepSeek V4.1 Flash 1017やKimi K3.1 Proなど新モデルが紹介された",
+      "PHPの脆弱性や情報流出への備えについても解説された"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "池田朋弘氏がYouTube動画で、Meta社Museアプリの日本上陸や常駐型AIエージェント競争など週刊AIニュース23件を紹介した。",
+    "detail": "池田朋弘氏がYouTube番組で週刊のAIニュースをまとめて解説した。Meta社の対話アプリ「Muse」が日本でも使えるようになったと紹介された。指示をすると人の代わりに作業を続ける「AIエージェント」競争が目立つ回だった。\n\n動画ではClaude DuetやMercury 3など23件のAIニュースが紹介された。文章を少しずつ作る「拡散型」の仕組みを使うMercury 3や、作業履歴を分析するAgentsViewの実演もあった。DeepSeekやKimiなど中国発AIモデルの新版も扱われ、世界的な開発競争が分かる。\n\n仕事でAIを使う人は、常駐型AIエージェントや新しいツールの選択肢が増えたと分かる。プログラム言語PHPの弱点や情報流出への備えも取り上げられ、安全対策の話題もあった。各ツールの正式な価格や提供地域は、この動画の説明だけでは分からない。",
+    "change_summary": "Museアプリの日本上陸や常駐型AIエージェント、拡散型の文章生成方式など多数の最新AI動向がまとめて紹介された。",
+    "impact_summary": "業務でAIツールを選ぶ人にとって、常駐型エージェントや新しい生成AIの選択肢が増えている状況を把握できる。",
+    "action_suggestion": "各ツールの価格や正式な提供地域などの詳細は、この動画内では明らかにされていない。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル",
+      "研究・技術",
+      "セキュリティ"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_2a60017b1a234d607339_rev_828d30ee3f50",
+    "story_id": "story_ff23b33aaa78b98398",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "similar_title",
+      "same_scope",
+      "same_url_content_changed"
+    ],
+    "home_video_selected_at": "",
+    "home_video_origin": "",
+    "home_video_reserve": false
   },
   {
     "tool": "DeepSeek",
@@ -1109,6 +1382,84 @@
     "dedupe_reasons": [
       "no_previous_story"
     ]
+  },
+  {
+    "tool": "専門家動画・発言",
+    "content_type": "expert_video",
+    "expert_id": "shota-imai",
+    "expert_ids": [
+      "shota-imai"
+    ],
+    "expert_name": "今井翔太",
+    "expert_names": [
+      "今井翔太"
+    ],
+    "expert_role": "AI研究者・解説者",
+    "expert_tier": "core_research",
+    "platform": "YouTube",
+    "video_id": "y1PbD-bFvDc",
+    "source_trust": "trusted_host",
+    "title": "中国製AIモデル、使うべきか 今井翔太氏が性能と活用法を解説",
+    "source_url": "https://www.youtube.com/watch?v=y1PbD-bFvDc",
+    "source_name": "ビジネス＋ITチャンネル",
+    "is_official": false,
+    "published_at": "2026-10-24T10:00:05.000Z",
+    "source_published_at": "2026-10-24T10:00:05.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-10-27T00:52:53.048Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "今井翔太",
+      "中国製AIモデル",
+      "オープンモデル",
+      "中国製aiモデル"
+    ],
+    "primary_entity": "今井翔太",
+    "story_subject": "中国製オープンAIモデルの活用方法",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "企業・開発者の利用環境全般",
+    "fact_slots": [],
+    "new_facts": [
+      "今井翔太氏が中国製オープンAIモデルの活用について外部ネットワーク遮断による運用を提案した",
+      "性能面だけでなく利用者の心理的・政治的事情も論点として挙げられた"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "AI研究者の今井翔太氏が、高性能な中国製オープンAIモデルの活用について、外部ネット遮断などの技術対策と心理・政治的要因を語った。",
+    "detail": "AI研究者の今井翔太氏が動画で中国製AIモデルの使い方を語った。中国企業が公開している性能の高いAIモデルをどう扱うかという話題である。高性能でも中国製という理由で避ける動きがある中、活用法を論じた点が新しい。\n\n今井氏は外部ネットワークから切り離した環境で動かす対策を挙げた。インターネットにつながない状態で使えば情報流出の心配を減らせるという考え方である。性能の高さと安全性への不安という相反する課題にどう向き合うかが論点となる。\n\n企業や開発者は性能だけでなく運用環境も含めて選択を迫られる。動画は短い切り抜きで、詳しい説明は本編に委ねられている。具体的にどのモデルを指すか、本編でどこまで語られたかは明らかでない。",
+    "change_summary": "今井翔太氏が中国製高性能AIモデルの活用法として、外部遮断運用と心理・政治的事情の両面を指摘した点が新しい。",
+    "impact_summary": "企業がAIモデルを選ぶ際、性能だけでなく運用環境や社会的受け止めも考慮する必要性が増す。",
+    "action_suggestion": "詳しい内容は本編動画（後編）で語られているため、今井氏の説明を確認することが望ましい。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル",
+      "セキュリティ"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_c2bbb2e3ed7d765b7d27_rev_f3f526583af9",
+    "story_id": "story_fb8aabaf04b216bc56",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "similar_title",
+      "same_scope",
+      "same_url_content_changed"
+    ],
+    "home_video_selected_at": "",
+    "home_video_origin": "",
+    "home_video_reserve": false
   },
   {
     "tool": "Canva",
@@ -1624,6 +1975,259 @@
     ]
   },
   {
+    "tool": "専門家動画・発言",
+    "content_type": "expert_video",
+    "expert_id": "takahiro-anno",
+    "expert_ids": [
+      "takahiro-anno"
+    ],
+    "expert_name": "安野貴博",
+    "expert_names": [
+      "安野貴博"
+    ],
+    "expert_role": "AIエンジニア・起業家・政策当事者",
+    "expert_tier": "core_engineering_policy",
+    "platform": "YouTube",
+    "video_id": "WfUy35SELqk",
+    "source_trust": "institutional",
+    "title": "チームみらいがAI時代のサイバー攻撃対策の緊急提言を政府に提出",
+    "source_url": "https://www.youtube.com/watch?v=WfUy35SELqk",
+    "source_name": "チームみらい【公式】",
+    "is_official": true,
+    "published_at": "2026-10-23T12:06:18.000Z",
+    "source_published_at": "2026-10-23T12:06:18.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-10-24T22:33:04.071Z",
+    "event_at": "2026-10-23",
+    "event_status": "予定",
+    "event_date_precision": "day",
+    "story_entities": [
+      "チームみらい",
+      "安野貴博",
+      "古川俊治"
+    ],
+    "primary_entity": "チームみらい",
+    "story_subject": "AI時代のサイバー攻撃と情報漏洩対策の緊急提言",
+    "event_type": "policy",
+    "event_stage": "proposed",
+    "event_scope": "日本",
+    "fact_slots": [
+      {
+        "type": "count",
+        "scope": "提言の柱の数",
+        "value": "7",
+        "normalized_value": "7"
+      }
+    ],
+    "new_facts": [
+      "チームみらいが古川俊治デジタル担当大臣にAI時代のサイバー攻撃対策の緊急提言を手交した",
+      "提言はPHPの脆弱性に起因する情報漏洩の相次ぐ発生を背景としている",
+      "政府に求める対応として国の防御力底上げから被害者支援まで7つの柱が示された"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "チームみらいの安野貴博氏らが情報漏洩対策の緊急提言を古川大臣に提出し、7つの柱を示す配信を行った。",
+    "detail": "政治団体「チームみらい」党首の安野貴博氏らが緊急配信を行いました。AI時代のサイバー攻撃と情報漏洩対策について政府に提言書を渡しました。提言はデジタル庁を担当する古川俊治大臣に直接手渡されました。\n\n配信ではPHPというプログラムの弱点が原因で深刻な情報漏洩が相次いでいると説明されました。政府に求める対応として国の防御力底上げなど7つの柱が示されました。柱には個人情報を持ちすぎない仕組みや漏洩被害者支援も含まれています。\n\n個人が今すぐできる対策についても動画内で紹介されました。提言は今後の国会審議で取り上げられる予定だと説明されています。提言が実際の制度にどこまで反映されるかはまだ分かっていません。",
+    "change_summary": "チームみらいがPHPの脆弱性に起因する情報漏洩の連続発生を受け、AIによる防御を含む7つの政策提言を政府に提出した。",
+    "impact_summary": "企業の情報システム管理や個人情報保護のルールが今後の国会審議を通じて変わる可能性がある。",
+    "action_suggestion": "提言の全文はチームみらいの提言ページとnote記事で公開されており、今後の国会での扱いが注目点となる。",
+    "importance": "B",
+    "related_categories": [
+      "政策・行政",
+      "セキュリティ"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_6c0750b50151ea4a7afc_rev_d1d979dc5938",
+    "story_id": "story_77535fdb0e6d01d354",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "same_event_type",
+      "similar_title",
+      "same_scope",
+      "same_url_content_changed"
+    ],
+    "home_video_selected_at": "",
+    "home_video_origin": "",
+    "home_video_reserve": false
+  },
+  {
+    "tool": "専門家動画・発言",
+    "content_type": "expert_video",
+    "expert_id": "keito-aiweb",
+    "expert_ids": [
+      "keito-aiweb"
+    ],
+    "expert_name": "KEITO",
+    "expert_names": [
+      "KEITO"
+    ],
+    "expert_role": "AIツールの使い方・検証を発信する解説者",
+    "expert_tier": "practical_ai_educator",
+    "platform": "YouTube",
+    "video_id": "wUeDaCeMrdM",
+    "source_trust": "primary",
+    "title": "AIコーディング利用者向けセキュリティ対策解説（KEITO氏）",
+    "source_url": "https://www.youtube.com/watch?v=wUeDaCeMrdM",
+    "source_name": "KEITO【AI&WEB ch】",
+    "is_official": true,
+    "published_at": "2026-10-23T12:00:24.000Z",
+    "source_published_at": "2026-10-23T12:00:24.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-10-23T23:19:09.712Z",
+    "event_at": "",
+    "event_status": "発表済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "KEITO",
+      "1Password",
+      "Claude Code",
+      "keito",
+      "1password"
+    ],
+    "primary_entity": "KEITO",
+    "story_subject": "AIコーディングツール利用時のセキュリティ対策",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "個人開発者・AIコーディングツール利用者向け",
+    "fact_slots": [],
+    "new_facts": [
+      "動画ではPHP・WordPressの確認やNode.jsの更新手順が紹介されている",
+      "AIによる点検方法や自作チェックツールの配布が案内されている",
+      "KEITO氏がパスワード管理アプリ1Password導入の理由を説明している",
+      "APIキーやパスキー、2段階認証の設定についても触れている"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "YouTuberのKEITO氏が、AIにコードを書かせる人向けにPHP確認や1Password導入などの対策をまとめて解説した。",
+    "detail": "YouTuberのKEITO氏が、AIにコードを書かせる人向けの動画を公開した。動画は、サーバーで使うPHPやWordPressの状態確認から始まる。複数の対策を一度にまとめて確認できる内容になっている。\n\n動画では、Node.jsやChromeなど基本ソフトの更新も呼びかけている。AIを使った点検方法や、自作チェックツールの配布も紹介している。指示だけで自動的に作業するプログラム『AIエージェント』への権限管理も説明した。\n\nKEITO氏はパスワード管理アプリ『1Password』導入の理由も語った。ソフト同士をつなぐ合言葉『APIキー』やパスキーの管理法も扱った。ただし紹介が中心で、各手順の詳しい効果までは示されていない。",
+    "change_summary": "PHP確認からAIによる点検、1Password導入まで対策を一通りまとめて紹介した点が新しい。",
+    "impact_summary": "AIにコードを書かせる個人開発者が、放置しがちな基本対策を見直すきっかけになる。",
+    "action_suggestion": "動画で紹介されたPHP点検ツールや1Password、パスキー設定は各自の環境で確認できる。",
+    "importance": "B",
+    "related_categories": [
+      "セキュリティ",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_74624479261c7c63b920_rev_f6ef330486df",
+    "story_id": "story_946071478380278f90",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "similar_title",
+      "same_scope",
+      "same_url_content_changed"
+    ],
+    "home_video_selected_at": "",
+    "home_video_origin": "",
+    "home_video_reserve": false
+  },
+  {
+    "tool": "専門家動画・発言",
+    "content_type": "expert_video",
+    "expert_id": "takahiro-anno",
+    "expert_ids": [
+      "takahiro-anno"
+    ],
+    "expert_name": "安野貴博",
+    "expert_names": [
+      "安野貴博"
+    ],
+    "expert_role": "AIエンジニア・起業家・政策当事者",
+    "expert_tier": "core_engineering_policy",
+    "platform": "YouTube",
+    "video_id": "Rin-wrEeA7w",
+    "source_trust": "primary",
+    "title": "安野貴博氏、ヒューマノイドボクシング世界王者の大曽根宏幸氏とロボット開発を語る",
+    "source_url": "https://www.youtube.com/watch?v=Rin-wrEeA7w",
+    "source_name": "安野貴博の自由研究",
+    "is_official": true,
+    "published_at": "2026-10-23T11:00:12.000Z",
+    "source_published_at": "2026-10-23T11:00:12.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-10-24T22:39:31.619Z",
+    "event_at": "",
+    "event_status": "不明",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "安野貴博",
+      "大曽根宏幸",
+      "EmplifAI",
+      "emplifai"
+    ],
+    "primary_entity": "安野貴博",
+    "story_subject": "ヒューマノイドロボットボクシングとEmplifAIのロボット開発",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "動画・対談",
+    "fact_slots": [
+      {
+        "type": "price",
+        "scope": "大曽根氏が購入したロボットの価格",
+        "value": "約1000万円",
+        "normalized_value": "10000000JPY"
+      }
+    ],
+    "new_facts": [
+      "大曽根宏幸氏はヒューマノイドボクシング世界大会「REK2」の世界チャンピオンである",
+      "大曽根氏は約1000万円のロボットを購入して起業した",
+      "EmplifAIは自社製双腕モバイルマニピュレーター「OpenShell」を開発している"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "安野貴博氏がロボット企業EmplifAI代表の大曽根宏幸氏と対談し、人型ロボットボクシングや自社ロボット開発の経緯を語った。",
+    "detail": "安野貴博氏がロボット開発企業EmplifAIの代表取締役、大曽根宏幸氏と対談した。動画では人型ロボットによるボクシング競技「REK」の世界大会について語られた。大曽根氏は自社製ロボットの購入や起業の経緯も紹介した。\n\n対談では大曽根氏が約1000万円のロボットを購入して起業した経緯が語られた。人型ロボットがボクシングで戦う競技REKでの世界優勝の裏話も紹介された。双腕で作業できるロボット「OpenShell」の開発経緯や会社経営の話も扱われた。\n\n視聴者は人型のロボット開発の最新動向を知ることができる。動画では最近のAIロボット事情やヒューマノイドロボットの将来展望も話題になった。具体的な技術仕様や製品化時期についてはまだ発表されていない。",
+    "change_summary": "人型ロボットボクシング世界王者であるEmplifAI代表の大曽根宏幸氏が、安野貴博氏と自社ロボット開発や起業の経緯を語った。",
+    "impact_summary": "ロボット事業や人型ロボット開発に関心を持つ起業家・エンジニアにとって、競技参入から起業までの実例が参考になる。",
+    "action_suggestion": "動画内でOpenShellの製品化時期や価格など具体的な発表はまだされていない。",
+    "importance": "B",
+    "related_categories": [
+      "研究・技術",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_f3738f03f2dae77dbbce_rev_f1604c18335d",
+    "story_id": "story_038bad0303e68acd2a",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "similar_title",
+      "same_scope",
+      "same_url_content_changed"
+    ],
+    "home_video_selected_at": "",
+    "home_video_origin": "",
+    "home_video_reserve": false
+  },
+  {
     "tool": "世界の新モデル・速報",
     "content_type": "article",
     "expert_id": "",
@@ -1841,6 +2445,92 @@
       "same_event_type",
       "non_forward_stage_change"
     ]
+  },
+  {
+    "tool": "専門家動画・発言",
+    "content_type": "expert_video",
+    "expert_id": "keito-aiweb",
+    "expert_ids": [
+      "keito-aiweb"
+    ],
+    "expert_name": "KEITO",
+    "expert_names": [
+      "KEITO"
+    ],
+    "expert_role": "AIツールの使い方・検証を発信する解説者",
+    "expert_tier": "practical_ai_educator",
+    "platform": "YouTube",
+    "video_id": "pZZo0bqcZLU",
+    "source_trust": "primary",
+    "title": "Gemini in Chromeの使い方を検証、KEITOが8つの実践例を紹介",
+    "source_url": "https://www.youtube.com/watch?v=pZZo0bqcZLU",
+    "source_name": "KEITO【AI&WEB ch】",
+    "is_official": true,
+    "published_at": "2026-10-22T09:00:34.000Z",
+    "source_published_at": "2026-10-22T09:00:34.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-10-26T08:07:43.660Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "Gemini in Chrome",
+      "Google Chrome",
+      "KEITO",
+      "geminiinchrome",
+      "googlechrome"
+    ],
+    "primary_entity": "KEITO",
+    "story_subject": "Gemini in Chrome",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "Google Chromeブラウザ全般",
+    "fact_slots": [
+      {
+        "type": "availability",
+        "scope": "Gemini in Chromeの利用条件",
+        "value": "拡張機能の追加・課金不要で利用可能",
+        "normalized_value": "拡張機能の追加課金不要で利用可能"
+      }
+    ],
+    "new_facts": [
+      "Gemini in ChromeはGoogle Chromeに標準搭載されており、拡張機能や課金なしで使える",
+      "動画ではページ要約、海外ドキュメント解説、タブ横断比較、動画要約、予定登録、画像加工、画面認識など8つの検証を行っている",
+      "動画にはGoogle Chromeとの協力企画であることを示す表記がある"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "AI解説者KEITOが、Chrome標準搭載のGemini in Chromeについて、使い方と8つの実践的な検証結果を動画で紹介した。",
+    "detail": "AI活用を解説するKEITOが、Gemini in Chromeの使い方をまとめた動画を公開した。これはGoogle Chromeに標準で組み込まれたAI機能のことである。拡張機能を追加したり料金を払ったりしなくても、すぐに使える点が特徴である。\n\n動画ではタブグループやメモリセーバーなど、Chrome本体の便利機能も紹介している。そのうえでGemini in Chromeの始め方と利用条件を説明している。ページ要約、海外ドキュメントの日本語解説、複数タブの比較、動画要約とメール下書き作成、予定表への登録、画像の加工、画面に映る物の名前の認識という8つの検証を行っている。\n\n視聴者は紹介されたやり取りの文章をそのまま自分のパソコンで試せる構成になっている。動画には案件であることを示す表記があり、Google Chromeとの協力企画として作られている。各検証でどのような結果が出たかという具体的な評価は、この記事の時点ではわかっていない。",
+    "change_summary": "Chromeに標準搭載されたGemini in Chromeの使い方について、8つの具体的な活用例を通じて紹介する内容。",
+    "impact_summary": "Chromeを仕事で使う人は、資料の要約や比較表作り、画像編集などを追加費用なしで試せる可能性がある。",
+    "action_suggestion": "Gemini in Chromeの開始方法や利用条件は動画内で示されており、紹介されたやり取り文はそのまま試せる形で公開されている。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_49d1a77a4a776f66b49a_rev_721076454d2c",
+    "story_id": "story_b404967431b488e358",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "similar_title",
+      "same_scope",
+      "same_url_content_changed"
+    ],
+    "home_video_selected_at": "",
+    "home_video_origin": "",
+    "home_video_reserve": false
   },
   {
     "tool": "Gemini",
@@ -2210,6 +2900,85 @@
     "commons_image_review_version": "subject-v1"
   },
   {
+    "tool": "専門家動画・発言",
+    "content_type": "expert_video",
+    "expert_id": "takahiro-anno",
+    "expert_ids": [
+      "takahiro-anno"
+    ],
+    "expert_name": "安野貴博",
+    "expert_names": [
+      "安野貴博"
+    ],
+    "expert_role": "AIエンジニア・起業家・政策当事者",
+    "expert_tier": "core_engineering_policy",
+    "platform": "YouTube",
+    "video_id": "bHK8xVjRiVE",
+    "source_trust": "primary",
+    "title": "安野貴博氏、フィールズ賞数学者ヴィラニ氏にパリでAI政策を聞く",
+    "source_url": "https://www.youtube.com/watch?v=bHK8xVjRiVE",
+    "source_name": "安野貴博の自由研究",
+    "is_official": true,
+    "published_at": "2026-10-20T11:00:38.000Z",
+    "source_published_at": "2026-10-20T11:00:38.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-10-20T23:13:40.644Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "安野貴博",
+      "セドリック・ヴィラニ",
+      "チームみらい",
+      "セドリックヴィラニ"
+    ],
+    "primary_entity": "安野貴博",
+    "story_subject": "セドリック・ヴィラニ氏へのパリ現地インタビュー(AIと政治)",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "動画配信・YouTube",
+    "fact_slots": [],
+    "new_facts": [
+      "安野貴博氏がフランスの数学者セドリック・ヴィラニ氏にパリで取材した動画を公開した",
+      "ヴィラニ氏は2010年にフィールズ賞を受賞し、後にフランス国会議員を務めた",
+      "動画は政治へのAI活用や巨大テック独占への欧州の危機感、2018年の報告書のその後を扱う"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "安野貴博氏が元フランス国会議員でフィールズ賞受賞の数学者セドリック・ヴィラニ氏にパリで取材し、AIと政治の関係や欧州の巨大テック規制への危機感を扱う動画を公開した。",
+    "detail": "安野貴博氏が、フランスの数学者セドリック・ヴィラニ氏にパリで取材した動画を公開した。ヴィラニ氏は2010年にフィールズ賞を受賞し、後にフランス国会議員も務めた人物である。今回は政治家としての経験をもとに、AIと政治の関わりを語る対談形式の動画である。\n\nヴィラニ氏は過去に、マクロン大統領へAIの国家戦略を提案した報告書をまとめた人物である。動画はその報告書が2018年以降どう扱われてきたかを振り返る内容を含む。政治へのAI活用や、巨大テック企業の独占に対する欧州側の危機感も論点となっている。\n\n動画は安野貴博氏と志水彰太氏による現地での振り返りトークも収録している。本編は対談形式で構成されており、具体的な結論は動画内で語られる内容による。ヴィラニ氏個人の見解であり、フランス政府の公式方針を示すものではない点に注意が必要である。",
+    "change_summary": "フィールズ賞受賞者で元国会議員という異例の経歴を持つヴィラニ氏に、政治現場でのAI活用や欧州の巨大テック規制への危機感を聞く対談動画が公開された。",
+    "impact_summary": "日本のAI政策論議でも、欧州の政治家出身研究者の視点や巨大テック規制の考え方は参考材料になりうる。",
+    "action_suggestion": "対談本編はYouTubeで公開されており、具体的な発言内容は本編視聴で確認できる。",
+    "importance": "B",
+    "related_categories": [
+      "政策・行政",
+      "規制・法務"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_ea6c7f2362d2ad9a5c38_rev_adf135e27204",
+    "story_id": "story_eb0af7894c2e608b6b",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "similar_title",
+      "same_scope",
+      "same_url_content_changed"
+    ],
+    "home_video_selected_at": "",
+    "home_video_origin": "",
+    "home_video_reserve": false
+  },
+  {
     "tool": "Claude / Claude Code",
     "content_type": "article",
     "expert_id": "",
@@ -2288,6 +3057,178 @@
     "dedupe_reasons": [
       "no_previous_story"
     ]
+  },
+  {
+    "tool": "専門家動画・発言",
+    "content_type": "expert_video",
+    "expert_id": "satoshi-nakajima",
+    "expert_ids": [
+      "satoshi-nakajima"
+    ],
+    "expert_name": "中島聡",
+    "expert_names": [
+      "中島聡"
+    ],
+    "expert_role": "ソフトウェア技術者・起業家",
+    "expert_tier": "core_engineering",
+    "platform": "Web動画・講演",
+    "video_id": "",
+    "source_trust": "editorial_host_candidate",
+    "title": "中島聡氏、米国で広がる新職種「FDE」とAIによる生産性向上を語る",
+    "source_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9jSDA1aW5mVmRGOTZHdUozTks3Tk9lOTdlQ2pjb2UwQW5RVXRrc19VUUR2Q2FUUm1wb3cwOFp4WWNtV1BxX21tbm5TM252M0dlbnlCSzA4SHZYN0li?oc=5",
+    "source_name": "YouTube",
+    "is_official": false,
+    "published_at": "2026-10-20T08:00:15.000Z",
+    "source_published_at": "2026-10-20T08:00:15.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-10-21T23:25:31.716Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "中島聡",
+      "FDE",
+      "fde"
+    ],
+    "primary_entity": "中島聡",
+    "story_subject": "FDE(現場常駐型エンジニア)という新職種とAIによる生産性向上",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "米国の働き方・エンジニア職",
+    "fact_slots": [
+      {
+        "type": "amount",
+        "scope": "コスト削減例",
+        "value": "年間10億円",
+        "normalized_value": "1000000000JPY"
+      },
+      {
+        "type": "amount",
+        "scope": "生産性向上",
+        "value": "10倍",
+        "normalized_value": "10"
+      }
+    ],
+    "new_facts": [
+      "米国でFDEと呼ばれる新職種が急拡大しているとされる",
+      "年間10億円のコスト削減につながった例が紹介されている",
+      "中島聡氏が40年書いてきたコードの作成をAIに任せたと語っている",
+      "その結果生産性が10倍になったとされる"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "ソフトウェア技術者の中島聡氏が、米国で増える新職種「FDE」や、AIで生産性が10倍になった事例などを動画で紹介した。",
+    "detail": "中島聡氏がYouTube動画で、米国の新しい働き方について話している。FDEとは、企業の現場に入り込んで働く技術者を指す新しい職種だという。これまでのプログラマーの働き方とは違う形が広がっていると紹介している。\n\n動画では、年間10億円のコスト削減につながった例が取り上げられている。中島氏自身も、40年間書いてきたコードの作成をAIに任せた経験を語っている。その結果、仕事の生産性が10倍になったという内容が含まれている。\n\n動画は、AIを使った新しい働き方に関心がある人向けの内容となっている。ただし、具体的な数字の裏付けや細かい条件は本文からは確認できない。今後どの企業や分野に広がるかは、現時点では発表されていない。",
+    "change_summary": "AIを使って現場に入り込んで成果を出す「FDE」という働き方が米国で広がっていると紹介されている。",
+    "impact_summary": "日本でもエンジニアの働き方や評価の仕組みが、成果ベースに変わる可能性を考えるきっかけになる。",
+    "action_suggestion": "動画内で語られたFDEの定義や事例の詳細、具体的な裏付け数字は今後の情報を確認する必要がある。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル",
+      "企業・株式"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_9ccb1444a6014f2339bf_rev_98dd30895e43",
+    "story_id": "story_55903c6977ce3dd65f",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "similar_title",
+      "same_scope",
+      "same_url_content_changed"
+    ],
+    "home_video_selected_at": "",
+    "home_video_origin": "",
+    "home_video_reserve": false
+  },
+  {
+    "tool": "専門家動画・発言",
+    "content_type": "expert_video",
+    "expert_id": "satoshi-nakajima",
+    "expert_ids": [
+      "satoshi-nakajima"
+    ],
+    "expert_name": "中島聡",
+    "expert_names": [
+      "中島聡"
+    ],
+    "expert_role": "ソフトウェア技術者・起業家",
+    "expert_tier": "core_engineering",
+    "platform": "YouTube",
+    "video_id": "HejILbNPsyo",
+    "source_trust": "trusted_host",
+    "title": "中島聡氏が語る「FDE」という新職種とAI時代の働き方の変化",
+    "source_url": "https://www.youtube.com/watch?v=HejILbNPsyo",
+    "source_name": "ビジネス＋ITチャンネル",
+    "is_official": false,
+    "published_at": "2026-10-20T08:00:15.000Z",
+    "source_published_at": "2026-10-20T08:00:15.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-10-20T09:26:20.937Z",
+    "event_at": "",
+    "event_status": "継続中",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "中島聡",
+      "FDE",
+      "ビジネス+IT",
+      "fde",
+      "ビジネスit"
+    ],
+    "primary_entity": "中島聡",
+    "story_subject": "FDE(顧客課題をAIで実装まで担う新職種)とソフトウェアの成果報酬型ビジネスへの変化",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "米国・ソフトウェア業界",
+    "fact_slots": [],
+    "new_facts": [
+      "米国でFDEと呼ばれる新職種が急速に広がっていると中島聡氏が紹介した",
+      "FDEは顧客企業の課題を理解しAIを使って実装まで担う役割とされる",
+      "ソフトウェア業界で時間ベースの料金体系から成果ベースへの変化が語られた"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "ソフトウェア技術者の中島聡氏が動画で、AIで顧客の課題解決まで担う新職種「FDE」と成果報酬型への働き方の変化を語った。",
+    "detail": "ソフトウェア技術者の中島聡氏が、AI時代の働き方について動画で語った。取り上げたのは、顧客の課題を理解してAIで実装まで行う「FDE」という仕事。FDEとは、依頼主の現場に入り込んで働く技術者を指す言葉だという。\n\n動画では、米国でFDEと呼ばれる新しい職種が急速に広がっていると紹介された。FDEは、顧客企業の悩みを理解したうえで、AIを使って解決策を作り上げる役割を担う。これまで主流だった、働いた時間に応じて料金を決める方式が変わりつつあるという話もある。\n\n技術者にとっては、作業時間でなく生み出した成果が評価される働き方に近づく可能性がある。ただしこの内容は中島聡氏個人の見解であり、具体的な裏付け資料は示されていない。生産性の向上幅や削減効果の詳しい算出方法は、この動画からは確認できない。",
+    "change_summary": "AIが実装まで担うことで、技術者の働き方が時間給型から成果報酬型へ変わりつつあるという見解が示された。",
+    "impact_summary": "エンジニアや経営者にとって、仕事の評価軸が「かけた時間」から「生み出した成果」へ移る可能性がある。",
+    "action_suggestion": "発言内容は中島聡氏個人の見解であり、FDEの定義や効果の公式な裏付け資料はまだ確認されていません。",
+    "importance": "B",
+    "related_categories": [
+      "AIツール・モデル",
+      "アプリ開発・自動化"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_25a05c99553860940d9b_rev_dec97be46587",
+    "story_id": "story_c966cc0d0a3c283b64",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "uncertain",
+    "dedupe_reasons": [
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "similar_title",
+      "same_scope",
+      "same_url_content_changed"
+    ],
+    "home_video_selected_at": "",
+    "home_video_origin": "",
+    "home_video_reserve": false
   },
   {
     "tool": "DeepSeek",
@@ -2633,6 +3574,77 @@
     "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
     "article_id": "article_774f72042cf1060b5671",
     "story_id": "story_41e634b223d0aaea2f",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ]
+  },
+  {
+    "tool": "DeepSeek",
+    "content_type": "article",
+    "expert_id": "",
+    "expert_ids": [],
+    "expert_name": "",
+    "expert_names": [],
+    "expert_role": "",
+    "expert_tier": "",
+    "platform": "",
+    "video_id": "",
+    "source_trust": "",
+    "title": "DeepSeek、新しいAIモデルを公開 開発コストを米国勢の10分の1以下に抑制",
+    "source_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE13OWxWVkZHbWV4Sk9ob0xzdDhrQ3R1Z2pTY2xITi1OMGZCSV83VTVHSS13V2NOWGF0R2lUZkxzcFY0eWFZckZUb2hFamlhRzFxeDFRcTF0UUdYSHNJTGc?oc=5",
+    "source_name": "ライブドアニュース",
+    "is_official": false,
+    "published_at": "2026-10-19T12:00:12.000Z",
+    "source_published_at": "2026-10-19T12:00:12.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-10-19T16:58:32.794Z",
+    "event_at": "2026-10-19",
+    "event_status": "発表済み",
+    "event_date_precision": "day",
+    "story_entities": [
+      "DeepSeek",
+      "deepseek"
+    ],
+    "primary_entity": "DeepSeek",
+    "story_subject": "新AIモデルの公開とコスト削減",
+    "event_type": "release",
+    "event_stage": "announced",
+    "event_scope": "全世界",
+    "fact_slots": [
+      {
+        "type": "amount",
+        "scope": "開発コストの比較",
+        "value": "米国勢の10分の1以下",
+        "normalized_value": "10"
+      }
+    ],
+    "new_facts": [
+      "DeepSeekが新しいAIモデルを公開した",
+      "開発・運用コストが米国の主要AI企業の10分の1以下とされている"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "中国のDeepSeekが新しいAIモデルを公開し、開発・運用コストを米国の主要AI企業の10分の1以下に抑えたと報じられた。",
+    "detail": "中国のAI企業DeepSeekが新しい人工知能モデルを公開した。簡単に言うと、文章を作ったり質問に答えたりするAIの新しいバージョンを発表したということ。これまでもDeepSeekは低コストで動くAIとして注目されてきたが、今回はさらにコストを抑えた点が特徴とされている。\n\n記事によると、新モデルの開発や運用にかかる費用は、米国の主要AI企業の10分の1以下に抑えられているという。具体的な金額や性能の評価数値は本文には示されていない。AIの開発には通常、大量のコンピューターの処理能力が必要でコストがかさむため、この低コストは業界の中で注目される要素になっている。\n\n低コストのAIが広がれば、企業や個人がAIを使うための費用負担が下がる可能性がある。注意点として、モデルの具体的な名称や性能の詳細、公開の正確な時期などは記事から確認できていない。米国企業がこれにどう対応するかは、まだ明らかになっていない。",
+    "change_summary": "DeepSeekが新AIモデルを公開し、開発コストを米国勢の10分の1以下に抑えたとされる。",
+    "impact_summary": "AI利用コストの引き下げ競争が進み、企業や個人がAIを使う際の費用負担が下がる可能性がある。",
+    "action_suggestion": "モデルの正式名称や性能評価、公開の詳細条件は本文から確認できておらず、続報の確認が必要。",
+    "importance": "A",
+    "related_categories": [
+      "AIツール・モデル",
+      "研究・技術"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_23ca248f6e33386f6082",
+    "story_id": "story_3b71d839b5e355f85b",
     "story_sequence": 1,
     "relation_type": "new",
     "relation_confidence": 1,
@@ -3556,1013 +4568,5 @@
     "dedupe_reasons": [
       "no_previous_story"
     ]
-  },
-  {
-    "tool": "専門家動画・発言",
-    "content_type": "expert_video",
-    "expert_id": "keito-aiweb",
-    "expert_ids": [
-      "keito-aiweb"
-    ],
-    "expert_name": "KEITO",
-    "expert_names": [
-      "KEITO"
-    ],
-    "expert_role": "AIツールの使い方・検証を発信する解説者",
-    "expert_tier": "practical_ai_educator",
-    "platform": "YouTube",
-    "video_id": "kuRFAngTJsU",
-    "source_trust": "primary",
-    "title": "WordPressサイトをCloudflareのEmDashへ移行しAIで更新する手順を実演",
-    "source_url": "https://www.youtube.com/watch?v=kuRFAngTJsU",
-    "source_name": "KEITO【AI&WEB ch】",
-    "is_official": true,
-    "published_at": "2026-10-27T10:00:03.000Z",
-    "source_published_at": "2026-10-27T10:00:03.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-28T07:25:50.482Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "EmDash",
-      "WordPress",
-      "Cloudflare",
-      "emdash",
-      "wordpress"
-    ],
-    "primary_entity": "KEITO",
-    "story_subject": "EmDashへのサイト移行手順の実演",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "Web制作・個人/法人サイト",
-    "fact_slots": [],
-    "new_facts": [
-      "KEITOがWordPressサイトをCloudflareのEmDashへ本番のまま移行する手順を実演した",
-      "移行後はClaudeとMCPを使いAIでサイトを更新する運用方法を紹介した",
-      "スマートフォンからAIに指示して記事を作成・公開する例を示した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "KEITO氏が、WordPressサイトをCloudflareの新サービスEmDashへ本番のまま移行し、AIで更新する運用方法を動画で実演した。",
-    "detail": "KEITO氏がWordPressサイトをEmDashへ移行する手順を解説した。EmDashはCloudflareが提供する、AIと組み合わせて使う新しいサイト運用の仕組みである。従来のWordPress運用と違い、AIに話しかけるだけで更新できる点が特徴とされる。\n\n動画では本番のWordPressサイトを公式移行ツールでEmDashへ移す手順を実演している。移行後はAIのClaudeと、ツール連携の仕組みMCPを使う更新方法も示された。スマートフォンからAIに指示して記事を作成し公開する運用例も説明されている。\n\n会社サイトを運営する人は、AIに任せた更新作業へ切り替える選択肢を検討できる。移行にはドメインやDNSの切り替え作業も伴うため、事前準備が必要とされる。効果や費用面の具体的な数字は動画内で明示されておらず、不明な点が残る。",
-    "change_summary": "WordPressサイトをCloudflareの新サービスEmDashへ本番のまま移行し、AIで更新する運用方法を実演した点が新しい。",
-    "impact_summary": "自社サイトをWordPressで運営する企業や個人が、AI活用型の更新体制へ切り替える選択肢を検討できる。",
-    "action_suggestion": "移行ツールの詳細や相談窓口は動画概要欄のリンクから確認できる状態で、費用や対応範囲は本文に明記されていない。",
-    "importance": "B",
-    "related_categories": [
-      "アプリ開発・自動化",
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_45346b8e95843f3b1102",
-    "story_id": "story_fe004f8689803267d6",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
-    ],
-    "home_video_selected_at": "2026-10-28T07:25:50.482Z",
-    "home_video_origin": "new",
-    "home_video_reserve": true
-  },
-  {
-    "tool": "専門家動画・発言",
-    "content_type": "expert_video",
-    "expert_id": "takahiro-anno",
-    "expert_ids": [
-      "takahiro-anno"
-    ],
-    "expert_name": "安野貴博",
-    "expert_names": [
-      "安野貴博"
-    ],
-    "expert_role": "AIエンジニア・起業家・政策当事者",
-    "expert_tier": "core_engineering_policy",
-    "platform": "YouTube",
-    "video_id": "zWKFdgUyFL0",
-    "source_trust": "institutional",
-    "title": "チームみらい、AI失業対策提言を官房長官に提出",
-    "source_url": "https://www.youtube.com/watch?v=zWKFdgUyFL0",
-    "source_name": "チームみらい【公式】",
-    "is_official": true,
-    "published_at": "2026-10-26T10:24:53.000Z",
-    "source_published_at": "2026-10-26T10:24:53.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-27T00:50:25.301Z",
-    "event_at": "2026-10-26",
-    "event_status": "発表済み",
-    "event_date_precision": "day",
-    "story_entities": [
-      "チームみらい",
-      "安野貴博",
-      "AI失業対策提言",
-      "ai失業対策提言"
-    ],
-    "primary_entity": "チームみらい",
-    "story_subject": "AI失業対策提言",
-    "event_type": "policy",
-    "event_stage": "proposed",
-    "event_scope": "日本",
-    "fact_slots": [
-      {
-        "type": "date",
-        "scope": "提言提出日",
-        "value": "2026-10-26",
-        "normalized_value": "2026-10-26"
-      },
-      {
-        "type": "count",
-        "scope": "AIインタビュー対象者数",
-        "value": "582人",
-        "normalized_value": "582"
-      },
-      {
-        "type": "amount",
-        "scope": "米国若手ソフトウェア開発職の雇用減少率",
-        "value": "約20%",
-        "normalized_value": "20%"
-      }
-    ],
-    "new_facts": [
-      "チームみらいの安野貴博氏らが2026年10月26日に木原稔官房長官へ「AI失業対策提言」を手交した",
-      "提言は米国の若手ソフトウェア開発職の雇用が約20%減少したとするデータに言及している",
-      "提言作成にあたり582人へのAIインタビューを実施した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "チームみらいの安野貴博氏らが2026年10月26日、AI失業への備えを求める提言書を木原稔官房長官に手交した。",
-    "detail": "チームみらいの安野貴博氏と古川あおい氏、高山聡史氏が提言書を提出した。木原稔官房長官に2026年10月26日、AI失業への対策を求める文書を手渡した。AIの普及で仕事を失う「AI失業」に備える制度づくりを求める内容である。\n\n提言は、米国の若手ソフトウェア開発職の雇用が約20%減ったとする調査結果に触れている。提言づくりのため、582人にAIについて聞き取るインタビューを実施した。社会の変化に合わせて法律を見直す「法律のリファクタリング」という考え方も示された。\n\n提言は、制度を先回りして整える点と、働く人を支援する点の2つを柱としている。動画では相談窓口や支援制度についても案内し、困っている人への窓口を紹介した。提言が実際の政策にどう反映されるかはまだ明らかになっていない。",
-    "change_summary": "政治団体チームみらいが、AIによる失業リスクへの備えを求める具体的な提言書を政府に提出した。",
-    "impact_summary": "AIの普及で雇用が急に失われる可能性に対し、国の制度整備や働く人への支援策が議論される動きが出てきた。",
-    "action_suggestion": "提言の全文はチームみらいの公式サイトとnoteで公開されており、政府の今後の対応が確認事項となる。",
-    "importance": "A",
-    "related_categories": [
-      "政策・行政"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_41f6397ecd3ef4cffe55_rev_2e13930bf235",
-    "story_id": "story_cc0776a369e1f8e773",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_url",
-      "same_primary_entity",
-      "same_subject",
-      "same_event_type",
-      "similar_title",
-      "same_scope",
-      "same_url_content_changed"
-    ],
-    "home_video_selected_at": "",
-    "home_video_origin": "",
-    "home_video_reserve": false
-  },
-  {
-    "tool": "専門家動画・発言",
-    "content_type": "expert_video",
-    "expert_id": "keito-aiweb",
-    "expert_ids": [
-      "keito-aiweb"
-    ],
-    "expert_name": "KEITO",
-    "expert_names": [
-      "KEITO"
-    ],
-    "expert_role": "AIツールの使い方・検証を発信する解説者",
-    "expert_tier": "practical_ai_educator",
-    "platform": "YouTube",
-    "video_id": "MFKY46zi8d4",
-    "source_trust": "primary",
-    "title": "GoogleのAIゲーム制作サービス「Playground」を実演レビュー",
-    "source_url": "https://www.youtube.com/watch?v=MFKY46zi8d4",
-    "source_name": "KEITO【AI&WEB ch】",
-    "is_official": true,
-    "published_at": "2026-10-25T09:00:13.000Z",
-    "source_published_at": "2026-10-25T09:00:13.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-26T08:07:43.660Z",
-    "event_at": "",
-    "event_status": "開始済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Google Playground",
-      "Unity Spark",
-      "KEITO",
-      "googleplayground",
-      "unityspark"
-    ],
-    "primary_entity": "KEITO【AI&WEB ch】",
-    "story_subject": "Google Playground(AIゲーム制作プラットフォーム)",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "YouTube動画・Google Playgroundサービス全般",
-    "fact_slots": [],
-    "new_facts": [
-      "GoogleのAIゲーム制作サービス「Playground」が紹介された",
-      "文字指示だけでゲームを作り、そのまま公開できる機能が実演された",
-      "2Dや3Dのゲーム制作、複数人で同時に遊べる機能が確認できる",
-      "Unity Sparkで作られたゲームの紹介や動作検証が行われた",
-      "利用料金や制限、今後の収益化についても解説された"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "KEITO氏がGoogleのAIゲーム制作サービス「Playground」を使い、指示だけでゲームを作って公開する流れを動画で検証した。",
-    "detail": "KEITO氏がGoogleのAIゲーム制作サービス「Playground」を実際に使って検証した。文字で指示を出すだけでゲームを作り、そのまま公開できる仕組みだと紹介された。動画のタイトルでは「ゲーム版YouTube」とも表現されている。\n\n動画では2Dや3Dのゲーム制作や、複数人で同時に遊べる機能について解説された。利用料金や制限、今後の収益化の仕組みについても触れられている。Unity Sparkという別のツールで作られたゲームの紹介や動作確認も行われた。\n\nゲーム制作に興味がある人は、専門知識なしで作品を作れる可能性を知れる。動画では既存のゲーム配信サービスとの違いや今後の可能性も比較されている。正式な料金や収益化の詳しい条件は、この動画だけでは確定していない。",
-    "change_summary": "GoogleのAIゲーム制作サービス「Playground」が、指示だけでゲームを作り公開できる仕組みとして紹介された。",
-    "impact_summary": "ゲーム制作の専門知識がない人でも、AIの指示だけで作品を公開できる可能性が広がる。",
-    "action_suggestion": "正式な料金体系や収益化の詳細条件は、この動画時点では明らかにされていない。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "アプリ開発・自動化"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_f2d57e570b519aff3f9e_rev_2981238f0e17",
-    "story_id": "story_4e91b280bfbff1e1d0",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_url",
-      "same_primary_entity",
-      "same_subject",
-      "similar_title",
-      "same_scope",
-      "same_url_content_changed"
-    ],
-    "home_video_selected_at": "",
-    "home_video_origin": "",
-    "home_video_reserve": false
-  },
-  {
-    "tool": "専門家動画・発言",
-    "content_type": "expert_video",
-    "expert_id": "tomohiro-ikeda",
-    "expert_ids": [
-      "tomohiro-ikeda"
-    ],
-    "expert_name": "池田朋弘（いけとも）",
-    "expert_names": [
-      "池田朋弘（いけとも）"
-    ],
-    "expert_role": "生成AIの仕事への活用を教える解説者",
-    "expert_tier": "practical_ai_educator",
-    "platform": "YouTube",
-    "video_id": "cWnuhBXVWeQ",
-    "source_trust": "primary",
-    "title": "Museアプリ日本上陸と常駐型AIエージェント競争、週刊AIニュース23選を解説",
-    "source_url": "https://www.youtube.com/watch?v=cWnuhBXVWeQ",
-    "source_name": "いけともch",
-    "is_official": true,
-    "published_at": "2026-10-25T06:00:32.000Z",
-    "source_published_at": "2026-10-25T06:00:32.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-26T08:07:43.660Z",
-    "event_at": "",
-    "event_status": "継続中",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Meta Muse",
-      "Claude Duet",
-      "DeepSeek V4.1",
-      "metamuse",
-      "claudeduet"
-    ],
-    "primary_entity": "いけともch(池田朋弘)",
-    "story_subject": "週刊AIニュース解説(Museアプリ日本上陸ほか23件)",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "YouTube配信・グローバルAIツール動向",
-    "fact_slots": [],
-    "new_facts": [
-      "Meta社のMuseアプリが日本で利用できるようになったと紹介された",
-      "Claude Duetなど常駐型AIエージェントの動きが解説された",
-      "Mercury 3という拡散型の文章生成方式が取り上げられた",
-      "DeepSeek V4.1 Flash 1017やKimi K3.1 Proなど新モデルが紹介された",
-      "PHPの脆弱性や情報流出への備えについても解説された"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "池田朋弘氏がYouTube動画で、Meta社Museアプリの日本上陸や常駐型AIエージェント競争など週刊AIニュース23件を紹介した。",
-    "detail": "池田朋弘氏がYouTube番組で週刊のAIニュースをまとめて解説した。Meta社の対話アプリ「Muse」が日本でも使えるようになったと紹介された。指示をすると人の代わりに作業を続ける「AIエージェント」競争が目立つ回だった。\n\n動画ではClaude DuetやMercury 3など23件のAIニュースが紹介された。文章を少しずつ作る「拡散型」の仕組みを使うMercury 3や、作業履歴を分析するAgentsViewの実演もあった。DeepSeekやKimiなど中国発AIモデルの新版も扱われ、世界的な開発競争が分かる。\n\n仕事でAIを使う人は、常駐型AIエージェントや新しいツールの選択肢が増えたと分かる。プログラム言語PHPの弱点や情報流出への備えも取り上げられ、安全対策の話題もあった。各ツールの正式な価格や提供地域は、この動画の説明だけでは分からない。",
-    "change_summary": "Museアプリの日本上陸や常駐型AIエージェント、拡散型の文章生成方式など多数の最新AI動向がまとめて紹介された。",
-    "impact_summary": "業務でAIツールを選ぶ人にとって、常駐型エージェントや新しい生成AIの選択肢が増えている状況を把握できる。",
-    "action_suggestion": "各ツールの価格や正式な提供地域などの詳細は、この動画内では明らかにされていない。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "研究・技術",
-      "セキュリティ"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_2a60017b1a234d607339_rev_828d30ee3f50",
-    "story_id": "story_ff23b33aaa78b98398",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_url",
-      "same_primary_entity",
-      "same_subject",
-      "similar_title",
-      "same_scope",
-      "same_url_content_changed"
-    ],
-    "home_video_selected_at": "",
-    "home_video_origin": "",
-    "home_video_reserve": false
-  },
-  {
-    "tool": "専門家動画・発言",
-    "content_type": "expert_video",
-    "expert_id": "takahiro-anno",
-    "expert_ids": [
-      "takahiro-anno"
-    ],
-    "expert_name": "安野貴博",
-    "expert_names": [
-      "安野貴博"
-    ],
-    "expert_role": "AIエンジニア・起業家・政策当事者",
-    "expert_tier": "core_engineering_policy",
-    "platform": "YouTube",
-    "video_id": "WfUy35SELqk",
-    "source_trust": "institutional",
-    "title": "チームみらいがAI時代のサイバー攻撃対策の緊急提言を政府に提出",
-    "source_url": "https://www.youtube.com/watch?v=WfUy35SELqk",
-    "source_name": "チームみらい【公式】",
-    "is_official": true,
-    "published_at": "2026-10-23T12:06:18.000Z",
-    "source_published_at": "2026-10-23T12:06:18.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-24T22:33:04.071Z",
-    "event_at": "2026-10-23",
-    "event_status": "予定",
-    "event_date_precision": "day",
-    "story_entities": [
-      "チームみらい",
-      "安野貴博",
-      "古川俊治"
-    ],
-    "primary_entity": "チームみらい",
-    "story_subject": "AI時代のサイバー攻撃と情報漏洩対策の緊急提言",
-    "event_type": "policy",
-    "event_stage": "proposed",
-    "event_scope": "日本",
-    "fact_slots": [
-      {
-        "type": "count",
-        "scope": "提言の柱の数",
-        "value": "7",
-        "normalized_value": "7"
-      }
-    ],
-    "new_facts": [
-      "チームみらいが古川俊治デジタル担当大臣にAI時代のサイバー攻撃対策の緊急提言を手交した",
-      "提言はPHPの脆弱性に起因する情報漏洩の相次ぐ発生を背景としている",
-      "政府に求める対応として国の防御力底上げから被害者支援まで7つの柱が示された"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "チームみらいの安野貴博氏らが情報漏洩対策の緊急提言を古川大臣に提出し、7つの柱を示す配信を行った。",
-    "detail": "政治団体「チームみらい」党首の安野貴博氏らが緊急配信を行いました。AI時代のサイバー攻撃と情報漏洩対策について政府に提言書を渡しました。提言はデジタル庁を担当する古川俊治大臣に直接手渡されました。\n\n配信ではPHPというプログラムの弱点が原因で深刻な情報漏洩が相次いでいると説明されました。政府に求める対応として国の防御力底上げなど7つの柱が示されました。柱には個人情報を持ちすぎない仕組みや漏洩被害者支援も含まれています。\n\n個人が今すぐできる対策についても動画内で紹介されました。提言は今後の国会審議で取り上げられる予定だと説明されています。提言が実際の制度にどこまで反映されるかはまだ分かっていません。",
-    "change_summary": "チームみらいがPHPの脆弱性に起因する情報漏洩の連続発生を受け、AIによる防御を含む7つの政策提言を政府に提出した。",
-    "impact_summary": "企業の情報システム管理や個人情報保護のルールが今後の国会審議を通じて変わる可能性がある。",
-    "action_suggestion": "提言の全文はチームみらいの提言ページとnote記事で公開されており、今後の国会での扱いが注目点となる。",
-    "importance": "B",
-    "related_categories": [
-      "政策・行政",
-      "セキュリティ"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_6c0750b50151ea4a7afc_rev_d1d979dc5938",
-    "story_id": "story_77535fdb0e6d01d354",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_url",
-      "same_primary_entity",
-      "same_subject",
-      "same_event_type",
-      "similar_title",
-      "same_scope",
-      "same_url_content_changed"
-    ],
-    "home_video_selected_at": "",
-    "home_video_origin": "",
-    "home_video_reserve": false
-  },
-  {
-    "tool": "専門家動画・発言",
-    "content_type": "expert_video",
-    "expert_id": "keito-aiweb",
-    "expert_ids": [
-      "keito-aiweb"
-    ],
-    "expert_name": "KEITO",
-    "expert_names": [
-      "KEITO"
-    ],
-    "expert_role": "AIツールの使い方・検証を発信する解説者",
-    "expert_tier": "practical_ai_educator",
-    "platform": "YouTube",
-    "video_id": "wUeDaCeMrdM",
-    "source_trust": "primary",
-    "title": "AIコーディング利用者向けセキュリティ対策解説（KEITO氏）",
-    "source_url": "https://www.youtube.com/watch?v=wUeDaCeMrdM",
-    "source_name": "KEITO【AI&WEB ch】",
-    "is_official": true,
-    "published_at": "2026-10-23T12:00:24.000Z",
-    "source_published_at": "2026-10-23T12:00:24.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-23T23:19:09.712Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "KEITO",
-      "1Password",
-      "Claude Code",
-      "keito",
-      "1password"
-    ],
-    "primary_entity": "KEITO",
-    "story_subject": "AIコーディングツール利用時のセキュリティ対策",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "個人開発者・AIコーディングツール利用者向け",
-    "fact_slots": [],
-    "new_facts": [
-      "動画ではPHP・WordPressの確認やNode.jsの更新手順が紹介されている",
-      "AIによる点検方法や自作チェックツールの配布が案内されている",
-      "KEITO氏がパスワード管理アプリ1Password導入の理由を説明している",
-      "APIキーやパスキー、2段階認証の設定についても触れている"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "YouTuberのKEITO氏が、AIにコードを書かせる人向けにPHP確認や1Password導入などの対策をまとめて解説した。",
-    "detail": "YouTuberのKEITO氏が、AIにコードを書かせる人向けの動画を公開した。動画は、サーバーで使うPHPやWordPressの状態確認から始まる。複数の対策を一度にまとめて確認できる内容になっている。\n\n動画では、Node.jsやChromeなど基本ソフトの更新も呼びかけている。AIを使った点検方法や、自作チェックツールの配布も紹介している。指示だけで自動的に作業するプログラム『AIエージェント』への権限管理も説明した。\n\nKEITO氏はパスワード管理アプリ『1Password』導入の理由も語った。ソフト同士をつなぐ合言葉『APIキー』やパスキーの管理法も扱った。ただし紹介が中心で、各手順の詳しい効果までは示されていない。",
-    "change_summary": "PHP確認からAIによる点検、1Password導入まで対策を一通りまとめて紹介した点が新しい。",
-    "impact_summary": "AIにコードを書かせる個人開発者が、放置しがちな基本対策を見直すきっかけになる。",
-    "action_suggestion": "動画で紹介されたPHP点検ツールや1Password、パスキー設定は各自の環境で確認できる。",
-    "importance": "B",
-    "related_categories": [
-      "セキュリティ",
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_74624479261c7c63b920_rev_f6ef330486df",
-    "story_id": "story_946071478380278f90",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_url",
-      "same_primary_entity",
-      "same_subject",
-      "similar_title",
-      "same_scope",
-      "same_url_content_changed"
-    ],
-    "home_video_selected_at": "",
-    "home_video_origin": "",
-    "home_video_reserve": false
-  },
-  {
-    "tool": "専門家動画・発言",
-    "content_type": "expert_video",
-    "expert_id": "takahiro-anno",
-    "expert_ids": [
-      "takahiro-anno"
-    ],
-    "expert_name": "安野貴博",
-    "expert_names": [
-      "安野貴博"
-    ],
-    "expert_role": "AIエンジニア・起業家・政策当事者",
-    "expert_tier": "core_engineering_policy",
-    "platform": "YouTube",
-    "video_id": "Rin-wrEeA7w",
-    "source_trust": "primary",
-    "title": "安野貴博氏、ヒューマノイドボクシング世界王者の大曽根宏幸氏とロボット開発を語る",
-    "source_url": "https://www.youtube.com/watch?v=Rin-wrEeA7w",
-    "source_name": "安野貴博の自由研究",
-    "is_official": true,
-    "published_at": "2026-10-23T11:00:12.000Z",
-    "source_published_at": "2026-10-23T11:00:12.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-24T22:39:31.619Z",
-    "event_at": "",
-    "event_status": "不明",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "安野貴博",
-      "大曽根宏幸",
-      "EmplifAI",
-      "emplifai"
-    ],
-    "primary_entity": "安野貴博",
-    "story_subject": "ヒューマノイドロボットボクシングとEmplifAIのロボット開発",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "動画・対談",
-    "fact_slots": [
-      {
-        "type": "price",
-        "scope": "大曽根氏が購入したロボットの価格",
-        "value": "約1000万円",
-        "normalized_value": "10000000JPY"
-      }
-    ],
-    "new_facts": [
-      "大曽根宏幸氏はヒューマノイドボクシング世界大会「REK2」の世界チャンピオンである",
-      "大曽根氏は約1000万円のロボットを購入して起業した",
-      "EmplifAIは自社製双腕モバイルマニピュレーター「OpenShell」を開発している"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "安野貴博氏がロボット企業EmplifAI代表の大曽根宏幸氏と対談し、人型ロボットボクシングや自社ロボット開発の経緯を語った。",
-    "detail": "安野貴博氏がロボット開発企業EmplifAIの代表取締役、大曽根宏幸氏と対談した。動画では人型ロボットによるボクシング競技「REK」の世界大会について語られた。大曽根氏は自社製ロボットの購入や起業の経緯も紹介した。\n\n対談では大曽根氏が約1000万円のロボットを購入して起業した経緯が語られた。人型ロボットがボクシングで戦う競技REKでの世界優勝の裏話も紹介された。双腕で作業できるロボット「OpenShell」の開発経緯や会社経営の話も扱われた。\n\n視聴者は人型のロボット開発の最新動向を知ることができる。動画では最近のAIロボット事情やヒューマノイドロボットの将来展望も話題になった。具体的な技術仕様や製品化時期についてはまだ発表されていない。",
-    "change_summary": "人型ロボットボクシング世界王者であるEmplifAI代表の大曽根宏幸氏が、安野貴博氏と自社ロボット開発や起業の経緯を語った。",
-    "impact_summary": "ロボット事業や人型ロボット開発に関心を持つ起業家・エンジニアにとって、競技参入から起業までの実例が参考になる。",
-    "action_suggestion": "動画内でOpenShellの製品化時期や価格など具体的な発表はまだされていない。",
-    "importance": "B",
-    "related_categories": [
-      "研究・技術",
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_f3738f03f2dae77dbbce_rev_f1604c18335d",
-    "story_id": "story_038bad0303e68acd2a",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_url",
-      "same_primary_entity",
-      "same_subject",
-      "similar_title",
-      "same_scope",
-      "same_url_content_changed"
-    ],
-    "home_video_selected_at": "",
-    "home_video_origin": "",
-    "home_video_reserve": false
-  },
-  {
-    "tool": "専門家動画・発言",
-    "content_type": "expert_video",
-    "expert_id": "keito-aiweb",
-    "expert_ids": [
-      "keito-aiweb"
-    ],
-    "expert_name": "KEITO",
-    "expert_names": [
-      "KEITO"
-    ],
-    "expert_role": "AIツールの使い方・検証を発信する解説者",
-    "expert_tier": "practical_ai_educator",
-    "platform": "YouTube",
-    "video_id": "pZZo0bqcZLU",
-    "source_trust": "primary",
-    "title": "Gemini in Chromeの使い方を検証、KEITOが8つの実践例を紹介",
-    "source_url": "https://www.youtube.com/watch?v=pZZo0bqcZLU",
-    "source_name": "KEITO【AI&WEB ch】",
-    "is_official": true,
-    "published_at": "2026-10-22T09:00:34.000Z",
-    "source_published_at": "2026-10-22T09:00:34.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-26T08:07:43.660Z",
-    "event_at": "",
-    "event_status": "継続中",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Gemini in Chrome",
-      "Google Chrome",
-      "KEITO",
-      "geminiinchrome",
-      "googlechrome"
-    ],
-    "primary_entity": "KEITO",
-    "story_subject": "Gemini in Chrome",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "Google Chromeブラウザ全般",
-    "fact_slots": [
-      {
-        "type": "availability",
-        "scope": "Gemini in Chromeの利用条件",
-        "value": "拡張機能の追加・課金不要で利用可能",
-        "normalized_value": "拡張機能の追加課金不要で利用可能"
-      }
-    ],
-    "new_facts": [
-      "Gemini in ChromeはGoogle Chromeに標準搭載されており、拡張機能や課金なしで使える",
-      "動画ではページ要約、海外ドキュメント解説、タブ横断比較、動画要約、予定登録、画像加工、画面認識など8つの検証を行っている",
-      "動画にはGoogle Chromeとの協力企画であることを示す表記がある"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "AI解説者KEITOが、Chrome標準搭載のGemini in Chromeについて、使い方と8つの実践的な検証結果を動画で紹介した。",
-    "detail": "AI活用を解説するKEITOが、Gemini in Chromeの使い方をまとめた動画を公開した。これはGoogle Chromeに標準で組み込まれたAI機能のことである。拡張機能を追加したり料金を払ったりしなくても、すぐに使える点が特徴である。\n\n動画ではタブグループやメモリセーバーなど、Chrome本体の便利機能も紹介している。そのうえでGemini in Chromeの始め方と利用条件を説明している。ページ要約、海外ドキュメントの日本語解説、複数タブの比較、動画要約とメール下書き作成、予定表への登録、画像の加工、画面に映る物の名前の認識という8つの検証を行っている。\n\n視聴者は紹介されたやり取りの文章をそのまま自分のパソコンで試せる構成になっている。動画には案件であることを示す表記があり、Google Chromeとの協力企画として作られている。各検証でどのような結果が出たかという具体的な評価は、この記事の時点ではわかっていない。",
-    "change_summary": "Chromeに標準搭載されたGemini in Chromeの使い方について、8つの具体的な活用例を通じて紹介する内容。",
-    "impact_summary": "Chromeを仕事で使う人は、資料の要約や比較表作り、画像編集などを追加費用なしで試せる可能性がある。",
-    "action_suggestion": "Gemini in Chromeの開始方法や利用条件は動画内で示されており、紹介されたやり取り文はそのまま試せる形で公開されている。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_49d1a77a4a776f66b49a_rev_721076454d2c",
-    "story_id": "story_b404967431b488e358",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_url",
-      "same_primary_entity",
-      "same_subject",
-      "similar_title",
-      "same_scope",
-      "same_url_content_changed"
-    ],
-    "home_video_selected_at": "",
-    "home_video_origin": "",
-    "home_video_reserve": false
-  },
-  {
-    "tool": "専門家動画・発言",
-    "content_type": "expert_video",
-    "expert_id": "takahiro-anno",
-    "expert_ids": [
-      "takahiro-anno"
-    ],
-    "expert_name": "安野貴博",
-    "expert_names": [
-      "安野貴博"
-    ],
-    "expert_role": "AIエンジニア・起業家・政策当事者",
-    "expert_tier": "core_engineering_policy",
-    "platform": "YouTube",
-    "video_id": "bHK8xVjRiVE",
-    "source_trust": "primary",
-    "title": "安野貴博氏、フィールズ賞数学者ヴィラニ氏にパリでAI政策を聞く",
-    "source_url": "https://www.youtube.com/watch?v=bHK8xVjRiVE",
-    "source_name": "安野貴博の自由研究",
-    "is_official": true,
-    "published_at": "2026-10-20T11:00:38.000Z",
-    "source_published_at": "2026-10-20T11:00:38.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-20T23:13:40.644Z",
-    "event_at": "",
-    "event_status": "継続中",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "安野貴博",
-      "セドリック・ヴィラニ",
-      "チームみらい",
-      "セドリックヴィラニ"
-    ],
-    "primary_entity": "安野貴博",
-    "story_subject": "セドリック・ヴィラニ氏へのパリ現地インタビュー(AIと政治)",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "動画配信・YouTube",
-    "fact_slots": [],
-    "new_facts": [
-      "安野貴博氏がフランスの数学者セドリック・ヴィラニ氏にパリで取材した動画を公開した",
-      "ヴィラニ氏は2010年にフィールズ賞を受賞し、後にフランス国会議員を務めた",
-      "動画は政治へのAI活用や巨大テック独占への欧州の危機感、2018年の報告書のその後を扱う"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "安野貴博氏が元フランス国会議員でフィールズ賞受賞の数学者セドリック・ヴィラニ氏にパリで取材し、AIと政治の関係や欧州の巨大テック規制への危機感を扱う動画を公開した。",
-    "detail": "安野貴博氏が、フランスの数学者セドリック・ヴィラニ氏にパリで取材した動画を公開した。ヴィラニ氏は2010年にフィールズ賞を受賞し、後にフランス国会議員も務めた人物である。今回は政治家としての経験をもとに、AIと政治の関わりを語る対談形式の動画である。\n\nヴィラニ氏は過去に、マクロン大統領へAIの国家戦略を提案した報告書をまとめた人物である。動画はその報告書が2018年以降どう扱われてきたかを振り返る内容を含む。政治へのAI活用や、巨大テック企業の独占に対する欧州側の危機感も論点となっている。\n\n動画は安野貴博氏と志水彰太氏による現地での振り返りトークも収録している。本編は対談形式で構成されており、具体的な結論は動画内で語られる内容による。ヴィラニ氏個人の見解であり、フランス政府の公式方針を示すものではない点に注意が必要である。",
-    "change_summary": "フィールズ賞受賞者で元国会議員という異例の経歴を持つヴィラニ氏に、政治現場でのAI活用や欧州の巨大テック規制への危機感を聞く対談動画が公開された。",
-    "impact_summary": "日本のAI政策論議でも、欧州の政治家出身研究者の視点や巨大テック規制の考え方は参考材料になりうる。",
-    "action_suggestion": "対談本編はYouTubeで公開されており、具体的な発言内容は本編視聴で確認できる。",
-    "importance": "B",
-    "related_categories": [
-      "政策・行政",
-      "規制・法務"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_ea6c7f2362d2ad9a5c38_rev_adf135e27204",
-    "story_id": "story_eb0af7894c2e608b6b",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_url",
-      "same_primary_entity",
-      "same_subject",
-      "similar_title",
-      "same_scope",
-      "same_url_content_changed"
-    ],
-    "home_video_selected_at": "",
-    "home_video_origin": "",
-    "home_video_reserve": false
-  },
-  {
-    "tool": "専門家動画・発言",
-    "content_type": "expert_video",
-    "expert_id": "keito-aiweb",
-    "expert_ids": [
-      "keito-aiweb"
-    ],
-    "expert_name": "KEITO",
-    "expert_names": [
-      "KEITO"
-    ],
-    "expert_role": "AIツールの使い方・検証を発信する解説者",
-    "expert_tier": "practical_ai_educator",
-    "platform": "YouTube",
-    "video_id": "xhm4jlXtzMU",
-    "source_trust": "primary",
-    "title": "AIエージェントの情報漏洩リスクとClaude Code権限設定の対策解説",
-    "source_url": "https://www.youtube.com/watch?v=xhm4jlXtzMU",
-    "source_name": "KEITO【AI&WEB ch】",
-    "is_official": true,
-    "published_at": "2026-10-20T10:00:30.000Z",
-    "source_published_at": "2026-10-20T10:00:30.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-20T23:13:40.644Z",
-    "event_at": "",
-    "event_status": "発表済み",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Claude Code",
-      "MCP",
-      "KEITO",
-      "claudecode",
-      "mcp"
-    ],
-    "primary_entity": "KEITO",
-    "story_subject": "Claude Codeのセキュリティ対策解説",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "AIエージェント利用全般",
-    "fact_slots": [],
-    "new_facts": [
-      "動画では情報が漏れる4つの経路とプロンプトインジェクション攻撃の仕組みを解説している",
-      "Claude Codeの権限モード(Deny・Ask・Allow・Hook)の設定方法を紹介している",
-      "MCP連携のリスクとサンドボックスによる隔離環境についても扱っている"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "KEITOさんが、AIエージェントが情報漏洩を起こす仕組みと、Claude Codeの権限設定による具体的な防止策を動画で解説した。",
-    "detail": "KEITOさんが動画でAIエージェントのセキュリティ対策を解説した。AIエージェントとは、ユーザーに代わって作業を自動で行うAIのことだ。便利な一方で、初期設定のまま使うと情報が漏れる危険があると説明した。\n\n動画では情報が漏れる4つの経路やだましの攻撃手口を扱う。作業を代行するAI「Claude Code」の権限設定の使い分けも紹介する。外部連携の仕組み「MCP」の危険性や、安全な隔離環境にも触れる。\n\nAIエージェントを仕事で使う人は、権限設定を見直す機会になる。動画内の設定方法や効果は本人の検証に基づき、公式な保証ではない。具体的な被害件数や企業名などの公式統計はこの動画内で示されていない。",
-    "change_summary": "AIエージェントの権限モードやMCP連携のリスクなど、具体的なセキュリティ設定方法を解説した点が新しい。",
-    "impact_summary": "AIエージェントを業務に導入する企業や個人が、情報漏洩対策として設定を見直す参考になる。",
-    "action_suggestion": "視聴者は動画内で紹介されるClaude Codeの権限モード設定やサンドボックス活用の手順を確認できる。",
-    "importance": "B",
-    "related_categories": [
-      "セキュリティ",
-      "AIツール・モデル"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_48752942499a95935870_rev_733182cbcc12",
-    "story_id": "story_4b045cde71a6009b00",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_url",
-      "same_primary_entity",
-      "same_subject",
-      "similar_title",
-      "same_scope",
-      "same_url_content_changed"
-    ],
-    "home_video_selected_at": "",
-    "home_video_origin": "",
-    "home_video_reserve": false
-  },
-  {
-    "tool": "専門家動画・発言",
-    "content_type": "expert_video",
-    "expert_id": "satoshi-nakajima",
-    "expert_ids": [
-      "satoshi-nakajima"
-    ],
-    "expert_name": "中島聡",
-    "expert_names": [
-      "中島聡"
-    ],
-    "expert_role": "ソフトウェア技術者・起業家",
-    "expert_tier": "core_engineering",
-    "platform": "Web動画・講演",
-    "video_id": "",
-    "source_trust": "editorial_host_candidate",
-    "title": "中島聡氏、米国で広がる新職種「FDE」とAIによる生産性向上を語る",
-    "source_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9jSDA1aW5mVmRGOTZHdUozTks3Tk9lOTdlQ2pjb2UwQW5RVXRrc19VUUR2Q2FUUm1wb3cwOFp4WWNtV1BxX21tbm5TM252M0dlbnlCSzA4SHZYN0li?oc=5",
-    "source_name": "YouTube",
-    "is_official": false,
-    "published_at": "2026-10-20T08:00:15.000Z",
-    "source_published_at": "2026-10-20T08:00:15.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-21T23:25:31.716Z",
-    "event_at": "",
-    "event_status": "継続中",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "中島聡",
-      "FDE",
-      "fde"
-    ],
-    "primary_entity": "中島聡",
-    "story_subject": "FDE(現場常駐型エンジニア)という新職種とAIによる生産性向上",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "米国の働き方・エンジニア職",
-    "fact_slots": [
-      {
-        "type": "amount",
-        "scope": "コスト削減例",
-        "value": "年間10億円",
-        "normalized_value": "1000000000JPY"
-      },
-      {
-        "type": "amount",
-        "scope": "生産性向上",
-        "value": "10倍",
-        "normalized_value": "10"
-      }
-    ],
-    "new_facts": [
-      "米国でFDEと呼ばれる新職種が急拡大しているとされる",
-      "年間10億円のコスト削減につながった例が紹介されている",
-      "中島聡氏が40年書いてきたコードの作成をAIに任せたと語っている",
-      "その結果生産性が10倍になったとされる"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "ソフトウェア技術者の中島聡氏が、米国で増える新職種「FDE」や、AIで生産性が10倍になった事例などを動画で紹介した。",
-    "detail": "中島聡氏がYouTube動画で、米国の新しい働き方について話している。FDEとは、企業の現場に入り込んで働く技術者を指す新しい職種だという。これまでのプログラマーの働き方とは違う形が広がっていると紹介している。\n\n動画では、年間10億円のコスト削減につながった例が取り上げられている。中島氏自身も、40年間書いてきたコードの作成をAIに任せた経験を語っている。その結果、仕事の生産性が10倍になったという内容が含まれている。\n\n動画は、AIを使った新しい働き方に関心がある人向けの内容となっている。ただし、具体的な数字の裏付けや細かい条件は本文からは確認できない。今後どの企業や分野に広がるかは、現時点では発表されていない。",
-    "change_summary": "AIを使って現場に入り込んで成果を出す「FDE」という働き方が米国で広がっていると紹介されている。",
-    "impact_summary": "日本でもエンジニアの働き方や評価の仕組みが、成果ベースに変わる可能性を考えるきっかけになる。",
-    "action_suggestion": "動画内で語られたFDEの定義や事例の詳細、具体的な裏付け数字は今後の情報を確認する必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_9ccb1444a6014f2339bf_rev_98dd30895e43",
-    "story_id": "story_55903c6977ce3dd65f",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_url",
-      "same_primary_entity",
-      "same_subject",
-      "similar_title",
-      "same_scope",
-      "same_url_content_changed"
-    ],
-    "home_video_selected_at": "",
-    "home_video_origin": "",
-    "home_video_reserve": false
-  },
-  {
-    "tool": "専門家動画・発言",
-    "content_type": "expert_video",
-    "expert_id": "satoshi-nakajima",
-    "expert_ids": [
-      "satoshi-nakajima"
-    ],
-    "expert_name": "中島聡",
-    "expert_names": [
-      "中島聡"
-    ],
-    "expert_role": "ソフトウェア技術者・起業家",
-    "expert_tier": "core_engineering",
-    "platform": "YouTube",
-    "video_id": "HejILbNPsyo",
-    "source_trust": "trusted_host",
-    "title": "中島聡氏が語る「FDE」という新職種とAI時代の働き方の変化",
-    "source_url": "https://www.youtube.com/watch?v=HejILbNPsyo",
-    "source_name": "ビジネス＋ITチャンネル",
-    "is_official": false,
-    "published_at": "2026-10-20T08:00:15.000Z",
-    "source_published_at": "2026-10-20T08:00:15.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-10-20T09:26:20.937Z",
-    "event_at": "",
-    "event_status": "継続中",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "中島聡",
-      "FDE",
-      "ビジネス+IT",
-      "fde",
-      "ビジネスit"
-    ],
-    "primary_entity": "中島聡",
-    "story_subject": "FDE(顧客課題をAIで実装まで担う新職種)とソフトウェアの成果報酬型ビジネスへの変化",
-    "event_type": "other",
-    "event_stage": "other",
-    "event_scope": "米国・ソフトウェア業界",
-    "fact_slots": [],
-    "new_facts": [
-      "米国でFDEと呼ばれる新職種が急速に広がっていると中島聡氏が紹介した",
-      "FDEは顧客企業の課題を理解しAIを使って実装まで担う役割とされる",
-      "ソフトウェア業界で時間ベースの料金体系から成果ベースへの変化が語られた"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "ソフトウェア技術者の中島聡氏が動画で、AIで顧客の課題解決まで担う新職種「FDE」と成果報酬型への働き方の変化を語った。",
-    "detail": "ソフトウェア技術者の中島聡氏が、AI時代の働き方について動画で語った。取り上げたのは、顧客の課題を理解してAIで実装まで行う「FDE」という仕事。FDEとは、依頼主の現場に入り込んで働く技術者を指す言葉だという。\n\n動画では、米国でFDEと呼ばれる新しい職種が急速に広がっていると紹介された。FDEは、顧客企業の悩みを理解したうえで、AIを使って解決策を作り上げる役割を担う。これまで主流だった、働いた時間に応じて料金を決める方式が変わりつつあるという話もある。\n\n技術者にとっては、作業時間でなく生み出した成果が評価される働き方に近づく可能性がある。ただしこの内容は中島聡氏個人の見解であり、具体的な裏付け資料は示されていない。生産性の向上幅や削減効果の詳しい算出方法は、この動画からは確認できない。",
-    "change_summary": "AIが実装まで担うことで、技術者の働き方が時間給型から成果報酬型へ変わりつつあるという見解が示された。",
-    "impact_summary": "エンジニアや経営者にとって、仕事の評価軸が「かけた時間」から「生み出した成果」へ移る可能性がある。",
-    "action_suggestion": "発言内容は中島聡氏個人の見解であり、FDEの定義や効果の公式な裏付け資料はまだ確認されていません。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "アプリ開発・自動化"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_25a05c99553860940d9b_rev_dec97be46587",
-    "story_id": "story_c966cc0d0a3c283b64",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "uncertain",
-    "dedupe_reasons": [
-      "same_url",
-      "same_primary_entity",
-      "same_subject",
-      "similar_title",
-      "same_scope",
-      "same_url_content_changed"
-    ],
-    "home_video_selected_at": "",
-    "home_video_origin": "",
-    "home_video_reserve": false
   }
 ]
