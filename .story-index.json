@@ -96,6 +96,67 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_3db08b8b3ca577e19e2e_rev_78900fe0df60",
+      "story_id": "story_201edfaae2089ea34a",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "アンソロピックの上場書類から見るAI投資のリスクと収益構造",
+      "source_published_at": "2026-10-29T10:00:08.000Z",
+      "published_at": "2026-10-29T10:00:08.000Z",
+      "fetched_at": "2026-10-29T10:54:07.708Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "AI研究者の今井翔太氏が、対話AI「クロード」を手がけるアンソロピックの上場書類を分析し、収益構造と巨額投資のリスクを解説した。",
+      "source_name": "TBS CROSS DIG with Bloomberg",
+      "source_url": "https://www.youtube.com/watch?v=y7NAjBZjm9k",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "今井翔太",
+        "anthropic",
+        "claude"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Anthropic上場文書(S-1)",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "複数年の計算資源契約総額",
+          "value": "130兆円超",
+          "normalized_value": "130000000000000JPY"
+        },
+        {
+          "type": "other",
+          "scope": "売上に占める最新モデルの割合",
+          "value": "8割超",
+          "normalized_value": "8"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "similar_title",
+        "same_scope",
+        "same_url_content_changed"
+      ],
+      "change_summary": "アンソロピックの上場書類（S-1）が公開され、収益構造やリスクが具体的な数字とともに明らかになった。",
+      "detail": "AI研究者の今井翔太さんが、アンソロピックの上場書類を読み解く番組に出演した。アンソロピックは対話AI「クロード」を開発する企業で、株式上場に向けた書類を公開した。この書類には、会社の経営状況だけでなく人類への危険性まで記されていた。\n\n書類によると、売上の8割超を最新モデルが占める収益構造だという。また、複数年で130兆円を超える計算資源の契約を結んでいることも分かった。性能で勝ち続けないと顧客を失う可能性があり、巨額投資の持続性が問われている。\n\nアンソロピックは「パワフルAI」として、科学研究や創薬への応用も掲げている。安全性と利益の両立が課題とされ、期待とリスクが同時に語られている。番組は上場文書の分析が中心で、実際の上場時期は明らかにされていない。",
+      "new_facts": [
+        "アンソロピックが上場に向けた書類(S-1)を公開した",
+        "書類では売上の8割超を直近のモデルが占める収益構造であることが分かった",
+        "複数年で130兆円を超える計算資源の契約があることが示された",
+        "アンソロピックは営業黒字化を達成している"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_c103962d788ebc082e40",
       "story_id": "story_8a3b5bfcf2e5b06484",
       "story_sequence": 1,
@@ -426,7 +487,7 @@
     {
       "article_id": "article_7f90117e9434de73b0e2",
       "story_id": "story_28013983e8c2d2864c",
-      "story_sequence": 5,
+      "story_sequence": 7,
       "relation_type": "follow_up",
       "relation_confidence": 1,
       "title": "LINEヤフー、法人向けAIエージェント「Agent i Biz」提供開始",
