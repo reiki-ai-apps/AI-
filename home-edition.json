@@ -7,57 +7,63 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-28T16:37:50.286Z",
-  "window_end": "2026-10-29T00:02:49.287Z",
-  "last_window_end": "2026-10-29T00:02:49.287Z",
-  "last_checked_at": "2026-10-29T00:07:30.294Z",
-  "last_published_at": "2026-10-29T00:07:30.294Z",
-  "home_content_changed_at": "2026-10-29T00:07:30.294Z",
+  "window_start": "2026-10-29T00:02:49.287Z",
+  "window_end": "2026-10-29T10:54:07.708Z",
+  "last_window_end": "2026-10-29T10:54:07.708Z",
+  "last_checked_at": "2026-10-29T10:59:42.842Z",
+  "last_published_at": "2026-10-29T10:59:42.842Z",
+  "home_content_changed_at": "2026-10-29T10:59:42.842Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 1,
-  "distinct_candidate_count": 1,
+  "candidate_count": 2,
+  "distinct_candidate_count": 2,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 1,
+  "novel_candidate_count": 2,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 3,
+  "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 1,
-  "continued_selected_count": 2,
-  "tool_evolution_selected_count": 2,
+  "new_selected_count": 2,
+  "continued_selected_count": 3,
+  "tool_evolution_selected_count": 3,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
+    "article_c103962d788ebc082e40",
+    "article_1eb494062e1dcbbec8e2",
     "article_de58d7f75bf9d766b0e8",
     "article_aa8f7955ae21b2b25c74",
     "article_9845328ac620daf5476d"
   ],
   "new_article_ids": [
-    "article_de58d7f75bf9d766b0e8"
+    "article_c103962d788ebc082e40",
+    "article_1eb494062e1dcbbec8e2"
   ],
   "continued_article_ids": [
+    "article_de58d7f75bf9d766b0e8",
     "article_aa8f7955ae21b2b25c74",
     "article_9845328ac620daf5476d"
   ],
   "continuation_sources": {
+    "article_de58d7f75bf9d766b0e8": "previous_edition",
     "article_aa8f7955ae21b2b25c74": "previous_edition",
     "article_9845328ac620daf5476d": "previous_edition"
   },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-10-29",
   "same_day_article_ids": [
+    "article_de58d7f75bf9d766b0e8",
     "article_aa8f7955ae21b2b25c74",
     "article_9845328ac620daf5476d"
   ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 40,
+  "blocked_previous_day_count": 38,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -362,7 +368,9 @@
     "article_096a3acd473ccb6ffb26": "2026-10-28",
     "article_aa8f7955ae21b2b25c74": "2026-10-29",
     "article_9845328ac620daf5476d": "2026-10-29",
-    "article_de58d7f75bf9d766b0e8": "2026-10-29"
+    "article_de58d7f75bf9d766b0e8": "2026-10-29",
+    "article_c103962d788ebc082e40": "2026-10-29",
+    "article_1eb494062e1dcbbec8e2": "2026-10-29"
   },
   "home_shown_story_log": [
     {
@@ -1797,18 +1805,109 @@
       "selected_at": "2026-10-29T00:07:30.294Z",
       "edition_window_end": "2026-10-29T00:02:49.287Z",
       "shown_day": "2026-10-29"
+    },
+    {
+      "article_id": "article_c103962d788ebc082e40",
+      "story_id": "story_8a3b5bfcf2e5b06484",
+      "title": "元Google CEOシュミット氏、DeepSeekへの出資を試みたと明かす",
+      "primary_entity": "エリック・シュミット",
+      "story_subject": "DeepSeekへの出資試みと米中AI格差発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "米中",
+      "story_entities": [
+        "エリック・シュミット",
+        "DeepSeek",
+        "Google",
+        "エリックシュミット",
+        "deepseek"
+      ],
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "米中AI技術格差",
+          "value": "約6カ月",
+          "normalized_value": "6"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-29T10:59:42.842Z",
+      "edition_window_end": "2026-10-29T10:54:07.708Z",
+      "shown_day": "2026-10-29"
+    },
+    {
+      "article_id": "article_1eb494062e1dcbbec8e2",
+      "story_id": "story_11daf9df164c2dedc6",
+      "title": "ヘルスケア企業RoのCEOが新しいAIエージェントを公開、医療分野でのサービス拡大を目指す",
+      "primary_entity": "Ro",
+      "story_subject": "Roの新しいAIエージェント",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "医療サービス",
+      "story_entities": [
+        "AIエージェント",
+        "aiエージェント"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-29T10:59:42.842Z",
+      "edition_window_end": "2026-10-29T10:54:07.708Z",
+      "shown_day": "2026-10-29"
     }
   ],
   "scores": {
+    "article_c103962d788ebc082e40": {
+      "article_id": "article_c103962d788ebc082e40",
+      "total": 79,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 12,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 7,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "重要な経営・研究体制"
+      ],
+      "published_at": "2026-10-29T07:47:52.000Z"
+    },
+    "article_1eb494062e1dcbbec8e2": {
+      "article_id": "article_1eb494062e1dcbbec8e2",
+      "total": 70,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 17,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 9,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "重要な経営・研究体制",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-10-29T10:05:20.000Z"
+    },
     "article_de58d7f75bf9d766b0e8": {
       "article_id": "article_de58d7f75bf9d766b0e8",
-      "total": 79,
+      "total": 70,
       "breakdown": {
         "importance": 45,
         "topicality": 10,
         "scope": 10,
         "authority": 5,
-        "freshness": 9,
+        "freshness": 0,
         "tool_evolution": 0,
         "penalty": 0
       },
@@ -1859,73 +1958,6 @@
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_3fd153529de55ca192b0",
-      "story_id": "story_783de87769ce41098a",
-      "title": "Google、政府機関向けにGeminiの試験提供を開始",
-      "primary_entity": "Google",
-      "story_subject": "政府向けGemini試験提供",
-      "event_type": "release",
-      "event_stage": "beta",
-      "event_scope": "政府機関・行政向け",
-      "story_entities": [
-        "Google",
-        "Gemini",
-        "google",
-        "gemini",
-        "google-gemini"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-10-26T01:47:06.293Z",
-      "edition_window_end": "2026-10-26T01:43:41.185Z"
-    },
-    {
-      "article_id": "article_bf7150d0b8c6caa3bb94_rev_75c040fcc1f3",
-      "story_id": "story_c12b32a73b19bd26ad",
-      "title": "次世代AIサーバーが置けない日本のデータセンター問題",
-      "primary_entity": "日本のデータセンター業界",
-      "story_subject": "次世代AIサーバーの設置問題",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "日本",
-      "story_entities": [
-        "データセンター",
-        "AIサーバー",
-        "aiサーバー"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-10-26T01:47:06.293Z",
-      "edition_window_end": "2026-10-26T01:43:41.185Z"
-    },
-    {
-      "article_id": "article_dad121eb3d658c20c964",
-      "story_id": "story_8b6b64b6a97e8a7fdb",
-      "title": "Claude Code開発者がAnthropicを退職",
-      "primary_entity": "Anthropic",
-      "story_subject": "Claude Code開発者の退職",
-      "event_type": "other",
-      "event_stage": "announced",
-      "event_scope": "Anthropic社内人事",
-      "story_entities": [
-        "Anthropic",
-        "Claude Code",
-        "anthropic",
-        "claudecode",
-        "claude"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-10-26T01:47:06.293Z",
-      "edition_window_end": "2026-10-26T01:43:41.185Z"
-    },
     {
       "article_id": "article_bc674cdaab8f67af378d",
       "story_id": "story_28c4a281ebdaa8c4e3",
@@ -2250,6 +2282,56 @@
       "previous_article_id": "",
       "selected_at": "2026-10-29T00:07:30.294Z",
       "edition_window_end": "2026-10-29T00:02:49.287Z"
+    },
+    {
+      "article_id": "article_c103962d788ebc082e40",
+      "story_id": "story_8a3b5bfcf2e5b06484",
+      "title": "元Google CEOシュミット氏、DeepSeekへの出資を試みたと明かす",
+      "primary_entity": "エリック・シュミット",
+      "story_subject": "DeepSeekへの出資試みと米中AI格差発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "米中",
+      "story_entities": [
+        "エリック・シュミット",
+        "DeepSeek",
+        "Google",
+        "エリックシュミット",
+        "deepseek"
+      ],
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "米中AI技術格差",
+          "value": "約6カ月",
+          "normalized_value": "6"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-29T10:59:42.842Z",
+      "edition_window_end": "2026-10-29T10:54:07.708Z"
+    },
+    {
+      "article_id": "article_1eb494062e1dcbbec8e2",
+      "story_id": "story_11daf9df164c2dedc6",
+      "title": "ヘルスケア企業RoのCEOが新しいAIエージェントを公開、医療分野でのサービス拡大を目指す",
+      "primary_entity": "Ro",
+      "story_subject": "Roの新しいAIエージェント",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "医療サービス",
+      "story_entities": [
+        "AIエージェント",
+        "aiエージェント"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-29T10:59:42.842Z",
+      "edition_window_end": "2026-10-29T10:54:07.708Z"
     }
   ]
 }
