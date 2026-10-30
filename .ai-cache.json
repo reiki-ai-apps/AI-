@@ -17761,7 +17761,297 @@
           "no_previous_story"
         ]
       }
+    },
+    "url:https://www.youtube.com/watch?v=1dmznuvbvfu": {
+      "canonical_url": "https://www.youtube.com/watch?v=1dmznuvbvfu",
+      "content_hash": "0a548b21afbf84df94f73f48620bb891b1c8d948085a479a5b99218a59018adb",
+      "story_key": "1e2dd615366eacc45470cc3d3b4ea707bde1c0b411162204f9804d5663610806",
+      "status": "enriched",
+      "processed_at": "2026-10-30T10:53:51.615Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "",
+      "result": {
+        "tool": "専門家動画・発言",
+        "content_type": "expert_video",
+        "expert_id": "keito-aiweb",
+        "expert_ids": [
+          "keito-aiweb"
+        ],
+        "expert_name": "KEITO",
+        "expert_names": [
+          "KEITO"
+        ],
+        "expert_role": "AIツールの使い方・検証を発信する解説者",
+        "expert_tier": "practical_ai_educator",
+        "platform": "YouTube",
+        "video_id": "1DmznuvBVFU",
+        "source_trust": "primary",
+        "title": "KEITO氏がGrok Botの使い方とAIチーム活用法を解説",
+        "source_url": "https://www.youtube.com/watch?v=1DmznuvBVFU",
+        "source_name": "KEITO【AI&WEB ch】",
+        "is_official": true,
+        "published_at": "2026-10-30T09:00:07.000Z",
+        "source_published_at": "2026-10-30T09:00:07.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-30T10:52:23.010Z",
+        "event_at": "",
+        "event_status": "継続中",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Grok Bot",
+          "KEITO",
+          "1Password"
+        ],
+        "primary_entity": "KEITO",
+        "story_subject": "Grok Botを使った業務自動化の活用法",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "個人・業務利用",
+        "fact_slots": [],
+        "new_facts": [
+          "動画ではGrok BotとXコネクター、1Password連携の実演が紹介されている",
+          "スライド資料作成やメール配信、Notionへの情報整理などの自動化事例が示される",
+          "クラウドPC上のClaude Codeを使った動画制作の実演も含まれる"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "AI解説者KEITO氏が、xAIのGrok Botを使って情報収集や資料作成などを自動化する実演動画を公開した。",
+        "detail": "AI活用を発信するKEITO氏が、Grok Botの使い方を紹介する動画を配信した。Grok Botは、外部サービスと連携して作業を自動で進められるAIの仕組みである。画面を見せながら実演する形式で、具体的な使い方が分かる内容になっている。\n\n動画では、SNSの情報収集や定期通知、資料作成をAIに任せる実演が紹介される。パスワード管理アプリとの連携でログインし、情報整理アプリへまとめる手順も示される。クラウド上で動くAIがメール配信や動画制作まで担う事例もあり、作業の幅広さが分かる。\n\n仕事でAIに任せられる作業の具体例を知りたい人にとって、導入の参考になる内容である。動画内では使って分かった注意点も解説されているが、詳細は本編の視聴が必要である。Grok Botの料金や提供条件など、公式な発表内容はこの動画からは確認できない。",
+        "change_summary": "Grok Botを使った情報収集・資料作成・メール配信などの自動化実演を、操作画面付きで具体的に示した点が新しい。",
+        "impact_summary": "業務の一部をAIチームに任せる具体的な手順を知ることで、日常業務の自動化を検討する参考になる。",
+        "action_suggestion": "Grok Botの料金や提供条件は本動画からは確認できず、関心があれば動画本編やGrok公式情報の確認が必要。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "アプリ開発・自動化"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmir0fvx3lxte1nqmxmvzhwuekxahdyrjqzoexxvxqtrknbcujfa2jhnudntzzvamxlc1a4ltczehjjmhk3y1ljs3lrwmc1a0lj": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmir0fvx3lxte1nqmxmvzhwuekxahdyrjqzoexxvxqtrknbcujfa2jhnudntzzvamxlc1a4ltczehjjmhk3y1ljs3lrwmc1a0lj",
+      "content_hash": "1dcc88649ed2df447173e95a45bce3e4f4eec97a2b06b207466f11f0db824d46",
+      "story_key": "92d0f62f6533151474612009b9bbd21e5001f7e2834b15aff868055753435704",
+      "status": "rejected",
+      "processed_at": "2026-10-30T10:54:23.687Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: タイトルのみで具体的内容が不明なため"
+    },
+    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxte1wcdnybdvqdghwazdrz2xomduwqjl5mufvz2j0b1kyd1c5vhdkmnvfnvutcxdrzkrnvzjhwghjqvhxavy4s3fkn19yr2jsemltbtc0": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxte1wcdnybdvqdghwazdrz2xomduwqjl5mufvz2j0b1kyd1c5vhdkmnvfnvutcxdrzkrnvzjhwghjqvhxavy4s3fkn19yr2jsemltbtc0",
+      "content_hash": "6a74bbd8c8e3a164a1dd3ea16954862bce8bff7bc0d63df8ac4cef372f3c8406",
+      "story_key": "f6ca306830b455c501609323a1b8852c9cd6cbb71c437a6323991cb13ba601e8",
+      "status": "rejected",
+      "processed_at": "2026-10-30T10:54:23.688Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 広告色が強く具体的内容が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmickfvx3lxte0zz3vdy1bxtzdmvw45dejpzvrbtnfycjhtruznc09tmkfcvkdkn3fjuf9znkjfsgrna2dvofhvrlz2elliaef1ejmzzxdzqxqxrkdloexang04djjznedoqlv0dgvynuxosthyqtvmb2gxdw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmickfvx3lxte0zz3vdy1bxtzdmvw45dejpzvrbtnfycjhtruznc09tmkfcvkdkn3fjuf9znkjfsgrna2dvofhvrlz2elliaef1ejmzzxdzqxqxrkdloexang04djjznedoqlv0dgvynuxosthyqtvmb2gxdw",
+      "content_hash": "1b703ea81cfc6404daf4b4658c9fc2e8b5fde0144675852e23b1b07a984554b3",
+      "story_key": "ef71fddede2a9cf310d8bec9aa47f16fb8b2f0893242f0b4dca78e5755376a3b",
+      "status": "rejected",
+      "processed_at": "2026-10-30T10:54:23.688Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 疑問形の推測記事で確定情報がない"
+    },
+    "url:https://news.google.com/rss/articles/cbmihgfbvv95cuxotky1u3kwz0xuyvgxtvdkc256rlyteexawnb2azh3zznrbenyzm5uwg44adbkstrjm3jvrjbjzk8tqxlfnxhjrkn4x2q0mej5blv2thkybgp1d25bbenhwetmdfb1uufwzvhfmedyvdrxmwnwtnf0uehkdg1nqlfrlxzlru9szw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmihgfbvv95cuxotky1u3kwz0xuyvgxtvdkc256rlyteexawnb2azh3zznrbenyzm5uwg44adbkstrjm3jvrjbjzk8tqxlfnxhjrkn4x2q0mej5blv2thkybgp1d25bbenhwetmdfb1uufwzvhfmedyvdrxmwnwtnf0uehkdg1nqlfrlxzlru9szw",
+      "content_hash": "44b0eafa2ffeb7905a617cc99843049fd69219f4847c204adc21ce46a4eea527",
+      "story_key": "d2d4a5456111a646a2c92cfe339bdc839a62998dea75bae6bd67d53e87c88346",
+      "status": "rejected",
+      "processed_at": "2026-10-30T10:54:23.688Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: インタビュー記事でタイトルのみ、内容不明のため"
+    },
+    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte1pdkp5nhfub2fkzwvplvjpunbkqvhly3zwdwvuakjtath1dzniewvhsgneaxj0eenyt1rkvwf0dvzjzfnheul3a1dbdxldcvphvngyyuzscudrwtyzwu1kwe1inekta2zzdfe": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte1pdkp5nhfub2fkzwvplvjpunbkqvhly3zwdwvuakjtath1dzniewvhsgneaxj0eenyt1rkvwf0dvzjzfnheul3a1dbdxldcvphvngyyuzscudrwtyzwu1kwe1inekta2zzdfe",
+      "content_hash": "c2a6ab8495a71d46b15327c011fa8d543d76b83e4a0a165f26764b878d70e916",
+      "story_key": "ec18a1f9955beb252b449aa21c96ca19b198142a8b53aae0feecd7ffb3254b9b",
+      "status": "rejected",
+      "processed_at": "2026-10-30T10:54:23.688Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 製品を勧める宣伝色の強いレビュー記事のため"
+    },
+    "url:https://news.google.com/rss/articles/cbmidefvx3lxte8znk5wwdr6b281blhhzc16v1dltgzmzmz5q2rbtfjqrxlndhbtoergsjbou2p5c2f2avnjsehktzlyy01zexp2skg0vxzwrk1vazq2rkhyv0tmyjhpbm1pcup1cxzrwutjovmwbnrmvddpogtm": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte8znk5wwdr6b281blhhzc16v1dltgzmzmz5q2rbtfjqrxlndhbtoergsjbou2p5c2f2avnjsehktzlyy01zexp2skg0vxzwrk1vazq2rkhyv0tmyjhpbm1pcup1cxzrwutjovmwbnrmvddpogtm",
+      "content_hash": "1049e6db22021432d1154c11578c2d7029ef3709702660937954e746e8668cda",
+      "story_key": "8b230c432dd411c667139cdb01663afd3742fd95c24c5fb0bded530659852b48",
+      "status": "retry",
+      "processed_at": "2026-10-30T10:54:23.688Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte1mvu9owllwsnjdqk1csxvqulnacfdwvwitnnbyefz2nmnwnwfpd3vsakz5uy1vylzpm2xos054mdrhdln2z1biums0umgwutatzhzjbkhteffpn3rhueldmwyxel8xylrkd2c": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte1mvu9owllwsnjdqk1csxvqulnacfdwvwitnnbyefz2nmnwnwfpd3vsakz5uy1vylzpm2xos054mdrhdln2z1biums0umgwutatzhzjbkhteffpn3rhueldmwyxel8xylrkd2c",
+      "content_hash": "020038628a4c54671c91c26f9c0c36c1bf6382972d0d3a73a2a60b9271f834d8",
+      "story_key": "722b121a21284e751a18f19bff0fc15f359438893b37ac0bc51d85cb8af2c5b6",
+      "status": "rejected",
+      "processed_at": "2026-10-30T10:54:57.701Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 価格比較のみの短い記事で具体的事実に乏しい"
+    },
+    "url:https://news.google.com/rss/articles/cbmif0fvx3lxte1wnlvsy2fjyvhjbvb1sy11rxn4cg5wdvdhotvocvd4vglgdhzvytzkujfswdnktwmtqkh4wk4ysvfnnge4qth1stnvcevznmllzkp4ahffr3rmtks1yjdit3p4u1i1te5nczcxyje4cjhkmngwlwxvb1zos3bszw8": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmif0fvx3lxte1wnlvsy2fjyvhjbvb1sy11rxn4cg5wdvdhotvocvd4vglgdhzvytzkujfswdnktwmtqkh4wk4ysvfnnge4qth1stnvcevznmllzkp4ahffr3rmtks1yjdit3p4u1i1te5nczcxyje4cjhkmngwlwxvb1zos3bszw8",
+      "content_hash": "ad4d37985208856c65001bb73ecf5915fd786f23e1c9eff30d3084ce54f0ac86",
+      "story_key": "11a0f4ecf96f1a400ddc5ad0a33976a3145ba3d0f6c457800aba7769419f1e8c",
+      "status": "retry",
+      "processed_at": "2026-10-30T10:54:57.701Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmiaefvx3lxtfbrlvl3vm9aeevoajnwb2hgsmp1etfhem1wevnydtflvlffqjfpadbnr05lsghtqwwwa25fnnn0qvrtyxblatvnrwxwmkxtcxhystbbekzndlhgnzjwr1hrdtbpynfbynle": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxtfbrlvl3vm9aeevoajnwb2hgsmp1etfhem1wevnydtflvlffqjfpadbnr05lsghtqwwwa25fnnn0qvrtyxblatvnrwxwmkxtcxhystbbekzndlhgnzjwr1hrdtbpynfbynle",
+      "content_hash": "e9114c44e8b00b5c673208c2a98c6c4a14af3c51e5cc0a730c3a1b5543319d43",
+      "story_key": "ac91ae1829a029fd232d85a03ec5fb73cd9bc4d9ef711e7968d5da0c7e5def65",
+      "status": "enriched",
+      "processed_at": "2026-10-30T10:56:02.060Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "",
+      "result": {
+        "tool": "AIセキュリティ",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "シンパステクノロジー、中小企業向け生成AIセキュリティ対策ガイドを無償公開",
+        "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBRLVl3Vm9aeEVOajNwb2hGSmp1eTFHem1weVNYdTFLVlFfQjFpaDBnR05lSGhtQWwwa25fNnN0QVRTYXBLaTVnRWxwMkxtcXhYSTBBekZndlhGNzJwR1hrdTBPYnFBYnlE?oc=5",
+        "source_name": "Dellows News",
+        "is_official": false,
+        "published_at": "2026-10-29T21:03:59.000Z",
+        "source_published_at": "2026-10-29T21:03:59.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-10-30T10:52:23.010Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "シンパステクノロジー",
+          "生成AIセキュリティガイド"
+        ],
+        "primary_entity": "シンパステクノロジー",
+        "story_subject": "生成AIセキュリティ対策ガイド",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "日本・中小企業向け",
+        "fact_slots": [
+          {
+            "type": "price",
+            "scope": "セキュリティガイド",
+            "value": "無料",
+            "normalized_value": "無料"
+          }
+        ],
+        "new_facts": [
+          "シンパステクノロジーが中小企業向け生成AIセキュリティ対策ガイドを無償公開した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "シンパステクノロジーが中小企業向けに生成AIのセキュリティ対策をまとめたガイドを無料で公開した。",
+        "detail": "シンパステクノロジーという企業が、中小企業向けに生成AI（文章や画像を作るAI）を安全に使うためのガイドを発表しました。これは、AIを使う際に起きやすい情報漏えいや誤用のリスクを防ぐための手引き書です。これまで大企業向けの対策情報は多くありましたが、中小企業に特化した無料の資料は少なく、今回の公開はその空白を埋める取り組みといえます。\n\n記事のタイトルと抜粋からは、ガイドが無償で提供されることと、対象が中小企業であることが分かります。具体的なガイドの中身や配布方法、ページ数などの詳細はまだ発表されていません。中小企業は専門のセキュリティ担当者を置けないことが多く、こうした手引きは実務で役立つ可能性があります。\n\n生成AIを業務に取り入れたい中小企業の担当者は、このガイドを参考にして対策の第一歩を踏み出せます。ただし、ガイドの入手方法や公開時期など、現時点で分かる情報は限られています。詳細は発表元の続報を確認する必要があります。",
+        "change_summary": "中小企業に特化した生成AIセキュリティガイドが無料で新たに公開された。",
+        "impact_summary": "セキュリティ専任者がいない中小企業でも、生成AI利用時のリスク対策を学べるようになる。",
+        "action_suggestion": "ガイドの具体的な入手方法や内容の詳細は、現時点では記事に明記されておらず確認が必要。",
+        "importance": "B",
+        "related_categories": [
+          "セキュリティ",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmi3gfbvv95cuxpmfqzoxhamk0wuzk5nhe2mefxcnlprg01y2lruw1fenatmlvzquvulwnqzln4c0rjr3nidfdptkdrstvptvv3clh4nfrxcxbicutuwi1mwfpxegljautrx3v1s2vnqlh0wvv5zenrzvljaupkttlmx2dbumpxckkxb1pfyly5ewyxaxrqmlrhqxbkmwnhyi01tk9fs3rgdjvxr2hzovctvfbndu1poxjhceziwgn5vvpczljvywrtenh3u3dprnrxnni4wk5mbfbvqnzymljjvkxbtvl3qwc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmi3gfbvv95cuxpmfqzoxhamk0wuzk5nhe2mefxcnlprg01y2lruw1fenatmlvzquvulwnqzln4c0rjr3nidfdptkdrstvptvv3clh4nfrxcxbicutuwi1mwfpxegljautrx3v1s2vnqlh0wvv5zenrzvljaupkttlmx2dbumpxckkxb1pfyly5ewyxaxrqmlrhqxbkmwnhyi01tk9fs3rgdjvxr2hzovctvfbndu1poxjhceziwgn5vvpczljvywrtenh3u3dprnrxnni4wk5mbfbvqnzymljjvkxbtvl3qwc",
+      "content_hash": "bc12bcb9a6f4c59c24a10cc0eecac19b8137a3b616a418198a164df508ded068",
+      "story_key": "de7dbf0b7cf228fe96678ebd8b273f1418c9adf8fbf00e4ba43d6292fb47d1fd",
+      "status": "rejected",
+      "processed_at": "2026-10-30T10:56:02.060Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "ai_skip: ワークショップ開催の告知のみで具体的内容が不明"
+    },
+    "url:https://news.google.com/rss/articles/cbmivwfbvv95cuxprgpavxzmotnla29lvf9jnnr2sgjzbffalwvom25dbk1iyuvwwv9wrlbveg5lrjblufbxqnvjv3puz0jwnjd3ywjluultmnpwbnltyktjs0rrn01jmhbpalhvof8xwetgvexlvjvgbv9tzhhmn2xra3nfs1jjzu8yrk5rotvosudeq1petk9mvwhjazfmmjvvsnhxrnden0xny0nvnzjkvlfsywu0yjhrenjdmxlkdk81wkfprfaysq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmivwfbvv95cuxprgpavxzmotnla29lvf9jnnr2sgjzbffalwvom25dbk1iyuvwwv9wrlbveg5lrjblufbxqnvjv3puz0jwnjd3ywjluultmnpwbnltyktjs0rrn01jmhbpalhvof8xwetgvexlvjvgbv9tzhhmn2xra3nfs1jjzu8yrk5rotvosudeq1petk9mvwhjazfmmjvvsnhxrnden0xny0nvnzjkvlfsywu0yjhrenjdmxlkdk81wkfprfaysq",
+      "content_hash": "fe494fb5933fe8f31da5095ce1fd92958e3fd5b907084fa9e582f44ae67b293f",
+      "story_key": "a5b8b6a329ccdf42b3b6338760ca5599bdfc4947f5f42d233d34a0cccc5830ae",
+      "status": "rejected",
+      "processed_at": "2026-10-30T10:56:02.060Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "ai_skip: 企業のAPI統合を伝える宣伝的なプレスリリースで内容が薄い"
+    },
+    "url:https://news.google.com/rss/articles/cbmif0fvx3lxtfburfbhb3oyqlltyvlhn2jnam1btukymu5fs0rjyvf5a2f6be1pc1rwm0zym05gqmrtvtdyx01ns0vpvdfqsm9nu0w0sxmwmxdvuzg4ogrdelb3ujn4bexssvhicth4lxr0v1k0yu5oskswt3nmyk80bvpzdtutrlk": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmif0fvx3lxtfburfbhb3oyqlltyvlhn2jnam1btukymu5fs0rjyvf5a2f6be1pc1rwm0zym05gqmrtvtdyx01ns0vpvdfqsm9nu0w0sxmwmxdvuzg4ogrdelb3ujn4bexssvhicth4lxr0v1k0yu5oskswt3nmyk80bvpzdtutrlk",
+      "content_hash": "8b2abd2a61b8255f06f231aea7010398a02ec85298a5de0e39f56d93c65608d2",
+      "story_key": "48eac3f84777ac9a107828f17235e71319e2ab4c0dd43f054014438a4a2b9714",
+      "status": "retry",
+      "processed_at": "2026-10-30T10:56:02.060Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://arxiv.org/abs/2610.37720": {
+      "canonical_url": "https://arxiv.org/abs/2610.37720",
+      "content_hash": "9262c9bd458625206940ceff5af7c08b0d960d6e7c09195f6e224bfc08b6a927",
+      "story_key": "46bda32af294038377a4e509f08c1d0a6661351806c22761c279fb00cfd171e4",
+      "status": "retry",
+      "processed_at": "2026-10-30T10:56:02.060Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://japan.zdnet.com/article/35254219": {
+      "canonical_url": "https://japan.zdnet.com/article/35254219",
+      "content_hash": "f2a0c4d0cb8ac9d97efd535c73b06eae43715ccbc1705c0967e9d5170478c2fc",
+      "story_key": "a0c89b932ad6f14c7d6088dcec6b8abedf2ff3303a54e9a372de68917dee6596",
+      "status": "retry",
+      "processed_at": "2026-10-30T10:56:02.060Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmie0fvx3lxte5ozxhradnxswzmulficnjbvk1ink1ma1lkr3vnamzxdff1xzg1tmy5tzmydlpmvkhsazvjdxn6z3zcdvnsawluannobknqcgw3vfz2wdjnq1hselpqrti3m3protgxovfnmtn0zmpztvmxsg9ud3fgbglosq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmie0fvx3lxte5ozxhradnxswzmulficnjbvk1ink1ma1lkr3vnamzxdff1xzg1tmy5tzmydlpmvkhsazvjdxn6z3zcdvnsawluannobknqcgw3vfz2wdjnq1hselpqrti3m3protgxovfnmtn0zmpztvmxsg9ud3fgbglosq",
+      "content_hash": "2d81d2de922cdb7a159b4232ea35ce18ae234883b4524fb58a176d66fc71cc16",
+      "story_key": "66b6f692e7a2a92419c0346668182d165c3d81efd8fb3d3f6aad7adaa8f0376c",
+      "status": "rejected",
+      "processed_at": "2026-10-30T10:56:04.628Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "ai_skip: タイトルのみで具体的内容が確認できない"
     }
   },
-  "updated_at": "2026-10-30T07:44:05.542Z"
+  "updated_at": "2026-10-30T10:56:04.628Z"
 }
