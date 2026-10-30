@@ -7,54 +7,65 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-29T16:55:21.057Z",
-  "window_end": "2026-10-29T23:58:46.374Z",
-  "last_window_end": "2026-10-29T23:58:46.374Z",
-  "last_checked_at": "2026-10-30T00:03:48.455Z",
-  "last_published_at": "2026-10-30T00:03:48.455Z",
-  "home_content_changed_at": "2026-10-30T00:03:48.455Z",
+  "window_start": "2026-10-29T23:58:46.374Z",
+  "window_end": "2026-10-30T10:52:23.010Z",
+  "last_window_end": "2026-10-30T10:52:23.010Z",
+  "last_checked_at": "2026-10-30T10:56:09.060Z",
+  "last_published_at": "2026-10-30T10:56:09.060Z",
+  "home_content_changed_at": "2026-10-30T10:56:09.060Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 5,
-  "distinct_candidate_count": 5,
+  "candidate_count": 1,
+  "distinct_candidate_count": 1,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 5,
+  "novel_candidate_count": 1,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 5,
-  "continued_selected_count": 0,
-  "tool_evolution_selected_count": 2,
+  "new_selected_count": 1,
+  "continued_selected_count": 4,
+  "tool_evolution_selected_count": 3,
   "carried_forward": false,
-  "partially_carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_bb52a94f71dfeaaa788e",
     "article_2c761bc37a7827902298",
     "article_37a928626dd344c031bf",
     "article_7a93fa8376663eb13616",
-    "article_17bcaaed9abca28f3583",
-    "article_cfa70583df5781363581"
+    "article_17bcaaed9abca28f3583"
   ],
   "new_article_ids": [
+    "article_bb52a94f71dfeaaa788e"
+  ],
+  "continued_article_ids": [
     "article_2c761bc37a7827902298",
     "article_37a928626dd344c031bf",
     "article_7a93fa8376663eb13616",
-    "article_17bcaaed9abca28f3583",
-    "article_cfa70583df5781363581"
+    "article_17bcaaed9abca28f3583"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continuation_sources": {
+    "article_2c761bc37a7827902298": "previous_edition",
+    "article_37a928626dd344c031bf": "previous_edition",
+    "article_7a93fa8376663eb13616": "previous_edition",
+    "article_17bcaaed9abca28f3583": "previous_edition"
+  },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-10-30",
-  "same_day_article_ids": [],
+  "same_day_article_ids": [
+    "article_2c761bc37a7827902298",
+    "article_37a928626dd344c031bf",
+    "article_7a93fa8376663eb13616",
+    "article_17bcaaed9abca28f3583"
+  ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 39,
+  "blocked_previous_day_count": 38,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -366,7 +377,8 @@
     "article_37a928626dd344c031bf": "2026-10-30",
     "article_7a93fa8376663eb13616": "2026-10-30",
     "article_17bcaaed9abca28f3583": "2026-10-30",
-    "article_cfa70583df5781363581": "2026-10-30"
+    "article_cfa70583df5781363581": "2026-10-30",
+    "article_bb52a94f71dfeaaa788e": "2026-10-30"
   },
   "home_shown_story_log": [
     {
@@ -1979,9 +1991,59 @@
       "selected_at": "2026-10-30T00:03:48.455Z",
       "edition_window_end": "2026-10-29T23:58:46.374Z",
       "shown_day": "2026-10-30"
+    },
+    {
+      "article_id": "article_bb52a94f71dfeaaa788e",
+      "story_id": "story_8630c0ca44fe8af152",
+      "title": "シンパステクノロジー、中小企業向け生成AIセキュリティ対策ガイドを無償公開",
+      "primary_entity": "シンパステクノロジー",
+      "story_subject": "生成AIセキュリティ対策ガイド",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本・中小企業向け",
+      "story_entities": [
+        "シンパステクノロジー",
+        "生成AIセキュリティガイド",
+        "生成aiセキュリティガイド"
+      ],
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "セキュリティガイド",
+          "value": "無料",
+          "normalized_value": "無料"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-30T10:56:09.060Z",
+      "edition_window_end": "2026-10-30T10:52:23.010Z",
+      "shown_day": "2026-10-30"
     }
   ],
   "scores": {
+    "article_bb52a94f71dfeaaa788e": {
+      "article_id": "article_bb52a94f71dfeaaa788e",
+      "total": 64,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 20,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "制度・安全への影響",
+        "大きな製品・市場変化",
+        "遅れて確認できた新着",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-10-29T21:03:59.000Z"
+    },
     "article_2c761bc37a7827902298": {
       "article_id": "article_2c761bc37a7827902298",
       "total": 68,
@@ -2037,8 +2099,7 @@
       "reasons": [
         "重要度B",
         "制度・安全への影響",
-        "大きな製品・市場変化",
-        "遅れて確認できた新着"
+        "大きな製品・市場変化"
       ],
       "published_at": "2026-10-29T10:51:18.000Z"
     },
@@ -2060,186 +2121,9 @@
         "制度・安全への影響"
       ],
       "published_at": "2026-10-23T07:00:00.000Z"
-    },
-    "article_cfa70583df5781363581": {
-      "article_id": "article_cfa70583df5781363581",
-      "total": 36,
-      "breakdown": {
-        "importance": 10,
-        "topicality": 7,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 8,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度C",
-        "重要な経営・研究体制"
-      ],
-      "published_at": "2026-10-29T22:14:40.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_bc674cdaab8f67af378d",
-      "story_id": "story_28c4a281ebdaa8c4e3",
-      "title": "OpenAIが「GPT-6.1 Terra」を発表、視覚推論やパソコン操作機能を改善",
-      "primary_entity": "OpenAI",
-      "story_subject": "GPT-6.1 Terra",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "不明",
-      "story_entities": [
-        "OpenAI",
-        "GPT-6.1 Terra",
-        "openai",
-        "gpt-6.1terra",
-        "gpt-6.1"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-27T00:01:41.231Z",
-      "edition_window_end": "2026-10-26T23:56:09.654Z"
-    },
-    {
-      "article_id": "article_17eb1601d2ebc9b6b20c",
-      "story_id": "story_668a002238dd27e383",
-      "title": "Runwayが新サービス「App Studio」を発表",
-      "primary_entity": "Runway",
-      "story_subject": "App Studio",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "不明",
-      "story_entities": [
-        "Runway",
-        "App Studio",
-        "runway",
-        "appstudio",
-        "studio"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-27T00:01:41.231Z",
-      "edition_window_end": "2026-10-26T23:56:09.654Z"
-    },
-    {
-      "article_id": "article_d00c5358ee0291a9ff37",
-      "story_id": "story_b8e53fda062b1d7596",
-      "title": "マスク氏予告の「オデッセイ」映画、Grokのエピソードとして7分動画で公開",
-      "primary_entity": "xAI",
-      "story_subject": "Grokのオデッセイエピソード",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "Grokプラットフォーム",
-      "story_entities": [
-        "Grok",
-        "xAI",
-        "イーロン・マスク",
-        "grok",
-        "xai"
-      ],
-      "fact_slots": [
-        {
-          "type": "other",
-          "scope": "動画の長さ",
-          "value": "7分",
-          "normalized_value": "7"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-27T00:01:41.231Z",
-      "edition_window_end": "2026-10-26T23:56:09.654Z"
-    },
-    {
-      "article_id": "article_936d770c8be71f7edd3a",
-      "story_id": "story_27581c690730873a11",
-      "title": "xAIがGrok・Cursor・Xの有料特典をまとめた月額30ドルプランを発表",
-      "primary_entity": "xAI",
-      "story_subject": "Grok・Cursor・Xの一括契約プラン",
-      "event_type": "pricing",
-      "event_stage": "announced",
-      "event_scope": "Grok・Cursor・Xの利用者",
-      "story_entities": [
-        "xAI",
-        "Grok",
-        "Cursor",
-        "xai",
-        "grok"
-      ],
-      "fact_slots": [
-        {
-          "type": "price",
-          "scope": "一括契約プランの月額料金",
-          "value": "30ドル/月",
-          "normalized_value": "30USD"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-27T09:54:05.865Z",
-      "edition_window_end": "2026-10-27T09:49:29.413Z"
-    },
-    {
-      "article_id": "article_e5c0a56242bb223d3ef4",
-      "story_id": "story_110958b27043cb48c8",
-      "title": "「Gemini」アプリから「Gemini Notebook」を直接操作可能に",
-      "primary_entity": "Google",
-      "story_subject": "Gemini Notebook",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "Geminiアプリ",
-      "story_entities": [
-        "Gemini",
-        "Gemini Notebook",
-        "Google",
-        "gemini",
-        "gemininotebook"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-10-27T09:54:05.865Z",
-      "edition_window_end": "2026-10-27T09:49:29.413Z"
-    },
-    {
-      "article_id": "article_67332e5e2fc83b8675e9",
-      "story_id": "story_338286248d5f5b2856",
-      "title": "Perplexityが無料のMac向け判断支援AI「Decider for Mac」を発表",
-      "primary_entity": "Perplexity",
-      "story_subject": "Decider for Mac",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "Mac",
-      "story_entities": [
-        "Perplexity",
-        "Decider for Mac",
-        "perplexity",
-        "deciderformac",
-        "decider"
-      ],
-      "fact_slots": [
-        {
-          "type": "price",
-          "scope": "Decider for Macの利用料金",
-          "value": "無料",
-          "normalized_value": "無料"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-27T09:54:05.865Z",
-      "edition_window_end": "2026-10-27T09:49:29.413Z"
-    },
     {
       "article_id": "article_7f90117e9434de73b0e2",
       "story_id": "story_28013983e8c2d2864c",
@@ -2576,6 +2460,34 @@
       "previous_article_id": "",
       "selected_at": "2026-10-30T00:03:48.455Z",
       "edition_window_end": "2026-10-29T23:58:46.374Z"
+    },
+    {
+      "article_id": "article_bb52a94f71dfeaaa788e",
+      "story_id": "story_8630c0ca44fe8af152",
+      "title": "シンパステクノロジー、中小企業向け生成AIセキュリティ対策ガイドを無償公開",
+      "primary_entity": "シンパステクノロジー",
+      "story_subject": "生成AIセキュリティ対策ガイド",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本・中小企業向け",
+      "story_entities": [
+        "シンパステクノロジー",
+        "生成AIセキュリティガイド",
+        "生成aiセキュリティガイド"
+      ],
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "セキュリティガイド",
+          "value": "無料",
+          "normalized_value": "無料"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-30T10:56:09.060Z",
+      "edition_window_end": "2026-10-30T10:52:23.010Z"
     }
   ]
 }
