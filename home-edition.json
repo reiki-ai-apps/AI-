@@ -7,65 +7,63 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-30T16:41:41.178Z",
-  "window_end": "2026-10-30T23:52:46.248Z",
-  "last_window_end": "2026-10-30T23:52:46.248Z",
-  "last_checked_at": "2026-10-30T23:58:02.024Z",
-  "last_published_at": "2026-10-30T23:58:02.024Z",
-  "home_content_changed_at": "2026-10-30T23:58:02.024Z",
+  "window_start": "2026-10-30T23:52:46.248Z",
+  "window_end": "2026-10-31T10:24:08.915Z",
+  "last_window_end": "2026-10-31T10:24:08.915Z",
+  "last_checked_at": "2026-10-31T10:29:13.348Z",
+  "last_published_at": "2026-10-31T10:29:13.348Z",
+  "home_content_changed_at": "2026-10-31T10:29:13.348Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 1,
-  "distinct_candidate_count": 1,
+  "candidate_count": 2,
+  "distinct_candidate_count": 2,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 1,
+  "novel_candidate_count": 2,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 1,
-  "continued_selected_count": 4,
+  "new_selected_count": 2,
+  "continued_selected_count": 3,
   "tool_evolution_selected_count": 2,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
-    "article_9030865df654843044fb",
+    "article_6a349ae155721295aeba",
+    "article_c13b183fd131f99fb106",
     "article_ce3efff1c4aeae86e39c",
     "article_fdd3f10451ed0e94f9e8",
-    "article_be5b0ed5096ac2ac67f8",
-    "article_552cd320b1bc22b612ff"
+    "article_be5b0ed5096ac2ac67f8"
   ],
   "new_article_ids": [
-    "article_9030865df654843044fb"
+    "article_6a349ae155721295aeba",
+    "article_c13b183fd131f99fb106"
   ],
   "continued_article_ids": [
     "article_ce3efff1c4aeae86e39c",
     "article_fdd3f10451ed0e94f9e8",
-    "article_be5b0ed5096ac2ac67f8",
-    "article_552cd320b1bc22b612ff"
+    "article_be5b0ed5096ac2ac67f8"
   ],
   "continuation_sources": {
     "article_ce3efff1c4aeae86e39c": "previous_edition",
     "article_fdd3f10451ed0e94f9e8": "previous_edition",
-    "article_be5b0ed5096ac2ac67f8": "previous_edition",
-    "article_552cd320b1bc22b612ff": "previous_edition"
+    "article_be5b0ed5096ac2ac67f8": "previous_edition"
   },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-10-31",
   "same_day_article_ids": [
     "article_ce3efff1c4aeae86e39c",
     "article_fdd3f10451ed0e94f9e8",
-    "article_be5b0ed5096ac2ac67f8",
-    "article_552cd320b1bc22b612ff"
+    "article_be5b0ed5096ac2ac67f8"
   ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 35,
+  "blocked_previous_day_count": 33,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -384,7 +382,9 @@
     "article_be5b0ed5096ac2ac67f8": "2026-10-31",
     "article_552cd320b1bc22b612ff": "2026-10-31",
     "article_4471332141b9bba11cd8": "2026-10-31",
-    "article_9030865df654843044fb": "2026-10-31"
+    "article_9030865df654843044fb": "2026-10-31",
+    "article_6a349ae155721295aeba": "2026-10-31",
+    "article_c13b183fd131f99fb106": "2026-10-31"
   },
   "home_shown_story_log": [
     {
@@ -2123,26 +2123,92 @@
       "selected_at": "2026-10-30T23:58:02.024Z",
       "edition_window_end": "2026-10-30T23:52:46.248Z",
       "shown_day": "2026-10-31"
+    },
+    {
+      "article_id": "article_6a349ae155721295aeba",
+      "story_id": "story_989f72fd90d2876eb6",
+      "title": "日本政府、サイバー防衛強化で米AI大手に高度AIモデル提供を要請へ",
+      "primary_entity": "日本政府",
+      "story_subject": "高度AIモデルの提供要請",
+      "event_type": "policy",
+      "event_stage": "proposed",
+      "event_scope": "日本",
+      "story_entities": [
+        "日本政府",
+        "AI大手",
+        "サイバー防衛",
+        "ai大手"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-31T10:29:13.348Z",
+      "edition_window_end": "2026-10-31T10:24:08.915Z",
+      "shown_day": "2026-10-31"
+    },
+    {
+      "article_id": "article_c13b183fd131f99fb106",
+      "story_id": "story_6fea7fb88f57c82667",
+      "title": "Kimi、会話だけで3Dモデルを作れる「3D Make」を公開",
+      "primary_entity": "Kimi",
+      "story_subject": "3D Make",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "全世界",
+      "story_entities": [
+        "Kimi",
+        "3D Make",
+        "Blender",
+        "kimi",
+        "3dmake"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-31T10:29:13.348Z",
+      "edition_window_end": "2026-10-31T10:24:08.915Z",
+      "shown_day": "2026-10-31"
     }
   ],
   "scores": {
-    "article_9030865df654843044fb": {
-      "article_id": "article_9030865df654843044fb",
-      "total": 36,
+    "article_6a349ae155721295aeba": {
+      "article_id": "article_6a349ae155721295aeba",
+      "total": 78,
       "breakdown": {
-        "importance": 25,
-        "topicality": 0,
-        "scope": 6,
+        "importance": 45,
+        "topicality": 10,
+        "scope": 10,
         "authority": 5,
-        "freshness": 0,
+        "freshness": 8,
         "tool_evolution": 0,
         "penalty": 0
       },
       "reasons": [
-        "重要度B",
-        "遅れて確認できた新着"
+        "重要度A",
+        "制度・安全への影響"
       ],
-      "published_at": "2026-10-30T12:35:27.000Z"
+      "published_at": "2026-10-31T08:19:36.000Z"
+    },
+    "article_c13b183fd131f99fb106": {
+      "article_id": "article_c13b183fd131f99fb106",
+      "total": 66,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 8,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-10-31T08:32:16.000Z"
     },
     "article_ce3efff1c4aeae86e39c": {
       "article_id": "article_ce3efff1c4aeae86e39c",
@@ -2203,107 +2269,9 @@
         "重要な経営・研究体制"
       ],
       "published_at": "2026-10-30T14:29:33.000Z"
-    },
-    "article_552cd320b1bc22b612ff": {
-      "article_id": "article_552cd320b1bc22b612ff",
-      "total": 54,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-10-30T08:08:16.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_7f90117e9434de73b0e2",
-      "story_id": "story_28013983e8c2d2864c",
-      "title": "LINEヤフー、法人向けAIエージェント「Agent i Biz」提供開始",
-      "primary_entity": "LINEヤフー",
-      "story_subject": "Agent i Biz",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "日本・法人向け",
-      "story_entities": [
-        "LINEヤフー",
-        "Agent i Biz",
-        "lineヤフー",
-        "agentibiz",
-        "line"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-27T23:54:46.550Z",
-      "edition_window_end": "2026-10-27T23:50:07.939Z"
-    },
-    {
-      "article_id": "article_24952a542435f862ad4c",
-      "story_id": "story_8cd8fb96ce9ccab10e",
-      "title": "生成AIのデータ透明性策、グーグルなど5社が日本政府に回答",
-      "primary_entity": "日本政府",
-      "story_subject": "生成AIデータの透明性確保策への企業回答",
-      "event_type": "policy",
-      "event_stage": "completed",
-      "event_scope": "日本",
-      "story_entities": [
-        "グーグル",
-        "日本政府",
-        "生成AI",
-        "生成ai"
-      ],
-      "fact_slots": [
-        {
-          "type": "count",
-          "scope": "回答した企業数",
-          "value": "5社",
-          "normalized_value": "5"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-28T00:49:23.565Z",
-      "edition_window_end": "2026-10-28T00:44:26.602Z"
-    },
-    {
-      "article_id": "article_096a3acd473ccb6ffb26",
-      "story_id": "story_fd3b9d166b1398ea8a",
-      "title": "DeepSeekの週間トークン消費量が世界首位に",
-      "primary_entity": "DeepSeek",
-      "story_subject": "DeepSeekの週間トークン消費量急増",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "世界",
-      "story_entities": [
-        "DeepSeek",
-        "deepseek"
-      ],
-      "fact_slots": [
-        {
-          "type": "count",
-          "scope": "週間トークン消費量の前週比増加率",
-          "value": "801%",
-          "normalized_value": "801%"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-28T00:49:23.565Z",
-      "edition_window_end": "2026-10-28T00:44:26.602Z"
-    },
     {
       "article_id": "article_aa8f7955ae21b2b25c74",
       "story_id": "story_28c4a281ebdaa8c4e3",
@@ -2747,6 +2715,51 @@
       "previous_article_id": "",
       "selected_at": "2026-10-30T23:58:02.024Z",
       "edition_window_end": "2026-10-30T23:52:46.248Z"
+    },
+    {
+      "article_id": "article_6a349ae155721295aeba",
+      "story_id": "story_989f72fd90d2876eb6",
+      "title": "日本政府、サイバー防衛強化で米AI大手に高度AIモデル提供を要請へ",
+      "primary_entity": "日本政府",
+      "story_subject": "高度AIモデルの提供要請",
+      "event_type": "policy",
+      "event_stage": "proposed",
+      "event_scope": "日本",
+      "story_entities": [
+        "日本政府",
+        "AI大手",
+        "サイバー防衛",
+        "ai大手"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-31T10:29:13.348Z",
+      "edition_window_end": "2026-10-31T10:24:08.915Z"
+    },
+    {
+      "article_id": "article_c13b183fd131f99fb106",
+      "story_id": "story_6fea7fb88f57c82667",
+      "title": "Kimi、会話だけで3Dモデルを作れる「3D Make」を公開",
+      "primary_entity": "Kimi",
+      "story_subject": "3D Make",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "全世界",
+      "story_entities": [
+        "Kimi",
+        "3D Make",
+        "Blender",
+        "kimi",
+        "3dmake"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-10-31T10:29:13.348Z",
+      "edition_window_end": "2026-10-31T10:24:08.915Z"
     }
   ]
 }
