@@ -2,6 +2,140 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_bdf6f515bb93a6049cbe",
+      "story_id": "story_de661b89627194a605",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "中国系ハッカーがAIエージェントとDeepSeekを使い200超の組織を攻撃",
+      "source_published_at": "2026-10-31T13:22:07.000Z",
+      "published_at": "2026-10-31T13:22:07.000Z",
+      "fetched_at": "2026-10-31T15:43:17.183Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "中国系とみられるハッカー集団が、AIエージェントと中国製AIモデルDeepSeekを使い200超の組織を攻撃したと報告された。",
+      "source_name": "Pasquale Pillitteri",
+      "source_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQQ28tak0zU2F1UDllUmNPaVh2RWlmcFVHYXhhdVlCUXpLTUIycWp2XzYxNHBpWWdlbXhYTl9TTFFPTnI3TlVPc3NvSlNnLXNHM1FhSHE5bHk3b19CQ3h6VU9OUHdQbVkwVHJ1S1JwS0ZRRlZ5YnliM1FFclNjX1VHMWlvMjFjc2pHQWJQZnItTmhCYUhZXzNLN3Z3?oc=5",
+      "story_entities": [
+        "DeepSeek",
+        "AIエージェント",
+        "deepseek",
+        "aiエージェント"
+      ],
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeekとAIエージェントを悪用した攻撃キャンペーン",
+      "event_type": "security",
+      "event_stage": "investigating",
+      "event_scope": "組織・企業",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "被害組織数",
+          "value": "200件超",
+          "normalized_value": "200"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AIエージェントとDeepSeekを組み合わせた攻撃手法が確認されたとされる。",
+      "detail": "セキュリティ関係者が、中国系とみられるハッカー集団が200を超える組織を攻撃したと報告した。攻撃にはAIエージェントと中国製AIモデル「DeepSeek」が使われたとされる。AIエージェントとは、人の代わりに作業を自動で進めるプログラムのことで、人手による従来の攻撃とは異なる点として注目されている。\n\n報告によると被害組織の数は200を超えるという。AIエージェントを悪用すれば、少人数のハッカーでも大規模な攻撃を自動で仕掛けられる可能性がある。こうした仕組みが実際の攻撃に使われた点が、今回の報告で重要視されている。\n\n企業は自社システムへのAIエージェント悪用を想定した対策を検討する必要が出てくる可能性がある。ただし攻撃の具体的な手口や被害の詳細、対象業種は記事からは分からない。情報源や調査機関による続報が待たれる。",
+      "new_facts": [
+        "中国系とされるハッカー集団がAIエージェントとDeepSeekを使い200を超える組織を攻撃したとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_bfca3f70dd3d6f8668eb",
+      "story_id": "story_c08f500a7b672bfe7c",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5,
+      "title": "Cognizant、OpenAI専任部門を新設し2万5000人を配置",
+      "source_published_at": "2026-10-31T12:25:00.000Z",
+      "published_at": "2026-10-31T12:25:00.000Z",
+      "fetched_at": "2026-10-31T15:43:17.183Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "ITサービス大手Cognizantが社員2万5000人規模のOpenAI専任部門を新設し、Google Cloudに続く大型のAI投資を進めている。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1ZNFdZbG5LRHFLUE9QTXhNZnAyR0twdzQ1WkNSQlRxUE5XcWg1a0I3cWZYczBQZUwtUE5zRUtfWmxPcUczNlBaZ01NWHVBdTdiSnRBdmJUTTdQb3FrekdZYzZ2cmZBYU94dGlkU0U1aFVlLTZi?oc=5",
+      "story_entities": [
+        "Cognizant",
+        "OpenAI",
+        "Google Cloud",
+        "cognizant",
+        "openai"
+      ],
+      "primary_entity": "Cognizant",
+      "story_subject": "Cognizant社内のOpenAI専任部門設立",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "企業向けサービス",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "OpenAI専任部門の人員数",
+          "value": "25000人",
+          "normalized_value": "25000"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject"
+      ],
+      "change_summary": "Cognizantが2万5000人規模のOpenAI専任部門を新設した点が新しい。",
+      "detail": "IT大手企業のCognizant(コグニザント)が、ChatGPLを作るOpenAIと連携する専門部署を新しく作りました。これは会社の中にOpenAIの技術を使う仕事だけを担当するチームを置くという意味です。以前は特定の企業の技術だけに絞った大規模な専任部門はありませんでした。\n\n記事によると、この部門には2万5000人という非常に多くの社員が配置される予定です。これはCognizantがすでにGoogle Cloudとも大きな提携をしており、それに続く形での投資だとされています。多くの人を一つの技術に集中させることで、企業向けのAI導入サービスを強化する狙いがあるとみられます。\n\nこの動きにより、Cognizantの顧客企業はOpenAIの技術を使ったサービスをより受けやすくなる可能性があります。一方で、具体的にどんな仕事を2万5000人が担当するのか、投資額がいくらかなど、詳しい内容はまだ記事からは分かりません。今後の公式発表を確認する必要があります。",
+      "new_facts": [
+        "Cognizantが2万5000人規模のOpenAI専任部門を新設した",
+        "CognizantはすでにGoogle Cloudとも大型提携をしている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_af3a909f69c27d6cc1ac",
+      "story_id": "story_f09ae527e91fdfac48",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "ElevenLabsが効果音生成AIの新版「SFX v3」を発表",
+      "source_published_at": "2026-10-31T11:04:19.000Z",
+      "published_at": "2026-10-31T11:04:19.000Z",
+      "fetched_at": "2026-10-31T15:43:17.183Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "音声AI企業ElevenLabsが効果音生成モデルの新版「SFX v3」を発表し、限定的な提供を始めたとされる。",
+      "source_name": "TECH NOISY",
+      "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBfa3JVYnNYZEpsV1hLcVpEQjJJZVY1TkItZ0tvcVh2eTRGaXQtOEk0eUM2djNJQmdFRTZzYjdRUzlmQzd2QkRuMHdRTlo1Z25FU3AySm5lRUEyNzZCSzg4ZVBPSmU3eURVd0dpTA?oc=5",
+      "story_entities": [
+        "ElevenLabs",
+        "SFX v3",
+        "elevenlabs",
+        "sfxv3"
+      ],
+      "primary_entity": "ElevenLabs",
+      "story_subject": "SFX v3(効果音生成AIモデル)",
+      "event_type": "release",
+      "event_stage": "beta",
+      "event_scope": "限定提供",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "効果音生成AIの新版「SFX v3」が発表され、限定提供の形で公開されたとされる。",
+      "detail": "音声AI企業のElevenLabsが、効果音を自動生成するAIモデルの新版「SFX v3」を発表した。効果音生成AIとは、文章の指示から爆発音や足音などの音を作り出す技術のことを指す。今回は提供が限定的になっている点が、従来の発表と異なるとされる。\n\n記事のタイトルでは変更点や料金、利用条件が扱われているとされるが、具体的な数値や条件は本文からは確認できない。SFXはサウンドエフェクト（効果音）の略称で、動画制作やゲーム制作などで使われる音素材を作る機能である。限定提供という形を取ったことで、誰でもすぐに使えるわけではない点が注目される。\n\n動画やゲームを制作する人にとっては、効果音づくりの新しい選択肢が増える可能性がある。ただし料金や対象ユーザーなどの詳細は今のところ公表内容が確認できていない。今後ElevenLabsから正式な案内が出るか注視する必要がある。",
+      "new_facts": [
+        "ElevenLabsが効果音生成AIの新版SFX v3を発表し、限定提供としたとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_c13b183fd131f99fb106",
       "story_id": "story_6fea7fb88f57c82667",
       "story_sequence": 1,
@@ -200,6 +334,54 @@
       "detail": "欧州メディアのEuronewsが、半導体大手NVIDIAのジェンスン・フアンCEOがカザフスタンを欧州向けのAI拠点になりうる国として挙げたと報じました。AI拠点とは、AIを動かすための大量のコンピューターや電力を集めた施設や地域のことです。これまで欧州向けAIインフラの候補地として名前が挙がることが少なかった中央アジアの国が取り上げられた点が新しい動きです。\n\n記事の見出しによると、フアンCEOはカザフスタンを欧州向けAIの拠点となりうる候補地として評価しているとされています。具体的な投資額や計画の時期、協力企業名などの詳細は抜粋からは確認できません。AIを動かすには大量の電力と土地が必要で、立地条件の良い新興国が注目される流れを示す事例です。\n\nカザフスタンでAIインフラ整備が進めば、欧州企業がより近い場所でAIの計算資源を利用できるようになる可能性があります。ただし具体的な投資計画や実現時期はまだ発表されていません。続報の確認が必要です。",
       "new_facts": [
         "NVIDIAのジェンスン・フアンCEOがカザフスタンを欧州向けAI拠点の候補として挙げた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_c08da8d3231c798a7117",
+      "story_id": "story_1e638fde1079b69ed6",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6327272727272727,
+      "title": "Kuaishou傘下のKling AI、約30億ドルの資金調達を完了",
+      "source_published_at": "2026-10-30T14:17:00.000Z",
+      "published_at": "2026-10-30T14:17:00.000Z",
+      "fetched_at": "2026-10-31T15:43:17.183Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "中国の動画配信大手Kuaishou傘下の動画生成AI企業Kling AIが、約30億ドル規模の資金調達を完了したと報じられた。",
+      "source_name": "marketscreener.com",
+      "source_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNYzA2cUdzaUF0OUhrSGV1cmdpYzA4dS1yYU5uSWZ1aWRWRENaRldCYTR1RDZ2cFl6YmtlNV9xUzBieGhRY08zcVFESk43cjRTUHNRYk1NNkRxQUttdTNwMjkwTWpPQ3lhNFN3dnl3SUk3bzJRLTJvaWMyRmk5QkEzYjVDZTdaZmwyb25LSE43enh1aUtWWk1HMEVyVjJYM3pVM2JhakdTRFA0dy14VkJJOG1NaE5zbmx1N3c?oc=5",
+      "story_entities": [
+        "Kuaishou",
+        "Kling AI",
+        "kuaishou",
+        "klingai",
+        "kling"
+      ],
+      "primary_entity": "Kuaishou",
+      "story_subject": "Kling AIの資金調達",
+      "event_type": "funding",
+      "event_stage": "completed",
+      "event_scope": "中国・世界",
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "資金調達額",
+          "value": "約30億米ドル",
+          "normalized_value": "3000000000USD"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Kling AIが約30億ドル規模の資金調達を完了したと報じられた。",
+      "detail": "中国の動画配信大手Kuaishou（快手）傘下の動画生成AI企業Kling AIが、約30億ドル規模の資金調達を完了したと報じられた。Kling AIは文章や画像から動画を自動で作り出すAIサービスを手がける企業である。巨額の資金調達により、開発体制の拡大が見込まれる。\n\n報道によれば、調達額は30億ドルに迫る規模だという。具体的な出資者や資金の使いみちについては、現時点の記事からは確認できない。動画生成AI分野では世界的に開発競争が激しくなっており、大型の資金調達は開発スピードを左右する要因になる。\n\n動画制作や広告業界にとっては、Kling AIのサービスがさらに強化される可能性がある。ただし出資者の内訳や調達資金の具体的な用途は明らかになっていない。今後、正式な発表や詳細な資金使途の公表が注目される。",
+      "new_facts": [
+        "Kuaishou傘下の動画生成AI企業Kling AIが約30億ドル規模の資金調達を完了したと報じられた"
       ],
       "event_date_precision": "unknown"
     },
