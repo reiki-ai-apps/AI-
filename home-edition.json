@@ -7,54 +7,65 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-10-30T10:52:23.010Z",
-  "window_end": "2026-10-30T16:41:41.178Z",
-  "last_window_end": "2026-10-30T16:41:41.178Z",
-  "last_checked_at": "2026-10-30T16:46:45.139Z",
-  "last_published_at": "2026-10-30T16:46:45.139Z",
-  "home_content_changed_at": "2026-10-30T16:46:45.139Z",
+  "window_start": "2026-10-30T16:41:41.178Z",
+  "window_end": "2026-10-30T23:52:46.248Z",
+  "last_window_end": "2026-10-30T23:52:46.248Z",
+  "last_checked_at": "2026-10-30T23:58:02.024Z",
+  "last_published_at": "2026-10-30T23:58:02.024Z",
+  "home_content_changed_at": "2026-10-30T23:58:02.024Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 7,
-  "distinct_candidate_count": 7,
+  "candidate_count": 1,
+  "distinct_candidate_count": 1,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 7,
+  "novel_candidate_count": 1,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 5,
-  "continued_selected_count": 0,
+  "new_selected_count": 1,
+  "continued_selected_count": 4,
   "tool_evolution_selected_count": 2,
   "carried_forward": false,
-  "partially_carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_9030865df654843044fb",
     "article_ce3efff1c4aeae86e39c",
     "article_fdd3f10451ed0e94f9e8",
     "article_be5b0ed5096ac2ac67f8",
-    "article_552cd320b1bc22b612ff",
-    "article_4471332141b9bba11cd8"
+    "article_552cd320b1bc22b612ff"
   ],
   "new_article_ids": [
+    "article_9030865df654843044fb"
+  ],
+  "continued_article_ids": [
     "article_ce3efff1c4aeae86e39c",
     "article_fdd3f10451ed0e94f9e8",
     "article_be5b0ed5096ac2ac67f8",
-    "article_552cd320b1bc22b612ff",
-    "article_4471332141b9bba11cd8"
+    "article_552cd320b1bc22b612ff"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continuation_sources": {
+    "article_ce3efff1c4aeae86e39c": "previous_edition",
+    "article_fdd3f10451ed0e94f9e8": "previous_edition",
+    "article_be5b0ed5096ac2ac67f8": "previous_edition",
+    "article_552cd320b1bc22b612ff": "previous_edition"
+  },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-10-31",
-  "same_day_article_ids": [],
+  "same_day_article_ids": [
+    "article_ce3efff1c4aeae86e39c",
+    "article_fdd3f10451ed0e94f9e8",
+    "article_be5b0ed5096ac2ac67f8",
+    "article_552cd320b1bc22b612ff"
+  ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 37,
+  "blocked_previous_day_count": 35,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -372,7 +383,8 @@
     "article_fdd3f10451ed0e94f9e8": "2026-10-31",
     "article_be5b0ed5096ac2ac67f8": "2026-10-31",
     "article_552cd320b1bc22b612ff": "2026-10-31",
-    "article_4471332141b9bba11cd8": "2026-10-31"
+    "article_4471332141b9bba11cd8": "2026-10-31",
+    "article_9030865df654843044fb": "2026-10-31"
   },
   "home_shown_story_log": [
     {
@@ -2074,18 +2086,73 @@
       "selected_at": "2026-10-30T16:46:45.139Z",
       "edition_window_end": "2026-10-30T16:41:41.178Z",
       "shown_day": "2026-10-31"
+    },
+    {
+      "article_id": "article_9030865df654843044fb",
+      "story_id": "story_d75d5de8911b6e9a36",
+      "title": "小規模デザイン会社がAdobe Fireflyで作業期間を3分の1に短縮",
+      "primary_entity": "Adobe",
+      "story_subject": "Adobe Fireflyの導入事例(6人規模デザイン会社)",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "日本",
+      "story_entities": [
+        "Adobe Firefly",
+        "ITmedia",
+        "adobefirefly",
+        "itmedia",
+        "adobe"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "デザイン会社のスタッフ数",
+          "value": "6人",
+          "normalized_value": "6"
+        },
+        {
+          "type": "other",
+          "scope": "作業期間の短縮率",
+          "value": "3分の1",
+          "normalized_value": "3"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-30T23:58:02.024Z",
+      "edition_window_end": "2026-10-30T23:52:46.248Z",
+      "shown_day": "2026-10-31"
     }
   ],
   "scores": {
+    "article_9030865df654843044fb": {
+      "article_id": "article_9030865df654843044fb",
+      "total": 36,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 0,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-10-30T12:35:27.000Z"
+    },
     "article_ce3efff1c4aeae86e39c": {
       "article_id": "article_ce3efff1c4aeae86e39c",
-      "total": 81,
+      "total": 76,
       "breakdown": {
         "importance": 45,
         "topicality": 20,
         "scope": 6,
         "authority": 5,
-        "freshness": 5,
+        "freshness": 0,
         "tool_evolution": 0,
         "penalty": 0
       },
@@ -2099,13 +2166,13 @@
     },
     "article_fdd3f10451ed0e94f9e8": {
       "article_id": "article_fdd3f10451ed0e94f9e8",
-      "total": 66,
+      "total": 56,
       "breakdown": {
         "importance": 25,
         "topicality": 15,
         "scope": 3,
         "authority": 5,
-        "freshness": 10,
+        "freshness": 0,
         "tool_evolution": 8,
         "penalty": 0
       },
@@ -2119,13 +2186,13 @@
     },
     "article_be5b0ed5096ac2ac67f8": {
       "article_id": "article_be5b0ed5096ac2ac67f8",
-      "total": 62,
+      "total": 56,
       "breakdown": {
         "importance": 25,
         "topicality": 20,
         "scope": 6,
         "authority": 5,
-        "freshness": 6,
+        "freshness": 0,
         "tool_evolution": 0,
         "penalty": 0
       },
@@ -2152,28 +2219,9 @@
       "reasons": [
         "重要度B",
         "大きな製品・市場変化",
-        "遅れて確認できた新着",
         "AIツールの能力進化"
       ],
       "published_at": "2026-10-30T08:08:16.000Z"
-    },
-    "article_4471332141b9bba11cd8": {
-      "article_id": "article_4471332141b9bba11cd8",
-      "total": 50,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 5,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 9,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "主要AI企業・基盤"
-      ],
-      "published_at": "2026-10-30T15:57:33.000Z"
     }
   },
   "recent_story_history": [
@@ -2663,6 +2711,42 @@
       "previous_article_id": "",
       "selected_at": "2026-10-30T16:46:45.139Z",
       "edition_window_end": "2026-10-30T16:41:41.178Z"
+    },
+    {
+      "article_id": "article_9030865df654843044fb",
+      "story_id": "story_d75d5de8911b6e9a36",
+      "title": "小規模デザイン会社がAdobe Fireflyで作業期間を3分の1に短縮",
+      "primary_entity": "Adobe",
+      "story_subject": "Adobe Fireflyの導入事例(6人規模デザイン会社)",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "日本",
+      "story_entities": [
+        "Adobe Firefly",
+        "ITmedia",
+        "adobefirefly",
+        "itmedia",
+        "adobe"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "デザイン会社のスタッフ数",
+          "value": "6人",
+          "normalized_value": "6"
+        },
+        {
+          "type": "other",
+          "scope": "作業期間の短縮率",
+          "value": "3分の1",
+          "normalized_value": "3"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-10-30T23:58:02.024Z",
+      "edition_window_end": "2026-10-30T23:52:46.248Z"
     }
   ]
 }
