@@ -7,57 +7,71 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-01T11:16:58.821Z",
-  "window_end": "2026-11-01T16:48:11.550Z",
-  "last_window_end": "2026-11-01T16:48:11.550Z",
-  "last_checked_at": "2026-11-01T16:52:02.323Z",
+  "window_start": "2026-11-01T16:48:11.550Z",
+  "window_end": "2026-11-01T23:40:21.147Z",
+  "last_window_end": "2026-11-01T23:40:21.147Z",
+  "last_checked_at": "2026-11-01T23:44:37.776Z",
   "last_published_at": "2026-11-01T16:52:02.323Z",
   "home_content_changed_at": "2026-11-01T16:52:02.323Z",
-  "consecutive_unchanged_editions": 0,
+  "consecutive_unchanged_editions": 1,
   "consecutive_zero_candidate_editions": 0,
-  "update_health": "HEALTHY",
-  "update_health_reasons": [],
-  "edition_status": "NEW_STORIES",
-  "candidate_count": 3,
-  "distinct_candidate_count": 3,
+  "update_health": "DEGRADED",
+  "update_health_reasons": [
+    "今回の新着掲載は0件です。前の日までに載せた記事は出さず、今日まだ載せていない記事だけを表示しています"
+  ],
+  "edition_status": "NO_NEW_STORIES",
+  "candidate_count": 1,
+  "distinct_candidate_count": 1,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 3,
-  "cross_edition_duplicate_count": 0,
-  "cross_edition_duplicate_groups": [],
+  "novel_candidate_count": 0,
+  "cross_edition_duplicate_count": 1,
+  "cross_edition_duplicate_groups": [
+    {
+      "representative_id": "article_395be511ba52fb93f2e6",
+      "duplicate_ids": [
+        "article_9fc1970cf5d0163586af"
+      ]
+    }
+  ],
   "selected_count": 4,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 3,
-  "continued_selected_count": 1,
+  "new_selected_count": 0,
+  "continued_selected_count": 4,
   "tool_evolution_selected_count": 2,
-  "carried_forward": false,
-  "partially_carried_forward": true,
+  "carried_forward": true,
+  "partially_carried_forward": false,
   "article_ids": [
     "article_55ef4a5ab44459d04e32",
     "article_395be511ba52fb93f2e6",
     "article_9212c4362b1f3af621db",
     "article_5acc99877d5e44d05909"
   ],
-  "new_article_ids": [
+  "new_article_ids": [],
+  "continued_article_ids": [
     "article_55ef4a5ab44459d04e32",
     "article_395be511ba52fb93f2e6",
-    "article_9212c4362b1f3af621db"
-  ],
-  "continued_article_ids": [
+    "article_9212c4362b1f3af621db",
     "article_5acc99877d5e44d05909"
   ],
   "continuation_sources": {
+    "article_55ef4a5ab44459d04e32": "previous_edition",
+    "article_395be511ba52fb93f2e6": "previous_edition",
+    "article_9212c4362b1f3af621db": "previous_edition",
     "article_5acc99877d5e44d05909": "previous_edition"
   },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-02",
   "same_day_article_ids": [
+    "article_55ef4a5ab44459d04e32",
+    "article_395be511ba52fb93f2e6",
+    "article_9212c4362b1f3af621db",
     "article_5acc99877d5e44d05909"
   ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 40,
+  "blocked_previous_day_count": 39,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -2478,20 +2492,19 @@
       },
       "reasons": [
         "重要度A",
-        "制度・安全への影響",
-        "遅れて確認できた新着"
+        "制度・安全への影響"
       ],
       "published_at": "2026-11-01T03:43:55.000Z"
     },
     "article_395be511ba52fb93f2e6": {
       "article_id": "article_395be511ba52fb93f2e6",
-      "total": 57,
+      "total": 54,
       "breakdown": {
         "importance": 25,
         "topicality": 10,
         "scope": 6,
         "authority": 5,
-        "freshness": 3,
+        "freshness": 0,
         "tool_evolution": 8,
         "penalty": 0
       },
