@@ -7,37 +7,42 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-02T12:25:54.260Z",
-  "window_end": "2026-11-02T20:20:55.168Z",
-  "last_window_end": "2026-11-02T20:20:55.168Z",
-  "last_checked_at": "2026-11-02T20:24:58.334Z",
-  "last_published_at": "2026-11-02T20:24:58.334Z",
-  "home_content_changed_at": "2026-11-02T20:24:58.334Z",
+  "window_start": "2026-11-02T20:20:55.168Z",
+  "window_end": "2026-11-03T02:24:32.270Z",
+  "last_window_end": "2026-11-03T02:24:32.270Z",
+  "last_checked_at": "2026-11-03T02:29:16.323Z",
+  "last_published_at": "2026-11-03T02:29:16.323Z",
+  "home_content_changed_at": "2026-11-03T02:29:16.323Z",
   "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 1,
+  "consecutive_zero_candidate_editions": 0,
   "update_health": "DEGRADED",
   "update_health_reasons": [
-    "今回の新着掲載は0件です。前の日までに載せた記事は出さず、今日まだ載せていない記事だけを表示しています",
     "前の日と重ならない検証済み記事が3件未満です"
   ],
-  "edition_status": "NO_NEW_STORIES",
-  "candidate_count": 0,
-  "distinct_candidate_count": 0,
+  "edition_status": "NEW_STORIES",
+  "candidate_count": 2,
+  "distinct_candidate_count": 2,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 0,
+  "novel_candidate_count": 2,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 0,
+  "selected_count": 2,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 0,
+  "new_selected_count": 2,
   "continued_selected_count": 0,
-  "tool_evolution_selected_count": 0,
+  "tool_evolution_selected_count": 2,
   "carried_forward": false,
   "partially_carried_forward": false,
-  "article_ids": [],
-  "new_article_ids": [],
+  "article_ids": [
+    "article_7c5cc659a1c30a1bf01a",
+    "article_da0cbd68ab5507b7a00a"
+  ],
+  "new_article_ids": [
+    "article_7c5cc659a1c30a1bf01a",
+    "article_da0cbd68ab5507b7a00a"
+  ],
   "continued_article_ids": [],
   "continuation_sources": {},
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
@@ -45,7 +50,7 @@
   "same_day_article_ids": [],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 44,
+  "blocked_previous_day_count": 42,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -366,7 +371,9 @@
     "article_9212c4362b1f3af621db": "2026-11-02",
     "article_5acc99877d5e44d05909": "2026-11-02",
     "article_7c22ee17dd17899848c5": "2026-11-02",
-    "article_9fc1970cf5d0163586af": "2026-11-02"
+    "article_9fc1970cf5d0163586af": "2026-11-02",
+    "article_7c5cc659a1c30a1bf01a": "2026-11-03",
+    "article_da0cbd68ab5507b7a00a": "2026-11-03"
   },
   "home_shown_story_log": [
     {
@@ -2460,46 +2467,116 @@
       "selected_at": "2026-11-02T12:30:14.692Z",
       "edition_window_end": "2026-11-02T12:25:54.260Z",
       "shown_day": "2026-11-02"
-    }
-  ],
-  "scores": {},
-  "recent_story_history": [
+    },
     {
-      "article_id": "article_9030865df654843044fb",
-      "story_id": "story_d75d5de8911b6e9a36",
-      "title": "小規模デザイン会社がAdobe Fireflyで作業期間を3分の1に短縮",
-      "primary_entity": "Adobe",
-      "story_subject": "Adobe Fireflyの導入事例(6人規模デザイン会社)",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "日本",
+      "article_id": "article_7c5cc659a1c30a1bf01a",
+      "story_id": "story_6568391b7cd2023ede",
+      "title": "DeepSeek、「クリエイターモード」を公開 一言でプラグイン生成、プロンプト7組も公開",
+      "primary_entity": "DeepSeek",
+      "story_subject": "クリエイターモード",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "不明",
       "story_entities": [
-        "Adobe Firefly",
-        "ITmedia",
-        "adobefirefly",
-        "itmedia",
-        "adobe"
+        "DeepSeek",
+        "クリエイターモード",
+        "deepseek"
       ],
       "fact_slots": [
         {
           "type": "count",
-          "scope": "デザイン会社のスタッフ数",
-          "value": "6人",
-          "normalized_value": "6"
-        },
-        {
-          "type": "other",
-          "scope": "作業期間の短縮率",
-          "value": "3分の1",
-          "normalized_value": "3"
+          "scope": "公開されたプロンプト例数",
+          "value": "7組",
+          "normalized_value": "7"
         }
       ],
       "relation_type": "new",
-      "dedupe_decision": "uncertain",
+      "dedupe_decision": "new",
       "previous_article_id": "",
-      "selected_at": "2026-10-30T23:58:02.024Z",
-      "edition_window_end": "2026-10-30T23:52:46.248Z"
+      "selected_at": "2026-11-03T02:29:16.323Z",
+      "edition_window_end": "2026-11-03T02:24:32.270Z",
+      "shown_day": "2026-11-03"
     },
+    {
+      "article_id": "article_da0cbd68ab5507b7a00a",
+      "story_id": "story_6632292fbdc4434abe",
+      "title": "Canva、画像編集ソフトAffinityのiPad版を提供開始",
+      "primary_entity": "Canva",
+      "story_subject": "Affinity iPad版",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "iPad",
+      "story_entities": [
+        "Canva",
+        "Affinity",
+        "canva",
+        "affinity",
+        "ipad"
+      ],
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "AI機能付きプラン月額",
+          "value": "18ドル",
+          "normalized_value": "18USD"
+        },
+        {
+          "type": "availability",
+          "scope": "個人利用",
+          "value": "無料",
+          "normalized_value": "無料"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-03T02:29:16.323Z",
+      "edition_window_end": "2026-11-03T02:24:32.270Z",
+      "shown_day": "2026-11-03"
+    }
+  ],
+  "scores": {
+    "article_7c5cc659a1c30a1bf01a": {
+      "article_id": "article_7c5cc659a1c30a1bf01a",
+      "total": 59,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 5,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-02T23:35:00.000Z"
+    },
+    "article_da0cbd68ab5507b7a00a": {
+      "article_id": "article_da0cbd68ab5507b7a00a",
+      "total": 54,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "遅れて確認できた新着",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-02T14:55:00.000Z"
+    }
+  },
+  "recent_story_history": [
     {
       "article_id": "article_6a349ae155721295aeba",
       "story_id": "story_989f72fd90d2876eb6",
@@ -2921,6 +2998,70 @@
       "previous_article_id": "article_395be511ba52fb93f2e6",
       "selected_at": "2026-11-02T12:30:14.692Z",
       "edition_window_end": "2026-11-02T12:25:54.260Z"
+    },
+    {
+      "article_id": "article_7c5cc659a1c30a1bf01a",
+      "story_id": "story_6568391b7cd2023ede",
+      "title": "DeepSeek、「クリエイターモード」を公開 一言でプラグイン生成、プロンプト7組も公開",
+      "primary_entity": "DeepSeek",
+      "story_subject": "クリエイターモード",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "不明",
+      "story_entities": [
+        "DeepSeek",
+        "クリエイターモード",
+        "deepseek"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "公開されたプロンプト例数",
+          "value": "7組",
+          "normalized_value": "7"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-03T02:29:16.323Z",
+      "edition_window_end": "2026-11-03T02:24:32.270Z"
+    },
+    {
+      "article_id": "article_da0cbd68ab5507b7a00a",
+      "story_id": "story_6632292fbdc4434abe",
+      "title": "Canva、画像編集ソフトAffinityのiPad版を提供開始",
+      "primary_entity": "Canva",
+      "story_subject": "Affinity iPad版",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "iPad",
+      "story_entities": [
+        "Canva",
+        "Affinity",
+        "canva",
+        "affinity",
+        "ipad"
+      ],
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "AI機能付きプラン月額",
+          "value": "18ドル",
+          "normalized_value": "18USD"
+        },
+        {
+          "type": "availability",
+          "scope": "個人利用",
+          "value": "無料",
+          "normalized_value": "無料"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-03T02:29:16.323Z",
+      "edition_window_end": "2026-11-03T02:24:32.270Z"
     }
   ]
 }
