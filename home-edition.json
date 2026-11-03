@@ -7,50 +7,57 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-02T20:20:55.168Z",
-  "window_end": "2026-11-03T02:24:32.270Z",
-  "last_window_end": "2026-11-03T02:24:32.270Z",
-  "last_checked_at": "2026-11-03T02:29:16.323Z",
-  "last_published_at": "2026-11-03T02:29:16.323Z",
-  "home_content_changed_at": "2026-11-03T02:29:16.323Z",
+  "window_start": "2026-11-03T02:24:32.270Z",
+  "window_end": "2026-11-03T03:04:30.832Z",
+  "last_window_end": "2026-11-03T03:04:30.832Z",
+  "last_checked_at": "2026-11-03T03:09:18.365Z",
+  "last_published_at": "2026-11-03T03:09:18.365Z",
+  "home_content_changed_at": "2026-11-03T03:09:18.365Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
-  "update_health": "DEGRADED",
-  "update_health_reasons": [
-    "前の日と重ならない検証済み記事が3件未満です"
-  ],
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 2,
-  "distinct_candidate_count": 2,
+  "candidate_count": 1,
+  "distinct_candidate_count": 1,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 2,
+  "novel_candidate_count": 1,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 2,
+  "selected_count": 3,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 2,
-  "continued_selected_count": 0,
+  "new_selected_count": 1,
+  "continued_selected_count": 2,
   "tool_evolution_selected_count": 2,
   "carried_forward": false,
-  "partially_carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_61643cd6c6410e8ab9c6",
     "article_7c5cc659a1c30a1bf01a",
     "article_da0cbd68ab5507b7a00a"
   ],
   "new_article_ids": [
+    "article_61643cd6c6410e8ab9c6"
+  ],
+  "continued_article_ids": [
     "article_7c5cc659a1c30a1bf01a",
     "article_da0cbd68ab5507b7a00a"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continuation_sources": {
+    "article_7c5cc659a1c30a1bf01a": "previous_edition",
+    "article_da0cbd68ab5507b7a00a": "previous_edition"
+  },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-03",
-  "same_day_article_ids": [],
+  "same_day_article_ids": [
+    "article_7c5cc659a1c30a1bf01a",
+    "article_da0cbd68ab5507b7a00a"
+  ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 42,
+  "blocked_previous_day_count": 41,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -373,7 +380,8 @@
     "article_7c22ee17dd17899848c5": "2026-11-02",
     "article_9fc1970cf5d0163586af": "2026-11-02",
     "article_7c5cc659a1c30a1bf01a": "2026-11-03",
-    "article_da0cbd68ab5507b7a00a": "2026-11-03"
+    "article_da0cbd68ab5507b7a00a": "2026-11-03",
+    "article_61643cd6c6410e8ab9c6": "2026-11-03"
   },
   "home_shown_story_log": [
     {
@@ -2533,18 +2541,62 @@
       "selected_at": "2026-11-03T02:29:16.323Z",
       "edition_window_end": "2026-11-03T02:24:32.270Z",
       "shown_day": "2026-11-03"
+    },
+    {
+      "article_id": "article_61643cd6c6410e8ab9c6",
+      "story_id": "story_67760a793accd1e9a2",
+      "title": "AI学習拒否を共通化するrobots.txtの新トークン、Googleなど4社が対応へ",
+      "primary_entity": "Google",
+      "story_subject": "robots.txtのAI学習拒否共通トークン",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "ウェブ全体",
+      "story_entities": [
+        "Google",
+        "robots.txt",
+        "AI学習拒否トークン",
+        "google",
+        "ai学習拒否トークン"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-03T03:09:18.365Z",
+      "edition_window_end": "2026-11-03T03:04:30.832Z",
+      "shown_day": "2026-11-03"
     }
   ],
   "scores": {
+    "article_61643cd6c6410e8ab9c6": {
+      "article_id": "article_61643cd6c6410e8ab9c6",
+      "total": 71,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 15,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "制度・安全への影響",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-11-03T02:08:25.000Z"
+    },
     "article_7c5cc659a1c30a1bf01a": {
       "article_id": "article_7c5cc659a1c30a1bf01a",
-      "total": 59,
+      "total": 54,
       "breakdown": {
         "importance": 25,
         "topicality": 10,
         "scope": 6,
         "authority": 5,
-        "freshness": 5,
+        "freshness": 0,
         "tool_evolution": 8,
         "penalty": 0
       },
@@ -2570,7 +2622,6 @@
       "reasons": [
         "重要度B",
         "大きな製品・市場変化",
-        "遅れて確認できた新着",
         "AIツールの能力進化"
       ],
       "published_at": "2026-11-02T14:55:00.000Z"
@@ -3062,6 +3113,29 @@
       "previous_article_id": "",
       "selected_at": "2026-11-03T02:29:16.323Z",
       "edition_window_end": "2026-11-03T02:24:32.270Z"
+    },
+    {
+      "article_id": "article_61643cd6c6410e8ab9c6",
+      "story_id": "story_67760a793accd1e9a2",
+      "title": "AI学習拒否を共通化するrobots.txtの新トークン、Googleなど4社が対応へ",
+      "primary_entity": "Google",
+      "story_subject": "robots.txtのAI学習拒否共通トークン",
+      "event_type": "policy",
+      "event_stage": "announced",
+      "event_scope": "ウェブ全体",
+      "story_entities": [
+        "Google",
+        "robots.txt",
+        "AI学習拒否トークン",
+        "google",
+        "ai学習拒否トークン"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-03T03:09:18.365Z",
+      "edition_window_end": "2026-11-03T03:04:30.832Z"
     }
   ]
 }
