@@ -7,50 +7,59 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-03T11:56:19.024Z",
-  "window_end": "2026-11-03T17:51:34.406Z",
-  "last_window_end": "2026-11-03T17:51:34.406Z",
-  "last_checked_at": "2026-11-03T17:55:51.233Z",
-  "last_published_at": "2026-11-03T17:55:51.233Z",
-  "home_content_changed_at": "2026-11-03T17:55:51.233Z",
+  "window_start": "2026-11-03T17:51:34.406Z",
+  "window_end": "2026-11-04T00:39:21.693Z",
+  "last_window_end": "2026-11-04T00:39:21.693Z",
+  "last_checked_at": "2026-11-04T00:44:36.973Z",
+  "last_published_at": "2026-11-04T00:44:36.973Z",
+  "home_content_changed_at": "2026-11-04T00:44:36.973Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
-  "update_health": "DEGRADED",
-  "update_health_reasons": [
-    "前の日と重ならない検証済み記事が3件未満です"
-  ],
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 2,
-  "distinct_candidate_count": 2,
+  "candidate_count": 4,
+  "distinct_candidate_count": 4,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 2,
+  "novel_candidate_count": 4,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 2,
+  "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 2,
-  "continued_selected_count": 0,
-  "tool_evolution_selected_count": 0,
+  "new_selected_count": 4,
+  "continued_selected_count": 1,
+  "tool_evolution_selected_count": 4,
   "carried_forward": false,
-  "partially_carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
-    "article_38c9a89ff4bca720542d",
-    "article_a8eba83a0cce5230a092"
+    "article_9d5edfe5229aab2dffe5",
+    "article_896ba27cdc0982d8bc70",
+    "article_34a393e0c8bea7298aca",
+    "article_74429be642be52382cc0",
+    "article_38c9a89ff4bca720542d"
   ],
   "new_article_ids": [
-    "article_38c9a89ff4bca720542d",
-    "article_a8eba83a0cce5230a092"
+    "article_9d5edfe5229aab2dffe5",
+    "article_896ba27cdc0982d8bc70",
+    "article_34a393e0c8bea7298aca",
+    "article_74429be642be52382cc0"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continued_article_ids": [
+    "article_38c9a89ff4bca720542d"
+  ],
+  "continuation_sources": {
+    "article_38c9a89ff4bca720542d": "previous_edition"
+  },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-04",
-  "same_day_article_ids": [],
+  "same_day_article_ids": [
+    "article_38c9a89ff4bca720542d"
+  ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 42,
+  "blocked_previous_day_count": 38,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -373,7 +382,11 @@
     "article_da0cbd68ab5507b7a00a": "2026-11-03",
     "article_61643cd6c6410e8ab9c6": "2026-11-03",
     "article_38c9a89ff4bca720542d": "2026-11-04",
-    "article_a8eba83a0cce5230a092": "2026-11-04"
+    "article_a8eba83a0cce5230a092": "2026-11-04",
+    "article_9d5edfe5229aab2dffe5": "2026-11-04",
+    "article_896ba27cdc0982d8bc70": "2026-11-04",
+    "article_34a393e0c8bea7298aca": "2026-11-04",
+    "article_74429be642be52382cc0": "2026-11-04"
   },
   "home_shown_story_log": [
     {
@@ -2459,18 +2472,204 @@
       "selected_at": "2026-11-03T17:55:51.233Z",
       "edition_window_end": "2026-11-03T17:51:34.406Z",
       "shown_day": "2026-11-04"
+    },
+    {
+      "article_id": "article_9d5edfe5229aab2dffe5",
+      "story_id": "story_2347f49d4416dbc8a0",
+      "title": "Anthropic、企業の管理者がClaudeの会話を確認できる機能を発表",
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude企業向け管理者監視機能",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "企業向け",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "anthropic",
+        "claude",
+        "futurism"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-04T00:44:36.973Z",
+      "edition_window_end": "2026-11-04T00:39:21.693Z",
+      "shown_day": "2026-11-04"
+    },
+    {
+      "article_id": "article_896ba27cdc0982d8bc70",
+      "story_id": "story_16f737f124fb9a4ea4",
+      "title": "Canva、全従業員の22%にあたる1,271人を削減へ",
+      "primary_entity": "Canva",
+      "story_subject": "Canvaの人員削減",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "全社",
+      "story_entities": [
+        "Canva",
+        "canva"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "Canvaの削減人数",
+          "value": "1271人",
+          "normalized_value": "1271"
+        },
+        {
+          "type": "amount",
+          "scope": "Canvaの削減比率",
+          "value": "全従業員の22%",
+          "normalized_value": "22%"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-04T00:44:36.973Z",
+      "edition_window_end": "2026-11-04T00:39:21.693Z",
+      "shown_day": "2026-11-04"
+    },
+    {
+      "article_id": "article_34a393e0c8bea7298aca",
+      "story_id": "story_057539d80063060e15",
+      "title": "ChatGPTのチャットタブと仕事用タブが統合へ",
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPTのChatタブとWorkタブ統合",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "ChatGPT全体",
+      "story_entities": [
+        "ChatGPT",
+        "OpenAI",
+        "chatgpt",
+        "openai",
+        "mashable"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-04T00:44:36.973Z",
+      "edition_window_end": "2026-11-04T00:39:21.693Z",
+      "shown_day": "2026-11-04"
+    },
+    {
+      "article_id": "article_74429be642be52382cc0",
+      "story_id": "story_a2deaa7987d09ce0da",
+      "title": "資料作成の手直し作業が楽になる、Geminiの新機能まとめ",
+      "primary_entity": "Google",
+      "story_subject": "Gemini新機能(資料作成)",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "Gemini全体",
+      "story_entities": [
+        "Gemini",
+        "Google",
+        "gemini",
+        "google",
+        "google-gemini"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-04T00:44:36.973Z",
+      "edition_window_end": "2026-11-04T00:39:21.693Z",
+      "shown_day": "2026-11-04"
     }
   ],
   "scores": {
+    "article_9d5edfe5229aab2dffe5": {
+      "article_id": "article_9d5edfe5229aab2dffe5",
+      "total": 84,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 20,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "制度・安全への影響",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-03T18:03:00.000Z"
+    },
+    "article_896ba27cdc0982d8bc70": {
+      "article_id": "article_896ba27cdc0982d8bc70",
+      "total": 78,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 7,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 7,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "重要な経営・研究体制",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-03T22:55:00.000Z"
+    },
+    "article_34a393e0c8bea7298aca": {
+      "article_id": "article_34a393e0c8bea7298aca",
+      "total": 63,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 15,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 7,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-03T22:49:45.000Z"
+    },
+    "article_74429be642be52382cc0": {
+      "article_id": "article_74429be642be52382cc0",
+      "total": 62,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 15,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 6,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-03T22:00:00.000Z"
+    },
     "article_38c9a89ff4bca720542d": {
       "article_id": "article_38c9a89ff4bca720542d",
-      "total": 83,
+      "total": 75,
       "breakdown": {
         "importance": 45,
         "topicality": 15,
         "scope": 10,
         "authority": 5,
-        "freshness": 8,
+        "freshness": 0,
         "tool_evolution": 0,
         "penalty": 0
       },
@@ -2480,72 +2679,9 @@
         "大きな製品・市場変化"
       ],
       "published_at": "2026-11-03T16:57:29.000Z"
-    },
-    "article_a8eba83a0cce5230a092": {
-      "article_id": "article_a8eba83a0cce5230a092",
-      "total": 81,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 17,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 8,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "制度・安全への影響",
-        "重要な経営・研究体制"
-      ],
-      "published_at": "2026-11-03T16:26:29.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_4d97f41de2b01bddce84",
-      "story_id": "story_cb8194059f6c7a58e5",
-      "title": "NVIDIA、CEOが中国のスパイ計画の標的だったとの報道に反応",
-      "primary_entity": "NVIDIA",
-      "story_subject": "ジェンスン・フアンCEOを狙った中国のスパイ計画疑惑",
-      "event_type": "security",
-      "event_stage": "investigating",
-      "event_scope": "米中関係・NVIDIA経営陣",
-      "story_entities": [
-        "NVIDIA",
-        "ジェンスン・フアン",
-        "nvidia",
-        "ジェンスンフアン"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-31T23:30:58.733Z",
-      "edition_window_end": "2026-10-31T23:26:44.407Z"
-    },
-    {
-      "article_id": "article_e1c4932f098c130d0a50",
-      "story_id": "story_90ae13290b5446a9fd",
-      "title": "アップルCEO、「AIのためのAI」は出したくないと発言",
-      "primary_entity": "Apple",
-      "story_subject": "アップルのAI開発方針",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "Apple製品全般",
-      "story_entities": [
-        "Apple",
-        "ティム・クック",
-        "apple",
-        "ティムクック"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-31T23:30:58.733Z",
-      "edition_window_end": "2026-10-31T23:26:44.407Z"
-    },
     {
       "article_id": "article_4bf38873f5485dc4bc28",
       "story_id": "story_c4731054e26ae4c41e",
@@ -2883,6 +3019,108 @@
       "previous_article_id": "",
       "selected_at": "2026-11-03T17:55:51.233Z",
       "edition_window_end": "2026-11-03T17:51:34.406Z"
+    },
+    {
+      "article_id": "article_9d5edfe5229aab2dffe5",
+      "story_id": "story_2347f49d4416dbc8a0",
+      "title": "Anthropic、企業の管理者がClaudeの会話を確認できる機能を発表",
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude企業向け管理者監視機能",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "企業向け",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "anthropic",
+        "claude",
+        "futurism"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-04T00:44:36.973Z",
+      "edition_window_end": "2026-11-04T00:39:21.693Z"
+    },
+    {
+      "article_id": "article_896ba27cdc0982d8bc70",
+      "story_id": "story_16f737f124fb9a4ea4",
+      "title": "Canva、全従業員の22%にあたる1,271人を削減へ",
+      "primary_entity": "Canva",
+      "story_subject": "Canvaの人員削減",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "全社",
+      "story_entities": [
+        "Canva",
+        "canva"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "Canvaの削減人数",
+          "value": "1271人",
+          "normalized_value": "1271"
+        },
+        {
+          "type": "amount",
+          "scope": "Canvaの削減比率",
+          "value": "全従業員の22%",
+          "normalized_value": "22%"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-04T00:44:36.973Z",
+      "edition_window_end": "2026-11-04T00:39:21.693Z"
+    },
+    {
+      "article_id": "article_34a393e0c8bea7298aca",
+      "story_id": "story_057539d80063060e15",
+      "title": "ChatGPTのチャットタブと仕事用タブが統合へ",
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPTのChatタブとWorkタブ統合",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "ChatGPT全体",
+      "story_entities": [
+        "ChatGPT",
+        "OpenAI",
+        "chatgpt",
+        "openai",
+        "mashable"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-04T00:44:36.973Z",
+      "edition_window_end": "2026-11-04T00:39:21.693Z"
+    },
+    {
+      "article_id": "article_74429be642be52382cc0",
+      "story_id": "story_a2deaa7987d09ce0da",
+      "title": "資料作成の手直し作業が楽になる、Geminiの新機能まとめ",
+      "primary_entity": "Google",
+      "story_subject": "Gemini新機能(資料作成)",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "Gemini全体",
+      "story_entities": [
+        "Gemini",
+        "Google",
+        "gemini",
+        "google",
+        "google-gemini"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-04T00:44:36.973Z",
+      "edition_window_end": "2026-11-04T00:39:21.693Z"
     }
   ]
 }
