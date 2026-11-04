@@ -7,59 +7,61 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-03T17:51:34.406Z",
-  "window_end": "2026-11-04T00:39:21.693Z",
-  "last_window_end": "2026-11-04T00:39:21.693Z",
-  "last_checked_at": "2026-11-04T00:44:36.973Z",
-  "last_published_at": "2026-11-04T00:44:36.973Z",
-  "home_content_changed_at": "2026-11-04T00:44:36.973Z",
+  "window_start": "2026-11-04T00:39:21.693Z",
+  "window_end": "2026-11-04T12:09:33.100Z",
+  "last_window_end": "2026-11-04T12:09:33.100Z",
+  "last_checked_at": "2026-11-04T12:14:04.490Z",
+  "last_published_at": "2026-11-04T12:14:04.490Z",
+  "home_content_changed_at": "2026-11-04T12:14:04.490Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 4,
-  "distinct_candidate_count": 4,
+  "candidate_count": 3,
+  "distinct_candidate_count": 3,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 4,
+  "novel_candidate_count": 3,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 4,
-  "continued_selected_count": 1,
-  "tool_evolution_selected_count": 4,
+  "new_selected_count": 3,
+  "continued_selected_count": 2,
+  "tool_evolution_selected_count": 3,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
-    "article_9d5edfe5229aab2dffe5",
-    "article_896ba27cdc0982d8bc70",
-    "article_34a393e0c8bea7298aca",
-    "article_74429be642be52382cc0",
-    "article_38c9a89ff4bca720542d"
+    "article_e4a7edfa7399c9c42d1e",
+    "article_4f65be359020cec8b55a",
+    "article_b1e0d90e1cb43ad4a637",
+    "article_38c9a89ff4bca720542d",
+    "article_896ba27cdc0982d8bc70"
   ],
   "new_article_ids": [
-    "article_9d5edfe5229aab2dffe5",
-    "article_896ba27cdc0982d8bc70",
-    "article_34a393e0c8bea7298aca",
-    "article_74429be642be52382cc0"
+    "article_e4a7edfa7399c9c42d1e",
+    "article_4f65be359020cec8b55a",
+    "article_b1e0d90e1cb43ad4a637"
   ],
   "continued_article_ids": [
-    "article_38c9a89ff4bca720542d"
+    "article_38c9a89ff4bca720542d",
+    "article_896ba27cdc0982d8bc70"
   ],
   "continuation_sources": {
-    "article_38c9a89ff4bca720542d": "previous_edition"
+    "article_38c9a89ff4bca720542d": "previous_edition",
+    "article_896ba27cdc0982d8bc70": "previous_edition"
   },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-04",
   "same_day_article_ids": [
-    "article_38c9a89ff4bca720542d"
+    "article_38c9a89ff4bca720542d",
+    "article_896ba27cdc0982d8bc70"
   ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 38,
+  "blocked_previous_day_count": 35,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -386,7 +388,10 @@
     "article_9d5edfe5229aab2dffe5": "2026-11-04",
     "article_896ba27cdc0982d8bc70": "2026-11-04",
     "article_34a393e0c8bea7298aca": "2026-11-04",
-    "article_74429be642be52382cc0": "2026-11-04"
+    "article_74429be642be52382cc0": "2026-11-04",
+    "article_e4a7edfa7399c9c42d1e": "2026-11-04",
+    "article_4f65be359020cec8b55a": "2026-11-04",
+    "article_b1e0d90e1cb43ad4a637": "2026-11-04"
   },
   "home_shown_story_log": [
     {
@@ -2578,88 +2583,140 @@
       "selected_at": "2026-11-04T00:44:36.973Z",
       "edition_window_end": "2026-11-04T00:39:21.693Z",
       "shown_day": "2026-11-04"
+    },
+    {
+      "article_id": "article_e4a7edfa7399c9c42d1e",
+      "story_id": "story_b339382f891422301d",
+      "title": "Claude Code製品リードが退社表明、Anthropicで3人目の幹部退社",
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude Code製品リードの退社",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "全世界",
+      "story_entities": [
+        "Anthropic",
+        "Claude Code",
+        "anthropic",
+        "claudecode",
+        "claude"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "直近の主要退社人数",
+          "value": "3人目",
+          "normalized_value": "3"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-04T12:14:04.490Z",
+      "edition_window_end": "2026-11-04T12:09:33.100Z",
+      "shown_day": "2026-11-04"
+    },
+    {
+      "article_id": "article_4f65be359020cec8b55a",
+      "story_id": "story_646f225f02e94fde53",
+      "title": "中国テンセントとムーンショットAI、サイバー攻撃対策を施したAIモデルを公開",
+      "primary_entity": "テンセント",
+      "story_subject": "サイバー攻撃抑制AIモデル",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "中国",
+      "story_entities": [
+        "テンセント",
+        "ムーンショットAI",
+        "ムーンショットai"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-04T12:14:04.490Z",
+      "edition_window_end": "2026-11-04T12:09:33.100Z",
+      "shown_day": "2026-11-04"
+    },
+    {
+      "article_id": "article_b1e0d90e1cb43ad4a637",
+      "story_id": "story_af402efda0a2ca82c9",
+      "title": "アールスリーインスティテュート、生成AI業務改善サービス「キミノマホロ」提供開始",
+      "primary_entity": "アールスリーインスティテュート",
+      "story_subject": "キミノマホロ",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本",
+      "story_entities": [
+        "アールスリーインスティテュート",
+        "キミノマホロ"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-04T12:14:04.490Z",
+      "edition_window_end": "2026-11-04T12:09:33.100Z",
+      "shown_day": "2026-11-04"
     }
   ],
   "scores": {
-    "article_9d5edfe5229aab2dffe5": {
-      "article_id": "article_9d5edfe5229aab2dffe5",
-      "total": 84,
+    "article_e4a7edfa7399c9c42d1e": {
+      "article_id": "article_e4a7edfa7399c9c42d1e",
+      "total": 79,
       "breakdown": {
         "importance": 45,
-        "topicality": 20,
-        "scope": 6,
+        "topicality": 12,
+        "scope": 10,
         "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
+        "freshness": 7,
+        "tool_evolution": 0,
         "penalty": 0
       },
       "reasons": [
         "重要度A",
         "主要AI企業・基盤",
+        "重要な経営・研究体制"
+      ],
+      "published_at": "2026-11-04T08:36:42.000Z"
+    },
+    "article_4f65be359020cec8b55a": {
+      "article_id": "article_4f65be359020cec8b55a",
+      "total": 72,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 20,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 8,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
         "制度・安全への影響",
         "大きな製品・市場変化",
         "AIツールの能力進化"
       ],
-      "published_at": "2026-11-03T18:03:00.000Z"
+      "published_at": "2026-11-04T10:07:38.000Z"
     },
-    "article_896ba27cdc0982d8bc70": {
-      "article_id": "article_896ba27cdc0982d8bc70",
-      "total": 78,
+    "article_b1e0d90e1cb43ad4a637": {
+      "article_id": "article_b1e0d90e1cb43ad4a637",
+      "total": 49,
       "breakdown": {
-        "importance": 45,
-        "topicality": 7,
+        "importance": 10,
+        "topicality": 10,
         "scope": 6,
         "authority": 5,
-        "freshness": 7,
+        "freshness": 10,
         "tool_evolution": 8,
         "penalty": 0
       },
       "reasons": [
-        "重要度A",
-        "重要な経営・研究体制",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-11-03T22:55:00.000Z"
-    },
-    "article_34a393e0c8bea7298aca": {
-      "article_id": "article_34a393e0c8bea7298aca",
-      "total": 63,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 15,
-        "scope": 3,
-        "authority": 5,
-        "freshness": 7,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "主要AI企業・基盤",
+        "重要度C",
         "大きな製品・市場変化",
         "AIツールの能力進化"
       ],
-      "published_at": "2026-11-03T22:49:45.000Z"
-    },
-    "article_74429be642be52382cc0": {
-      "article_id": "article_74429be642be52382cc0",
-      "total": 62,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 15,
-        "scope": 3,
-        "authority": 5,
-        "freshness": 6,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "主要AI企業・基盤",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-11-03T22:00:00.000Z"
+      "published_at": "2026-11-04T11:42:16.000Z"
     },
     "article_38c9a89ff4bca720542d": {
       "article_id": "article_38c9a89ff4bca720542d",
@@ -2679,75 +2736,28 @@
         "大きな製品・市場変化"
       ],
       "published_at": "2026-11-03T16:57:29.000Z"
+    },
+    "article_896ba27cdc0982d8bc70": {
+      "article_id": "article_896ba27cdc0982d8bc70",
+      "total": 71,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 7,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "重要な経営・研究体制",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-03T22:55:00.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_4bf38873f5485dc4bc28",
-      "story_id": "story_c4731054e26ae4c41e",
-      "title": "DeepSeekがオープンソースの自律型コーディングツールを公開、Claude Codeに対抗",
-      "primary_entity": "DeepSeek",
-      "story_subject": "DeepSeekのオープンソースコーディングエージェントツール",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "オープンソース・全世界",
-      "story_entities": [
-        "DeepSeek",
-        "Claude Code",
-        "Anthropic",
-        "deepseek",
-        "claudecode"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-01T11:22:46.332Z",
-      "edition_window_end": "2026-11-01T11:16:58.821Z"
-    },
-    {
-      "article_id": "article_cfa10b410a1962e467d7",
-      "story_id": "story_ef5b3ccb959b8db203",
-      "title": "中国製AIの政治的偏り、第三者評価で意外な結果",
-      "primary_entity": "エクサウィザーズ",
-      "story_subject": "中国製AIの政治的偏り評価",
-      "event_type": "research",
-      "event_stage": "other",
-      "event_scope": "不明",
-      "story_entities": [
-        "中国製AI",
-        "エクサウィザーズ",
-        "中国製ai"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-01T11:22:46.332Z",
-      "edition_window_end": "2026-11-01T11:16:58.821Z"
-    },
-    {
-      "article_id": "article_2a461102dbea2d4b9a3b",
-      "story_id": "story_8c7866157a74ef2afd",
-      "title": "Apple幹部ジョン・ターナス氏、AI競争で急がない姿勢を表明",
-      "primary_entity": "Apple",
-      "story_subject": "AppleのAI戦略に関する幹部発言",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "Apple全社",
-      "story_entities": [
-        "Apple",
-        "John Ternus",
-        "apple",
-        "johnternus"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-01T11:22:46.332Z",
-      "edition_window_end": "2026-11-01T11:16:58.821Z"
-    },
     {
       "article_id": "article_55ef4a5ab44459d04e32",
       "story_id": "story_627e67e9909a3c1135",
@@ -3121,6 +3131,77 @@
       "previous_article_id": "",
       "selected_at": "2026-11-04T00:44:36.973Z",
       "edition_window_end": "2026-11-04T00:39:21.693Z"
+    },
+    {
+      "article_id": "article_e4a7edfa7399c9c42d1e",
+      "story_id": "story_b339382f891422301d",
+      "title": "Claude Code製品リードが退社表明、Anthropicで3人目の幹部退社",
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude Code製品リードの退社",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "全世界",
+      "story_entities": [
+        "Anthropic",
+        "Claude Code",
+        "anthropic",
+        "claudecode",
+        "claude"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "直近の主要退社人数",
+          "value": "3人目",
+          "normalized_value": "3"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-04T12:14:04.490Z",
+      "edition_window_end": "2026-11-04T12:09:33.100Z"
+    },
+    {
+      "article_id": "article_4f65be359020cec8b55a",
+      "story_id": "story_646f225f02e94fde53",
+      "title": "中国テンセントとムーンショットAI、サイバー攻撃対策を施したAIモデルを公開",
+      "primary_entity": "テンセント",
+      "story_subject": "サイバー攻撃抑制AIモデル",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "中国",
+      "story_entities": [
+        "テンセント",
+        "ムーンショットAI",
+        "ムーンショットai"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-04T12:14:04.490Z",
+      "edition_window_end": "2026-11-04T12:09:33.100Z"
+    },
+    {
+      "article_id": "article_b1e0d90e1cb43ad4a637",
+      "story_id": "story_af402efda0a2ca82c9",
+      "title": "アールスリーインスティテュート、生成AI業務改善サービス「キミノマホロ」提供開始",
+      "primary_entity": "アールスリーインスティテュート",
+      "story_subject": "キミノマホロ",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本",
+      "story_entities": [
+        "アールスリーインスティテュート",
+        "キミノマホロ"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-04T12:14:04.490Z",
+      "edition_window_end": "2026-11-04T12:09:33.100Z"
     }
   ]
 }
