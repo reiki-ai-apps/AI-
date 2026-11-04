@@ -17949,6 +17949,28 @@
       "lane": "expert",
       "reason": "ai_skip: 具体的な論点やチャプターが確認できない内容"
     },
+    "url:https://www.youtube.com/watch?v=wzdau_l1uw8": {
+      "canonical_url": "https://www.youtube.com/watch?v=wzdau_l1uw8",
+      "content_hash": "167b4b503a2daaca53e1cc27fd5322915dcc94a50550b518119ae0d7dccbc558",
+      "story_key": "c336104a227808d1f84cf8ce62cb9ccf1a86dd74d7fd6fa145f8350de32632f7",
+      "status": "rejected",
+      "processed_at": "2026-11-04T08:03:17.234Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "ai_skip: チャプターや具体的論点の記載がなく内容確認不可"
+    },
+    "url:https://www.youtube.com/watch?v=paeivfloxsg": {
+      "canonical_url": "https://www.youtube.com/watch?v=paeivfloxsg",
+      "content_hash": "7f123b81f47d516ad6551615ebc1c9b4422d2921790c5a086399e8544a8ccd91",
+      "story_key": "f3125a3c0c3e7bbc22aeb9d1c23e8b81ab715640a8eff273ff6638292db0854f",
+      "status": "rejected",
+      "processed_at": "2026-11-04T08:03:17.234Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "ai_skip: 本編への導入的な切り抜きで具体的主張が確認できない"
+    },
     "url:https://news.google.com/rss/articles/cbmibkfvx3lxtfbhdfz2alq1dwtfwlhpuvnulxd3wgtqrwx1zxfnwvettmt5edlbbnpybktecgdsbwvwyteyyvfxsvvismkwz0rrskhscmpwy2dldffiq1fnvtiwehfobkpuqldumm84wvhkdeu2vjn3": {
       "canonical_url": "https://news.google.com/rss/articles/cbmibkfvx3lxtfbhdfz2alq1dwtfwlhpuvnulxd3wgtqrwx1zxfnwvettmt5edlbbnpybktecgdsbwvwyteyyvfxsvvismkwz0rrskhscmpwy2dldffiq1fnvtiwehfobkpuqldumm84wvhkdeu2vjn3",
       "content_hash": "c48d907941136131d53b0e101e0ac4a563d5b92b76cac809895f63528f60f077",
@@ -18668,46 +18690,393 @@
       "canonical_url": "https://www.youtube.com/watch?v=679bacrfpdw",
       "content_hash": "3917e572e3cb27a9470a7017f595a71428f06cfa22e882eb0b7215b04fe3eb3d",
       "story_key": "a6115c3b68dff9716d33e7e356854049351274b88a159bc9743f9bba9fe19e25",
-      "status": "retry",
-      "processed_at": "2026-11-04T08:03:09.749Z",
+      "status": "enriched",
+      "processed_at": "2026-11-04T12:11:16.011Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "expert",
-      "reason": "invalid_ai_response"
+      "reason": "",
+      "result": {
+        "tool": "専門家動画・発言",
+        "content_type": "expert_video",
+        "expert_id": "keito-aiweb",
+        "expert_ids": [
+          "keito-aiweb"
+        ],
+        "expert_name": "KEITO",
+        "expert_names": [
+          "KEITO"
+        ],
+        "expert_role": "AIツールの使い方・検証を発信する解説者",
+        "expert_tier": "practical_ai_educator",
+        "platform": "YouTube",
+        "video_id": "679baCrFPDw",
+        "source_trust": "primary",
+        "title": "Claude活用術まとめ動画、KEITO氏が資料作成・動画編集・自動化の実演を公開",
+        "source_url": "https://www.youtube.com/watch?v=679baCrFPDw",
+        "source_name": "KEITO【AI&WEB ch】",
+        "is_official": true,
+        "published_at": "2026-11-03T09:30:31.000Z",
+        "source_published_at": "2026-11-03T09:30:31.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-04T12:09:33.100Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Claude Code",
+          "Claude Design",
+          "Claude Motion"
+        ],
+        "primary_entity": "KEITO",
+        "story_subject": "Claudeを使った業務自動化・資料作成・動画編集の実演",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "YouTube動画",
+        "fact_slots": [],
+        "new_facts": [
+          "KEITO氏がClaude Code、Claude Design、Claude Motionなど複数機能の活用法をまとめた動画を公開した。",
+          "動画内でClaude Codeの権限モードやセキュリティー診断ツールの扱いが解説されている。",
+          "AI社員によるホームページ制作会社の事例としてコスト集計の様子が紹介されている。"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "AI解説者KEITO氏が、Claude Code・Claude Design・Claude Motionなどを使った業務自動化の実演をまとめた動画を公開した。",
+        "detail": "KEITO氏がAIツールClaudeの活用法をまとめた動画を公開した。資料作成や動画編集などの実演を一本にまとめた総集編動画である。個別の機能紹介ではなく仕事での使い方を通して紹介する内容になっている。\n\n動画ではClaude Codeでの作業手順を記録し繰り返せる仕組みを扱う。Claude Designを使った資料・ワイヤーフレーム作成の手順も紹介される。Claude Codeの権限管理やセキュリティー設定についても説明がある。\n\n視聴者は資料作成や動画編集を自動化する具体的な手順を学べる。内容は長時間に及ぶため自分の業務に近い章から視聴するとよい。動画内の主張や効果の程度は本人の発言として扱う必要がある。",
+        "change_summary": "Claude Code、Claude Design、Claude Motionなど複数機能を組み合わせた業務自動化の実演をまとめて紹介している。",
+        "impact_summary": "資料作成や動画編集をAIに任せる具体的な手順を知ることで、日常業務の効率化を検討しやすくなる。",
+        "action_suggestion": "1時間40分超の動画のうち、自分の業務に近いチャプターを選んで手順を確認できる。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "アプリ開発・自動化"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
     },
     "url:https://www.youtube.com/watch?v=zlxuhfrsmio": {
       "canonical_url": "https://www.youtube.com/watch?v=zlxuhfrsmio",
       "content_hash": "0869bcfee19d5d60524ddd4b91656da52a17ae37c8dc8a9615eb5e2ce066b6b7",
       "story_key": "4c5070a78aefaa025cdd9c9c3bf618e48ee751eaa4f51e6f1753e98d84ae1d51",
+      "status": "rejected",
+      "processed_at": "2026-11-04T12:11:16.011Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "ai_skip: 別チャンネルの本編からの切り抜きで本人発信ではない"
+    },
+    "url:https://news.google.com/rss/articles/cbmibefvx3lxte9druuyv0iyzg1yrkuxcgdjsgrcqvuwtdviancxnhvfbw9brzvxewdcnkntrjzztkq0vhrgv1dtqxvtwgxpsjdkrla1tephouvvnhq3yzjwbukwver5uwzmc0huq2fynf9qtjhqsg": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmibefvx3lxte9druuyv0iyzg1yrkuxcgdjsgrcqvuwtdviancxnhvfbw9brzvxewdcnkntrjzztkq0vhrgv1dtqxvtwgxpsjdkrla1tephouvvnhq3yzjwbukwver5uwzmc0huq2fynf9qtjhqsg",
+      "content_hash": "165d9028307c97193d06dc4ef3a4c0bb710192e0a878b21f3dfc0d218b5f278c",
+      "story_key": "2b58138c0961c7eead602c616c71db82236a153cedb474dfe65517b0e8b92282",
+      "status": "enriched",
+      "processed_at": "2026-11-04T12:12:20.863Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "中国AI・基盤モデル",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "中国テンセントとムーンショットAI、サイバー攻撃対策を施したAIモデルを公開",
+        "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9DRUUyV0IyZG1yRkUxcGdjSGRCQVUwTDViancxNHVFbW9BRzVXeWdCNkNtRjZzTkQ0VHRGV1dTQXVTWGxpSjdKRlA1TEphOUVVNHQ3YzJWbUkwVER5UWZmc0huQ2FyNF9QTjhqSg?oc=5",
+        "source_name": "日本経済新聞",
+        "is_official": false,
+        "published_at": "2026-11-04T10:07:38.000Z",
+        "source_published_at": "2026-11-04T10:07:38.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-04T12:09:33.100Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "テンセント",
+          "ムーンショットAI"
+        ],
+        "primary_entity": "テンセント",
+        "story_subject": "サイバー攻撃抑制AIモデル",
+        "event_type": "release",
+        "event_stage": "announced",
+        "event_scope": "中国",
+        "fact_slots": [],
+        "new_facts": [
+          "テンセントとムーンショットAIがサイバー攻撃能力を抑制したAIモデルを公開した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "中国のテンセントとムーンショットAIが、サイバー攻撃に悪用されにくくしたAIモデルを公開したと日本経済新聞が報じた。",
+        "detail": "中国のIT大手テンセントとAI企業ムーンショットAIが、サイバー攻撃に使われる能力を抑えた新しいAIモデルを公開したと日本経済新聞が報じた。簡単に言うと、悪意ある人がAIを使って攻撃の道具を作れないよう工夫したモデルということ。これまでは処理速度や賢さを競う発表が目立ったが、今回は安全対策を前面に出した点がこれまでと異なる。\n\n記事では両社が新しいモデルを公開した事実が確認できるが、具体的な抑制の仕組みやモデル名、公開した日付の詳細は本文からは分からない。中国の大手AI企業が安全性を意識したモデル作りを進めていること自体は、AIが悪用されない社会をつくる取り組みとして注目される。\n\n利用者にとっては、今後AIモデルを選ぶ際に安全性能も判断材料になっていく可能性がある。ただし本記事からは性能の評価方法や第三者機関による検証結果は確認できない。モデルの詳しい仕様や実際の効果についての続報が待たれる。",
+        "change_summary": "サイバー攻撃への悪用を抑える工夫をしたAIモデルを中国企業が公開した。",
+        "impact_summary": "AIの安全性を重視する動きが広がれば、日本企業もモデル選定時に安全対策を確認する必要が出てくる可能性がある。",
+        "action_suggestion": "モデルの具体的な仕組みや公開時期についての詳細発表を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "セキュリティ",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmia0fvx3lxte42akjisdf5n2q3enjtnwr6utz1c2jjt1hzb3rsdkxwzexhuk5fverysvbxzmhlwflsdlfrwhnom0nttm94znjwdgrbrdnqy2vwn0s0q2o4vmpxexi0befszjhzb1zllwroy09b": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmia0fvx3lxte42akjisdf5n2q3enjtnwr6utz1c2jjt1hzb3rsdkxwzexhuk5fverysvbxzmhlwflsdlfrwhnom0nttm94znjwdgrbrdnqy2vwn0s0q2o4vmpxexi0befszjhzb1zllwroy09b",
+      "content_hash": "b4401877a6fbff8278b16bd284d0f54372b5ffc9a9ddb753af98034f885a3056",
+      "story_key": "19e18e83c41409a6cf1527bf130250f248b80305bf370e8dc2ad418782a8ddfc",
+      "status": "rejected",
+      "processed_at": "2026-11-04T12:12:20.863Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 弁護士就任の人事情報でAIとの関連が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmix0fvx3lxtfa2zwdflwfysnryqxlvczd5bznbztaxynzhcek1oevudmjsevm3eeq3zkyzvuzuegzotzf4nhp0ejntb3lfy3pzrlljwev1b1m0luiznf85blmynjc2snjz": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmix0fvx3lxtfa2zwdflwfysnryqxlvczd5bznbztaxynzhcek1oevudmjsevm3eeq3zkyzvuzuegzotzf4nhp0ejntb3lfy3pzrlljwev1b1m0luiznf85blmynjc2snjz",
+      "content_hash": "b01ed3ce1954cf04b4673ea2da5f70ff8cd6d340d2d10342011e5bddbf70e5c0",
+      "story_key": "5aed81da8124b11b50314591ed20fa2e56074d001b174b583e7c953df499eaaf",
+      "status": "rejected",
+      "processed_at": "2026-11-04T12:12:20.863Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 製品紹介記事で具体的な事実が抜粋から確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmiwkfvx3lxte8wberrrtltqnhwqujtmjvievq0dgexvtlfskzxn2h4d0dtrk1fexzxukc2ajjioelgy1h0zlnkv1fkcmd0qtvzuzvhogvps2fusmdquhy1mefedw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiwkfvx3lxte8wberrrtltqnhwqujtmjvievq0dgexvtlfskzxn2h4d0dtrk1fexzxukc2ajjioelgy1h0zlnkv1fkcmd0qtvzuzvhogvps2fusmdquhy1mefedw",
+      "content_hash": "9fe34b9acc6a22f7feaeffd633b06085009e79cd7ec399d15f7bb5dc2cbfb574",
+      "story_key": "1ddee4eb1ae9e4cb68e05852964f6902035a4a745eaef8250ea83c246bbde770",
       "status": "retry",
-      "processed_at": "2026-11-04T08:03:09.749Z",
+      "processed_at": "2026-11-04T12:12:20.863Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "expert",
-      "reason": "invalid_ai_response"
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
     },
-    "url:https://www.youtube.com/watch?v=wzdau_l1uw8": {
-      "canonical_url": "https://www.youtube.com/watch?v=wzdau_l1uw8",
-      "content_hash": "167b4b503a2daaca53e1cc27fd5322915dcc94a50550b518119ae0d7dccbc558",
-      "story_key": "c336104a227808d1f84cf8ce62cb9ccf1a86dd74d7fd6fa145f8350de32632f7",
-      "status": "rejected",
-      "processed_at": "2026-11-04T08:03:17.234Z",
+    "url:https://news.google.com/rss/articles/cbmidefvx3lxte5idlm0ltdkadgzehpsandwtes5d014uvb4uljzvktqofdhtm5munjavtmzd2tyy3q2shdnwfzpn0ctzmr1req0cxjvymg5slnoofdicnvfd3fhnxzdrm5fsfg3cxvsufvmrexta3lftewtotro": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte5idlm0ltdkadgzehpsandwtes5d014uvb4uljzvktqofdhtm5munjavtmzd2tyy3q2shdnwfzpn0ctzmr1req0cxjvymg5slnoofdicnvfd3fhnxzdrm5fsfg3cxvsufvmrexta3lftewtotro",
+      "content_hash": "ae796dc814b563a8c69135b45993af4fe8ba3ca8ec06b956cbdfb6d599b636d4",
+      "story_key": "89bebc83e01b0e1f78845d7dab0cd8ac5a8b564e4f322f361428e08b0a8bbc63",
+      "status": "retry",
+      "processed_at": "2026-11-04T12:12:20.863Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "expert",
-      "reason": "ai_skip: チャプターや具体的論点の記載がなく内容確認不可"
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
     },
-    "url:https://www.youtube.com/watch?v=paeivfloxsg": {
-      "canonical_url": "https://www.youtube.com/watch?v=paeivfloxsg",
-      "content_hash": "7f123b81f47d516ad6551615ebc1c9b4422d2921790c5a086399e8544a8ccd91",
-      "story_key": "f3125a3c0c3e7bbc22aeb9d1c23e8b81ab715640a8eff273ff6638292db0854f",
-      "status": "rejected",
-      "processed_at": "2026-11-04T08:03:17.234Z",
+    "url:https://news.google.com/rss/articles/cbmia0fvx3lxte1rvdltbkf6ugptag4ts2lkblvoavblcmjmbwjjtg10szktsk9jes1hvnjjsdzuthriev9tx2vnvhlwlvvpmzj1qlpwehz2ywxjeefhzxbodxj0s2zdvxhsqk1ss3nqsuvxblaw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmia0fvx3lxte1rvdltbkf6ugptag4ts2lkblvoavblcmjmbwjjtg10szktsk9jes1hvnjjsdzuthriev9tx2vnvhlwlvvpmzj1qlpwehz2ywxjeefhzxbodxj0s2zdvxhsqk1ss3nqsuvxblaw",
+      "content_hash": "7a8b8d5e41438bbd6911534d5dc604496b5888d3a637661a897717e25fddaeef",
+      "story_key": "f4af506f2d7c636d9c82a1bd880bca71af91e96ea5f0ead35ee33bcf1ea45d8d",
+      "status": "retry",
+      "processed_at": "2026-11-04T12:12:20.863Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "expert",
-      "reason": "ai_skip: 本編への導入的な切り抜きで具体的主張が確認できない"
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte1mvu9owllwsnjdqk1csxvqulnacfdwvwitnnbyefz2nmnwnwfpd3vsakz5uy1vylzpm2xos054mdrhdln2z1biums0umgwutatzhzjbkhteffpn3rhueldmwyxel8xylrkd2c": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte1mvu9owllwsnjdqk1csxvqulnacfdwvwitnnbyefz2nmnwnwfpd3vsakz5uy1vylzpm2xos054mdrhdln2z1biums0umgwutatzhzjbkhteffpn3rhueldmwyxel8xylrkd2c",
+      "content_hash": "020038628a4c54671c91c26f9c0c36c1bf6382972d0d3a73a2a60b9271f834d8",
+      "story_key": "722b121a21284e751a18f19bff0fc15f359438893b37ac0bc51d85cb8af2c5b6",
+      "status": "rejected",
+      "processed_at": "2026-11-04T12:12:27.778Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 本文情報がなく見出しの繰り返しのみで内容確認不可"
+    },
+    "url:https://news.google.com/rss/articles/cbmidefvx3lxte9sbmvjrjbwcuzknmtebutocdi5cdqtekjqwfe3nwrrwjzxd25ymwjen29kqznjluhoakrtdk1mtxron3bozjd5axffdfdywmppvwv0ne5hmk53cxfxyvrtsgvpsfzuuwtnt2rrcknltwvnrmz2": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte9sbmvjrjbwcuzknmtebutocdi5cdqtekjqwfe3nwrrwjzxd25ymwjen29kqznjluhoakrtdk1mtxron3bozjd5axffdfdywmppvwv0ne5hmk53cxfxyvrtsgvpsfzuuwtnt2rrcknltwvnrmz2",
+      "content_hash": "730ae779f96cbc2b9d727ace4c437723ed9a61e17a3565f6ce23519f613b9278",
+      "story_key": "f9b44a5e082258c42fdf2564844d14c7eb5e04ab8317cdad8bdda6a2f31c891a",
+      "status": "rejected",
+      "processed_at": "2026-11-04T12:12:27.778Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 本文情報がなく見出しの繰り返しのみで内容確認不可"
+    },
+    "url:https://news.google.com/rss/articles/cbmib0fvx3lxtfb1lwp4dldhzurubwhebeptqmo3delvszjscurbbfp3cw1rmdd1mtlong9sodvexzcwvdhsr0e1n002efdunthjv2wwrddvsxrjbxzlvuxxd3flbm1fse1yx0hyeffeqw1osvg3twn2rq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmib0fvx3lxtfb1lwp4dldhzurubwhebeptqmo3delvszjscurbbfp3cw1rmdd1mtlong9sodvexzcwvdhsr0e1n002efdunthjv2wwrddvsxrjbxzlvuxxd3flbm1fse1yx0hyeffeqw1osvg3twn2rq",
+      "content_hash": "c9777c0d6265dde85581bcf42f77b7547c655316f496b4b33a797abea078748e",
+      "story_key": "67e8b4ecf2d396946451841249eedcfea9130726a9ec5ff574d56fd443af1b7c",
+      "status": "enriched",
+      "processed_at": "2026-11-04T12:13:56.602Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "",
+      "result": {
+        "tool": "世界の新モデル・速報",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "アールスリーインスティテュート、生成AI業務改善サービス「キミノマホロ」提供開始",
+        "source_url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFB1LWp4dldhZURubWhEbEptQmo3dElvSzJScURBbFp3cW1rMDd1MTloNG9SODVEXzcwVDhSR0E1N002eFdUNThjV2wwRDdVSXRJbXZlVUxXd3FLbm1FSE1YX0hYeFFEQW1oSVg3TWN2RQ?oc=5",
+        "source_name": "ニュースメディアVOIX",
+        "is_official": false,
+        "published_at": "2026-11-04T11:42:16.000Z",
+        "source_published_at": "2026-11-04T11:42:16.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-04T12:09:33.100Z",
+        "event_at": "",
+        "event_status": "開始済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "アールスリーインスティテュート",
+          "キミノマホロ"
+        ],
+        "primary_entity": "アールスリーインスティテュート",
+        "story_subject": "キミノマホロ",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "日本",
+        "fact_slots": [],
+        "new_facts": [
+          "アールスリーインスティテュートが生成AI業務改善サービス「キミノマホロ」の提供を開始した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "アールスリーインスティテュートが、生成AIを使って業務の効率化を支援する新サービス「キミノマホロ」の提供を開始した。",
+        "detail": "アールスリーインスティテュートという会社が、生成AIを使った新しい業務改善サービス「キミノマホロ」の提供を始めたと発表しました。生成AIとは、文章や画像などを自動で作り出す人工知能の技術のことです。このサービスは、企業の日々の業務にかかる手間や時間を減らすことを目指して作られました。\n\n「キミノマホロ」は、企業が抱える業務上の課題を生成AIの力で解決することを目的としたサービスです。詳しい機能や料金、対応する業務の範囲については、記事の中では明らかにされていません。生成AIを使った業務改善サービスは近年各社から相次いで登場しており、今回の発表もその流れに沿ったものです。\n\nこのサービスを利用する企業は、日々の作業を自動化したり効率化したりできる可能性があります。ただし、具体的にどのような業務に対応しているのか、導入にどれくらいの費用がかかるのかはまだ分かっていません。今後、サービスの詳細や導入事例が明らかになるかが注目されます。",
+        "change_summary": "生成AIを活用した業務改善サービス「キミノマホロ」の提供が新たに始まった。",
+        "impact_summary": "企業は生成AIを使った業務効率化の新しい選択肢を検討できるようになる。",
+        "action_suggestion": "サービスの詳細な機能や料金は現時点では明らかにされていない。",
+        "importance": "C",
+        "related_categories": [
+          "AIツール・モデル",
+          "EC・業務活用"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiqkfvx3lxte53zer1dxnztkpzrg1uz2zxnjznv1rnn2d6snfhendktenrstvdwjjwr2d1wkdfrwl5ndfbrmjvqknlzw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiqkfvx3lxte53zer1dxnztkpzrg1uz2zxnjznv1rnn2d6snfhendktenrstvdwjjwr2d1wkdfrwl5ndfbrmjvqknlzw",
+      "content_hash": "243dad1f113a31923685099cf3c2d03e94e0abbfe00db27965b5530e4f728bf4",
+      "story_key": "c692b39886a57b371cb93d31a9ffa66faa24e7fb1f9151b1a274a993cc7e8526",
+      "status": "enriched",
+      "processed_at": "2026-11-04T12:13:56.602Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "",
+      "result": {
+        "tool": "Claude / Claude Code",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "Claude Code製品リードが退社表明、Anthropicで3人目の幹部退社",
+        "source_url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE53ZER1dXNZTkpZRG1uZ2ZXNjZnV1RNN2d6SnFHendKTENRSTVDWjJWR2d1WkdFRWl5NDFBRmJvQkNlZw?oc=5",
+        "source_name": "shiritomo",
+        "is_official": false,
+        "published_at": "2026-11-04T08:36:42.000Z",
+        "source_published_at": "2026-11-04T08:36:42.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-04T12:09:33.100Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Anthropic",
+          "Claude Code"
+        ],
+        "primary_entity": "Anthropic",
+        "story_subject": "Claude Code製品リードの退社",
+        "event_type": "other",
+        "event_stage": "announced",
+        "event_scope": "全世界",
+        "fact_slots": [
+          {
+            "type": "count",
+            "scope": "直近の主要退社人数",
+            "value": "3人目",
+            "normalized_value": "3"
+          }
+        ],
+        "new_facts": [
+          "Claude Code製品リードが退社を表明した",
+          "Anthropicでは直近で3人目の主要人物の退社となった"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "AnthropicのClaude Code製品リードが退社を表明し、IPOを控える同社では直近で3人目の主要人物の退社となった。",
+        "detail": "AI企業Anthropicで、対話型AIサービス「Claude」のコーディング機能「Claude Code」を担当していた製品リードが、退社したことを明らかにしました。製品リードとは、特定の製品の開発や方向性を統括する責任者のことです。本人は「金曜日が最後の出勤日だった」とSNSなどで退社を表明したとされています。\n\n今回の退社は、Anthropicにとって直近で3人目の主要メンバーの離脱にあたるとされています。Anthropicは株式上場、いわゆるIPOを控えているとされ、こうした時期に相次いで主要メンバーが退社していることが注目されています。記事では、退社の具体的な理由については明らかにされていません。\n\nClaude Codeは、プログラムのコードを書く作業をAIが支援する機能として利用されています。製品リードの退社により、今後の開発体制や機能の方向性に変化が生じる可能性があります。ただし、後任の人事や具体的な影響については、現時点では発表されていません。",
+        "change_summary": "Claude Code製品リードの退社が明らかになり、Anthropicでは直近で3人目の主要人物の離脱となった。",
+        "impact_summary": "Claude Codeを業務で使う開発者は、今後の機能開発の方向性に変化が出る可能性に注意する必要がある。",
+        "action_suggestion": "退社の具体的理由や後任人事については、現時点で明らかにされていない。",
+        "importance": "A",
+        "related_categories": [
+          "企業・株式",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiiafbvv95cuxqu3plmfbtmkrwwf9iuf9lqngtnw1yqlvxn2ttes02rxd2tdfdqzjyn1btwjhyrg9stepltw1hyxz0x2y0y2h0tudhztzcltblrm80m3m2t1j3mm1sbxiynje2chpzrddfuuzxz1diuexbddlnrhhymlfivhrsuvbjzu9utfcxafzv": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiiafbvv95cuxqu3plmfbtmkrwwf9iuf9lqngtnw1yqlvxn2ttes02rxd2tdfdqzjyn1btwjhyrg9stepltw1hyxz0x2y0y2h0tudhztzcltblrm80m3m2t1j3mm1sbxiynje2chpzrddfuuzxz1diuexbddlnrhhymlfivhrsuvbjzu9utfcxafzv",
+      "content_hash": "fbcc1df5d1fe44db3048e7f166c41f90ddcc4c21370eee7427490e4a9138a8a3",
+      "story_key": "956a188947f04d33d92ad00874a7cfc219c458b6b09e47e6756cd4717eb1c525",
+      "status": "rejected",
+      "processed_at": "2026-11-04T12:13:56.603Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "ai_skip: 具体的事実に乏しく出典の信頼性も不明なため除外"
+    },
+    "url:https://news.google.com/rss/articles/cbmiv0fvx3lxte5pqwfmnnvodhfiqjhau1hhn2xhahvbcxzsqxvfwjzlykftcjnfsjjswvduqtvfq0ziqtrwsk1ss3djwffaeuhlx25vnkzlau9wmhzjrzlorq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiv0fvx3lxte5pqwfmnnvodhfiqjhau1hhn2xhahvbcxzsqxvfwjzlykftcjnfsjjswvduqtvfq0ziqtrwsk1ss3djwffaeuhlx25vnkzlau9wmhzjrzlorq",
+      "content_hash": "415bb066a9a56c41dc2c0462408a92692840777412cc282bcc5480b17b499c1f",
+      "story_key": "7d1a54f876d6413312e5e49c2eafeacd0d2f122c71b0d33f2a4433b91f31492a",
+      "status": "retry",
+      "processed_at": "2026-11-04T12:13:56.603Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmie0fvx3lxte5jqzzfznvxzju5rdlhug5xbhjmrtfhnfdvekfuztbdv0vmn3k0mfrsbfjzv2d6qlnvcvblamfyajh1lwfdvwhuahjecktmx3rbrhfecwhruejlwwl0znjos1jktgdqsgw3ddjva2e2ednnt1gtykjuctnktq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmie0fvx3lxte5jqzzfznvxzju5rdlhug5xbhjmrtfhnfdvekfuztbdv0vmn3k0mfrsbfjzv2d6qlnvcvblamfyajh1lwfdvwhuahjecktmx3rbrhfecwhruejlwwl0znjos1jktgdqsgw3ddjva2e2ednnt1gtykjuctnktq",
+      "content_hash": "b81f3f22b744639922ec5ff569ebebe36cea22499dbbcc92b99f3f2167e3a92a",
+      "story_key": "77e195de77d8ebf766b3f2784bd6f881d1e4bf92d2ab03c51193bb47aa1990ad",
+      "status": "retry",
+      "processed_at": "2026-11-04T12:13:56.603Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmiekfvx3lxte9hy3jrc3nowdfpb2jdzwdhbwx4yxlawxvzvtr2bxlbx0tsunyyamxmnxbqakx1zdayznzrtmjleg1usw1jtnqtvxpuazj4cue1ehrkzfl5mkt1mjdbnkvlywhquhbwvlk1cwxnoudam0v6ymh4zkjsehjb0ggoaufvx3lxtfbwy3baovc1ckvnbvdox0prvvdotedlenryafpomepzetjnn3l4aty1yunqnjfhumlveu80djy5ng1nylvasfbvy1pydzfgdetdtw1ywgduzmc2a1benelqvwhbbm40vwzysuhmr2nlmfvtdtyymxbvtf81m0vlnhvjyjb4n3foeexub245dke": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiekfvx3lxte9hy3jrc3nowdfpb2jdzwdhbwx4yxlawxvzvtr2bxlbx0tsunyyamxmnxbqakx1zdayznzrtmjleg1usw1jtnqtvxpuazj4cue1ehrkzfl5mkt1mjdbnkvlywhquhbwvlk1cwxnoudam0v6ymh4zkjsehjb0ggoaufvx3lxtfbwy3baovc1ckvnbvdox0prvvdotedlenryafpomepzetjnn3l4aty1yunqnjfhumlveu80djy5ng1nylvasfbvy1pydzfgdetdtw1ywgduzmc2a1benelqvwhbbm40vwzysuhmr2nlmfvtdtyymxbvtf81m0vlnhvjyjb4n3foeexub245dke",
+      "content_hash": "cac12f9da32369972ddb4c5992a59cd8c7c917056864a593055568d193b8d38f",
+      "story_key": "6c68d06730a5dbade85b0bbf1835607de739525fc24b69823736ed672bda3132",
+      "status": "retry",
+      "processed_at": "2026-11-04T12:13:56.603Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "missing_or_incomplete_ai_output"
     }
   },
-  "updated_at": "2026-11-04T08:03:17.234Z"
+  "updated_at": "2026-11-04T12:13:56.603Z"
 }
