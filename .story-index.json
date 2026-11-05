@@ -2,6 +2,203 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_b22650b5885694308fce",
+      "story_id": "story_5540c761957b3a31a4",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.7891891891891892,
+      "title": "OpenAI、新モデル「GPT-6 Cyber」を公開と報道",
+      "source_published_at": "2026-11-05T17:35:00.000Z",
+      "published_at": "2026-11-05T17:35:00.000Z",
+      "fetched_at": "2026-11-05T18:00:10.923Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIがサイバー関連の新モデル「GPT-6 Cyber」を公開し、ハッカーにとって最も危険なモデルと位置付けられたと報じられた。",
+      "source_name": "BigGo ファイナンス",
+      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9IMTZkTEFTTUtWQlFIWVNpVzRrWlJENDJqVERCQzhSOE1fQ2ZkOWlsVDFKTGRqWnV0SllnUXNvRlZrb1U5MU1NVWlMNWV2eHFidVFMUGJ6VGtwNTV0WDdnNWl3dElkWEx6MVdYSWNFRXQyT3Y5?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "GPT-6 Cyber",
+        "openai",
+        "gpt-6cyber",
+        "gpt-6"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "GPT-6 Cyber",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "不明",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "モデル名",
+          "value": "GPT-6 Cyber",
+          "normalized_value": "gpt6cyber"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "non_forward_stage_change"
+      ],
+      "change_summary": "OpenAIがサイバー分野向けとみられる新モデル「GPT-6 Cyber」を公開したと報じられた。",
+      "detail": "OpenAIが新しいAIモデル「GPT-6 Cyber」を公開したと報じられた。簡単に言うと、サイバーセキュリティに関わる能力を持つとみられる新型の人工知能モデル。報道では「ハッカーにとって最も危険なモデル」と位置付けられている。これまでのGPTシリーズとどう違うのかは記事の抜粋だけでは分からない。\n\n記事ではこのモデルが攻撃的な能力を持つ可能性が示唆されている。具体的な性能や公開範囲、利用方法については本文の抜粋だけでは確認できない。サイバー攻撃に悪用されるリスクが指摘されている点は、セキュリティ分野にとって重要な意味を持つ。\n\n利用者にとっては、このモデルが実際にどのように提供され、誰が使えるのかはまだ明らかになっていない。攻撃能力が高いとされる一方、防御目的での活用が想定されているかも不明。詳細な仕様や提供開始時期など、続報の確認が必要となる。",
+      "new_facts": [
+        "OpenAIが「GPT-6 Cyber」という新モデルを公開したと報じられた",
+        "報道ではハッカーにとって最も危険なモデルと位置付けられている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_b8802b1eb789bc92be85",
+      "story_id": "story_80019771c8bd88bc93",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "OpenAIがChatGPTの画像生成「Images 2.6」を発表、GIF作成と新スタイル追加",
+      "source_published_at": "2026-11-05T17:34:09.000Z",
+      "published_at": "2026-11-05T17:34:09.000Z",
+      "fetched_at": "2026-11-05T18:00:10.923Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIがChatGPTの画像生成機能を更新し、GIF作成機能と新スタイル「Flare」「Sunburst」を追加したと発表された。",
+      "source_name": "Pasquale Pillitteri",
+      "source_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQejJNZGV5QW5lSXYzdG1CdzJqMEFIelBsbjIxdHA3RGkzb3RpUHQ3eXVLWEtWWXg0RkU1N0J2aVpiZE9qNy1Ma1BIX2hwZnM1THVWb3ZaZWI5TGk2cDU3YmVtdlBiXzF2dU5XNEVKUjM0QksxMzRHV3NvZXQzNE0yRG92aUNzdGV0S2xEZGRyNkJxZw?oc=5",
+      "story_entities": [
+        "ChatGPT",
+        "OpenAI",
+        "Images 2.6",
+        "chatgpt",
+        "openai"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "Images 2.6",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "ChatGPT",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "ChatGPT画像生成モデル",
+          "value": "Images 2.6",
+          "normalized_value": "images2.6"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "ChatGPTの画像生成がGIF作成に対応し、新スタイル「Flare」「Sunburst」が加わった。",
+      "detail": "OpenAIがChatGPTの画像生成機能の新版「Images 2.6」を発表した。簡単に言うと、文章から画像を作る機能がさらに強化されたということ。今回新しく、静止画だけでなく動く画像であるGIFを作れるようになった点が、これまでとの違いになる。\n\n発表されたタイトルによると、新しいスタイルとして「Flare」と「Sunburst」という2種類が追加されたとされている。これらは画像の見た目を変える加工パターンのようなものと考えられるが、具体的な仕上がりの特徴や使い方は現時点の情報だけでは分からない。\n\nChatGPTで画像やGIFを作る人にとっては、表現の幅が広がる可能性がある。ただし提供開始の時期や対象プラン、料金への影響など詳しい条件はまだ明らかになっていない。続報の確認が必要な段階である。",
+      "new_facts": [
+        "OpenAIがChatGPTの画像生成機能「Images 2.6」を発表した",
+        "新機能としてGIF作成が追加された",
+        "新しいスタイル「Flare」と「Sunburst」が追加された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_bb47d7724b29a5247240",
+      "story_id": "story_66ad133f367ae83a49",
+      "story_sequence": 2,
+      "relation_type": "follow_up",
+      "relation_confidence": 0.865,
+      "title": "Moonshot AI、Kimi K3.1 Proの重みを公開しデプロイ選択肢を拡大",
+      "source_published_at": "2026-11-05T16:37:26.000Z",
+      "published_at": "2026-11-05T16:37:26.000Z",
+      "fetched_at": "2026-11-05T18:00:10.923Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "中国Moonshot AIが大規模言語モデル「Kimi K3.1 Pro」の重みを公開し、企業が自社環境で運用できる選択肢を広げた。",
+      "source_name": "remio",
+      "source_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNVVQxbmRKSW1UR0NIZUs2T3R1WTVOQ2Jld1FWRVE1V2JvZTVMOXFPQ2lDdXpNLThPdmEzUEVYSDJ5V2NfTHlCVEhHRmtmaWRaa0RYa1JRcUVOZDZPT0lmd0Vtd19XeFJKZ1p2Z1N1ZDRUYkVQbkVULTdGSk5Jbmh2TlJkRFk5djV5VkZjQThDSTdqYmVjdDdlWWFPUUlXdFBfOE1LM3dB?oc=5",
+      "story_entities": [
+        "Moonshot AI",
+        "Kimi K3.1 Pro",
+        "moonshotai",
+        "kimik3.1pro",
+        "moonshot-ai"
+      ],
+      "primary_entity": "Moonshot AI",
+      "story_subject": "Kimi K3.1 Pro",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "グローバル(オープンウェイト公開)",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "モデル名",
+          "value": "Kimi K3.1 Pro",
+          "normalized_value": "kimik3.1pro"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "follow_up",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "stage_changed",
+        "material_fact_changed"
+      ],
+      "change_summary": "Moonshot AIがKimi K3.1 Proの重みを公開し、自社サーバーでの運用を可能にした。",
+      "detail": "中国のAI企業Moonshot AIが、新しい大規模言語モデル「Kimi K3.1 Pro」の重み（学習済みデータ）を公開した。簡単に言うと、企業や開発者がこのモデルを自分のサーバーで動かせるようになったということ。これまでは利用方法が限られていたとみられ、今回の公開で導入の選択肢が広がった。\n\n記事では「デプロイ（実際に動かす環境への展開）選択肢を拡大」としており、企業が自社環境でモデルを運用しやすくなった点が核となる事実。重みを公開することで、利用者はクラウドサービス経由だけでなく、自前のサーバーでモデルを動かせるようになる。これにより導入コストや運用方法の幅が広がる可能性がある。\n\n開発者や企業にとっては、自社のデータを外部に出さずにAIモデルを利用できる選択肢が増えることになる。ただし、具体的な性能や対応言語、ライセンス条件などの詳細は記事の抜粋だけでは確認できない。公開範囲や商用利用条件について、続報の確認が必要となる。",
+      "new_facts": [
+        "Moonshot AIがKimi K3.1 Proの重みを公開した",
+        "モデルのデプロイ(展開)選択肢が拡大した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_883ba0c9a892e521a358",
+      "story_id": "story_aa37d8f940fde490dc",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Canva、成長鈍化で従業員1,271人に影響する組織再編を発表",
+      "source_published_at": "2026-11-05T03:03:37.000Z",
+      "published_at": "2026-11-05T03:03:37.000Z",
+      "fetched_at": "2026-11-05T18:00:10.923Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "デザインツールのCanvaが過去10年で初めて成長が鈍化し、従業員1,271人に影響する組織再編を発表した。",
+      "source_name": "XenoSpectrum",
+      "source_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1hUUdWV1B2am1aeG9TZC01ajJKeU9FYVU3dXZkd3NOQ3J3ZmxMcDFqVHdXOFRzR3Zrc25Za2tUWkpXaEhQQmUyemxiRnNham1BQzU3SjVMUnZJdXFCemV1RURGOVRuNER6MzNadkpqTDY4UQ?oc=5",
+      "story_entities": [
+        "Canva",
+        "canva"
+      ],
+      "primary_entity": "Canva",
+      "story_subject": "組織再編",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "Canva全社",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "組織再編の影響人数",
+          "value": "1271人",
+          "normalized_value": "1271"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Canvaが過去10年で初めてとなる成長鈍化を受け、従業員1,271人規模の組織再編を発表した。",
+      "detail": "デザインツールを提供するCanvaが、組織再編を発表した。簡単に言うと、会社の成長ペースが落ちてきたため、体制を見直すということである。これまでCanvaは急成長を続けてきた企業として知られていたが、今回初めて成長の鈍化が明らかになったとされる。\n\n発表によると、今回の再編は従業員1,271人に影響するとされている。どの部署が対象になるのか、人員削減を伴うのかといった詳しい内容は、現時点の情報では分かっていない。急成長してきた企業が体制を見直す動きは、デザインツール市場の競争が激しくなっていることを示している可能性がある。\n\nCanvaを仕事で使っているデザイナーや企業にとっては、今後のサービス内容や開発体制がどう変わるか気になるところである。再編の具体的な内容や実施時期はまだ公表されておらず、続報を待つ必要がある。",
+      "new_facts": [
+        "Canvaの成長率が過去10年で初めて鈍化したとされる",
+        "従業員1,271人に影響する組織再編を発表した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_e37bee2ba87632b031da",
       "story_id": "story_c3317132fd7d7b71a9",
       "story_sequence": 1,
