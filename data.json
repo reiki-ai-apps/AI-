@@ -3661,7 +3661,7 @@
       "政策・行政"
     ],
     "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_bff669851c373ca60a3b",
+    "article_id": "article_bff669851c373ca60a3b_rev_4a41ee2e94a2",
     "story_id": "story_8cbeedb4abd7c19e53",
     "story_sequence": 1,
     "relation_type": "new",
@@ -3670,9 +3670,15 @@
     "previous_title": "",
     "previous_source_published_at": "",
     "continuation_lead": "",
-    "dedupe_decision": "new",
+    "dedupe_decision": "uncertain",
     "dedupe_reasons": [
-      "no_previous_story"
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "same_event_type",
+      "similar_title",
+      "same_scope",
+      "same_url_content_changed"
     ],
     "home_video_selected_at": "2026-11-05T01:03:01.778Z",
     "home_video_origin": "new",
@@ -4521,80 +4527,63 @@
   {
     "tool": "専門家動画・発言",
     "content_type": "expert_video",
-    "expert_id": "takahiro-anno",
+    "expert_id": "keito-aiweb",
     "expert_ids": [
-      "takahiro-anno"
+      "keito-aiweb"
     ],
-    "expert_name": "安野貴博",
+    "expert_name": "KEITO",
     "expert_names": [
-      "安野貴博"
+      "KEITO"
     ],
-    "expert_role": "AIエンジニア・起業家・政策当事者",
-    "expert_tier": "core_engineering_policy",
+    "expert_role": "AIツールの使い方・検証を発信する解説者",
+    "expert_tier": "practical_ai_educator",
     "platform": "YouTube",
-    "video_id": "zWKFdgUyFL0",
-    "source_trust": "institutional",
-    "title": "チームみらい、AI失業対策提言を官房長官に提出",
-    "source_url": "https://www.youtube.com/watch?v=zWKFdgUyFL0",
-    "source_name": "チームみらい【公式】",
+    "video_id": "kuRFAngTJsU",
+    "source_trust": "primary",
+    "title": "WordPressサイトをCloudflareのEmDashへ移行しAIで更新する手順を実演",
+    "source_url": "https://www.youtube.com/watch?v=kuRFAngTJsU",
+    "source_name": "KEITO【AI&WEB ch】",
     "is_official": true,
-    "published_at": "2026-10-26T10:24:53.000Z",
-    "source_published_at": "2026-10-26T10:24:53.000Z",
+    "published_at": "2026-10-27T10:00:03.000Z",
+    "source_published_at": "2026-10-27T10:00:03.000Z",
     "source_updated_at": "",
     "source_date_status": "published",
-    "fetched_at": "2026-10-27T00:50:25.301Z",
-    "event_at": "2026-10-26",
+    "fetched_at": "2026-10-28T07:25:50.482Z",
+    "event_at": "",
     "event_status": "発表済み",
-    "event_date_precision": "day",
+    "event_date_precision": "unknown",
     "story_entities": [
-      "チームみらい",
-      "安野貴博",
-      "AI失業対策提言",
-      "ai失業対策提言"
+      "EmDash",
+      "WordPress",
+      "Cloudflare",
+      "emdash",
+      "wordpress"
     ],
-    "primary_entity": "チームみらい",
-    "story_subject": "AI失業対策提言",
-    "event_type": "policy",
-    "event_stage": "proposed",
-    "event_scope": "日本",
-    "fact_slots": [
-      {
-        "type": "date",
-        "scope": "提言提出日",
-        "value": "2026-10-26",
-        "normalized_value": "2026-10-26"
-      },
-      {
-        "type": "count",
-        "scope": "AIインタビュー対象者数",
-        "value": "582人",
-        "normalized_value": "582"
-      },
-      {
-        "type": "amount",
-        "scope": "米国若手ソフトウェア開発職の雇用減少率",
-        "value": "約20%",
-        "normalized_value": "20%"
-      }
-    ],
+    "primary_entity": "KEITO",
+    "story_subject": "EmDashへのサイト移行手順の実演",
+    "event_type": "other",
+    "event_stage": "other",
+    "event_scope": "Web制作・個人/法人サイト",
+    "fact_slots": [],
     "new_facts": [
-      "チームみらいの安野貴博氏らが2026年10月26日に木原稔官房長官へ「AI失業対策提言」を手交した",
-      "提言は米国の若手ソフトウェア開発職の雇用が約20%減少したとするデータに言及している",
-      "提言作成にあたり582人へのAIインタビューを実施した"
+      "KEITOがWordPressサイトをCloudflareのEmDashへ本番のまま移行する手順を実演した",
+      "移行後はClaudeとMCPを使いAIでサイトを更新する運用方法を紹介した",
+      "スマートフォンからAIに指示して記事を作成・公開する例を示した"
     ],
     "structured_complete": true,
-    "raw_excerpt": "チームみらいの安野貴博氏らが2026年10月26日、AI失業への備えを求める提言書を木原稔官房長官に手交した。",
-    "detail": "チームみらいの安野貴博氏と古川あおい氏、高山聡史氏が提言書を提出した。木原稔官房長官に2026年10月26日、AI失業への対策を求める文書を手渡した。AIの普及で仕事を失う「AI失業」に備える制度づくりを求める内容である。\n\n提言は、米国の若手ソフトウェア開発職の雇用が約20%減ったとする調査結果に触れている。提言づくりのため、582人にAIについて聞き取るインタビューを実施した。社会の変化に合わせて法律を見直す「法律のリファクタリング」という考え方も示された。\n\n提言は、制度を先回りして整える点と、働く人を支援する点の2つを柱としている。動画では相談窓口や支援制度についても案内し、困っている人への窓口を紹介した。提言が実際の政策にどう反映されるかはまだ明らかになっていない。",
-    "change_summary": "政治団体チームみらいが、AIによる失業リスクへの備えを求める具体的な提言書を政府に提出した。",
-    "impact_summary": "AIの普及で雇用が急に失われる可能性に対し、国の制度整備や働く人への支援策が議論される動きが出てきた。",
-    "action_suggestion": "提言の全文はチームみらいの公式サイトとnoteで公開されており、政府の今後の対応が確認事項となる。",
-    "importance": "A",
+    "raw_excerpt": "KEITO氏が、WordPressサイトをCloudflareの新サービスEmDashへ本番のまま移行し、AIで更新する運用方法を動画で実演した。",
+    "detail": "KEITO氏がWordPressサイトをEmDashへ移行する手順を解説した。EmDashはCloudflareが提供する、AIと組み合わせて使う新しいサイト運用の仕組みである。従来のWordPress運用と違い、AIに話しかけるだけで更新できる点が特徴とされる。\n\n動画では本番のWordPressサイトを公式移行ツールでEmDashへ移す手順を実演している。移行後はAIのClaudeと、ツール連携の仕組みMCPを使う更新方法も示された。スマートフォンからAIに指示して記事を作成し公開する運用例も説明されている。\n\n会社サイトを運営する人は、AIに任せた更新作業へ切り替える選択肢を検討できる。移行にはドメインやDNSの切り替え作業も伴うため、事前準備が必要とされる。効果や費用面の具体的な数字は動画内で明示されておらず、不明な点が残る。",
+    "change_summary": "WordPressサイトをCloudflareの新サービスEmDashへ本番のまま移行し、AIで更新する運用方法を実演した点が新しい。",
+    "impact_summary": "自社サイトをWordPressで運営する企業や個人が、AI活用型の更新体制へ切り替える選択肢を検討できる。",
+    "action_suggestion": "移行ツールの詳細や相談窓口は動画概要欄のリンクから確認できる状態で、費用や対応範囲は本文に明記されていない。",
+    "importance": "B",
     "related_categories": [
-      "政策・行政"
+      "アプリ開発・自動化",
+      "AIツール・モデル"
     ],
     "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_41f6397ecd3ef4cffe55_rev_2e13930bf235",
-    "story_id": "story_cc0776a369e1f8e773",
+    "article_id": "article_45346b8e95843f3b1102_rev_1d10ec53871b",
+    "story_id": "story_fe004f8689803267d6",
     "story_sequence": 1,
     "relation_type": "new",
     "relation_confidence": 1,
@@ -4607,7 +4596,6 @@
       "same_url",
       "same_primary_entity",
       "same_subject",
-      "same_event_type",
       "similar_title",
       "same_scope",
       "same_url_content_changed"
