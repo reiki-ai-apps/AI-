@@ -7,59 +7,64 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-04T17:58:50.073Z",
-  "window_end": "2026-11-05T00:55:41.771Z",
-  "last_window_end": "2026-11-05T00:55:41.771Z",
-  "last_checked_at": "2026-11-05T00:59:54.159Z",
-  "last_published_at": "2026-11-05T00:59:54.159Z",
-  "home_content_changed_at": "2026-11-05T00:59:54.159Z",
+  "window_start": "2026-11-05T00:55:41.771Z",
+  "window_end": "2026-11-05T12:22:47.460Z",
+  "last_window_end": "2026-11-05T12:22:47.460Z",
+  "last_checked_at": "2026-11-05T12:27:48.366Z",
+  "last_published_at": "2026-11-05T12:27:48.366Z",
+  "home_content_changed_at": "2026-11-05T12:27:48.366Z",
   "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 0,
-  "update_health": "HEALTHY",
-  "update_health_reasons": [],
-  "edition_status": "NEW_STORIES",
-  "candidate_count": 2,
-  "distinct_candidate_count": 2,
+  "consecutive_zero_candidate_editions": 1,
+  "update_health": "DEGRADED",
+  "update_health_reasons": [
+    "今回の新着掲載は0件です。前の日までに載せた記事は出さず、今日まだ載せていない記事だけを表示しています"
+  ],
+  "edition_status": "NO_NEW_STORIES",
+  "candidate_count": 0,
+  "distinct_candidate_count": 0,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 2,
+  "novel_candidate_count": 0,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 2,
-  "continued_selected_count": 3,
+  "new_selected_count": 0,
+  "continued_selected_count": 5,
   "tool_evolution_selected_count": 2,
-  "carried_forward": false,
-  "partially_carried_forward": true,
+  "carried_forward": true,
+  "partially_carried_forward": false,
   "article_ids": [
-    "article_87997dbf12a73085d5bb",
-    "article_e37bee2ba87632b031da",
     "article_1be4fdd8e6ca80f0ec01",
     "article_e4fe804fffa92618a065",
-    "article_52ffdb96b3d355faeb67"
-  ],
-  "new_article_ids": [
+    "article_52ffdb96b3d355faeb67",
     "article_87997dbf12a73085d5bb",
     "article_e37bee2ba87632b031da"
   ],
+  "new_article_ids": [],
   "continued_article_ids": [
     "article_1be4fdd8e6ca80f0ec01",
     "article_e4fe804fffa92618a065",
-    "article_52ffdb96b3d355faeb67"
+    "article_52ffdb96b3d355faeb67",
+    "article_87997dbf12a73085d5bb",
+    "article_e37bee2ba87632b031da"
   ],
   "continuation_sources": {
     "article_1be4fdd8e6ca80f0ec01": "previous_edition",
     "article_e4fe804fffa92618a065": "previous_edition",
-    "article_52ffdb96b3d355faeb67": "previous_edition"
+    "article_52ffdb96b3d355faeb67": "previous_edition",
+    "article_87997dbf12a73085d5bb": "previous_edition",
+    "article_e37bee2ba87632b031da": "previous_edition"
   },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-05",
   "same_day_article_ids": [
     "article_1be4fdd8e6ca80f0ec01",
     "article_e4fe804fffa92618a065",
-    "article_52ffdb96b3d355faeb67"
+    "article_52ffdb96b3d355faeb67",
+    "article_87997dbf12a73085d5bb",
+    "article_e37bee2ba87632b031da"
   ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
@@ -2765,43 +2770,6 @@
     }
   ],
   "scores": {
-    "article_87997dbf12a73085d5bb": {
-      "article_id": "article_87997dbf12a73085d5bb",
-      "total": 67,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 17,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 6,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化",
-        "重要な経営・研究体制",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-11-04T22:13:16.000Z"
-    },
-    "article_e37bee2ba87632b031da": {
-      "article_id": "article_e37bee2ba87632b031da",
-      "total": 42,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 0,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 6,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B"
-      ],
-      "published_at": "2026-11-04T22:28:02.000Z"
-    },
     "article_1be4fdd8e6ca80f0ec01": {
       "article_id": "article_1be4fdd8e6ca80f0ec01",
       "total": 76,
@@ -2859,6 +2827,43 @@
         "重要な経営・研究体制"
       ],
       "published_at": "2026-11-04T17:44:00.000Z"
+    },
+    "article_87997dbf12a73085d5bb": {
+      "article_id": "article_87997dbf12a73085d5bb",
+      "total": 61,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 17,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "重要な経営・研究体制",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-04T22:13:16.000Z"
+    },
+    "article_e37bee2ba87632b031da": {
+      "article_id": "article_e37bee2ba87632b031da",
+      "total": 36,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 0,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B"
+      ],
+      "published_at": "2026-11-04T22:28:02.000Z"
     }
   },
   "recent_story_history": [
