@@ -2,6 +2,208 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_3d8713302196064c90f5",
+      "story_id": "story_8a8912e1d8b131ea10",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Google DeepMind、Gemini Omni 1.2 Flashを一般提供開始",
+      "source_published_at": "2026-11-06T09:35:41.000Z",
+      "published_at": "2026-11-06T09:35:41.000Z",
+      "fetched_at": "2026-11-06T12:07:45.479Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Google DeepMindが新モデル「Gemini Omni 1.2 Flash」を一般提供し、15秒動画生成と会話形式の編集機能を搭載した。",
+      "source_name": "DXマガジン",
+      "source_url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5SZ3c3OExYaHZ4c3VMN1JGMW1oZ2w1N1pOLUJZa1dkWFNRU09yYkZvdWRkNHBheW1iUWNYLTlRamFVRWdLNFEwb29PSTJTQQ?oc=5",
+      "story_entities": [
+        "Google DeepMind",
+        "Gemini Omni 1.2 Flash",
+        "googledeepmind",
+        "geminiomni1.2flash",
+        "google-gemini"
+      ],
+      "primary_entity": "Google DeepMind",
+      "story_subject": "Gemini Omni 1.2 Flash",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "一般提供",
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "動画生成の長さ",
+          "value": "15秒",
+          "normalized_value": "15"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Gemini Omni 1.2 Flashが一般提供され、15秒の動画生成と会話形式の編集機能が加わった。",
+      "detail": "Google DeepMindが、新しいAIモデル「Gemini Omni 1.2 Flash」の一般提供を始めたと伝えられました。これは文章だけでなく画像や音声、動画もまとめて扱えるAIモデルです。これまでのGeminiシリーズに続く新しい種類のモデルとして登場しました。\n\n今回の発表では、15秒間の動画を自動で作る機能と、会話をしながら内容を直せる編集機能が加わったとされています。利用者が言葉で指示を出すと、AIがその場で動画の内容を調整できる仕組みです。動画を作るAIが会話形式の修正にまで対応する点が、これまでのモデルとの違いです。\n\nこの機能が広がれば、動画作りにかかる手間や専門的な知識の必要性が減る可能性があります。ただし、具体的な提供地域や料金、対応言語などの詳細は記事内で確認できていません。実際にどの程度の品質で動画が作られるかも、今後の確認が必要です。",
+      "new_facts": [
+        "Gemini Omni 1.2 Flashが一般提供された",
+        "15秒の動画生成機能を搭載",
+        "会話形式で動画を編集できる機能を搭載"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_d7969667426848d3eab6",
+      "story_id": "story_d3f390eeae1311b30f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.784,
+      "title": "Claudeが個人の家計管理機能「Personal Finance」を発表",
+      "source_published_at": "2026-11-06T08:40:40.000Z",
+      "published_at": "2026-11-06T08:40:40.000Z",
+      "fetched_at": "2026-11-06T12:07:45.479Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "ClaudeがPersonal Financeという新機能を発表し、銀行口座への接続は読み取り専用で、AIが資金を動かすことはできない仕組みになっている。",
+      "source_name": "Pasquale Pillitteri",
+      "source_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOaTBmbHFlNUhPbm11bTZSX3R3c21SQmdEVkhGYzZtWDB5WEZ3ZFdBMmFJQzdkaXJGSXU5SHhsM1NBaXpWZy10Z21sekJmLXVkcVpwWWllNm9EQnRQUHVJMUg3bnR2ZXRsVWFqR0NmdUtUVGQxaGZ3THZEQnlNaklRRXdlZGF6Zw?oc=5",
+      "story_entities": [
+        "Claude",
+        "Personal Finance",
+        "Anthropic",
+        "claude",
+        "personalfinance"
+      ],
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude Personal Finance",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "個人向け家計管理機能",
+      "fact_slots": [
+        {
+          "type": "status",
+          "scope": "銀行口座連携の権限",
+          "value": "読み取り専用",
+          "normalized_value": "読み取り専用"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "non_forward_stage_change"
+      ],
+      "change_summary": "Claudeに銀行口座を読み取り専用で連携できる家計管理機能「Personal Finance」が新たに追加された。",
+      "detail": "AIチャットサービスのClaudeが「Personal Finance」という新しい機能を発表しました。これは利用者が自分の銀行口座の情報をClaudeに連携させて、家計の管理に役立てる仕組みです。\n\n今回明らかになっている重要な点は、銀行口座への接続が読み取り専用になっていることです。つまりClaudeは口座の残高や取引履歴を見ることはできますが、そこからお金を送ったり引き出したりする操作は一切できません。この制限により、AIに銀行口座の情報を預ける際の不正送金などのリスクを避ける設計になっているとみられます。発表した企業名や提供開始日、対応する銀行の範囲など詳しい条件は、現時点の情報からは分かりません。\n\n家計簿管理や支出分析をAIに任せたい人にとっては、資産の動きを自動で把握できる可能性がある機能です。ただし読み取り専用という制限がある以上、送金や支払いの自動化はできません。対応国や対応金融機関、料金プランなどの詳細はまだ発表されていません。",
+      "new_facts": [
+        "Claudeが家計管理機能「Personal Finance」を発表した",
+        "銀行口座への接続は読み取り専用になっている",
+        "Claudeは口座から資金を動かすことができない仕組みになっている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_9f7c9e2bb386291fda99",
+      "story_id": "story_80019771c8bd88bc93",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.8242857142857143,
+      "title": "OpenAIが画像生成機能「Images 2.6」を発表",
+      "source_published_at": "2026-11-06T07:53:33.000Z",
+      "published_at": "2026-11-06T07:53:33.000Z",
+      "fetched_at": "2026-11-06T12:07:45.479Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIが画像生成機能の新版「Images 2.6」を発表し、静止画からGIFを作れる機能と、参照画像を別チャットでも使い回せる機能が加わった。",
+      "source_name": "Ledge.ai",
+      "source_url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBBTVhjMm1EM29PRVNYV0Y5aHhibnpoVkpySHoyeWpKNE50MVJaNHNXM1FkZDN1ZG84NWlTRC1OYTFFWl83VXl0OFRIZHY1TTZPRGVjRnNZcUxlY1E?oc=5",
+      "story_entities": [
+        "OpenAI",
+        "Images 2.6",
+        "ChatGPT",
+        "openai",
+        "images2.6"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "Images 2.6",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "ChatGPTの画像生成機能",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "OpenAI画像生成機能",
+          "value": "Images 2.6",
+          "normalized_value": "images2.6"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "low_confidence_follow_up_demoted"
+      ],
+      "change_summary": "静止画からGIFを作れる機能と、参照画像を別のチャットでも再利用できる機能が新たに加わった。",
+      "detail": "OpenAIが画像生成機能の新しいバージョン「Images 2.6」を発表しました。これはChatGPTなどで使われている画像を作る仕組みの更新版です。静止画から動く画像であるGIF（短い繰り返し動画のようなもの）を作れるようになった点が新しい機能です。\n\n以前のバージョンでは、参照画像として使った画像は同じ会話の中でしか使えませんでしたが、今回の更新で別のチャット（会話）でも同じ参照画像を再利用できるようになりました。これにより、キャラクターや構図を保ったまま複数の会話にまたがって画像を作り続けられる点が変わったとみられます。具体的な提供開始日や対象プランなど詳しい条件は、現時点の情報からは分かりません。\n\n画像生成を仕事で使っている人にとっては、素材作りの手間が減る可能性があります。ただし今回判明しているのはタイトルと簡単な説明のみで、料金や対応地域、具体的な操作方法などはまだ発表されていません。",
+      "new_facts": [
+        "OpenAIが画像生成機能の新版「Images 2.6」を発表した",
+        "静止画からGIFを作成できる機能が追加された",
+        "参照画像を別のチャットでも再利用できるようになった"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_f7d3ffea10852a9b6b24",
+      "story_id": "story_0bf68439d4711e68d5",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.547,
+      "title": "NVIDIA「H200」約60万個が中国向け輸出で香港に滞留",
+      "source_published_at": "2026-11-06T05:30:33.000Z",
+      "published_at": "2026-11-06T05:30:33.000Z",
+      "fetched_at": "2026-11-06T12:07:45.479Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "NVIDIAの高性能AI半導体「H200」約60万個が香港に滞留し、中国本土への供給が足踏みしていると報じられた。",
+      "source_name": "NOVAIST",
+      "source_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5jWXpPbHkweXc3RjUwQ2haTEM4LW04bFh3cTNjVWFoWmpIRm9maVBvUEtzV2U5a2tLNG5nemdOR3ZwZ3E1M24zOEppblZvbGFZUTZaRmo1MlFQcjdJQm0yV3ZSMmh3NHJLci1R?oc=5",
+      "story_entities": [
+        "NVIDIA",
+        "H200",
+        "nvidia",
+        "h200"
+      ],
+      "primary_entity": "NVIDIA",
+      "story_subject": "H200の中国向け輸出・香港滞留",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "中国・香港",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "香港に滞留するH200の個数",
+          "value": "約60万個",
+          "normalized_value": "600000"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type"
+      ],
+      "change_summary": "NVIDIAのH200約60万個が香港に滞留し、中国本土への供給が滞っていると報じられた。",
+      "detail": "NVIDIAの高性能AI向け半導体「H200」が、中国向けの輸出規制の影響で香港に足止めされていると報じられました。H200は大量のデータを高速に処理できる、AI開発に欠かせない半導体の一種です。中国本土への供給が滞っている状況が新たに伝えられました。\n\n記事によると、約60万個のH200が香港に滞留しているとされています。これは米国による対中輸出規制の影響で、半導体が目的地である中国本土まで届いていないことを示しています。AIを開発する企業にとって計算処理に使う半導体の確保は事業の土台となるため、この滞留は業界全体に影響する問題です。\n\nこの状況が続けば、中国のAI企業は必要な半導体を十分に調達できず、開発計画が遅れる可能性があります。一方で、規制がいつ緩和されるか、滞留した半導体が最終的にどうなるかは記事内で明らかにされていません。今後の米中間の輸出規制の動向が注目されます。",
+      "new_facts": [
+        "NVIDIAのH200約60万個が香港に滞留している",
+        "中国本土への供給が輸出規制の影響で足踏みしている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_b22650b5885694308fce",
       "story_id": "story_5540c761957b3a31a4",
       "story_sequence": 1,
@@ -150,6 +352,50 @@
       "new_facts": [
         "Moonshot AIがKimi K3.1 Proの重みを公開した",
         "モデルのデプロイ(展開)選択肢が拡大した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_a1e6ab168bdcfd3292bb",
+      "story_id": "story_63656fd6de039e8d7f",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.528125,
+      "title": "Geminiの新機能「スキル」の使い方をKEITO氏が解説",
+      "source_published_at": "2026-11-05T09:00:09.000Z",
+      "published_at": "2026-11-05T09:00:09.000Z",
+      "fetched_at": "2026-11-06T12:07:45.479Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "AI活用発信者のKEITO氏が、Geminiの新機能「スキル」の作り方と活用例を動画で紹介した。",
+      "source_name": "KEITO【AI&WEB ch】",
+      "source_url": "https://www.youtube.com/watch?v=LXhrdpm7hKQ",
+      "story_entities": [
+        "Gemini",
+        "KEITO",
+        "Gem",
+        "gemini",
+        "keito"
+      ],
+      "primary_entity": "KEITO",
+      "story_subject": "Geminiのスキル機能",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "Gemini利用者向け",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "shared_entity",
+        "same_subject"
+      ],
+      "change_summary": "Geminiに追加された「スキル」機能の作り方と活用例を具体的に示した解説動画。",
+      "detail": "AI活用発信者のKEITOさんが、Geminiの新機能「スキル」を動画で解説した。スキルとは、AIに特定の作業手順をまとめて覚えさせる仕組みのことである。既存の「Gem」という機能との違いも、動画の中で説明されている。\n\n動画では、メール文を自動作成して送信する手順が実演されている。同じデザインのスライド資料を作る方法や複数スキルの組み合わせ方も紹介された。Gmail内のサブスクリプション支払いを自動で集計する活用例も示されている。\n\nApps Scriptと組み合わせて、受付システムを作る方法まで解説されている。既存のGemからスキルへ移行する際の注意点にも、動画内で触れられている。ただし料金や提供範囲など公式な詳細は、動画内で明言されていない。",
+      "new_facts": [
+        "Geminiに「スキル」という新機能があり、既存の「Gem」との違いが解説されている",
+        "メール返信やスライド作成、Gmail支払い集計などの具体的な活用例が示されている",
+        "Apps Scriptと組み合わせた受付システムの作成方法も紹介されている",
+        "複数スキルの組み合わせ方やGemからの移行時の注意点にも触れている"
       ],
       "event_date_precision": "unknown"
     },
@@ -715,6 +961,52 @@
       "new_facts": [
         "Canvaは成長鈍化を理由に組織再編を実施すると報じられた",
         "削減対象は従業員の22%とされている"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_de6636630f2aebbc0a8f",
+      "story_id": "story_98ad84befae2908c70",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.7063636363636363,
+      "title": "Canva、成長鈍化で従業員22％削減と組織再編へ",
+      "source_published_at": "2026-11-04T08:46:00.000Z",
+      "published_at": "2026-11-04T08:46:00.000Z",
+      "fetched_at": "2026-11-06T12:07:45.479Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "デザインツールのCanvaが成長鈍化を理由に従業員の22％を削減し、組織再編を行うと報じられた。",
+      "source_name": "Chosunbiz",
+      "source_url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9hY3Jrc3NoWDFPb2JDZWdHbWx4YXlaWXVZVTR2bXlBX0tsUnYyamxmNXBqakx1ZDAyZnZrTmJLeG1USW1JTnQtVXpuazJ4cUE1eHRKZFl5Mkt1MjdBNkVLYWhQUHBWVlk1cWxNOUdaM0V6Ymh4ZkJseHJB0gGOAUFVX3lxTFBWY3BaOVc1ckVNbVdOX0prVVdoTEdLenRYaFpoMEpZeTJNN3l4aTY1YUNQNjFhUmlveU80djY5NG1nYlVaSFBVY1pydzFGdEtDTW1YWGduZmc2a1BENElqVWhBbm40VWZYSUhMR2NlMFVTdTYyMXBvTF81M0VLNHVjYjB4N3FOeExub245dkE?oc=5",
+      "story_entities": [
+        "Canva",
+        "canva"
+      ],
+      "primary_entity": "Canva",
+      "story_subject": "Canvaの人員削減・組織再編",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "Canva社内",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "人員削減の割合",
+          "value": "22%",
+          "normalized_value": "22%"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Canvaが成長鈍化を理由に従業員の22％を削減し、組織再編を行うと報じられた。",
+      "detail": "デザインツールを提供するCanvaが、成長の鈍化を理由に従業員の22％を削減し、組織を再編すると報じられました。Canvaは写真編集やプレゼン資料作りなどができるオンラインデザインツールです。急成長を続けてきた同社が人員削減に踏み切る点が、これまでの勢いとの大きな違いです。\n\n記事では、削減の規模が全従業員の22％にのぼるとされています。成長のペースが鈍ったことが再編の理由として挙げられています。デザイン分野でもAIを使った自動化が広がり、競争環境が変化していることが背景にあるとみられます。\n\nCanvaを仕事で使う企業や個人にとって、サービスの体制やサポートが変わる可能性があります。ただし、削減される部署の詳細や、サービス自体への具体的な影響は記事内で明らかにされていません。今後の公式発表で、再編の中身が示されるか確認する必要があります。",
+      "new_facts": [
+        "Canvaが成長鈍化を理由に従業員の22%を削減すると報じられた",
+        "組織再編も合わせて行われる"
       ],
       "event_date_precision": "unknown"
     },
