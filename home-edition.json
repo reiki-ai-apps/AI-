@@ -7,38 +7,42 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-07T11:04:55.678Z",
-  "window_end": "2026-11-07T16:24:50.125Z",
-  "last_window_end": "2026-11-07T16:24:50.125Z",
-  "last_checked_at": "2026-11-07T16:29:36.964Z",
-  "last_published_at": "2026-11-07T16:29:36.964Z",
-  "home_content_changed_at": "2026-11-07T16:29:36.964Z",
+  "window_start": "2026-11-07T16:24:50.125Z",
+  "window_end": "2026-11-07T23:40:19.757Z",
+  "last_window_end": "2026-11-07T23:40:19.757Z",
+  "last_checked_at": "2026-11-07T23:45:05.385Z",
+  "last_published_at": "2026-11-07T23:45:05.385Z",
+  "home_content_changed_at": "2026-11-07T23:45:05.385Z",
   "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 2,
+  "consecutive_zero_candidate_editions": 0,
   "update_health": "DEGRADED",
   "update_health_reasons": [
-    "今回の新着掲載は0件です。前の日までに載せた記事は出さず、今日まだ載せていない記事だけを表示しています",
-    "新着候補0件が2回以上続いています",
     "前の日と重ならない検証済み記事が3件未満です"
   ],
-  "edition_status": "NO_NEW_STORIES",
-  "candidate_count": 0,
-  "distinct_candidate_count": 0,
+  "edition_status": "NEW_STORIES",
+  "candidate_count": 2,
+  "distinct_candidate_count": 2,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 0,
+  "novel_candidate_count": 2,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 0,
+  "selected_count": 2,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 0,
+  "new_selected_count": 2,
   "continued_selected_count": 0,
   "tool_evolution_selected_count": 0,
   "carried_forward": false,
   "partially_carried_forward": false,
-  "article_ids": [],
-  "new_article_ids": [],
+  "article_ids": [
+    "article_dccb4b807171b4ae81c9",
+    "article_df007322307446c5b8f3"
+  ],
+  "new_article_ids": [
+    "article_dccb4b807171b4ae81c9",
+    "article_df007322307446c5b8f3"
+  ],
   "continued_article_ids": [],
   "continuation_sources": {},
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
@@ -46,7 +50,7 @@
   "same_day_article_ids": [],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 42,
+  "blocked_previous_day_count": 39,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -366,7 +370,9 @@
     "article_3d8713302196064c90f5": "2026-11-06",
     "article_5cafe8c1043f8679d540": "2026-11-07",
     "article_3401bcd700a15bbbeef8": "2026-11-07",
-    "article_a0a44ed09dc9a1089b4e": "2026-11-07"
+    "article_a0a44ed09dc9a1089b4e": "2026-11-07",
+    "article_dccb4b807171b4ae81c9": "2026-11-08",
+    "article_df007322307446c5b8f3": "2026-11-08"
   },
   "home_shown_story_log": [
     {
@@ -2598,91 +2604,104 @@
       "selected_at": "2026-11-07T00:12:41.878Z",
       "edition_window_end": "2026-11-07T00:08:32.776Z",
       "shown_day": "2026-11-07"
-    }
-  ],
-  "scores": {},
-  "recent_story_history": [
+    },
     {
-      "article_id": "article_1be4fdd8e6ca80f0ec01",
-      "story_id": "story_4837df417a82f85f2d",
-      "title": "OpenAIがPierre Computer Companyを買収",
+      "article_id": "article_dccb4b807171b4ae81c9",
+      "story_id": "story_793063688ebb9cb06e",
+      "title": "OpenAIの「ロックダウンモード」に回避可能な脆弱性、研究者が指摘",
       "primary_entity": "OpenAI",
-      "story_subject": "Pierre Computer Companyの買収",
-      "event_type": "acquisition",
-      "event_stage": "announced",
-      "event_scope": "Codex(コーディング支援ツール)",
+      "story_subject": "ロックダウンモードの脆弱性",
+      "event_type": "security",
+      "event_stage": "investigating",
+      "event_scope": "ChatGPTのロックダウンモード機能",
       "story_entities": [
         "OpenAI",
-        "Pierre Computer Company",
-        "Codex",
+        "ChatGPT",
+        "ロックダウンモード",
         "openai",
-        "pierrecomputercompany"
+        "chatgpt"
       ],
       "fact_slots": [
         {
-          "type": "other",
-          "scope": "買収対象企業",
-          "value": "Pierre Computer Company",
-          "normalized_value": "pierrecomputercompany"
+          "type": "status",
+          "scope": "ロックダウンモードの脆弱性",
+          "value": "研究者が回避可能と報告",
+          "normalized_value": "研究者が回避可能と報告"
         }
       ],
       "relation_type": "new",
       "dedupe_decision": "new",
       "previous_article_id": "",
-      "selected_at": "2026-11-04T18:02:26.240Z",
-      "edition_window_end": "2026-11-04T17:58:50.073Z"
+      "selected_at": "2026-11-07T23:45:05.385Z",
+      "edition_window_end": "2026-11-07T23:40:19.757Z",
+      "shown_day": "2026-11-08"
     },
     {
-      "article_id": "article_52ffdb96b3d355faeb67",
-      "story_id": "story_37cd360ad2c845fdcc",
-      "title": "Nice CEO、AIによる生産性向上を理由に500人削減を発表",
-      "primary_entity": "Nice",
-      "story_subject": "500人の人員削減とAI生産性向上",
+      "article_id": "article_df007322307446c5b8f3",
+      "story_id": "story_4a7e7bd0a79e4c5d78",
+      "title": "Qualcomm CEO、6Gの世界展開時期とAI中心の次世代通信網構想を語る",
+      "primary_entity": "Qualcomm",
+      "story_subject": "6Gの世界展開時期とAI中心の通信網構想",
       "event_type": "other",
       "event_stage": "announced",
-      "event_scope": "Nice社全体(研究開発部門含む)",
+      "event_scope": "世界",
       "story_entities": [
-        "Nice",
-        "AI生産性向上",
-        "nice",
-        "ai生産性向上"
-      ],
-      "fact_slots": [
-        {
-          "type": "count",
-          "scope": "人員削減数",
-          "value": "500人",
-          "normalized_value": "500"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-04T18:02:26.240Z",
-      "edition_window_end": "2026-11-04T17:58:50.073Z"
-    },
-    {
-      "article_id": "article_e4fe804fffa92618a065",
-      "story_id": "story_baf9d3df30fc4c0ba1",
-      "title": "テンセント、学習データを制限した新AIモデル「Hy4」を発表",
-      "primary_entity": "Tencent",
-      "story_subject": "Hy4",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "不明",
-      "story_entities": [
-        "Tencent",
-        "Hy4",
-        "tencent",
-        "hy4"
+        "Qualcomm",
+        "qualcomm"
       ],
       "fact_slots": [],
       "relation_type": "new",
       "dedupe_decision": "new",
       "previous_article_id": "",
-      "selected_at": "2026-11-04T18:02:26.240Z",
-      "edition_window_end": "2026-11-04T17:58:50.073Z"
+      "selected_at": "2026-11-07T23:45:05.385Z",
+      "edition_window_end": "2026-11-07T23:40:19.757Z",
+      "shown_day": "2026-11-08"
+    }
+  ],
+  "scores": {
+    "article_dccb4b807171b4ae81c9": {
+      "article_id": "article_dccb4b807171b4ae81c9",
+      "total": 71,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 15,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "制度・安全への影響",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-11-07T08:25:00.000Z"
     },
+    "article_df007322307446c5b8f3": {
+      "article_id": "article_df007322307446c5b8f3",
+      "total": 60,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 20,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "制度・安全への影響",
+        "大きな製品・市場変化",
+        "重要な経営・研究体制",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-11-07T14:12:28.000Z"
+    }
+  },
+  "recent_story_history": [
     {
       "article_id": "article_87997dbf12a73085d5bb",
       "story_id": "story_9a4ddb42155b44d315",
@@ -3047,6 +3066,56 @@
       "previous_article_id": "",
       "selected_at": "2026-11-07T00:12:41.878Z",
       "edition_window_end": "2026-11-07T00:08:32.776Z"
+    },
+    {
+      "article_id": "article_dccb4b807171b4ae81c9",
+      "story_id": "story_793063688ebb9cb06e",
+      "title": "OpenAIの「ロックダウンモード」に回避可能な脆弱性、研究者が指摘",
+      "primary_entity": "OpenAI",
+      "story_subject": "ロックダウンモードの脆弱性",
+      "event_type": "security",
+      "event_stage": "investigating",
+      "event_scope": "ChatGPTのロックダウンモード機能",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT",
+        "ロックダウンモード",
+        "openai",
+        "chatgpt"
+      ],
+      "fact_slots": [
+        {
+          "type": "status",
+          "scope": "ロックダウンモードの脆弱性",
+          "value": "研究者が回避可能と報告",
+          "normalized_value": "研究者が回避可能と報告"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-07T23:45:05.385Z",
+      "edition_window_end": "2026-11-07T23:40:19.757Z"
+    },
+    {
+      "article_id": "article_df007322307446c5b8f3",
+      "story_id": "story_4a7e7bd0a79e4c5d78",
+      "title": "Qualcomm CEO、6Gの世界展開時期とAI中心の次世代通信網構想を語る",
+      "primary_entity": "Qualcomm",
+      "story_subject": "6Gの世界展開時期とAI中心の通信網構想",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "世界",
+      "story_entities": [
+        "Qualcomm",
+        "qualcomm"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-07T23:45:05.385Z",
+      "edition_window_end": "2026-11-07T23:40:19.757Z"
     }
   ]
 }
