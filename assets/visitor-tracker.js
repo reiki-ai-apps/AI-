@@ -170,10 +170,11 @@
       if(/^(duckduckgo|duckduckgo\.com)$/.test(s))return 'duckduckgo';
       if(/^(brave|search\.brave\.com)$/.test(s))return 'brave';
       if(/^(x|twitter|x\.com|twitter\.com|t\.co)$/.test(s))return 'x';
-      if(/^(youtube|youtube\.com|m\.youtube\.com|youtu\.be)$/.test(s))return 'youtube';
+      // KIZASHI links: Shorts posts use utm_source=shorts, the channel's link uses yt_channel.
+      if(/^(youtube|shorts|yt_channel|youtube\.com|m\.youtube\.com|youtu\.be)$/.test(s))return 'youtube';
       if(/^(note|note\.com)$/.test(s))return 'note';
       // Existing Instagram bio links use utm_source=ig, not only "instagram".
-      if(/^(ig|instagram|instagram\.com|l\.instagram\.com)$/.test(s))return 'instagram';
+      if(/^(ig|ig_profile|instagram|instagram\.com|l\.instagram\.com)$/.test(s))return 'instagram';
       if(/^(facebook|facebook\.com|m\.facebook\.com|l\.facebook\.com)$/.test(s))return 'facebook';
       return null;
     };

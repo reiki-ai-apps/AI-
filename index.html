@@ -2236,7 +2236,9 @@
   .today-one-past li{display:flex;gap:10px;align-items:baseline;font-size:14px}
   .today-one-past li span{flex:0 0 auto;color:var(--muted,#6b7280);font-size:12px}
   .today-one-past li button{background:none;border:0;padding:0;color:inherit;font:inherit;text-align:left;cursor:pointer;text-decoration:underline dotted}
-  @media(max-width:600px){.today-one{padding:14px 14px 12px;border-radius:14px}.today-one h2{font-size:19px}.today-one-paste{font-size:13px}}
+  .today-one.is-arrival{margin:0 0 22px;border:2px solid var(--accent,#2f7cf6)}
+  .today-one-share{background:none;border:0;padding:0;color:var(--accent,#2f7cf6);font:inherit;font-size:13px;cursor:pointer;text-decoration:underline dotted}
+  @media(max-width:600px){.today-one{padding:14px 14px 12px;border-radius:14px}.today-one h2{font-size:19px}.today-one-paste{font-size:13px}.today-one.is-arrival{margin:0 0 16px}}
 </style>
 </head>
 <body>
@@ -4098,13 +4100,19 @@ function renderHome(v){
     <p class="billing-help" role="status">${esc(videoRefreshNote)}</p>
     <div class="expert-video-grid">${expertVideos.map(expertVideoCard).join('')||'<p>前回と異なる発信者の動画を確認中です。過去の動画は分類ページから見られます。</p>'}</div>
   </section>`;
-  const todayOneHtml=`<section class="today-one" id="todayOne" aria-label="今日試せる1つ" hidden></section>`;
+  const todayOneSection=`<section class="today-one" id="todayOne" aria-label="今日試せる1つ" hidden></section>`;
+  // KIZASHIの投稿から来た人には、見た回をニュースより先に出す（来た理由と最初に見る物を揃える）。
+  // それ以外の人には、今までどおりニュース・動画の後に出す。
+  const todayOneTop=!!kizashiArrival;
+  const todayOneHtml=todayOneTop?'':todayOneSection;
   let html = `<section class="radar-overview ${cover?'has-daily-cover':''}" aria-label="${cover?'今回の重要ニュース':'AIシグナル概要'}">
     <div class="hud-hex-field" aria-hidden="true"><span class="hud-hex h1"></span><span class="hud-hex h2"></span><span class="hud-hex h3"></span><span class="hud-hex h4"></span><span class="hud-hex h5"></span></div>
     <div class="overview-copy">${coverCopy}</div>
     <div class="radar-orb" aria-label="注目ニュース${list.length}件、新着${newCount}件"><strong>${list.length}</strong><small>TOP STORIES</small></div>
   </section>
   <div class="home-feed">`;
+  // 例外はKIZASHIの投稿から来た時だけ（ふだんのホームはニュースの見出しから始める）。
+  if(todayOneTop) html=todayOneSection+html;
 
   if(!list.length){
     html+=emptyState('今回の重要ニュースを確認中です','「記事を探す」では、これまでの記事をカテゴリから探せます。')+expertVideoHtml+homeSecondaryHtml+todayOneHtml+`</div>`;
@@ -4131,7 +4139,20 @@ function renderHome(v){
   loadTodayOne();
 }
 /* 今日試せる1つ: today-one.json（KIZASHIの各回の「明日やる1つ」と、貼って使う文）をニュース・動画の後に出す。
-   取得できない時は枠ごと出さない（空の箱や推測の文は出さない）。 */
+   取得できない時は枠ごと出さない（空の箱や推測の文は出さない）。
+   KIZASHIの投稿から来た人（2026-11-08 オーの会議）: ホームのいちばん上に出し、見た回を選んで出す。
+   ?one=YYYY-MM-DD か utm_campaign=kizashi-YYYYMMDD-… ならその回。各媒体の固定リンク（utm_source）なら最新の回と、題で探せる一覧。 */
+const kizashiArrival=(()=>{
+  try{
+    const q=new URL(location.href).searchParams;
+    const one=q.get('one')||'', camp=q.get('utm_campaign')||'', src=(q.get('utm_source')||'').toLowerCase();
+    let date=/^\d{4}-\d{2}-\d{2}$/.test(one)?one:'';
+    const m=/^kizashi-(\d{4})(\d{2})(\d{2})(?:-|$)/.exec(camp);
+    if(!date&&m)date=`${m[1]}-${m[2]}-${m[3]}`;
+    const fromKizashi=!!date||/^kizashi-/.test(camp)||/^(shorts|yt_channel|youtube|ig|ig_profile|instagram|x|note|tiktok|share)$/.test(src);
+    return fromKizashi?{date}:null;
+  }catch{return null;}
+})();
 let todayOneCache=null;
 async function loadTodayOne(){
   const host=document.getElementById('todayOne'); if(!host)return;
@@ -4143,17 +4164,41 @@ async function loadTodayOne(){
       if(!Array.isArray(data?.items)||!data.items.length)return;
       todayOneCache=data;
     }
-    renderTodayOne(host,todayOneCache,0);
+    let idx=0;
+    if(kizashiArrival?.date){
+      const i=todayOneCache.items.filter(x=>x&&x.title&&x.paste).findIndex(x=>x.date===kizashiArrival.date);
+      if(i>=0)idx=i;
+    }
+    renderTodayOne(host,todayOneCache,idx);
   }catch{ /* 無ければ出さない */ }
+}
+async function shareTodayOne(btn,date){
+  const it=(todayOneCache?.items||[]).find(x=>x&&x.date===date); if(!it)return;
+  const url=new URL(location.pathname,location.origin);
+  url.searchParams.set('one',date);
+  url.searchParams.set('utm_source','share');
+  url.searchParams.set('utm_medium','share');
+  url.searchParams.set('utm_campaign',`kizashi-${date.replace(/-/g,'')}-share`);
+  const link=url.toString();
+  try{
+    if(navigator.share){await navigator.share({title:it.title,text:`${it.title}（頼み方の文をそのままコピーできます）`,url:link});return;}
+    if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(link);}
+    else{const ta=document.createElement('textarea');ta.value=link;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}
+    btn.textContent='リンクをコピーしました';setTimeout(()=>{btn.textContent='この回を人に送る';},2500);
+  }catch(e){ if(e?.name!=='AbortError')toast('送れませんでした。もう一度お試しください','warn'); }
 }
 function renderTodayOne(host,data,idx){
   const items=data.items.filter(x=>x&&x.title&&x.paste);
   const it=items[idx]||items[0]; if(!it)return;
   const day=(d=>{const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(d||'');return m?`${Number(m[2])}/${Number(m[3])}`:'';})(it.date);
   const past=items.filter(x=>x!==it).slice(0,7);
+  const arrived=!!kizashiArrival, matched=arrived&&!!kizashiArrival.date&&it.date===kizashiArrival.date;
+  const kicker=matched?'KIZASHIで見た回':arrived?'KIZASHIの最新の回':'今日試せる1つ';
+  const kickerNote=arrived?'結果は動画のとおり。この回の頼み方の文を、そのままコピーできます':'ニュースを読んだあと、すぐ試せる実践です';
   host.hidden=false;
+  host.classList.toggle('is-arrival',arrived);
   host.innerHTML=`
-    <div class="today-one-kicker">今日試せる1つ<small>${esc(day)}${it.mark?`・${esc(it.mark)}`:''} ニュースを読んだあと、すぐ試せる実践です</small></div>
+    <div class="today-one-kicker">${kicker}<small>${esc(day)}${it.mark?`・${esc(it.mark)}`:''} ${kickerNote}</small></div>
     <h2>${esc(it.title)}</h2>
     <p class="today-one-action"><b>${esc(it.action)}</b>${it.catch?`　— ${esc(it.catch)}`:''}</p>
     <pre class="today-one-paste" id="todayOnePaste">${esc(it.paste)}<button type="button" class="today-one-copy" onclick="copyTodayOne(this)">文をコピー</button></pre>
@@ -4162,8 +4207,9 @@ function renderTodayOne(host,data,idx){
       ${it.playlist?`<a href="${esc(it.playlist)}" target="_blank" rel="noopener noreferrer">同じ種類の1つを続けて見る（${esc(it.playlist_name||'再生リスト')}）</a>`:''}
       ${it.source?`<a href="${esc(it.source)}" target="_blank" rel="noopener noreferrer">出典（${esc((it.stamp||'').replace(/^\S+\s+/,'')||'公式')}）</a>`:''}
       <a href="https://www.youtube.com/@kizashi_jp?sub_confirmation=1" target="_blank" rel="noopener noreferrer">毎朝7:31に次の1つ（登録）</a>
+      <button type="button" class="today-one-share" onclick="shareTodayOne(this,'${esc(it.date)}')">この回を人に送る</button>
     </div>
-    ${past.length?`<details class="today-one-past"><summary>これまでの1つ（${past.length}件）</summary><ul>${past.map((p,i)=>`<li><span>${esc((p.date||'').slice(5).replace('-','/'))}</span><button type="button" onclick="renderTodayOne(document.getElementById('todayOne'),todayOneCache,${items.indexOf(p)})">${esc(p.title)}</button></li>`).join('')}</ul></details>`:''}`;
+    ${past.length?`<details class="today-one-past"${arrived&&!matched?' open':''}><summary>${arrived?`ほかの回（題で探せます・${past.length}件）`:`これまでの1つ（${past.length}件）`}</summary><ul>${past.map((p,i)=>`<li><span>${esc((p.date||'').slice(5).replace('-','/'))}</span><button type="button" onclick="renderTodayOne(document.getElementById('todayOne'),todayOneCache,${items.indexOf(p)})">${esc(p.title)}</button></li>`).join('')}</ul></details>`:''}`;
 }
 async function copyTodayOne(btn){
   const pre=btn.closest('.today-one-paste'); if(!pre)return;

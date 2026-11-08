@@ -225,6 +225,9 @@ const secondaryRenderIndex=expertRenderIndex;
 assert.ok(feedRenderIndex>=0&&secondaryRenderIndex>feedRenderIndex,"トップ5の記事カードを統計・アーカイブ・公式SNSより先に描画する");
 assert.ok(expertRenderIndex>feedRenderIndex,"専門家動画は記事トップ5の後に描画する");
 assert.match(renderHomeSource,/let html = `<section class="radar-overview/,"ホームはニュースの見出しから始める");
+// 2026-11-08 オーの会議: KIZASHIの投稿から来た人にだけ、見た回の「1つ」をニュースより先に出す。ふだんの人は今までどおり。
+assert.match(renderHomeSource,/const todayOneTop=!!kizashiArrival;/,"先に出すのはKIZASHIの投稿から来た時だけ");
+assert.match(renderHomeSource,/if\(todayOneTop\) html=todayOneSection\+html;/,"KIZASHIから来た人には見た回をいちばん上に");
 assert.match(renderHomeSource,/html\+=expertVideoHtml\+homeSecondaryHtml\+todayOneHtml/,"今日試せる1つは動画と補助案内の後に置く");
 assert.match(renderHomeSource,/emptyState\([^\n]+\+expertVideoHtml\+homeSecondaryHtml\+todayOneHtml/,"トップ記事がない時も今日試せる1つは最後に置く");
 assert.match(renderHomeSource,/いま注目のAIニュース · 新着\$\{newCount\}件 · 更新確認 \$\{latest\}/,"見出しに新着件数と最終確認時刻を示す");
