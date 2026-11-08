@@ -16151,17 +16151,6 @@
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
     },
-    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxte8zswfrmddatznizkwychvwnhfoovq2selidtheyke4x1n2afv6cjf3lw9avfbeedltudhvdulvtxnrdwxfdwhyne1ty294v2drm0jr": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxte8zswfrmddatznizkwychvwnhfoovq2selidtheyke4x1n2afv6cjf3lw9avfbeedltudhvdulvtxnrdwxfdwhyne1ty294v2drm0jr",
-      "content_hash": "4bb6087c7939c05b53ba92945ab304b33606c39aabe9a00c439880a918ba0c9f",
-      "story_key": "0d71024024cd121b84ac11f9d1fd0f27cc00c834f387b8fb429647616882883d",
-      "status": "rejected",
-      "processed_at": "2026-11-06T09:55:07.531Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "expert",
-      "reason": "ai_skip: 具体的内容が無くタイトルのみで広告的な講座案内"
-    },
     "url:https://www.youtube.com/watch?v=lxhrdpm7hkq": {
       "canonical_url": "https://www.youtube.com/watch?v=lxhrdpm7hkq",
       "content_hash": "8fe66de565be906f6e6f5444ab9be3da05bf0dfdc63a5dff95edbfca738e9c32",
@@ -16230,28 +16219,6 @@
         ],
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
-    },
-    "url:https://news.google.com/rss/articles/cbmiukfvx3lxte5qxzbhx3b0wfnmx2dzzmzjedbizhjqy0kzoufaaxg4tmezz1e3a2fzumdmbtk5v3nubhaxu0zfv2dqenpplw4tr08xtkpcdgs4mnc": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiukfvx3lxte5qxzbhx3b0wfnmx2dzzmzjedbizhjqy0kzoufaaxg4tmezz1e3a2fzumdmbtk5v3nubhaxu0zfv2dqenpplw4tr08xtkpcdgs4mnc",
-      "content_hash": "b39f9cbad8ffda720e9468f85244363b6d7536a2299b19c8c4480f5d083cd27f",
-      "story_key": "662c99c4206a011f987dd8cdb6e2537d04a99f7587bfa4bf7c75b6d4c90ed966",
-      "status": "rejected",
-      "processed_at": "2026-11-06T09:55:10.970Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "expert",
-      "reason": "ai_skip: 法人研修の料金訴求が中心の宣伝動画のため除外"
-    },
-    "url:https://www.youtube.com/watch?v=wzdau_l1uw8": {
-      "canonical_url": "https://www.youtube.com/watch?v=wzdau_l1uw8",
-      "content_hash": "167b4b503a2daaca53e1cc27fd5322915dcc94a50550b518119ae0d7dccbc558",
-      "story_key": "c336104a227808d1f84cf8ce62cb9ccf1a86dd74d7fd6fa145f8350de32632f7",
-      "status": "rejected",
-      "processed_at": "2026-11-06T09:55:10.970Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "expert",
-      "reason": "ai_skip: 具体的なチャプターや主張内容が確認できない"
     },
     "url:https://news.google.com/rss/articles/cbmiw0fvx3lxtfblbuvoywi5ui1umlz2txrlugzjcgt5mglpdu5lzuszzwvrrkhmcen5vhr5mmlqyxbwlw0tnza0vm9grxduohbrqmpasunoadvhzetosko5tmf5cnm": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiw0fvx3lxtfblbuvoywi5ui1umlz2txrlugzjcgt5mglpdu5lzuszzwvrrkhmcen5vhr5mmlqyxbwlw0tnza0vm9grxduohbrqmpasunoadvhzetosko5tmf5cnm",
@@ -18758,7 +18725,102 @@
           "no_previous_story"
         ]
       }
+    },
+    "url:https://www.youtube.com/watch?v=qkgmqg6qdaw": {
+      "canonical_url": "https://www.youtube.com/watch?v=qkgmqg6qdaw",
+      "content_hash": "dfdb6a1cfb73115b599f40c65fb18155b0b2809d85fa6c41550ea020dae1d987",
+      "story_key": "885e43d3e14b97df6ed7ae3dc6db921ec5c66cf49ab150a4913f6d044c90cf72",
+      "status": "enriched",
+      "processed_at": "2026-11-08T11:19:00.628Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "",
+      "result": {
+        "tool": "専門家動画・発言",
+        "content_type": "expert_video",
+        "expert_id": "tomohiro-ikeda",
+        "expert_ids": [
+          "tomohiro-ikeda"
+        ],
+        "expert_name": "池田朋弘（いけとも）",
+        "expert_names": [
+          "池田朋弘（いけとも）"
+        ],
+        "expert_role": "生成AIの仕事への活用を教える解説者",
+        "expert_tier": "practical_ai_educator",
+        "platform": "YouTube",
+        "video_id": "QkgmqG6QdAw",
+        "source_trust": "primary",
+        "title": "週刊AIニュース14選：Siri・Alexaの日本語AI対応やChatGPTの新機能まとめ",
+        "source_url": "https://www.youtube.com/watch?v=QkgmqG6QdAw",
+        "source_name": "いけともch",
+        "is_official": true,
+        "published_at": "2026-11-08T06:00:36.000Z",
+        "source_published_at": "2026-11-08T06:00:36.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-08T11:17:06.012Z",
+        "event_at": "2024-11-27",
+        "event_status": "発表済み",
+        "event_date_precision": "day",
+        "story_entities": [
+          "Siri",
+          "Alexa+",
+          "ChatGPT"
+        ],
+        "primary_entity": "いけともch(池田朋弘)",
+        "story_subject": "週刊AIニュースまとめ(Siri, ChatGPT, Alexa+ 等)",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "複数のAI製品・サービス",
+        "fact_slots": [
+          {
+            "type": "version",
+            "scope": "Gemini動画生成モデル",
+            "value": "Gemini Omni 1.2",
+            "normalized_value": "geminiomni1.2"
+          },
+          {
+            "type": "version",
+            "scope": "Liquid AIの小型モデル",
+            "value": "LFM3",
+            "normalized_value": "lfm3"
+          }
+        ],
+        "new_facts": [
+          "SiriのAI日本語版が実演で紹介された。",
+          "ChatGPTとCodexの利用枠が共通化されたと紹介された。",
+          "Alexa+が日本語に対応したと紹介された。",
+          "Grok Botの利用枠が縮小されたと紹介された。",
+          "AIを悪用した情報窃取「VOLTA」の事例が取り上げられた。"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "池田朋弘氏がYouTube番組で、SiriとAlexa+の日本語AI対応やChatGPTとCodexの利用枠統合など今週のAI関連14項目を紹介した。",
+        "detail": "池田朋弘氏が自身のYouTube番組で今週のAI関連ニュース14項目を紹介した。Siriの日本語版AI機能やAlexa+の日本語対応など音声アシスタントの話題を扱う。従来は英語圏中心だった音声AIの日本語対応が広がっている点が特徴である。\n\n動画ではChatGPTとCodexの利用枠が共通化された点を説明している。Grok Botの利用枠縮小やAIを悪用した情報窃取の事例も取り上げている。AI利用者の労働時間に関する調査結果も紹介され、働き方への影響を扱う。\n\n視聴者はCursor Appsでのアプリ公開やQwenとCopilotのローカル接続方法も学べる。動画はチャプター一覧に基づく紹介であり、各項目の詳しい検証結果は本文からは確認できない。動画内にスポンサー紹介も含まれるため、各情報の出典は個別に確認する必要がある。",
+        "change_summary": "Siri・Alexa+の日本語AI対応やChatGPTとCodexの利用枠統合など、直近1週間のAI関連の動きをまとめて紹介している。",
+        "impact_summary": "音声アシスタントの日本語対応拡大やツール連携の変化は、日常業務でAIを使う人の選択肢や働き方に影響する可能性がある。",
+        "action_suggestion": "各トピックの詳細（Siri日本語版、Alexa+日本語対応、ChatGPTとCodexの利用枠統合など）は動画のチャプターで個別に確認できる。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "セキュリティ",
+          "その他"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://www.youtube.com/watch?v=wzdau_l1uw8": {
+      "canonical_url": "https://www.youtube.com/watch?v=wzdau_l1uw8",
+      "content_hash": "167b4b503a2daaca53e1cc27fd5322915dcc94a50550b518119ae0d7dccbc558",
+      "story_key": "c336104a227808d1f84cf8ce62cb9ccf1a86dd74d7fd6fa145f8350de32632f7",
+      "status": "rejected",
+      "processed_at": "2026-11-08T11:19:00.628Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "ai_skip: チャプターや具体的内容が確認できず詳細不明"
     }
   },
-  "updated_at": "2026-11-08T07:58:59.047Z"
+  "updated_at": "2026-11-08T11:19:00.628Z"
 }
