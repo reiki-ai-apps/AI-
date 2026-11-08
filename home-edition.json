@@ -7,50 +7,59 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-07T16:24:50.125Z",
-  "window_end": "2026-11-07T23:40:19.757Z",
-  "last_window_end": "2026-11-07T23:40:19.757Z",
-  "last_checked_at": "2026-11-07T23:45:05.385Z",
-  "last_published_at": "2026-11-07T23:45:05.385Z",
-  "home_content_changed_at": "2026-11-07T23:45:05.385Z",
+  "window_start": "2026-11-07T23:40:19.757Z",
+  "window_end": "2026-11-08T00:54:31.399Z",
+  "last_window_end": "2026-11-08T00:54:31.399Z",
+  "last_checked_at": "2026-11-08T00:59:12.940Z",
+  "last_published_at": "2026-11-08T00:59:12.940Z",
+  "home_content_changed_at": "2026-11-08T00:59:12.940Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
-  "update_health": "DEGRADED",
-  "update_health_reasons": [
-    "前の日と重ならない検証済み記事が3件未満です"
-  ],
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 2,
-  "distinct_candidate_count": 2,
+  "candidate_count": 4,
+  "distinct_candidate_count": 4,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 2,
+  "novel_candidate_count": 4,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 2,
+  "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 2,
-  "continued_selected_count": 0,
+  "new_selected_count": 4,
+  "continued_selected_count": 1,
   "tool_evolution_selected_count": 0,
   "carried_forward": false,
-  "partially_carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
-    "article_dccb4b807171b4ae81c9",
-    "article_df007322307446c5b8f3"
+    "article_c21dfe06690451839bc3",
+    "article_0149367a11c1a01262b1",
+    "article_e2f403af48cd9dae531b",
+    "article_e38280d9277f05444c96",
+    "article_dccb4b807171b4ae81c9"
   ],
   "new_article_ids": [
-    "article_dccb4b807171b4ae81c9",
-    "article_df007322307446c5b8f3"
+    "article_c21dfe06690451839bc3",
+    "article_0149367a11c1a01262b1",
+    "article_e2f403af48cd9dae531b",
+    "article_e38280d9277f05444c96"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continued_article_ids": [
+    "article_dccb4b807171b4ae81c9"
+  ],
+  "continuation_sources": {
+    "article_dccb4b807171b4ae81c9": "previous_edition"
+  },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-08",
-  "same_day_article_ids": [],
+  "same_day_article_ids": [
+    "article_dccb4b807171b4ae81c9"
+  ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 39,
+  "blocked_previous_day_count": 36,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -372,7 +381,11 @@
     "article_3401bcd700a15bbbeef8": "2026-11-07",
     "article_a0a44ed09dc9a1089b4e": "2026-11-07",
     "article_dccb4b807171b4ae81c9": "2026-11-08",
-    "article_df007322307446c5b8f3": "2026-11-08"
+    "article_df007322307446c5b8f3": "2026-11-08",
+    "article_c21dfe06690451839bc3": "2026-11-08",
+    "article_0149367a11c1a01262b1": "2026-11-08",
+    "article_e2f403af48cd9dae531b": "2026-11-08",
+    "article_e38280d9277f05444c96": "2026-11-08"
   },
   "home_shown_story_log": [
     {
@@ -2656,9 +2669,183 @@
       "selected_at": "2026-11-07T23:45:05.385Z",
       "edition_window_end": "2026-11-07T23:40:19.757Z",
       "shown_day": "2026-11-08"
+    },
+    {
+      "article_id": "article_c21dfe06690451839bc3",
+      "story_id": "story_a9c1498fada6c4b294",
+      "title": "NVIDIAの循環融資に警告、ヘッジファンド出身者がシスコ暴落との類似を指摘",
+      "primary_entity": "NVIDIA",
+      "story_subject": "NVIDIAの循環融資と内部売却",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "story_entities": [
+        "NVIDIA",
+        "シスコ",
+        "nvidia"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "内部関係者の1年間の現金化額",
+          "value": "約19億ドル",
+          "normalized_value": "1900000000USD"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-08T00:59:12.940Z",
+      "edition_window_end": "2026-11-08T00:54:31.399Z",
+      "shown_day": "2026-11-08"
+    },
+    {
+      "article_id": "article_0149367a11c1a01262b1",
+      "story_id": "story_3f2fd2a93478ea69ec",
+      "title": "フィジカルAIが切り拓く日本の産業戦略、早稲田大学教授と議員が議論",
+      "primary_entity": "株式会社エクサウィザーズ",
+      "story_subject": "AI Innovators Forum 2026",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "日本",
+      "story_entities": [
+        "エクサウィザーズ",
+        "尾形哲也",
+        "山際大志郎",
+        "innovators",
+        "forum"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-08T00:59:12.940Z",
+      "edition_window_end": "2026-11-08T00:54:31.399Z",
+      "shown_day": "2026-11-08"
+    },
+    {
+      "article_id": "article_e2f403af48cd9dae531b",
+      "story_id": "story_f55e6dd7b18297cde5",
+      "title": "Replit CEO、AIコーディングエージェントは『1人1体から1万体へ』拡大すると予測",
+      "primary_entity": "Replit",
+      "story_subject": "AIコーディングエージェントの将来予測",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "story_entities": [
+        "Replit",
+        "アムジャド・マサド",
+        "replit",
+        "アムジャドマサド"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-08T00:59:12.940Z",
+      "edition_window_end": "2026-11-08T00:54:31.399Z",
+      "shown_day": "2026-11-08"
+    },
+    {
+      "article_id": "article_e38280d9277f05444c96",
+      "story_id": "story_ab12fa15d4f73a7437",
+      "title": "マーベル最新作、生成AIの不自然さをあえて手作りで再現した撮影セットを公開",
+      "primary_entity": "マーベル",
+      "story_subject": "『ヴィジョンクエスト』の撮影セット",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "story_entities": [
+        "マーベル",
+        "ヴィジョンクエスト"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-08T00:59:12.940Z",
+      "edition_window_end": "2026-11-08T00:54:31.399Z",
+      "shown_day": "2026-11-08"
     }
   ],
   "scores": {
+    "article_c21dfe06690451839bc3": {
+      "article_id": "article_c21dfe06690451839bc3",
+      "total": 75,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 15,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-11-06T08:57:00.000Z"
+    },
+    "article_0149367a11c1a01262b1": {
+      "article_id": "article_0149367a11c1a01262b1",
+      "total": 57,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 17,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "制度・安全への影響",
+        "重要な経営・研究体制",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-11-06T02:30:30.000Z"
+    },
+    "article_e2f403af48cd9dae531b": {
+      "article_id": "article_e2f403af48cd9dae531b",
+      "total": 47,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 7,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "重要な経営・研究体制",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-11-07T17:08:00.000Z"
+    },
+    "article_e38280d9277f05444c96": {
+      "article_id": "article_e38280d9277f05444c96",
+      "total": 25,
+      "breakdown": {
+        "importance": 10,
+        "topicality": 0,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度C",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-11-07T20:05:00.000Z"
+    },
     "article_dccb4b807171b4ae81c9": {
       "article_id": "article_dccb4b807171b4ae81c9",
       "total": 71,
@@ -2674,31 +2861,9 @@
       "reasons": [
         "重要度A",
         "主要AI企業・基盤",
-        "制度・安全への影響",
-        "遅れて確認できた新着"
+        "制度・安全への影響"
       ],
       "published_at": "2026-11-07T08:25:00.000Z"
-    },
-    "article_df007322307446c5b8f3": {
-      "article_id": "article_df007322307446c5b8f3",
-      "total": 60,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 20,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "制度・安全への影響",
-        "大きな製品・市場変化",
-        "重要な経営・研究体制",
-        "遅れて確認できた新着"
-      ],
-      "published_at": "2026-11-07T14:12:28.000Z"
     }
   },
   "recent_story_history": [
@@ -3116,6 +3281,99 @@
       "previous_article_id": "",
       "selected_at": "2026-11-07T23:45:05.385Z",
       "edition_window_end": "2026-11-07T23:40:19.757Z"
+    },
+    {
+      "article_id": "article_c21dfe06690451839bc3",
+      "story_id": "story_a9c1498fada6c4b294",
+      "title": "NVIDIAの循環融資に警告、ヘッジファンド出身者がシスコ暴落との類似を指摘",
+      "primary_entity": "NVIDIA",
+      "story_subject": "NVIDIAの循環融資と内部売却",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "story_entities": [
+        "NVIDIA",
+        "シスコ",
+        "nvidia"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "内部関係者の1年間の現金化額",
+          "value": "約19億ドル",
+          "normalized_value": "1900000000USD"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-08T00:59:12.940Z",
+      "edition_window_end": "2026-11-08T00:54:31.399Z"
+    },
+    {
+      "article_id": "article_0149367a11c1a01262b1",
+      "story_id": "story_3f2fd2a93478ea69ec",
+      "title": "フィジカルAIが切り拓く日本の産業戦略、早稲田大学教授と議員が議論",
+      "primary_entity": "株式会社エクサウィザーズ",
+      "story_subject": "AI Innovators Forum 2026",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "日本",
+      "story_entities": [
+        "エクサウィザーズ",
+        "尾形哲也",
+        "山際大志郎",
+        "innovators",
+        "forum"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-08T00:59:12.940Z",
+      "edition_window_end": "2026-11-08T00:54:31.399Z"
+    },
+    {
+      "article_id": "article_e2f403af48cd9dae531b",
+      "story_id": "story_f55e6dd7b18297cde5",
+      "title": "Replit CEO、AIコーディングエージェントは『1人1体から1万体へ』拡大すると予測",
+      "primary_entity": "Replit",
+      "story_subject": "AIコーディングエージェントの将来予測",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "story_entities": [
+        "Replit",
+        "アムジャド・マサド",
+        "replit",
+        "アムジャドマサド"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-08T00:59:12.940Z",
+      "edition_window_end": "2026-11-08T00:54:31.399Z"
+    },
+    {
+      "article_id": "article_e38280d9277f05444c96",
+      "story_id": "story_ab12fa15d4f73a7437",
+      "title": "マーベル最新作、生成AIの不自然さをあえて手作りで再現した撮影セットを公開",
+      "primary_entity": "マーベル",
+      "story_subject": "『ヴィジョンクエスト』の撮影セット",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "story_entities": [
+        "マーベル",
+        "ヴィジョンクエスト"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-08T00:59:12.940Z",
+      "edition_window_end": "2026-11-08T00:54:31.399Z"
     }
   ]
 }
