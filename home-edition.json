@@ -7,57 +7,63 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-08T11:17:06.012Z",
-  "window_end": "2026-11-08T16:39:30.028Z",
-  "last_window_end": "2026-11-08T16:39:30.028Z",
-  "last_checked_at": "2026-11-08T16:44:08.950Z",
-  "last_published_at": "2026-11-08T16:44:08.950Z",
-  "home_content_changed_at": "2026-11-08T16:44:08.950Z",
+  "window_start": "2026-11-08T16:39:30.028Z",
+  "window_end": "2026-11-08T23:46:46.066Z",
+  "last_window_end": "2026-11-08T23:46:46.066Z",
+  "last_checked_at": "2026-11-08T23:50:47.790Z",
+  "last_published_at": "2026-11-08T23:50:47.790Z",
+  "home_content_changed_at": "2026-11-08T23:50:47.790Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 3,
-  "distinct_candidate_count": 3,
+  "candidate_count": 2,
+  "distinct_candidate_count": 2,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 3,
+  "novel_candidate_count": 2,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 4,
+  "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 3,
-  "continued_selected_count": 1,
-  "tool_evolution_selected_count": 1,
+  "new_selected_count": 2,
+  "continued_selected_count": 3,
+  "tool_evolution_selected_count": 2,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
+    "article_c0973909d406538f8d58",
+    "article_38ccf79e5b44e0fdca1a",
     "article_9a66b54e10acff0ada9a",
-    "article_533a7cf6c9573a896c9b",
-    "article_09766c63ca8755531b71",
-    "article_35a03f44a34a98a3ceab"
+    "article_35a03f44a34a98a3ceab",
+    "article_533a7cf6c9573a896c9b"
   ],
   "new_article_ids": [
-    "article_9a66b54e10acff0ada9a",
-    "article_533a7cf6c9573a896c9b",
-    "article_09766c63ca8755531b71"
+    "article_c0973909d406538f8d58",
+    "article_38ccf79e5b44e0fdca1a"
   ],
   "continued_article_ids": [
-    "article_35a03f44a34a98a3ceab"
+    "article_9a66b54e10acff0ada9a",
+    "article_35a03f44a34a98a3ceab",
+    "article_533a7cf6c9573a896c9b"
   ],
   "continuation_sources": {
-    "article_35a03f44a34a98a3ceab": "recent_archive"
+    "article_9a66b54e10acff0ada9a": "previous_edition",
+    "article_35a03f44a34a98a3ceab": "previous_edition",
+    "article_533a7cf6c9573a896c9b": "previous_edition"
   },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-09",
-  "same_day_article_ids": [],
-  "first_time_article_ids": [
-    "article_35a03f44a34a98a3ceab"
+  "same_day_article_ids": [
+    "article_9a66b54e10acff0ada9a",
+    "article_35a03f44a34a98a3ceab",
+    "article_533a7cf6c9573a896c9b"
   ],
+  "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 37,
+  "blocked_previous_day_count": 35,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -382,7 +388,9 @@
     "article_9a66b54e10acff0ada9a": "2026-11-09",
     "article_533a7cf6c9573a896c9b": "2026-11-09",
     "article_09766c63ca8755531b71": "2026-11-09",
-    "article_35a03f44a34a98a3ceab": "2026-11-09"
+    "article_35a03f44a34a98a3ceab": "2026-11-09",
+    "article_c0973909d406538f8d58": "2026-11-09",
+    "article_38ccf79e5b44e0fdca1a": "2026-11-09"
   },
   "home_shown_story_log": [
     {
@@ -2648,18 +2656,114 @@
       "selected_at": "2026-11-08T16:44:08.950Z",
       "edition_window_end": "2026-11-08T16:39:30.028Z",
       "shown_day": "2026-11-09"
+    },
+    {
+      "article_id": "article_c0973909d406538f8d58",
+      "story_id": "story_b7e633cb46c2f69e21",
+      "title": "Google、脆弱性修正AI「CodeMender」をGemini 4 Argonで強化",
+      "primary_entity": "Google",
+      "story_subject": "CodeMenderのGemini 4 Argon採用による強化",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "CodeMender利用企業",
+      "story_entities": [
+        "Google",
+        "CodeMender",
+        "Gemini 4 Argon",
+        "google",
+        "codemender"
+      ],
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "CodeMenderの基盤モデル",
+          "value": "Gemini 4 Argon",
+          "normalized_value": "gemini4argon"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-08T23:50:47.790Z",
+      "edition_window_end": "2026-11-08T23:46:46.066Z",
+      "shown_day": "2026-11-09"
+    },
+    {
+      "article_id": "article_38ccf79e5b44e0fdca1a",
+      "story_id": "story_6177e81f9d9bf1beb6",
+      "title": "米中間選挙で民主党圧勝、AI規制懸念で半導体株急落",
+      "primary_entity": "韓国証券市場",
+      "story_subject": "米国中間選挙結果とAI規制懸念による半導体株下落",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "韓国証券市場",
+      "story_entities": [
+        "半導体",
+        "AI規制",
+        "韓国証券市場",
+        "ai規制"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-08T23:50:47.790Z",
+      "edition_window_end": "2026-11-08T23:46:46.066Z",
+      "shown_day": "2026-11-09"
     }
   ],
   "scores": {
+    "article_c0973909d406538f8d58": {
+      "article_id": "article_c0973909d406538f8d58",
+      "total": 84,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 20,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "制度・安全への影響",
+        "大きな製品・市場変化",
+        "遅れて確認できた新着",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-08T02:30:00.000Z"
+    },
+    "article_38ccf79e5b44e0fdca1a": {
+      "article_id": "article_38ccf79e5b44e0fdca1a",
+      "total": 76,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 20,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "制度・安全への影響",
+        "大きな製品・市場変化",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-11-08T09:04:47.000Z"
+    },
     "article_9a66b54e10acff0ada9a": {
       "article_id": "article_9a66b54e10acff0ada9a",
-      "total": 77,
+      "total": 70,
       "breakdown": {
         "importance": 45,
         "topicality": 10,
         "scope": 10,
         "authority": 5,
-        "freshness": 7,
+        "freshness": 0,
         "tool_evolution": 0,
         "penalty": 0
       },
@@ -2668,45 +2772,6 @@
         "制度・安全への影響"
       ],
       "published_at": "2026-11-08T14:47:06.000Z"
-    },
-    "article_533a7cf6c9573a896c9b": {
-      "article_id": "article_533a7cf6c9573a896c9b",
-      "total": 54,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化",
-        "遅れて確認できた新着",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-11-08T08:35:17.000Z"
-    },
-    "article_09766c63ca8755531b71": {
-      "article_id": "article_09766c63ca8755531b71",
-      "total": 46,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "制度・安全への影響",
-        "遅れて確認できた新着"
-      ],
-      "published_at": "2026-11-08T11:00:22.000Z"
     },
     "article_35a03f44a34a98a3ceab": {
       "article_id": "article_35a03f44a34a98a3ceab",
@@ -2725,162 +2790,28 @@
         "制度・安全への影響"
       ],
       "published_at": "2026-11-04T15:00:01.000Z"
+    },
+    "article_533a7cf6c9573a896c9b": {
+      "article_id": "article_533a7cf6c9573a896c9b",
+      "total": 54,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-08T08:35:17.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_b22650b5885694308fce",
-      "story_id": "story_5540c761957b3a31a4",
-      "title": "OpenAI、新モデル「GPT-6 Cyber」を公開と報道",
-      "primary_entity": "OpenAI",
-      "story_subject": "GPT-6 Cyber",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "不明",
-      "story_entities": [
-        "OpenAI",
-        "GPT-6 Cyber",
-        "openai",
-        "gpt-6cyber",
-        "gpt-6"
-      ],
-      "fact_slots": [
-        {
-          "type": "version",
-          "scope": "モデル名",
-          "value": "GPT-6 Cyber",
-          "normalized_value": "gpt6cyber"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-11-05T18:04:00.271Z",
-      "edition_window_end": "2026-11-05T18:00:10.923Z"
-    },
-    {
-      "article_id": "article_b8802b1eb789bc92be85",
-      "story_id": "story_80019771c8bd88bc93",
-      "title": "OpenAIがChatGPTの画像生成「Images 2.6」を発表、GIF作成と新スタイル追加",
-      "primary_entity": "OpenAI",
-      "story_subject": "Images 2.6",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "ChatGPT",
-      "story_entities": [
-        "ChatGPT",
-        "OpenAI",
-        "Images 2.6",
-        "chatgpt",
-        "openai"
-      ],
-      "fact_slots": [
-        {
-          "type": "version",
-          "scope": "ChatGPT画像生成モデル",
-          "value": "Images 2.6",
-          "normalized_value": "images2.6"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-05T18:04:00.271Z",
-      "edition_window_end": "2026-11-05T18:00:10.923Z"
-    },
-    {
-      "article_id": "article_bb47d7724b29a5247240",
-      "story_id": "story_66ad133f367ae83a49",
-      "title": "Moonshot AI、Kimi K3.1 Proの重みを公開しデプロイ選択肢を拡大",
-      "primary_entity": "Moonshot AI",
-      "story_subject": "Kimi K3.1 Pro",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "グローバル(オープンウェイト公開)",
-      "story_entities": [
-        "Moonshot AI",
-        "Kimi K3.1 Pro",
-        "moonshotai",
-        "kimik3.1pro",
-        "moonshot-ai"
-      ],
-      "fact_slots": [
-        {
-          "type": "version",
-          "scope": "モデル名",
-          "value": "Kimi K3.1 Pro",
-          "normalized_value": "kimik3.1pro"
-        }
-      ],
-      "relation_type": "follow_up",
-      "dedupe_decision": "follow_up",
-      "previous_article_id": "article_4363ed6a8a73c54c0dca",
-      "selected_at": "2026-11-05T18:04:00.271Z",
-      "edition_window_end": "2026-11-05T18:00:10.923Z"
-    },
-    {
-      "article_id": "article_883ba0c9a892e521a358",
-      "story_id": "story_aa37d8f940fde490dc",
-      "title": "Canva、成長鈍化で従業員1,271人に影響する組織再編を発表",
-      "primary_entity": "Canva",
-      "story_subject": "組織再編",
-      "event_type": "other",
-      "event_stage": "announced",
-      "event_scope": "Canva全社",
-      "story_entities": [
-        "Canva",
-        "canva"
-      ],
-      "fact_slots": [
-        {
-          "type": "count",
-          "scope": "組織再編の影響人数",
-          "value": "1271人",
-          "normalized_value": "1271"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-05T18:04:00.271Z",
-      "edition_window_end": "2026-11-05T18:00:10.923Z"
-    },
-    {
-      "article_id": "article_930c71d3753e342d0c4e",
-      "story_id": "story_58211670b7575e2cb5",
-      "title": "動画生成AI「Kling 4.0 Flash」が一般提供開始、720pで1秒0.094ドル",
-      "primary_entity": "Kling AI",
-      "story_subject": "Kling 4.0 Flash",
-      "event_type": "pricing",
-      "event_stage": "launched",
-      "event_scope": "一般提供",
-      "story_entities": [
-        "Kling AI",
-        "Kling 4.0 Flash",
-        "klingai",
-        "kling4.0flash",
-        "kling"
-      ],
-      "fact_slots": [
-        {
-          "type": "price",
-          "scope": "Kling 4.0 Flashの生成料金",
-          "value": "0.094ドル/秒",
-          "normalized_value": "0.094USD"
-        },
-        {
-          "type": "version",
-          "scope": "解像度上限",
-          "value": "720p",
-          "normalized_value": "720p"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-05T18:04:00.271Z",
-      "edition_window_end": "2026-11-05T18:00:10.923Z"
-    },
     {
       "article_id": "article_f7d3ffea10852a9b6b24",
       "story_id": "story_0bf68439d4711e68d5",
@@ -3293,6 +3224,58 @@
       "previous_article_id": "",
       "selected_at": "2026-11-08T16:44:08.950Z",
       "edition_window_end": "2026-11-08T16:39:30.028Z"
+    },
+    {
+      "article_id": "article_c0973909d406538f8d58",
+      "story_id": "story_b7e633cb46c2f69e21",
+      "title": "Google、脆弱性修正AI「CodeMender」をGemini 4 Argonで強化",
+      "primary_entity": "Google",
+      "story_subject": "CodeMenderのGemini 4 Argon採用による強化",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "CodeMender利用企業",
+      "story_entities": [
+        "Google",
+        "CodeMender",
+        "Gemini 4 Argon",
+        "google",
+        "codemender"
+      ],
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "CodeMenderの基盤モデル",
+          "value": "Gemini 4 Argon",
+          "normalized_value": "gemini4argon"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-08T23:50:47.790Z",
+      "edition_window_end": "2026-11-08T23:46:46.066Z"
+    },
+    {
+      "article_id": "article_38ccf79e5b44e0fdca1a",
+      "story_id": "story_6177e81f9d9bf1beb6",
+      "title": "米中間選挙で民主党圧勝、AI規制懸念で半導体株急落",
+      "primary_entity": "韓国証券市場",
+      "story_subject": "米国中間選挙結果とAI規制懸念による半導体株下落",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "韓国証券市場",
+      "story_entities": [
+        "半導体",
+        "AI規制",
+        "韓国証券市場",
+        "ai規制"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-08T23:50:47.790Z",
+      "edition_window_end": "2026-11-08T23:46:46.066Z"
     }
   ]
 }

@@ -136,6 +136,47 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_38ccf79e5b44e0fdca1a",
+      "story_id": "story_6177e81f9d9bf1beb6",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "米中間選挙で民主党圧勝、AI規制懸念で半導体株急落",
+      "source_published_at": "2026-11-08T09:04:47.000Z",
+      "published_at": "2026-11-08T09:04:47.000Z",
+      "fetched_at": "2026-11-08T23:46:46.066Z",
+      "event_at": "",
+      "event_status": "継続中",
+      "raw_excerpt": "米国の中間選挙で民主党が圧勝し、AI産業への規制強化が懸念されて半導体株が下落、半導体比率が高い韓国市場が特に打撃を受けた。",
+      "source_name": "매일경제",
+      "source_url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1GWldrTWcwTTJfaUlDVVhDYlQzSzV6aFlGNFJvQ1RDaUJUaE9GS05jb2VwQzl4eUI3b1RXeHBmZzRSX1B6UXRkTEZrajlDemc?oc=5",
+      "story_entities": [
+        "半導体",
+        "AI規制",
+        "韓国証券市場",
+        "ai規制"
+      ],
+      "primary_entity": "韓国証券市場",
+      "story_subject": "米国中間選挙結果とAI規制懸念による半導体株下落",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "韓国証券市場",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "米国中間選挙での民主党圧勝を受け、AI産業規制への懸念から半導体株が下落した。",
+      "detail": "韓国の経済メディア毎日経済が報じた。簡単に言うと、米国の国会議員を選ぶ中間選挙で野党の民主党が大勝し、AI(人工知能)を使った産業への規制が強まるとの見方が広がったという内容。以前は規制が緩やかになると見られていたが、情勢が一変したとされる。\n\n記事によると、この規制強化への懸念から半導体関連の株価が大きく下落した。特に韓国の証券市場は、株式市場全体に占める半導体企業の時価総額(企業の株式の総額)の割合が非常に高いため、他国より強い打撃を受けているという。AI向け半導体の需要拡大を背景に株価が上がってきた反動が出た形とみられる。\n\n半導体関連企業に投資する個人や企業にとって、政治情勢の変化が株価に直結することが改めて示された。記事では具体的な下落率や規制の中身までは触れられていない。今後、米国議会でどのような規制案が議論されるかは明らかになっていない。",
+      "new_facts": [
+        "米国の中間選挙で民主党が圧勝した",
+        "AI産業規制への懸念から半導体株が下落した",
+        "半導体の時価総額比率が高い韓国市場が特に打撃を受けた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_533a7cf6c9573a896c9b",
       "story_id": "story_fdb493db07ef6d4d00",
       "story_sequence": 2,
@@ -306,6 +347,59 @@
         "AIを悪用した情報窃取「VOLTA」の事例が取り上げられた。"
       ],
       "event_date_precision": "day"
+    },
+    {
+      "article_id": "article_c0973909d406538f8d58",
+      "story_id": "story_b7e633cb46c2f69e21",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.8281081081081081,
+      "title": "Google、脆弱性修正AI「CodeMender」をGemini 4 Argonで強化",
+      "source_published_at": "2026-11-08T02:30:00.000Z",
+      "published_at": "2026-11-08T02:30:00.000Z",
+      "fetched_at": "2026-11-08T23:46:46.066Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "GoogleがAIを使ってソフトウェアの弱点を自動修正するエージェント「CodeMender」に新モデル「Gemini 4 Argon」を採用し機能を強化した。",
+      "source_name": "ビジネス+IT",
+      "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE0tUHV3NktrX2prZEkwSm9MME9WVmlrbE5MUW5BRFloU0k4a1hkbjU3Z1ZEWWFhX2VtU2xvWXByVnFzWXRTNTlfNl8xdmxnZk04WElN?oc=5",
+      "story_entities": [
+        "Google",
+        "CodeMender",
+        "Gemini 4 Argon",
+        "google",
+        "codemender"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "CodeMenderのGemini 4 Argon採用による強化",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "CodeMender利用企業",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "CodeMenderの基盤モデル",
+          "value": "Gemini 4 Argon",
+          "normalized_value": "gemini4argon"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "stage_changed",
+        "material_fact_changed",
+        "low_confidence_follow_up_demoted"
+      ],
+      "change_summary": "CodeMenderの基盤モデルが新しい「Gemini 4 Argon」に切り替わり、機能が強化された。",
+      "detail": "Googleが、ソフトウェアの弱点(脆弱性)を自動で見つけて直すAIの仕組み「CodeMender」を強化したと報じられた。簡単に言うと、プログラムの欠陥を人の手を借りずにAIが修正する技術の性能を上げたということ。これまでより新しいAIモデル「Gemini 4 Argon」を土台に使うようになった。\n\nCodeMenderは、企業が使うソフトウェアに潜むセキュリティ上の弱点を自動で検出し、修正コードまで提案する仕組みとされる。新モデルの採用によって、より複雑な脆弱性にも対応できるようになったとみられる。ソフトウェアの安全性を保つ作業は人手に頼ると時間がかかるため、AIによる自動化は企業のセキュリティ対策の負担軽減につながる。\n\nソフトウェア開発やセキュリティ管理を担う企業にとって、脆弱性修正の速度や精度が変わる可能性がある。記事では強化の具体的な数値や対象範囲までは示されていない。どの企業からいつ利用できるようになるかは、現時点で明らかにされていない。",
+      "new_facts": [
+        "GoogleがCodeMenderに新モデルGemini 4 Argonを採用した",
+        "CodeMenderはソフトウェアの脆弱性を自動修正するAIエージェントである"
+      ],
+      "event_date_precision": "unknown"
     },
     {
       "article_id": "article_e38280d9277f05444c96",
