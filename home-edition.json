@@ -7,12 +7,12 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-08T16:39:30.028Z",
-  "window_end": "2026-11-08T23:46:46.066Z",
-  "last_window_end": "2026-11-08T23:46:46.066Z",
-  "last_checked_at": "2026-11-08T23:50:47.790Z",
-  "last_published_at": "2026-11-08T23:50:47.790Z",
-  "home_content_changed_at": "2026-11-08T23:50:47.790Z",
+  "window_start": "2026-11-08T23:46:46.066Z",
+  "window_end": "2026-11-09T12:53:44.155Z",
+  "last_window_end": "2026-11-09T12:53:44.155Z",
+  "last_checked_at": "2026-11-09T12:57:32.702Z",
+  "last_published_at": "2026-11-09T12:57:32.702Z",
+  "home_content_changed_at": "2026-11-09T12:57:32.702Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
@@ -30,40 +30,40 @@
   "minimum_selected_count": 3,
   "new_selected_count": 2,
   "continued_selected_count": 3,
-  "tool_evolution_selected_count": 2,
+  "tool_evolution_selected_count": 1,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
+    "article_5a67153c9f25c930ad98",
+    "article_cb7bd7b9ad09ba69d850",
     "article_c0973909d406538f8d58",
     "article_38ccf79e5b44e0fdca1a",
-    "article_9a66b54e10acff0ada9a",
-    "article_35a03f44a34a98a3ceab",
-    "article_533a7cf6c9573a896c9b"
+    "article_9a66b54e10acff0ada9a"
   ],
   "new_article_ids": [
-    "article_c0973909d406538f8d58",
-    "article_38ccf79e5b44e0fdca1a"
+    "article_5a67153c9f25c930ad98",
+    "article_cb7bd7b9ad09ba69d850"
   ],
   "continued_article_ids": [
-    "article_9a66b54e10acff0ada9a",
-    "article_35a03f44a34a98a3ceab",
-    "article_533a7cf6c9573a896c9b"
+    "article_c0973909d406538f8d58",
+    "article_38ccf79e5b44e0fdca1a",
+    "article_9a66b54e10acff0ada9a"
   ],
   "continuation_sources": {
-    "article_9a66b54e10acff0ada9a": "previous_edition",
-    "article_35a03f44a34a98a3ceab": "previous_edition",
-    "article_533a7cf6c9573a896c9b": "previous_edition"
+    "article_c0973909d406538f8d58": "previous_edition",
+    "article_38ccf79e5b44e0fdca1a": "previous_edition",
+    "article_9a66b54e10acff0ada9a": "previous_edition"
   },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-09",
   "same_day_article_ids": [
-    "article_9a66b54e10acff0ada9a",
-    "article_35a03f44a34a98a3ceab",
-    "article_533a7cf6c9573a896c9b"
+    "article_c0973909d406538f8d58",
+    "article_38ccf79e5b44e0fdca1a",
+    "article_9a66b54e10acff0ada9a"
   ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 35,
+  "blocked_previous_day_count": 33,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -390,7 +390,9 @@
     "article_09766c63ca8755531b71": "2026-11-09",
     "article_35a03f44a34a98a3ceab": "2026-11-09",
     "article_c0973909d406538f8d58": "2026-11-09",
-    "article_38ccf79e5b44e0fdca1a": "2026-11-09"
+    "article_38ccf79e5b44e0fdca1a": "2026-11-09",
+    "article_5a67153c9f25c930ad98": "2026-11-09",
+    "article_cb7bd7b9ad09ba69d850": "2026-11-09"
   },
   "home_shown_story_log": [
     {
@@ -2710,9 +2712,113 @@
       "selected_at": "2026-11-08T23:50:47.790Z",
       "edition_window_end": "2026-11-08T23:46:46.066Z",
       "shown_day": "2026-11-09"
+    },
+    {
+      "article_id": "article_5a67153c9f25c930ad98",
+      "story_id": "story_86d562819530d9526a",
+      "title": "モルガン・スタンレー、中国のAI創薬向け民間投資が9カ月で312%増と報告",
+      "primary_entity": "モルガン・スタンレー",
+      "story_subject": "中国AI創薬分野の民間投資",
+      "event_type": "funding",
+      "event_stage": "other",
+      "event_scope": "中国",
+      "story_entities": [
+        "モルガン・スタンレー",
+        "中国AI創薬",
+        "モルガンスタンレー",
+        "中国ai創薬"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "中国AI創薬分野の民間投資額(1〜9月)",
+          "value": "158億元",
+          "normalized_value": "15800000000"
+        },
+        {
+          "type": "other",
+          "scope": "前年比増加率",
+          "value": "312%",
+          "normalized_value": "312%"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-09T12:57:32.702Z",
+      "edition_window_end": "2026-11-09T12:53:44.155Z",
+      "shown_day": "2026-11-09"
+    },
+    {
+      "article_id": "article_cb7bd7b9ad09ba69d850",
+      "story_id": "story_befeebb739a64999fb",
+      "title": "OpenAIのアルトマンCEO、試作版ChatGPTの継続率5％でも公開と明かす",
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT試作版の継続率に関するアルトマンCEOの発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "不明",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT",
+        "サム・アルトマン",
+        "openai",
+        "chatgpt"
+      ],
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "試作版ChatGPTの継続率",
+          "value": "5%",
+          "normalized_value": "5%"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-09T12:57:32.702Z",
+      "edition_window_end": "2026-11-09T12:53:44.155Z",
+      "shown_day": "2026-11-09"
     }
   ],
   "scores": {
+    "article_5a67153c9f25c930ad98": {
+      "article_id": "article_5a67153c9f25c930ad98",
+      "total": 56,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 10,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化"
+      ],
+      "published_at": "2026-11-09T12:28:08.000Z"
+    },
+    "article_cb7bd7b9ad09ba69d850": {
+      "article_id": "article_cb7bd7b9ad09ba69d850",
+      "total": 51,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 12,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 3,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤",
+        "重要な経営・研究体制"
+      ],
+      "published_at": "2026-11-09T03:25:06.000Z"
+    },
     "article_c0973909d406538f8d58": {
       "article_id": "article_c0973909d406538f8d58",
       "total": 84,
@@ -2730,7 +2836,6 @@
         "主要AI企業・基盤",
         "制度・安全への影響",
         "大きな製品・市場変化",
-        "遅れて確認できた新着",
         "AIツールの能力進化"
       ],
       "published_at": "2026-11-08T02:30:00.000Z"
@@ -2750,8 +2855,7 @@
       "reasons": [
         "重要度A",
         "制度・安全への影響",
-        "大きな製品・市場変化",
-        "遅れて確認できた新着"
+        "大きな製品・市場変化"
       ],
       "published_at": "2026-11-08T09:04:47.000Z"
     },
@@ -2772,135 +2876,9 @@
         "制度・安全への影響"
       ],
       "published_at": "2026-11-08T14:47:06.000Z"
-    },
-    "article_35a03f44a34a98a3ceab": {
-      "article_id": "article_35a03f44a34a98a3ceab",
-      "total": 70,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 10,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "制度・安全への影響"
-      ],
-      "published_at": "2026-11-04T15:00:01.000Z"
-    },
-    "article_533a7cf6c9573a896c9b": {
-      "article_id": "article_533a7cf6c9573a896c9b",
-      "total": 54,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-11-08T08:35:17.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_f7d3ffea10852a9b6b24",
-      "story_id": "story_0bf68439d4711e68d5",
-      "title": "NVIDIA「H200」約60万個が中国向け輸出で香港に滞留",
-      "primary_entity": "NVIDIA",
-      "story_subject": "H200の中国向け輸出・香港滞留",
-      "event_type": "policy",
-      "event_stage": "other",
-      "event_scope": "中国・香港",
-      "story_entities": [
-        "NVIDIA",
-        "H200",
-        "nvidia",
-        "h200"
-      ],
-      "fact_slots": [
-        {
-          "type": "count",
-          "scope": "香港に滞留するH200の個数",
-          "value": "約60万個",
-          "normalized_value": "600000"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-11-06T12:12:57.036Z",
-      "edition_window_end": "2026-11-06T12:07:45.479Z"
-    },
-    {
-      "article_id": "article_d7969667426848d3eab6",
-      "story_id": "story_d3f390eeae1311b30f",
-      "title": "Claudeが個人の家計管理機能「Personal Finance」を発表",
-      "primary_entity": "Anthropic",
-      "story_subject": "Claude Personal Finance",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "個人向け家計管理機能",
-      "story_entities": [
-        "Claude",
-        "Personal Finance",
-        "Anthropic",
-        "claude",
-        "personalfinance"
-      ],
-      "fact_slots": [
-        {
-          "type": "status",
-          "scope": "銀行口座連携の権限",
-          "value": "読み取り専用",
-          "normalized_value": "読み取り専用"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-11-06T12:12:57.036Z",
-      "edition_window_end": "2026-11-06T12:07:45.479Z"
-    },
-    {
-      "article_id": "article_3d8713302196064c90f5",
-      "story_id": "story_8a8912e1d8b131ea10",
-      "title": "Google DeepMind、Gemini Omni 1.2 Flashを一般提供開始",
-      "primary_entity": "Google DeepMind",
-      "story_subject": "Gemini Omni 1.2 Flash",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "一般提供",
-      "story_entities": [
-        "Google DeepMind",
-        "Gemini Omni 1.2 Flash",
-        "googledeepmind",
-        "geminiomni1.2flash",
-        "google-gemini"
-      ],
-      "fact_slots": [
-        {
-          "type": "other",
-          "scope": "動画生成の長さ",
-          "value": "15秒",
-          "normalized_value": "15"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-06T12:12:57.036Z",
-      "edition_window_end": "2026-11-06T12:07:45.479Z"
-    },
     {
       "article_id": "article_5cafe8c1043f8679d540",
       "story_id": "story_401912cb202fa391e7",
@@ -3276,6 +3254,71 @@
       "previous_article_id": "",
       "selected_at": "2026-11-08T23:50:47.790Z",
       "edition_window_end": "2026-11-08T23:46:46.066Z"
+    },
+    {
+      "article_id": "article_5a67153c9f25c930ad98",
+      "story_id": "story_86d562819530d9526a",
+      "title": "モルガン・スタンレー、中国のAI創薬向け民間投資が9カ月で312%増と報告",
+      "primary_entity": "モルガン・スタンレー",
+      "story_subject": "中国AI創薬分野の民間投資",
+      "event_type": "funding",
+      "event_stage": "other",
+      "event_scope": "中国",
+      "story_entities": [
+        "モルガン・スタンレー",
+        "中国AI創薬",
+        "モルガンスタンレー",
+        "中国ai創薬"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "中国AI創薬分野の民間投資額(1〜9月)",
+          "value": "158億元",
+          "normalized_value": "15800000000"
+        },
+        {
+          "type": "other",
+          "scope": "前年比増加率",
+          "value": "312%",
+          "normalized_value": "312%"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-09T12:57:32.702Z",
+      "edition_window_end": "2026-11-09T12:53:44.155Z"
+    },
+    {
+      "article_id": "article_cb7bd7b9ad09ba69d850",
+      "story_id": "story_befeebb739a64999fb",
+      "title": "OpenAIのアルトマンCEO、試作版ChatGPTの継続率5％でも公開と明かす",
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT試作版の継続率に関するアルトマンCEOの発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "不明",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT",
+        "サム・アルトマン",
+        "openai",
+        "chatgpt"
+      ],
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "試作版ChatGPTの継続率",
+          "value": "5%",
+          "normalized_value": "5%"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-09T12:57:32.702Z",
+      "edition_window_end": "2026-11-09T12:53:44.155Z"
     }
   ]
 }
