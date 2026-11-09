@@ -1,142 +1,6 @@
 {
   "version": 1,
   "items": {
-    "url:https://news.google.com/rss/articles/cbmiowfbvv95cuxqdulybnvly1pjx2e5eupbcmtdtnvmnldtzle0v1bzr05aszl5vznwrwjwrgm4ukk5wljsmnlfqnv4udlzcm9hunfnohzvbflds1awrlfpbk5jyv9lynu2t2k1vldbstbnqzvbzeruqtnytvo0bzi1eeg0ujhtnnrnyjlxcvhtrwpuenjpugqyqzznmepowhltlw5kewx1qmreq3zn": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiowfbvv95cuxqdulybnvly1pjx2e5eupbcmtdtnvmnldtzle0v1bzr05aszl5vznwrwjwrgm4ukk5wljsmnlfqnv4udlzcm9hunfnohzvbflds1awrlfpbk5jyv9lynu2t2k1vldbstbnqzvbzeruqtnytvo0bzi1eeg0ujhtnnrnyjlxcvhtrwpuenjpugqyqzznmepowhltlw5kewx1qmreq3zn",
-      "content_hash": "7cdfff2cb01fdb482f43cadd5378d19613a58cbd833f0326cb728f13355db9ce",
-      "story_key": "ad5f43b84f858c6e1bdf7754710bca5c9f62aac02302635d12042e89856c1437",
-      "status": "enriched",
-      "processed_at": "2026-10-09T11:24:04.788Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Perplexity",
-        "content_type": "article",
-        "expert_id": "",
-        "expert_ids": [],
-        "expert_name": "",
-        "expert_names": [],
-        "expert_role": "",
-        "expert_tier": "",
-        "platform": "",
-        "video_id": "",
-        "source_trust": "",
-        "title": "Perplexity、ColBERT方式の検索モデルをMITライセンスで公開",
-        "source_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQdUlybnVlY1pjX2E5eUpBcmtDTnVMNldtZlE0V1BZR05aSzl5VzNwRWJwRGM4Ukk5WlJsMnlFQnV4UDlzcm9HUnFnOHZVbFlDS1AwRlFPbk5JYV9lYnU2T2k1VldBSTBnQzVBZERuQTNyTVo0bzI1eEg0UjhtNnRnYjlxcVhTRWpUenJpUGQyQzZnMEpoWHltLW5KeWx1QmREQ3Zn?oc=5",
-        "source_name": "Startup Fortune",
-        "is_official": false,
-        "published_at": "2026-10-07T18:19:52.000Z",
-        "source_published_at": "2026-10-07T18:19:52.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-10-09T11:20:20.314Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Perplexity",
-          "ColBERT"
-        ],
-        "primary_entity": "Perplexity",
-        "story_subject": "ColBERTスタイル検索モデルのオープンソース化",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "検索モデル・開発者向け公開",
-        "fact_slots": [
-          {
-            "type": "other",
-            "scope": "ライセンス形式",
-            "value": "MITライセンス",
-            "normalized_value": "mitライセンス"
-          }
-        ],
-        "new_facts": [
-          "PerplexityがColBERTスタイルの検索モデルをMITライセンスでオープンソース化した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "Perplexityが独自開発した検索用AIモデルを、誰でも自由に使えるMITライセンスでオープンソース公開したと報じられた。",
-        "detail": "Perplexityは、自社の検索機能に使っていたColBERTという方式の検索モデルを、MITライセンスで一般公開した。簡単に言うと、文章の意味を細かく比較して検索精度を高める専用のAIモデルを、無料で誰でも使える形にしたということだ。これまでは自社サービスの中だけで使われていた仕組みを、外部の開発者にも開放した点が以前との違いになる。\n\n記事で確認できる事実は、PerplexityがColBERT方式の検索モデルをMITライセンスで公開したという点に限られる。MITライセンスとは、商用利用を含めて自由に使ったり改変したりできる、制限の緩い公開ルールのことだ。検索精度の具体的な数値や、公開されたモデルの種類・規模などは記事に明記されていない。\n\n開発者は、このモデルを自分のアプリや検索サービスに組み込める可能性がある。ただし性能や対応言語、商用利用時の注意点などの詳細は分かっていない。今後、実際にどのような形で使われていくかは発表されていない。",
-        "change_summary": "Perplexityが自社の検索用AIモデルをMITライセンスで初めて一般公開した。",
-        "impact_summary": "検索システムを作る開発者やエンジニアが、無料で高度な検索技術を利用できる可能性が広がる。",
-        "action_suggestion": "モデルの性能や具体的な公開範囲については、Perplexityの公式発表や公開先の詳細情報を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "研究・技術"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmic0fvx3lxtfawejvknlhjadjtmfbwr1u0mjjhvwpyalfidvblyuprn2tmvhnoodnjytitvfq2rtu2s1o1lvdfajfgrhppewpyy25qahr2ztg2seq0sllzvkdkzwjpohjamkl3vddku2dfahnja2xiy1lkx1k": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmic0fvx3lxtfawejvknlhjadjtmfbwr1u0mjjhvwpyalfidvblyuprn2tmvhnoodnjytitvfq2rtu2s1o1lvdfajfgrhppewpyy25qahr2ztg2seq0sllzvkdkzwjpohjamkl3vddku2dfahnja2xiy1lkx1k",
-      "content_hash": "4dc1b984e3de4f4d91e831fe0ff703e82ae6d231181d355653a425e1b5c02717",
-      "story_key": "ea7992abd6f05a55fac90db9cb44185c0b59692397181b0effdda3b16b0264b1",
-      "status": "enriched",
-      "processed_at": "2026-10-09T11:24:04.788Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Grok / xAI",
-        "content_type": "article",
-        "expert_id": "",
-        "expert_ids": [],
-        "expert_name": "",
-        "expert_names": [],
-        "expert_role": "",
-        "expert_tier": "",
-        "platform": "",
-        "video_id": "",
-        "source_trust": "",
-        "title": "Grok Bot、X投稿の検索・閲覧・監視機能に対応",
-        "source_url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFAwejVkNlhJaDJtMFBwR1U0MjJHVWpyalFidVBLYUpRN2tMVHNoODNJYTItVFQ2RTU2S1o1LVdFajFGRHpPeWpYY25qaHR2ZTg2SEQ0SllzVkdKZWJPOHJaMkl3VDdKU2dfaHNJa2xiY1lkX1k?oc=5",
-        "source_name": "Excite エキサイト",
-        "is_official": false,
-        "published_at": "2026-10-09T08:24:00.000Z",
-        "source_published_at": "2026-10-09T08:24:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-10-09T11:20:20.314Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Grok Bot",
-          "xAI",
-          "X"
-        ],
-        "primary_entity": "xAI",
-        "story_subject": "Grok BotのX投稿検索・監視機能",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "X(旧Twitter)",
-        "fact_slots": [
-          {
-            "type": "availability",
-            "scope": "Grok Botの新機能",
-            "value": "検索・閲覧・監視機能",
-            "normalized_value": "検索閲覧監視機能"
-          }
-        ],
-        "new_facts": [
-          "Grok BotがX上の投稿を検索・閲覧・監視できるようになった"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "xAIのチャットボットGrok Botが、X(旧Twitter)上の投稿を検索・閲覧・監視できる機能を備えたと報じられた。",
-        "detail": "xAIが提供するチャットボット「Grok Bot」が、X(旧Twitter)上の投稿を検索したり閲覧したり監視したりできるようになった。簡単に言うと、Grok BotがXに投稿された情報を調べて追いかけられるようになったということだ。この機能が以前からあったのか新しく加わったものなのかは、記事からは分からない。\n\n記事で確認できる事実は、Grok BotがX上の投稿を「検索」「閲覧」「監視」できるようになったという点に限られる。対象となる投稿の範囲や、どのような仕組みで監視が行われるのか、対応言語などの詳細は明記されていない。SNS上の情報をAIが扱う機能が広がる動きの一つとして注目される。\n\n利用者は、Grok Botを通じてX上の特定の話題や投稿の動きを把握できるようになる可能性がある。ただし提供開始の時期や利用条件、対象となるユーザーについては記事に書かれていない。詳細は今後の公式な発表を待つ必要がある。",
-        "change_summary": "Grok BotにX投稿の検索・閲覧・監視という新しい機能が加わった。",
-        "impact_summary": "X上の情報収集や話題の追跡を、AIを使って行いたい利用者にとって選択肢が増える。",
-        "action_suggestion": "機能の対象範囲や利用条件については、xAIやXからの公式な詳細情報を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
-      }
-    },
     "url:https://news.google.com/rss/articles/cbminwfbvv95cuxon0y0u1hoc1bbts1yqndudwfoshjhyvrxquzhsgnlnhrza0nwavhmejr6tnriewctmkt6m3iya2fqmxbgzxfzqznxtwp1ngeysfjodzlnv0cwtvzzrzdhswnhdmvlohpnogy0zg5xmldrm2jfafrnvnjpafo1azvyemvsz1r0vuk2nthgrthuruncaktndhvewm5wuetntvu": {
       "canonical_url": "https://news.google.com/rss/articles/cbminwfbvv95cuxon0y0u1hoc1bbts1yqndudwfoshjhyvrxquzhsgnlnhrza0nwavhmejr6tnriewctmkt6m3iya2fqmxbgzxfzqznxtwp1ngeysfjodzlnv0cwtvzzrzdhswnhdmvlohpnogy0zg5xmldrm2jfafrnvnjpafo1azvyemvsz1r0vuk2nthgrthuruncaktndhvewm5wuetntvu",
       "content_hash": "4c00efd9435ad34929ba0f4e29661b79c7bea710e658cb1196a7ab64c45c25a1",
@@ -16047,127 +15911,6 @@
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
     },
-    "url:https://www.youtube.com/watch?v=zlxuhfrsmio": {
-      "canonical_url": "https://www.youtube.com/watch?v=zlxuhfrsmio",
-      "content_hash": "0869bcfee19d5d60524ddd4b91656da52a17ae37c8dc8a9615eb5e2ce066b6b7",
-      "story_key": "4c5070a78aefaa025cdd9c9c3bf618e48ee751eaa4f51e6f1753e98d84ae1d51",
-      "status": "rejected",
-      "processed_at": "2026-11-07T11:07:06.940Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "expert",
-      "reason": "ai_skip: 短い切り抜きで具体的主張や根拠が確認できず内容が薄い"
-    },
-    "url:https://news.google.com/rss/articles/cbmilgjbvv95cuxpcmd5ntbbtulsyvl5tglhnnfqzwdnqvvtz3vsohi2qwzmwhlmew9ydwnrndbvb1o2tgrox1psvvfuz256dkrpevdvm2fhukn0ovdgc2zqcvn1oet3dzdhrkt4nwlmexvpthbpm2dttfm5bupxzm1ldllwu2pevulaceleszzqyw9jtllgc3zfwkj0wgfva29jse14y1vorjr1bl94u1l4enhumzz2sfvyvvhba3hbrvdrawtmegdxzuxndfhiznvbqzb2uupvsmlkewntslj1yutnznnqeny0v2llrmzqdmtfovzhruhvntzorflswtnbd3pvvfbpx1zubgr3cefkcxy5wepqwwzndhp5mffrd9ibmwjbvv95cuxnbdzez1pmr0zrndlatmu1mhgxn3dcstitmwrawtrlvko1slvtcg1adzvqbnjvq05hzvoxudlqnk5ecxywnhjbvwx2zjfpcdfbdwrqb2xhn2ver1zpu3fkadvir3vcowtzzk92alb3ylnxqwvjexznv3lmck9hq3p2m1n1zdryy1r4cud6ukvqvtbjtfdfoflzvkk3rxzkchfrujyxlukxnejsz0tenulonefvzuhawkp4ykhksny2slnxnxrvx19avxhdrnpdzhrwdmhkoty0clr5svl0u2qwr1vuy2itrvjwylyty3dlblj4zk1hv044vw92rvfycjlfemxvexnqujznohb1bxvmykdou2zpwvhxckvj": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmilgjbvv95cuxpcmd5ntbbtulsyvl5tglhnnfqzwdnqvvtz3vsohi2qwzmwhlmew9ydwnrndbvb1o2tgrox1psvvfuz256dkrpevdvm2fhukn0ovdgc2zqcvn1oet3dzdhrkt4nwlmexvpthbpm2dttfm5bupxzm1ldllwu2pevulaceleszzqyw9jtllgc3zfwkj0wgfva29jse14y1vorjr1bl94u1l4enhumzz2sfvyvvhba3hbrvdrawtmegdxzuxndfhiznvbqzb2uupvsmlkewntslj1yutnznnqeny0v2llrmzqdmtfovzhruhvntzorflswtnbd3pvvfbpx1zubgr3cefkcxy5wepqwwzndhp5mffrd9ibmwjbvv95cuxnbdzez1pmr0zrndlatmu1mhgxn3dcstitmwrawtrlvko1slvtcg1adzvqbnjvq05hzvoxudlqnk5ecxywnhjbvwx2zjfpcdfbdwrqb2xhn2ver1zpu3fkadvir3vcowtzzk92alb3ylnxqwvjexznv3lmck9hq3p2m1n1zdryy1r4cud6ukvqvtbjtfdfoflzvkk3rxzkchfrujyxlukxnejsz0tenulonefvzuhawkp4ykhksny2slnxnxrvx19avxhdrnpdzhrwdmhkoty0clr5svl0u2qwr1vuy2itrvjwylyty3dlblj4zk1hv044vw92rvfycjlfemxvexnqujznohb1bxvmykdou2zpwvhxckvj",
-      "content_hash": "e8793dcac445429e2b31de8a06ee5a6ad5f62f1f8dbba368e83232581d37a30c",
-      "story_key": "67d187393ad6ddcf799b2e923e03d2d25ad173c60122d4471d95cd440e7a35bb",
-      "status": "rejected",
-      "processed_at": "2026-11-07T11:08:20.490Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 抜粋が見出しと同一で提案の具体的内容が不明"
-    },
-    "url:https://news.google.com/rss/articles/cbmisefvx3lxtfbiu19vegw5tk9ewflfc1jkdfhnus0wn3pfn2nwcjjgoutpbudisde5nvffufhktkz3nudxrwzdcwnonxfbtezgwa": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmisefvx3lxtfbiu19vegw5tk9ewflfc1jkdfhnus0wn3pfn2nwcjjgoutpbudisde5nvffufhktkz3nudxrwzdcwnonxfbtezgwa",
-      "content_hash": "5f938b6cdf0cd21903578bc56a10c5d29e3a9a1ab4af63a0b0068153d69c4889",
-      "story_key": "8fb84528f799e1763fcebe5c236e8c5c94f1c2f7b8a6401c2c1697e7d4e2cde7",
-      "status": "rejected",
-      "processed_at": "2026-11-07T11:08:20.491Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: ドラマ宣伝のメイキング映像で具体的情報が乏しい"
-    },
-    "url:https://news.google.com/rss/articles/cbmibefvx3lxte9aeghsc0vvmkfhewtbx3c5b0ticxrvcnvsmfnlaepmmhlpou1mtgxqtdnzt2vpz0rhrghnmy1qctjdtxnjbxjvy1hkswg3lvnmdwnxudy5czbgtu1xn0llyxi0buhvd3rwc2dodq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmibefvx3lxte9aeghsc0vvmkfhewtbx3c5b0ticxrvcnvsmfnlaepmmhlpou1mtgxqtdnzt2vpz0rhrghnmy1qctjdtxnjbxjvy1hkswg3lvnmdwnxudy5czbgtu1xn0llyxi0buhvd3rwc2dodq",
-      "content_hash": "fad7bbd126387ce5795a4d405466d6f7ea5eb8d96ee7fc1dcffdd8ecf49b1897",
-      "story_key": "85d51ef2b024d8ceb20246d9fadd01927eb2f17be6707d325d812526f22d22bf",
-      "status": "rejected",
-      "processed_at": "2026-11-07T11:08:20.491Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 株価憶測中心のYouTube動画で検証可能な事実が乏しい"
-    },
-    "url:https://news.google.com/rss/articles/cbmipwfbvv95cuxnv2nvykpwrlhkazg3ajrvdlbza0qzntm1dkvkddlkmgntzgfpawsxvffqmhexufo4umz6ufhlstrvrfd0exppm1hvlwnyujuzbdjoz0thennddwhrtfzyqvppexlza2povezqdtntr0ladev6qs05vmh3czbzv0jqmva2dkgyadb2og54n28zvg5uwmlit3eywjr3awvkvu0wdkt3x09zzw": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmipwfbvv95cuxnv2nvykpwrlhkazg3ajrvdlbza0qzntm1dkvkddlkmgntzgfpawsxvffqmhexufo4umz6ufhlstrvrfd0exppm1hvlwnyujuzbdjoz0thennddwhrtfzyqvppexlza2povezqdtntr0ladev6qs05vmh3czbzv0jqmva2dkgyadb2og54n28zvg5uwmlit3eywjr3awvkvu0wdkt3x09zzw",
-      "content_hash": "b90e6012ed695c3385c9c5138357be2450ae550f402fbe4c1d05f4343efc274a",
-      "story_key": "ef0373e7052f3ebdaf04ec3a17ce28aec3846dd1c98eb0ce79551846c02fa077",
-      "status": "rejected",
-      "processed_at": "2026-11-07T11:08:20.491Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 抜粋のみで具体的な内容が確認できない"
-    },
-    "url:https://news.google.com/rss/articles/cbmiykfvx3lxte9wahdmbgjuwhrrbuh6awhju1c1uhczmvrpchrzddzla0lvrlrwr1plzmtwzmrmb3zmew8zt0flshbjzxvfwtgyzjdbcjrpyljpbhdvvg5ktw1pxzlmrghib1ln": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiykfvx3lxte9wahdmbgjuwhrrbuh6awhju1c1uhczmvrpchrzddzla0lvrlrwr1plzmtwzmrmb3zmew8zt0flshbjzxvfwtgyzjdbcjrpyljpbhdvvg5ktw1pxzlmrghib1ln",
-      "content_hash": "2c375c405f5124fb1b22d5584b810b9c02aae3d15ee5cae1079976649a175d7d",
-      "story_key": "ec40660675e19c1bea9aa11a40cba0021ff41392cb405a818b8e7204cbc8c528",
-      "status": "rejected",
-      "processed_at": "2026-11-07T11:08:31.075Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 未確認リーク情報で具体的事実が確認できない"
-    },
-    "url:https://news.google.com/rss/articles/cbmihwfbvv95cuxnru1uznddvmfbyuntywneb1jjws1yewrbvdlree1oq1vfcwfxei1uveq1dxvndnhcz1vub1ozevnbqndkm29zs214yldvv3oxzljreljld3hylvbkofvumxlubuhgwefbzjzjck5qd2lqcfdouwzmwk1iegpda2kwbc10ckdiefu": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmihwfbvv95cuxnru1uznddvmfbyuntywneb1jjws1yewrbvdlree1oq1vfcwfxei1uveq1dxvndnhcz1vub1ozevnbqndkm29zs214yldvv3oxzljreljld3hylvbkofvumxlubuhgwefbzjzjck5qd2lqcfdouwzmwk1iegpda2kwbc10ckdiefu",
-      "content_hash": "ee03d94bdda47e52327e0a325419d4d9c9c5efb4d46dd918313dd55c2afd3c97",
-      "story_key": "d5f30691d1de54c7619898134696caf60544a059556c5f8d77abe2bb0879d3da",
-      "status": "rejected",
-      "processed_at": "2026-11-07T11:08:31.075Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 出典不明で本文確認できず事実検証不可"
-    },
-    "url:https://news.google.com/rss/articles/cbmiiafbvv95cuxnmxlswhvrsuitbgnpakrewvlmug16cg9nnxprvtdswedpb3bjv0y1svfzqkpwn1fymhlsd3zvqzhvn3pyvmplmk51t21xuuliwxnhclbcmg5wcwy1ci1nbxpkzvnitxzurtjan3n6agnnu2hkm25yavphsfi1x1hzsfjilvjycu95": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiiafbvv95cuxnmxlswhvrsuitbgnpakrewvlmug16cg9nnxprvtdswedpb3bjv0y1svfzqkpwn1fymhlsd3zvqzhvn3pyvmplmk51t21xuuliwxnhclbcmg5wcwy1ci1nbxpkzvnitxzurtjan3n6agnnu2hkm25yavphsfi1x1hzsfjilvjycu95",
-      "content_hash": "a31065de9c6900c286821915995973ed6087dc958e1a219a458300de26965402",
-      "story_key": "e268c5eec9e5559887e17312ab20a6585caf40ec25d52f1bac48041f1174d587",
-      "status": "rejected",
-      "processed_at": "2026-11-07T11:09:01.297Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "ai_skip: タイトルのみで具体的な主張内容が確認できない"
-    },
-    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte9uof9tqny1ehvtevrusvktuej3nkrwyxdpshe2mnk3dxbzdnn3q25trdaxzwvjy2fieffudhpmwndxvjn6evppdxdqvmdgsznbndl2b2loeg5lvkhcxzixewgwwdzlnjeychc": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte9uof9tqny1ehvtevrusvktuej3nkrwyxdpshe2mnk3dxbzdnn3q25trdaxzwvjy2fieffudhpmwndxvjn6evppdxdqvmdgsznbndl2b2loeg5lvkhcxzixewgwwdzlnjeychc",
-      "content_hash": "d74703776d782a1a5d97fe75f0479a21312d3baa16c2f9a91d61622e9db69491",
-      "story_key": "52e64ecefab09c6ba736075f5499e0d61ce2962c6faac1f137b6e6a032bc6554",
-      "status": "rejected",
-      "processed_at": "2026-11-07T11:09:01.297Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "ai_skip: 自社の基本方針発表という宣伝的なPR記事のため"
-    },
-    "url:https://news.google.com/rss/articles/cbmikafbvv95cuxock40qlvrofrdzvrubjvrwdjywultqxn6cunqumdmbmizbxziahrjbgpryugxmen0m2s4ukvwymljckzpcvuyoeztseromwsyyzqtbfjcyxr6qtj4ck5xrfzjbmr0lxbdog9jtznwclqxvf9irjm0sxjpqjn5y3pcnnpgrm5tyny4mvbfcno1vvg": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmikafbvv95cuxock40qlvrofrdzvrubjvrwdjywultqxn6cunqumdmbmizbxziahrjbgpryugxmen0m2s4ukvwymljckzpcvuyoeztseromwsyyzqtbfjcyxr6qtj4ck5xrfzjbmr0lxbdog9jtznwclqxvf9irjm0sxjpqjn5y3pcnnpgrm5tyny4mvbfcno1vvg",
-      "content_hash": "867efb9f88051e3940041010339cdec41b3a724983a264f7aeb9f99adb1b55f7",
-      "story_key": "24a65cb6468a656f4bce77b0eaa7e34323a202aacd31a6c4654d1d5d0925ea78",
-      "status": "rejected",
-      "processed_at": "2026-11-07T11:09:01.297Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "ai_skip: 個人ブログで出所不明、検閲回避モデルの宣伝的内容"
-    },
-    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxte9bb05ub1druwrcwlrnt21awgx5zw94dgzcthl3anvleddqwe5wzzbyeez5qtlpbta3av9srxpisjljrvb4vlnqa1jrtdqzzxzyqljz": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxte9bb05ub1druwrcwlrnt21awgx5zw94dgzcthl3anvleddqwe5wzzbyeez5qtlpbta3av9srxpisjljrvb4vlnqa1jrtdqzzxzyqljz",
-      "content_hash": "17c4e70ac7492c43587ce1208a1e4d10b00510883f71e2437d91efe725c8a474",
-      "story_key": "fd974cb429a04642e45748b0eeeaeb3f8903ea2892217c79ce81f42447ae6f44",
-      "status": "rejected",
-      "processed_at": "2026-11-07T11:09:01.297Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "ai_skip: タイトルのみで発言の具体的内容が確認できない"
-    },
     "url:https://news.google.com/rss/articles/cbmizkfvx3lxtfa1cdnhcwzdbgtab24xelvaak1oakzqmy1od2zpwlbfukjvemjrsgrnqjnknmnkq25kyujkdxjmnexrzusxsglrqxfysehzuxv5cvflrkrxzhq3tfjezxbjbjfuckrgzw": {
       "canonical_url": "https://news.google.com/rss/articles/cbmizkfvx3lxtfa1cdnhcwzdbgtab24xelvaak1oakzqmy1od2zpwlbfukjvemjrsgrnqjnknmnkq25kyujkdxjmnexrzusxsglrqxfysehzuxv5cvflrkrxzhq3tfjezxbjbjfuckrgzw",
       "content_hash": "5fb0fbbc3b354ea17a6eb76f2c43b10fa56907d2bcd9afca78b86041e7a7f0bb",
@@ -17611,6 +17354,17 @@
       "lane": "expert",
       "reason": "ai_skip: 抜粋がタイトル反復のみで具体的内容が確認できない"
     },
+    "url:https://www.youtube.com/watch?v=n50kspfmerk": {
+      "canonical_url": "https://www.youtube.com/watch?v=n50kspfmerk",
+      "content_hash": "35ef2991f3dbff01ce9015e26beb5df70e1cc4fec098ba677e8f2848f758980a",
+      "story_key": "56153156691dbfed30295c4098d2ee0010815eea72c3c260d790b43fcfb55e05",
+      "status": "rejected",
+      "processed_at": "2026-11-09T08:40:49.203Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "ai_skip: 個人的エピソードの切り抜きで具体的な主張や論点がない"
+    },
     "url:https://news.google.com/rss/articles/cbmidefvx3lxte16odv6tzvsvhp6uxrfzlrwcng5cmpulwntntctajnnag1fqk1fzu81anpjmwf2sxnsbenylwkxbgx1nmrvee0twwhwa21hymnooui5z0s2m1zmdm91vl9wsnlhlxrvbdg1b1h5mtbhuvgytvlc": {
       "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte16odv6tzvsvhp6uxrfzlrwcng5cmpulwntntctajnnag1fqk1fzu81anpjmwf2sxnsbenylwkxbgx1nmrvee0twwhwa21hymnooui5z0s2m1zmdm91vl9wsnlhlxrvbdg1b1h5mtbhuvgytvlc",
       "content_hash": "2887f952d666e937d4653aea75dac1fa190ddaf8642ccc2882eadbc6af657506",
@@ -18412,17 +18166,305 @@
         ]
       }
     },
-    "url:https://www.youtube.com/watch?v=n50kspfmerk": {
-      "canonical_url": "https://www.youtube.com/watch?v=n50kspfmerk",
-      "content_hash": "35ef2991f3dbff01ce9015e26beb5df70e1cc4fec098ba677e8f2848f758980a",
-      "story_key": "56153156691dbfed30295c4098d2ee0010815eea72c3c260d790b43fcfb55e05",
+    "url:https://www.youtube.com/watch?v=zlxuhfrsmio": {
+      "canonical_url": "https://www.youtube.com/watch?v=zlxuhfrsmio",
+      "content_hash": "0869bcfee19d5d60524ddd4b91656da52a17ae37c8dc8a9615eb5e2ce066b6b7",
+      "story_key": "4c5070a78aefaa025cdd9c9c3bf618e48ee751eaa4f51e6f1753e98d84ae1d51",
       "status": "rejected",
-      "processed_at": "2026-11-09T08:40:49.203Z",
+      "processed_at": "2026-11-09T12:55:00.684Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "expert",
-      "reason": "ai_skip: 個人的エピソードの切り抜きで具体的な主張や論点がない"
+      "reason": "ai_skip: 本編への誘導のみの切り抜きで具体的主張が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmivgfbvv95cuxnahdywe0tczd5dgvjq3jvx1pwvlrwmzewbwphv2j6dvppu1bhmgntsljqb0rxa3hmuldyvelxqkjqafdvtlv4qm9xrhztdwfya0k4a0xotlzjdmxvoerounnaexbxdjqytktlawtuu3dut0jzc0prlxboeklncwrdrwpimnjedzrqz3fszjjcvc1lbzzfenrvb003s1hjuw1ka1rkdgrxbwxuntdjazdjv1vebjfqng04r0j2rvbr": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmivgfbvv95cuxnahdywe0tczd5dgvjq3jvx1pwvlrwmzewbwphv2j6dvppu1bhmgntsljqb0rxa3hmuldyvelxqkjqafdvtlv4qm9xrhztdwfya0k4a0xotlzjdmxvoerounnaexbxdjqytktlawtuu3dut0jzc0prlxboeklncwrdrwpimnjedzrqz3fszjjcvc1lbzzfenrvb003s1hjuw1ka1rkdgrxbwxuntdjazdjv1vebjfqng04r0j2rvbr",
+      "content_hash": "5c0677b80b80049dace4edae5b2928942e037248758bb62fba68218c71418408",
+      "story_key": "3d983fb216f0a20d02efc839c53d7ce9e7011b315a661165d276891db62b46ea",
+      "status": "rejected",
+      "processed_at": "2026-11-09T12:55:52.132Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 複数ニュースの寄せ集めで内容が曖昧、具体的事実不明"
+    },
+    "url:https://news.google.com/rss/articles/cbmiqgfbvv95cuxoui1pck5zcgrma2e0vmxzbzazmfgywg1ux28zetl1qzhsq2vplwhrtk5ovi0yau9eu2gzuldum1ljamdkm2owcu1joxpvm19pwujyc1cyugxfbhfbb24wt3vxsvfqt0laek1iwkiwzwgxufhjdvn2ztzrd040yzrmmuhprjnvuk15dwn2thzirei0nnu5sxo2dgvwwkzvdurtu2fxx0r6de84uq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiqgfbvv95cuxoui1pck5zcgrma2e0vmxzbzazmfgywg1ux28zetl1qzhsq2vplwhrtk5ovi0yau9eu2gzuldum1ljamdkm2owcu1joxpvm19pwujyc1cyugxfbhfbb24wt3vxsvfqt0laek1iwkiwzwgxufhjdvn2ztzrd040yzrmmuhprjnvuk15dwn2thzirei0nnu5sxo2dgvwwkzvdurtu2fxx0r6de84uq",
+      "content_hash": "cac79f4b77cb301511b0a5a10a2a5c4292af8dd3cb9269f72f252fbec6cdad79",
+      "story_key": "3c73936c4fd95d7784d6e71f88074796203bad034db2d63ae6db3092a68a98e5",
+      "status": "rejected",
+      "processed_at": "2026-11-09T12:55:52.132Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 調査の具体的内容・人物名が不明で事実確認不能"
+    },
+    "url:https://news.google.com/rss/articles/cbmiqafbvv95cuxpd1c0suc0alrcyvhjdg9kzvl0tzhsr0xnuelzlw96lva5dgxuzljzbdfxv19sudz2whbwr01jtlhtm28yvjhhuvpzvxhtshzuykf4wjnguwvemfz6cjhvrwf4wflun1plt01osmttmzrvy01av3rttf82qujhawjpwelhbnrcq1rjzgvrsmxmvklzru1ot1zys2tsb3dkzi1hag1vzfexy2e": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiqafbvv95cuxpd1c0suc0alrcyvhjdg9kzvl0tzhsr0xnuelzlw96lva5dgxuzljzbdfxv19sudz2whbwr01jtlhtm28yvjhhuvpzvxhtshzuykf4wjnguwvemfz6cjhvrwf4wflun1plt01osmttmzrvy01av3rttf82qujhawjpwelhbnrcq1rjzgvrsmxmvklzru1ot1zys2tsb3dkzi1hag1vzfexy2e",
+      "content_hash": "99a8de6cdfc8db280fdd8ee851f53da11145733cf688b7a8410dd8dd7b00faac",
+      "story_key": "5f0453382f83d118c41064172bcbdfa2472102bec560a3f6aba95dc0bc5570b9",
+      "status": "rejected",
+      "processed_at": "2026-11-09T12:55:52.132Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 人物名や容疑の具体性がなく事実確認不能"
+    },
+    "url:https://news.google.com/rss/articles/cbmilafbvv95cuxqcthswjuwnnpsy0petdrmnnhscfjny1rqogvkc1j0eujhu2d5de9voee3rkrhcdfzwnnvvudscw00seh4sdhwwkpreelxdc1nskl2nfjnsgl3dke2dhduwnrpnnhpwjvzmi1zemo4am55auflsfp4twhfsdnwzeuyukfzqkf0oeltd256qjfszglpyjh40ggaaufvx3lxte14utvonmtarmjfrfitq3fqs1rwq09msem4r095oduxdxlsywnvsxpilvb3vhlhm0pustq3etu0n3loddf6c29la0fxqungy0xrowphd3p0uwvivkzvculyseflek5pefpwahmwbuvslvdyuwzprgzpnvb3whfjq3jlb2nqselewu9wamrmvllhb1kztnrzqxbible": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmilafbvv95cuxqcthswjuwnnpsy0petdrmnnhscfjny1rqogvkc1j0eujhu2d5de9voee3rkrhcdfzwnnvvudscw00seh4sdhwwkpreelxdc1nskl2nfjnsgl3dke2dhduwnrpnnhpwjvzmi1zemo4am55auflsfp4twhfsdnwzeuyukfzqkf0oeltd256qjfszglpyjh40ggaaufvx3lxte14utvonmtarmjfrfitq3fqs1rwq09msem4r095oduxdxlsywnvsxpilvb3vhlhm0pustq3etu0n3loddf6c29la0fxqungy0xrowphd3p0uwvivkzvculyseflek5pefpwahmwbuvslvdyuwzprgzpnvb3whfjq3jlb2nqselewu9wamrmvllhb1kztnrzqxbible",
+      "content_hash": "e737a8078ae48a7a77c23baff8cd3a9b6881e1f81eeb3f557a26081546f264f5",
+      "story_key": "d88f7a9e2352e1f3a9cedc43760bbf0848a8994d75948330ef238ee1daec4690",
+      "status": "retry",
+      "processed_at": "2026-11-09T12:55:52.132Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte9mlxzleknxmedrtzlsvkpjwvvmmg5ad3zxsnhzyvrccvbvcddqcwvnemdzmdhlazlau2zpughtu0ltwnr0umg5duz1n21ktffrnjlxr3hwsdhqy0p5ee5tr0hzrglpovnztke": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte9mlxzleknxmedrtzlsvkpjwvvmmg5ad3zxsnhzyvrccvbvcddqcwvnemdzmdhlazlau2zpughtu0ltwnr0umg5duz1n21ktffrnjlxr3hwsdhqy0p5ee5tr0hzrglpovnztke",
+      "content_hash": "8ff12b42205574b453b09a55b67a67a4809f988e9234ce75cb5d0f79de754cf2",
+      "story_key": "6aa975a8035c4abab7e791850599391a9229b7a0479d1262b0ab5fb40100a35a",
+      "status": "retry",
+      "processed_at": "2026-11-09T12:55:52.132Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmio0fvx3lxte9qtfv4m0lmm3nhrmdqtxluclr6vm5iynq1oxhanfotr2zsre5ibhfcedlqyxvvti14nzhj": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmio0fvx3lxte9qtfv4m0lmm3nhrmdqtxluclr6vm5iynq1oxhanfotr2zsre5ibhfcedlqyxvvti14nzhj",
+      "content_hash": "f2a2bb0a84664c2c7c0026f7dd8d61b892a30e9e0dbd2c0dbe166e593d521cb5",
+      "story_key": "e637e20b6b51bdad8213e058ecef47960889df45935424316763c6748a0c0432",
+      "status": "retry",
+      "processed_at": "2026-11-09T12:55:52.132Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmif0fvx3lxtfbubln2r25sckzichdwudiwzxvyzkdyqtywvdzquunps1zdb051s3ozaujzxzbtvvm1n2z1wvhvyjlfs1vjwmxvewlwtg1xwho4cdfhm1vnazr3wgfebnbqq3v2vek0smvqec1rstzhx3lrmzjqbgvyvgxdtk9iaja": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmif0fvx3lxtfbubln2r25sckzichdwudiwzxvyzkdyqtywvdzquunps1zdb051s3ozaujzxzbtvvm1n2z1wvhvyjlfs1vjwmxvewlwtg1xwho4cdfhm1vnazr3wgfebnbqq3v2vek0smvqec1rstzhx3lrmzjqbgvyvgxdtk9iaja",
+      "content_hash": "2f80803161b0aecc336a183f03ea8817c2809bbf85187c8bebb274aafba0aefd",
+      "story_key": "07fd7e46a7ddb4313223b6b6a69bb314f23d11a8793064fa9a2773b4f5526b2d",
+      "status": "enriched",
+      "processed_at": "2026-11-09T12:56:07.995Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "ChatGPT / OpenAI",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "OpenAIのアルトマンCEO、試作版ChatGPTの継続率5％でも公開と明かす",
+        "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBublN2R25SckZIcHdWUDIwZXVYZkdYQTYwVDZqUUNpS1ZDb051S3ozaUJZXzBtVVM1N2Z1WVhVYjlfS1VJWmxveWlwTG1xWHo4cDFhM1VNazR3WGFEbnBqQ3V2VEk0SmVqeC1RSTZhX3lRMzJqbGVyVGxDTk9IajA?oc=5",
+        "source_name": "Yahoo!ニュース",
+        "is_official": false,
+        "published_at": "2026-11-09T03:25:06.000Z",
+        "source_published_at": "2026-11-09T03:25:06.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-09T12:53:44.155Z",
+        "event_at": "",
+        "event_status": "不明",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "OpenAI",
+          "ChatGPT",
+          "サム・アルトマン"
+        ],
+        "primary_entity": "OpenAI",
+        "story_subject": "ChatGPT試作版の継続率に関するアルトマンCEOの発言",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "不明",
+        "fact_slots": [
+          {
+            "type": "other",
+            "scope": "試作版ChatGPTの継続率",
+            "value": "5%",
+            "normalized_value": "5%"
+          }
+        ],
+        "new_facts": [
+          "アルトマンCEOが試作版ChatGPTの継続率が5%だったと明かした",
+          "継続率が低くても公開したとされる"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "OpenAIのサム・アルトマンCEOが、試作版ChatGPTの継続利用率が5％だったにもかかわらず公開に踏み切ったと語った。",
+        "detail": "OpenAIのサム・アルトマンCEOが、ChatGPTの試作版を使い続けた人の割合、つまり継続率がわずか5％だったことを明らかにしました。継続率とは、一度使った人がその後も使い続けているかを示す数字です。低い継続率にもかかわらず、OpenAIはこの試作版を公開する判断をしたとアルトマン氏は述べています。\n\n記事はYahoo!ニュースの見出しと抜粋のみが確認でき、具体的な公開時期や試作版の名称、継続率5％の算出方法などの詳しい説明は本文からは読み取れません。アルトマン氏がどのような場で、いつこの発言をしたのかも明記されていません。\n\nAIサービスを開発する企業にとって、利用者の継続率が低くても機能を世に出す判断があり得ることを示す事例といえます。ただし今回の情報は見出しと抜粋のみに基づくため、発言の詳細や文脈、公開された試作版の具体的な中身については今後の続報を確認する必要があります。",
+        "change_summary": "アルトマンCEOが試作版ChatGPTの継続率5％という具体的な数字を初めて明かした点が新しい情報です。",
+        "impact_summary": "低い継続率でも機能を公開する経営判断の実例として、AI開発企業の意思決定プロセスへの関心が高まる可能性があります。",
+        "action_suggestion": "見出しと抜粋のみの情報のため、発言の詳細や文脈は元記事本文または続報での確認が必要です。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://deepmind.google/models/veo": {
+      "canonical_url": "https://deepmind.google/models/veo",
+      "content_hash": "f60f6b49272f5abed657c2e445ba21cbbf0cadb66f65985ebc1ec506046e9bd5",
+      "story_key": "5652fc87f30352153a8876b01c77cc86c24a772b2cbe6cab162c92ef322fc083",
+      "status": "rejected",
+      "processed_at": "2026-11-09T12:56:07.995Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 具体的な新発表がなく貢献者リスト中心の定型ページ"
+    },
+    "url:https://news.google.com/rss/articles/cbmiykfvx3lxte5yd251wudvn0s5a2j4m1fooejydzhhvu1sajftujzxvethakvctxpiedy2zta0zklfdetjsunomvhzehpubvpfvug4yjhfxy03akjbcw9obhd6zeozdjlvuvlb": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiykfvx3lxte5yd251wudvn0s5a2j4m1fooejydzhhvu1sajftujzxvethakvctxpiedy2zta0zklfdetjsunomvhzehpubvpfvug4yjhfxy03akjbcw9obhd6zeozdjlvuvlb",
+      "content_hash": "d8973e884fb3be91ff38dcfee0c26a2a1ce80ac2d80a9e7a990089c9c564fd41",
+      "story_key": "b703c485edab1b67b15546f63a32289addbd13db96ff0af88a64c29347d96746",
+      "status": "enriched",
+      "processed_at": "2026-11-09T12:57:21.243Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "",
+      "result": {
+        "tool": "中国AI・基盤モデル",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "モルガン・スタンレー、中国のAI創薬向け民間投資が9カ月で312%増と報告",
+        "source_url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5Yd251WUdvN0s5a2J4M1FOOEJYdzhhVU1SajFtUjZxVEthakVCTXpIeDY2ZTA0ZklfdEtJSUNOMVhZeHpUbVpFVUg4YjhFXy03akJBcW9obHd6ZEozdjlvUVlB?oc=5",
+        "source_name": "观点网",
+        "is_official": false,
+        "published_at": "2026-11-09T12:28:08.000Z",
+        "source_published_at": "2026-11-09T12:28:08.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-09T12:53:44.155Z",
+        "event_at": "",
+        "event_status": "不明",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "モルガン・スタンレー",
+          "中国AI創薬"
+        ],
+        "primary_entity": "モルガン・スタンレー",
+        "story_subject": "中国AI創薬分野の民間投資",
+        "event_type": "funding",
+        "event_stage": "other",
+        "event_scope": "中国",
+        "fact_slots": [
+          {
+            "type": "amount",
+            "scope": "中国AI創薬分野の民間投資額(1〜9月)",
+            "value": "158億元",
+            "normalized_value": "15800000000"
+          },
+          {
+            "type": "other",
+            "scope": "前年比増加率",
+            "value": "312%",
+            "normalized_value": "312%"
+          }
+        ],
+        "new_facts": [
+          "中国のAI創薬分野への民間投資額が今年1〜9月で158億元に達した",
+          "前年同期比で312%増加したとモルガン・スタンレーが分析した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "モルガン・スタンレーの分析で、中国のAI創薬分野への民間資金調達額が今年1〜9月に158億元となり前年比312%増加したと分かった。",
+        "detail": "モルガン・スタンレーが、中国のAI創薬(人工知能を使った新薬開発)分野への投資動向をまとめた。簡単に言うと、AIを使って新しい薬の候補を探す企業への民間からの出資が急激に増えているという内容だ。これまでと比べて資金の集まり方が大きく変わったことを示す数字が示された。\n\n分析によると、今年1月から9月までの9カ月間で、中国のAI創薬企業への民間投資額は158億元に達した。これは前年の同じ時期と比べて312%の増加にあたる。AI創薬とは、人工知能を使って病気に効く新しい薬の候補を効率よく探し出す技術のことだ。投資が急増した具体的な背景や内訳までは記事では明らかにされていない。\n\nこの動きは、中国のバイオ産業がAI技術を取り入れて急成長していることを示す一例といえる。日本の製薬会社や投資家にとっても、中国のAI創薬市場の拡大は競争環境の変化として注目される可能性がある。ただし記事では対象企業名や今後の見通しについては触れられていない。",
+        "change_summary": "中国のAI創薬分野への民間投資が9カ月で158億元、前年比312%増となったことが報告された。",
+        "impact_summary": "中国のAI創薬市場の急拡大は、日本の製薬業界や投資家にとって競争環境の変化を示す材料になり得る。",
+        "action_suggestion": "記事では投資の内訳や対象企業名、今後の見通しは明らかにされておらず、続報の有無を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "企業・株式",
+          "研究・技術"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmit0fvx3lxte03ujzyb01nluo4mmxfmjhtz1gzdth2m1yxzvrvt19lotbxovowutj5sxbfng5sbnzrswtjaji2teptc0zluup6ztnqdtbotgc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmit0fvx3lxte03ujzyb01nluo4mmxfmjhtz1gzdth2m1yxzvrvt19lotbxovowutj5sxbfng5sbnzrswtjaji2teptc0zluup6ztnqdtbotgc",
+      "content_hash": "139e305951c8597fdd396db624d7aaa1aeb9327f6a9f95078a45ffb10dbc6ee2",
+      "story_key": "8484cf6f8503a5a258ff3bcf8eafff250f7b2ec7bf3772ef69afa07349cd04b3",
+      "status": "rejected",
+      "processed_at": "2026-11-09T12:57:21.244Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "ai_skip: 具体性のない市場予測レポート広告"
+    },
+    "url:https://news.google.com/rss/articles/cbmiiafbvv95cuxqmhp5wlpnqtjfc2m1edh4dlrou3bnn09amutsvjniuzn2sxzoyvzzujm5r0zrnm9pmfrdcfjdyljkbxfhs192qkjmrmrldklaqnc3rkdxs09za0o1whjdovexnevpx1netvvxegvvsghuddcxsnkzcmpad09mqthhv3uznffowk9h": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiiafbvv95cuxqmhp5wlpnqtjfc2m1edh4dlrou3bnn09amutsvjniuzn2sxzoyvzzujm5r0zrnm9pmfrdcfjdyljkbxfhs192qkjmrmrldklaqnc3rkdxs09za0o1whjdovexnevpx1netvvxegvvsghuddcxsnkzcmpad09mqthhv3uznffowk9h",
+      "content_hash": "7c12d1fc105d7adb620441567c194a1fca577c8586329797ebce958a59197ac2",
+      "story_key": "2db56c02e0a112d37648fc51f96d06ac764261e05bc03a0380c51ff3f6ce541a",
+      "status": "rejected",
+      "processed_at": "2026-11-09T12:57:21.244Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "ai_skip: 製品宣伝目的のプレスリリース"
+    },
+    "url:https://news.google.com/rss/articles/cbmitwfbvv95cuxpuc1ebw9yqtrwv08yx0x6wupfc0rhv2gyn3n5yvo3ohlfsmzwoxdzmzhmv1bkagngzdyxbkl3otf6snk4y2t5dxhdwwhhcc1lvzd6zzjhsmm3svrbtdixmtrfzlz0m3rkbehhx3vnlv9ouwszedlyvlzsoegwzms0eezocmhwaw9vnk9ka2rpre1fbupzmkv6eghwoedaynl6ctddufvwx0fzslpnbwnaofj1auw4z3c": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmitwfbvv95cuxpuc1ebw9yqtrwv08yx0x6wupfc0rhv2gyn3n5yvo3ohlfsmzwoxdzmzhmv1bkagngzdyxbkl3otf6snk4y2t5dxhdwwhhcc1lvzd6zzjhsmm3svrbtdixmtrfzlz0m3rkbehhx3vnlv9ouwszedlyvlzsoegwzms0eezocmhwaw9vnk9ka2rpre1fbupzmkv6eghwoedaynl6ctddufvwx0fzslpnbwnaofj1auw4z3c",
+      "content_hash": "d82e5ecdbdf8b2be01b2a94c4edc5f4373e6a6795e268e1f9204152961e2fed8",
+      "story_key": "312cbeac1f6122e61fb490467106d240b70cec91281aa8e86e3423b45e68ec77",
+      "status": "rejected",
+      "processed_at": "2026-11-09T12:57:21.244Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "ai_skip: 役職新設の概要のみで具体的詳細が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmitafbvv95cuxpqjkzdgext0hnndz3eejzdgppqjcyykz0mlyyyuc2dupnsjduaek4t1roaezybfpxudg4vgh5sgxhv2vxelzownzosmuzedrqswnwrkjic2jprwh4zs1wdtvkbtleyk81bkrwbwn6tl9vqtitukszthdiadnzbllmvnnna3vqwejmtvd6dwhjtxn5bvdov095shz0axrvd050rxfgtvq5rmlgympxcus0dfhodm0": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmitafbvv95cuxpqjkzdgext0hnndz3eejzdgppqjcyykz0mlyyyuc2dupnsjduaek4t1roaezybfpxudg4vgh5sgxhv2vxelzownzosmuzedrqswnwrkjic2jprwh4zs1wdtvkbtleyk81bkrwbwn6tl9vqtitukszthdiadnzbllmvnnna3vqwejmtvd6dwhjtxn5bvdov095shz0axrvd050rxfgtvq5rmlgympxcus0dfhodm0",
+      "content_hash": "6d995060dd57dc284a14d6e7dd458e2c1b24b418386d9bb2d4dec3086bbeaad5",
+      "story_key": "730dde3f364e3b3c537a43ab7074d647b5432c6e46bab3f92f1dd2b65be8958e",
+      "status": "retry",
+      "processed_at": "2026-11-09T12:57:21.244Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmiuefvx3lxte5ybnr0vndjotdzee51ampdaevxzfo4tkdsu1kzmezjtflsr1jjsefkcy10z3v5ekxmv2hkqjlzzzrnytrab2lft2hxd2fny1ne": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiuefvx3lxte5ybnr0vndjotdzee51ampdaevxzfo4tkdsu1kzmezjtflsr1jjsefkcy10z3v5ekxmv2hkqjlzzzrnytrab2lft2hxd2fny1ne",
+      "content_hash": "01b3b6d0c54257e53c95219084887f6308d71402b7b6c25440c4bae4196aab31",
+      "story_key": "5e09f22d51a557dea60d93a8d41ae058ed66eed4e9acdffd3ac3e7eb4d8f28f7",
+      "status": "retry",
+      "processed_at": "2026-11-09T12:57:21.244Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmikgfbvv95cuxoewframytevk5zeszyuj6qtjlckoxehl5tmxtnlnkwdlvcdnqau9hbw41chhtcndqnujwcmgwngjsalpsmer2btznmwpbanvfy2detxpdr2s0mef6clzuqwreu2ttrvnlz3nxcvhcak9hwjbhdm9sd21avdiyam51ohjnskn5elvft29mntn1s0pzzw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmikgfbvv95cuxoewframytevk5zeszyuj6qtjlckoxehl5tmxtnlnkwdlvcdnqau9hbw41chhtcndqnujwcmgwngjsalpsmer2btznmwpbanvfy2detxpdr2s0mef6clzuqwreu2ttrvnlz3nxcvhcak9hwjbhdm9sd21avdiyam51ohjnskn5elvft29mntn1s0pzzw",
+      "content_hash": "803f5395d71afe1e15616e90efcb7b9e330c1e02b182b2dba0a5c7e0e98e5a51",
+      "story_key": "a10cdd5850fdf3ed8aab1601e87a445399664eea3f4b9120a045696657ea4a28",
+      "status": "rejected",
+      "processed_at": "2026-11-09T12:57:28.570Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "emergency",
+      "reason": "ai_skip: 抜粋のみで文脈不明、数字の地域・期間等が確認できない"
     }
   },
-  "updated_at": "2026-11-09T08:40:49.203Z"
+  "updated_at": "2026-11-09T12:57:28.570Z"
 }
