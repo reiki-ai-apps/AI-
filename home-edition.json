@@ -7,12 +7,12 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-09T12:53:44.155Z",
-  "window_end": "2026-11-09T20:42:17.886Z",
-  "last_window_end": "2026-11-09T20:42:17.886Z",
-  "last_checked_at": "2026-11-09T20:48:01.864Z",
-  "last_published_at": "2026-11-09T20:48:01.864Z",
-  "home_content_changed_at": "2026-11-09T20:48:01.864Z",
+  "window_start": "2026-11-09T20:42:17.886Z",
+  "window_end": "2026-11-10T02:46:56.956Z",
+  "last_window_end": "2026-11-10T02:46:56.956Z",
+  "last_checked_at": "2026-11-10T02:51:21.363Z",
+  "last_published_at": "2026-11-10T02:51:21.363Z",
+  "home_content_changed_at": "2026-11-10T02:51:21.363Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "DEGRADED",
@@ -27,28 +27,35 @@
   "novel_candidate_count": 1,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 1,
+  "selected_count": 2,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
   "new_selected_count": 1,
-  "continued_selected_count": 0,
+  "continued_selected_count": 1,
   "tool_evolution_selected_count": 1,
   "carried_forward": false,
-  "partially_carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_a77102b85141104e4668",
     "article_ff5d8598029d984627a7"
   ],
   "new_article_ids": [
+    "article_a77102b85141104e4668"
+  ],
+  "continued_article_ids": [
     "article_ff5d8598029d984627a7"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continuation_sources": {
+    "article_ff5d8598029d984627a7": "previous_edition"
+  },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-10",
-  "same_day_article_ids": [],
+  "same_day_article_ids": [
+    "article_ff5d8598029d984627a7"
+  ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 40,
+  "blocked_previous_day_count": 39,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -369,7 +376,8 @@
     "article_38ccf79e5b44e0fdca1a": "2026-11-09",
     "article_5a67153c9f25c930ad98": "2026-11-09",
     "article_cb7bd7b9ad09ba69d850": "2026-11-09",
-    "article_ff5d8598029d984627a7": "2026-11-10"
+    "article_ff5d8598029d984627a7": "2026-11-10",
+    "article_a77102b85141104e4668": "2026-11-10"
   },
   "home_shown_story_log": [
     {
@@ -2714,9 +2722,50 @@
       "selected_at": "2026-11-09T20:48:01.864Z",
       "edition_window_end": "2026-11-09T20:42:17.886Z",
       "shown_day": "2026-11-10"
+    },
+    {
+      "article_id": "article_a77102b85141104e4668",
+      "story_id": "story_b6cb7366b573cddcd0",
+      "title": "AdobeとDisneyが戦略的提携、Disney専用の生成AIモデルを共同開発",
+      "primary_entity": "Adobe",
+      "story_subject": "Firefly Foundry",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "Disney向け専用モデル",
+      "story_entities": [
+        "Adobe",
+        "Disney",
+        "Firefly Foundry",
+        "adobe",
+        "disney"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-10T02:51:21.363Z",
+      "edition_window_end": "2026-11-10T02:46:56.956Z",
+      "shown_day": "2026-11-10"
     }
   ],
   "scores": {
+    "article_a77102b85141104e4668": {
+      "article_id": "article_a77102b85141104e4668",
+      "total": 69,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 0,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 9,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A"
+      ],
+      "published_at": "2026-11-10T02:10:07.000Z"
+    },
     "article_ff5d8598029d984627a7": {
       "article_id": "article_ff5d8598029d984627a7",
       "total": 51,
@@ -2732,35 +2781,12 @@
       "reasons": [
         "重要度B",
         "重要な経営・研究体制",
-        "遅れて確認できた新着",
         "AIツールの能力進化"
       ],
       "published_at": "2026-11-08T21:45:00.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_a0a44ed09dc9a1089b4e",
-      "story_id": "story_4e9db617fed2912c7e",
-      "title": "OpenAI、Hacktronと提携しセキュリティ脆弱性を調査",
-      "primary_entity": "OpenAI",
-      "story_subject": "Hacktronとのセキュリティ提携",
-      "event_type": "security",
-      "event_stage": "announced",
-      "event_scope": "OpenAIのシステム全般",
-      "story_entities": [
-        "OpenAI",
-        "Hacktron",
-        "openai",
-        "hacktron"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-07T00:12:41.878Z",
-      "edition_window_end": "2026-11-07T00:08:32.776Z"
-    },
     {
       "article_id": "article_dccb4b807171b4ae81c9",
       "story_id": "story_793063688ebb9cb06e",
@@ -3154,6 +3180,29 @@
       "previous_article_id": "",
       "selected_at": "2026-11-09T20:48:01.864Z",
       "edition_window_end": "2026-11-09T20:42:17.886Z"
+    },
+    {
+      "article_id": "article_a77102b85141104e4668",
+      "story_id": "story_b6cb7366b573cddcd0",
+      "title": "AdobeとDisneyが戦略的提携、Disney専用の生成AIモデルを共同開発",
+      "primary_entity": "Adobe",
+      "story_subject": "Firefly Foundry",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "Disney向け専用モデル",
+      "story_entities": [
+        "Adobe",
+        "Disney",
+        "Firefly Foundry",
+        "adobe",
+        "disney"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-10T02:51:21.363Z",
+      "edition_window_end": "2026-11-10T02:46:56.956Z"
     }
   ]
 }
