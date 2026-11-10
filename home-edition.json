@@ -7,55 +7,59 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-09T20:42:17.886Z",
-  "window_end": "2026-11-10T02:46:56.956Z",
-  "last_window_end": "2026-11-10T02:46:56.956Z",
-  "last_checked_at": "2026-11-10T02:51:21.363Z",
-  "last_published_at": "2026-11-10T02:51:21.363Z",
-  "home_content_changed_at": "2026-11-10T02:51:21.363Z",
+  "window_start": "2026-11-10T02:46:56.956Z",
+  "window_end": "2026-11-10T03:49:08.047Z",
+  "last_window_end": "2026-11-10T03:49:08.047Z",
+  "last_checked_at": "2026-11-10T03:55:11.469Z",
+  "last_published_at": "2026-11-10T03:55:11.469Z",
+  "home_content_changed_at": "2026-11-10T03:55:11.469Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
-  "update_health": "DEGRADED",
-  "update_health_reasons": [
-    "前の日と重ならない検証済み記事が3件未満です"
-  ],
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 1,
-  "distinct_candidate_count": 1,
+  "candidate_count": 2,
+  "distinct_candidate_count": 2,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 1,
+  "novel_candidate_count": 2,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 2,
+  "selected_count": 4,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 1,
-  "continued_selected_count": 1,
-  "tool_evolution_selected_count": 1,
+  "new_selected_count": 2,
+  "continued_selected_count": 2,
+  "tool_evolution_selected_count": 3,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
+    "article_34c270f8653dc1551e6f",
+    "article_cbb46ee96f74b80de8b8",
     "article_a77102b85141104e4668",
     "article_ff5d8598029d984627a7"
   ],
   "new_article_ids": [
-    "article_a77102b85141104e4668"
+    "article_34c270f8653dc1551e6f",
+    "article_cbb46ee96f74b80de8b8"
   ],
   "continued_article_ids": [
+    "article_a77102b85141104e4668",
     "article_ff5d8598029d984627a7"
   ],
   "continuation_sources": {
+    "article_a77102b85141104e4668": "previous_edition",
     "article_ff5d8598029d984627a7": "previous_edition"
   },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-10",
   "same_day_article_ids": [
+    "article_a77102b85141104e4668",
     "article_ff5d8598029d984627a7"
   ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 39,
+  "blocked_previous_day_count": 38,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -377,7 +381,9 @@
     "article_5a67153c9f25c930ad98": "2026-11-09",
     "article_cb7bd7b9ad09ba69d850": "2026-11-09",
     "article_ff5d8598029d984627a7": "2026-11-10",
-    "article_a77102b85141104e4668": "2026-11-10"
+    "article_a77102b85141104e4668": "2026-11-10",
+    "article_34c270f8653dc1551e6f": "2026-11-10",
+    "article_cbb46ee96f74b80de8b8": "2026-11-10"
   },
   "home_shown_story_log": [
     {
@@ -2746,18 +2752,114 @@
       "selected_at": "2026-11-10T02:51:21.363Z",
       "edition_window_end": "2026-11-10T02:46:56.956Z",
       "shown_day": "2026-11-10"
+    },
+    {
+      "article_id": "article_34c270f8653dc1551e6f",
+      "story_id": "story_c08559d2e604d5b154",
+      "title": "AnthropicがClaude Fable 5.2のロボット制御能力を公式SNSで公開",
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude Fable 5.2",
+      "event_type": "research",
+      "event_stage": "announced",
+      "event_scope": "不明",
+      "story_entities": [
+        "Anthropic",
+        "Claude Fable 5.2",
+        "anthropic",
+        "claudefable5.2",
+        "claude"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-10T03:55:11.469Z",
+      "edition_window_end": "2026-11-10T03:49:08.047Z",
+      "shown_day": "2026-11-10"
+    },
+    {
+      "article_id": "article_cbb46ee96f74b80de8b8",
+      "story_id": "story_6d1ff839933fc53c9d",
+      "title": "Kakaoがライアンのアニメーションをプロンプト1,500個でAI生成、OpenAIと協力",
+      "primary_entity": "Kakao",
+      "story_subject": "ライアンAIアニメーション",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "韓国",
+      "story_entities": [
+        "Kakao",
+        "OpenAI",
+        "ライアン",
+        "kakao",
+        "openai"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "制作に使用したプロンプト数",
+          "value": "約1,500個",
+          "normalized_value": "1500"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-10T03:55:11.469Z",
+      "edition_window_end": "2026-11-10T03:49:08.047Z",
+      "shown_day": "2026-11-10"
     }
   ],
   "scores": {
+    "article_34c270f8653dc1551e6f": {
+      "article_id": "article_34c270f8653dc1551e6f",
+      "total": 64,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 15,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 5,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-10T03:18:30.000Z"
+    },
+    "article_cbb46ee96f74b80de8b8": {
+      "article_id": "article_cbb46ee96f74b80de8b8",
+      "total": 59,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 15,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "遅れて確認できた新着",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-10T02:36:00.000Z"
+    },
     "article_a77102b85141104e4668": {
       "article_id": "article_a77102b85141104e4668",
-      "total": 69,
+      "total": 60,
       "breakdown": {
         "importance": 45,
         "topicality": 0,
         "scope": 10,
         "authority": 5,
-        "freshness": 9,
+        "freshness": 0,
         "tool_evolution": 0,
         "penalty": 0
       },
@@ -3203,6 +3305,59 @@
       "previous_article_id": "",
       "selected_at": "2026-11-10T02:51:21.363Z",
       "edition_window_end": "2026-11-10T02:46:56.956Z"
+    },
+    {
+      "article_id": "article_34c270f8653dc1551e6f",
+      "story_id": "story_c08559d2e604d5b154",
+      "title": "AnthropicがClaude Fable 5.2のロボット制御能力を公式SNSで公開",
+      "primary_entity": "Anthropic",
+      "story_subject": "Claude Fable 5.2",
+      "event_type": "research",
+      "event_stage": "announced",
+      "event_scope": "不明",
+      "story_entities": [
+        "Anthropic",
+        "Claude Fable 5.2",
+        "anthropic",
+        "claudefable5.2",
+        "claude"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-10T03:55:11.469Z",
+      "edition_window_end": "2026-11-10T03:49:08.047Z"
+    },
+    {
+      "article_id": "article_cbb46ee96f74b80de8b8",
+      "story_id": "story_6d1ff839933fc53c9d",
+      "title": "Kakaoがライアンのアニメーションをプロンプト1,500個でAI生成、OpenAIと協力",
+      "primary_entity": "Kakao",
+      "story_subject": "ライアンAIアニメーション",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "韓国",
+      "story_entities": [
+        "Kakao",
+        "OpenAI",
+        "ライアン",
+        "kakao",
+        "openai"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "制作に使用したプロンプト数",
+          "value": "約1,500個",
+          "normalized_value": "1500"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-10T03:55:11.469Z",
+      "edition_window_end": "2026-11-10T03:49:08.047Z"
     }
   ]
 }
