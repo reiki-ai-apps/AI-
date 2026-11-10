@@ -1,142 +1,6 @@
 {
   "version": 1,
   "items": {
-    "url:https://www.youtube.com/watch?v=p57zfsgop2s": {
-      "canonical_url": "https://www.youtube.com/watch?v=p57zfsgop2s",
-      "content_hash": "bb5c969a70b8d92977fc73883c856fef07d2ccb6bf409305fb3098dcc5d42090",
-      "story_key": "ab79571c6bc8efdec06af1b77d6acdc6d586675940aad3921b720c728186ac67",
-      "status": "enriched",
-      "processed_at": "2026-10-10T00:06:00.419Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "expert",
-      "reason": "",
-      "result": {
-        "tool": "専門家動画・発言",
-        "content_type": "expert_video",
-        "expert_id": "tomohiro-ikeda",
-        "expert_ids": [
-          "tomohiro-ikeda"
-        ],
-        "expert_name": "池田朋弘（いけとも）",
-        "expert_names": [
-          "池田朋弘（いけとも）"
-        ],
-        "expert_role": "生成AIの仕事への活用を教える解説者",
-        "expert_tier": "practical_ai_educator",
-        "platform": "YouTube",
-        "video_id": "p57ZfsgOp2s",
-        "source_trust": "primary",
-        "title": "いけともchがClaude Haiku 5.5の活用法を解説、サブエージェントとModsとAPIの使い分け",
-        "source_url": "https://www.youtube.com/watch?v=p57ZfsgOp2s",
-        "source_name": "いけともch",
-        "is_official": true,
-        "published_at": "2026-10-08T11:00:30.000Z",
-        "source_published_at": "2026-10-08T11:00:30.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-10-10T00:04:37.863Z",
-        "event_at": "2024-11-27",
-        "event_status": "継続中",
-        "event_date_precision": "day",
-        "story_entities": [
-          "Claude Haiku 5.5",
-          "Mods",
-          "池田朋弘"
-        ],
-        "primary_entity": "池田朋弘(いけとも)",
-        "story_subject": "Claude Haiku 5.5の活用法",
-        "event_type": "other",
-        "event_stage": "other",
-        "event_scope": "API・個人の業務利用",
-        "fact_slots": [],
-        "new_facts": [
-          "動画はサブエージェント・Mods・APIという3つの切り口でClaude Haiku 5.5の活用法を扱っている",
-          "動画内でベンチマークの数値と実際の仕事での結果が異なる場合がある点が整理されている"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "池田朋弘氏がClaude Haiku 5.5の使い方を動画で解説し、サブエージェント・Mods・APIの3つの活用法を紹介した。",
-        "detail": "池田朋弘さんが、Claude Haiku 5.5の活用法を動画で解説しました。Haiku 5.5は、低コストで動く軽量なAIモデルです。単に安いだけでなく、使い方次第で効率が変わる点を紹介しています。\n\n動画では、複数のAIに作業を分担させる仕組みであるサブエージェントを説明しています。画面を自分用にカスタマイズできるMods機能も取り上げています。高性能モデルと軽量モデルを実測で比較し、使い分け方を示しています。\n\n視聴者は、調査やファクトチェックなどの作業を軽量モデルに任せる方法を学べます。トークンと呼ばれるAI利用量の消費状況を見える化する工夫も紹介されています。ベンチマークの数値と実際の仕事での結果が異なる場合がある点には注意が必要です。",
-        "change_summary": "Claude Haiku 5.5を使い、サブエージェント・Mods・API連携という3つの切り口で活用法を示した動画です。",
-        "impact_summary": "業務でAIを使う人にとって、軽量モデルの使い分け方を知ることでコストと効率の両立がしやすくなる可能性があります。",
-        "action_suggestion": "動画内で紹介されたプロンプトは、公式LINEに「ハイク」と送ると特典として受け取れると案内されています。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "アプリ開発・自動化"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
-      }
-    },
-    "url:https://www.youtube.com/watch?v=jhzjzwb4rjk": {
-      "canonical_url": "https://www.youtube.com/watch?v=jhzjzwb4rjk",
-      "content_hash": "514d4158cbb8aa718064faccb500b2f60d6d1c8fe7fc68ed95e40c08fe41fccb",
-      "story_key": "72c199fcaabd45db679da87aa346b2b8c17f9a93a839944aa448a6b2e79b2c5a",
-      "status": "enriched",
-      "processed_at": "2026-10-10T00:09:40.856Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "expert",
-      "reason": "official_title_topics",
-      "result": {
-        "tool": "専門家動画・発言",
-        "content_type": "expert_video",
-        "expert_id": "takahiro-anno",
-        "expert_ids": [
-          "takahiro-anno"
-        ],
-        "expert_name": "安野貴博",
-        "expert_names": [
-          "安野貴博"
-        ],
-        "expert_role": "AIエンジニア・起業家・政策当事者",
-        "expert_tier": "core_engineering_policy",
-        "platform": "YouTube",
-        "video_id": "JhzjZwb4rjk",
-        "source_trust": "primary",
-        "title": "【ゆる解説】Claude Mythos級のサイバー攻撃能力が拡散した？ / 相次ぐ日本企業の情報漏洩との関係は？ / オープンウェイトモデルGLM5.3とは / セーフガードは回避されるのか",
-        "source_url": "https://www.youtube.com/watch?v=JhzjZwb4rjk",
-        "published_at": "2026-10-09T11:00:34.000Z",
-        "source_published_at": "2026-10-09T11:00:34.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-10-10T00:04:37.863Z",
-        "raw_excerpt": "安野貴博氏が、Claude Mythos級のサイバー攻撃能力が拡散した、相次ぐ日本企業の情報漏洩との関係は、オープンウェイトモデルGLM5.3とはを説明する公式動画です。",
-        "source_name": "安野貴博の自由研究",
-        "is_official": true,
-        "detail": "安野貴博氏の公式動画です。動画の中心は「Claude Mythos級のサイバー攻撃能力が拡散した」です。新製品の速報ではなく、AIを使う手順や考え方を本人が説明します。\n\n具体的には「相次ぐ日本企業の情報漏洩との関係は」を扱います。さらに「オープンウェイトモデルGLM5.3とは」も取り上げます。複数の論点を一つの流れで学べる点が、この動画を選んだ理由です。仕事では、AIに任せる部分と、人が確認する部分を考える材料になります。\n\nここでは動画タイトルと公式説明で確認できる範囲だけをまとめています。詳しい結論や実演の手順は、元動画で確かめてください。確認できない数字、効果、発言の言い回しは付け足していません。",
-        "change_summary": "安野貴博氏の公式動画から、Claude Mythos級のサイバー攻撃能力が拡散した、相次ぐ日本企業の情報漏洩との関係は、オープンウェイトモデルGLM5.3とはを確認できます。",
-        "impact_summary": "AIを仕事で使う際に、操作だけでなく仕組みや注意点まで考える材料になります。",
-        "action_suggestion": "詳しい結論、実演手順、前提条件は元動画で確認してください。",
-        "importance": "A",
-        "related_categories": [
-          "AIツール・モデル"
-        ],
-        "event_at": "",
-        "event_status": "継続中",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "安野貴博",
-          "Claude Mythos級のサイバー攻撃能力が拡散した",
-          "相次ぐ日本企業の情報漏洩との関係は"
-        ],
-        "primary_entity": "安野貴博",
-        "story_subject": "Claude Mythos級のサイバー攻撃能力が拡散した",
-        "event_type": "other",
-        "event_stage": "other",
-        "event_scope": "YouTube公式動画",
-        "fact_slots": [],
-        "new_facts": [
-          "Claude Mythos級のサイバー攻撃能力が拡散した",
-          "相次ぐ日本企業の情報漏洩との関係は",
-          "オープンウェイトモデルGLM5.3とは",
-          "セーフガードは回避されるのか"
-        ],
-        "structured_complete": true,
-        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-        "expert_context_basis": "official_title_topics"
-      }
-    },
     "url:https://news.google.com/rss/articles/cbmijgfbvv95cuxqu3nruudibwnkx0lmrtm3bklbquzemvu4uy1zahk4zhzacu9dwgrenfa4vflyt3awtkjrseo5yufmz3fsdgf1yve0lvhtmjrmn0uxzvzwetvidhpweunhnv9mbtvurutcqvfhqxnzntb0vc1vnxb0c2wtmenrxzdgajrgcdkwmgiyvm5xzznn": {
       "canonical_url": "https://news.google.com/rss/articles/cbmijgfbvv95cuxqu3nruudibwnkx0lmrtm3bklbquzemvu4uy1zahk4zhzacu9dwgrenfa4vflyt3awtkjrseo5yufmz3fsdgf1yve0lvhtmjrmn0uxzvzwetvidhpweunhnv9mbtvurutcqvfhqxnzntb0vc1vnxb0c2wtmenrxzdgajrgcdkwmgiyvm5xzznn",
       "content_hash": "cd7098c26eb82e083328ab1911955d047f6d306ab40892ab1a6cda1cbf6cc772",
@@ -15850,17 +15714,6 @@
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
     },
-    "url:https://news.google.com/rss/articles/cbmixefvx3lxte9tyupnz2jqowlcmnpmuwhpcuhkwk1othludhhomgnsltj2bzg5vzj0uhbeeuf0m1pldf9ax1rkvddqmlvyd1u1skxbdhjyzwxwzwpad0lhc2yyahzk": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmixefvx3lxte9tyupnz2jqowlcmnpmuwhpcuhkwk1othludhhomgnsltj2bzg5vzj0uhbeeuf0m1pldf9ax1rkvddqmlvyd1u1skxbdhjyzwxwzwpad0lhc2yyahzk",
-      "content_hash": "d43ca9d93b6253581413a9809ad38618507acaba9f86834a3a07e02eeff78edf",
-      "story_key": "92f4befefe17e160274399cde5f33b6ac25b63d7b3d260d201b4ea8e43df14c1",
-      "status": "rejected",
-      "processed_at": "2026-11-07T23:41:55.777Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "expert",
-      "reason": "ai_skip: 具体的な内容が不明で抜粋のみ、要約に足る事実がない"
-    },
     "url:https://news.google.com/rss/articles/cbmidefvx3lxte01skpotdfvbffqzgp6zem0v29cywdkmzc5txbqczborkr0mkttbly5zg5hetg1vwfxvljxzjryt3lmtjv6tetsnmn3nnrgrxrnn2q5ngzrbznsednuexewq0nkq3ruafdlaxvybtlpd1m1chv3": {
       "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte01skpotdfvbffqzgp6zem0v29cywdkmzc5txbqczborkr0mkttbly5zg5hetg1vwfxvljxzjryt3lmtjv6tetsnmn3nnrgrxrnn2q5ngzrbznsednuexewq0nkq3ruafdlaxvybtlpd1m1chv3",
       "content_hash": "fb5cbc14733ac136449d2b74de58ec43ed21c3130a2ef97d9e94c42ae1599ad0",
@@ -16060,50 +15913,6 @@
         ],
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
-    },
-    "url:https://news.google.com/rss/articles/cbmixkfvx3lxte1vbwu4u0jsskdjykhnx2zpqw43ovvkmgfkd3fsc19dwmtvuljda1veclo4a05nrmhink95emznbmhruedhavz0tvfoelzoexfhtdlfak9nukm4my1rtfe": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmixkfvx3lxte1vbwu4u0jsskdjykhnx2zpqw43ovvkmgfkd3fsc19dwmtvuljda1veclo4a05nrmhink95emznbmhruedhavz0tvfoelzoexfhtdlfak9nukm4my1rtfe",
-      "content_hash": "aa3553fa5a9fe2450836f9ad51c95ab5fde8f3f639749bfb193eeca77a86f822",
-      "story_key": "b22b162ba615c52922ab58a4f88ec67635f092c87862aaa3d0010ec7480ead8f",
-      "status": "rejected",
-      "processed_at": "2026-11-07T23:43:42.337Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: タイトル反復のみで具体的な事実が確認できない"
-    },
-    "url:https://news.google.com/rss/articles/cbmivefvx3lxtfbxa2rfbvvwa21vbklxx2s3u0jin0j1bthcofforjlyymxttvlhrhu3ztjtqwlvuec3q0ffltvmtwnpykvqtwhnzvvxund3zw5fvmphna": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmivefvx3lxtfbxa2rfbvvwa21vbklxx2s3u0jin0j1bthcofforjlyymxttvlhrhu3ztjtqwlvuec3q0ffltvmtwnpykvqtwhnzvvxund3zw5fvmphna",
-      "content_hash": "f8a4ef0ded451d183c472916f3242fd6b01d7ec3411167eaba6fdf37ef821701",
-      "story_key": "a30f6ca691b22ef3991b9021c510445914cc53bd16e6320eefd229dd752d59aa",
-      "status": "rejected",
-      "processed_at": "2026-11-07T23:44:56.553Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: ソフト無料ダウンロード宣伝、AIニュースではない"
-    },
-    "url:https://news.google.com/rss/articles/cbmijwfbvv95cuxqwdnsekrfzjaymgm0tudlrk9rrwdvzhzkcmrntc13uurhyl9kc0d3zxjiyljjedfdwmr6a191a1fymwvbv1letxgzyvndq1bvze9grxzxtxfrdmtvyvlfc2f4qnzielhun1dptnb4ngu3n1jqb2hrwkvntud0uhd1cdcwrgreclziv0loofvfwq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmijwfbvv95cuxqwdnsekrfzjaymgm0tudlrk9rrwdvzhzkcmrntc13uurhyl9kc0d3zxjiyljjedfdwmr6a191a1fymwvbv1letxgzyvndq1bvze9grxzxtxfrdmtvyvlfc2f4qnzielhun1dptnb4ngu3n1jqb2hrwkvntud0uhd1cdcwrgreclziv0loofvfwq",
-      "content_hash": "998461bbce68849a6af4118595063469aede4c7d44d11de2cc7b6842c1973cf7",
-      "story_key": "72d3b97908aa84c187060969c07a6f844fa57fe7a77a7be40b117ba7ffe7b530",
-      "status": "rejected",
-      "processed_at": "2026-11-07T23:44:56.553Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 具体的事実のないツール比較広告記事"
-    },
-    "url:https://news.google.com/rss/articles/cbmiu0fvx3lxte1rrdz1shrqdk5lc3lqemxhdjbxt1nxelztb0dpbwtrnhvivhhnnzu5nuu4uktjtfhfr2x0wetpell0tuv2d3lkwm9nwvjim2s3ujlv": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiu0fvx3lxte1rrdz1shrqdk5lc3lqemxhdjbxt1nxelztb0dpbwtrnhvivhhnnzu5nuu4uktjtfhfr2x0wetpell0tuv2d3lkwm9nwvjim2s3ujlv",
-      "content_hash": "33d535bc58916f994ddabe247a5dbf4350bb1ca3d007facbeca0cd4e8b504aeb",
-      "story_key": "8edcaf3adb7138edea08fc4734619fda2692e8bc317bb9acad594a57513f7029",
-      "status": "rejected",
-      "processed_at": "2026-11-07T23:44:56.553Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: タイトル以上の具体的情報がなく比較内容が不明"
     },
     "url:https://news.google.com/rss/articles/cbmiaefvx3lxte5bqm9ht2ezblrssfutawngcznfm2hhnwd4dgdmcjq2mzf0snzonklgzdhxrnvpnw5tdnvnsuswufplvvrgref5s0f2zuxkmknpnwhrdzdrwxc1y1zrzevoqvlqbwnimwdo": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxte5bqm9ht2ezblrssfutawngcznfm2hhnwd4dgdmcjq2mzf0snzonklgzdhxrnvpnw5tdnvnsuswufplvvrgref5s0f2zuxkmknpnwhrdzdrwxc1y1zrzevoqvlqbwnimwdo",
@@ -16358,61 +16167,6 @@
         ],
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
-    },
-    "url:https://klingai.com/global": {
-      "canonical_url": "https://klingai.com/global",
-      "content_hash": "56d780c4cd4703b0bc05351e39ea264bbf1681a0a0cda36d8e7ea15bf73afbf5",
-      "story_key": "7c79a9f2c1bf100b005d04c52824f2cac18896b8d5b7fc17a5ca706ae4473e88",
-      "status": "rejected",
-      "processed_at": "2026-11-08T00:57:17.054Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 公式製品ページの機能紹介で新発表や日付が確認できない広告的内容"
-    },
-    "url:https://news.google.com/rss/articles/cbmiekfvx3lxte9uau16rhv5axfhcwi5cuj6ehbbsxewslb2tnverelfyzrnruxqbzrprgxhy3vvqxzkz1ndr2nuvwzqzvziczktrdczbehruvriwnlwwwzrdzb1c2prsmv0uhbraevxzwmtse84evncbkvnbfezeldyy2nn0ggoaufvx3lxtfbysmfhywpuu0e0ynhxylc3vun5zl9cy3lkzu54alpcm0dvzew1b3zjoutpakpknw14rti2lurmqtdleujpylhmmufyu0g4bnkzywxcqjbhbu9befdhaxitzmd1c3bgtzfmodljsfzrmw00ctfsmjbwtlfht3f5tdzvazlgajflvnvebhhlq1e": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiekfvx3lxte9uau16rhv5axfhcwi5cuj6ehbbsxewslb2tnverelfyzrnruxqbzrprgxhy3vvqxzkz1ndr2nuvwzqzvziczktrdczbehruvriwnlwwwzrdzb1c2prsmv0uhbraevxzwmtse84evncbkvnbfezeldyy2nn0ggoaufvx3lxtfbysmfhywpuu0e0ynhxylc3vun5zl9cy3lkzu54alpcm0dvzew1b3zjoutpakpknw14rti2lurmqtdleujpylhmmufyu0g4bnkzywxcqjbhbu9befdhaxitzmd1c3bgtzfmodljsfzrmw00ctfsmjbwtlfht3f5tdzvazlgajflvnvebhhlq1e",
-      "content_hash": "3abdfcbd8f3c0030cb7f50bda5aefd3a8b5e2da9e04eb9177d4cb3ec505bcd19",
-      "story_key": "5a345abf250f771061d6a6481b11e08ea5970e8183b20dccc23d18611bd994b0",
-      "status": "rejected",
-      "processed_at": "2026-11-08T00:57:54.250Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 具体的な発表内容や新事実が確認できずタイトルのみで情報不足"
-    },
-    "url:https://news.google.com/rss/articles/cbmiskfvx3lxte5fcdjzekzmtwwzqncxynh4eghvugpav3qtofz1mtrytwd0seoyxzgwx19zq0hoy1jhsf9cagpmtkjlynhfak5zvuzb": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiskfvx3lxte5fcdjzekzmtwwzqncxynh4eghvugpav3qtofz1mtrytwd0seoyxzgwx19zq0hoy1jhsf9cagpmtkjlynhfak5zvuzb",
-      "content_hash": "d273f92846fbf9764e0f099c8ee637bb790238cc2cbebdd516491e1eb67ee806",
-      "story_key": "e5b61d0c0308ab2a517966d72af49088dced4084a1bccf8ecfff6aa192079343",
-      "status": "rejected",
-      "processed_at": "2026-11-08T00:58:50.461Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "ai_skip: 市場調査レポートの宣伝的記事で具体的事実がない"
-    },
-    "url:https://news.google.com/rss/articles/cbminwfbvv95cuxpyja3uhj3y3v3tjvicm1hbxpjx05lxzcxzjhklvjrss1tu3rsvedtb3zvdtbmqzjwmghmvvaxu3bjetzytvvqddfpndl0bzf4mzb3v0vwqldkaw1dtvfknwtwns05u2n6zmltztj0undhck5za21dyxzfm1lzn1zmn3fnvmvldnbyzxvyv0jtq2ratw91rgn4ykfisldwsle": {
-      "canonical_url": "https://news.google.com/rss/articles/cbminwfbvv95cuxpyja3uhj3y3v3tjvicm1hbxpjx05lxzcxzjhklvjrss1tu3rsvedtb3zvdtbmqzjwmghmvvaxu3bjetzytvvqddfpndl0bzf4mzb3v0vwqldkaw1dtvfknwtwns05u2n6zmltztj0undhck5za21dyxzfm1lzn1zmn3fnvmvldnbyzxvyv0jtq2ratw91rgn4ykfisldwsle",
-      "content_hash": "a379a2e4d546f70f50ec81233268d6ce74bf7c899cdbb36744c4e505bd8adb52",
-      "story_key": "3d2afd283331c2668a46a367753daa9417fcc1c7bea4d7807edb027c653b53fd",
-      "status": "rejected",
-      "processed_at": "2026-11-08T00:58:50.461Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "ai_skip: 投資家の反応を推測する金融コラムで具体的発表内容が乏しい"
-    },
-    "url:https://windsurf.com/changelog": {
-      "canonical_url": "https://windsurf.com/changelog",
-      "content_hash": "7285ef9f75ceb19c7b2d31b881918fea24cfedb450f7fba71d6639d6d3968985",
-      "story_key": "edf2662f78feed39f60a81f9714fd31eee618e2660136f1b611473da884ab1be",
-      "status": "rejected",
-      "processed_at": "2026-11-08T00:59:06.786Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "emergency",
-      "reason": "ai_skip: ドキュメント索引ページで具体的な更新内容がない"
     },
     "url:https://www.youtube.com/watch?v=qkgmqg6qdaw": {
       "canonical_url": "https://www.youtube.com/watch?v=qkgmqg6qdaw",
@@ -17345,61 +17099,6 @@
       "lane": "regular",
       "reason": "ai_skip: 元CEOの意見記事で新事実や具体的な専門的知見が確認できない"
     },
-    "url:https://news.google.com/rss/articles/cbminwfbvv95cuxpnlb4n0vvtfqzcufuv01jotjunlz4vjjyvhbxb2jtv3fzzwlpalzfcezfdwm2v1fhn25azzzvxzridly1u0drmlc2nnztqllwdnziwvd4qm02ylhbtujwt24watdeueroszh4vtn5nutwlulpc1rynuzaqjdyagloogi1anpivxiwwxj3y0ddtxa0c2tpsu54zfitmnheule": {
-      "canonical_url": "https://news.google.com/rss/articles/cbminwfbvv95cuxpnlb4n0vvtfqzcufuv01jotjunlz4vjjyvhbxb2jtv3fzzwlpalzfcezfdwm2v1fhn25azzzvxzridly1u0drmlc2nnztqllwdnziwvd4qm02ylhbtujwt24watdeueroszh4vtn5nutwlulpc1rynuzaqjdyagloogi1anpivxiwwxj3y0ddtxa0c2tpsu54zfitmnheule",
-      "content_hash": "2f6e73e9da2dd9635f99fcbe12deed8d1a0e7b79c0e21f5e1f23b2ca73dd0666",
-      "story_key": "1d04ac8762d07f3ff0c31f116b09d78fd4bc1f417c48ec90afaf7369f74accfb",
-      "status": "retry",
-      "processed_at": "2026-11-09T20:45:20.402Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmiiwfbvv95cuxqm1bja1zqrm81eunxwnjjzkgttfpkb1uwbwlndjm3tu9xstflthuwuu1rzgdgckxfdgxjwkczvddybnr5tvnhafvduljcbufxdfbtwjjymgy1emmwvmndcut4twlqvgxxruvzowpxm3nyshf3exj2ztvan1ryrnbmynm3c1vnumy0mfhz": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiiwfbvv95cuxqm1bja1zqrm81eunxwnjjzkgttfpkb1uwbwlndjm3tu9xstflthuwuu1rzgdgckxfdgxjwkczvddybnr5tvnhafvduljcbufxdfbtwjjymgy1emmwvmndcut4twlqvgxxruvzowpxm3nyshf3exj2ztvan1ryrnbmynm3c1vnumy0mfhz",
-      "content_hash": "79f70ef28b269c5a28cde6d6559865e4edb09c911b565eb206d79761d5224efc",
-      "story_key": "f072dd1ce5e000801682758122dc2cd075db471243bbb77ea2e699ea492f7cc2",
-      "status": "retry",
-      "processed_at": "2026-11-09T20:45:20.403Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmiqwfbvv95cuxpctfsdfbvnvvjtnvznvdvewn6ykfsthhud1djefrry2ewztvtmvy4y2zfntexv2tnvtv4mmtwwv9kdkljum9ja2tzz3biow9avhvdu0xldzfxewg5wja5dgdjyxzoafh5dezwnjrsugpiwvzmrc1ru3c5bk1yaldrb2roekfvqwhinjdvqxi4a1lvrjgwrhrkbxb5t1dvadnycenmnvnzylhbnxc": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiqwfbvv95cuxpctfsdfbvnvvjtnvznvdvewn6ykfsthhud1djefrry2ewztvtmvy4y2zfntexv2tnvtv4mmtwwv9kdkljum9ja2tzz3biow9avhvdu0xldzfxewg5wja5dgdjyxzoafh5dezwnjrsugpiwvzmrc1ru3c5bk1yaldrb2roekfvqwhinjdvqxi4a1lvrjgwrhrkbxb5t1dvadnycenmnvnzylhbnxc",
-      "content_hash": "c97deb035d735079acebe580801ef8449622c9962118c32dcb84c552ec095202",
-      "story_key": "734baee1da06d2ecb70def3e795b20e6d48a63cfa545bef820d53f47eaf4eb2d",
-      "status": "retry",
-      "processed_at": "2026-11-09T20:45:20.403Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmimwfbvv95cuxnwxb2rnb0r01qnvrtm25qwvljufhtm3lfotjldetgqklvrc1zufjtew5st2c4t3dzzvfhnljjnw44wtbfd0xoelpwutjybllxd254ddhomxfbqmx6nmxvzvjmcmpusnrtuw5vs3q4mgv0ckrmmvrsburjuzm1rhbkdmpmnnmzsfmwb201c3bkcdrky2v6dlvvr1iyaw": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmimwfbvv95cuxnwxb2rnb0r01qnvrtm25qwvljufhtm3lfotjldetgqklvrc1zufjtew5st2c4t3dzzvfhnljjnw44wtbfd0xoelpwutjybllxd254ddhomxfbqmx6nmxvzvjmcmpusnrtuw5vs3q4mgv0ckrmmvrsburjuzm1rhbkdmpmnnmzsfmwb201c3bkcdrky2v6dlvvr1iyaw",
-      "content_hash": "ec852e82ef0bed04988e66f1f1a76c9d473b9416cb10d6bea715d1307597331d",
-      "story_key": "388136583cbd6e8a9276674db66d6115408a64ad6f994e638c3539cfff94b4c8",
-      "status": "retry",
-      "processed_at": "2026-11-09T20:45:20.403Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmio0fvx3lxte9qtfv4m0lmm3nhrmdqtxluclr6vm5iynq1oxhanfotr2zsre5ibhfcedlqyxvvti14nzhj": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmio0fvx3lxte9qtfv4m0lmm3nhrmdqtxluclr6vm5iynq1oxhanfotr2zsre5ibhfcedlqyxvvti14nzhj",
-      "content_hash": "f2a2bb0a84664c2c7c0026f7dd8d61b892a30e9e0dbd2c0dbe166e593d521cb5",
-      "story_key": "e637e20b6b51bdad8213e058ecef47960889df45935424316763c6748a0c0432",
-      "status": "retry",
-      "processed_at": "2026-11-09T20:45:20.403Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
     "url:https://news.google.com/rss/articles/cbmigwfbvv95cuxprtrnqud5be1uagnouzljyl8xczlxmlrscgjgtu1enk85rffxrkf0rwtkvepkudbqmkhmzdjfqs14mw9souhdddmzmmjtwknlsjawn1itovhvb2nvtkvsn0rsmwv5vhvvu19frvdcslruowfsazbdegtgmhljcv9uajnqtq": {
       "canonical_url": "https://news.google.com/rss/articles/cbmigwfbvv95cuxprtrnqud5be1uagnouzljyl8xczlxmlrscgjgtu1enk85rffxrkf0rwtkvepkudbqmkhmzdjfqs14mw9souhdddmzmmjtwknlsjawn1itovhvb2nvtkvsn0rsmwv5vhvvu19frvdcslruowfsazbdegtgmhljcv9uajnqtq",
       "content_hash": "555fa86249335d82ce17c07a074aa41249d272553e7a57b4f1a45915e6aee968",
@@ -17489,78 +17188,293 @@
       "lane": "regular",
       "reason": "ai_skip: 機能内容の具体的な説明がなく、ブログ見出し一覧のみで内容を把握できない"
     },
+    "url:https://news.google.com/rss/articles/cbmixefvx3lxte9tyupnz2jqowlcmnpmuwhpcuhkwk1othludhhomgnsltj2bzg5vzj0uhbeeuf0m1pldf9ax1rkvddqmlvyd1u1skxbdhjyzwxwzwpad0lhc2yyahzk": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmixefvx3lxte9tyupnz2jqowlcmnpmuwhpcuhkwk1othludhhomgnsltj2bzg5vzj0uhbeeuf0m1pldf9ax1rkvddqmlvyd1u1skxbdhjyzwxwzwpad0lhc2yyahzk",
+      "content_hash": "d43ca9d93b6253581413a9809ad38618507acaba9f86834a3a07e02eeff78edf",
+      "story_key": "92f4befefe17e160274399cde5f33b6ac25b63d7b3d260d201b4ea8e43df14c1",
+      "status": "rejected",
+      "processed_at": "2026-11-10T02:48:16.255Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "ai_skip: チャプターや具体的論点が確認できず内容不明のため除外"
+    },
+    "url:https://news.google.com/rss/articles/cbmiakfvx3lxtfbezw02qmfrajnvbvn4dl94wfy5ugdkahpqufzyowk3tlpwewthlunrmdiztnfcaudtyndfovrkmw5jekhgd21ludngmk96yul1ytlfd0z5ng55x1bmovn4etb6bja1exvxn1e": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxtfbezw02qmfrajnvbvn4dl94wfy5ugdkahpqufzyowk3tlpwewthlunrmdiztnfcaudtyndfovrkmw5jekhgd21ludngmk96yul1ytlfd0z5ng55x1bmovn4etb6bja1exvxn1e",
+      "content_hash": "77f5a7985d40b080a7c594b9a3b78542b3b5b3f1dde5061df7d66db1dfc7b6ee",
+      "story_key": "be4ddf20ebe8756069b34b09080db07e32373a25111b3b4c88dd2d6d024026e5",
+      "status": "retry",
+      "processed_at": "2026-11-10T02:49:46.894Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte1jz1zhwwrzbc1xsetttjdwa2xsowjtwlrfv2j4whdwqkficmhnvhuwyi1negu3ui1wuvp5rhjwu19jzgzldnjhaepqblpozlvfdnrccgjkev9qt3zztxhrrljxvetkz1y0sve": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte1jz1zhwwrzbc1xsetttjdwa2xsowjtwlrfv2j4whdwqkficmhnvhuwyi1negu3ui1wuvp5rhjwu19jzgzldnjhaepqblpozlvfdnrccgjkev9qt3zztxhrrljxvetkz1y0sve",
+      "content_hash": "98890004f79c06c379d901b9f41f4b2d15dd9dc765868f1415a78e52deca107f",
+      "story_key": "9d2bef5dc0440a66c7e08eede2ef20fb679b19f723805c839e43079462a751d7",
+      "status": "retry",
+      "processed_at": "2026-11-10T02:49:46.894Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmipgfbvv95cuxqrzfsv1rjakncm29hrwp3t0x0ewm4stlvuuzhwe5tdep0lvp0rknhlxdbrfflelbraulksuvmewfydgcttnc3n3brrw1lquvedwnzevm0cfd5rk1mqvj4cnbhakjnee1lzth4oepivgetdtbvmjk2al9usznbtm45sedvnjiyz1zmwvvovfm1rfdiec1izi1bmwtrdhritwpis1ptbdfr": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmipgfbvv95cuxqrzfsv1rjakncm29hrwp3t0x0ewm4stlvuuzhwe5tdep0lvp0rknhlxdbrfflelbraulksuvmewfydgcttnc3n3brrw1lquvedwnzevm0cfd5rk1mqvj4cnbhakjnee1lzth4oepivgetdtbvmjk2al9usznbtm45sedvnjiyz1zmwvvovfm1rfdiec1izi1bmwtrdhritwpis1ptbdfr",
+      "content_hash": "b3a2738d8dbc3ddcc5c8b204ce2a4cac6150c023f0daffdc244805d395b60de4",
+      "story_key": "5a69a58ca8de904db55f96dcb36e8404e112d95a025416edcafb70edf6026e72",
+      "status": "retry",
+      "processed_at": "2026-11-10T02:49:46.895Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmingfbvv95cuxnc2rtrne5ukhedv9kmvg2awturwhjmergmevxtmlkyvnoel95neuwnujfzvzoywtjvulwnupqmwl5s3o2zvpxrglaufblagh1bhlocwq0wvnlx3iyednhwedhbdk4z2drdl9smu84ugvpewpzmdi0zjbbz0jnlv9quwhtnkrhmklindvwn21yemhyrdq3velumvbxz3m4zw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmingfbvv95cuxnc2rtrne5ukhedv9kmvg2awturwhjmergmevxtmlkyvnoel95neuwnujfzvzoywtjvulwnupqmwl5s3o2zvpxrglaufblagh1bhlocwq0wvnlx3iyednhwedhbdk4z2drdl9smu84ugvpewpzmdi0zjbbz0jnlv9quwhtnkrhmklindvwn21yemhyrdq3velumvbxz3m4zw",
+      "content_hash": "1b5524276dd50e800db59a9af44d7aac2fcfce48bd3c25efcbb7f4c55725b391",
+      "story_key": "7a2e4fab94ee9f12e645d5ceefa78d9e70cac0f59baf426147ab0de7bb861155",
+      "status": "retry",
+      "processed_at": "2026-11-10T02:49:46.895Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmidkfvx3lxte9luxhba1vzqkdjqw1pm1ltsxvudkxnnjixwmdvwvjqnmrmmwhynnoyakrfzzvvmerzdhr5qwjon2d0axnys1dfsmjmqwzoemn0qk9otgvuzkkzb2y5cgu0cmtuttb6bc1ueluxbdzbmg9audh1b0e": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidkfvx3lxte9luxhba1vzqkdjqw1pm1ltsxvudkxnnjixwmdvwvjqnmrmmwhynnoyakrfzzvvmerzdhr5qwjon2d0axnys1dfsmjmqwzoemn0qk9otgvuzkkzb2y5cgu0cmtuttb6bc1ueluxbdzbmg9audh1b0e",
+      "content_hash": "6abfdbb01a4adf1c31680a88d795b1121078b5ccf09b1533e190fd9b0e9a497d",
+      "story_key": "f657233e9399dd9c046d2e7be9dbf25a4619109823564a65e4309fbcb35d434b",
+      "status": "retry",
+      "processed_at": "2026-11-10T02:49:46.895Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmiyefvx3lxte1tovpfb1l6rdzgweyxvmhpqza0v3bvam9irwu5vnl2mgpsaljartdqd1divw9imel6c2tjb2dzemw3yzk1elbhq3nycxbdxzftn3bvm3llyjfmt21fdejrna": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiyefvx3lxte1tovpfb1l6rdzgweyxvmhpqza0v3bvam9irwu5vnl2mgpsaljartdqd1divw9imel6c2tjb2dzemw3yzk1elbhq3nycxbdxzftn3bvm3llyjfmt21fdejrna",
+      "content_hash": "379c9b194d475f00067b177486466e986d7558643925e6bbc6d2c53ec91dc448",
+      "story_key": "1e9561272dc3c2653ea9755440bde422adc6c883b3dbd20aa1d63da99b5d98e5",
+      "status": "retry",
+      "processed_at": "2026-11-10T02:49:46.895Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmibkfvx3lxtfbpbtlkcvpvckvrmc00anzsqwjrqtniwkriewjtrc00emfodu1wudb5tlfjdhvyrkzhmdnrde9czs1fewzrt0zyulvfdknbsjdjytbks1vilvlnbnbqzvfbr2x4bmflanvma1leddd3": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmibkfvx3lxtfbpbtlkcvpvckvrmc00anzsqwjrqtniwkriewjtrc00emfodu1wudb5tlfjdhvyrkzhmdnrde9czs1fewzrt0zyulvfdknbsjdjytbks1vilvlnbnbqzvfbr2x4bmflanvma1leddd3",
+      "content_hash": "dbc91d77e5cfe0e3e20f155489cf034aa0c8b9b5c0c5be89a460120ed1099696",
+      "story_key": "52efa0203da8b6263e8df90ea090373361826eb100b70d816c15d5420afbf735",
+      "status": "rejected",
+      "processed_at": "2026-11-10T02:50:32.670Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 本文がタイトル文の反復のみで具体的な一次情報が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmivkfvx3lxte5nuznkqzd5ee9ucnfdry1znmztuxzwbxbytknerwp6snpzqtzixzvfzdm0nhhkvdezd2d3m1lpy0m3x2hrm3g4cvd5sug3x3dpsvgwefh3": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmivkfvx3lxte5nuznkqzd5ee9ucnfdry1znmztuxzwbxbytknerwp6snpzqtzixzvfzdm0nhhkvdezd2d3m1lpy0m3x2hrm3g4cvd5sug3x3dpsvgwefh3",
+      "content_hash": "8a46dbc85e954973d6e456ee6c9ad7d03a4300301f93d2b20b9dc20bd1449b5c",
+      "story_key": "3a767b700c974f51cf5ba568cc430df59c49250a701fe655a44cfb1970bc4f12",
+      "status": "rejected",
+      "processed_at": "2026-11-10T02:50:32.670Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: タイトル反復のみで本文内容・実在確認できる事実がない"
+    },
+    "url:https://news.google.com/rss/articles/cbmivkfvx3lxtfbpcnlqswtcc1zvqxdhmhgxmwzvyk1jahn3t3jtcdfmeuvnrxzzmwrscfndvmtuoeftwhotunr5lvh0yvbqtku1zghjsg5fzlffbjf0slvr": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmivkfvx3lxtfbpcnlqswtcc1zvqxdhmhgxmwzvyk1jahn3t3jtcdfmeuvnrxzzmwrscfndvmtuoeftwhotunr5lvh0yvbqtku1zghjsg5fzlffbjf0slvr",
+      "content_hash": "1648ed3ae6c14f8bb75b53043cddaa68224029bb30450fdd33e67c1456e2ca82",
+      "story_key": "5846f592de657891b44b5ad896100e673c5c530f28af1266dc4485731916e94d",
+      "status": "rejected",
+      "processed_at": "2026-11-10T02:50:32.670Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 飛行機事故報道でAIと無関係な誤ヒット"
+    },
+    "url:https://news.google.com/rss/articles/cbmix0fvx3lxte1fvujrzwuxadrudgravhn6mxrhyk00nhbmanh6seftltnqmutmvzvrmhrvnhbszfbyc0vhznfzb2hym19frlplymhjegfmwevvqmvvb2naas1ssfjvsxkw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmix0fvx3lxte1fvujrzwuxadrudgravhn6mxrhyk00nhbmanh6seftltnqmutmvzvrmhrvnhbszfbyc0vhznfzb2hym19frlplymhjegfmwevvqmvvb2naas1ssfjvsxkw",
+      "content_hash": "f5847b2e21209ee9d2a8f923246ce1ba062fbb7261854dc206bedc834ab7490a",
+      "story_key": "47560b3de11f7b8157113a85703159d559faeaa24ca58cf5f3ffafce1d1a4bb0",
+      "status": "rejected",
+      "processed_at": "2026-11-10T02:50:32.670Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 個人の副業体験記で広告的内容、業界ニュースとしての重要性が薄い"
+    },
+    "url:https://news.google.com/rss/articles/cbmivefvx3lxtfbxa2rfbvvwa21vbklxx2s3u0jin0j1bthcofforjlyymxttvlhrhu3ztjtqwlvuec3q0ffltvmtwnpykvqtwhnzvvxund3zw5fvmphna": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmivefvx3lxtfbxa2rfbvvwa21vbklxx2s3u0jin0j1bthcofforjlyymxttvlhrhu3ztjtqwlvuec3q0ffltvmtwnpykvqtwhnzvvxund3zw5fvmphna",
+      "content_hash": "f8a4ef0ded451d183c472916f3242fd6b01d7ec3411167eaba6fdf37ef821701",
+      "story_key": "a30f6ca691b22ef3991b9021c510445914cc53bd16e6320eefd229dd752d59aa",
+      "status": "rejected",
+      "processed_at": "2026-11-10T02:50:32.670Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: ソフト配布を装うスパム的な記事で実質的な情報がない"
+    },
     "url:https://openai.com/index/chatgpt-enterprise-aws-marketplace": {
       "canonical_url": "https://openai.com/index/chatgpt-enterprise-aws-marketplace",
       "content_hash": "73d831f814eabde61245ae42881a46d72da2c520d05e50a50c8a0ccb5a6bff65",
       "story_key": "b57a2578dc9d1e0e9acf11c745eac502bc7242d9e342322e8f08756a0e392221",
       "status": "retry",
-      "processed_at": "2026-11-09T20:47:02.129Z",
+      "processed_at": "2026-11-10T02:50:32.670Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
       "reason": "missing_or_incomplete_ai_output"
     },
-    "url:https://news.google.com/rss/articles/cbmisefvx3lxtfa3ehhizjngmdjfd1plwnfwau5rne1xrmtuted5sdvswul2rtrqvtcybk1dnutrn0xyww1fretilvbhvjvucu1ovw": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmisefvx3lxtfa3ehhizjngmdjfd1plwnfwau5rne1xrmtuted5sdvswul2rtrqvtcybk1dnutrn0xyww1fretilvbhvjvucu1ovw",
-      "content_hash": "6a5c750b7259ded3f8678511ebb2ade4d342826c4f523b6fa820526b08815169",
-      "story_key": "54815aa06605843199be592c29da81582faa04d114afe7f48d3f44c93c94fc03",
-      "status": "retry",
-      "processed_at": "2026-11-09T20:47:02.129Z",
+    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte42bkhvq1zjag9xtfm5ajqzskrxrnhqskuwv2ppagrjmvdwnlf1chjzanhiz3zpudzyt1q3lu5tblrswg81etzeclptmdzhstity2s1mfnxmedsv2tkcy1qnlk2mmwwsnpcegc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte42bkhvq1zjag9xtfm5ajqzskrxrnhqskuwv2ppagrjmvdwnlf1chjzanhiz3zpudzyt1q3lu5tblrswg81etzeclptmdzhstity2s1mfnxmedsv2tkcy1qnlk2mmwwsnpcegc",
+      "content_hash": "61b5c5490e6621c8ebb413735331f5b75a4a059c3930ba13f44f37a7a3f8dd2f",
+      "story_key": "528400d91cbd3a10163f05b7881898fbc7c897a7ec9b252d19e53dc8ff7d8b48",
+      "status": "enriched",
+      "processed_at": "2026-11-10T02:51:16.935Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmitgjbvv95cuxqnkhkovayatdccnm2nw1tu1poeuvrbk1uwe5iqmx0alndejqxtwjea19unupiu0htcfzjqvpua1jrrtngzfvqq015s0c3mgnfznb3rvduwu13ynhbntrpdjfrqwdremvmukxyc1lhcufkwwvfqmfhr3l6m0nhcl94a2ftcw0tb1rrbenjn1dmcjjivurtmmgwqlddem9qnuj3czddrgg5rtbomgtkmtjuvurptfqwovbivwxptk44vy1yoxbfd2hyemp6uxhst01jmwfftlq4edhbsejjqtddogdla1cyzur4wxray25tyy1otgxcnunvdtlhvwd0c3pgdgrvy0viegvmbzrycutqtdnfzfotbxbgn1exn0hptmrswwzvvtk0c0vztencwuctukfnn3br": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmitgjbvv95cuxqnkhkovayatdccnm2nw1tu1poeuvrbk1uwe5iqmx0alndejqxtwjea19unupiu0htcfzjqvpua1jrrtngzfvqq015s0c3mgnfznb3rvduwu13ynhbntrpdjfrqwdremvmukxyc1lhcufkwwvfqmfhr3l6m0nhcl94a2ftcw0tb1rrbenjn1dmcjjivurtmmgwqlddem9qnuj3czddrgg5rtbomgtkmtjuvurptfqwovbivwxptk44vy1yoxbfd2hyemp6uxhst01jmwfftlq4edhbsejjqtddogdla1cyzur4wxray25tyy1otgxcnunvdtlhvwd0c3pgdgrvy0viegvmbzrycutqtdnfzfotbxbgn1exn0hptmrswwzvvtk0c0vztencwuctukfnn3br",
-      "content_hash": "e1c43a8adbc05109c1071675a9dc73f100ed321734ac36637c526098eaebec34",
-      "story_key": "355d5d4d7df12c2d0bf54d680f04f949119d06f1ea8c78bbfd317f676ca30dbe",
-      "status": "retry",
-      "processed_at": "2026-11-09T20:47:02.129Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmikwfbvv95cuxqdxz6v0hytjnqzgprb0vpugrsrlp5qk9mvwzqvewzx0rszww0a2uym2nly19uvktqmuxvaje0q0g4mxfmr094vwwzt0dganrvuzjjtmk4mvrxq3psamm4wvuwzg43nzjpytndczf0sk1nueuzvenxnklvdtbwvnbsrvpcbw5xykyxnjfftdrtngnox28": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmikwfbvv95cuxqdxz6v0hytjnqzgprb0vpugrsrlp5qk9mvwzqvewzx0rszww0a2uym2nly19uvktqmuxvaje0q0g4mxfmr094vwwzt0dganrvuzjjtmk4mvrxq3psamm4wvuwzg43nzjpytndczf0sk1nueuzvenxnklvdtbwvnbsrvpcbw5xykyxnjfftdrtngnox28",
-      "content_hash": "a290f819d7ca257e76650ace56b55572e74649da0b0b964447c4654e89f185d8",
-      "story_key": "d830060fdc3e27d51e670141dec0a861dac4f1b0a2407c0fb9763bda918350c4",
-      "status": "retry",
-      "processed_at": "2026-11-09T20:47:55.792Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
+      "reason": "",
+      "result": {
+        "tool": "Adobe Firefly",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "AdobeとDisneyが戦略的提携、Disney専用の生成AIモデルを共同開発",
+        "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE42bkhVQ1ZjaG9XTFM5ajQzSkRxRnhQSkUwV2ppaGRjMVdWNlF1cHJzanhiZ3ZpUDZyT1Q3LU5tblRsWG81eTZEclptMDZHSTItY2s1MFNXMEdSV2tKcy1qNlk2MmwwSnpCeGc?oc=5",
+        "source_name": "ITmedia",
+        "is_official": false,
+        "published_at": "2026-11-10T02:10:07.000Z",
+        "source_published_at": "2026-11-10T02:10:07.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-10T02:46:56.956Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Adobe",
+          "Disney",
+          "Firefly Foundry"
+        ],
+        "primary_entity": "Adobe",
+        "story_subject": "Firefly Foundry",
+        "event_type": "partnership",
+        "event_stage": "announced",
+        "event_scope": "Disney向け専用モデル",
+        "fact_slots": [],
+        "new_facts": [
+          "AdobeとDisneyが戦略的提携を発表した",
+          "Firefly FoundryでDisney専用の生成AIモデルを開発する計画がある"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "AdobeとDisneyが提携し、枠組み「Firefly Foundry」を使ってDisney専用の画像・動画生成AIモデルを開発すると発表した。",
+        "detail": "AdobeとDisneyが戦略的提携を発表した。簡単に言うと、Disney専用の画像・動画生成AIモデルを一緒に作る取り組みである。これまでAdobeの生成AIツール「Firefly」は誰でも使える汎用モデルだったが、今回はDisney向けに特化したモデルを作る点が新しい。\n\n新しい仕組みは「Firefly Foundry」と呼ばれる枠組みで動く。この枠組みを使うと、企業が自社の素材やキャラクターを学習させた専用のAIモデルを作れるようになる。Disneyのキャラクターや世界観を守りながら生成AIを使う体制づくりが狙いとみられる。\n\n利用者であるクリエイターや企業にとっては、自社ブランド専用の生成AIを持てる選択肢が増える。ただし今回の記事は見出し情報のみで、提携の詳細な条件や開始時期などはまだ明らかになっていない。",
+        "change_summary": "AdobeとDisneyが提携し、Disney専用の生成AIモデルを「Firefly Foundry」という枠組みで開発する。",
+        "impact_summary": "自社専用の生成AIモデルを持ちたい企業にとって、Adobeとの提携という選択肢が具体化したニュースといえる。",
+        "action_suggestion": "提携の詳細な条件や開始時期、対象となる作品範囲などはまだ発表されておらず、続報の確認が必要。",
+        "importance": "A",
+        "related_categories": [
+          "企業・株式",
+          "画像・動画生成",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
     },
     "url:https://news.google.com/rss/articles/cbmiz0fvx3lxte1qtza0n0ljsxr5rvpsy3dfnuzpnvf2qkvgr29iemtzwuthay1mmgrym2r2dwjbwhhfrnjoexqzvlnrvfzvdwvymxfldgtiwxr5uhctefq2r3zuvmroyvvxqxvrrlhkbwm": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiz0fvx3lxte1qtza0n0ljsxr5rvpsy3dfnuzpnvf2qkvgr29iemtzwuthay1mmgrym2r2dwjbwhhfrnjoexqzvlnrvfzvdwvymxfldgtiwxr5uhctefq2r3zuvmroyvvxqxvrrlhkbwm",
       "content_hash": "70701354977b9d5467b7096be2e36630bb7eaaa149efdfbe6c1edbde9cbbe694",
       "story_key": "d038f79f7fc5b486bf876708c660914c5b5afa969b21a75832d272d5ccd31d7e",
-      "status": "retry",
-      "processed_at": "2026-11-09T20:47:55.792Z",
+      "status": "enriched",
+      "processed_at": "2026-11-10T02:51:16.935Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
+      "reason": "",
+      "result": {
+        "tool": "Perplexity",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "Perplexityが継続業務を任せるAI「Teammates」を発表",
+        "source_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1QTzA0N0lJSXR5RVpsY3dFNUZPNVF2QkVGR29iemtZWUthay1MMGRyM2R2dWJBWHhFRnJoeXQzVlNrVFZVdWVyMXFldGtiWXR5UHcteFQ2R3ZUVmRoYVVxQXVrRlhkbWM?oc=5",
+        "source_name": "Ledge.ai",
+        "is_official": false,
+        "published_at": "2026-11-09T00:52:57.000Z",
+        "source_published_at": "2026-11-09T00:52:57.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-10T02:46:56.956Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Perplexity",
+          "Teammates",
+          "Slack"
+        ],
+        "primary_entity": "Perplexity",
+        "story_subject": "Teammates",
+        "event_type": "release",
+        "event_stage": "announced",
+        "event_scope": "不明",
+        "fact_slots": [],
+        "new_facts": [
+          "PerplexityがAIエージェント機能Teammatesを発表した",
+          "複数のエージェントが業務を分担しSlackと連携する"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "Perplexityが複数のAIエージェントが業務を分担し継続的に進める新機能「Teammates」を発表し、Slackとも連携する。",
+        "detail": "Perplexityが新しいAI機能「Teammates」を発表した。簡単に言うと、複数のAIエージェント（自動で作業を進めるプログラム）が仕事を分担しながら継続的に業務を進めてくれる仕組みである。これまでのAIチャットは一回ごとの質問応答が中心だったが、今回は複数のAIが連携し続けて作業を任せられる点が新しい。\n\nTeammatesは複数のエージェントが役割を分担し、ビジネス向けチャットツールであるSlackとも連携して動作する。チャット上で指示を出すと、複数のAIが協力してタスクをこなす仕組みとみられる。継続的な業務をAIに任せられる点が従来との違いである。\n\n利用者にとっては、日々の繰り返し作業をAIに任せられる可能性が広がる。ただし記事は見出しと抜粋のみで、対応言語や料金、提供時期などの詳細はまだ発表されていない。",
+        "change_summary": "複数のAIエージェントが役割分担しながら継続的に業務を進める新機能「Teammates」が発表された。",
+        "impact_summary": "継続的な業務をAIに任せられるようになれば、日常の反復作業を減らせる可能性がある。",
+        "action_suggestion": "対応言語や料金、提供時期などの詳細はまだ公表されておらず、続報の確認が必要。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "アプリ開発・自動化"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
     },
-    "url:https://news.google.com/rss/articles/cbmizkfvx3lxte9wdzy3szbxand6alnrqxjzvwvmrmhxay1usmzhwg8tm0fpsei4anrlnk9kuxrxdvjfu21en014v2laaghjvegzzkjpdk94a25bt2dzv1lyx3rrc3biy0josm1nuke4dw": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmizkfvx3lxte9wdzy3szbxand6alnrqxjzvwvmrmhxay1usmzhwg8tm0fpsei4anrlnk9kuxrxdvjfu21en014v2laaghjvegzzkjpdk94a25bt2dzv1lyx3rrc3biy0josm1nuke4dw",
-      "content_hash": "c45c72380f3e95d38920fad113492f555708f9ad5db88e99167c59979621c0d1",
-      "story_key": "6edabad0e343f284ff98e6dc99c48b6e5e6a255a9677efcfb962f1b23027f29b",
-      "status": "retry",
-      "processed_at": "2026-11-09T20:47:55.792Z",
+    "url:https://news.google.com/rss/articles/cbmizkfvx3lxte5sngdzckzvqm5nvlb4twlyruxbr3pwy0hxykjybzd1skl3ymlfedvjaelnakctam80r2nmogxztfjxd1zprfo2vkc2q2q5ekxeshdyv0zbemdrtnhtumtmumrfd1bxzw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmizkfvx3lxte5sngdzckzvqm5nvlb4twlyruxbr3pwy0hxykjybzd1skl3ymlfedvjaelnakctam80r2nmogxztfjxd1zprfo2vkc2q2q5ekxeshdyv0zbemdrtnhtumtmumrfd1bxzw",
+      "content_hash": "3990e4a4b7c4e3d23b9a89f3eb2475ac0a7e5196ba8bc548f99faa95ce9c2ecb",
+      "story_key": "afcec338f61646b4e226b8c024898b373f7b94546ea79bd90f9f0ab4053c10e9",
+      "status": "rejected",
+      "processed_at": "2026-11-10T02:51:16.935Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
+      "reason": "ai_skip: タイトルの体裁が崩れ出典も不明瞭で信頼性に欠けるため除外"
     },
     "url:https://news.google.com/rss/articles/cbmidefvx3lxte80c2dhbhjhuk5zzvb4thdgotu5bk1tmhretg1irmdbofngd09mndz5sxpcwuvcq0jcze9mszjyb3v4yk0wsduwnv9zbvbnzgizvlpxymgwne1ttc1jakhuc0nwuejmtxnsanfltknsedzhunle": {
       "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte80c2dhbhjhuk5zzvb4thdgotu5bk1tmhretg1irmdbofngd09mndz5sxpcwuvcq0jcze9mszjyb3v4yk0wsduwnv9zbvbnzgizvlpxymgwne1ttc1jakhuc0nwuejmtxnsanfltknsedzhunle",
       "content_hash": "f71fd4594c82728e3082e48bf924f534066b5e94374ca8e6de5e0a8174bbd930",
       "story_key": "9ab912f60457e212a83800c91aa2bf60a2ed137e55bff0049ca1eaae9f4865ba",
       "status": "retry",
-      "processed_at": "2026-11-09T20:47:55.792Z",
+      "processed_at": "2026-11-10T02:51:16.935Z",
       "model": "claude-sonnet-5",
       "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
       "lane": "regular",
@@ -18368,5 +18282,5 @@
       }
     }
   },
-  "updated_at": "2026-11-09T20:51:06.274Z"
+  "updated_at": "2026-11-10T02:54:45.325Z"
 }
