@@ -7,16 +7,18 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-11T00:41:49.168Z",
-  "window_end": "2026-11-11T11:53:22.817Z",
-  "last_window_end": "2026-11-11T11:53:22.817Z",
-  "last_checked_at": "2026-11-11T11:57:40.417Z",
-  "last_published_at": "2026-11-11T11:57:40.417Z",
-  "home_content_changed_at": "2026-11-11T11:57:40.417Z",
+  "window_start": "2026-11-11T11:53:22.817Z",
+  "window_end": "2026-11-11T17:52:52.400Z",
+  "last_window_end": "2026-11-11T17:52:52.400Z",
+  "last_checked_at": "2026-11-11T17:56:58.487Z",
+  "last_published_at": "2026-11-11T17:56:58.487Z",
+  "home_content_changed_at": "2026-11-11T17:56:58.487Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
-  "update_health": "HEALTHY",
-  "update_health_reasons": [],
+  "update_health": "DEGRADED",
+  "update_health_reasons": [
+    "前の日と重ならない検証済み記事が3件未満です"
+  ],
   "edition_status": "NEW_STORIES",
   "candidate_count": 1,
   "distinct_candidate_count": 1,
@@ -25,47 +27,28 @@
   "novel_candidate_count": 1,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 5,
+  "selected_count": 1,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
   "new_selected_count": 1,
-  "continued_selected_count": 4,
-  "tool_evolution_selected_count": 4,
+  "continued_selected_count": 0,
+  "tool_evolution_selected_count": 0,
   "carried_forward": false,
-  "partially_carried_forward": true,
+  "partially_carried_forward": false,
   "article_ids": [
-    "article_fe7e292f3400eee0850b",
-    "article_06a5c5c95f873caf46c1",
-    "article_0bd9ec26da6b2fb7c4f5",
-    "article_72b73e9993ca3419c688",
-    "article_b48f56e1364b6fce577e"
+    "article_1d72479ab996158821b1"
   ],
   "new_article_ids": [
-    "article_fe7e292f3400eee0850b"
+    "article_1d72479ab996158821b1"
   ],
-  "continued_article_ids": [
-    "article_06a5c5c95f873caf46c1",
-    "article_0bd9ec26da6b2fb7c4f5",
-    "article_72b73e9993ca3419c688",
-    "article_b48f56e1364b6fce577e"
-  ],
-  "continuation_sources": {
-    "article_06a5c5c95f873caf46c1": "previous_edition",
-    "article_0bd9ec26da6b2fb7c4f5": "previous_edition",
-    "article_72b73e9993ca3419c688": "previous_edition",
-    "article_b48f56e1364b6fce577e": "previous_edition"
-  },
+  "continued_article_ids": [],
+  "continuation_sources": {},
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
-  "edition_day_jst": "2026-11-11",
-  "same_day_article_ids": [
-    "article_06a5c5c95f873caf46c1",
-    "article_0bd9ec26da6b2fb7c4f5",
-    "article_72b73e9993ca3419c688",
-    "article_b48f56e1364b6fce577e"
-  ],
+  "edition_day_jst": "2026-11-12",
+  "same_day_article_ids": [],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 33,
+  "blocked_previous_day_count": 41,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -395,91 +378,10 @@
     "article_72b73e9993ca3419c688": "2026-11-11",
     "article_b48f56e1364b6fce577e": "2026-11-11",
     "article_18ad3411a1899016c460": "2026-11-11",
-    "article_fe7e292f3400eee0850b": "2026-11-11"
+    "article_fe7e292f3400eee0850b": "2026-11-11",
+    "article_1d72479ab996158821b1": "2026-11-12"
   },
   "home_shown_story_log": [
-    {
-      "article_id": "article_7f90117e9434de73b0e2",
-      "story_id": "story_28013983e8c2d2864c",
-      "title": "LINEヤフー、法人向けAIエージェント「Agent i Biz」提供開始",
-      "primary_entity": "LINEヤフー",
-      "story_subject": "Agent i Biz",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "日本・法人向け",
-      "story_entities": [
-        "LINEヤフー",
-        "Agent i Biz",
-        "lineヤフー",
-        "agentibiz",
-        "line"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-27T23:54:46.550Z",
-      "edition_window_end": "2026-10-27T23:50:07.939Z",
-      "shown_day": "2026-10-28"
-    },
-    {
-      "article_id": "article_24952a542435f862ad4c",
-      "story_id": "story_8cd8fb96ce9ccab10e",
-      "title": "生成AIのデータ透明性策、グーグルなど5社が日本政府に回答",
-      "primary_entity": "日本政府",
-      "story_subject": "生成AIデータの透明性確保策への企業回答",
-      "event_type": "policy",
-      "event_stage": "completed",
-      "event_scope": "日本",
-      "story_entities": [
-        "グーグル",
-        "日本政府",
-        "生成AI",
-        "生成ai"
-      ],
-      "fact_slots": [
-        {
-          "type": "count",
-          "scope": "回答した企業数",
-          "value": "5社",
-          "normalized_value": "5"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-28T00:49:23.565Z",
-      "edition_window_end": "2026-10-28T00:44:26.602Z",
-      "shown_day": "2026-10-28"
-    },
-    {
-      "article_id": "article_096a3acd473ccb6ffb26",
-      "story_id": "story_fd3b9d166b1398ea8a",
-      "title": "DeepSeekの週間トークン消費量が世界首位に",
-      "primary_entity": "DeepSeek",
-      "story_subject": "DeepSeekの週間トークン消費量急増",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "世界",
-      "story_entities": [
-        "DeepSeek",
-        "deepseek"
-      ],
-      "fact_slots": [
-        {
-          "type": "count",
-          "scope": "週間トークン消費量の前週比増加率",
-          "value": "801%",
-          "normalized_value": "801%"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-10-28T00:49:23.565Z",
-      "edition_window_end": "2026-10-28T00:44:26.602Z",
-      "shown_day": "2026-10-28"
-    },
     {
       "article_id": "article_aa8f7955ae21b2b25c74",
       "story_id": "story_28c4a281ebdaa8c4e3",
@@ -2879,56 +2781,40 @@
       "selected_at": "2026-11-11T11:57:40.417Z",
       "edition_window_end": "2026-11-11T11:53:22.817Z",
       "shown_day": "2026-11-11"
+    },
+    {
+      "article_id": "article_1d72479ab996158821b1",
+      "story_id": "story_3df945a53ea04fba7a",
+      "title": "NVIDIAのフアンCEOを巡る疑惑、米国の半導体供給網と安全保障に懸念",
+      "primary_entity": "NVIDIA",
+      "story_subject": "NVIDIA CEOを巡る疑惑",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "米国",
+      "story_entities": [
+        "NVIDIA",
+        "ジェンスン・フアン",
+        "半導体供給網",
+        "nvidia",
+        "ジェンスンフアン"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-11T17:56:58.487Z",
+      "edition_window_end": "2026-11-11T17:52:52.400Z",
+      "shown_day": "2026-11-12"
     }
   ],
   "scores": {
-    "article_fe7e292f3400eee0850b": {
-      "article_id": "article_fe7e292f3400eee0850b",
-      "total": 65,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 15,
-        "scope": 3,
-        "authority": 5,
-        "freshness": 9,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "主要AI企業・基盤",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-11-11T10:45:38.000Z"
-    },
-    "article_06a5c5c95f873caf46c1": {
-      "article_id": "article_06a5c5c95f873caf46c1",
-      "total": 79,
+    "article_1d72479ab996158821b1": {
+      "article_id": "article_1d72479ab996158821b1",
+      "total": 80,
       "breakdown": {
         "importance": 45,
-        "topicality": 15,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "主要AI企業・基盤",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-11-11T00:32:23.000Z"
-    },
-    "article_0bd9ec26da6b2fb7c4f5": {
-      "article_id": "article_0bd9ec26da6b2fb7c4f5",
-      "total": 66,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 10,
-        "scope": 6,
+        "topicality": 20,
+        "scope": 10,
         "authority": 5,
         "freshness": 0,
         "tool_evolution": 0,
@@ -2936,157 +2822,16 @@
       },
       "reasons": [
         "重要度A",
-        "大きな製品・市場変化"
-      ],
-      "published_at": "2026-11-10T12:23:48.000Z"
-    },
-    "article_72b73e9993ca3419c688": {
-      "article_id": "article_72b73e9993ca3419c688",
-      "total": 51,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 3,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
+        "主要AI企業・基盤",
+        "制度・安全への影響",
         "大きな製品・市場変化",
-        "AIツールの能力進化"
+        "重要な経営・研究体制",
+        "遅れて確認できた新着"
       ],
-      "published_at": "2026-11-11T00:03:04.000Z"
-    },
-    "article_b48f56e1364b6fce577e": {
-      "article_id": "article_b48f56e1364b6fce577e",
-      "total": 51,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 3,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-11-08T15:30:30.000Z"
+      "published_at": "2026-11-11T05:12:39.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_9a66b54e10acff0ada9a",
-      "story_id": "story_f98aebef9598c4f5c1",
-      "title": "DeepSeek、烏鎮(ウーチェン)サミットでオープンソース継続を表明",
-      "primary_entity": "DeepSeek",
-      "story_subject": "オープンソースAIモデルの提供方針",
-      "event_type": "policy",
-      "event_stage": "announced",
-      "event_scope": "中国/世界的なAI開発コミュニティ",
-      "story_entities": [
-        "DeepSeek",
-        "烏鎮サミット",
-        "deepseek"
-      ],
-      "fact_slots": [
-        {
-          "type": "region",
-          "scope": "発表場所",
-          "value": "烏鎮(浙江省、中国)",
-          "normalized_value": "烏鎮浙江省中国"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-08T16:44:08.950Z",
-      "edition_window_end": "2026-11-08T16:39:30.028Z"
-    },
-    {
-      "article_id": "article_533a7cf6c9573a896c9b",
-      "story_id": "story_fdb493db07ef6d4d00",
-      "title": "Perplexity、AIエージェント『Teammates』をMaxプランで提供開始",
-      "primary_entity": "Perplexity",
-      "story_subject": "AIエージェントTeammates",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "Maxプラン契約者",
-      "story_entities": [
-        "Perplexity",
-        "Teammates",
-        "Max",
-        "perplexity",
-        "teammates"
-      ],
-      "fact_slots": [
-        {
-          "type": "availability",
-          "scope": "Teammates提供対象",
-          "value": "Maxプラン契約者",
-          "normalized_value": "maxプラン契約者"
-        }
-      ],
-      "relation_type": "follow_up",
-      "dedupe_decision": "follow_up",
-      "previous_article_id": "article_3401bcd700a15bbbeef8",
-      "selected_at": "2026-11-08T16:44:08.950Z",
-      "edition_window_end": "2026-11-08T16:39:30.028Z"
-    },
-    {
-      "article_id": "article_09766c63ca8755531b71",
-      "story_id": "story_0425d1a3d60940df6f",
-      "title": "レイクウッドの放射線科医、『ポンジ型』AI投資詐欺で500万ドル集めたと提訴",
-      "primary_entity": "レイクウッドの放射線科医",
-      "story_subject": "AI投資詐欺疑惑の訴訟",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "米コロラド州レイクウッド",
-      "story_entities": [
-        "AI投資スキーム",
-        "レイクウッド放射線科医",
-        "ポンジ型詐欺",
-        "ai投資スキーム"
-      ],
-      "fact_slots": [
-        {
-          "type": "amount",
-          "scope": "集めたとされる資金額",
-          "value": "5,000,000 USD",
-          "normalized_value": "5000000USD"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-08T16:44:08.950Z",
-      "edition_window_end": "2026-11-08T16:39:30.028Z"
-    },
-    {
-      "article_id": "article_35a03f44a34a98a3ceab",
-      "story_id": "story_2b0f061f9961a2e3ff",
-      "title": "中国政府、米国のDeepSeek利用禁止措置に反発",
-      "primary_entity": "中国政府",
-      "story_subject": "米国のDeepSeek利用禁止措置",
-      "event_type": "policy",
-      "event_stage": "other",
-      "event_scope": "米国・中国",
-      "story_entities": [
-        "DeepSeek",
-        "deepseek"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-08T16:44:08.950Z",
-      "edition_window_end": "2026-11-08T16:39:30.028Z"
-    },
     {
       "article_id": "article_c0973909d406538f8d58",
       "story_id": "story_b7e633cb46c2f69e21",
@@ -3522,6 +3267,29 @@
       "previous_article_id": "",
       "selected_at": "2026-11-11T11:57:40.417Z",
       "edition_window_end": "2026-11-11T11:53:22.817Z"
+    },
+    {
+      "article_id": "article_1d72479ab996158821b1",
+      "story_id": "story_3df945a53ea04fba7a",
+      "title": "NVIDIAのフアンCEOを巡る疑惑、米国の半導体供給網と安全保障に懸念",
+      "primary_entity": "NVIDIA",
+      "story_subject": "NVIDIA CEOを巡る疑惑",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "米国",
+      "story_entities": [
+        "NVIDIA",
+        "ジェンスン・フアン",
+        "半導体供給網",
+        "nvidia",
+        "ジェンスンフアン"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-11T17:56:58.487Z",
+      "edition_window_end": "2026-11-11T17:52:52.400Z"
     }
   ]
 }
