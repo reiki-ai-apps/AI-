@@ -7,12 +7,12 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-10T12:40:11.972Z",
-  "window_end": "2026-11-10T17:48:26.200Z",
-  "last_window_end": "2026-11-10T17:48:26.200Z",
-  "last_checked_at": "2026-11-10T17:52:35.788Z",
-  "last_published_at": "2026-11-10T17:52:35.788Z",
-  "home_content_changed_at": "2026-11-10T17:52:35.788Z",
+  "window_start": "2026-11-10T17:48:26.200Z",
+  "window_end": "2026-11-11T00:41:49.168Z",
+  "last_window_end": "2026-11-11T00:41:49.168Z",
+  "last_checked_at": "2026-11-11T00:46:43.794Z",
+  "last_published_at": "2026-11-11T00:46:43.794Z",
+  "home_content_changed_at": "2026-11-11T00:46:43.794Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
@@ -25,34 +25,41 @@
   "novel_candidate_count": 4,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 4,
+  "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
   "new_selected_count": 4,
-  "continued_selected_count": 0,
-  "tool_evolution_selected_count": 1,
+  "continued_selected_count": 1,
+  "tool_evolution_selected_count": 3,
   "carried_forward": false,
-  "partially_carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
-    "article_0bd9ec26da6b2fb7c4f5",
-    "article_8fe677db1cbe1688e632",
-    "article_638567fe29c0de3c97a9",
-    "article_03392c65ecf95119eabd"
+    "article_06a5c5c95f873caf46c1",
+    "article_72b73e9993ca3419c688",
+    "article_b48f56e1364b6fce577e",
+    "article_18ad3411a1899016c460",
+    "article_0bd9ec26da6b2fb7c4f5"
   ],
   "new_article_ids": [
-    "article_0bd9ec26da6b2fb7c4f5",
-    "article_8fe677db1cbe1688e632",
-    "article_638567fe29c0de3c97a9",
-    "article_03392c65ecf95119eabd"
+    "article_06a5c5c95f873caf46c1",
+    "article_72b73e9993ca3419c688",
+    "article_b48f56e1364b6fce577e",
+    "article_18ad3411a1899016c460"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continued_article_ids": [
+    "article_0bd9ec26da6b2fb7c4f5"
+  ],
+  "continuation_sources": {
+    "article_0bd9ec26da6b2fb7c4f5": "previous_edition"
+  },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-11",
-  "same_day_article_ids": [],
+  "same_day_article_ids": [
+    "article_0bd9ec26da6b2fb7c4f5"
+  ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 38,
+  "blocked_previous_day_count": 34,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -377,7 +384,11 @@
     "article_0bd9ec26da6b2fb7c4f5": "2026-11-11",
     "article_8fe677db1cbe1688e632": "2026-11-11",
     "article_638567fe29c0de3c97a9": "2026-11-11",
-    "article_03392c65ecf95119eabd": "2026-11-11"
+    "article_03392c65ecf95119eabd": "2026-11-11",
+    "article_06a5c5c95f873caf46c1": "2026-11-11",
+    "article_72b73e9993ca3419c688": "2026-11-11",
+    "article_b48f56e1364b6fce577e": "2026-11-11",
+    "article_18ad3411a1899016c460": "2026-11-11"
   },
   "home_shown_story_log": [
     {
@@ -2737,9 +2748,187 @@
       "selected_at": "2026-11-10T17:52:35.788Z",
       "edition_window_end": "2026-11-10T17:48:26.200Z",
       "shown_day": "2026-11-11"
+    },
+    {
+      "article_id": "article_06a5c5c95f873caf46c1",
+      "story_id": "story_3f48825416bfdca3dc",
+      "title": "Google、新モデル「Gemini 4 Carbon」を一般公開",
+      "primary_entity": "Google",
+      "story_subject": "Gemini 4 Carbon",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "API・Google AI Ultra",
+      "story_entities": [
+        "Google",
+        "Gemini 4 Carbon",
+        "Google AI Ultra",
+        "google",
+        "gemini4carbon"
+      ],
+      "fact_slots": [
+        {
+          "type": "date",
+          "scope": "導入価格終了日",
+          "value": "2026-11-30",
+          "normalized_value": "2026-11-30"
+        }
+      ],
+      "relation_type": "follow_up",
+      "dedupe_decision": "follow_up",
+      "previous_article_id": "article_dc5a7163f86d81315196",
+      "selected_at": "2026-11-11T00:46:43.794Z",
+      "edition_window_end": "2026-11-11T00:41:49.168Z",
+      "shown_day": "2026-11-11"
+    },
+    {
+      "article_id": "article_72b73e9993ca3419c688",
+      "story_id": "story_2507c091de2edaeb3d",
+      "title": "Adobe「Firefly」、AIと対話しながら制作できる機能を拡充",
+      "primary_entity": "Adobe",
+      "story_subject": "Adobe Firefly",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Firefly全体",
+      "story_entities": [
+        "Adobe",
+        "Firefly",
+        "adobe",
+        "firefly"
+      ],
+      "fact_slots": [],
+      "relation_type": "follow_up",
+      "dedupe_decision": "follow_up",
+      "previous_article_id": "article_596ca5ff6bad0baf0b7e",
+      "selected_at": "2026-11-11T00:46:43.794Z",
+      "edition_window_end": "2026-11-11T00:41:49.168Z",
+      "shown_day": "2026-11-11"
+    },
+    {
+      "article_id": "article_b48f56e1364b6fce577e",
+      "story_id": "story_0ff7a30cb8afcc3931",
+      "title": "Perplexity、タブを閉じても動き続けるAIエージェント機能を発表",
+      "primary_entity": "Perplexity",
+      "story_subject": "タブを閉じても継続動作するAIエージェント機能",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "不明",
+      "story_entities": [
+        "Perplexity",
+        "AIエージェント",
+        "perplexity",
+        "aiエージェント"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-11T00:46:43.794Z",
+      "edition_window_end": "2026-11-11T00:41:49.168Z",
+      "shown_day": "2026-11-11"
+    },
+    {
+      "article_id": "article_18ad3411a1899016c460",
+      "story_id": "story_a0e3ccbf6ca80bae7e",
+      "title": "SB C&Sと東京都北区、Canva活用でデザイン業務効率化の協定を締結",
+      "primary_entity": "SB C&S",
+      "story_subject": "Canva活用協定(東京都北区)",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "東京都北区",
+      "story_entities": [
+        "SB C&S",
+        "東京都北区",
+        "Canva",
+        "sbcs",
+        "canva"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-11T00:46:43.794Z",
+      "edition_window_end": "2026-11-11T00:41:49.168Z",
+      "shown_day": "2026-11-11"
     }
   ],
   "scores": {
+    "article_06a5c5c95f873caf46c1": {
+      "article_id": "article_06a5c5c95f873caf46c1",
+      "total": 89,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 15,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 10,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-11T00:32:23.000Z"
+    },
+    "article_72b73e9993ca3419c688": {
+      "article_id": "article_72b73e9993ca3419c688",
+      "total": 60,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 9,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-11T00:03:04.000Z"
+    },
+    "article_b48f56e1364b6fce577e": {
+      "article_id": "article_b48f56e1364b6fce577e",
+      "total": 51,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-08T15:30:30.000Z"
+    },
+    "article_18ad3411a1899016c460": {
+      "article_id": "article_18ad3411a1899016c460",
+      "total": 31,
+      "breakdown": {
+        "importance": 10,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度C",
+        "制度・安全への影響",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-11-09T01:04:58.000Z"
+    },
     "article_0bd9ec26da6b2fb7c4f5": {
       "article_id": "article_0bd9ec26da6b2fb7c4f5",
       "total": 66,
@@ -2754,121 +2943,12 @@
       },
       "reasons": [
         "重要度A",
-        "大きな製品・市場変化",
-        "遅れて確認できた新着"
-      ],
-      "published_at": "2026-11-10T12:23:48.000Z"
-    },
-    "article_8fe677db1cbe1688e632": {
-      "article_id": "article_8fe677db1cbe1688e632",
-      "total": 65,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 15,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 10,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "主要AI企業・基盤",
         "大きな製品・市場変化"
       ],
-      "published_at": "2026-11-10T17:41:05.000Z"
-    },
-    "article_638567fe29c0de3c97a9": {
-      "article_id": "article_638567fe29c0de3c97a9",
-      "total": 54,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化",
-        "遅れて確認できた新着",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-11-09T00:42:26.000Z"
-    },
-    "article_03392c65ecf95119eabd": {
-      "article_id": "article_03392c65ecf95119eabd",
-      "total": 50,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "制度・安全への影響",
-        "遅れて確認できた新着"
-      ],
-      "published_at": "2026-11-10T11:36:02.000Z"
+      "published_at": "2026-11-10T12:23:48.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_dccb4b807171b4ae81c9",
-      "story_id": "story_793063688ebb9cb06e",
-      "title": "OpenAIの「ロックダウンモード」に回避可能な脆弱性、研究者が指摘",
-      "primary_entity": "OpenAI",
-      "story_subject": "ロックダウンモードの脆弱性",
-      "event_type": "security",
-      "event_stage": "investigating",
-      "event_scope": "ChatGPTのロックダウンモード機能",
-      "story_entities": [
-        "OpenAI",
-        "ChatGPT",
-        "ロックダウンモード",
-        "openai",
-        "chatgpt"
-      ],
-      "fact_slots": [
-        {
-          "type": "status",
-          "scope": "ロックダウンモードの脆弱性",
-          "value": "研究者が回避可能と報告",
-          "normalized_value": "研究者が回避可能と報告"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-07T23:45:05.385Z",
-      "edition_window_end": "2026-11-07T23:40:19.757Z"
-    },
-    {
-      "article_id": "article_df007322307446c5b8f3",
-      "story_id": "story_4a7e7bd0a79e4c5d78",
-      "title": "Qualcomm CEO、6Gの世界展開時期とAI中心の次世代通信網構想を語る",
-      "primary_entity": "Qualcomm",
-      "story_subject": "6Gの世界展開時期とAI中心の通信網構想",
-      "event_type": "other",
-      "event_stage": "announced",
-      "event_scope": "世界",
-      "story_entities": [
-        "Qualcomm",
-        "qualcomm"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-07T23:45:05.385Z",
-      "edition_window_end": "2026-11-07T23:40:19.757Z"
-    },
     {
       "article_id": "article_c21dfe06690451839bc3",
       "story_id": "story_a9c1498fada6c4b294",
@@ -3385,6 +3465,103 @@
       "previous_article_id": "",
       "selected_at": "2026-11-10T17:52:35.788Z",
       "edition_window_end": "2026-11-10T17:48:26.200Z"
+    },
+    {
+      "article_id": "article_06a5c5c95f873caf46c1",
+      "story_id": "story_3f48825416bfdca3dc",
+      "title": "Google、新モデル「Gemini 4 Carbon」を一般公開",
+      "primary_entity": "Google",
+      "story_subject": "Gemini 4 Carbon",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "API・Google AI Ultra",
+      "story_entities": [
+        "Google",
+        "Gemini 4 Carbon",
+        "Google AI Ultra",
+        "google",
+        "gemini4carbon"
+      ],
+      "fact_slots": [
+        {
+          "type": "date",
+          "scope": "導入価格終了日",
+          "value": "2026-11-30",
+          "normalized_value": "2026-11-30"
+        }
+      ],
+      "relation_type": "follow_up",
+      "dedupe_decision": "follow_up",
+      "previous_article_id": "article_dc5a7163f86d81315196",
+      "selected_at": "2026-11-11T00:46:43.794Z",
+      "edition_window_end": "2026-11-11T00:41:49.168Z"
+    },
+    {
+      "article_id": "article_72b73e9993ca3419c688",
+      "story_id": "story_2507c091de2edaeb3d",
+      "title": "Adobe「Firefly」、AIと対話しながら制作できる機能を拡充",
+      "primary_entity": "Adobe",
+      "story_subject": "Adobe Firefly",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Firefly全体",
+      "story_entities": [
+        "Adobe",
+        "Firefly",
+        "adobe",
+        "firefly"
+      ],
+      "fact_slots": [],
+      "relation_type": "follow_up",
+      "dedupe_decision": "follow_up",
+      "previous_article_id": "article_596ca5ff6bad0baf0b7e",
+      "selected_at": "2026-11-11T00:46:43.794Z",
+      "edition_window_end": "2026-11-11T00:41:49.168Z"
+    },
+    {
+      "article_id": "article_b48f56e1364b6fce577e",
+      "story_id": "story_0ff7a30cb8afcc3931",
+      "title": "Perplexity、タブを閉じても動き続けるAIエージェント機能を発表",
+      "primary_entity": "Perplexity",
+      "story_subject": "タブを閉じても継続動作するAIエージェント機能",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "不明",
+      "story_entities": [
+        "Perplexity",
+        "AIエージェント",
+        "perplexity",
+        "aiエージェント"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-11T00:46:43.794Z",
+      "edition_window_end": "2026-11-11T00:41:49.168Z"
+    },
+    {
+      "article_id": "article_18ad3411a1899016c460",
+      "story_id": "story_a0e3ccbf6ca80bae7e",
+      "title": "SB C&Sと東京都北区、Canva活用でデザイン業務効率化の協定を締結",
+      "primary_entity": "SB C&S",
+      "story_subject": "Canva活用協定(東京都北区)",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "東京都北区",
+      "story_entities": [
+        "SB C&S",
+        "東京都北区",
+        "Canva",
+        "sbcs",
+        "canva"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-11T00:46:43.794Z",
+      "edition_window_end": "2026-11-11T00:41:49.168Z"
     }
   ]
 }
