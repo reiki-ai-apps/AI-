@@ -7,58 +7,57 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-12T18:18:12.889Z",
-  "window_end": "2026-11-13T01:10:26.187Z",
-  "last_window_end": "2026-11-13T01:10:26.187Z",
-  "last_checked_at": "2026-11-13T01:16:37.195Z",
-  "last_published_at": "2026-11-13T01:16:37.195Z",
-  "home_content_changed_at": "2026-11-13T01:16:37.195Z",
+  "window_start": "2026-11-13T01:10:26.187Z",
+  "window_end": "2026-11-13T12:14:16.890Z",
+  "last_window_end": "2026-11-13T12:14:16.890Z",
+  "last_checked_at": "2026-11-13T12:20:04.082Z",
+  "last_published_at": "2026-11-13T12:20:04.082Z",
+  "home_content_changed_at": "2026-11-13T12:20:04.082Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 3,
-  "distinct_candidate_count": 3,
+  "candidate_count": 1,
+  "distinct_candidate_count": 1,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 2,
-  "cross_edition_duplicate_count": 1,
-  "cross_edition_duplicate_groups": [
-    {
-      "representative_id": "article_d6d23163b98ddfa1ea7a",
-      "duplicate_ids": [
-        "article_d029cde13ea7470636a2"
-      ]
-    }
-  ],
-  "selected_count": 3,
+  "novel_candidate_count": 1,
+  "cross_edition_duplicate_count": 0,
+  "cross_edition_duplicate_groups": [],
+  "selected_count": 4,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 2,
-  "continued_selected_count": 1,
+  "new_selected_count": 1,
+  "continued_selected_count": 3,
   "tool_evolution_selected_count": 2,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
-    "article_ae61e7b311ee955f582b",
-    "article_19eedac79e1c31705b49",
-    "article_d6d23163b98ddfa1ea7a"
-  ],
-  "new_article_ids": [
+    "article_7c2e270da984977ef286",
+    "article_d6d23163b98ddfa1ea7a",
     "article_ae61e7b311ee955f582b",
     "article_19eedac79e1c31705b49"
   ],
+  "new_article_ids": [
+    "article_7c2e270da984977ef286"
+  ],
   "continued_article_ids": [
-    "article_d6d23163b98ddfa1ea7a"
+    "article_d6d23163b98ddfa1ea7a",
+    "article_ae61e7b311ee955f582b",
+    "article_19eedac79e1c31705b49"
   ],
   "continuation_sources": {
-    "article_d6d23163b98ddfa1ea7a": "previous_edition"
+    "article_d6d23163b98ddfa1ea7a": "previous_edition",
+    "article_ae61e7b311ee955f582b": "previous_edition",
+    "article_19eedac79e1c31705b49": "previous_edition"
   },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-13",
   "same_day_article_ids": [
-    "article_d6d23163b98ddfa1ea7a"
+    "article_d6d23163b98ddfa1ea7a",
+    "article_ae61e7b311ee955f582b",
+    "article_19eedac79e1c31705b49"
   ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
@@ -391,7 +390,8 @@
     "article_0a0f4e86294b10769041": "2026-11-12",
     "article_d6d23163b98ddfa1ea7a": "2026-11-13",
     "article_ae61e7b311ee955f582b": "2026-11-13",
-    "article_19eedac79e1c31705b49": "2026-11-13"
+    "article_19eedac79e1c31705b49": "2026-11-13",
+    "article_7c2e270da984977ef286": "2026-11-13"
   },
   "home_shown_story_log": [
     {
@@ -2814,18 +2814,84 @@
       "selected_at": "2026-11-13T01:16:37.195Z",
       "edition_window_end": "2026-11-13T01:10:26.187Z",
       "shown_day": "2026-11-13"
+    },
+    {
+      "article_id": "article_7c2e270da984977ef286",
+      "story_id": "story_ce71e31a7c05feecf1",
+      "title": "NVIDIA CEO辞任発表を受け韓国政府が緊急会議、半導体供給への影響点検",
+      "primary_entity": "NVIDIA",
+      "story_subject": "ジェンスン・フアンCEOの辞任",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "韓国・世界的な半導体供給網",
+      "story_entities": [
+        "NVIDIA",
+        "ジェンスン・フアン",
+        "韓国政府",
+        "nvidia",
+        "ジェンスンフアン"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-13T12:20:04.082Z",
+      "edition_window_end": "2026-11-13T12:14:16.890Z",
+      "shown_day": "2026-11-13"
     }
   ],
   "scores": {
+    "article_7c2e270da984977ef286": {
+      "article_id": "article_7c2e270da984977ef286",
+      "total": 102,
+      "breakdown": {
+        "importance": 60,
+        "topicality": 20,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 7,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度S",
+        "主要AI企業・基盤",
+        "制度・安全への影響",
+        "大きな製品・市場変化",
+        "重要な経営・研究体制"
+      ],
+      "published_at": "2026-11-13T08:52:41.000Z"
+    },
+    "article_d6d23163b98ddfa1ea7a": {
+      "article_id": "article_d6d23163b98ddfa1ea7a",
+      "total": 88,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 15,
+        "scope": 10,
+        "authority": 10,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "公式一次情報",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-12T18:00:00.000Z"
+    },
     "article_ae61e7b311ee955f582b": {
       "article_id": "article_ae61e7b311ee955f582b",
-      "total": 40,
+      "total": 39,
       "breakdown": {
         "importance": 10,
         "topicality": 10,
         "scope": 6,
         "authority": 5,
-        "freshness": 1,
+        "freshness": 0,
         "tool_evolution": 8,
         "penalty": 0
       },
@@ -2849,110 +2915,12 @@
         "penalty": 0
       },
       "reasons": [
-        "重要度C",
-        "遅れて確認できた新着"
+        "重要度C"
       ],
       "published_at": "2026-11-12T04:03:45.000Z"
-    },
-    "article_d6d23163b98ddfa1ea7a": {
-      "article_id": "article_d6d23163b98ddfa1ea7a",
-      "total": 88,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 15,
-        "scope": 10,
-        "authority": 10,
-        "freshness": 0,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "主要AI企業・基盤",
-        "大きな製品・市場変化",
-        "公式一次情報",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-11-12T18:00:00.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_a77102b85141104e4668",
-      "story_id": "story_b6cb7366b573cddcd0",
-      "title": "AdobeとDisneyが戦略的提携、Disney専用の生成AIモデルを共同開発",
-      "primary_entity": "Adobe",
-      "story_subject": "Firefly Foundry",
-      "event_type": "partnership",
-      "event_stage": "announced",
-      "event_scope": "Disney向け専用モデル",
-      "story_entities": [
-        "Adobe",
-        "Disney",
-        "Firefly Foundry",
-        "adobe",
-        "disney"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-10T02:51:21.363Z",
-      "edition_window_end": "2026-11-10T02:46:56.956Z"
-    },
-    {
-      "article_id": "article_34c270f8653dc1551e6f",
-      "story_id": "story_c08559d2e604d5b154",
-      "title": "AnthropicがClaude Fable 5.2のロボット制御能力を公式SNSで公開",
-      "primary_entity": "Anthropic",
-      "story_subject": "Claude Fable 5.2",
-      "event_type": "research",
-      "event_stage": "announced",
-      "event_scope": "不明",
-      "story_entities": [
-        "Anthropic",
-        "Claude Fable 5.2",
-        "anthropic",
-        "claudefable5.2",
-        "claude"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-11-10T03:55:11.469Z",
-      "edition_window_end": "2026-11-10T03:49:08.047Z"
-    },
-    {
-      "article_id": "article_cbb46ee96f74b80de8b8",
-      "story_id": "story_6d1ff839933fc53c9d",
-      "title": "Kakaoがライアンのアニメーションをプロンプト1,500個でAI生成、OpenAIと協力",
-      "primary_entity": "Kakao",
-      "story_subject": "ライアンAIアニメーション",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "韓国",
-      "story_entities": [
-        "Kakao",
-        "OpenAI",
-        "ライアン",
-        "kakao",
-        "openai"
-      ],
-      "fact_slots": [
-        {
-          "type": "count",
-          "scope": "制作に使用したプロンプト数",
-          "value": "約1,500個",
-          "normalized_value": "1500"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-10T03:55:11.469Z",
-      "edition_window_end": "2026-11-10T03:49:08.047Z"
-    },
     {
       "article_id": "article_0bd9ec26da6b2fb7c4f5",
       "story_id": "story_20b6e6254553e5f8ad",
@@ -3325,6 +3293,29 @@
       "previous_article_id": "",
       "selected_at": "2026-11-13T01:16:37.195Z",
       "edition_window_end": "2026-11-13T01:10:26.187Z"
+    },
+    {
+      "article_id": "article_7c2e270da984977ef286",
+      "story_id": "story_ce71e31a7c05feecf1",
+      "title": "NVIDIA CEO辞任発表を受け韓国政府が緊急会議、半導体供給への影響点検",
+      "primary_entity": "NVIDIA",
+      "story_subject": "ジェンスン・フアンCEOの辞任",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "韓国・世界的な半導体供給網",
+      "story_entities": [
+        "NVIDIA",
+        "ジェンスン・フアン",
+        "韓国政府",
+        "nvidia",
+        "ジェンスンフアン"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-13T12:20:04.082Z",
+      "edition_window_end": "2026-11-13T12:14:16.890Z"
     }
   ]
 }
