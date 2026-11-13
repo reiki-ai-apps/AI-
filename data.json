@@ -55,7 +55,7 @@
       "研究・技術"
     ],
     "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_77f47672ca4ed6f94404",
+    "article_id": "article_77f47672ca4ed6f94404_rev_0b9f1cdbe7ca",
     "story_id": "story_7d14fc2babe6c819d3",
     "story_sequence": 1,
     "relation_type": "new",
@@ -64,13 +64,18 @@
     "previous_title": "",
     "previous_source_published_at": "",
     "continuation_lead": "",
-    "dedupe_decision": "new",
+    "dedupe_decision": "uncertain",
     "dedupe_reasons": [
-      "no_previous_story"
+      "same_url",
+      "same_primary_entity",
+      "same_subject",
+      "similar_title",
+      "same_scope",
+      "same_url_content_changed"
     ],
-    "home_video_selected_at": "2026-11-13T12:14:16.890Z",
-    "home_video_origin": "new",
-    "home_video_reserve": true
+    "home_video_selected_at": "",
+    "home_video_origin": "",
+    "home_video_reserve": false
   },
   {
     "tool": "NVIDIA・AI半導体",
@@ -139,33 +144,6 @@
     "dedupe_reasons": [
       "no_previous_story"
     ],
-    "home_top_rank": 1,
-    "home_top_score": 102,
-    "home_score_breakdown": {
-      "importance": 60,
-      "topicality": 20,
-      "scope": 10,
-      "authority": 5,
-      "freshness": 7,
-      "tool_evolution": 0,
-      "penalty": 0
-    },
-    "home_selection_reasons": [
-      "重要度S",
-      "主要AI企業・基盤",
-      "制度・安全への影響",
-      "大きな製品・市場変化",
-      "重要な経営・研究体制"
-    ],
-    "home_selected_at": "2026-11-13T12:20:04.082Z",
-    "home_window_start": "2026-11-13T01:10:26.187Z",
-    "home_window_end": "2026-11-13T12:14:16.890Z",
-    "home_content_changed_at": "2026-11-13T12:20:04.082Z",
-    "home_update_health": "HEALTHY",
-    "home_consecutive_unchanged_editions": 0,
-    "home_top_origin": "new",
-    "home_edition_new_count": 1,
-    "home_edition_continued_count": 3,
     "commons_image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Nintendo_Switch_2_NVIDIA_SoC_GMLX30-A1.jpg/1280px-Nintendo_Switch_2_NVIDIA_SoC_GMLX30-A1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "commons_image_page_url": "https://commons.wikimedia.org/wiki/File:Nintendo_Switch_2_NVIDIA_SoC_GMLX30-A1.jpg",
     "commons_image_license": "CC BY 4.0",
@@ -173,6 +151,113 @@
     "commons_image_credit": "Bechology",
     "commons_image_subject": "NVIDIA",
     "commons_image_review_version": "subject-v1"
+  },
+  {
+    "tool": "Grok / xAI",
+    "content_type": "article",
+    "expert_id": "",
+    "expert_ids": [],
+    "expert_name": "",
+    "expert_names": [],
+    "expert_role": "",
+    "expert_tier": "",
+    "platform": "",
+    "video_id": "",
+    "source_trust": "",
+    "title": "AWSのAIコーディングサービス「Kiro」がAndroidアプリを公開、Grok 4.7も選択可能に",
+    "source_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5FYTJGcklIUjk3STBFdnJ3elZPSDdfN1M1ZnFrT3RJcXJteEhCZDlhSUxDWTNFd25STEdsbGJ2Z3lxZkxoLU5DOU51WkEzVHFaaEhzSWljOFQ4LUVwamF2Mm13ektid0U?oc=5",
+    "source_name": "テクノエッジ TechnoEdge",
+    "is_official": false,
+    "published_at": "2026-11-13T03:05:40.000Z",
+    "source_published_at": "2026-11-13T03:05:40.000Z",
+    "source_updated_at": "",
+    "source_date_status": "published",
+    "fetched_at": "2026-11-13T17:43:34.551Z",
+    "event_at": "",
+    "event_status": "開始済み",
+    "event_date_precision": "unknown",
+    "story_entities": [
+      "AWS",
+      "Kiro",
+      "Grok 4.7",
+      "aws",
+      "kiro"
+    ],
+    "primary_entity": "AWS",
+    "story_subject": "Kiro Androidアプリの公開",
+    "event_type": "release",
+    "event_stage": "launched",
+    "event_scope": "Android",
+    "fact_slots": [
+      {
+        "type": "availability",
+        "scope": "KiroのAndroidアプリ",
+        "value": "公開",
+        "normalized_value": "公開"
+      },
+      {
+        "type": "other",
+        "scope": "Kiroで選択可能なモデル",
+        "value": "Grok 4.7",
+        "normalized_value": "4.7"
+      }
+    ],
+    "new_facts": [
+      "AWSのAIコーディングサービスKiroがAndroidアプリを公開した",
+      "Kiroで利用できるAIモデルにGrok 4.7が追加された"
+    ],
+    "structured_complete": true,
+    "raw_excerpt": "AWSが提供するAIコーディングサービスKiroがAndroidアプリを公開し、クラウド上の作業をスマホで続けられるようになり、Grok 4.7も利用可能になった。",
+    "detail": "AWS（アマゾンのクラウド部門）が提供するAIコーディングサービス「Kiro」が、Androidスマートフォン向けアプリを公開しました。Kiroはクラウド上でプログラムのコードを自動で作成・修正してくれるサービスです。これまではパソコンのブラウザなどから使う形が中心でしたが、今回のアプリ公開により、クラウド上で進めていた作業をスマホからも確認・操作できるようになりました。\n\n具体的には、クラウド環境で動いているAIコーディング作業の進み具合をスマホアプリから引き継いで見たり操作したりできます。また、使用できるAIモデルの選択肢として、xAIの「Grok 4.7」も新たに選べるようになりました。従来利用できたモデルに加えて選択肢が増えた形です。\n\nエンジニアは外出先やパソコンを開けない場面でも、クラウド上で進行中のコーディング作業の状況をスマホで確認できるようになります。Androidアプリでの具体的な操作範囲や、iOS版の提供有無などは記事からは確認できません。",
+    "change_summary": "AIコーディングサービスKiroがAndroidアプリを公開し、利用できるAIモデルにGrok 4.7が追加された。",
+    "impact_summary": "エンジニアはクラウド上のコーディング作業をスマホからも確認・操作できるようになり、作業の柔軟性が高まる。",
+    "action_suggestion": "Androidアプリでの操作範囲の詳細やiOS対応の有無は記事からは確認できず、今後の情報確認が必要。",
+    "importance": "B",
+    "related_categories": [
+      "アプリ開発・自動化",
+      "AIツール・モデル"
+    ],
+    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
+    "article_id": "article_61a5c9aa2fc7ff3cd21c",
+    "story_id": "story_b1cd61d78e4f78dcde",
+    "story_sequence": 1,
+    "relation_type": "new",
+    "relation_confidence": 1,
+    "previous_article_id": "",
+    "previous_title": "",
+    "previous_source_published_at": "",
+    "continuation_lead": "",
+    "dedupe_decision": "new",
+    "dedupe_reasons": [
+      "no_previous_story"
+    ],
+    "home_top_rank": 1,
+    "home_top_score": 56,
+    "home_score_breakdown": {
+      "importance": 25,
+      "topicality": 15,
+      "scope": 3,
+      "authority": 5,
+      "freshness": 0,
+      "tool_evolution": 8,
+      "penalty": 0
+    },
+    "home_selection_reasons": [
+      "重要度B",
+      "主要AI企業・基盤",
+      "大きな製品・市場変化",
+      "遅れて確認できた新着",
+      "AIツールの能力進化"
+    ],
+    "home_selected_at": "2026-11-13T17:47:46.205Z",
+    "home_window_start": "2026-11-13T12:14:16.890Z",
+    "home_window_end": "2026-11-13T17:43:34.551Z",
+    "home_content_changed_at": "2026-11-13T17:47:46.205Z",
+    "home_update_health": "DEGRADED",
+    "home_consecutive_unchanged_editions": 0,
+    "home_top_origin": "new",
+    "home_edition_new_count": 1,
+    "home_edition_continued_count": 0
   },
   {
     "tool": "Gemini",
@@ -323,32 +408,7 @@
       "same_primary_entity",
       "uncertain_subject",
       "same_event_type"
-    ],
-    "home_top_rank": 3,
-    "home_top_score": 39,
-    "home_score_breakdown": {
-      "importance": 10,
-      "topicality": 10,
-      "scope": 6,
-      "authority": 5,
-      "freshness": 0,
-      "tool_evolution": 8,
-      "penalty": 0
-    },
-    "home_selection_reasons": [
-      "重要度C",
-      "大きな製品・市場変化",
-      "AIツールの能力進化"
-    ],
-    "home_selected_at": "2026-11-13T12:20:04.082Z",
-    "home_window_start": "2026-11-13T01:10:26.187Z",
-    "home_window_end": "2026-11-13T12:14:16.890Z",
-    "home_content_changed_at": "2026-11-13T12:20:04.082Z",
-    "home_update_health": "HEALTHY",
-    "home_consecutive_unchanged_editions": 0,
-    "home_top_origin": "same_day",
-    "home_edition_new_count": 1,
-    "home_edition_continued_count": 3
+    ]
   },
   {
     "tool": "Gemini",
@@ -429,34 +489,7 @@
       "low_confidence_follow_up_demoted"
     ],
     "source_image_url": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/HydrogenUI_socialshare.width-1300.png",
-    "source_image_page_url": "https://blog.google/products-and-platforms/products/search/gemini-4-hydrogen-search-upgrade/",
-    "home_top_rank": 2,
-    "home_top_score": 88,
-    "home_score_breakdown": {
-      "importance": 45,
-      "topicality": 15,
-      "scope": 10,
-      "authority": 10,
-      "freshness": 0,
-      "tool_evolution": 8,
-      "penalty": 0
-    },
-    "home_selection_reasons": [
-      "重要度A",
-      "主要AI企業・基盤",
-      "大きな製品・市場変化",
-      "公式一次情報",
-      "AIツールの能力進化"
-    ],
-    "home_selected_at": "2026-11-13T12:20:04.082Z",
-    "home_window_start": "2026-11-13T01:10:26.187Z",
-    "home_window_end": "2026-11-13T12:14:16.890Z",
-    "home_content_changed_at": "2026-11-13T12:20:04.082Z",
-    "home_update_health": "HEALTHY",
-    "home_consecutive_unchanged_editions": 0,
-    "home_top_origin": "same_day",
-    "home_edition_new_count": 1,
-    "home_edition_continued_count": 3
+    "source_image_page_url": "https://blog.google/products-and-platforms/products/search/gemini-4-hydrogen-search-upgrade/"
   },
   {
     "tool": "Adobe Firefly",
@@ -527,30 +560,7 @@
     "commons_image_license_url": "https://creativecommons.org/licenses/by-sa/4.0",
     "commons_image_credit": "Sikander Iqbal",
     "commons_image_subject": "Adobe",
-    "commons_image_review_version": "subject-v1",
-    "home_top_rank": 4,
-    "home_top_score": 18,
-    "home_score_breakdown": {
-      "importance": 10,
-      "topicality": 0,
-      "scope": 3,
-      "authority": 5,
-      "freshness": 0,
-      "tool_evolution": 0,
-      "penalty": 0
-    },
-    "home_selection_reasons": [
-      "重要度C"
-    ],
-    "home_selected_at": "2026-11-13T12:20:04.082Z",
-    "home_window_start": "2026-11-13T01:10:26.187Z",
-    "home_window_end": "2026-11-13T12:14:16.890Z",
-    "home_content_changed_at": "2026-11-13T12:20:04.082Z",
-    "home_update_health": "HEALTHY",
-    "home_consecutive_unchanged_editions": 0,
-    "home_top_origin": "same_day",
-    "home_edition_new_count": 1,
-    "home_edition_continued_count": 3
+    "commons_image_review_version": "subject-v1"
   },
   {
     "tool": "Claude / Claude Code",
@@ -941,72 +951,6 @@
       "same_subject",
       "same_event_type",
       "non_forward_stage_change"
-    ]
-  },
-  {
-    "tool": "Grok / xAI",
-    "content_type": "article",
-    "expert_id": "",
-    "expert_ids": [],
-    "expert_name": "",
-    "expert_names": [],
-    "expert_role": "",
-    "expert_tier": "",
-    "platform": "",
-    "video_id": "",
-    "source_trust": "",
-    "title": "Grok 4.8の遅延理由、イーロン・マスク氏がソフトウェア全面書き換えと説明",
-    "source_url": "https://news.google.com/rss/articles/CBMilAJBVV95cUxPcVZ0YnVRNjhQSjcyNlFRRUExWFJpbV8xN0tkVHFpMXd6b000eFJqdEpEUWxwQVdnTzdDTnFDdlRJWWNnZDJvSVhXRkQ1TDdjM1Y4c3k5Mnh5aFo1VW5ULW1EME50amRQM1hrb19COUFyNFNEVzRKRHV5aEU3dVRxYVNINVdPLWJWY2N0TU5yNlVpZGNiRmk3QkpMdDdlSmJGOUZVZTJTTE9NR20tWGE0a2dmY1laOU9VcVVCMXk1c0w5T3RUZ2l5MFJVdjlBRHF3TXRlY2s5azRmRHZiQmQ0YmY4R3lkVlk0WEFyeEVmRUNQeHJIZnZndTJiSS1wM1Iwbm9zTWlZMWtrY19FTTU0SHlkc3E?oc=5",
-    "source_name": "Martin Cid Magazine",
-    "is_official": false,
-    "published_at": "2026-11-10T17:41:05.000Z",
-    "source_published_at": "2026-11-10T17:41:05.000Z",
-    "source_updated_at": "",
-    "source_date_status": "published",
-    "fetched_at": "2026-11-10T17:48:26.200Z",
-    "event_at": "",
-    "event_status": "継続中",
-    "event_date_precision": "unknown",
-    "story_entities": [
-      "Grok",
-      "xAI",
-      "イーロン・マスク",
-      "grok",
-      "xai"
-    ],
-    "primary_entity": "xAI",
-    "story_subject": "Grok4.8のリリース遅延",
-    "event_type": "other",
-    "event_stage": "delayed",
-    "event_scope": "全世界",
-    "fact_slots": [],
-    "new_facts": [
-      "イーロン・マスク氏がGrok4.8の遅延理由をソフトウェアのC/C++による全面書き直しと説明した"
-    ],
-    "structured_complete": true,
-    "raw_excerpt": "イーロン・マスク氏はAI「Grok4.8」のリリース遅延について、プログラミング言語C/C++によるソフトウェア全面書き直しが原因と説明した。",
-    "detail": "イーロン・マスク氏が、自身のAI企業xAIが開発する会話AI「Grok」の新バージョン「Grok4.8」の公開が遅れている理由を説明した。簡単に言うと、Grokはユーザーの質問に答えるチャットAIのことである。今回の説明によると、以前のソフトウエアの仕組みを土台から作り直している最中だという。\n\n記事によると、遅延の理由はプログラミング言語であるC言語やC++を使ってソフトウェア全体を書き直していることだと述べた。C/C++はコンピューターを細かく制御できる言語で、処理速度を上げるために使われることが多い。全面的な書き直しは手間がかかるため、公開時期が延びる要因になり得る。\n\n利用者にとっては、Grok4.8の提供開始がいつになるかまだ分からない状態が続く。注意点として、書き直しによって性能がどう変わるかは記事内で明らかにされていない。正式な公開日時は今後の発表を待つ必要がある。",
-    "change_summary": "Grok4.8の遅延理由として、ソフトウェアをC/C++で全面的に書き直していることが明らかになった。",
-    "impact_summary": "Grokを利用する開発者や企業は新バージョンの提供時期が不透明なため、計画の見直しが必要になる可能性がある。",
-    "action_suggestion": "正式なリリース日はまだ発表されておらず、xAIからの続報を確認する必要がある。",
-    "importance": "B",
-    "related_categories": [
-      "AIツール・モデル",
-      "企業・株式"
-    ],
-    "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-    "article_id": "article_8fe677db1cbe1688e632",
-    "story_id": "story_6382b5c75eabd50613",
-    "story_sequence": 1,
-    "relation_type": "new",
-    "relation_confidence": 1,
-    "previous_article_id": "",
-    "previous_title": "",
-    "previous_source_published_at": "",
-    "continuation_lead": "",
-    "dedupe_decision": "new",
-    "dedupe_reasons": [
-      "no_previous_story"
     ]
   },
   {
