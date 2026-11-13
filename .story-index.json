@@ -2,6 +2,107 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_d029cde13ea7470636a2",
+      "story_id": "story_4e17345280a8cd802c",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.8295454545454546,
+      "title": "Google、Gemini 4 Hydrogenを提供開始、唯一の無料枠としてCarbonと役割分担",
+      "source_published_at": "2026-11-13T01:05:00.000Z",
+      "published_at": "2026-11-13T01:05:00.000Z",
+      "fetched_at": "2026-11-13T01:10:26.187Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "Googleが「Gemini 4」シリーズの中で唯一無料で使える「Hydrogen」モデルの提供を始め、有料版「Carbon」と役割を分担すると報じられた。",
+      "source_name": "innovaTopia",
+      "source_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE04a2VxemRrcHF2ZE02eG5VcnJfcHh5eG12VG9qWHhCQ21scTRDQmpfUlAxRzZqbFRGS2stMGc3UE9kRHFfRWtuaFRTamVSQUp1ejBJ?oc=5",
+      "story_entities": [
+        "Google",
+        "Gemini 4 Hydrogen",
+        "Gemini 4 Carbon",
+        "google",
+        "gemini4hydrogen"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "Gemini 4 Hydrogen",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "不明",
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "Gemini 4 Hydrogen",
+          "value": "無料枠",
+          "normalized_value": "無料枠"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type",
+        "material_fact_changed",
+        "low_confidence_follow_up_demoted"
+      ],
+      "change_summary": "Gemini 4シリーズに無料で使える「Hydrogen」モデルが加わり、有料の「Carbon」と役割分担する点が新しい。",
+      "detail": "Googleが提供を始めたのは、「Gemini 4」シリーズに含まれる新モデル「Gemini 4 Hydrogen」です。簡単に言うと、Gemini 4シリーズの中で唯一無料で使えるモデルです。これまでのGemini系列と異なり、今回は「Carbon」と呼ばれる別モデルと役割を分担する形になっています。\n\n報道によると、Hydrogenは実行役を担い、Carbonと組み合わせて使われる仕組みのようです。ただし記事の抜粋は短く、両モデルの具体的な性能差や使われ方までは分かりません。無料枠が用意されたことは、より多くの人が気軽にGemini 4を試せるようになる点で重要です。\n\n利用者にとっては、無料でGemini 4系列のAIに触れられる選択肢が増えることになります。ただしHydrogenとCarbonの性能差や、どのような場面で使い分けるべきかはまだ明らかになっていません。公式発表の詳細が今後示されるか注目されます。",
+      "new_facts": [
+        "Gemini 4シリーズに無料で使える「Hydrogen」モデルが追加された",
+        "有料モデル「Carbon」と役割を分担する"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_ae61e7b311ee955f582b",
+      "story_id": "story_8e21426092e97dbfdd",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.5881081081081081,
+      "title": "Perplexityがテキスト抽出機能を備えた新モデル「Decider V1.3」を公開",
+      "source_published_at": "2026-11-12T18:45:17.000Z",
+      "published_at": "2026-11-12T18:45:17.000Z",
+      "fetched_at": "2026-11-13T01:10:26.187Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "PerplexityがテキストスパンAI抽出に対応した新モデル「Decider V1.3」をリリースしたと報じられたが、詳細はまだ不明。",
+      "source_name": "Unite.AI",
+      "source_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNUktpc3JBQzVSVE1LaVRnaEF2RDhLUV9NQ1NaNEZyb3hWRF9lcGVzM2pmZWJfY1RGdG9DT3FZa3FfMW1tV0ZXdjFJMWRoMG5yaDF6cllMODBKWElMMmJEZ1pLZ3d5ZzBWa0c2ZjRsQVplckVsd2ZSYkRueEJsSzZoM211YUZQY054Nmx4OE5CMHRIYnFf?oc=5",
+      "story_entities": [
+        "Perplexity",
+        "Decider V1.3",
+        "perplexity",
+        "deciderv1.3",
+        "decider"
+      ],
+      "primary_entity": "Perplexity",
+      "story_subject": "Decider V1.3",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Perplexityのモデル",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "Perplexityモデル",
+          "value": "Decider V1.3",
+          "normalized_value": "deciderv1.3"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "uncertain_subject",
+        "same_event_type"
+      ],
+      "change_summary": "Perplexityがテキストスパン抽出に対応した新モデル「Decider V1.3」を公開したと報じられた。",
+      "detail": "AI検索企業のPerplexityが、新しいAIモデル「Decider V1.3」を公開したと報じられた。これは文章の中から必要な部分だけを取り出す「テキストスパン抽出」という機能に対応したモデルだ。以前のバージョンでこの機能がどこまで扱えていたかは記事からは分からない。\n\n報道によると、このモデルは文章の一部分(スパン)を指定して抜き出す処理を得意とするとされる。性能の具体的な数値や対応言語、検索結果への反映方法などの詳細はまだ公表されていない。検索結果から必要な情報だけを素早く取り出せるようになれば、検索サービス全体の精度向上につながる可能性がある。\n\n利用者にとっては、Perplexityの検索結果がより的確に必要な部分だけを示すようになるかもしれない。ただし現時点では公式のリリースノートや詳しい説明は確認できていない。今後どのような機能追加や改善が行われるかはまだ発表されていない。",
+      "new_facts": [
+        "Perplexityがテキストスパン抽出に対応した新モデル「Decider V1.3」を公開した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_d6d23163b98ddfa1ea7a",
       "story_id": "story_4e17345280a8cd802c",
       "story_sequence": 1,
@@ -53,6 +154,45 @@
         "Googleはこれを検索向けモデルとして最大規模の刷新だとしている"
       ],
       "event_date_precision": "day"
+    },
+    {
+      "article_id": "article_19eedac79e1c31705b49",
+      "story_id": "story_7abc2fb08af950f1bf",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Adobe Fireflyで作る「リバース・シネマグラフ」の制作方法",
+      "source_published_at": "2026-11-12T04:03:45.000Z",
+      "published_at": "2026-11-12T04:03:45.000Z",
+      "fetched_at": "2026-11-13T01:10:26.187Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "被写体は止まり背景だけが動く「リバース・シネマグラフ」という映像表現を、画像生成AI「Adobe Firefly」で作る手順を紹介する記事。",
+      "source_name": "MEDIAMIXI",
+      "source_url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE1ZQlN5ZFFndklmSmhpeEN5OVM2N2x3U3IwWHdhWmZURV9EQ3dnVmhSMkhMVnEyRW9Qd0k3NlBFUDVtMVZFNkNYWVRB?oc=5",
+      "story_entities": [
+        "Adobe Firefly",
+        "adobefirefly",
+        "adobe",
+        "firefly"
+      ],
+      "primary_entity": "Adobe",
+      "story_subject": "リバース・シネマグラフ制作",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "個人クリエイター向け",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "Adobe Fireflyを使い、被写体を止めて背景だけ動かす「リバース・シネマグラフ」の作り方を紹介している点が内容。",
+      "detail": "この記事は、画像・動画生成AI「Adobe Firefly」を使って「リバース・シネマグラフ」という映像表現を作る方法を紹介するものです。簡単に言うと、写っている人やものは止まったまま、背景だけが動いて見える動画の作り方です。通常のシネマグラフは被写体だけが動きますが、今回紹介する方法はその逆の表現になります。\n\n記事では、Adobe Fireflyを使ってこの逆転した映像効果を作る具体的な手順が解説されているとみられます。ただし抜粋だけでは、使用する具体的な機能名や操作の細かい流れまでは分かりません。動画編集の知識がなくても生成AIを使えば特殊な映像効果を作れる点が、この記事の見どころです。\n\n動画や画像制作に関わる人にとっては、新しい表現方法の選択肢が増えることになります。ただし今回確認できたのはタイトルと概要のみで、必要な素材や作業時間、完成までの詳しい手順はまだ分かっていません。記事本文を確認することで、具体的なやり方が分かるとみられます。",
+      "new_facts": [
+        "Adobe Fireflyを使ったリバース・シネマグラフの制作方法が紹介された"
+      ],
+      "event_date_precision": "unknown"
     },
     {
       "article_id": "article_fe7e292f3400eee0850b",

@@ -7,48 +7,62 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-12T12:43:56.732Z",
-  "window_end": "2026-11-12T18:18:12.889Z",
-  "last_window_end": "2026-11-12T18:18:12.889Z",
-  "last_checked_at": "2026-11-12T18:22:25.142Z",
-  "last_published_at": "2026-11-12T18:22:25.142Z",
-  "home_content_changed_at": "2026-11-12T18:22:25.142Z",
+  "window_start": "2026-11-12T18:18:12.889Z",
+  "window_end": "2026-11-13T01:10:26.187Z",
+  "last_window_end": "2026-11-13T01:10:26.187Z",
+  "last_checked_at": "2026-11-13T01:16:37.195Z",
+  "last_published_at": "2026-11-13T01:16:37.195Z",
+  "home_content_changed_at": "2026-11-13T01:16:37.195Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
-  "update_health": "DEGRADED",
-  "update_health_reasons": [
-    "前の日と重ならない検証済み記事が3件未満です"
-  ],
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 1,
-  "distinct_candidate_count": 1,
+  "candidate_count": 3,
+  "distinct_candidate_count": 3,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 1,
-  "cross_edition_duplicate_count": 0,
-  "cross_edition_duplicate_groups": [],
-  "selected_count": 1,
+  "novel_candidate_count": 2,
+  "cross_edition_duplicate_count": 1,
+  "cross_edition_duplicate_groups": [
+    {
+      "representative_id": "article_d6d23163b98ddfa1ea7a",
+      "duplicate_ids": [
+        "article_d029cde13ea7470636a2"
+      ]
+    }
+  ],
+  "selected_count": 3,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 1,
-  "continued_selected_count": 0,
-  "tool_evolution_selected_count": 1,
+  "new_selected_count": 2,
+  "continued_selected_count": 1,
+  "tool_evolution_selected_count": 2,
   "carried_forward": false,
-  "partially_carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_ae61e7b311ee955f582b",
+    "article_19eedac79e1c31705b49",
     "article_d6d23163b98ddfa1ea7a"
   ],
   "new_article_ids": [
+    "article_ae61e7b311ee955f582b",
+    "article_19eedac79e1c31705b49"
+  ],
+  "continued_article_ids": [
     "article_d6d23163b98ddfa1ea7a"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continuation_sources": {
+    "article_d6d23163b98ddfa1ea7a": "previous_edition"
+  },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-13",
-  "same_day_article_ids": [],
+  "same_day_article_ids": [
+    "article_d6d23163b98ddfa1ea7a"
+  ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 41,
+  "blocked_previous_day_count": 38,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -375,7 +389,9 @@
     "article_1d72479ab996158821b1": "2026-11-12",
     "article_be4c4c336af8abea1e16": "2026-11-12",
     "article_0a0f4e86294b10769041": "2026-11-12",
-    "article_d6d23163b98ddfa1ea7a": "2026-11-13"
+    "article_d6d23163b98ddfa1ea7a": "2026-11-13",
+    "article_ae61e7b311ee955f582b": "2026-11-13",
+    "article_19eedac79e1c31705b49": "2026-11-13"
   },
   "home_shown_story_log": [
     {
@@ -2744,18 +2760,109 @@
       "selected_at": "2026-11-12T18:22:25.142Z",
       "edition_window_end": "2026-11-12T18:18:12.889Z",
       "shown_day": "2026-11-13"
+    },
+    {
+      "article_id": "article_ae61e7b311ee955f582b",
+      "story_id": "story_8e21426092e97dbfdd",
+      "title": "Perplexityがテキスト抽出機能を備えた新モデル「Decider V1.3」を公開",
+      "primary_entity": "Perplexity",
+      "story_subject": "Decider V1.3",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Perplexityのモデル",
+      "story_entities": [
+        "Perplexity",
+        "Decider V1.3",
+        "perplexity",
+        "deciderv1.3",
+        "decider"
+      ],
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "Perplexityモデル",
+          "value": "Decider V1.3",
+          "normalized_value": "deciderv1.3"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-13T01:16:37.195Z",
+      "edition_window_end": "2026-11-13T01:10:26.187Z",
+      "shown_day": "2026-11-13"
+    },
+    {
+      "article_id": "article_19eedac79e1c31705b49",
+      "story_id": "story_7abc2fb08af950f1bf",
+      "title": "Adobe Fireflyで作る「リバース・シネマグラフ」の制作方法",
+      "primary_entity": "Adobe",
+      "story_subject": "リバース・シネマグラフ制作",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "個人クリエイター向け",
+      "story_entities": [
+        "Adobe Firefly",
+        "adobefirefly",
+        "adobe",
+        "firefly"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-13T01:16:37.195Z",
+      "edition_window_end": "2026-11-13T01:10:26.187Z",
+      "shown_day": "2026-11-13"
     }
   ],
   "scores": {
+    "article_ae61e7b311ee955f582b": {
+      "article_id": "article_ae61e7b311ee955f582b",
+      "total": 40,
+      "breakdown": {
+        "importance": 10,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 1,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度C",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-12T18:45:17.000Z"
+    },
+    "article_19eedac79e1c31705b49": {
+      "article_id": "article_19eedac79e1c31705b49",
+      "total": 18,
+      "breakdown": {
+        "importance": 10,
+        "topicality": 0,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度C",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-11-12T04:03:45.000Z"
+    },
     "article_d6d23163b98ddfa1ea7a": {
       "article_id": "article_d6d23163b98ddfa1ea7a",
-      "total": 97,
+      "total": 88,
       "breakdown": {
         "importance": 45,
         "topicality": 15,
         "scope": 10,
         "authority": 10,
-        "freshness": 9,
+        "freshness": 0,
         "tool_evolution": 8,
         "penalty": 0
       },
@@ -2770,33 +2877,6 @@
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_ff5d8598029d984627a7",
-      "story_id": "story_f52966ff5b8b61f821",
-      "title": "Canva、従業員の22％に影響する組織再編を実施",
-      "primary_entity": "Canva",
-      "story_subject": "Canva組織再編",
-      "event_type": "other",
-      "event_stage": "announced",
-      "event_scope": "Canva全社、従業員22%",
-      "story_entities": [
-        "Canva",
-        "canva"
-      ],
-      "fact_slots": [
-        {
-          "type": "count",
-          "scope": "組織再編の影響範囲",
-          "value": "従業員の22%",
-          "normalized_value": "22%"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-09T20:48:01.864Z",
-      "edition_window_end": "2026-11-09T20:42:17.886Z"
-    },
     {
       "article_id": "article_a77102b85141104e4668",
       "story_id": "story_b6cb7366b573cddcd0",
@@ -3193,6 +3273,58 @@
       "previous_article_id": "",
       "selected_at": "2026-11-12T18:22:25.142Z",
       "edition_window_end": "2026-11-12T18:18:12.889Z"
+    },
+    {
+      "article_id": "article_ae61e7b311ee955f582b",
+      "story_id": "story_8e21426092e97dbfdd",
+      "title": "Perplexityがテキスト抽出機能を備えた新モデル「Decider V1.3」を公開",
+      "primary_entity": "Perplexity",
+      "story_subject": "Decider V1.3",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Perplexityのモデル",
+      "story_entities": [
+        "Perplexity",
+        "Decider V1.3",
+        "perplexity",
+        "deciderv1.3",
+        "decider"
+      ],
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "Perplexityモデル",
+          "value": "Decider V1.3",
+          "normalized_value": "deciderv1.3"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-13T01:16:37.195Z",
+      "edition_window_end": "2026-11-13T01:10:26.187Z"
+    },
+    {
+      "article_id": "article_19eedac79e1c31705b49",
+      "story_id": "story_7abc2fb08af950f1bf",
+      "title": "Adobe Fireflyで作る「リバース・シネマグラフ」の制作方法",
+      "primary_entity": "Adobe",
+      "story_subject": "リバース・シネマグラフ制作",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "個人クリエイター向け",
+      "story_entities": [
+        "Adobe Firefly",
+        "adobefirefly",
+        "adobe",
+        "firefly"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-13T01:16:37.195Z",
+      "edition_window_end": "2026-11-13T01:10:26.187Z"
     }
   ]
 }
