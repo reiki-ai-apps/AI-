@@ -7,39 +7,45 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-13T17:43:34.551Z",
-  "window_end": "2026-11-14T00:54:46.566Z",
-  "last_window_end": "2026-11-14T00:54:46.566Z",
-  "last_checked_at": "2026-11-14T01:00:14.355Z",
-  "last_published_at": "2026-11-13T17:47:46.205Z",
-  "home_content_changed_at": "2026-11-13T17:47:46.205Z",
-  "consecutive_unchanged_editions": 1,
-  "consecutive_zero_candidate_editions": 1,
-  "update_health": "DEGRADED",
-  "update_health_reasons": [
-    "今回の新着掲載は0件です。前の日までに載せた記事は出さず、今日まだ載せていない記事だけを表示しています",
-    "前の日と重ならない検証済み記事が3件未満です"
-  ],
-  "edition_status": "NO_NEW_STORIES",
-  "candidate_count": 0,
-  "distinct_candidate_count": 0,
+  "window_start": "2026-11-14T00:54:46.566Z",
+  "window_end": "2026-11-14T01:48:27.326Z",
+  "last_window_end": "2026-11-14T01:48:27.326Z",
+  "last_checked_at": "2026-11-14T01:52:41.035Z",
+  "last_published_at": "2026-11-14T01:52:41.035Z",
+  "home_content_changed_at": "2026-11-14T01:52:41.035Z",
+  "consecutive_unchanged_editions": 0,
+  "consecutive_zero_candidate_editions": 0,
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
+  "edition_status": "NEW_STORIES",
+  "candidate_count": 4,
+  "distinct_candidate_count": 4,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 0,
+  "novel_candidate_count": 4,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 1,
+  "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 0,
+  "new_selected_count": 4,
   "continued_selected_count": 1,
-  "tool_evolution_selected_count": 1,
-  "carried_forward": true,
-  "partially_carried_forward": false,
+  "tool_evolution_selected_count": 3,
+  "carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_18c147869768f571614a",
+    "article_313b678a4ad838f36ed0",
+    "article_131a818ddff9c5ce28b6",
+    "article_e60478ab9991d84b8d82",
     "article_61a5c9aa2fc7ff3cd21c"
   ],
-  "new_article_ids": [],
+  "new_article_ids": [
+    "article_18c147869768f571614a",
+    "article_313b678a4ad838f36ed0",
+    "article_131a818ddff9c5ce28b6",
+    "article_e60478ab9991d84b8d82"
+  ],
   "continued_article_ids": [
     "article_61a5c9aa2fc7ff3cd21c"
   ],
@@ -53,7 +59,7 @@
   ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 42,
+  "blocked_previous_day_count": 38,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -381,7 +387,11 @@
     "article_ae61e7b311ee955f582b": "2026-11-13",
     "article_19eedac79e1c31705b49": "2026-11-13",
     "article_7c2e270da984977ef286": "2026-11-13",
-    "article_61a5c9aa2fc7ff3cd21c": "2026-11-14"
+    "article_61a5c9aa2fc7ff3cd21c": "2026-11-14",
+    "article_18c147869768f571614a": "2026-11-14",
+    "article_313b678a4ad838f36ed0": "2026-11-14",
+    "article_131a818ddff9c5ce28b6": "2026-11-14",
+    "article_e60478ab9991d84b8d82": "2026-11-14"
   },
   "home_shown_story_log": [
     {
@@ -2710,9 +2720,182 @@
       "selected_at": "2026-11-13T17:47:46.205Z",
       "edition_window_end": "2026-11-13T17:43:34.551Z",
       "shown_day": "2026-11-14"
+    },
+    {
+      "article_id": "article_18c147869768f571614a",
+      "story_id": "story_89f5f53bab433b283a",
+      "title": "OpenAIがChatGPT Walletを公開、dotsが決済を代行",
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT Wallet",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "不明",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT Wallet",
+        "dots",
+        "openai",
+        "chatgptwallet"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-14T01:52:41.035Z",
+      "edition_window_end": "2026-11-14T01:48:27.326Z",
+      "shown_day": "2026-11-14"
+    },
+    {
+      "article_id": "article_313b678a4ad838f36ed0",
+      "story_id": "story_a2f35220755bdf7afa",
+      "title": "DeepSeekがアプリ全機能のAPIを開放、開発者がワンクリックで再現可能に",
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeekアプリ全機能のAPI開放",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "API・全世界",
+      "story_entities": [
+        "DeepSeek",
+        "API",
+        "従量課金",
+        "deepseek",
+        "api"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-14T01:52:41.035Z",
+      "edition_window_end": "2026-11-14T01:48:27.326Z",
+      "shown_day": "2026-11-14"
+    },
+    {
+      "article_id": "article_131a818ddff9c5ce28b6",
+      "story_id": "story_31b49cb1358df6bf04",
+      "title": "AI無断模倣の声、声優・津田健次郎さんの訴訟からパブリシティ権を考える",
+      "primary_entity": "津田健次郎",
+      "story_subject": "AI声模倣をめぐるパブリシティ権訴訟",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "日本",
+      "story_entities": [
+        "津田健次郎",
+        "パブリシティ権",
+        "AI音声",
+        "ai音声"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-14T01:52:41.035Z",
+      "edition_window_end": "2026-11-14T01:48:27.326Z",
+      "shown_day": "2026-11-14"
+    },
+    {
+      "article_id": "article_e60478ab9991d84b8d82",
+      "story_id": "story_08ab90053540d90661",
+      "title": "メイヨークリニック、AI責任者のカルストロム氏を次期CEOに選出",
+      "primary_entity": "Mayo Clinic",
+      "story_subject": "メイヨークリニック次期CEO人事",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "米国",
+      "story_entities": [
+        "Mayo Clinic",
+        "Matthew Callstrom",
+        "mayoclinic",
+        "matthewcallstrom"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-14T01:52:41.035Z",
+      "edition_window_end": "2026-11-14T01:48:27.326Z",
+      "shown_day": "2026-11-14"
     }
   ],
   "scores": {
+    "article_18c147869768f571614a": {
+      "article_id": "article_18c147869768f571614a",
+      "total": 83,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 20,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 2,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "制度・安全への影響",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-14T01:04:35.000Z"
+    },
+    "article_313b678a4ad838f36ed0": {
+      "article_id": "article_313b678a4ad838f36ed0",
+      "total": 78,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 10,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "大きな製品・市場変化",
+        "遅れて確認できた新着",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-14T00:35:00.000Z"
+    },
+    "article_131a818ddff9c5ce28b6": {
+      "article_id": "article_131a818ddff9c5ce28b6",
+      "total": 66,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "制度・安全への影響",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-11-14T00:04:21.000Z"
+    },
+    "article_e60478ab9991d84b8d82": {
+      "article_id": "article_e60478ab9991d84b8d82",
+      "total": 63,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 7,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "重要な経営・研究体制",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-11-13T21:37:00.000Z"
+    },
     "article_61a5c9aa2fc7ff3cd21c": {
       "article_id": "article_61a5c9aa2fc7ff3cd21c",
       "total": 56,
@@ -2972,6 +3155,96 @@
       "previous_article_id": "",
       "selected_at": "2026-11-13T17:47:46.205Z",
       "edition_window_end": "2026-11-13T17:43:34.551Z"
+    },
+    {
+      "article_id": "article_18c147869768f571614a",
+      "story_id": "story_89f5f53bab433b283a",
+      "title": "OpenAIがChatGPT Walletを公開、dotsが決済を代行",
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT Wallet",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "不明",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT Wallet",
+        "dots",
+        "openai",
+        "chatgptwallet"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-14T01:52:41.035Z",
+      "edition_window_end": "2026-11-14T01:48:27.326Z"
+    },
+    {
+      "article_id": "article_313b678a4ad838f36ed0",
+      "story_id": "story_a2f35220755bdf7afa",
+      "title": "DeepSeekがアプリ全機能のAPIを開放、開発者がワンクリックで再現可能に",
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeekアプリ全機能のAPI開放",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "API・全世界",
+      "story_entities": [
+        "DeepSeek",
+        "API",
+        "従量課金",
+        "deepseek",
+        "api"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-14T01:52:41.035Z",
+      "edition_window_end": "2026-11-14T01:48:27.326Z"
+    },
+    {
+      "article_id": "article_131a818ddff9c5ce28b6",
+      "story_id": "story_31b49cb1358df6bf04",
+      "title": "AI無断模倣の声、声優・津田健次郎さんの訴訟からパブリシティ権を考える",
+      "primary_entity": "津田健次郎",
+      "story_subject": "AI声模倣をめぐるパブリシティ権訴訟",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "日本",
+      "story_entities": [
+        "津田健次郎",
+        "パブリシティ権",
+        "AI音声",
+        "ai音声"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-14T01:52:41.035Z",
+      "edition_window_end": "2026-11-14T01:48:27.326Z"
+    },
+    {
+      "article_id": "article_e60478ab9991d84b8d82",
+      "story_id": "story_08ab90053540d90661",
+      "title": "メイヨークリニック、AI責任者のカルストロム氏を次期CEOに選出",
+      "primary_entity": "Mayo Clinic",
+      "story_subject": "メイヨークリニック次期CEO人事",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "米国",
+      "story_entities": [
+        "Mayo Clinic",
+        "Matthew Callstrom",
+        "mayoclinic",
+        "matthewcallstrom"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-14T01:52:41.035Z",
+      "edition_window_end": "2026-11-14T01:48:27.326Z"
     }
   ]
 }
