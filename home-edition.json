@@ -7,45 +7,50 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-13T12:14:16.890Z",
-  "window_end": "2026-11-13T17:43:34.551Z",
-  "last_window_end": "2026-11-13T17:43:34.551Z",
-  "last_checked_at": "2026-11-13T17:47:46.205Z",
+  "window_start": "2026-11-13T17:43:34.551Z",
+  "window_end": "2026-11-14T00:54:46.566Z",
+  "last_window_end": "2026-11-14T00:54:46.566Z",
+  "last_checked_at": "2026-11-14T01:00:14.355Z",
   "last_published_at": "2026-11-13T17:47:46.205Z",
   "home_content_changed_at": "2026-11-13T17:47:46.205Z",
-  "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 0,
+  "consecutive_unchanged_editions": 1,
+  "consecutive_zero_candidate_editions": 1,
   "update_health": "DEGRADED",
   "update_health_reasons": [
+    "今回の新着掲載は0件です。前の日までに載せた記事は出さず、今日まだ載せていない記事だけを表示しています",
     "前の日と重ならない検証済み記事が3件未満です"
   ],
-  "edition_status": "NEW_STORIES",
-  "candidate_count": 1,
-  "distinct_candidate_count": 1,
+  "edition_status": "NO_NEW_STORIES",
+  "candidate_count": 0,
+  "distinct_candidate_count": 0,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 1,
+  "novel_candidate_count": 0,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
   "selected_count": 1,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 1,
-  "continued_selected_count": 0,
+  "new_selected_count": 0,
+  "continued_selected_count": 1,
   "tool_evolution_selected_count": 1,
-  "carried_forward": false,
+  "carried_forward": true,
   "partially_carried_forward": false,
   "article_ids": [
     "article_61a5c9aa2fc7ff3cd21c"
   ],
-  "new_article_ids": [
+  "new_article_ids": [],
+  "continued_article_ids": [
     "article_61a5c9aa2fc7ff3cd21c"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continuation_sources": {
+    "article_61a5c9aa2fc7ff3cd21c": "previous_edition"
+  },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-14",
-  "same_day_article_ids": [],
+  "same_day_article_ids": [
+    "article_61a5c9aa2fc7ff3cd21c"
+  ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
   "blocked_previous_day_count": 42,
@@ -2724,207 +2729,12 @@
         "重要度B",
         "主要AI企業・基盤",
         "大きな製品・市場変化",
-        "遅れて確認できた新着",
         "AIツールの能力進化"
       ],
       "published_at": "2026-11-13T03:05:40.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_0bd9ec26da6b2fb7c4f5",
-      "story_id": "story_20b6e6254553e5f8ad",
-      "title": "韓国KOSPIが一時3.2%安、DeepSeek新モデルとAI資金調達懸念が背景",
-      "primary_entity": "DeepSeek",
-      "story_subject": "DeepSeek新モデル発表と韓国株式市場の下落",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "韓国",
-      "story_entities": [
-        "KOSPI",
-        "DeepSeek",
-        "韓国株式市場",
-        "kospi",
-        "deepseek"
-      ],
-      "fact_slots": [
-        {
-          "type": "amount",
-          "scope": "KOSPI下落率",
-          "value": "3.2%",
-          "normalized_value": "3.2%"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-11-10T17:52:35.788Z",
-      "edition_window_end": "2026-11-10T17:48:26.200Z"
-    },
-    {
-      "article_id": "article_8fe677db1cbe1688e632",
-      "story_id": "story_6382b5c75eabd50613",
-      "title": "Grok 4.8の遅延理由、イーロン・マスク氏がソフトウェア全面書き換えと説明",
-      "primary_entity": "xAI",
-      "story_subject": "Grok4.8のリリース遅延",
-      "event_type": "other",
-      "event_stage": "delayed",
-      "event_scope": "全世界",
-      "story_entities": [
-        "Grok",
-        "xAI",
-        "イーロン・マスク",
-        "grok",
-        "xai"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-10T17:52:35.788Z",
-      "edition_window_end": "2026-11-10T17:48:26.200Z"
-    },
-    {
-      "article_id": "article_638567fe29c0de3c97a9",
-      "story_id": "story_baedf51e9faa0f8073",
-      "title": "Perplexityの新AIエージェント、Mac上でローカル動作に対応",
-      "primary_entity": "Perplexity",
-      "story_subject": "Perplexityのローカル動作AIエージェント",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "Mac(デスクトップ)",
-      "story_entities": [
-        "Perplexity",
-        "AIエージェント",
-        "Mac",
-        "perplexity",
-        "aiエージェント"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-11-10T17:52:35.788Z",
-      "edition_window_end": "2026-11-10T17:48:26.200Z"
-    },
-    {
-      "article_id": "article_03392c65ecf95119eabd",
-      "story_id": "story_1e527c440cb86304be",
-      "title": "オーストラリア、罰則権限を持つAI安全規制機関の設置を計画",
-      "primary_entity": "オーストラリア政府",
-      "story_subject": "AI安全規制機関の新設計画",
-      "event_type": "policy",
-      "event_stage": "proposed",
-      "event_scope": "オーストラリア",
-      "story_entities": [
-        "オーストラリア政府",
-        "AI安全規制機関",
-        "ai安全規制機関"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-10T17:52:35.788Z",
-      "edition_window_end": "2026-11-10T17:48:26.200Z"
-    },
-    {
-      "article_id": "article_06a5c5c95f873caf46c1",
-      "story_id": "story_3f48825416bfdca3dc",
-      "title": "Google、新モデル「Gemini 4 Carbon」を一般公開",
-      "primary_entity": "Google",
-      "story_subject": "Gemini 4 Carbon",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "API・Google AI Ultra",
-      "story_entities": [
-        "Google",
-        "Gemini 4 Carbon",
-        "Google AI Ultra",
-        "google",
-        "gemini4carbon"
-      ],
-      "fact_slots": [
-        {
-          "type": "date",
-          "scope": "導入価格終了日",
-          "value": "2026-11-30",
-          "normalized_value": "2026-11-30"
-        }
-      ],
-      "relation_type": "follow_up",
-      "dedupe_decision": "follow_up",
-      "previous_article_id": "article_dc5a7163f86d81315196",
-      "selected_at": "2026-11-11T00:46:43.794Z",
-      "edition_window_end": "2026-11-11T00:41:49.168Z"
-    },
-    {
-      "article_id": "article_72b73e9993ca3419c688",
-      "story_id": "story_2507c091de2edaeb3d",
-      "title": "Adobe「Firefly」、AIと対話しながら制作できる機能を拡充",
-      "primary_entity": "Adobe",
-      "story_subject": "Adobe Firefly",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "Firefly全体",
-      "story_entities": [
-        "Adobe",
-        "Firefly",
-        "adobe",
-        "firefly"
-      ],
-      "fact_slots": [],
-      "relation_type": "follow_up",
-      "dedupe_decision": "follow_up",
-      "previous_article_id": "article_596ca5ff6bad0baf0b7e",
-      "selected_at": "2026-11-11T00:46:43.794Z",
-      "edition_window_end": "2026-11-11T00:41:49.168Z"
-    },
-    {
-      "article_id": "article_b48f56e1364b6fce577e",
-      "story_id": "story_0ff7a30cb8afcc3931",
-      "title": "Perplexity、タブを閉じても動き続けるAIエージェント機能を発表",
-      "primary_entity": "Perplexity",
-      "story_subject": "タブを閉じても継続動作するAIエージェント機能",
-      "event_type": "release",
-      "event_stage": "announced",
-      "event_scope": "不明",
-      "story_entities": [
-        "Perplexity",
-        "AIエージェント",
-        "perplexity",
-        "aiエージェント"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-11T00:46:43.794Z",
-      "edition_window_end": "2026-11-11T00:41:49.168Z"
-    },
-    {
-      "article_id": "article_18ad3411a1899016c460",
-      "story_id": "story_a0e3ccbf6ca80bae7e",
-      "title": "SB C&Sと東京都北区、Canva活用でデザイン業務効率化の協定を締結",
-      "primary_entity": "SB C&S",
-      "story_subject": "Canva活用協定(東京都北区)",
-      "event_type": "partnership",
-      "event_stage": "announced",
-      "event_scope": "東京都北区",
-      "story_entities": [
-        "SB C&S",
-        "東京都北区",
-        "Canva",
-        "sbcs",
-        "canva"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-11-11T00:46:43.794Z",
-      "edition_window_end": "2026-11-11T00:41:49.168Z"
-    },
     {
       "article_id": "article_fe7e292f3400eee0850b",
       "story_id": "story_f1c13379ad987fb8d4",
