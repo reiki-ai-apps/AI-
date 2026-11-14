@@ -7,32 +7,34 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-14T00:54:46.566Z",
-  "window_end": "2026-11-14T01:48:27.326Z",
-  "last_window_end": "2026-11-14T01:48:27.326Z",
-  "last_checked_at": "2026-11-14T01:52:41.035Z",
+  "window_start": "2026-11-14T01:48:27.326Z",
+  "window_end": "2026-11-14T11:28:52.760Z",
+  "last_window_end": "2026-11-14T11:28:52.760Z",
+  "last_checked_at": "2026-11-14T11:30:27.829Z",
   "last_published_at": "2026-11-14T01:52:41.035Z",
   "home_content_changed_at": "2026-11-14T01:52:41.035Z",
-  "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 0,
-  "update_health": "HEALTHY",
-  "update_health_reasons": [],
-  "edition_status": "NEW_STORIES",
-  "candidate_count": 4,
-  "distinct_candidate_count": 4,
+  "consecutive_unchanged_editions": 1,
+  "consecutive_zero_candidate_editions": 1,
+  "update_health": "DEGRADED",
+  "update_health_reasons": [
+    "今回の新着掲載は0件です。前の日までに載せた記事は出さず、今日まだ載せていない記事だけを表示しています"
+  ],
+  "edition_status": "NO_NEW_STORIES",
+  "candidate_count": 0,
+  "distinct_candidate_count": 0,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 4,
+  "novel_candidate_count": 0,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 4,
-  "continued_selected_count": 1,
+  "new_selected_count": 0,
+  "continued_selected_count": 5,
   "tool_evolution_selected_count": 3,
-  "carried_forward": false,
-  "partially_carried_forward": true,
+  "carried_forward": true,
+  "partially_carried_forward": false,
   "article_ids": [
     "article_18c147869768f571614a",
     "article_313b678a4ad838f36ed0",
@@ -40,26 +42,33 @@
     "article_e60478ab9991d84b8d82",
     "article_61a5c9aa2fc7ff3cd21c"
   ],
-  "new_article_ids": [
+  "new_article_ids": [],
+  "continued_article_ids": [
     "article_18c147869768f571614a",
     "article_313b678a4ad838f36ed0",
     "article_131a818ddff9c5ce28b6",
-    "article_e60478ab9991d84b8d82"
-  ],
-  "continued_article_ids": [
+    "article_e60478ab9991d84b8d82",
     "article_61a5c9aa2fc7ff3cd21c"
   ],
   "continuation_sources": {
+    "article_18c147869768f571614a": "previous_edition",
+    "article_313b678a4ad838f36ed0": "previous_edition",
+    "article_131a818ddff9c5ce28b6": "previous_edition",
+    "article_e60478ab9991d84b8d82": "previous_edition",
     "article_61a5c9aa2fc7ff3cd21c": "previous_edition"
   },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-14",
   "same_day_article_ids": [
+    "article_18c147869768f571614a",
+    "article_313b678a4ad838f36ed0",
+    "article_131a818ddff9c5ce28b6",
+    "article_e60478ab9991d84b8d82",
     "article_61a5c9aa2fc7ff3cd21c"
   ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 38,
+  "blocked_previous_day_count": 36,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -2819,13 +2828,13 @@
   "scores": {
     "article_18c147869768f571614a": {
       "article_id": "article_18c147869768f571614a",
-      "total": 83,
+      "total": 81,
       "breakdown": {
         "importance": 45,
         "topicality": 20,
         "scope": 3,
         "authority": 5,
-        "freshness": 2,
+        "freshness": 0,
         "tool_evolution": 8,
         "penalty": 0
       },
@@ -2853,7 +2862,6 @@
       "reasons": [
         "重要度A",
         "大きな製品・市場変化",
-        "遅れて確認できた新着",
         "AIツールの能力進化"
       ],
       "published_at": "2026-11-14T00:35:00.000Z"
@@ -2872,8 +2880,7 @@
       },
       "reasons": [
         "重要度A",
-        "制度・安全への影響",
-        "遅れて確認できた新着"
+        "制度・安全への影響"
       ],
       "published_at": "2026-11-14T00:04:21.000Z"
     },
@@ -2891,8 +2898,7 @@
       },
       "reasons": [
         "重要度A",
-        "重要な経営・研究体制",
-        "遅れて確認できた新着"
+        "重要な経営・研究体制"
       ],
       "published_at": "2026-11-13T21:37:00.000Z"
     },
