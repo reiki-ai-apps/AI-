@@ -2,6 +2,150 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_0a254257990c7e7eba11",
+      "story_id": "story_1db2b0a70b58683d25",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "パープレキシティ、1万基超のGPUで新研究部門「フロンティア・リサーチ」立ち上げ",
+      "source_published_at": "2026-11-16T19:13:48.000Z",
+      "published_at": "2026-11-16T19:13:48.000Z",
+      "fetched_at": "2026-11-16T20:26:46.700Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "AI検索企業パープレキシティが1万個以上のGPUを使う研究部門「フロンティア・リサーチ」を開始したと報じられた。",
+      "source_name": "FourWeekMBA",
+      "source_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNX01pTXNxZGR2R2lfT3FQUEJFX1Y2MGw2QXJncHBycHdiZGxDcEFtUHgtNGRkSEpmNVRYeml4OWpqcjJzS0lxQTVPRTM0NEF4QmM1QUgyb3c4a0Zyd3o0YkpQdWFMVEx2N09vVXhxalY3YkJPTU5GUUVlekRPUE5wUTVqRmhvdWZD?oc=5",
+      "story_entities": [
+        "Perplexity",
+        "GPU",
+        "フロンティア・リサーチ",
+        "perplexity",
+        "gpu"
+      ],
+      "primary_entity": "Perplexity",
+      "story_subject": "フロンティア・リサーチ部門の立ち上げ",
+      "event_type": "other",
+      "event_stage": "announced",
+      "event_scope": "全世界",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "フロンティア・リサーチ部門のGPU数",
+          "value": "10000台以上",
+          "normalized_value": "10000"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "パープレキシティが1万基超のGPUを使う新研究部門を立ち上げたことが明らかになった。",
+      "detail": "AI検索企業のパープレキシティが、「フロンティア・リサーチ」という新しい研究部門を立ち上げたとFourWeekMBAが報じました。この部門は、1万個以上のGPU（AIの計算を高速に行う専用の半導体）を使うとされています。これまでパープレキシティは検索サービスが中心でしたが、今回は最先端の人工知能研究に本格的に乗り出す点が新しい動きです。\n\n記事によると、1万基を超えるGPUという大規模な計算資源を投入することが明らかになっています。GPUの数が多いほど、大きな人工知能モデルを学習させたり、高度な研究を進めたりしやすくなります。巨大IT企業だけでなく検索企業も大規模な計算資源を確保し始めていることは、AI開発競争が激しくなっていることを示しています。\n\nこの研究部門が具体的にどんな技術や製品を生み出すのかは、まだ発表されていません。利用者への直接の影響も今のところ明確ではありません。今後の研究成果の発表が注目されます。",
+      "new_facts": [
+        "パープレキシティが1万基以上のGPUを使う研究部門を立ち上げた"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_025d8baefe51f5051ea2",
+      "story_id": "story_2929d22337a977cae3",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6409090909090909,
+      "title": "Gemini、地域ごとの新音声66種をアプリに追加",
+      "source_published_at": "2026-11-16T18:45:00.000Z",
+      "published_at": "2026-11-16T18:45:00.000Z",
+      "fetched_at": "2026-11-16T20:26:46.700Z",
+      "event_at": "",
+      "event_status": "開始済み",
+      "raw_excerpt": "Googleが対話AI「Gemini」アプリに66種類の地域別音声を追加し、AndroidとiOSで利用できるようにしたと発表した。",
+      "source_name": "blog.google",
+      "source_url": "https://blog.google/innovation-and-ai/products/gemini-app/regional-voices/",
+      "story_entities": [
+        "Gemini",
+        "Google",
+        "gemini",
+        "google",
+        "google-gemini"
+      ],
+      "primary_entity": "Google",
+      "story_subject": "Geminiアプリの地域別音声機能",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Android・iOS、対応言語地域",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "新規音声数",
+          "value": "66種類",
+          "normalized_value": "66"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "Geminiアプリの音声読み上げ機能に、66種類の地域別音声を新たに追加したこと。",
+      "detail": "Googleが対話AI「Gemini」アプリに新しい音声機能を追加したと発表した。簡単に言うと、使う地域の話し方やなまりに合わせた声でAIと会話できるようにする機能のこと。以前は、こうした地域ごとの話し方の違いに対応した音声は用意されていなかった。\n\n今回追加されたのは66種類の地域別音声で、アメリカ英語、イギリス英語、インド英語、ヒンディー語、ブラジルポルトガル語、インドネシア語、韓国語などが含まれる。仕組みとしては、わざとらしいアクセントではなく、自然な話し方のリズムや抑揚を再現するように調整されている。選んだ音声は、チャットの読み上げや音声対話機能「Gemini Live」など、アプリ全体で使われる。\n\n利用者はアプリの設定画面やGemini Liveのメニューから好きな音声を選べるようになる。注意点として、対応する言語や地域は今回の発表時点のものに限られる可能性がある。今後さらに言語や地域が追加されるかどうかは、この記事からは確認できていない。",
+      "new_facts": [
+        "Googleは「Gemini」アプリに66種類の地域別音声を追加し、AndroidとiOSで利用できるようにした。",
+        "音声にはアメリカ英語、イギリス英語、インド英語、ヒンディー語、ブラジルポルトガル語、インドネシア語、韓国語などが含まれる。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_2d7a5d6b20fff3cd431e",
+      "story_id": "story_09a498bef85fc7a32e",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 0.6,
+      "title": "OpenAI、学術研究者向け無料AI利用プログラムを拡大",
+      "source_published_at": "2026-11-16T17:00:00.000Z",
+      "published_at": "2026-11-16T17:00:00.000Z",
+      "fetched_at": "2026-11-16T20:26:46.700Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "OpenAIが「ChatGPT for Academic Researchers」プログラムを拡大し、世界の研究者20万人に無料で最先端AIモデルを提供すると発表した。",
+      "source_name": "openai.com",
+      "source_url": "https://openai.com/index/expanding-chatgpt-for-academic-researchers",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT for Academic Researchers",
+        "openai",
+        "chatgptforacademicresearchers",
+        "chatgpt"
+      ],
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT for Academic Researchers program expansion",
+      "event_type": "other",
+      "event_stage": "expanded",
+      "event_scope": "全世界",
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "対象研究者数",
+          "value": "200000人",
+          "normalized_value": "200000"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_primary_entity",
+        "same_subject"
+      ],
+      "change_summary": "研究者向け無料プログラムの対象を世界の研究者20万人に拡大したこと。",
+      "detail": "OpenAIが研究者向け無料プログラムを拡大すると発表した。簡単に言うと、大学や研究機関の研究者がお金を払わずに最新のAIモデル（「フロンティアモデル」、最も高性能な部類のAIのこと）を使えるようにする取り組みのこと。以前は対象者が限られていたが、今回大幅に広げられた。\n\n発表によると、世界中の研究者20万人が対象になる。仕組みは、ChatGPTの中にある学術研究者向けプログラムを通じて、無料のアクセス権を配る形になっている。なぜ重要かというと、研究費が限られる大学や新興国の研究者でも、高性能なAIを使った研究ができるようになるため。\n\n対象となる研究者はChatGPTの最先端モデルを無料で研究に使えるようになる。注意点として、対象条件や申請方法の詳しい内容はこの記事では確認できていない。プログラムの開始時期や審査基準なども、まだ発表されていない。",
+      "new_facts": [
+        "OpenAIがChatGPT for Academic Researchersプログラムを拡大し、世界の研究者20万人に無料でフロンティアモデルへのアクセスを提供すると発表した。"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_08e820f93707afd6c6fc",
       "story_id": "story_df4caec447ae271da3",
       "story_sequence": 1,
@@ -84,6 +228,52 @@
       "event_date_precision": "unknown"
     },
     {
+      "article_id": "article_403bd941e0ac1aa59de9_rev_42d59e5fbb37",
+      "story_id": "story_726f3d633ec19ddb56",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "NVIDIAフアンCEO辞任を今井翔太氏が解説",
+      "source_published_at": "2026-11-16T10:00:12.000Z",
+      "published_at": "2026-11-16T10:00:12.000Z",
+      "fetched_at": "2026-11-16T12:46:13.353Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "AI研究者の今井翔太氏が、NVIDIAのジェンスン・フアンCEO辞任とAI業界への影響を動画で解説した。",
+      "source_name": "TBS CROSS DIG with Bloomberg",
+      "source_url": "https://www.youtube.com/watch?v=-a2I9CPwrS8",
+      "story_entities": [
+        "NVIDIA",
+        "ジェンスン・フアン",
+        "今井翔太",
+        "nvidia",
+        "ジェンスンフアン"
+      ],
+      "primary_entity": "今井翔太",
+      "story_subject": "NVIDIA CEOジェンスン・フアン氏辞任",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "全世界",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "similar_title",
+        "same_scope",
+        "same_url_content_changed"
+      ],
+      "change_summary": "NVIDIAのジェンスン・フアンCEOが辞任したとされ、AI業界の今後をAI研究者が論じている。",
+      "detail": "AI研究者の今井翔太氏が、NVIDIAのジェンスン・フアンCEO辞任を動画で解説した。番組はTBS系のAI QUESTで、収録日は2026年11月16日となっている。革ジャン姿で知られたフアン氏の不在は、業界に大きな衝撃を与えたという。\n\n今井氏はNVIDIAを、巨額資金でAI企業を支える「AIの中央銀行」と呼んだ。半導体設計へのAI活用や大手企業の自社チップ開発で、競争環境は変わりつつある。中国の半導体国産化が進む中、米中のAI開発競争の行方にも注目が集まる。\n\n今井氏は、技術の進歩と収益化は別問題だとOpenAIなどの課題を指摘した。フアン氏不在で、AI企業が収益の仕組みを作る時間が短くなるとの見方もある。辞任の詳しい経緯や後任については、動画内で明確には語られていない。",
+      "new_facts": [
+        "今井翔太氏がNVIDIAのジェンスン・フアンCEO辞任について動画で解説した",
+        "NVIDIAを巨額資金でAI企業を支える「AIの中央銀行」と表現した"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_c761d8a64f86da9f9144",
       "story_id": "story_051c678ea48f6702ae",
       "story_sequence": 1,
@@ -116,6 +306,52 @@
       "dedupe_reasons": [
         "shared_entity",
         "same_subject"
+      ],
+      "change_summary": "Claudeを会議に呼び、会話内容に応じて議事録とタスクが自動で更新される様子が実演された。",
+      "detail": "AI活用解説者のKEITO氏が、Claudeをオンライン会議に参加させる機能を動画で紹介した。ClaudeはAnthropic社が提供する対話AIで、Googleカレンダーと連携して会議に参加する。従来の文字起こしツールと違い、会話に合わせて議事録やタスクが自動で更新される点が特徴だ。\n\n動画では、Claudeをカレンダーから招待し、Google Meetへの参加を承認する手順を見せた。会話中に声で議事録の見出しを日本語に直すよう頼むと、その場で修正される様子も確認できる。議事録はホワイトボード形式にまとめられ、色分けや装飾を加えてチームで共有できるという。\n\n会議中の調べ物を頼んでページを作成させるなど、会議にまつわる作業を幅広く任せられる。KEITO氏は実際に使った感想として、チームでの活用方法にも触れている。利用に必要な料金プランや対応環境など、詳しい条件は動画内では明示されていない。",
+      "new_facts": [
+        "ClaudeをGoogleカレンダー・Google Meetと連携させ会議に参加させられる",
+        "会話内容に応じて議事録やタスクが自動更新され、声で修正指示も可能"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_c761d8a64f86da9f9144_rev_aab47382c9c8",
+      "story_id": "story_051c678ea48f6702ae",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Claudeをオンライン会議に参加させる機能を実演",
+      "source_published_at": "2026-11-16T09:00:13.000Z",
+      "published_at": "2026-11-16T09:00:13.000Z",
+      "fetched_at": "2026-11-16T12:46:13.353Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "AI解説者のKEITO氏が、ClaudeをGoogle Meetの会議に参加させ議事録を自動作成する機能を実演した。",
+      "source_name": "KEITO【AI&WEB ch】",
+      "source_url": "https://www.youtube.com/watch?v=hz1Dpa0G0qo",
+      "story_entities": [
+        "Claude",
+        "Google Meet",
+        "KEITO",
+        "claude",
+        "googlemeet"
+      ],
+      "primary_entity": "KEITO",
+      "story_subject": "Claudeミーティング機能",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "Google Meet連携",
+      "fact_slots": [],
+      "structured_complete": true,
+      "dedupe_decision": "uncertain",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "similar_title",
+        "same_scope",
+        "same_url_content_changed"
       ],
       "change_summary": "Claudeを会議に呼び、会話内容に応じて議事録とタスクが自動で更新される様子が実演された。",
       "detail": "AI活用解説者のKEITO氏が、Claudeをオンライン会議に参加させる機能を動画で紹介した。ClaudeはAnthropic社が提供する対話AIで、Googleカレンダーと連携して会議に参加する。従来の文字起こしツールと違い、会話に合わせて議事録やタスクが自動で更新される点が特徴だ。\n\n動画では、Claudeをカレンダーから招待し、Google Meetへの参加を承認する手順を見せた。会話中に声で議事録の見出しを日本語に直すよう頼むと、その場で修正される様子も確認できる。議事録はホワイトボード形式にまとめられ、色分けや装飾を加えてチームで共有できるという。\n\n会議中の調べ物を頼んでページを作成させるなど、会議にまつわる作業を幅広く任せられる。KEITO氏は実際に使った感想として、チームでの活用方法にも触れている。利用に必要な料金プランや対応環境など、詳しい条件は動画内では明示されていない。",
