@@ -7,12 +7,12 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-15T17:07:00.116Z",
-  "window_end": "2026-11-15T23:59:29.665Z",
-  "last_window_end": "2026-11-15T23:59:29.665Z",
-  "last_checked_at": "2026-11-16T00:04:43.187Z",
-  "last_published_at": "2026-11-16T00:04:43.187Z",
-  "home_content_changed_at": "2026-11-16T00:04:43.187Z",
+  "window_start": "2026-11-15T23:59:29.665Z",
+  "window_end": "2026-11-16T12:46:13.353Z",
+  "last_window_end": "2026-11-16T12:46:13.353Z",
+  "last_checked_at": "2026-11-16T12:51:14.685Z",
+  "last_published_at": "2026-11-16T12:51:14.685Z",
+  "home_content_changed_at": "2026-11-16T12:51:14.685Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
@@ -30,20 +30,20 @@
   "minimum_selected_count": 3,
   "new_selected_count": 3,
   "continued_selected_count": 2,
-  "tool_evolution_selected_count": 3,
+  "tool_evolution_selected_count": 2,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
-    "article_38b5c0ece61a61de3238",
-    "article_74996b9e8bafc4bd2bc3",
-    "article_57e74557313d2115db86",
+    "article_e47d1108fd4fcea0518a",
+    "article_107e90d889715d730853",
+    "article_08e820f93707afd6c6fc",
     "article_da8190979f23dacaf2f5",
     "article_8bb6c087b27d7d797213"
   ],
   "new_article_ids": [
-    "article_38b5c0ece61a61de3238",
-    "article_74996b9e8bafc4bd2bc3",
-    "article_57e74557313d2115db86"
+    "article_e47d1108fd4fcea0518a",
+    "article_107e90d889715d730853",
+    "article_08e820f93707afd6c6fc"
   ],
   "continued_article_ids": [
     "article_da8190979f23dacaf2f5",
@@ -61,7 +61,7 @@
   ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 32,
+  "blocked_previous_day_count": 29,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -397,7 +397,10 @@
     "article_3ec074b868d1e4a18e41": "2026-11-16",
     "article_38b5c0ece61a61de3238": "2026-11-16",
     "article_74996b9e8bafc4bd2bc3": "2026-11-16",
-    "article_57e74557313d2115db86": "2026-11-16"
+    "article_57e74557313d2115db86": "2026-11-16",
+    "article_e47d1108fd4fcea0518a": "2026-11-16",
+    "article_107e90d889715d730853": "2026-11-16",
+    "article_08e820f93707afd6c6fc": "2026-11-16"
   },
   "home_shown_story_log": [
     {
@@ -2708,18 +2711,96 @@
       "selected_at": "2026-11-16T00:04:43.187Z",
       "edition_window_end": "2026-11-15T23:59:29.665Z",
       "shown_day": "2026-11-16"
+    },
+    {
+      "article_id": "article_e47d1108fd4fcea0518a",
+      "story_id": "story_50916ba2616de96110",
+      "title": "DeepSeek、APIに検索・OCR・音声機能を追加 音声は120秒まで",
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek API新機能(検索・OCR・音声)",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "API",
+      "story_entities": [
+        "DeepSeek",
+        "API",
+        "OCR",
+        "deepseek",
+        "api"
+      ],
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "音声処理の上限時間",
+          "value": "120秒",
+          "normalized_value": "120"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-16T12:51:14.685Z",
+      "edition_window_end": "2026-11-16T12:46:13.353Z",
+      "shown_day": "2026-11-16"
+    },
+    {
+      "article_id": "article_107e90d889715d730853",
+      "story_id": "story_6bdefaffdef028f3d5",
+      "title": "LG Uplus、企業向けセキュリティサービス「U+SASE」提供開始",
+      "primary_entity": "LG Uplus",
+      "story_subject": "U+SASE",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "韓国・企業向け",
+      "story_entities": [
+        "LG Uplus",
+        "U+SASE",
+        "lguplus",
+        "usase",
+        "uplus"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-16T12:51:14.685Z",
+      "edition_window_end": "2026-11-16T12:46:13.353Z",
+      "shown_day": "2026-11-16"
+    },
+    {
+      "article_id": "article_08e820f93707afd6c6fc",
+      "story_id": "story_df4caec447ae271da3",
+      "title": "教員が生成AIで教育用アプリを開発、公開・利用の指針を作成",
+      "primary_entity": "不明(教員)",
+      "story_subject": "教育用AIアプリ開発と利用指針",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "日本・学校",
+      "story_entities": [
+        "教育新聞",
+        "生成AI",
+        "教育用アプリ",
+        "生成ai"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-16T12:51:14.685Z",
+      "edition_window_end": "2026-11-16T12:46:13.353Z",
+      "shown_day": "2026-11-16"
     }
   ],
   "scores": {
-    "article_38b5c0ece61a61de3238": {
-      "article_id": "article_38b5c0ece61a61de3238",
-      "total": 71,
+    "article_e47d1108fd4fcea0518a": {
+      "article_id": "article_e47d1108fd4fcea0518a",
+      "total": 69,
       "breakdown": {
         "importance": 25,
         "topicality": 20,
         "scope": 6,
         "authority": 5,
-        "freshness": 7,
+        "freshness": 5,
         "tool_evolution": 8,
         "penalty": 0
       },
@@ -2729,36 +2810,36 @@
         "大きな製品・市場変化",
         "AIツールの能力進化"
       ],
-      "published_at": "2026-11-15T21:56:20.000Z"
+      "published_at": "2026-11-16T06:15:14.000Z"
     },
-    "article_74996b9e8bafc4bd2bc3": {
-      "article_id": "article_74996b9e8bafc4bd2bc3",
-      "total": 63,
+    "article_107e90d889715d730853": {
+      "article_id": "article_107e90d889715d730853",
+      "total": 56,
       "breakdown": {
         "importance": 25,
-        "topicality": 10,
+        "topicality": 20,
         "scope": 6,
         "authority": 5,
-        "freshness": 9,
-        "tool_evolution": 8,
+        "freshness": 0,
+        "tool_evolution": 0,
         "penalty": 0
       },
       "reasons": [
         "重要度B",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
+        "制度・安全への影響",
+        "大きな製品・市場変化"
       ],
-      "published_at": "2026-11-15T23:30:00.000Z"
+      "published_at": "2026-11-16T00:00:00.000Z"
     },
-    "article_57e74557313d2115db86": {
-      "article_id": "article_57e74557313d2115db86",
-      "total": 35,
+    "article_08e820f93707afd6c6fc": {
+      "article_id": "article_08e820f93707afd6c6fc",
+      "total": 40,
       "breakdown": {
         "importance": 10,
         "topicality": 10,
-        "scope": 3,
+        "scope": 6,
         "authority": 5,
-        "freshness": 7,
+        "freshness": 9,
         "tool_evolution": 0,
         "penalty": 0
       },
@@ -2766,7 +2847,7 @@
         "重要度C",
         "制度・安全への影響"
       ],
-      "published_at": "2026-11-15T22:00:00.000Z"
+      "published_at": "2026-11-16T11:55:00.000Z"
     },
     "article_da8190979f23dacaf2f5": {
       "article_id": "article_da8190979f23dacaf2f5",
@@ -2812,81 +2893,6 @@
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_ae61e7b311ee955f582b",
-      "story_id": "story_8e21426092e97dbfdd",
-      "title": "Perplexityがテキスト抽出機能を備えた新モデル「Decider V1.3」を公開",
-      "primary_entity": "Perplexity",
-      "story_subject": "Decider V1.3",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "Perplexityのモデル",
-      "story_entities": [
-        "Perplexity",
-        "Decider V1.3",
-        "perplexity",
-        "deciderv1.3",
-        "decider"
-      ],
-      "fact_slots": [
-        {
-          "type": "version",
-          "scope": "Perplexityモデル",
-          "value": "Decider V1.3",
-          "normalized_value": "deciderv1.3"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-11-13T01:16:37.195Z",
-      "edition_window_end": "2026-11-13T01:10:26.187Z"
-    },
-    {
-      "article_id": "article_19eedac79e1c31705b49",
-      "story_id": "story_7abc2fb08af950f1bf",
-      "title": "Adobe Fireflyで作る「リバース・シネマグラフ」の制作方法",
-      "primary_entity": "Adobe",
-      "story_subject": "リバース・シネマグラフ制作",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "個人クリエイター向け",
-      "story_entities": [
-        "Adobe Firefly",
-        "adobefirefly",
-        "adobe",
-        "firefly"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-13T01:16:37.195Z",
-      "edition_window_end": "2026-11-13T01:10:26.187Z"
-    },
-    {
-      "article_id": "article_7c2e270da984977ef286",
-      "story_id": "story_ce71e31a7c05feecf1",
-      "title": "NVIDIA CEO辞任発表を受け韓国政府が緊急会議、半導体供給への影響点検",
-      "primary_entity": "NVIDIA",
-      "story_subject": "ジェンスン・フアンCEOの辞任",
-      "event_type": "other",
-      "event_stage": "announced",
-      "event_scope": "韓国・世界的な半導体供給網",
-      "story_entities": [
-        "NVIDIA",
-        "ジェンスン・フアン",
-        "韓国政府",
-        "nvidia",
-        "ジェンスンフアン"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-13T12:20:04.082Z",
-      "edition_window_end": "2026-11-13T12:14:16.890Z"
-    },
     {
       "article_id": "article_61a5c9aa2fc7ff3cd21c",
       "story_id": "story_b1cd61d78e4f78dcde",
@@ -3351,6 +3357,81 @@
       "previous_article_id": "",
       "selected_at": "2026-11-16T00:04:43.187Z",
       "edition_window_end": "2026-11-15T23:59:29.665Z"
+    },
+    {
+      "article_id": "article_e47d1108fd4fcea0518a",
+      "story_id": "story_50916ba2616de96110",
+      "title": "DeepSeek、APIに検索・OCR・音声機能を追加 音声は120秒まで",
+      "primary_entity": "DeepSeek",
+      "story_subject": "DeepSeek API新機能(検索・OCR・音声)",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "API",
+      "story_entities": [
+        "DeepSeek",
+        "API",
+        "OCR",
+        "deepseek",
+        "api"
+      ],
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "音声処理の上限時間",
+          "value": "120秒",
+          "normalized_value": "120"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-16T12:51:14.685Z",
+      "edition_window_end": "2026-11-16T12:46:13.353Z"
+    },
+    {
+      "article_id": "article_107e90d889715d730853",
+      "story_id": "story_6bdefaffdef028f3d5",
+      "title": "LG Uplus、企業向けセキュリティサービス「U+SASE」提供開始",
+      "primary_entity": "LG Uplus",
+      "story_subject": "U+SASE",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "韓国・企業向け",
+      "story_entities": [
+        "LG Uplus",
+        "U+SASE",
+        "lguplus",
+        "usase",
+        "uplus"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-16T12:51:14.685Z",
+      "edition_window_end": "2026-11-16T12:46:13.353Z"
+    },
+    {
+      "article_id": "article_08e820f93707afd6c6fc",
+      "story_id": "story_df4caec447ae271da3",
+      "title": "教員が生成AIで教育用アプリを開発、公開・利用の指針を作成",
+      "primary_entity": "不明(教員)",
+      "story_subject": "教育用AIアプリ開発と利用指針",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "日本・学校",
+      "story_entities": [
+        "教育新聞",
+        "生成AI",
+        "教育用アプリ",
+        "生成ai"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-16T12:51:14.685Z",
+      "edition_window_end": "2026-11-16T12:46:13.353Z"
     }
   ]
 }
