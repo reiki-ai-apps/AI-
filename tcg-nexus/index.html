@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0a1020" />
+  <meta name="theme-color" content="#f4f5fa" />
   <meta name="description" content="TCG Nexus — トレカの仕入・在庫・抽選・売却・利益をひとつに。" />
   <title>TCG Nexus</title>
   <link rel="manifest" href="manifest.webmanifest" />
@@ -12,8 +12,25 @@
 </head>
 <body>
   <header class="app-header">
-    <div class="brand">TCG <span>Nexus</span></div>
-    <button id="btn-settings" class="icon-btn" aria-label="設定">⚙</button>
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <defs>
+          <linearGradient id="holo-mark" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#38d9f5" />
+            <stop offset=".35" stop-color="#8b7cf6" />
+            <stop offset=".7" stop-color="#f472b6" />
+            <stop offset="1" stop-color="#fbbf24" />
+          </linearGradient>
+        </defs>
+        <rect x="9" y="3" width="17" height="23" rx="3.5" fill="#1b1d2e" transform="rotate(12 17.5 14.5)" />
+        <rect x="6" y="5" width="17" height="23" rx="3.5" fill="url(#holo-mark)" />
+        <path d="M14.5 10.5l1.4 3 3.2.4-2.4 2.2.6 3.2-2.8-1.6-2.8 1.6.6-3.2-2.4-2.2 3.2-.4z" fill="#fff" opacity=".95" />
+      </svg>
+      <span class="brand-word">TCG <b>Nexus</b></span>
+    </div>
+    <button id="btn-settings" class="icon-btn" aria-label="設定">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" /><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" /></svg>
+    </button>
   </header>
 
   <main>
@@ -23,13 +40,19 @@
     <section id="view-money" class="view" aria-label="お金"></section>
   </main>
 
-  <button id="fab" class="fab" aria-label="登録メニューを開く">＋</button>
+  <button id="fab" class="fab" aria-label="登録メニューを開く">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+  </button>
 
   <nav class="bottom-nav" aria-label="メインナビゲーション">
-    <button class="nav-item" data-view="home"><span class="ico" aria-hidden="true">🏠</span>ホーム</button>
-    <button class="nav-item" data-view="products"><span class="ico" aria-hidden="true">📦</span>商品</button>
-    <button class="nav-item" data-view="lottery"><span class="ico" aria-hidden="true">🎯</span>抽選</button>
-    <button class="nav-item" data-view="money"><span class="ico" aria-hidden="true">💰</span>お金</button>
+    <button class="nav-item" data-view="home">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V20h5v-6h4v6h5V9.5" /></svg>ホーム</button>
+    <button class="nav-item" data-view="products">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="12" height="16" rx="2" /><path d="M4.5 6.5v12A2.5 2.5 0 0 0 7 21h9" /></svg>商品</button>
+    <button class="nav-item" data-view="lottery">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z" /><path d="M14 6v12" stroke-dasharray="2 2" /></svg>抽選</button>
+    <button class="nav-item" data-view="money">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H18v4" /><rect x="4" y="7.5" width="17" height="12" rx="2.5" /><path d="M16.5 13.5h1.5" /></svg>お金</button>
   </nav>
 
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>

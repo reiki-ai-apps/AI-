@@ -1,5 +1,5 @@
 // network-first Service Worker。アプリシェル変更時は CACHE_NAME を必ず更新すること。
-const CACHE_NAME = "tcgnexus-v5";
+const CACHE_NAME = "tcgnexus-v6";
 const ASSETS = [
   ".",
   "index.html",

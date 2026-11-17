@@ -59,6 +59,89 @@ function todayStr() {
 }
 function badge(status) { return el("span", { class: `badge st-${status}` }, status); }
 
+/* ---------- 線の絵(SVG。createElementNSで組む。innerHTMLは使わない) ---------- */
+const ICONS = {
+  box: ["M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z", "M3.5 7.5 12 12l8.5-4.5", "M12 12v9"],
+  sell: ["M12 3v12", "M7.5 10.5 12 15l4.5-4.5", "M4 17v2.5h16V17"],
+  ticket: ["M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z", "M9.5 12h5"],
+};
+function svgIcon(name) {
+  const ns = "http://www.w3.org/2000/svg";
+  const s = document.createElementNS(ns, "svg");
+  s.setAttribute("viewBox", "0 0 24 24");
+  s.setAttribute("aria-hidden", "true");
+  for (const d of ICONS[name] || []) {
+    const p = document.createElementNS(ns, "path");
+    p.setAttribute("d", d);
+    s.append(p);
+  }
+  return s;
+}
+
+/** 大きく見せる金額。「円」だけ小さくする */
+function bigYen(n, signed = false) {
+  const s = signed ? Money.fmtSigned(n) : Money.fmt(n);
+  if (s === "—" || !s.endsWith("円")) return s;
+  return [s.slice(0, -1), el("span", { class: "yen" }, "円")];
+}
+
+/* ---------- カードの絵(名前から色を決めて描く。実在のカードの絵は使わない) ---------- */
+function hueOf(text) {
+  let h = 0;
+  for (const ch of String(text || "")) h = (h * 31 + ch.codePointAt(0)) >>> 0;
+  return h % 360;
+}
+function cardArt(p, opts = {}) {
+  const name = String(p.name || "?");
+  const initial = [...name.replace(/[\s　【】\[\]()（）「」]/g, "")].slice(0, 2).join("") || "?";
+  const cls = `card-art${opts.foil ? " foil" : ""}${opts.muted ? " muted" : ""}`;
+  return el("div", { class: cls, style: `--h:${hueOf(name)}`, "aria-hidden": "true" },
+    el("div", { class: "art-frame" },
+      el("div", { class: "art-series" }, p.series || state.settings.mainTcg || "TCG"),
+      el("div", { class: "art-window" }, el("span", { class: "art-initial" }, initial)),
+      el("div", { class: "art-name" }, name)));
+}
+const SOLD_STATUSES = ["売却済み", "入金済み"];
+function soldProfit(p) {
+  if (!p.sale) return null;
+  try { return Money.realizedProfit(p.sale, p.purchase); } catch { return null; }
+}
+/** 商品1つを、カードの絵つきの札にする(一覧とホームで同じ形) */
+function productTile(p, onclick) {
+  const cost = safeCost(p);
+  const est = estOf(p);
+  const u = safeUnrealized(p);
+  const sold = SOLD_STATUSES.includes(p.status);
+  const ended = ["返品", "キャンセル"].includes(p.status);
+  let k, value, sub, subCls = "";
+  if (sold) {
+    const profit = soldProfit(p);
+    k = "売却額";
+    value = p.sale ? Money.fmt(p.sale.grossAmount) : "—";
+    sub = profit === null ? "利益 —" : `利益 ${Money.fmtSigned(profit)}`;
+    subCls = profit === null ? "" : pnlClass(profit);
+  } else if (est !== null) {
+    k = "推定の相場";
+    value = Money.fmt(est);
+    const pct = u !== null && cost > 0 ? Money.roi(u, cost) : null;
+    sub = u === null ? "含み損益 —" : `${Money.fmtSigned(u)}${pct !== null ? `(${pct > 0 ? "+" : ""}${pct}%)` : ""}`;
+    subCls = u === null ? "" : pnlClass(u);
+  } else {
+    k = "購入額";
+    value = Money.fmt(cost);
+    sub = "相場はまだ";
+  }
+  return el("div", { class: "prod-tile", onclick, role: "button", tabindex: "0", "aria-label": `${p.name} ${p.status}` },
+    el("div", { class: "tile-art-wrap" },
+      cardArt(p, { foil: !sold && u !== null && u > 0, muted: ended }),
+      badge(p.status),
+      p.quantity > 1 ? el("span", { class: "tile-qty" }, `×${p.quantity}`) : null),
+    el("div", { class: "tile-name" }, p.name),
+    el("div", { class: "tile-k" }, k),
+    el("div", { class: "tile-value" }, value),
+    el("div", { class: `tile-sub ${subCls}` }, sub));
+}
+
 /* ---------- 無料の約束・書き出しの見守り・ホーム画面に置く手順 ---------- */
 const FREE_PROMISE = "自分の記録を見る・書き出すのは、ずっと無料。ほかの機能も、今は無料です。";
 const EXPORT_REMIND_DAYS = 7;
@@ -198,14 +281,20 @@ function renderHome() {
   const now = new Date();
   const h = now.getHours();
   const greet = h < 5 ? "こんばんは" : h < 11 ? "おはようございます" : h < 18 ? "こんにちは" : "こんばんは";
-  root.append(el("div", { class: "greeting" }, greet));
+  const wd = "日月火水木金土"[now.getDay()];
+  root.append(el("div", { class: "greeting" },
+    el("span", { class: "greet-sub" }, `${now.getMonth() + 1}月${now.getDate()}日(${wd})`), greet));
+
+  // コレクション評価額(ホームの大きな札)
+  const s = Fin.computeSummary(state.products, state.settings, now);
+  root.append(renderHero(s));
   root.append(renderKeepCard(now));
 
   // 今日やること
   const todos = Fin.buildTodos(state.products, state.lotteries, state.settings, now);
-  root.append(el("h2", { class: "section" }, `今日やること ${todos.length}件`));
+  root.append(el("h2", { class: "section" }, "今日やること", el("span", { class: "count" }, `${todos.length}件`)));
   if (todos.length === 0) {
-    root.append(el("div", { class: "empty-note" }, "今日対応が必要な期限はありません 🎉"));
+    root.append(el("div", { class: "empty-note" }, "今日、期限が来るものはありません"));
   }
   for (const t of todos) {
     let tag, tagClass = "", sub = "", onclick;
@@ -237,28 +326,17 @@ function renderHome() {
     ));
   }
 
-  // お金の要約
-  const s = Fin.computeSummary(state.products, state.settings, now);
-  root.append(el("h2", { class: "section" }, "お金の要約"));
-  root.append(moneySummaryGrid(s, false));
-
-  // 注目商品(含み損益の大きい順・上位3)
+  // 値動きの大きい商品(含み損益の大きい順・上位6。横に流して見る)
   const notable = state.products
     .filter((p) => ["保有中", "出品中", "到着待ち"].includes(p.status) && estOf(p) !== null)
     .map((p) => ({ p, u: safeUnrealized(p) }))
     .filter((x) => x.u !== null)
     .sort((a, b) => Math.abs(b.u) - Math.abs(a.u))
-    .slice(0, 3);
+    .slice(0, 6);
   if (notable.length) {
-    root.append(el("h2", { class: "section" }, "注目商品"));
-    for (const { p, u } of notable) {
-      root.append(el("div", { class: "card clickable todo-card", onclick: () => { switchView("products"); openProductDetail(p.id); }, role: "button", tabindex: "0" },
-        el("span", { class: `todo-tag ${u >= 0 ? "gold" : "urgent"}` }, Money.fmtSigned(u)),
-        el("div", { class: "todo-body" },
-          el("div", { class: "todo-title" }, p.name),
-          el("div", { class: "todo-sub" }, `推定 ${Money.fmt(estOf(p))} / 原価 ${Money.fmt(safeCost(p))}`))
-      ));
-    }
+    root.append(el("h2", { class: "section" }, "値動きの大きい商品"));
+    root.append(el("div", { class: "tile-row" },
+      ...notable.map(({ p }) => productTile(p, () => { switchView("products"); openProductDetail(p.id); }))));
   }
 
   // 最近の変化(監査ログ末尾3件)
@@ -269,6 +347,26 @@ function renderHome() {
     for (const a of recent) ul.append(el("li", {}, `${fmtDateTime(a.at)} ${a.detail || a.action}`));
     root.append(el("div", { class: "card" }, ul));
   }
+}
+
+/** ホームの大きな札: 持っている物の評価額・含み損益・今月の仕入・確定利益・今後払う金額 */
+function renderHero(s) {
+  const activeCount = state.products.filter((p) => ["到着待ち", "保有中", "出品中"].includes(p.status)).length;
+  const hasEstimate = s.unrealizedCount > 0;
+  const stat = (k, v, cls = "") => el("div", { class: "hero-stat" }, el("div", { class: "k" }, k), el("div", { class: `v ${cls}` }, v));
+  return el("section", { class: "hero", "aria-label": "コレクション評価額" },
+    el("div", { class: "hero-top" },
+      el("span", { class: "hero-label" }, "コレクション評価額"),
+      el("span", { class: "hero-chip" }, `${activeCount}点`)),
+    el("div", { class: "hero-value" }, bigYen(s.estimatedValue)),
+    el("div", { class: `hero-delta ${hasEstimate ? pnlClass(s.unrealized) : ""}` },
+      activeCount === 0 ? "右下の＋から、最初の1点を登録" :
+        hasEstimate ? `含み損益 ${Money.fmtSigned(s.unrealized)}` : "相場を入れると、含み損益が出ます"),
+    s.estimateMissing > 0 ? el("div", { class: "hero-note" }, `相場をまだ入れていない${s.estimateMissing}件は、買った値段で数えています`) : null,
+    el("div", { class: "hero-stats" },
+      stat("今月の仕入", Money.fmt(s.monthSpend)),
+      stat("確定利益", Money.fmtSigned(s.realizedProfit), pnlClass(s.realizedProfit)),
+      stat("今後払う", Money.fmt(s.pendingPayment))));
 }
 
 /** ホームの一番上: 無料の約束・最後の書き出し・書き出す/読み戻す・ホーム画面に置く手順 */
@@ -355,33 +453,8 @@ function renderProducts() {
     return;
   }
 
-  for (const p of list) {
-    const cost = safeCost(p);
-    const est = estOf(p);
-    const u = safeUnrealized(p);
-    const card = el("div", { class: "card clickable", onclick: () => openProductDetail(p.id), role: "button", tabindex: "0" },
-      el("div", { class: "prod-head" },
-        el("div", {},
-          el("div", { class: "prod-name" }, p.name),
-          p.series ? el("div", { class: "prod-series" }, p.series + (p.quantity > 1 ? ` × ${p.quantity}` : "")) : (p.quantity > 1 ? el("div", { class: "prod-series" }, `× ${p.quantity}`) : null)),
-        badge(p.status))
-    );
-    if (p.status === "売却済み" || p.status === "入金済み") {
-      const profit = p.sale ? (() => { try { return Money.realizedProfit(p.sale, p.purchase); } catch { return null; } })() : null;
-      card.append(
-        kv("購入額", Money.fmt(cost)),
-        kv("売却額", p.sale ? Money.fmt(p.sale.grossAmount) : "—"),
-        kv("実質利益", Money.fmtSigned(profit), pnlClass(profit ?? 0)),
-      );
-    } else {
-      card.append(
-        kv("購入額", Money.fmt(cost)),
-        kv("現在値", est !== null ? `推定${Money.fmt(est)}` : "相場未入力", est !== null ? "gold" : "dim"),
-        kv("含み損益", Money.fmtSigned(u), u === null ? "dim" : pnlClass(u)),
-      );
-    }
-    root.append(card);
-  }
+  root.append(el("div", { class: "prod-grid" },
+    ...list.map((p) => productTile(p, () => openProductDetail(p.id)))));
 }
 function kv(k, v, vClass = "") {
   return el("div", { class: "kv-row" }, el("span", { class: "k" }, k), el("span", { class: `v ${vClass}` }, v));
@@ -395,6 +468,8 @@ function openProductDetail(id) {
   const u = safeUnrealized(p);
   const body = [];
 
+  body.push(el("div", { class: "detail-art" },
+    cardArt(p, { foil: !SOLD_STATUSES.includes(p.status) && u !== null && u > 0, muted: ["返品", "キャンセル"].includes(p.status) })));
   body.push(el("div", { class: "prod-head" },
     el("div", {},
       p.series ? el("div", { class: "prod-series" }, p.series) : null,
@@ -1301,10 +1376,13 @@ function pickRestoreFile() {
    ＋メニュー / 設定 / オンボーディング
 ========================================================== */
 function openPlusMenu() {
+  const item = (icon, title, sub, onclick) => el("button", { class: "plus-item", onclick },
+    el("span", { class: "plus-ico" }, svgIcon(icon)),
+    el("span", {}, el("span", { class: "plus-title" }, title), el("span", { class: "plus-sub" }, sub)));
   const body = el("div", { class: "plus-menu" },
-    el("button", { class: "btn block", onclick: () => { closeModal(); openProductForm(); } }, "📦 商品を登録(手入力)"),
-    el("button", { class: "btn block", onclick: () => { closeModal(); openSellPicker(); } }, "💴 売却を登録"),
-    el("button", { class: "btn block", onclick: () => { closeModal(); openLotteryForm(); } }, "🎯 抽選を登録"),
+    item("box", "商品を登録", "買った物と値段を記録する", () => { closeModal(); openProductForm(); }),
+    item("sell", "売却を登録", "売れた値段と手数料から、利益を出す", () => { closeModal(); openSellPicker(); }),
+    item("ticket", "抽選を登録", "締切と結果発表の日を見張る", () => { closeModal(); openLotteryForm(); }),
     el("div", { class: "ai-note" }, "スクリーンショット読取り・メール取込みは今後のアップデートで対応予定です。"));
   openModal("何を登録しますか?", [body]);
 }
