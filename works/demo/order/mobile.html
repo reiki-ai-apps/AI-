@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>工事注文（スマホ用）</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Hiragino Sans", "Yu Gothic UI", Meiryo, sans-serif; background: #f0f5f1; color: #1c2822; padding-bottom: 86px; }
+    header { position: sticky; top: 0; z-index: 5; padding: 12px 16px; background: #075c34; color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.15); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    header .eyebrow { font-size: 10px; letter-spacing: .18em; color: #a9daba; font-weight: 800; }
+    header h1 { font-size: 17px; margin-top: 2px; }
+    header .user { font-size: 11px; color: #d0e9d8; text-align: right; }
+    .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px 16px 4px; }
+    .controls select, .controls input { min-height: 44px; padding: 0 12px; border: 1px solid #cad5cd; border-radius: 9px; background: #fff; font-size: 15px; color: #1c2822; width: 100%; }
+    .controls input { grid-column: 1 / -1; }
+    .count { padding: 4px 16px 0; font-size: 12px; color: #536158; }
+    .list { padding: 10px 16px; display: grid; gap: 10px; }
+    .card { background: #fff; border: 1px solid #dde6df; border-radius: 14px; padding: 14px 16px; box-shadow: 0 4px 12px rgba(8,61,36,.05); }
+    .card.focus { border-color: #087a42; box-shadow: 0 0 0 3px rgba(8,122,66,.18); }
+    .card .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+    .card .no { font-size: 11px; color: #536158; }
+    .chip { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; margin-left: 4px; }
+    .chip.mailed { color: #086c37; background: #ddf3e4; }
+    .chip.new { color: #8a6100; background: #fff3d6; }
+    .chip.approved { color: #255b9a; background: #e6effb; }
+    .chip.pending { color: #b42318; background: #fdecec; }
+    .chip.done { color: #086c37; background: #ddf3e4; }
+    .chip.working { color: #255b9a; background: #e6effb; }
+    .chip.before { color: #536158; background: #eef2ef; }
+    .chip.overdue { color: #b42318; background: #fdecec; }
+    .card.is-done { opacity: .72; }
+    .done-btn { margin-top: 10px; min-height: 40px; width: 100%; border: 1px solid #b9d8c5; border-radius: 9px; background: #fff; color: #087a42; font-size: 13px; font-weight: 800; cursor: pointer; }
+    .done-btn.ghost { color: #536158; border-color: #cad5cd; }
+    .card h2 { font-size: 16px; line-height: 1.5; margin-bottom: 2px; }
+    .card .customer { font-size: 13px; color: #38433c; margin-bottom: 8px; }
+    .card .amount { font-size: 22px; font-weight: 800; color: #075c34; font-variant-numeric: tabular-nums; }
+    .card .amount small { font-size: 11px; font-weight: 700; color: #536158; margin-right: 6px; }
+    .card .sub { margin-top: 2px; font-size: 12px; color: #38433c; font-variant-numeric: tabular-nums; }
+    .card .meta { margin-top: 6px; font-size: 12px; color: #536158; line-height: 1.6; }
+    .card details { margin-top: 8px; font-size: 13px; }
+    .card summary { cursor: pointer; color: #087a42; font-weight: 700; font-size: 12px; }
+    .card details div { margin-top: 6px; padding: 8px 10px; background: #f6faf7; border-radius: 8px; line-height: 1.6; white-space: pre-wrap; }
+    .empty { padding: 60px 20px; text-align: center; color: #536158; font-size: 14px; }
+    .error { margin: 16px; padding: 14px; border-radius: 12px; background: #fdecec; color: #a02020; font-size: 13px; }
+    nav.bottom { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 4px; padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); background: #fff; border-top: 1px solid #dde6df; }
+    nav.bottom a, nav.bottom button { min-height: 46px; display: flex; align-items: center; justify-content: center; border: 1px solid #cad5cd; border-radius: 10px; background: #fff; color: #1c2822; font-size: 12px; padding: 0 2px; font-weight: 700; text-decoration: none; cursor: pointer; }
+    nav.bottom a.primary { background: #087a42; border-color: #087a42; color: #fff; }
+  .brand-art,.empty-illustration{display:none!important}</style>
+</head>
+<body>
+  <header>
+    <div>
+      <div class="eyebrow">ORDER MOBILE</div>
+      <h1>工事注文（スマホ用）</h1>
+    </div>
+    <div class="user" id="user-label"></div>
+  </header>
+  <div class="controls">
+    <select id="year-select" aria-label="年"></select>
+    <select id="person-select" aria-label="担当"></select>
+    <input id="search" type="search" placeholder="お客様名・工事名・場所で検索">
+  </div>
+  <div class="count" id="count">—</div>
+  <div class="list" id="list"></div>
+  <div class="empty" id="empty" hidden>この条件の工事注文はありません。</div>
+  <nav class="bottom">
+    <a class="primary" href="schedule.html">📆 予定</a>
+    <a href="calendar.html">📅 工事</a>
+    <button id="new-btn" type="button">＋ 新規</button>
+    <button id="desktop-btn" type="button">🖥 PC用</button>
+    <button id="logout-btn" type="button">ログアウト</button>
+  </nav>
+  <script>window.__DEMO_META__ = {"fields": [{"key": "input_date", "label": "入力日", "type": "date", "required": true}, {"key": "staff", "label": "担当（入力者）", "type": "staff", "required": true}, {"key": "contractor", "label": "工事依頼先", "type": "contractor", "required": true}, {"key": "contractor_code", "label": "仕入先コード", "type": "text", "derived": true}, {"key": "customer_name", "label": "お客様名", "type": "text", "required": true}, {"key": "billing_to", "label": "請求先", "type": "text"}, {"key": "kubun_company", "label": "工事区分（請負元）", "type": "kubun"}, {"key": "kubun_cls", "label": "工事区分", "type": "text", "derived": true}, {"key": "site", "label": "工事場所（都道府県・市町村名）", "type": "text", "required": true}, {"key": "work_name", "label": "工事名", "type": "text", "required": true}, {"key": "work_type", "label": "工事種類", "type": "work_type"}, {"key": "work_type_cls", "label": "種別", "type": "text", "derived": true}, {"key": "industry", "label": "建設業種", "type": "industry"}, {"key": "industry_cls", "label": "業種種別", "type": "text", "derived": true}, {"key": "order_amount", "label": "受注金額（資材費含む総額・税抜）", "type": "money", "required": true}, {"key": "period_start", "label": "工期 開始", "type": "date"}, {"key": "period_end", "label": "工期 終了", "type": "date"}, {"key": "payment_amount", "label": "支払金額（税抜）", "type": "money"}, {"key": "sales_amount", "label": "売上金額（税抜）", "type": "money"}, {"key": "content_1", "label": "工事内容 1行目", "type": "line", "maxlen": 30}, {"key": "content_2", "label": "工事内容 2行目", "type": "line", "maxlen": 30}, {"key": "content_3", "label": "工事内容 3行目", "type": "line", "maxlen": 30}, {"key": "content_4", "label": "工事内容 4行目", "type": "line", "maxlen": 30}, {"key": "content_5", "label": "工事内容 5行目", "type": "line", "maxlen": 30}, {"key": "content_6", "label": "工事内容 6行目", "type": "line", "maxlen": 30}, {"key": "content_7", "label": "工事内容 7行目", "type": "line", "maxlen": 30}, {"key": "content_8", "label": "工事内容 8行目", "type": "line", "maxlen": 30}, {"key": "content_9", "label": "工事内容 9行目", "type": "line", "maxlen": 30}, {"key": "content_10", "label": "工事内容 10行目", "type": "line", "maxlen": 30}, {"key": "note_1", "label": "連絡事項 1行目", "type": "line", "maxlen": 40}, {"key": "note_2", "label": "連絡事項 2行目", "type": "line", "maxlen": 40}, {"key": "note_3", "label": "連絡事項 3行目", "type": "line", "maxlen": 40}, {"key": "note_4", "label": "連絡事項 4行目", "type": "line", "maxlen": 40}, {"key": "note_5", "label": "連絡事項 5行目", "type": "line", "maxlen": 40}, {"key": "note_6", "label": "連絡事項 6行目", "type": "line", "maxlen": 40}], "masters": {"contractors": [{"name": "見本建設 株式会社", "code": "0001", "contract_date": "2020-04-01", "tel": "", "fax": ""}, {"name": "サンプル工業", "code": "0002", "contract_date": "2021-04-01", "tel": "", "fax": ""}, {"name": "テスト設備 株式会社", "code": "0003", "contract_date": "", "tel": "", "fax": ""}, {"name": "当社施工", "code": "0000", "contract_date": "", "tel": "", "fax": ""}, {"name": "みほん造園 株式会社", "code": "0004", "contract_date": "2019-10-01", "tel": "", "fax": ""}, {"name": "例示ハウス工業", "code": "0005", "contract_date": "2022-06-15", "tel": "", "fax": ""}], "staff": [{"code": "001", "name": "担当A", "short": "担当A"}, {"code": "002", "name": "担当B", "short": "担当B"}, {"code": "003", "name": "担当C", "short": "担当C"}], "work_types": [{"name": "ハウス新設", "cls": "新築"}, {"name": "他", "cls": "改修"}], "industries": [{"name": "新設・外張り張替", "cls": "とび土工"}, {"name": "解体", "cls": "解体"}, {"name": "カーテン張替・その他改修", "cls": "その他"}], "kubun": [{"code": "", "name": "元請", "cls": "元請"}, {"code": "900001", "name": "見本建設 株式会社", "cls": "下請"}, {"code": "900002", "name": "サンプル設備工業", "cls": "下請"}]}, "company": {"name": "見本産業　株式会社", "postal": "000-0000", "address": "〇〇県〇〇市〇〇町１－２－３", "representative": "代表取締役　見本　太郎", "tel": "000-000-0000", "fax": "000-000-0000", "payment_terms": "月末締翌月１０日\n振込支払"}};</script>
+<script src="demo-api.js"></script>
+<script>
+    const $ = (s) => document.querySelector(s);
+    const state = { year: new Date().getFullYear(), staff: "", q: "" };
+
+    function money(v) {
+      if (v === "" || v == null) return "—";
+      const n = Number(String(v).replace(/[^0-9-]/g, ""));
+      return Number.isFinite(n) ? "¥" + n.toLocaleString("ja-JP") : v;
+    }
+    function esc(v) {
+      return String(v ?? "").replace(/[&<>'"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
+    }
+    const jp = (iso) => { if (!iso) return ""; const [y, m, d] = String(iso).split("-").map(Number); return y ? `${m}/${d}` : ""; };
+    const todayIso = () => { const n = new Date(); return `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, "0")}-${String(n.getDate()).padStart(2, "0")}`; };
+    function progressOf(o) {
+      const f = o.fields || {};
+      if (o.completed) return {key: "done", label: "✔ 完了"};
+      if (!o.approved) return null;
+      const today = todayIso();
+      if (f.period_start && today < f.period_start) return {key: "before", label: "工事前"};
+      if (f.period_end && today > f.period_end) return {key: "overdue", label: "予定日超過"};
+      return {key: "working", label: "工事中"};
+    }
+
+    async function api(path, options = {}) {
+      const res = await fetch(path, options);
+      if (res.status === 401) { location.href = "login.html?next=/mobile"; throw new Error("ログインしてください。"); }
+      const body = await res.json();
+      if (!res.ok) throw new Error(body.error || ("HTTP " + res.status));
+      return body;
+    }
+
+    function cardHtml(o) {
+      const f = o.fields;
+      const approval = o.approved ? '<span class="chip approved">承認済み</span>' : '<span class="chip pending">未承認</span>';
+      const mailed = o.status === "mailed" ? '<span class="chip mailed">郵送済み</span>' : '<span class="chip new">未郵送</span>';
+      const prog = progressOf(o);
+      const progChip = prog ? `<span class="chip ${prog.key}">${esc(prog.label)}</span>` : "";
+      const doneButton = !o.approved ? "" : (o.completed
+        ? `<button class="done-btn ghost" type="button" data-complete="${esc(o.id)}" data-next="0">完了を戻す</button>`
+        : `<button class="done-btn" type="button" data-complete="${esc(o.id)}" data-next="1">✔ 工事完了にする</button>`);
+      const period = f.period_start || f.period_end ? `工期：${esc(jp(f.period_start))}〜${esc(jp(f.period_end))}` : "工期：未定";
+      const contents = Array.from({length: 10}, (_, i) => f[`content_${i + 1}`] || "").filter(Boolean);
+      const notes = Array.from({length: 6}, (_, i) => f[`note_${i + 1}`] || "").filter(Boolean);
+      const detail = contents.length || notes.length
+        ? `<details><summary>工事内容・連絡事項を見る</summary><div>${esc(contents.join("\n"))}${notes.length ? "\n―― 連絡事項 ――\n" + esc(notes.join("\n")) : ""}</div></details>`
+        : "";
+      return `<article class="card ${o.completed ? "is-done" : ""}" id="order-${esc(o.id)}">
+        <div class="top"><span class="no">No.${esc(o.approval_no || o.id)}　${esc(f.contractor || "")}</span><span>${approval}${mailed}${progChip}</span></div>
+        <h2>${esc(f.work_name || "（工事名なし）")}</h2>
+        <div class="customer">${esc(f.customer_name || "")}　様　／　${esc(f.site || "")}</div>
+        <div class="amount"><small>受注</small>${money(f.order_amount)}</div>
+        <div class="sub">支払（委託）${money(f.payment_amount)}　／　売上 ${money(f.sales_amount)}</div>
+        <div class="meta">担当：${esc(f.staff || "")}　${period}<br>入力：${esc(f.input_date || "—")}</div>
+        ${detail}
+        ${doneButton}
+      </article>`;
+    }
+
+    async function setCompleted(id, completed) {
+      if (completed && !confirm(`No.${id} を「工事完了」にしますか？`)) return;
+      try {
+        await api(`api/orders/${id}/complete`, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({completed})});
+        await load();
+      } catch (e) { alert(e.message); }
+    }
+
+    async function load() {
+      const res = await api(`api/orders?staff=${encodeURIComponent(state.staff)}&year=${state.year}&q=${encodeURIComponent(state.q)}`);
+      const orders = res.orders;
+      $("#count").textContent = orders.length + "件（受注金額は税別）";
+      $("#empty").hidden = orders.length !== 0;
+      $("#list").innerHTML = orders.map(cardHtml).join("");
+      $("#list").querySelectorAll("[data-complete]").forEach((b) => b.addEventListener("click", () => setCompleted(Number(b.dataset.complete), b.dataset.next === "1")));
+    }
+
+    async function init() {
+      try {
+        const meta = await api("api/meta");
+        $("#user-label").textContent = `${meta.user.display_name}（${meta.user.role_label}）`;
+        const y = meta.current_year;
+        $("#year-select").innerHTML = [y - 2, y - 1, y, y + 1]
+          .map((v) => `<option value="${v}" ${v === state.year ? "selected" : ""}>${v}年</option>`).join("");
+        $("#person-select").innerHTML = `<option value="">担当：全体</option>` +
+          meta.masters.staff.filter((p) => p.short).map((p) => `<option value="${esc(p.short)}">${esc(p.short)}</option>`).join("");
+        $("#year-select").addEventListener("change", (e) => { state.year = Number(e.target.value); load(); });
+        $("#person-select").addEventListener("change", (e) => { state.staff = e.target.value; load(); });
+        let timer = null;
+        $("#search").addEventListener("input", (e) => { clearTimeout(timer); timer = setTimeout(() => { state.q = e.target.value.trim(); load(); }, 250); });
+        $("#new-btn").addEventListener("click", () => {
+          try { sessionStorage.setItem("order_force_desktop", "1"); } catch (e) {}
+          location.href = "index.html?new=" + todayIso();
+        });
+        $("#desktop-btn").addEventListener("click", () => {
+          try { sessionStorage.setItem("order_force_desktop", "1"); } catch (e) {}
+          location.href = "index.html";
+        });
+        $("#logout-btn").addEventListener("click", async () => {
+          await fetch("api/logout", {method: "POST", headers: {"Content-Type": "application/json"}, body: "{}"});
+          location.href = "login.html";
+        });
+        await load();
+        const openId = new URLSearchParams(location.search).get("open");
+        const card = openId && document.getElementById(`order-${openId}`);
+        if (card) { card.classList.add("focus"); card.scrollIntoView({block: "center"}); }
+      } catch (err) {
+        const box = document.createElement("div");
+        box.className = "error";
+        box.textContent = "読み込みに失敗しました: " + err.message;
+        document.body.append(box);
+      }
+    }
+    init();
+  </script>
+</body>
+</html>

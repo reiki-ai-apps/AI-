@@ -1,0 +1,273 @@
+// お試し版（URLを開くだけ版）: サーバーの代わりに、このブラウザの中だけにデータを保存する。
+// ログインは「管理者」として入った状態を再現する（お試し版では誰でも管理者）。
+(function () {
+  const META = window.__DEMO_META__;
+  const KEY = "order_demo_v4";
+  const realFetch = window.fetch.bind(window);
+  const DEMO_USER = {id: 1, username: "demo", display_name: "お試し管理者", role: "admin", role_label: "管理者"};
+  const ROLES = {admin: "管理者", manager: "管理職", staff: "営業・事務"};
+  const STAFF = () => META.masters.staff.filter((s) => s.short).map((s) => s.short);
+  // 営業の予定・日報の見本
+  const SEED_EVENTS = [
+    {staff: "担当A", date: "2026-10-13", kind: "plan", title: "見本農園様 着工立会い 9時", note: ""},
+    {staff: "担当A", date: "2026-10-15", kind: "report", title: "見本農園様 進捗確認、資材追加の相談", note: "パイプ追加 20本 見積へ"},
+    {staff: "担当B", date: "2026-10-16", kind: "plan", title: "サンプル牧場様 現地採寸 13時", note: ""},
+    {staff: "担当C", date: "2026-10-14", kind: "report", title: "みほんファーム様 補修の打合せ", note: "扉交換は10/21に"},
+    {staff: "担当B", date: "2026-10-20", kind: "plan", title: "例示農場様 換気装置の試運転", note: ""},
+  ];
+
+  // 最初に開いた時に入っている見本データ（会社名・人名・場所はすべて架空）
+  const SEED_BASE = {input_date: "2026-10-01", kubun_company: "元請", work_type: "他", industry: "新設・外張り張替"};
+  const SEED = [
+    {approved: true, mailed: true, fields: {staff: "担当A", contractor: "見本建設 株式会社", customer_name: "見本農園", site: "見本市 北町", work_name: "パイプハウス新設工事", work_type: "ハウス新設", order_amount: "1500000", payment_amount: "850000", sales_amount: "1600000", period_start: "2026-10-13", period_end: "2026-10-17", content_1: "パイプハウス 1棟 新設一式"}},
+    {approved: true, fields: {staff: "担当B", contractor: "見本建設 株式会社", customer_name: "サンプル牧場", site: "見本市 南町", work_name: "外張り張替工事", order_amount: "700000", payment_amount: "400000", sales_amount: "750000", period_start: "2026-10-26", period_end: "2026-10-30", content_1: "外張りフィルム張替 2棟"}},
+    {approved: true, mailed: true, fields: {staff: "担当A", contractor: "サンプル工業", customer_name: "テスト園芸", site: "例示町 東", work_name: "カーテン張替工事", industry: "カーテン張替・その他改修", order_amount: "500000", payment_amount: "300000", sales_amount: "520000", period_start: "2026-10-14", period_end: "2026-10-16", content_1: "内張りカーテン張替 1棟"}},
+    {approved: true, fields: {staff: "担当C", contractor: "サンプル工業", customer_name: "みほんファーム", site: "例示町 西", work_name: "ハウス補修工事", industry: "カーテン張替・その他改修", order_amount: "350000", payment_amount: "200000", sales_amount: "360000", period_start: "2026-10-21", period_end: "2026-10-23", content_1: "妻面補修・扉交換"}},
+    {approved: true, fields: {staff: "担当B", contractor: "テスト設備 株式会社", customer_name: "例示農場", site: "見本市 中央", work_name: "自動換気装置取付工事", industry: "カーテン張替・その他改修", order_amount: "800000", payment_amount: "450000", sales_amount: "820000", period_start: "2026-10-19", period_end: "2026-10-22", content_1: "自動換気装置 2台 取付"}},
+    {approved: true, fields: {staff: "担当B", contractor: "テスト設備 株式会社", customer_name: "見本農園", site: "見本市 北町", work_name: "制御盤交換工事", industry: "カーテン張替・その他改修", order_amount: "300000", payment_amount: "180000", sales_amount: "310000", period_start: "2026-11-02", period_end: "2026-11-04", content_1: "制御盤 1面 交換"}},
+    {approved: true, mailed: true, fields: {staff: "担当C", contractor: "みほん造園 株式会社", customer_name: "サンプル花き", site: "例示町 北", work_name: "旧ハウス解体工事", industry: "解体", order_amount: "900000", payment_amount: "600000", sales_amount: "950000", period_start: "2026-10-15", period_end: "2026-10-20", content_1: "旧ハウス 2棟 解体・撤去"}},
+    {approved: true, mailed: true, completed: true, fields: {staff: "担当C", contractor: "みほん造園 株式会社", customer_name: "テスト園芸", site: "例示町 東", work_name: "基礎撤去工事", industry: "解体", order_amount: "250000", payment_amount: "150000", sales_amount: "260000", period_start: "2026-10-08", period_end: "2026-10-10", content_1: "基礎コンクリート撤去"}},
+    {approved: true, fields: {staff: "担当A", contractor: "例示ハウス工業", customer_name: "みほんファーム", site: "例示町 西", work_name: "連棟ハウス新設工事", work_type: "ハウス新設", order_amount: "2400000", payment_amount: "1200000", sales_amount: "2500000", period_start: "2026-10-27", period_end: "2026-11-06", content_1: "連棟パイプハウス 3連 新設"}},
+    {approved: true, mailed: true, completed: true, fields: {staff: "担当A", contractor: "例示ハウス工業", customer_name: "例示農場", site: "見本市 中央", work_name: "育苗ハウス改修工事", order_amount: "600000", payment_amount: "350000", sales_amount: "620000", period_start: "2026-10-05", period_end: "2026-10-09", content_1: "育苗ハウス 外張り・骨組み補修"}},
+    {approved: false, fields: {staff: "担当B", contractor: "サンプル工業", customer_name: "見本農園", site: "見本市 北町", work_name: "カーテン張替工事", industry: "カーテン張替・その他改修", order_amount: "400000", payment_amount: "240000", sales_amount: "410000", period_start: "2026-11-10", period_end: "2026-11-12", content_1: "内張りカーテン張替", note_1: "承認待ちの例です"}},
+  ];
+
+  function seeded() {
+    const db = {seq: 0, orders: [], audit: [], events: [], eseq: 0};
+    const t = now();
+    let approvalSeq = 0;
+    SEED.forEach((s) => {
+      const fields = {};
+      META.fields.forEach((f) => { fields[f.key] = s.fields[f.key] ?? SEED_BASE[f.key] ?? ""; });
+      derive(fields);
+      db.seq += 1;
+      const approvalNo = s.approved ? `${yearOf(fields)}-${String(++approvalSeq).padStart(4, "0")}` : "";
+      db.orders.push({id: db.seq, approval_no: approvalNo, staff: fields.staff, year: yearOf(fields), status: s.mailed ? "mailed" : "new", approved: s.approved ? 1 : 0, approved_by: s.approved ? "お試し管理者" : "", approved_at: s.approved ? t : "", completed: s.completed ? 1 : 0, completed_by: s.completed ? "お試し管理者" : "", completed_at: s.completed ? t : "", fields, version: 1, created_at: t, updated_at: t});
+      db.audit.push({order_id: db.seq, action: "create", actor: "お試し管理者", reason: "見本データ", created_at: t});
+    });
+    SEED_EVENTS.forEach((e) => { db.eseq += 1; db.events.push({id: db.eseq, ...e, order_id: null, created_by: "お試し管理者", created_at: t, updated_at: t}); });
+    save(db);
+    return db;
+  }
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) return JSON.parse(raw) || seeded();
+    } catch (e) {}
+    return seeded();
+  }
+  function save(db) {
+    try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {}
+  }
+
+  function derive(fields) {
+    const m = META.masters;
+    const find = (list, name) => list.find((x) => x.name === String(name || "").trim()) || {};
+    fields.contractor_code = find(m.contractors, fields.contractor).code || "";
+    fields.kubun_cls = find(m.kubun, fields.kubun_company).cls || "";
+    fields.work_type_cls = find(m.work_types, fields.work_type).cls || "";
+    fields.industry_cls = find(m.industries, fields.industry).cls || "";
+  }
+
+  function validate(fields) {
+    const errors = [];
+    META.fields.forEach((f) => {
+      const value = String(fields[f.key] ?? "").trim();
+      if (f.required && !value) errors.push(`「${f.label}」を入力してください。`);
+      if (f.type === "line" && value.length > f.maxlen) errors.push(`「${f.label}」は${f.maxlen}文字以内にしてください。`);
+    });
+    if (fields.period_start && fields.period_end && fields.period_start > fields.period_end) {
+      errors.push("工期の開始が終了より後になっています。");
+    }
+    return errors;
+  }
+
+  function json(status, data) {
+    return new Response(JSON.stringify(data), {status, headers: {"Content-Type": "application/json; charset=utf-8"}});
+  }
+  const now = () => new Date().toISOString();
+  const yearOf = (fields) => Number(String(fields.input_date || "").slice(0, 4)) || new Date().getFullYear();
+
+  function listOrders(db, staff, year, q) {
+    let items = db.orders.filter((o) => o.year === year && (!staff || o.staff === staff));
+    const needle = String(q || "").trim().toLowerCase();
+    if (needle) {
+      items = items.filter((o) => ["customer_name", "work_name", "site", "contractor", "billing_to"]
+        .some((k) => String(o.fields[k] || "").toLowerCase().includes(needle)));
+    }
+    return items.sort((a, b) => String(a.fields.input_date).localeCompare(String(b.fields.input_date)) || a.id - b.id);
+  }
+
+  async function handle(url, options) {
+    const method = (options.method || "GET").toUpperCase();
+    const path = url.pathname.replace(/^.*\/api\//, "/api/");
+    const body = options.body ? JSON.parse(options.body) : {};
+    const db = load();
+    let match;
+
+    if (path === "/api/me") return json(200, {user: DEMO_USER});
+    if (path === "/api/login") return json(200, {user: DEMO_USER, next: "index.html"});
+    if (path === "/api/logout") return json(200, {message: "お試し版ではログアウトしても同じ画面に戻ります。"});
+    if (path === "/api/meta") return json(200, {...META, current_year: new Date().getFullYear(), user: DEMO_USER, roles: ROLES});
+    if (path === "/api/orders" && method === "GET") {
+      return json(200, {orders: listOrders(db, url.searchParams.get("staff") || "", Number(url.searchParams.get("year")), url.searchParams.get("q"))});
+    }
+    if (path === "/api/orders" && method === "POST") {
+      const fields = {};
+      META.fields.forEach((f) => { fields[f.key] = (body.fields || {})[f.key] ?? ""; });
+      derive(fields);
+      const errors = validate(fields);
+      if (errors.length) return json(422, {error: errors.join("\n"), code: "validation"});
+      db.seq += 1;
+      const order = {id: db.seq, staff: fields.staff, year: yearOf(fields), status: "new", approved: 0, approved_by: "", approved_at: "", fields, version: 1, created_at: now(), updated_at: now()};
+      db.orders.push(order);
+      db.audit.push({order_id: order.id, action: "create", actor: "お試し管理者", reason: "新規入力", created_at: now()});
+      save(db);
+      return json(201, {order});
+    }
+    if ((match = path.match(/^\/api\/orders\/(\d+)$/))) {
+      const order = db.orders.find((o) => o.id === Number(match[1]));
+      if (!order) return json(404, {error: "データが見つかりません。"});
+      if (method === "GET") return json(200, {order});
+      if (method === "PATCH") {
+        const fields = {...order.fields, ...(body.fields || {})};
+        derive(fields);
+        const errors = validate(fields);
+        if (errors.length) return json(422, {error: errors.join("\n"), code: "validation"});
+        Object.assign(order, {fields, staff: fields.staff, year: yearOf(fields), version: order.version + 1, updated_at: now()});
+        db.audit.push({order_id: order.id, action: "update", actor: "お試し管理者", reason: "内容を修正", created_at: now()});
+        save(db);
+        return json(200, {order});
+      }
+    }
+    if ((match = path.match(/^\/api\/orders\/(\d+)\/status$/)) && method === "POST") {
+      const order = db.orders.find((o) => o.id === Number(match[1]));
+      if (!order) return json(404, {error: "データが見つかりません。"});
+      order.status = body.status === "mailed" ? "mailed" : "new";
+      order.version += 1;
+      db.audit.push({order_id: order.id, action: "status", actor: "お試し管理者", reason: order.status === "mailed" ? "郵送済みにした" : "未郵送に戻した", created_at: now()});
+      save(db);
+      return json(200, {order});
+    }
+    if ((match = path.match(/^\/api\/orders\/(\d+)\/approve$/)) && method === "POST") {
+      const order = db.orders.find((o) => o.id === Number(match[1]));
+      if (!order) return json(404, {error: "データが見つかりません。"});
+      const approved = body.approved !== false;
+      if (approved) {
+        const missing = [["contractor", "工事依頼先"], ["period_start", "工期 開始"], ["period_end", "工期 終了"]].filter(([k]) => !String(order.fields[k] || "").trim()).map(([, l]) => l);
+        if (missing.length) return json(422, {error: "承認するには「" + missing.join("」「") + "」が必要です（カレンダーに載せるため）。", code: "validation"});
+      }
+      order.approved = approved ? 1 : 0;
+      if (approved && !order.approval_no) { const y = order.year; const used = db.orders.map((o) => o.approval_no).filter((n) => n && n.startsWith(y + "-")).map((n) => Number(n.split("-")[1])); order.approval_no = `${y}-${String((used.length ? Math.max(...used) : 0) + 1).padStart(4, "0")}`; }
+      order.approved_by = approved ? "お試し管理者" : "";
+      order.approved_at = approved ? now() : "";
+      if (!approved) { order.completed = 0; order.completed_by = ""; order.completed_at = ""; }
+      order.version += 1;
+      db.audit.push({order_id: order.id, action: "approval", actor: "お試し管理者", reason: approved ? "承認した" : "承認を取り消した", created_at: now()});
+      save(db);
+      return json(200, {order});
+    }
+    if ((match = path.match(/^\/api\/orders\/(\d+)\/complete$/)) && method === "POST") {
+      const order = db.orders.find((o) => o.id === Number(match[1]));
+      if (!order) return json(404, {error: "データが見つかりません。"});
+      const completed = body.completed !== false;
+      if (completed && !order.approved) return json(422, {error: "承認されていない案件は工事完了にできません。先に管理職の承認が必要です。", code: "validation"});
+      order.completed = completed ? 1 : 0;
+      order.completed_by = completed ? "お試し管理者" : "";
+      order.completed_at = completed ? now() : "";
+      order.version += 1;
+      db.audit.push({order_id: order.id, action: "complete", actor: "お試し管理者", reason: completed ? "工事完了にした" : "工事完了を取り消した", created_at: now()});
+      save(db);
+      return json(200, {order});
+    }
+    if ((match = path.match(/^\/api\/orders\/(\d+)\/delete$/)) && method === "POST") {
+      const id = Number(match[1]);
+      db.orders = db.orders.filter((o) => o.id !== id);
+      save(db);
+      return json(200, {deleted: id});
+    }
+    if ((match = path.match(/^\/api\/orders\/(\d+)\/audit$/))) {
+      const logs = db.audit.filter((a) => a.order_id === Number(match[1])).reverse();
+      return json(200, {logs});
+    }
+    if (path === "/api/calendar") {
+      const year = Number(url.searchParams.get("year")) || new Date().getFullYear();
+      const month = Number(url.searchParams.get("month")) || new Date().getMonth() + 1;
+      const contractor = url.searchParams.get("contractor") || "";
+      const staffF = url.searchParams.get("staff") || "";
+      const start = `${year}-${String(month).padStart(2, "0")}-01`;
+      const end = `${year}-${String(month).padStart(2, "0")}-${String(new Date(year, month, 0).getDate()).padStart(2, "0")}`;
+      const items = db.orders.filter((o) => o.approved && o.fields.period_start && o.fields.period_end && o.fields.period_start <= end && o.fields.period_end >= start && (!contractor || o.fields.contractor === contractor) && (!staffF || o.fields.staff === staffF))
+        .sort((a, b) => a.fields.contractor.localeCompare(b.fields.contractor) || a.fields.period_start.localeCompare(b.fields.period_start))
+        .map((o) => ({id: o.id, approval_no: o.approval_no || "", contractor: o.fields.contractor, customer_name: o.fields.customer_name, work_name: o.fields.work_name, site: o.fields.site, staff: o.fields.staff, period_start: o.fields.period_start, period_end: o.fields.period_end, status: o.status, completed: o.completed || 0, completed_at: o.completed_at || ""}));
+      const contractors = [...new Set(items.map((it) => it.contractor))];
+      const events = (db.events || []).filter((e) => e.date >= start && e.date <= end && (!staffF || e.staff === staffF)).sort((a, b) => a.date.localeCompare(b.date) || a.id - b.id);
+      return json(200, {start, end, year, month, months: 1, contractors, items, events, staff: STAFF(), user: DEMO_USER});
+    }
+    if (path === "/api/events" && method === "GET") {
+      const s = url.searchParams.get("start") || "", e = url.searchParams.get("end") || "", st = url.searchParams.get("staff") || "";
+      return json(200, {events: (db.events || []).filter((x) => x.date >= s && x.date <= e && (!st || x.staff === st))});
+    }
+    if (path === "/api/events" && method === "POST") {
+      if (!String(body.title || "").trim()) return json(400, {error: "内容を入力してください。", code: "validation"});
+      db.events = db.events || []; db.eseq = (db.eseq || 0) + 1;
+      const ev = {id: db.eseq, staff: body.staff || "", date: body.date, kind: body.kind === "report" ? "report" : "plan", title: String(body.title).trim(), note: String(body.note || ""), order_id: null, created_by: "お試し管理者", created_at: now(), updated_at: now()};
+      db.events.push(ev); save(db); return json(201, {event: ev});
+    }
+    if ((match = path.match(/^\/api\/events\/(\d+)$/)) && method === "PATCH") {
+      const ev = (db.events || []).find((x) => x.id === Number(match[1]));
+      if (!ev) return json(404, {error: "予定が見つかりません。"});
+      ["staff", "date", "kind", "title", "note"].forEach((k) => { if (body[k] != null) ev[k] = String(body[k]); });
+      ev.updated_at = now(); save(db); return json(200, {event: ev});
+    }
+    if ((match = path.match(/^\/api\/events\/(\d+)\/delete$/)) && method === "POST") {
+      db.events = (db.events || []).filter((x) => x.id !== Number(match[1])); save(db); return json(200, {deleted: Number(match[1])});
+    }
+    if (path === "/api/users" && method === "GET") {
+      return json(200, {users: [{id: 1, username: "demo", display_name: "お試し管理者", role: "admin", active: 1}], roles: ROLES});
+    }
+    if (path === "/api/users" && method === "POST") return json(400, {error: "お試し版ではIDの発行はできません（本物のツールでは管理者が発行できます）。"});
+    if (path === "/api/logs") return json(200, {logs: [{username: "demo", role: "admin", event: "success", ip: "お試し", user_agent: "", created_at: now()}]});
+    if (path === "/api/change-password") return json(400, {error: "お試し版では変更できません。"});
+    if (path === "/api/settings" && method === "GET") return json(200, {company: META.company, archive_dir: ""});
+    if (path === "/api/settings") return json(400, {error: "お試し版では会社情報は変えられません（本物のツールでは管理者が登録します）。"});
+    if (path === "/api/masters" && method === "GET") return json(200, {masters: META.masters});
+    if (path === "/api/masters") return json(400, {error: "お試し版ではリストは変えられません（本物のツールでは管理者が登録します）。"});
+    return json(404, {error: "お試し版では使えない機能です。"});
+  }
+
+  window.fetch = function (input, options = {}) {
+    const raw = typeof input === "string" ? input : input.url;
+    const url = new URL(raw, location.href);
+    if (url.pathname.includes("/api/")) return handle(url, options);
+    return realFetch(input, options);
+  };
+
+  window.demoExportCsv = function (staff, year) {
+    const db = load();
+    const rows = [["No", "承認", "状態", ...META.fields.map((f) => f.label)]];
+    listOrders(db, staff, year, "").forEach((o) => {
+      rows.push([o.id, o.approved ? "承認済み" : "未承認", o.status === "mailed" ? "郵送済み" : "未郵送", ...META.fields.map((f) => o.fields[f.key] ?? "")]);
+    });
+    const text = rows.map((r) => r.map((v) => /[",\r\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v)).join(",")).join("\r\n");
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(new Blob(["﻿" + text], {type: "text/csv"}));
+    link.download = `工事注文台帳_${staff || "全体"}_${year}年.csv`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const bar = document.createElement("div");
+    bar.textContent = "お試し版：管理者として入った状態です。入力した内容は、この端末のこのブラウザの中だけに保存されます";
+    bar.style.cssText = "background:#fff3d6;color:#6b4a00;font:700 12px/1.6 Meiryo,sans-serif;padding:6px 14px;text-align:center;border-bottom:1px solid #ecd9a0";
+    bar.className = "demo-bar";
+    document.body.prepend(bar);
+    const exit = document.getElementById("shutdown-button");
+    if (exit) exit.style.display = "none";
+    const logout = document.getElementById("logout-button");
+    if (logout) logout.style.display = "none";
+  });
+})();

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>設定｜会社情報・リスト・利用者・ログイン記録</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .admin-shell { padding: 22px 28px 40px; display: grid; gap: 22px; }
+    .panel { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
+    .panel h2 { margin: 0; padding: 14px 18px; font-size: 16px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .panel h3 { margin: 18px 0 8px; font-size: 14px; }
+    .panel .body { padding: 14px 18px; }
+    table.plain { width: 100%; border-collapse: collapse; font-size: 13px; }
+    table.plain th, table.plain td { padding: 8px 10px; border-bottom: 1px solid #edf1ee; text-align: left; vertical-align: middle; }
+    table.plain th { background: #f3f7f4; font-size: 12px; }
+    table.edit td { padding: 4px 6px; }
+    table.edit input, table.edit select { width: 100%; min-height: 36px; padding: 0 8px; border: 1px solid #cad5cd; border-radius: 7px; font-size: 13px; }
+    .form-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; align-items: end; }
+    .form-row label { display: grid; gap: 4px; font-size: 12px; font-weight: 700; }
+    .form-row input, .form-row select, .form-row textarea { min-height: 40px; padding: 0 10px; border: 1px solid #cad5cd; border-radius: 8px; font-size: 14px; font-family: inherit; }
+    .form-row textarea { padding: 8px 10px; min-height: 64px; resize: vertical; }
+    .form-row .wide { grid-column: 1 / -1; }
+    .mini { padding: 5px 10px; border: 1px solid var(--line); border-radius: 7px; background: #fff; font-size: 12px; cursor: pointer; margin-right: 4px; }
+    .mini.danger { color: #b42318; }
+    .chip { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; background: #eef2ef; }
+    .chip.admin { background: #ddf3e4; color: #086c37; } .chip.manager { background: #e6effb; color: #255b9a; } .chip.contractor { background: #fff0dc; color: #a25300; }
+    .chip.off { background: #fdecec; color: #b42318; }
+    .ev-success { color: #086c37; font-weight: 700; } .ev-failure, .ev-locked { color: #b42318; font-weight: 700; } .ev-logout { color: #536158; }
+    .msg { margin-top: 10px; font-size: 13px; color: #b42318; white-space: pre-line; }
+    .msg.ok { color: #086c37; }
+    .note { font-size: 12px; color: #536158; margin-bottom: 10px; line-height: 1.7; }
+    .actions { display: flex; gap: 10px; align-items: center; margin-top: 12px; flex-wrap: wrap; }
+  .brand-art,.empty-illustration{display:none!important}</style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="brand-header">
+      <div class="brand-copy">
+        <div class="brand-eyebrow">SETTINGS</div>
+        <h1>設定（管理者）</h1>
+        <p>会社情報、リスト、利用者のID発行、ログインの記録</p>
+      </div>
+      <div class="brand-art" aria-hidden="true"></div>
+      <div class="header-actions">
+        <a class="header-exit" href="index.html">注文一覧へ</a>
+        <a class="header-exit" href="calendar.html">カレンダー</a>
+        <button class="header-exit" id="logout-button" type="button">ログアウト</button>
+      </div>
+    </header>
+    <main class="admin-shell">
+      <section class="panel" id="company-panel">
+        <h2>会社情報（注文書の差出人欄に印刷されます）</h2>
+        <div class="body">
+          <p class="note">ツールには会社の情報は入っていません。ここで入力した内容が、郵送用の「注文書」の右上（住所・会社名・代表者・TEL・FAX）と「支払期日及び方法」に印刷されます。</p>
+          <div class="form-row">
+            <label>会社名<input id="c-name" placeholder="例：〇〇産業　株式会社"></label>
+            <label>郵便番号<input id="c-postal" placeholder="例：000-0000"></label>
+            <label class="wide">住所<input id="c-address" placeholder="例：〇〇県〇〇市〇〇町１－２－３"></label>
+            <label>代表者（肩書きと氏名）<input id="c-representative" placeholder="例：代表取締役　〇〇　〇〇"></label>
+            <label>TEL<input id="c-tel" placeholder="例：000-000-0000"></label>
+            <label>FAX<input id="c-fax" placeholder="例：000-000-0000"></label>
+            <label class="wide">支払期日及び方法（注文書に印刷）<textarea id="c-terms"></textarea></label>
+          </div>
+          <div class="actions">
+            <button class="button primary" id="c-save" type="button">会社情報を保存</button>
+            <span class="msg" id="c-msg"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="masters-panel">
+        <h2>リスト（入力画面の選択肢） <button class="mini" id="m-reload" type="button">読み直す</button></h2>
+        <div class="body">
+          <p class="note">入力画面で「選ぶだけ」にするためのリストです。ツールには見本の名前しか入っていないので、最初に御社の内容に書き換えてください。契約日は郵送用「注文書」の「○年○月○日付基本契約書」に使います。行を空にすると消えます。</p>
+
+          <h3>工事依頼先（工事会社）</h3>
+          <table class="plain edit"><thead><tr><th style="width:36%">会社名</th><th>仕入先コード</th><th>基本契約日（YYYY-MM-DD）</th><th>TEL</th><th>FAX</th><th style="width:60px"></th></tr></thead><tbody id="m-contractors"></tbody></table>
+          <button class="mini" data-add="contractors" type="button">＋ 行を追加</button>
+
+          <h3>担当者（営業）</h3>
+          <table class="plain edit"><thead><tr><th style="width:30%">表示名（一覧・印刷に出る名前）</th><th>氏名</th><th>コード</th><th style="width:60px"></th></tr></thead><tbody id="m-staff"></tbody></table>
+          <button class="mini" data-add="staff" type="button">＋ 行を追加</button>
+
+          <h3>工事区分（元請／下請の相手先）</h3>
+          <table class="plain edit"><thead><tr><th style="width:50%">会社名（元請の場合は「元請」のまま）</th><th>コード</th><th>区分</th><th style="width:60px"></th></tr></thead><tbody id="m-kubun"></tbody></table>
+          <button class="mini" data-add="kubun" type="button">＋ 行を追加</button>
+
+          <div class="actions">
+            <button class="button primary" id="m-save" type="button">リストを保存</button>
+            <span class="msg" id="m-msg"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>利用者（ID）</h2>
+        <div class="body">
+          <p class="note">役割：<strong>管理者</strong>＝すべて（承認済みの修正・ID発行・会社情報とリストの編集・記録の閲覧）／<strong>管理職</strong>＝承認・取り消し、未承認の入力修正／<strong>営業・事務</strong>＝入力・修正・印刷・郵送管理・工事完了・予定と日報。社外のスマホから使う人には、推測されにくいパスワード（8文字以上・名前や電話番号を使わない）を渡してください。</p>
+          <div class="form-row">
+            <label>ID<input id="u-username" autocapitalize="off"></label>
+            <label>表示名<input id="u-display" placeholder="例：山田（担当者リストの表示名と同じに）"></label>
+            <label>役割<select id="u-role"><option value="staff">営業・事務</option><option value="manager">管理職</option><option value="admin">管理者</option></select></label>
+            <label>パスワード（8文字以上）<input id="u-password" type="text" autocomplete="off"></label>
+            <button class="button primary" id="u-add" type="button">IDを発行</button>
+          </div>
+          <div class="msg" id="u-msg"></div>
+          <table class="plain" style="margin-top:14px"><thead><tr><th>ID</th><th>表示名</th><th>役割</th><th>状態</th><th>操作</th></tr></thead><tbody id="users"></tbody></table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>ログインの記録 <button class="mini" id="reload-logs" type="button">更新</button></h2>
+        <div class="body">
+          <p class="note">誰が・いつ・どこから入ったかの記録です（直近500件）。同じ内容が data\ログ\ログイン記録.txt にも残ります。必要な時だけ見てください。</p>
+          <table class="plain"><thead><tr><th>日時</th><th>ID</th><th>役割</th><th>結果</th><th>接続元</th></tr></thead><tbody id="logs"></tbody></table>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>window.__DEMO_META__ = {"fields": [{"key": "input_date", "label": "入力日", "type": "date", "required": true}, {"key": "staff", "label": "担当（入力者）", "type": "staff", "required": true}, {"key": "contractor", "label": "工事依頼先", "type": "contractor", "required": true}, {"key": "contractor_code", "label": "仕入先コード", "type": "text", "derived": true}, {"key": "customer_name", "label": "お客様名", "type": "text", "required": true}, {"key": "billing_to", "label": "請求先", "type": "text"}, {"key": "kubun_company", "label": "工事区分（請負元）", "type": "kubun"}, {"key": "kubun_cls", "label": "工事区分", "type": "text", "derived": true}, {"key": "site", "label": "工事場所（都道府県・市町村名）", "type": "text", "required": true}, {"key": "work_name", "label": "工事名", "type": "text", "required": true}, {"key": "work_type", "label": "工事種類", "type": "work_type"}, {"key": "work_type_cls", "label": "種別", "type": "text", "derived": true}, {"key": "industry", "label": "建設業種", "type": "industry"}, {"key": "industry_cls", "label": "業種種別", "type": "text", "derived": true}, {"key": "order_amount", "label": "受注金額（資材費含む総額・税抜）", "type": "money", "required": true}, {"key": "period_start", "label": "工期 開始", "type": "date"}, {"key": "period_end", "label": "工期 終了", "type": "date"}, {"key": "payment_amount", "label": "支払金額（税抜）", "type": "money"}, {"key": "sales_amount", "label": "売上金額（税抜）", "type": "money"}, {"key": "content_1", "label": "工事内容 1行目", "type": "line", "maxlen": 30}, {"key": "content_2", "label": "工事内容 2行目", "type": "line", "maxlen": 30}, {"key": "content_3", "label": "工事内容 3行目", "type": "line", "maxlen": 30}, {"key": "content_4", "label": "工事内容 4行目", "type": "line", "maxlen": 30}, {"key": "content_5", "label": "工事内容 5行目", "type": "line", "maxlen": 30}, {"key": "content_6", "label": "工事内容 6行目", "type": "line", "maxlen": 30}, {"key": "content_7", "label": "工事内容 7行目", "type": "line", "maxlen": 30}, {"key": "content_8", "label": "工事内容 8行目", "type": "line", "maxlen": 30}, {"key": "content_9", "label": "工事内容 9行目", "type": "line", "maxlen": 30}, {"key": "content_10", "label": "工事内容 10行目", "type": "line", "maxlen": 30}, {"key": "note_1", "label": "連絡事項 1行目", "type": "line", "maxlen": 40}, {"key": "note_2", "label": "連絡事項 2行目", "type": "line", "maxlen": 40}, {"key": "note_3", "label": "連絡事項 3行目", "type": "line", "maxlen": 40}, {"key": "note_4", "label": "連絡事項 4行目", "type": "line", "maxlen": 40}, {"key": "note_5", "label": "連絡事項 5行目", "type": "line", "maxlen": 40}, {"key": "note_6", "label": "連絡事項 6行目", "type": "line", "maxlen": 40}], "masters": {"contractors": [{"name": "見本建設 株式会社", "code": "0001", "contract_date": "2020-04-01", "tel": "", "fax": ""}, {"name": "サンプル工業", "code": "0002", "contract_date": "2021-04-01", "tel": "", "fax": ""}, {"name": "テスト設備 株式会社", "code": "0003", "contract_date": "", "tel": "", "fax": ""}, {"name": "当社施工", "code": "0000", "contract_date": "", "tel": "", "fax": ""}, {"name": "みほん造園 株式会社", "code": "0004", "contract_date": "2019-10-01", "tel": "", "fax": ""}, {"name": "例示ハウス工業", "code": "0005", "contract_date": "2022-06-15", "tel": "", "fax": ""}], "staff": [{"code": "001", "name": "担当A", "short": "担当A"}, {"code": "002", "name": "担当B", "short": "担当B"}, {"code": "003", "name": "担当C", "short": "担当C"}], "work_types": [{"name": "ハウス新設", "cls": "新築"}, {"name": "他", "cls": "改修"}], "industries": [{"name": "新設・外張り張替", "cls": "とび土工"}, {"name": "解体", "cls": "解体"}, {"name": "カーテン張替・その他改修", "cls": "その他"}], "kubun": [{"code": "", "name": "元請", "cls": "元請"}, {"code": "900001", "name": "見本建設 株式会社", "cls": "下請"}, {"code": "900002", "name": "サンプル設備工業", "cls": "下請"}]}, "company": {"name": "見本産業　株式会社", "postal": "000-0000", "address": "〇〇県〇〇市〇〇町１－２－３", "representative": "代表取締役　見本　太郎", "tel": "000-000-0000", "fax": "000-000-0000", "payment_terms": "月末締翌月１０日\n振込支払"}};</script>
+<script src="demo-api.js"></script>
+<script>
+    const $ = (s) => document.querySelector(s);
+    const esc = (v) => String(v ?? "").replace(/[&<>'"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
+    let roles = {};
+    async function api(path, options = {}) {
+      const res = await fetch(path, {...options, headers: {"Content-Type": "application/json"}});
+      if (res.status === 401) { location.href = "login.html?next=/admin"; throw new Error("ログインしてください。"); }
+      const body = await res.json();
+      if (!res.ok) throw new Error(body.error || `HTTP ${res.status}`);
+      return body;
+    }
+    function flash(el, text, ok) { el.textContent = text; el.classList.toggle("ok", !!ok); if (ok) setTimeout(() => { if (el.textContent === text) el.textContent = ""; }, 4000); }
+
+    // ---- 会社情報 ----
+    const COMPANY_FIELDS = {name: "#c-name", postal: "#c-postal", address: "#c-address", representative: "#c-representative", tel: "#c-tel", fax: "#c-fax", payment_terms: "#c-terms"};
+    async function loadCompany() {
+      const data = await api("api/settings");
+      Object.entries(COMPANY_FIELDS).forEach(([key, sel]) => { $(sel).value = data.company[key] || ""; });
+    }
+    $("#c-save").addEventListener("click", async () => {
+      const company = {};
+      Object.entries(COMPANY_FIELDS).forEach(([key, sel]) => { company[key] = $(sel).value; });
+      try { await api("api/settings", {method: "POST", body: JSON.stringify({company})}); flash($("#c-msg"), "保存しました。次に印刷する注文書から反映されます。", true); }
+      catch (e) { flash($("#c-msg"), e.message, false); }
+    });
+
+    // ---- リスト ----
+    const ROW = {
+      contractors: (r = {}) => `<td><input data-k="name" value="${esc(r.name)}" placeholder="会社名"></td><td><input data-k="code" value="${esc(r.code)}"></td><td><input data-k="contract_date" value="${esc(r.contract_date)}" placeholder="2020-04-01"></td><td><input data-k="tel" value="${esc(r.tel)}"></td><td><input data-k="fax" value="${esc(r.fax)}"></td>`,
+      staff: (r = {}) => `<td><input data-k="short" value="${esc(r.short)}" placeholder="例：山田"></td><td><input data-k="name" value="${esc(r.name)}"></td><td><input data-k="code" value="${esc(r.code)}"></td>`,
+      kubun: (r = {}) => `<td><input data-k="name" value="${esc(r.name)}"></td><td><input data-k="code" value="${esc(r.code)}"></td><td><select data-k="cls"><option value="下請" ${r.cls === "元請" ? "" : "selected"}>下請</option><option value="元請" ${r.cls === "元請" ? "selected" : ""}>元請</option></select></td>`,
+    };
+    function addRow(kind, row) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = ROW[kind](row) + `<td><button class="mini danger" type="button" data-del>削除</button></td>`;
+      tr.querySelector("[data-del]").addEventListener("click", () => tr.remove());
+      $(`#m-${kind}`).append(tr);
+    }
+    function renderMasters(masters) {
+      ["contractors", "staff", "kubun"].forEach((kind) => { $(`#m-${kind}`).innerHTML = ""; (masters[kind] || []).forEach((row) => addRow(kind, row)); });
+    }
+    function collect(kind) {
+      return Array.from($(`#m-${kind}`).querySelectorAll("tr")).map((tr) => {
+        const row = {};
+        tr.querySelectorAll("[data-k]").forEach((el) => { row[el.dataset.k] = el.value.trim(); });
+        return row;
+      }).filter((row) => row.name || row.short);
+    }
+    async function loadMasters() {
+      const data = await api("api/masters");
+      renderMasters(data.masters);
+    }
+    document.querySelectorAll("[data-add]").forEach((b) => b.addEventListener("click", () => addRow(b.dataset.add, {})));
+    $("#m-reload").addEventListener("click", () => loadMasters().catch((e) => flash($("#m-msg"), e.message, false)));
+    $("#m-save").addEventListener("click", async () => {
+      const masters = {contractors: collect("contractors"), staff: collect("staff"), kubun: collect("kubun")};
+      try {
+        const data = await api("api/masters", {method: "POST", body: JSON.stringify({masters})});
+        renderMasters(data.masters);
+        flash($("#m-msg"), `保存しました（工事依頼先 ${data.masters.contractors.length}件・担当者 ${data.masters.staff.length}名・工事区分 ${data.masters.kubun.length}件）。入力画面を開き直すと反映されます。`, true);
+        await loadUsers();
+      } catch (e) { flash($("#m-msg"), e.message, false); }
+    });
+
+    // ---- 利用者 ----
+    const EVENT = {success: "ログイン", failure: "失敗", locked: "ロック中", logout: "ログアウト"};
+    async function loadUsers() {
+      const data = await api("api/users");
+      roles = data.roles;
+      $("#users").innerHTML = data.users.map((u) => `<tr>
+        <td><strong>${esc(u.username)}</strong></td><td>${esc(u.display_name)}</td>
+        <td><span class="chip ${u.role}">${esc(roles[u.role] || u.role)}</span></td>
+        <td>${u.active ? "有効" : '<span class="chip off">停止中</span>'}</td>
+        <td><button class="mini" data-pw="${u.id}">パスワード変更</button>${u.active ? `<button class="mini danger" data-off="${u.id}">停止</button>` : `<button class="mini" data-on="${u.id}">再開</button>`}</td>
+      </tr>`).join("");
+      $("#users").querySelectorAll("[data-pw]").forEach((b) => b.addEventListener("click", async () => {
+        const pw = prompt("新しいパスワード（8文字以上）を入力してください。");
+        if (!pw) return;
+        try { await api(`api/users/${b.dataset.pw}`, {method: "PATCH", body: JSON.stringify({password: pw})}); alert("変更しました。"); } catch (e) { alert(e.message); }
+      }));
+      $("#users").querySelectorAll("[data-off]").forEach((b) => b.addEventListener("click", async () => {
+        if (!confirm("このIDを停止しますか？（ログインできなくなります。再開できます）")) return;
+        try { await api(`api/users/${b.dataset.off}`, {method: "PATCH", body: JSON.stringify({active: false})}); await loadUsers(); } catch (e) { alert(e.message); }
+      }));
+      $("#users").querySelectorAll("[data-on]").forEach((b) => b.addEventListener("click", async () => {
+        try { await api(`api/users/${b.dataset.on}`, {method: "PATCH", body: JSON.stringify({active: true})}); await loadUsers(); } catch (e) { alert(e.message); }
+      }));
+    }
+    async function loadLogs() {
+      const data = await api("api/logs?limit=500");
+      $("#logs").innerHTML = data.logs.map((l) => `<tr><td>${esc(new Date(l.created_at).toLocaleString("ja-JP"))}</td><td>${esc(l.username)}</td><td>${esc(roles[l.role] || l.role || "—")}</td><td class="ev-${esc(l.event)}">${esc(EVENT[l.event] || l.event)}</td><td>${esc(l.ip)}</td></tr>`).join("") || `<tr><td colspan="5">記録はまだありません。</td></tr>`;
+    }
+    $("#u-add").addEventListener("click", async () => {
+      $("#u-msg").textContent = "";
+      try {
+        await api("api/users", {method: "POST", body: JSON.stringify({username: $("#u-username").value, display_name: $("#u-display").value, role: $("#u-role").value, password: $("#u-password").value})});
+        $("#u-username").value = ""; $("#u-display").value = ""; $("#u-password").value = "";
+        await loadUsers();
+      } catch (e) { $("#u-msg").textContent = e.message; }
+    });
+    $("#reload-logs").addEventListener("click", () => loadLogs().catch((e) => alert(e.message)));
+    $("#logout-button").addEventListener("click", async () => { await api("api/logout", {method: "POST", body: "{}"}); location.href = "login.html"; });
+    loadCompany().then(loadMasters).then(loadUsers).then(loadLogs).catch((e) => { $("#u-msg").textContent = e.message; });
+  </script>
+</body>
+</html>

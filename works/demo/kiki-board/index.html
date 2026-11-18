@@ -1,0 +1,217 @@
+<!doctype html><html lang="ja"><head><meta name="robots" content="noindex,nofollow"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'; worker-src 'none'"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><style>.portfolio-notice{background:#283b27;color:#fff;padding:12px 18px;font:13px/1.6 system-ui,sans-serif;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px}.portfolio-notice a{color:#fff;text-decoration:underline}.portfolio-notice strong{font-weight:700}.portfolio-notice button{background:#fff;color:#283b27;border:0;border-radius:6px;padding:6px 12px;font:inherit}.portfolio-notice small{width:100%;font-size:12px}</style></head><body><aside class="portfolio-notice"><a href="../../index.html#works">← 作品一覧</a><strong>Kiki Toa 投稿ボードの実画面を試す</strong><span>元の画面・操作／架空投稿・架空ポスター／このブラウザ内のみ</span><button id="portfolio-reset" type="button">架空データをリセット</button><small>「投稿済み」「予約済み」もすべて架空の状態です。元のClaude DB・Google Drive・SNSには接続せず、投稿や送信は行いません。動画は含まず、説明用ポスターを表示します。新しい作品実績ではありません。</small></aside>
+
+
+<title>Kiki Toa 投稿ボード｜元アプリの架空データ体験版</title>
+
+
+
+<style>
+:root{
+  --ground:#E3ECEB;
+  --panel:#FFFCFA;
+  --panel-2:#F3EDE9;
+  --ink:#121B1D;
+  --ink-2:#4A5C60;
+  --rule:#121B1D;
+  --hair:#C5D3D2;
+  --band:#1C5A66;
+  --band-ink:#FFFFFF;
+  --band-ink-2:#CFE3E5;
+  --btn:#1C5A66;
+  --btn-ink:#FFFFFF;
+  --teal-text:#1C5A66;
+  --accent:#B24F37;
+  --accent-ink:#FFFFFF;
+  --ok:#256B41;
+  --ok-bg:#E2F1E7;
+  --wait:#8A5B00;
+  --wait-bg:#FBEFD6;
+  --no:#5F6B6E;
+  --no-bg:#EAEFEF;
+  --err:#A3261B;
+  --shadow:#1C5A66;
+  --focus:#1C5A66;
+  --f-disp:"Dela Gothic One","Hiragino Sans","Yu Gothic UI","Meiryo",sans-serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic UI","Meiryo","Noto Sans JP",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0D1618;
+    --panel:#162225;
+    --panel-2:#1E2C2F;
+    --ink:#ECF2F1;
+    --ink-2:#9FB2B5;
+    --rule:#D8E3E2;
+    --hair:#2A3A3D;
+    --band:#1F4F58;
+    --band-ink:#FFFFFF;
+    --band-ink-2:#BFD6D9;
+    --btn:#287482;
+    --btn-ink:#FFFFFF;
+    --teal-text:#7FD0DC;
+    --accent:#E08C73;
+    --accent-ink:#1A0E0A;
+    --ok:#7ACB98;
+    --ok-bg:#16301F;
+    --wait:#E9BE6A;
+    --wait-bg:#33280F;
+    --no:#A7B3B5;
+    --no-bg:#223033;
+    --err:#FF8A7A;
+    --shadow:#287482;
+    --focus:#7FD0DC;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0D1618;
+  --panel:#162225;
+  --panel-2:#1E2C2F;
+  --ink:#ECF2F1;
+  --ink-2:#9FB2B5;
+  --rule:#D8E3E2;
+  --hair:#2A3A3D;
+  --band:#1F4F58;
+  --band-ink:#FFFFFF;
+  --band-ink-2:#BFD6D9;
+  --btn:#287482;
+  --btn-ink:#FFFFFF;
+  --teal-text:#7FD0DC;
+  --accent:#E08C73;
+  --accent-ink:#1A0E0A;
+  --ok:#7ACB98;
+  --ok-bg:#16301F;
+  --wait:#E9BE6A;
+  --wait-bg:#33280F;
+  --no:#A7B3B5;
+  --no-bg:#223033;
+  --err:#FF8A7A;
+  --shadow:#287482;
+  --focus:#7FD0DC;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:15px;
+  line-height:1.6;
+  padding-inline:16px;
+  padding-block:20px 48px;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:520px;margin-inline:auto;display:grid;gap:22px}
+.mast{display:grid;gap:2px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ink-2)}
+h1{font-family:var(--f-disp);font-weight:400;font-size:30px;line-height:1.15;letter-spacing:.02em;margin:0;text-wrap:balance}
+#view{display:grid;gap:22px}
+p{margin:0}
+.nw{display:inline-block;max-width:100%}
+/* 2026-11-02 本人「TikTokに出したを押さないと画面内に収まらない」: 長い題名で枠が横に広がらないように */
+.wrap>*,#view>*,.sec>*,.koma>*,.inner>*,.body>*,.tonight>*{min-width:0}
+.tonight .main,.title,.sumtitle,.meta,.sumstate,.say,.how{overflow-wrap:anywhere}
+html,body{max-width:100%;overflow-x:hidden}
+
+/* 今夜やること（いちばん上の帯） */
+.tonight{background:var(--band);color:var(--band-ink);padding:14px 16px 16px;display:grid;gap:6px}
+.tonight .lead{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--band-ink-2)}
+.tonight .main{font-size:19px;font-weight:700;line-height:1.45;text-wrap:balance}
+.tonight .sub{font-size:14px;line-height:1.6;color:var(--band-ink-2)}
+
+.sec{display:grid;gap:10px}
+h2{margin:0;font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--ink-2);display:flex;align-items:center;gap:10px}
+h2::after{content:"";flex:1;border-top:1px solid var(--hair)}
+
+/* 今日の動画（1 コマ） */
+.koma{background:var(--panel);border:2.5px solid var(--rule);box-shadow:6px 6px 0 var(--shadow);padding:14px;display:grid;gap:12px;margin-right:6px}
+.head{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px}
+.date{font-family:var(--f-disp);font-size:30px;line-height:1}
+.dow{font-size:14px;font-weight:700;color:var(--ink-2)}
+.tag{font-size:12px;font-weight:700;letter-spacing:.08em;background:var(--accent);color:var(--accent-ink);padding:2px 8px;align-self:center}
+.title{margin:0;font-size:19px;font-weight:700;line-height:1.4;text-wrap:balance}
+.meta{font-size:13px;color:var(--ink-2)}
+
+.chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.chip{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:6px;font-size:13px;line-height:1.35;padding:6px 9px;border-radius:4px;background:var(--no-bg);color:var(--no);text-decoration:none;min-width:0}
+.chip b{font-weight:700}
+.chip.ok{background:var(--ok-bg);color:var(--ok)}
+.chip.wait{background:var(--wait-bg);color:var(--wait)}
+a.chip span{text-decoration:underline;text-underline-offset:2px}
+
+.body{display:grid;grid-template-columns:minmax(0,40%) minmax(0,1fr);gap:12px;align-items:start}
+.vid{display:block;width:100%;aspect-ratio:9/16;background:#000;border:2px solid var(--rule);object-fit:cover}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.steps li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:6px;align-items:start}
+.num{font-family:var(--f-disp);font-size:15px;line-height:44px;text-align:center;color:var(--ink-2)}
+.cell{display:grid;gap:4px;min-width:0}
+.say{font-size:14px;font-weight:700;line-height:1.4;padding-block:12px}
+.btn{appearance:none;-webkit-appearance:none;border:0;border-radius:0;width:100%;min-height:44px;padding:8px 10px;font:inherit;font-size:15px;font-weight:700;line-height:1.3;background:var(--btn);color:var(--btn-ink);cursor:pointer;text-align:center}
+.btn.accent{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{width:auto;min-height:40px;padding:6px 14px;background:transparent;color:var(--ink);border:1.5px solid var(--rule)}
+.btn[disabled]{opacity:.6;cursor:default}
+.link{appearance:none;-webkit-appearance:none;background:none;border:0;padding:4px 0;font:inherit;font-size:13px;color:var(--ink-2);text-decoration:underline;text-underline-offset:2px;cursor:pointer;justify-self:start}
+.btn:focus-visible,.link:focus-visible,summary:focus-visible,a.chip:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.done{font-size:14px;font-weight:700;line-height:1.4;color:var(--ok);padding-top:4px}
+.msg{font-size:12.5px;line-height:1.45;color:var(--ink-2)}
+.msg:empty{display:none}
+.msg.err{color:var(--err)}
+.msg.warn{color:var(--wait)}
+.note{font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+
+.capwrap{display:grid;gap:6px}
+.caplabel{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--ink-2)}
+.cap{background:var(--panel-2);padding:10px 12px;font-size:14px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;-webkit-user-select:text;user-select:text}
+
+/* 前の日・これから（たたんだ行） */
+details.row{background:var(--panel);border:1.5px solid var(--rule)}
+details.row>summary{list-style:none;cursor:pointer}
+details.row>summary::-webkit-details-marker{display:none}
+.sum{position:relative;display:grid;gap:4px;padding:12px 64px 12px 14px}
+.sumtop{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 8px}
+.sumdate{font-family:var(--f-disp);font-size:19px;line-height:1.1}
+.sumtitle{font-weight:700;line-height:1.4}
+.sumstate{font-size:13px;line-height:1.5;color:var(--ink-2)}
+.tog{position:absolute;right:14px;top:14px;font-size:12px;font-weight:700;color:var(--teal-text)}
+.tog::after{content:"開く"}
+details[open]>summary .tog::after{content:"閉じる"}
+details.row[open]>summary{border-bottom:1px solid var(--hair)}
+.inner{padding:14px;display:grid;gap:12px}
+.donebox{display:grid;gap:10px}
+.donebox>summary{cursor:pointer;font-size:14px;font-weight:700;color:var(--teal-text);padding-block:4px}
+.donelist{display:grid;gap:10px;padding-top:10px}
+
+.todo{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;background:var(--panel);border:1.5px dashed var(--rule);padding:12px 14px}
+.todo p{flex:1 1 220px;font-size:14px;line-height:1.6}
+
+.statusline{background:var(--panel);border:1.5px solid var(--rule);padding:14px 16px}
+.foot{display:grid;gap:6px;font-size:12.5px;line-height:1.7;color:var(--ink-2)}
+.story{display:grid;gap:10px;border-top:1.5px solid var(--hair);padding-top:12px}
+.storyhead{font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--ink-2)}
+.storyimg{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border:2px solid var(--rule);background:var(--panel-2)}
+.how{font-size:13px;line-height:1.6;color:var(--ink-2)}
+.how b{color:var(--ink);font-weight:700}
+
+@media (max-width:340px){
+  .body{grid-template-columns:1fr}
+  .vid{max-width:62%}
+}
+@media (prefers-reduced-motion: reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+
+<main class="wrap">
+  <header class="mast">
+    <div class="eyebrow" id="eyebrow">kikitoa</div>
+    <h1>投稿ボード</h1>
+  </header>
+  <div id="view"><p class="statusline">読み込み中…</p></div>
+</main>
+
+<script src="demo-data.js"></script><script src="app.js"></script>
+
+</body></html>

@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>REIKI AI・クリエイティブ 実績集</title>
+<meta name="description" content="REIKIのAI・クリエイティブ事業の実績集。企業PR動画・商品PV、ホームページ、業務ツール、SNSの自動運用まで。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho+B1:wght@600;700;800&display=swap">
+<style>
+/* REIKI の会社紹介PVと同じ「黒と金」で統一した営業用の実績集。暗い色で固定する */
+:root {
+  --bg: #0A0A0B;
+  --panel: #131315;
+  --panel-2: #1A1A1D;
+  --line: rgba(201, 164, 92, .22);
+  --gold: #C9A45C;
+  --gold-hi: #E9D29B;
+  --text: #ECE8E0;
+  --muted: #A49F95;
+  --serif: "Shippori Mincho B1", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  --latin: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.85; }
+a { color: var(--gold-hi); }
+img, video { max-width: 100%; display: block; }
+h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 700; line-height: 1.4; text-wrap: balance; word-break: auto-phrase; }
+p { margin: 0; }
+.inner { max-width: 1120px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.latin { font-family: var(--latin); letter-spacing: .32em; font-weight: 300; }
+.eyebrow { font-family: var(--latin); font-size: 11.5px; letter-spacing: .28em; color: var(--gold); text-transform: uppercase; }
+:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ---------- 上部 ---------- */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(10, 10, 11, .86); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 21; background: var(--bg); }
+.top .inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; }
+.mark { display: flex; align-items: baseline; gap: 12px; text-decoration: none; color: var(--text); }
+.mark .latin { font-size: 20px; }
+.mark small { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+.nav { display: flex; gap: 22px; font-size: 13.5px; }
+.nav a { color: var(--text); text-decoration: none; opacity: .85; }
+.nav a:hover { opacity: 1; color: var(--gold-hi); }
+.nav .cta { color: var(--bg); background: var(--gold); padding: 4px 14px; border-radius: 999px; opacity: 1; font-weight: 700; }
+
+/* ---------- 冒頭 ---------- */
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+.hero::before { content: ""; position: absolute; inset: 0; background: url("media/pv-scene1.jpg") center right / cover no-repeat; opacity: .55; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,10,11,.97) 0%, rgba(10,10,11,.82) 45%, rgba(10,10,11,.35) 100%), linear-gradient(0deg, rgba(10,10,11,1) 0%, rgba(10,10,11,0) 40%); }
+.hero .inner { position: relative; z-index: 1; padding-block: 88px 64px; display: grid; gap: 22px; }
+.hero .tagline { font-family: var(--serif); color: var(--gold-hi); font-size: 15px; letter-spacing: .2em; }
+.hero h1 { font-size: clamp(30px, 5.2vw, 56px); font-weight: 800; letter-spacing: .02em; max-width: 13em; }
+.hero h1 em { font-style: normal; color: var(--gold-hi); }
+.hero .lead { max-width: 36em; color: #D8D3CA; font-size: 16px; }
+.btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 700; font-size: 14.5px; padding: 11px 22px; border-radius: 999px; border: 1px solid var(--gold); color: var(--gold-hi); background: transparent; }
+.btn.solid { background: var(--gold); color: var(--bg); }
+.btn:hover { border-color: var(--gold-hi); }
+.stats { display: flex; flex-wrap: wrap; gap: 14px 44px; margin: 18px 0 0; padding: 0; }
+.stats div { display: grid; gap: 0; }
+.stats dt { font-size: 12px; color: var(--muted); }
+.stats dd { margin: 0; font-family: var(--serif); font-size: 34px; font-weight: 800; color: var(--gold-hi); line-height: 1.2; font-variant-numeric: tabular-nums; }
+.stats dd span { font-size: 14px; color: var(--text); margin-left: 3px; }
+
+/* ---------- 見出し ---------- */
+section.block { padding-block: 80px 20px; }
+.head { display: grid; gap: 10px; margin-bottom: 34px; max-width: 46em; }
+.head h2 { font-size: clamp(24px, 3.4vw, 34px); }
+.head p { color: var(--muted); }
+
+/* ---------- できること ---------- */
+.services { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.svc { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 24px 22px; display: grid; gap: 12px; align-content: start; text-decoration: none; color: var(--text); transition: border-color .2s; }
+.svc:hover { border-color: var(--gold); }
+.svc svg { width: 34px; height: 34px; stroke: var(--gold); fill: none; stroke-width: 1.4; }
+.svc h3 { font-size: 19px; }
+.svc p { font-size: 14px; color: #CFCAC0; }
+.svc ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.svc li::before { content: "— "; color: var(--gold); }
+.svc .go { font-size: 12.5px; color: var(--gold); margin-top: 4px; }
+
+/* ---------- 実績 ---------- */
+.cat { margin-top: 56px; }
+.cat:first-of-type { margin-top: 0; }
+.cat-title { display: flex; align-items: baseline; gap: 14px; padding-bottom: 12px; margin-bottom: 22px; border-bottom: 1px solid var(--line); }
+.cat-title h3 { font-size: 22px; }
+.cat-title .eyebrow { font-size: 11px; }
+.works { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.works.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.work { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; min-width: 0; }
+.media { position: relative; aspect-ratio: 16 / 10; background: #000; overflow: hidden; }
+.media img, .media video, .media iframe { width: 100%; height: 100%; object-fit: cover; border: 0; }
+.media.tall { aspect-ratio: auto; display: flex; justify-content: center; background: #050505; }
+.media.tall video { width: auto; height: 420px; max-width: 100%; object-fit: contain; }
+.media.wide { aspect-ratio: 16 / 9; }
+.body { padding: 18px 20px 20px; display: grid; gap: 8px; align-content: start; }
+.who { font-size: 12px; color: var(--gold); letter-spacing: .04em; }
+.work h4 { margin: 0; font-family: var(--serif); font-size: 18px; font-weight: 700; line-height: 1.45; }
+.work p { font-size: 14px; color: #CFCAC0; }
+.point { font-size: 13px; color: var(--muted); border-left: 2px solid var(--gold); padding-left: 10px; }
+.links { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 6px; font-size: 13.5px; }
+.links a { color: var(--gold-hi); text-decoration: none; font-weight: 700; }
+.links a.primary { color: var(--bg); background: var(--gold); padding: 5px 14px; border-radius: 999px; }
+.links a:not(.primary) { border-bottom: 1px solid rgba(233, 210, 155, .4); }
+.demo-note { margin-top: 18px; font-size: 12.5px; color: var(--muted); }
+
+/* ---------- 強み・進め方 ---------- */
+.reasons { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.reason { padding: 24px 22px; border-top: 2px solid var(--gold); background: var(--panel); border-radius: 0 0 14px 14px; display: grid; gap: 10px; align-content: start; }
+.reason .num { font-family: var(--latin); color: var(--gold); font-size: 13px; letter-spacing: .2em; }
+.reason h3 { font-size: 19px; }
+.reason p { font-size: 14px; color: #CFCAC0; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; counter-reset: s; }
+.steps li { position: relative; padding: 22px 18px 0 0; border-top: 1px solid var(--line); counter-increment: s; }
+.steps li::before { content: counter(s, decimal-leading-zero); position: absolute; top: -12px; left: 0; background: var(--bg); padding-right: 10px; font-family: var(--latin); color: var(--gold); font-size: 14px; letter-spacing: .15em; }
+.steps b { display: block; font-family: var(--serif); font-size: 17px; margin-bottom: 4px; }
+.steps span { font-size: 13.5px; color: var(--muted); }
+
+/* ---------- ご相談 ---------- */
+.contact { margin-top: 90px; border-top: 1px solid var(--line); background: radial-gradient(120% 140% at 50% 0%, rgba(201,164,92,.16) 0%, rgba(10,10,11,0) 60%); }
+.contact .inner { padding-block: 80px; display: grid; gap: 18px; justify-items: center; text-align: center; }
+.contact h2 { font-size: clamp(24px, 3.6vw, 36px); }
+.contact p { color: #D8D3CA; max-width: 34em; }
+footer { border-top: 1px solid var(--line); }
+footer .inner { padding-block: 26px 36px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 12px; color: var(--muted); }
+
+/* ---------- 狭い画面 ---------- */
+@media (max-width: 980px) {
+  .services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .works { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .steps { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .steps li { border-top: 0; border-left: 1px solid var(--line); padding: 0 0 0 22px; }
+  .steps li::before { position: static; display: block; padding: 0; margin-bottom: 4px; }
+}
+@media (max-width: 680px) {
+  .nav a:not(.cta) { display: none; }
+  .hero .inner { padding-block: 60px 44px; }
+  .hero::before { background-position: 70% center; opacity: .35; }
+  .services, .works, .works.two, .reasons { grid-template-columns: minmax(0, 1fr); }
+  section.block { padding-block: 60px 10px; }
+  .media.tall video { height: 380px; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <a class="mark" href="#top"><span class="latin">REIKI</span><small>AI・クリエイティブ</small></a>
+    <nav class="nav" aria-label="ページ内">
+      <a href="#services">できること</a>
+      <a href="#works">実績</a>
+      <a href="#flow">進め方</a>
+      <a class="cta" href="#contact">ご相談</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="inner">
+      <p class="tagline">まだ見ぬ価値を、目覚めさせる。</p>
+      <h1>映像も、Webも、業務ツールも。<em>AIで、形にします。</em></h1>
+      <p class="lead">企業PR動画・商品PV、ホームページ、業務アプリ、SNSの自動運用まで。ここに載せているのは、自社と取引先で実際に使い、公開しているものだけです。</p>
+      <div class="btns">
+        <a class="btn solid" href="#works">実績を見る</a>
+        <a class="btn" href="#contact">相談する</a>
+      </div>
+      <dl class="stats">
+        <div><dt>AIでの制作歴</dt><dd>約2<span>年</span></dd></div>
+        <div><dt>ご覧いただける実績</dt><dd>11<span>件</span></dd></div>
+        <div><dt>その場で触れるデモ</dt><dd>5<span>本</span></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="block" id="services" aria-labelledby="services-h">
+    <div class="inner">
+      <div class="head">
+        <p class="eyebrow">What we do</p>
+        <h2 id="services-h">できること</h2>
+        <p>4つの分野で、企画から制作、公開後の運用までお手伝いします。</p>
+      </div>
+      <div class="services">
+        <a class="svc" href="#cat-video">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="7" width="20" height="18" rx="2"/><path d="M23 13l6-4v14l-6-4z"/></svg>
+          <h3>映像制作</h3>
+          <p>AIで作った映像を、ブランドの色と言葉にそろえて仕上げます。会場の大画面用から、SNSの縦型まで。</p>
+          <ul><li>企業PR・会社紹介PV</li><li>商品PV・商品ストーリー</li><li>ミュージックビデオ</li></ul>
+          <span class="go">実績を見る ↓</span>
+        </a>
+        <a class="svc" href="#cat-web">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="5" width="26" height="20" rx="2"/><path d="M3 10h26M12 29h8M16 25v4"/></svg>
+          <h3>Web制作</h3>
+          <p>見る人が次にすること（予約・購入・相談）から逆算して、ページを組み立てます。</p>
+          <ul><li>店舗・サロンのホームページ</li><li>商品紹介ページ・EC</li><li>記事・動画と組み合わせたページ</li></ul>
+          <span class="go">実績を見る ↓</span>
+        </a>
+        <a class="svc" href="#cat-tool">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 4h12l6 6v18H8z"/><path d="M20 4v6h6M12 16h10M12 20h10M12 24h6"/></svg>
+          <h3>業務ツール開発</h3>
+          <p>Excelや紙で続けてきた作業を、スマホでも使える道具に。入力の間違いは自動で見つけます。</p>
+          <ul><li>請求書・注文書</li><li>顧客管理</li><li>予定・タスク管理</li></ul>
+          <span class="go">実績を見る ↓</span>
+        </a>
+        <a class="svc" href="#cat-auto">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/><path d="M16 9v7l5 3"/><path d="M27 6l-3 3M5 6l3 3"/></svg>
+          <h3>AI自動化・SNS運用</h3>
+          <p>毎日くり返す作業は、決まった時間にAIが進めます。人は最後の判断だけ。</p>
+          <ul><li>情報収集と要約の自動更新</li><li>SNSの毎日投稿</li><li>投稿の進み具合の管理</li></ul>
+          <span class="go">実績を見る ↓</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="works" aria-labelledby="works-h">
+    <div class="inner">
+      <div class="head">
+        <p class="eyebrow">Works</p>
+        <h2 id="works-h">実績</h2>
+        <p>すべて完成し、実際に使われている・公開されているものです。業務ツールは、架空のデータを入れたデモをその場で操作できます。</p>
+      </div>
+
+      <div class="cat" id="cat-video">
+        <div class="cat-title"><h3>映像制作</h3><span class="eyebrow">Video</span></div>
+        <div class="works">
+          <article class="work">
+            <div class="media wide"><iframe src="https://www.youtube-nocookie.com/embed/5VCqCIsXEvw?rel=0" title="REIKI 会社紹介PV" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            <div class="body">
+              <p class="who">REIKI ／ 会社紹介PV</p>
+              <h4>大型ライブ会場の大画面で流す、会社紹介映像</h4>
+              <p>4つの事業を、事業ごとに一言の言葉と場面でそろえて1分44秒にまとめました。会場の横に長い画面に合わせ、3840×1920で制作。</p>
+              <div class="links"><a href="https://www.youtube.com/watch?v=5VCqCIsXEvw" target="_blank" rel="noopener">YouTubeで見る ↗</a></div>
+            </div>
+          </article>
+          <article class="work">
+            <div class="media tall"><video src="media/headcare-story.mp4" poster="media/headcare-poster.jpg" controls preload="none" playsinline></video></div>
+            <div class="body">
+              <p class="who">RaHash ／ 商品ストーリー動画</p>
+              <h4>ヘッドケア商品の縦型ストーリー動画</h4>
+              <p>商品の立体モデルを回転させながら、背景の色と短い言葉を場面ごとに切り替える22秒の縦型動画。SNSや商品ページでそのまま使える形で制作。</p>
+            </div>
+          </article>
+          <article class="work">
+            <div class="media wide"><iframe src="https://www.youtube-nocookie.com/embed/xEuFs8D_IIE?rel=0" title="Kiki Toa ミュージックビデオ" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            <div class="body">
+              <p class="who">Kiki Toa ／ ミュージックビデオ</p>
+              <h4>AIで作った楽曲の、物語のあるミュージックビデオ</h4>
+              <p>曲ごとに世界観を決め、場面ごとに新しく描いた絵と、声に合わせて流れる歌詞で仕上げます。YouTube・Instagram・TikTok向けに、見せ方も分けて制作しています。</p>
+              <div class="links"><a href="https://www.youtube.com/@kikitoa_official" target="_blank" rel="noopener">チャンネルを見る ↗</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="cat" id="cat-web">
+        <div class="cat-title"><h3>Web制作</h3><span class="eyebrow">Web</span></div>
+        <div class="works two">
+          <article class="work">
+            <div class="media"><img src="shots/olive.jpg" alt="Beauty Salon Olive のホームページ" loading="lazy"></div>
+            <div class="body">
+              <p class="who">プライベートサロン様 ／ ホームページ</p>
+              <h4>LINE予約につなげる、サロンのホームページ（12ページ）</h4>
+              <p>雰囲気・施術・料金・アクセスを伝え、LINEからの予約につなげる構成。実店舗の写真は明るさの補正と写り込みの除去をして使いました。</p>
+              <div class="links"><a class="primary" href="https://hinata2462-eng.github.io/olive-salon/" target="_blank" rel="noopener">サイトを見る ↗</a></div>
+            </div>
+          </article>
+          <article class="work">
+            <div class="media"><img src="shots/rahash-web.jpg" alt="RaHash の商品WEB" loading="lazy"></div>
+            <div class="body">
+              <p class="who">RaHash ／ 商品WEB・動画・記事</p>
+              <h4>商品ごとのWEBページ・動画・楽天記事を一続きで制作</h4>
+              <p>1つの商品について、WEBページ、同じ演出の動画、楽天の記事、Instagram用の素材までを一続きで作る流れを整えました。これまでに動画25本・記事15本を制作。</p>
+              <div class="links"><a class="primary" href="https://rahash-scent-gallery.rahash.chatgpt.site/" target="_blank" rel="noopener">WEBを見る ↗</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="cat" id="cat-tool">
+        <div class="cat-title"><h3>業務ツール開発</h3><span class="eyebrow">Business tools</span></div>
+        <div class="works two">
+          <article class="work">
+            <div class="media"><img src="shots/invoice.jpg" alt="請求書ツールの画面" loading="lazy"></div>
+            <div class="body">
+              <p class="who">月次の請求業務</p>
+              <h4>請求書の作成・自動チェック</h4>
+              <p>入力するだけでExcelに月のシートを足し、PDFも保存。「○月分」の表記・二重請求・内税の計算・宛名の誤字まで、出す前に自動で検査します。</p>
+              <p class="point">過去に送った請求書を検査して、月の表記ずれや税の計算ちがいを見つけました。</p>
+              <div class="links"><a class="primary" href="demo/invoice/" target="_blank" rel="noopener">デモを触る ↗</a></div>
+            </div>
+          </article>
+          <article class="work">
+            <div class="media"><img src="shots/order.jpg" alt="工事注文書ツールの画面" loading="lazy"></div>
+            <div class="body">
+              <p class="who">農業資材・施工の会社様向け</p>
+              <h4>工事注文書ツール</h4>
+              <p>注文書の作成と印刷、承認番号の自動採番、工事カレンダー、営業の予定と日報、依頼金額の集計を1つに。社外のスマホからも安全に使えるようにしました。</p>
+              <p class="point">会社のデータを中に持たず、導入先が設定するだけで使える作り。50項目以上の自動検品に合格。</p>
+              <div class="links"><a class="primary" href="demo/order/" target="_blank" rel="noopener">デモを触る ↗</a></div>
+            </div>
+          </article>
+          <article class="work">
+            <div class="media"><img src="shots/crm.jpg" alt="顧客管理アプリの画面" loading="lazy"></div>
+            <div class="body">
+              <p class="who">営業の現場で使用中</p>
+              <h4>顧客管理アプリ（スマホ）</h4>
+              <p>お客様、ハウスの仕様、写真、電話や訪問の記録、次にやることをスマホで登録し、地図にピンを立てて管理。会議で出た要望を反映して版を重ねています。</p>
+              <div class="links"><a class="primary" href="demo/crm/" target="_blank" rel="noopener">デモを触る ↗</a></div>
+            </div>
+          </article>
+          <article class="work">
+            <div class="media"><img src="shots/shelf.jpg" alt="予定・タスクアプリの画面" loading="lazy"></div>
+            <div class="body">
+              <p class="who">毎日使用中</p>
+              <h4>予定・タスクアプリ「白い棚」</h4>
+              <p>ログイン不要で普通のアプリのように使える予定・タスク管理。チャットからも登録でき、締め切りはLINEにお知らせ。毎朝「今日やること」を自動で書き出します。</p>
+              <div class="links"><a class="primary" href="demo/shelf/" target="_blank" rel="noopener">デモを触る ↗</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="cat" id="cat-auto">
+        <div class="cat-title"><h3>AI自動化・SNS運用</h3><span class="eyebrow">Automation</span></div>
+        <div class="works two">
+          <article class="work">
+            <div class="media"><img src="shots/radar.jpg" alt="AI進化レーダーの画面" loading="lazy"></div>
+            <div class="body">
+              <p class="who">情報収集の自動化</p>
+              <h4>AI進化レーダー（1日3回、自動で更新）</h4>
+              <p>AIのニュースを自動で集め、AIが日本語で要約し、重要度と分野を判定して並べるサイト。人の手を使わずに毎日更新されています。</p>
+              <div class="links"><a class="primary" href="https://reiki-ai-apps.github.io/AI-/" target="_blank" rel="noopener">サイトを見る ↗</a></div>
+            </div>
+          </article>
+          <article class="work">
+            <div class="media"><img src="shots/kiki-board.jpg" alt="投稿ボードの画面" loading="lazy"></div>
+            <div class="body">
+              <p class="who">SNSの毎日投稿</p>
+              <h4>SNSの自動運用と投稿ボード</h4>
+              <p>企画・素材づくり・動画の組み立て・出す前の検品・予約投稿を、決まった時間にAIが進めます。人がやるのは、ボードに1行で出る「今夜やること」（アプリからしか出せない投稿など）だけです。</p>
+              <p class="point">AIニュースのショート動画は、36本で合計21,449回再生。</p>
+              <div class="links"><a class="primary" href="demo/kiki-board/" target="_blank" rel="noopener">投稿ボードを触る ↗</a><a href="https://www.youtube.com/@kizashi_jp" target="_blank" rel="noopener">運用中のチャンネル ↗</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <p class="demo-note">業務ツールのデモに出てくる会社名・人名・金額は、すべて架空のものです。</p>
+    </div>
+  </section>
+
+  <section class="block" id="reasons" aria-labelledby="reasons-h">
+    <div class="inner">
+      <div class="head">
+        <p class="eyebrow">Why REIKI</p>
+        <h2 id="reasons-h">選ばれる理由</h2>
+      </div>
+      <div class="reasons">
+        <div class="reason">
+          <p class="num">01</p>
+          <h3>現場で使われている物だけを作る</h3>
+          <p>請求書も顧客管理も予定アプリも、自社と取引先の毎日の仕事で使っているものです。机の上の見本ではなく、使い続けて直してきた道具をお渡しします。</p>
+        </div>
+        <div class="reason">
+          <p class="num">02</p>
+          <h3>AIで速く、検品は確かに</h3>
+          <p>AIで素早く形にし、出す前に複数のAIと人の目で検品します。数字や事実は確かめてから使い、うまくいかなかった結果も正直にお伝えします。</p>
+        </div>
+        <div class="reason">
+          <p class="num">03</p>
+          <h3>作って終わりにしない</h3>
+          <p>毎日の投稿、定期の更新、使いながらの改善まで、仕組みとして続く形にします。映像からWeb、業務ツールまで、まとめてご相談いただけます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="flow" aria-labelledby="flow-h">
+    <div class="inner">
+      <div class="head">
+        <p class="eyebrow">Process</p>
+        <h2 id="flow-h">進め方</h2>
+      </div>
+      <ol class="steps">
+        <li><b>ご相談</b><span>困っていること、今のやり方、使う人をお聞きします。</span></li>
+        <li><b>たたき台をお見せする</b><span>話をもとに、動く画面や映像の案を早めにお見せします。</span></li>
+        <li><b>触って直す</b><span>実際に触っていただき、使いにくい所を一緒に直します。</span></li>
+        <li><b>納品・導入</b><span>使い方の手順書まで用意して、お渡しします。</span></li>
+        <li><b>運用・改善</b><span>使い始めてからの気づきを受けて、改善を続けます。</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-h">
+    <div class="inner">
+      <p class="eyebrow">Contact</p>
+      <h2 id="contact-h">まずは、困っていることをお聞かせください。</h2>
+      <p>「この作業をなんとかしたい」「こんな映像が欲しい」の一言からで大丈夫です。ご相談・お見積りは、このページをお送りした担当者までご連絡ください。</p>
+      <div class="btns"><a class="btn solid" href="#works">実績をもう一度見る</a></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="inner">
+    <span class="latin">REIKI</span>
+    <span>AI・クリエイティブ事業 実績集</span>
+  </div>
+</footer>
+
+</body>
+</html>

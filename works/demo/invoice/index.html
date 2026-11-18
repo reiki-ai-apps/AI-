@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>サンプル商事への請求書（デモ）</title>
+<style>
+:root{
+  --bg:#f3f1ea; --card:#ffffff; --ink:#1c211b; --sub:#5f675b; --faint:#8a9185; --line:#e3e0d6; --field:#faf9f5;
+  --main:#4f6233; --main-d:#3d4d27; --main-bg:#eef2e6;
+  --red:#b42318; --red-bg:#fdeceb; --yel:#8a5800; --yel-bg:#fff3d6; --grn:#2c6a3a; --grn-bg:#e8f3ea; --info-bg:#f1f1ee;
+  --r:14px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Yu Gothic UI","Yu Gothic","Hiragino Sans","Meiryo",system-ui,sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;padding-bottom:36px}
+.num,input.n{font-variant-numeric:tabular-nums}
+button{font:inherit;cursor:pointer}
+input,select{font:inherit;color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+header.top{background:var(--main);color:#fff}
+header.top .wrap{display:flex;align-items:center;gap:20px;min-height:64px;flex-wrap:wrap}
+header.top h1{font-size:19px;margin:0;font-weight:700;letter-spacing:.04em}
+header.top h1 small{font-weight:400;opacity:.75;font-size:13px;margin-left:10px}
+nav.tabs{display:flex;gap:4px;margin-left:auto}
+nav.tabs button{background:transparent;border:0;color:#e6ecd9;padding:8px 14px;border-radius:999px;font-size:15px}
+nav.tabs button[aria-selected=true]{background:#fff;color:var(--main-d);font-weight:700}
+
+.view{display:none;padding:24px 0 60px}
+.view.on{display:block}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:22px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin-bottom:16px}
+.card-h{display:flex;align-items:baseline;gap:10px;margin:0 0 12px;font-weight:700;font-size:17px}
+.card-h .step{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--main-bg);color:var(--main-d);font-size:14px;flex:none}
+.card-h small{font-weight:400;color:var(--sub);font-size:13px}
+.hint{color:var(--sub);font-size:13.5px;margin:8px 0 0}
+.banner{background:var(--yel-bg);border:1px solid #f0d8a0;color:#5c3d00;border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:14.5px}
+
+input.f,select.f{background:var(--field);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-width:0}
+input.f:focus,select.f:focus{outline:2px solid #a9bb86;border-color:#a9bb86;background:#fff}
+select.big{font-size:20px;font-weight:700;padding:8px 14px}
+.meta{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:14px;align-items:center}
+.meta label{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--sub)}
+.meta input{width:auto}
+.meta input.no{width:72px;text-align:right}
+
+.hours{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hours input.h{font-size:32px;font-weight:700;width:150px;text-align:right;padding:6px 12px}
+.hours .u{font-size:18px;font-weight:700}
+.hours .calc{color:var(--sub);font-size:15px;display:flex;align-items:center;gap:6px;margin-left:8px}
+.hours .calc input{width:84px;text-align:right}
+.hours .calc b{color:var(--ink);font-size:18px}
+.appear{margin-top:10px;font-size:13.5px;color:var(--sub);background:var(--info-bg);border-radius:8px;padding:6px 10px;display:inline-block}
+
+.tools{display:grid;gap:8px}
+.trow{display:grid;grid-template-columns:46px minmax(0,1fr) 92px 128px 104px;gap:8px;align-items:center}
+.trow.other{grid-template-columns:46px minmax(0,1fr) 70px 60px 92px 118px 30px}
+.trow.head{font-size:12.5px;color:var(--faint);padding:0 2px;white-space:nowrap}
+.trow input[type=checkbox]{justify-self:center}
+.trow input[type=checkbox]{width:18px;height:18px;accent-color:var(--main)}
+.trow input.f{width:100%}
+.trow .usd{display:flex;align-items:center;gap:4px;color:var(--sub)}
+.trow .yen{display:flex;align-items:center;gap:4px;color:var(--sub)}
+.trow .yen input{text-align:right}
+.trow .usd input{text-align:right}
+.trow .prev{font-size:12.5px;color:var(--faint);line-height:1.3}
+.trow.off input.f{opacity:.45;text-decoration:line-through}
+.trow .need{border-color:#e9b949 !important;background:#fffaf0 !important}
+.trow .del{border:0;background:none;color:var(--faint);font-size:18px}
+.add{margin-top:10px;background:none;border:1px dashed #c9c5b8;border-radius:10px;padding:7px 14px;color:var(--sub);font-size:14px}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  header.top .wrap{padding-top:10px;padding-bottom:6px}
+  nav.tabs{margin-left:0;overflow-x:auto;max-width:100%}
+  nav.tabs button{white-space:nowrap;font-size:14px;padding:7px 11px}
+  .card{padding:16px}
+  .hours input.h{width:120px;font-size:28px}
+  .hours .calc{margin-left:0}
+  .trow,.trow.other{grid-template-columns:30px minmax(0,1fr) minmax(0,1fr);row-gap:4px}
+  .trow .usd input,.trow .yen input{width:100%;min-width:0}
+  .trow .usd{grid-column:2} .trow .yen{grid-column:3}
+  .trow.other .qt{grid-column:2} .trow.other .ut{grid-column:3} .trow.other .pr{grid-column:2}
+  .trow.other .prev{grid-column:3;align-self:center} .trow .del{grid-column:1;grid-row:2}
+  .trow.head{display:none}
+  .trow .tn{grid-column:2 / 4}
+  .trow .prev{grid-column:2 / 4}
+}
+
+details.card summary{cursor:pointer;font-weight:700;color:var(--sub);font-size:15px}
+details.card .more{display:grid;gap:12px;margin-top:14px}
+details.card label{display:grid;gap:4px;font-size:13.5px;color:var(--sub)}
+.switch{font-size:14px;color:var(--main-d);background:none;border:0;text-decoration:underline;padding:0}
+
+aside .sum{background:var(--main);color:#fff;border:0}
+.sum .l{font-size:13px;opacity:.85}
+.sum .v{font-size:34px;font-weight:700;letter-spacing:.01em;line-height:1.2}
+.sum .v span{font-size:17px;margin-left:4px}
+.sum .t{font-size:13px;opacity:.85}
+aside .sticky{position:sticky;top:16px}
+.checks .card-h{margin-bottom:8px}
+.iss{border-radius:10px;padding:9px 12px;margin:6px 0;font-size:14px;line-height:1.55;display:flex;gap:8px}
+.iss .ic{flex:none;font-weight:700}
+.iss.error{background:var(--red-bg);color:var(--red)}
+.iss.warn{background:var(--yel-bg);color:var(--yel)}
+.iss.info{background:var(--info-bg);color:var(--sub)}
+.oks{margin-top:8px;font-size:13.5px;color:var(--grn)}
+.oks summary{cursor:pointer}
+.oks li{margin:2px 0}
+.oks ul{margin:6px 0 0;padding-left:18px}
+.allok{background:var(--grn-bg);color:var(--grn);border-radius:10px;padding:10px 12px;font-weight:700;font-size:14.5px}
+.ack{display:flex;gap:8px;align-items:flex-start;font-size:14px;margin:4px 2px 10px;color:var(--yel)}
+.ack input{width:18px;height:18px;margin-top:3px;accent-color:#b07800}
+.go{width:100%;border:0;border-radius:12px;background:var(--main);color:#fff;font-size:18px;font-weight:700;padding:15px}
+.go:hover{background:var(--main-d)}
+.go:disabled{background:#c9cbbf;cursor:not-allowed}
+.plan{font-size:12.5px;color:var(--sub);margin:10px 2px 0;line-height:1.6}
+
+.result{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:22px;align-items:start}
+@media (max-width:900px){.result{grid-template-columns:minmax(0,1fr)}}
+.done-h{font-size:22px;font-weight:700;color:var(--grn);margin:0 0 6px}
+.vlist{list-style:none;padding:0;margin:8px 0 0;font-size:14px}
+.vlist li{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid var(--line)}
+.vlist .mk{flex:none;width:20px;font-weight:700}
+.vlist .ok .mk{color:var(--grn)} .vlist .ng .mk{color:var(--red)}
+.vlist .ng{color:var(--red)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 14px;font-size:14.5px}
+.btn.p{background:var(--main);color:#fff;border-color:var(--main)}
+
+table.list{width:100%;border-collapse:collapse;font-size:15px}
+table.list th{text-align:left;font-size:12.5px;color:var(--faint);font-weight:400;padding:6px 8px;border-bottom:1px solid var(--line)}
+table.list td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.list td.r{text-align:right}
+.tag{font-size:12px;border-radius:999px;padding:2px 8px;background:var(--info-bg);color:var(--sub)}
+.audit-item{border-bottom:1px solid var(--line);padding:14px 0}
+.audit-item:last-child{border-bottom:0}
+.audit-item .t{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+.audit-item .t b{font-size:15.5px}
+.audit-item .t .m{color:var(--sub);font-size:13.5px}
+.audit-item .clean{color:var(--grn);font-size:14px;margin-top:4px}
+.busy{position:fixed;inset:0;background:rgba(243,241,234,.86);display:none;place-items:center;z-index:9}
+.busy.on{display:grid}
+.busy .box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 30px;text-align:center;max-width:360px}
+.spin{width:34px;height:34px;border:4px solid var(--main-bg);border-top-color:var(--main);border-radius:50%;margin:0 auto 12px;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.err{background:var(--red-bg);color:var(--red);border-radius:10px;padding:10px 12px;margin:8px 0;font-size:14.5px}
+@media (max-width:640px){
+  table.list{font-size:14px}
+  table.list th:nth-child(5),table.list td:nth-child(5){display:none}
+  table.list td{padding:9px 5px}
+}
+
+/* ---- デモ版だけの部品 ---- */
+.demo-pill{position:fixed;left:12px;bottom:10px;z-index:20;background:rgba(28,33,27,.78);color:#fff;font-size:12px;line-height:1.4;padding:5px 12px;border-radius:999px;pointer-events:none;max-width:calc(100vw - 24px)}
+.guide{border-color:#d5dcc4;background:#fbfcf8}
+.guide p{margin:0;font-size:14.5px}
+.guide ol{margin:8px 0 0;padding-left:22px;font-size:14px}
+.guide ol li{margin:3px 0}
+.guide details{margin-top:8px;font-size:14px}
+.guide summary{cursor:pointer;color:var(--main-d);font-weight:700}
+.guide .btns{margin-top:12px}
+.guide p.hint{margin-top:10px}
+.guide .card-h{flex-wrap:wrap;row-gap:2px}
+.guide .card-h .nw{white-space:nowrap}
+.demo-note{background:var(--yel-bg);border:1px solid #f0d8a0;color:#5c3d00;border-radius:10px;padding:10px 12px;margin:6px 0 10px;font-size:14px;line-height:1.6}
+.paper-wrap{container-type:inline-size}
+.paper{position:relative;background:#fff;border:1px solid var(--line);border-radius:4px;box-shadow:0 6px 24px rgba(0,0,0,.08);aspect-ratio:1/1.414;padding:7cqw 6.5cqw 6cqw;font-size:2.15cqw;line-height:1.5;color:#222;font-family:"Yu Gothic","Hiragino Sans","Meiryo",sans-serif}
+.paper table{border-collapse:collapse;width:100%}
+.p-stamp{position:absolute;top:4.5cqw;right:5.5cqw;border:2px solid #c0392b;color:#c0392b;font-size:2.6cqw;font-weight:700;padding:.3cqw 1.6cqw;border-radius:4px;transform:rotate(-8deg);opacity:.85}
+.p-title{text-align:center;font-size:5cqw;font-weight:700;letter-spacing:.35em;margin-bottom:3cqw}
+.p-head{display:flex;justify-content:space-between;align-items:flex-end;gap:4cqw}
+.p-to{flex:1;font-size:3.1cqw;border-bottom:1px solid #222;padding-bottom:.5cqw}
+.paper .p-meta{width:auto}
+.p-meta th{font-weight:400;text-align:left;padding:.2cqw 2.4cqw .2cqw 0;color:#555}
+.p-meta td{text-align:right;font-variant-numeric:tabular-nums}
+.p-body{display:flex;justify-content:space-between;gap:4cqw;margin-top:3cqw}
+.p-left{flex:1;min-width:0}
+.p-greet{margin:0 0 1.6cqw}
+.p-kv th{font-weight:400;text-align:left;white-space:nowrap;padding:.3cqw 2.4cqw .3cqw 0;vertical-align:top;color:#555}
+.p-kv td{padding:.3cqw 0}
+.p-issuer{flex:none;width:33%;font-size:2cqw;line-height:1.6}
+.p-total{display:flex;align-items:baseline;gap:3cqw;width:62%;margin:3.4cqw 0 2.6cqw;border-bottom:2px solid #222;padding-bottom:.6cqw}
+.p-total b{font-size:4.2cqw;font-variant-numeric:tabular-nums}
+.p-rows{table-layout:fixed}
+.p-rows th{font-weight:400;background:#eef0ea;border:1px solid #bbb;padding:.5cqw 1cqw;font-size:1.95cqw}
+.p-rows td{border:1px solid #ccc;padding:.45cqw 1cqw;height:3.5cqw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p-rows td.r{text-align:right;font-variant-numeric:tabular-nums}
+.p-rows td.c{text-align:center}
+.p-rows td.nb{border:0}
+.p-note{margin-top:2.8cqw;border:1px solid #ccc;padding:1cqw 1.4cqw;min-height:8cqw}
+.p-note-h{font-size:1.8cqw;color:#555}
+.modal{position:fixed;inset:0;background:rgba(28,33,27,.5);z-index:30;display:grid;place-items:start center;overflow:auto;padding:24px 12px}
+.modal-box{background:var(--bg);border-radius:16px;padding:16px;width:min(680px,100%)}
+.modal-h{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.modal-h b{font-size:15px;word-break:break-all}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>サンプル商事への請求書<small>見本サロン</small></h1>
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-v="make" aria-selected="true">つくる</button>
+    <button role="tab" data-v="fix" aria-selected="false">作った請求書を直す</button>
+    <button role="tab" data-v="audit" aria-selected="false">今までの請求書を検査</button>
+  </nav>
+</div></header>
+
+<section class="view on" id="v-make"><div class="wrap">
+  <div id="demoGuide"></div>
+  <div id="banner"></div>
+  <div class="grid">
+    <div id="formCol"></div>
+    <aside><div class="sticky">
+      <div class="card sum"><div class="l">合計（税込）</div><div class="v num"><b id="total">0</b><span>円</span></div><div class="t">うち消費税 <span id="tax" class="num">0</span>円</div></div>
+      <div class="card checks"><div class="card-h">間違い探し <small id="checkState"></small></div><div id="issues"></div></div>
+      <label class="ack" id="ackWrap" hidden><input type="checkbox" id="ack"><span id="ackText">黄色の項目を確かめた</span></label>
+      <button class="go" id="go" disabled>エクセルとPDFを作る</button>
+      <p class="plan" id="plan"></p>
+    </div></aside>
+  </div>
+</div></section>
+
+<section class="view" id="v-done"><div class="wrap"><div class="result">
+  <div class="preview card"><div class="paper-wrap" id="pv"></div></div>
+  <div>
+    <div class="card">
+      <p class="done-h" id="doneH">できました</p>
+      <div id="doneWhere" class="hint"></div>
+      <div class="btns">
+        <button class="btn p" id="back">入力画面にもどる</button>
+        <button class="btn" id="again">最初の見本にもどす</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-h">できたPDFを読み戻して照合</div>
+      <p class="hint" style="margin-top:-6px">デモでは、左の見本をPDFとして読み戻したことにして照合しています。</p>
+      <ul class="vlist" id="verify"></ul>
+      <div id="after"></div>
+    </div>
+
+  </div>
+</div></div></section>
+
+<section class="view" id="v-fix"><div class="wrap">
+  <div class="card">
+    <div class="card-h">作った請求書を直す <small>サンプル商事から直しを頼まれた時はここから。前のPDFは「差し替え前」フォルダに残ります</small></div>
+    <table class="list"><thead><tr><th>No</th><th>何月分</th><th>請求日</th><th class="r">合計</th><th>エクセル</th><th></th></tr></thead><tbody id="fixRows"></tbody></table>
+  </div>
+</div></section>
+
+<section class="view" id="v-audit"><div class="wrap">
+  <div class="card">
+    <div class="card-h">今までの請求書を検査 <small>サンプル商事に送ったPDFを1枚ずつ読んで、同じ物差しで間違いを探します（読むだけで、何も書き換えません）</small></div>
+    <button class="btn p" id="runAudit">検査する</button>
+    <div id="auditOut" style="margin-top:12px"></div>
+  </div>
+</div></section>
+
+<div class="busy" id="busy"><div class="box"><div class="spin"></div><b id="busyT">作っています…</b><div class="hint" id="busyS">本番ではエクセルが裏で動きます（10〜30秒）。デモでは画面の中で見本を作ります。</div></div></div>
+
+<div class="modal" id="modal" hidden><div class="modal-box">
+  <div class="modal-h"><b id="modalT"></b><button class="btn" id="modalX">閉じる</button></div>
+  <div class="paper-wrap" id="modalPaper"></div>
+  <p class="hint">デモ版では本物のPDFは開かず、送った請求書の中身をここに表示します。</p>
+</div></div>
+
+<div class="demo-pill">デモ版：表示している会社名・金額はすべて架空です</div>
+
+<script src="demo-api.js"></script>
+<script>
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const yen = n => (n === null || n === undefined || n === '' || isNaN(n)) ? '' : Number(n).toLocaleString('ja-JP');
+const numv = v => { if (v === null || v === undefined) return null; const s = String(v).normalize('NFKC').replace(/[,円$＄\s]/g, ''); if (!s) return null; const n = Number(s); return isNaN(n) ? null : n; };
+const fmtD = s => s ? s.replaceAll('-', '/') : '';
+let STATE = null, FORM = null, LAST = null, RESULT = null, timer = null, seq = 0;
+
+// デモ版：api/… への問い合わせは demo-api.js がブラウザの中で答える（サーバーは使わない）
+async function api(path, body) {
+  const opt = body === undefined ? {} : {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)};
+  const r = await fetch(path, opt);
+  return r.json();
+}
+
+function show(v) {
+  document.querySelectorAll('.view').forEach(e => e.classList.toggle('on', e.id === 'v-' + v));
+  document.querySelectorAll('nav.tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.v === v || (v === 'done' && b.dataset.v === 'make'))));
+  window.scrollTo(0, 0);
+}
+document.querySelectorAll('nav.tabs button').forEach(b => b.onclick = () => { show(b.dataset.v); if (b.dataset.v === 'fix') renderFixList(); });
+
+async function init(fresh) {
+  STATE = await api('api/state');
+  if (fresh || !FORM) FORM = STATE.form;
+  renderForm(); scheduleCheck(0);
+}
+
+function monthOptions() {
+  const out = [];
+  const base = FORM.year * 12 + (FORM.month - 1);
+  for (let k = -14; k <= 2; k++) { const i = base + k; out.push([Math.floor(i / 12), i % 12 + 1]); }
+  return out.reverse();
+}
+
+function workRow() { return FORM.rows.find(r => r.role === 'work'); }
+
+// デモの使い方（見本の6月分にわざと入れた間違いの案内）
+function renderGuide() {
+  const g = $('#demoGuide');
+  if (FORM.mode !== 'new' || FORM.kind !== 'monthly') { g.innerHTML = ''; return; }
+  if (FORM.sample) {
+    g.innerHTML = `<div class="card guide">
+      <div class="card-h"><span class="nw">デモの使い方</span> <small>毎月の請求書づくりを、入力2か所＋ボタン1つにした道具です</small></div>
+      <p>見本の「${esc(FORM.year)}年${esc(FORM.month)}月分」には、<b>わざと間違いを3つ</b>入れてあります。右の「間違い探し」を見ながら左の入力を直すと、その場で指摘が消え、全部消えると「エクセルとPDFを作る」が押せるようになります。</p>
+      <details><summary>答えを見る</summary><ol>
+        <li>請求日の年が「2025」になっている → 2026 に直す（6月分なのに去年の日付）</li>
+        <li>ツール代の「打ち合わせ交通費　5月分」→「6月分」に直す（先月の行を写したまま）</li>
+        <li>ドル払いの画像編集ツール代が先月と1円も同じ 3,120円 → カード明細の額（例: 3,085）を入れる</li>
+      </ol></details>
+      <div class="btns"><button class="btn p" id="demoFix">3つまとめて直す</button><button class="btn" id="demoReset">最初の見本にもどす</button></div>
+      <p class="hint">「<button class="switch" id="demoAudit">今までの請求書を検査</button>」では、送ったPDFを読んで「内税を10%で計算」「ご御請求」「4月分なのに摘要が3月分」などを見つけます。</p>
+    </div>`;
+  } else {
+    g.innerHTML = `<div class="card guide"><p><b>見本の6月分は作り終えました。</b>いまは次の月の入力画面です。ドル払いで毎月額が変わるツール代は、写し忘れを防ぐため先月の額を空けておく作りです。
+      <button class="switch" id="demoReset">最初の見本にもどす</button></p></div>`;
+  }
+  const on = (sel, fn) => { const el = $(sel, g); if (el) el.onclick = fn; };
+  on('#demoFix', () => { FORM = JSON.parse(JSON.stringify(STATE.fixed)); renderForm(); scheduleCheck(0); });
+  on('#demoReset', () => location.reload());
+  on('#demoAudit', () => { show('audit'); $('#runAudit').click(); });
+}
+
+function renderForm() {
+  const f = FORM, monthly = f.kind === 'monthly';
+  const w = workRow();
+  renderGuide();
+  $('#banner').innerHTML = f.mode === 'fix'
+    ? `<div class="banner">No.${esc(f.no)}（${monthly ? esc(f.year + '年' + f.month + '月分') : esc(f.subject)}）を直しています。作り直すと、前のPDFは「差し替え前」フォルダへ移ります。
+       <button class="switch" id="cancelFix">やめて、新しい月をつくる</button></div>` : '';
+  let h = '';
+  // 1. 何月分
+  h += `<div class="card"><div class="card-h"><span class="step">1</span>${monthly ? '何月分の請求書？' : '何の請求書？'}</div>`;
+  if (monthly) {
+    h += `<select class="f big" id="month">${monthOptions().map(([y, m]) => `<option value="${y}-${m}" ${y === f.year && m === f.month ? 'selected' : ''}>${y}年${m}月分</option>`).join('')}</select>`;
+  } else {
+    h += `<input class="f" id="subject" style="width:100%;font-size:18px;font-weight:700" placeholder="例: 見本フェア2026年秋　出展支援業務" value="${esc(f.subject)}">`;
+  }
+  h += `<div class="meta">
+      <label>No <input class="f n no" id="no" value="${esc(f.no)}"></label>
+      <label>請求日 <input class="f n" type="date" id="date" value="${esc(f.date)}"></label>
+      <label>支払期限 <input class="f n" type="date" id="due" value="${esc(f.due)}"></label>
+    </div>
+    <p class="hint">No・請求日・支払期限は自動で入れています（支払期限は請求日の翌々月末）。ふつうは触らなくて大丈夫です。</p></div>`;
+  // 2. 作業時間
+  if (monthly && w) {
+    h += `<div class="card"><div class="card-h"><span class="step">2</span>作業時間</div>
+      <div class="hours">
+        <input class="f n h" id="hours" inputmode="decimal" placeholder="0" value="${esc(w.qty ?? '')}"><span class="u">時間</span>
+        <span class="calc">× <input class="f n" id="hourly" inputmode="numeric" value="${esc(w.price ?? '')}"> 円 ＝ <b class="num" id="workAmt">0</b> 円</span>
+      </div>
+      <p class="hint">作業時間の表の、${f.month}月の合計を入れてください。${w.prev_qty ? `（先月は ${esc(w.prev_qty)} 時間）` : ''}</p>
+      <div class="appear">請求書には「${esc(STATE.work_name.replace('{month}', f.month))}」と載ります</div></div>`;
+  }
+  // 3. ツール代（または明細）
+  const items = FORM.rows.map((r, i) => [r, i]).filter(([r]) => monthly ? r.role === 'item' : true);
+  h += `<div class="card"><div class="card-h"><span class="step">${monthly ? 3 : 2}</span>${monthly ? 'ツール代' : '明細'}
+      <small>${monthly ? '先月の請求から写しています。違う所だけ直してください' : '1行ずつ入れてください'}</small></div>
+    <div class="tools">`;
+  if (monthly) {
+    h += `<div class="trow head"><span>今月も</span><span>名前</span><span>ドル</span><span>円</span><span>先月</span></div>`;
+    for (const [r, i] of items) {
+      const need = r.variable && (r.price === '' || r.price === null);
+      h += `<div class="trow ${r.on ? '' : 'off'}" data-i="${i}">
+        <input type="checkbox" class="on" ${r.on ? 'checked' : ''} title="今月も請求する">
+        <input class="f tn" value="${esc(r.name)}" placeholder="例: 画像編集ツール代">
+        <span class="usd">＄<input class="f n us" inputmode="decimal" value="${esc(r.usd)}" placeholder="なし"></span>
+        <span class="yen"><input class="f n pr ${need ? 'need' : ''}" inputmode="numeric" value="${esc(r.price ?? '')}" placeholder="${r.variable ? '明細の額' : ''}"> 円</span>
+        <span class="prev">${r.prev !== undefined && r.prev !== null ? '先月 ' + yen(r.prev) + '円' : '新しい行'}${r.variable ? '<br>明細の円を入れる' : (r.rate && r.usd ? `<br>1ドル${r.rate}円で計算` : '')}</span>
+      </div>`;
+    }
+  } else {
+    h += `<div class="trow other head"><span></span><span>名前</span><span>数量</span><span>単位</span><span>単価</span><span>金額</span><span></span></div>`;
+    for (const [r, i] of items) {
+      const amt = (numv(r.qty) ?? 0) * (numv(r.price) ?? 0);
+      h += `<div class="trow other ${r.on ? '' : 'off'}" data-i="${i}">
+        <input type="checkbox" class="on" ${r.on ? 'checked' : ''}>
+        <input class="f tn" value="${esc(r.name)}" placeholder="例: 出展支援業務費（見本）">
+        <input class="f n qt" inputmode="decimal" value="${esc(r.qty ?? '')}">
+        <input class="f ut" value="${esc(r.unit ?? '')}" placeholder="時間">
+        <input class="f n pr" inputmode="numeric" value="${esc(r.price ?? '')}">
+        <span class="prev num" style="text-align:right;font-size:14px;color:var(--ink)">${yen(Math.round(amt))} 円</span>
+        <button class="del" title="この行を消す">×</button>
+      </div>`;
+    }
+  }
+  h += `</div><button class="add" id="addRow">＋ 行を足す</button></div>`;
+  // くわしく
+  h += `<details class="card"><summary>くわしく（件名・備考${f.mode === 'new' ? '・月ごとではない請求書' : ''}）</summary><div class="more">
+      ${monthly ? `<label>件名<input class="f" id="subject" value="${esc(f.subject)}"></label>` : ''}
+      <label>備考<input class="f" id="note" value="${esc(f.note)}"></label>
+      ${f.mode === 'new' ? (monthly
+        ? `<div><button class="switch" id="toOther">月ごとではない請求書（展示会の手伝いなど）を作る</button></div>`
+        : `<div><button class="switch" id="toMonthly">いつもの月ごとの請求書にもどる</button></div>`) : ''}
+    </div></details>`;
+  $('#formCol').innerHTML = h;
+  bindForm();
+  updateLocal();
+}
+
+function bindForm() {
+  const f = FORM;
+  const on = (sel, ev, fn) => { const el = $(sel); if (el) el.addEventListener(ev, fn); };
+  on('#month', 'change', e => { const [y, m] = e.target.value.split('-').map(Number); f.year = y; f.month = m; renderForm(); scheduleCheck(); });
+  on('#no', 'input', e => { f.no = e.target.value; scheduleCheck(); });
+  on('#date', 'input', e => { f.date = e.target.value; scheduleCheck(); });
+  on('#due', 'input', e => { f.due = e.target.value; scheduleCheck(); });
+  on('#subject', 'input', e => { f.subject = e.target.value; scheduleCheck(); });
+  on('#note', 'input', e => { f.note = e.target.value; scheduleCheck(); });
+  on('#hours', 'input', e => { workRow().qty = e.target.value; updateLocal(); scheduleCheck(); });
+  on('#hourly', 'input', e => { workRow().price = e.target.value; updateLocal(); scheduleCheck(); });
+  on('#addRow', 'click', () => {
+    FORM.rows.push(f.kind === 'monthly' ? {role: 'item', on: true, name: '', usd: '', qty: 1, unit: '月', price: '', prev: null}
+                                        : {role: 'item', on: true, name: '', usd: '', qty: '', unit: '', price: ''});
+    renderForm(); scheduleCheck();
+    const rows = document.querySelectorAll('.trow[data-i] .tn'); rows[rows.length - 1]?.focus();
+  });
+  on('#cancelFix', 'click', () => init(true));
+  on('#toOther', 'click', () => {
+    FORM = {...FORM, kind: 'other', subject: '', note: '', rows: [{role: 'item', on: true, name: '', usd: '', qty: '', unit: '時間', price: STATE.form.rows[0].price}]};
+    renderForm(); scheduleCheck();
+  });
+  on('#toMonthly', 'click', () => init(true));
+  document.querySelectorAll('.trow[data-i]').forEach(row => {
+    const r = FORM.rows[+row.dataset.i];
+    row.querySelector('.on').addEventListener('change', e => { r.on = e.target.checked; row.classList.toggle('off', !r.on); updateLocal(); scheduleCheck(); });
+    row.querySelector('.tn').addEventListener('input', e => { r.name = e.target.value; scheduleCheck(); });
+    const us = row.querySelector('.us');
+    if (us) us.addEventListener('input', e => {
+      r.usd = e.target.value;
+      const u = numv(r.usd);
+      if (r.rate && u !== null) { r.price = Math.round(u * r.rate); row.querySelector('.pr').value = r.price; }
+      updateLocal(); scheduleCheck();
+    });
+    row.querySelector('.pr').addEventListener('input', e => { r.price = e.target.value; e.target.classList.toggle('need', r.variable && !e.target.value); updateLocal(); scheduleCheck(); });
+    const qt = row.querySelector('.qt'); if (qt) qt.addEventListener('input', e => { r.qty = e.target.value; updateLocal(); scheduleCheck(); });
+    const ut = row.querySelector('.ut'); if (ut) ut.addEventListener('input', e => { r.unit = e.target.value; scheduleCheck(); });
+    const del = row.querySelector('.del'); if (del) del.addEventListener('click', () => { FORM.rows.splice(+row.dataset.i, 1); renderForm(); scheduleCheck(); });
+  });
+}
+
+function updateLocal() {
+  const w = workRow();
+  if (w && $('#workAmt')) $('#workAmt').textContent = yen(Math.round((numv(w.qty) ?? 0) * (numv(w.price) ?? 0)));
+  if (FORM.kind !== 'monthly') document.querySelectorAll('.trow.other[data-i]').forEach(row => {
+    const r = FORM.rows[+row.dataset.i];
+    row.querySelector('.prev').textContent = yen(Math.round((numv(r.qty) ?? 0) * (numv(r.price) ?? 0))) + ' 円';
+  });
+}
+
+function scheduleCheck(ms = 250) {
+  clearTimeout(timer);
+  $('#checkState').textContent = '確かめています…';
+  $('#go').disabled = true;
+  timer = setTimeout(runCheck, ms);
+}
+
+async function runCheck() {
+  const my = ++seq;
+  const res = await api('api/check', FORM);
+  if (my !== seq) return;
+  LAST = res;
+  $('#total').textContent = yen(res.subtotal);
+  $('#tax').textContent = yen(res.tax);
+  const iss = res.issues || [];
+  const errs = iss.filter(i => i.level === 'error'), warns = iss.filter(i => i.level === 'warn'),
+        infos = iss.filter(i => i.level === 'info'), oks = iss.filter(i => i.level === 'ok');
+  let h = '';
+  if (!errs.length && !warns.length) h += `<div class="allok">✓ 間違いは見つかりませんでした</div>`;
+  for (const i of errs) h += `<div class="iss error"><span class="ic">✕</span><span>${esc(i.msg)}</span></div>`;
+  for (const i of warns) h += `<div class="iss warn"><span class="ic">！</span><span>${esc(i.msg)}</span></div>`;
+  for (const i of infos) h += `<div class="iss info"><span class="ic">・</span><span>${esc(i.msg)}</span></div>`;
+  if (oks.length) h += `<details class="oks"><summary>✓ 確かめたこと ${oks.length}件</summary><ul>${oks.map(o => `<li>${esc(o.msg)}</li>`).join('')}</ul></details>`;
+  $('#issues').innerHTML = h;
+  $('#checkState').textContent = errs.length ? `直す所 ${errs.length}件` : (warns.length ? `確かめる所 ${warns.length}件` : '');
+  const ack = $('#ackWrap');
+  ack.hidden = !warns.length || !!errs.length;
+  $('#ackText').textContent = `黄色の${warns.length}件を確かめた`;
+  if (warns.length === 0) $('#ack').checked = false;
+  $('#go').textContent = FORM.mode === 'fix' ? '直したエクセルとPDFを作る' : 'エクセルとPDFを作る';
+  updateGo();
+  const p = res.plan;
+  $('#plan').innerHTML = p ? (FORM.mode === 'fix'
+      ? `本番では「${esc(p.book)}」のシート「${esc(p.sheet)}」を書き直し、「${esc(p.pdf_dir)}」のPDFを作り直します。`
+      : `本番では「${esc(p.book)}」${p.new_book ? '（新しく作ります）' : ''}にシート「${esc(p.sheet)}」を足し、「${esc(p.pdf_dir)}」フォルダに「${esc(p.pdf)}」を保存します。作る前に、エクセルの控えを自動でとります。`) : '';
+}
+function updateGo() {
+  const iss = LAST?.issues || [];
+  const errs = iss.some(i => i.level === 'error'), warns = iss.some(i => i.level === 'warn');
+  $('#go').disabled = errs || (warns && !$('#ack').checked);
+}
+$('#ack').addEventListener('change', updateGo);
+
+$('#go').addEventListener('click', async () => {
+  $('#busy').classList.add('on');
+  $('#busyT').textContent = FORM.mode === 'fix' ? '作り直しています…' : '作っています…';
+  let res;
+  try { res = await api('api/create', FORM); } catch (e) { res = {ok: false, error: 'うまく作れませんでした。ページを読み込み直してください。'}; }
+  $('#busy').classList.remove('on');
+  if (!res.ok) {
+    $('#issues').insertAdjacentHTML('afterbegin', `<div class="err">${esc(res.error)}</div>`);
+    if (res.issues) runCheck();
+    return;
+  }
+  RESULT = res;
+  $('#pv').innerHTML = window.DEMO ? DEMO.paper(res.record) : '';
+  const pdfName = res.pdf.split('\\').pop(), bookName = res.workbook.split('\\').pop();
+  const bad = res.verify.filter(v => !v.ok).length;
+  $('#doneH').textContent = bad ? '作りましたが、照合で食い違いがあります' : '見本ができました';
+  $('#doneH').style.color = bad ? 'var(--red)' : 'var(--grn)';
+  $('#doneWhere').innerHTML = `<div class="demo-note">デモ版ではExcel・PDFは作りません。${FORM.mode === 'fix' ? '本番ではExcelのシートを書き直し、PDFを作り直します。' : '本番ではExcelに月のシートを追加し、PDFを保存します。'}</div>
+    本番なら、エクセル「${esc(bookName)}」にシート「${esc(res.sheet)}」${FORM.mode === 'fix' ? 'を書き直し' : 'を足し'}、PDF「${esc(pdfName)}」を保存します。${res.moved.length ? '前のPDFは「差し替え前」フォルダへ移します。' : ''}<br>左は、そのPDFと同じ形の見本です。`;
+  $('#verify').innerHTML = res.verify.map(v => `<li class="${v.ok ? 'ok' : 'ng'}"><span class="mk">${v.ok ? '✓' : '✕'}</span><span>${esc(v.label)}${v.ok ? '' : `<br>入れた: ${esc(v.want)}<br>PDF: ${esc(v.have)}`}</span></li>`).join('');
+  const after = (res.issues || []).filter(i => i.level === 'error' || i.level === 'warn');
+  $('#after').innerHTML = after.length ? after.map(i => `<div class="iss ${i.level}"><span class="ic">${i.level === 'error' ? '✕' : '！'}</span><span>${esc(i.msg)}</span></div>`).join('')
+    : `<div class="allok" style="margin-top:10px">✓ PDFの文字（宛名・発行者・振込先・計算）も問題なし</div>`;
+  show('done');
+});
+$("#back").onclick = async () => { await init(true); show('make'); };
+$('#again').onclick = () => location.reload();
+
+async function renderFixList() {
+  STATE = await api('api/state');
+  $('#fixRows').innerHTML = STATE.invoices.map((x, i) => `<tr>
+    <td class="num">${esc(x.no ?? '')}</td><td><b>${esc(x.label)}</b>${x.kind === 'other' ? ' <span class="tag">別件</span>' : ''}</td>
+    <td class="num">${esc(fmtD(x.date))}</td><td class="r num">${yen(x.total)}円</td>
+    <td><span class="tag">${esc(x.book_name.replace('.xlsx', ''))}・${esc(x.sheet)}</span></td>
+    <td class="r"><button class="btn" data-i="${i}">直す</button></td></tr>`).join('');
+  document.querySelectorAll('#fixRows button').forEach(b => b.onclick = async () => {
+    const x = STATE.invoices[+b.dataset.i];
+    const res = await api('api/load', {book: x.book, sheet: x.sheet});
+    if (res.error) return alert(res.error);
+    FORM = res.form;
+    show('make'); renderForm(); scheduleCheck(0);
+  });
+}
+
+// デモ版：「開く」は本物のPDFの代わりに、送った請求書の中身を見本の形で出す
+function openPaper(path) {
+  const rec = window.DEMO && DEMO.pdf(path);
+  if (!rec) return;
+  $('#modalT').textContent = path.split('\\').pop();
+  $('#modalPaper').innerHTML = DEMO.paper(rec);
+  $('#modal').hidden = false;
+}
+$('#modalX').onclick = () => { $('#modal').hidden = true; };
+$('#modal').addEventListener('click', e => { if (e.target.id === 'modal') $('#modal').hidden = true; });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') $('#modal').hidden = true; });
+
+$('#runAudit').onclick = async () => {
+  $('#auditOut').innerHTML = '<div class="hint">読んでいます…</div>';
+  const xs = await api('api/audit');
+  const n = xs.filter(x => x.issues.some(i => i.level === 'error')).length;
+  let h = `<p class="hint">${xs.length}枚を検査しました。赤（直さないと指摘される間違い）があるのは ${n}枚です。</p>`;
+  for (const x of xs) {
+    const iss = x.issues.filter(i => i.level !== 'info');
+    h += `<div class="audit-item"><div class="t"><b>${esc(x.file.replace('.pdf', ''))}</b><span class="m">No.${esc(x.no ?? '')}・${esc(fmtD(x.date))}・${yen(x.total)}円・${esc(x.folder)}</span>
+      <button class="btn" style="padding:3px 10px;font-size:13px" data-p="${esc(x.path)}">開く</button></div>
+      ${iss.length ? iss.map(i => `<div class="iss ${i.level}"><span class="ic">${i.level === 'error' ? '✕' : '！'}</span><span>${esc(i.msg)}</span></div>`).join('') : '<div class="clean">✓ 間違いは見つかりませんでした</div>'}</div>`;
+  }
+  $('#auditOut').innerHTML = h;
+  document.querySelectorAll('#auditOut button[data-p]').forEach(b => b.onclick = () => openPaper(b.dataset.p));
+};
+
+init(true).then(() => {
+  if (location.hash === '#fix') { show('fix'); renderFixList(); }
+  if (location.hash === '#audit') { show('audit'); $('#runAudit').click(); }
+});
+</script>
+</body>
+</html>

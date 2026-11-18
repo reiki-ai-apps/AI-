@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>顧客管理｜農業資材（デモ）</title>
+<meta name="description" content="農業資材の外回り営業向け 顧客管理アプリのデモ版。データはすべて架空です。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%8C%BF%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#f3f0e6;--surface:#fffdf8;--ink:#262219;--sub:#827b69;--line:#e6dfcd;--line2:#efe9d9;
+  --navy:#33583b;--navy-d:#264430;--gold:#a9823f;--soft:#eaf0e4;--danger:#b3382f;--ok:#2f7d52;
+}
+body{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic UI","Noto Sans JP","Meiryo",sans-serif;
+  background:var(--bg);color:var(--ink);margin:0;font-size:17px;line-height:1.75;
+  letter-spacing:.01em;padding-bottom:96px;-webkit-font-smoothing:antialiased}
+body.locked{overflow:hidden}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea,select{font-family:inherit;font-size:17px;color:var(--ink)}
+a{color:var(--navy);text-decoration:none}
+.bar{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);padding:15px 18px;display:flex;align-items:center;gap:10px;z-index:10}
+.bar h1{font-size:18px;margin:0;font-weight:700;letter-spacing:.14em}
+.bar .sp{flex:1}
+.wrap{max-width:880px;margin:0 auto;padding:18px}
+.tools{display:flex;gap:10px;margin-bottom:10px}
+.tools input{flex:1;padding:13px 16px;border:1px solid var(--line);border-radius:12px;background:#fff;outline:none;transition:.15s;min-width:0}
+.tools input:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(51,88,59,.1)}
+.tools2{display:flex;gap:10px;margin-bottom:16px}
+.tools2 .btn{flex:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:13px 20px;
+  border-radius:12px;font-weight:700;font-size:15px;min-height:50px;letter-spacing:.02em;transition:.15s}
+.btn-p{background:var(--navy);color:#fff}
+.btn-p:hover{background:var(--navy-d)}
+.btn-g{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn-d{background:#fff;color:var(--danger);border:1px solid #e3c4c1}
+.btn-s{padding:9px 14px;min-height:0;font-size:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;
+  margin-bottom:14px;box-shadow:0 1px 2px rgba(20,22,30,.04),0 8px 24px rgba(20,22,30,.045);
+  cursor:pointer;position:relative;transition:.18s}
+.card:hover{box-shadow:0 2px 5px rgba(20,22,30,.06),0 16px 34px rgba(20,22,30,.09);
+  transform:translateY(-1px);border-color:#dcd6c9}
+.card.new{border-left:5px solid var(--gold)}
+.card.pre{border-left:5px solid #c9c2ae}
+.editb{position:absolute;top:16px;right:16px;background:#fff;border:1px solid var(--line);
+  color:var(--sub);font-weight:700;font-size:13px;padding:7px 14px;border-radius:9px;transition:.15s}
+.editb:hover{border-color:var(--navy);color:var(--navy)}
+.chead{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;padding-right:80px}
+.chead .nm{font-size:23px;font-weight:700;line-height:1.3;letter-spacing:.01em}
+.cinfo{display:inline-flex;align-items:baseline;gap:8px;font-size:16px;font-weight:600;color:var(--ink)}
+.clab{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.14em}
+.cmeta{margin-top:8px;font-size:13px;color:var(--sub);font-weight:600;display:flex;gap:12px;flex-wrap:wrap}
+.cmeta .req{color:var(--danger)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;vertical-align:middle;letter-spacing:.06em;margin-left:6px}
+.badge.new{background:#fdf3df;color:#8a5f14;border:1px solid #e9d3a0}
+.badge.pre{background:#f1eee6;color:#6f685a;border:1px solid #d9d2c1}
+.badge.mid{background:var(--soft);color:var(--navy);border:1px solid #cfe3d6}
+.vbtn{background:#fff;color:var(--ok);border:1px solid #cfe3d6;font-weight:700;font-size:14px;
+  padding:10px 14px;border-radius:10px;margin-right:8px}
+.vbtn.rec{background:#fdecec;color:var(--danger);border-color:#eccac7}
+.tag{display:inline-block;font-size:13px;background:var(--soft);color:var(--navy);padding:4px 12px;
+  border-radius:999px;margin:0 5px 4px 0;font-weight:600;letter-spacing:.02em}
+.drow{display:flex;gap:14px;padding:13px 2px;border-bottom:1px solid var(--line2);font-size:18px}
+.drow .lab{color:var(--sub);font-weight:600;font-size:14px;min-width:108px;flex:none;letter-spacing:.04em;padding-top:3px}
+.drow .v{flex:1;font-weight:600;color:var(--ink);word-break:break-word}
+.drow a{color:var(--navy);font-weight:700;border-bottom:1px solid rgba(51,88,59,.3)}
+.dsec{font-weight:700;color:var(--gold);margin:24px 0 6px;font-size:12px;letter-spacing:.16em;
+  padding-bottom:6px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.dsec .dsn{font-size:12px;color:var(--sub);font-weight:600;letter-spacing:.02em}
+.mtog{display:block;width:100%;text-align:left;margin-top:22px;font-weight:700;color:var(--ink);
+  font-size:15px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;transition:.15s}
+.mtog:hover{border-color:var(--navy)}
+.htog{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;margin-top:10px;font-weight:700;color:var(--ink);
+  font-size:15px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 16px}
+.htog .hs{font-size:13px;color:var(--sub);font-weight:600}
+.dname{font-size:25px;font-weight:700;letter-spacing:.01em;margin-bottom:2px;display:flex;align-items:center;flex-wrap:wrap;gap:4px}
+.dname .rep{font-size:15px;color:var(--sub);font-weight:600}
+.dkana{color:var(--sub);margin-bottom:10px;font-size:14px;letter-spacing:.06em}
+.dhead{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  position:sticky;top:0;background:#fff;padding:2px 0 12px;margin-bottom:8px;z-index:2;
+  border-bottom:1px solid var(--line)}
+.dhead h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.1em;color:var(--sub)}
+.dhb{display:flex;gap:8px;flex:none}
+.hbtn{font-size:14px;font-weight:700;padding:8px 15px;border-radius:9px;
+  background:#fff;border:1px solid var(--line);color:var(--ink);letter-spacing:.02em}
+.hbtn.hedit{background:var(--navy);border-color:var(--navy);color:#fff}
+.empty{text-align:center;padding:60px 20px;color:var(--sub)}
+.ov{position:fixed;inset:0;background:rgba(18,20,28,.42);display:none;z-index:50;
+  align-items:flex-end;justify-content:center;overscroll-behavior:contain}
+.ov.open{display:flex}
+.sheet{background:#fff;width:100%;max-width:560px;max-height:94vh;max-height:94dvh;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+  border-radius:20px 20px 0 0;padding:22px;
+  padding-bottom:calc(60px + env(safe-area-inset-bottom))}
+.sheet h2{margin:0 0 16px;font-size:18px;font-weight:700;letter-spacing:.02em}
+.f{margin-bottom:14px}
+.f label{display:block;font-weight:600;font-size:14px;margin-bottom:7px;color:var(--sub);letter-spacing:.03em}
+.f input,.f textarea{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:11px;
+  outline:none;background:#fff;transition:.15s}
+.f input:focus,.f textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(51,88,59,.1)}
+.f textarea{min-height:72px;resize:vertical}
+.fh{font-weight:700;color:var(--gold);margin:20px 0 8px;font-size:12px;letter-spacing:.16em;padding-bottom:5px;border-bottom:1px solid var(--line)}
+.fnote{font-size:13px;color:var(--sub);margin:-6px 0 12px}
+.two{display:flex;gap:10px}.two .f{flex:1;min-width:0}
+.seg{display:flex;border:1px solid var(--line);border-radius:11px;overflow:hidden}
+.seg button{flex:1;padding:12px 4px;font-weight:600;font-size:15px;white-space:nowrap;color:var(--sub);background:#fff;border-right:1px solid var(--line);transition:.12s}
+.seg button:last-child{border-right:none}
+.seg button.on{background:var(--navy);color:#fff}
+.foot{display:flex;gap:10px;margin-top:14px}
+.foot .btn{flex:1}
+.delzone{text-align:center;margin-top:20px;padding-top:14px;border-top:1px solid var(--line2)}
+.dellink{color:var(--sub);font-size:13px;text-decoration:underline;letter-spacing:.02em}
+.dellink:hover{color:var(--danger)}
+/* ---- デモ版の案内（固定・小さく） ---- */
+.demo-banner{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:10px;
+  background:rgba(38,34,25,.86);color:#fff;font-size:12px;font-weight:600;letter-spacing:.02em;line-height:1.45;
+  padding:6px 6px 6px 14px;border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,.18);width:max-content;max-width:calc(100vw - 20px)}
+.demo-banner span{min-width:0}
+.demo-banner .dbt{display:inline-block}
+.demo-banner button{flex:none;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.38);
+  border-radius:999px;padding:4px 11px;font-size:12px;font-weight:700;white-space:nowrap}
+.demo-banner button:hover{background:rgba(255,255,255,.26)}
+@media (max-width:480px){.demo-banner{font-size:11px;gap:8px;padding-left:11px}.demo-banner button{font-size:11px;padding:4px 9px}}
+.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%);background:#1c1e24;color:#fff;
+  padding:13px 22px;border-radius:999px;font-weight:600;font-size:14px;opacity:0;transition:.25s;z-index:80;
+  box-shadow:0 8px 24px rgba(0,0,0,.2);max-width:90vw;text-align:center}
+.toast.show{opacity:1}
+
+/* ---- 提案書反映分 ---- */
+.prog{background:var(--soft);border-radius:14px;padding:12px 14px;margin:6px 0 4px}
+.prog .pt{font-size:12px;font-weight:700;color:var(--navy);letter-spacing:.12em;margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:13px;font-weight:700;padding:5px 11px;border-radius:999px;background:#fff;color:var(--sub);border:1px solid var(--line)}
+.chip.ok{background:var(--navy);color:#fff;border-color:var(--navy)}
+.visits{display:inline-flex;gap:4px;align-items:center;margin-left:4px}
+.visits i{width:10px;height:10px;border-radius:50%;background:#fff;border:1px solid var(--line);display:inline-block}
+.visits i.on{background:var(--gold);border-color:var(--gold)}
+.hint{margin-top:8px;font-size:14px;font-weight:600;color:var(--ink)}
+.hint b{color:var(--navy)}
+.consent{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 2px}
+.cbtn{font-size:14px;font-weight:700;padding:9px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--sub)}
+.cbtn.on{background:#fdf3df;border-color:var(--gold);color:#6b4d16}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.tile{position:relative;aspect-ratio:1;border-radius:12px;overflow:hidden;background:#eee;border:1px solid var(--line);cursor:pointer}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.tile .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--sub)}
+.tile .vd{position:absolute;left:6px;bottom:6px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px}
+.tile .x{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.55);color:#fff;width:24px;height:24px;border-radius:50%;font-size:14px;line-height:24px;text-align:center}
+.tile.add{display:flex;align-items:center;justify-content:center;flex-direction:column;background:#fff;border:2px dashed #cfc8b6;color:var(--navy);font-weight:700;font-size:13px;gap:4px}
+.tile.add span{font-size:26px}
+.item{padding:11px 2px;border-bottom:1px solid var(--line2)}
+.item .it{font-size:17px;font-weight:600;white-space:pre-wrap;word-break:break-word}
+.item .im{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:5px;font-size:13px;color:var(--sub);font-weight:600}
+.st{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--sub)}
+.st.s0{background:#fdecec;color:var(--danger);border-color:#eccac7}
+.st.s1{background:#fdf3df;color:#6b4d16;border-color:#e9d3a0}
+.st.s2{background:var(--soft);color:var(--navy);border-color:#cfe3d6}
+.xl{color:var(--sub);font-size:12px;text-decoration:underline;margin-left:auto}
+.addbox{background:#faf8f2;border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:10px}
+.addbox textarea,.addbox input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;outline:none;font-size:16px}
+.addbox textarea{min-height:64px;resize:vertical}
+.addbox .row{display:flex;gap:8px;margin-top:8px;align-items:center;flex-wrap:wrap}
+.addbox .row .btn{margin-left:auto}
+.lnk{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;margin:0 6px 6px 0;font-weight:700;font-size:14px;color:var(--navy)}
+.lnk .x2{color:var(--sub);font-size:12px;margin-left:2px}
+.mapbtns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.mapb{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-weight:700;font-size:15px;color:var(--navy)}
+.mapb small{color:var(--sub);font-weight:600;font-size:12px}
+.addrbox{display:none;margin-top:6px}
+.addrbox.open{display:block}
+.bitem{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;cursor:pointer}
+.bitem .bn{font-weight:700;font-size:15px;color:var(--navy)}
+.bitem .bt{font-size:17px;font-weight:600;margin:3px 0;white-space:pre-wrap}
+.bitem .bm{font-size:13px;color:var(--sub);display:flex;gap:10px;align-items:center}
+.bnote{font-size:14px;color:var(--sub);margin-bottom:12px;line-height:1.6}
+.iov{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;z-index:120;align-items:center;justify-content:center;padding:10px}
+.iov.open{display:flex}
+.iov img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px}
+.iov .ix{position:absolute;top:14px;right:14px;color:#fff;font-size:26px;font-weight:700;background:rgba(255,255,255,.15);width:44px;height:44px;border-radius:50%}
+.bcount{background:var(--danger);color:#fff;font-size:12px;border-radius:999px;padding:1px 8px;margin-left:2px}
+/* 地図ピン */
+.mov{position:fixed;inset:0;background:#fff;display:none;z-index:110;flex-direction:column}
+.mov.open{display:flex}
+.mov .mtop{padding:12px 16px;border-bottom:1px solid var(--line);font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mov .mtop small{display:block;font-weight:600;color:var(--sub);font-size:12px}
+#map{flex:1;min-height:200px}
+.mov .mbot{padding:12px 16px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap}
+.mov .mbot .btn{flex:1;min-width:120px}
+</style>
+</head>
+<body>
+<div class="bar"><h1>🌿 顧客管理</h1><span class="sp"></span>
+  <button class="btn btn-g" onclick="pull()">🔄 最新</button></div>
+<div class="wrap">
+  <div class="tools">
+    <input id="q" placeholder="名前・地域・作物で検索" oninput="render()">
+  </div>
+  <div class="tools2">
+    <button class="btn btn-g" onclick="openBoard()">📋 御用聞き<span id="bcount" class="bcount" style="display:none">0</span></button>
+    <button class="btn btn-p" onclick="openForm()">＋ 新規登録</button>
+  </div>
+  <div id="list"></div>
+</div>
+<input type="file" id="fileIn" accept="image/*,video/*" multiple style="display:none" onchange="filesPicked(this.files)">
+
+<div class="ov" id="ov">
+  <div class="sheet">
+    <div class="dhead">
+      <h2 id="ftitle">新規登録</h2>
+      <button class="hbtn" onclick="closeForm()">閉じる</button>
+    </div>
+    <input type="hidden" id="f_id">
+    <div class="f"><label>個人 / 法人</label>
+      <div class="seg" id="s_type">
+        <button type="button" onclick="seg('type','個人')">個人</button>
+        <button type="button" onclick="seg('type','法人')">法人</button>
+      </div></div>
+    <div class="two">
+      <div class="f"><label id="lb_name">姓 ※必須</label><input id="f_name"></div>
+      <div class="f"><label id="lb_sub">名</label><input id="f_sub"></div>
+    </div>
+    <div class="f"><label>フリガナ</label><input id="f_kana"></div>
+    <div class="two">
+      <div class="f"><label>重点度</label>
+        <div class="seg" id="s_rank">
+          <button type="button" onclick="seg('rank','')">なし</button>
+          <button type="button" onclick="seg('rank','A')">A</button>
+          <button type="button" onclick="seg('rank','B')">B</button>
+          <button type="button" onclick="seg('rank','C')">C</button>
+        </div></div>
+      <div class="f"><label>JA（農協）取引</label>
+        <div class="seg" id="s_dealType">
+          <button type="button" onclick="seg('dealType','JA有')">JA有</button>
+          <button type="button" onclick="seg('dealType','JA無')">JA無</button>
+          <button type="button" onclick="seg('dealType','両方')">両方</button>
+        </div></div>
+    </div>
+    <div class="two">
+      <div class="f"><label>最初の取引日（カレンダーで）</label><input id="f_firstDeal" type="date" onchange="dpAuto()"></div>
+      <div class="f"><label>前回に行った日</label><input id="f_lastVisit" type="date"></div>
+    </div>
+    <div class="f" id="dp_wrap"><label>取引期間（取引日を入れると自動）</label>
+      <div class="seg" id="s_dealPeriod">
+        <button type="button" onclick="seg('dealPeriod','')">まだ</button>
+        <button type="button" onclick="seg('dealPeriod','新規')">新規</button>
+        <button type="button" onclick="seg('dealPeriod','中期')">中期</button>
+        <button type="button" onclick="seg('dealPeriod','長期')">長期</button>
+      </div></div>
+    <div class="fnote" id="dp_note" style="display:none"></div>
+    <div class="two">
+      <div class="f"><label>エリア</label><input id="f_area"></div>
+      <div class="f"><label>担当営業</label><input id="f_rep"></div>
+    </div>
+    <div class="fh">連絡先</div>
+    <div class="two">
+      <div class="f"><label>携帯電話</label><input id="f_phone" type="tel"></div>
+      <div class="f"><label>自宅電話</label><input id="f_homePhone" type="tel"></div>
+    </div>
+    <div class="two">
+      <div class="f"><label>FAX</label><input id="f_fax" type="tel"></div>
+      <div class="f"><label>メール</label><input id="f_email"></div>
+    </div>
+    <div class="f"><label>作物（カンマ区切り）</label><input id="f_crops" placeholder="トマト, きゅうり"></div>
+    <div class="fh">ハウスの仕様</div>
+    <div class="two">
+      <div class="f"><label>間口</label><input id="f_houseWidth" placeholder="例）6m"></div>
+      <div class="f"><label>奥行</label><input id="f_houseDepth" placeholder="例）30m"></div>
+    </div>
+    <div class="two">
+      <div class="f"><label>型式</label><input id="f_houseModel"></div>
+      <div class="f"><label>棟数</label><input id="f_houseCount" placeholder="例）3"></div>
+    </div>
+    <div class="f"><label>ハウスの種類</label><input id="f_houseKind" placeholder="例）パイプハウス、連棟"></div>
+    <div class="two">
+      <div class="f"><label>フィルム メーカー</label><input id="f_filmMaker"></div>
+      <div class="f"><label>フィルム種類</label><input id="f_filmType"></div>
+    </div>
+    <div class="two">
+      <div class="f"><label>規格</label><input id="f_filmSpec"></div>
+      <div class="f"><label>張替え目安</label><input id="f_filmReplace" type="month"></div>
+    </div>
+    <div class="fh">住所（地図のピンは顧客情報の画面から）</div>
+    <div class="f"><label>自宅住所</label><input id="f_homeAddress"></div>
+    <div class="f"><label>畑の住所 ①</label><input id="f_field1"></div>
+    <div class="f"><label>畑の住所 ②</label><input id="f_field2"></div>
+    <div class="f"><label>畑の住所 ③</label><input id="f_field3"></div>
+    <div class="fh">その他</div>
+    <div class="f"><label>次回フォロー予定日</label><input id="f_nextFollow" type="date"></div>
+    <div class="f"><label>購入履歴（1行に1件）</label><textarea id="f_purchases" placeholder="例）2026/3 農POフィルム 5本 50000円"></textarea></div>
+    <div class="f"><label>メモ</label><textarea id="f_memo"></textarea></div>
+    <div class="foot">
+      <button class="btn btn-p" id="saveB" onclick="save()">保存</button>
+    </div>
+    <div class="delzone" id="delZone" style="display:none">
+      <button class="dellink" onclick="del()">この顧客を削除する（管理者のみ）</button>
+    </div>
+  </div>
+</div>
+
+<div class="ov" id="dov">
+  <div class="sheet">
+    <div class="dhead">
+      <h2 id="dtitle">顧客情報</h2>
+      <div class="dhb">
+        <button class="hbtn" onclick="closeDetail()">閉じる</button>
+        <button class="hbtn hedit" id="dedit">✏️修正</button>
+      </div>
+    </div>
+    <div id="dbody"></div>
+  </div>
+</div>
+
+<div class="ov" id="bov">
+  <div class="sheet">
+    <div class="dhead">
+      <h2>御用聞きボード</h2>
+      <div class="dhb"><button class="hbtn" onclick="closeBoard()">閉じる</button></div>
+    </div>
+    <div class="bnote">Aさんの困りごと・欲しい物は、Bさん・Cさんへの提案のタネです。解決していないものを新しい順に並べています。名前を押すとその顧客を開きます。</div>
+    <div id="bbody"></div>
+  </div>
+</div>
+
+<div class="mov" id="mov">
+  <div class="mtop"><div>地図をタップしてピンを置く<small id="mhint">ピンを置いてから下のボタンで登録します</small></div>
+    <button class="hbtn" onclick="closeMap()">閉じる</button></div>
+  <div id="map"></div>
+  <div class="mbot">
+    <button class="btn btn-g" onclick="mapLocate()">📍 現在地へ</button>
+    <button class="btn btn-p" onclick="mapSave('field')">畑として登録</button>
+    <button class="btn btn-p" onclick="mapSave('home')">自宅として登録</button>
+  </div>
+</div>
+
+<div class="iov" id="iov" onclick="closeImg()"><button class="ix">×</button><img id="iimg" alt=""></div>
+
+<div class="demo-banner" role="note"><span><span class="dbt">デモ版：</span><span class="dbt">お客様の名前・住所・数字はすべて架空です</span></span><button type="button" onclick="demoReset()">見本データに戻す</button></div>
+<div class="toast" id="toast"></div>
+
+<!-- デモ版：サーバー（Apps Script）の代わりにブラウザ内で動く代役と、架空の見本データ -->
+<script src="demo-data.js"></script>
+<script src="gas-shim.js"></script>
+<script>
+/* DEMO: 合言葉の画面は省略（デモ用の仮の値で、そのまま開く） */
+var data=[], PASS="demo", cur={}, thumbs={};
+function call(fn){var a=[].slice.call(arguments,1);
+  return new Promise(function(res,rej){var r=google.script.run.withSuccessHandler(res).withFailureHandler(rej);r[fn].apply(r,a);});}
+function toast(m,long){var t=document.getElementById("toast");t.textContent=m;t.classList.add("show");
+  clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove("show")},long?3200:1800);}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function today(){var d=new Date();return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);}
+function lockBody(){document.body.classList.add("locked");}
+function unlockBody(){ if(!document.querySelector(".ov.open")) document.body.classList.remove("locked"); }
+function byId(id){return data.find(function(x){return x.id===id;});}
+function norm(r){
+  r.photos=r.photos||[];r.links=r.links||[];r.requests=r.requests||[];r.history=r.history||[];
+  r.fields=r.fields||[];r.purchases=r.purchases||[];r.consent=r.consent||{};r.crops=r.crops||[];
+  return r;
+}
+function saveRec(r,msg){
+  r.updatedAt=Date.now();
+  return call("apiSave",PASS,JSON.stringify(r)).then(function(res){
+    if(res&&res.ok){if(msg)toast(msg);render();return true;}
+    toast("保存できませんでした");return false;
+  }).catch(function(){toast("通信エラー");return false;});
+}
+/* 取引期間: 最初の取引日から自動（新規=1年未満／中期=1〜4年／長期=5年以上） */
+function periodFrom(dateStr){
+  if(!dateStr)return "";
+  var d=new Date(dateStr);if(isNaN(d))return "";
+  var y=(Date.now()-d.getTime())/(365.25*24*3600*1000);
+  return y<1?"新規":y<5?"中期":"長期";
+}
+function periodOf(r){return r.firstDeal?periodFrom(r.firstDeal):(r.dealPeriod||"");}
+function badgeOf(r){
+  var p=periodOf(r);
+  if(!p)return '<span class="badge pre">取引まだ</span>';
+  if(p==="新規")return '<span class="badge new">新規</span>';
+  return '<span class="badge mid">'+esc(p)+'</span>';
+}
+function fullName(r){
+  if(r.type==="法人")return esc(r.name)+(r.repName?' <span class="rep">代表：'+esc(r.repName)+'</span>':"");
+  return esc(r.name)+(r.firstName?" "+esc(r.firstName):"");
+}
+function isGeo(a){return /^-?\d+\.\d+,\s*-?\d+\.\d+$/.test(String(a||""));}
+function mapUrl(a){return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(a);}
+
+function pull(){
+  if(!PASS)return;toast("読み込み中…");
+  call("apiLoad",PASS).then(function(r){if(r&&r.ok){data=r.data.map(norm);render();toast("最新にしました（"+data.length+"件）");}})
+  .catch(function(e){toast("通信エラー");});
+}
+function openReqs(r){return (r.requests||[]).filter(function(q){return q.status!=="解決";});}
+function visitCount(r){return (r.history||[]).filter(function(h){return h.type==="訪問";}).length;}
+function render(){
+  var q=(document.getElementById("q").value||"").toLowerCase();
+  var rows=data.filter(function(r){return !q||((r.name+" "+(r.firstName||"")+" "+(r.repName||"")+" "+r.area+" "+(r.crops||[]).join(" ")).toLowerCase().indexOf(q)>=0);});
+  rows.sort(function(a,b){return (a.name||"").localeCompare(b.name||"","ja");});
+  var total=data.reduce(function(n,r){return n+openReqs(r).length;},0);
+  var bc=document.getElementById("bcount");bc.textContent=total;bc.style.display=total?"inline-block":"none";
+  var L=document.getElementById("list");
+  if(!rows.length){L.innerHTML='<div class="empty">顧客がいません。「＋新規登録」から登録できます</div>';return;}
+  L.innerHTML=rows.map(function(r){
+    var cropsT=(r.crops||[]).join("・");
+    var info='';
+    if(r.area)info+='<span class="cinfo"><span class="clab">地域</span>'+esc(r.area)+'</span>';
+    if(cropsT)info+='<span class="cinfo"><span class="clab">作物</span>'+esc(cropsT)+'</span>';
+    var m=[];
+    var v=visitCount(r);if(v)m.push("訪問"+v+"回");
+    if(r.lastVisit)m.push("前回 "+esc(r.lastVisit));
+    if((r.photos||[]).length)m.push("📷"+r.photos.length);
+    var oq=openReqs(r).length;if(oq)m.push('<span class="req">📋御用聞き'+oq+'</span>');
+    if(r.consent&&r.consent.share)m.push("📣紹介OK");
+    var meta=m.length?'<div class="cmeta">'+m.join("<span>·</span>")+'</div>':"";
+    var p=periodOf(r),cls=!p?"pre":p==="新規"?"new":"";
+    return '<div class="card '+cls+'" onclick="openDetail(\''+r.id+'\')">'+
+      '<button class="editb" onclick="event.stopPropagation();openForm(\''+r.id+'\')">✏️ 修正</button>'+
+      '<div class="chead"><span class="nm">'+fullName(r)+badgeOf(r)+'</span>'+info+'</div>'+meta+
+      '</div>';
+  }).join("");
+}
+
+/* ---------- 顧客情報（詳細） ---------- */
+var curDetailId="", recog=null, addrOpen=false, houseOpen=false;
+function progress(r){
+  var items=[
+    {k:"基本",ok:!!(r.name&&(r.phone||r.homePhone||r.area)),next:"電話番号かエリアを聞く"},
+    {k:"場所",ok:!!(r.homeAddress||r.homeGeo||(r.fields||[]).length),next:"畑の場所を地図にピンで残す"},
+    {k:"写真",ok:(r.photos||[]).length>0,next:"ハウスや畑の写真を1枚撮らせてもらう"},
+    {k:"リンク",ok:(r.links||[]).length>0,next:"SNSやホームページがあるか聞いてリンクを残す"},
+    {k:"御用聞き",ok:(r.requests||[]).length>0,next:"困りごと・欲しい物を1つ聞く"}
+  ];
+  var v=visitCount(r);
+  var miss=items.filter(function(i){return !i.ok;});
+  var hint;
+  if(miss.length)hint="次に聞くこと：<b>"+esc(miss[0].next)+"</b>";
+  else if(v<3)hint="一次情報はそろっています。<b>3回目までの訪問記録</b>を残しましょう";
+  else hint="一次情報がそろいました。<b>二次情報（紹介・掲載）へ</b>進めます";
+  var dots="";for(var i=0;i<3;i++)dots+='<i class="'+(i<v?"on":"")+'"></i>';
+  return '<div class="prog"><div class="pt">情報の集まり具合（複数回に分けて集める）</div>'+
+    '<div class="chips">'+items.map(function(i){return '<span class="chip '+(i.ok?"ok":"")+'">'+(i.ok?"✓ ":"")+i.k+'</span>';}).join("")+
+    '<span class="chip">訪問 '+v+'回<span class="visits">'+dots+'</span></span></div>'+
+    '<div class="hint">'+hint+'</div></div>';
+}
+function openDetail(id){
+  var r=byId(id);if(!r)return;norm(r);
+  curDetailId=id;addrOpen=false;houseOpen=false;
+  renderDetail();
+  document.getElementById("dedit").onclick=function(){closeDetail();openForm(id);};
+  document.getElementById("dov").classList.add("open");
+  document.getElementById("dov").querySelector(".sheet").scrollTop=0;
+  lockBody();
+  loadThumbs(id);
+}
+function renderDetail(){
+  var r=byId(curDetailId);if(!r)return;norm(r);
+  var sheet=document.getElementById("dov").querySelector(".sheet");
+  var st=sheet.scrollTop;
+  var PL={"新規":"新規（1年未満）","中期":"中期（1〜4年）","長期":"長期（5年以上）"};
+  function row(l,v){return v?'<div class="drow"><span class="lab">'+l+'</span><span class="v">'+v+'</span></div>':"";}
+  var purs=(r.purchases||[]).filter(function(p){return p.item;}).map(function(p){
+    return '<div class="drow"><span class="lab">'+(p.date?esc(p.date):"・")+'</span><span class="v">'+esc(p.item)+(p.amount?" "+esc(p.amount)+"円":"")+'</span></div>';}).join("");
+  var flds=(r.fields||[]).filter(Boolean);
+  var c=r.consent||{};
+  var h='';
+  h+='<div class="dname">'+fullName(r)+badgeOf(r)+'</div>';
+  if(r.kana)h+='<div class="dkana">'+esc(r.kana)+'</div>';
+  h+=progress(r);
+  h+='<div class="consent">'+
+     '<button class="cbtn '+(c.photo?"on":"")+'" onclick="toggleConsent(\'photo\')">📷 写真の許可 '+(c.photo?"あり":"未")+'</button>'+
+     '<button class="cbtn '+(c.share?"on":"")+'" onclick="toggleConsent(\'share\')">📣 他の農家さんへ紹介の許可 '+(c.share?"あり":"未")+'</button>'+
+     (c.date?'<span class="dsn" style="align-self:center;font-size:12px;color:#827b69">'+esc(c.date)+' 確認</span>':"")+'</div>';
+
+  /* 基本 */
+  h+='<div class="dsec">基本</div>';
+  var tel=[];
+  if(r.phone)tel.push('携帯 <a href="tel:'+esc(r.phone)+'">'+esc(r.phone)+'</a>');
+  if(r.homePhone)tel.push('自宅 <a href="tel:'+esc(r.homePhone)+'">'+esc(r.homePhone)+'</a>');
+  if(r.fax)tel.push('FAX '+esc(r.fax));
+  h+=row("電話番号",tel.join("<br>"));
+  h+=row("前回に行った日",esc(r.lastVisit));
+  h+=row("フォロー時期",esc(r.nextFollow));
+  var p=periodOf(r);
+  h+=row("取引期間",p?(PL[p]||esc(p))+(r.firstDeal?' <span style="color:#827b69;font-size:13px;font-weight:600">（'+esc(r.firstDeal)+'から）</span>':""):'<span style="color:#827b69;font-weight:500">取引まだ</span>');
+  var hk=[];if(r.type)hk.push(esc(r.type));if(r.dealType)hk.push(esc(r.dealType));
+  h+=row("引き取り形態",hk.join(" ／ "));
+  h+=row("担当営業",esc(r.rep));
+
+  /* ハウスの仕様（タップで開く） */
+  var film=[r.filmMaker,r.filmType,r.filmSpec].filter(Boolean).join(" / ");
+  var hs=[["間口",r.houseWidth],["奥行",r.houseDepth],["型式",r.houseModel],["棟数",r.houseCount],["ハウスの種類",r.houseKind],["ビニール",film],["張替え目安",r.filmReplace]];
+  var hsFilled=hs.filter(function(x){return x[1];});
+  var hsSum=hsFilled.slice(0,3).map(function(x){return x[0]+" "+x[1];}).join("・");
+  h+='<button class="htog" onclick="toggleHouse()">🏠 ハウスの仕様 '+(houseOpen?"▲":"▼")+'<span class="hs">'+(hsFilled.length?esc(hsSum)+(hsFilled.length>3?" …":""):"未入力")+'</span></button>';
+  h+='<div style="display:'+(houseOpen?"block":"none")+'">';
+  hs.forEach(function(x){h+=row(x[0],esc(x[1]));});
+  if(!hsFilled.length)h+='<div class="drow"><span class="v" style="color:#827b69;font-weight:500">「✏️修正」から間口・奥行・型式・棟数・種類を入れられます</span></div>';
+  h+='</div>';
+
+  if(purs){h+='<div class="dsec">購入履歴</div>'+purs;}
+
+  /* 場所 */
+  h+='<div class="dsec">場所 <span class="dsn">ボタンで地図が開きます</span></div>';
+  var mb='';
+  if(r.homeGeo)mb+='<a class="mapb" href="'+mapUrl(r.homeGeo)+'" target="_blank" rel="noopener">📍 自宅 <small>ピン</small></a>';
+  else if(r.homeAddress)mb+='<a class="mapb" href="'+mapUrl(r.homeAddress)+'" target="_blank" rel="noopener">📍 自宅</a>';
+  flds.forEach(function(a,i){mb+='<a class="mapb" href="'+mapUrl(a)+'" target="_blank" rel="noopener">📍 畑'+(["①","②","③","④","⑤","⑥"][i]||"")+(isGeo(a)?' <small>ピン</small>':"")+'</a>';});
+  h+='<div class="mapbtns">'+(mb||'<span style="font-size:14px;color:#827b69">まだ場所がありません</span>')+'</div>';
+  h+='<div class="mapbtns"><button class="btn btn-p btn-s" onclick="openMap()">🗺 地図にピンを打って登録</button>'+
+     '<button class="btn btn-g btn-s" onclick="addGeo()">📍 今いる場所を畑に</button>'+
+     ((r.homeAddress||flds.some(function(a){return !isGeo(a);}))?'<button class="btn btn-g btn-s" onclick="toggleAddr()">住所の文字を'+(addrOpen?"隠す":"見る")+'</button>':"")+'</div>';
+  h+='<div class="addrbox '+(addrOpen?"open":"")+'">';
+  if(r.homeAddress)h+=row("自宅",esc(r.homeAddress));
+  flds.forEach(function(a,i){h+=row("畑"+(["①","②","③","④","⑤","⑥"][i]||""),isGeo(a)?'ピンで登録（'+esc(a)+'）':esc(a));});
+  h+='</div>';
+
+  /* 写真・動画 */
+  h+='<div class="dsec">写真・動画 <span class="dsn">'+(r.photos.length?r.photos.length+"件":"記憶の助けに")+'</span></div>';
+  h+='<div class="grid">';
+  r.photos.forEach(function(p,i){
+    var th=(thumbs[r.id]||{})[p.fileId];
+    h+='<div class="tile" onclick="viewPhoto('+i+')">'+(th?'<img src="'+th+'" data-fid="'+esc(p.fileId)+'">':'<div class="ph" data-fid="'+esc(p.fileId)+'">'+(p.kind==="video"?"🎬":"🖼")+'</div>')+
+       (p.kind==="video"?'<span class="vd">動画</span>':"")+'<button class="x" onclick="event.stopPropagation();delPhoto('+i+')">×</button></div>';
+  });
+  h+='<div class="tile add" onclick="pickFiles()"><span>📷</span>撮る・選ぶ</div></div>';
+  if(!c.photo)h+='<div class="hint" style="font-size:13px;color:#827b69;font-weight:500">※撮る前に「写真の許可」を取ってください</div>';
+
+  /* リンク */
+  h+='<div class="dsec">SNS・ホームページ・掲載先</div><div>';
+  r.links.forEach(function(l,i){
+    h+='<span class="lnk"><a href="'+esc(l.url)+'" target="_blank" rel="noopener">🔗 '+esc(l.label||l.url)+'</a><button class="x2" onclick="delLink('+i+')">×</button></span>';
+  });
+  if(!r.links.length)h+='<span style="font-size:14px;color:#827b69">まだリンクがありません</span>';
+  h+='</div><div class="addbox"><input id="lk_label" placeholder="名前（例：Instagram、直売所のHP、掲載記事）">'+
+     '<div class="row" style="margin-top:6px"><input id="lk_url" placeholder="https://…" style="flex:1"></div>'+
+     '<div class="row"><button class="btn btn-p btn-s" onclick="addLink()">＋ リンクを追加</button></div></div>';
+
+  /* 御用聞き */
+  h+='<div class="dsec">御用聞き <span class="dsn">困りごと・欲しい資材・情報</span></div>';
+  var reqs=r.requests.slice().map(function(q,i){q._i=i;return q;}).sort(function(a,b){return (b.date||"").localeCompare(a.date||"");});
+  reqs.forEach(function(q){
+    var sc=q.status==="解決"?"s2":q.status==="提案済"?"s1":"s0";
+    h+='<div class="item"><div class="it">'+esc(q.text)+'</div><div class="im"><span>'+esc(q.date||"")+'</span>'+
+       '<button class="st '+sc+'" onclick="cycleReq('+q._i+')">'+esc(q.status||"未対応")+' ▸</button>'+
+       '<button class="xl" onclick="delReq('+q._i+')">削除</button></div></div>';
+  });
+  if(!r.requests.length)h+='<div style="font-size:14px;color:#827b69;padding:6px 2px">「最近困っていることは？」「探している物は？」の答えをそのまま残します</div>';
+  h+='<div class="addbox"><textarea id="rq_text" placeholder="例）9月に防虫ネットを張り替えたい。安い所を探している"></textarea>'+
+     '<div class="row"><button class="vbtn" id="vb_rq" onclick="voiceInto(\'rq_text\',\'vb_rq\')">🎤 音声入力</button>'+
+     '<button class="btn btn-p btn-s" onclick="addReq()">＋ 御用聞きに追加</button></div></div>';
+
+  /* 訪問記録 */
+  h+='<div class="dsec">訪問・連絡の記録 <span class="dsn">'+visitCount(r)+'回目まで</span></div>';
+  var hist=r.history.slice().map(function(x,i){x._i=i;return x;}).sort(function(a,b){return (b.date||"").localeCompare(a.date||"");});
+  hist.forEach(function(x){
+    h+='<div class="item"><div class="it">'+esc(x.note||"")+'</div><div class="im"><span>'+esc(x.date||"日付なし")+'</span><span class="st">'+esc(x.type||"")+'</span>'+
+       '<button class="xl" onclick="delHist('+x._i+')">削除</button></div></div>';
+  });
+  if(!r.history.length)h+='<div style="font-size:14px;color:#827b69;padding:6px 2px">話した内容を短く。写真と一緒に残すと思い出しやすくなります</div>';
+  h+='<div class="addbox"><div class="seg" id="s_htype" style="margin-bottom:8px">'+
+     '<button type="button" class="on" onclick="segH(\'訪問\')">訪問</button><button type="button" onclick="segH(\'電話\')">電話</button><button type="button" onclick="segH(\'その他\')">その他</button></div>'+
+     '<textarea id="hs_text" placeholder="例）トマトの定植が終わった。来月ビニールの見積が欲しいとのこと"></textarea>'+
+     '<div class="row"><button class="vbtn" id="vb_hs" onclick="voiceInto(\'hs_text\',\'vb_hs\')">🎤 音声入力</button>'+
+     '<button class="btn btn-p btn-s" onclick="addHist()">＋ 記録を残す</button></div></div>';
+
+  h+='<button class="mtog" id="mtog" onclick="toggleMemo()">📝 メモを開く・書く ▼</button>';
+  h+='<div id="dmemobox" style="display:none;margin-top:10px">';
+  h+='<textarea id="dmemo" style="width:100%;min-height:90px;padding:12px;border:1px solid #e6dfcd;border-radius:11px">'+esc(r.memo||"")+'</textarea>';
+  h+='<div style="margin-top:8px"><button class="vbtn" id="vbtn" onclick="voiceInto(\'dmemo\',\'vbtn\')">🎤 音声入力</button>'+
+     '<button class="btn btn-p" style="padding:9px 16px;min-height:0" onclick="saveMemo()">💾 メモを保存</button></div></div>';
+  document.getElementById("dbody").innerHTML=h;
+  curHType="訪問";
+  sheet.scrollTop=st;
+}
+function toggleHouse(){houseOpen=!houseOpen;renderDetail();}
+function toggleAddr(){addrOpen=!addrOpen;renderDetail();}
+function closeDetail(){if(recog){try{recog.stop();}catch(e){}}document.getElementById("dov").classList.remove("open");unlockBody();}
+function toggleMemo(){
+  var b=document.getElementById("dmemobox"),t=document.getElementById("mtog");
+  var willOpen=(b.style.display==="none");
+  b.style.display=willOpen?"block":"none";
+  t.textContent=willOpen?"📝 メモを閉じる ▲":"📝 メモを開く・書く ▼";
+}
+function saveMemo(){
+  var r=byId(curDetailId);if(!r)return;
+  r.memo=document.getElementById("dmemo").value;
+  toast("保存中…");saveRec(r,"メモを保存しました");
+}
+function toggleConsent(k){
+  var r=byId(curDetailId);if(!r)return;norm(r);
+  r.consent[k]=!r.consent[k];r.consent.date=today();
+  saveRec(r,r.consent[k]?"許可ありにしました":"許可なしに戻しました").then(renderDetail);
+}
+function addGeo(){
+  if(!navigator.geolocation){toast("この端末では位置情報が使えません");return;}
+  toast("位置を取得中…");
+  navigator.geolocation.getCurrentPosition(function(pos){
+    var r=byId(curDetailId);if(!r)return;norm(r);
+    r.fields.push(pos.coords.latitude.toFixed(5)+","+pos.coords.longitude.toFixed(5));
+    saveRec(r,"今の場所を畑として追加しました").then(renderDetail);
+  },function(){toast("位置情報が取れません（許可が必要です）",true);},{enableHighAccuracy:true,timeout:10000});
+}
+
+/* ---------- 地図にピン（Leaflet + OpenStreetMap） ---------- */
+var map=null, marker=null;
+function openMap(){
+  if(typeof L==="undefined"){toast("地図を読み込めません。電波の良い所でもう一度お試しください",true);return;}
+  var r=byId(curDetailId);if(!r)return;norm(r);
+  document.getElementById("mov").classList.add("open");
+  var start=[33.594,133.692],z=13; /* DEMO: 見本データの地域を表示 */
+  var known=r.homeGeo||(r.fields||[]).filter(isGeo)[0];
+  if(known){var p=known.split(",");start=[parseFloat(p[0]),parseFloat(p[1])];z=15;}
+  if(!map){
+    map=L.map("map",{zoomControl:true}).setView(start,z);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"&copy; OpenStreetMap"}).addTo(map);
+    map.on("click",function(e){setPin(e.latlng);});
+  }else{map.setView(start,z);}
+  if(marker){map.removeLayer(marker);marker=null;}
+  document.getElementById("mhint").textContent="ピンを置いてから下のボタンで登録します";
+  setTimeout(function(){map.invalidateSize();},150); /* DEMO: 開いた直後に位置情報の許可を求めない */
+}
+function setPin(ll){
+  if(marker)marker.setLatLng(ll);else marker=L.marker(ll).addTo(map);
+  document.getElementById("mhint").textContent="ピン: "+ll.lat.toFixed(5)+", "+ll.lng.toFixed(5)+"（動かすには別の場所をタップ）";
+}
+function mapLocate(silent){
+  if(!navigator.geolocation){if(!silent)toast("この端末では位置情報が使えません");return;}
+  if(!silent)toast("現在地を取得中…");
+  navigator.geolocation.getCurrentPosition(function(pos){
+    var ll=[pos.coords.latitude,pos.coords.longitude];
+    map.setView(ll,16);if(!silent)setPin(L.latLng(ll[0],ll[1]));
+  },function(){if(!silent)toast("位置情報が取れません（許可が必要です）",true);},{enableHighAccuracy:true,timeout:10000});
+}
+function mapSave(kind){
+  if(!marker){toast("先に地図をタップしてピンを置いてください");return;}
+  var r=byId(curDetailId);if(!r)return;norm(r);
+  var ll=marker.getLatLng(),s=ll.lat.toFixed(5)+","+ll.lng.toFixed(5);
+  if(kind==="home"){r.homeGeo=s;}else{r.fields.push(s);}
+  closeMap();
+  saveRec(r,kind==="home"?"自宅のピンを登録しました":"畑のピンを登録しました").then(renderDetail);
+}
+function closeMap(){document.getElementById("mov").classList.remove("open");}
+
+/* リンク */
+function addLink(){
+  var r=byId(curDetailId);if(!r)return;norm(r);
+  var label=document.getElementById("lk_label").value.trim(),url=document.getElementById("lk_url").value.trim();
+  if(!url){toast("URLを入れてください");return;}
+  if(!/^https?:\/\//i.test(url))url="https://"+url;
+  r.links.push({label:label||url.replace(/^https?:\/\//,"").split("/")[0],url:url,date:today()});
+  saveRec(r,"リンクを追加しました").then(renderDetail);
+}
+function delLink(i){var r=byId(curDetailId);if(!r)return;if(!confirm("このリンクを消しますか？"))return;r.links.splice(i,1);saveRec(r,"消しました").then(renderDetail);}
+/* 御用聞き */
+function addReq(){
+  var r=byId(curDetailId);if(!r)return;norm(r);
+  var t=document.getElementById("rq_text").value.trim();if(!t){toast("内容を入れてください");return;}
+  r.requests.push({id:Date.now().toString(36),date:today(),text:t,status:"未対応"});
+  saveRec(r,"御用聞きに追加しました").then(renderDetail);
+}
+function cycleReq(i){
+  var r=byId(curDetailId);if(!r)return;var q=r.requests[i];if(!q)return;
+  q.status=q.status==="未対応"?"提案済":q.status==="提案済"?"解決":"未対応";
+  saveRec(r,"「"+q.status+"」にしました").then(renderDetail);
+}
+function delReq(i){var r=byId(curDetailId);if(!r)return;if(!confirm("この御用聞きを消しますか？"))return;r.requests.splice(i,1);saveRec(r,"消しました").then(renderDetail);}
+/* 訪問記録 */
+var curHType="訪問";
+function segH(v){curHType=v;document.querySelectorAll("#s_htype button").forEach(function(b){b.classList.toggle("on",b.textContent===v);});}
+function addHist(){
+  var r=byId(curDetailId);if(!r)return;norm(r);
+  var t=document.getElementById("hs_text").value.trim();if(!t){toast("内容を入れてください");return;}
+  r.history.push({date:today(),type:curHType,note:t});
+  if(curHType==="訪問"&&(!r.lastVisit||r.lastVisit<today()))r.lastVisit=today();
+  saveRec(r,curHType+"の記録を残しました").then(renderDetail);
+}
+function delHist(i){var r=byId(curDetailId);if(!r)return;if(!confirm("この記録を消しますか？"))return;r.history.splice(i,1);saveRec(r,"消しました").then(renderDetail);}
+
+/* ---------- 写真・動画 ---------- */
+function loadThumbs(id){
+  if(thumbs[id])return;
+  call("apiLoadThumbs",PASS,id).then(function(res){
+    if(!res||!res.ok)return;thumbs[id]=res.thumbs||{};
+    if(curDetailId===id)renderDetail();
+  }).catch(function(){});
+}
+function pickFiles(){
+  var r=byId(curDetailId);if(!r)return;
+  if(!(r.consent&&r.consent.photo)){ if(!confirm("まだ「写真の許可」が未確認です。許可をもらってから撮りますか？\n（OK＝許可ありにして続ける／キャンセル＝やめる）"))return; r.consent=r.consent||{};r.consent.photo=true;r.consent.date=today();saveRec(r); }
+  document.getElementById("fileIn").value="";document.getElementById("fileIn").click();
+}
+function readAsDataURL(file){return new Promise(function(res,rej){var fr=new FileReader();fr.onload=function(){res(fr.result);};fr.onerror=rej;fr.readAsDataURL(file);});}
+function resizeImage(file,maxW,q){
+  return new Promise(function(res){
+    var url=URL.createObjectURL(file),img=new Image();
+    img.onload=function(){
+      var w=img.naturalWidth,h=img.naturalHeight,s=Math.min(1,maxW/Math.max(w,h));
+      var c=document.createElement("canvas");c.width=Math.max(1,Math.round(w*s));c.height=Math.max(1,Math.round(h*s));
+      c.getContext("2d").drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(url);
+      res(c.toDataURL("image/jpeg",q));
+    };
+    img.onerror=function(){URL.revokeObjectURL(url);res(null);};
+    img.src=url;
+  });
+}
+function videoThumb(file){
+  return new Promise(function(res){
+    var done=false;function fin(v){if(!done){done=true;res(v);}}
+    try{
+      var v=document.createElement("video"),url=URL.createObjectURL(file);
+      v.preload="metadata";v.muted=true;v.playsInline=true;
+      v.onloadeddata=function(){try{v.currentTime=Math.min(0.5,v.duration||0);}catch(e){fin("");}};
+      v.onseeked=function(){
+        try{var s=Math.min(1,260/Math.max(v.videoWidth,v.videoHeight));var c=document.createElement("canvas");
+          c.width=Math.max(1,Math.round(v.videoWidth*s));c.height=Math.max(1,Math.round(v.videoHeight*s));
+          c.getContext("2d").drawImage(v,0,0,c.width,c.height);fin(c.toDataURL("image/jpeg",.65));}
+        catch(e){fin("");}
+        URL.revokeObjectURL(url);
+      };
+      v.onerror=function(){fin("");};
+      v.src=url;setTimeout(function(){fin("");},5000);
+    }catch(e){fin("");}
+  });
+}
+function filesPicked(files){
+  var r=byId(curDetailId);if(!r||!files||!files.length)return;norm(r);
+  var list=[].slice.call(files),i=0;
+  function next(){
+    if(i>=list.length){renderDetail();return;}
+    var f=list[i++];
+    var isVideo=/^video\//.test(f.type);
+    if(isVideo&&f.size>15*1024*1024){toast("動画が大きすぎます（15MBまで）。短く撮るか、リンクで残してください",true);next();return;}
+    toast((isVideo?"動画":"写真")+"を送っています…（"+i+"/"+list.length+"）",true);
+    var p;
+    if(isVideo){p=Promise.all([readAsDataURL(f),videoThumb(f)]).then(function(a){return {data:a[0],thumb:a[1],mime:f.type||"video/mp4",name:f.name||("video_"+Date.now()+".mp4")};});}
+    else{p=Promise.all([resizeImage(f,1600,.82),resizeImage(f,260,.65)]).then(function(a){
+      if(!a[0])throw new Error("bad image");
+      return {data:a[0],thumb:a[1]||"",mime:"image/jpeg",name:(f.name||"photo").replace(/\.[^.]+$/,"")+"_"+Date.now()+".jpg"};});}
+    p.then(function(o){
+      var b64=String(o.data).split(",")[1]||"";
+      return call("apiUploadFile",PASS,r.id,o.name,o.mime,b64,o.thumb).then(function(res){
+        if(!res||!res.ok)throw new Error("upload");
+        r.photos.push(res.file);thumbs[r.id]=thumbs[r.id]||{};if(o.thumb)thumbs[r.id][res.file.fileId]=o.thumb;
+        return saveRec(r);
+      });
+    }).then(function(){toast("保存しました");next();})
+    .catch(function(e){toast("送れませんでした。電波の良い所でもう一度お試しください",true);next();});
+  }
+  next();
+}
+function viewPhoto(i){
+  var r=byId(curDetailId);if(!r)return;var p=r.photos[i];if(!p)return;
+  if(p.kind==="video"){ /* DEMO: 動画はこのページを開いている間だけ */
+    var vu=window.DEMO_CRM&&DEMO_CRM.videoUrl(p.fileId);
+    if(vu)window.open(vu,"_blank");else toast("デモ版：動画はページを開き直すと再生できません",true);
+    return;}
+  var img=document.getElementById("iimg");img.src=(thumbs[r.id]||{})[p.fileId]||"";
+  document.getElementById("iov").classList.add("open");
+  toast("大きい写真を読み込み中…");
+  call("apiGetFile",PASS,p.fileId).then(function(res){
+    if(res&&res.dataUrl){img.src=res.dataUrl;}
+    else if(res&&res.url){window.open(res.url,"_blank");}
+  }).catch(function(){toast("読み込めませんでした");});
+}
+function closeImg(){document.getElementById("iov").classList.remove("open");document.getElementById("iimg").src="";}
+function delPhoto(i){
+  var r=byId(curDetailId);if(!r)return;var p=r.photos[i];if(!p)return;
+  if(!confirm("この"+(p.kind==="video"?"動画":"写真")+"を消しますか？"))return;
+  call("apiDeleteFile",PASS,p.fileId).catch(function(){});
+  r.photos.splice(i,1);saveRec(r,"消しました").then(renderDetail);
+}
+
+/* ---------- 御用聞きボード ---------- */
+function openBoard(){
+  var items=[];
+  data.forEach(function(r){openReqs(r).forEach(function(q){items.push({r:r,q:q});});});
+  items.sort(function(a,b){return (b.q.date||"").localeCompare(a.q.date||"");});
+  var h=items.map(function(x){
+    var sc=x.q.status==="提案済"?"s1":"s0";
+    return '<div class="bitem" onclick="closeBoard();openDetail(\''+x.r.id+'\')"><div class="bn">'+fullName(x.r)+(x.r.area?'　<span style="color:#827b69;font-weight:600">'+esc(x.r.area)+'</span>':"")+'</div>'+
+      '<div class="bt">'+esc(x.q.text)+'</div><div class="bm"><span>'+esc(x.q.date||"")+'</span><span class="st '+sc+'">'+esc(x.q.status||"未対応")+'</span>'+
+      (x.r.consent&&x.r.consent.share?'<span>📣紹介OK</span>':'<span>紹介の許可 未</span>')+'</div></div>';
+  }).join("");
+  document.getElementById("bbody").innerHTML=h||'<div class="empty">解決していない御用聞きはありません</div>';
+  document.getElementById("bov").classList.add("open");
+  document.getElementById("bov").querySelector(".sheet").scrollTop=0;
+  lockBody();
+}
+function closeBoard(){document.getElementById("bov").classList.remove("open");unlockBody();}
+
+/* ---------- 音声入力（共通） ---------- */
+function voiceInto(taId,btnId){
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){toast("この端末では音声入力が使えません");return;}
+  var btn=document.getElementById(btnId);
+  if(recog){try{recog.stop();}catch(e){}return;}
+  recog=new SR();recog.lang="ja-JP";recog.interimResults=false;
+  btn.classList.add("rec");btn.textContent="🛑 停止";
+  recog.onresult=function(e){var t="";for(var i=e.resultIndex;i<e.results.length;i++)t+=e.results[i][0].transcript;
+    var ta=document.getElementById(taId);if(ta)ta.value=(ta.value?ta.value+"\n":"")+t;};
+  recog.onerror=function(e){toast("音声入力が使えません（許可が必要）");};
+  recog.onend=function(){btn.classList.remove("rec");btn.textContent="🎤 音声入力";recog=null;};
+  try{recog.start();}catch(e){toast("音声入力を開始できません");recog=null;btn.classList.remove("rec");btn.textContent="🎤 音声入力";}
+}
+
+/* ---------- 登録・修正フォーム ---------- */
+function seg(k,v){cur[k]=v;
+  document.querySelectorAll("#s_"+k+" button").forEach(function(b){b.classList.toggle("on",b.textContent===(v||(k==="dealPeriod"?"まだ":"なし")));});
+  if(k==="type"){
+    document.getElementById("lb_name").textContent=(v==="法人")?"会社名 ※必須":"姓 ※必須";
+    document.getElementById("lb_sub").textContent=(v==="法人")?"代表者名":"名";
+  }
+}
+function dpAuto(){
+  var d=val("f_firstDeal"),w=document.getElementById("dp_wrap"),n=document.getElementById("dp_note");
+  if(d){var p=periodFrom(d);w.style.display="none";n.style.display="block";n.textContent="取引期間は自動で「"+(p||"—")+"」になります（"+d+"から）";}
+  else{w.style.display="block";n.style.display="none";}
+}
+function val(id){return document.getElementById(id).value;}
+function setVal(id,v){document.getElementById(id).value=(v==null?"":v);}
+function openForm(id){
+  cur={};
+  var r=id?byId(id):null;
+  document.getElementById("ftitle").textContent=r?"顧客情報の修正":"新規登録";
+  setVal("f_id",r?r.id:"");
+  ["name","kana","area","rep","phone","homePhone","fax","email","filmMaker","filmType","filmSpec","filmReplace","nextFollow","memo","homeAddress",
+   "houseWidth","houseDepth","houseModel","houseCount","houseKind","firstDeal","lastVisit"].forEach(function(k){setVal("f_"+k,r?r[k]:"");});
+  setVal("f_crops",r?(r.crops||[]).join(", "):"");
+  var fl=r?(r.fields||[]):[];setVal("f_field1",fl[0]);setVal("f_field2",fl[1]);setVal("f_field3",fl[2]);
+  setVal("f_purchases",r?(r.purchases||[]).map(function(p){return p.item||"";}).join("\n"):"");
+  var t=r?(r.type||"個人"):"個人";
+  seg("type",t);seg("rank",r?(r.rank||""):"");
+  setVal("f_sub",r?(t==="法人"?(r.repName||""):(r.firstName||"")):"");
+  seg("dealPeriod",r?(r.dealPeriod||""):"");seg("dealType",r?(r.dealType||""):"");
+  dpAuto();
+  cur._base=r||{};
+  document.getElementById("delZone").style.display=r?"block":"none";
+  document.getElementById("ov").classList.add("open");
+  document.getElementById("ov").querySelector(".sheet").scrollTop=0;
+  lockBody();
+}
+function closeForm(){document.getElementById("ov").classList.remove("open");unlockBody();}
+function save(){
+  var name=val("f_name").trim();if(!name){alert((cur.type==="法人"?"会社名":"姓")+"を入れてください");return;}
+  var b=cur._base||{};
+  var type=cur.type||"個人",sub=val("f_sub").trim(),firstDeal=val("f_firstDeal");
+  var rec={id:val("f_id")||(Date.now().toString(36)+Math.random().toString(36).slice(2,6)),
+    name:name,kana:val("f_kana").trim(),type:type,rank:cur.rank||"",
+    firstName:type==="個人"?sub:"",repName:type==="法人"?sub:"",
+    dealPeriod:firstDeal?periodFrom(firstDeal):(cur.dealPeriod||""),dealType:cur.dealType||"",
+    firstDeal:firstDeal,lastVisit:val("f_lastVisit"),
+    area:val("f_area").trim(),rep:val("f_rep").trim(),
+    phone:val("f_phone").trim(),homePhone:val("f_homePhone").trim(),fax:val("f_fax").trim(),email:val("f_email").trim(),
+    crops:val("f_crops").split(/[,、，]/).map(function(s){return s.trim();}).filter(Boolean),
+    houseWidth:val("f_houseWidth").trim(),houseDepth:val("f_houseDepth").trim(),houseModel:val("f_houseModel").trim(),
+    houseCount:val("f_houseCount").trim(),houseKind:val("f_houseKind").trim(),
+    filmMaker:val("f_filmMaker").trim(),filmType:val("f_filmType").trim(),filmSpec:val("f_filmSpec").trim(),
+    filmReplace:val("f_filmReplace"),nextFollow:val("f_nextFollow"),
+    homeAddress:val("f_homeAddress").trim(),homeGeo:b.homeGeo||"",
+    fields:[val("f_field1").trim(),val("f_field2").trim(),val("f_field3").trim()].filter(Boolean).concat((b.fields||[]).slice(3)),
+    purchases:val("f_purchases").split("\n").map(function(s){return s.trim();}).filter(Boolean).map(function(s){return {date:"",item:s,amount:""};}),
+    lastQuote:b.lastQuote||"",memo:val("f_memo").trim(),
+    houses:b.houses||[],history:b.history||[],quoteFiles:b.quoteFiles||[],
+    photos:b.photos||[],links:b.links||[],requests:b.requests||[],consent:b.consent||{},
+    createdAt:b.createdAt||Date.now(),updatedAt:Date.now()};
+  var btn=document.getElementById("saveB");btn.textContent="保存中…";btn.disabled=true;
+  call("apiSave",PASS,JSON.stringify(rec)).then(function(r){
+    if(r&&r.ok){var i=data.findIndex(function(x){return x.id===rec.id;});
+      if(i>=0)data[i]=rec;else data.push(rec);closeForm();render();toast("保存しました");}
+  }).catch(function(){toast("通信エラー");}).then(function(){btn.textContent="保存";btn.disabled=false;});
+}
+function del(){
+  var r=byId(val("f_id"));if(!r)return;
+  var typed=prompt("⚠️ この顧客を削除します。元に戻せません。\n削除するには、顧客名「"+r.name+"」を正確に入力してください：");
+  if(typed===null)return;
+  if(typed.trim()!==r.name){alert("顧客名が一致しません。削除を中止しました。");return;}
+  call("apiDelete",PASS,r.id).then(function(res){
+    if(res&&res.ok){data=data.filter(function(x){return x.id!==r.id;});closeForm();render();toast("削除しました");}
+  }).catch(function(){toast("通信エラー");});
+}
+
+/* ---------- デモ版の追加分 ---------- */
+function demoReset(){
+  if(!confirm("見本データに戻しますか？\n（このブラウザで追加・変更した内容は消えます）"))return;
+  if(recog){try{recog.stop();}catch(e){}}
+  if(window.DEMO_CRM)DEMO_CRM.reset();
+  thumbs={};curDetailId="";
+  ["ov","dov","bov","mov","iov"].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.remove("open");});
+  document.getElementById("q").value="";
+  unlockBody();pull();
+}
+pull();
+</script>
+</body>
+</html>
