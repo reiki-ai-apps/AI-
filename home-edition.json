@@ -7,57 +7,64 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-17T13:28:25.403Z",
-  "window_end": "2026-11-17T19:10:08.848Z",
-  "last_window_end": "2026-11-17T19:10:08.848Z",
-  "last_checked_at": "2026-11-17T19:14:55.027Z",
-  "last_published_at": "2026-11-17T19:14:55.027Z",
-  "home_content_changed_at": "2026-11-17T19:14:55.027Z",
+  "window_start": "2026-11-17T19:10:08.848Z",
+  "window_end": "2026-11-18T02:27:50.426Z",
+  "last_window_end": "2026-11-18T02:27:50.426Z",
+  "last_checked_at": "2026-11-18T02:32:30.005Z",
+  "last_published_at": "2026-11-18T02:32:30.005Z",
+  "home_content_changed_at": "2026-11-18T02:32:30.005Z",
   "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 0,
-  "update_health": "HEALTHY",
-  "update_health_reasons": [],
-  "edition_status": "NEW_STORIES",
-  "candidate_count": 3,
-  "distinct_candidate_count": 3,
+  "consecutive_zero_candidate_editions": 1,
+  "update_health": "DEGRADED",
+  "update_health_reasons": [
+    "今回の新着掲載は0件です。前の日までに載せた記事は出さず、今日まだ載せていない記事だけを表示しています"
+  ],
+  "edition_status": "NO_NEW_STORIES",
+  "candidate_count": 0,
+  "distinct_candidate_count": 0,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 3,
+  "novel_candidate_count": 0,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 3,
-  "continued_selected_count": 2,
+  "new_selected_count": 0,
+  "continued_selected_count": 5,
   "tool_evolution_selected_count": 2,
-  "carried_forward": false,
-  "partially_carried_forward": true,
+  "carried_forward": true,
+  "partially_carried_forward": false,
   "article_ids": [
-    "article_f7446274337af62e26bf",
-    "article_24c5d047465d26c49d58",
-    "article_087cc3e1e07bbcb0f9ec",
     "article_075347bd4302a20abca1",
-    "article_382be3e66217e29f4cdf"
-  ],
-  "new_article_ids": [
     "article_f7446274337af62e26bf",
     "article_24c5d047465d26c49d58",
+    "article_382be3e66217e29f4cdf",
     "article_087cc3e1e07bbcb0f9ec"
   ],
+  "new_article_ids": [],
   "continued_article_ids": [
     "article_075347bd4302a20abca1",
-    "article_382be3e66217e29f4cdf"
+    "article_f7446274337af62e26bf",
+    "article_24c5d047465d26c49d58",
+    "article_382be3e66217e29f4cdf",
+    "article_087cc3e1e07bbcb0f9ec"
   ],
   "continuation_sources": {
     "article_075347bd4302a20abca1": "previous_edition",
-    "article_382be3e66217e29f4cdf": "previous_edition"
+    "article_f7446274337af62e26bf": "previous_edition",
+    "article_24c5d047465d26c49d58": "previous_edition",
+    "article_382be3e66217e29f4cdf": "previous_edition",
+    "article_087cc3e1e07bbcb0f9ec": "previous_edition"
   },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-18",
   "same_day_article_ids": [
     "article_075347bd4302a20abca1",
-    "article_382be3e66217e29f4cdf"
+    "article_f7446274337af62e26bf",
+    "article_24c5d047465d26c49d58",
+    "article_382be3e66217e29f4cdf",
+    "article_087cc3e1e07bbcb0f9ec"
   ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
@@ -3006,63 +3013,6 @@
     }
   ],
   "scores": {
-    "article_f7446274337af62e26bf": {
-      "article_id": "article_f7446274337af62e26bf",
-      "total": 66,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 10,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度A",
-        "大きな製品・市場変化",
-        "遅れて確認できた新着"
-      ],
-      "published_at": "2026-11-17T05:50:00.000Z"
-    },
-    "article_24c5d047465d26c49d58": {
-      "article_id": "article_24c5d047465d26c49d58",
-      "total": 65,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 10,
-        "authority": 5,
-        "freshness": 7,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-11-17T17:29:02.000Z"
-    },
-    "article_087cc3e1e07bbcb0f9ec": {
-      "article_id": "article_087cc3e1e07bbcb0f9ec",
-      "total": 64,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 10,
-        "tool_evolution": 8,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化",
-        "AIツールの能力進化"
-      ],
-      "published_at": "2026-11-17T19:08:27.000Z"
-    },
     "article_075347bd4302a20abca1": {
       "article_id": "article_075347bd4302a20abca1",
       "total": 80,
@@ -3084,6 +3034,43 @@
       ],
       "published_at": "2026-11-16T20:48:59.000Z"
     },
+    "article_f7446274337af62e26bf": {
+      "article_id": "article_f7446274337af62e26bf",
+      "total": 66,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "大きな製品・市場変化"
+      ],
+      "published_at": "2026-11-17T05:50:00.000Z"
+    },
+    "article_24c5d047465d26c49d58": {
+      "article_id": "article_24c5d047465d26c49d58",
+      "total": 58,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-17T17:29:02.000Z"
+    },
     "article_382be3e66217e29f4cdf": {
       "article_id": "article_382be3e66217e29f4cdf",
       "total": 56,
@@ -3103,31 +3090,28 @@
         "大きな製品・市場変化"
       ],
       "published_at": "2026-11-17T10:26:05.000Z"
+    },
+    "article_087cc3e1e07bbcb0f9ec": {
+      "article_id": "article_087cc3e1e07bbcb0f9ec",
+      "total": 54,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 8,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "AIツールの能力進化"
+      ],
+      "published_at": "2026-11-17T19:08:27.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_f94930751dc363f43cc2",
-      "story_id": "story_a1c0490f8fa3e1c705",
-      "title": "NVIDIAのフアンCEO退任、AI半導体供給網と米中規制への影響が焦点に",
-      "primary_entity": "NVIDIA",
-      "story_subject": "ジェンスン・フアンCEOの退任",
-      "event_type": "other",
-      "event_stage": "announced",
-      "event_scope": "世界",
-      "story_entities": [
-        "NVIDIA",
-        "ジェンスン・フアン",
-        "nvidia",
-        "ジェンスンフアン"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-11-15T00:03:38.780Z",
-      "edition_window_end": "2026-11-14T23:57:57.241Z"
-    },
     {
       "article_id": "article_97138a5144e6fc7bea0d",
       "story_id": "story_00e7b0f63f5d1c58b3",
