@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>POST BOARD（デモ）— SNS投稿の司令盤</title>
+<meta name="description" content="YouTube・Instagram・TikTok・Xの投稿を、月間で見渡し、今日の次の一手と承認を迷わず終える投稿司令盤（デモ版・架空データ）。">
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<a class="skip-link" href="#main">本文へ移動</a>
+<div class="demo-banner" role="note"><span>デモ版：「見本チャンネル」の投稿・数字はすべて架空です。どのSNSにも投稿しません</span><button type="button" id="demo-reset">見本データに戻す</button></div>
+
+<header class="app-header">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span>
+      <span class="brand-name">POST BOARD</span><br>
+      <span class="brand-sub">見本チャンネル</span>
+    </span>
+  </div>
+
+  <nav class="nav" id="nav" aria-label="画面"></nav>
+
+  <div class="header-tools">
+    <label class="sr-only" for="role-select">操作する役割</label>
+    <select class="role-select" id="role-select"></select>
+  </div>
+</header>
+
+<main id="main" tabindex="-1"></main>
+
+<div id="overlay-root"></div>
+<div class="toasts" id="toast-root" role="status" aria-live="polite"></div>
+
+<noscript>
+  <p style="padding:24px">このツールはJavaScriptが必要です。</p>
+</noscript>
+
+<script type="module" src="js/ui/app.js"></script>
+<!-- デモ版: Service Worker は登録しない -->
+</body>
+</html>
