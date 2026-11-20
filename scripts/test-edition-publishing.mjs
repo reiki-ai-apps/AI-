@@ -74,6 +74,27 @@ assert.equal(toolQuotaSelection.selected.filter(record=>record.tool_evolution).l
 assert.ok(toolQuotaSelection.selected.some(record=>record.score.article_id==="kling-evolution"),"Klingなど動画生成の進化を比較対象へ入れる");
 assert.ok(toolQuotaSelection.selected.some(record=>record.score.article_id==="canva-evolution"),"Canvaなど編集ツールの進化を比較対象へ入れる");
 
+const practicalPool=[
+  base("ipo","2026-09-02T01:00:00.000Z",{importance:"S",title:"Anthropicが上場、公開価格を発表",primary_entity:"Anthropic",story_subject:"Anthropic IPO",event_type:"other",event_stage:"launched"}),
+  base("funding","2026-09-02T01:10:00.000Z",{importance:"A",title:"DeepSeekが資金調達を完了",primary_entity:"DeepSeek",story_subject:"資金調達",event_type:"funding",event_stage:"completed"}),
+  base("tool-version","2026-09-02T01:20:00.000Z",{title:"CanvaがAI画像編集の新バージョンを公開",primary_entity:"Canva",story_subject:"Canva画像編集",event_type:"release",event_stage:"launched"}),
+  base("tool-feature","2026-09-02T01:30:00.000Z",{title:"Claudeに資料比較の新機能を追加",primary_entity:"Anthropic",story_subject:"Claude資料比較",event_type:"release",event_stage:"launched"}),
+  base("tool-howto","2026-09-02T01:40:00.000Z",{title:"NotebookLMの資料整理に役立つ使い方",detail:"資料を入力し、設定を選んで、出典を比較する具体例を紹介する。",primary_entity:"Google",story_subject:"NotebookLM資料整理",event_type:"other",event_stage:"other"}),
+  base("policy-other","2026-09-02T01:50:00.000Z",{title:"政府がAI利用指針を公表",primary_entity:"政府",story_subject:"AI利用指針",event_type:"policy",event_stage:"announced",related_categories:["政策・行政"]})
+];
+assert.equal(isToolEvolutionCandidate(practicalPool[0]),false,"上場記事をツールの進化と誤認しない");
+assert.equal(isToolEvolutionCandidate(practicalPool[4]),true,"具体的な使い方の記事も実用枠で扱う");
+const practicalSelection=selectTopArticles(practicalPool,{windowStart:start,windowEnd:end});
+assert.equal(practicalSelection.selected.filter(record=>record.tool_evolution).length,3,"有力な候補がある日はトップ5へ実用的なツール記事を3件確保する");
+assert.equal(practicalSelection.selected.filter(record=>["ipo","funding"].includes(record.score.article_id)).length,1,"経済記事だけで複数枠を埋めない");
+assert.ok(practicalSelection.selected.some(record=>record.score.article_id==="policy-other"),"ツール優先でも他分野の重要記事を残す");
+
+const yesterdayTool=base("same-day-tool","2026-09-02T05:00:00.000Z",{title:"CanvaがAI動画編集の新機能を追加",primary_entity:"Canva",story_subject:"Canva AI動画編集",event_type:"release",event_stage:"launched"});
+const laterEconomy=base("later-economy","2026-09-02T07:00:00.000Z",{title:"AI関連債券の発行額が増加",primary_entity:"債券市場",story_subject:"AI関連債券",related_categories:["企業・株式"]});
+const initialToolEdition=buildHomeEdition([yesterdayTool],{}, {windowStart:start,windowEnd:end,checkedAt:end});
+const mixedEdition=buildHomeEdition([yesterdayTool,laterEconomy],initialToolEdition,{windowStart:end,windowEnd:end+6*3600000,checkedAt:end+6*3600000});
+assert.equal(mixedEdition.article_ids[0],"same-day-tool","新しい経済記事だけでホームの先頭を占めず、実用的なツール記事を前に出す");
+
 const firstEdition=buildHomeEdition(candidates,{}, {windowStart:start,windowEnd:end,checkedAt:end});
 const flagged=applyHomeEdition(candidates,firstEdition).filter(item=>item.home_top_rank);
 assert.deepEqual(flagged.map(item=>item.home_top_rank).sort((a,b)=>a-b),[1,2,3,4,5],"1位の大型記事を含む合計5件に順位を付ける");

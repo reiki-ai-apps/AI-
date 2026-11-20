@@ -14,7 +14,7 @@ const SHOWN_DAYS_KEEP=60;
 const FIRST_TIME_EMERGENCY_MS=14*24*60*60*1000;
 const SHOWN_STORY_LOG_DAYS=14;
 const MAX_SHOWN_STORY_LOG=300;
-const TOOL_EVOLUTION_TARGET=2;
+const TOOL_EVOLUTION_TARGET=3;
 const MIN_TOOL_EVOLUTION_SCORE=40;
 const TOOL_CATEGORIES=new Set([
   "AIツール・モデル","画像・動画生成","アプリ開発・自動化","音楽・クリエイティブ",
@@ -83,20 +83,29 @@ function eventStage(item){
   return String(item?.event_stage||"other").trim().toLowerCase();
 }
 
+function isEconomicOnlyStory(item){
+  if(["funding","acquisition"].includes(eventType(item)))return true;
+  const title=String(item?.title||"");
+  return /資金調達|出資|投資額|評価額|時価総額|株価|決算|上場|新規株式公開|債券|社債|買収|IPO|funding|valuation|stock price|earnings|bond issuance/i.test(title);
+}
+
 function isToolEvolutionCandidate(item){
   const type=eventType(item);
   const stage=eventStage(item);
-  if(!["release","research","other"].includes(type)||!TOOL_STAGES.has(stage))return false;
+  if(isEconomicOnlyStory(item)||!["release","research","other"].includes(type))return false;
   const categories=[...(item?.related_categories||[]),...(item?.categories||[])].map(String);
-  const text=[
-    item?.tool,item?.title,item?.raw_excerpt,item?.detail,item?.change_summary,item?.impact_summary,
-    item?.primary_entity,item?.story_subject,...(item?.story_entities||[]),...categories
-  ].join(" ").toLowerCase();
+  const title=String(item?.title||"");
+  if(/半導体|GPU|データセンター|工場|電力|人事|CEO|経営体制/.test(title))return false;
+  const text=[item?.tool,title,item?.primary_entity,item?.story_subject,...(item?.story_entities||[]),...categories].join(" ").toLowerCase();
   const toolContext=categories.some(category=>TOOL_CATEGORIES.has(category))||
     /\b(?:chatgpt|claude|gemini|grok|copilot|cursor|windsurf|runway|midjourney|firefly|kling|veo|canva|suno|heygen|elevenlabs|notion|gamma|perplexity|deepseek|qwen|llama)\b/i.test(text)||
     /AIツール|動画生成|画像生成|音声生成|アプリ開発|デザイン編集|動画編集/.test(text);
-  const capabilityDelta=/公開|提供開始|一般提供|ベータ|追加|搭載|対応|新機能|新モデル|生成|編集|自動化|判定|連携|できる|release|launch|available|capabilit|feature|model|workflow|integration/i.test(text);
-  return toolContext&&capabilityDelta&&Boolean(String(item?.story_subject||item?.title||"").trim());
+  const release=type==="release"&&TOOL_STAGES.has(stage)&&
+    /公開|提供開始|一般提供|ベータ|追加|搭載|対応|新機能|新モデル|新版|更新|アップデート|バージョン|改善|release|launch|available|feature|version|update|upgrade/i.test(title);
+  const practical=["research","other"].includes(type)&&
+    /使い方|活用法|活用術|使い分け|操作手順|実践|仕事で使|ワークフロー|how to|tutorial|workflow/i.test(title)&&
+    /手順|具体例|比較|設定|入力|プロンプト|作成|編集|使い分け|workflow|step|example/i.test(String(item?.detail||item?.raw_excerpt||""));
+  return toolContext&&(release||practical)&&Boolean(String(item?.story_subject||title).trim());
 }
 
 function candidateStatus(item,windowStart,windowEnd){
@@ -151,12 +160,14 @@ function scoreArticle(item,windowStart,windowEnd){
   }
   if(status.dateUnknown){penalty-=5;reasons.push("掲載日時不明を減点");}
   if(status.lateArrival)reasons.push("遅れて確認できた新着");
-  const toolEvolution=isToolEvolutionCandidate(item)?8:0;
-  if(toolEvolution)reasons.push("AIツールの能力進化");
-  const total=importance+topicality+scope+authority+freshness+toolEvolution+penalty;
+  const toolEvolution=isToolEvolutionCandidate(item)?24:0;
+  if(toolEvolution)reasons.push("AIツールの新機能・実践価値");
+  const economicOnly=isEconomicOnlyStory(item)?-18:0;
+  if(economicOnly)reasons.push("経済・投資中心の記事はホームで抑制");
+  const total=importance+topicality+scope+authority+freshness+toolEvolution+economicOnly+penalty;
   return {
     article_id:articleId(item),total,
-    breakdown:{importance,topicality,scope,authority,freshness,tool_evolution:toolEvolution,penalty},
+    breakdown:{importance,topicality,scope,authority,freshness,tool_evolution:toolEvolution,economic_only:economicOnly,penalty},
     reasons:[...new Set(reasons)].slice(0,6),
     published_at:new Date(time||0).toISOString()
   };
@@ -404,9 +415,26 @@ function selectContinuationArticles(items,{freshIds=[],previousIds=[],history=[]
     entityCounts.set(record.entity,(entityCounts.get(record.entity)||0)+1);
     return true;
   };
+  const toolEntities=new Set(selected.filter(isToolEvolutionCandidate).map(entityKey));
+  for(const record of records){
+    if(selected.filter(isToolEvolutionCandidate).length>=TOOL_EVOLUTION_TARGET||selected.length>=max)break;
+    if(!isToolEvolutionCandidate(record.item)||toolEntities.has(record.entity))continue;
+    if(add(record))toolEntities.add(record.entity);
+  }
   for(const record of records){
     if(selected.length>=max)break;
+    if(isEconomicOnlyStory(record.item))continue;
     if((entityCounts.get(record.entity)||0)>=2)continue;
+    add(record);
+  }
+  for(const record of records){
+    if(selected.length>=max)break;
+    if(!isEconomicOnlyStory(record.item)||selected.some(item=>isEconomicOnlyStory(item)))continue;
+    add(record);
+  }
+  for(const record of records){
+    if(selected.length>=max)break;
+    if(isEconomicOnlyStory(record.item))continue;
     add(record);
   }
   for(const record of records){
@@ -462,7 +490,10 @@ function selectTopArticles(items,{windowStart,windowEnd,max=MAX_HOME_ARTICLES,ex
     return true;
   };
 
-  for(const record of novelRanked.filter(record=>importanceRank(record.item)==="S"))add(record);
+  for(const record of novelRanked.filter(record=>importanceRank(record.item)==="S")){
+    if(isEconomicOnlyStory(record.item)&&selected.some(candidate=>isEconomicOnlyStory(candidate.item)))continue;
+    add(record);
+  }
 
   const meaningfulTools=novelRanked.filter(record=>record.tool_evolution&&record.score.total>=MIN_TOOL_EVOLUTION_SCORE);
   const availableToolEntities=new Set(meaningfulTools.map(record=>record.entity));
@@ -476,12 +507,22 @@ function selectTopArticles(items,{windowStart,windowEnd,max=MAX_HOME_ARTICLES,ex
 
   for(const record of novelRanked){
     if(selected.length>=max)break;
+    if(isEconomicOnlyStory(record.item))continue;
     const count=entityCounts.get(record.entity)||0;
     if(count>=2)continue;
     add(record);
   }
+  for(const record of novelRanked){
+    if(selected.length>=max)break;
+    if(!isEconomicOnlyStory(record.item)||selected.some(candidate=>isEconomicOnlyStory(candidate.item)))continue;
+    add(record);
+  }
   if(selected.length<max){
-    for(const record of novelRanked){
+    for(const record of novelRanked.filter(record=>!isEconomicOnlyStory(record.item))){
+      if(selected.length>=max)break;
+      add(record);
+    }
+    for(const record of novelRanked.filter(record=>isEconomicOnlyStory(record.item))){
       if(selected.length>=max)break;
       add(record);
     }
@@ -538,6 +579,16 @@ function buildHomeEdition(items,previous={},options={}){
   });
   const continuedIds=continuation.continuationIds;
   const articleIds=[...selectedIds,...continuedIds].slice(0,max);
+  if(selectedIds.length&&continuedIds.length){
+    const byId=new Map(eligibleItems.map(item=>[articleId(item),item]));
+    const newSet=new Set(selectedIds);
+    articleIds.sort((left,right)=>{
+      const leftItem=byId.get(left),rightItem=byId.get(right);
+      const leftScore=(leftItem?scoreArticle(leftItem,windowStart,windowEnd).total:0)+(newSet.has(left)?8:0);
+      const rightScore=(rightItem?scoreArticle(rightItem,windowStart,windowEnd).total:0)+(newSet.has(right)?8:0);
+      return rightScore-leftScore||(publishedTime(rightItem)-publishedTime(leftItem))||left.localeCompare(right);
+    });
+  }
   const carriedForward=selectedIds.length===0&&articleIds.length>0;
   const partiallyCarriedForward=selectedIds.length>0&&continuedIds.length>0;
   const selectedAt=new Date(options.checkedAt||Date.now()).toISOString();
