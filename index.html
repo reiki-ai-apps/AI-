@@ -5323,6 +5323,16 @@ async function performDataSync(renderChanges,allowPrune){
       const ex=(it.raw_excerpt||it.summary||'').toString();
       saveUpdate({
         tool_id:tool.id, title:it.title, source_url:safeExternalUrl(it.source_url),
+        source_image_url:safeExternalUrl(it.source_image_url),
+        source_image_page_url:safeExternalUrl(it.source_image_page_url),
+        editorial_image_url:String(it.editorial_image_url||''),
+        editorial_image_alt:String(it.editorial_image_alt||''),
+        commons_image_url:safeExternalUrl(it.commons_image_url),
+        commons_image_page_url:safeExternalUrl(it.commons_image_page_url),
+        commons_image_license_url:safeExternalUrl(it.commons_image_license_url),
+        commons_image_credit:String(it.commons_image_credit||''),
+        commons_image_subject:String(it.commons_image_subject||''),
+        commons_image_review_version:String(it.commons_image_review_version||''),
         ...importedContextSourceFields(it),
         content_type:String(it.content_type||'article'),
         expert_id:String(it.expert_id||''), expert_name:String(it.expert_name||''),

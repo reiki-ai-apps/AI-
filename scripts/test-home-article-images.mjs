@@ -4,6 +4,11 @@ import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url);
 const {articleVisual}=require('./source-image.cjs');
 const {REVIEW_VERSION,relevantCommonsImage}=require('./article-image-policy.cjs');
+const appHtml=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');
+const firstImport=appHtml.slice(appHtml.indexOf('const ex=(it.raw_excerpt||it.summary||\'\').toString();'),appHtml.indexOf('added++;',appHtml.indexOf('const ex=(it.raw_excerpt||it.summary||\'\').toString();')));
+for(const field of ['source_image_url','source_image_page_url','editorial_image_url','editorial_image_alt','commons_image_url','commons_image_page_url','commons_image_credit','commons_image_subject','commons_image_review_version']){
+  assert.match(firstImport,new RegExp(`${field}:`),`first-time article import retains ${field}`);
+}
 function audit(items,edition){
   const byId=new Map(items.map(item=>[item.article_id,item]));
   const seen=new Map();

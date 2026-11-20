@@ -58,7 +58,7 @@ assert.equal(browserSelect([selected,backup]).length,2,'browser fills a missing/
 assert.equal(browserSelect([selected,backup])[1].home_video_origin,'reserve');
 assert.equal(browserSelect([{...selected,expert_ids:['c','a','b']},backup,{...backup,video_id:'backup-b',expert_id:'b'}]).length,2,'browser also avoids a blocking co-presenter');
 assert.equal(browserSelect([selected,{...backup,home_video_reserve:false}]).length,1,'old unapproved cache is not a reserve');
-assert.ok(html.includes('本日の新着')&&html.includes('初掲載')&&html.includes('前の日までに載せた動画は二度と載せません'));
+assert.ok(html.includes('本日の新着')&&html.includes('初掲載')&&html.includes('前の日までの動画は分類ページから見られます'));
 const workflow=fs.readFileSync(new URL('../.github/workflows/update.yml',import.meta.url),'utf8');
 assert.ok(workflow.indexOf('node scripts/finalize-video-edition.mjs')>workflow.indexOf('- name: validate published articles'));
 assert.ok(workflow.indexOf('node scripts/finalize-video-edition.mjs')<workflow.indexOf('- name: persist validated public data'));
