@@ -7,7 +7,8 @@
       const updated=Date.parse(report?.last_article_update_at);
       const delayed=report?.status!=='current'||!Number.isFinite(updated)||Date.now()-updated>86400000;
       let message='';
-      if(report&&delayed)message='自動更新が遅れています。現在は最後に確認できた記事を表示しています。'+
+      if(report?.reason==='video_not_published_today')message='今日のAI学習動画はまだ2件そろっていません。確認を続けています。';
+      else if(report&&delayed)message='自動更新が遅れています。現在は最後に確認できた記事を表示しています。'+
         (Number.isFinite(updated)?' 最終確認：'+new Date(updated).toLocaleString('ja-JP',{timeZone:'Asia/Tokyo'}):'');
       if(node.textContent!==message)node.textContent=message;
       node.hidden=!message;

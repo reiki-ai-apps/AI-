@@ -62,7 +62,7 @@ assert.throws(()=>audit([runwayFixture],{article_ids:[runwayFixture.article_id]}
 const items=JSON.parse(fs.readFileSync(new URL('../data.json',import.meta.url),'utf8'));
 const edition=JSON.parse(fs.readFileSync(new URL('../home-edition.json',import.meta.url),'utf8'));
 const {covered,total}=audit(items,edition);
-console.log(`Home imagery: ${covered}/${total} article-specific visuals; missing images are reported, not fabricated.`);
+console.log(`Home imagery: ${covered}/${total} approved topical visuals (not necessarily photos of the reported event); missing images are reported, not fabricated.`);
 if(covered<total)
   console.warn(`::warning::Home imagery is ${covered}/${total}; remaining stories need a verified publisher photo, relevant licensed photograph, or unique editorial artwork.`);
 if(!total)console.warn('::warning::No selected home stories; imagery coverage cannot be evaluated for this edition.');

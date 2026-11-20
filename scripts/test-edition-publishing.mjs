@@ -230,7 +230,8 @@ assert.match(renderHomeSource,/const todayOneTop=!!kizashiArrival;/,"先に出�
 assert.match(renderHomeSource,/if\(todayOneTop\) html=todayOneSection\+html;/,"KIZASHIから来た人には見た回をいちばん上に");
 assert.match(renderHomeSource,/html\+=expertVideoHtml\+homeSecondaryHtml\+todayOneHtml/,"今日試せる1つは動画と補助案内の後に置く");
 assert.match(renderHomeSource,/emptyState\([^\n]+\+expertVideoHtml\+homeSecondaryHtml\+todayOneHtml/,"トップ記事がない時も今日試せる1つは最後に置く");
-assert.match(renderHomeSource,/いま注目のAIニュース · 新着\$\{newCount\}件 · 更新確認 \$\{latest\}/,"見出しに新着件数と最終確認時刻を示す");
+assert.match(renderHomeSource,/今日の注目ニュース/,'最初の見出しは短く読む');
+assert.match(renderHomeSource,/注目ニュース \$\{list.length\}件・新着 \$\{newCount\}件/,'新着件数は補助情報に残す');
 assert.match(renderHomeSource,/const homeSecondaryHtml=`<section class="home-secondary"/,"記事以外の案内を後半ブロックとして固定する");
 assert.match(renderHomeSource,/home-review-link" onclick="go\('reviews'\)"/,"ホーム後半に控えめなレビュー案内を置く");
 assert.ok(renderHomeSource.indexOf('home-review-link')>renderHomeSource.indexOf('const homeSecondaryHtml='),"レビュー案内は記事より後の補助ブロック内に置く");

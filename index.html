@@ -485,6 +485,10 @@
   .detail-head{margin-bottom:18px}
   .detail-toprow{display:flex;gap:11px;align-items:center;margin-bottom:13px;flex-wrap:wrap}
   .detail-title-lg{font-size:26px;font-weight:800;line-height:1.42;letter-spacing:.003em;margin-bottom:13px}
+  .detail-visual{margin:0 0 20px;border:1px solid var(--border);border-radius:15px;overflow:hidden;background:var(--surface)}
+  .detail-visual img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+  .detail-visual figcaption{padding:9px 12px;color:var(--text-soft);font-size:12px;line-height:1.65}
+  .detail-visual figcaption a{color:var(--brand);text-underline-offset:2px}
   .detail-tool{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--text-soft);font-size:14px}
   .read-hero{background:linear-gradient(135deg,#f0f1ff 0%,#f6f2ff 100%);border:1px solid #dedcff;border-radius:var(--radius);padding:20px 22px;margin-bottom:15px;box-shadow:var(--shadow-sm)}
   .read-hero .rb-head{display:flex;align-items:center;gap:9px;margin-bottom:10px}
@@ -2218,6 +2222,30 @@
   @media(max-width:620px){.daily-cover-image{height:198px;margin:10px 0 8px}}
   .radar-overview.has-daily-cover,.light-media-theme .radar-overview.has-daily-cover{background:linear-gradient(135deg,#07192b,#0b1630 68%,#111a38)!important}
 
+  /* ホームだけは画像・見出し・一言で流し読みできる密度にする。詳細情報は記事内に残す。 */
+  .home-feed .ucard{gap:8px;padding:13px}
+  .home-feed .ucard .ucard-tool,.home-feed .ucard .timeline-meta,.home-feed .ucard .ai-label,.home-feed .ucard .ucard-meta,.home-feed .ucard .card-source,.home-feed .ucard .mark-read,.home-feed .ucard .icon-action{display:none}
+  .home-feed .ucard .rank,.home-feed .ucard .status{display:none}
+  .home-feed .ucard .ucard-top{min-height:22px}
+  .home-feed .ucard .ucard-top-meta{margin-left:auto}
+  .home-feed .ucard h3{font-size:17px!important;line-height:1.45!important}
+  .home-feed .ucard .summary{-webkit-line-clamp:1;line-height:1.55}
+  .home-feed .ucard .ucard-footer{margin-top:2px}
+  .home-feed .ucard .card-actions{width:100%}
+  .home-feed .ucard .card-open{width:100%;min-height:39px}
+  .detail-quick-take{margin:0 0 16px;padding:15px 17px;border:1px solid rgba(74,214,227,.28);border-radius:13px;background:rgba(29,125,153,.10)}
+  .detail-quick-take b{display:block;margin-bottom:5px;color:#7ce7ec;font-size:11px}
+  .detail-quick-take p{margin:0;color:var(--text);font-size:15px;line-height:1.65}
+  @media(max-width:620px){
+    .radar-overview.has-daily-cover{min-height:0;padding:15px 14px 17px}
+    .radar-overview.has-daily-cover .radar-orb{display:none}
+    .radar-overview.has-daily-cover h2{font-size:20px;line-height:1.38}
+    .radar-overview.has-daily-cover p{-webkit-line-clamp:2}
+    .daily-cover-image{width:100%;height:auto;aspect-ratio:16/9}
+    .daily-cover-actions,.daily-cover-meta{padding-right:0}
+    .daily-cover-note{display:none}
+  }
+
   /* 今日試せる1つはニュースと動画を読み終えた後の実践枠。 */
   .today-one{margin:30px 0 0;padding:18px 18px 14px;border-radius:18px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm)}
   .today-one-kicker{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;white-space:nowrap;font-size:12px;letter-spacing:.14em;font-weight:700;color:var(--accent,#2f7cf6);text-transform:uppercase}
@@ -3871,11 +3899,18 @@ function articleVisual(u){
   }catch{}
   return null;
 }
+function homeTeaser(value,limit=92){
+  const text=String(value||'').replace(/\s+/g,' ').trim();
+  if(!text)return '要点を読む';
+  const first=text.match(/^.+?[。！？!?](?=\s|$|[^。！？!?])/u)?.[0]||text;
+  const chars=Array.from(first);
+  return chars.length>limit?chars.slice(0,limit).join('').replace(/[、，,・\s]+$/,'')+'…':first;
+}
 function updateCard(u){
   const tool=toolById(u.tool_id);
   const expertVideo=isExpertVideo(u);
   const color=toolColor(u.tool_id);
-  const sum=u.manual_summary||u.ai_summary||u.raw_excerpt||'要約はまだありません。';
+  const sum=homeTeaser(u.manual_summary||u.ai_summary||u.raw_excerpt);
   const visual=articleVisual(u);
   return `<article class="ucard ${isArticleRead(u)?'':'is-new'} ${expertVideo?'is-expert-video':''}">
     <div class="ucard-top">
@@ -3887,14 +3922,14 @@ function updateCard(u){
     <a class="ucard-title-link" href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')" aria-label="${esc(u.title)}の要約をアプリ内で見る"><h3>${esc(u.title)}</h3></a>
     ${timelineMeta(u)}
     ${u.continuation_lead?`<button class="continuation-card" onclick="go('update-detail','${u.id}')"><strong>前回からの続き</strong><span>${esc(u.continuation_lead)}</span></button>`:''}
-    <div class="summary-wrap"><span class="ai-label">AI要約</span><div class="summary">${esc(sum)}</div></div>
+    <div class="summary-wrap"><div class="summary">${esc(sum)}</div></div>
     <div class="ucard-footer">
       <div class="ucard-meta">
         <div class="ucard-meta-group"><span class="ucard-meta-label">分野</span>${catChips(u.related_categories,2)}</div>
         ${u.source_name?`<div class="ucard-meta-group"><span class="ucard-meta-label">情報元</span><span class="chip more">${esc(u.source_name)}</span></div>`:''}
       </div>
       <div class="card-actions">
-        <a class="card-open card-detail" href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')">${icon('eye')}${expertVideo?'学べること・背景を見る':'変化と仕事への影響を見る'}</a>
+        <a class="card-open card-detail" href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')">${icon('eye')}詳しく読む</a>
         ${u.source_url?`<button class="card-source" onclick="openSourceArticle('${u.id}')" aria-label="${expertVideo?'元の動画・講演':'情報元の記事'}を外部サイトで見る">${icon('ext')}${expertVideo?'元の動画・講演を見る':'情報元の記事を読む'}</button>`:''}
         ${!isArticleRead(u)?`<button class="mark-read card-action-labeled" onclick="markRead('${u.id}')" aria-label="読了の印を付ける" title="記事は残したまま、読んだ証を付ける">${icon('check')}<span>読了にする</span></button>`:''}
         ${u.status!=='try_later'?`<button class="icon-action card-action-labeled" onclick="quickStatus('${u.id}','try_later');render()" aria-label="後で見るに保存" title="後で見る一覧に保存する">${icon('flask')}<span>後で見る</span></button>`:''}
@@ -4048,19 +4083,19 @@ function renderHome(v){
   // 1位を大型表示にし、残り4件と合わせてホーム全体を最大5件にする。
   const cover=list[0]||selectLatestCover(articleUpdates);
   activeTopStoryId=String(cover?.id||'');
-  const coverSummary=cover?(cover.manual_summary||cover.ai_summary||cover.raw_excerpt||'要約を確認できます。'):'';
+  const coverSummary=cover?homeTeaser(cover.manual_summary||cover.ai_summary||cover.raw_excerpt,110):'';
   const coverTool=cover?toolById(cover.tool_id):null;
   const coverVisual=cover?articleVisual(cover):null;
   const coverEditionNote=['continued','same_day','first_time'].includes(cover?.home_top_origin)
     ?'前の日までに載せていない記事から選定'
     :`今回の新着${newCount?` ${newCount}件`:''}を話題性・重要性で審査`;
   const coverCopy=cover?`
-      <div class="live-line"><span class="live-dot"></span>いま注目のAIニュース · 新着${newCount}件 · 更新確認 ${latest}</div>
+      <div class="live-line"><span class="live-dot"></span>今日の注目ニュース</div>
       ${coverVisual?`<div class="daily-cover-image${coverVisual.kind==='brand'?' is-brand':''}"><img src="${esc(coverVisual.url)}" alt="${esc(coverVisual.alt||coverVisual.label)}" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" onerror="this.parentElement.remove()">${coverVisual.kind==='photo'?`<a href="${esc(coverVisual.creditUrl)}" target="_blank" rel="noopener noreferrer" title="${esc(coverVisual.label)} · ${esc(coverVisual.credit)}">資料写真 · ${esc(coverVisual.credit)}</a>`:`<span>${esc(coverVisual.label)}</span>`}</div>`:''}
       <div class="daily-cover-meta">${rankBadge(cover.rank)}${homeOriginBadge(cover)}${readProofBadge(cover)}<span class="daily-cover-source"><b>情報元</b>${esc(cover.source_name||coverTool?.name||'確認中')}・${esc(sourcePublishedLabel(cover))}</span></div>
       <h2>${esc(cover.title)}</h2>
       <p>${esc(coverSummary)}</p>
-      <div class="daily-cover-actions"><a class="btn btn-primary" href="${esc(publicArticleUrl(cover))}" onclick="event.preventDefault();go('update-detail','${cover.id}')">${icon('eye')}変化と仕事への影響を見る</a><span class="daily-cover-note">${coverEditionNote}</span></div>`:`
+      <div class="daily-cover-actions"><a class="btn btn-primary" href="${esc(publicArticleUrl(cover))}" onclick="event.preventDefault();go('update-detail','${cover.id}')">${icon('eye')}詳しく読む</a><span class="daily-cover-note">${coverEditionNote}</span></div>`:`
       <div class="live-line"><span class="live-dot"></span>LIVE INTELLIGENCE FEED</div>
       <h2>世界のAI変化を、<br>仕事の判断へ。</h2>
       <p>英語・中国語・日本語の情報を横断監視。何が変わったか、仕事への影響、次にやることまで、やさしい日本語で確認できます。</p>
@@ -4096,7 +4131,7 @@ function renderHome(v){
     '前回の更新の動画です。今日の新しい動画を確認中です。':
     '今日の新しい動画を確認中です。前の日までの動画は分類ページから見られます。';
   const expertVideoHtml=`<section class="expert-video-section" aria-labelledby="expertVideoTitle">
-    <div class="expert-video-head"><div><span class="expert-video-kicker">LEARN AI</span><h2 id="expertVideoTitle">AIを学ぶ動画</h2></div><p>毎朝、新しい動画を確認。公開10日以内・異なる発信者の2件を掲載します。前の日までに載せた動画は二度と載せません。新着が2件そろわない日は、その日の新着だけを載せます。</p></div>
+    <div class="expert-video-head"><div><span class="expert-video-kicker">LEARN AI</span><h2 id="expertVideoTitle">AIを学ぶ動画</h2></div><p>短い時間で、AIの使い方や進化を学べる動画を紹介します。</p></div>
     <p class="billing-help" role="status">${esc(videoRefreshNote)}</p>
     <div class="expert-video-grid">${expertVideos.map(expertVideoCard).join('')||'<p>前回と異なる発信者の動画を確認中です。過去の動画は分類ページから見られます。</p>'}</div>
   </section>`;
@@ -4410,6 +4445,17 @@ function buildFriendlyExplanation(u){
     .trim();
 }
 
+function detailVisualHtml(u){
+  const visual=articleVisual(u);
+  if(!visual)return '';
+  const caption=visual.kind==='photo'
+    ? `記事テーマに関連する資料写真です。この出来事そのものを撮影したものではありません。写真: <a href="${esc(visual.creditUrl)}" target="_blank" rel="noopener noreferrer">${esc(visual.credit)}</a>${visual.licenseUrl?`（<a href="${esc(visual.licenseUrl)}" target="_blank" rel="noopener noreferrer">利用条件</a>）`:''}`
+    :visual.kind==='editorial'?'AI制作のイメージ画像です。実際の場面の写真ではありません。'
+    :visual.kind==='source'?`情報元の記事画像です。出典: <a href="${esc(u.source_url)}" target="_blank" rel="noopener noreferrer">${esc(u.source_name||'元記事')}</a>`
+    :esc(visual.label);
+  return `<figure class="detail-visual"><img src="${esc(visual.url)}" alt="${esc(visual.alt||visual.label)}" decoding="async" referrerpolicy="no-referrer" onerror="this.closest('figure').remove()"><figcaption>${caption}</figcaption></figure>`;
+}
+
 /* ---- 読みモード（既定） ---- */
 function renderDetailRead(v,u,tool){
   const expertVideo=isExpertVideo(u);
@@ -4417,6 +4463,7 @@ function renderDetailRead(v,u,tool){
     `<button class="btn btn-primary" onclick="enterDetailEdit('${u.id}')">${icon('edit')}編集</button>`;
   const rawText = (u.raw_excerpt||u.raw_content||'').trim();
   const friendlyExplanation=buildFriendlyExplanation(u);
+  const quickText=String(u.manual_summary||u.ai_summary||u.raw_excerpt||u.simple_explanation||'').trim();
   const showRaw = rawText && rawText!==friendlyExplanation; // 解説と同じ内容なら重複表示しない
   v.innerHTML = `<button class="back-link" onclick="go('categories')">${icon('arrowLeft')}記事を探すに戻る</button>
   <div class="detail-grid">
@@ -4435,6 +4482,10 @@ function renderDetailRead(v,u,tool){
           ${catChips(u.related_categories)}
         </div>
       </div>
+
+      ${detailVisualHtml(u)}
+
+      ${quickText?`<div class="detail-quick-take"><b>まず、ここだけ</b><p>${esc(homeTeaser(quickText,160))}</p></div>`:''}
 
       ${storyFlowBlock(u)}
 

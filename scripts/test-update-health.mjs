@@ -5,7 +5,12 @@ assert.equal(classifyUpdateFailure('Anthropic HTTP 400 Your credit balance is to
 assert.equal(classifyUpdateFailure('Anthropic HTTP 401'),'credentials_required');
 const now=Date.parse('2026-09-30T07:00:00Z');
 assert.equal(makeUpdateHealth({code:0,now,edition:{last_checked_at:'2026-09-28T01:00:00Z'}}).status,'delayed');
-assert.equal(makeUpdateHealth({code:0,now,edition:{last_checked_at:new Date(now).toISOString()}}).status,'current');
+assert.equal(makeUpdateHealth({code:0,now,edition:{last_checked_at:new Date(now).toISOString()},
+  video:{status:'published',last_published_day_jst:'2026-09-30',featured_video_keys:['a','b']}}).status,'current');
+const missingVideo=makeUpdateHealth({code:0,now,edition:{last_checked_at:new Date(now).toISOString()},
+  video:{status:'pending_no_new_publishable_video',last_published_day_jst:'2026-09-29',featured_video_keys:[]}});
+assert.equal(missingVideo.status,'delayed');
+assert.equal(missingVideo.reason,'video_not_published_today');
 const failed=makeUpdateHealth({code:1,failure:'credit_required',now});
 assert.equal(failed.status,'action_required');
 assert.equal(JSON.stringify(failed).includes('Anthropic'),false);

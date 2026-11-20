@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createRequire} from 'node:module';
+import vm from 'node:vm';
 const require=createRequire(import.meta.url);
 const {sourceImage,editorialImage,articleVisual,videoThumbnail,extractSourceImage}=require('./source-image.cjs');
 const {REVIEW_VERSION,subjectFor,relevantCommonsImage}=require('./article-image-policy.cjs');
@@ -56,6 +57,25 @@ assert.equal(extractSourceImage(`<meta property="og:url" content="https://openai
 assert.equal(extractSourceImage(`<meta property="og:image" content="${publisher}">`,publisher),'','article page cannot be its own preview image');
 assert.match(html,/function articleMedia\(u\)/);
 assert.match(html,/function articleVisual\(u\)/);
+assert.match(html,/\$\{detailVisualHtml\(u\)\}[\s\S]*\$\{storyFlowBlock\(u\)\}/,
+  'article detail shows its own visual before the explanation');
+const detailVisualCode=html.slice(html.indexOf('function detailVisualHtml(u){'),html.indexOf('/* ---- 読みモード（既定） ---- */'));
+const detailVisualContext=vm.createContext({articleVisual,esc:value=>String(value).replaceAll('&','&amp;').replaceAll('"','&quot;')});
+vm.runInContext(detailVisualCode,detailVisualContext);
+const detailPublisher=detailVisualContext.detailVisualHtml({...item,source_name:'OpenAI'});
+assert.match(detailPublisher,/情報元の記事画像です。出典:/);
+assert.match(detailPublisher,/https:\/\/openai\.com\/index\/test-article/);
+const photoArticle={article_id:'article_photo123',primary_entity:'OpenAI',title:'OpenAIに関する発表',
+  commons_image_url:'https://upload.wikimedia.org/example.jpg',
+  commons_image_page_url:'https://commons.wikimedia.org/wiki/File:OpenAI_team_photo.jpg',
+  commons_image_subject:'OpenAI',commons_image_review_version:REVIEW_VERSION,
+  commons_image_credit:'Example photographer',commons_image_license_url:'https://creativecommons.org/licenses/by/4.0/'};
+const detailPhoto=detailVisualContext.detailVisualHtml(photoArticle);
+assert.match(detailPhoto,/この出来事そのものを撮影したものではありません/);
+assert.match(detailPhoto,/Example photographer/);
+assert.match(detailPhoto,/commons.wikimedia.org/);
+assert.equal(detailVisualContext.detailVisualHtml({title:'権利確認できない記事'}),'',
+  'missing or unverified images do not get a recycled substitute');
 assert.match(html,/visual\?`<div class="ucard-image/);
 assert.match(html,/coverVisual\?`<div class="daily-cover-image/);
 assert.match(html,/assets\/story-photos\/\$\{id\}\.png/,'browser uses a unique article photograph-style image');
