@@ -32,7 +32,7 @@ if(index.includes('複数事業やチームで'))failures.push('未提供のチ�
 if(/signUpMember|renderAccount|go\('account'\)|data-operator-users|syncMemberAppStateFromCloud/.test(index))failures.push('廃止した会員制度の画面または処理が残っています');
 
 for(const text of ['create table if not exists public.app_open_events','function public.record_app_open','daily_opens','Asia/Tokyo','alter table public.app_open_events enable row level security','revoke all on table public.app_open_events from anon, authenticated'])requireText(schema,text);
-for(const text of ['node scripts/build-public-articles.mjs','data.json home-edition.json .story-index.json index.html articles assets/story-photos sitemap.xml robots.txt'])requireText(workflow,text);
+for(const text of ['node scripts/build-public-articles.mjs','data.json home-edition.json .story-index.json index.html articles archive topics public-article-archive.json assets/story-photos sitemap.xml robots.txt'])requireText(workflow,text);
 
 const ids=data.map(item=>String(item.article_id||item.id||'')).filter(id=>/^[A-Za-z0-9_-]{8,100}$/.test(id));
 const itemsById=new Map(data.map(item=>[String(item.article_id||item.id||''),item]));
@@ -56,7 +56,7 @@ for(const id of ids){
   if(!page.includes(expectedCta))failures.push(`記事から一覧への導線がありません: ${id}`);
   if(!page.includes(expectedHeading))failures.push(`記事に内容別のやさしい解説がありません: ${id}`);
   if((page.match(/<\/p><p>/g)||[]).length<2)failures.push(`やさしい解説の3段落が保持されていません: ${id}`);
-  if(!page.includes('class="related"'))failures.push(`内部リンクがありません: ${id}`);
+  if(!page.includes('href="https://reiki-ai-apps.github.io/AI-/archive/"'))failures.push(`記事から公開記事一覧への内部リンクがありません: ${id}`);
   if(!expertVideo&&item.editorial_image_url){
     const expected=`assets/story-photos/${id}.png`;
     if(item.editorial_image_url!==expected||!fs.existsSync(path.join(root,expected)))failures.push(`記事専用画像がありません: ${id}`);
@@ -69,6 +69,23 @@ if(index.includes('3分'))failures.push('意味の不明確な3分訴求がア�
 if(read("scripts/build-public-articles.mjs").includes('3分'))failures.push('意味の不明確な3分訴求が記事生成処理に残っています');
 requireText(read("robots.txt"),'Sitemap: https://reiki-ai-apps.github.io/AI-/sitemap.xml');
 requireText(read("sitemap.xml"),'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+for(const text of ['href="./topics/"','href="./archive/"'])requireText(index,text,'ホームから記事一覧への固定リンクがありません');
+const archive=JSON.parse(read("public-article-archive.json"));
+if(!Array.isArray(archive.items)||archive.items.length<ids.length)failures.push('公開記事アーカイブに現行記事が保存されていません');
+for(const entry of archive.items){
+  if(!fs.existsSync(path.join(root,"articles",entry.id,"index.html")))failures.push(`アーカイブの記事ページがありません: ${entry.id}`);
+  if(!read("sitemap.xml").includes(`/articles/${entry.id}/`))failures.push(`アーカイブの記事がサイトマップにありません: ${entry.id}`);
+}
+const delayedArticle=data.find(item=>item.source_published_at&&item.fetched_at&&item.source_published_at.slice(0,10)!==item.fetched_at.slice(0,10)&&!item.source_updated_at);
+if(delayedArticle){
+  const page=read(`articles/${delayedArticle.article_id}/index.html`);
+  const publishedDay=delayedArticle.source_published_at.slice(0,10);
+  if(!page.includes(`"dateModified":"${delayedArticle.source_published_at}"`))failures.push('取得日時を記事の更新日時として誤表示しています');
+  if(!read("sitemap.xml").includes(`<loc>https://reiki-ai-apps.github.io/AI-/articles/${delayedArticle.article_id}/</loc><lastmod>${publishedDay}</lastmod>`))failures.push('サイトマップの更新日が取得日時になっています');
+}
+for(const file of ["topics/index.html","archive/index.html"]){
+  if(!fs.existsSync(path.join(root,file)))failures.push(`静的な記事一覧がありません: ${file}`);
+}
 
 if(failures.length){console.error(failures.join("\n"));process.exit(1);}
-console.log(`Growth readiness OK: ${ids.length} public article pages, SEO/share/free-access/privacy checks passed.`);
+console.log(`Growth readiness OK: ${archive.items.length} retained public article pages, SEO/share/free-access/privacy checks passed.`);

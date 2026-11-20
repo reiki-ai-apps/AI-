@@ -2267,6 +2267,10 @@
   .today-one.is-arrival{margin:0 0 22px;border:2px solid var(--accent,#2f7cf6)}
   .today-one-share{background:none;border:0;padding:0;color:var(--accent,#2f7cf6);font:inherit;font-size:13px;cursor:pointer;text-decoration:underline dotted}
   @media(max-width:600px){.today-one{padding:14px 14px 12px;border-radius:14px}.today-one h2{font-size:19px}.today-one-paste{font-size:13px}.today-one.is-arrival{margin:0 0 16px}}
+  .search-footer{width:min(100% - 32px,1120px);margin:0 auto 110px;padding:18px 0;border-top:1px solid var(--border);font-size:13px;line-height:1.8;color:var(--muted,#94a3b8)}
+  .search-footer strong{display:block;margin-bottom:4px;color:inherit;font-size:14px}
+  .search-footer a{display:inline-block;margin:0 16px 4px 0;color:var(--accent,#55d8e8);text-decoration:none}
+  .search-footer a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
@@ -2320,6 +2324,7 @@
     </header>
     <div id="mobileOperatorMetricsSlot" class="mobile-operator-metrics-slot" hidden aria-live="polite"><span id="mobileOperatorMetrics" class="operator-metrics" hidden></span></div>
     <main class="content" id="view"></main>
+    <nav class="search-footer" aria-label="公開記事を探す"><strong>公開記事を探す</strong><a href="./topics/">生成AIニュースをテーマ別に探す</a><a href="./archive/">AIニュースを月別に探す</a></nav>
   </div>
 </div>
 <nav class="bottom-nav" id="bottomNav" aria-label="モバイルナビゲーション"></nav>
