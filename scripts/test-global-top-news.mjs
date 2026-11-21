@@ -1,4 +1,6 @@
 import fs from "node:fs";
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
 
 const html=fs.readFileSync(new URL("../index.html",import.meta.url),"utf8");
 const update=fs.readFileSync(new URL("../update.js",import.meta.url),"utf8");
@@ -7,13 +9,27 @@ const edition=JSON.parse(fs.readFileSync(new URL("../home-edition.json",import.m
 
 for(const marker of [
   'name: "AI業界・経営重要速報"',
-  'if(item.tool==="AI業界・経営重要速報")score+=34',
   'return "leadership"',
   '["policy","security","frontier","semiconductor","leadership"]',
   "主要AI企業・研究所のCEO交代"
 ]){
   if(!update.includes(marker))throw new Error(`industry-wide research safeguard missing: ${marker}`);
 }
+const industryBoost=Number(update.match(/if\(item\.tool==="AI業界・経営重要速報"\)score\+=(\d+)/)?.[1]);
+const practicalBoost=Number(update.match(/if\(item\.tool==="AIツール・新機能"\|\|item\.tool==="AIツール・実践"\)score\+=(\d+)/)?.[1]);
+if(!(industryBoost>0&&practicalBoost>industryBoost))throw new Error("業界速報を残しつつ実用ツールを優先する加点がありません");
+const helpers=html.slice(html.indexOf('function readerKind('),html.indexOf('function readerHeadlineRow('));
+const order=vm.runInNewContext(helpers+';readerEdition');
+const economy={title:'企業の資金調達'},tool={title:'画像編集の具体的な使い方',home_score_breakdown:{tool_evolution:24}};
+const outage={title:'サービスに大規模障害',rank:'S'};
+const issueResolved={...outage,title:'大規模障害から復旧'};
+const source=[economy,tool];
+assert.equal(order(source)[0],tool);
+assert.equal(source[0],economy);
+assert.equal(order([economy,tool,outage])[0],outage);
+assert.equal(order([issueResolved,tool])[0],tool);
+assert.equal(order([economy])[0],economy);
+assert.equal(order([]).length,0);
 
 for(const marker of [
   "const selected=getUpdates().filter(item=>!isExpertVideo(item)&&Number(item.home_top_rank)>=1",

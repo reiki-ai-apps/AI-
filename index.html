@@ -2271,6 +2271,20 @@
   .search-footer strong{display:block;margin-bottom:4px;color:inherit;font-size:14px}
   .search-footer a{display:inline-block;margin:0 16px 4px 0;color:var(--accent,#55d8e8);text-decoration:none}
   .search-footer a:hover{text-decoration:underline}
+  .reader-row{display:flex;align-items:center;gap:14px;padding:14px 2px;border-bottom:1px solid var(--border);min-width:0}
+  .reader-row figure{flex:none;position:relative;margin:0;width:96px}
+  .reader-row img{width:100%;height:72px;display:block;object-fit:cover;border-radius:8px}
+  .reader-row figcaption{font-size:10px;line-height:1.35;overflow-wrap:anywhere;color:var(--muted)}
+  .reader-row figcaption a,.reader-row h3 a,.has-daily-cover h2 a{color:inherit}
+  .reader-row h3 a,.has-daily-cover h2 a{text-decoration:none}
+  .reader-row h3 a:hover,.has-daily-cover h2 a:hover{text-decoration:underline}
+  .reader-row h3{margin:4px 0 0;font-size:clamp(16px,2vw,20px);line-height:1.45;overflow-wrap:anywhere}
+  .reader-label{font-size:12px;font-weight:700;color:var(--accent,#55d8e8)}
+  .reader-list{margin:12px 0 20px}.reader-list>h2{font-size:16px;margin:0}
+  .has-daily-cover .daily-cover-note{display:none}
+  .has-daily-cover .daily-cover-actions,.has-daily-cover .daily-cover-meta{padding-right:0}
+  .has-daily-cover .daily-cover-image img[src$="canva-ai-choice.svg"]{object-fit:contain;background:#112638}
+  @media(max-width:620px){.reader-row{gap:12px}.reader-row figure{width:82px}.reader-row img{height:64px}.has-daily-cover .daily-cover-meta{margin:8px 0}}
 </style>
 </head>
 <body>
@@ -3890,9 +3904,16 @@ function articleVisual(u){
   const actual=articleMedia(u);
   if(actual)return {url:actual,kind:isExpertVideo(u)?'video':'source',label:isExpertVideo(u)?'元動画のサムネイル':'情報元の記事画像'};
   const id=String(u.article_id||'');
+  if(id==='article_ac7e91a40aaf8c6b2c88')return {url:'./assets/canva-ai-choice.svg',kind:'diagram',label:'編集部の図解（操作画面ではありません）',alt:'Canvaのデザイン作業で、生成AIを使うか使わないかを選べるようになったことを示す図'};
   const local=`assets/story-photos/${id}.png`;
   if(!isExpertVideo(u)&&/^article_[A-Za-z0-9_-]{8,90}$/.test(id)&&u.editorial_image_url===local)
     return {url:`./${local}`,kind:'editorial',label:'AI制作イメージ',alt:String(u.editorial_image_alt||u.title||'記事のイメージ画像')};
+  const storyDiagram={
+    article_2677f9c56d00b19bc12e:['europe-bonds','欧州の債券発行額が初めて2兆ユーロを突破'],
+    article_9e0cc941c5999a60de67:['moonshot-contract','Moonshot AIがインドネシア経由のチップ調達契約を取り消し'],
+    article_c2faac4bc41d0205c825:['deepseek-funding','DeepSeekが中国国内企業から2兆円超を調達']
+  }[id];
+  if(Array.isArray(storyDiagram))return {url:'./assets/'+storyDiagram[0]+'.svg',kind:'diagram',label:'編集部の図解',alt:storyDiagram[1]};
   try{
     const image=new URL(safeExternalUrl(u.commons_image_url));
     const page=new URL(safeExternalUrl(u.commons_image_page_url));
@@ -4010,12 +4031,30 @@ function selectLatestCover(items,now=Date.now()){
       ||String(b.id||'').localeCompare(String(a.id||''),'ja')
     )[0]||null;
 }
+function readerKind(u){
+  if(!(Number(u.home_score_breakdown?.tool_evolution)>0))return '';
+  const t=String(u.title||'');
+  if(/使い方|活用法|使い分け|操作手順|入門|チュートリアル|how to/i.test(t))return '使い方';
+  if(/新ツール|新アプリ|新モデル|初公開|新サービス/.test(t))return '新ツール';
+  if(/更新|新機能|機能|設定|対応|バージョン|アップデート|改善|強化/.test(t))return '機能アップデート';
+  return 'ツールの進化';
+}
+function readerEdition(items){
+  const urgent=items.find(u=>(u.rank==='S'||u.importance==='S')&&/大規模障害|全面停止|サービス停止中/.test(u.title)&&!/復旧|訓練|予測/.test(u.title));
+  const lead=urgent||items.find(readerKind);
+  return lead?[lead,...items.filter(u=>u!==lead)]:items;
+}
+function readerHeadlineRow(u){
+  const media=articleVisual(u);
+  const thumb=media?`<figure><img src="${esc(media.url)}" alt="${esc(media.alt||media.label)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"><figcaption>${media.kind==='photo'?`<a href="${esc(media.creditUrl)}" target="_blank" rel="noopener noreferrer">資料写真 · ${esc(media.credit)}</a>`:esc(media.label)}</figcaption></figure>`:'';
+  return `<article class="reader-row">${thumb}<div><span class="reader-label">${esc(readerKind(u)||'AIニュース')}</span> ${homeOriginBadge(u)} ${readProofBadge(u)}<h3><a href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')">${esc(u.title)}</a></h3></div></article>`;
+}
 function homeTopUpdates(){
   const selected=getUpdates().filter(item=>!isExpertVideo(item)&&Number(item.home_top_rank)>=1&&Number(item.home_top_rank)<=5)
     .sort((a,b)=>Number(a.home_top_rank)-Number(b.home_top_rank));
-  if(selected.length)return selected.slice(0,5);
+  if(selected.length)return readerEdition(selected.slice(0,5));
   // 旧キャッシュや初回同期の直前でもホームを空にせず、最大5件だけに抑える。
-  return getUpdates().filter(item=>!isExpertVideo(item)).sort((a,b)=>globalCoverScore(b)-globalCoverScore(a)||byPub(a,b)).slice(0,5);
+  return readerEdition(getUpdates().filter(item=>!isExpertVideo(item)).sort((a,b)=>globalCoverScore(b)-globalCoverScore(a)||byPub(a,b)).slice(0,5));
 }
 function homeExpertVideos(items){
   const selected=[];const seenVideos=new Set();const seenExperts=new Set();const seenSubjects=new Set();
@@ -4088,18 +4127,20 @@ function renderHome(v){
   // 1位を大型表示にし、残り4件と合わせてホーム全体を最大5件にする。
   const cover=list[0]||selectLatestCover(articleUpdates);
   activeTopStoryId=String(cover?.id||'');
-  const coverSummary=cover?homeTeaser(cover.manual_summary||cover.ai_summary||cover.raw_excerpt,110):'';
+  const canvaChoice=cover?.article_id==='article_ac7e91a40aaf8c6b2c88';
+  const coverTitle=canvaChoice?'Canvaの生成AIをオフにできるように':cover?.title;
+  const coverSummary=canvaChoice?'AIを使わずにデザインしたい人向けの設定です。':cover?homeTeaser(cover.manual_summary||cover.simple_explanation||cover.ai_summary||cover.raw_excerpt,84):'';
   const coverTool=cover?toolById(cover.tool_id):null;
   const coverVisual=cover?articleVisual(cover):null;
   const coverEditionNote=['continued','same_day','first_time'].includes(cover?.home_top_origin)
     ?'前の日までに載せていない記事から選定'
     :`今回の新着${newCount?` ${newCount}件`:''}を話題性・重要性で審査`;
   const coverCopy=cover?`
-      <div class="live-line"><span class="live-dot"></span>今日の注目ニュース</div>
+      <div class="live-line"><span class="live-dot"></span>今日の注目ニュース${readerKind(cover)?' ／ '+esc(readerKind(cover)):''}</div>
       ${coverVisual?`<div class="daily-cover-image${coverVisual.kind==='brand'?' is-brand':''}"><img src="${esc(coverVisual.url)}" alt="${esc(coverVisual.alt||coverVisual.label)}" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" onerror="this.parentElement.remove()">${coverVisual.kind==='photo'?`<a href="${esc(coverVisual.creditUrl)}" target="_blank" rel="noopener noreferrer" title="${esc(coverVisual.label)} · ${esc(coverVisual.credit)}">資料写真 · ${esc(coverVisual.credit)}</a>`:`<span>${esc(coverVisual.label)}</span>`}</div>`:''}
-      <div class="daily-cover-meta">${rankBadge(cover.rank)}${homeOriginBadge(cover)}${readProofBadge(cover)}<span class="daily-cover-source"><b>情報元</b>${esc(cover.source_name||coverTool?.name||'確認中')}・${esc(sourcePublishedLabel(cover))}</span></div>
-      <h2>${esc(cover.title)}</h2>
+      <h2><a href="${esc(publicArticleUrl(cover))}" onclick="event.preventDefault();go('update-detail','${cover.id}')">${esc(coverTitle)}</a></h2>
       <p>${esc(coverSummary)}</p>
+      <div class="daily-cover-meta">${homeOriginBadge(cover)}${readProofBadge(cover)}<span class="daily-cover-source">${esc(cover.source_name||coverTool?.name||'確認中')}・${esc(sourcePublishedLabel(cover))}</span></div>
       <div class="daily-cover-actions"><a class="btn btn-primary" href="${esc(publicArticleUrl(cover))}" onclick="event.preventDefault();go('update-detail','${cover.id}')">${icon('eye')}詳しく読む</a><span class="daily-cover-note">${coverEditionNote}</span></div>`:`
       <div class="live-line"><span class="live-dot"></span>LIVE INTELLIGENCE FEED</div>
       <h2>世界のAI変化を、<br>仕事の判断へ。</h2>
@@ -4159,19 +4200,10 @@ function renderHome(v){
     v.innerHTML=html; window.aiRadarUpdateStatus?.refresh(); loadTodayOne(); return;
   }
 
-  // 日付ごとの見出し（今日・昨日…）でグループ表示
-  let lastLabel=null, open=false;
   const feedList=cover?list.filter(item=>item.id!==cover.id).slice(0,4):list.slice(0,5);
-  feedList.forEach(u=>{
-    const label=dayLabel(articleTimelineAt(u));
-    if(label!==lastLabel){
-      if(open) html+=`</div>`;
-      html+=`<div class="day-head"><span>${label}</span></div><div class="grid cols-2">`;
-      lastLabel=label; open=true;
-    }
-    html+=updateCard(u);
-  });
-  if(open) html+=`</div>`;
+  if(feedList.length)html+='<section class="reader-list" aria-label="ほかの注目ニュース"><h2>ほかの注目ニュース</h2>';
+  feedList.forEach(u=>{html+=readerHeadlineRow(u);});
+  if(feedList.length)html+='</section>';
   html+=expertVideoHtml+homeSecondaryHtml+todayOneHtml+`</div>`;
 
   v.innerHTML=html;
