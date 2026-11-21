@@ -4044,10 +4044,26 @@ function readerEdition(items){
   const lead=urgent||items.find(readerKind);
   return lead?[lead,...items.filter(u=>u!==lead)]:items;
 }
+// 表示用の話題。トップ記事の選定・順番には使わない。
+function readerTopic(u){
+  const practical=readerKind(u);
+  if(practical&&practical!=='ツールの進化')return practical;
+  const title=String(u.title||'');
+  for(const [pattern,label] of [
+    [/裁判所|訴訟|提訴|判決|控訴|上訴/,'裁判'],
+    [/債券|国債|社債/,'債券市場'],
+    [/資金調達|出資を受け/,'資金調達'],
+    [/半導体|チップ調達|GPU調達/,'半導体'],
+    [/法案|規制当局|規制強化/,'政策・規制'],
+    [/大規模障害|サービス停止中/,'サービス障害']
+  ])if(pattern.test(title))return label;
+  return '';
+}
 function readerHeadlineRow(u){
   const media=articleVisual(u);
+  const topic=readerTopic(u);
   const thumb=media?`<figure><img src="${esc(media.url)}" alt="${esc(media.alt||media.label)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"><figcaption>${media.kind==='photo'?`<a href="${esc(media.creditUrl)}" target="_blank" rel="noopener noreferrer">資料写真 · ${esc(media.credit)}</a>`:esc(media.label)}</figcaption></figure>`:'';
-  return `<article class="reader-row">${thumb}<div><span class="reader-label">${esc(readerKind(u)||'AIニュース')}</span> ${homeOriginBadge(u)} ${readProofBadge(u)}<h3><a href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')">${esc(u.title)}</a></h3></div></article>`;
+  return `<article class="reader-row">${thumb}<div>${topic?`<span class="reader-label">${esc(topic)}</span> `:''}${homeOriginBadge(u)} ${readProofBadge(u)}<h3><a href="${esc(publicArticleUrl(u))}" onclick="event.preventDefault();go('update-detail','${u.id}')">${esc(u.title)}</a></h3></div></article>`;
 }
 function homeTopUpdates(){
   const selected=getUpdates().filter(item=>!isExpertVideo(item)&&Number(item.home_top_rank)>=1&&Number(item.home_top_rank)<=5)

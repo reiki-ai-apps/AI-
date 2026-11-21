@@ -30,6 +30,17 @@ assert.equal(order([economy,tool,outage])[0],outage);
 assert.equal(order([issueResolved,tool])[0],tool);
 assert.equal(order([economy])[0],economy);
 assert.equal(order([]).length,0);
+const topic=vm.runInNewContext(helpers+';readerTopic');
+for(const [title,expected] of [
+  ['欧州債券発行額が過去最高','債券市場'],['NVIDIAチップ調達契約を取り消し','半導体'],
+  ['米裁判所、AI法案への異議を審理','裁判'],['企業の資金調達が完了','資金調達'],
+  ['最新のAIニュース','']
+])assert.equal(topic({title}),expected);
+assert.equal(topic(tool),'使い方');
+const row=vm.runInNewContext(html.slice(html.indexOf('function readerHeadlineRow('),html.indexOf('function homeTopUpdates('))+';readerHeadlineRow',
+  {articleVisual:()=>null,readerTopic:topic,esc:String,homeOriginBadge:()=>'本日掲載',readProofBadge:()=>'既読',publicArticleUrl:()=>'/detail'});
+assert.doesNotMatch(row({id:'test',title:'一般の話題'}),/reader-label|AIニュース/);
+assert.match(row({id:'test',title:'一般の話題'}),/本日掲載 既読/);
 
 for(const marker of [
   "const selected=getUpdates().filter(item=>!isExpertVideo(item)&&Number(item.home_top_rank)>=1",
