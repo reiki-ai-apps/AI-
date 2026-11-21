@@ -7,53 +7,57 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-20T12:54:29.869Z",
-  "window_end": "2026-11-21T01:35:08.092Z",
-  "last_window_end": "2026-11-21T01:35:08.092Z",
-  "last_checked_at": "2026-11-21T01:41:26.946Z",
-  "last_published_at": "2026-11-21T01:41:26.946Z",
-  "home_content_changed_at": "2026-11-21T01:41:26.946Z",
+  "window_start": "2026-11-21T01:35:08.092Z",
+  "window_end": "2026-11-21T02:50:25.695Z",
+  "last_window_end": "2026-11-21T02:50:25.695Z",
+  "last_checked_at": "2026-11-21T02:55:45.284Z",
+  "last_published_at": "2026-11-21T02:55:45.284Z",
+  "home_content_changed_at": "2026-11-21T02:55:45.284Z",
   "consecutive_unchanged_editions": 0,
-  "consecutive_zero_candidate_editions": 1,
-  "update_health": "DEGRADED",
-  "update_health_reasons": [
-    "今回の新着掲載は0件です。前の日までに載せた記事は出さず、今日まだ載せていない記事だけを表示しています",
-    "前の日と重ならない検証済み記事が3件未満です"
-  ],
-  "edition_status": "NO_NEW_STORIES",
-  "candidate_count": 0,
-  "distinct_candidate_count": 0,
+  "consecutive_zero_candidate_editions": 0,
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
+  "edition_status": "NEW_STORIES",
+  "candidate_count": 3,
+  "distinct_candidate_count": 3,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 0,
+  "novel_candidate_count": 3,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 1,
+  "selected_count": 4,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 0,
+  "new_selected_count": 3,
   "continued_selected_count": 1,
-  "tool_evolution_selected_count": 0,
-  "carried_forward": true,
-  "partially_carried_forward": false,
+  "tool_evolution_selected_count": 1,
+  "carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
-    "article_d07d49ba4b56f0e764f8"
+    "article_ba8c6750d280b4298dc9",
+    "article_d07d49ba4b56f0e764f8",
+    "article_38088d3fe53a52071be1",
+    "article_91ea60558f15b9b903d5"
   ],
-  "new_article_ids": [],
+  "new_article_ids": [
+    "article_ba8c6750d280b4298dc9",
+    "article_38088d3fe53a52071be1",
+    "article_91ea60558f15b9b903d5"
+  ],
   "continued_article_ids": [
     "article_d07d49ba4b56f0e764f8"
   ],
   "continuation_sources": {
-    "article_d07d49ba4b56f0e764f8": "recent_archive"
+    "article_d07d49ba4b56f0e764f8": "previous_edition"
   },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-21",
-  "same_day_article_ids": [],
-  "first_time_article_ids": [
+  "same_day_article_ids": [
     "article_d07d49ba4b56f0e764f8"
   ],
+  "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 39,
+  "blocked_previous_day_count": 36,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -393,7 +397,10 @@
     "article_ac7e91a40aaf8c6b2c88": "2026-11-20",
     "article_14c077131bee2383d71f": "2026-11-20",
     "article_2677f9c56d00b19bc12e": "2026-11-20",
-    "article_d07d49ba4b56f0e764f8": "2026-11-21"
+    "article_d07d49ba4b56f0e764f8": "2026-11-21",
+    "article_ba8c6750d280b4298dc9": "2026-11-21",
+    "article_38088d3fe53a52071be1": "2026-11-21",
+    "article_91ea60558f15b9b903d5": "2026-11-21"
   },
   "home_shown_story_log": [
     {
@@ -2910,9 +2917,114 @@
       "selected_at": "2026-11-21T01:41:26.946Z",
       "edition_window_end": "2026-11-21T01:35:08.092Z",
       "shown_day": "2026-11-21"
+    },
+    {
+      "article_id": "article_ba8c6750d280b4298dc9",
+      "story_id": "story_61fa4be1ad3c3c3147",
+      "title": "ChatGPT新機能「Dots」、Plus加入者向けに試験提供開始",
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT Dots",
+      "event_type": "release",
+      "event_stage": "beta",
+      "event_scope": "ChatGPT Plus加入者",
+      "story_entities": [
+        "ChatGPT",
+        "OpenAI",
+        "Dots",
+        "chatgpt",
+        "openai"
+      ],
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "ChatGPT Dots",
+          "value": "Plus加入者向け試験提供",
+          "normalized_value": "plus加入者向け試験提供"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-21T02:55:45.284Z",
+      "edition_window_end": "2026-11-21T02:50:25.695Z",
+      "shown_day": "2026-11-21"
+    },
+    {
+      "article_id": "article_38088d3fe53a52071be1",
+      "story_id": "story_4475b4019d57917648",
+      "title": "FIXERが化粧品メーカー向けに情報漏えいリスクの低いAIサービスを提供",
+      "primary_entity": "FIXER",
+      "story_subject": "化粧品メーカー向け情報漏えいリスク低減AIサービス",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本・化粧品業界",
+      "story_entities": [
+        "FIXER",
+        "化粧品メーカー",
+        "fixer"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-21T02:55:45.284Z",
+      "edition_window_end": "2026-11-21T02:50:25.695Z",
+      "shown_day": "2026-11-21"
+    },
+    {
+      "article_id": "article_91ea60558f15b9b903d5",
+      "story_id": "story_9e02d34fd2c89908b3",
+      "title": "AI動画生成ツール市場、細分化が加速 RunwayやKlingなど11サービスを比較",
+      "primary_entity": "AI動画生成ツール市場",
+      "story_subject": "AI動画生成ツールの市場比較(11サービス)",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "世界(韓国メディア報道)",
+      "story_entities": [
+        "Runway",
+        "Kling",
+        "runway",
+        "kling"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "比較対象サービス数",
+          "value": "11",
+          "normalized_value": "11"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-21T02:55:45.284Z",
+      "edition_window_end": "2026-11-21T02:50:25.695Z",
+      "shown_day": "2026-11-21"
     }
   ],
   "scores": {
+    "article_ba8c6750d280b4298dc9": {
+      "article_id": "article_ba8c6750d280b4298dc9",
+      "total": 72,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 15,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 24,
+        "economic_only": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化",
+        "遅れて確認できた新着",
+        "AIツールの新機能・実践価値"
+      ],
+      "published_at": "2026-11-20T17:37:20.000Z"
+    },
     "article_d07d49ba4b56f0e764f8": {
       "article_id": "article_d07d49ba4b56f0e764f8",
       "total": 76,
@@ -2933,6 +3045,46 @@
         "大きな製品・市場変化"
       ],
       "published_at": "2026-11-19T02:30:16.000Z"
+    },
+    "article_38088d3fe53a52071be1": {
+      "article_id": "article_38088d3fe53a52071be1",
+      "total": 56,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 20,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "economic_only": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "制度・安全への影響",
+        "大きな製品・市場変化",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-11-20T11:00:44.000Z"
+    },
+    "article_91ea60558f15b9b903d5": {
+      "article_id": "article_91ea60558f15b9b903d5",
+      "total": 40,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 0,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 0,
+        "economic_only": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "遅れて確認できた新着"
+      ],
+      "published_at": "2026-11-21T00:00:00.000Z"
     }
   },
   "recent_story_history": [
@@ -3447,6 +3599,86 @@
       "previous_article_id": "",
       "selected_at": "2026-11-21T01:41:26.946Z",
       "edition_window_end": "2026-11-21T01:35:08.092Z"
+    },
+    {
+      "article_id": "article_ba8c6750d280b4298dc9",
+      "story_id": "story_61fa4be1ad3c3c3147",
+      "title": "ChatGPT新機能「Dots」、Plus加入者向けに試験提供開始",
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT Dots",
+      "event_type": "release",
+      "event_stage": "beta",
+      "event_scope": "ChatGPT Plus加入者",
+      "story_entities": [
+        "ChatGPT",
+        "OpenAI",
+        "Dots",
+        "chatgpt",
+        "openai"
+      ],
+      "fact_slots": [
+        {
+          "type": "availability",
+          "scope": "ChatGPT Dots",
+          "value": "Plus加入者向け試験提供",
+          "normalized_value": "plus加入者向け試験提供"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-21T02:55:45.284Z",
+      "edition_window_end": "2026-11-21T02:50:25.695Z"
+    },
+    {
+      "article_id": "article_38088d3fe53a52071be1",
+      "story_id": "story_4475b4019d57917648",
+      "title": "FIXERが化粧品メーカー向けに情報漏えいリスクの低いAIサービスを提供",
+      "primary_entity": "FIXER",
+      "story_subject": "化粧品メーカー向け情報漏えいリスク低減AIサービス",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本・化粧品業界",
+      "story_entities": [
+        "FIXER",
+        "化粧品メーカー",
+        "fixer"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-21T02:55:45.284Z",
+      "edition_window_end": "2026-11-21T02:50:25.695Z"
+    },
+    {
+      "article_id": "article_91ea60558f15b9b903d5",
+      "story_id": "story_9e02d34fd2c89908b3",
+      "title": "AI動画生成ツール市場、細分化が加速 RunwayやKlingなど11サービスを比較",
+      "primary_entity": "AI動画生成ツール市場",
+      "story_subject": "AI動画生成ツールの市場比較(11サービス)",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "世界(韓国メディア報道)",
+      "story_entities": [
+        "Runway",
+        "Kling",
+        "runway",
+        "kling"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "比較対象サービス数",
+          "value": "11",
+          "normalized_value": "11"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-21T02:55:45.284Z",
+      "edition_window_end": "2026-11-21T02:50:25.695Z"
     }
   ]
 }
