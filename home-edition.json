@@ -7,54 +7,61 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-21T17:29:11.516Z",
-  "window_end": "2026-11-22T00:24:17.958Z",
-  "last_window_end": "2026-11-22T00:24:17.958Z",
-  "last_checked_at": "2026-11-22T00:36:53.825Z",
-  "last_published_at": "2026-11-22T00:36:53.825Z",
-  "home_content_changed_at": "2026-11-22T00:36:53.825Z",
+  "window_start": "2026-11-22T00:24:17.958Z",
+  "window_end": "2026-11-22T12:36:29.374Z",
+  "last_window_end": "2026-11-22T12:36:29.374Z",
+  "last_checked_at": "2026-11-22T12:40:34.087Z",
+  "last_published_at": "2026-11-22T12:40:34.087Z",
+  "home_content_changed_at": "2026-11-22T12:40:34.087Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 5,
-  "distinct_candidate_count": 5,
+  "candidate_count": 3,
+  "distinct_candidate_count": 3,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 5,
+  "novel_candidate_count": 3,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 5,
-  "continued_selected_count": 0,
-  "tool_evolution_selected_count": 0,
+  "new_selected_count": 3,
+  "continued_selected_count": 2,
+  "tool_evolution_selected_count": 1,
   "carried_forward": false,
-  "partially_carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_fc7076aa52cf2b6be179",
+    "article_162314cc92971143d8b3",
+    "article_f5886dd0480063e6ce4b",
     "article_34666ef8ebc4a23de1ed",
-    "article_aae08b37567ba7a9330a",
-    "article_b693b9bc7099888b3912",
-    "article_2f4255bb7f3bce48ff33",
-    "article_eccc6f04e487149f4134"
+    "article_b693b9bc7099888b3912"
   ],
   "new_article_ids": [
-    "article_34666ef8ebc4a23de1ed",
-    "article_aae08b37567ba7a9330a",
-    "article_b693b9bc7099888b3912",
-    "article_2f4255bb7f3bce48ff33",
-    "article_eccc6f04e487149f4134"
+    "article_fc7076aa52cf2b6be179",
+    "article_162314cc92971143d8b3",
+    "article_f5886dd0480063e6ce4b"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continued_article_ids": [
+    "article_34666ef8ebc4a23de1ed",
+    "article_b693b9bc7099888b3912"
+  ],
+  "continuation_sources": {
+    "article_34666ef8ebc4a23de1ed": "previous_edition",
+    "article_b693b9bc7099888b3912": "previous_edition"
+  },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-22",
-  "same_day_article_ids": [],
+  "same_day_article_ids": [
+    "article_34666ef8ebc4a23de1ed",
+    "article_b693b9bc7099888b3912"
+  ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 34,
+  "blocked_previous_day_count": 31,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -394,7 +401,10 @@
     "article_aae08b37567ba7a9330a": "2026-11-22",
     "article_b693b9bc7099888b3912": "2026-11-22",
     "article_2f4255bb7f3bce48ff33": "2026-11-22",
-    "article_eccc6f04e487149f4134": "2026-11-22"
+    "article_eccc6f04e487149f4134": "2026-11-22",
+    "article_fc7076aa52cf2b6be179": "2026-11-22",
+    "article_162314cc92971143d8b3": "2026-11-22",
+    "article_f5886dd0480063e6ce4b": "2026-11-22"
   },
   "home_shown_story_log": [
     {
@@ -3119,18 +3129,161 @@
       "selected_at": "2026-11-22T00:36:53.825Z",
       "edition_window_end": "2026-11-22T00:24:17.958Z",
       "shown_day": "2026-11-22"
+    },
+    {
+      "article_id": "article_fc7076aa52cf2b6be179",
+      "story_id": "story_1a2e882100561e29c2",
+      "title": "Suno、MiniMax H3ベースの新モデル「H3 Move」で楽曲向け動画生成ツールを公開",
+      "primary_entity": "Suno",
+      "story_subject": "H3 Moveを使った楽曲向け動画生成ツール",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "全世界",
+      "story_entities": [
+        "Suno",
+        "MiniMax",
+        "H3 Move",
+        "suno",
+        "minimax"
+      ],
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "使用モデル",
+          "value": "H3 Move(MiniMax H3ベース)",
+          "normalized_value": "h3moveminimaxh3ベース"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-22T12:40:34.087Z",
+      "edition_window_end": "2026-11-22T12:36:29.374Z",
+      "shown_day": "2026-11-22"
+    },
+    {
+      "article_id": "article_162314cc92971143d8b3",
+      "story_id": "story_8ff7ae674ae509de56",
+      "title": "韓国、AI不正利用の大学入試不正問題で教育相が辞任",
+      "primary_entity": "韓国教育省",
+      "story_subject": "AI不正入試スキャンダルによる教育相辞任",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "韓国",
+      "story_entities": [
+        "韓国教育省",
+        "AI不正入試",
+        "ai不正入試"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-22T12:40:34.087Z",
+      "edition_window_end": "2026-11-22T12:36:29.374Z",
+      "shown_day": "2026-11-22"
+    },
+    {
+      "article_id": "article_f5886dd0480063e6ce4b",
+      "story_id": "story_136997c27d4e3902b3",
+      "title": "Anthropicの研究者がClaudeとともにリーマン予想の証明を発表、1700万行のコードを専門家が検証中",
+      "primary_entity": "Anthropic",
+      "story_subject": "リーマン予想証明主張",
+      "event_type": "research",
+      "event_stage": "investigating",
+      "event_scope": "数学界・研究コミュニティ",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "リーマン予想",
+        "anthropic",
+        "claude"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "証明コードの行数",
+          "value": "1700万行",
+          "normalized_value": "17000000"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-22T12:40:34.087Z",
+      "edition_window_end": "2026-11-22T12:36:29.374Z",
+      "shown_day": "2026-11-22"
     }
   ],
   "scores": {
+    "article_fc7076aa52cf2b6be179": {
+      "article_id": "article_fc7076aa52cf2b6be179",
+      "total": 83,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 9,
+        "tool_evolution": 24,
+        "economic_only": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "AIツールの新機能・実践価値"
+      ],
+      "published_at": "2026-11-22T11:28:39.000Z"
+    },
+    "article_162314cc92971143d8b3": {
+      "article_id": "article_162314cc92971143d8b3",
+      "total": 81,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 17,
+        "scope": 10,
+        "authority": 5,
+        "freshness": 4,
+        "tool_evolution": 0,
+        "economic_only": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "制度・安全への影響",
+        "重要な経営・研究体制"
+      ],
+      "published_at": "2026-11-22T05:04:00.000Z"
+    },
+    "article_f5886dd0480063e6ce4b": {
+      "article_id": "article_f5886dd0480063e6ce4b",
+      "total": 59,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 5,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 1,
+        "tool_evolution": 0,
+        "economic_only": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤"
+      ],
+      "published_at": "2026-11-22T02:00:00.000Z"
+    },
     "article_34666ef8ebc4a23de1ed": {
       "article_id": "article_34666ef8ebc4a23de1ed",
-      "total": 54,
+      "total": 48,
       "breakdown": {
         "importance": 25,
         "topicality": 15,
         "scope": 3,
         "authority": 5,
-        "freshness": 6,
+        "freshness": 0,
         "tool_evolution": 0,
         "economic_only": 0,
         "penalty": 0
@@ -3141,29 +3294,6 @@
         "大きな製品・市場変化"
       ],
       "published_at": "2026-11-21T21:25:00.000Z"
-    },
-    "article_aae08b37567ba7a9330a": {
-      "article_id": "article_aae08b37567ba7a9330a",
-      "total": 54,
-      "breakdown": {
-        "importance": 45,
-        "topicality": 20,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 6,
-        "tool_evolution": 0,
-        "economic_only": -18,
-        "penalty": -10
-      },
-      "reasons": [
-        "重要度A",
-        "制度・安全への影響",
-        "大きな製品・市場変化",
-        "重要な経営・研究体制",
-        "未確認情報を減点",
-        "経済・投資中心の記事はホームで抑制"
-      ],
-      "published_at": "2026-11-21T21:23:58.000Z"
     },
     "article_b693b9bc7099888b3912": {
       "article_id": "article_b693b9bc7099888b3912",
@@ -3180,105 +3310,12 @@
       },
       "reasons": [
         "重要度B",
-        "主要AI企業・基盤",
-        "遅れて確認できた新着"
+        "主要AI企業・基盤"
       ],
       "published_at": "2026-11-21T00:22:30.000Z"
-    },
-    "article_2f4255bb7f3bce48ff33": {
-      "article_id": "article_2f4255bb7f3bce48ff33",
-      "total": 40,
-      "breakdown": {
-        "importance": 10,
-        "topicality": 10,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 9,
-        "tool_evolution": 0,
-        "economic_only": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度C",
-        "大きな製品・市場変化"
-      ],
-      "published_at": "2026-11-22T00:00:01.000Z"
-    },
-    "article_eccc6f04e487149f4134": {
-      "article_id": "article_eccc6f04e487149f4134",
-      "total": 39,
-      "breakdown": {
-        "importance": 10,
-        "topicality": 15,
-        "scope": 3,
-        "authority": 5,
-        "freshness": 6,
-        "tool_evolution": 0,
-        "economic_only": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度C",
-        "主要AI企業・基盤",
-        "大きな製品・市場変化"
-      ],
-      "published_at": "2026-11-21T21:39:04.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_b759f47c4d8af67008c0",
-      "story_id": "story_603a509f70148f9bb8",
-      "title": "Anthropic、ナスダック上場を計画し1,040億ドルの赤字を計上へ",
-      "primary_entity": "Anthropic",
-      "story_subject": "Anthropicのナスダック上場と巨額赤字",
-      "event_type": "funding",
-      "event_stage": "announced",
-      "event_scope": "米国",
-      "story_entities": [
-        "Anthropic",
-        "ナスダック",
-        "Claude",
-        "anthropic",
-        "claude"
-      ],
-      "fact_slots": [
-        {
-          "type": "amount",
-          "scope": "Anthropicの赤字見込み",
-          "value": "1040億ドル",
-          "normalized_value": "104000000000USD"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-11-19T02:00:04.337Z",
-      "edition_window_end": "2026-11-19T01:54:20.544Z"
-    },
-    {
-      "article_id": "article_184d931227f2504de1a3",
-      "story_id": "story_2557836302f7b0f8c5",
-      "title": "OpenAI、AIと社会の関係を論じる公式記事「The Silent Consensus」を公開",
-      "primary_entity": "OpenAI",
-      "story_subject": "AIの社会的影響に関するOpenAI公式記事",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "全世界",
-      "story_entities": [
-        "OpenAI",
-        "Dean Ball",
-        "openai",
-        "deanball",
-        "silent"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-11-19T02:00:04.337Z",
-      "edition_window_end": "2026-11-19T01:54:20.544Z"
-    },
     {
       "article_id": "article_02f4a73e7c2cf35b5b1f",
       "story_id": "story_244dfef25196804b27",
@@ -3854,6 +3891,87 @@
       "previous_article_id": "",
       "selected_at": "2026-11-22T00:36:53.825Z",
       "edition_window_end": "2026-11-22T00:24:17.958Z"
+    },
+    {
+      "article_id": "article_fc7076aa52cf2b6be179",
+      "story_id": "story_1a2e882100561e29c2",
+      "title": "Suno、MiniMax H3ベースの新モデル「H3 Move」で楽曲向け動画生成ツールを公開",
+      "primary_entity": "Suno",
+      "story_subject": "H3 Moveを使った楽曲向け動画生成ツール",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "全世界",
+      "story_entities": [
+        "Suno",
+        "MiniMax",
+        "H3 Move",
+        "suno",
+        "minimax"
+      ],
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "使用モデル",
+          "value": "H3 Move(MiniMax H3ベース)",
+          "normalized_value": "h3moveminimaxh3ベース"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-22T12:40:34.087Z",
+      "edition_window_end": "2026-11-22T12:36:29.374Z"
+    },
+    {
+      "article_id": "article_162314cc92971143d8b3",
+      "story_id": "story_8ff7ae674ae509de56",
+      "title": "韓国、AI不正利用の大学入試不正問題で教育相が辞任",
+      "primary_entity": "韓国教育省",
+      "story_subject": "AI不正入試スキャンダルによる教育相辞任",
+      "event_type": "policy",
+      "event_stage": "other",
+      "event_scope": "韓国",
+      "story_entities": [
+        "韓国教育省",
+        "AI不正入試",
+        "ai不正入試"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-22T12:40:34.087Z",
+      "edition_window_end": "2026-11-22T12:36:29.374Z"
+    },
+    {
+      "article_id": "article_f5886dd0480063e6ce4b",
+      "story_id": "story_136997c27d4e3902b3",
+      "title": "Anthropicの研究者がClaudeとともにリーマン予想の証明を発表、1700万行のコードを専門家が検証中",
+      "primary_entity": "Anthropic",
+      "story_subject": "リーマン予想証明主張",
+      "event_type": "research",
+      "event_stage": "investigating",
+      "event_scope": "数学界・研究コミュニティ",
+      "story_entities": [
+        "Anthropic",
+        "Claude",
+        "リーマン予想",
+        "anthropic",
+        "claude"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "証明コードの行数",
+          "value": "1700万行",
+          "normalized_value": "17000000"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-22T12:40:34.087Z",
+      "edition_window_end": "2026-11-22T12:36:29.374Z"
     }
   ]
 }
