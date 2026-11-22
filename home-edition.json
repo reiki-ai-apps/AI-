@@ -7,39 +7,45 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-21T12:40:28.498Z",
-  "window_end": "2026-11-21T17:29:11.516Z",
-  "last_window_end": "2026-11-21T17:29:11.516Z",
-  "last_checked_at": "2026-11-21T17:32:18.743Z",
-  "last_published_at": "2026-11-21T17:32:18.743Z",
-  "home_content_changed_at": "2026-11-21T17:32:18.743Z",
+  "window_start": "2026-11-21T17:29:11.516Z",
+  "window_end": "2026-11-22T00:24:17.958Z",
+  "last_window_end": "2026-11-22T00:24:17.958Z",
+  "last_checked_at": "2026-11-22T00:36:53.825Z",
+  "last_published_at": "2026-11-22T00:36:53.825Z",
+  "home_content_changed_at": "2026-11-22T00:36:53.825Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
-  "update_health": "DEGRADED",
-  "update_health_reasons": [
-    "前の日と重ならない検証済み記事が3件未満です"
-  ],
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 1,
-  "distinct_candidate_count": 1,
+  "candidate_count": 5,
+  "distinct_candidate_count": 5,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 1,
+  "novel_candidate_count": 5,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 1,
+  "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 1,
+  "new_selected_count": 5,
   "continued_selected_count": 0,
   "tool_evolution_selected_count": 0,
   "carried_forward": false,
   "partially_carried_forward": false,
   "article_ids": [
-    "article_0b233adfec9f45bf22ff"
+    "article_34666ef8ebc4a23de1ed",
+    "article_aae08b37567ba7a9330a",
+    "article_b693b9bc7099888b3912",
+    "article_2f4255bb7f3bce48ff33",
+    "article_eccc6f04e487149f4134"
   ],
   "new_article_ids": [
-    "article_0b233adfec9f45bf22ff"
+    "article_34666ef8ebc4a23de1ed",
+    "article_aae08b37567ba7a9330a",
+    "article_b693b9bc7099888b3912",
+    "article_2f4255bb7f3bce48ff33",
+    "article_eccc6f04e487149f4134"
   ],
   "continued_article_ids": [],
   "continuation_sources": {},
@@ -48,7 +54,7 @@
   "same_day_article_ids": [],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 39,
+  "blocked_previous_day_count": 34,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -383,7 +389,12 @@
     "article_91ea60558f15b9b903d5": "2026-11-21",
     "article_7114ce200cde67e2b6b6": "2026-11-21",
     "article_f833d6b2f1a4a5bfe97e": "2026-11-21",
-    "article_0b233adfec9f45bf22ff": "2026-11-22"
+    "article_0b233adfec9f45bf22ff": "2026-11-22",
+    "article_34666ef8ebc4a23de1ed": "2026-11-22",
+    "article_aae08b37567ba7a9330a": "2026-11-22",
+    "article_b693b9bc7099888b3912": "2026-11-22",
+    "article_2f4255bb7f3bce48ff33": "2026-11-22",
+    "article_eccc6f04e487149f4134": "2026-11-22"
   },
   "home_shown_story_log": [
     {
@@ -2980,15 +2991,186 @@
       "selected_at": "2026-11-21T17:32:18.743Z",
       "edition_window_end": "2026-11-21T17:29:11.516Z",
       "shown_day": "2026-11-22"
+    },
+    {
+      "article_id": "article_34666ef8ebc4a23de1ed",
+      "story_id": "story_a40231fc1531a94e38",
+      "title": "OpenAI、ChatGPT SpaceをPlus会員（月20ドル）に開放",
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT Space機能のPlus会員への提供開始",
+      "event_type": "release",
+      "event_stage": "expanded",
+      "event_scope": "ChatGPT Plusプラン利用者",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT",
+        "ChatGPT Space",
+        "openai",
+        "chatgpt"
+      ],
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "Plusプラン月額料金",
+          "value": "20ドル/月",
+          "normalized_value": "20USD"
+        },
+        {
+          "type": "availability",
+          "scope": "ChatGPT Space機能の対象",
+          "value": "Plus会員のみ、無料プラン不可",
+          "normalized_value": "plus会員のみ無料プラン不可"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-22T00:36:53.825Z",
+      "edition_window_end": "2026-11-22T00:24:17.958Z",
+      "shown_day": "2026-11-22"
+    },
+    {
+      "article_id": "article_aae08b37567ba7a9330a",
+      "story_id": "story_19b39a5fdba7fd42ba",
+      "title": "クラウドストライク、ゼットスケーラー買収巡り協議か AI時代のセキュリティ再編を象徴",
+      "primary_entity": "クラウドストライク",
+      "story_subject": "ゼットスケーラー買収協議",
+      "event_type": "acquisition",
+      "event_stage": "rumor",
+      "event_scope": "グローバル",
+      "story_entities": [
+        "クラウドストライク",
+        "ゼットスケーラー",
+        "bloomberg"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-22T00:36:53.825Z",
+      "edition_window_end": "2026-11-22T00:24:17.958Z",
+      "shown_day": "2026-11-22"
+    },
+    {
+      "article_id": "article_b693b9bc7099888b3912",
+      "story_id": "story_8c30017e004d5d6f88",
+      "title": "マスク氏「GrokのAIが企業経費を数百万ドル節約できる」SpaceXの経理担当が先行導入",
+      "primary_entity": "xAI",
+      "story_subject": "SpaceXによるGrokの経費管理導入",
+      "event_type": "other",
+      "event_stage": "launched",
+      "event_scope": "SpaceX社内の経理業務",
+      "story_entities": [
+        "xAI",
+        "Grok",
+        "SpaceX",
+        "xai",
+        "grok"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-22T00:36:53.825Z",
+      "edition_window_end": "2026-11-22T00:24:17.958Z",
+      "shown_day": "2026-11-22"
+    },
+    {
+      "article_id": "article_2f4255bb7f3bce48ff33",
+      "story_id": "story_e3b504b874e2fe297d",
+      "title": "ゴムマリ、広告審査を担うAIエージェントの提供を開始",
+      "primary_entity": "ゴムマリ",
+      "story_subject": "広告審査AIエージェント",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本",
+      "story_entities": [
+        "ゴムマリ",
+        "広告審査"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-22T00:36:53.825Z",
+      "edition_window_end": "2026-11-22T00:24:17.958Z",
+      "shown_day": "2026-11-22"
+    },
+    {
+      "article_id": "article_eccc6f04e487149f4134",
+      "story_id": "story_2d03508ad4e0914900",
+      "title": "GoogleのGemini、Androidアプリ内カメラに「ボトムシート」レイアウトを追加",
+      "primary_entity": "Google",
+      "story_subject": "GeminiアプリのAndroidカメラUI変更",
+      "event_type": "release",
+      "event_stage": "other",
+      "event_scope": "Android向けGeminiアプリ",
+      "story_entities": [
+        "Google",
+        "Gemini",
+        "Android",
+        "google",
+        "gemini"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-22T00:36:53.825Z",
+      "edition_window_end": "2026-11-22T00:24:17.958Z",
+      "shown_day": "2026-11-22"
     }
   ],
   "scores": {
-    "article_0b233adfec9f45bf22ff": {
-      "article_id": "article_0b233adfec9f45bf22ff",
-      "total": 46,
+    "article_34666ef8ebc4a23de1ed": {
+      "article_id": "article_34666ef8ebc4a23de1ed",
+      "total": 54,
       "breakdown": {
         "importance": 25,
-        "topicality": 10,
+        "topicality": 15,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 6,
+        "tool_evolution": 0,
+        "economic_only": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化"
+      ],
+      "published_at": "2026-11-21T21:25:00.000Z"
+    },
+    "article_aae08b37567ba7a9330a": {
+      "article_id": "article_aae08b37567ba7a9330a",
+      "total": 54,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 20,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 6,
+        "tool_evolution": 0,
+        "economic_only": -18,
+        "penalty": -10
+      },
+      "reasons": [
+        "重要度A",
+        "制度・安全への影響",
+        "大きな製品・市場変化",
+        "重要な経営・研究体制",
+        "未確認情報を減点",
+        "経済・投資中心の記事はホームで抑制"
+      ],
+      "published_at": "2026-11-21T21:23:58.000Z"
+    },
+    "article_b693b9bc7099888b3912": {
+      "article_id": "article_b693b9bc7099888b3912",
+      "total": 41,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 5,
         "scope": 6,
         "authority": 5,
         "freshness": 0,
@@ -2998,170 +3180,52 @@
       },
       "reasons": [
         "重要度B",
-        "制度・安全への影響",
+        "主要AI企業・基盤",
         "遅れて確認できた新着"
       ],
-      "published_at": "2026-11-21T00:43:19.000Z"
+      "published_at": "2026-11-21T00:22:30.000Z"
+    },
+    "article_2f4255bb7f3bce48ff33": {
+      "article_id": "article_2f4255bb7f3bce48ff33",
+      "total": 40,
+      "breakdown": {
+        "importance": 10,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 9,
+        "tool_evolution": 0,
+        "economic_only": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度C",
+        "大きな製品・市場変化"
+      ],
+      "published_at": "2026-11-22T00:00:01.000Z"
+    },
+    "article_eccc6f04e487149f4134": {
+      "article_id": "article_eccc6f04e487149f4134",
+      "total": 39,
+      "breakdown": {
+        "importance": 10,
+        "topicality": 15,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 6,
+        "tool_evolution": 0,
+        "economic_only": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度C",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化"
+      ],
+      "published_at": "2026-11-21T21:39:04.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_a261d2eee241a886eda0",
-      "story_id": "story_19b53958f080ac76ec",
-      "title": "Google、世界モデル「Genie 4」をGoogle AI Ultra向けに提供開始",
-      "primary_entity": "Google",
-      "story_subject": "Genie 4(Project Genie)",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "Google AI Ultra加入者",
-      "story_entities": [
-        "Google",
-        "Genie 4",
-        "Project Genie",
-        "google",
-        "genie4"
-      ],
-      "fact_slots": [
-        {
-          "type": "availability",
-          "scope": "提供対象",
-          "value": "Google AI Ultra加入者",
-          "normalized_value": "googleaiultra加入者"
-        },
-        {
-          "type": "version",
-          "scope": "モデル名",
-          "value": "Genie 4",
-          "normalized_value": "genie4"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-18T18:56:25.979Z",
-      "edition_window_end": "2026-11-18T18:50:28.459Z"
-    },
-    {
-      "article_id": "article_f7ff2837d3faa4555787",
-      "story_id": "story_b9f516bddc0d567911",
-      "title": "エヌビディア、経営体制の危機がAI向け増産計画に影響しないと説明",
-      "primary_entity": "Nvidia",
-      "story_subject": "エヌビディアの経営体制問題とAI増産計画",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "全世界",
-      "story_entities": [
-        "Nvidia",
-        "AIチップ",
-        "nvidia",
-        "aiチップ"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-18T18:56:25.979Z",
-      "edition_window_end": "2026-11-18T18:50:28.459Z"
-    },
-    {
-      "article_id": "article_60c0416a4e5747050211",
-      "story_id": "story_65f56042156ad484de",
-      "title": "可霊AI、新画像生成モデル「Kling Image 4.0」を公開",
-      "primary_entity": "可霊AI(Kling AI)",
-      "story_subject": "Kling Image 4.0",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "中国発・全世界",
-      "story_entities": [
-        "可霊AI",
-        "Kling Image 4.0",
-        "可霊ai",
-        "klingimage4.0",
-        "kling"
-      ],
-      "fact_slots": [
-        {
-          "type": "version",
-          "scope": "モデル名",
-          "value": "Kling Image 4.0",
-          "normalized_value": "klingimage4.0"
-        },
-        {
-          "type": "other",
-          "scope": "画質",
-          "value": "ネイティブ8K",
-          "normalized_value": "8000"
-        },
-        {
-          "type": "count",
-          "scope": "1枚あたりの文字生成数",
-          "value": "最大2000文字",
-          "normalized_value": "2000"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-18T18:56:25.979Z",
-      "edition_window_end": "2026-11-18T18:50:28.459Z"
-    },
-    {
-      "article_id": "article_690d8a8f70bcfc554fdd",
-      "story_id": "story_dc50febb7f26146f1a",
-      "title": "東陽テクニカ、米DryRun SecurityとAIアプリケーションセキュリティで販売代理店契約",
-      "primary_entity": "東陽テクニカ",
-      "story_subject": "DryRun Securityとの販売代理店契約",
-      "event_type": "partnership",
-      "event_stage": "announced",
-      "event_scope": "日本",
-      "story_entities": [
-        "東陽テクニカ",
-        "DryRun Security",
-        "dryrunsecurity",
-        "dryrun"
-      ],
-      "fact_slots": [
-        {
-          "type": "availability",
-          "scope": "地域",
-          "value": "日本",
-          "normalized_value": "japan"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-18T18:56:25.979Z",
-      "edition_window_end": "2026-11-18T18:50:28.459Z"
-    },
-    {
-      "article_id": "article_3096116ad6b018f2f53a",
-      "story_id": "story_a15a863934ab461f15",
-      "title": "AIデータセンターの水消費量、2030年に米国民の年間飲料水を上回る可能性",
-      "primary_entity": "不明(AIデータセンター運営企業)",
-      "story_subject": "AIデータセンターの水消費問題",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "米国",
-      "story_entities": [
-        "AIデータセンター",
-        "水資源",
-        "aiデータセンター"
-      ],
-      "fact_slots": [
-        {
-          "type": "date",
-          "scope": "予測年",
-          "value": "2030年",
-          "normalized_value": "2030年"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-18T18:56:25.979Z",
-      "edition_window_end": "2026-11-18T18:50:28.459Z"
-    },
     {
       "article_id": "article_b759f47c4d8af67008c0",
       "story_id": "story_603a509f70148f9bb8",
@@ -3667,6 +3731,129 @@
       "previous_article_id": "",
       "selected_at": "2026-11-21T17:32:18.743Z",
       "edition_window_end": "2026-11-21T17:29:11.516Z"
+    },
+    {
+      "article_id": "article_34666ef8ebc4a23de1ed",
+      "story_id": "story_a40231fc1531a94e38",
+      "title": "OpenAI、ChatGPT SpaceをPlus会員（月20ドル）に開放",
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT Space機能のPlus会員への提供開始",
+      "event_type": "release",
+      "event_stage": "expanded",
+      "event_scope": "ChatGPT Plusプラン利用者",
+      "story_entities": [
+        "OpenAI",
+        "ChatGPT",
+        "ChatGPT Space",
+        "openai",
+        "chatgpt"
+      ],
+      "fact_slots": [
+        {
+          "type": "price",
+          "scope": "Plusプラン月額料金",
+          "value": "20ドル/月",
+          "normalized_value": "20USD"
+        },
+        {
+          "type": "availability",
+          "scope": "ChatGPT Space機能の対象",
+          "value": "Plus会員のみ、無料プラン不可",
+          "normalized_value": "plus会員のみ無料プラン不可"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-22T00:36:53.825Z",
+      "edition_window_end": "2026-11-22T00:24:17.958Z"
+    },
+    {
+      "article_id": "article_aae08b37567ba7a9330a",
+      "story_id": "story_19b39a5fdba7fd42ba",
+      "title": "クラウドストライク、ゼットスケーラー買収巡り協議か AI時代のセキュリティ再編を象徴",
+      "primary_entity": "クラウドストライク",
+      "story_subject": "ゼットスケーラー買収協議",
+      "event_type": "acquisition",
+      "event_stage": "rumor",
+      "event_scope": "グローバル",
+      "story_entities": [
+        "クラウドストライク",
+        "ゼットスケーラー",
+        "bloomberg"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-22T00:36:53.825Z",
+      "edition_window_end": "2026-11-22T00:24:17.958Z"
+    },
+    {
+      "article_id": "article_b693b9bc7099888b3912",
+      "story_id": "story_8c30017e004d5d6f88",
+      "title": "マスク氏「GrokのAIが企業経費を数百万ドル節約できる」SpaceXの経理担当が先行導入",
+      "primary_entity": "xAI",
+      "story_subject": "SpaceXによるGrokの経費管理導入",
+      "event_type": "other",
+      "event_stage": "launched",
+      "event_scope": "SpaceX社内の経理業務",
+      "story_entities": [
+        "xAI",
+        "Grok",
+        "SpaceX",
+        "xai",
+        "grok"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-22T00:36:53.825Z",
+      "edition_window_end": "2026-11-22T00:24:17.958Z"
+    },
+    {
+      "article_id": "article_2f4255bb7f3bce48ff33",
+      "story_id": "story_e3b504b874e2fe297d",
+      "title": "ゴムマリ、広告審査を担うAIエージェントの提供を開始",
+      "primary_entity": "ゴムマリ",
+      "story_subject": "広告審査AIエージェント",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "日本",
+      "story_entities": [
+        "ゴムマリ",
+        "広告審査"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-22T00:36:53.825Z",
+      "edition_window_end": "2026-11-22T00:24:17.958Z"
+    },
+    {
+      "article_id": "article_eccc6f04e487149f4134",
+      "story_id": "story_2d03508ad4e0914900",
+      "title": "GoogleのGemini、Androidアプリ内カメラに「ボトムシート」レイアウトを追加",
+      "primary_entity": "Google",
+      "story_subject": "GeminiアプリのAndroidカメラUI変更",
+      "event_type": "release",
+      "event_stage": "other",
+      "event_scope": "Android向けGeminiアプリ",
+      "story_entities": [
+        "Google",
+        "Gemini",
+        "Android",
+        "google",
+        "gemini"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-22T00:36:53.825Z",
+      "edition_window_end": "2026-11-22T00:24:17.958Z"
     }
   ]
 }
