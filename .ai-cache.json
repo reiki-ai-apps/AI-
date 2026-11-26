@@ -72,82 +72,6 @@
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
     },
-    "url:https://news.google.com/rss/articles/cbmif0fvx3lxtfbxrw9xy3g3yze3cdnfegxywut0tgxwv0jebhhumhvxwwr5qugztuo5wwdwxzvqzlnxtkcxwdrnb0xxoe1xqks0z0vdcxq1tui3z3c3vuv0cxgysjhkwwfva0nywvpfqkj1zezkv3npy0lrzmvhsf8ts0h5clpmslu": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmif0fvx3lxtfbxrw9xy3g3yze3cdnfegxywut0tgxwv0jebhhumhvxwwr5qugztuo5wwdwxzvqzlnxtkcxwdrnb0xxoe1xqks0z0vdcxq1tui3z3c3vuv0cxgysjhkwwfva0nywvpfqkj1zezkv3npy0lrzmvhsf8ts0h5clpmslu",
-      "content_hash": "1248823a6d48d6fb3f126b6162b3c458b568db6c02973032000506fa0c91ec1f",
-      "story_key": "4341a4d361d6a17504e495622e34bb52b70249dfbacca06042c3add9158d319b",
-      "status": "enriched",
-      "processed_at": "2026-10-26T01:45:35.731Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "中国AI・基盤モデル",
-        "content_type": "article",
-        "expert_id": "",
-        "expert_ids": [],
-        "expert_name": "",
-        "expert_names": [],
-        "expert_role": "",
-        "expert_tier": "",
-        "platform": "",
-        "video_id": "",
-        "source_trust": "",
-        "title": "中国Moonshot AIが新モデル「Kimi K3.1 Pro」を発表、サイバー悪用防止のためデータを除去",
-        "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBXRW9XY3g3YzE3cDNFeGxyWUt0TGxwV0JEbHhuMHVxWWR5QUgzTUo5WWdwXzVqZlNXTkcxWDRNb0xXOE1XQks0Z0VDcXQ1TUI3Z3c3VUV0cXgySjhkWWFva0NYWVpFQkJ1ZEZkV3NpY0lrZmVHSF8tS0h5clpMSlU?oc=5",
-        "source_name": "Yahoo!ニュース",
-        "is_official": false,
-        "published_at": "2026-10-26T01:14:53.000Z",
-        "source_published_at": "2026-10-26T01:14:53.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-10-26T01:43:41.185Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Kimi K3.1 Pro",
-          "Moonshot AI"
-        ],
-        "primary_entity": "Moonshot AI",
-        "story_subject": "Kimi K3.1 Pro",
-        "event_type": "release",
-        "event_stage": "announced",
-        "event_scope": "中国・公開型モデル",
-        "fact_slots": [
-          {
-            "type": "version",
-            "scope": "モデル名",
-            "value": "Kimi K3.1 Pro",
-            "normalized_value": "kimik3.1pro"
-          },
-          {
-            "type": "other",
-            "scope": "安全対策",
-            "value": "サイバー攻撃関連データを学習データから除去",
-            "normalized_value": "サイバー攻撃関連データを学習データから除去"
-          }
-        ],
-        "new_facts": [
-          "中国のMoonshot AIが新モデル「Kimi K3.1 Pro」を発表した",
-          "公開型モデルの中では最高水準の性能を見込むとしている",
-          "悪用防止のためサイバー攻撃関連のデータを学習データから除去した"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "中国企業が開発した対話AI「Kimi」の新版K3.1 Proが発表され、誰でも中身を見られる公開型モデルとして最高水準の性能を見込むとしている。",
-        "detail": "中国のAI企業が開発する対話AI「Kimi」シリーズの新版「K3.1 Pro」が発表されました。公開型モデルとは、AIの仕組みの中身であるプログラムを企業以外の人も使えるように公開している方式のことです。これまでのKimiシリーズよりも性能が向上し、公開型モデルの中では最高水準になる見込みだと伝えられています。\n\n今回の発表で注目すべき点は、サイバー攻撃に関連するデータをあらかじめ学習データから取り除いたことです。AIが悪用されてサイバー攻撃の手口を教えてしまうといった危険を防ぐための対策とみられます。性能を高めながらも安全対策を取り入れた点が、この発表の核となる事実です。\n\n公開型モデルは企業や開発者が自由に改造して使えるため、多くの人に利用が広がる可能性があります。ただし、具体的な性能数値やいつから一般利用できるかなど、記事からは詳細が確認できていません。今後の提供時期や利用条件については続報を確認する必要があります。",
-        "change_summary": "中国企業が公開型AIモデルの新版を発表し、サイバー攻撃関連データを除去する安全対策を取り入れた点が新しい。",
-        "impact_summary": "公開型モデルの性能向上は、日本企業がAIを独自に改造して業務利用する際の選択肢を広げる可能性がある。",
-        "action_suggestion": "性能の具体的な数値や日本での提供時期について、公式発表の続報を確認する必要がある。",
-        "importance": "A",
-        "related_categories": [
-          "AIツール・モデル",
-          "研究・技術"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
-      }
-    },
     "url:https://www.youtube.com/watch?v=mfky46zi8d4": {
       "canonical_url": "https://www.youtube.com/watch?v=mfky46zi8d4",
       "content_hash": "0921b873d50d7db3334ab028e5c91a601d8125ecf59c1e5f6d3a36ca22fc982f",
@@ -17885,17 +17809,6 @@
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
     },
-    "url:https://www.youtube.com/watch?v=35r8v7oy1ak": {
-      "canonical_url": "https://www.youtube.com/watch?v=35r8v7oy1ak",
-      "content_hash": "38dd0d03936417db22c1cde6b7232c0f65bdecd9b00e07419d4212546e8d01e0",
-      "story_key": "185017debe33996f8670df6ffa00f5bb66fc6c2f1ac0f4c5d9122d8572531ea3",
-      "status": "rejected",
-      "processed_at": "2026-11-23T22:03:44.574Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "expert",
-      "reason": "ai_skip: チャプター一覧がなくAWS宣伝リンク中心で内容不明"
-    },
     "url:https://news.google.com/rss/articles/cbmiqkfvx3lxte5ece4waerobjf6dzffmi1mb0hdx1ptsm1squdfyurieg41mkjvnne3ls1ddlzhrnv5ck1im0ffelpfuq": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiqkfvx3lxte5ece4waerobjf6dzffmi1mb0hdx1ptsm1squdfyurieg41mkjvnne3ls1ddlzhrnv5ck1im0ffelpfuq",
       "content_hash": "ca27498a1604d420c8ce78ff2b975e355cc7c7c822e8de40ca6d6fadae0ad2ed",
@@ -18032,61 +17945,6 @@
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
     },
-    "url:https://news.google.com/rss/articles/cbmia0fvx3lxtfaynzlcunlrexd4s3i5ynktzndpmkttrurovth1ywxqewmwni0wwmxtsxnccni0yllvd1p4dtheuxpttvr1zznqbg9ob3blmlrirer3vgf2zk42djvydf9dv0ljafrrmlg5njz3": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmia0fvx3lxtfaynzlcunlrexd4s3i5ynktzndpmkttrurovth1ywxqewmwni0wwmxtsxnccni0yllvd1p4dtheuxpttvr1zznqbg9ob3blmlrirer3vgf2zk42djvydf9dv0ljafrrmlg5njz3",
-      "content_hash": "83ebe92b03fe3b7b95e52040a208a9bd8502ed99d63a4f32e32b616dde5881ad",
-      "story_key": "fc44d12eebf0b1d0aa0115944bd0e7151e8bbf7eddd61e8269f353a0b189be0c",
-      "status": "rejected",
-      "processed_at": "2026-11-23T22:04:57.736Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 複数ニュースをまとめた概説記事で個別の具体的事実が不明"
-    },
-    "url:https://news.google.com/rss/articles/cbmidkfvx3lxtfbfedfivmplz1c5r2dmvmzkq1u0wne2ul9vsmdsv1m3nzztcjvynmxwaw5rudlkytu1agjysmytmvhxs0nushzsqxj2rzh4sgnjovd4qvatrwdxx2x5serscucxymzhvgvhzlv2rs1udwhuze1kbnc": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmidkfvx3lxtfbfedfivmplz1c5r2dmvmzkq1u0wne2ul9vsmdsv1m3nzztcjvynmxwaw5rudlkytu1agjysmytmvhxs0nushzsqxj2rzh4sgnjovd4qvatrwdxx2x5serscucxymzhvgvhzlv2rs1udwhuze1kbnc",
-      "content_hash": "63de4e654a3ecff0e204a09d102ccb541df7618ddb014a2035831a3dd21edd29",
-      "story_key": "355b7ebdcd7a87f1d4d4cb90b8dba132cd83dc126927b9f4e9910ac7b67385a0",
-      "status": "rejected",
-      "processed_at": "2026-11-23T22:04:57.736Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 発言内容がタイトルのみで具体的主張や根拠が確認できない"
-    },
-    "url:https://deepmind.google/models/veo": {
-      "canonical_url": "https://deepmind.google/models/veo",
-      "content_hash": "f60f6b49272f5abed657c2e445ba21cbbf0cadb66f65985ebc1ec506046e9bd5",
-      "story_key": "5652fc87f30352153a8876b01c77cc86c24a772b2cbe6cab162c92ef322fc083",
-      "status": "rejected",
-      "processed_at": "2026-11-23T22:06:18.545Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 汎用的な製品紹介ページで新しい発表内容が確認できない"
-    },
-    "url:https://news.google.com/rss/articles/cbmiakfvx3lxte9meuvdnmths05zzjbzt2nmbgs0wm5ftnr6a2nsrkttx1dku3dnrffkytflm3lesmxiauptnk1qufy3vxjnr3frd1n0sklxbujts0lfevlmsmllv3ppa2rnyuvmtlftcez2qxc": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiakfvx3lxte9meuvdnmths05zzjbzt2nmbgs0wm5ftnr6a2nsrkttx1dku3dnrffkytflm3lesmxiauptnk1qufy3vxjnr3frd1n0sklxbujts0lfevlmsmllv3ppa2rnyuvmtlftcez2qxc",
-      "content_hash": "88b17cae1e3b46d5332752372f2af05ee995bfe32e3c525ba39f181346088884",
-      "story_key": "10a9fa3c94ef8e6212a85a50dfd9489d3d3cbbfa243ca5bd6a3a226e85d8a1e5",
-      "status": "rejected",
-      "processed_at": "2026-11-23T22:06:18.545Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 抜粋のみで具体的な内容が確認できず要約不可"
-    },
-    "url:https://news.google.com/rss/articles/cbmibefvx3lxtfbmt2zlshzqx2vhvvb3lvfwze5ia1m3auxpuw1pzglasgllqxjsymrbqva4oxhrsulzngnmsxyyb3psqm9xdmh5u0thm25rbxm4di02mxvounj4cupfumdnzvljzxlrvnlgm2zfuw": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmibefvx3lxtfbmt2zlshzqx2vhvvb3lvfwze5ia1m3auxpuw1pzglasgllqxjsymrbqva4oxhrsulzngnmsxyyb3psqm9xdmh5u0thm25rbxm4di02mxvounj4cupfumdnzvljzxlrvnlgm2zfuw",
-      "content_hash": "725cac36a9896ab61a078707aa13f8c4456258538336ee3d7139d767e747abe6",
-      "story_key": "11fb7b41e9ba222f436fea70d5329f22225c703bf55664a38bd97d30bd6c23f2",
-      "status": "rejected",
-      "processed_at": "2026-11-23T22:06:18.545Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 抜粋のみのハウツー記事で具体的内容が確認できない"
-    },
     "url:https://news.google.com/rss/articles/cbmiggjbvv95cuxnslvnughgdkpiv015mu11ztrmujrqdee0btbunktksy1ha0hgau5advznrjvxc3badhhrtdy2avb3vv9zuznwekzruexod1kzejzvqw1xalvpzwj1dfdhemzhdedtv0fszjhomefbrvdin3rhdi1cowrsa3lvcgpottdqvejob2lxylvjyuroskgzudjhr00zamfydmpxvzdonlb2tvvlsnhjr21iu3q0zgnjs3v6bm9or1bfd25pnnbysvawqmj1mzjfymxhtmdjaehszvlxx0vsnml6zwlwd01gx0nys0vfum5idunlbho1tmhqumlctg1lbkrhzwrynee": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiggjbvv95cuxnslvnughgdkpiv015mu11ztrmujrqdee0btbunktksy1ha0hgau5advznrjvxc3badhhrtdy2avb3vv9zuznwekzruexod1kzejzvqw1xalvpzwj1dfdhemzhdedtv0fszjhomefbrvdin3rhdi1cowrsa3lvcgpottdqvejob2lxylvjyuroskgzudjhr00zamfydmpxvzdonlb2tvvlsnhjr21iu3q0zgnjs3v6bm9or1bfd25pnnbysvawqmj1mzjfymxhtmdjaehszvlxx0vsnml6zwlwd01gx0nys0vfum5idunlbho1tmhqumlctg1lbkrhzwrynee",
       "content_hash": "a8239022a12c8bcdeea2a2107f184c07168010b6bd5875ed6a6d33a6791fa0a0",
@@ -18156,39 +18014,6 @@
         ],
         "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
       }
-    },
-    "url:https://updates.midjourney.com": {
-      "canonical_url": "https://updates.midjourney.com",
-      "content_hash": "ff0875dcc877ec0b6075b21259e11370b1dba4b4b849d3f84246158630ce8c1d",
-      "story_key": "cf437905386a769a34b107c3cd33a80a4cf85f4778f9bed03326fd42e623458b",
-      "status": "rejected",
-      "processed_at": "2026-11-23T22:07:08.351Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 更新内容の具体的な記述がなく実質情報がない"
-    },
-    "url:https://news.google.com/rss/articles/cbmigafbvv95cuxot21yvwvlsfluadjztgpsvfbsz3mttepizvzkwg5pdvhlx3v0rjyytknjcthorhdqb0p2btjfaupjrxvuddhsuujyumnkbtrpyvnpr2pawmdlq0v1s3zenxj3ohnuu255mkjbtm9uqnbfnnpvr3pyvkjzdwlkazjloq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmigafbvv95cuxot21yvwvlsfluadjztgpsvfbsz3mttepizvzkwg5pdvhlx3v0rjyytknjcthorhdqb0p2btjfaupjrxvuddhsuujyumnkbtrpyvnpr2pawmdlq0v1s3zenxj3ohnuu255mkjbtm9uqnbfnnpvr3pyvkjzdwlkazjloq",
-      "content_hash": "1e983a723710531c32ac3fd91651c4b6d78550e3e5999494249393991cea1fd6",
-      "story_key": "d7ba697949b18eec6eae6494dcf962fd2a7367e2d09e0afc10118b66bc2472c3",
-      "status": "rejected",
-      "processed_at": "2026-11-23T22:07:08.351Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: タイトルのみで内容不明、具体的事実が確認できない"
-    },
-    "url:https://news.google.com/rss/articles/cbmib0fvx3lxte8wtfuxv1hmrtvxtutsouttvxf4yvk5vglucmfsrhhqs25retlwywrmr1dpmefzvxfivlrwruu1ckjwnfezdunic1fqvkj4zvnnv0jwduuwt3lvuhy2m2tdbhj4nzlyrjv1uhzxazllrq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmib0fvx3lxte8wtfuxv1hmrtvxtutsouttvxf4yvk5vglucmfsrhhqs25retlwywrmr1dpmefzvxfivlrwruu1ckjwnfezdunic1fqvkj4zvnnv0jwduuwt3lvuhy2m2tdbhj4nzlyrjv1uhzxazllrq",
-      "content_hash": "469c3054cb45f3baba91c145fac666f4576019174023ec9648669f59da0d1a84",
-      "story_key": "4061c99200e25f7b5f1f3086b787583cca0e23a799cb5c9d72b8310b1899fe5f",
-      "status": "rejected",
-      "processed_at": "2026-11-23T22:07:08.351Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: モデル比較の断片情報のみで実質的内容が確認できない"
     },
     "url:https://news.google.com/rss/articles/cbmiiafbvv95cuxndwlrenpozzfzz3p4uelsruhrehpwwlrfrxpwnmw2ckjazzzbylnweevemwjfrmdcytnnykg2ztbxyxdztmlmunq0cdhnndbonwfllwjvs3rquerwtvhsd1jylxbfqnlgbmvswxlxejkzvvhra3m1agpnekz1qvbtqljhntdqc3h0": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiiafbvv95cuxndwlrenpozzfzz3p4uelsruhrehpwwlrfrxpwnmw2ckjazzzbylnweevemwjfrmdcytnnykg2ztbxyxdztmlmunq0cdhnndbonwfllwjvs3rquerwtvhsd1jylxbfqnlgbmvswxlxejkzvvhra3m1agpnekz1qvbtqljhntdqc3h0",
@@ -19475,6 +19300,753 @@
       "lane": "emergency",
       "reason": "ai_skip: 具体的な事実や発表がなく一般論の戦略記事のため見送り"
     },
+    "url:https://news.google.com/rss/articles/cbmilgfbvv95cuxqqkjwm21bburznkjra1dqtvd6swdfdfg1anfrru1uluniwfmzu1q3z1podjntvgh3oxhrbwxjn2q2cejyzevntwlht0fpzugwvlbjx3rwwkxfm1i5b1zyqzboqnlzbxdtbxhtd3lonxf6anncczlrt1prcnjlstngmtjltjzcevitmecxq2c5ahdloexydxc": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmilgfbvv95cuxqqkjwm21bburznkjra1dqtvd6swdfdfg1anfrru1uluniwfmzu1q3z1podjntvgh3oxhrbwxjn2q2cejyzevntwlht0fpzugwvlbjx3rwwkxfm1i5b1zyqzboqnlzbxdtbxhtd3lonxf6anncczlrt1prcnjlstngmtjltjzcevitmecxq2c5ahdloexydxc",
+      "content_hash": "50f3735d5a6f08d5ca6691e6eb0bc2497cff9a5b9484ec0c1b8b0dac27b57cec",
+      "story_key": "2886cb88e45d6ee0fff669669adbe65c98ae362c84e7744a914e10177d5af6d1",
+      "status": "enriched",
+      "processed_at": "2026-11-25T19:58:26.685Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "AI政策・政府動向",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "Chariot、インド政府のAI計画で自国製基盤モデルを発表",
+        "source_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQQkJWM21BbURZNkJRa1dqTVd6SWdfdFg1anFrRU1uLUNIWFMzU1Q3Z1pOdjNtVGh3OXhrbWxJN2Q2cEJYZEVNTWlhT0FPZUgwVlBjX3RwWkxFM1I5b1ZyQzBOQnlzbXdtbXhtd3lONXF6anNCczlrT1pRcnJlSTNGMTJLTjZCeVItMEcxQ2c5aHdLOExYdXc?oc=5",
+        "source_name": "Unite.AI",
+        "is_official": false,
+        "published_at": "2026-11-25T14:59:03.000Z",
+        "source_published_at": "2026-11-25T14:59:03.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-25T19:56:11.968Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Chariot",
+          "IndiaAI Mission"
+        ],
+        "primary_entity": "Chariot",
+        "story_subject": "IndiaAI Missionにおける自国製基盤モデル",
+        "event_type": "policy",
+        "event_stage": "announced",
+        "event_scope": "インド国内",
+        "fact_slots": [],
+        "new_facts": [
+          "Chariotが自国開発の基盤モデルをIndiaAI Missionのもとで発表したと報じられた"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "インドのAI企業Chariotが、政府の国家AI推進計画「IndiaAI Mission」のもとで自国開発の基盤モデルを発表したと報じられた。詳細はまだ明らかでない。",
+        "detail": "インドのAI企業Chariotが、政府の国家的なAI推進計画「IndiaAI Mission」のもとで、自国で開発した基盤モデルを発表したと報じられた。基盤モデルとは、文章や画像などさまざまな作業に応用できる土台となる大規模なAIのことである。これまでインドは海外企業の技術に頼ることが多かったが、今回は自国内で開発した点が異なる。\n\n記事はタイトルのみの短い紹介にとどまっており、モデルの名前や性能、公開時期などの具体的な情報は示されていない。IndiaAI Missionは、インド政府がAI分野で自国の技術力を高めるために進めている政策の一環であり、海外企業への依存を減らす狙いがあるとされる。\n\n現時点では、このモデルがいつ、どのように一般利用者や企業に提供されるかは分かっていない。性能や安全性についての評価も公表されていない。続報があれば、具体的な仕様や活用方法が明らかになる見込みである。",
+        "change_summary": "インドの企業が政府計画のもとで自国開発の基盤モデルを発表したという点が新しい。",
+        "impact_summary": "インドのAI主権戦略の進展を示す動きで、将来的に海外企業への依存を減らす可能性がある。",
+        "action_suggestion": "モデル名、性能、公開時期などの続報が出るかを確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "政策・行政",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiywfbvv95cuxoemnlz3zfv2hnb3zuy0vzvvy3mvnsuvlstho1vfdoa2j2z0xsdk8xvu5cmzvcnwnudnf1oupoq1huduc2smlzodzyynfguvuws1atrg9ecm1iclu5mnlqx0fszlfptndkn2hrq1vrau0wz2iwww9xd3vpavfrqjjmm1ryrenfqxjyrzvlwnjxs1nocfgtsuk0uhmyd05pclpgenp2azd5qnpmzzcws0jzme0tc3bmc0jgbezsluzoc0ttm0tzwejuawszyw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiywfbvv95cuxoemnlz3zfv2hnb3zuy0vzvvy3mvnsuvlstho1vfdoa2j2z0xsdk8xvu5cmzvcnwnudnf1oupoq1huduc2smlzodzyynfguvuws1atrg9ecm1iclu5mnlqx0fszlfptndkn2hrq1vrau0wz2iwww9xd3vpavfrqjjmm1ryrenfqxjyrzvlwnjxs1nocfgtsuk0uhmyd05pclpgenp2azd5qnpmzzcws0jzme0tc3bmc0jgbezsluzoc0ttm0tzwejuawszyw",
+      "content_hash": "aed3d85f423b7251ccff77406b7db7351d04eb5fe6956be71ceb5704cc67dcfb",
+      "story_key": "463ecc017580aca1ed2b26db3e4aaf88f988692f242c05d267529cf905ff178a",
+      "status": "rejected",
+      "processed_at": "2026-11-25T19:58:26.685Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 具体的内容が薄く宣伝的な経営アドバイス記事のため除外"
+    },
+    "url:https://klingai.com/global": {
+      "canonical_url": "https://klingai.com/global",
+      "content_hash": "f28241d47b40522dd81f399e328ab00185d03d00c7dc6119b7f449b41dd89aeb",
+      "story_key": "7c79a9f2c1bf100b005d04c52824f2cac18896b8d5b7fc17a5ca706ae4473e88",
+      "status": "rejected",
+      "processed_at": "2026-11-25T19:58:26.685Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 具体的発表のない公式製品紹介ページで宣伝的内容のため除外"
+    },
+    "url:https://news.google.com/rss/articles/cbmiaefvx3lxtfbruvjrwwr0yvv0ne4taldcuvpwwdmzvknzbxnhb1pkr0lgskfcdlhtzvn5sm5gz3m4chb3bg1laudmngfkzurfawl3ywhwtkrxdg1gqwffawvta0t6rlz3vny4alh0nepz0gfoqvvfexfmugtrumtzzhrhvxq0ti1qv0jrwnbymznwq1ltc0dvwkphsuzkquj2wg1lu3lkbkznczhwchdsbwvpr2y0yuplrf9paxdhahborfd0buzbyv9pzw1rs3pgvndwdjhqwhq0slk": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxtfbruvjrwwr0yvv0ne4taldcuvpwwdmzvknzbxnhb1pkr0lgskfcdlhtzvn5sm5gz3m4chb3bg1laudmngfkzurfawl3ywhwtkrxdg1gqwffawvta0t6rlz3vny4alh0nepz0gfoqvvfexfmugtrumtzzhrhvxq0ti1qv0jrwnbymznwq1ltc0dvwkphsuzkquj2wg1lu3lkbkznczhwchdsbwvpr2y0yuplrf9paxdhahborfd0buzbyv9pzw1rs3pgvndwdjhqwhq0slk",
+      "content_hash": "51e9bf4b6f10f030a01546fb1dc41951456afc80a4fa4d0297dde73ff7e5c58d",
+      "story_key": "555063991032503fd05a32ad54fe59125639d61ddd90371fe146e9b4923fbf45",
+      "status": "enriched",
+      "processed_at": "2026-11-25T19:59:33.644Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Canva",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "Canva、生成AI機能を一括オフに切替可能に",
+        "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBrUVJrWWR0YVV0NE4taldCUVpwWDMzVkNZbXNHb1pKR0lGSkFCdlhtZVN5Sm5GZ3M4cHB3bG1laUdmNGFKZURfaWl3YWhwTkRXdG1GQWFfaWVta0t6RlZ3VnY4alh0NEpZ0gFoQVVfeXFMUGtRUmtZZHRhVXQ0Ti1qV0JRWnBYMzNWQ1ltc0dvWkpHSUZKQUJ2WG1lU3lKbkZnczhwcHdsbWVpR2Y0YUplRF9paXdhaHBORFd0bUZBYV9pZW1rS3pGVndWdjhqWHQ0Slk?oc=5",
+        "source_name": "財経新聞",
+        "is_official": false,
+        "published_at": "2026-11-25T14:02:00.000Z",
+        "source_published_at": "2026-11-25T14:02:00.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-25T19:56:11.968Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Canva"
+        ],
+        "primary_entity": "Canva",
+        "story_subject": "Canva 生成AI設定機能",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "Canvaアプリ全体",
+        "fact_slots": [],
+        "new_facts": [
+          "Canvaが生成AI機能を一括でオフにできる設定を追加したと報じられた。",
+          "AI生成素材の表示も個別に調整できるようになったとされる。"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "デザインツールCanvaが生成AI機能をまとめて無効化でき、AI生成素材の表示も個別に調整できるようになったと報じられた。",
+        "detail": "財経新聞が伝えた。デザイン作成サービスのCanvaが、生成AI（文章や画像を自動で作る人工知能の機能）をまとめてオフにできる設定を追加したという。これまでは個々のAI機能を別々に切る必要があったが、今回は一括で無効化できるようになった。\n\n記事によると、AIが作った素材かどうかを示す表示についても、個別に調整できるようになったとされる。生成AI機能をオフにすることで、AIを使いたくない利用者や、AI生成物を避けたい企業が設定を簡単に変更できるようになる。素材ごとにAI生成の表示有無を選べる点は、著作権や取引先への説明で透明性を保ちたい場合に役立つとみられる。\n\nCanvaを仕事で使っているデザイナーや企業は、設定画面から一括オフの項目を確認できる。対象となる具体的な機能一覧や提供地域、適用時期は記事からは確認できない。",
+        "change_summary": "生成AI機能を一括でオフにできる設定と、AI生成素材の表示を個別調整できる機能が追加された。",
+        "impact_summary": "AI利用を制限したい企業やクリエイターが、設定を簡単に管理できるようになる可能性がある。",
+        "action_suggestion": "一括オフの対象範囲や提供開始時期など詳細はまだ記事から確認できていない。",
+        "importance": "B",
+        "related_categories": [
+          "画像・動画生成",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiyefvx3lxte9poe1ftfb3qtgyz0lwotlxvgu1r0lpwky0q0ptx0ndazvbsg9trnjpq2nqwe1uv0fjdkrdnli4eehzce1uujfpbthquhnmdnhoy1d3nvbzmxrozdk2uvriua": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiyefvx3lxte9poe1ftfb3qtgyz0lwotlxvgu1r0lpwky0q0ptx0ndazvbsg9trnjpq2nqwe1uv0fjdkrdnli4eehzce1uujfpbthquhnmdnhoy1d3nvbzmxrozdk2uvriua",
+      "content_hash": "9efa25286982c49c5ecb9c1880d43f5713ec93963244d7f7bfa41287ab61e5d1",
+      "story_key": "65d3e8ab81fdf8477cedf660692fdd28bb36cc8e2f5f17dbc84cc99996fb358f",
+      "status": "enriched",
+      "processed_at": "2026-11-25T19:59:33.644Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Midjourney",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "Midjourney、アニメ風画像生成AI「Niji V8」を発表",
+        "source_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9POE1FTFB3QTgyZ0lwOTlXVGU1R0lpWkY0Q0pTX0NDazVBSG9TRnJpQ2NqWE1UV0FJdkRDNlI4eEhZcE1uUjFpbThQUHNMdnhOY1d3NVBzMXRoZDk2UVRiUA?oc=5",
+        "source_name": "ASCII.jp",
+        "is_official": false,
+        "published_at": "2026-11-25T05:32:31.000Z",
+        "source_published_at": "2026-11-25T05:32:31.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-25T19:56:11.968Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Midjourney",
+          "Niji V8"
+        ],
+        "primary_entity": "Midjourney",
+        "story_subject": "Niji V8",
+        "event_type": "release",
+        "event_stage": "announced",
+        "event_scope": "Midjourneyサービス全体",
+        "fact_slots": [
+          {
+            "type": "version",
+            "scope": "Niji",
+            "value": "V8",
+            "normalized_value": "v8"
+          }
+        ],
+        "new_facts": [
+          "Midjourneyがアニメ向け画像生成モデル「Niji V8」を発表した。",
+          "記事には作例画像が掲載されている。"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "画像生成AI企業Midjourneyがアニメ調イラストに特化した新モデル「Niji V8」を発表し、作例も公開された。",
+        "detail": "ASCII.jpが報じた。画像生成AIサービスのMidjourneyが、アニメ風のイラストを作ることに特化した新しいモデル「Niji V8」を発表したという。これまでの「Niji」シリーズの新しいバージョンにあたる。\n\n記事では実際にNiji V8で作られたとみられる作例画像が複数紹介されている。Nijiシリーズは、文章で指示を出すとアニメやイラスト調の絵を自動で作る仕組みで、通常のMidjourneyモデルとは別にアニメ表現向けに調整されている。新しいバージョンが出たことで、アニメらしい絵柄や表現の幅が広がったとみられる。\n\nMidjourneyを使ってイラストを作っているクリエイターは、新しいNiji V8を試すことで作風の変化を確認できる。利用開始の具体的な条件や料金、対応環境については記事からは確認できない。",
+        "change_summary": "アニメ向け画像生成AIの新バージョン「Niji V8」が発表された。",
+        "impact_summary": "アニメ風イラストを作る創作者や企業が、新しい表現の選択肢を得られる可能性がある。",
+        "action_suggestion": "利用開始時期や料金など具体的な提供条件はまだ記事から確認できていない。",
+        "importance": "B",
+        "related_categories": [
+          "画像・動画生成"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiggfbvv95cuxoqzlrukdgsdnbrlduymprtuz0mzzta1i3a3dom0rirejdntnvcmpyv1uxwkfgnnbqy3f3u2j2thnduhpodzrmqk5tqmrintn2m1pwqu1orgs2aepocul3t1n1xzhhsmpurwfjvfc4r2c2rvflemx4tkrxykl4t1dvwkpb": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiggfbvv95cuxoqzlrukdgsdnbrlduymprtuz0mzzta1i3a3dom0rirejdntnvcmpyv1uxwkfgnnbqy3f3u2j2thnduhpodzrmqk5tqmrintn2m1pwqu1orgs2aepocul3t1n1xzhhsmpurwfjvfc4r2c2rvflemx4tkrxykl4t1dvwkpb",
+      "content_hash": "8c6a1497822652a464d4b8ca41e3ab4c4019d4d947b618b274bfc73d3a26d021",
+      "story_key": "5efbcfbdafee3f45ca8dc1cc6356c8c2e4fd47872c7c01141723e5b4244963be",
+      "status": "rejected",
+      "processed_at": "2026-11-25T19:59:33.644Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 信頼性不明な媒体で具体的事実が確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbmilafbvv95cuxnt0ddykdov1rzu184z3ddmtbqode3r3dwvgfxajlav3vune1iz2haudfgzkitb09xof9yctk1zm1swjvub3zvrmfubnixwhl1sldwyjz2agx3bxppmlu0zdjluzrhuwnvwmjgdme0em5acelzmwjoc0y4dxg4bxktmulldhpuwvy0q1hpcmpvr01dz2hx": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmilafbvv95cuxnt0ddykdov1rzu184z3ddmtbqode3r3dwvgfxajlav3vune1iz2haudfgzkitb09xof9yctk1zm1swjvub3zvrmfubnixwhl1sldwyjz2agx3bxppmlu0zdjluzrhuwnvwmjgdme0em5acelzmwjoc0y4dxg4bxktmulldhpuwvy0q1hpcmpvr01dz2hx",
+      "content_hash": "368ea230891a71154d6ab72761b98bb1e7f68533a499647069a7e007ba8e4d47",
+      "story_key": "8c585c9e180b82bdb408cd41cfe71e351fc42c56dadaa578a5fe6d5557a54a47",
+      "status": "rejected",
+      "processed_at": "2026-11-25T19:59:33.644Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 機能の具体的内容が不明で広告的な内容"
+    },
+    "url:https://news.google.com/rss/articles/cbmixafbvv95cuxnqnnlx0xqudy1ajjzvzlkqwlzwehkujrps3h4uhniu1owt3buvndyshfrr0s2tehwdlnhm2jdovnmnjzmmw9iqvflbef5r3fhterzzw5zx2v4n21wyxixwhfldjlkzjznvvfoc2dvytzma1b5qtzfdulndnnfltb0ueraexoyyv9kvwrjwc1inlitwelqtw5lu1jpmvhulu43agjlbfvytkhhbmdodfp6d3lisnpinkwxwmsybznknzzsag140ghmaufvx3lxtfbvvmpytwtfd0zzzhmttnjdwmk0uuv5wg1pckhhnxbsohppq2tvmejvnv83szaysvdrddzwz0fwqlvrrgv5enlamtnplwdumktpanjbbw9bulz1lw1suglrmml6a3pvmlzidjnyylk0we9obec0zlitrfvgx3lnqxnrs1ptwjg5czztmzlbbgnuzggxrzfrynlysm1ltwduajvnbda3mfrqml9qnk5oekmtnvbvd2q2ymzrc1fvyzriclz6qxdtufi3ai1hea": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmixafbvv95cuxnqnnlx0xqudy1ajjzvzlkqwlzwehkujrps3h4uhniu1owt3buvndyshfrr0s2tehwdlnhm2jdovnmnjzmmw9iqvflbef5r3fhterzzw5zx2v4n21wyxixwhfldjlkzjznvvfoc2dvytzma1b5qtzfdulndnnfltb0ueraexoyyv9kvwrjwc1inlitwelqtw5lu1jpmvhulu43agjlbfvytkhhbmdodfp6d3lisnpinkwxwmsybznknzzsag140ghmaufvx3lxtfbvvmpytwtfd0zzzhmttnjdwmk0uuv5wg1pckhhnxbsohppq2tvmejvnv83szaysvdrddzwz0fwqlvrrgv5enlamtnplwdumktpanjbbw9bulz1lw1suglrmml6a3pvmlzidjnyylk0we9obec0zlitrfvgx3lnqxnrs1ptwjg5czztmzlbbgnuzggxrzfrynlysm1ltwduajvnbda3mfrqml9qnk5oekmtnvbvd2q2ymzrc1fvyzriclz6qxdtufi3ai1hea",
+      "content_hash": "5558efda45d4c311d92e609c587d0b171fae8ac6f1357f6de12b18893c1b9558",
+      "story_key": "ac9e0bce1ba00647fd2c2677e1673bb9dab9356a7b1dbead7e70d43f79c903e4",
+      "status": "rejected",
+      "processed_at": "2026-11-25T19:59:33.644Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: AIと無関係な空飛ぶ車のニュースのため除外"
+    },
+    "url:https://news.google.com/rss/articles/cbmi8gfbvv95cuxoamv2s2vtnw9rttnwsm9esk9mvureqmpycvvrt0fvte5ylty4btvtskpqvk5xu2ddyurrewuztgtjb0phdg9jbunfzk4wzy03ce1ubwnndkxwzdjidk1zs0nudfzqu2njuvyyafnkngpeq3bgb0peb2lhteltzzu5undqnujtvm5otfaysejywwq0ufdxs0fvuxbwmkf1wmxjx05ms3rhclz3x0dttddmren0ne5xs0fkdg9vrfa5x09ecm5fa1g4uf9lzwxwrfpxr2jkx0oya3puqxniuxbyatjld3jvmw5xszvrztk5nfffz9ib9wfbvv95cuxqotntqm01eg5xcxctmkvsae13odjlck1dwla1t3zgs1h0zlfsbwhorjjqaxdxz3rjsxb0bzzhv0xmx0d2z3yxavr6vvnit1o4m1fisxlbb2tgtnyyn1zxrfnnchbywu82n2tpr09zvnrpdxplauxhlxexv242eje2udjvtnmyeeg4ofjzn3paekjoahbueejwbjdteujhdgq4bevnry0zotgxa1rnutrjdxftuy11zs1mt0pmovyyz3fttg5vrlnmuxnxuwjgx2pjdmzxthpjtdhwuu45sux3unplrndqr0phznjmy0xkx3bvt2jidg5r": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmi8gfbvv95cuxoamv2s2vtnw9rttnwsm9esk9mvureqmpycvvrt0fvte5ylty4btvtskpqvk5xu2ddyurrewuztgtjb0phdg9jbunfzk4wzy03ce1ubwnndkxwzdjidk1zs0nudfzqu2njuvyyafnkngpeq3bgb0peb2lhteltzzu5undqnujtvm5otfaysejywwq0ufdxs0fvuxbwmkf1wmxjx05ms3rhclz3x0dttddmren0ne5xs0fkdg9vrfa5x09ecm5fa1g4uf9lzwxwrfpxr2jkx0oya3puqxniuxbyatjld3jvmw5xszvrztk5nfffz9ib9wfbvv95cuxqotntqm01eg5xcxctmkvsae13odjlck1dwla1t3zgs1h0zlfsbwhorjjqaxdxz3rjsxb0bzzhv0xmx0d2z3yxavr6vvnit1o4m1fisxlbb2tgtnyyn1zxrfnnchbywu82n2tpr09zvnrpdxplauxhlxexv242eje2udjvtnmyeeg4ofjzn3paekjoahbueejwbjdteujhdgq4bevnry0zotgxa1rnutrjdxftuy11zs1mt0pmovyyz3fttg5vrlnmuxnxuwjgx2pjdmzxthpjtdhwuu45sux3unplrndqr0phznjmy0xkx3bvt2jidg5r",
+      "content_hash": "938c9a6788acf3f6a3a87bb7dae2636686679ac44b8af9bd53fec7b606953705",
+      "story_key": "8670acde72f1b73fa18d5235f37ddb4b14b92731d31a65f33e3d56c803a0cac8",
+      "status": "rejected",
+      "processed_at": "2026-11-25T20:00:17.198Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: タイトル反復のみで具体的な新機能の記載がない"
+    },
+    "url:https://news.google.com/rss/articles/cbmimafbvv95cuxnme53zuf6dvfoewtszjnhwnj3ltgtrvdistlzzjrrsxc1rje5uzlplvvxruvmstdlukdfzvm3yw9svhdxaxpebgnjevpdrlvpqkvnqw5qd202vet6cy03u1dkbmdhbvjznmnftuxzqv9su2z4bkhycdjdwmy2dm9gu1rzy2vqnhdfwkh0wuu5tvpyrmq2cgfpra": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmimafbvv95cuxnme53zuf6dvfoewtszjnhwnj3ltgtrvdistlzzjrrsxc1rje5uzlplvvxruvmstdlukdfzvm3yw9svhdxaxpebgnjevpdrlvpqkvnqw5qd202vet6cy03u1dkbmdhbvjznmnftuxzqv9su2z4bkhycdjdwmy2dm9gu1rzy2vqnhdfwkh0wuu5tvpyrmq2cgfpra",
+      "content_hash": "81ced29b7ad9d3e79b3e2c7aad113104f95c61323458a6f5de12a37b41d9150e",
+      "story_key": "0e3174a1ef7c9933fc06ec5dc7621102698c7e8fcd8be67daae19956a646990a",
+      "status": "rejected",
+      "processed_at": "2026-11-25T20:00:17.198Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: ガイド紹介のみで具体的な事実・数字がない"
+    },
+    "url:https://www.youtube.com/watch?v=35r8v7oy1ak": {
+      "canonical_url": "https://www.youtube.com/watch?v=35r8v7oy1ak",
+      "content_hash": "38dd0d03936417db22c1cde6b7232c0f65bdecd9b00e07419d4212546e8d01e0",
+      "story_key": "185017debe33996f8670df6ffa00f5bb66fc6c2f1ac0f4c5d9122d8572531ea3",
+      "status": "rejected",
+      "processed_at": "2026-11-26T02:55:12.482Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "ai_skip: AWS協賛の宣伝中心で具体的な技術内容が確認できない"
+    },
+    "url:https://www.youtube.com/watch?v=h3xoqez_8ju": {
+      "canonical_url": "https://www.youtube.com/watch?v=h3xoqez_8ju",
+      "content_hash": "e64d1c5d3da585d12d000f4157ef397f13d88d0d477a4aa388064d84c0ea29b9",
+      "story_key": "fb905e3679cfb7fcc6f750a91e8599d792f5f2dce636b48fd5dc0c5b738eb000",
+      "status": "enriched",
+      "processed_at": "2026-11-26T03:01:48.518Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "",
+      "result": {
+        "tool": "専門家動画・発言",
+        "content_type": "expert_video",
+        "expert_id": "keito-aiweb",
+        "expert_ids": [
+          "keito-aiweb"
+        ],
+        "expert_name": "KEITO",
+        "expert_names": [
+          "KEITO"
+        ],
+        "expert_role": "AIツールの使い方・検証を発信する解説者",
+        "expert_tier": "practical_ai_educator",
+        "platform": "YouTube",
+        "video_id": "H3xoQEZ_8jU",
+        "source_trust": "primary",
+        "title": "Claude Opus 5.5の思考設定5段階を徹底比較",
+        "source_url": "https://www.youtube.com/watch?v=H3xoQEZ_8jU",
+        "source_name": "KEITO【AI&WEB ch】",
+        "is_official": true,
+        "published_at": "2026-11-25T09:00:19.000Z",
+        "source_published_at": "2026-11-25T09:00:19.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-26T03:00:10.049Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Claude Opus 5.5",
+          "KEITO",
+          "Fable 5.2"
+        ],
+        "primary_entity": "KEITO",
+        "story_subject": "Claude Opus 5.5のエフォート設定比較検証",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "YouTube動画",
+        "fact_slots": [
+          {
+            "type": "version",
+            "scope": "比較対象モデル",
+            "value": "Claude Opus 5.5",
+            "normalized_value": "claudeopus5.5"
+          },
+          {
+            "type": "version",
+            "scope": "比較対象モデル",
+            "value": "Fable 5.2",
+            "normalized_value": "fable5.2"
+          }
+        ],
+        "new_facts": [
+          "KEITO氏がClaude Opus 5.5のエフォート設定5段階を比較する動画を公開した",
+          "FPSゲーム、ビジネススライド、広告LPの3つの題材で仕上がりを検証した",
+          "生成時間と出力トークン数も計測して比較した",
+          "Fable 5.2の結果も動画内で紹介された"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "KEITO氏がYouTube動画で、対話AI「Claude」の思考設定を5段階で比較し、仕上がりと時間・使用量の違いを検証した。",
+        "detail": "KEITO氏がYouTube動画で、AIモデルの思考設定を比較検証した。対象は会話AI「Claude」の最新モデルOpus5.5だ。エフォートと呼ぶ、AIが考える深さを決める設定を5段階で試した。\n\n検証ではFPSゲームや資料作り、広告ページ制作の3課題を比較した。設定ごとに生成にかかる時間と、出力トークンと呼ぶ文字量も比較した。比較にはClaudeとは別の対話AIであるFable5.2の結果も使った。\n\n使う人は作業の内容に応じて、設定の強さを選ぶ目安にできる動画になっている。設定を最大にすれば必ず良い結果になるとは限らない点に注意が必要だ。検証結果の詳しい数値や判断基準は、動画の中でのみ公開されている。",
+        "change_summary": "思考の深さを示すエフォート設定を5段階で比較し、仕上がりと時間・使用量の違いを具体的に示した点が新しい。",
+        "impact_summary": "AIを使って資料やデザインを作る人が、作業内容に応じて設定の強さを選ぶ判断材料になる。",
+        "action_suggestion": "動画内で公開されているFPSゲームやスライド、広告LPの比較結果と生成時間・トークン数を確認できる。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmixgfbvv95cuxntmcyejzobk9xalnpmedtt1uybwnovvl4yuotnwlaq2v3yngwwnjyvzlfy0puanrmrxd3s0nnejztdm4xnjbuczzndkphbffste5zvxlwehruogk4zek4y1fodevrq2nda2fynv8yadnnv3ctwthla185rvo3qxjgdnq5exhru1zduhrcmvzbnvq4smdvbnpkajzps3phwmk5wfvhavnnzk1jwdnwtgrjr1lmce9tlwd0x1o2ewi4alzvtxrbrfe": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmixgfbvv95cuxntmcyejzobk9xalnpmedtt1uybwnovvl4yuotnwlaq2v3yngwwnjyvzlfy0puanrmrxd3s0nnejztdm4xnjbuczzndkphbffste5zvxlwehruogk4zek4y1fodevrq2nda2fynv8yadnnv3ctwthla185rvo3qxjgdnq5exhru1zduhrcmvzbnvq4smdvbnpkajzps3phwmk5wfvhavnnzk1jwdnwtgrjr1lmce9tlwd0x1o2ewi4alzvtxrbrfe",
+      "content_hash": "134e7bcaf5e878fe7bae58eba9fbde5bd9bd30e1c60ddafc4a325b9e6659c26e",
+      "story_key": "7b67f01bc38a887070c32e31a26d66cfea363372d0215304befb41ec7c2f7f76",
+      "status": "enriched",
+      "processed_at": "2026-11-26T02:56:25.625Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "AIツール・新機能",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "Naver Cloud、韓国政府の共通AI基盤に画像生成AI機能を追加",
+        "source_url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNTmcyejZobk9XalNPMEdTT1UybWNOVVl4YUotNWlaQ2V3YngwWnJyVzlfY0pUanRmRXd3S0NnejZtdm4xNjBuczZNdkpHbFFSTE5zVXlweHRuOGk4ZEk4Y1FodEVrQ2NDa2FyNV8yaDNNV3ctWThLa185RVo3QXJGdnQ5eXhRU1ZDUHRCMVZBNVQ4SmdVbnpKajZpS3pHWmk5WFVhaVNNZk1jWDNWTGRJR1lmcE9tLWd0X1o2eWI4alZVTXRBRFE?oc=5",
+        "source_name": "디지털투데이",
+        "is_official": false,
+        "published_at": "2026-11-26T01:11:44.000Z",
+        "source_published_at": "2026-11-26T01:11:44.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-26T02:53:21.987Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Naver Cloud",
+          "韓国政府"
+        ],
+        "primary_entity": "Naver Cloud",
+        "story_subject": "政府AI共通基盤の画像生成AI機能",
+        "event_type": "release",
+        "event_stage": "announced",
+        "event_scope": "韓国・公共機関",
+        "fact_slots": [],
+        "new_facts": [
+          "Naver Cloudが韓国政府の共通AI基盤に画像生成AI機能を追加した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "韓国Naver Cloudが政府向け共通AI基盤に画像生成AI機能を加え、公共機関向けの利用範囲を広げたと報じられた。",
+        "detail": "韓国のクラウド企業Naver Cloudが、政府機関が共通で使うAIの基盤システムに画像生成AIの機能を追加したと報じられました。画像生成AIとは、文章などの指示から絵や写真のような画像を自動で作る技術のことです。これまでこの共通基盤は文章処理などが中心でしたが、今回画像を作る機能が新たに加わった点が変化です。\n\n記事は見出しのみで詳しい数字や対象機関、提供開始時期などの具体的な情報は示されていません。それでも韓国政府が使う情報システムに生成AIの機能を組み込む動きである点は確認できます。政府機関が生成AIを公式に採用すると、他の公共サービスにも広がる足がかりになるため注目されます。\n\n公共機関の職員が資料作成やポスター制作などで画像生成AIを使える可能性がありますが、対象範囲や利用条件はまだ明らかではありません。どの省庁が使うのか、安全対策をどう行うのかなど、続報を確認する必要があります。",
+        "change_summary": "韓国政府の共通AI基盤に画像生成AI機能が新たに追加された。",
+        "impact_summary": "公共機関での資料作成業務に生成AIが使われる可能性が広がり、行政のデジタル化が一歩進む。",
+        "action_suggestion": "対象機関や提供開始時期など詳細は記事に明記されておらず、続報の確認が必要。",
+        "importance": "B",
+        "related_categories": [
+          "政策・行政",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiy0fvx3lxte00nfh2cjh6b05huhlizdy0zlzvzxc5s2rutfjnedfjt2utctg1nlz2axkxrwpmtwk3bk4xblh2rvfxm2vicfmzv2vmzezqcghychy4rkt0szlsahfon2fdazc4tdibaefvx3lxtfbab0uxn3a4mk9qzwztvnbpzjvpvdjqx0nnamp2m1iwaujsn1jfau9hak12ymrgtjdsm1llb3n0ntayn0rxdetxt0jgagnhnjhmmkzovkzwagd3b2dututua255uu5hz3fv": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiy0fvx3lxte00nfh2cjh6b05huhlizdy0zlzvzxc5s2rutfjnedfjt2utctg1nlz2axkxrwpmtwk3bk4xblh2rvfxm2vicfmzv2vmzezqcghychy4rkt0szlsahfon2fdazc4tdibaefvx3lxtfbab0uxn3a4mk9qzwztvnbpzjvpvdjqx0nnamp2m1iwaujsn1jfau9hak12ymrgtjdsm1llb3n0ntayn0rxdetxt0jgagnhnjhmmkzovkzwagd3b2dututua255uu5hz3fv",
+      "content_hash": "916a02319877b1a296861d3a07a062f834434f9b7edc94841487f629034e97c8",
+      "story_key": "9ef0a0f84c537d5c6373e9269bf26f9615ee4549c3810c423c8761e55372f0d5",
+      "status": "enriched",
+      "processed_at": "2026-11-26T02:56:25.625Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "NVIDIA・AI半導体",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "アジアのデータセンター、中国向け需要減少で計算能力を欧米企業に再販",
+        "source_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE00NFh2cjh6b05HUHlIZDY0ZlZvZXc5S2RUTFJNeDFJT2UtcTg1NlZ2aXkxRWpMTWk3bk4xblh2RVFXM2VIcFMzV2VMZEZQcGhYcHY4Rkt0SzlsaHFoN2FDazc4TdIBaEFVX3lxTFBab0UxN3A4Mk9QZWZTVnBPZjVpVDJQX0NNamp2M1IwaUJsN1JfaU9Hak12YmRGTjdSM1lLb3N0NTAyN0RXdEtxT0JGaGNhNjhmMkZOVkZWaGd3b2dUTUtUa255UU5HZ3FV?oc=5",
+        "source_name": "Infoseek",
+        "is_official": false,
+        "published_at": "2026-11-25T23:12:11.000Z",
+        "source_published_at": "2026-11-25T23:12:11.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-26T02:53:21.987Z",
+        "event_at": "",
+        "event_status": "継続中",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "アジア データセンター",
+          "中国",
+          "欧米企業"
+        ],
+        "primary_entity": "アジアのデータセンター事業者",
+        "story_subject": "AI計算能力の中国向け需要減少と欧米への再販",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "アジア・欧米",
+        "fact_slots": [],
+        "new_facts": [
+          "アジアのデータセンターが中国向け需要減少を受け計算能力を欧米企業に再販している"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "アジアのデータセンター事業者が、中国向けAI計算能力の需要減少を受け、欧米企業へ計算資源を再販していると報じられた。",
+        "detail": "アジア地域のデータセンター事業者が、中国向けの人工知能(AI)計算能力の需要が減ったことを受け、余った計算資源を欧米の企業に再販する動きが出ていると報じられました。データセンターとは、大量のコンピューターを集めてAIの計算処理などを行う施設のことです。これまで中国向けに確保していた計算能力が余り、その行き先を欧米企業に切り替えている点が変化です。\n\n記事は見出しのみで、具体的な事業者名や再販規模の数字は示されていません。それでも、米国による対中輸出規制などの影響でアジアの計算資源の需要構造が変わりつつあることがうかがえます。AI向け半導体や計算能力は世界的に奪い合いが続いており、供給先の変化は業界全体の資金や投資の流れに影響します。\n\n欧米企業にとっては、アジアに余っている計算資源を活用できる機会が広がる可能性があります。ただし、再販の具体的な条件や規模、関係する企業名は記事に明記されておらず、今後の詳細な報道を確認する必要があります。",
+        "change_summary": "中国向け需要減少を受け、アジアのデータセンターが欧米企業へ計算能力を再販する動きが出ている。",
+        "impact_summary": "AI計算資源の国際的な供給先が変化し、欧米企業の計算資源調達や投資判断に影響する可能性がある。",
+        "action_suggestion": "再販の規模や関係企業名は記事に明記されておらず、続報での確認が必要。",
+        "importance": "A",
+        "related_categories": [
+          "半導体・インフラ",
+          "企業・株式"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmia0fvx3lxte9ntutkq2lwumc1vjbvsvfkbe9abzf5clvkmtb6duj0bxzxejlevg41qmrvugc0nu5teknfngl2qs1oa2sxn0xfr1dhv3rethvtsjbdbjhplupuemtpvnh4nw5msmlwtkjrx1iw": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmia0fvx3lxte9ntutkq2lwumc1vjbvsvfkbe9abzf5clvkmtb6duj0bxzxejlevg41qmrvugc0nu5teknfngl2qs1oa2sxn0xfr1dhv3rethvtsjbdbjhplupuemtpvnh4nw5msmlwtkjrx1iw",
+      "content_hash": "4acda5efb77e53f0df682c4847c660991ba21b00f395dab0ee0b6e2188a86000",
+      "story_key": "a5107f6493f65b25f398f68c6af11b894356f2cafdeb42d237a717d1619cdc58",
+      "status": "rejected",
+      "processed_at": "2026-11-26T02:56:25.625Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 宣伝色の強い企業発表で具体的事実に乏しい"
+    },
+    "url:https://news.google.com/rss/articles/cbmiaefvx3lxtfbgwjden2dxmw9uew5ta2rzouvix3nft29uqxlfmdzrszbralhsoxvos2jeveq0qmvxreg5aujqmg83smfsows4slrlzewxowllckx5zdzjmmpdoxdlbextzlffdzy4ruxt0gfuqvvfexfmue9irv9trulvbvjyx2rbu2vhatdrzmjoamltngfzumhltuxynndtsxzmvelvb1hwlwjmckd4duvxnwn0wvhfcjjzbxfuvmg0u3g0bej1mffxwffga0r3tjvrqzd1a1fxbutgclcxrke": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxtfbgwjden2dxmw9uew5ta2rzouvix3nft29uqxlfmdzrszbralhsoxvos2jeveq0qmvxreg5aujqmg83smfsows4slrlzewxowllckx5zdzjmmpdoxdlbextzlffdzy4ruxt0gfuqvvfexfmue9irv9trulvbvjyx2rbu2vhatdrzmjoamltngfzumhltuxynndtsxzmvelvb1hwlwjmckd4duvxnwn0wvhfcjjzbxfuvmg0u3g0bej1mffxwffga0r3tjvrqzd1a1fxbutgclcxrke",
+      "content_hash": "66f23474b53099b91136b7c444962d6c27e3ad7502b3e8b3685e16c1669b9edd",
+      "story_key": "14a2819b5202548a500de0ceb80459c9e46c44f646f72b5d46e36dab2e611d82",
+      "status": "retry",
+      "processed_at": "2026-11-26T02:56:25.625Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://www.itmedia.co.jp/news/article/2611/26/2000003473": {
+      "canonical_url": "https://www.itmedia.co.jp/news/article/2611/26/2000003473",
+      "content_hash": "88a90346d55fe7bd9ae9ecf9ccad4e2c39293d2c17c469a73e2f0760740b64da",
+      "story_key": "3fa2971c4524a3217b69782310a9431bcd9e478ee8f29f1b69ff3290f1949372",
+      "status": "retry",
+      "processed_at": "2026-11-26T02:56:25.625Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmidefvx3lxte50amvjcuv1qvvoufd4ewdvswnzcll3ue1un1pylwi5cmzgohjxci0wwdlzv1rtrmfnudhdwerxm3lua1vtnlfqbud5s1rqymy0r3lzaerachhmrfpbyue2azvxtll4uxfjeu5as2lnnutyc2js": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte50amvjcuv1qvvoufd4ewdvswnzcll3ue1un1pylwi5cmzgohjxci0wwdlzv1rtrmfnudhdwerxm3lua1vtnlfqbud5s1rqymy0r3lzaerachhmrfpbyue2azvxtll4uxfjeu5as2lnnutyc2js",
+      "content_hash": "b72401f7d8aab4c9f8f58c7ca65ae1e12f4ad428a39303f6bd496c9be5ef7c04",
+      "story_key": "aaf6f6ab70c92f196041cd44a37ba77ade97857034a65de06dc6f6a05cbeff88",
+      "status": "retry",
+      "processed_at": "2026-11-26T02:56:25.625Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://deepmind.google/models/veo": {
+      "canonical_url": "https://deepmind.google/models/veo",
+      "content_hash": "f60f6b49272f5abed657c2e445ba21cbbf0cadb66f65985ebc1ec506046e9bd5",
+      "story_key": "5652fc87f30352153a8876b01c77cc86c24a772b2cbe6cab162c92ef322fc083",
+      "status": "enriched",
+      "processed_at": "2026-11-26T02:58:24.189Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Google Veo",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "Google、動画生成モデル「Veo 3.1」の新機能を公開",
+        "source_url": "https://deepmind.google/models/veo/",
+        "source_name": "Google Veo 公式更新情報",
+        "is_official": true,
+        "published_at": "2026-11-26T02:53:21.987Z",
+        "source_published_at": "",
+        "source_updated_at": "",
+        "source_date_status": "unknown",
+        "fetched_at": "2026-11-26T02:53:21.987Z",
+        "event_at": "",
+        "event_status": "発表済み",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Google Veo",
+          "Veo 3.1",
+          "Google DeepMind"
+        ],
+        "primary_entity": "Google DeepMind",
+        "story_subject": "Veo 3.1",
+        "event_type": "release",
+        "event_stage": "launched",
+        "event_scope": "全世界(Google公式)",
+        "fact_slots": [
+          {
+            "type": "version",
+            "scope": "Veo",
+            "value": "3.1",
+            "normalized_value": "3.1"
+          }
+        ],
+        "new_facts": [
+          "Veo 3.1は音声を含む動画生成に対応した",
+          "現実世界の物理法則を反映したリアルな映像表現が可能になった",
+          "プロンプト(指示文)への追従性が向上した"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "GoogleのAI動画生成モデル「Veo 3.1」が、音声付き動画生成や指示追従性の向上など新機能を公式サイトで公開した。",
+        "detail": "GoogleのAI研究部門DeepMindは、動画生成AIモデル「Veo」の最新版「Veo 3.1」の新機能を公式サイトで公開した。簡単に言うと、文章で指示するだけで音声付きの動画を作れるAIツールの最新版だ。これまでのVeoは映像だけだったが、Veo 3.1では音声も同時に生成できるようになった点が大きな違いだ。\n\n公式発表によると、Veo 3.1は現実世界の物理法則を反映したよりリアルな映像表現や、指示文（プロンプト）への追従性向上を特徴とする。音声と映像が一体で生成される仕組みにより、映画制作者やクリエイターがより一貫性のある作品を作れるとしている。これまで映像と音声を別々に用意する必要があったため、作業の手間が減ることが重要とされる。\n\n利用者にとっては、ナレーションや効果音を含む動画を一つのツールで完成させられる点が変わる。ただし提供開始時期や料金についての具体的な記載は確認できていない。今後の詳細な提供条件や対応地域は現時点で発表されていない。",
+        "change_summary": "Veo 3.1は音声付き動画生成や現実的な物理表現、より正確な指示追従などの機能が加わった。",
+        "impact_summary": "映像制作者がより自然な音声付き動画を簡単に作れるようになり、動画制作の効率化が期待される。",
+        "action_suggestion": "提供時期や料金は本文に明記されていないため、Google公式ページで最新情報を確認する必要がある。",
+        "importance": "B",
+        "related_categories": [
+          "画像・動画生成",
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmiskfvx3lxtfbpu1dyrfu3zvv4bnrccxrju3m0qzlic0m5ttdeudjpsvvtohdfs1pszkrgsez0dlnby2zqq3zkoxjtnuzkshixeud3": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmiskfvx3lxtfbpu1dyrfu3zvv4bnrccxrju3m0qzlic0m5ttdeudjpsvvtohdfs1pszkrgsez0dlnby2zqq3zkoxjtnuzkshixeud3",
+      "content_hash": "10f0fd0b6245427801d9ca00c9ba62f5eee3d26ba2b1116f4e8adaf1bc9e55f5",
+      "story_key": "1cc5f9dbdcdbd70a785b2a40598b99ae89764950955f9bd80a717ca99bd5f79a",
+      "status": "enriched",
+      "processed_at": "2026-11-26T02:58:24.189Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "",
+      "result": {
+        "tool": "Gemini",
+        "content_type": "article",
+        "expert_id": "",
+        "expert_ids": [],
+        "expert_name": "",
+        "expert_names": [],
+        "expert_role": "",
+        "expert_tier": "",
+        "platform": "",
+        "video_id": "",
+        "source_trust": "",
+        "title": "「Gemini 4 Neon」とは？Argonの後継説が浮上",
+        "source_url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFBPU1dYRFU3ZVV4bnRCcXRjU3M0Qzlic0M5TTdEUDJPSVVTOHdFS1pSZkRGSEZ0dlNBY2ZqQ3ZkOXJTNUZkSHIxeUd3?oc=5",
+        "source_name": "SHIFT AI",
+        "is_official": false,
+        "published_at": "2026-11-25T09:53:11.000Z",
+        "source_published_at": "2026-11-25T09:53:11.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-26T02:53:21.987Z",
+        "event_at": "",
+        "event_status": "不明",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "Gemini 4 Neon",
+          "Argon",
+          "Google"
+        ],
+        "primary_entity": "Google",
+        "story_subject": "Gemini 4 Neon(未確認情報)",
+        "event_type": "other",
+        "event_stage": "rumor",
+        "event_scope": "不明",
+        "fact_slots": [],
+        "new_facts": [
+          "「Gemini 4 Neon」という名称のAIモデルについての記事がブログに掲載された",
+          "コードネーム「Argon」の後継ではないかとの見方が示された"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "新しいGoogleのAIモデル名とされる「Gemini 4 Neon」について、コードネーム「Argon」の後継ではないかとの見方がブログ記事で紹介された。",
+        "detail": "SHIFT AIというブログ記事が、「Gemini 4 Neon」という名称のAIモデルについて取り上げた。簡単に言うと、Googleが開発中とみられる新しいAIモデルの噂を紹介する記事だ。記事タイトルには「Argonの後継？」と疑問形がついており、正式発表によるものではない点がこれまでの確定済みニュースとの違いだ。\n\n記事は料金や使い方を紹介するとしているが、具体的な数値や仕様は本文から確認できていない。コードネーム「Argon」は過去にAIモデルの比較検証サイトなどで見かけられた名称とされるが、Google公式からの正式な説明は示されていない。そのため「Gemini 4 Neon」が実在する製品なのか、確認段階の情報なのかは本記事だけでは判断できない。\n\nAIモデルの新機能に関心がある人にとっては、今後Googleから正式な発表があるかどうかが注目点になる。現時点では料金や提供時期など具体的な条件は未確認だ。Google公式からの正式発表を待つ必要がある。",
+        "change_summary": "「Gemini 4 Neon」という名称のAIモデルがコードネーム「Argon」の後継ではないかとブログ記事で紹介された。",
+        "impact_summary": "正式発表前の情報のため、現時点でビジネスや生活への影響を判断することはできない。",
+        "action_suggestion": "Google公式からの正式発表があるかどうか、今後の続報を確認する必要がある。",
+        "importance": "C",
+        "related_categories": [
+          "AIツール・モデル"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
+    },
+    "url:https://news.google.com/rss/articles/cbmikgfbvv95cuxncfhnnlmxafjiqktsnmvwadc1mljtx1lbdnfkcjgtr2fove45sxpkq2vwetb3ne1ywtfhz3dfdnzsovc5mtn6wefcyzrvqmvlrgfoac1fzhi3yi11uzjsuhvln2fdq1psann1u0nssmhqufdinkhgsgvrcfdfowhvak10sm80z3fznjhhu0honxjvd9iblwfbvv95cuxprzeyoxv2ywljn3d3vgfotw1zate1vtbrunvnak9vowr0udfzcfrtu25wnustwne4lupwbuy5y3pzufmzvwlsmhhtc0g0ejbqa01kogcyc1hmd2njemvnuzaznvpsdvnxtm84c01vwfrywta1vlbpa0rxnk13mdrzogh2ohngednewkmtrnnmt2ywsxbnunfr": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmikgfbvv95cuxncfhnnlmxafjiqktsnmvwadc1mljtx1lbdnfkcjgtr2fove45sxpkq2vwetb3ne1ywtfhz3dfdnzsovc5mtn6wefcyzrvqmvlrgfoac1fzhi3yi11uzjsuhvln2fdq1psann1u0nssmhqufdinkhgsgvrcfdfowhvak10sm80z3fznjhhu0honxjvd9iblwfbvv95cuxprzeyoxv2ywljn3d3vgfotw1zate1vtbrunvnak9vowr0udfzcfrtu25wnustwne4lupwbuy5y3pzufmzvwlsmhhtc0g0ejbqa01kogcyc1hmd2njemvnuzaznvpsdvnxtm84c01vwfrywta1vlbpa0rxnk13mdrzogh2ohngednewkmtrnnmt2ywsxbnunfr",
+      "content_hash": "b9af3785b4c84d7aca962bca886984d87878750eeaa085296b11c39ec404453d",
+      "story_key": "50866df34227c6b15e43a2eeda7ecb7573824a5690701a80744bb170330b5ffc",
+      "status": "rejected",
+      "processed_at": "2026-11-26T02:58:24.189Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: AIと無関係な航空機の滑走路逸脱事故の記事"
+    },
+    "url:https://news.google.com/rss/articles/cbmivkfvx3lxte5rwffbedh1b3fycwq3dxfnog5uu2qzb2vnajfcug52cu1ybunllwx5ngtowelxegiwckr5m0rfakxwuy1ldhb0bvfzutizsxktqmfouuxn": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmivkfvx3lxte5rwffbedh1b3fycwq3dxfnog5uu2qzb2vnajfcug52cu1ybunllwx5ngtowelxegiwckr5m0rfakxwuy1ldhb0bvfzutizsxktqmfouuxn",
+      "content_hash": "712d681389e10348de4b0b702b0b6fe4bffbbade8e23ded69ad722c86a47bcbf",
+      "story_key": "48148f30341938a68e30fb73b87daf2dda8507233b6cae0615b8a2402b7fdb0a",
+      "status": "retry",
+      "processed_at": "2026-11-26T02:58:24.189Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmikgfbvv95cuxonwprsmnqa2c3ckpwzta3eu50vklimnraadfweha4n2rlvlo3wjhvykt0dxj2agllsdfsvuxfeg1kd2vls0iwel9vztnlykdasgzvc2vtawxxbdbfs3npnhd5rnlqmdrqckxothlpyullcfplwexnb0zzuxjgytz2ohlwsnz1m2p3veo1rluybfdpqq": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmikgfbvv95cuxonwprsmnqa2c3ckpwzta3eu50vklimnraadfweha4n2rlvlo3wjhvykt0dxj2agllsdfsvuxfeg1kd2vls0iwel9vztnlykdasgzvc2vtawxxbdbfs3npnhd5rnlqmdrqckxothlpyullcfplwexnb0zzuxjgytz2ohlwsnz1m2p3veo1rluybfdpqq",
+      "content_hash": "abd665606d3c77510ce83da1e002f7d78ed34102c50db334b8354f569197527f",
+      "story_key": "774c5149bc1929a3e0b7575c33d095b9aecabb42482ecb352c4ac4a24408f3c5",
+      "status": "retry",
+      "processed_at": "2026-11-26T02:58:24.189Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmijgfbvv95cuxndlhlx1nsuwhst2nveju0s1pxd3ngq0lswvrcrmzsugdgnkzadnq2wdzjvxdrmu1natu5u2tumtrxu2v4avrzswzrru9arjq1dkjatnpfsvi2ofhdvxzrrtnpbgxuvxzozvz1vjr3rjlzcdfsd3hvsutlamxhu0i5bjzutexrngxucghnm2l3": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmijgfbvv95cuxndlhlx1nsuwhst2nveju0s1pxd3ngq0lswvrcrmzsugdgnkzadnq2wdzjvxdrmu1natu5u2tumtrxu2v4avrzswzrru9arjq1dkjatnpfsvi2ofhdvxzrrtnpbgxuvxzozvz1vjr3rjlzcdfsd3hvsutlamxhu0i5bjzutexrngxucghnm2l3",
+      "content_hash": "a5fc2f83c4ddea09daf690177afa5c01117226a848a80d7cc2f5b5de4681d9ce",
+      "story_key": "1fb09aba74485b8578491dd5b9fe89c46537a26694a5cb0371c34c91e9231a14",
+      "status": "retry",
+      "processed_at": "2026-11-26T02:58:24.189Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://updates.midjourney.com": {
+      "canonical_url": "https://updates.midjourney.com",
+      "content_hash": "ff0875dcc877ec0b6075b21259e11370b1dba4b4b849d3f84246158630ce8c1d",
+      "story_key": "cf437905386a769a34b107c3cd33a80a4cf85f4778f9bed03326fd42e623458b",
+      "status": "rejected",
+      "processed_at": "2026-11-26T02:59:04.779Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 具体的内容のない定型文のみで実質情報なし"
+    },
+    "url:https://news.google.com/rss/articles/cbmidkfvx3lxtfbtmehxbk1kzm42czzba3hvb3hhlwv3s1jkaddpvvzkbeezwmj3v3r4cxdhr3rlqxytd05juwzrnemxbuk4chjvtwd2tm9qnlztwkxmqwn3vmfrafzxa1lnbxvuc2v3rzlmvxn2cedlz2q3smh3yke": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmidkfvx3lxtfbtmehxbk1kzm42czzba3hvb3hhlwv3s1jkaddpvvzkbeezwmj3v3r4cxdhr3rlqxytd05juwzrnemxbuk4chjvtwd2tm9qnlztwkxmqwn3vmfrafzxa1lnbxvuc2v3rzlmvxn2cedlz2q3smh3yke",
+      "content_hash": "c6f462a1f46f36a13f6e9a944f693d187cf8818e6ffe63b1979360b7cc17b96e",
+      "story_key": "9c674025a6419107fc04b22ec3c6143b4d8b1a74f258fc2fcee82292b1f815ea",
+      "status": "rejected",
+      "processed_at": "2026-11-26T02:59:04.779Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "ai_skip: 法的トラブルの具体的内容が記事から確認できない"
+    },
+    "url:https://news.google.com/rss/articles/cbminafbvv95cuxqvvbqm0lfrwm1c1lvck15dgxsz3hsrmfhd1hmverpy2huwwtcqw5wmmq0s3fgbs1pvhuzvnp1efhwq1fgx3zhuhvcvfr1nhnmslhdcfjvqwnjugs3y1rmdlbomup3ele0wjzymvmwbgs2r2zontdqnznoui1ystdwmvfbunawwuzkegu2zg0tmjvfwfetadnlwnphati": {
+      "canonical_url": "https://news.google.com/rss/articles/cbminafbvv95cuxqvvbqm0lfrwm1c1lvck15dgxsz3hsrmfhd1hmverpy2huwwtcqw5wmmq0s3fgbs1pvhuzvnp1efhwq1fgx3zhuhvcvfr1nhnmslhdcfjvqwnjugs3y1rmdlbomup3ele0wjzymvmwbgs2r2zontdqnznoui1ystdwmvfbunawwuzkegu2zg0tmjvfwfetadnlwnphati",
+      "content_hash": "065bc6669750c1f3d5b6b7cb87cce4d82af223aa7c8b2ee522a98ac04ab9d904",
+      "story_key": "c5f45fa6cec5a194da1bc8c1ff3e45d31ba8e9b04e3c596084210071ccb53053",
+      "status": "retry",
+      "processed_at": "2026-11-26T02:59:04.779Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
+    "url:https://news.google.com/rss/articles/cbmikwfbvv95cuxownu3y05xywnwcvjqqwhmwgllennhyju4ndfznunyznbruzhhxzu0bvfkunbttfzvzupyaejocentstm2ymfda0rfzk9dbjhebjfaadj5uk83a1zssjrrutuzwjlytlbxzxlbmvlqa1p4tu40tg16cmr6ahzltxzra0vqejvxdgxfweuzv2o1wjk0wmm": {
+      "canonical_url": "https://news.google.com/rss/articles/cbmikwfbvv95cuxownu3y05xywnwcvjqqwhmwgllennhyju4ndfznunyznbruzhhxzu0bvfkunbttfzvzupyaejocentstm2ymfda0rfzk9dbjhebjfaadj5uk83a1zssjrrutuzwjlytlbxzxlbmvlqa1p4tu40tg16cmr6ahzltxzra0vqejvxdgxfweuzv2o1wjk0wmm",
+      "content_hash": "dbc46746be78e54801b8577050ae900a7a73dc885df3723fc12f0181986d34b0",
+      "story_key": "ab170ed91b29cbe93749612b30da9d4de82b1b02f84221551124b39673b9cc00",
+      "status": "retry",
+      "processed_at": "2026-11-26T02:59:04.779Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "regular",
+      "reason": "missing_or_incomplete_ai_output"
+    },
     "url:https://news.google.com/rss/articles/cbmiaefvx3lxte9qluetnveweg5htfbusfj2ri1fq2hgy0zyr25smklkui1xal9qzkz2axd4c1c1qlbkvfewnu5ybjdvrngzb0o1wmfndddydkxunfpwx2hytknfzmxxduwtutq5sjnuoxd1": {
       "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxte9qluetnveweg5htfbusfj2ri1fq2hgy0zyr25smklkui1xal9qzkz2axd4c1c1qlbkvfewnu5ybjdvrngzb0o1wmfndddydkxunfpwx2hytknfzmxxduwtutq5sjnuoxd1",
       "content_hash": "d5afd7a8e46703a675c3275d6de61415baa7f300cab287f3e90d2d798000fff1",
@@ -19549,102 +20121,6 @@
         "dedupe_decision": "new",
         "dedupe_reasons": [
           "no_previous_story"
-        ]
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiz0fvx3lxtfa1zvlhtmgwnwzllthsqmt1vjfiamnzruxinzjxnknqohlsnnbfdxrlyzbrunrfujbwc053sm55njvlbnvrmmnaww9xa21srxnvmjblnffzegrmnljnsdjnu0hwcm1ssws": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiz0fvx3lxtfa1zvlhtmgwnwzllthsqmt1vjfiamnzruxinzjxnknqohlsnnbfdxrlyzbrunrfujbwc053sm55njvlbnvrmmnaww9xa21srxnvmjblnffzegrmnljnsdjnu0hwcm1ssws",
-      "content_hash": "9190407e740c6e367a309fdc29d526b95f5c188d2ed85b0ed287b4f348318131",
-      "story_key": "984d72f9fb9259d836ed83d021664d190133527089383c465a6089c516b22c48",
-      "status": "enriched",
-      "processed_at": "2026-10-16T09:02:18.026Z",
-      "model": "legacy",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "bootstrap",
-      "reason": "existing_complete_article",
-      "result": {
-        "tool": "Midjourney",
-        "content_type": "article",
-        "expert_id": "",
-        "expert_ids": [],
-        "expert_name": "",
-        "expert_names": [],
-        "expert_role": "",
-        "expert_tier": "",
-        "platform": "",
-        "video_id": "",
-        "source_trust": "",
-        "title": "Grok Bot、Claude Opus 5.5に切り替えMidjourneyとSunoを追加",
-        "source_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA1ZVlhTmgwNWZLLThSQmt1VjFIamNZRUxINzJXNkNqOHlsNnBFdXRLYzBRUnRFUjBWc053Sm55NjVlbnVrMmNaWW9Xa21SRXNvMjBlNFFZeGRmNlJNSDJNU0hwcm1sSWs?oc=5",
-        "source_name": "Tbreak UAE",
-        "is_official": false,
-        "published_at": "2026-10-07T17:59:00.000Z",
-        "source_published_at": "2026-10-07T17:59:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-10-16T09:02:18.026Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Grok",
-          "Claude Opus 5.5",
-          "Midjourney",
-          "grok",
-          "claudeopus5.5"
-        ],
-        "primary_entity": "xAI",
-        "story_subject": "Grok Bot",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "X(旧Twitter)",
-        "fact_slots": [
-          {
-            "type": "version",
-            "scope": "Grok Botが使用するモデル",
-            "value": "Claude Opus 5.5",
-            "normalized_value": "claudeopus5.5"
-          },
-          {
-            "type": "other",
-            "scope": "追加機能",
-            "value": "Midjourney, Suno",
-            "normalized_value": "midjourneysuno"
-          }
-        ],
-        "new_facts": [
-          "Grok BotがClaude Opus 5.5に切り替わった",
-          "Grok BotにMidjourneyとSunoの機能が追加された"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "X上のGrok Botが、使用するAIモデルをClaude Opus 5.5に切り替え、画像生成のMidjourneyと音楽生成のSunoの機能を新たに追加した。",
-        "detail": "X（旧Twitter）上で動くAIボット「Grok Bot」が、使用するAIモデルをClaude Opus 5.5に切り替えたと報じられた。Grok Botは、X上で質問に答えたり文章を作ったりするAIサービスだ。これまで使っていたモデルから、Anthropicが開発したClaude Opus 5.5に変更された。\n\n今回の変更では、モデルの切り替えに加えて、画像生成AIの「Midjourney」と音楽生成AIの「Suno」の機能も新たに加わった。これにより、Grok Botは文章だけでなく、画像や音楽も作れるようになった可能性がある。ただし、具体的な利用方法や対応範囲、料金については記事からは確認できない。\n\nX上でGrok Botを使う人にとっては、使えるAI機能の幅が広がることになる。ただし、Claude Opus 5.5への切り替えが性能にどう影響するか、Midjourneyなど新機能の提供条件はまだ明らかになっていない。今後の公式発表を確認する必要がある。",
-        "change_summary": "Grok BotがAIモデルをClaude Opus 5.5に切り替え、Midjourneyと Sunoの機能を新たに加えた。",
-        "impact_summary": "X上でGrok Botを使う人にとって、画像や音楽も作れるなど利用できる機能の幅が広がる可能性がある。",
-        "action_suggestion": "Claude Opus 5.5切り替えの詳細や、Midjourney・Sunoの利用条件について公式発表を確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "AIツール・モデル",
-          "画像・動画生成",
-          "音楽・クリエイティブ"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-        "article_id": "article_e72fa88d20c16450725b",
-        "story_id": "story_8defa5c18af201dd85",
-        "story_sequence": 1,
-        "relation_type": "new",
-        "relation_confidence": 0.82,
-        "previous_article_id": "",
-        "previous_title": "",
-        "previous_source_published_at": "",
-        "continuation_lead": "",
-        "dedupe_decision": "uncertain",
-        "dedupe_reasons": [
-          "same_primary_entity",
-          "same_subject",
-          "same_event_type",
-          "material_fact_changed",
-          "low_confidence_follow_up_demoted"
         ]
       }
     },
@@ -20037,172 +20513,6 @@
         ]
       }
     },
-    "url:https://news.google.com/rss/articles/cbmibefvx3lxte9pyuxwshbmmtzaneszuxftnk0wn1i0rmzhwv9vemrzuwdpauloavywotbtog5hngzutmhhcdrjbksztufnotl2s2c4wuu4rnexwwnbrkl1s0p0wxlfcjdhz0hfdwoxt2m1v1pvqq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmibefvx3lxte9pyuxwshbmmtzaneszuxftnk0wn1i0rmzhwv9vemrzuwdpauloavywotbtog5hngzutmhhcdrjbksztufnotl2s2c4wuu4rnexwwnbrkl1s0p0wxlfcjdhz0hfdwoxt2m1v1pvqq",
-      "content_hash": "cbf7f769a004d9cacd611cd350e7386d3bd9096d5ec8da05402a857c6dc3ac10",
-      "story_key": "c15e3ab7133d54dfc9830d4cf5347125ca7fdf45beadc86211f51a74dfdd96d3",
-      "status": "enriched",
-      "processed_at": "2026-09-05T01:21:53.097Z",
-      "model": "legacy",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "bootstrap",
-      "reason": "existing_complete_article",
-      "result": {
-        "tool": "AI業界・経営重要速報",
-        "title": "日本のデータセンター、8年で10兆円投資し規模4倍へ",
-        "source_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9pYUxWSHBMMTZaNEszUXFTNk0wN1I0RmZhWV9vemRzUWdpaUloaVYwOTBTOG5hNGZUTmhHcDRJbkszTUFnOTl2S2c4WUU4RnExWWNBRkl1S0p0WXlfcjdHZ0hfdWoxT2M1V1pvQQ?oc=5",
-        "source_name": "日本経済新聞",
-        "is_official": false,
-        "published_at": "2026-09-04T20:00:00.000Z",
-        "source_published_at": "2026-09-04T20:00:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-09-05T01:21:53.097Z",
-        "event_at": "",
-        "event_status": "予定",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "データセンター",
-          "AI投資",
-          "ai投資"
-        ],
-        "primary_entity": "日本のデータセンター産業",
-        "story_subject": "日本のデータセンター投資拡大(8年で10兆円)",
-        "event_type": "other",
-        "event_stage": "planned",
-        "event_scope": "日本全国",
-        "fact_slots": [
-          {
-            "type": "amount",
-            "scope": "8年間のデータセンター投資額",
-            "value": "10兆円",
-            "normalized_value": "10000000000000JPY"
-          },
-          {
-            "type": "count",
-            "scope": "処理能力の拡大倍率",
-            "value": "4倍",
-            "normalized_value": "4"
-          },
-          {
-            "type": "region",
-            "scope": "世界順位",
-            "value": "米中に次ぐ規模",
-            "normalized_value": "米中に次ぐ規模"
-          }
-        ],
-        "new_facts": [
-          "日本のデータセンター投資が8年間で10兆円規模になる見通しであること",
-          "処理能力が現在の4倍に拡大すること",
-          "規模が米中に次ぐ世界3位水準になるとされること"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "日本国内のデータセンターへの投資が今後8年間で10兆円規模となり、処理能力が現在の4倍に拡大する見通しであることが分かった。AI向け需要の増加で、規模は米中に次ぐ水準になるという。",
-        "detail": "日本国内のデータセンターへの投資額が、今後8年間で合計10兆円規模に達する見通しであることが報じられました。データセンターとは、AIの計算やインターネットサービスを支える大量のコンピューターを集めた施設のことです。この投資により、日本のデータセンターの処理能力は現在の4倍に拡大するとされています。\n\n記事によると、この投資規模の拡大は主にAI向けの需要増加が背景にあるとされています。投資が実現すれば、日本のデータセンター市場の規模は米国と中国に次ぐ世界3位の水準になるとされています。AIの利用拡大には大量の計算資源が必要であり、それを支えるデータセンターへの投資は今後のAI産業の基盤となる動きです。\n\nこの投資拡大により、日本国内でAIを使ったサービスがより安定して提供される環境が整う可能性があります。一方で、記事では具体的な投資主体や個別のプロジェクト名までは明らかにされていません。今後、どの企業や自治体がどのような形で投資を進めるのか、続報の確認が必要です。",
-        "change_summary": "日本のデータセンターへの投資が8年で10兆円規模となり、処理能力が4倍に拡大する見通しが新たに示された。",
-        "impact_summary": "AI向けの計算基盤が国内で拡大することで、日本企業のAI活用環境が整う可能性がある。",
-        "action_suggestion": "投資の実施主体や具体的な建設計画について、今後の続報を確認する必要がある。",
-        "importance": "S",
-        "related_categories": [
-          "半導体・インフラ",
-          "企業・株式"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-        "article_id": "article_76db2e9b91116d827eb0",
-        "story_id": "story_25766e06ea3ee3c1f1",
-        "story_sequence": 1,
-        "relation_type": "new",
-        "relation_confidence": 1,
-        "previous_article_id": "",
-        "previous_title": "",
-        "previous_source_published_at": "",
-        "continuation_lead": "",
-        "dedupe_decision": "new",
-        "dedupe_reasons": [
-          "no_previous_story"
-        ]
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmioafbvv95cuxny0g2ugd3aldruffuofcxzzrov1ndtlgtvthgndnryxzkdndptgvwcnpvqkiwcg1fsm5mou9tu1nwsudiwwdotelhckz6zuxkvzjzdha3ttlod2p0cxfyzwvodnrnq0szmm5qrc1ramd4qmitb1g2euzpugxuztnrylzud0vuelrxuupbatbru1pgv2g3cfpgsdn0affttuvw": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmioafbvv95cuxny0g2ugd3aldruffuofcxzzrov1ndtlgtvthgndnryxzkdndptgvwcnpvqkiwcg1fsm5mou9tu1nwsudiwwdotelhckz6zuxkvzjzdha3ttlod2p0cxfyzwvodnrnq0szmm5qrc1ramd4qmitb1g2euzpugxuztnrylzud0vuelrxuupbatbru1pgv2g3cfpgsdn0affttuvw",
-      "content_hash": "268f657439d8cfb66a7029506b5c399b1e406b1f54a10c2ada514ed602e17a53",
-      "story_key": "bd4374ccf924208e60b3c6ee8517c72ca8c5577177d69f044bed16dfccc6a3f5",
-      "status": "enriched",
-      "processed_at": "2026-08-29T01:46:18.254Z",
-      "model": "legacy",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "bootstrap",
-      "reason": "existing_complete_article",
-      "result": {
-        "tool": "AI業界・経営重要速報",
-        "content_type": "article",
-        "expert_id": "",
-        "expert_name": "",
-        "expert_names": [],
-        "expert_role": "",
-        "expert_tier": "",
-        "platform": "",
-        "video_id": "",
-        "source_trust": "",
-        "title": "アップル、CEO交代へ準備 AI・ソフトウェア部門で人員削減",
-        "source_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNY0g2UGd3aldRUFFUOFcxZzRoV1NDTlgtVThGNDNrYXZKdndpTGVwcnpVQkIwcG1FSm5MOU9tU1NwSUdiWWdOTElHckZ6ZUxkVzJzdHA3TTlod2p0cXFYZWVOdnRnQ0szMm5qRC1Ramd4QmItb1g2eUZpUGxUZTNRYlZud0VuelRxUUpBaTBRU1pGV2g3cFpGSDN0aFFTTUVW?oc=5",
-        "source_name": "CNBC",
-        "is_official": false,
-        "published_at": "2026-08-28T20:36:13.000Z",
-        "source_published_at": "2026-08-28T20:36:13.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-08-29T01:46:18.254Z",
-        "event_at": "",
-        "event_status": "不明",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Apple",
-          "Siri",
-          "CEO交代",
-          "apple",
-          "siri"
-        ],
-        "primary_entity": "Apple",
-        "story_subject": "CEO交代・AI部門人員削減",
-        "event_type": "other",
-        "event_stage": "rumor",
-        "event_scope": "アップル社内(AI・ソフトウェア部門)",
-        "fact_slots": [],
-        "new_facts": [
-          "アップルがCEO交代に向けた準備を進めていると報じられた",
-          "AI・ソフトウェア部門で人員削減が実施されている"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "アップルがCEO交代への準備を進める中、AI・ソフトウェア部門で人員削減を実施していると米CNBCが報じた。",
-        "detail": "米CNBCによると、アップルはCEO交代に向けた準備を進めている。簡単に言うと、次のトップ経営者への交代を見据えた社内体制の整理が始まったということだ。この動きの一環として、人工知能(AI)やソフトウェアを担当する部門で人員削減が行われている。\n\n報道では、削減の具体的な人数や後任の交代時期は明らかにされていない。アップルは近年、音声アシスタント「Siri」の刷新やAI機能の強化を進めてきたが、その中心を担う部門で人員が減らされる形となる。経営トップの交代準備とAI部門の縮小が同時に進んでいる点は、同社が今後の戦略を見直している可能性を示している。\n\niPhoneなどのユーザーへの直接的な影響は現時点でははっきりしない。ただしAI開発体制の見直しは、今後の新機能や「Siri」改善の速度に関わる可能性がある。後任候補や削減規模、実施時期についてはまだ公表されていない。",
-        "change_summary": "アップルのCEO交代準備とAI・ソフトウェア部門の人員削減が新たに報じられた。",
-        "impact_summary": "アップルの経営体制刷新やAI開発体制の変化は、Siriなど同社製品の今後の方向性に影響する可能性がある。",
-        "action_suggestion": "後任人事や削減規模、実施時期について、アップルからの公式発表はまだ確認されていない。",
-        "importance": "S",
-        "related_categories": [
-          "企業・株式",
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth",
-        "article_id": "article_c1d53f0537494007284c_rev_fd6572391ebc",
-        "story_id": "story_445e9bb75f0348398c",
-        "story_sequence": 1,
-        "relation_type": "new",
-        "relation_confidence": 0.6992307692307693,
-        "previous_article_id": "",
-        "previous_title": "",
-        "previous_source_published_at": "",
-        "continuation_lead": "",
-        "dedupe_decision": "uncertain",
-        "dedupe_reasons": [
-          "same_url",
-          "same_primary_entity",
-          "uncertain_subject",
-          "similar_title"
-        ]
-      }
-    },
     "url:https://news.google.com/rss/articles/cbmitkfvx3lxte5eoexzvnjxxzfjsdn2q25patlzwm11sw9cmvcwymfrdmjragz4uznwtgtsnzdltfflmkjjevhtbgdldlffejk0adnmverlzw": {
       "canonical_url": "https://news.google.com/rss/articles/cbmitkfvx3lxte5eoexzvnjxxzfjsdn2q25patlzwm11sw9cmvcwymfrdmjragz4uznwtgtsnzdltfflmkjjevhtbgdldlffejk0adnmverlzw",
       "content_hash": "3c15be5ce3987f0caa1b4c52995029ff7e2ddcd82b07f20f5c655da49e4001fe",
@@ -20280,340 +20590,7 @@
           "same_scope"
         ]
       }
-    },
-    "url:https://news.google.com/rss/articles/cbmilgfbvv95cuxqqkjwm21bburznkjra1dqtvd6swdfdfg1anfrru1uluniwfmzu1q3z1podjntvgh3oxhrbwxjn2q2cejyzevntwlht0fpzugwvlbjx3rwwkxfm1i5b1zyqzboqnlzbxdtbxhtd3lonxf6anncczlrt1prcnjlstngmtjltjzcevitmecxq2c5ahdloexydxc": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmilgfbvv95cuxqqkjwm21bburznkjra1dqtvd6swdfdfg1anfrru1uluniwfmzu1q3z1podjntvgh3oxhrbwxjn2q2cejyzevntwlht0fpzugwvlbjx3rwwkxfm1i5b1zyqzboqnlzbxdtbxhtd3lonxf6anncczlrt1prcnjlstngmtjltjzcevitmecxq2c5ahdloexydxc",
-      "content_hash": "50f3735d5a6f08d5ca6691e6eb0bc2497cff9a5b9484ec0c1b8b0dac27b57cec",
-      "story_key": "2886cb88e45d6ee0fff669669adbe65c98ae362c84e7744a914e10177d5af6d1",
-      "status": "enriched",
-      "processed_at": "2026-11-25T19:58:26.685Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "AI政策・政府動向",
-        "content_type": "article",
-        "expert_id": "",
-        "expert_ids": [],
-        "expert_name": "",
-        "expert_names": [],
-        "expert_role": "",
-        "expert_tier": "",
-        "platform": "",
-        "video_id": "",
-        "source_trust": "",
-        "title": "Chariot、インド政府のAI計画で自国製基盤モデルを発表",
-        "source_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQQkJWM21BbURZNkJRa1dqTVd6SWdfdFg1anFrRU1uLUNIWFMzU1Q3Z1pOdjNtVGh3OXhrbWxJN2Q2cEJYZEVNTWlhT0FPZUgwVlBjX3RwWkxFM1I5b1ZyQzBOQnlzbXdtbXhtd3lONXF6anNCczlrT1pRcnJlSTNGMTJLTjZCeVItMEcxQ2c5aHdLOExYdXc?oc=5",
-        "source_name": "Unite.AI",
-        "is_official": false,
-        "published_at": "2026-11-25T14:59:03.000Z",
-        "source_published_at": "2026-11-25T14:59:03.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-11-25T19:56:11.968Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Chariot",
-          "IndiaAI Mission"
-        ],
-        "primary_entity": "Chariot",
-        "story_subject": "IndiaAI Missionにおける自国製基盤モデル",
-        "event_type": "policy",
-        "event_stage": "announced",
-        "event_scope": "インド国内",
-        "fact_slots": [],
-        "new_facts": [
-          "Chariotが自国開発の基盤モデルをIndiaAI Missionのもとで発表したと報じられた"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "インドのAI企業Chariotが、政府の国家AI推進計画「IndiaAI Mission」のもとで自国開発の基盤モデルを発表したと報じられた。詳細はまだ明らかでない。",
-        "detail": "インドのAI企業Chariotが、政府の国家的なAI推進計画「IndiaAI Mission」のもとで、自国で開発した基盤モデルを発表したと報じられた。基盤モデルとは、文章や画像などさまざまな作業に応用できる土台となる大規模なAIのことである。これまでインドは海外企業の技術に頼ることが多かったが、今回は自国内で開発した点が異なる。\n\n記事はタイトルのみの短い紹介にとどまっており、モデルの名前や性能、公開時期などの具体的な情報は示されていない。IndiaAI Missionは、インド政府がAI分野で自国の技術力を高めるために進めている政策の一環であり、海外企業への依存を減らす狙いがあるとされる。\n\n現時点では、このモデルがいつ、どのように一般利用者や企業に提供されるかは分かっていない。性能や安全性についての評価も公表されていない。続報があれば、具体的な仕様や活用方法が明らかになる見込みである。",
-        "change_summary": "インドの企業が政府計画のもとで自国開発の基盤モデルを発表したという点が新しい。",
-        "impact_summary": "インドのAI主権戦略の進展を示す動きで、将来的に海外企業への依存を減らす可能性がある。",
-        "action_suggestion": "モデル名、性能、公開時期などの続報が出るかを確認する必要がある。",
-        "importance": "B",
-        "related_categories": [
-          "政策・行政",
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiywfbvv95cuxoemnlz3zfv2hnb3zuy0vzvvy3mvnsuvlstho1vfdoa2j2z0xsdk8xvu5cmzvcnwnudnf1oupoq1huduc2smlzodzyynfguvuws1atrg9ecm1iclu5mnlqx0fszlfptndkn2hrq1vrau0wz2iwww9xd3vpavfrqjjmm1ryrenfqxjyrzvlwnjxs1nocfgtsuk0uhmyd05pclpgenp2azd5qnpmzzcws0jzme0tc3bmc0jgbezsluzoc0ttm0tzwejuawszyw": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiywfbvv95cuxoemnlz3zfv2hnb3zuy0vzvvy3mvnsuvlstho1vfdoa2j2z0xsdk8xvu5cmzvcnwnudnf1oupoq1huduc2smlzodzyynfguvuws1atrg9ecm1iclu5mnlqx0fszlfptndkn2hrq1vrau0wz2iwww9xd3vpavfrqjjmm1ryrenfqxjyrzvlwnjxs1nocfgtsuk0uhmyd05pclpgenp2azd5qnpmzzcws0jzme0tc3bmc0jgbezsluzoc0ttm0tzwejuawszyw",
-      "content_hash": "aed3d85f423b7251ccff77406b7db7351d04eb5fe6956be71ceb5704cc67dcfb",
-      "story_key": "463ecc017580aca1ed2b26db3e4aaf88f988692f242c05d267529cf905ff178a",
-      "status": "rejected",
-      "processed_at": "2026-11-25T19:58:26.685Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 具体的内容が薄く宣伝的な経営アドバイス記事のため除外"
-    },
-    "url:https://klingai.com/global": {
-      "canonical_url": "https://klingai.com/global",
-      "content_hash": "f28241d47b40522dd81f399e328ab00185d03d00c7dc6119b7f449b41dd89aeb",
-      "story_key": "7c79a9f2c1bf100b005d04c52824f2cac18896b8d5b7fc17a5ca706ae4473e88",
-      "status": "rejected",
-      "processed_at": "2026-11-25T19:58:26.685Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 具体的発表のない公式製品紹介ページで宣伝的内容のため除外"
-    },
-    "url:https://news.google.com/rss/articles/cbmiaefvx3lxtfbgwjden2dxmw9uew5ta2rzouvix3nft29uqxlfmdzrszbralhsoxvos2jeveq0qmvxreg5aujqmg83smfsows4slrlzewxowllckx5zdzjmmpdoxdlbextzlffdzy4ruxt0gfuqvvfexfmue9irv9trulvbvjyx2rbu2vhatdrzmjoamltngfzumhltuxynndtsxzmvelvb1hwlwjmckd4duvxnwn0wvhfcjjzbxfuvmg0u3g0bej1mffxwffga0r3tjvrqzd1a1fxbutgclcxrke": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxtfbgwjden2dxmw9uew5ta2rzouvix3nft29uqxlfmdzrszbralhsoxvos2jeveq0qmvxreg5aujqmg83smfsows4slrlzewxowllckx5zdzjmmpdoxdlbextzlffdzy4ruxt0gfuqvvfexfmue9irv9trulvbvjyx2rbu2vhatdrzmjoamltngfzumhltuxynndtsxzmvelvb1hwlwjmckd4duvxnwn0wvhfcjjzbxfuvmg0u3g0bej1mffxwffga0r3tjvrqzd1a1fxbutgclcxrke",
-      "content_hash": "b4c9ca9fc90915e5c821a0b0e6d5e9578ad81ca286e968f87dd57c0b497aeba7",
-      "story_key": "001f8d720b6da986f8fae2cb83d592823048fb12d480ccaa8b489e2f8a9b2595",
-      "status": "retry",
-      "processed_at": "2026-11-25T19:58:26.685Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmidefvx3lxte5iyjhtejbithbnoe1hczzsew4zuvlfyjjba3vhwxa0c0r2eerfr3fgd2rzbu1ss1dlegc2agrybzfvv3nozegwog02bu9achfux3ngukljm01rmxnfqzrum2rfltjrt0p2zjbqa1m5rvewtvq3": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmidefvx3lxte5iyjhtejbithbnoe1hczzsew4zuvlfyjjba3vhwxa0c0r2eerfr3fgd2rzbu1ss1dlegc2agrybzfvv3nozegwog02bu9achfux3ngukljm01rmxnfqzrum2rfltjrt0p2zjbqa1m5rvewtvq3",
-      "content_hash": "89d6695f18aede10de70ba014fafff43246dde1918f67acacbf18f9f88d81505",
-      "story_key": "67f07e6e74fa4c56a6db72780c8c0383ac2ec7e68ff5873bd7c86f5e1b146e87",
-      "status": "retry",
-      "processed_at": "2026-11-25T19:58:26.685Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmiiafbvv95cuxotfllevdxv0q3u2lsulvfnmtzekfod0xlq092oexyrzlcckfrb0rzvtjuwxdqqvpfng1td1zazhiyyy1rbgy1wtjiudllywx1r2c4adrquermzknwew16nuk4a0ttajzhsf9psutbvg43vkxvcg1qc0d1azlhsllisv9wz1voevcz": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiiafbvv95cuxotfllevdxv0q3u2lsulvfnmtzekfod0xlq092oexyrzlcckfrb0rzvtjuwxdqqvpfng1td1zazhiyyy1rbgy1wtjiudllywx1r2c4adrquermzknwew16nuk4a0ttajzhsf9psutbvg43vkxvcg1qc0d1azlhsllisv9wz1voevcz",
-      "content_hash": "87e237f4b4294961dc40df665871104f5a2a2f186a7f1e6314ddb888067ce902",
-      "story_key": "6efc65dc1aa5a8eb38aa69148346cb4821550bfdad334f230dc54462fffe0bcd",
-      "status": "retry",
-      "processed_at": "2026-11-25T19:58:26.685Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmiaefvx3lxtfbruvjrwwr0yvv0ne4taldcuvpwwdmzvknzbxnhb1pkr0lgskfcdlhtzvn5sm5gz3m4chb3bg1laudmngfkzurfawl3ywhwtkrxdg1gqwffawvta0t6rlz3vny4alh0nepz0gfoqvvfexfmugtrumtzzhrhvxq0ti1qv0jrwnbymznwq1ltc0dvwkphsuzkquj2wg1lu3lkbkznczhwchdsbwvpr2y0yuplrf9paxdhahborfd0buzbyv9pzw1rs3pgvndwdjhqwhq0slk": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiaefvx3lxtfbruvjrwwr0yvv0ne4taldcuvpwwdmzvknzbxnhb1pkr0lgskfcdlhtzvn5sm5gz3m4chb3bg1laudmngfkzurfawl3ywhwtkrxdg1gqwffawvta0t6rlz3vny4alh0nepz0gfoqvvfexfmugtrumtzzhrhvxq0ti1qv0jrwnbymznwq1ltc0dvwkphsuzkquj2wg1lu3lkbkznczhwchdsbwvpr2y0yuplrf9paxdhahborfd0buzbyv9pzw1rs3pgvndwdjhqwhq0slk",
-      "content_hash": "51e9bf4b6f10f030a01546fb1dc41951456afc80a4fa4d0297dde73ff7e5c58d",
-      "story_key": "555063991032503fd05a32ad54fe59125639d61ddd90371fe146e9b4923fbf45",
-      "status": "enriched",
-      "processed_at": "2026-11-25T19:59:33.644Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Canva",
-        "content_type": "article",
-        "expert_id": "",
-        "expert_ids": [],
-        "expert_name": "",
-        "expert_names": [],
-        "expert_role": "",
-        "expert_tier": "",
-        "platform": "",
-        "video_id": "",
-        "source_trust": "",
-        "title": "Canva、生成AI機能を一括オフに切替可能に",
-        "source_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBrUVJrWWR0YVV0NE4taldCUVpwWDMzVkNZbXNHb1pKR0lGSkFCdlhtZVN5Sm5GZ3M4cHB3bG1laUdmNGFKZURfaWl3YWhwTkRXdG1GQWFfaWVta0t6RlZ3VnY4alh0NEpZ0gFoQVVfeXFMUGtRUmtZZHRhVXQ0Ti1qV0JRWnBYMzNWQ1ltc0dvWkpHSUZKQUJ2WG1lU3lKbkZnczhwcHdsbWVpR2Y0YUplRF9paXdhaHBORFd0bUZBYV9pZW1rS3pGVndWdjhqWHQ0Slk?oc=5",
-        "source_name": "財経新聞",
-        "is_official": false,
-        "published_at": "2026-11-25T14:02:00.000Z",
-        "source_published_at": "2026-11-25T14:02:00.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-11-25T19:56:11.968Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Canva"
-        ],
-        "primary_entity": "Canva",
-        "story_subject": "Canva 生成AI設定機能",
-        "event_type": "release",
-        "event_stage": "launched",
-        "event_scope": "Canvaアプリ全体",
-        "fact_slots": [],
-        "new_facts": [
-          "Canvaが生成AI機能を一括でオフにできる設定を追加したと報じられた。",
-          "AI生成素材の表示も個別に調整できるようになったとされる。"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "デザインツールCanvaが生成AI機能をまとめて無効化でき、AI生成素材の表示も個別に調整できるようになったと報じられた。",
-        "detail": "財経新聞が伝えた。デザイン作成サービスのCanvaが、生成AI（文章や画像を自動で作る人工知能の機能）をまとめてオフにできる設定を追加したという。これまでは個々のAI機能を別々に切る必要があったが、今回は一括で無効化できるようになった。\n\n記事によると、AIが作った素材かどうかを示す表示についても、個別に調整できるようになったとされる。生成AI機能をオフにすることで、AIを使いたくない利用者や、AI生成物を避けたい企業が設定を簡単に変更できるようになる。素材ごとにAI生成の表示有無を選べる点は、著作権や取引先への説明で透明性を保ちたい場合に役立つとみられる。\n\nCanvaを仕事で使っているデザイナーや企業は、設定画面から一括オフの項目を確認できる。対象となる具体的な機能一覧や提供地域、適用時期は記事からは確認できない。",
-        "change_summary": "生成AI機能を一括でオフにできる設定と、AI生成素材の表示を個別調整できる機能が追加された。",
-        "impact_summary": "AI利用を制限したい企業やクリエイターが、設定を簡単に管理できるようになる可能性がある。",
-        "action_suggestion": "一括オフの対象範囲や提供開始時期など詳細はまだ記事から確認できていない。",
-        "importance": "B",
-        "related_categories": [
-          "画像・動画生成",
-          "AIツール・モデル"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiyefvx3lxte9poe1ftfb3qtgyz0lwotlxvgu1r0lpwky0q0ptx0ndazvbsg9trnjpq2nqwe1uv0fjdkrdnli4eehzce1uujfpbthquhnmdnhoy1d3nvbzmxrozdk2uvriua": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiyefvx3lxte9poe1ftfb3qtgyz0lwotlxvgu1r0lpwky0q0ptx0ndazvbsg9trnjpq2nqwe1uv0fjdkrdnli4eehzce1uujfpbthquhnmdnhoy1d3nvbzmxrozdk2uvriua",
-      "content_hash": "9efa25286982c49c5ecb9c1880d43f5713ec93963244d7f7bfa41287ab61e5d1",
-      "story_key": "65d3e8ab81fdf8477cedf660692fdd28bb36cc8e2f5f17dbc84cc99996fb358f",
-      "status": "enriched",
-      "processed_at": "2026-11-25T19:59:33.644Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "",
-      "result": {
-        "tool": "Midjourney",
-        "content_type": "article",
-        "expert_id": "",
-        "expert_ids": [],
-        "expert_name": "",
-        "expert_names": [],
-        "expert_role": "",
-        "expert_tier": "",
-        "platform": "",
-        "video_id": "",
-        "source_trust": "",
-        "title": "Midjourney、アニメ風画像生成AI「Niji V8」を発表",
-        "source_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9POE1FTFB3QTgyZ0lwOTlXVGU1R0lpWkY0Q0pTX0NDazVBSG9TRnJpQ2NqWE1UV0FJdkRDNlI4eEhZcE1uUjFpbThQUHNMdnhOY1d3NVBzMXRoZDk2UVRiUA?oc=5",
-        "source_name": "ASCII.jp",
-        "is_official": false,
-        "published_at": "2026-11-25T05:32:31.000Z",
-        "source_published_at": "2026-11-25T05:32:31.000Z",
-        "source_updated_at": "",
-        "source_date_status": "published",
-        "fetched_at": "2026-11-25T19:56:11.968Z",
-        "event_at": "",
-        "event_status": "発表済み",
-        "event_date_precision": "unknown",
-        "story_entities": [
-          "Midjourney",
-          "Niji V8"
-        ],
-        "primary_entity": "Midjourney",
-        "story_subject": "Niji V8",
-        "event_type": "release",
-        "event_stage": "announced",
-        "event_scope": "Midjourneyサービス全体",
-        "fact_slots": [
-          {
-            "type": "version",
-            "scope": "Niji",
-            "value": "V8",
-            "normalized_value": "v8"
-          }
-        ],
-        "new_facts": [
-          "Midjourneyがアニメ向け画像生成モデル「Niji V8」を発表した。",
-          "記事には作例画像が掲載されている。"
-        ],
-        "structured_complete": true,
-        "raw_excerpt": "画像生成AI企業Midjourneyがアニメ調イラストに特化した新モデル「Niji V8」を発表し、作例も公開された。",
-        "detail": "ASCII.jpが報じた。画像生成AIサービスのMidjourneyが、アニメ風のイラストを作ることに特化した新しいモデル「Niji V8」を発表したという。これまでの「Niji」シリーズの新しいバージョンにあたる。\n\n記事では実際にNiji V8で作られたとみられる作例画像が複数紹介されている。Nijiシリーズは、文章で指示を出すとアニメやイラスト調の絵を自動で作る仕組みで、通常のMidjourneyモデルとは別にアニメ表現向けに調整されている。新しいバージョンが出たことで、アニメらしい絵柄や表現の幅が広がったとみられる。\n\nMidjourneyを使ってイラストを作っているクリエイターは、新しいNiji V8を試すことで作風の変化を確認できる。利用開始の具体的な条件や料金、対応環境については記事からは確認できない。",
-        "change_summary": "アニメ向け画像生成AIの新バージョン「Niji V8」が発表された。",
-        "impact_summary": "アニメ風イラストを作る創作者や企業が、新しい表現の選択肢を得られる可能性がある。",
-        "action_suggestion": "利用開始時期や料金など具体的な提供条件はまだ記事から確認できていない。",
-        "importance": "B",
-        "related_categories": [
-          "画像・動画生成"
-        ],
-        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
-      }
-    },
-    "url:https://news.google.com/rss/articles/cbmiggfbvv95cuxoqzlrukdgsdnbrlduymprtuz0mzzta1i3a3dom0rirejdntnvcmpyv1uxwkfgnnbqy3f3u2j2thnduhpodzrmqk5tqmrintn2m1pwqu1orgs2aepocul3t1n1xzhhsmpurwfjvfc4r2c2rvflemx4tkrxykl4t1dvwkpb": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmiggfbvv95cuxoqzlrukdgsdnbrlduymprtuz0mzzta1i3a3dom0rirejdntnvcmpyv1uxwkfgnnbqy3f3u2j2thnduhpodzrmqk5tqmrintn2m1pwqu1orgs2aepocul3t1n1xzhhsmpurwfjvfc4r2c2rvflemx4tkrxykl4t1dvwkpb",
-      "content_hash": "8c6a1497822652a464d4b8ca41e3ab4c4019d4d947b618b274bfc73d3a26d021",
-      "story_key": "5efbcfbdafee3f45ca8dc1cc6356c8c2e4fd47872c7c01141723e5b4244963be",
-      "status": "rejected",
-      "processed_at": "2026-11-25T19:59:33.644Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 信頼性不明な媒体で具体的事実が確認できない"
-    },
-    "url:https://news.google.com/rss/articles/cbmilafbvv95cuxnt0ddykdov1rzu184z3ddmtbqode3r3dwvgfxajlav3vune1iz2haudfgzkitb09xof9yctk1zm1swjvub3zvrmfubnixwhl1sldwyjz2agx3bxppmlu0zdjluzrhuwnvwmjgdme0em5acelzmwjoc0y4dxg4bxktmulldhpuwvy0q1hpcmpvr01dz2hx": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmilafbvv95cuxnt0ddykdov1rzu184z3ddmtbqode3r3dwvgfxajlav3vune1iz2haudfgzkitb09xof9yctk1zm1swjvub3zvrmfubnixwhl1sldwyjz2agx3bxppmlu0zdjluzrhuwnvwmjgdme0em5acelzmwjoc0y4dxg4bxktmulldhpuwvy0q1hpcmpvr01dz2hx",
-      "content_hash": "368ea230891a71154d6ab72761b98bb1e7f68533a499647069a7e007ba8e4d47",
-      "story_key": "8c585c9e180b82bdb408cd41cfe71e351fc42c56dadaa578a5fe6d5557a54a47",
-      "status": "rejected",
-      "processed_at": "2026-11-25T19:59:33.644Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: 機能の具体的内容が不明で広告的な内容"
-    },
-    "url:https://news.google.com/rss/articles/cbmixafbvv95cuxnqnnlx0xqudy1ajjzvzlkqwlzwehkujrps3h4uhniu1owt3buvndyshfrr0s2tehwdlnhm2jdovnmnjzmmw9iqvflbef5r3fhterzzw5zx2v4n21wyxixwhfldjlkzjznvvfoc2dvytzma1b5qtzfdulndnnfltb0ueraexoyyv9kvwrjwc1inlitwelqtw5lu1jpmvhulu43agjlbfvytkhhbmdodfp6d3lisnpinkwxwmsybznknzzsag140ghmaufvx3lxtfbvvmpytwtfd0zzzhmttnjdwmk0uuv5wg1pckhhnxbsohppq2tvmejvnv83szaysvdrddzwz0fwqlvrrgv5enlamtnplwdumktpanjbbw9bulz1lw1suglrmml6a3pvmlzidjnyylk0we9obec0zlitrfvgx3lnqxnrs1ptwjg5czztmzlbbgnuzggxrzfrynlysm1ltwduajvnbda3mfrqml9qnk5oekmtnvbvd2q2ymzrc1fvyzriclz6qxdtufi3ai1hea": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmixafbvv95cuxnqnnlx0xqudy1ajjzvzlkqwlzwehkujrps3h4uhniu1owt3buvndyshfrr0s2tehwdlnhm2jdovnmnjzmmw9iqvflbef5r3fhterzzw5zx2v4n21wyxixwhfldjlkzjznvvfoc2dvytzma1b5qtzfdulndnnfltb0ueraexoyyv9kvwrjwc1inlitwelqtw5lu1jpmvhulu43agjlbfvytkhhbmdodfp6d3lisnpinkwxwmsybznknzzsag140ghmaufvx3lxtfbvvmpytwtfd0zzzhmttnjdwmk0uuv5wg1pckhhnxbsohppq2tvmejvnv83szaysvdrddzwz0fwqlvrrgv5enlamtnplwdumktpanjbbw9bulz1lw1suglrmml6a3pvmlzidjnyylk0we9obec0zlitrfvgx3lnqxnrs1ptwjg5czztmzlbbgnuzggxrzfrynlysm1ltwduajvnbda3mfrqml9qnk5oekmtnvbvd2q2ymzrc1fvyzriclz6qxdtufi3ai1hea",
-      "content_hash": "5558efda45d4c311d92e609c587d0b171fae8ac6f1357f6de12b18893c1b9558",
-      "story_key": "ac9e0bce1ba00647fd2c2677e1673bb9dab9356a7b1dbead7e70d43f79c903e4",
-      "status": "rejected",
-      "processed_at": "2026-11-25T19:59:33.644Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: AIと無関係な空飛ぶ車のニュースのため除外"
-    },
-    "url:https://news.google.com/rss/articles/cbmikafbvv95cuxnnvrozkr4n1zuevrfrhznrhdysglvrkc3qjddcf9rzhfjrlyxx2xvvgdwbi1ldfzysi15cehkbtvsaw5qcljyng9lrtjmdktnythpwnvcam1ocmqyevgtexfry1vjtwfcegteaepaddrrqwo3cwxyn2cxylzju1znefhqbhz5uuvhudjyunc0dl8": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmikafbvv95cuxnnvrozkr4n1zuevrfrhznrhdysglvrkc3qjddcf9rzhfjrlyxx2xvvgdwbi1ldfzysi15cehkbtvsaw5qcljyng9lrtjmdktnythpwnvcam1ocmqyevgtexfry1vjtwfcegteaepaddrrqwo3cwxyn2cxylzju1znefhqbhz5uuvhudjyunc0dl8",
-      "content_hash": "9d2974cf166507ee010f5ace53b78a5e4a50f38ee9ffaa273f91c1f2e1b36bc7",
-      "story_key": "e960dc53b591917fb59583940028e67ff4a892a9c76eb260d15182300d07bc90",
-      "status": "retry",
-      "processed_at": "2026-11-25T19:59:33.644Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmi8gfbvv95cuxoamv2s2vtnw9rttnwsm9esk9mvureqmpycvvrt0fvte5ylty4btvtskpqvk5xu2ddyurrewuztgtjb0phdg9jbunfzk4wzy03ce1ubwnndkxwzdjidk1zs0nudfzqu2njuvyyafnkngpeq3bgb0peb2lhteltzzu5undqnujtvm5otfaysejywwq0ufdxs0fvuxbwmkf1wmxjx05ms3rhclz3x0dttddmren0ne5xs0fkdg9vrfa5x09ecm5fa1g4uf9lzwxwrfpxr2jkx0oya3puqxniuxbyatjld3jvmw5xszvrztk5nfffz9ib9wfbvv95cuxqotntqm01eg5xcxctmkvsae13odjlck1dwla1t3zgs1h0zlfsbwhorjjqaxdxz3rjsxb0bzzhv0xmx0d2z3yxavr6vvnit1o4m1fisxlbb2tgtnyyn1zxrfnnchbywu82n2tpr09zvnrpdxplauxhlxexv242eje2udjvtnmyeeg4ofjzn3paekjoahbueejwbjdteujhdgq4bevnry0zotgxa1rnutrjdxftuy11zs1mt0pmovyyz3fttg5vrlnmuxnxuwjgx2pjdmzxthpjtdhwuu45sux3unplrndqr0phznjmy0xkx3bvt2jidg5r": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmi8gfbvv95cuxoamv2s2vtnw9rttnwsm9esk9mvureqmpycvvrt0fvte5ylty4btvtskpqvk5xu2ddyurrewuztgtjb0phdg9jbunfzk4wzy03ce1ubwnndkxwzdjidk1zs0nudfzqu2njuvyyafnkngpeq3bgb0peb2lhteltzzu5undqnujtvm5otfaysejywwq0ufdxs0fvuxbwmkf1wmxjx05ms3rhclz3x0dttddmren0ne5xs0fkdg9vrfa5x09ecm5fa1g4uf9lzwxwrfpxr2jkx0oya3puqxniuxbyatjld3jvmw5xszvrztk5nfffz9ib9wfbvv95cuxqotntqm01eg5xcxctmkvsae13odjlck1dwla1t3zgs1h0zlfsbwhorjjqaxdxz3rjsxb0bzzhv0xmx0d2z3yxavr6vvnit1o4m1fisxlbb2tgtnyyn1zxrfnnchbywu82n2tpr09zvnrpdxplauxhlxexv242eje2udjvtnmyeeg4ofjzn3paekjoahbueejwbjdteujhdgq4bevnry0zotgxa1rnutrjdxftuy11zs1mt0pmovyyz3fttg5vrlnmuxnxuwjgx2pjdmzxthpjtdhwuu45sux3unplrndqr0phznjmy0xkx3bvt2jidg5r",
-      "content_hash": "938c9a6788acf3f6a3a87bb7dae2636686679ac44b8af9bd53fec7b606953705",
-      "story_key": "8670acde72f1b73fa18d5235f37ddb4b14b92731d31a65f33e3d56c803a0cac8",
-      "status": "rejected",
-      "processed_at": "2026-11-25T20:00:17.198Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: タイトル反復のみで具体的な新機能の記載がない"
-    },
-    "url:https://news.google.com/rss/articles/cbmimafbvv95cuxnme53zuf6dvfoewtszjnhwnj3ltgtrvdistlzzjrrsxc1rje5uzlplvvxruvmstdlukdfzvm3yw9svhdxaxpebgnjevpdrlvpqkvnqw5qd202vet6cy03u1dkbmdhbvjznmnftuxzqv9su2z4bkhycdjdwmy2dm9gu1rzy2vqnhdfwkh0wuu5tvpyrmq2cgfpra": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmimafbvv95cuxnme53zuf6dvfoewtszjnhwnj3ltgtrvdistlzzjrrsxc1rje5uzlplvvxruvmstdlukdfzvm3yw9svhdxaxpebgnjevpdrlvpqkvnqw5qd202vet6cy03u1dkbmdhbvjznmnftuxzqv9su2z4bkhycdjdwmy2dm9gu1rzy2vqnhdfwkh0wuu5tvpyrmq2cgfpra",
-      "content_hash": "81ced29b7ad9d3e79b3e2c7aad113104f95c61323458a6f5de12a37b41d9150e",
-      "story_key": "0e3174a1ef7c9933fc06ec5dc7621102698c7e8fcd8be67daae19956a646990a",
-      "status": "rejected",
-      "processed_at": "2026-11-25T20:00:17.198Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "ai_skip: ガイド紹介のみで具体的な事実・数字がない"
-    },
-    "url:https://news.google.com/rss/articles/cbmixgfbvv95cuxqynuwudg5y1c0zgtcq0rvdglftnc2umtgznb2uuhyqu8xug5lbm5odhixnefsc0yzyjc0rljbbkfrc3hnegnssf9sqnrwqvj3de5kzwoyotjzymffrwjjow5szlr1mzfaawo0quh6efnpr2prs2jzn2i3s292lvbszzhjwflia3f0sku4dmzwzmn0axdqcnnzvi1ubmlsbgfwewnswwt3rfq4ohz4smlez29nbwxgntjpd2paek4xnkpfak13u0e": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmixgfbvv95cuxqynuwudg5y1c0zgtcq0rvdglftnc2umtgznb2uuhyqu8xug5lbm5odhixnefsc0yzyjc0rljbbkfrc3hnegnssf9sqnrwqvj3de5kzwoyotjzymffrwjjow5szlr1mzfaawo0quh6efnpr2prs2jzn2i3s292lvbszzhjwflia3f0sku4dmzwzmn0axdqcnnzvi1ubmlsbgfwewnswwt3rfq4ohz4smlez29nbwxgntjpd2paek4xnkpfak13u0e",
-      "content_hash": "e6bb674a8c33ba7cb8f0e79ada084c4385080a8413794e6ddfd41c286a651e47",
-      "story_key": "4ccbb8e862e59e53b01084bb8eef37b5ade71962dd159c5df9a1db88468bd1ab",
-      "status": "retry",
-      "processed_at": "2026-11-25T20:00:17.198Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
-    },
-    "url:https://news.google.com/rss/articles/cbmitkfvx3lxte0xazfdatzevhrsrmrnwxbqqk94uhltndnbs2d6zng3yl9fou1uslbwmu0znehcme82ymdwovrtoxfwekttsdnkrezdz2nfqq": {
-      "canonical_url": "https://news.google.com/rss/articles/cbmitkfvx3lxte0xazfdatzevhrsrmrnwxbqqk94uhltndnbs2d6zng3yl9fou1uslbwmu0znehcme82ymdwovrtoxfwekttsdnkrezdz2nfqq",
-      "content_hash": "76ccb12cd4d2c263a042a3d70b70d7f926114aba0316894764585781dc713a1b",
-      "story_key": "36c83fa4f7e21c9ceb6247008b7e21c472450ec7680e9a2373a8df08ef0e2b60",
-      "status": "retry",
-      "processed_at": "2026-11-25T20:00:17.198Z",
-      "model": "claude-sonnet-5",
-      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
-      "lane": "regular",
-      "reason": "missing_or_incomplete_ai_output"
     }
   },
-  "updated_at": "2026-11-25T20:00:17.198Z"
+  "updated_at": "2026-11-26T03:01:48.518Z"
 }
