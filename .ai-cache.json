@@ -20590,7 +20590,82 @@
           "same_scope"
         ]
       }
+    },
+    "url:https://www.youtube.com/watch?v=rlazu3k9vjo": {
+      "canonical_url": "https://www.youtube.com/watch?v=rlazu3k9vjo",
+      "content_hash": "972a15d03821715578c94beff18e9173b5f111e8f85929c9de280ca0e8d4cd2d",
+      "story_key": "684de642fd6600351f78e3b1a80faf9a2790a8d074cd2d58249a9f52e79eb8b1",
+      "status": "enriched",
+      "processed_at": "2026-11-26T03:46:59.472Z",
+      "model": "claude-sonnet-5",
+      "prompt_version": "ai-radar-2026-08-30-v13-core-depth",
+      "lane": "expert",
+      "reason": "",
+      "result": {
+        "tool": "専門家動画・発言",
+        "content_type": "expert_video",
+        "expert_id": "tomohiro-ikeda",
+        "expert_ids": [
+          "tomohiro-ikeda"
+        ],
+        "expert_name": "池田朋弘（いけとも）",
+        "expert_names": [
+          "池田朋弘（いけとも）"
+        ],
+        "expert_role": "生成AIの仕事への活用を教える解説者",
+        "expert_tier": "practical_ai_educator",
+        "platform": "YouTube",
+        "video_id": "RlaZu3k9VJo",
+        "source_trust": "primary",
+        "title": "ビル・ゲイツ氏「AIが得意でも人に残したい仕事」池田朋弘氏が解説",
+        "source_url": "https://www.youtube.com/watch?v=RlaZu3k9VJo",
+        "source_name": "いけともch",
+        "is_official": true,
+        "published_at": "2026-11-26T03:00:15.000Z",
+        "source_published_at": "2026-11-26T03:00:15.000Z",
+        "source_updated_at": "",
+        "source_date_status": "published",
+        "fetched_at": "2026-11-26T03:46:13.033Z",
+        "event_at": "",
+        "event_status": "不明",
+        "event_date_precision": "unknown",
+        "story_entities": [
+          "ビル・ゲイツ",
+          "池田朋弘",
+          "いけともch"
+        ],
+        "primary_entity": "池田朋弘(いけともch)",
+        "story_subject": "AIと人間が担うべき仕事の区分についてのビル・ゲイツ氏の発言",
+        "event_type": "other",
+        "event_stage": "other",
+        "event_scope": "動画配信・一般論",
+        "fact_slots": [
+          {
+            "type": "other",
+            "scope": "ゲイツ氏が挙げた仕事の数",
+            "value": "4つ",
+            "normalized_value": "4"
+          }
+        ],
+        "new_facts": [
+          "ビル・ゲイツ氏がAIより人間に残したい仕事として保育・調理・芸術・スポーツの4つを挙げたとされる",
+          "共通点は結果より誰が行ったかに価値がある点だと池田朋弘氏が解説している",
+          "判断基準はAIの能力ではなく社会が人に担ってほしいものかどうかだとされる"
+        ],
+        "structured_complete": true,
+        "raw_excerpt": "ビル・ゲイツ氏が、AIより人間に任せたい仕事として保育・調理・芸術・スポーツの4つを挙げたと池田朋弘氏が紹介した。",
+        "detail": "池田朋弘氏がYouTube番組で、ビル・ゲイツ氏の発言を紹介しました。ゲイツ氏は、AIの方が上手にできても人間に残したい仕事があると述べたといいます。挙げられたのは保育、調理、芸術、スポーツの4つの仕事です。\n\nこれらの仕事に共通するのは、結果そのものよりも誰が行ったかに価値がある点だといいます。保育は人と人との関係が中心で、調理と芸術は作り手が誰かが意味を持つとされます。スポーツは人同士の勝負だからこそ見る価値があるという考え方です。\n\n池田氏は、判断の基準はAIが上手かどうかではないと説明しています。社会がどの仕事を人に担ってほしいと望むかが基準になるという整理です。この見解はゲイツ氏個人の発言であり、確定した結論ではありません。",
+        "change_summary": "AIの能力の高さではなく、人が担う意味の有無で仕事を分けるという視点が紹介された。",
+        "impact_summary": "AIが様々な仕事をこなせるようになる中で、どの仕事を人に残すべきかを考える材料になる。",
+        "action_suggestion": "詳しい解説は池田朋弘氏のX投稿で確認できるとされており、元の発言内容の一次情報は示されていない。",
+        "importance": "B",
+        "related_categories": [
+          "AIツール・モデル",
+          "その他"
+        ],
+        "enrichment_version": "ai-radar-2026-08-30-v13-core-depth"
+      }
     }
   },
-  "updated_at": "2026-11-26T03:01:48.518Z"
+  "updated_at": "2026-11-26T03:46:59.472Z"
 }
