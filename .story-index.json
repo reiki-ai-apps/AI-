@@ -2,6 +2,54 @@
   "version": 1,
   "items": [
     {
+      "article_id": "article_471c39f9c83db4c60cc7",
+      "story_id": "story_14fdd50fb719471882",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "ビル・ゲイツ氏「AIが得意でも人に残したい仕事」池田朋弘氏が解説",
+      "source_published_at": "2026-11-26T03:00:15.000Z",
+      "published_at": "2026-11-26T03:00:15.000Z",
+      "fetched_at": "2026-11-26T03:46:13.033Z",
+      "event_at": "",
+      "event_status": "不明",
+      "raw_excerpt": "ビル・ゲイツ氏が、AIより人間に任せたい仕事として保育・調理・芸術・スポーツの4つを挙げたと池田朋弘氏が紹介した。",
+      "source_name": "いけともch",
+      "source_url": "https://www.youtube.com/watch?v=RlaZu3k9VJo",
+      "story_entities": [
+        "ビル・ゲイツ",
+        "池田朋弘",
+        "いけともch",
+        "ビルゲイツ"
+      ],
+      "primary_entity": "池田朋弘(いけともch)",
+      "story_subject": "AIと人間が担うべき仕事の区分についてのビル・ゲイツ氏の発言",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "動画配信・一般論",
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "ゲイツ氏が挙げた仕事の数",
+          "value": "4つ",
+          "normalized_value": "4"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "AIの能力の高さではなく、人が担う意味の有無で仕事を分けるという視点が紹介された。",
+      "detail": "池田朋弘氏がYouTube番組で、ビル・ゲイツ氏の発言を紹介しました。ゲイツ氏は、AIの方が上手にできても人間に残したい仕事があると述べたといいます。挙げられたのは保育、調理、芸術、スポーツの4つの仕事です。\n\nこれらの仕事に共通するのは、結果そのものよりも誰が行ったかに価値がある点だといいます。保育は人と人との関係が中心で、調理と芸術は作り手が誰かが意味を持つとされます。スポーツは人同士の勝負だからこそ見る価値があるという考え方です。\n\n池田氏は、判断の基準はAIが上手かどうかではないと説明しています。社会がどの仕事を人に担ってほしいと望むかが基準になるという整理です。この見解はゲイツ氏個人の発言であり、確定した結論ではありません。",
+      "new_facts": [
+        "ビル・ゲイツ氏がAIより人間に残したい仕事として保育・調理・芸術・スポーツの4つを挙げたとされる",
+        "共通点は結果より誰が行ったかに価値がある点だと池田朋弘氏が解説している",
+        "判断基準はAIの能力ではなく社会が人に担ってほしいものかどうかだとされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
       "article_id": "article_5bebc23d204d9e0b4d5d_rev_083ec6c4dd9f",
       "story_id": "story_ea45135b57310f414f",
       "story_sequence": 2,
@@ -299,6 +347,67 @@
       "dedupe_reasons": [
         "shared_entity",
         "same_subject"
+      ],
+      "change_summary": "思考の深さを示すエフォート設定を5段階で比較し、仕上がりと時間・使用量の違いを具体的に示した点が新しい。",
+      "detail": "KEITO氏がYouTube動画で、AIモデルの思考設定を比較検証した。対象は会話AI「Claude」の最新モデルOpus5.5だ。エフォートと呼ぶ、AIが考える深さを決める設定を5段階で試した。\n\n検証ではFPSゲームや資料作り、広告ページ制作の3課題を比較した。設定ごとに生成にかかる時間と、出力トークンと呼ぶ文字量も比較した。比較にはClaudeとは別の対話AIであるFable5.2の結果も使った。\n\n使う人は作業の内容に応じて、設定の強さを選ぶ目安にできる動画になっている。設定を最大にすれば必ず良い結果になるとは限らない点に注意が必要だ。検証結果の詳しい数値や判断基準は、動画の中でのみ公開されている。",
+      "new_facts": [
+        "KEITO氏がClaude Opus 5.5のエフォート設定5段階を比較する動画を公開した",
+        "FPSゲーム、ビジネススライド、広告LPの3つの題材で仕上がりを検証した",
+        "生成時間と出力トークン数も計測して比較した",
+        "Fable 5.2の結果も動画内で紹介された"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_84ecdcf0da77976c75e9_rev_f44e9d31676a",
+      "story_id": "story_a557298a1c0da6794d",
+      "story_sequence": 2,
+      "relation_type": "follow_up",
+      "relation_confidence": 1,
+      "title": "Claude Opus 5.5の思考設定5段階を徹底比較",
+      "source_published_at": "2026-11-25T09:00:19.000Z",
+      "published_at": "2026-11-25T09:00:19.000Z",
+      "fetched_at": "2026-11-26T03:00:10.049Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "KEITO氏がYouTube動画で、対話AI「Claude」の思考設定を5段階で比較し、仕上がりと時間・使用量の違いを検証した。",
+      "source_name": "KEITO【AI&WEB ch】",
+      "source_url": "https://www.youtube.com/watch?v=H3xoQEZ_8jU",
+      "story_entities": [
+        "Claude Opus 5.5",
+        "KEITO",
+        "Fable 5.2",
+        "claudeopus5.5",
+        "keito"
+      ],
+      "primary_entity": "KEITO",
+      "story_subject": "Claude Opus 5.5のエフォート設定比較検証",
+      "event_type": "other",
+      "event_stage": "other",
+      "event_scope": "YouTube動画",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "比較対象モデル",
+          "value": "Claude Opus 5.5",
+          "normalized_value": "claudeopus5.5"
+        },
+        {
+          "type": "version",
+          "scope": "比較対象モデル",
+          "value": "Fable 5.2",
+          "normalized_value": "fable5.2"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "follow_up",
+      "dedupe_reasons": [
+        "same_url",
+        "same_primary_entity",
+        "same_subject",
+        "similar_title",
+        "same_scope",
+        "material_fact_changed"
       ],
       "change_summary": "思考の深さを示すエフォート設定を5段階で比較し、仕上がりと時間・使用量の違いを具体的に示した点が新しい。",
       "detail": "KEITO氏がYouTube動画で、AIモデルの思考設定を比較検証した。対象は会話AI「Claude」の最新モデルOpus5.5だ。エフォートと呼ぶ、AIが考える深さを決める設定を5段階で試した。\n\n検証ではFPSゲームや資料作り、広告ページ制作の3課題を比較した。設定ごとに生成にかかる時間と、出力トークンと呼ぶ文字量も比較した。比較にはClaudeとは別の対話AIであるFable5.2の結果も使った。\n\n使う人は作業の内容に応じて、設定の強さを選ぶ目安にできる動画になっている。設定を最大にすれば必ず良い結果になるとは限らない点に注意が必要だ。検証結果の詳しい数値や判断基準は、動画の中でのみ公開されている。",
