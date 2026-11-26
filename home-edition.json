@@ -7,55 +7,59 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-25T19:56:11.968Z",
-  "window_end": "2026-11-26T02:53:21.987Z",
-  "last_window_end": "2026-11-26T02:53:21.987Z",
-  "last_checked_at": "2026-11-26T02:59:09.944Z",
-  "last_published_at": "2026-11-26T02:59:09.944Z",
-  "home_content_changed_at": "2026-11-26T02:59:09.944Z",
+  "window_start": "2026-11-26T02:53:21.987Z",
+  "window_end": "2026-11-26T13:55:06.497Z",
+  "last_window_end": "2026-11-26T13:55:06.497Z",
+  "last_checked_at": "2026-11-26T13:59:03.383Z",
+  "last_published_at": "2026-11-26T13:59:03.383Z",
+  "home_content_changed_at": "2026-11-26T13:59:03.383Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 4,
-  "distinct_candidate_count": 4,
+  "candidate_count": 2,
+  "distinct_candidate_count": 2,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 4,
+  "novel_candidate_count": 2,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
   "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 4,
-  "continued_selected_count": 1,
+  "new_selected_count": 2,
+  "continued_selected_count": 3,
   "tool_evolution_selected_count": 2,
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
     "article_5bebc23d204d9e0b4d5d_rev_083ec6c4dd9f",
     "article_42a8653f82bbb9e7f2da",
+    "article_9d8313181bb08ab07fed",
     "article_ef0e5479bcfd866371e9",
-    "article_074d96c650d264b1006f",
-    "article_5c0ba28872961f33a587"
+    "article_b9c0e7a504d348dac605"
   ],
   "new_article_ids": [
-    "article_5bebc23d204d9e0b4d5d_rev_083ec6c4dd9f",
-    "article_42a8653f82bbb9e7f2da",
-    "article_ef0e5479bcfd866371e9",
-    "article_5c0ba28872961f33a587"
+    "article_9d8313181bb08ab07fed",
+    "article_b9c0e7a504d348dac605"
   ],
   "continued_article_ids": [
-    "article_074d96c650d264b1006f"
+    "article_5bebc23d204d9e0b4d5d_rev_083ec6c4dd9f",
+    "article_42a8653f82bbb9e7f2da",
+    "article_ef0e5479bcfd866371e9"
   ],
   "continuation_sources": {
-    "article_074d96c650d264b1006f": "previous_edition"
+    "article_5bebc23d204d9e0b4d5d_rev_083ec6c4dd9f": "previous_edition",
+    "article_42a8653f82bbb9e7f2da": "previous_edition",
+    "article_ef0e5479bcfd866371e9": "previous_edition"
   },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-26",
   "same_day_article_ids": [
-    "article_074d96c650d264b1006f"
+    "article_5bebc23d204d9e0b4d5d_rev_083ec6c4dd9f",
+    "article_42a8653f82bbb9e7f2da",
+    "article_ef0e5479bcfd866371e9"
   ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
@@ -412,7 +416,9 @@
     "article_5bebc23d204d9e0b4d5d_rev_083ec6c4dd9f": "2026-11-26",
     "article_42a8653f82bbb9e7f2da": "2026-11-26",
     "article_ef0e5479bcfd866371e9": "2026-11-26",
-    "article_5c0ba28872961f33a587": "2026-11-26"
+    "article_5c0ba28872961f33a587": "2026-11-26",
+    "article_9d8313181bb08ab07fed": "2026-11-26",
+    "article_b9c0e7a504d348dac605": "2026-11-26"
   },
   "home_shown_story_log": [
     {
@@ -3229,18 +3235,78 @@
       "selected_at": "2026-11-26T02:59:09.944Z",
       "edition_window_end": "2026-11-26T02:53:21.987Z",
       "shown_day": "2026-11-26"
+    },
+    {
+      "article_id": "article_9d8313181bb08ab07fed",
+      "story_id": "story_97c3329a148dd0ebf4",
+      "title": "キオクシア株、NVIDIAとの協業発表で一時14%急騰",
+      "primary_entity": "キオクシア",
+      "story_subject": "NVIDIAとの協業によるSSDを使ったGPUメモリ拡張",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "半導体業界",
+      "story_entities": [
+        "キオクシア",
+        "NVIDIA",
+        "nvidia"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "キオクシア株価の変動幅",
+          "value": "一時14%上昇",
+          "normalized_value": "14%"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-26T13:59:03.383Z",
+      "edition_window_end": "2026-11-26T13:55:06.497Z",
+      "shown_day": "2026-11-26"
+    },
+    {
+      "article_id": "article_b9c0e7a504d348dac605",
+      "story_id": "story_35634756d969945084",
+      "title": "ChatGPT Sites、2027年2月から利用枠超過分に課金へ",
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT Sitesの利用枠課金",
+      "event_type": "pricing",
+      "event_stage": "announced",
+      "event_scope": "ChatGPT Sites利用者(全世界)",
+      "story_entities": [
+        "ChatGPT Sites",
+        "OpenAI",
+        "chatgptsites",
+        "openai",
+        "chatgpt"
+      ],
+      "fact_slots": [
+        {
+          "type": "date",
+          "scope": "利用枠超過課金の開始時期",
+          "value": "2027年2月",
+          "normalized_value": "2027年2月"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-26T13:59:03.383Z",
+      "edition_window_end": "2026-11-26T13:55:06.497Z",
+      "shown_day": "2026-11-26"
     }
   ],
   "scores": {
     "article_5bebc23d204d9e0b4d5d_rev_083ec6c4dd9f": {
       "article_id": "article_5bebc23d204d9e0b4d5d_rev_083ec6c4dd9f",
-      "total": 94,
+      "total": 84,
       "breakdown": {
         "importance": 25,
         "topicality": 15,
         "scope": 10,
         "authority": 10,
-        "freshness": 10,
+        "freshness": 0,
         "tool_evolution": 24,
         "economic_only": 0,
         "penalty": 0
@@ -3256,13 +3322,13 @@
     },
     "article_42a8653f82bbb9e7f2da": {
       "article_id": "article_42a8653f82bbb9e7f2da",
-      "total": 92,
+      "total": 84,
       "breakdown": {
         "importance": 25,
         "topicality": 20,
         "scope": 10,
         "authority": 5,
-        "freshness": 8,
+        "freshness": 0,
         "tool_evolution": 24,
         "economic_only": 0,
         "penalty": 0
@@ -3275,15 +3341,35 @@
       ],
       "published_at": "2026-11-26T01:11:44.000Z"
     },
+    "article_9d8313181bb08ab07fed": {
+      "article_id": "article_9d8313181bb08ab07fed",
+      "total": 74,
+      "breakdown": {
+        "importance": 45,
+        "topicality": 15,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 3,
+        "tool_evolution": 0,
+        "economic_only": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度A",
+        "主要AI企業・基盤",
+        "大きな製品・市場変化"
+      ],
+      "published_at": "2026-11-26T05:58:00.000Z"
+    },
     "article_ef0e5479bcfd866371e9": {
       "article_id": "article_ef0e5479bcfd866371e9",
-      "total": 85,
+      "total": 80,
       "breakdown": {
         "importance": 45,
         "topicality": 20,
         "scope": 10,
         "authority": 5,
-        "freshness": 5,
+        "freshness": 0,
         "tool_evolution": 0,
         "economic_only": 0,
         "penalty": 0
@@ -3295,46 +3381,24 @@
       ],
       "published_at": "2026-11-25T23:12:11.000Z"
     },
-    "article_074d96c650d264b1006f": {
-      "article_id": "article_074d96c650d264b1006f",
-      "total": 60,
+    "article_b9c0e7a504d348dac605": {
+      "article_id": "article_b9c0e7a504d348dac605",
+      "total": 53,
       "breakdown": {
         "importance": 25,
-        "topicality": 20,
+        "topicality": 5,
         "scope": 10,
         "authority": 5,
-        "freshness": 0,
+        "freshness": 8,
         "tool_evolution": 0,
         "economic_only": 0,
         "penalty": 0
       },
       "reasons": [
         "重要度B",
-        "制度・安全への影響",
-        "大きな製品・市場変化"
+        "主要AI企業・基盤"
       ],
-      "published_at": "2026-11-25T14:59:03.000Z"
-    },
-    "article_5c0ba28872961f33a587": {
-      "article_id": "article_5c0ba28872961f33a587",
-      "total": 13,
-      "breakdown": {
-        "importance": 10,
-        "topicality": 5,
-        "scope": 3,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "economic_only": 0,
-        "penalty": -10
-      },
-      "reasons": [
-        "重要度C",
-        "主要AI企業・基盤",
-        "未確認情報を減点",
-        "遅れて確認できた新着"
-      ],
-      "published_at": "2026-11-25T09:53:11.000Z"
+      "published_at": "2026-11-26T11:20:50.000Z"
     }
   },
   "recent_story_history": [
@@ -3918,6 +3982,64 @@
       "previous_article_id": "",
       "selected_at": "2026-11-26T02:59:09.944Z",
       "edition_window_end": "2026-11-26T02:53:21.987Z"
+    },
+    {
+      "article_id": "article_9d8313181bb08ab07fed",
+      "story_id": "story_97c3329a148dd0ebf4",
+      "title": "キオクシア株、NVIDIAとの協業発表で一時14%急騰",
+      "primary_entity": "キオクシア",
+      "story_subject": "NVIDIAとの協業によるSSDを使ったGPUメモリ拡張",
+      "event_type": "partnership",
+      "event_stage": "announced",
+      "event_scope": "半導体業界",
+      "story_entities": [
+        "キオクシア",
+        "NVIDIA",
+        "nvidia"
+      ],
+      "fact_slots": [
+        {
+          "type": "amount",
+          "scope": "キオクシア株価の変動幅",
+          "value": "一時14%上昇",
+          "normalized_value": "14%"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-26T13:59:03.383Z",
+      "edition_window_end": "2026-11-26T13:55:06.497Z"
+    },
+    {
+      "article_id": "article_b9c0e7a504d348dac605",
+      "story_id": "story_35634756d969945084",
+      "title": "ChatGPT Sites、2027年2月から利用枠超過分に課金へ",
+      "primary_entity": "OpenAI",
+      "story_subject": "ChatGPT Sitesの利用枠課金",
+      "event_type": "pricing",
+      "event_stage": "announced",
+      "event_scope": "ChatGPT Sites利用者(全世界)",
+      "story_entities": [
+        "ChatGPT Sites",
+        "OpenAI",
+        "chatgptsites",
+        "openai",
+        "chatgpt"
+      ],
+      "fact_slots": [
+        {
+          "type": "date",
+          "scope": "利用枠超過課金の開始時期",
+          "value": "2027年2月",
+          "normalized_value": "2027年2月"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-26T13:59:03.383Z",
+      "edition_window_end": "2026-11-26T13:55:06.497Z"
     }
   ]
 }
