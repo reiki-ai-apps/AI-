@@ -7,12 +7,12 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-26T19:36:19.734Z",
-  "window_end": "2026-11-27T02:55:32.041Z",
-  "last_window_end": "2026-11-27T02:55:32.041Z",
-  "last_checked_at": "2026-11-27T03:01:02.398Z",
-  "last_published_at": "2026-11-27T03:01:02.398Z",
-  "home_content_changed_at": "2026-11-27T03:01:02.398Z",
+  "window_start": "2026-11-27T02:55:32.041Z",
+  "window_end": "2026-11-27T13:52:53.615Z",
+  "last_window_end": "2026-11-27T13:52:53.615Z",
+  "last_checked_at": "2026-11-27T13:59:35.190Z",
+  "last_published_at": "2026-11-27T13:59:35.190Z",
+  "home_content_changed_at": "2026-11-27T13:59:35.190Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
@@ -34,36 +34,36 @@
   "carried_forward": false,
   "partially_carried_forward": true,
   "article_ids": [
-    "article_fbc6c6ec352fce8eca7c",
+    "article_a37b99b5059da0e9cc00",
     "article_2dae2ee4f23b1a9584aa",
+    "article_fbc6c6ec352fce8eca7c",
     "article_cbfab154b06aba07343d",
-    "article_804f121962127f05fc53",
-    "article_05352c7816a4c42c5828"
+    "article_4a04cbd5b914b0d78b5a"
   ],
   "new_article_ids": [
-    "article_fbc6c6ec352fce8eca7c",
-    "article_804f121962127f05fc53"
+    "article_a37b99b5059da0e9cc00",
+    "article_4a04cbd5b914b0d78b5a"
   ],
   "continued_article_ids": [
     "article_2dae2ee4f23b1a9584aa",
-    "article_cbfab154b06aba07343d",
-    "article_05352c7816a4c42c5828"
+    "article_fbc6c6ec352fce8eca7c",
+    "article_cbfab154b06aba07343d"
   ],
   "continuation_sources": {
     "article_2dae2ee4f23b1a9584aa": "previous_edition",
-    "article_cbfab154b06aba07343d": "previous_edition",
-    "article_05352c7816a4c42c5828": "previous_edition"
+    "article_fbc6c6ec352fce8eca7c": "previous_edition",
+    "article_cbfab154b06aba07343d": "previous_edition"
   },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-27",
   "same_day_article_ids": [
     "article_2dae2ee4f23b1a9584aa",
-    "article_cbfab154b06aba07343d",
-    "article_05352c7816a4c42c5828"
+    "article_fbc6c6ec352fce8eca7c",
+    "article_cbfab154b06aba07343d"
   ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 37,
+  "blocked_previous_day_count": 35,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -419,7 +419,9 @@
     "article_05352c7816a4c42c5828": "2026-11-27",
     "article_12061e3655179929a0fe": "2026-11-27",
     "article_fbc6c6ec352fce8eca7c": "2026-11-27",
-    "article_804f121962127f05fc53": "2026-11-27"
+    "article_804f121962127f05fc53": "2026-11-27",
+    "article_a37b99b5059da0e9cc00": "2026-11-27",
+    "article_4a04cbd5b914b0d78b5a": "2026-11-27"
   },
   "home_shown_story_log": [
     {
@@ -3373,29 +3375,79 @@
       "selected_at": "2026-11-27T03:01:02.398Z",
       "edition_window_end": "2026-11-27T02:55:32.041Z",
       "shown_day": "2026-11-27"
+    },
+    {
+      "article_id": "article_a37b99b5059da0e9cc00",
+      "story_id": "story_2dc8097d147202b9d5",
+      "title": "SAP、AI向け再編で1万人規模の人員削減を検討",
+      "primary_entity": "SAP",
+      "story_subject": "SAPの人員削減とAI向け再編",
+      "event_type": "other",
+      "event_stage": "planned",
+      "event_scope": "SAP全社",
+      "story_entities": [
+        "SAP",
+        "sap"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "削減検討人数",
+          "value": "少なくとも10000人",
+          "normalized_value": "10000"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-27T13:59:35.190Z",
+      "edition_window_end": "2026-11-27T13:52:53.615Z",
+      "shown_day": "2026-11-27"
+    },
+    {
+      "article_id": "article_4a04cbd5b914b0d78b5a",
+      "story_id": "story_cd517c898119bda3eb",
+      "title": "DeepSeekのAndroidアプリに料金照会機能が追加、有料化観測が浮上",
+      "primary_entity": "DeepSeek",
+      "story_subject": "Androidアプリの料金照会機能と有料化観測",
+      "event_type": "pricing",
+      "event_stage": "planned",
+      "event_scope": "Androidアプリ",
+      "story_entities": [
+        "DeepSeek",
+        "Androidアプリ",
+        "deepseek",
+        "androidアプリ",
+        "android"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-27T13:59:35.190Z",
+      "edition_window_end": "2026-11-27T13:52:53.615Z",
+      "shown_day": "2026-11-27"
     }
   ],
   "scores": {
-    "article_fbc6c6ec352fce8eca7c": {
-      "article_id": "article_fbc6c6ec352fce8eca7c",
-      "total": 67,
+    "article_a37b99b5059da0e9cc00": {
+      "article_id": "article_a37b99b5059da0e9cc00",
+      "total": 72,
       "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 3,
+        "importance": 45,
+        "topicality": 7,
+        "scope": 6,
         "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 24,
+        "freshness": 9,
+        "tool_evolution": 0,
         "economic_only": 0,
         "penalty": 0
       },
       "reasons": [
-        "重要度B",
-        "大きな製品・市場変化",
-        "遅れて確認できた新着",
-        "AIツールの新機能・実践価値"
+        "重要度A",
+        "重要な経営・研究体制"
       ],
-      "published_at": "2026-11-26T08:45:11.000Z"
+      "published_at": "2026-11-27T12:19:39.000Z"
     },
     "article_2dae2ee4f23b1a9584aa": {
       "article_id": "article_2dae2ee4f23b1a9584aa",
@@ -3417,6 +3469,26 @@
       ],
       "published_at": "2026-11-26T11:18:02.000Z"
     },
+    "article_fbc6c6ec352fce8eca7c": {
+      "article_id": "article_fbc6c6ec352fce8eca7c",
+      "total": 67,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 24,
+        "economic_only": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "AIツールの新機能・実践価値"
+      ],
+      "published_at": "2026-11-26T08:45:11.000Z"
+    },
     "article_cbfab154b06aba07343d": {
       "article_id": "article_cbfab154b06aba07343d",
       "total": 61,
@@ -3436,170 +3508,26 @@
       ],
       "published_at": "2026-11-25T21:45:00.000Z"
     },
-    "article_804f121962127f05fc53": {
-      "article_id": "article_804f121962127f05fc53",
-      "total": 48,
+    "article_4a04cbd5b914b0d78b5a": {
+      "article_id": "article_4a04cbd5b914b0d78b5a",
+      "total": 37,
       "breakdown": {
         "importance": 25,
-        "topicality": 5,
+        "topicality": 0,
         "scope": 6,
         "authority": 5,
-        "freshness": 7,
+        "freshness": 1,
         "tool_evolution": 0,
         "economic_only": 0,
         "penalty": 0
       },
       "reasons": [
-        "重要度B",
-        "主要AI企業・基盤"
+        "重要度B"
       ],
-      "published_at": "2026-11-27T00:45:00.000Z"
-    },
-    "article_05352c7816a4c42c5828": {
-      "article_id": "article_05352c7816a4c42c5828",
-      "total": 43,
-      "breakdown": {
-        "importance": 25,
-        "topicality": 10,
-        "scope": 3,
-        "authority": 5,
-        "freshness": 0,
-        "tool_evolution": 0,
-        "economic_only": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度B",
-        "大きな製品・市場変化"
-      ],
-      "published_at": "2026-11-25T21:00:00.000Z"
+      "published_at": "2026-11-27T03:36:00.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_ee8f3c824d16ff5ccde4",
-      "story_id": "story_c988028a52e3f7e49e",
-      "title": "ChatGPTに新モデル「GPT-6.2 Sol」登場、旧モデルは12月23日で提供終了",
-      "primary_entity": "OpenAI",
-      "story_subject": "ChatGPT GPT-6.2 Sol",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "ChatGPT全体",
-      "story_entities": [
-        "OpenAI",
-        "GPT-6.2 Sol",
-        "GPT-5.6 Sol",
-        "openai",
-        "gpt-6.2sol"
-      ],
-      "fact_slots": [
-        {
-          "type": "date",
-          "scope": "旧モデル提供終了日",
-          "value": "2026-12-23",
-          "normalized_value": "2026-12-23"
-        },
-        {
-          "type": "other",
-          "scope": "画像理解性能指標",
-          "value": "47%→72%",
-          "normalized_value": "47%"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-11-24T04:55:02.583Z",
-      "edition_window_end": "2026-11-24T04:50:07.656Z"
-    },
-    {
-      "article_id": "article_b0689cf87ab570a441c8",
-      "story_id": "story_23a28735914db3527a",
-      "title": "OpenAIとシスコ、Linux防御ランタイム「Shirudo」を公開",
-      "primary_entity": "OpenAI",
-      "story_subject": "Shirudo",
-      "event_type": "security",
-      "event_stage": "announced",
-      "event_scope": "Linuxシステム全般、オープンソース",
-      "story_entities": [
-        "OpenAI",
-        "Cisco",
-        "Shirudo",
-        "openai",
-        "cisco"
-      ],
-      "fact_slots": [
-        {
-          "type": "date",
-          "scope": "ウェビナー開催日",
-          "value": "2026-12-15",
-          "normalized_value": "2026-12-15"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-24T04:55:02.583Z",
-      "edition_window_end": "2026-11-24T04:50:07.656Z"
-    },
-    {
-      "article_id": "article_8f1af404f0ab8b1e806e",
-      "story_id": "story_275225b7d4d30743c1",
-      "title": "米商務省、Megaspeedなど7事業体を輸出規制リストに追加",
-      "primary_entity": "米商務省産業安全保障局(BIS)",
-      "story_subject": "Megaspeedなど7事業体のエンティティ・リスト追加",
-      "event_type": "policy",
-      "event_stage": "announced",
-      "event_scope": "米国の輸出規制対象",
-      "story_entities": [
-        "BIS",
-        "Megaspeed",
-        "bis",
-        "megaspeed"
-      ],
-      "fact_slots": [
-        {
-          "type": "count",
-          "scope": "エンティティ・リスト追加数",
-          "value": "7事業体",
-          "normalized_value": "7"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-24T04:55:02.583Z",
-      "edition_window_end": "2026-11-24T04:50:07.656Z"
-    },
-    {
-      "article_id": "article_3cbe35cad683189c51ef",
-      "story_id": "story_7082386183e0d830da",
-      "title": "「Kling AI」運営の快手、7~9月期に赤字転落 AI投資は拡大",
-      "primary_entity": "快手(Kuaishou)",
-      "story_subject": "快手7-9月期決算とKling AI投資",
-      "event_type": "other",
-      "event_stage": "completed",
-      "event_scope": "中国・快手の決算",
-      "story_entities": [
-        "Kling AI",
-        "klingai",
-        "kling",
-        "kuaishou"
-      ],
-      "fact_slots": [
-        {
-          "type": "date",
-          "scope": "決算期",
-          "value": "2026年7-9月期",
-          "normalized_value": "2026年79月期"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-11-24T04:55:02.583Z",
-      "edition_window_end": "2026-11-24T04:50:07.656Z"
-    },
     {
       "article_id": "article_ebb8b5d889a735dd020b",
       "story_id": "story_1b373c217b9999b519",
@@ -4169,6 +4097,56 @@
       "previous_article_id": "",
       "selected_at": "2026-11-27T03:01:02.398Z",
       "edition_window_end": "2026-11-27T02:55:32.041Z"
+    },
+    {
+      "article_id": "article_a37b99b5059da0e9cc00",
+      "story_id": "story_2dc8097d147202b9d5",
+      "title": "SAP、AI向け再編で1万人規模の人員削減を検討",
+      "primary_entity": "SAP",
+      "story_subject": "SAPの人員削減とAI向け再編",
+      "event_type": "other",
+      "event_stage": "planned",
+      "event_scope": "SAP全社",
+      "story_entities": [
+        "SAP",
+        "sap"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "削減検討人数",
+          "value": "少なくとも10000人",
+          "normalized_value": "10000"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-27T13:59:35.190Z",
+      "edition_window_end": "2026-11-27T13:52:53.615Z"
+    },
+    {
+      "article_id": "article_4a04cbd5b914b0d78b5a",
+      "story_id": "story_cd517c898119bda3eb",
+      "title": "DeepSeekのAndroidアプリに料金照会機能が追加、有料化観測が浮上",
+      "primary_entity": "DeepSeek",
+      "story_subject": "Androidアプリの料金照会機能と有料化観測",
+      "event_type": "pricing",
+      "event_stage": "planned",
+      "event_scope": "Androidアプリ",
+      "story_entities": [
+        "DeepSeek",
+        "Androidアプリ",
+        "deepseek",
+        "androidアプリ",
+        "android"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-27T13:59:35.190Z",
+      "edition_window_end": "2026-11-27T13:52:53.615Z"
     }
   ]
 }
