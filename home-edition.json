@@ -7,52 +7,63 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-26T13:55:06.497Z",
-  "window_end": "2026-11-26T19:36:19.734Z",
-  "last_window_end": "2026-11-26T19:36:19.734Z",
-  "last_checked_at": "2026-11-26T19:41:11.877Z",
-  "last_published_at": "2026-11-26T19:41:11.877Z",
-  "home_content_changed_at": "2026-11-26T19:41:11.877Z",
+  "window_start": "2026-11-26T19:36:19.734Z",
+  "window_end": "2026-11-27T02:55:32.041Z",
+  "last_window_end": "2026-11-27T02:55:32.041Z",
+  "last_checked_at": "2026-11-27T03:01:02.398Z",
+  "last_published_at": "2026-11-27T03:01:02.398Z",
+  "home_content_changed_at": "2026-11-27T03:01:02.398Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
   "update_health": "HEALTHY",
   "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 4,
-  "distinct_candidate_count": 4,
+  "candidate_count": 2,
+  "distinct_candidate_count": 2,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 4,
+  "novel_candidate_count": 2,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 4,
+  "selected_count": 5,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 4,
-  "continued_selected_count": 0,
-  "tool_evolution_selected_count": 1,
+  "new_selected_count": 2,
+  "continued_selected_count": 3,
+  "tool_evolution_selected_count": 2,
   "carried_forward": false,
-  "partially_carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_fbc6c6ec352fce8eca7c",
     "article_2dae2ee4f23b1a9584aa",
     "article_cbfab154b06aba07343d",
-    "article_05352c7816a4c42c5828",
-    "article_12061e3655179929a0fe"
+    "article_804f121962127f05fc53",
+    "article_05352c7816a4c42c5828"
   ],
   "new_article_ids": [
+    "article_fbc6c6ec352fce8eca7c",
+    "article_804f121962127f05fc53"
+  ],
+  "continued_article_ids": [
     "article_2dae2ee4f23b1a9584aa",
     "article_cbfab154b06aba07343d",
-    "article_05352c7816a4c42c5828",
-    "article_12061e3655179929a0fe"
+    "article_05352c7816a4c42c5828"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continuation_sources": {
+    "article_2dae2ee4f23b1a9584aa": "previous_edition",
+    "article_cbfab154b06aba07343d": "previous_edition",
+    "article_05352c7816a4c42c5828": "previous_edition"
+  },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-27",
-  "same_day_article_ids": [],
+  "same_day_article_ids": [
+    "article_2dae2ee4f23b1a9584aa",
+    "article_cbfab154b06aba07343d",
+    "article_05352c7816a4c42c5828"
+  ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
-  "blocked_previous_day_count": 39,
+  "blocked_previous_day_count": 37,
   "home_shown_days": {
     "article_730c1e906529abdc4a62": "2026-10-24",
     "article_4363ed6a8a73c54c0dca": "2026-10-24",
@@ -406,7 +417,9 @@
     "article_2dae2ee4f23b1a9584aa": "2026-11-27",
     "article_cbfab154b06aba07343d": "2026-11-27",
     "article_05352c7816a4c42c5828": "2026-11-27",
-    "article_12061e3655179929a0fe": "2026-11-27"
+    "article_12061e3655179929a0fe": "2026-11-27",
+    "article_fbc6c6ec352fce8eca7c": "2026-11-27",
+    "article_804f121962127f05fc53": "2026-11-27"
   },
   "home_shown_story_log": [
     {
@@ -3306,9 +3319,84 @@
       "selected_at": "2026-11-26T19:41:11.877Z",
       "edition_window_end": "2026-11-26T19:36:19.734Z",
       "shown_day": "2026-11-27"
+    },
+    {
+      "article_id": "article_fbc6c6ec352fce8eca7c",
+      "story_id": "story_9e0f9a6b87473b62df",
+      "title": "Perplexity、過去時点のウェブだけを見せる検索APIを公開",
+      "primary_entity": "Perplexity",
+      "story_subject": "過去時点のウェブのみを見せる検索API",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "API",
+      "story_entities": [
+        "Perplexity",
+        "検索API",
+        "perplexity",
+        "検索api"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-27T03:01:02.398Z",
+      "edition_window_end": "2026-11-27T02:55:32.041Z",
+      "shown_day": "2026-11-27"
+    },
+    {
+      "article_id": "article_804f121962127f05fc53",
+      "story_id": "story_fc28b3646349d88476",
+      "title": "電通、Geminiを使いこなす人材『FDE』ら3000人の育成プログラムを開始",
+      "primary_entity": "電通",
+      "story_subject": "Gemini活用人材育成プログラム",
+      "event_type": "other",
+      "event_stage": "launched",
+      "event_scope": "電通社内・日本",
+      "story_entities": [
+        "Gemini",
+        "Google",
+        "gemini",
+        "google",
+        "google-gemini"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "育成対象人数",
+          "value": "3000人",
+          "normalized_value": "3000"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-27T03:01:02.398Z",
+      "edition_window_end": "2026-11-27T02:55:32.041Z",
+      "shown_day": "2026-11-27"
     }
   ],
   "scores": {
+    "article_fbc6c6ec352fce8eca7c": {
+      "article_id": "article_fbc6c6ec352fce8eca7c",
+      "total": 67,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 3,
+        "authority": 5,
+        "freshness": 0,
+        "tool_evolution": 24,
+        "economic_only": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "大きな製品・市場変化",
+        "遅れて確認できた新着",
+        "AIツールの新機能・実践価値"
+      ],
+      "published_at": "2026-11-26T08:45:11.000Z"
+    },
     "article_2dae2ee4f23b1a9584aa": {
       "article_id": "article_2dae2ee4f23b1a9584aa",
       "total": 67,
@@ -3325,7 +3413,6 @@
       "reasons": [
         "重要度B",
         "大きな製品・市場変化",
-        "遅れて確認できた新着",
         "AIツールの新機能・実践価値"
       ],
       "published_at": "2026-11-26T11:18:02.000Z"
@@ -3345,10 +3432,28 @@
       },
       "reasons": [
         "重要度A",
-        "主要AI企業・基盤",
-        "遅れて確認できた新着"
+        "主要AI企業・基盤"
       ],
       "published_at": "2026-11-25T21:45:00.000Z"
+    },
+    "article_804f121962127f05fc53": {
+      "article_id": "article_804f121962127f05fc53",
+      "total": 48,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 5,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 7,
+        "tool_evolution": 0,
+        "economic_only": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "主要AI企業・基盤"
+      ],
+      "published_at": "2026-11-27T00:45:00.000Z"
     },
     "article_05352c7816a4c42c5828": {
       "article_id": "article_05352c7816a4c42c5828",
@@ -3365,126 +3470,12 @@
       },
       "reasons": [
         "重要度B",
-        "大きな製品・市場変化",
-        "遅れて確認できた新着"
+        "大きな製品・市場変化"
       ],
       "published_at": "2026-11-25T21:00:00.000Z"
-    },
-    "article_12061e3655179929a0fe": {
-      "article_id": "article_12061e3655179929a0fe",
-      "total": 37,
-      "breakdown": {
-        "importance": 10,
-        "topicality": 7,
-        "scope": 6,
-        "authority": 5,
-        "freshness": 9,
-        "tool_evolution": 0,
-        "economic_only": 0,
-        "penalty": 0
-      },
-      "reasons": [
-        "重要度C",
-        "重要な経営・研究体制"
-      ],
-      "published_at": "2026-11-26T19:02:27.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_1d787ecc3642230d936c",
-      "story_id": "story_b226d884a45ddb28a4",
-      "title": "バージニア州司法長官、GrokのAI生成性的画像を巡りスペースXを提訴",
-      "primary_entity": "SpaceX",
-      "story_subject": "Grok生成画像を巡る訴訟",
-      "event_type": "security",
-      "event_stage": "announced",
-      "event_scope": "アメリカ・バージニア州",
-      "story_entities": [
-        "Grok",
-        "xAI",
-        "SpaceX",
-        "grok",
-        "xai"
-      ],
-      "fact_slots": [
-        {
-          "type": "region",
-          "scope": "訴訟管轄",
-          "value": "バージニア州",
-          "normalized_value": "バージニア州"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-23T22:07:17.460Z",
-      "edition_window_end": "2026-11-23T22:01:54.333Z"
-    },
-    {
-      "article_id": "article_b0aa9543bcb9debfb08d",
-      "story_id": "story_0432a14853ded11222",
-      "title": "米国の州知事ら、州法を残したまま連邦のAI統一ルールを議会に要請",
-      "primary_entity": "米国の州知事ら",
-      "story_subject": "AI規制の連邦統一ルール要請",
-      "event_type": "policy",
-      "event_stage": "proposed",
-      "event_scope": "米国",
-      "story_entities": [
-        "米国議会",
-        "州知事",
-        "AI規制",
-        "ai規制"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-23T22:07:17.460Z",
-      "edition_window_end": "2026-11-23T22:01:54.333Z"
-    },
-    {
-      "article_id": "article_9d35c4929617dec27033",
-      "story_id": "story_79191ff455efe406b2",
-      "title": "AI生成画像の類似指摘、公開時期の誤認でイラストレーターが撤回・謝罪",
-      "primary_entity": "イラストレーター(個人、詳細不明)",
-      "story_subject": "AI生成画像の類似指摘撤回",
-      "event_type": "other",
-      "event_stage": "corrected",
-      "event_scope": "個人間のトラブル",
-      "story_entities": [
-        "AI生成画像",
-        "著作権トラブル",
-        "ai生成画像"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-23T22:07:17.460Z",
-      "edition_window_end": "2026-11-23T22:01:54.333Z"
-    },
-    {
-      "article_id": "article_3285e05e170542764c9d",
-      "story_id": "story_972f02e7671d8a3d34",
-      "title": "雑草検出AIの画像認識に重大な欠陥、異なる農場データでの検証で判明",
-      "primary_entity": "研究チーム(詳細不明)",
-      "story_subject": "AI雑草検出モデルのクロスデータセット検証",
-      "event_type": "research",
-      "event_stage": "other",
-      "event_scope": "農業AI研究",
-      "story_entities": [
-        "AI雑草検出",
-        "クロスデータセットベンチマーク",
-        "ai雑草検出"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-23T22:07:17.460Z",
-      "edition_window_end": "2026-11-23T22:01:54.333Z"
-    },
     {
       "article_id": "article_ee8f3c824d16ff5ccde4",
       "story_id": "story_c988028a52e3f7e49e",
@@ -4126,6 +4117,58 @@
       "previous_article_id": "",
       "selected_at": "2026-11-26T19:41:11.877Z",
       "edition_window_end": "2026-11-26T19:36:19.734Z"
+    },
+    {
+      "article_id": "article_fbc6c6ec352fce8eca7c",
+      "story_id": "story_9e0f9a6b87473b62df",
+      "title": "Perplexity、過去時点のウェブだけを見せる検索APIを公開",
+      "primary_entity": "Perplexity",
+      "story_subject": "過去時点のウェブのみを見せる検索API",
+      "event_type": "release",
+      "event_stage": "announced",
+      "event_scope": "API",
+      "story_entities": [
+        "Perplexity",
+        "検索API",
+        "perplexity",
+        "検索api"
+      ],
+      "fact_slots": [],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-27T03:01:02.398Z",
+      "edition_window_end": "2026-11-27T02:55:32.041Z"
+    },
+    {
+      "article_id": "article_804f121962127f05fc53",
+      "story_id": "story_fc28b3646349d88476",
+      "title": "電通、Geminiを使いこなす人材『FDE』ら3000人の育成プログラムを開始",
+      "primary_entity": "電通",
+      "story_subject": "Gemini活用人材育成プログラム",
+      "event_type": "other",
+      "event_stage": "launched",
+      "event_scope": "電通社内・日本",
+      "story_entities": [
+        "Gemini",
+        "Google",
+        "gemini",
+        "google",
+        "google-gemini"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "育成対象人数",
+          "value": "3000人",
+          "normalized_value": "3000"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "uncertain",
+      "previous_article_id": "",
+      "selected_at": "2026-11-27T03:01:02.398Z",
+      "edition_window_end": "2026-11-27T02:55:32.041Z"
     }
   ]
 }
