@@ -909,10 +909,10 @@
     },
     {
       "article_id": "article_2dae2ee4f23b1a9584aa",
-      "story_id": "story_a77c4ab3d714b44739",
-      "story_sequence": 1,
-      "relation_type": "new",
-      "relation_confidence": 1,
+      "story_id": "story_74817306a18f747977",
+      "story_sequence": 2,
+      "relation_type": "follow_up",
+      "relation_confidence": 0.875,
       "title": "Perplexity、過去のウェブを検索できる「Time Machine」を公開",
       "source_published_at": "2026-11-26T11:18:02.000Z",
       "published_at": "2026-11-26T11:18:02.000Z",
@@ -936,9 +936,11 @@
       "event_scope": "Perplexityの検索サービス",
       "fact_slots": [],
       "structured_complete": true,
-      "dedupe_decision": "new",
+      "dedupe_decision": "follow_up",
       "dedupe_reasons": [
-        "no_previous_story"
+        "same_primary_entity",
+        "same_subject",
+        "same_event_type"
       ],
       "change_summary": "過去時点のウェブ情報を検索できる「Time Machine」機能が新たに公開された。",
       "detail": "Perplexityが「Time Machine」という新機能を公開した。簡単に言うと、過去の特定の時点でのウェブサイトの状態を調べられる検索機能のことである。通常の検索は最新の情報を表示するが、この機能は過去にさかのぼって当時のウェブの記録を確認できる点が新しい。\n\n記事によると、この機能はAIが行った将来予測の精度を後から検証する用途に活用されるという。例えば、ある時点でAIが示した予測が実際にどうなったかを、その後のウェブの記録と照らし合わせて確認できる仕組みとされる。対応期間や検索対象の範囲など具体的な数値は記事に示されていない。\n\n研究者や開発者は、AIの予測能力を客観的に確かめる手段として活用できる可能性がある。一般利用者への提供範囲や料金体系は不明である。今後の詳細な発表が待たれる。",
@@ -1156,6 +1158,54 @@
       "new_facts": [
         "Perplexityが過去の特定時点のウェブ情報だけをAIに見せる検索APIを公開した",
         "この仕組みはAIが答えを知らない状態での予測力を測るために使われる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_a7882902eccb18e3079a",
+      "story_id": "story_ba870c6f798f0c2f79",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Midjourney V8.1は処理速度5倍・2K対応、V8.2の変更点もレビュー記事で判明",
+      "source_published_at": "2026-11-26T08:00:00.000Z",
+      "published_at": "2026-11-26T08:00:00.000Z",
+      "fetched_at": "2026-11-28T18:13:44.299Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Fello AIのレビュー記事によると、画像生成AI Midjourneyの新版V8.1は旧版より生成速度が5倍速くなり2K高精細出力に標準対応した。",
+      "source_name": "Fello AI",
+      "source_url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE0tSHhOMGZ5QUVFWEhEUTJQY012aWN5dWpWQ2R1WnJMcGRiUFBiU0NwdHVrbExHN3d3azl6b280LVkyX3ZxQUR5NllqNThPZ3doN2pTQ0FR?oc=5",
+      "story_entities": [
+        "Midjourney",
+        "V8.1",
+        "V8.2",
+        "midjourney",
+        "v8.1"
+      ],
+      "primary_entity": "Midjourney",
+      "story_subject": "Midjourney V8.1/V8.2",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "画像生成AI利用者向け",
+      "fact_slots": [
+        {
+          "type": "version",
+          "scope": "Midjourneyのバージョン",
+          "value": "V8.1/V8.2",
+          "normalized_value": "v8.1v8.2"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "V8.1で生成速度が5倍に向上し、2K高精細出力に標準対応したことがレビューで報じられた。",
+      "detail": "Fello AIというサイトが、画像生成AI「Midjourney」の新版V8.1をレビューした記事を掲載した。簡単に言うと、これは画像生成AIの性能向上をまとめた比較記事だ。レビューによれば、旧バージョンより生成速度が5倍速くなり、画像の精細さを示す解像度も2K(フルHDより高精細)に標準対応した。\n\n記事はさらに、次のバージョンであるV8.2で何が変更されたかについても触れている。具体的にどの機能がどう変わったかの詳細内容までは記事中では明らかにされていない。それでも、速度と画質の両方が改善された点は、画像生成AIを日常的に使う人にとって重要な進化だ。\n\nMidjourneyを使ってイラストやデザインを作る人は、より短い待ち時間で高精細な画像を得られるようになる。ただし、この記事は第三者によるレビューであり、公式な発表内容や提供開始時期などの詳細はまだ明らかになっていない。",
+      "new_facts": [
+        "Midjourney V8.1は旧版より生成速度が5倍になったとレビューされた",
+        "V8.1はネイティブ2K高精細出力に対応した"
       ],
       "event_date_precision": "unknown"
     },
@@ -1566,6 +1616,53 @@
       "new_facts": [
         "Adobeが新AI機能「Creative Agent」を発表した",
         "Creative CloudとFireflyの作業を変える機能とされる"
+      ],
+      "event_date_precision": "unknown"
+    },
+    {
+      "article_id": "article_5ede82f781792e3bf778",
+      "story_id": "story_74817306a18f747977",
+      "story_sequence": 1,
+      "relation_type": "new",
+      "relation_confidence": 1,
+      "title": "Perplexity、特定時点のウェブ情報を取得できる「Time Machine」を公開",
+      "source_published_at": "2026-11-25T19:31:08.000Z",
+      "published_at": "2026-11-25T19:31:08.000Z",
+      "fetched_at": "2026-11-28T18:13:44.299Z",
+      "event_at": "",
+      "event_status": "発表済み",
+      "raw_excerpt": "Perplexityは、特定の過去時点のウェブ情報を取得できる新機能「Time Machine」を公開した。検索の時系列変化を確認できるようになった。",
+      "source_name": "Unite.AI",
+      "source_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOWnU3Y05XYWNWcVJQQWhMWGllenNHYjU4NDFZNUNyZnBRUzhhXzU0bVFKUnBtTFZvZUpYaEJocENtSTM2YmFDa0RfZk9DbjhEbjFaaDJ5Uk83a1ZSSjRrUTUzWjlyTlBxZXlBMVlqa1p4TU40TG16cmR6aHZLTXZRa0VQejVXdGxFWEUzV2o1Wjk0WmM?oc=5",
+      "story_entities": [
+        "Perplexity",
+        "Time Machine",
+        "perplexity",
+        "timemachine",
+        "time"
+      ],
+      "primary_entity": "Perplexity",
+      "story_subject": "Time Machine機能",
+      "event_type": "release",
+      "event_stage": "launched",
+      "event_scope": "Perplexity利用者向け(全世界)",
+      "fact_slots": [
+        {
+          "type": "other",
+          "scope": "機能名",
+          "value": "Time Machine",
+          "normalized_value": "timemachine"
+        }
+      ],
+      "structured_complete": true,
+      "dedupe_decision": "new",
+      "dedupe_reasons": [
+        "no_previous_story"
+      ],
+      "change_summary": "特定の過去時点のウェブ情報を取得できる新機能「Time Machine」が新たに追加された。",
+      "detail": "AI検索サービスを提供するPerplexityが、「Time Machine」という新機能を公開した。簡単に言うと、これはインターネット上の情報を過去のある時点にさかのぼって調べられる機能だ。これまでの検索は最新の情報しか取得できなかったが、今回は過去の特定時点の状態を確認できる点が新しい。\n\n記事では機能名と目的が示されているが、対応できる過去の期間や具体的な仕組みの細部までは明らかにされていない。なぜ重要かというと、ニュースの移り変わりや過去の事実確認、歴史的な出来事の検証に役立つ可能性があるからだ。検索結果が時間とともにどう変わったかを追える点が特徴とされている。\n\n調査やファクトチェックを行う人にとって、過去の状況を正確に調べる手段が増えることになる。ただし、利用条件や料金、対応範囲などの詳細はまだ公式に明らかになっていない。今後の追加情報の確認が必要な段階だ。",
+      "new_facts": [
+        "Perplexityが特定時点のウェブ情報を取得できる「Time Machine」機能を公開した"
       ],
       "event_date_precision": "unknown"
     },
