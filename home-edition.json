@@ -7,47 +7,54 @@
     "13:17",
     "19:17"
   ],
-  "window_start": "2026-11-27T13:52:53.615Z",
-  "window_end": "2026-11-27T19:27:59.322Z",
-  "last_window_end": "2026-11-27T19:27:59.322Z",
-  "last_checked_at": "2026-11-27T19:32:09.371Z",
-  "last_published_at": "2026-11-27T19:32:09.371Z",
-  "home_content_changed_at": "2026-11-27T19:32:09.371Z",
+  "window_start": "2026-11-27T19:27:59.322Z",
+  "window_end": "2026-11-28T02:46:09.618Z",
+  "last_window_end": "2026-11-28T02:46:09.618Z",
+  "last_checked_at": "2026-11-28T02:50:52.269Z",
+  "last_published_at": "2026-11-28T02:50:52.269Z",
+  "home_content_changed_at": "2026-11-28T02:50:52.269Z",
   "consecutive_unchanged_editions": 0,
   "consecutive_zero_candidate_editions": 0,
-  "update_health": "DEGRADED",
-  "update_health_reasons": [
-    "前の日と重ならない検証済み記事が3件未満です"
-  ],
+  "update_health": "HEALTHY",
+  "update_health_reasons": [],
   "edition_status": "NEW_STORIES",
-  "candidate_count": 2,
-  "distinct_candidate_count": 2,
+  "candidate_count": 1,
+  "distinct_candidate_count": 1,
   "duplicate_candidate_count": 0,
   "duplicate_groups": [],
-  "novel_candidate_count": 2,
+  "novel_candidate_count": 1,
   "cross_edition_duplicate_count": 0,
   "cross_edition_duplicate_groups": [],
-  "selected_count": 2,
+  "selected_count": 3,
   "target_selected_count": 5,
   "minimum_selected_count": 3,
-  "new_selected_count": 2,
-  "continued_selected_count": 0,
+  "new_selected_count": 1,
+  "continued_selected_count": 2,
   "tool_evolution_selected_count": 0,
   "carried_forward": false,
-  "partially_carried_forward": false,
+  "partially_carried_forward": true,
   "article_ids": [
+    "article_6563380af75c44d15402",
     "article_15c0c643c61a201744fe",
     "article_79a9203c075609946dc7"
   ],
   "new_article_ids": [
+    "article_6563380af75c44d15402"
+  ],
+  "continued_article_ids": [
     "article_15c0c643c61a201744fe",
     "article_79a9203c075609946dc7"
   ],
-  "continued_article_ids": [],
-  "continuation_sources": {},
+  "continuation_sources": {
+    "article_15c0c643c61a201744fe": "previous_edition",
+    "article_79a9203c075609946dc7": "previous_edition"
+  },
   "daily_unique_rule": "前の日（日本時間）までにホームへ載せた記事と同じ出来事の記事は、二度とホームへ載せない",
   "edition_day_jst": "2026-11-28",
-  "same_day_article_ids": [],
+  "same_day_article_ids": [
+    "article_15c0c643c61a201744fe",
+    "article_79a9203c075609946dc7"
+  ],
   "first_time_article_ids": [],
   "repeated_from_previous_day_ids": [],
   "blocked_previous_day_count": 40,
@@ -407,7 +414,8 @@
     "article_a37b99b5059da0e9cc00": "2026-11-27",
     "article_4a04cbd5b914b0d78b5a": "2026-11-27",
     "article_15c0c643c61a201744fe": "2026-11-28",
-    "article_79a9203c075609946dc7": "2026-11-28"
+    "article_79a9203c075609946dc7": "2026-11-28",
+    "article_6563380af75c44d15402": "2026-11-28"
   },
   "home_shown_story_log": [
     {
@@ -3361,9 +3369,58 @@
       "selected_at": "2026-11-27T19:32:09.371Z",
       "edition_window_end": "2026-11-27T19:27:59.322Z",
       "shown_day": "2026-11-28"
+    },
+    {
+      "article_id": "article_6563380af75c44d15402",
+      "story_id": "story_0213b6f62b8241533d",
+      "title": "スイスのサイバーセキュリティ責任者、AIエージェントへの攻撃5件を報告",
+      "primary_entity": "スイスのサイバーセキュリティ責任者",
+      "story_subject": "AIエージェントへのサイバー攻撃",
+      "event_type": "security",
+      "event_stage": "other",
+      "event_scope": "スイス",
+      "story_entities": [
+        "スイス",
+        "AIエージェント",
+        "サイバー攻撃",
+        "aiエージェント"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "AIエージェントへの攻撃件数",
+          "value": "5件",
+          "normalized_value": "5"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-28T02:50:52.269Z",
+      "edition_window_end": "2026-11-28T02:46:09.618Z",
+      "shown_day": "2026-11-28"
     }
   ],
   "scores": {
+    "article_6563380af75c44d15402": {
+      "article_id": "article_6563380af75c44d15402",
+      "total": 48,
+      "breakdown": {
+        "importance": 25,
+        "topicality": 10,
+        "scope": 6,
+        "authority": 5,
+        "freshness": 2,
+        "tool_evolution": 0,
+        "economic_only": 0,
+        "penalty": 0
+      },
+      "reasons": [
+        "重要度B",
+        "制度・安全への影響"
+      ],
+      "published_at": "2026-11-27T21:10:17.000Z"
+    },
     "article_15c0c643c61a201744fe": {
       "article_id": "article_15c0c643c61a201744fe",
       "total": 50,
@@ -3379,8 +3436,7 @@
       },
       "reasons": [
         "重要度B",
-        "制度・安全への影響",
-        "遅れて確認できた新着"
+        "制度・安全への影響"
       ],
       "published_at": "2026-11-27T08:28:34.000Z"
     },
@@ -3399,134 +3455,12 @@
       },
       "reasons": [
         "重要度B",
-        "制度・安全への影響",
-        "遅れて確認できた新着"
+        "制度・安全への影響"
       ],
       "published_at": "2026-11-27T07:00:01.000Z"
     }
   },
   "recent_story_history": [
-    {
-      "article_id": "article_72250400f1f2f0ebf296",
-      "story_id": "story_a88deb4526a8981aa2",
-      "title": "VirtualHatch、AIへの権限委譲範囲を選べるOSS「Vardock」を公開",
-      "primary_entity": "VirtualHatch",
-      "story_subject": "Vardock",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "開発者向け・OSS",
-      "story_entities": [
-        "VirtualHatch",
-        "Vardock",
-        "virtualhatch",
-        "vardock"
-      ],
-      "fact_slots": [
-        {
-          "type": "availability",
-          "scope": "Vardock",
-          "value": "OSSとして公開",
-          "normalized_value": "ossとして公開"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-24T20:53:44.086Z",
-      "edition_window_end": "2026-11-24T20:39:01.628Z"
-    },
-    {
-      "article_id": "article_896f67b85e716940f1eb",
-      "story_id": "story_aa41e3b116442e5384",
-      "title": "米下院2委員会、米企業の中国製AIモデル依存に警告する報告書",
-      "primary_entity": "米国下院",
-      "story_subject": "中国製AIモデル依存問題",
-      "event_type": "policy",
-      "event_stage": "other",
-      "event_scope": "米国",
-      "story_entities": [
-        "米国下院",
-        "中国AIモデル",
-        "中国aiモデル"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-24T20:53:44.086Z",
-      "edition_window_end": "2026-11-24T20:39:01.628Z"
-    },
-    {
-      "article_id": "article_0d318dabfe81eece2215",
-      "story_id": "story_8a3dde650acb1900db",
-      "title": "テラウルフCEO、AI投資縮小懸念に『何も変わっていない』と反論",
-      "primary_entity": "TeraWulf",
-      "story_subject": "AI投資縮小懸念",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "米国",
-      "story_entities": [
-        "TeraWulf",
-        "Paul Prager",
-        "terawulf",
-        "paulprager"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-24T20:53:44.086Z",
-      "edition_window_end": "2026-11-24T20:39:01.628Z"
-    },
-    {
-      "article_id": "article_356341add561ac9fc5d3",
-      "story_id": "story_edadcf6798a2ca30bf",
-      "title": "半導体セクター見通し、エヌビディアのジェンスン・フアンCEO復帰を踏まえた分析",
-      "primary_entity": "NVIDIA",
-      "story_subject": "ジェンスン・フアンCEO復帰",
-      "event_type": "other",
-      "event_stage": "other",
-      "event_scope": "半導体セクター",
-      "story_entities": [
-        "NVIDIA",
-        "ジェンスン・フアン",
-        "nvidia",
-        "ジェンスンフアン"
-      ],
-      "fact_slots": [
-        {
-          "type": "status",
-          "scope": "NVIDIA CEO",
-          "value": "ジェンスン・フアン氏が復帰したと見出しに記載",
-          "normalized_value": "ジェンスンフアン氏が復帰したと見出しに記載"
-        }
-      ],
-      "relation_type": "new",
-      "dedupe_decision": "uncertain",
-      "previous_article_id": "",
-      "selected_at": "2026-11-24T20:53:44.086Z",
-      "edition_window_end": "2026-11-24T20:39:01.628Z"
-    },
-    {
-      "article_id": "article_47ea9684a112f5e8dae5",
-      "story_id": "story_4b5a9103a5569cadf5",
-      "title": "Canva、AIツールの使用を制限できる新設定を追加",
-      "primary_entity": "Canva",
-      "story_subject": "CanvaのAI機能制御設定",
-      "event_type": "release",
-      "event_stage": "launched",
-      "event_scope": "Canvaアプリ全体",
-      "story_entities": [
-        "Canva",
-        "canva"
-      ],
-      "fact_slots": [],
-      "relation_type": "new",
-      "dedupe_decision": "new",
-      "previous_article_id": "",
-      "selected_at": "2026-11-24T20:53:44.086Z",
-      "edition_window_end": "2026-11-24T20:39:01.628Z"
-    },
     {
       "article_id": "article_c8b689911a6592f31efc",
       "story_id": "story_3fa11ca4d8304b417d",
@@ -4032,6 +3966,35 @@
       "previous_article_id": "",
       "selected_at": "2026-11-27T19:32:09.371Z",
       "edition_window_end": "2026-11-27T19:27:59.322Z"
+    },
+    {
+      "article_id": "article_6563380af75c44d15402",
+      "story_id": "story_0213b6f62b8241533d",
+      "title": "スイスのサイバーセキュリティ責任者、AIエージェントへの攻撃5件を報告",
+      "primary_entity": "スイスのサイバーセキュリティ責任者",
+      "story_subject": "AIエージェントへのサイバー攻撃",
+      "event_type": "security",
+      "event_stage": "other",
+      "event_scope": "スイス",
+      "story_entities": [
+        "スイス",
+        "AIエージェント",
+        "サイバー攻撃",
+        "aiエージェント"
+      ],
+      "fact_slots": [
+        {
+          "type": "count",
+          "scope": "AIエージェントへの攻撃件数",
+          "value": "5件",
+          "normalized_value": "5"
+        }
+      ],
+      "relation_type": "new",
+      "dedupe_decision": "new",
+      "previous_article_id": "",
+      "selected_at": "2026-11-28T02:50:52.269Z",
+      "edition_window_end": "2026-11-28T02:46:09.618Z"
     }
   ]
 }
